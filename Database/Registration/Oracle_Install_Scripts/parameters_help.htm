@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+<HEAD>
+	<title>CambridgeSoft --Oracle Script Configuration Tool</title>
+
+    <style>
+<!--
+BODY
+{
+    BACKGROUND-COLOR: #fffff0;
+    FONT-FAMILY: verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    MARGIN-LEFT: 48px;
+    MARGIN-TOP: 14px
+}
+H1
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 20px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -34px
+}
+H2
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 18px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -24px
+}
+H3
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 16px;
+    FONT-WEIGHT: bold;
+    MARGIN-BOTTOM: 5px;
+    MARGIN-LEFT: -12px
+}
+H4
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-FAMILY: Verdana, arial, helvetica, sans-serif;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: bold
+}
+H5
+{
+    BACKGROUND-COLOR: #fffff0;
+    COLOR: black;
+    FONT-SIZE: 12px;
+    FONT-WEIGHT: normal
+}
+-->
+    </style>
+</HEAD>
+
+<body>
+<h1>Oracle Script Parameters - Registration System</h1>
+
+<p>The following descriptions are intended to lead you through the Oracle
+Parameters file. The default values are adequate for standard, smaller installations, but should be
+adjusted by a knowledgeable DBA to suit the environment of midsize-large production installations.&nbsp;
+Changing these parameters has a direct effect on how the application schema is
+created, so it is important to fully understand the parameters before making
+changes.</p>
+
+<p>The parameters file is found <a href="sql/parameters.sql">here</a>.</p>
+
+<h3>General</h3>
+
+<p><i><font color="#FF0000">The parameters listed here under General should not be
+changed <font size="2">t</font><font SIZE="2">o ensure proper operation of the
+application.</font></font></i></p>
+
+<font SIZE="2">
+<h4>schemaName</h4>
+<p>The name of the schema.</p>
+<h4>schemaPass</h4>
+<p>The password for the schema.</p>
+<h4>schemaVersion</h4>
+<p>The version of the schema.</p>
+<h4>appVersion</h4>
+<p>The version of the application.</p>
+<h4>securitySchemaName</h4>
+<p>The name of the security schema (default = cs_security)</p>
+<h4>securitySchemaPass</h4>
+<p>The password for the security schema.</p>
+<h4>privTableName</h4>
+<p>The privilege table name.</p>
+<h4>min_priv</h4>
+<p>The minimum privileges granted to users of the application.</p>
+<h3>Table Space Names</h3>
+<h4>tableSpaceName</h4>
+<p>The name of the schema table space.&nbsp; This table space is created during
+script execution.</p>
+<h4>indexTableSpaceName</h4>
+<p>The name of the index table space.&nbsp; This table space is created during
+script execution.</p>
+<h4>tempTableSpaceName</h4>
+<p>The name of the temporary table space.&nbsp; By default, the TEMP tablespace
+is used (this is the temporary tablespace added in a default Oracle
+installation).&nbsp; This table space is not created as part of these
+scripts.&nbsp; Be sure the name of this table space refers to an existing table
+space before running the script.</font></p>
+<font SIZE="2">
+<h4>lobsTableSpaceName</h4>
+<p>The name of the lob table space.&nbsp; This table space is created during
+script execution.</p>
+<h4>securityTableSpaceName</h4>
+<p>The name of the security table space.&nbsp; This must match the name given to
+the cs_security table space during creation.&nbsp; This table space is not
+created as part of these scripts.</p>
+<h3>Path to Table Space</h3>
+<h4>defaultTableTSPath</h4>
+<p>The path to the table space file.&nbsp; The path must end with a slash (\)
+and the path must be valid.</p>
+<h4>defaultIndexTSPath</h4>
+<p>The path to the index table space file.&nbsp; The path must end with a slash
+(\) and the path must be valid.</p>
+<h4>defaultLobTSPath</h4>
+<p>The path to the lob table space file.&nbsp; The path must end with a slash
+(\) and the path must be valid.</p>
+<h3>Table Space File Names</h3>
+<p>This file name must include the full path.&nbsp; By default the following
+convention is used:<br>
+&nbsp;'&amp;&amp;defaultTableTSPath&amp;&amp;tableSpaceName..DBF'<br>
+Where &amp;defaultTableTSPath refers to the value of the defaultTableTSPath
+parameter and &amp;tableSpaceName refers to the value of the tableSpaceName
+parameter.</p>
+<h4>tableSpaceFile</h4>
+<p>The name of the schema table space file.</p>
+<h4>indexTableSpaceFile</h4>
+<p>The name of the index table space file.</p>
+<h4>lobsTableSpaceFile</h4>
+<p>The name of the lob table space file.&nbsp;&nbsp;</p>
+<h3>Block Sizes</h3>
+<p>Custom block sizes can be defined for Oracle 9i installations.&nbsp; In an
+Oracle 8i installation, these parameters are ignored.<br>
+The values for your block size rely heavily on your installation's constraints.</p>
+<h4>dataBlockSize</h4>
+<p>The data block size.</p>
+<h4>indexBlockSize</h4>
+<p>The index block size.</p>
+<h4>lobBlockSize</h4>
+<p>The lob block size.</p>
+<h4>dataBlockSizeClause</h4>
+<p>The data block size clause.&nbsp; By default, BLOCKSIZE followed by the value
+of the dataBlockSize parameter.</p>
+<h4>indexBlockSizeClause</h4>
+<p>The index block size clause.&nbsp; By default, BLOCKSIZE followed by the
+value of the indexBlockSize parameter.</p>
+<h4>lobBlockSizeClause</h4>
+<p>The lob block size clause.&nbsp; By default, BLOCKSIZE followed by the value
+of the lobBlockSize parameter.</p>
+<h3>Table Space Size</h3>
+<p> The default values are adequate for standard, smaller installations, but should be
+adjusted by a knowledgeable DBA to suit the environment of midsize-large production installations.
+See the parameters for tips in deciding how large to make your table spaces.</p>
+<h4>tablespaceSize</h4>
+<p>The schema table space size.</p>
+<h4>idxTablespaceSize</h4>
+<p>The index table space size.</p>
+<h4>lobTablespaceSize</h4>
+<p>The lob table space size.</p>
+<h4>tablespaceExtent</h4>
+<p>The size of the next extent for the schema table space.</p>
+<h4>idxTablespaceExtent</h4>
+<p>The size of the next extent for the index table space.</p>
+<h4>lobTablespaceExtent</h4>
+<p>The size of the next extent for the lob table space.</p>
+<h3>Lob Space Allotted</h3>
+<h4>lobB64cdx</h4>
+<p>The amount of space allotted to lobs containing Base64cdx data.&nbsp;</p>
+</font>
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+  <tables>
+    <table id="1">
+      <field fieldId="1"/>
+      <field fieldId="2"/>
+      <field fieldId="3"/>
+      <Custom>
+         <cast fieldId="1" dataType="varchar2(4)" alias="CASTED ID"/>
+      </Custom>
+    </table>
+    <table id="2">
+      <field fieldId="10"/>
+      <field fieldId="11"/>
+      <field fieldId="12"/>
+    </table>
+  </tables>
+</resultsCriteria>

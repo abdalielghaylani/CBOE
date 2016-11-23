@@ -1,0 +1,9 @@
+<publishData>
+  <publishTarget publishUrl="C:\Inetpub\wwwroot\ChemOffice\SingleSignOn\">
+    <file relUrl="bin/SingleSignOn.dll" publishTime="4/20/2007 3:10:00 PM" />
+    <file relUrl="SingleSignOn.asmx" publishTime="4/20/2007 10:42:24 AM" />
+    <file relUrl="bin/SingleSignOn.pdb" publishTime="4/20/2007 3:10:00 PM" />
+    <file relUrl="bin/SingleSignOn.xml" publishTime="4/20/2007 3:10:00 PM" />
+    <file relUrl="Web.config" publishTime="4/19/2007 4:47:10 PM" />
+  </publishTarget>
+</publishData>

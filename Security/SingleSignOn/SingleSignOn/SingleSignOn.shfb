@@ -1,0 +1,41 @@
+﻿<project schemaVersion="1.4.0.0">
+    <assemblies>
+        <assembly assemblyPath=".\bin\SingleSignOn.dll" xmlCommentsPath=".\bin\SingleSignOn.xml" commentsOnly="False" />
+    </assemblies>
+    <namespaceSummaries>
+        <namespaceSummaryItem name="" isDocumented="False" />
+        <namespaceSummaryItem name="CambridgeSoft.COE.Security.Services" isDocumented="True">The CambridgeSoft.COE.Security.Services namespace contains classes that are used to implement security in ChemOffice Enterprise Applications.</namespaceSummaryItem>
+    </namespaceSummaries>
+    <ProjectSummary />
+    <MissingTags>None</MissingTags>
+    <VisibleItems>Protected, SealedProtected</VisibleItems>
+    <HtmlHelp1xCompilerPath path="" />
+    <HtmlHelp2xCompilerPath path="" />
+    <OutputPath>.\Help\</OutputPath>
+    <SandcastlePath path="" />
+    <WorkingPath path="" />
+    <CleanIntermediates>True</CleanIntermediates>
+    <HelpFileFormat>HtmlHelp1x</HelpFileFormat>
+    <PurgeDuplicateTopics>True</PurgeDuplicateTopics>
+    <CppCommentsFixup>False</CppCommentsFixup>
+    <FrameworkVersion>2.0.50727</FrameworkVersion>
+    <BinaryTOC>True</BinaryTOC>
+    <IncludeFavorites>False</IncludeFavorites>
+    <Preliminary>False</Preliminary>
+    <RootNamespaceContainer>False</RootNamespaceContainer>
+    <RootNamespaceTitle />
+    <HelpTitle>SingleSignOn Documentation</HelpTitle>
+    <HtmlHelpName>SingleSignOn</HtmlHelpName>
+    <Language>en-US</Language>
+    <CopyrightHref />
+    <CopyrightText>CambridgeSoft Corporation 2007</CopyrightText>
+    <FeedbackEMailAddress />
+    <HeaderText />
+    <FooterText />
+    <ProjectLinkType>Local</ProjectLinkType>
+    <SdkLinkType>Msdn</SdkLinkType>
+    <PresentationStyle>vs2005</PresentationStyle>
+    <NamingMethod>Guid</NamingMethod>
+    <SyntaxFilters>Standard</SyntaxFilters>
+    <ContentPlacement>AboveNamespaces</ContentPlacement>
+</project>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- THIS FILE HAS TO BE PLACED IN LOCALAPPLICATIONDATA SPECIAL FOLDER. SEE README.TXT FOR DETAILS -->
+<configuration>
+	<mappings xmlns="COE.Mappings">
+		<selectClauses>
+		     <selectClause name="jchemmolweight" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseJChemMolWeight" />
+			 <selectClause name="jchemformula" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseJChemFormula" />
+		</selectClauses>
+	</mappings>
+</configuration>

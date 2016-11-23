@@ -1,0 +1,570 @@
+<configuration subdirectory="Forms\Web" databasename="COETEST" description="Assayed Compounds" formgroup="5003" id="5003" ispublic="True" name="COETEST Pubchem" username="COEDB" application="CHEMBIOVIZ" formtypeid="1">
+	<xml><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<formGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="5003" dataViewId="5003" xmlns="COE.FormGroup">
+ 	<styleSheet>~/Forms/Search/css/defaultForm.css</styleSheet>
+  <queryForms>
+    <queryForm id="0">
+      <coeForms>
+        <coeForm id="0">
+          <formDisplay>
+            <top>0px</top>
+            <left>0px</left>
+            <height>280px</height>
+            <width>700px</width>
+            <style>overflow:visible;margin-top:25px;border:1px;</style>
+          </formDisplay>
+          <layoutInfo>
+            <formElement>
+              <bindingExpression>SearchCriteria[1].Criterium</bindingExpression>
+              <searchCriteriaItem id="1" fieldid="1430" tableid="1429">
+                <structureCriteria negate="NO" implementation="CsCartridge" cartridgeSchema="CSCartridge" absoluteHitsRel="NO" relativeTetStereo="NO" tetrahedralStereo="YES" simThreshold="100" reactionCenter="YES" fullSearch="NO" tautometer="NO" fragmentsOverlap="NO" permitExtraneousFragmentsIfRXN="NO" permitExtraneousFragments="NO" doubleBondStereo="YES" hitAnyChargeHetero="YES" identity="NO" hitAnyChargeCarbon="YES" similar="NO" format="base64cdx"/>
+              </searchCriteriaItem>
+              <configInfo>
+                <fieldConfig>
+                  <Links>
+                    <CSSClass>LinkButton</CSSClass>
+                  </Links>
+                  <Labels>
+                    <CSSClass>COELabel</CSSClass>
+                  </Labels>
+                  <ChemDraw>
+                    <CSSClass>COEChemDraw</CSSClass>
+                    <ID>Structure</ID>
+                  </ChemDraw>
+                </fieldConfig>
+              </configInfo>
+              <Id>StructureQueryControl</Id>
+              <displayInfo>
+                <top>10px</top>
+                <left>400px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStructureQuery</type>
+              </displayInfo>
+            </formElement>
+            <!--header for the chemical properties-->
+            <formElement>
+              <defaultValue>Chemical Properties</defaultValue>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <Id>ChemicalPropertiesLabel</Id>
+              <displayInfo>
+                <top>60px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!--Molecular Formula Label-->
+            <formElement>
+              <defaultValue>Molecular Formula</defaultValue>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <Id>FormulaLabel</Id>
+              <displayInfo>
+                <top>80px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!--Molecular Formula Text Box-->
+            <formElement>
+              <bindingExpression>SearchCriteria[2].Criterium.Value</bindingExpression>
+              <searchCriteriaItem id="2" fieldid="1430" tableid="1429">
+                <formulaCriteria implementation="CsCartridge" cartridgeSchema="CSCartridge"/>
+              </searchCriteriaItem>
+              <Id>FormulaTextBox</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>80px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+              </displayInfo>
+            </formElement>
+			<!--Label for molecular weight-->
+            <formElement>
+              <defaultValue>Molecular Weight</defaultValue>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <Id>MolWeightLabel</Id>
+              <displayInfo>
+                <top>105px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!--Molecular Weight Search Box-->
+            <formElement>
+              <bindingExpression>SearchCriteria[3].Criterium.Value</bindingExpression>
+              <searchCriteriaItem id="3" fieldid="1430" tableid="1429">
+                <molweightCriteria implementation="CsCartridge" cartridgeSchema="CSCartridge"/>
+              </searchCriteriaItem>
+              <Id>MolWeightTextBox</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>105px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+              </displayInfo>
+            </formElement>
+            <!--put in some child data for searching-->
+            <!--header for the chemical properties-->
+            <formElement>
+              <defaultValue>ERalpha Primary Screen</defaultValue>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <Id>ERAPSLabel</Id>
+              <displayInfo>
+                <top>160px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+             <!--Label for Pct Inh-->
+            <formElement>
+              <defaultValue>Pct Inh</defaultValue>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <Id>PctInhLabel</Id>
+              <displayInfo>
+                <top>180px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!--Pct Inh Search Box-->
+            <formElement>
+              <bindingExpression>SearchCriteria[4].Criterium.Value</bindingExpression>
+              <searchCriteriaItem id="4" fieldid="1903" tableid="1901">
+                <numericalCriteria operator="EQUAL" caseSensitive="NO"/>
+              </searchCriteriaItem>
+              <Id>PCtInhTextBox</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>180px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+              </displayInfo>
+            </formElement>
+          </layoutInfo>
+        </coeForm>
+      </coeForms>
+    </queryForm>
+  </queryForms>
+  <detailsForms>
+    <detailsForm id="0" defaultDisplayMode="View">
+      <resultsCriteria xmlns="COE.ResultsCriteria">
+        <tables>
+			<table id="1429">
+				<!--BASE64_CDX-->
+				<field fieldId="1430" alias="Structure"/>
+				<field fieldId="1448" alias="Compound ID"/>
+				<field fieldId="1459" alias="Smiles"/>
+
+				<!--MW-->
+				<SQLFunction functionName="ROUND" alias="Mol Wt">
+					<MolWeight fieldId="1430"/>
+					<literal>4</literal>
+				</SQLFunction>
+				<!--Formula-->
+				<SQLFunction functionName="regexp_replace" alias="Mol Formula">
+					<Formula fieldId="1430" />
+					<literal>'([[:digit:]]+)'</literal>
+					<literal>'&lt;sub&gt;\1&lt;/sub&gt;'</literal>
+				</SQLFunction>
+			</table>
+			<table id="1901">
+				<field fieldId="1903" alias="Pct Inh" />
+				<field fieldId="1904" alias="Active?" />
+				<field fieldId="1905" alias="Score" />
+			</table>
+			<table id="1879">
+				<field fieldId="1881" alias="EC50" />
+				<field fieldId="1882" alias="Active?" />
+				<field fieldId="1883" alias="Score" />
+			</table>
+        </tables>
+      </resultsCriteria>
+      <coeForms>
+        <coeForm id="0" dataMember="Dataset.Tables['Table_1429'].Rows">
+		  <title>Molecular Profile Report</title>
+		  <titleCssClass>COELabelTitle</titleCssClass>
+          <formDisplay>
+            <layoutStyle>flowLayout</layoutStyle>
+          </formDisplay>
+          <layoutInfo>
+            <!-- BASE64_CDX -->
+            <formElement>
+              <bindingExpression>this['Structure']</bindingExpression>
+              <Id>StructureBox</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COEChemDraw</CSSClass>
+                  <Height>185px</Height>
+                  <Width>470px</Width>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEChemDrawEmbedReadOnly</type>
+              </displayInfo>
+            </formElement>
+            <!-- Molecular Weight Title-->
+            <formElement>
+              <defaultValue>MW:</defaultValue>
+              <Id>MW</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+				<width>30%</width>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!-- Molecular Weight -->
+            <formElement>
+              <defaultValue></defaultValue>
+              <bindingExpression>this['Mol Wt']</bindingExpression>
+              <Id>MWTitle</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+				<width>30%</width>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!-- Formula Title-->
+            <formElement>
+              <defaultValue>Formula:</defaultValue>
+              <Id>FormulaTitle</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+				<width>30%</width>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!-- Formula -->
+            <formElement>
+              <defaultValue></defaultValue>
+              <bindingExpression>this['Mol Formula']</bindingExpression>
+              <Id>Formula</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+				<width>30%</width>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+          </layoutInfo>
+          <addMode>
+          </addMode>
+          <editMode>
+          </editMode>
+          <viewMode>
+          </viewMode>
+        </coeForm>
+		<!--start child table info-->
+		<coeForm id="1" dataMember="">
+			<title>ERalpha Primary Screen</title>
+			<titleCssClass>COELabelTitle</titleCssClass>
+			<formDisplay>
+				<layoutStyle>flowLayout</layoutStyle>
+			</formDisplay>
+			<layoutInfo>
+				<formElement>
+					<defaultValue/>
+					<Id>PrimaryScreenData</Id>
+					<bindingExpression>FilteredDataSet</bindingExpression>
+					<configInfo>
+						<fieldConfig>
+							<tables>
+								<table name="Table_1901">
+									<CSSClass>myTableClass</CSSClass>
+									<headerStyle>color: white; background-color: rgb(0, 0, 153); font-weight: bold;font-size:10px;font-family: Verdana; text-align: left;</headerStyle>
+									<itemsRowStyle>height:20px;</itemsRowStyle>
+									<headerRowStyle>height:20px;</headerRowStyle>
+									<Columns>
+										<Column name="Pct Inh">
+											<formElement name="Pct Inh">
+												<configInfo>
+													<fieldConfig>
+														<CSSClass>COECell</CSSClass>
+													</fieldConfig>
+												</configInfo>
+											</formElement>
+										</Column>
+										<Column name="Active?">
+											<width>90px</width>
+											<formElement name="Active?">
+												<configInfo>
+													<fieldConfig>
+														<CSSClass>COECell</CSSClass>
+													</fieldConfig>
+												</configInfo>
+											</formElement>
+										</Column>
+										<Column name="Score">
+											<formElement name="Score">
+												<configInfo>
+													<fieldConfig>
+														<CSSClass>COECell</CSSClass>
+													</fieldConfig>
+												</configInfo>
+											</formElement>
+										</Column>
+									</Columns>
+								</table>
+							</tables>
+							<Width>100%</Width>
+						</fieldConfig>
+					</configInfo>
+					<displayInfo>
+						<width>95%</width>
+						<type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+					</displayInfo>
+				</formElement>
+			</layoutInfo>
+			</coeForm>
+		<!--start child table info-->
+		<coeForm id="2" dataMember="">
+			<title>ERalpha Dose Response</title>
+			<titleCssClass>COELabelTitle</titleCssClass>
+			<formDisplay>
+				<layoutStyle>flowLayout</layoutStyle>
+			</formDisplay>
+			<layoutInfo>
+				<formElement>
+					<defaultValue/>
+					<Id>DoseData</Id>
+					<bindingExpression>FilteredDataSet</bindingExpression>
+					<configInfo>
+						<fieldConfig>
+							<tables>
+								<table name="Table_1879">
+									<CSSClass>myTableClass</CSSClass>
+									<headerStyle>color: white; background-color: rgb(0, 0, 153); font-weight: bold;font-size:10px;font-family: Verdana; text-align: left;</headerStyle>
+									<itemsRowStyle>height:20px;</itemsRowStyle>
+									<headerRowStyle>height:20px;</headerRowStyle>
+									<Columns>
+										<Column name="EC50">
+											<formElement name="EC50">
+												<configInfo>
+													<fieldConfig>
+														<CSSClass>COECell</CSSClass>
+													</fieldConfig>
+												</configInfo>
+											</formElement>
+										</Column>
+										<Column name="Active?">
+											<width>90px</width>
+											<formElement name="Active?">
+												<configInfo>
+													<fieldConfig>
+														<CSSClass>COECell</CSSClass>
+													</fieldConfig>
+												</configInfo>
+											</formElement>
+										</Column>
+										<Column name="Score">
+											<formElement name="Score">
+												<configInfo>
+													<fieldConfig>
+														<CSSClass>COECell</CSSClass>
+													</fieldConfig>
+												</configInfo>
+											</formElement>
+										</Column>
+									</Columns>
+								</table>
+							</tables>
+							<Width>100%</Width>
+						</fieldConfig>
+					</configInfo>
+					<displayInfo>
+						<width>95%</width>
+						<type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+					</displayInfo>
+				</formElement>
+			</layoutInfo>
+			</coeForm>
+      </coeForms>
+    </detailsForm>
+  </detailsForms>
+  <listForms>
+    <listForm id="0" defaultDisplayMode="View">
+		<resultsCriteria xmlns="COE.ResultsCriteria">
+			<tables>
+				<table id="1429">
+					<!--BASE64_CDX-->
+					<field fieldId="1430" alias="Structure"/>
+					<field fieldId="1448" alias="Compound ID"/>
+					<field fieldId="1459" alias="Smiles"/>
+
+					<!--MW-->
+					<SQLFunction functionName="ROUND" alias="Mol Wt">
+						<MolWeight fieldId="1430"/>
+						<literal>4</literal>
+					</SQLFunction>
+					<!--Formula-->
+					<SQLFunction functionName="regexp_replace" alias="Mol Formula">
+						<Formula fieldId="1430" />
+						<literal>'([[:digit:]]+)'</literal>
+						<literal>'&lt;sub&gt;\1&lt;/sub&gt;'</literal>
+					</SQLFunction>
+				</table>
+				<table id="1901">
+					<field fieldId="1903" alias="Pct Inh" />
+					<field fieldId="1904" alias="Active?" />
+					<field fieldId="1905" alias="Score" />
+				</table>
+				<table id="1879">
+					<field fieldId="1881" alias="EC50" />
+					<field fieldId="1882" alias="Active?" />
+					<field fieldId="1883" alias="Score" />
+				</table>
+			</tables>
+		</resultsCriteria>
+      <coeForms>
+        <coeForm id="0" dataMember="">
+           <formDisplay>
+            <layoutStyle>flowLayout</layoutStyle>
+          </formDisplay>
+          <layoutInfo>
+            <formElement>
+              <defaultValue/>
+              <Id>ListView</Id>
+              <bindingExpression>Dataset</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <tables>
+                    <table name="Table_1429">
+                      <CSSClass>myTableClass</CSSClass>
+                      <headerStyle>color: #FFF; background-color: DarkBlue; font-weight: bold; font-family: Verdana; font-size: 10px;</headerStyle>
+					  <columnStyle>background-color:White;border-color:DarkBlue;border-style:solid;border-width:1px;</columnStyle>
+                      <Columns>
+                        <Column name="Structure">
+                          <formElement name="Structure">
+                            <Id>StructureColumn</Id>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEChemDrawEmbedReadOnly</type>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                                <Height>100px</Height>
+								<Width>170px</Width>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Compound ID">
+                          <formElement name="Compound ID">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>COELabelListItems</CSSClass>
+								<Width>100px</Width>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Smiles">
+                          <formElement name="Smiles">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>COELabelListItems</CSSClass>
+								<Width>350px</Width>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Mol Wt">
+                          <formElement name="Mol Wt">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>COELabelListItems</CSSClass>
+								<Width>100px</Width>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Mol Formula">
+                          <formElement name="Mol Formula">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>COELabelListItems</CSSClass>
+								<Width>120px</Width>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Link">
+                          <formElement name="Smiles">
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEShowDetailLinkButton</type>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>LinkButton</CSSClass>
+                                <Text>Show Details</Text>
+								<Width>100px</Width>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                      </Columns>
+                    </table>
+                  </tables>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGrid</type>
+              </displayInfo>
+            </formElement>
+          </layoutInfo>
+        </coeForm>
+      </coeForms>
+    </listForm>
+  </listForms>
+</formGroup>
+]]></xml>
+</configuration>
