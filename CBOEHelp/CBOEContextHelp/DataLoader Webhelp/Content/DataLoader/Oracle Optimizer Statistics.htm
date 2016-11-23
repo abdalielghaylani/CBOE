@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Data Loader|Optimizations for Bulk Loading" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Oracle Optimizer Statistics</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Oracle Optimizer Statistics</h1>
+        <p>As always, Oracle performance is highly dependent on maintaining up-to-data statistics on all database objects in order to allow the Oracle query optimizer to chose the most efficient execution plan.  During bulk load operations, the state of the database objects will change significantly as the database starts in a nearly empty state and ends with substantial volume of data in many tables.  It is therefore critical to periodically gather optimizer statistics throughout the bulk load process.
+</p>
+        <p>Gathering Oracle Optimizer statistics is typically the purview of the Oracle DBA.  There are several different approaches to do so.  Below is a very simple script that gathers statistics for all the objects that may have an effect in the performance of Registration bulk loads.  Consult a professional DBA for alternate methods that may be more appropriate for the particular database configuration.  For example, on very large databases it may be preferable to gather statistics on a small percentage of rows rather than on all rows.
+</p>
+        <p>Connect system/manager@&amp;&amp;YourTNSName
+<br />Begin
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'REGDB', cascade =&gt; TRUE);
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'COEDB', cascade =&gt; TRUE);
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'CSCARTRIDGE', cascade =&gt; TRUE);
+   <br />dbms_stats.gather_schema_stats(ownname =&gt; 'CHEMINVDB2', cascade =&gt; TRUE);
+<br />end;
+ </p>
+        <p>Recommendations:
+</p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Breakup files to be loaded into manageable chunks of 10-50K records 
+</li>
+                <li value="2">Gather Optimizer Statistics between after loading some of the chucks
+</li>
+                <li value="3">Flush the SQL shared pool after gathering statistics
+ 
+ </li>
+            </ul>
+        </blockquote>
+        <blockquote>
+            <p>connect system/manager@&amp;&amp;YourTNSName  
+ <br />alter system flush shared pool;
+</p>
+        </blockquote>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Optimizations for Bulk Loading.htm">Optimizations for Bulk Loading</a> <![CDATA[  ]]></p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

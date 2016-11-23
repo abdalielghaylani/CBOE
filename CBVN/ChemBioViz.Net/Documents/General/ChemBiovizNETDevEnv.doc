@@ -1,0 +1,32 @@
+Instructions to install CBVN
+
+You can get ChemBioViz.NET (CBVN for us) installer from this place: \\coebuild\CBVNInstaller
+
+Actually, our app is delivered along with the ChemOfficeEnterprise installer, in the same package (\\newshare\installers\Development\ChemOfficeEnterprise\11.0.1\Dev\Client). 
+But as you just want to see our app in action, you can get it from the first place I mentioned above.
+
+There are some prerequisites. You'll need to have the following things installed on your machine:
+* Windows installer 4.5
+* .NET Framework 3.5
+* ChemDraw 12
+
+Once you have CBVN installed, you will see the Server dropdown list in the login dialog. There you can select to work in  3-Tiers or 2-Tiers mode. I would suggest you to work in 3-Tiers
+
+3-Tiers mode means that you will be working with the client (CBVN) in your machine, the app server (COE Framework) in another machine -- we called it “Anthracene” (*) -- and the Oracle server is situated in a VM called “Mothball”. 
+(*)The middle tier is hardcoded with “Anthracene” for the time being. But it’s meant to be flexible so that the user could enter another server name and it should work.
+
+2-Tiers mode means that you will be working with the client (CBVN) and the app server (COE Framework) in your machine and with the Oracle server in “Mothball”.
+
+If you want to try working in 2-Tier you’ll need to make Oracle configurations. 
+
+Instructions to get CBVN code
+
+1. You’ll need Visual Studio 2008 with the .NET Framework 3.5. 
+2. Install the ChemDraw 12 
+3. Get CBVN code from //depot/CFW/ChemBioViz.NET/ 
+4. You’ll need to get the COE Framework code as well for the time you want to work in 2-Tier mode. Get it from this place //depot/Informatics/Team/.net/ChemOfficeEnterprise/Framework/CambridgeSoft/ServiceTier/CambridgeSoft.COE.Framework/ 
+5. As for the Oracle server, we work with a VM called “Mothball”.   
+a. Service name: oradb 
+b. User: system, pass: manager     
+6. Mothball also acts as the application server too. So if you choose to work with Mothball in the Server dropdown list that you’ll see on the Login dialog, you’ll be using Mothball as an application server and as the Oracle server too because it has the COE installed on it. But if you want to work in 2-Tier you’ll be working with the COE code you’ll have in your machine and then you’ll talk to Mothball to use it as the Oracle server. 
+

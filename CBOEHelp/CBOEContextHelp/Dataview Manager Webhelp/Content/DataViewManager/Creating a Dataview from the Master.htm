@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="DataView Manager|Creating DataViews" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:conditions="Default.DataView Manager only" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Creating a Dataview from the Master</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataView Manager</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Creating a Dataview from the Master</h1>
+        <p>To create a dataview from the Master dataview:
+</p>
+        <ol>
+            <li value="1">On the ChemBioOffice Enterprise Manager main page, click on "<b>Create from master</b>" icon. The DataView Manager window opens.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/create from Master.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="2">In the Name and Description text boxes, enter a name for the new dataview and a brief description.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/Dataview desc..gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">In the dropdown lists, select a data source and a schema and then specify a base table by selecting its corresponding radio button. <br /><b>Note:</b>If you select a base table that does not have a primary key the following message displays:<br /><br /><img src="../Resources/Images/DataViewManager/Base table error.gif" /></li>
+            <li value="4">After completing the selections, click <b>Ok</b>. The following window appears:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/DV from master.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="5">To add further tables to the base table, click <b>Add Table</b> at the top of the window. The following window appears:<br /><b>Note:</b> The names of tables that have already been added appear in Red.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/DV add table.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="6">To add a table, click on its corresponding <b>Add</b> button. The selected tables get added under Tables to add column at the right frame.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/DV add table2.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="7">A filtering field “<b>Filter table name</b>” is available. Inside the filtering field, start typing the name of the table to add, this will reduce the number of options and will help you extracting the desired table from large lists.</li>
+            <li value="8">It is possible as well, to add table from different data source/schema. Select the desired data source/schema from the <b>Data source/Schema</b> dropdown lists to display its corresponding tables and add the desired tables.</li>
+            <li value="9">After completing the table’s addition, click <b>Save</b> at the bottom of the window.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/tables added.gif" />
+        </p>
+        <p><b>Note:</b> Make sure to select the Primary Key in the base table while creating relations between Base and Child tables.</p>
+        <p><b style="font-size: 14pt;">Editing Dataviews</b>
+        </p>
+        <blockquote>
+            <p style="font-weight: bold;">Name and Description</p>
+        </blockquote>
+        <p>It is possible to edit the name and description of the dataview by clicking <b>Name and Description</b> link and entering new data.</p>
+        <blockquote>
+            <p style="font-weight: bold;">Security Settings</p>
+        </blockquote>
+        <p>It is possible to apply security settings for the dataview. Two options are available. A dataview may be:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Public (Seen by all users and roles)</li>
+            <li value="2">Not public (Seen by specific users and roles)</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/DataViewManager/security settings1.gif" />
+        </p>
+        <p>If “<b>I want to choose the users and roles for this Data View</b>” radio button is selected, the following window appears, showing the available users and roles and allowing the dataview owner to give access permissions to specific users and roles:</p>
+        <p>
+            <img src="../Resources/Images/DataViewManager/security settings12.gif" />
+        </p>
+        <blockquote>
+            <p style="font-weight: bold;">Select the Base Table</p>
+        </blockquote>
+        <p><b>Note:</b>You can change the base table in a dataview prior to submitting the data view. Once a dataview is submitted you cannot change the base table.</p>
+        <p>To change the base table:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Click “<b>Select Base Table</b>” , the following dialog appears showing the list of available tables</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/DataViewManager/select base table1.gif" />
+        </p>
+        <ul style="list-style-type: square;">
+            <li value="1">Click the radio button beside the table to make it the base table and click <b>Ok</b>.</li>
+        </ul>
+        <blockquote>
+            <p style="font-weight: bold;">Remove all tables from a Schema</p>
+        </blockquote>
+        <p>To remove all tables from a schema, click <b>Remove</b>.</p>
+        <p style="font-weight: bold;font-size: 14pt;">Working with Tables</p>
+        <blockquote>
+            <p style="font-weight: bold;">Editing tables
+</p>
+        </blockquote>
+        <p>After you add tables to the dataview,
+you can edit each table as needed.
+</p>
+        <ol>
+            <li value="1">From the list of tables, click on the name of the table that you want to edit, its corresponding Table Summary pane appears.</li>
+            <li value="2">Click <b>Edit Table</b>. </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/edit table.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">The Edit Table and Fields pane appears.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/edit table options.gif" />
+        </p>
+        <p>Within this table the user is allowed to perform the following edits:</p>
+        <blockquote>
+            <p><i>SELECTING THE PRIMARY KEY</i>
+            </p>
+        </blockquote>
+        <p>If the table that you are editing does not have a primary key, you can identify the primary key from the <b>Edit Table and Fields</b> window by selecting the corresponding radio button under the <b>Primary Key</b> column.</p>
+        <p><b>Note:</b> you can select any field except of data type DATE/TIME/CLOB/BLOB as primary key however you will get a warning message as shown in the screen shot below:</p>
+        <p>
+            <img src="../Resources/Images/DataViewManager/warning message.gif" />
+        </p>
+        <blockquote>
+            <p><i>EDITING THE TABLE ALIAS
+</i>
+            </p>
+        </blockquote>
+        <p>The Alias field is editable; modify the Alias name if desired.</p>
+        <blockquote>
+            <p style="font-style: italic;">CREATING A FIELD ALIAS
+</p>
+        </blockquote>
+        <ol>
+            <li value="1">In the list of fields, select the Name for the
+field that you want to create an alias for.
+</li>
+            <li value="2">Click <b>Create Field Alias</b>. </li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/create an alias.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">A new field
+appears in the field list with the _Alias
+extension.</li>
+        </ol>
+        <blockquote>
+            <p style="font-style: italic;">CHOOSING LOOKUP FIELD
+</p>
+        </blockquote>
+        <ol style="list-style-type: lower-alpha;">
+            <li value="1">In the <b>LookUp</b> column, click <b>Choose</b> corresponding to the field that you want to assign as the
+lookup. The Edit a lookup pane appears.
+<br /><b>Note:</b> For the existing lookup field in the Master Dataview to be visible, use <b>Add Tables</b> link to select the table with the defined lookup in the Master Dataview. You can then edit it by clicking on its corresponding link under the LookUp column.<br /></li>
+            <li value="2">In the left column, expand the tree and
+select the table to use.
+</li>
+            <li value="3">In the right column, select the field in
+the Select the display field list and a Sort
+Direction from the dropdown list.
+</li>
+            <li value="4">Click <b>Submit</b>.
+</li>
+        </ol>
+        <p>&#160;</p>
+        <blockquote>
+            <p style="font-style: italic;">ASSIGNING A PARENT COLUMN
+</p>
+        </blockquote>
+        <ol style="list-style-type: lower-alpha;">
+            <li value="1">Under <b>Parent</b> Column, click <b>Choose</b> for
+the field you want to assign as the parent.
+The Define Relationships pane
+appears.
+</li>
+            <li value="2">Select a Parent Schema, a parent table, a joining field and then the Join type.
+</li>
+            <li value="3">Once the selection are completed, click <b>Submit</b>.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/tables relations.gif" />
+        </p>
+        <blockquote>
+            <p style="font-style: italic;">ASSIGNING AN INDEX TYPE
+</p>
+        </blockquote>
+        <p>In the <b>Index Type</b> column, select an option from
+the dropdown list.
+</p>
+        <blockquote>
+            <p style="font-style: italic;">ASSIGNING A CONTENT TYPE
+</p>
+        </blockquote>
+        <p>In the <b>Content Type</b> column, select an option
+from the dropdown list.
+</p>
+        <p><b>Note:</b> If you want to show the structure field in the Dataview, then you have to configure the "Structure Aggregate" as shown below:</p>
+        <p>
+            <img src="../Resources/Images/DataViewManager/configure structure aggregate.gif" />
+        </p>
+        <blockquote>
+            <p style="font-style: italic;">REMOVING FIELDS
+</p>
+        </blockquote>
+        <p>To remove a field from the table, click <b>Remove</b>
+in the Action column.
+</p>
+        <blockquote>
+            <p><i> QUERY FIELDS</i>
+            </p>
+        </blockquote>
+        <p>You can use the Query field to specify fields that would be automatically generated on the Query tab of other ChemBioOffice Enterprise applications such as Datalytix. This field also lets you specify if you want to index the field you have selected. Indexing a field enables quick data searching in Datalytix. The fields that are indexed have a <b>Green</b> background and those that are not indexed have <b>Red</b> background as shown below:</p>
+        <p>
+            <img src="../Resources/Images/DataViewManager/query.gif" />
+        </p>
+        <p>Dataview Manager needs to be configured to enable or disable the prompt to index fields. To enable the prompt to index fields:</p>
+        <ol>
+            <li value="1">In the DataView Manager home page, click <b>Manage Configuration</b> icon.</li>
+            <li value="2">Under DataViewManager settings tab, set "<b>Apply _Indexing</b>'="<b>Enable</b>".</li>
+            <li value="3">Click <b>Save</b>.</li>
+        </ol>
+        <p>When you select a field which is not indexed, a prompt appears as shown below. Click <b>Yes</b> to set an index on the particular field. </p>
+        <p>
+            <img src="../Resources/Images/DataViewManager/dfq.gif" />
+        </p>
+        <p><b>Note:</b> 	Indexing functionality will not be available if you select a 'view' instead of a table even if   “<b>Apply_Indexing</b>” function is enabled.</p>
+        <p><b>Note:</b>Once an index is created on a field, you cannot drop it from the application. It can be dropped only from the database.</p>
+        <blockquote>
+            <p style="font-style: italic;">DISPLAY FIELDS</p>
+        </blockquote>
+        <p>You can define default fields in the metadata of a dataview so that this information can be used when defining the data set in Spotfire. To make a particular field default, check its corresponding checkbox under <b>Display</b> column.</p>
+        <blockquote>
+            <p style="font-style: italic;">SAVING YOUR CHANGES
+</p>
+        </blockquote>
+        <p>After you finished editing the table, click <b>OK</b> in
+the Edit Table and Fields pane.
+</p>
+        <p>You can see the summary of relationships between tables when you select any of those tables.</p>
+        <p>
+            <img src="../Resources/Images/DataViewManager/summary table.gif" />
+        </p>
+        <blockquote>
+            <p style="font-weight: bold;">Duplicating Tables</p>
+        </blockquote>
+        <p style="font-weight: normal;">It is possible for users to duplicate existing tables. For more details please refer to <a href="Duplicating a Table.htm">Duplicating a Table</a> topic.</p>
+        <blockquote>
+            <p style="font-weight: bold;">Editing Tags</p>
+        </blockquote>
+        <p>Dataview Manager allows user to define tagging categories on tables in the metadata of a Dataview so this information can be used when searching for tables while defining the data set in Spotfire. A particular table may have more than one tag.</p>
+        <p>To add tags, please follow the steps below:</p>
+        <ol>
+            <li value="1">Click on <b>Edit Tags</b> link corresponding to a specific table, the following window appears:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/edit tags.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="2">Enter the name of the tag and click <b>Add</b>.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/edit tags2.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">Add as much tags as you want and then click on Save.</li>
+            <li value="4">To delete a Tag, select it and click on Delete button.</li>
+            <li value="5">The tags get added within the Table Summary section</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/Tags.gif" />
+        </p>
+        <p style="font-size: 14pt;font-weight: bold;">Reviewing the Validation Summary
+</p>
+        <p>When you finish selecting the dataview
+options, review the schema summary.
+</p>
+        <ol>
+            <li value="1">After you review your schema summary,
+click <b>Submit</b>. The Validation Summary
+pane opens.
+</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/validation summary.gif" />
+        </p>
+        <p><b>Note:</b> The validation summary displays any
+errors that your dataview may contain. All
+displayed errors must be resolved before the
+dataview is created. To resolve an error, click its
+corresponding Resolve link.
+</p>
+        <ol MadCap:continue="true">
+            <li value="2">After you review the validation summary,
+click <b>Submit</b>. The Validation Summary
+pane closes.
+</li>
+            <li value="3">Click <b>Home</b> to return to the ChemBioOffice
+Manager.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/DataViewManager/home.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Creating DataViews.htm">Creating DataViews</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

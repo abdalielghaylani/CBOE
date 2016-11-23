@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Inventory|Inventory Enterprise Form Fields|InvLoader" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Configuring Registration Fields for InvLoader</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>Inventory</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr width="100%" size="0" align="center" /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Configuring Registration Fields for InvLoader</h1>
+        <p>By default, Invloader is configured with the default set of fields that are installed with a fresh installation of COE Registration. This is done in the invloader.xml file.
+There are three sections in the invloader.xml file that need to be considered for some of the default mapping fields shipped with invloader. The “mapping for loading plates and registering”, the “mapping for loading containers for registering”, and the “xpath specification for the registration field”.  When adding a field, you need to decide if it is valid for plates or containers, and add the field to the regfields section with appropriate xpath that corresponds to the registration systems prototype xml.
+Customers who have added fields to the system will have altered prototype xml. This can be retrieved from the database regdb.coeobjectconfig.
+
+</p>
+        <p style="font-weight: bold;font-size: 14pt;">Adding Registration Fields:
+
+</p>
+        <p>To add a registration field, under fields section:
+
+</p>
+        <ol>
+            <li value="1">Log in to the CBOE middle tier
+</li>
+            <li value="2">Open the Invloader.xml with an xml editor tool. (In general the Invloader.xml file is located at: C:\Inetpub\wwwroot\ChemOffice\ChemInv\Installation\Invloader)
+</li>
+            <li value="3">Under fields, add a new entry with target CONTAINER and CLASS REG.  The designator, by convention is “C_” + the field name.  XMLParent is always REGISTERSUBSTANCE; xmlposition is always ELEMENT for containers (REGSUBSTANCE for plates).  Field is the name of the field that must be in the &lt;regFields section. Display is what is displayed in the invloader GUI and type is the type of the field. 
+
+</li>
+        </ol>
+        <p><b style="color: #ff0000;">Example:</b>
+        </p>
+        <p><i>&lt;field target="CONTAINER" class="REG" designator="C_PATENT_NUMBER" xmlparent="REGISTERSUBSTANCE" xmlposition="ELEMENT" field="PATENT_NUMBER" display="Reg Comments" type="eText"/&gt;</i> <![CDATA[ ]]></p>
+        <p style="font-weight: bold;font-size: 14pt;">Defining the Field’s xpath:
+
+</p>
+        <p>In the &lt;regFields&gt; section you define the xpath within the registration prototype xml that target the particular field. To do that:
+
+</p>
+        <ol>
+            <li value="1">Log in to the  CBOE middle tier
+</li>
+            <li value="2">Start Benthic software or any other database tool
+</li>
+            <li value="3">Run the following  query: select XML from REGDB.COEOBJECTCONFIG
+</li>
+            <li value="4">Copy the Table’s xml content and save it as a xml file, this will help you finding the fields paths
+</li>
+            <li value="5">Open the InvLoader.xml in Edit Mode, where you can add new fields
+</li>
+            <li value="6">Under regfields  Insert a new entry and start typing tags and values or Copy an exiting entry and edit the content by specifying the field name, field type and field path. The Full element contains the attributes name (e.g. name=”PATENT_NUMBER”) of the field, the type (e.g. type=”COMPOUND”) and the xpath. 
+
+</li>
+        </ol>
+        <p><b style="color: #ff0000;">Example:</b> <![CDATA[ ]]></p>
+        <p><i>&lt;regfield name="PATENT_NUMBER" type="COMPOUND"&gt;/MultiCompoundRegistryRecord/PropertyList/Property[@name="PATENT_NUMBER"]&lt;/regfield&gt;
+</i>
+        </p>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloaderxml.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="7">In this example we will add the “PATENT_NUMBER” field. In order to specify the field’s path, open the saved xml in step 4 with any xml editor tool and extract the path from the Higher Parent level descending to the lower level as shown in the screenshot below:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloaderxml2.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="8">Fill in the values in the Invloader.xml as shown below:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloaderxml3.gif" />
+        </p>
+        <p>Note that for any property in the Registry component we have:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Two types:<ul style="list-style-type: circle;"><li value="1">Compound</li><li value="2">Batch</li></ul></li>
+            <li value="2">Five Paths corresponding to the five different properties:<ul style="list-style-type: circle;"><li value="1">REGISTRY LEVEL: /MultiCompoundRegistryRecord/PropertyList/Property[@name="Property Name"]</li><li value="2">COMPONENT LEVEL: /MultiCompoundRegistryRecord/ComponentList/Compound/PropertyList/Property[@name="Property Name"]</li><li value="3">STRUCTURE LEVEL: /MultiCompoundRegistryRecord/ComponentList/Compound/BaseFragment/Structure/PropertyList/Property[@name="Property Name"]</li><li value="4">Batch LEVEL:/MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name=" Property Name "]</li><li value="5">BatchComponent:  /MultiCompoundRegistryRecord/BatchList/Batch/BatchComponentList/BatchComponent/PropertyList/Property[@name=" Property Name "]</li></ul></li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="InvLoader.htm">InvLoader</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

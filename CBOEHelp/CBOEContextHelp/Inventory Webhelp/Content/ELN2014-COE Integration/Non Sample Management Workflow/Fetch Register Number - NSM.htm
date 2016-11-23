@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Fetch Register Number - NSM</title>
+        <link href="../../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%; caption-side: top; width: 100%; margin-left: 0; margin-right: auto;">
+                <col style="width: 612px;" />
+                <tr valign="bottom" style="height: 30px;">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-style: italic;">COE-ELN Integration</span>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td>
+                        <hr width="100%" size="0" align="center" />
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-weight: bold;">User's Guide</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Fetch Register Number - NSM</h1>
+        <p>The Fetch Register Number method lets you query the database with a registration Temp ID. If a registration number is available, the registration number and batch number is returned to the associated row in the Products Table of the Reaction W COE Integration section. This method was created to support temporary registration from E-Notebook. For example, you would register a compound in the temporary table from E-Notebook and a Temp ID is returned to the Products table. Later, a Registrar would permanently register the compound into the Registration system. Subsequently, you can use the Fetch Register Number method to query the registration number and batch number, retuning them to the associated row in the Products table.
+
+</p>
+        <p><b>Note</b>: You must have appropriate registry permissions assigned to perform this registry action.</p>
+        <h4>To Fetch the Registry Number:</h4>
+        <ol>
+            <li value="1">Select the <b>Fetch Register Number</b> form tool from the Reaction W COE Integration section. If the Temp ID is present in the Products table and the registration number is available in the Registration system, the Fetch Register Number dialog appears and displays the registration number and batch number.</li>
+            <li value="2">Click <b>OK</b> in the Fetch Register Number dialog.</li>
+        </ol>
+        <p>The registration number and batch number are returned to the associated row in the Products table of the Reaction W COE Integration section.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/fetch register number.gif" />
+        </p>
+        <p>If the Temp ID is present in the Products table and the registration number is unavailable in the Registration system, the dialog returns a “No compound exists with the Temp Id:...” message. An example is shown below.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/no reg number.gif" />
+        </p>
+        <p>If the registration number and batch number fields are already populated with data, the dialog returns a “Clear the Reg Number field and fetch again” message.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/fetch again.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Sending Registration Data - Non Sample Management (NSM).htm">Sending Registration Data - Non Sample Management</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

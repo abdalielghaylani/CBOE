@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Inventory|Inventory Enterprise Form Fields|InvLoader" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Loading Compounds - InvLoader</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>Inventory</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr width="100%" size="0" align="center" /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Loading Compounds - InvLoader</h1>
+        <p>Inventory Loader is an application that lets you import compounds from XLS files, CSV files, and ChemBioFinder database and load them into the Inventory Enterprise or Registration Enterprise applications. 
+
+</p>
+        <p>Inventory Loader runs only on the computer that has access to the ChemBioOffice Enterprise application server.
+
+</p>
+        <p>Most often, the compounds to be loaded into the Inventory Enterprise or Registration Enterprise applications are stored in a SDFile. In such situation, you can load the compounds by converting the SDFile into a ChemBioFinder database. You can convert the SDFile into a ChemBioFinder database using the ChemBioFinder application.
+
+</p>
+        <p>The Inventory Loader application can import compounds in three ways, which are:
+
+ </p>
+        <ul style="list-style-type: square;">
+            <li value="1"> Into a series of new plates 
+ </li>
+            <li value="2">Into containers 
+ </li>
+            <li value="3">Directly into Inventory Enterprise 
+
+</li>
+        </ul>
+        <p>When importing compounds, you need to select the appropriate fields from the source database. However, Inventory Loader eliminates the need to select the fields repeatedly by allowing you to save the information as mapping templates and reuse them later.
+
+</p>
+        <p style="font-weight: bold;">Loading Compounds into Plates
+</p>
+        <p>When you use Inventory Loader to load compounds into plates, new plates are created in Inventory Enterprise and they are then loaded with the compounds imported from the selected database file.
+
+</p>
+        <p>To load compounds into plates using Inventory Loader:
+
+ </p>
+        <ol>
+            <li value="1">Start the Inventory Loader application. The Import Database screen of the Inventory Loader wizard, appears as:</li>
+            <p>
+                <img src="../Resources/Images/invloader_1.gif" />
+            </p>
+            <li value="2"> Click Next. The Login to the Inventory Web Server screen appears as:</li>
+            <p>
+                <img src="../Resources/Images/invloader_2.gif" />
+            </p>
+            <li value="3"> Enter the name of the ChemBioOffice server, your user name and password in the Server, User ID, and Password text boxes, respectively. In order to enable the secure connection check the "Use SSL (https:)" checkbox.        <![CDATA[
+]]></li>
+            <p><i><b>Note:</b> Ensure that the user name that you have entered in the preceding window has sufficient permissions to create plates and load compounds in it. Also, ensure that the user name has sufficient permissions to access Registration Enterprise, if you want to register the compounds into the Registration Enterprise database.
+</i>
+            </p>
+            <li value="4"> Click Next. The Select Database screen appears as:</li>
+            <p>
+                <img src="../Resources/Images/invloader_3.gif" />
+            </p>
+            <p><i><b>Note:</b> If an error message appears, stating that no plate locations or formats are configured in Inventory Enterprise, then you need to create a location that can hold plates and/or create a valid plate format, in Inventory Enterprise.
+</i> <![CDATA[ ]]></p>
+            <li value="5"> Ensure that the <b>Load Structures into Plates</b> radio button is selected. Browse and locate the database file from which the compounds are to be imported. The file can be a CSV file, XLS file, or a ChemBioFinder database. 
+
+</li>
+            <p style="font-style: italic;"><b>Note:</b> Choosing a format other than ChemBioFinder database will not have any impact on the behavior of the application; field mappings and registration options will work in exactly the same manner for all three formats. 
+
+</p>
+            <p style="font-style: italic;">However, in case of importing data from a XLS file with multiple worksheets, you will have to select the actual worksheet name that contains the data you wish to import.
+</p>
+            <li value="6"> <span style="color: #000000;">Select the <i>Register the new compounds in the CambridgeSoft Chemical Registration System</i> checkbox if you want to register the compounds into the Registration Enterprise database. When you select this checkbox, Inventory Loader verifies whether or not you have sufficient permissions to register compounds into Registration Enterprise.  If Inventory Loader finds your authentication information valid, a grid containing the Registration Enterprise fields displays in the Registration Info screen. Otherwise, an error message is displayed</span></li>
+            <p>
+                <img src="../Resources/Images/Inventory images/Registration Enterprise.gif" />
+            </p>
+            <li value="7">Click Next, the Select Fields screen appears as:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloader_4.gif" />
+        </p>
+        <p style="font-style: italic;"><b>Note:</b> If an error message appears, stating that the database cannot be opened then you need to upgrade the database to the current version of ChemBioFinder. To upgrade the database, open the database using the ChemBioFinder and follow the prompts.
+</p>
+        <p style="font-style: italic;"><b>Note:</b> If the ChemBioFinder database contains more than one table, you are provided with a drop-down list of the table names. You need to select the table with which you want to map the fields from the drop-down list. Typically, the name of the table with which the fields are mapped is MolTable.
+</p>
+        <p>In the Select Fields screen:
+
+ </p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">The Data Type column facilitates data validation by providing you prior information about the type of data to be entered. </li>
+                <li value="2">The Value column displays the plate fields. </li>
+                <li value="3">The Field Name column lets you set the value of the fields. You can set a field either by mapping it with a column of a table of the ChemBioFinder database or by specifying a value for it in the Default column. 
+
+</li>
+            </ul>
+        </blockquote>
+        <p>While setting the plate fields, consider the following aspects:
+</p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"> It is not necessary to set Row and Column fields as well as the Well Coordinate field. However, if you set the Row field, it is necessary to set the Column field. 
+ </li>
+                <li value="2">If some columns of the table with which you are mapping the fields contain plate identifiers, then map those columns with the Barcode and Supplier Barcode fields. Map the column that contains numeric plate identifiers with the Supplier Plate Number field. 
+ </li>
+                <li value="3"> It is necessary to set one of the Supplier Barcode, Supplier Plate Number, or Barcode fields and one of the Well Coordinate or Row and Column fields, otherwise, the compounds may not load into the plates correctly. 
+ </li>
+            </ul>
+        </blockquote>
+        <p>Note that InvLoader supports the Row Level Security(RLS). When your system has the RLS&#160;set at the Batch Level, you will be able to see <b>Batch Project</b> field instead of <b>Project.</b> Project option appears only when your system has one of the following settings: RLS=off OR RLS=Registry level. When RLS=Batch, this allows you to select batch project's related information from either an input file (or) from the user interface. Note that it is required to enable the Registration Integration by checking the "Register the new compounds in the CambridgeSoft Chemical Registration System" checkbox (Please refer to the step 6 above for more details).</p>
+        <p>
+            <img src="../Resources/Images/Inventory images/batch project.gif" />
+        </p>
+        <p>There are four identifier types:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Reg Identifiers</li>
+            <li value="2">Batch Identifiers</li>
+            <li value="3">Structure Identifiers</li>
+            <li value="4">Component Identifiers</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/Inventory images/Identifiers.gif" />
+        </p>
+        <p>The identifiers existing in the mapping dialog appear in their corresponding sections in Registration.</p>
+        <p>For each identifier you need to select the identifier type and the identifier value. Below is an example for a Reg Identifier mapping:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">
+                <p>Double-click on the "Default" cell corresponding to the "Reg Identifiers" row. A popup containing all available Reg Identifiers appears. If there are no available identifiers then the popup appears empty.<br /><br /><img src="../Resources/Images/Inventory images/identifiers2.gif" /></p>
+            </li>
+            <li value="2">Select the required identifier(s) using the <b>‘&gt;’</b> and <b>‘&lt;’</b> buttons and click <b>Ok</b>.</li>
+            <li value="3">Double-click on the "Default" cell corresponding to the "Reg Identifiers Value" row. The following popup appears, displaying the available values:<br /><br /><img src="../Resources/Images/Inventory images/Identifiers3.gif" /></li>
+            <li value="4">To add values, type the value(s) in the text field and click on <b>Add</b> button. </li>
+            <li value="5">After adding the value(s), click on <b>OK</b>, the value(s) get updated in the mapping dialog.</li>
+            <li value="6">To edit a value, highlight it and click on <b>Edit</b> button. This allows you to make necessary changes.</li>
+            <li value="7">To remove a value, highlight it and click on Remove button.</li>
+            <li value="8">To replace a value, highlight it, enter a new value in the text field and then click on <b>Replace</b> button.</li>
+        </ul>
+        <p>Note:  by default the four identifiers appear in the InvLoader irrespective of the Registration settings. The mapped identifiers appear in Registration only if it is enabled before the loading via: <i>Customize Registration &gt; System Settings &gt; Advanced tab.</i></p>
+        <p><b>Fragments and Equivalents</b>
+        </p>
+        <p>A fragment can be a salt or solvate associated with the compound to be registered. Fragments are available for mapping only when you opt to register the compound and create plates or containers. You can select single/multiple fragment(s) either from the invLoader user interface or map it from the input file. When multiple fragments are mapped, one of the following separators should exist between the fragments: |(pipe), ;(semicolon) or ,(comma) . If the user maps multiple fragments from the input file, then the separator used in the input file should be the same one selected in the Registration Integration dialog. The default separator character is the | pipe.</p>
+        <p>For each fragment selected or mapped you should its corresponding equivalent value. This can be either selected from the invLoader user interface or  mapped from the input file.</p>
+        <p> <span style="font-size: 11pt; font-weight: bold;">To map fragments from the Select Fields dialog:</span></p>
+        <ul style="list-style-type: square;">
+            <li value="1"> Double-click on the Default cell corresponding to the Fragment row</li>
+            <li value="2">A dialog displaying the available fragments appears. Select the fragment(s) you want and click on OK&#160;button.</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/Inventory images/fragments.gif" />
+        </p>
+        <p style="font-size: 11pt;font-weight: bold;">To select equivalents from the Select Fields dialog:</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Double-click on the Default cell corresponding to the Equivalents row</li>
+            <li value="2">A dialog displays allowing you to type the equivalent values. Type the value you want in the text field and click on <b>Add</b> button. Repeat this action as many times as needed in order to specify equivalents to all the fragments you have selected.</li>
+        </ul>
+        <p>
+            <img src="../Resources/Images/Inventory images/equivalents.gif" />
+        </p>
+        <p> <span style="font-size: 11pt; font-weight: bold;">To map fragments from an input file:</span></p>
+        <p>The input file should contain the fragment description. In order to map fragments and equivalents from an input file, you need to point to the description column name and to the equivalents column name existing in that input file as shows the screen shot below:</p>
+        <p>
+            <img src="../Resources/Images/Inventory images/FR-EQ.gif" />
+        </p>
+        <p>Please make sure that the separator used in the input file and the separator selected in the Registration Integration dialog are the same.</p>
+        <ol start="8">
+            <li value="8"> Set the fields in the Select Fields screen, as required. In case you have saved the mapping information earlier as a mapping template, you can select the fields by clicking the Load button and selecting the saved mapping template. 
+
+</li>
+            <p><i><b>Note:</b> After selecting the fields, you can save the information by clicking the Save button. Later on, you can reuse the saved information by clicking the Load button.
+</i> <![CDATA[ ]]></p>
+            <li value="9"> Click Next. The Setup New Plates screen appears as:</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/invloader_5.gif" />
+        </p>
+        <p> 
+
+ 
+
+ 
+
+This window provides information about the total number of the compounds that will be imported and the total number of plates that will be created in Inventory Enterprise after the completion of the import process. This information lets you determine, in advance, whether or not the import process will provide expected results. </p>
+        <ol start="10">
+            <li value="10"> Perform the following tasks in the Setup New Plates screen: 
+ </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">Select the location at which you want to store the new plates from the Put new plates in drop down list. 
+ </li>
+                <li value="2">Select the format for the plates from the Plate Format drop down list. </li>
+            </ul>
+        </blockquote>
+        <p><i><b>Note:</b> The plate format describes the size and layout of a plate. The layout of the plate specifies where to store the compounds in the plate and which wells are to be kept empty.
+</i> <![CDATA[ ]]></p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"> Select plate type from the Plate Type drop down list. 
+ </li>
+            </ul>
+        </blockquote>
+        <ol start="11">
+            <li value="11">Click Next. Another page of the Setup New Plates screen appears as: </li>
+            <p>
+                <img src="../Resources/Images/Inventory images/invloader_6.gif" />
+            </p>
+            <li value="12">Perform the following tasks in the preceding screen: 
+ </li>
+        </ol>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1"> Select the library to which the plates are to be assigned from the Assign to Library drop down list. 
+ </li>
+                <li value="2">Assign barcodes to the plates, as required, in the Barcodes section. 
+
+</li>
+            </ul>
+        </blockquote>
+        <p style="font-style: italic;"><b>Note:</b> The Barcodes section appears in the non-editable mode if the Barcode field is already set in the Select Fields window.
+</p>
+        <blockquote>
+            <ul style="list-style-type: square;">
+                <li value="1">  Assign group numbers to the plates, if required, in the Grouping section. 
+ </li>
+            </ul>
+        </blockquote>
+        <ol start="13">
+            <li value="13">Click Next. The Log Plate XML dialog appears. Click on Advanced Options button to display the Options dialog allowing you to set the time out of the server while loading and to define the number of records that is sent to the server in each round-trip. The three checkboxes below are used to save the log files for the containers/compounds/plates in xml format during the load process for troubleshooting purpose. </li>
+            <p>
+                <img src="../Resources/Images/Inventory images/log options.gif" />
+            </p>
+            <li value="14"> 
+
+ 
+
+ 
+
+ Check the "Log data to the following location" checkbox if you want to log the plate for the future reference. 
+ </li>
+            <li value="15"> Click Next. The Ready to Import screen appears as: 
+</li>
+            <p>
+                <img src="../Resources/Images/Inventory images/invloader_9.gif" />
+            </p>
+            <li value="16">Click Finish to begin importing the compounds. A window, displaying the progress of the import process, appears. 
+ </li>
+            <li value="17"> Click Finish when the import process finishes. Observe that the plates are created at the specified location. 
+
+</li>
+        </ol>
+        <p><b>Note:</b> Some properties should be in a specific format in the sdf or cfx file:</p>
+        <table style="border-left-style: solid;border-left-width: 0px;border-left-color: ;border-right-style: solid;border-right-width: 0px;border-right-color: ;border-top-style: solid;border-top-width: 0px;border-top-color: ;border-bottom-style: solid;border-bottom-width: 0px;border-bottom-color: ;margin-left: 0;margin-right: auto;">
+            <col style="width: 176px;" />
+            <col style="width: 467px;" />
+            <thead>
+                <tr>
+                    <th style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">Properties</th>
+                    <th style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">Format </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">Caution , Storage ,</td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">Value1 ; Value2 ; Value3 ;</td>
+                </tr>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">Identifiers , Fragments , Salts , Solvents , Impurities , Non Standard Salts</td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-left-color: #696969;border-right-style: solid;border-right-width: 1px;border-right-color: #696969;border-top-style: solid;border-top-width: 1px;border-top-color: #696969;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #696969;">
+                        <p>These properties should be listed in one property in the sdf file with the following format :</p>
+                        <p>IdentifiersRegistry:Identifier1:Value1; Identifier2:Value2; Separator</p>
+                        <p>IdentifiersCompound: Identifier1:Value1; Identifier2:Value2; Separator</p>
+                        <p>IdentifiersBatch: Identifier1:Value1; Identifier2:Value2; Separator</p>
+                        <p>Salts:Salt:Stochiometrie; Separator</p>
+                        <p>Solvents: Solvent:Stochiometrie; Separator</p>
+                        <p>Impurities: Impurity:MW:Stochiometrie; Separator</p>
+                        <p>Fragments: Fragment:Equivalent; Separator</p>
+                        <p>Non Standard Salts: Salt:MW:Stochiometrie; Separator</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p><span style="color: #0000ff;">Example:</span> (Separator = END)</p>
+        <p>IdentifiersRegistry:Alias:edyR;Old external codes:edy2;END<br />IdentifiersCompound:Alias:edyC;Old external codes:edy2;END<br />IdentifiersBatch:Alias:edyB;Old external codes:edy2;END<br />Salts: Nitrate:3;Pyridine salt:4;END<br />Solvents: Hydroxide:4;END<br />Impurities: Impurity1:4:2;END<br />Fragments: Borohydrate:3;END<br />Non Standard Salts: Salt:2:3;edys:4:5;END</p>
+        <p><b>Note:</b>
+        </p>
+        <p>The separator is set in the add-in configuration in Reg addins. No order is needed and also user can add only properties needed.</p>
+        <p><span style="color: #0000ff;">Example:</span>
+        </p>
+        <p>IdentifiersRegistry:Alias:edyR;Old external codes:edy2;END<br />Salts: Nitrate:3;Pyridine salt:4;END</p>
+        <p>In the above example only Registry identifiers and salts on batch are added to the record.</p>
+        <p style="font-weight: bold;">Loading Compounds into Containers
+</p>
+        <p>To load compounds into containers:
+
+ </p>
+        <ol>
+            <li value="1">Start the Inventory Loader application. The Import Database screen of the Inventory Loader wizard, appears. </li>
+            <li value="2">Click Next. The Login to the Inventory Web Server screen appears. 
+ </li>
+            <li value="3">Enter the name of the ChemBioOffice server, your user name and password in the Server, User ID, and Password text boxes, respectively. 
+ </li>
+            <li value="4">Click Next. The Select Database screen appears. 
+ </li>
+        </ol>
+        <blockquote>
+            <ol style="list-style-type: lower-alpha;">
+                <li value="1"> Click the radio button, Load Structures into Containers. 
+ </li>
+                <li value="2"> Click the Browse button locate the database file from which the compounds are to be imported. The file can be a CSV file, XLS file, or a ChemBioFinder database. 
+ </li>
+            </ol>
+        </blockquote>
+        <ol start="5">
+            <li value="5">Click Next. The Registration Info screen appears. Select the <i>Register the new compounds in the CambridgeSoft Chemical Registration System</i> check box if you want to register the compounds into the Registration Enterprise database. When you select this check box, Inventory Loader verifies whether or not you have sufficient permissions to register compounds into Registration Enterprise. If Inventory Loader finds your authentication information valid, a grid containing the Registration Enterprise fields is displayed in the Registration Info screen. Otherwise, an error message is displayed.</li>
+            <p>
+                <img src="../Resources/Images/Inventory images/invloader_reg_info.gif" />
+            </p>
+            <li value="6">The Update Selections dialog displays. Note that this dialog displays only while loading structures into containers. Select one of the following options:<ul MadCap:continue="true" style="list-style-type: circle;"><li value="1"><b>No Updates</b>: will skip the available containers</li><li value="2"><b>Update to non-null values only</b>: will update only properties filled in the next step</li><li value="3"><b>Update including non-null to null</b>: will update all properties and set as null empty properties if they were filled for the existing container</li></ul></li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/update selections.gif" />
+        </p>
+        <p>If you select the "Update to non-null values only" or "Update including non-null to null" options, you will be able to update the registered compounds properties along with inventory compounds, as shown below:</p>
+        <p>
+            <img src="../Resources/Images/Inventory images/update selections2.gif" />
+        </p>
+        <p>Select one of the following options:</p>
+        <blockquote>
+            <ul style="list-style-type: circle;">
+                <li value="1"><b>No compound updates</b>: will skip updating the registration data for any available compounds</li>
+            </ul>
+            <ul style="list-style-type: circle;">
+                <li value="1"><b>Update compounds to non-null values only</b>: will update only the properties filled in the mapping fields section (E.g. Synonym, Comments, Purity, Fragment etc..)</li>
+            </ul>
+        </blockquote>
+        <ol start="7">
+            <li value="7">Click Next. The Select Fields screen appears. 
+ </li>
+            <li value="8">Set the fields in the Select Fields screen, as required. In case you have saved the mapping information earlier as a mapping template, you can select the fields by clicking the Load button and selecting the saved mapping template. <ul MadCap:continue="true" style="list-style-type: circle;"><li value="1"><b>Value column:</b> is the list of properties (Plate to Plate / Container to Container / Registration to Registration). (Same label of the field present in inventory or registration)</li><li value="2"><b>Data Type:</b>is the value type of the property</li><li value="3"><b>Field Name:</b>is the column to map properties values from the .cfx file to the loaded compounds in inventory or registration (e.g. in the screen shot below the properties Location Barcode and Container Name values are mapped from the .cfx file properties selected in the Field Name column to the compounds loaded into Inventory and same if we choose registration properties)</li><li value="4"><b>Default column:</b>is used to set a default value in a certain property to be loaded to all compounds </li></ul></li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/Inventory images/select fields.gif" />
+        </p>
+        <p>The screen shot below shows an example of a one to many property which is called "List" in InvLoader.</p>
+        <p>
+            <img src="../Resources/Images/Inventory images/one to many prop.gif" />
+        </p>
+        <ol start="9">
+            <li value="9">After mapping and setting all needed values, click Next. The Log Plate XML screen appears as:</li>
+            <p>
+                <img src="../Resources/Images/Inventory images/invloader_logplatexml.gif" />
+            </p>
+            <li value="10"> Log Plate XML is the last stage in the InvLoader wizard and here the user can check the log data checkbox to get a log file with the mapped data columns or errors if the loading fails. Click on Advanced Options button to display the Options dialog allowing you to set the time out of the server while loading and to define the number of records that is sent to the server in each round-trip. The three checkboxes below are used to save the log files for the containers/compounds/plates in xml format during the load process for troubleshooting purpose.  
+ 
+
+</li>
+            <p>
+                <img src="../Resources/Images/Inventory images/log options.gif" />
+            </p>
+            <li value="11"> Click Next. The Ready to Import screen appears. 
+ </li>
+            <li value="12">Click Finish. The import process starts. 
+ </li>
+            <li value="13"> Click Finish again when the import process is complete.</li>
+        </ol>
+        <p style="font-weight: bold;">Loading Compounds Directly
+</p>
+        <p>To import the compounds directly into the Inventory Enterprise and Registration Enterprise databases:
+
+ </p>
+        <ol>
+            <li value="1">Start the Inventory Loader application. The Import Database screen of the Inventory Loader wizard, appears. </li>
+            <li value="2">Click Next. The Login to the Inventory Web Server screen appears. 
+ </li>
+            <li value="3">Enter the name of the ChemBioOffice server and your user name and password in the Server, User ID, and Password text boxes, respectively. 
+ </li>
+            <li value="4">Click Next. The Select Database screen appears. </li>
+            <li value="5">Click the Load Structures Only radio button. 
+ </li>
+            <li value="6">Click the Browse button to locate a database and click Next. </li>
+            <li value="7">Select the Register the new compounds in the CambridgeSoft Chemical Registration System check box if you want to register the compounds into the Registration Enterprise database. When you select this check box, Inventory Loader verifies whether or not you have sufficient permissions to register compounds into Registration Enterprise.
+ </li>
+            <li value="8">The Select Fields screen appears. Set the fields displayed in the Value column. You can set a field either by mapping it with a field of ChemBioFinder database table in the Field Name column or by specifying a default value for the field in the Default column. </li>
+            <li value="9">Click Next. The Log Plate XML screen appears. </li>
+            <li value="10"> Select the Log data to the following location check box if you want to log the output for future reference. 
+ </li>
+            <li value="11"> Specify the location at which you want to log the data in the text box displayed below the Log data to the following location check box. 
+ </li>
+            <li value="12">Click Next. The Ready to Import screen appears. 
+ </li>
+            <li value="13">Click Finish when the import process is completed. 
+</li>
+        </ol>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="InvLoader.htm">InvLoader</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Registration|Data Loader|The Command-Line Version of Data Loader" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Extended Mapping Features</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Extended Mapping Features</h1>
+        <p style="font-weight: bold;">Resolving/Translating Raw Data Values
+</p>
+        <p>Sometimes external data needs to be translated before it can be imported… not language translation, but value translation. This process can also be called resolution. The concept is quite simple: the program can use some user-provided text file like a thesaurus that will help it convert some ‘external’ value into a more desirable ‘internal’ value.
+</p>
+        <p><b style="text-decoration: underline; color: #0000ff;">Example 1:
+</b>
+            <br />A data-file contains the full text of the unit of measure for a batch, such as “litres” and “millilitres”, but your Registration System expects “l” and “ml”. This is not an impediment to importing data from that file; it just adds two steps to the process.
+</p>
+        <p><b>First Step:</b> The user must create a simple text file that has two columns of data, used to resolve the value in the 1st column into the values from the 2nd column. (Think of this as a thesaurus.) The resolver file must have a column-header row.
+</p>
+        <p>When a value from the data-file is not found in the 1st column, it is used ‘as-is’ (the value is unresolved, but may already be acceptable, such as “g”.)
+</p>
+        <p>The contents of “C:\Lookups\units_resolver.txt”
+</p>
+        <p>external_value, cs_units_picklist_value
+<br />litres, l
+<br />millilitres, ml
+<br />grams, g
+<br />milligrams, mg
+</p>
+        <p><b>Second Step:</b> The user must add a new xml snippet to tell the program how to use this resolver file. The highlighted section of text below describes:
+</p>
+        <ol>
+            <li value="1">Where to find the resolver file,
+</li>
+            <li value="2">What character separates the columns of data, and finally
+</li>
+            <li value="3">The names of the columns to use to perform the resolution
+</li>
+        </ol>
+        <p>Even if your resolver file has other columns of data in it, they will be completely ignored. There is nothing special about the names of the columns, only that the column names in the xml must match columns in the resolver file itself. (Think of this as instructions on where the thesaurus is located and which synonym to use.)
+</p>
+        <p>The individual data-mapping that uses this file.
+</p>
+        <p>&lt;mapping&gt;
+<br />&lt;enabled&gt;true&lt;/enabled&gt;
+<br />&lt;objectBindingPath&gt;this.BatchList[0].PropertyList['AMOUNT_UNITS'].Value&lt;/objectBindingPath&gt;
+<br />&lt;memberInformation memberType="property"&gt;
+<br />&lt;type&gt;instance&lt;/type&gt;
+<br />&lt;description&gt;Batch custom property given a value from a field in the data-file&lt;/description&gt;
+<br />&lt;args&gt;
+<br />&lt;arg index="0" input="derived" type="string"&gt;
+<br />&lt;value&gt;units_full_name&lt;/value&gt;<br /><span style="background-color: #ffff00;">&lt;resolver&gt; </span><br style="background-color: #ffff00;" /><span style="background-color: #ffff00;">&lt;file&gt;C:\Lookups\units_resolver.txt&lt;/file&gt; </span><br style="background-color: #ffff00;" /><span style="background-color: #ffff00;">&lt;delimiter&gt;,&lt;/delimiter&gt; </span><br style="background-color: #ffff00;" /><span style="background-color: #ffff00;">&lt;externalValueColumn&gt;external_value&lt;/externalValueColumn&gt; </span><br style="background-color: #ffff00;" /><span style="background-color: #ffff00;">&lt;internalValueColumn&gt;cs_units_picklist_value&lt;/internalValueColumn&gt; </span><br style="background-color: #ffff00;" /><span style="background-color: #ffff00;">&lt;/resolver&gt;</span><br />&lt;/arg&gt;<br />&lt;/args&gt;<br />&lt;/memberInformation&gt;<br />&lt;/mapping&gt;</p>
+        <p style="font-weight: bold;text-decoration: underline;color: #0000ff;">Example 2:</p>
+        <p>A data-file has a field for salts and another field for the equivalents. The salt codes are from a different database and some of the codes don’t match the ones in the Registration database (see the “salt_name” column below). The user can create a ‘salt_resolver.txt’ file that might look like the following:</p>
+        <p>“salt_name”,”cs_fragment_code”,”cs_salt_name”<br />“Zn+2”,”54”,”Zinc(II) salt”<br />“OH-“,”266”,”Hydroxide”<br />…</p>
+        <p>The “cs_salt_name” column will be ignored, so having it there is harmless.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="The Command-Line Version of Data Loader.htm">The Command-Line Version of Data Loader</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

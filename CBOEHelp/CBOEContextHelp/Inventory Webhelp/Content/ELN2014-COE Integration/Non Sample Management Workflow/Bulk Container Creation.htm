@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Bulk Container Creation</title>
+        <link href="../../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%; caption-side: top; width: 100%; margin-left: 0; margin-right: auto;">
+                <col style="width: 612px;" />
+                <tr valign="bottom" style="height: 30px;">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-style: italic;">COE-ELN Integration</span>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td>
+                        <hr width="100%" size="0" align="center" />
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-weight: bold;">User's Guide</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Bulk Container Creation</h1>
+        <p>With Bulk Container Creation, you can create substances and inventory containers in a bulk. This works with section type: <b>Create Containers form</b>.
+</p>
+        <p>The options available are:
+
+</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Create / Resolve substance(s) 
+</li>
+            <li value="2">Create Container(s) </li>
+        </ul>
+        <h4>To Create/Resolve Substance(s):</h4>
+        <ol>
+            <li value="1">Log in to E-Notebook.</li>
+            <li value="2">Create an Experiment, add a <b>Create Containers form</b> section and fill in the mandatory fields.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/create containers form ST.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="3">To add a structure, double-click the Structure column. The Edit Structure dialog appears.</li>
+            <li value="4">Draw or paste the structure and click <b>OK</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/edit structure dialog.gif" />
+        </p>
+        <p> The structure appears in the Structure column, as shown below.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/structure added3.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="5">To add more than one substance, right-click Inventory Containers table and select <b>Insert</b> &gt; <b>Insert Row Above/Insert Row Below</b>.</li>
+        </ol>
+        <p>A new row is inserted for another Inventory substance/container entry.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/multi substances.gif" />
+        </p>
+        <ol MadCap:continue="true">
+            <li value="6">Under the Selected column, check the checkbox for entries you want to send to Inventory. </li>
+            <li value="7">Click the <b>Inventory</b> form tool and select <b>Create/Resolve substance(s)</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/select substances.gif" />
+        </p>
+        <p>The BulkContainerCreation dialog appears for confirmation. </p>
+        <ol>
+            <li value="8">Click <b>Yes</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/bulk CNT creation conf msg.gif" />
+        </p>
+        <p>The BulkConatinerCreation dialog appears showing the compound IDs are created. </p>
+        <ol>
+            <li value="9">Click <b>OK</b>.</li>
+        </ol>
+        <p>The substances with Compound ID are created and returned to the Create Containers form section.</p>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/CMD IDs added.gif" />
+        </p>
+        <h4>To Create Inventory Container(s):</h4>
+        <ol>
+            <li value="1">Log in to E-Notebook.</li>
+            <li value="2">Create an Experiment, and add a <b>Create Containers form</b> section, and fill in the mandatory fields.</li>
+            <li value="3">Check the corresponding  records (check box) for which you want to create containers.</li>
+            <li value="4">Click the <b>Inventory</b> form tool and select <b>Create Containers(s)</b>. The BulkContainerCreation dialog appears.</li>
+            <li value="5">Click <b>Yes</b> for confirmation.</li>
+        </ol>
+        <p><b>Notes</b>:</p>
+        <ul>
+            <li style="font-style: normal;" value="1">If the substance associated with the container (you create) does not have a Compound ID, a container with the <i>new</i> Compound ID and with a Barcode Number is created and returned to the Create Containers form.</li>
+            <li style="font-style: normal;" value="2">If the substance associated with the container (you create) does not have a Compound ID but already exists in the Inventory system, you have to resolve the substance conflicts. You can use an <b>Existing Substance</b> or can select <b>Create a Duplicate</b>. In either case, a container with a Compound ID and with a Barcode Number is created and returned to the Create Containers form.</li>
+        </ul>
+        <p style="font-style: normal;">A dialog displays with the created containers barcodes. </p>
+        <ol>
+            <li style="font-style: normal;" value="6">Click <b>OK</b>.</li>
+        </ol>
+        <p>The containers with barcodes are created and returned to the Create Containers form.</p>
+        <p>Once the containers are pushed from E-Notebook to the Inventory system, the containers become accessible in the Inventory system.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Sending Inventory Data - Non Sample Management (NSM).htm">Sending Inventory Data - Non Sample Management</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

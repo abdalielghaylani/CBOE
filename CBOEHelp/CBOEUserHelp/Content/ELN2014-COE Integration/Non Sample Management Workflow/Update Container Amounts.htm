@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="E-Notebook 2014 - COE Integration|Sending Inventory Data - Non Sample Management (NSM)" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Applications User Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Update Container Amounts</title>
+        <link href="../../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%; caption-side: top; width: 100%; margin-left: 0; margin-right: auto;">
+                <col style="width: 612px;" />
+                <tr valign="bottom" style="height: 30px;">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-style: italic;">COE-ELN Integration</span>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td>
+                        <hr width="100%" size="0" align="center" />
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-weight: bold;">User's Guide</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Update Container Amounts</h1>
+        <p style="font-weight: normal;"><b>Update Container Amounts</b> functionality lets you reduce the consumed amount/volume of a substance, usually these fields are: sample mass and volume. This is applied in the Reaction W COE Integration section &gt; Reactants &amp; Products table where inventory reagents are used, and where you can perform a bulk update to an inventory container--of the amount consumed for multiple containers. 
+
+</p>
+        <p style="font-weight: normal;">The amount/volume specified in E-Notebook is the consumed amount and, therefore, is reduced from the inventory container.</p>
+        <p style="font-weight: bold;">Example: </p>
+        <ul style="list-style-type: square;">
+            <li value="1">Container Name:Test 1, Container ID: C1141</li>
+        </ul>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Example1.gif" />
+        </p>
+        <ul style="list-style-type: square;">
+            <li value="1">Container Name: Test 2, Container ID:&#160;C1142</li>
+        </ul>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Example2.gif" />
+        </p>
+        <p>The amount/volume consumed by the container entries present in E-Notebook are reduced from the container entries in the Inventory system.</p>
+        <h4>To update Container Amounts:</h4>
+        <ol>
+            <li value="1">Navigate to the Reactants table in the Reaction W COE Integration section.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Reactants table.gif" />
+        </p>
+        <p style="font-style: normal;"><b>Note</b>: The container in the Reactants &amp;&#160;Products table must have Barcode values.</p>
+        <ol MadCap:continue="true">
+            <li value="2">Ensure the Updated (check box) is unchecked.</li>
+            <li value="3">Modify the <b>Sample Mass</b> and <b>Vol</b> (volume) values.</li>
+        </ol>
+        <p><b>Note</b>: &#160;You can only reduce the consumed amount.</p>
+        <ol MadCap:continue="true">
+            <li value="4">Fill in the consumed volume. </li>
+            <li value="5">Click the <b>Send to Inventory</b> form tool and select <b>Update Container Amounts</b>.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Update CNT amounts.gif" />
+        </p>
+        <p>The Update Container Amounts dialog appears for confirmation. </p>
+        <ol>
+            <li value="6">Click <b>Yes</b> to confirm your action.</li>
+        </ol>
+        <p>
+            <img src="../../Resources/Images/COE-ELN2014 Integration/NSM/Update amounts confirmation.gif" />
+        </p>
+        <p>The <b>Update Container Amount</b> dialog with the created barcodes displays. </p>
+        <ol>
+            <li value="7">Click <b>OK</b>.</li>
+        </ol>
+        <p>Once the container amounts are updated in E-Notebook, the amount/volume consumed by the containers in E-Notebook is deducted form the amount/volume of the containers in the Inventory system.</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Sending Inventory Data - Non Sample Management (NSM).htm">Sending Inventory Data - Non Sample Management</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

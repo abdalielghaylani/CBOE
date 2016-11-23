@@ -1,0 +1,701 @@
+/* MadCap Table Style: */
+
+/*<meta sourceDocument="C:\Users\JHarvey\Perforce\Harveyium\Documentation\ChemOffice 13.0 documentation\2- Chem &amp; Bio3D, ChemFinder &amp; BioViz\Revised Chem3D\Source files\chem3d.book" />*/
+
+mcTableStyle
+{
+	name: UnstructMasterPageMaps;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+	border-spacing-x: 0;
+	border-spacing-y: 0;
+	border-collapse: collapse;
+	border-left-color: #000000;
+	border-right-color: #000000;
+	border-top-color: #000000;
+	border-bottom-color: #000000;
+	border-top-style: solid;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-left-style: solid;
+	border-left-width: 1px;
+	cell-padding-top: 2pt;
+	cell-padding-left: 3pt;
+	cell-padding-right: 2pt;
+	cell-padding-bottom: 3pt;
+}
+
+mcTableColumnStyle
+{
+	separator-style: solid;
+	separator-width: 1px;
+	separator-color: #000000;
+	ruler-style: solid;
+	ruler-width: 1px;
+	ruler-color: #000000;
+}
+
+mcTableHeadStyle
+{
+	
+}
+
+mcTableBodyStyle
+{
+	span: 4;
+	separator-style: solid;
+	separator-width: 1px;
+	separator-color: #000000;
+	ruler-style: solid;
+	ruler-width: 1px;
+	ruler-color: #000000;
+}
+
+mcTableBodyStyle
+{
+	span: 0;
+	separator-style: solid;
+	separator-width: 1px;
+	separator-color: #000000;
+	ruler-style: solid;
+	ruler-width: 1px;
+	ruler-color: #000000;
+}
+
+mcTableFootStyle
+{
+	
+}
+
+
+/* Cell Styles: */
+ 
+.TableStyle_UnstructMasterPageMaps
+{
+	border-collapse: collapse;
+	border-left-style: solid;
+	border-left-color: #000000;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-right-color: #000000;
+	border-right-width: 1px;
+	border-top-style: solid;
+	border-top-color: #000000;
+	border-top-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #000000;
+	border-bottom-width: 1px;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+	border-spacing: 0px 0px;
+}
+
+.TableStyle_UnstructMasterPageMaps .Column-
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .Head-
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadI--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadI-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadE--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadE-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadF--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadF-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadH--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadH-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadD--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadD-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadC--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadC-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadB--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadB-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadA--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadA-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadG--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .HeadG-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .Foot-
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootI--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootI-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootE--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootE-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootF--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootF-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootH--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootH-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootD--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootD-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootC--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootC-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootB--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootB-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootA--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootA-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .FootG--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .FootG-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .Body-
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyI--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyI-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyE--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyE-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyF--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyF-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyH--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyH-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyD--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyD-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyC--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyC-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyB--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyB-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyA--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyA-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyG--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyG-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .Body-
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyI--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyI-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyE--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyE-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyF--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyF-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyH--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyH-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyD--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyD-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyC--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyC-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyB--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-right-width: 1px;
+	border-right-color: #000000;
+	border-right-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyB-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyA--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyA-- p
+{
+	
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyG--
+{
+	padding-left: 3pt;
+	padding-right: 2pt;
+	padding-top: 2pt;
+	padding-bottom: 3pt;
+	border-bottom-width: 1px;
+	border-bottom-color: #000000;
+	border-bottom-style: solid;
+}
+
+.TableStyle_UnstructMasterPageMaps .BodyG-- p
+{
+	
+}
+
+

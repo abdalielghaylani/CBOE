@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="ChemBioOffice WebServer|Customization and Administration|Customization of WebServer Applications|INI Configuration Files" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" class="" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>menubar.ini Configuration File</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <!--webbot bot="Include" U-Include="../../header.htm" TAG="BODY" startspan -->
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <!--webbot bot="Include" endspan i-checksum="56671" -->
+        <h1> Menubar.ini Configuration File</h1>
+        <p>The menubar.ini configuration file (found in the config folder of each 
+application's folder) controls how the menubar is displayed in the 
+application.&#160; By default, the following menus are available to the 
+user:</p>
+        <ul>
+            <li value="1">File
+  </li>
+            <li value="2">History
+  </li>
+            <li value="3">Queries
+  </li>
+            <li value="4">Hitlists
+  </li>
+            <li value="5">Marked Hits
+  </li>
+            <li value="6">Help
+  </li>
+            <li value="7">Logoff
+  </li>
+            <li value="8">Home</li>
+        </ul>
+        <p>Menubar items are characterized as a menu, submenu, or button (an item with 
+no menu items). System administrators are able to add new menus to&#160;the 
+above&#160;list of defaults.&#160; Each menu is allowed to contain up to 3 menu 
+items, and one of those 3 can contain a submenu.&#160; There is a maximum of 2 
+items in each submenu.&#160; </p>
+        <p style="COLOR: firebrick;"><em><strong>It is important to note that it is the 
+responsibility of a site's administrator to propagate any changes made to 
+ChemOffice WebServer application files to future versions of the 
+application.&#160; New versions of the ChemOffice WebServer use default 
+configurations.</strong></em>
+        </p>
+        <p>The following is a list of entries that are usually found in the cfserver.ini 
+files for ChemOffice WebServer applications.&#160; Click on an item in the list 
+for more information.&#160;&#160; </p>
+        <p />
+        <table cellSpacing="1" cellPadding="1" width="400" border="0" style="WIDTH: 400px;">
+            <col style="width: 216px;" />
+            <col />
+            <tr>
+                <td style="WIDTH: 200px;"><strong>[GLOBALS]</strong>
+                </td>
+                <td style="WIDTH: 200px;" width="200"><strong><em><a name="menu_def_settings"></a><a href="#menu_def">Menu 
+ Definitions</a></em></strong>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="MENUBAR_ITEMS.htm">MENUBAR_ITEMS</a>
+                </td>
+                <td><a href="MENU_TYPE.htm">MENU_TYPE</a>
+                </td>
+            </tr>
+            <tr>
+                <td />
+                <td><a href="MENU_HIDE.htm">MENU_HIDE</a>
+                </td>
+            </tr>
+            <tr>
+                <td><strong>[MENU_BAR_DISPLAY_SETTINGS]&#160;&#160;&#160;&#160;&#160;</strong>
+                </td>
+                <td><a href="MENU_FORMGROUPS.htm">MENU_FORMGROUPS</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="ABSOLUTE_LEFT.htm">ABSOLUTE_LEFT</a>
+                </td>
+                <td><a href="MENU_NAME.htm">MENU_NAME</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="ABSOLUTE_TOP.htm">ABSOLUTE_TOP</a>
+                </td>
+                <td><a href="NUM_MENU_ITEMS.htm">NUM_MENU_ITEMS</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="BACKGROUND_COLOR.htm">BACKGROUND_COLOR</a>
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td><a href="CLEAR_PIXEL_IMAGE.htm">CLEAR_PIXEL_IMAGE</a>
+                </td>
+                <td><strong><em><a href="#item_def">Item 
+ Definitions</a></em></strong>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="DISABLED_TEXT_COLOR.htm">DISABLED_TEXT_COLOR</a>
+                </td>
+                <td><a href="NAME_ITEM.htm">NAME_ITEM_#</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="HOVER_COLOR.htm">HOVER_COLOR</a>
+                </td>
+                <td><a href="NAME_ADD_INFO_ITEM.htm">NAME_ADD_INFO_ITEM_#</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="HOVER_HIGHLIGHT_COLOR.htm">HOVER_HIGHLIGHT_COLOR</a>
+                </td>
+                <td><a href="URL_ITEM.htm">URL_ITEM_#</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="HOVER_SHADOW_COLOR.htm">HOVER_SHADOW_COLOR</a>
+                </td>
+                <td><a href="ONCLICK_ITEM.htm">ONCLICK_ITEM_#</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="HOVER_TEXT_COLOR.htm">HOVER_TEXT_COLOR</a>
+                </td>
+                <td><a href="DIM_ITEM.htm">DIM_ITEM_#</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="INNER_HIGHLIGHT_COLOR.htm">INNER_HIGHLIGHT_COLOR</a>
+                </td>
+                <td><a href="HIDE_ITEM.htm">HIDE_ITEM_#</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="INNER_SHADOW_COLOR.htm">INNER_SHADOW_COLOR</a>
+                </td>
+                <td><a href="ICON_IMAGE_ITEM.htm">ICON_IMAGE_ITEM_#</a>
+                </td>
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_COLOR.htm">ITEM_FONT_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_FAMILY.htm">ITEM_FONT_FAMILY</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_PADDING_BOTTOM.htm">ITEM_FONT_PADDING_BOTTOM</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_PADDING_LEFT.htm">ITEM_FONT_PADDING_LEFT</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_PADDING_RIGHT.htm">ITEM_FONT_PADDING_RIGHT</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_PADDING_TOP.htm">ITEM_FONT_PADDING_TOP</a>
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_SIZE.htm">ITEM_FONT_SIZE</a>
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_STYLE.htm">ITEM_FONT_STYLE</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_TEXT_DECORATION.htm">ITEM_FONT_TEXT_DECORATION</a>
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td><a href="ITEM_FONT_WEIGHT.htm">ITEM_FONT_WEIGHT</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_COLOR.htm">MENU_FONT_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_FAMILY.htm">MENU_FONT_FAMILY</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_PADDING_BOTTOM.htm">MENU_FONT_PADDING_BOTTOM</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_PADDING_LEFT.htm">MENU_FONT_PADDING_LEFT</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_PADDING_RIGHT.htm">MENU_FONT_PADDING_RIGHT</a>
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_PADDING_TOP.htm">MENU_FONT_PADDING_TOP</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_SIZE.htm">MENU_FONT_SIZE</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_STYLE.htm">MENU_FONT_STYLE</a>
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_TEXT_DECORATION.htm">MENU_FONT_TEXT_DECORATION</a>
+                </td>
+                <td />
+            </tr>
+            <tr>
+                <td><a href="MENU_FONT_WEIGHT.htm">MENU_FONT_WEIGHT</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="OUTER_HIGHLIGHT_COLOR.htm">OUTER_HIGHLIGHT_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="OUTER_SHADOW_COLOR.htm">OUTER_SHADOW_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="POPUP_ICON.htm">POPUP_ICON</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SELECTED_COLOR.htm">SELECTED_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SELECTED_HIGHLIGHT_COLOR.htm">SELECTED_HIGHLIGHT_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SELECTED_POPUP_ICON.htm">SELECTED_POPUP_ICON</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SELECTED_SHADOW_COLOR.htm">SELECTED_SHADOW_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SELECTED_TEXT_COLOR.htm">SELECTED_TEXT_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SHADOW_COLOR.htm">SHADOW_COLOR</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SHADOW_ENABLED.htm">SHADOW_ENABLED</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SHOW_ON_MOUSEOVER.htm">SHOW_ON_MOUSEOVER</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SHADOW_STRENGTH.htm">SHADOW_STRENGTH</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SHADOW_X_OFFSET.htm">SHADOW_X_OFFSET</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td><a href="SHADOW_Y_OFFSET.htm">SHADOW_Y_OFFSET</a>
+                </td>
+                <td>&#160;</td>
+            </tr>
+            <tr>
+                <td />
+                <td>&#160;</td>
+            </tr>
+        </table>
+        <h2>Menu Definitions</h2>
+        <p>There should be a menu definition in the menubar.ini file 
+for each menu listed in&#160;&#160;<a href="MENUBAR_ITEMS.htm">MENUBAR_ITEMS</a>. If 
+there is no definition, please see your system administrator.</p>
+        <p>Menu definitions consist of a number of settings 
+describing the menu as well as item definitions for each item in the menu 
+(including items which happen to be submenus.&#160; Menu definitions always 
+begin with a section heading which is the name of the menu (as listed in<a href="MENUBAR_ITEMS.htm">MENUBAR_ITEMS</a>)&#160;in 
+brackets.&#160; For example, the following is the beginning of a menu definition 
+for the FILE menu:<br /></p>
+        <table style="WIDTH: 530px;HEIGHT: 141px;" cellSpacing="1" cellPadding="1" width="530" border="1">
+            <tr>
+                <td>[FILE] <br />MENU_TYPE = Menu <br />MENU_HIDE= <br />MENU_FORMGROUPS= 
+      <br />MENU_NAME = File <br /><br />NUM_MENU_ITEMS=3</td>
+            </tr>
+        </table>
+        <p>Each Menu definition must contain one and only 
+one&#160;entry for each of the&#160;settings listed&#160;above.&#160;</p>
+        <h2><a name="item_def"></a>Item 
+Definitions</h2>
+        <p>Each item in a menu must have an item&#160;definition listed under the 
+appropriate menu section heading in the menubar.ini file.&#160; If there is no 
+definition, please see your system administrator.</p>
+        <p>Item definitions consist of a number of settings listed as the settings name, 
+followed by an underscore (_), and finally followed by a number.&#160; All of 
+the settings for a particular item end with the same number.&#160; For example, 
+the following is a definition for the Preferences Item under the File Menu:</p>
+        <p />
+        <table cellSpacing="1" cellPadding="1" width="530" border="1">
+            <tr>
+                <td>NAME_ITEM_1=Preferences... 
+      <br />NAME_ADD_INFO_ITEM_1= <br />URL_ITEM_1= 
+      <br /> 
+      ONCLICK_ITEM_1=MainWindow.getAction('preferences') <br />DIM_ITEM_1= 
+      <br />HIDE_ITEM_1= <br />FORMGROUPS_ITEM_1= <br />HELP_ITEM_1=open preferences 
+ window to set search and display options <br />ICON_IMAGE_ITEM_1=</td>
+            </tr>
+        </table>
+        <p>Item definitions must contian one and only one&#160;entry for each of 
+the&#160;settings listed&#160;above .<a name="display_types"></a></p>
+        <!--webbot bot="Include" U-Include="../../footer.htm" TAG="BODY" startspan -->
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

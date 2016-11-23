@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="E-Notebook 2014 - COE Integration|Sending Data into Inventory-Registration System|Registering from the Samples Section" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:conditions="Default.Unsupported Addins" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Applications User Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Fetch Register Number</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%; caption-side: top; width: 100%; margin-left: 0; margin-right: auto;">
+                <col style="width: 612px;" />
+                <tr valign="bottom" style="height: 30px;">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-style: italic;">COE-ELN Integration</span>
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td>
+                        <hr width="100%" size="0" align="center" />
+                    </td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td><span style="font-family: Arial; font-size: 12pt; font-weight: bold;">User's Guide</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Fetch Register Number</h1>
+        <p>The Fetch Register Number allows users to query the database with a registration Temp ID. If a Registration Number is available then the Registration Number and Batch Number will returned to the associated row in the Products Table of the <b>Reaction</b> section. This method was created to support temporary registration from E-Notebook. For example, users would register a compound in the temporary table from E-Notebook and a TempID would be returned to the Products table. Later a Registrar would then permanently register the compound into the Registration system. Subsequently, the E-Notebook user can use the Fetch Register Number method to query the Registration number and Batch number, retuning them to the associated row in the Products table.
+
+</p>
+        <p>Note: user requires adequate Registry permissions to perform this Registry action.</p>
+        <h4>To Fetch the Registry Number:</h4>
+        <ol>
+            <li value="1">Under Home ribbon, select the <b>Fetch Register Number</b> form tool within the <b>Samples</b> section.</li>
+            <li value="2">If the TempID is present in the Products table and the Registration Number is available in the Registration system then, Fetch Register Number dialog appears displaying the Registration Number and Batch Number.</li>
+            <li value="3">Click OK for the Fetch Register Number dialog.</li>
+            <li value="4">The Registration Number and Batch Number will be returned to the associated row in the Samples table of the <b>Reaction</b> section.</li>
+        </ol>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/fetch reg number.gif" />
+        </p>
+        <p>In case the TempID is present in the Samples table and the Registration Number is unavailable in the Registration system then the message box returns “No Compound exists with the Temp id:...”</p>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/no reg nbr2.gif" />
+        </p>
+        <p>If Reg Number and Batch Number fields are already populated with data then the message box returns: <b>Clear the Reg Number field and Fetch again</b>.</p>
+        <p>
+            <img src="../Resources/Images/COE-ELN2014 Integration/re-fetch.gif" />
+        </p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Sending Data to Registration.htm">Registration Push</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,974 @@
+/*<meta />*/
+
+/*----------Heading lists----------*/
+
+/*---------------Character styles----------------------*/
+
+/*----------Primary Numbered lists----------*/
+
+/*----------Secondary Numbered lists----------*/
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+div
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 2pt;
+	margin-bottom: 2pt;
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	line-height: 13.00pt;
+	text-decoration: none;
+}
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+div.Body
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 2pt;
+	margin-bottom: 2pt;
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	line-height: 1.60em;
+	text-decoration: none;
+}
+
+div.XCol-Body
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 2pt;
+	margin-bottom: 2pt;
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	font-size: 10pt;
+	line-height: 1.60em;
+	text-decoration: none;
+	font-family: arial;
+}
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+div.BodyInd
+{
+	text-align: left;
+	margin-left: 2em;
+	margin-right: 0in;
+	margin-top: 2pt;
+	margin-bottom: 2pt;
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	line-height: 1.8em;
+	font-size: 10pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	text-decoration: none;
+}
+
+h1.Heading1
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 0pt;
+	margin-bottom: 14pt;
+	font-family: Arial;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24pt;
+	letter-spacing: 0em;
+	text-indent: 0px;
+	line-height: 24pt;
+	text-decoration: none;
+	color: #000000;
+}
+
+/* Hor and Vert position of the icon */
+
+/*distance between icon and 'Note:' */
+
+/*distance from left margin to icon */
+
+h2.Heading2
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 10pt;
+	margin-bottom: 0pt;
+	font-family: Arial;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 14pt;
+	letter-spacing: 0em;
+	text-indent: 0px;
+	line-height: 19pt;
+	text-decoration: none;
+	color: #646464;
+}
+
+h2.XCol-Heading2
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 10pt;
+	margin-bottom: 0pt;
+	font-family: Arial;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 14pt;
+	letter-spacing: 0em;
+	text-indent: 0px;
+	line-height: 19pt;
+	color: #0000FF;
+	text-decoration: none;
+}
+
+h3.Heading3
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 8pt;
+	margin-bottom: 0pt;
+	font-family: Arial;
+	font-style: normal;
+	letter-spacing: 0em;
+	text-indent: 0px;
+	line-height: 17pt;
+	text-decoration: none;
+	color: #000000;
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+h4.Heading4
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 6pt;
+	margin-bottom: 0pt;
+	font-family: Arial;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	text-indent: 0px;
+	line-height: 12pt;
+	text-decoration: none;
+	color: #000000;
+}
+
+h5.HeadingRunIn
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 5pt;
+	margin-bottom: 0pt;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 10.5pt;
+	letter-spacing: 0em;
+	color: # #000000;
+	text-indent: 0px;
+	line-height: 12.5pt;
+	text-decoration: none;
+	font-family: arial;
+}
+
+div.numlist1-1st
+{
+	text-align: left;
+	font-weight: normal;
+	font-style: normal;
+	letter-spacing: 0em;
+	color: #000000;
+	mc-auto-number-format: 'F:{n=1}. ';
+	mc-auto-number-position: outside-head;
+	margin-left: 0em;
+	margin-right: 0em;
+	mc-auto-number-offset: 0.25em;
+	margin-bottom: 5pt;
+	margin-top: 5pt;
+	font-family: arial;
+}
+
+div.numlist1-inner
+{
+	text-align: left;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	mc-auto-number-format: 'F:{n+}. ';
+	mc-auto-number-position: outside-head;
+	mc-auto-number-offset: 0.25em;
+	margin-bottom: 5pt;
+	margin-top: 5pt;
+	font-family: arial;
+}
+
+div.numlist1-last
+{
+	text-align: left;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	mc-auto-number-format: 'F:{n+}. ';
+	mc-auto-number-position: outside-head;
+	mc-auto-number-offset: 0.25em;
+	margin-top: 4pt;
+	margin-bottom: 8pt;
+	font-family: arial;
+}
+
+div.numlist2-1st
+{
+	mc-auto-number-format: 'S:{a=1}. ';
+	margin-left: 0.45em;
+	mc-auto-number-position: outside-head;
+	mc-auto-number-offset: 0.20em;
+	font-family: arial;
+}
+
+div.numlist2-inner
+{
+	mc-auto-number-format: 'S:{a+}. ';
+	margin-left: 0.45em;
+	mc-auto-number-position: outside-head;
+	mc-auto-number-offset: 0.20em;
+	font-family: arial;
+}
+
+div.numlist2-last
+{
+	mc-auto-number-format: 'S:{a+}. ';
+	margin-left: 0.45em;
+	mc-auto-number-position: outside-head;
+	mc-auto-number-offset: 0.22em;
+	font-family: arial;
+}
+
+div.Bullet1-1st
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	margin-bottom: 4pt;
+	margin-top: 8pt;
+	font-family: arial;
+}
+
+div.XCol-Bullet1-1st
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	margin-bottom: 4pt;
+	margin-top: 8pt;
+	font-family: arial;
+}
+
+div.Bullet1-inner
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	margin-bottom: 4pt;
+	margin-top: 4pt;
+	font-family: arial;
+}
+
+div.XCol-Bullet1-inner
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	margin-bottom: 4pt;
+	margin-top: 4pt;
+	font-family: arial;
+}
+
+div.Bullet1-last
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	margin-bottom: 8pt;
+	margin-top: 4pt;
+	font-family: arial;
+}
+
+div.XCol-Bullet1-last
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0 0.5em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	margin-bottom: 8pt;
+	margin-top: 4pt;
+	font-family: arial;
+}
+
+div.Bullet2-1st
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0.8 0.5em;
+	background-attachment: scroll;
+	padding-left: 0.8em;
+	margin-left: 1.5em;
+	margin-top: 6pt;
+	margin-bottom: 0pt;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	font-family: arial;
+}
+
+/*---------------Character styles----------------------*/
+
+div.Bullet2-inner
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0.8 0.5em;
+	background-attachment: scroll;
+	padding-left: 0.8em;
+	margin-left: 1.5em;
+	margin-top: 3pt;
+	margin-bottom: 3pt;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	font-family: arial;
+}
+
+div.Bullet2-last
+{
+	background-image: url(../Images/BulletIcon.gif);
+	background-repeat: no-repeat;
+	background-position: 0.8 0.5em;
+	background-attachment: scroll;
+	padding-left: 0.8em;
+	margin-left: 1.5em;
+	margin-top: 0pt;
+	margin-bottom: 6pt;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	font-family: arial;
+}
+
+span.Code
+{
+	font-family: "Courier New";
+	font-weight: normal;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #333377;
+	line-height: 12pt;
+	text-decoration: none;
+}
+
+span.Action_Object
+{
+	font-family: Arial;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	line-height: 12pt;
+	text-decoration: none;
+}
+
+div.Footnote
+{
+	text-align: left;
+	margin-left: 0.41667in;
+	margin-right: 0.25in;
+	margin-top: 0pt;
+	margin-bottom: 0pt;
+	font-family: "Times New Roman";
+	font-weight: normal;
+	font-style: normal;
+	font-size: 9pt;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: -16px;
+	line-height: 11pt;
+	text-decoration: none;
+}
+
+div.Note
+{
+	background-image: url(../Images/NoteIcon.png);
+	background-repeat: no-repeat;
+	background-position: 0 0.3em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	text-align: left;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-style: italic;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	mc-auto-number-format: '{b}Note:{/b} ';
+	margin-bottom: 1.00em;
+	margin-top: 1.00em;
+	line-height: 1.30em;
+	text-decoration: none;
+}
+
+div.NoteInd
+{
+	background-image: url(../Images/NoteIcon.png);
+	background-repeat: no-repeat;
+	background-position: 0.8 0.4em;
+	background-attachment: scroll;
+	padding-left: 1.7em;
+	margin-left: 2.1em;
+	margin-top: 10pt;
+	margin-bottom: 10pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-weight: normal;
+	font-style: italic;
+	font-size: 9pt;
+	letter-spacing: 0em;
+	color: #000000;
+	mc-auto-number-format: '{b}Note:{/b} ';
+}
+
+Div.Tip
+{
+	background-image: url(../Images/TipIcon.png);
+	background-repeat: no-repeat;
+	background-position: 0 0.2em;
+	background-attachment: scroll;
+	padding-left: 1.5em;
+	margin-left: 0em;
+	margin-top: 12pt;
+	margin-bottom: 12pt;
+	text-align: left;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-style: italic;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	line-height: 13pt;
+	mc-auto-number-format: '{b}Tip:{/b} ';
+	text-decoration: none;
+}
+
+p
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 2pt;
+	margin-bottom: 2pt;
+	font-weight: normal;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	line-height: 15pt;
+	font-size: 10pt;
+	text-decoration: none;
+	font-family: arial;
+}
+
+p.GraphicAnchor
+{
+	line-height: 2px;
+}
+
+/* controls font-size of footnote number in text */
+
+MadCap|miniTocProxy
+{
+	mc-toc-depth: 1;
+	color: #0000ff;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	line-height: 13pt;
+	font-style: normal;
+	font-size: 9pt;
+	border-top: none;
+	text-decoration: none;
+}
+
+/* Controls color of footnote number in the text */
+
+MadCap|xref
+{
+	mc-format: '{quote}{paratext}{quote}';
+}
+
+MadCap|miniTocProxy.minitoc
+{
+	mc-toc-depth: 1;
+}
+
+/* controls format of popup body */
+
+p.TableHead
+{
+	font-family: Arial;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 10pt;
+	letter-spacing: 0em;
+	color: #000000;
+	line-height: 12pt;
+	text-decoration: none;
+}
+
+p.Caption
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+p.XColTbleCaption1
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+p.Caption1
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+p.XColCaption
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+p.TbleCaption1
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+p.TbleCaption
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+p.XColTbleCaption
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+p.XColCaption1
+{
+	font-style: italic;
+	margin-bottom: 10pt;
+}
+
+MadCap|breadcrumbsProxy
+{
+	font-weight: bold;
+	color: #646464;
+	font-size: 9pt;
+}
+
+sub
+{
+	line-height: 0em;
+}
+
+sup
+{
+	line-height: 0em;
+}
+
+MadCap|footnote
+{
+	color: #ff0000;
+	line-height: 0em;
+	font-size: 0.75em;
+}
+
+sub.subscript
+{
+	font-size: 0.76em;
+}
+
+sup.superscript
+{
+	font-size: 0.76em;
+}
+
+MadCap|pageFooter
+{
+	
+}
+
+span.MCTextPopup
+{
+	font-size: 0.8em;
+	font-weight: bold;
+}
+
+span.MCTextPopupBody
+{
+	color: #000000;
+	line-height: 1.0em;
+	font-size: 10pt;
+	font-weight: normal;
+}
+
+h5.WarningMessage
+{
+	text-align: left;
+	margin-left: 0in;
+	margin-right: 0in;
+	margin-top: 5pt;
+	margin-bottom: 0pt;
+	font-weight: bold;
+	font-style: normal;
+	font-size: 10.5pt;
+	letter-spacing: 0em;
+	text-indent: 0px;
+	line-height: 12.5pt;
+	padding-bottom: 0.25em;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-right-style: none;
+	border-top-style: none;
+	color: #000000;
+	padding-top: 1.25em;
+	padding-left: 0.0em;
+	text-decoration: none;
+	font-family: arial;
+}
+
+@media non-print
+{
+	h1
+	{
+		font-weight: bold;
+		font-style: normal;
+		font-family: Arial;
+		color: #000000;
+		font-size: 16pt;
+	}
+
+	h2
+	{
+		font-weight: bold;
+		font-style: normal;
+		font-size: 12pt;
+		font-family: Arial;
+		color: #000000;
+	}
+
+	h1.Heading1
+	{
+		font-weight: bold;
+		font-style: normal;
+		color: #000000;
+		font-size: 16pt;
+	}
+
+	h2.Heading2
+	{
+		font-size: 12pt;
+		color: #000000;
+	}
+
+	div
+	{
+		font-family: Arial;
+	}
+
+	div.Body
+	{
+		font-family: Arial;
+	}
+
+	td
+	{
+		font-size: 10pt;
+		font-family: Arial;
+	}
+
+	h3
+	{
+		font-size: 11pt;
+		font-family: Arial;
+		color: #000000;
+	}
+
+	h4
+	{
+		font-weight: bold;
+		font-style: normal;
+		font-size: 10pt;
+		font-family: Arial;
+	}
+
+	a.MiniTOC1
+	{
+		font-family: Arial;
+		font-size: 10pt;
+	}
+
+	div.Note
+	{
+		font-family: Arial;
+	}
+}
+
+th
+{
+	text-align: left;
+	background-color: #ffffff;
+}
+
+td
+{
+	vertical-align: top;
+}
+
+h1
+{
+	font-weight: bold;
+	font-style: normal;
+	font-family: Arial;
+	color: #000000;
+	font-size: 16pt;
+}
+
+h2
+{
+	font-weight: bold;
+	font-style: normal;
+	font-size: 12pt;
+	font-family: Arial;
+	color: #000000;
+}
+
+h1.Heading1
+{
+	font-weight: bold;
+	font-style: normal;
+	color: #000000;
+	font-size: 16pt;
+}
+
+h2.Heading2
+{
+	font-size: 12pt;
+	color: #000000;
+}
+
+div
+{
+	font-family: Arial;
+}
+
+div.Body
+{
+	font-family: Arial;
+}
+
+td
+{
+	font-size: 10pt;
+	font-family: Arial;
+}
+
+h3
+{
+	font-size: 11pt;
+	font-family: Arial;
+	color: #000000;
+}
+
+h4
+{
+	font-weight: bold;
+	font-style: normal;
+	font-size: 10pt;
+	font-family: Arial;
+}
+
+a.MiniTOC1
+{
+	font-family: Arial;
+	font-size: 10pt;
+}
+
+div.Note
+{
+	font-family: Arial;
+}
+
+a.MiniTOC1:link
+{
+	font-style: normal;
+	color: #033688;
+	font-size: 9pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.MiniTOC1:visited
+{
+	font-style: normal;
+	color: #033688;
+	font-size: 9pt;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.MiniTOC1:hover
+{
+	color: #ff0000;
+}
+
+a.MCTextPopupSpot:link
+{
+	color: #6666ff;
+}
+
+a.MCTextPopupSpot:hover
+{
+	color: #ff0000;
+}
+

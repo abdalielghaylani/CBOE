@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="BIOSARDB" dataviewid="1">
+    <!-- The list of tables -->
+    <tables>
+        <!-- Aliased table -->
+        <table id="1" database="REGDB" alias="rb" name="VW_REG_BATCHES" primaryKey="1">
+            <fields id="1" name="BATCHID" dataType="INTEGER"/>
+            <fields id="2" name="REGID" dataType="INTEGER"/>
+            <fields id="3" name="REGNUMBER" dataType="TEXT"/>
+            <fields id="4" name="BATCHNUMBER" dataType="INTEGER"/>
+            <fields id="5" name="FULL_REG_NUMBER" dataType="TEXT"/>
+            <fields id="6" name="AGGREGATESTRUCTURE" dataType="TEXT" indexType="CS_CARTRIDGE"/>
+        </table>
+        <!-- a table from a different schema -->
+        <table id="2" database="BIODMDB" name="TESTASSAY1" primaryKey="10">
+            <fields id="10" name="ID" dataType="INTEGER"/>
+            <fields id="11" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="12" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="13" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="14" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="15" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="16" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="17" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="18" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="19" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="20" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="21" name="KI_NM" dataType="INTEGER"/>
+            <fields id="23" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="24" name="SDIVN" dataType="INTEGER"/>
+            <fields id="25" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="26" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="27" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="28" name="PROJECT" dataType="INTEGER"/>
+            <fields id="29" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="30" name="BARCODE" dataType="INTEGER"/>
+            <fields id="31" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="32" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="3" database="BIODMDB" name="TESTASSAY6" primaryKey="33">
+            <fields id="33" name="ID" dataType="INTEGER"/>
+            <fields id="34" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="35" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="36" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="37" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="38" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="39" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="40" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="41" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="42" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="43" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="44" name="KI_NM" dataType="INTEGER"/>
+            <fields id="45" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="46" name="SDIVN" dataType="INTEGER"/>
+            <fields id="46" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="48" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="49" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="50" name="PROJECT" dataType="INTEGER"/>
+            <fields id="51" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="52" name="BARCODE" dataType="INTEGER"/>
+            <fields id="53" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="54" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="4" database="BIODMDB" name="TESTASSAY6" primaryKey="55">
+            <fields id="55" name="ID" dataType="INTEGER"/>
+            <fields id="56" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="57" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="58" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="59" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="60" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="61" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="62" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="63" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="64" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="65" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="66" name="KI_NM" dataType="INTEGER"/>
+            <fields id="67" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="68" name="SDIVN" dataType="INTEGER"/>
+            <fields id="69" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="70" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="71" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="72" name="PROJECT" dataType="INTEGER"/>
+            <fields id="73" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="74" name="BARCODE" dataType="INTEGER"/>
+            <fields id="75" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="76" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="5" database="BIODMDB" name="TESTASSAY7" primaryKey="77">
+            <fields id="77" name="ID" dataType="INTEGER"/>
+            <fields id="78" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="79" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="80" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="81" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="82" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="83" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="84" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="85" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="86" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="87" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="88" name="KI_NM" dataType="INTEGER"/>
+            <fields id="89" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="90" name="SDIVN" dataType="INTEGER"/>
+            <fields id="91" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="92" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="93" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="94" name="PROJECT" dataType="INTEGER"/>
+            <fields id="95" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="96" name="BARCODE" dataType="INTEGER"/>
+            <fields id="97" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="98" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="6" database="BIODMDB" name="TESTASSAY7" primaryKey="99">
+            <fields id="99" name="ID" dataType="INTEGER"/>
+            <fields id="100" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="101" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="102" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="103" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="104" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="105" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="106" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="107" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="108" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="109" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="110" name="KI_NM" dataType="INTEGER"/>
+            <fields id="111" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="112" name="SDIVN" dataType="INTEGER"/>
+            <fields id="113" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="114" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="115" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="116" name="PROJECT" dataType="INTEGER"/>
+            <fields id="117" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="118" name="BARCODE" dataType="INTEGER"/>
+            <fields id="119" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="120" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="7" database="BIODMDB" name="TESTASSAY8" primaryKey="200">
+            <fields id="200" name="ID" dataType="INTEGER"/>
+            <fields id="201" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="202" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="203" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="204" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="205" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="206" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="207" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="208" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="209" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="210" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="211" name="KI_NM" dataType="INTEGER"/>
+            <fields id="212" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="213" name="SDIVN" dataType="INTEGER"/>
+            <fields id="214" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="215" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="216" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="217" name="PROJECT" dataType="INTEGER"/>
+            <fields id="218" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="219" name="BARCODE" dataType="INTEGER"/>
+            <fields id="220" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="221" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="8" database="BIODMDB" name="TESTASSAY8" primaryKey="300">
+            <fields id="300" name="ID" dataType="INTEGER"/>
+            <fields id="301" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="302" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="303" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="304" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="305" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="306" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="307" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="308" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="309" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="310" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="311" name="KI_NM" dataType="INTEGER"/>
+            <fields id="312" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="313" name="SDIVN" dataType="INTEGER"/>
+            <fields id="314" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="315" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="316" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="317" name="PROJECT" dataType="INTEGER"/>
+            <fields id="318" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="319" name="BARCODE" dataType="INTEGER"/>
+            <fields id="320" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="321" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="9" database="BIODMDB" name="TESTASSAY8" primaryKey="400">
+            <fields id="400" name="ID" dataType="INTEGER"/>
+            <fields id="401" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="402" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="403" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="404" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="405" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="406" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="407" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="408" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="409" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="410" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="411" name="KI_NM" dataType="INTEGER"/>
+            <fields id="412" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="413" name="SDIVN" dataType="INTEGER"/>
+            <fields id="414" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="415" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="416" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="417" name="PROJECT" dataType="INTEGER"/>
+            <fields id="418" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="419" name="BARCODE" dataType="INTEGER"/>
+            <fields id="420" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="421" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="10" database="BIODMDB" name="TESTASSAY9" primaryKey="500">
+            <fields id="500" name="ID" dataType="INTEGER"/>
+            <fields id="501" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="502" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="503" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="504" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="505" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="506" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="507" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="508" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="509" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="510" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="511" name="KI_NM" dataType="INTEGER"/>
+            <fields id="512" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="513" name="SDIVN" dataType="INTEGER"/>
+            <fields id="514" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="515" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="516" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="517" name="PROJECT" dataType="INTEGER"/>
+            <fields id="518" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="519" name="BARCODE" dataType="INTEGER"/>
+            <fields id="520" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="521" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="11" database="BIODMDB" name="TESTASSAY10" primaryKey="600">
+            <fields id="600" name="ID" dataType="INTEGER"/>
+            <fields id="601" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="602" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="603" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="604" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="605" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="606" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="607" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="608" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="609" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="610" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="611" name="KI_NM" dataType="INTEGER"/>
+            <fields id="612" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="613" name="SDIVN" dataType="INTEGER"/>
+            <fields id="614" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="615" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="616" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="617" name="PROJECT" dataType="INTEGER"/>
+            <fields id="618" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="619" name="BARCODE" dataType="INTEGER"/>
+            <fields id="620" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="621" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+        <table id="12" database="BIODMDB" name="TESTASSAY11" primaryKey="700">
+            <fields id="700" name="ID" dataType="INTEGER"/>
+            <fields id="701" name="VALIDATION" dataType="INTEGER"/>
+            <fields id="702" name="ASSAY_DATE" dataType="DATE"/>
+            <fields id="703" name="ASSAY_NOTEBOOK" dataType="TEXT"/>
+            <fields id="704" name="RESULTS_COMMENTS" dataType="TEXT"/>
+            <fields id="705" name="IC50_NM" dataType="INTEGER"/>
+            <fields id="706" name="OUTSIDE_RANGE" dataType="INTEGER"/>
+            <fields id="707" name="CONTROL_1_AR_NUMBER" dataType="TEXT"/>
+            <fields id="708" name="CONTROL_1_IC50_NM" dataType="INTEGER"/>
+            <fields id="709" name="MIN__POC" dataType="INTEGER"/>
+            <fields id="710" name="COMPOUND_CONC__NM" dataType="INTEGER"/>
+            <fields id="711" name="KI_NM" dataType="INTEGER"/>
+            <fields id="712" name="Z_PRIME" dataType="INTEGER"/>
+            <fields id="713" name="SDIVN" dataType="INTEGER"/>
+            <fields id="714" name="CONTROL_HILL_SLOPE" dataType="INTEGER"/>
+            <fields id="715" name="ASSAY_IDENTIFIER" dataType="INTEGER"/>
+            <fields id="716" name="REQUESTOR" dataType="TEXT"/>
+            <fields id="717" name="PROJECT" dataType="INTEGER"/>
+            <fields id="718" name="SUBMISSION_COMMENTS" dataType="TEXT"/>
+            <fields id="719" name="BARCODE" dataType="INTEGER"/>
+            <fields id="720" name="SUBMISSION_VALIDATED" dataType="INTEGER"/>
+            <fields id="721" name="REG_BATCH_NUMBER" dataType="TEXT"/>
+        </table>
+    </tables>
+    <!-- The following is the list of relations -->
+    <relationships>
+        <relationship child="2" parent="1" childkey="32" parentkey="5" jointype="INNER"/>
+        <relationship child="3" parent="1" childkey="54" parentkey="5" jointype="INNER"/>
+        <relationship child="4" parent="1" childkey="76" parentkey="5" jointype="INNER"/>
+        <relationship child="5" parent="1" childkey="98" parentkey="5" jointype="INNER"/>
+        <relationship child="6" parent="1" childkey="120" parentkey="5" jointype="INNER"/>
+        <relationship child="7" parent="1" childkey="221" parentkey="5" jointype="INNER"/>
+        <relationship child="8" parent="1" childkey="321" parentkey="5" jointype="INNER"/>
+        <relationship child="9" parent="1" childkey="421" parentkey="5" jointype="INNER"/>
+        <relationship child="10" parent="1" childkey="521" parentkey="5" jointype="INNER"/>
+        <relationship child="11" parent="1" childkey="621" parentkey="5" jointype="INNER"/>
+        <relationship child="12" parent="1" childkey="721" parentkey="5" jointype="INNER"/>
+    </relationships>
+</COEDataView>

@@ -1,0 +1,36 @@
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\ChemBioViz.NET\ChemBioViz.NET\bin\Debug\StructureSearchSupport.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\ChemBioViz.NET\ChemBioViz.NET\bin\Debug\StructureSearchSupport.pdb
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\StructureSearchSupport.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\StructureSearchSupport.pdb
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\sv-SE\StructureSearchSupport.resources.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Application.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Data.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Framework.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Internal.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Services.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\ResolveAssemblyReference.cache
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.InvariantResources.resources
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.Properties.Resources.resources
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.Properties.Resources.sv-SE.resources
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\GenerateResource.read.1.tlog
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\GenerateResource.write.1.tlog
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\sv-SE\StructureSearchSupport.resources.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.dll
+C:\From DTP090-A\Sources\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.pdb
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\StructureSearchSupport.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\StructureSearchSupport.pdb
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\sv-SE\StructureSearchSupport.resources.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Application.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Data.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Framework.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Internal.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\bin\Debug\Spotfire.Dxp.Services.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\ResolveAssemblyReference.cache
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.InvariantResources.resources
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.Properties.Resources.resources
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.Properties.Resources.sv-SE.resources
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\GenerateResource.read.1.tlog
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\GenerateResource.write.1.tlog
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\sv-SE\StructureSearchSupport.resources.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.dll
+D:\P4\ENotebook\EN1250_development\ChemOfficeEnterprise\CBVN\ChemBioViz.Net\StructureSearchSupport\obj\Debug\StructureSearchSupport.pdb

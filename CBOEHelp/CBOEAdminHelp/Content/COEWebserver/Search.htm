@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="ChemBioOffice WebServer|HTTP API Help" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Administrator Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Search</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>ChemBioOffice Enterprise Webserver</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Search</h1>
+        <p>The Search dataaction initiates a search over the application's database/s. The results of the search are stored in the CSDOHitList table within the application's database. The hitlist table will contain ID values corresponding to the primary key of the base table as defined in the formgroup.
+
+</p>
+        <p><b style="font-style: italic;">Note:</b> <span style="color: #ff4500;">All parameters can be passed either as Form (POST) or Querystring (GET) data.
+</span></p>
+        <p><b style="font-size: 14pt;">Syntax
+</b>
+        </p>
+        <p><span style="color: #ff4500;">&lt;ServerName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;/&lt;ApplicationName&gt;_action.asp?
+ <br />formgroup=Text&amp;dbname=Text&amp;DataAction=Search[&amp;return_location=Text&amp;return_data=Text&amp;
+   <br />store_request=Boolean&amp;metadata_directive=Text&amp;reload_basers=Boolean]</span>
+        </p>
+        <p><b style="font-size: 14pt;">Inputs
+</b>
+        </p>
+        <p><b>formgroup = &lt;formgroupName&gt;
+</b>
+            <br />The name of a valid formgroup as defined in the applications ini file, or dynamically defined via the metadata_directive options.
+
+</p>
+        <p><b>dbname = &lt;DatabaseName&gt;</b>
+            <br />The name of the dataview ini file for the database being accessed.
+<br /><i>Possible options : reg (for Registration System), cheminv (for Inventory Manager), chemacx, wdi, wda
+</i><br style="font-style: italic;" /><i>Example:  dbname= chemacx
+</i></p>
+        <p><b>[return_location] = Empty|&lt;ReturnURL&gt;
+</b>
+            <br />The URL where the server will redirect or transfer the request after the search is completed.
+
+</p>
+        <p>By default the return location is determined by the formgroup settings in the application ini file. This parameter can be filled with a URL on the applications server specified relative to the location of the action page.
+
+</p>
+        <p><b>[return_data] = Empty|Redirect|Transfer|CSV|HitlistID</b>
+            <br />Specifies how or what data should be returned by the server.
+
+</p>
+        <p>By default the data is returned by causing a client side redirection to the results page defined in the formgroup. The Redirect option forces a server side redirect (HTTP 302) to the URL specified by the return location. The Transfer option forces a server process transfer to the URL specified in the return location. The transfer process preserves the initial asp request object for post processing in the results page.</p>
+        <p>The CSV option causes the server to respond with the hitlist in a comma separated values list. The HitlistID option causes the server to return a single HitlistId value which can be used to retrieve the hitlist from the database table during post-processing .
+
+</p>
+        <p><b>[store_request] = Empty|True
+</b>
+        </p>
+        <p>If set to true, the server stores the initial query request as a data dictionary in session memory. Query parameters can be accessed from the results page by interrogating one of two scripting dictionary objects stored in Session("Request_FormObject" &amp; dbkey) and Session("Request_QueryObject" &amp; dbkey).
+
+</p>
+        <p>Note that setting return_data=transfer is a more efficient way to pass the request object to the results page. However, the transfer option is only available in Win2k/IIS5.0 server configurations.
+
+</p>
+        <p><b>[metadata_directive] = Empty|bypass_ini|blind
+</b>
+            <br />Controls where the server obtains the meta data it requires to dynamically build ChemSQL commands from the posted query fields. If omitted , the server uses a combination of the meta data posted by the form and meta data from the application ini file. The bypass_ini file is not fully implemented at this point, but it will allow the query page to dynamically provide all required meta data. The blind option forces the server to use ini data exclusively thus simplifying the query specification.
+</p>
+        <p><b>[reload_basers] = Empty|True
+</b>
+            <br />If set to true, causes the server to discard the first section of the hitlist returned by the CSDO search, and to reload it from the CSDOHitlist table. This allows for post-processing of the CSDOhitlist values before results are displayed. 
+
+</p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

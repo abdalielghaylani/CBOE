@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="CBOE Search|Searching Databases" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="ChemBioOffice Enterprise Applications User Guide.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0016)http://localhost -->
+    <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Formula Searching</title>
+        <link href="../SkinSupport/Slideshow.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/jquery.min.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+        <script src="../SkinSupport/MadCapTopicAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>CBOE&#160;Search</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;">
+                        <hr width="100%" size="0" align="center" /><b>User</b><strong>'s Guide</strong>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h1>Formula Searching</h1>
+        <p>You can search by chemical formula using the syntax described in the examples shown below:
+</p>
+        <table style="width: 100%;border-left-style: solid;border-left-width: 1px;border-left-color: #000000;border-right-style: solid;border-right-width: 1px;border-right-color: #000000;border-top-style: solid;border-top-width: 1px;border-top-color: #000000;border-bottom-style: solid;border-bottom-width: 1px;border-bottom-color: #000000;border-collapse: collapse;margin-left: 0;margin-right: auto;">
+            <col style="width: 100px;" />
+            <col />
+            <tbody>
+                <tr>
+                    <td style="font-weight: bold;border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">Formula Entered 
+</td>
+                    <td style="font-weight: bold;border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">Results Found
+</td>
+                </tr>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">C6H6
+</td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">Compounds with 6 carbon and 6 hydrogen atoms, plus any number of other elements. Finds C6H6, C6H6N2O.
+</td>
+                </tr>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">=C6H6
+</td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">Compounds with exactly 6 carbon atoms, 6 hydrogen atoms, and no other elements.
+</td>
+                </tr>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">C6
+</td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">Compounds with 6 carbon atoms plus any number of other elements.
+</td>
+                </tr>
+                <tr>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">C6 N1-3
+</td>
+                    <td style="border-left-style: solid;border-left-width: 1px;border-right-style: solid;border-right-width: 1px;border-top-style: solid;border-top-width: 1px;border-bottom-style: solid;border-bottom-width: 1px;">Compounds with 6 carbon atoms, one to three nitrogen atoms, plus any number of other elements.
+</td>
+                </tr>
+            </tbody>
+        </table>
+        <p> 
+
+These rules apply in formula searches: 
+</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Symbols may be one or two letters. Symbols may be in upper or lower case. Ambiguities are resolved according to a set of rules. To avoid ambiguities:
+<ul style="list-style-type: square;"><li value="1">Capitalize the symbols properly. 
+</li><li value="2">Insert spaces between symbols. 
+</li></ul></li>
+            <li value="2">Element counts are single integers or ranges between two integers separated by a hyphen. If a count is omitted, it is assumed to be 1.
+
+</li>
+        </ul>
+        <p style="font-style: italic;"><b>Note:</b> Formula searches are non-structural: CH3CH2OH matches dimethyl ether and ethyl alcohol because each compound has the formula: C2H6O. 
+</p>
+        <ul style="list-style-type: square;">
+            <li value="1">Parentheses may be used to group elements and apply a count to the entire group. For example, (CH2)3 is interpreted as C3H6. </li>
+            <li value="2">Spaces or non-alphanumeric characters except parentheses are ignored. </li>
+            <li value="3">If a symbol is properly capitalized (first letter upper case, followed by zero, one, or two lower-case letters), then the longest valid symbol that matches is preferred. For example, "Phe" matches phenylalanine rather than phosphorus; "Co" matches cobalt. 
+</li>
+            <li value="4">If symbols are not properly capitalized then the shortest symbol that matches is preferred. For example, 'co' is interpreted as carbon-oxygen instead of cobalt. The exception is that if two characters represent a valid two-letter symbol and also a valid one-letter symbol followed by an invalid one, then the two-letter symbol is favored. cl is interpreted as chlorine and not as carbon followed by the invalid symbol L.
+</li>
+        </ul>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="Searching Databases.htm">Searching Databases</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd" MadCap:tocPath="Data Loader|The Command-Line Version of Data Loader" MadCap:InPreviewMode="false" MadCap:PreloadImages="false" MadCap:RuntimeFileType="Topic" MadCap:TargetType="WebHelp" lang="en-us" xml:lang="en-us" MadCap:PathToHelpSystem="../../" MadCap:HelpSystemFileName="Default.xml" MadCap:SearchType="Stem">
+    <!-- saved from url=(0014)about:internet -->
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Anatomy of the Command-Line</title>
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="navigation">
+            <table style="WIDTH: 100%;" width="100%">
+                <tr valign="bottom">
+                    <td width="95%" align="left" valign="bottom" style="font-family: Arial;font-size: 12pt;"><em style="font-style: italic;"></em>DataLoader</td>
+                </tr>
+                <tr align="left" valign="top">
+                    <td style="font-family: Arial;font-size: 12pt;font-weight: bold;">
+                        <hr width="100%" size="0" align="center" />Administrator<strong>'s Guide</strong></td>
+                </tr>
+            </table>
+        </div>
+        <h1>Anatomy of the Command-Line</h1>
+        <p>The DataLoader is run from a Windows console window, but can also be executed from a batch file, a Windows Scheduled Task, or another program. The most common use will probably be from a simple batch file (a Windows ‘command’-file with the extension CMD). The program name (coedataloader.exe, or just coedataloader) must precede all program arguments.</p>
+        <p>The following screen shot demonstrates the use of the ‘help’ option (/help, or /?) that shows the options (‘arguments’) available. Except for the ‘help’ information itself, multiple arguments will be combined in order to accomplish data-related tasks.</p>
+        <p>
+            <img src="../Resources/Images/DataLoader/help option.gif" />
+        </p>
+        <p style="font-weight: bold;">‘cmd’</p>
+        <p>A user can store all the command-line arguments required for any particular data-loading job in a separate text file usually called a control file. Inside this file, each argument must be placed on a new line. If user credentials are required, they can be provided either with the /cmd statement or inside the control file itself.</p>
+        <p><span style="color: #0000cd;">Examples:</span>
+            <br />/cmd:”c:\loader jobs\job3.txt” /user:mylogin /pwd:MyPa$$w0rd<br /></p>
+        <p>The corresponding job3.txt control file would have content like this:</p>
+        <p>(The reminder of this section contains explanation of each individual command-line argument.)</p>
+        <p>/act:FindDuplicates<br />/data:”c:\loader data\source 3.sdf”<br />/type:sdf<br />/mapping:”c:\loader mapping files\job3.xml”<br /></p>
+        <p style="font-weight: bold;">‘action’</p>
+        <p>The cornerstone of the program is the ‘action’ argument, which the program uses to determine which other command-line arguments are required and also to direct the flow of data. Some of these actions have been described in more detail already.</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>Use the utility functions to learn more about a data-file or a mapping-file:</p>
+        <p>/act:CountRecords /data:”c:\myfile.sdf” /type:sdf<br />/act:ListFields /data:”c:\myfile.sdf” /type:sdf<br />/act:ListTables /data:”c:\myworksheets.xml” /type:msexcel<br />/act:ValidateMapping /data:”c:\myfile.sdf” /type:sdf /mapping:”c:\mymaps.xml”<br />/act:SplitFile /data:”c:\myfile.sdf” /type:sdf /end:500</p>
+        <p>Find matches from permanent Registrations:</p>
+        <p><i>/act:FindDuplicates /data:”c:\myfile.sdf” /type:sdf /mapping:”c:\mymaps.xml” /begin:1 /end:2000</i>
+        </p>
+        <p>Import a range of records to temporary Registration:</p>
+        <p><i>/act:ImportTemp /data:”c:\myfile.sdf” /type:sdf /mapping:”c:\mymaps.xml” /begin:1001 /end:2000</i>
+        </p>
+        <p>Import an entire file into permanent registration, skipping any matched records:</p>
+        <p><i>/act:ImportRegDupNone /data:”c:\myfile.sdf” /type:sdf /mapping:”c:\mymaps.xml”</i>
+        </p>
+        <p>Import file into permanent registration, with matched records going into temporary Registration:</p>
+        <p><i>/act:ImportRegDupAsTemp /data:”c:\myfile.sdf” /type:sdf /mapping:”c:\mymaps.xml”</i>
+        </p>
+        <p>Determine if the data matches the mappings and is acceptable for import:</p>
+        <p><i>/act:ValidateData /data:”c:\myfile.sdf” /type:sdf /mapping:”c:\mymaps.xml”</i>
+        </p>
+        <p style="font-weight: bold;">‘begin’ and ‘end’</p>
+        <p>These values are numbers that describe the range over which the ‘action’ will be performed, with a few exceptions (such as the file-splitting action, which uses ONLY the ‘end’ value as the size, in number of records, of each output file).</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>/begin:1 /end:100<br />/b:1 /e:999</p>
+        <p style="font-weight: bold;">‘delimiter’</p>
+        <p>This is used only for character-separated-value (CSV) files, and otherwise ignored. A comma (,) is used by default if no other value is provided, in which case values enclosed by double-quotes are handled automatically. Tabs can be specified by using the word ‘tab’.</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>/delimiter:tab<br />/del:|<br />/del:,<br /></p>
+        <p style="font-weight: bold;">‘filetype’</p>
+        <p>Users must specify a value for the argument. None of the methods for automatically identifying file types are 100% accurate, so the file’s extension is only used to determine the version of MS Excel and MS Access files. Plain-text CSV files can have any extension, but TXT, CSV, and TSV are common.</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>/filetype:CSV<br />/type:SDF<br />/type:msexcel</p>
+        <p style="font-weight: bold;">‘user’ and ‘password’</p>
+        <p>These are the user’s CambridgeSoft credentials, not the Windows login username and password. Though authentication is a requirement for most of the program’s actions, if these arguments are left out and the specific action requires authentication, the user will be prompted to provide his/her CambridgeSoft credentials before the program will continue.</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>/user:mylogin /pwd:MyPa$$w0rd</p>
+        <p style="font-weight: bold;">‘header’</p>
+        <p>The ‘header’ argument specifies, for columnar-formatted files, if the first row has field names in it instead of actual data; thus, this option is only used for CSV files and MS Excel worksheets. If the first line of the file, or the first row of a worksheet, is the names of the columns, use the plus sign (+). These will become the list of map-able fields. If there is no row describing the field names, temporary names will be automatically generated, complicating the data-mapping process with field names like ‘COLUMN_001’, for example.</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>/header:-<br />/hdr:+</p>
+        <p>Note: SDFiles are not required to have the same fields in every record. Therefore, the fields that are map-able are those that are discovered in the range defined by ‘begin’ and ‘end’. The same is true of those fields data-types…the more records that are under consideration, the better chance the program has to find all possible fields.</p>
+        <p style="font-weight: bold;">‘datafile’</p>
+        <p>The user needs to provide the full file path to the data-file, which is always required. Surround the file path in double-quotes; it’s always safe, and if the path name has spaces in it, it’s also required.</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>/data:C:\import\somefile.sdf<br />/data:”C:\Documents and Settings\thisuser\My Documents\myfile.sdf”</p>
+        <p style="font-weight: bold;">‘mappingfile’</p>
+        <p>This is also a full file path, but this time to the mapping XML file created by the user. The ‘mappingfile’ is not required for some of the utility tasks (like record counting and file-splitting). The file extension for the mapping file can be anything, but usually it is TXT to make it easier to edit with Windows Notepad, or XML to specify that the text is extensible markup language.</p>
+        <p style="color: #0000cd;">Examples:</p>
+        <p>/data:C:\maps\supplier3maps.xml<br />/data:”C:\Documents and Settings\thisuser\My Documents\registration import maps\mymaps.txt”</p>
+        <p><b style="text-decoration: underline;">Related Topics</b>
+            <br /><a href="The Command-Line Version of Data Loader.htm">The Command-Line Version of Data Loader</a>
+        </p>
+        <hr style="font-family: Arial;font-size: 10pt;" />
+        <p style="text-align: right;"><b><span style="color: #646464;">PerkinElmer Inc.</span> | <span style="color: #0055a6;">For the Better</span></b>
+            <br /><span style="color: #00a1de;font-weight: bold;"><span style="font-size: 9pt;">HUMAN HEALTH </span></span><b>| </b><span style="color: #6cb442;font-weight: bold;"><span style="font-size: 9pt;">ENVIRONMENTAL HEALTH</span></span>
+            <br />940 Winter Street | Waltham, MA 02451<br /><a href="http://www.perkinelmer.com/informatics/support/" target="_blank">www.perkinelmer.com/informatics/support</a></p>
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>
