@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Cambridgesoft.COE.Framework.Types</name>
+    </assembly>
+    <members>
+        <member name="T:CambridgeSoft.COE.Framework.TempHitListCreateRequestInfo">
+            <summary>
+            Contains information creating a temp hitlist.  This is derived from the HitListRequestInfoBase. XMLIgnore attributes are added
+            to some of the fields that can not be created by the client. For example, Date_Created, ID, Name (which is always TEMP) and number of hits.
+            </summary>
+            
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListOperationRequestInfo">
+            <summary>
+            Contains information about the hitlist operations to perform
+            </summary>
+            
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.HitListOperationRequestInfo.#ctor">
+            <summary>
+            default constuctor of the HitListOperationRequestInfo object
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.HitListOperationRequestInfo.HitListOperationItems">
+            <summary>
+            get or set the array of HitListOperationItems for the current request
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.HitListOperationRequestInfo.TempHitListCreateRequestInfo">
+            <summary>
+            get or set HitListRequestInfo object for resulting hitlist operations
+            </summary>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.QueryCriteria.IQueryCriteriaManager.DeleteAllUserQueryCriteria(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.String)">
+            <summary>
+            Delete all query criteria saved for a specific user
+            </summary>
+            <param name="securityInfo"></param>
+            <param name="userName">user name</param>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.QueryCriteria.IQueryCriteriaManager.DeleteQueryCriteria(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.Int32)">
+            <summary>
+            Delete query criteria
+            </summary>
+            <param name="securityInfo"></param>
+            <param name="searchCriteriaID"></param>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.QueryCriteria.IQueryCriteriaManager.GetPublicQueryCriteria(CambridgeSoft.COE.Framework.Common.SecurityInfo)">
+            <summary>
+            retrieve all query criteria for a user
+            </summary>
+            <param name="securityInfo"></param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.QueryCriteria.IQueryCriteriaManager.GetUserQueryCriteria(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="securityInfo"></param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.QueryCriteria.IQueryCriteriaManager.GetQueryCriteria(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.Int32)">
+            <summary>
+            retrieve query critiria
+            </summary>
+            <param name="securityInfo"></param>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.QueryCriteria.IQueryCriteriaManager.InsertQueryCriteria(CambridgeSoft.COE.Framework.Common.SecurityInfo,CambridgeSoft.COE.Framework.Common.SearchCriteria)">
+            <summary>
+            insert query criteria
+            </summary>
+            <param name="securityInfo"></param>
+            <param name="SearchCriteria"></param>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.QueryCriteria.IQueryCriteriaManager.UpdateQueryCriteria(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.Int32,CambridgeSoft.COE.Framework.Common.SearchCriteria)">
+            <summary>
+            update query criteria
+            </summary>
+            <param name="securityInfo"></param>
+            <param name="searchCriteriaID"></param>
+            <param name="searchCriteria"></param>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListResponseInfoItemBase">
+            <summary>
+            Contains all the fields in the csdohitlistid entity. This works for userhitlistid as well as all of the fields are the same with the exemption
+            of userhitlistid.tempid which is a FK reference to a temporary hitlist. This information is never returned.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListResponseInfoItem">
+            <summary>
+            Contains information about a hitlist returned  the HitListResponseInfo object when the request has indicated that datareturn is ArrayOfItems rather then DataSet
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListOperationTypeEnum">
+            <summary>
+            enumeration representing the available hitlist operations
+            </summary>
+            <remarks>the default is none</remarks>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.HitListOperationTypeEnum.None">
+            <remarks> represents that no hitlist operation is performed</remarks>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.HitListOperationTypeEnum.Subtract">
+            <remarks> represents that a hitlist shoul be subtracted from another</remarks>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.HitListOperationTypeEnum.Union">
+            <remarks> represents that a hitlist should be combined with another</remarks>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.HitListOperationTypeEnum.Intersect">
+            <remarks> represents that a hitlist should be substracted with another</remarks>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.SecurityInfo.#ctor">
+            <summary>
+            default parameterless constructor
+            </summary>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.SecurityInfo.#ctor(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="identityToken"></param>
+            <param name="userName"></param>
+            <param name="password"></param>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.Common.SecurityInfo.IdentityToken">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.Common.SecurityInfo.UserName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.Common.SecurityInfo.Password">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria">
+            ResultsCriteria
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria.ResultsCriteriaTable">
+            Table
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria.IResultsCriteriaBase">
+            IResultsCriteriaBase
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria.Field">
+            Field
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria.Literal">
+            Literal
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria.Concatenation">
+            Concatenation
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria.Condition">
+            Condition
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.ResultsCriteria.Switch">
+            Switch
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.UserHitListUpdateRequestInfo">
+            <summary>
+            Contains information updating a  saved hitlist.  This is derived from the HitListRequestInfoBase. XMLIgnore attributes are added
+            to some of the fields that can not be created by the client. For example, Date_Created, id, userID and NumberHits
+            The only fields that can be updated are name, description and isPublic.
+            </summary>
+            
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListSource">
+            <summary>
+            Contains information about a hitlist
+            </summary>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.HitListSource.#ctor">
+            <summary>
+            default constructor for the HitListSource object
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.HitListSource.HitListSourceChoice">
+            <summary>
+            get or set the type of information used to identify a hitlist
+            </summary>
+            <value>HitListSourceChoiceEnum representing the HitListSourceChoice </value>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.HitListSource.Item">
+            <summary>
+            get or set the object idenfitied by the  HitListSourceChoice
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListSource.HitListSourceChoiceEnum">
+            <summary>
+            Enumeration representing the types that are used to identify a hitlist
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.HitListSource.HitListSourceChoiceEnum.HitListID">
+            <summary>
+            indicates that a hitlist is identified by a stored hitlistID
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.HitListSource.HitListSourceChoiceEnum.HitListOperations">
+            <summary>
+            indicates that a hitlist is identified the result from a HitListOperation object
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.Notification">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.Common.Notification.Notifications">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.Common.Notification.HasMessages">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListRequestInfoBase">
+            <summary>
+            Contains all the information that could be asked for by a hitListRequest object.  This class is used purely for creating other classes and is never used. 
+            Interiting from this class did not produce the expeced wsdl classes on the client.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.DBMSType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DBMSType.ORACLE">
+            <summary>represents an Oracle database</summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DBMSType.SQLSERVER">
+            <summary>represents an SQLService database</summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DBMSType.MSACCESS">
+            <summary>represents an Microsoft Access database</summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListType">
+            <summary>
+            Contains information representing a hitlist operation
+            </summary>
+            
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:CambridgeSoft.COE.Framework.HitListType.Temp" -->
+        <member name="F:CambridgeSoft.COE.Framework.HitListType.Saved">
+            <remarks> represents that a hitlist resposne contins data formated as an array of objects</remarks>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.DataReturnType">
+            <summary>
+            Contains information representing a hitlist operation
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:CambridgeSoft.COE.Framework.DataReturnType.DataSet" -->
+        <member name="F:CambridgeSoft.COE.Framework.DataReturnType.ArrayOfItems">
+            <remarks> represents that a hitlist resposne contins data formated as an array of objects</remarks>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.Search.ISearchManager.DoSearch(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.String,CambridgeSoft.COE.Framework.Common.SearchCriteria,CambridgeSoft.COE.Framework.Common.ResultsCriteria,CambridgeSoft.COE.Framework.Common.PagingInfo,CambridgeSoft.COE.Framework.Common.DataView)">
+            <summary>
+            General purpose search method
+            </summary>
+            <param name="securityInfo">object cantaining user credentials</param>
+            <param name="appName">name of application</param>
+            <param name="searchCriteria">object containing fields and criteria for search</param>
+            <param name="resultsCriteria">object containing fields and criteria for returning results dataset</param>
+            <param name="pagingInfo">object containing paging info for getting results from a cached search</param>
+            <returns>SearchResponse object made up of hitlist object, paging info object and dataset object. One or more of these objects might be null
+            depending on the initial search</returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.Search.ISearchManager.GetData(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.String,CambridgeSoft.COE.Framework.Common.ResultsCriteria,CambridgeSoft.COE.Framework.Common.PagingInfo@,CambridgeSoft.COE.Framework.Common.DataView)">
+            <summary>
+            Search method for return dataset from preexisting search
+            </summary>
+            <param name="securityInfo">object cantaining user credentials</param>
+            <param name="appName">name of application</param>
+            <param name="resultsCriteria">object containing fields and criteria for returning results dataset</param>
+            <param name="pagingInfo">object containing paging info for getting results from a cached search</param>
+            <returns>Dataset containing results</returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Services.Search.ISearchManager.GetHitList(CambridgeSoft.COE.Framework.Common.SecurityInfo,System.String,CambridgeSoft.COE.Framework.Common.SearchCriteria,CambridgeSoft.COE.Framework.Common.DataView)">
+            <summary>
+            Search method that performs a search and returns a hitlistInfo object
+            </summary>
+            <param name="securityInfo">object cantaining user credentials</param>
+            <param name="appName">name of application</param>
+            <param name="resultsCriteria">object containing fields and criteria for returning results dataset</param>
+            <param name="pagingInfo">object containing paging info for getting results from a cached search</param>
+            <returns>HitListInfo is an object containing hitlist info</returns>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.UserHitListCreateRequestInfo">
+            <summary>
+            Contains information creating  saved hitlist.  This is derived from the HitListRequestInfoBase. XMLIgnore attributes are added
+            to some of the fields that can not be created by the client. For example, Date_Created, id and NumberHits
+            </summary>
+            
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListOperationItem">
+            <summary>
+            Contains information representing a hitlist operation
+            </summary>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.HitListOperationItem.#ctor">
+            <summary>
+            Default constuctor for a hitlist operation
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.HitListOperationItem.HitListID">
+            <summary>
+            get or set the base hitlist that the operation acts upon
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.HitListOperationItem.HitListOperationType">
+            <summary>
+            get or set the operation to invoke on the hitlists
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.DataView">
+            DataView
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.DataView.DataViewTable">
+            Table
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.DataView.Field">
+            Field
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.DataView.Relationship">
+            Relationship
+            <summary>
+            Write something here.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.DataView.AbstractTypes">
+            <summary>
+            Used to determine how to generate the field strings.
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DataView.AbstractTypes.Integer">
+            <summary>
+            An integer field type. This can be an integer, a shor or another integer database types.
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DataView.AbstractTypes.Real">
+            <summary>
+            An real field type. This can be a float, a double or another real database types.
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DataView.AbstractTypes.Text">
+            <summary>
+            A text field type. This can be a text, a varchar, a char or other Text database types.
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DataView.AbstractTypes.Date">
+            <summary>
+            A date field type. This can be a DateTime, a Date or other Date database types.
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.DataView.AbstractTypes.Boolean">
+            <summary>
+            A boolean field type. This can be a bit or other boolean database type.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.XMLValidator">
+            <summary>
+            Provides methods to validate XMLs.searchResults
+            </summary>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.XMLValidator.ValidateDataView(System.Xml.XmlDocument)">
+            <summary>
+            Validates the dataview xml.
+            </summary>
+            <param name="dataView">The xml to validate.</param>
+            <returns>True if it is ok, false otherwise.</returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.XMLValidator.ValidateSearchCriteria(System.Xml.XmlDocument)">
+            <summary>
+            Validates the searchCriteria xml.
+            </summary>
+            <param name="searchCriteria"></param>
+            <returns>True if it is ok, false otherwise.</returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.XMLValidator.ValidateSearchResults(System.Xml.XmlDocument)">
+            <summary>
+            Validates the searchResults xml.
+            </summary>
+            <param name="searchResults">The xml to validate.</param>
+            <returns>True if it is ok, false otherwise.</returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.XMLValidator.ValidateSelectClauseMappings(System.Xml.XmlDocument)">
+            <summary>
+            Validates the mappings xml.
+            </summary>
+            <param name="mappings">The xml to validate.</param>
+            <returns>True if it is ok, false otherwise.</returns>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.XMLValidator.ValidateXmlWithSchema(System.Xml.XmlDocument,System.String,System.String)">
+            <summary>
+            Validates the dataview xml.
+            </summary>
+            <param name="xml">The xml to validate.</param>
+            <param name="targetNamespace">The namespace to validate.</param>
+            <param name="schemaUri">URI where the schema is located.</param>
+            <returns>True if it is ok, false otherwise.</returns>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.NotificationUtility">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:CambridgeSoft.COE.Framework.Common.NotificationUtility.AddNotification(CambridgeSoft.COE.Framework.Common.Notification@,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="notification"></param>
+            <param name="messageID"></param>
+            <param name="message"></param>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.Common.SearchCriteria.MolWeightCriteria.Implementation">
+            <summary>
+            Allowed values are: CsCartridge and MolServer.
+            </summary>
+        </member>
+        <member name="P:CambridgeSoft.COE.Framework.Common.SearchCriteria.FormulaCriteria.Implementation">
+            <summary>
+            Allowed values are: CsCartridge and MolServer.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Common.SearchCriteria.Positions">
+            <summary>
+            Used in commands like WhereClauseLike to determine where to apply the wildcards
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.SearchCriteria.Positions.Left">
+            <summary>
+            Wildcard will be applied at the left side.
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.SearchCriteria.Positions.Right">
+            <summary>
+            Wildcard will be applied at the right side.
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.SearchCriteria.Positions.Both">
+            <summary>
+            Wildcard will be applied both sides (left AND right).
+            </summary>
+        </member>
+        <member name="F:CambridgeSoft.COE.Framework.Common.SearchCriteria.Positions.None">
+            <summary>
+            There will be no wildcard.
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.TempHitListUpdateRequestInfo">
+            <summary>
+            Contains information updating a  temp hitlist.  This is derived from the HitListRequestInfoBase. XMLIgnore attributes are added
+            to some of the fields that can not be created by the client. For example, Date_Created, id, userID and NumberHits
+            The only fields that can be updated are description and isPublic.
+            </summary>
+            
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.Services.Role.IRoleManager">
+            <summary>
+            interface for role manager service
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.MarkedHitListSearchRequestInfo">
+            <summary>
+            Contains information about a marked hits hitlist for searching.  This is derived from the HitListRequestInfoBase. XMLIgnore attributes is added to the name field
+            which for marked hits is alwasy "USERHITLIST";
+            </summary>
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListSearchRequestInfo">
+            <summary>
+            Contains information about a hitlist for searching.  This is derived from the HitListRequestInfoBase. XMLIgnore attributes are added to 
+            fields that are not to be passed with the object for the targeted purpose. For this object, it is the same as the base, so not 
+            additions or substractions in the class are made.
+            </summary>
+            
+        </member>
+        <member name="T:CambridgeSoft.COE.Framework.HitListResponseInfo">
+            <summary>
+            Contains information about a hitlist
+            </summary>
+            
+        </member>
+    </members>
+</doc>

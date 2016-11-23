@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH"></textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">NOT NULL</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">NULL</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <numericalCriteria>12 - 15</numericalCriteria>
+  </searchCriteriaItem>
+  
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">benzene</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">benzene OR chloro</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">benzene And bromo</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">benzene And pablito clavó un clavito</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">benzene or 'benzene and not  chloro'</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">benzene Or chloro AnD bromo</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">benzene aNd bromo oR chloro</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">NOT benzene And nOt bromo OR NOT chloro</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">NOT benzene And nOt bromo AND chloro</textCriteria>
+  </searchCriteriaItem>
+
+  <searchCriteriaItem id="4"  fieldid="19"  modifier=""  tableid="3">
+    <textCriteria trim="BOTH">NOT benzene OR nOt bromo OR chloro</textCriteria>
+  </searchCriteriaItem>
+
+
+</searchCriteria>

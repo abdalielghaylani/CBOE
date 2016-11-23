@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<searchCriteria xmlns="COE.SearchCriteria">
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like"></textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" negate="yes" operator="equal">NULL</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="equal">NULL</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <numericalCriteria operator="equal">12 - 15</numericalCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">benzene</textCriteria>
+  </searchCriteriaItem>
+  <logicalCriteria operator="Or" xmlns="">
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">benzene</textCriteria>
+    </searchCriteriaItem>
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">chloro</textCriteria>
+    </searchCriteriaItem>
+  </logicalCriteria>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">benzene</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">bromo</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">benzene</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">pablito clavó un clavito</textCriteria>
+  </searchCriteriaItem>
+  <logicalCriteria operator="Or" xmlns="">
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">benzene</textCriteria>
+    </searchCriteriaItem>
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="equal">benzene and not  chloro</textCriteria>
+    </searchCriteriaItem>
+  </logicalCriteria>
+  <logicalCriteria operator="Or" xmlns="">
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">benzene</textCriteria>
+    </searchCriteriaItem>
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">chloro</textCriteria>
+    </searchCriteriaItem>
+  </logicalCriteria>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">bromo</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">benzene</textCriteria>
+  </searchCriteriaItem>
+  <logicalCriteria operator="Or" xmlns="">
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">bromo</textCriteria>
+    </searchCriteriaItem>
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">chloro</textCriteria>
+    </searchCriteriaItem>
+  </logicalCriteria>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" negate="yes" operator="like">benzene</textCriteria>
+  </searchCriteriaItem>
+  <logicalCriteria operator="Or" xmlns="">
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" negate="yes" operator="like">bromo</textCriteria>
+    </searchCriteriaItem>
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" negate="yes" operator="like">chloro</textCriteria>
+    </searchCriteriaItem>
+  </logicalCriteria>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" negate="yes" operator="like">benzene</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" negate="yes" operator="like">bromo</textCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3">
+    <textCriteria trim="BOTH" operator="like">chloro</textCriteria>
+  </searchCriteriaItem>
+  <logicalCriteria operator="Or" xmlns="">
+    <logicalCriteria operator="Or">
+      <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+        <textCriteria trim="BOTH" negate="yes" operator="like">benzene</textCriteria>
+      </searchCriteriaItem>
+      <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+        <textCriteria trim="BOTH" negate="yes" operator="like">bromo</textCriteria>
+      </searchCriteriaItem>
+    </logicalCriteria>
+    <searchCriteriaItem id="4" fieldid="19" modifier="" tableid="3" xmlns="COE.SearchCriteria">
+      <textCriteria trim="BOTH" operator="like">chloro</textCriteria>
+    </searchCriteriaItem>
+  </logicalCriteria>
+</searchCriteria>

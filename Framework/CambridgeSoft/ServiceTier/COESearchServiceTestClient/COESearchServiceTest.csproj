@@ -1,0 +1,211 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{203A6E77-917E-4798-8491-4C3876335ECB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>COESearchServiceTest</RootNamespace>
+    <AssemblyName>COESearchServiceTest</AssemblyName>
+    <SccProjectName>Perforce Project</SccProjectName>
+    <SccLocalPath>..\..</SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>MSSCCI:Perforce SCM</SccProvider>
+    <TargetZone>LocalIntranet</TargetZone>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExportResults.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportResults.Designer.cs">
+      <DependentUpon>ExportResults.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientConfiguration.Designer.cs">
+      <DependentUpon>ClientConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmCOESearchTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCOESearchTest.Designer.cs">
+      <DependentUpon>frmCOESearchTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="COESearchTest.cs" />
+    <Compile Include="LogFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogFile.Designer.cs">
+      <DependentUpon>LogFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ClientConfiguration.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ClientConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportResults.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ExportResults.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCOESearchTest.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmCOESearchTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogFile.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>LogFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="COESharedAssemblyConfig.xml" />
+    <Content Include="xml\Back\DataView.xml" />
+    <Content Include="xml\Back\defaultss.xml" />
+    <Content Include="xml\Back\PagingInfo.xml" />
+    <Content Include="xml\Back\ResultsCriteria.xml" />
+    <Content Include="xml\Back\SearchCriteria.xml" />
+    <Content Include="xml\Back\SecurityInfo.xml" />
+    <Content Include="xml\BioSAR\AppName.xml" />
+    <Content Include="xml\BioSAR\DataSet.xml" />
+    <Content Include="xml\BioSAR\DataView.xml" />
+    <Content Include="xml\BioSAR\defaultss.xml" />
+    <Content Include="xml\BioSAR\HitlistInfo.xml" />
+    <Content Include="xml\BioSAR\PagingInfo.xml" />
+    <Content Include="xml\BioSAR\PagingInfoOut.xml" />
+    <Content Include="xml\BioSAR\ResultCriteria.xml" />
+    <Content Include="xml\BioSAR\ResultsCriteria.xml" />
+    <Content Include="xml\BioSAR\SearchCriteria.xml" />
+    <Content Include="xml\BioSAR\SecurityInfo.xml" />
+    <Content Include="xml\ChemACX\AppName.xml" />
+    <Content Include="xml\ChemACX\DataView.xml" />
+    <Content Include="xml\ChemACX\defaultss.xml" />
+    <Content Include="xml\ChemACX\HitlistInfo.xml" />
+    <Content Include="xml\ChemACX\PagingInfo.xml" />
+    <Content Include="xml\ChemACX\ResultsCriteria.xml" />
+    <Content Include="xml\ChemACX\SearchCriteria.xml" />
+    <Content Include="xml\ChemACX\SecurityInfo.xml" />
+    <Content Include="xml\ChemInv\AppName.xml" />
+    <Content Include="xml\ChemInv\DataView.xml" />
+    <Content Include="xml\ChemInv\defaultss.xml" />
+    <Content Include="xml\ChemInv\HitlistInfo.xml" />
+    <Content Include="xml\ChemInv\PagingInfo.xml" />
+    <Content Include="xml\ChemInv\ResultsCriteria.xml" />
+    <Content Include="xml\ChemInv\SearchCriteria.xml" />
+    <Content Include="xml\ChemInv\SecurityInfo.xml" />
+    <Content Include="xml\DataView.xml" />
+    <Content Include="xml\defaultss.xml" />
+    <Content Include="xml\PagingInfo.xml" />
+    <Content Include="xml\ResultsCriteria.xml" />
+    <Content Include="xml\Sample\AppName.xml" />
+    <Content Include="xml\Sample\DataSet.xml" />
+    <Content Include="xml\Sample\DataView.xml" />
+    <Content Include="xml\Sample\defaultss.xml" />
+    <Content Include="xml\Sample\HitlistInfo.xml" />
+    <Content Include="xml\Sample\PagingInfo.xml" />
+    <Content Include="xml\Sample\PagingInfoOut.xml" />
+    <Content Include="xml\Sample\ResultCriteria.xml" />
+    <Content Include="xml\Sample\ResultsCriteria.xml" />
+    <Content Include="xml\Sample\SearchCriteria.xml" />
+    <Content Include="xml\Sample\SecurityInfo.xml" />
+    <Content Include="xml\SearchCriteria.xml" />
+    <Content Include="xml\SecurityInfo.xml" />
+    <BaseApplicationManifest Include="Properties\app.manifest" />
+    <None Include="RemoteConfigFiles\AppSettings.config" />
+    <None Include="RemoteConfigFiles\COEClientConfiguration.config" />
+    <None Include="Resources\defaultss.xml" />
+    <None Include="xml\xsd\COEDataView.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\xsd\HitListInfo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\xsd\PagingInfo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\xsd\ResultsCriteria.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\xsd\SearchCriteria.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\xsd\SearchResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="xml\xsd\SecurityInfo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

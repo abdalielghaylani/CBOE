@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<COEDataView xmlns="COE.COEDataView" basetable="214" database="SCOTT" name="Department" description="Department" application="" dataviewHandling="USE_SERVER_DATAVIEW" dataviewid="100040">
+  <tables>
+    <table id="214" name="DEPT" alias="DEPT" database="SCOTT" isView="false" primaryKey="215">
+      <fields id="215" name="DEPTNO" alias="DEPTNO" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="216" name="DNAME" alias="DNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="217" name="LOC" alias="LOC" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+    </table>
+    <table id="218" name="EMP" alias="EMP" database="SCOTT" isView="false" primaryKey="221">
+      <fields id="219" name="COMM" alias="COMM" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="220" name="DEPTNO" alias="DEPTNO" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="221" name="EMPNO" alias="EMPNO" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="222" name="ENAME" alias="ENAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="223" name="GRADENO" alias="GRADENO" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="224" name="HIREDATE" alias="HIREDATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="225" name="JOB" alias="JOB" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="226" name="MGR" alias="MGR" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+      <fields id="227" name="SAL" alias="SAL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false"/>
+    </table>
+    <table id="228" name="SALGRADE" alias="SALGRADE" database="SCOTT" isView="false" primaryKey="229">
+      <fields id="229" name="GRADE" alias="GRADE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false" sortOrder="0"/>
+      <fields id="230" name="HISAL" alias="HISAL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false" sortOrder="1"/>
+      <fields id="231" name="LOSAL" alias="LOSAL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" isDefault="false" isUniqueKey="false" sortOrder="2"/>
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="215" childkey="220" parent="214" child="218" jointype="INNER"/>
+    <relationship parentkey="223" childkey="229" parent="218" child="228" jointype="INNER"/>
+  </relationships>
+</COEDataView>

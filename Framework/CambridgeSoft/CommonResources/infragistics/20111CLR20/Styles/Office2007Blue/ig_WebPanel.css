@@ -1,0 +1,41 @@
+/* CSS Document */
+
+.igwpMainBlue2k7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	
+	border: 1px solid #9CB9DC;
+	
+	
+}
+.igwpPanelBlue2k7{
+	background-image:url(WebPanel/igwp_panel.jpg);
+	background-repeat: repeat-x;
+	
+	background-color: #C7D8ED;
+}
+
+.igwpHeaderExpandedBlue2k7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #C1D9F1;
+	
+	height: 15px;
+}
+
+.igwpHeaderCollapsedBlue2k7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #C1D9F1;
+	height: 15px;
+}
+
+.igwpHeaderHoverBlue2k7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-image: url(WebPanel/igwp_header_hover.jpg);
+	background-repeat: repeat-x;
+	
+	height: 15px;
+}
+

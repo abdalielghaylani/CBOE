@@ -1,0 +1,10 @@
+Steps to update CambridgeSoft.COE.Framework08.csproj file
+
+1.	Get the latest version from the repository
+2.	Make a copy of the CambridgeSoft.COE.Framework.csproj file.
+3.	Name it with the 08 suffix as CambridgeSoft.COE.Framework08.csproj
+4.	Open this new file version with Visual Studio 2008 
+5.	It will open the project conversion wizard. So, do the conversion.
+6.	Then, open the ChemBioViz.NET solution. If you have it bound to Perforce, you’ll set the appropriate bindings to the new CambridgeSoft.COE.Framework08 project. To do it, once you opened the solution file, it’ll ask if you want to use the solution bindings. You have to accept.
+7.	Build.
+8.	Then, commit this new file version to Perforce.

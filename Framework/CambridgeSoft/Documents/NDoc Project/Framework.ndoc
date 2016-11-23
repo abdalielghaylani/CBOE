@@ -1,0 +1,104 @@
+<project SchemaVersion="1.3">
+    <assemblies>
+        <assembly location="C:\Projects\CambridgeSoft\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\bin\Debug\CambridgeSoft.COE.Framework.dll" documentation="C:\Projects\CambridgeSoft\ChemOfficeEnterprise\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\bin\Debug\CambridgeSoft.COE.Framework.XML" />
+    </assemblies>
+    <referencePaths>
+        <referencePath path="..\..\..\..\..\..\..\Program Files\NDoc\**" />
+        <referencePath path="..\..\ServiceTier\**" />
+        <referencePath path="..\..\CommonRuntimeLibraries" />
+    </referencePaths>
+    <namespaces>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator">Base namespace. It encapsulates all the tasks requied for generating executable SQL queries in the form of prepared statements (that means, the query text on one side and the parameters in the other) whether from xml input or programmatically</namespace>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator.MetaData">Metadata namespace contains classes DataView, ResultCriteria and SearchCriteria. These classes are responsible for creating a query based upon the  corresponding input xmls: DataView.xml, ResultCriterial.xml and SearchCriteria.xml (or the MessagingType that represents them). For this purpose, these classes use the classes contained in the query.
+The DataView, class besides parsing the input xml, stores the database schema required for this query. It translates ids to names, solves relationships between tables, etc.
+Both ResultCriteria and SearchCriteria use the following approach for parsing: They iterate through the items of the xml, and extract the xml tag of that portion. This is passed as parameter to a factory that knows wich class to instanciate depending on the type of item and returns it. The resulting item is then added to the query.
+ResultsCriteria differs in that the user can provide new plug-in based resultsCriteria. For this, the user must supply an assembly containing the item itself and a parser, required for creating the item from xml. Also, this plug-in has to be registered in the file mappings.xml.</namespace>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator.MetaData.Graphs">This namespace wraps the functionality of the quickgraph library, needed for resolving tables relationships from the dataview.</namespace>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator.Queries">This namespace contains the required classes for producing a SQL Select Statement targeted to  a given DataBase. Currently supports Oracle, MS-Access and MS-SQL Server.
+This classes only manipulate strings, and don't have any additional "inteligence". 
+
+The Design of this classes follow a Command Pattern: 
+The Main class contains an array of Commands. Each Command implements an "Execute" Method. When the main class is asked to perform its task, ir loops the array calling the execute method of every command that was added to it.
+
+In this case, the main class is Query, and the "Execute method" is called GetDependantString. In this case, there are two arrays of commands: one for the select clause and other for the where clause. 
+When you want to retrieve the sql query string, you call GetDependantString on Query, wich in turn calls it on every command it contains.</namespace>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator.Queries.SelectItems">Select items of a query (Single Field, Literal, MAX(Field), ISNULL(...), etc. Anything  that can go in the select part of the statemet (and is already implemented :)).
+Analog to WhereClauseItems with the exception that the user can supply it's own commands here, as plug-ins located in a separate assembly.
+</namespace>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator.Queries.WhereItems">Where items of a query (Comparisons, IN, ISNULL, etc.). Anything that can go in the where part of the query statement (and is already implemented :))
+Analog to SelectClauseItems</namespace>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator.Utils">Numerous utilities needed for making our life easier :). Convertion from db-specific types to abstracts like numeric, text, date, etc. Data Manipulation functions like trims of numeric values, chemical normalizations, etc. Special Characters Handling.</namespace>
+        <namespace name="CambridgeSoft.COE.Core.Common.SqlGenerator.XMLSchemas">Utilities for validating xmls. In our case are used for validating the three input xmls (DataView.xml, resultCriteria.xml and searchCriteria.xml) with a predefined set of xsd files.</namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common">Base namespace. It encapsulates all the tasks requied for generating executable SQL queries in the form of prepared statements (that means, the query text on one side and the parameters in the other) whether from xml input or programmatically</namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common.SqlGenerator">Base namespace. It encapsulates all the tasks requied for generating executable SQL queries in the form of prepared statements (that means, the query text on one side and the parameters in the other) whether from xml input or programmatically</namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData"><para>Metadata namespace contains classes DataView, ResultCriteria and SearchCriteria. These classes are responsible for creating a query based upon the  corresponding input xmls: DataView.xml, ResultCriterial.xml and SearchCriteria.xml (or the MessagingType that represents them). For this purpose, these classes use the classes contained in the query.
+</para>
+<para>
+The DataView, class besides parsing the input xml, stores the database schema required for this query. It translates ids to names, solves relationships between tables, etc.
+</para>
+<para>
+Both ResultCriteria and SearchCriteria use the following approach for parsing: They iterate through the items of the xml, and extract the xml tag of that portion. This is passed as parameter to a factory that knows wich class to instanciate depending on the type of item and returns it. The resulting item is then added to the query.
+</para>
+<para>
+ResultsCriteria differs in that the user can provide new plug-in based resultsCriteria. For this, the user must supply an assembly containing the item itself and a parser, required for creating the item from xml. Also, this plug-in has to be registered in the file mappings.xml.
+</para></namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData.Graphs"><para>This namespace wraps the functionality of the quickgraph library, needed for resolving tables relationships from the dataview.</para></namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries"><para>
+This namespace contains the required classes for producing a SQL Select Statement targeted to  a given DataBase. Currently supports Oracle, MS-Access and MS-SQL Server.
+<para>
+</para>
+This classes only manipulate strings, and don't have any additional "inteligence". 
+</para>
+<para>
+The Design of this classes follow a Command Pattern: 
+The Main class contains an array of Commands. Each Command implements an "Execute" Method. When the main class is asked to perform its task, ir loops the array calling the execute method of every command that was added to it.
+</para>
+<para>
+In this case, the main class is Query, and the "Execute method" is called GetDependantString. In this case, there are two arrays of commands: one for the select clause and other for the where clause. 
+<para>
+</para>
+When you want to retrieve the sql query string, you call GetDependantString on Query, wich in turn calls it on every command it contains.
+</para></namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems"><para>
+Select items of a query (Single Field, Literal, MAX(Field), ISNULL(...), etc. Anything  that can go in the select part of the statemet (and is already implemented :)).
+</para>
+<para>
+Analog to WhereClauseItems with the exception that the user can supply it's own commands here, as plug-ins located in a separate assembly.
+</para>
+</namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.WhereItems"><para>
+Where items of a query (Comparisons, IN, ISNULL, etc.). Anything that can go in the where part of the query statement (and is already implemented :))
+</para>
+<para>
+Analog to SelectClauseItems
+</para></namespace>
+        <namespace name="CambridgeSoft.COE.Framework.Common.SqlGenerator.Utils"><para>
+Numerous utilities needed for making our life easier :). Convertion from db-specific types to abstracts like numeric, text, date, etc. Data Manipulation functions like trims of numeric values, chemical normalizations, etc. Special Characters Handling.
+</para></namespace>
+    </namespaces>
+    <documenters>
+        <documenter name="Linear Html">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="Title" value="An NDoc Documented Class Library" />
+        </documenter>
+        <documenter name="JavaDoc">
+            <property name="OutputDirectory" value=".\doc\" />
+        </documenter>
+        <documenter name="MSDN">
+            <property name="OutputDirectory" value="D:\FrameworkDoc\" />
+            <property name="HtmlHelpName" value="CambridgeSoft Framework NDoc" />
+            <property name="Title" value="CambridgeSoft Framework" />
+            <property name="OutputTarget" value="HtmlHelp" />
+            <property name="AssemblyVersionInfo" value="AssemblyVersion" />
+            <property name="UseNamespaceDocSummaries" value="True" />
+        </documenter>
+        <documenter name="Intellisense">
+            <property name="OutputDirectory" value=".\intellisense\" />
+        </documenter>
+        <documenter name="MSDN 2003">
+            <property name="OutputDirectory" value=".\doc\" />
+            <property name="HtmlHelpName" value="Documentation" />
+            <property name="Title" value="An NDoc Documented Class Library" />
+        </documenter>
+    </documenters>
+</project>

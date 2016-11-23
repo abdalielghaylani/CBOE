@@ -1,0 +1,145 @@
+.igwgFrameBlack2k7
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	background-color: #ffffff; 
+	border: solid 1px #000000;
+}
+.igwgFltrDrpDwnBlack2k7
+{
+	border: 1px solid #DDE0E3;
+	background-color: #F6F6F6;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	padding: 3px;
+}
+.igwgFltrRowHiLtBlack2k7
+{
+	background-color: #FFE7A2;
+	border-top: 1px solid #FFBD69;
+	border-bottom: 1px solid #FFBD69;
+}
+.igwgRowBlack2k7
+{
+	background-color: #ffffff;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #d2d2d2;
+	font-size: 11px;
+}
+.igwgRowAltBlack2k7
+{
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #d2d2d2;
+	background-color: #ffffff;
+	font-size: 11px;
+}
+.igwgAddNewRowBlack2k7
+{
+}
+.igwgGrpRowBlack2k7
+{
+	background-color: #ffffff;
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #d2d2d2;
+	font-size: 11px;
+}
+.igwgRowSelBlack2k7
+{
+	border-top: 1px solid #b5c4df;
+	border-bottom: 1px solid #d2d2d2; 
+	background-color: #b5c4df;
+	font-size: 11px;
+}
+.igwgGrpRowSelBlack2k7
+{
+
+}
+.igwgHdrBlack2k7
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	font-size: x-small;
+	background-color:#D4D7DB;
+	background-image: url(WebGrid/igwgHeader.jpg);
+	background-repeat: repeat-x;
+	font-weight: normal;
+	cursor: hand;
+}
+.igwgHdrFxdBlack2k7
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	font-size: x-small;
+	background-color:#D4D7DB;
+	background-image: url(WebGrid/igwgHeader.jpg);
+	background-repeat: repeat-x;
+	font-weight: normal;
+	cursor: hand;
+}
+.igwgFooterBlack2k7
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	font-size: x-small;
+	background-color:#D4D7DB;
+	background-image: url(WebGrid/igwgHeader.jpg);
+	background-repeat: repeat-x;
+	font-weight: normal;
+	cursor: hand;
+}
+.igwgRowSlctrBlack2k7
+{	
+	border-right: 1px solid #d2d2d2;
+	background-color: #F0F1F3;
+	background-image: url(none);
+}
+.igwgRowExpBlack2k7
+{
+	border-right: 1px solid #D2D2D2;
+	padding-left: 1px;
+	padding-right: 1px;
+	text-align: left;
+	background-image: url(none);
+}
+.igwgHdrSelBlack2k7
+{
+
+}
+.igwgFormulaErrBlack2k7
+{
+}
+.igwgCellEdtBlack2k7
+{
+}
+
+.igwgCellFxdBlack2k7
+{
+}
+.igwgFtrFxdBlack2k7
+{
+}
+.igwgPgrBlack2k7
+{
+}
+.igwgGrpBoxBlack2k7
+{
+    background-color:#D4D7DB;
+}
+.igwgGrpBoxBandLblBlack2k7
+{
+}
+.igwgAddNewBoxBlack2k7
+{
+	background-color: #E2E5EA;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	font-size: x-small;
+	background-image: url(WebGrid/addBoxBg.jpg);
+	background-repeat: repeat-x;
+}
+.igwgAddNewBtnBlack2k7
+{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	cursor: hand;
+	font-size: x-small;
+}

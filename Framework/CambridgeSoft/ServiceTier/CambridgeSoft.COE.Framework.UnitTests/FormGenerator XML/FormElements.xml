@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<formElements xmlns="COE.FormGroup">
+  <formElement name="RegNum" />
+  <formElement name="Structure" >
+    <style></style>
+    <label>Formula</label>
+    <Id>FormulaTextBox</Id>
+    <displayInfo>
+      <top>60px</top>
+      <left>10px</left>
+      <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEChemDrawEmbedReadOnly</type>
+    </displayInfo>
+  </formElement>
+  <formElement name="RegNum">
+    <defaultValue />
+    <label></label>
+    <configInfo xmlns="COE.FormGroup">
+      <fieldConfig>
+        <CSSClass>COETextBoxViewNewView</CSSClass>
+        <CSSLabelClass>COELabel</CSSLabelClass>
+      </fieldConfig>
+    </configInfo>
+    <Id>BatchIDTextBox</Id>
+    <displayInfo>
+      <height>15px</height>
+      <width>100px</width>
+      <top>540px</top>
+      <left>15px</left>
+      <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+    </displayInfo>
+  </formElement>
+</formElements>

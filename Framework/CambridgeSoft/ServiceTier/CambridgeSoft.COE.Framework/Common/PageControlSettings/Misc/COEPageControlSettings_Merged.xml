@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!--Control & Page Settings for Reg App  - LastModification: Ulises 02/14/2009 -->
+<COEPageControlSettings type="">
+	<Application>REGISTRATION</Application>
+	<ID>COEPageControlSettings_Registration_Master</ID>
+	<Pages>
+		<Page>
+			<ID>ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX</ID>
+			<Description>Page to submit registries (temporary registries until registration)</Description>
+			<FriendlyName>Submit Registries</FriendlyName>
+			<!-- Settings for trying to get the page. The control is the page itself-->
+			<Privileges operator="OR">
+				<ID>FullPagePrivs_OR</ID>
+				<!-- ADD_COMPOUND_TEMP -->
+				<Privilege>
+					<Description>Add compound temp privilege description</Description>
+					<FriendlyName>Add Temp Compound</FriendlyName>
+					<ID>ADD_COMPOUND_TEMP</ID>
+					<Controls>
+						<!-- Full Page -->
+						<Control>
+							<ID>ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX</ID>
+							<Description>Page to submit registries (temporary registries until registration)</Description>
+							<FriendlyName>Submit Registries</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Page</TypeOfControl>
+						</Control>
+					</Controls>
+				</Privilege>
+				<!--  ADD_BATCH_TEMP -->
+				<Privilege>
+					<Description>Add batch temp privilege description</Description>
+					<FriendlyName>Add Temp Batch</FriendlyName>
+					<ID>ADD_BATCH_TEMP</ID>
+					<Controls>
+						<Control>
+							<ID>ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX</ID>
+							<Description>Page to submit registries (temporary registries until registration)</Description>
+							<FriendlyName>Submit Registries</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Page</TypeOfControl>
+						</Control>
+					</Controls>
+				</Privilege>
+				<!--EDIT_COMPOUND_TEMP-->
+				<Privilege>
+					<Description>Edit compound temp privilege description</Description>
+					<FriendlyName>Edit Temp Compound</FriendlyName>
+					<ID>EDIT_COMPOUND_TEMP</ID>
+					<Controls>
+						<Control>
+							<ID>ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX</ID>
+							<Description>Page to submit registries (temporary registries until registration)</Description>
+							<FriendlyName>Submit Registries</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Page</TypeOfControl>
+						</Control>
+					</Controls>
+				</Privilege>
+				<!-- EDIT_BATCH_TEMP -->
+				<Privilege>
+					<Description>Edit batch temp privilege description</Description>
+					<FriendlyName>Edit Temp Batch</FriendlyName>
+					<ID>EDIT_BATCH_TEMP</ID>
+					<Controls>
+						<Control>
+							<ID>ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX</ID>
+							<Description>Page to submit registries (temporary registries until registration)</Description>
+							<FriendlyName>Submit Registries</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Page</TypeOfControl>
+						</Control>
+					</Controls>
+				</Privilege>
+				<!-- DELETE_TEMP -->
+				<Privilege>
+					<Description>Delete temp privilege description</Description>
+					<FriendlyName>Delete Temp</FriendlyName>
+					<ID>DELETE_TEMP</ID>
+					<Controls>
+						<Control>
+							<ID>ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX</ID>
+							<Description>Page to submit registries (temporary registries until registration)</Description>
+							<FriendlyName>Submit Registries</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Page</TypeOfControl>
+						</Control>
+					</Controls>
+				</Privilege>
+			</Privileges>
+			<!-- Settings to disable some controls of the page based on the current user privielges -->
+			<Privileges>
+				<ID>Controls_Privs</ID>
+				<!-- ADD_COMPOUND_TEMP -->
+				<Privilege>
+					<Description>Add compound temp privilege description</Description>
+					<FriendlyName>Add Temp Compound</FriendlyName>
+					<ID>ADD_COMPOUND_TEMP</ID>
+					<Controls>
+						<Control>
+							<ID>SearchComponentButton</ID>
+							<Description>Search components to add to the current registry</Description>
+							<FriendlyName>Search Components button</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Control</TypeOfControl>
+						</Control>
+						<Control>
+							<ID>AddComponentButton</ID>
+							<Description>Add components to the current registry</Description>
+							<FriendlyName>Add Components button</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Control</TypeOfControl>
+						</Control>
+						<Control>
+							<ID>DoneAddingButton</ID>
+							<Description>Finish adding components to the current registry</Description>
+							<FriendlyName>Finish Adding Components button</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Control</TypeOfControl>
+						</Control>
+						<Control>
+							<ID>SubmitButton</ID>
+							<Description>Submit the current registry</Description>
+							<FriendlyName>Submit button</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Control</TypeOfControl>
+						</Control>
+						<Control>
+							<ID>SaveButton</ID>
+							<Description>Save the current registry</Description>
+							<FriendlyName>Save button</FriendlyName>
+							<PlaceHolderID/>
+							<TypeOfControl>Control</TypeOfControl>
+						</Control>
+						<!-- Just an example, it has not been tested -->
+						<!--
+						<Control>
+							<ID>DetailForm_1</ID>
+							<Description>Details form Mixture</Description>
+							<FriendlyName>This shows the properties of a mixture (View Mode)</FriendlyName>
+							<PlaceHolderID>mixtureInformationHolder</PlaceHolderID>
+							<TypeOfControl>COEForm</TypeOfControl>
+						</Control>
+						-->		       
+					</Controls>
+				</Privilege>
+			</Privileges>
+		</Page>
+	</Pages>
+</COEPageControlSettings>

@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Full list of privileges for Registration users  - LastModification: Ulises 02/18/2009 -->
+<Privileges>
+	<ID>FullListPrivilges_REGISTRATION</ID>
+	<Privilege>
+		<ID>ADD_BATCH_TEMP</ID>
+		<Description>add batch information to a compound that is in the temporary table</Description>
+		<FriendlyName>add batch information temp</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_COMPOUND_TEMP</ID>
+		<Description>add a compound to the temporary table</Description>
+		<FriendlyName>add a compound to the temporary table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_COMPOUND_TYPE_TABLE </ID>
+		<Description>add entries to the Compound Type table</Description>
+		<FriendlyName>add entries to the Compound Type table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_EVAL_DATA </ID>
+		<Description>add Analytics data to a batch</Description>
+		<FriendlyName>add Analytics data to a batch</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_SALT_TEMP </ID>
+		<Description>add salt information to a compound that is in the temporary table </Description>
+		<FriendlyName>add salt information</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_IDENTIFIER_TEMP</ID>
+		<Description>add an identifier to a compound that is in the temporary table </Description>
+		<FriendlyName>add an identifier to a compound that is in the temporary table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_PEOPLE_TABLE</ID>
+		<Description>add entries to the People table</Description>
+		<FriendlyName>add entries to the People table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_PROJECTS_TABLE</ID>
+		<Description>add entries to the People table</Description>
+		<FriendlyName>add entries to the People table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>ADD_WORKGROUP</ID>
+		<Description>add entries to the workgroup table </Description>
+		<FriendlyName>add entries to the workgroup table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>CAMSOFT_LOG_ON</ID>
+		<Description>open Registration System by logging on</Description>
+		<FriendlyName>open Registration System by logging on</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>DELETE_COMPOUND_TYPE_TABLE</ID>
+		<Description>delete entries from the Compound Type table </Description>
+		<FriendlyName>delete entries from the Compound Type table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>DELETE_PEOPLE_TABLE</ID>
+		<Description>delete entries from the People table</Description>
+		<FriendlyName>delete entries from the People table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>DELETE_PROJECTS_TABLE</ID>
+		<Description>delete entries from the projects table</Description>
+		<FriendlyName>delete entries from the projects table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>DELETE_REG</ID>
+		<Description>delete a compound from the registry </Description>
+		<FriendlyName>delete a compound from the registry </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>DELETE_TEMP</ID>
+		<Description>delete a compound from the temporary table </Description>
+		<FriendlyName>delete a compound from the temporary table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>DELETE_WORKGROUP</ID>
+		<Description>delete entries from the workgroup table </Description>
+		<FriendlyName>delete entries from the workgroup table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_BATCH_REG</ID>
+		<Description>edit batch information about a compound that is in the registry </Description>
+		<FriendlyName>edit batch information about a compound that is in the registry </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_BATCH_TEMP</ID>
+		<Description>edit information about a compound that is in the registry </Description>
+		<FriendlyName>edit information about a compound that is in the registry </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_COMPOUND_REG</ID>
+		<Description>edit information about a compound that is in the registry </Description>
+		<FriendlyName>edit information about a compound that is in the registry </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_COMPOUND_TEMP</ID>
+		<Description>edit information about a compound that is in the temporary table</Description>
+		<FriendlyName>edit information about a compound that is in the temporary table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_COMPOUND_TYPE_TABLE</ID>
+		<Description>edit the Compound Type table </Description>
+		<FriendlyName>edit the Compound Type table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_EVAL_DATA</ID>
+		<Description>edit Analytics data </Description>
+		<FriendlyName>edit Analytics data </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_IDENTIFIERS_REG</ID>
+		<Description>edit identifiers for a compound that is in the registry </Description>
+		<FriendlyName>edit identifiers for a compound that is in the registry </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_IDENTIFIERS_TEMP</ID>
+		<Description>edit identifiers for a compound that is in the temporary table </Description>
+		<FriendlyName>edit identifiers for a compound that is in the temporary table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_NOTEBOOKS_TABLE</ID>
+		<Description>edit the notebooks table </Description>
+		<FriendlyName>edit the notebooks table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_PEOPLE_TABLE</ID>
+		<Description>edit the table of people who are known to the system</Description>
+		<FriendlyName>edit the table of people who are known to the system</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_PROJECTS_TABLE</ID>
+		<Description>edit the projects table </Description>
+		<FriendlyName>edit the projects table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SALT_REG</ID>
+		<Description>edit salt information about a compound that is in the registry </Description>
+		<FriendlyName>edit salt information about a compound that is in the registry </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SALT_TABLE</ID>
+		<Description>edit the salt form table</Description>
+		<FriendlyName>edit the salt form table</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SALT_TEMP</ID>
+		<Description>edit salt information about a compound that is in the temporary table </Description>
+		<FriendlyName>edit salt information about a compound that is in the temporary table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SCOPE_ALL</ID>
+		<Description>apply all of the edit/register features to everyone at a site </Description>
+		<FriendlyName>apply all of the edit/register features to everyone at a site </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SCOPE_SELF</ID>
+		<Description>apply all of the edit/register features to their person_id </Description>
+		<FriendlyName>apply all of the edit/register features to their person_id </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SCOPE_SUPERVISOR</ID>
+		<Description>apply all of the edit/register features to their person_id, and to anyone who uses it as their supervisor_id </Description>
+		<FriendlyName>apply all of the edit/register features to their person_id, and to anyone who uses it as their supervisor_id </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SEQUENCES_TABLE</ID>
+		<Description>edit the compound numbering table </Description>
+		<FriendlyName>edit the compound numbering table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_SITES_TABLE</ID>
+		<Description>edit the table of sites that are known to the system </Description>
+		<FriendlyName>edit the table of sites that are known to the system </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_USERS_TABLE</ID>
+		<Description>edit the table of sites that are known to the system </Description>
+		<FriendlyName>edit the table of sites that are known to the system </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_USERS_TABLE</ID>
+		<Description>edit Users table </Description>
+		<FriendlyName>edit Users table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>EDIT_WORKGROUP</ID>
+		<Description>edit workgroup information </Description>
+		<FriendlyName>edit workgroup information </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>REGISTER_TEMP</ID>
+		<Description>remove a compound from the temporary table and place it permanently in the Registration System registry</Description>
+		<FriendlyName>remove a compound from the temporary table and place it permanently in the Registration System registry</FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>SEARCH_EVAL_DATA</ID>
+		<Description>view the Analytics spreadsheet data </Description>
+		<FriendlyName>view the Analytics spreadsheet data </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>SEARCH_TEMP</ID>
+		<Description>search for a compound that is in the temporary table </Description>
+		<FriendlyName>search for a compound that is in the temporary table </FriendlyName>
+	</Privilege>
+	<Privilege>
+		<ID>SET_APPROVED_FLAG</ID>
+		<Description/>
+		<FriendlyName/>
+	</Privilege>
+	<Privilege>
+		<ID>SET_QUALITY_CHECK_FLAG</ID>
+		<Description/>
+		<FriendlyName/>
+	</Privilege>
+	<Privilege>
+		<ID>SITE_ACCESS_ALL</ID>
+		<Description/>
+		<FriendlyName/>
+	</Privilege>
+	<Privilege>
+		<ID>TOGGLE_APPROVED_FLAG</ID>
+		<Description/>
+		<FriendlyName/>
+	</Privilege>
+	<Privilege>
+		<ID>TOGGLE_QUALITY_CHECK_FLAG</ID>
+		<Description/>
+		<FriendlyName/>
+	</Privilege>	
+</Privileges>

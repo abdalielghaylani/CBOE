@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="-1">
+  <tables>
+    <table id="1" name="ALT_IDS" alias="" database="REGDB" primaryKey="2">
+      <fields id="1" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="2" name="ID" dataType="INTEGER" />
+      <fields id="3" name="IDENTIFIER" dataType="TEXT" />
+      <fields id="4" name="IDENTIFIER_TYPE" dataType="INTEGER" />
+      <fields id="5" name="LOAD_ID" dataType="TEXT" />
+      <fields id="6" name="REG_INTERNAL_ID" dataType="INTEGER" />
+    </table>
+    <table id="2" name="BATCHES" alias="" database="REGDB" primaryKey="12">
+      <fields id="7" name="AMOUNT" dataType="TEXT" />
+      <fields id="8" name="AMOUNT_UNITS" dataType="TEXT" />
+      <fields id="9" name="APPEARANCE" dataType="TEXT" />
+      <fields id="10" name="BATCH_COMMENT" dataType="TEXT" />
+      <fields id="11" name="BATCH_FORMULA" dataType="TEXT" />
+      <fields id="12" name="BATCH_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="13" name="BATCH_NUMBER" dataType="INTEGER" />
+      <fields id="14" name="BATCH_PROJECT_ID" dataType="INTEGER" />
+      <fields id="15" name="BATCH_REG_DATE" dataType="DATE" />
+      <fields id="16" name="BATCH_REG_PERSON_ID" dataType="INTEGER" />
+      <fields id="17" name="BP" dataType="TEXT" />
+      <fields id="18" name="C13NMR" dataType="TEXT" />
+      <fields id="19" name="CHN_COMBUSTION" dataType="TEXT" />
+      <fields id="20" name="COLOR" dataType="TEXT" />
+      <fields id="21" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="22" name="CREATION_DATE" dataType="DATE" />
+      <fields id="23" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="24" name="DATE_BATCH_FIELD_1" dataType="DATE" />
+      <fields id="25" name="DATE_BATCH_FIELD_2" dataType="DATE" />
+      <fields id="26" name="DATE_BATCH_FIELD_3" dataType="DATE" />
+      <fields id="27" name="DATE_BATCH_FIELD_4" dataType="DATE" />
+      <fields id="28" name="DATE_BATCH_FIELD_5" dataType="DATE" />
+      <fields id="29" name="DATE_BATCH_FIELD_6" dataType="DATE" />
+      <fields id="30" name="ENTRY_PERSON_ID" dataType="INTEGER" />
+      <fields id="31" name="FIELD_1" dataType="TEXT" />
+      <fields id="32" name="FIELD_10" dataType="TEXT" />
+      <fields id="33" name="FIELD_2" dataType="TEXT" />
+      <fields id="34" name="FIELD_3" dataType="TEXT" />
+      <fields id="35" name="FIELD_4" dataType="TEXT" />
+      <fields id="36" name="FIELD_5" dataType="TEXT" />
+      <fields id="37" name="FIELD_6" dataType="TEXT" />
+      <fields id="38" name="FIELD_7" dataType="TEXT" />
+      <fields id="39" name="FIELD_8" dataType="TEXT" />
+      <fields id="40" name="FIELD_9" dataType="TEXT" />
+      <fields id="41" name="FLASHPOINT" dataType="TEXT" />
+      <fields id="42" name="FORMULA_WEIGHT" dataType="INTEGER" />
+      <fields id="43" name="GC" dataType="TEXT" />
+      <fields id="44" name="GIV_BATCH_ID" dataType="INTEGER" />
+      <fields id="45" name="H1NMR" dataType="TEXT" />
+      <fields id="46" name="HPLC" dataType="TEXT" />
+      <fields id="47" name="INT_BATCH_FIELD_1" dataType="INTEGER" />
+      <fields id="48" name="INT_BATCH_FIELD_2" dataType="INTEGER" />
+      <fields id="49" name="INT_BATCH_FIELD_3" dataType="INTEGER" />
+      <fields id="50" name="INT_BATCH_FIELD_4" dataType="INTEGER" />
+      <fields id="51" name="INT_BATCH_FIELD_5" dataType="INTEGER" />
+      <fields id="52" name="INT_BATCH_FIELD_6" dataType="INTEGER" />
+      <fields id="53" name="IR" dataType="TEXT" />
+      <fields id="54" name="LAST_MOD_DATE" dataType="DATE" />
+      <fields id="55" name="LAST_MOD_PERSON_ID" dataType="INTEGER" />
+      <fields id="56" name="LC_UV_MS" dataType="TEXT" />
+      <fields id="57" name="LIT_REF" dataType="TEXT" />
+      <fields id="58" name="LOAD_ID" dataType="TEXT" />
+      <fields id="59" name="LOGD" dataType="INTEGER" />
+      <fields id="60" name="MOL_ID" dataType="INTEGER" />
+      <fields id="61" name="MP" dataType="TEXT" />
+      <fields id="62" name="MS" dataType="TEXT" />
+      <fields id="63" name="NOTEBOOK_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="64" name="NOTEBOOK_PAGE" dataType="TEXT" />
+      <fields id="65" name="NOTEBOOK_TEXT" dataType="TEXT" />
+      <fields id="66" name="OPTICAL_ROTATION" dataType="TEXT" />
+      <fields id="67" name="PERCENT_ACTIVE" dataType="INTEGER" />
+      <fields id="68" name="PHYSICAL_FORM" dataType="TEXT" />
+      <fields id="69" name="PREPARATION" dataType="TEXT" />
+      <fields id="70" name="PRODUCER" dataType="TEXT" />
+      <fields id="71" name="PURITY" dataType="TEXT" />
+      <fields id="72" name="REAL_BATCH_FIELD_1" dataType="INTEGER" />
+      <fields id="73" name="REAL_BATCH_FIELD_2" dataType="INTEGER" />
+      <fields id="74" name="REAL_BATCH_FIELD_3" dataType="INTEGER" />
+      <fields id="75" name="REAL_BATCH_FIELD_4" dataType="INTEGER" />
+      <fields id="76" name="REAL_BATCH_FIELD_5" dataType="INTEGER" />
+      <fields id="77" name="REAL_BATCH_FIELD_6" dataType="INTEGER" />
+      <fields id="78" name="REFRACTIVE_INDEX" dataType="TEXT" />
+      <fields id="79" name="REG_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="80" name="SALT_EQUIVALENTS" dataType="INTEGER" />
+      <fields id="81" name="SALT_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="82" name="SALT_MW" dataType="INTEGER" />
+      <fields id="83" name="SALT_NAME" dataType="TEXT" />
+      <fields id="84" name="SCIENTIST_ID" dataType="INTEGER" />
+      <fields id="85" name="SOLUBILITY" dataType="TEXT" />
+      <fields id="86" name="SOLVATE_EQUIVALENTS" dataType="INTEGER" />
+      <fields id="87" name="SOLVATE_ID" dataType="INTEGER" />
+      <fields id="88" name="SOLVATE_MW" dataType="INTEGER" />
+      <fields id="89" name="SOLVATE_NAME" dataType="TEXT" />
+      <fields id="90" name="SOURCE" dataType="TEXT" />
+      <fields id="91" name="STORAGE_REQ_AND_WARNINGS" dataType="TEXT" />
+      <fields id="92" name="UV_SPECTRUM" dataType="TEXT" />
+      <fields id="93" name="VENDOR_ID" dataType="TEXT" />
+      <fields id="94" name="VENDOR_NAME" dataType="TEXT" />
+    </table>
+    <table id="3" name="BATCH_PROJECTS" alias="" database="REGDB" primaryKey="96">
+      <fields id="95" name="ACTIVE" dataType="INTEGER" />
+      <fields id="96" name="BATCH_PROJECT_ID" dataType="INTEGER" />
+      <fields id="97" name="OWNER_ID" dataType="INTEGER" />
+      <fields id="98" name="PROJECT_NAME" dataType="TEXT" />
+    </table>
+    <table id="4" name="BATCH_PROJ_UTILIZATIONS" alias="" database="REGDB" primaryKey="100">
+      <fields id="99" name="BATCH_PROJECT_ID" dataType="INTEGER" />
+      <fields id="100" name="BATCH_PROJ_UTIL_ID" dataType="INTEGER" />
+      <fields id="101" name="UTILIZATION_BOOLEAN" dataType="INTEGER" />
+      <fields id="102" name="UTILIZATION_ID" dataType="INTEGER" />
+    </table>
+    <table id="5" name="CMPD_MOL_UTILIZATIONS" alias="" database="REGDB" primaryKey="103">
+      <fields id="103" name="CMPD_MOL_UTIL_ID" dataType="INTEGER" />
+      <fields id="104" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="105" name="LOAD_ID" dataType="TEXT" />
+      <fields id="106" name="UTILIZATION_BOOLEAN" dataType="INTEGER" />
+      <fields id="107" name="UTILIZATION_ID" dataType="INTEGER" />
+    </table>
+    <table id="6" name="COMMIT_TYPES" alias="" database="REGDB" primaryKey="108">
+      <fields id="108" name="COMMIT_TYPE_ID" dataType="INTEGER" />
+      <fields id="109" name="TASK_NAME" dataType="TEXT" />
+    </table>
+    <table id="7" name="COMPOUND_MOLECULE" alias="" database="REGDB" primaryKey="113">
+      <fields id="110" name="CHIRAL" dataType="TEXT" />
+      <fields id="111" name="CLOGP" dataType="INTEGER" />
+      <fields id="112" name="COMPOUND_TYPE" dataType="INTEGER" />
+      <fields id="113" name="CPD_DATABASE_COUNTER" dataType="INTEGER" />
+      <fields id="114" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="115" name="DATE_CMPD_FIELD_1" dataType="DATE" />
+      <fields id="116" name="DATE_CMPD_FIELD_2" dataType="DATE" />
+      <fields id="117" name="DATE_CMPD_FIELD_3" dataType="DATE" />
+      <fields id="118" name="DATE_CMPD_FIELD_4" dataType="DATE" />
+      <fields id="119" name="FORMULA2" dataType="TEXT" />
+      <fields id="120" name="GIV_SUBSTANCE_ID" dataType="INTEGER" />
+      <fields id="121" name="H_BOND_ACCEPTORS" dataType="INTEGER" />
+      <fields id="122" name="H_BOND_DONORS" dataType="INTEGER" />
+      <fields id="123" name="INT_CMPD_FIELD_1" dataType="INTEGER" />
+      <fields id="124" name="INT_CMPD_FIELD_2" dataType="INTEGER" />
+      <fields id="125" name="INT_CMPD_FIELD_3" dataType="INTEGER" />
+      <fields id="126" name="INT_CMPD_FIELD_4" dataType="INTEGER" />
+      <fields id="127" name="LAST_MOD_DATE" dataType="DATE" />
+      <fields id="128" name="LAST_MOD_PERSON_ID" dataType="INTEGER" />
+      <fields id="129" name="LOAD_ID" dataType="TEXT" />
+      <fields id="130" name="MF" dataType="TEXT" />
+      <fields id="131" name="MF_TEXT" dataType="TEXT" />
+      <fields id="132" name="MOL_ID" dataType="INTEGER" />
+      <fields id="133" name="MW" dataType="INTEGER" />
+      <fields id="134" name="MW2" dataType="INTEGER" />
+      <fields id="135" name="MW_TEXT" dataType="TEXT" />
+      <fields id="136" name="PRODUCT_TYPE" dataType="TEXT" />
+      <fields id="137" name="REAL_CMPD_FIELD_1" dataType="INTEGER" />
+      <fields id="138" name="REAL_CMPD_FIELD_2" dataType="INTEGER" />
+      <fields id="139" name="REAL_CMPD_FIELD_3" dataType="INTEGER" />
+      <fields id="140" name="REAL_CMPD_FIELD_4" dataType="INTEGER" />
+      <fields id="141" name="ROOT_NUMBER" dataType="TEXT" />
+      <fields id="142" name="ROOT_REG_DATE" dataType="DATE" />
+      <fields id="143" name="SEQUENCE_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="144" name="STRUCTURE_COMMENTS_TXT" dataType="TEXT" />
+      <fields id="145" name="TXT_CMPD_FIELD_1" dataType="TEXT" />
+      <fields id="146" name="TXT_CMPD_FIELD_2" dataType="TEXT" />
+      <fields id="147" name="TXT_CMPD_FIELD_3" dataType="TEXT" />
+      <fields id="148" name="TXT_CMPD_FIELD_4" dataType="TEXT" />
+    </table>
+    <table id="8" name="COMPOUND_PROJECT" alias="" database="REGDB" primaryKey="149">
+      <fields id="149" name="COMP_PROJECT_ID" dataType="INTEGER" />
+      <fields id="150" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="151" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="152" name="LOAD_ID" dataType="TEXT" />
+      <fields id="153" name="PROJECT_INTERNAL_ID" dataType="INTEGER" />
+    </table>
+    <table id="9" name="COMPOUND_SALT" alias="" database="REGDB" primaryKey="154">
+      <fields id="154" name="COMPOUND_SALT_ID" dataType="INTEGER" />
+      <fields id="155" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="156" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="157" name="LOAD_ID" dataType="TEXT" />
+      <fields id="158" name="MOL_ID" dataType="INTEGER" />
+      <fields id="159" name="REG_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="160" name="ROOT_NUMBER" dataType="TEXT" />
+      <fields id="161" name="SALT_INTERNAL_ID" dataType="INTEGER" />
+    </table>
+    <table id="10" name="COMPOUND_TYPE" alias="" database="REGDB" primaryKey="163">
+      <fields id="162" name="ACTIVE" dataType="INTEGER" />
+      <fields id="163" name="COMPOUND_TYPE" dataType="INTEGER" />
+      <fields id="164" name="DESCRIPTION" dataType="TEXT" />
+    </table>
+    <table id="11" name="DUPLICATES" alias="" database="REGDB" primaryKey="">
+      <fields id="165" name="COMPOUND_ID" dataType="INTEGER" />
+      <fields id="166" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="167" name="DUPLICATE" dataType="INTEGER" />
+      <fields id="168" name="LOAD_ID" dataType="TEXT" />
+    </table>
+    <table id="12" name="EXCEPTIONS" alias="" database="REGDB" primaryKey="">
+      <fields id="169" name="CONSTRAINT" dataType="TEXT" />
+      <fields id="170" name="OWNER" dataType="TEXT" />
+      <fields id="171" name="ROW_ID" dataType="TEXT" />
+      <fields id="172" name="TABLE_NAME" dataType="TEXT" />
+    </table>
+    <table id="13" name="EXPERIMENTS" alias="" database="REGDB" primaryKey="176">
+      <fields id="173" name="EXPERIMENT_BATCH_ID" dataType="INTEGER" />
+      <fields id="174" name="EXPERIMENT_COMMENT" dataType="TEXT" />
+      <fields id="175" name="EXPERIMENT_DATE" dataType="DATE" />
+      <fields id="176" name="EXPERIMENT_ID" dataType="INTEGER" />
+      <fields id="177" name="EXPERIMENT_LOCATION" dataType="TEXT" />
+      <fields id="178" name="EXPERIMENT_REFERENCE" dataType="TEXT" />
+      <fields id="179" name="EXPERIMENT_SAMPLE_ID" dataType="INTEGER" />
+      <fields id="180" name="EXPERIMENT_TYPE_ID" dataType="INTEGER" />
+      <fields id="181" name="EXPERIMENT_USERID" dataType="INTEGER" />
+    </table>
+    <table id="14" name="EXPERIMENTTYPE" alias="" database="REGDB" primaryKey="184">
+      <fields id="182" name="EXPERIMENT_TYPE_CREATED" dataType="DATE" />
+      <fields id="183" name="EXPERIMENT_TYPE_DESCRIPTION" dataType="TEXT" />
+      <fields id="184" name="EXPERIMENT_TYPE_ID" dataType="INTEGER" />
+      <fields id="185" name="EXPERIMENT_TYPE_MODIFIED" dataType="DATE" />
+      <fields id="186" name="EXPERIMENT_TYPE_NAME" dataType="TEXT" />
+      <fields id="187" name="EXPERIMENT_TYPE_VERSION" dataType="INTEGER" />
+    </table>
+    <table id="15" name="EXPERIMENTTYPEPARAMETERS" alias="" database="REGDB" primaryKey="">
+      <fields id="188" name="EXPERIMENT_TYPE_ID" dataType="INTEGER" />
+      <fields id="189" name="PARAMETER_TYPE_ID" dataType="INTEGER" />
+    </table>
+    <table id="16" name="EXPERIMENTTYPERESULTS" alias="" database="REGDB" primaryKey="">
+      <fields id="190" name="EXPERIMENT_TYPE_ID" dataType="INTEGER" />
+      <fields id="191" name="RESULT_TYPE_ID" dataType="INTEGER" />
+    </table>
+    <table id="17" name="GLOBALS" alias="" database="REGDB" primaryKey="192">
+      <fields id="192" name="ID" dataType="TEXT" />
+      <fields id="193" name="VALUE" dataType="TEXT" />
+    </table>
+    <table id="18" name="IDENTIFIERS" alias="" database="REGDB" primaryKey="194">
+      <fields id="194" name="ID" dataType="INTEGER" />
+      <fields id="195" name="IDENTIFIER_DESCRIPTOR" dataType="TEXT" />
+      <fields id="196" name="IDENTIFIER_TYPE" dataType="INTEGER" />
+    </table>
+    <table id="19" name="MIXTURES" alias="" database="REGDB" primaryKey="200">
+      <fields id="197" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="198" name="LOAD_ID" dataType="TEXT" />
+      <fields id="199" name="MIX_ID" dataType="TEXT" />
+      <fields id="200" name="MIX_INTERNAL_ID" dataType="INTEGER" />
+    </table>
+    <table id="20" name="MOLFILES" alias="" database="REGDB" primaryKey="201">
+      <fields id="201" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="202" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="203" name="LOAD_ID" dataType="TEXT" />
+      <fields id="204" name="MOLFILE" dataType="TEXT" />
+      <fields id="205" name="MOL_ID" dataType="INTEGER" />
+    </table>
+    <table id="21" name="NOTEBOOKS" alias="" database="REGDB" primaryKey="210">
+      <fields id="206" name="ACTIVE" dataType="INTEGER" />
+      <fields id="207" name="LOCATION" dataType="TEXT" />
+      <fields id="208" name="MICROFICHE" dataType="TEXT" />
+      <fields id="209" name="NOTEBOOK_NAME" dataType="TEXT" />
+      <fields id="210" name="NOTEBOOK_NUMBER" dataType="INTEGER" />
+      <fields id="211" name="USER_CODE" dataType="INTEGER" />
+    </table>
+    <table id="22" name="PARAMETERS" alias="" database="REGDB" primaryKey="213">
+      <fields id="212" name="PARAMETER_EXPERIMENT_ID" dataType="INTEGER" />
+      <fields id="213" name="PARAMETER_ID" dataType="INTEGER" />
+      <fields id="214" name="PARAMETER_TYPE_ID" dataType="INTEGER" />
+      <fields id="215" name="PARAMETER_VALUE" dataType="TEXT" />
+    </table>
+    <table id="23" name="PARAMETERTYPE" alias="" database="REGDB" primaryKey="217">
+      <fields id="216" name="PARAMETER_TYPE_DESCRIPTION" dataType="TEXT" />
+      <fields id="217" name="PARAMETER_TYPE_ID" dataType="INTEGER" />
+      <fields id="218" name="PARAMETER_TYPE_NAME" dataType="TEXT" />
+      <fields id="219" name="PARAMETER_TYPE_UNITS" dataType="TEXT" />
+    </table>
+    <table id="24" name="PEOPLE_PROJECT" alias="" database="REGDB" primaryKey="">
+      <fields id="220" name="PERSON_ID" dataType="INTEGER" />
+      <fields id="221" name="PROJECT_ID" dataType="INTEGER" />
+    </table>
+    <table id="25" name="PROJECTS" alias="" database="REGDB" primaryKey="223">
+      <fields id="222" name="ACTIVE" dataType="INTEGER" />
+      <fields id="223" name="PROJECT_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="224" name="PROJECT_NAME" dataType="TEXT" />
+    </table>
+    <table id="26" name="REG_APPROVED" alias="" database="REGDB" primaryKey="">
+      <fields id="225" name="APPROVED" dataType="INTEGER" />
+      <fields id="226" name="BATCH_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="227" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="228" name="REG_INTERNAL_ID" dataType="INTEGER" />
+    </table>
+    <table id="27" name="REG_NUMBERS" alias="" database="REGDB" primaryKey="236">
+      <fields id="229" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="230" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="231" name="LAST_BATCH_NUMBER" dataType="INTEGER" />
+      <fields id="232" name="LOAD_ID" dataType="TEXT" />
+      <fields id="233" name="MOL_ID" dataType="INTEGER" />
+      <fields id="234" name="REGISTRAR_PERSON_ID" dataType="INTEGER" />
+      <fields id="235" name="REGISTRY_DATE" dataType="DATE" />
+      <fields id="236" name="REG_ID" dataType="INTEGER" />
+      <fields id="237" name="REG_NUMBER" dataType="TEXT" />
+      <fields id="238" name="ROOT_NUMBER" dataType="TEXT" />
+      <fields id="239" name="SEQUENCE_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="240" name="SEQUENCE_NUMBER" dataType="INTEGER" />
+    </table>
+    <table id="28" name="REG_QUALITY_CHECKED" alias="" database="REGDB" primaryKey="">
+      <fields id="241" name="BATCH_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="242" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="243" name="QUALITY_CHECKED" dataType="INTEGER" />
+      <fields id="244" name="REG_INTERNAL_ID" dataType="INTEGER" />
+    </table>
+    <table id="29" name="RESULTS" alias="" database="REGDB" primaryKey="246">
+      <fields id="245" name="RESULT_EXPERIMENT_ID" dataType="INTEGER" />
+      <fields id="246" name="RESULT_ID" dataType="INTEGER" />
+      <fields id="247" name="RESULT_TYPE_ID" dataType="INTEGER" />
+      <fields id="248" name="RESULT_VALUE" dataType="TEXT" />
+    </table>
+    <table id="30" name="RESULTTYPE" alias="" database="REGDB" primaryKey="250">
+      <fields id="249" name="RESULT_TYPE_DESCRIPTION" dataType="TEXT" />
+      <fields id="250" name="RESULT_TYPE_ID" dataType="INTEGER" />
+      <fields id="251" name="RESULT_TYPE_NAME" dataType="TEXT" />
+      <fields id="252" name="RESULT_TYPE_UNITS" dataType="TEXT" />
+    </table>
+    <table id="31" name="SALTS" alias="" database="REGDB" primaryKey="254">
+      <fields id="253" name="ACTIVE" dataType="INTEGER" />
+      <fields id="254" name="SALT_CODE" dataType="INTEGER" />
+      <fields id="255" name="SALT_MF" dataType="TEXT" />
+      <fields id="256" name="SALT_MW" dataType="INTEGER" />
+      <fields id="257" name="SALT_NAME" dataType="TEXT" />
+    </table>
+    <table id="32" name="SEQUENCE" alias="" database="REGDB" primaryKey="261">
+      <fields id="258" name="ACTIVE" dataType="INTEGER" />
+      <fields id="259" name="NEXT_IN_SEQUENCE" dataType="INTEGER" />
+      <fields id="260" name="PREFIX" dataType="TEXT" />
+      <fields id="261" name="SEQUENCE_ID" dataType="INTEGER" />
+    </table>
+    <table id="33" name="SOLVATES" alias="" database="REGDB" primaryKey="263">
+      <fields id="262" name="ACTIVE" dataType="INTEGER" />
+      <fields id="263" name="SOLVATE_ID" dataType="INTEGER" />
+      <fields id="264" name="SOLVATE_MF" dataType="TEXT" />
+      <fields id="265" name="SOLVATE_MW" dataType="INTEGER" />
+      <fields id="266" name="SOLVATE_NAME" dataType="TEXT" />
+    </table>
+    <table id="34" name="SPECTRA" alias="" database="REGDB" primaryKey="273">
+      <fields id="267" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="268" name="LOAD_ID" dataType="TEXT" />
+      <fields id="269" name="NOTEBOOK" dataType="TEXT" />
+      <fields id="270" name="PATH" dataType="TEXT" />
+      <fields id="271" name="SCIENTIST_ID" dataType="INTEGER" />
+      <fields id="272" name="SPECTRUM" dataType="TEXT" />
+      <fields id="273" name="SPECTRUM_ID" dataType="INTEGER" />
+    </table>
+    <table id="35" name="STRUCTURES" alias="" database="REGDB" primaryKey="275">
+      <fields id="274" name="BASE64_CDX" dataType="TEXT" />
+      <fields id="275" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="276" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="277" name="LOAD_ID" dataType="TEXT" />
+      <fields id="278" name="MOL_ID" dataType="INTEGER" />
+    </table>
+    <table id="36" name="STRUCTURE_MIXTURE" alias="" database="REGDB" primaryKey="283">
+      <fields id="279" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="280" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="281" name="LOAD_ID" dataType="TEXT" />
+      <fields id="282" name="MIX_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="283" name="STRUC_MIX_ID" dataType="INTEGER" />
+    </table>
+    <table id="37" name="TEMPORARY_STRUCTURES" alias="" database="REGDB" primaryKey="408">
+      <fields id="284" name="AMOUNT" dataType="TEXT" />
+      <fields id="285" name="AMOUNT_UNITS" dataType="TEXT" />
+      <fields id="286" name="APPEARANCE" dataType="TEXT" />
+      <fields id="287" name="APPROVED" dataType="INTEGER" />
+      <fields id="288" name="APPROVED_BY" dataType="INTEGER" />
+      <fields id="289" name="APPROVED_DATE" dataType="DATE" />
+      <fields id="290" name="APPROVED_TIME" dataType="TEXT" />
+      <fields id="291" name="BASE64_CDX" dataType="TEXT" />
+      <fields id="292" name="BATCH_COMMENT" dataType="TEXT" />
+      <fields id="293" name="BATCH_FORMULA" dataType="TEXT" />
+      <fields id="294" name="BATCH_PROJECT_ID" dataType="INTEGER" />
+      <fields id="295" name="BP" dataType="TEXT" />
+      <fields id="296" name="C13NMR" dataType="TEXT" />
+      <fields id="297" name="CAS_NUMBER" dataType="TEXT" />
+      <fields id="298" name="CHEMICAL_NAME" dataType="TEXT" />
+      <fields id="299" name="CHEM_NAME_AUTOGEN" dataType="TEXT" />
+      <fields id="300" name="CHIRAL" dataType="TEXT" />
+      <fields id="301" name="CHN_COMBUSTION" dataType="TEXT" />
+      <fields id="302" name="CLOGP" dataType="INTEGER" />
+      <fields id="303" name="COLLABORATOR_ID" dataType="TEXT" />
+      <fields id="304" name="COLOR" dataType="TEXT" />
+      <fields id="305" name="COMMIT_TYPE" dataType="TEXT" />
+      <fields id="306" name="COMPOUND_TYPE" dataType="INTEGER" />
+      <fields id="307" name="CPD_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="308" name="CREATION_DATE" dataType="DATE" />
+      <fields id="309" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="310" name="DATE_BATCH_FIELD_1" dataType="DATE" />
+      <fields id="311" name="DATE_BATCH_FIELD_2" dataType="DATE" />
+      <fields id="312" name="DATE_BATCH_FIELD_3" dataType="DATE" />
+      <fields id="313" name="DATE_BATCH_FIELD_4" dataType="DATE" />
+      <fields id="314" name="DATE_BATCH_FIELD_5" dataType="DATE" />
+      <fields id="315" name="DATE_BATCH_FIELD_6" dataType="DATE" />
+      <fields id="316" name="DATE_CMPD_FIELD_1" dataType="DATE" />
+      <fields id="317" name="DATE_CMPD_FIELD_2" dataType="DATE" />
+      <fields id="318" name="DATE_CMPD_FIELD_3" dataType="DATE" />
+      <fields id="319" name="DATE_CMPD_FIELD_4" dataType="DATE" />
+      <fields id="320" name="DUPLICATE" dataType="TEXT" />
+      <fields id="321" name="ENTRY_DATE" dataType="DATE" />
+      <fields id="322" name="ENTRY_PERSON_ID" dataType="INTEGER" />
+      <fields id="323" name="FEMA_GRAS_NUMBER" dataType="TEXT" />
+      <fields id="324" name="FIELD_1" dataType="TEXT" />
+      <fields id="325" name="FIELD_10" dataType="TEXT" />
+      <fields id="326" name="FIELD_2" dataType="TEXT" />
+      <fields id="327" name="FIELD_3" dataType="TEXT" />
+      <fields id="328" name="FIELD_4" dataType="TEXT" />
+      <fields id="329" name="FIELD_5" dataType="TEXT" />
+      <fields id="330" name="FIELD_6" dataType="TEXT" />
+      <fields id="331" name="FIELD_7" dataType="TEXT" />
+      <fields id="332" name="FIELD_8" dataType="TEXT" />
+      <fields id="333" name="FIELD_9" dataType="TEXT" />
+      <fields id="334" name="FLASHPOINT" dataType="TEXT" />
+      <fields id="335" name="FORMULA2" dataType="TEXT" />
+      <fields id="336" name="FORMULA_WEIGHT" dataType="INTEGER" />
+      <fields id="337" name="GC" dataType="TEXT" />
+      <fields id="338" name="GROUP_CODE" dataType="TEXT" />
+      <fields id="339" name="H1NMR" dataType="TEXT" />
+      <fields id="340" name="HPLC" dataType="TEXT" />
+      <fields id="341" name="H_BOND_ACCEPTORS" dataType="INTEGER" />
+      <fields id="342" name="H_BOND_DONORS" dataType="INTEGER" />
+      <fields id="343" name="INT_BATCH_FIELD_1" dataType="INTEGER" />
+      <fields id="344" name="INT_BATCH_FIELD_2" dataType="INTEGER" />
+      <fields id="345" name="INT_BATCH_FIELD_3" dataType="INTEGER" />
+      <fields id="346" name="INT_BATCH_FIELD_4" dataType="INTEGER" />
+      <fields id="347" name="INT_BATCH_FIELD_5" dataType="INTEGER" />
+      <fields id="348" name="INT_BATCH_FIELD_6" dataType="INTEGER" />
+      <fields id="349" name="INT_CMPD_FIELD_1" dataType="INTEGER" />
+      <fields id="350" name="INT_CMPD_FIELD_2" dataType="INTEGER" />
+      <fields id="351" name="INT_CMPD_FIELD_3" dataType="INTEGER" />
+      <fields id="352" name="INT_CMPD_FIELD_4" dataType="INTEGER" />
+      <fields id="353" name="IR" dataType="TEXT" />
+      <fields id="354" name="LAST_MOD_DATE" dataType="DATE" />
+      <fields id="355" name="LAST_MOD_PERSON_ID" dataType="INTEGER" />
+      <fields id="356" name="LC_UV_MS" dataType="TEXT" />
+      <fields id="357" name="LEGACY_REG_NUMBER" dataType="TEXT" />
+      <fields id="358" name="LIT_REF" dataType="TEXT" />
+      <fields id="359" name="LOAD_ID" dataType="TEXT" />
+      <fields id="360" name="LOGD" dataType="INTEGER" />
+      <fields id="361" name="MF_TEXT" dataType="TEXT" />
+      <fields id="362" name="MOL_ID" dataType="INTEGER" />
+      <fields id="363" name="MP" dataType="TEXT" />
+      <fields id="364" name="MS" dataType="TEXT" />
+      <fields id="365" name="MW" dataType="INTEGER" />
+      <fields id="366" name="MW2" dataType="INTEGER" />
+      <fields id="367" name="MW_TEXT" dataType="TEXT" />
+      <fields id="368" name="NOTEBOOK_NUMBER" dataType="INTEGER" />
+      <fields id="369" name="NOTEBOOK_PAGE" dataType="TEXT" />
+      <fields id="370" name="NOTEBOOK_TEXT" dataType="TEXT" />
+      <fields id="371" name="OPTICAL_ROTATION" dataType="TEXT" />
+      <fields id="372" name="PERCENT_ACTIVE" dataType="INTEGER" />
+      <fields id="373" name="PHYSICAL_FORM" dataType="TEXT" />
+      <fields id="374" name="PREPARATION" dataType="TEXT" />
+      <fields id="375" name="PRODUCER" dataType="TEXT" />
+      <fields id="376" name="PRODUCT_TYPE" dataType="TEXT" />
+      <fields id="377" name="PROJECT_ID" dataType="INTEGER" />
+      <fields id="378" name="PURITY" dataType="TEXT" />
+      <fields id="379" name="REAL_BATCH_FIELD_1" dataType="INTEGER" />
+      <fields id="380" name="REAL_BATCH_FIELD_2" dataType="INTEGER" />
+      <fields id="381" name="REAL_BATCH_FIELD_3" dataType="INTEGER" />
+      <fields id="382" name="REAL_BATCH_FIELD_4" dataType="INTEGER" />
+      <fields id="383" name="REAL_BATCH_FIELD_5" dataType="INTEGER" />
+      <fields id="384" name="REAL_BATCH_FIELD_6" dataType="INTEGER" />
+      <fields id="385" name="REAL_CMPD_FIELD_1" dataType="INTEGER" />
+      <fields id="386" name="REAL_CMPD_FIELD_2" dataType="INTEGER" />
+      <fields id="387" name="REAL_CMPD_FIELD_3" dataType="INTEGER" />
+      <fields id="388" name="REAL_CMPD_FIELD_4" dataType="INTEGER" />
+      <fields id="389" name="REFRACTIVE_INDEX" dataType="TEXT" />
+      <fields id="390" name="REG_INTERNAL_ID" dataType="TEXT" />
+      <fields id="391" name="RNO_NUMBER" dataType="TEXT" />
+      <fields id="392" name="SALT_CODE" dataType="INTEGER" />
+      <fields id="393" name="SALT_EQUIVALENTS" dataType="INTEGER" />
+      <fields id="394" name="SALT_MW" dataType="INTEGER" />
+      <fields id="395" name="SALT_NAME" dataType="TEXT" />
+      <fields id="396" name="SCIENTIST_ID" dataType="INTEGER" />
+      <fields id="397" name="SEQUENCE_ID" dataType="INTEGER" />
+      <fields id="398" name="SOLUBILITY" dataType="TEXT" />
+      <fields id="399" name="SOLVATE_EQUIVALENTS" dataType="INTEGER" />
+      <fields id="400" name="SOLVATE_ID" dataType="INTEGER" />
+      <fields id="401" name="SOLVATE_MW" dataType="INTEGER" />
+      <fields id="402" name="SOLVATE_NAME" dataType="TEXT" />
+      <fields id="403" name="SOURCE" dataType="TEXT" />
+      <fields id="404" name="SPECTRUM_ID" dataType="INTEGER" />
+      <fields id="405" name="STORAGE_REQ_AND_WARNINGS" dataType="TEXT" />
+      <fields id="406" name="STRUCTURE_COMMENTS_TXT" dataType="TEXT" />
+      <fields id="407" name="SYNONYM_R" dataType="TEXT" />
+      <fields id="408" name="TEMP_COMPOUND_ID" dataType="INTEGER" />
+      <fields id="409" name="TXT_CMPD_FIELD_1" dataType="TEXT" />
+      <fields id="410" name="TXT_CMPD_FIELD_2" dataType="TEXT" />
+      <fields id="411" name="TXT_CMPD_FIELD_3" dataType="TEXT" />
+      <fields id="412" name="TXT_CMPD_FIELD_4" dataType="TEXT" />
+      <fields id="413" name="UV_SPECTRUM" dataType="TEXT" />
+      <fields id="414" name="VENDOR_ID" dataType="TEXT" />
+      <fields id="415" name="VENDOR_NAME" dataType="TEXT" />
+    </table>
+    <table id="38" name="TEST_SAMPLES" alias="" database="REGDB" primaryKey="422">
+      <fields id="416" name="ALT_SAMPLE_ID_1" dataType="TEXT" />
+      <fields id="417" name="ALT_SAMPLE_ID_2" dataType="TEXT" />
+      <fields id="418" name="BATCH_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="419" name="DATETIME_STAMP" dataType="TEXT" />
+      <fields id="420" name="LOAD_ID" dataType="TEXT" />
+      <fields id="421" name="REG_INTERNAL_ID" dataType="INTEGER" />
+      <fields id="422" name="SAMPLE_ID" dataType="INTEGER" />
+      <fields id="423" name="STRUCTURE_ID" dataType="INTEGER" />
+    </table>
+    <table id="39" name="UTILIZATIONS" alias="" database="REGDB" primaryKey="424">
+      <fields id="424" name="UTILIZATION_ID" dataType="INTEGER" />
+      <fields id="425" name="UTILIZATION_TEXT" dataType="TEXT" />
+    </table>
+  </tables>
+  <relationships>
+    <relationship child="38" parent="2" childkey="418" parentkey="12" jointype="INNER" />
+    <relationship child="8" parent="7" childkey="150" parentkey="113" jointype="INNER" />
+    <relationship child="9" parent="7" childkey="155" parentkey="113" jointype="INNER" />
+    <relationship child="11" parent="7" childkey="165" parentkey="113" jointype="INNER" />
+    <relationship child="27" parent="7" childkey="229" parentkey="113" jointype="INNER" />
+    <relationship child="7" parent="10" childkey="112" parentkey="163" jointype="INNER" />
+    <relationship child="16" parent="14" childkey="190" parentkey="184" jointype="INNER" />
+    <relationship child="13" parent="14" childkey="180" parentkey="184" jointype="INNER" />
+    <relationship child="15" parent="14" childkey="188" parentkey="184" jointype="INNER" />
+    <relationship child="36" parent="19" childkey="282" parentkey="200" jointype="INNER" />
+    <relationship child="2" parent="21" childkey="63" parentkey="210" jointype="INNER" />
+    <relationship child="15" parent="23" childkey="189" parentkey="217" jointype="INNER" />
+    <relationship child="22" parent="23" childkey="214" parentkey="217" jointype="INNER" />
+    <relationship child="22" parent="13" childkey="212" parentkey="176" jointype="INNER" />
+    <relationship child="8" parent="25" childkey="153" parentkey="223" jointype="INNER" />
+    <relationship child="37" parent="25" childkey="377" parentkey="223" jointype="INNER" />
+    <relationship child="1" parent="27" childkey="6" parentkey="236" jointype="INNER" />
+    <relationship child="2" parent="27" childkey="79" parentkey="236" jointype="INNER" />
+    <relationship child="29" parent="13" childkey="245" parentkey="176" jointype="INNER" />
+    <relationship child="16" parent="30" childkey="191" parentkey="250" jointype="INNER" />
+    <relationship child="29" parent="30" childkey="247" parentkey="250" jointype="INNER" />
+    <relationship child="2" parent="31" childkey="81" parentkey="254" jointype="INNER" />
+    <relationship child="9" parent="31" childkey="161" parentkey="254" jointype="INNER" />
+    <relationship child="7" parent="32" childkey="143" parentkey="261" jointype="INNER" />
+    <relationship child="37" parent="32" childkey="397" parentkey="261" jointype="INNER" />
+  </relationships>
+</COEDataView>

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COEDataView  xmlns="COE.COEDataView" basetable="2472" database="COETEST" name="DataView_01/24/2011 17:38:17" description="test" dataviewHandling="USE_CLIENT_DATAVIEW" dataviewid="100127">
+  <tables>
+    <table id="1201" name="CS_DEMO_PROPS" alias="CS_DEMO_PROPS" database="COETEST" isView="0" primaryKey="1210" >
+      <fields id="1202" name="BOOLFIELD" alias="BOOLFIELD" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="1203" name="BP" alias="BP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="1204" name="CLOGP" alias="CLOGP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+      <fields id="1205" name="DIAM" alias="DIAM" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+      <fields id="1206" name="HOF" alias="HOF" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="4" />
+      <fields id="1207" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="5" />
+      <fields id="1208" name="MOLAR_REFRACTIVITY" alias="MOLAR_REFRACTIVITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="6" />
+      <fields id="1209" name="MOLNAME" alias="MOLNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="7" />
+      <fields id="1210" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="8" />
+      <fields id="1211" name="RANDOMDATE" alias="RANDOMDATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="9" />
+      <fields id="1212" name="STRUCTURE" alias="STRUCTURE" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="10" />
+    </table>
+    <table id="1217" name="GLOBALS" alias="GLOBALS" database="COETEST" isView="0" primaryKey="1218" >
+      <fields id="1218" name="ID" alias="ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="1219" name="VALUE" alias="VALUE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+    </table>
+    <table id="1225" name="MOLTABLE" alias="MOLTABLE" database="COETEST" isView="0" primaryKey="1227" >
+      <fields id="1226" name="BASE64_CDX" alias="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="1227" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="1228" name="MOLNAME" alias="MOLNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+      <fields id="1229" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+    </table>
+    <table id="1260" name="PRODUCT_SUBSET" alias="PRODUCT_SUBSET" database="COETEST" isView="0" primaryKey="1263" >
+      <fields id="1261" name="ACX_ID" alias="ACX_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="1262" name="CATALOGNUM" alias="CATALOGNUM" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="1263" name="CSNUM" alias="CSNUM" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+      <fields id="1264" name="DATECREATED" alias="DATECREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+      <fields id="1265" name="EXTENDED_DESCRIPTION" alias="EXTENDED_DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="4" />
+      <fields id="1266" name="HASMSDS" alias="HASMSDS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="5" />
+      <fields id="1267" name="ISWWW" alias="ISWWW" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="6" />
+      <fields id="1268" name="PRODCLAIMEDFORMULA" alias="PRODCLAIMEDFORMULA" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="7" />
+      <fields id="1269" name="PRODCLAIMEDMW" alias="PRODCLAIMEDMW" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="8" />
+      <fields id="1270" name="PRODDESCRIP" alias="PRODDESCRIP" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="9" />
+      <fields id="1271" name="PRODNAME" alias="PRODNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="10" />
+      <fields id="1272" name="PRODUCTID" alias="PRODUCTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="11" />
+      <fields id="1273" name="SUPPLIERID" alias="SUPPLIERID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="12" />
+    </table>
+    <table id="1274" name="SUBSTANCE_SUBSET" alias="SUBSTANCE_SUBSET" database="COETEST" isView="0" primaryKey="1278" >
+      <fields id="1275" name="ACX_ID" alias="ACX_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="1276" name="BASE64_CDX" alias="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="1277" name="CAS" alias="CAS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+      <fields id="1278" name="CSNUM" alias="CSNUM" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+      <fields id="1279" name="DATECREATED" alias="DATECREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="4" />
+      <fields id="1280" name="FEMA" alias="FEMA" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="5" />
+      <fields id="1281" name="HASMSDS" alias="HASMSDS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="6" />
+      <fields id="1282" name="HASPRODUCTS" alias="HASPRODUCTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="7" />
+      <fields id="1283" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="8" />
+      <fields id="1284" name="NUMPRODUCTS" alias="NUMPRODUCTS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="9" />
+      <fields id="1285" name="SYNONYMID" alias="SYNONYMID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="10" />
+    </table>
+    <table id="2472" name="GRAPHICS" alias="GRAPHICS" database="COETEST" isView="0" primaryKey="2475" >
+      <fields id="2473" name="DESCRIPTION" alias="DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="2474" name="GRAPHIC" alias="GRAPHIC" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="2475" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="2476" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+    </table>
+    <table id="2494" name="PRIMARY_SCREEN" alias="PRIMARY_SCREEN" database="COETEST" isView="0" primaryKey="2499" >
+      <fields id="2495" name="COMPOUND_ID" alias="COMPOUND_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="2496" name="CONTROL_AVERAGE" alias="CONTROL_AVERAGE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="2497" name="CONTROL_SD" alias="CONTROL_SD" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+      <fields id="2498" name="FOLD_ABOVE_CONTROL" alias="FOLD_ABOVE_CONTROL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+      <fields id="2499" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="4" />
+      <fields id="2500" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="5" />
+      <fields id="2501" name="PLATE_BARCODE" alias="PLATE_BARCODE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="6" />
+      <fields id="2502" name="RAW_VALUE" alias="RAW_VALUE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="7" />
+      <fields id="2503" name="ROW_ID" alias="ROW_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="8" />
+      <fields id="2504" name="SDS_ABOVE_CONTROL" alias="SDS_ABOVE_CONTROL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="9" />
+      <fields id="2505" name="WELL_FORMAT" alias="WELL_FORMAT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="10" />
+      <fields id="2506" name="WELL_ID" alias="WELL_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="11" />
+    </table>
+    <table id="2507" name="SYNONYMS_R" alias="SYNONYMS_R" database="COETEST" isView="0" primaryKey="2508" >
+      <fields id="2508" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="2509" name="SYNONYM_R" alias="SYNONYM_R" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="2510" name="SYN_ID" alias="SYN_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="2475" childkey="1210" parent="2472" child="1201" jointype="INNER" />
+    <relationship parentkey="2474" childkey="1218" parent="2472" child="1217" jointype="INNER" />
+    <relationship parentkey="2475" childkey="1227" parent="2472" child="1225" jointype="INNER" />
+    <relationship parentkey="2475" childkey="1263" parent="2472" child="1260" jointype="INNER" />
+    <relationship parentkey="2475" childkey="1278" parent="2472" child="1274" jointype="INNER" />
+    <relationship parentkey="2475" childkey="2499" parent="2472" child="2494" jointype="INNER" />
+    <relationship parentkey="2475" childkey="2508" parent="2472" child="2507" jointype="INNER" />
+  </relationships>
+</COEDataView>

@@ -1,0 +1,2 @@
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\GUIMockup2.exe.licenses

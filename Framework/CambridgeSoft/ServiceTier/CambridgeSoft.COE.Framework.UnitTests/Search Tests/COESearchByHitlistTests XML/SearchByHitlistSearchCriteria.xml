@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+  <searchCriteriaItem id="1"
+					 fieldid="987"
+					 modifier=""
+					 tableid="985">
+    <hitlistCriteria sourceFieldId="1436" hitlistType="TEMP">6</hitlistCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaID>1</searchCriteriaID>
+</searchCriteria>

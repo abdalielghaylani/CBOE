@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria sortByHitList="false" xmlns="COE.ResultsCriteria">
+  <tables>
+    <table id="1">
+      <field fieldId="10" alias="Reg Number" />
+      <field fieldId="4" alias="Last Batch Number" />
+      <field fieldId="12" alias="Sequence Number" />
+      <SQLFunction functionName="round" alias="Average Batch Weight">
+        <aggregateFunction functionName="avg">
+          <field fieldId="25" />
+        </aggregateFunction>
+        <literal>2</literal>
+      </SQLFunction>
+      <aggregateFunction alias="Batches Count" functionName="count" orderById="1">
+        <field fieldId="19" />
+      </aggregateFunction>
+      <aggregateFunction  functionName="max" alias="Max ProjectID">
+        <field fieldId="50" />
+      </aggregateFunction>
+    </table>
+    <table id="13">
+      <field fieldId="19" alias="BatchID" />
+      <field fieldId="18" alias="Formula" />
+      <field fieldId="17" alias="Comments" />
+      <field fieldId="25" alias="Weight" />
+      <field fieldId="26" alias="FULL Reg Number" />
+      <aggregateFunction alias="Identifiers Count" functionName="count">
+        <field fieldId="42" />
+      </aggregateFunction>
+      <aggregateFunction alias="Projects Count" functionName="count">
+        <field fieldId="48" />
+      </aggregateFunction>
+    </table>
+    <table id="40">
+      <field fieldId="41" alias="BatchID" />
+      <field fieldId="42" alias="BatchIdentifierID" />
+      <field fieldId="44" alias="Identifier Type" />
+      <field fieldId="45" alias="Identifier" />
+    </table>
+    <table id="46">
+      <field fieldId="47" alias="BatchID" />
+      <field fieldId="48" alias="BatchProjectID" />
+      <field fieldId="50" alias="ProjectID" />
+    </table>
+  </tables>
+</resultsCriteria>

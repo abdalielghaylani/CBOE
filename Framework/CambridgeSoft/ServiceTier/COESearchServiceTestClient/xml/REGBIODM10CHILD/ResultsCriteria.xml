@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+	<tables>
+		<table id="1">
+			<field fieldId="5"/>
+<field fieldId="6"/>
+		</table>
+                                <table id="2">
+                                                 <field fieldId="12"/>
+			<field fieldId="12"/>
+                                                <field fieldId="15"/>
+                                                <field fieldId="16"/>
+                                                 <field fieldId="23"/>
+                                                <field fieldId="13"/>
+                                                <field fieldId="29"/>
+                                                <field fieldId="32"/>
+		</table>
+                                <table id="3">
+			<field fieldId="35"/>
+                                                <field fieldId="52"/>
+                                                <field fieldId="42"/>
+                                                 <field fieldId="43"/>
+                                                <field fieldId="44"/>
+                                               <field fieldId="39"/>
+                                                <field fieldId="50"/>
+                                                <field fieldId="54"/>
+		</table>
+                                <table id="4">
+			<field fieldId="58"/>
+                                                <field fieldId="71"/>
+                                                <field fieldId="72"/>
+                                                <field fieldId="56"/>
+                                                <field fieldId="57"/>
+                                                <field fieldId="75"/>
+		</table>
+                                 <table id="5">
+			<field fieldId="85"/>
+                                                <field fieldId="92"/>
+                                                <field fieldId="79"/>
+                                                <field fieldId="78"/>
+                                                <field fieldId="82"/>
+                                                <field fieldId="84"/>
+		</table>
+                                 <table id="6">
+			<field fieldId="108"/>
+                                                <field fieldId="107"/>
+                                                <field fieldId="105"/>
+                                                <field fieldId="100"/>
+                                                <field fieldId="102"/>
+                                                <field fieldId="111"/>
+		</table>
+                                 <table id="7">
+			<field fieldId="203"/>
+                                                <field fieldId="204"/>
+                                                <field fieldId="205"/>
+                                                <field fieldId="206"/>
+                                                <field fieldId="216"/>
+                                                <field fieldId="221"/>
+		</table>
+                                <table id="8">
+			<field fieldId="303"/>
+                                                <field fieldId="304"/>
+                                                <field fieldId="305"/>
+                                                <field fieldId="306"/>
+                                                <field fieldId="316"/>
+                                                <field fieldId="321"/>
+		</table>
+                                <table id="9">
+			<field fieldId="403"/>
+                                                <field fieldId="404"/>
+                                                <field fieldId="405"/>
+                                                <field fieldId="406"/>
+                                                <field fieldId="416"/>
+                                                <field fieldId="421"/>
+		</table>
+                                 <table id="10">
+			<field fieldId="503"/>
+                                                <field fieldId="504"/>
+                                                <field fieldId="505"/>
+                                                <field fieldId="506"/>
+                                                <field fieldId="516"/>
+                                                <field fieldId="521"/>
+		</table>
+                                <table id="11">
+			<field fieldId="603"/>
+                                                <field fieldId="604"/>
+                                                <field fieldId="605"/>
+                                                <field fieldId="606"/>
+                                                <field fieldId="616"/>
+                                                <field fieldId="621"/>
+		</table>
+                                 <table id="12">
+			<field fieldId="703"/>
+                                                <field fieldId="704"/>
+                                                <field fieldId="705"/>
+                                                <field fieldId="706"/>
+                                                <field fieldId="716"/>
+                                                <field fieldId="721"/>
+		</table>
+	</tables>
+</resultsCriteria>
+

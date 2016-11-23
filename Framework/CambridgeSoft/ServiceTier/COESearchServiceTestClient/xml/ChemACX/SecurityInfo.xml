@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SecurityInfo xmlns="COE.SecurityInfo">
+  <IdentityToken></IdentityToken>
+  <UserName>chemacxdb</UserName>
+  <Password>oracle</Password>
+</SecurityInfo>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+  <searchCriteriaItem id="1"
+					 fieldid="2"
+					 modifier=""
+					 tableid="1" searchLookupByID="0">
+    <numericalCriteria operator="GTE" trim="BOTH">1</numericalCriteria>
+  </searchCriteriaItem>
+</searchCriteria>

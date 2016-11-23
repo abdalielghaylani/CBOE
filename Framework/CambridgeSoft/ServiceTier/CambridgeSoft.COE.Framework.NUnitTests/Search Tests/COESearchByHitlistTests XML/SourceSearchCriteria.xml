@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+  <searchCriteriaItem id="1"
+					 fieldid="1430"
+					 modifier=""
+					 tableid="1429">
+    <formulaCriteria implementation="CsCartridge">C17</formulaCriteria>
+  </searchCriteriaItem>
+  <searchCriteriaID>1</searchCriteriaID>
+</searchCriteria>

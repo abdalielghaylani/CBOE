@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">	
+  <searchCriteriaItem id="3"  
+					 fieldid="28" 
+					 modifier="" 
+					 tableid="3">
+		<dateCriteria operator="LT">1/1/2006</dateCriteria>
+	</searchCriteriaItem>
+
+  <searchCriteriaID>1</searchCriteriaID>
+</searchCriteria>

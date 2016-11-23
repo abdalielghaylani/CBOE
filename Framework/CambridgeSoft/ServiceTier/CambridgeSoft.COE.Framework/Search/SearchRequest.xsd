@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp1 (http://www.altova.com) by Leah Jenney (home) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="dateCriteria">
+		<xs:complexType>
+			<xs:attribute name="operator"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="formulaCriteria">
+		<xs:complexType>
+			<xs:attribute name="operator" use="optional" default="EQUAL">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="EQUAL"/>
+						<xs:enumeration value="GT"/>
+						<xs:enumeration value="LT"/>
+						<xs:enumeration value="GTE"/>
+						<xs:enumeration value="LTE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="molWeightCriteria">
+		<xs:complexType>
+			<xs:attribute name="operator" use="optional" default="EQUAL">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="EQUAL"/>
+						<xs:enumeration value="GT"/>
+						<xs:enumeration value="LT"/>
+						<xs:enumeration value="GTE"/>
+						<xs:enumeration value="LTE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="numberCriteria">
+		<xs:complexType>
+			<xs:attribute name="operator" use="optional" default="EQUAL">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="EQUAL"/>
+						<xs:enumeration value="GT"/>
+						<xs:enumeration value="LT"/>
+						<xs:enumeration value="GTE"/>
+						<xs:enumeration value="LTE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="searchRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="searchCriteria"/>
+				<xs:element ref="resultFields"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="searchCriteria">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="searchCriteriaItem" maxOccurs="unbounded"/>
+				<xs:element ref="dataView"/>
+			</xs:sequence>
+			<xs:attribute name="hitlistid" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="dataView">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tables"/>
+				<xs:element ref="relationships"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="relationship">
+		<xs:complexType>
+			<xs:attribute name="parent" type="xs:string" use="required"/>
+			<xs:attribute name="child" type="xs:string" use="required"/>
+			<xs:attribute name="parentkey" type="xs:string" use="required"/>
+			<xs:attribute name="childkey" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="relationships">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="relationship"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="table">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:string" use="required"/>
+			<xs:attribute name="database" type="xs:string" use="required"/>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+		
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tables">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:restriction base=""></xs:restriction>
+			</xs:simpleContent>
+		</xs:complexType>
+			<xs:attribute name="basetable" type="xs:int" use="required"/>
+		</xs:complexType>
+			<xs:sequence>
+				<xs:element ref="table"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="searchCriteriaItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="textCriteria" minOccurs="0"/>
+				<xs:element ref="dateCriteria" minOccurs="0"/>
+				<xs:element ref="numberCriteria" minOccurs="0"/>
+				<xs:element ref="structureCriteria" minOccurs="0"/>
+				<xs:element ref="formulaCriteria" minOccurs="0"/>
+				<xs:element ref="molWeightCriteria" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="id" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value=" "/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="tableid" use="optional"/>
+			<xs:attribute name="fieldname" use="optional"/>
+			<xs:attribute name="modifier" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NOT"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="structureCriteria">
+		<xs:complexType>
+		<xs:attribute name="formate" use="optional" default="BASE64CDX">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="BASE64CDX"/>
+						<xs:enumeration value="CDXML"/>
+						<xs:enumeration value="SMILES"/>
+						<xs:enumeration value="MOLFILE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="absolutehitsrel" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="doublebondstereo" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fragmentsoverlap" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="full" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="hitAnyChargeCarbon" use="optional" default="YES">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="hitAnyChargeHetero" use="optional" default="YES">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="identity" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="permitExtraneousFragments" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="permitExtraneousFragmentsIfRXN" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="reactionCenter" use="optional" default="YES">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="relativeTetStereo" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="similar" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="simThreshold" use="optional" default="100">
+				<xs:simpleType>
+					<xs:restriction base="xs:double">
+						<xs:maxInclusive value="100"/>
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="tautomer" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="tetrahedralStereo" use="optional" default="YES">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="NO"/>
+						<xs:enumeration value="SAME"/>
+						<xs:enumeration value="EITHER"/>
+						<xs:enumeration value="ANY"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="textCriteria">
+		<xs:complexType>
+			<xs:attribute name="operator" use="optional" default="EQUAL">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="EQUAL"/>
+						<xs:enumeration value="GT"/>
+						<xs:enumeration value="LT"/>
+						<xs:enumeration value="GTE"/>
+						<xs:enumeration value="LTE"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="fullWordSearch" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NO"/>
+						<xs:enumeration value="YES"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="caseSensitive" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NO"/>
+						<xs:enumeration value="YES"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="trim" use="optional" default="NO">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NO"/>
+						<xs:enumeration value="YES"/>
+						<xs:enumeration value="LEFT"/>
+						<xs:enumeration value="RIGHT"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="resultFields">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="resultFieldItem" maxOccurs="unbounded"/>
+				<xs:element ref="dataView"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="resultFieldItem">
+		<xs:complexType>
+			<xs:attribute name="id" type="xs:int" use="optional"/>
+			<xs:attribute name="database" type="xs:string" use="required"/>
+			<xs:attribute name="tablename" type="xs:string" use="required"/>
+			<xs:attribute name="fieldname" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

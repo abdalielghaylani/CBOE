@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Report Definition class">
+    <Position X="7.385" Y="1.5" Height="0.292" Width="1.356" />
+  </Comment>
+  <Comment CommentText="Report Instance class">
+    <Position X="11.125" Y="2.25" Height="0.292" Width="1.377" />
+  </Comment>
+  <Comment CommentText="Service interface">
+    <Position X="4.146" Y="0.5" Height="0.292" Width="1.367" />
+  </Comment>
+  <Comment CommentText="Creates a report Builder based upon metadata&#xD;&#xA;">
+    <Position X="0.5" Y="5.896" Height="0.531" Width="1.367" />
+  </Comment>
+  <Comment CommentText="Retrieves reports from database">
+    <Position X="5.135" Y="8.219" Height="0.531" Width="1.367" />
+  </Comment>
+  <Comment CommentText="Sample template that creates a report from a results criteria and a dataview">
+    <Position X="2.833" Y="9.771" Height="0.76" Width="1.367" />
+  </Comment>
+  <Comment CommentText="Custom Report Elements">
+    <Position X="15.771" Y="2.875" Height="0.448" Width="1.377" />
+  </Comment>
+  <Comment CommentText="Web Forms version">
+    <Position X="8.719" Y="12.49" Height="0.531" Width="1.367" />
+  </Comment>
+  <Comment CommentText="Web Forms version">
+    <Position X="7.156" Y="16.49" Height="0.531" Width="1.367" />
+  </Comment>
+  <Comment CommentText="Win Forms version">
+    <Position X="8.667" Y="14.26" Height="0.531" Width="1.367" />
+  </Comment>
+  <Comment CommentText="Win Forms version">
+    <Position X="7.115" Y="18" Height="0.531" Width="1.367" />
+  </Comment>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEReportBO">
+    <Position X="7.25" Y="6.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEReportBO.Criteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Reporting\BLL\COEReportBO.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEReportBO.CreateNewCriteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Reporting\BLL\COEReportBO.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>pAQBoMgwAAAkxCREEIACkCwBACHAwMkIAJkkAEUAjGg=</HashCode>
+      <FileName>Reporting\BLL\COEReportBO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEReportBOList">
+    <Position X="9.5" Y="6.25" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEReportBOList.Criteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Reporting\BLL\COEReportBOList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEReportBOList.GetByLongCriteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Reporting\BLL\COEReportBOList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>pAAAAAAAAAAgRAAAAAEAQAAAIACAwAEAAAkAAAAAAGA=</HashCode>
+      <FileName>Reporting\BLL\COEReportBOList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEReporting">
+    <Position X="2.5" Y="0.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAAAAAEEAoEAAAAAAAAAAAAAACAAAEBAABCADBIgAg=</HashCode>
+      <FileName>Reporting\BLL\COEReporting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.Builders.ReportBuilderFactory">
+    <Position X="0.5" Y="4.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAIAAAAgAAA=</HashCode>
+      <FileName>Reporting\BLL\Builders\ReportBuilderFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.Builders.ReportBuilderBase">
+    <Position X="3.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Reporting\BLL\Builders\ReportBuilderBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.Builders.DataBaseReportBuilder">
+    <Position X="4.5" Y="6.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAIAAAA=</HashCode>
+      <FileName>Reporting\BLL\Builders\DataBaseReportBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.ReportViewerController">
+    <Position X="0.5" Y="16.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAQCQAggAARGAAAAAAAAAAAAAAAAACAopAAAg=</HashCode>
+      <FileName>ServerControls\Reporting\ReportViewerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.ReportPickerController">
+    <Position X="0.5" Y="12.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAIgIgAAQEBAAEQEAAAAAAAEAAABCBIQIAAAEACAA=</HashCode>
+      <FileName>ServerControls\Reporting\ReportPickerController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.COEXtraReport">
+    <Position X="10" Y="2.25" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAIAIBAASCwHIgAGACAAIALAAAAQKAAIIAAAAEgCAA=</HashCode>
+      <FileName>ServerControls\Reporting\COEXtraReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Controls.Reporting.XRTBarCode">
+    <Position X="13.5" Y="3" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAAAABAgAAAAABAAAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>ServerControls\Reporting\XRTBarCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Controls.Reporting.XRChemDrawEmbed">
+    <Position X="13.5" Y="0.75" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QJIAAAABAAAAAAAAgQAAAAAQAAAAAEAAAAEACAAAgAA=</HashCode>
+      <FileName>ServerControls\Reporting\XRChemDrawEmbed.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COEReportingService.Builders.ResultsCriteriaReportBuilder">
+    <Position X="2.25" Y="6.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAQANgAAAAAAAEAAEAAAAAQAAAAAAAAAAAsBAAEAQ=</HashCode>
+      <FileName>Reporting\BLL\Builders\ResultsCriteriaReportBuilder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Csla.BusinessListBase&lt;T, C&gt;" Collapsed="true">
+    <Position X="12.75" Y="7.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Csla.BusinessBase&lt;T&gt;" Collapsed="true">
+    <Position X="7.25" Y="5.25" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="DevExpress.XtraReports.UI.XtraReport" Collapsed="true">
+    <Position X="10" Y="1.25" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.COEReport">
+    <Position X="6.5" Y="1.5" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAIACgAAAAhAAEBABUAAAAAAAAAAAAAQAAMAAAAQI=</HashCode>
+      <FileName>Common\Messaging\COEReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.Messaging.ReportBuilderMeta">
+    <Position X="0.5" Y="1" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAKIAAAAgAgAAAEAAJAAAQAAAAAAAEAABAIAAAAAAA=</HashCode>
+      <FileName>Common\Messaging\ReportBuilderMeta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.Web.COEReportSelector" Collapsed="true">
+    <Position X="5.75" Y="12.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>BAAAIcCBAAAEABAkQAABQAIAAADJAgEAAUAQIEEECAA=</HashCode>
+      <FileName>ServerControls\Reporting\Web\COEReportSelector.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.Web.COEReportViewer" Collapsed="true">
+    <Position X="5.5" Y="16.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gACEMcAAAARAghAAACAAEAACAAACAAQAAAAAAEIALAg=</HashCode>
+      <FileName>ServerControls\Reporting\Web\COEReportViewer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.Win.COEReportViewer" Collapsed="true">
+    <Position X="5.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gJA0qRqC+bssnpEJADqABEAWCQUCIAoKUEgECsNFLAw=</HashCode>
+      <FileName>ServerControls\Reporting\Win\ReportPreviewer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.Win.COEReportSelector" Collapsed="true">
+    <Position X="5.75" Y="14.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAIICAACBEABAkQACBAAICABCBAgAIAUAQAEFEDAE=</HashCode>
+      <FileName>ServerControls\Reporting\Win\ReportSelectionUserControl.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.IReportViewer">
+    <Position X="2.75" Y="16.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAggAAACAAAAAAAAAAAAAAAAAAAAIAIAg=</HashCode>
+      <FileName>ServerControls\Reporting\IReportViewer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CambridgeSoft.COE.Framework.ServerControls.Reporting.IReportPicker">
+    <Position X="2.75" Y="12.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIIAAAAAEAAAEAAAAAAAAAAAAAAAAAUAAAAEACAA=</HashCode>
+      <FileName>ServerControls\Reporting\IReportPicker.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CambridgeSoft.COE.Framework.COEReportingService.COEReportType">
+    <Position X="0.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Reporting\BLL\COEReporting.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

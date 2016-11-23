@@ -1,0 +1,46 @@
+﻿SQLGenerated queries:
+--------------------------------------------------------------
+Query:
+SELECT 	INV_CONTAINERS.BARCODE, 
+				INV_COMPOUNDS.SUBSTANCE_NAME, 
+				INV_COMPOUNDS.BASE64_CDX, 
+				INV_CONTAINERS.DATE_EXPIRES, 
+				INV_CONTAINERS.CONTAINER_ID, 
+				CSCARTRIDGE.MolWeight('INV_COMPOUNDS.BASE64_CDX') 
+FROM INV_CONTAINERS c, 
+			INV_COMPOUNDS, 
+			COEHITLIST h 
+WHERE c.COMPOUND_ID_FK = INV_COMPOUNDS.COMPOUND_ID 
+			AND c.CONTAINER_ID(+) = h.ID 
+			AND (h.HITLISTID = :0)
+
+Parameters:
+Value: '343245'	 Type: Int
+--------------------------------------------------------------
+Query:
+SELECT INV_RESERVATIONS.DATE_RESERVED, 
+				INV_RESERVATIONS.QTY_RESERVED, 
+				INV_RESERVATIONS.USER_ID_FK 
+FROM 	INV_RESERVATIONS r, 
+			INV_CONTAINERS c, 
+			COEHITLIST h 
+WHERE r.CONTAINER_ID_FK(+) = c.CONTAINER_ID 
+			AND c.CONTAINER_ID(+) = h.ID 
+			AND (h.HITLISTID = :0)
+
+Parameters:
+Value: '343245'	 Type: Int
+--------------------------------------------------------------
+Query:
+SELECT INV_SYNONYMS.SUBSTANCE_NAME 
+FROM 	INV_SYNONYMS s, 
+			INV_COMPOUNDS, 
+			INV_CONTAINERS c, 
+			COEHITLIST h 
+WHERE s.COMPOUND_ID_FK(+) = INV_COMPOUNDS.COMPOUND_ID 
+			AND INV_COMPOUNDS.COMPOUND_ID = c.COMPOUND_ID_FK 
+			AND c.CONTAINER_ID(+) = h.ID AND (h.HITLISTID = :0)
+
+Parameters:
+Value: '343245'	 Type: Int
+--------------------------------------------------------------

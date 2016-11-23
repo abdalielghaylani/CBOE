@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+	<tables basetable="1">
+		<table id="1">
+			<literal>343245</literal>
+			<field id="1" />
+		</table>
+	</tables>
+</resultsCriteria>

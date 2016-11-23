@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+	<tables>
+		<table id="1">
+			<literal>*</literal>
+			<field fieldId="18" alias="eighteenth" orderById="3" direction="asc"/>
+			<field fieldId="19" alias="nineteenth" orderById="2" direction="desc"/>
+			<field fieldId="20" alias="Twentieth" orderById="1" direction="asc"/>
+		</table>
+	</tables>
+</resultsCriteria>
+

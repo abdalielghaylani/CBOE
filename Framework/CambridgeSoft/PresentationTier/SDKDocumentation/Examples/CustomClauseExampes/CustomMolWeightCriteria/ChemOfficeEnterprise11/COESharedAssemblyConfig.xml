@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="CustomMolWeightCriteria" publicKeyToken="0bdafb4837f0931b" culture="neutral"/>
+        <codeBase version="1.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\CustomMolWeightCriteria.dll"/>
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+</configuration>
