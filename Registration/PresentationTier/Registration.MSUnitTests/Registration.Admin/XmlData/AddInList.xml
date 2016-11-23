@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AddInsList>
+  <AddIns>
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.NormalizedStructureAddIn" friendlyName="Structure Normalization" required="no" enabled="no">
+      <Event eventName="Inserting" eventHandler="OnInsertHandler" />
+      <Event eventName="Updating" eventHandler="OnUpdateHandler" />
+      <AddInConfiguration>
+        <ScriptFile>C:\Program Files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\Registration\PythonScripts\parentscript.py</ScriptFile>
+        <!--Commented <PythonWebServiceURL> to bypass soap
+			<PythonWebServiceURL>http://localhost/PyEngine/Service.asmx</PythonWebServiceURL> -->
+        <StructuresIdsToAvoid>-2|-3|</StructuresIdsToAvoid>
+      </AddInConfiguration>
+    </AddIn>
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.SaltStripAddIn" friendlyName="Salt Stripping" required="no" enabled="no">
+      <Event eventName="Inserting" eventHandler="OnEventHandler" />
+      <AddInConfiguration>
+        <EditChemDrawing>true</EditChemDrawing>
+      </AddInConfiguration>
+    </AddIn>
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.StructureAggregationAddIn" friendlyName="Aggregate Structures" required="yes" enabled="yes">
+      <Event eventName="Inserting" eventHandler="OnInsertingHandler" />
+      <Event eventName="Updating" eventHandler="OnUpdatingHandler" />
+      <Event eventName="Saving" eventHandler="OnSavingHandler" />
+      <AddInConfiguration>
+        <NumberOfColumns>4</NumberOfColumns>
+      </AddInConfiguration>
+    </AddIn>
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.FindDuplicatesAddIn" friendlyName="Find Custom Field Duplicates" required="no" enabled="no">
+      <Event eventName="Registering" eventHandler="OnRegisteringHandler" />
+      <Event eventName="UpdatingPerm" eventHandler="OnUpdatingPermHandler" />
+      <AddInConfiguration />
+    </AddIn>
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.ChemDrawPropertyCalculationAddIn" friendlyName="ChemDraw Calculations" required="no" enabled="yes">
+      <Event eventName="Inserting" eventHandler="Calculate" />
+      <Event eventName="Updating" eventHandler="Calculate" />
+      <AddInConfiguration>
+        <Calculations>
+          <Calculation>
+            <Behavior>BatchProperty</Behavior>
+            <Transformation>MolecularFormula</Transformation>
+            <PropertyName>BATCH_FORMULA</PropertyName>
+            <DefaultText>NA</DefaultText>
+          </Calculation>
+          <Calculation>
+            <Behavior>BatchProperty</Behavior>
+            <Transformation>FormulaWeight</Transformation>
+            <PropertyName>FORMULA_WEIGHT</PropertyName>
+            <DefaultText />
+          </Calculation>
+          <Calculation>
+            <Behavior>BatchProperty</Behavior>
+            <Transformation>PercentActive</Transformation>
+            <PropertyName>PERCENT_ACTIVE</PropertyName>
+            <DefaultText />
+          </Calculation>
+          <Calculation>
+            <Behavior>StructureProperty</Behavior>
+            <Transformation>FindNameByStructure</Transformation>
+            <PropertyName>STRUCT_NAME</PropertyName>
+            <DefaultText>NA</DefaultText>
+          </Calculation>
+        </Calculations>
+      </AddInConfiguration>
+    </AddIn>
+  </AddIns>
+</AddInsList>

@@ -1,0 +1,162 @@
+<%@ Register TagPrefix="igtbar" Namespace="Infragistics.WebUI.UltraWebToolbar" Assembly="Infragistics2.WebUI.UltraWebToolbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<%@ Register TagPrefix="iglbar" Namespace="Infragistics.WebUI.UltraWebListbar" Assembly="Infragistics2.WebUI.UltraWebListbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebGrid.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.UltraWebGrid" TagPrefix="igtbl" %>
+<%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea" TagPrefix="uc2" %>
+
+
+
+<asp:Button runat="server" CssClass="ToolbarButton"/>
+<asp:Button SkinId="ButtonBig" runat="server" CssClass="ButtonBig"/>
+<asp:Button SkinId="ButtonXL" runat="server" CssClass="ButtonXL"/>
+<asp:Button SkinId="HyperLinkLike" runat="server" CssClass="HyperLinkLike"/>
+<asp:Button SkinId="compound" runat="server" CssClass="compound" />
+<asp:Button SkinId="mixture" runat="server" CssClass="mixture" />
+<asp:Button SkinId="review" runat="server" CssClass="review" />
+<asp:Button SkinId="search" runat="server" CssClass="search" />
+
+<asp:CheckBox runat="server" CssClass="CheckBox"/>
+<asp:Panel runat="server" SkinID="PanelLeft" CssClass="PanelLeft"/>
+<asp:TextBox runat="server" CssClass="WebTextEdit"/>
+<asp:DropDownList runat="server" CssClass=""/>
+<asp:LinkButton runat="server" CssClass="LinkButton" />
+
+
+<asp:Label runat="server" CssClass="Label"/>
+<asp:Label SkinId="LabelButtonXL" runat="server" CssClass="ButtonXL"/>
+<asp:Label runat="server" SkinId="PageTitleLabel" CssClass="ContentPageTitle"/>
+<asp:Label runat="server" SkinId="PageTitleLabelSmall" CssClass="ContentPageTitleSmall"/>
+<asp:Label runat="server" SkinId="LinkLabel" CssClass="LinkLabel"/>
+<asp:Label runat="server" SkinId="MessageLabel" CssClass="MessageLabel"/>
+<asp:Label runat="server" SkinId="ConfirmationMessageLabel" CssClass="ConfirmationMessages"/>
+<asp:Label runat="server" SkinId="ConfirmationMessagesRow" CssClass="ConfirmationMessagesRow"/>
+<asp:Label runat="server" SkinId="ErrorMessageLabel" CssClass="ErrorMessages"/>
+<asp:Label runat="server" SkinId="ErrorMessagesRow" CssClass="ErrorMessagesRow"/>
+<asp:Label runat="server" SkinId="CurrentUser" CssClass="CurrentUserText"/>
+<asp:Label runat="server" SkinId="MessagesAreaTextLabel" CssClass="MessagesAreaTextLabel"/>
+<asp:Label runat="server" SkinId="EmHid" CssClass="EmHid"/>
+<asp:Label runat="server" SkinId="Registration" CssClass="Registration"/>
+
+<asp:Image runat="server" SkinID="CustomBrand" CssClass="CustomBrand" />
+<asp:Image runat="server" SkinID="I24" CssClass="I24" />
+
+ <asp:HyperLink runat="server" SkinID="HItem" CssClass="HItem" />
+ 
+ <asp:LinkButton  runat="server" SkinId="MenuItem" CssClass="MenuItem"/>
+
+
+<uc2:MessagesArea runat="server" CssClass="MessagesArea"/>
+
+<igtbar:UltraWebToolbar BorderWidth="0" ItemPadding="0" ItemSpacing="0" runat="server" Height="20px">
+    <DefaultStyle CssClass="Menu"></DefaultStyle>
+    <HoverStyle CssClass="MenuHover"></HoverStyle>
+    <SelectedStyle CssClass="MenuSelected"></SelectedStyle>
+</igtbar:UltraWebToolbar>
+
+<ignav:UltraWebTree runat="server" Cursor="Hand">
+                <SelectedNodeStyle ForeColor="red" BackColor="#CCCCCC"></SelectedNodeStyle>
+                <NodePaddings Bottom="2px" Left="2px" Top="2px" Right="2px"></NodePaddings>
+                <Padding Top="6px"></Padding>
+                <Levels>
+                    <ignav:Level Index="0" LevelCheckBoxes="False"></ignav:Level>
+                    <ignav:Level Index="1"></ignav:Level>
+                </Levels>   
+</ignav:UltraWebTree>
+            
+<iglbar:UltraWebListbar runat="server">
+     <DefaultItemStyle CssClass="igwlbItemNormal"></DefaultItemStyle>
+     <DefaultItemHoverStyle CssClass="igwlbItemHover"></DefaultItemHoverStyle>
+     <DefaultItemSelectedStyle CssClass="igwlbItemSelected"></DefaultItemSelectedStyle>
+     <DefaultGroupStyle Height="100%" CssClass="igwlbGroupExplorerBarNormal"></DefaultGroupStyle>
+     <DefaultGroupHeaderAppearance>
+         <CollapsedAppearance Style-CssClass="igwlbExplorerBarHeaderCollapsed"></CollapsedAppearance>
+         <HoverAppearance Style-CssClass="igwlbExplorerBarHeaderHover"></HoverAppearance>
+         <ExpandedAppearance Style-CssClass="igwlbExplorerBarHeaderExpanded"></ExpandedAppearance>
+     </DefaultGroupHeaderAppearance>
+</iglbar:UltraWebListbar>
+
+<igtbl:UltraWebGrid runat="server">
+    <DisplayLayout AllowColSizingDefault="NotSet" AllowColumnMovingDefault="OnServer" AllowSortingDefault="Yes"
+     BorderCollapseDefault="Separate" HeaderClickActionDefault="SortSingle" Name="SubmittedCompoundsUltraWebGrid"
+     RowHeightDefault="20px" RowSelectorsDefault="No" SelectTypeRowDefault="Extended"
+     TableLayout="Fixed" Version="4.00" ViewType="OutlookGroupBy" CellClickActionDefault="RowSelect"
+     SelectTypeColDefault="Single" AutoGenerateColumns="False">
+     
+          <GroupByBox>
+                <BandLabelStyle></BandLabelStyle>
+                <Style CssClass="BandLabel"></Style>
+          </GroupByBox>
+          
+          <GroupByRowStyleDefault></GroupByRowStyleDefault>
+          <ActivationObject BorderColor="204, 237, 252">
+                <BorderDetails WidthLeft="0px" WidthRight="0px" />
+          </ActivationObject>
+          <FooterStyleDefault>
+                <BorderDetails/>
+          </FooterStyleDefault>
+          <RowStyleDefault BackColor="white" Height="20px" BorderStyle="Solid" BorderWidth="1px" BorderColor="#B3B3CC">
+                <BorderDetails/>
+                <Padding Left="6px" />
+          </RowStyleDefault>
+          <FilterOptionsDefault>
+                <FilterDropDownStyle CustomRules="overflow:auto;">
+                <Padding Left="2px" />
+                </FilterDropDownStyle>
+                <FilterHighlightRowStyle></FilterHighlightRowStyle>
+          </FilterOptionsDefault>
+          <RowSelectorStyleDefault></RowSelectorStyleDefault>
+          <SelectedRowStyleDefault>
+                <Padding Left="50px" />
+          </SelectedRowStyleDefault>
+          <HeaderStyleDefault CssClass="HeaderStyle">
+                <BorderDetails />
+                <Padding Left="5px" />
+          </HeaderStyleDefault>
+          <Images>
+                  <CurrentRowImage Url="Themes/Aero/ig_CurrentRow.gif" />
+                  <FixedHeaderOffImage Url="Themes/Aero/ig_tblFixedOff.gif" />
+                  <ExpandImage Url="Themes/Aero/ig_treeArrowPlus.png" />
+                  <FixedHeaderOnImage Url="Themes/Aero/ig_tblFixedOn.gif" />
+                  <CollapseImage Url="Themes/Aero/ig_treeArrowMinus.png" />
+          </Images>
+          <SelectedHeaderStyleDefault CssClass="SelectedHeaderStyle"></SelectedHeaderStyleDefault>
+          <EditCellStyleDefault>
+                  <BorderDetails ColorBottom="224, 224, 224" />
+                  <Margin Bottom="0px" Left="4px" Right="0px" Top="0px" />
+                  <Padding Bottom="0px" Left="2px" Right="0px" Top="0px" />
+          </EditCellStyleDefault>
+          
+          <FrameStyle CssClass="FrameStyle"></FrameStyle>
+          <FixedCellStyleDefault></FixedCellStyleDefault>
+          <Pager AllowPaging="True" PagerAppearance="Both" PageSize="10" AllowCustomPaging="True" StyleMode="PrevNext">
+                  <Style CssClass="FixedCellStyle">
+                        <BorderDetails ColorTop="White" WidthLeft="1px" WidthTop="1px" ColorLeft="White"></BorderDetails>
+                  </Style>
+          </Pager>
+          <AddNewBox Hidden="False">
+                  <Style BackColor="Window" BorderColor="InactiveCaption" BorderStyle="Solid" BorderWidth="1px">
+                        <BorderDetails ColorTop="White" WidthLeft="1px" WidthTop="1px" ColorLeft="White"></BorderDetails>
+                  </Style>
+          </AddNewBox>
+       </DisplayLayout>
+</igtbl:UltraWebGrid>
+
+
+<%-- Goto webMenu --%>
+<ignav:UltraWebMenu runat="server" SkinID="GoToUltraWebMenu">
+    <ExpandEffects ShadowColor="LightGray" Type="GradientWipe" />
+</ignav:UltraWebMenu>
+
+
+
+
+
+
+
+    
+
+ 
+    
+
+
+

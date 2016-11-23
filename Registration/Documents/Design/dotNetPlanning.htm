@@ -1,0 +1,608 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>New Page 2</title>
+</head>
+
+<body>
+
+<p align="center">Project Plan of Porting Registration System to .Net</p>
+
+<p align="center">-- draft 2</p>
+<p>7/14/2006</p>
+<p>Stored Procedures and Services refactored based on .Net meeting discussion. 
+Reflected below.</p>
+<p><a href="../../../../../Chemical_Registration/DotNet/PLSQL.htm">PL/SQL logic</a> </p>
+<p><a href="../../../../../Chemical_Registration/DotNet/PLSQLLogic.htm">business logic</a></p>
+<p>===========</p>
+<p>The tasks are listed in the order of dependency. The tasks listed on top 
+needs to be finished prior to the others.</p>
+<p>The plan does not cover the front end part yet. For the backend, the total 
+estimation is 33 days, which gives the feature complete to calendar day August 
+4.</p>
+<p>This is a very optimistic estimation though. Realistically end of September 
+sounds achievable to me. This estimation is only the Reg stored procedures and 
+web services without any dependency on core services. It does not include the 
+user interface front end either.</p>
+<p>&nbsp;</p>
+<ul>
+  <li><font color="#000080"><span style="background-color: #FFFFFF">Create the 
+  Stored Procedures based on the business logic</span></font></li>
+</ul>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber2">
+  <tr>
+    <td width="20%" align="center">Stored Procedure</td>
+    <td width="20%" align="center">Description</td>
+    <td width="20%" align="center">Estimation</td>
+    <td width="20%" align="center">Owner</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">PreRegisterCheck</td>
+    <td width="20%" bgcolor="#99CCFF">Check for duplicate before preregister</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">2?</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">Peter V./Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">PreRegister</td>
+    <td width="20%" bgcolor="#99CCFF">previous temp table concept</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">1?</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">Peter V./Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">EditPreRegistered</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">ApprovePreRegistered</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">1?</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">Peter V./Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">DeletePreRegistered</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">3?</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">Peter V./Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">PreRegisteredAssociateSalt</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">Register</td>
+    <td width="20%" bgcolor="#99CCFF">Move from preregister to register / 
+    register directly</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+    <td width="20%" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td width="20%">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">RegisterCheck</td>
+    <td width="20%" bgcolor="#99CCFF">Check for duplicate before register</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">EditRegistered</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">ApproveRegistered</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" bgcolor="#99CCFF">DeleteRegistered</td>
+    <td width="20%" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" align="center" bgcolor="#99CCFF">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%">RegisteredAssociateSalt</td>
+    <td width="20%">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%">&nbsp;</td>
+    <td width="20%">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%">BatchAssociateSalt</td>
+    <td width="20%">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+    <td width="20%" align="center">&nbsp;</td>
+  </tr>
+</table>
+<ul>
+  <li><font color="#000080">Create the web services</font></li>
+</ul>
+<p><span style="background-color: #99CCFF">must have</span></p>
+<p><span style="background-color: #99FF66">nice to have</span></p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="AutoNumber1" height="590">
+  <tr>
+    <td width="20%" height="66" align="center">Services/Web Services</td>
+    <td width="20%" height="66" align="center">Functions</td>
+    <td width="25%" height="66" align="center">Description</td>
+    <td width="15%" height="66" align="center">Estimation (days)</td>
+    <td width="20%" height="66" align="center">Owner</td>
+  </tr>
+  <tr>
+    <td width="20%" height="1" bgcolor="#99CCFF">PreRegisteredCompound<p>
+    (previous temp table concept)</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Check</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="18" bgcolor="#99CCFF">Check for duplicates</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">2</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="1" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="1" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Add</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="1" bgcolor="#99CCFF">Add a compound(s) to temp table</td>
+    <td width="15%" height="1" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="1" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="1" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="1" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Edit</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="1" bgcolor="#99CCFF">Edit a compound in temp table 
+    -- include add identifier?</td>
+    <td width="15%" height="1" align="center" bgcolor="#99CCFF">0.5</td>
+    <td width="20%" height="1" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="18" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    Approve</td>
+    <td width="25%" height="18" bgcolor="#99CCFF">Approve/disapprove compound(s) 
+    in temp table</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">&nbsp;0.5</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="18" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Delete</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="18" bgcolor="#99CCFF">Delete  compound(s) in temp 
+    table</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">0.5</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="18" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Register</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="18" bgcolor="#99CCFF">Move compound(s) from temp to 
+    perm</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="116" style="border-collapse:
+ collapse;width:87pt">
+      <colgroup>
+        <col width="116" style="width: 87pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="116" style="height: 13.2pt; width: 87pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        AssociateSalt</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Associate/Deassociate a salt to 
+    compound(es)</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="18" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    &nbsp;</td>
+    <td width="25%" height="18" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" height="18" bgcolor="#99CCFF">RegisteredCompound<p>(previous 
+    perm table concept)</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Add</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="18" bgcolor="#99CCFF">Add  compound(s) to permanent 
+    table directly</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">&nbsp;0.5</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="18" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    Edit</td>
+    <td width="25%" height="18" bgcolor="#99CCFF">Edit compound(s) in permanent 
+    table</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">&nbsp;1</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="18" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="18" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Approve</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="18" bgcolor="#99CCFF">Approve/Disapprove compound(s) 
+    in permanent table</td>
+    <td width="15%" height="18" align="center" bgcolor="#99CCFF">&nbsp;1</td>
+    <td width="20%" height="18" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="1" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="1" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Delete</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="1" bgcolor="#99CCFF">Delete compound(s) in permanent 
+    table</td>
+    <td width="15%" height="1" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="1" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="239" style="border-collapse:
+ collapse;width:179pt">
+      <colgroup>
+        <col width="239" style="width: 179pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="239" style="height: 13.2pt; width: 179pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Check</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Check fro duplicates</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">2</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">Batch</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="142" style="border-collapse:
+ collapse;width:106pt">
+      <colgroup>
+        <col width="142" style="width: 106pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="142" style="height: 13.2pt; width: 106pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Add</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Add  batch(es) to a compound</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="142" style="border-collapse:
+ collapse;width:106pt">
+      <colgroup>
+        <col width="142" style="width: 106pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="142" style="height: 13.2pt; width: 106pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Edit</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Edit the batch(es)</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="142" style="border-collapse:
+ collapse;width:106pt">
+      <colgroup>
+        <col width="142" style="width: 106pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="142" style="height: 13.2pt; width: 106pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Delete</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Delete batch(es)</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">0.5</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="116" style="border-collapse:
+ collapse;width:87pt">
+      <colgroup>
+        <col width="116" style="width: 87pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="116" style="height: 13.2pt; width: 87pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        AssociateSalt</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Associate/Deassociate a salt to batch(es)</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">Structure</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    Process</td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Process structure</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="142" style="border-collapse:
+ collapse;width:107pt">
+      <colgroup>
+        <col width="142" style="width: 107pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="142" style="height: 13.2pt; width: 107pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        ApplyChemScript</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Run a ChemScript to a molecule 
+    (including salt stripping)</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">Fragment</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="185" style="border-collapse:
+ collapse;width:139pt">
+      <colgroup>
+        <col width="185" style="width: 139pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="185" style="height: 13.2pt; width: 139pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Add</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Add fragment(s) include 
+    structure</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="185" style="border-collapse:
+ collapse;width:139pt">
+      <colgroup>
+        <col width="185" style="width: 139pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="185" style="height: 13.2pt; width: 139pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Edit</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Edit the fragment(s)</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">1</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="185" style="border-collapse:
+ collapse;width:139pt">
+      <colgroup>
+        <col width="185" style="width: 139pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="185" style="height: 13.2pt; width: 139pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        Delete</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99CCFF">Delete the fragment(s)</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">0.5</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    &nbsp;</td>
+    <td width="25%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99FF66">Mixture</td>
+    <td width="20%" height="22" bgcolor="#99FF66">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="121" style="border-collapse:
+ collapse;width:91pt">
+      <colgroup>
+        <col width="121" style="width: 91pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="121" style="height: 13.2pt; width: 91pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        AddComponent</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99FF66">
+    <span style="background-color: #99FF66">Add a component(compound or&nbsp; 
+    mixture) to a mixture</span></td>
+    <td width="15%" height="22" align="center" bgcolor="#99FF66">
+    <span style="background-color: #99FF66">2</span></td>
+    <td width="20%" height="22" bgcolor="#99FF66" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="19" bgcolor="#99FF66">&nbsp;</td>
+    <td width="20%" height="19" bgcolor="#99FF66">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="121" style="border-collapse:
+ collapse;width:91pt">
+      <colgroup>
+        <col width="121" style="width: 91pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="121" style="height: 13.2pt; width: 91pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        EditComponent</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="19" bgcolor="#99FF66">
+    <span style="background-color: #99FF66">Edit the component</span></td>
+    <td width="15%" height="19" align="center" bgcolor="#99FF66">
+    <span style="background-color: #99FF66">1</span></td>
+    <td width="20%" height="19" bgcolor="#99FF66" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99FF66">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99FF66">
+    <table x:str border="0" cellpadding="0" cellspacing="0" width="121" style="border-collapse:
+ collapse;width:91pt">
+      <colgroup>
+        <col width="121" style="width: 91pt">
+      </colgroup>
+      <tr height="18" style="height:13.2pt">
+        <td height="18" width="121" style="height: 13.2pt; width: 91pt; color: windowtext; font-size: 10.0pt; font-weight: 400; font-style: normal; text-decoration: none; font-family: Arial; text-align: general; vertical-align: bottom; white-space: nowrap; border: medium none; padding-left: 1px; padding-right: 1px; padding-top: 1px">
+        RemoveComponent</td>
+      </tr>
+    </table>
+    </td>
+    <td width="25%" height="22" bgcolor="#99FF66">
+    <span style="background-color: #99FF66">Remove the component</span></td>
+    <td width="15%" height="22" align="center" bgcolor="#99FF66">
+    <span style="background-color: #99FF66">1</span></td>
+    <td width="20%" height="22" bgcolor="#99FF66" align="center">Sunny</td>
+  </tr>
+  <tr>
+    <td width="20%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF">
+    &nbsp;</td>
+    <td width="25%" height="22" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="15%" height="22" align="center" bgcolor="#99CCFF">&nbsp;</td>
+    <td width="20%" height="22" bgcolor="#99CCFF" align="center">&nbsp;</td>
+  </tr>
+</table>
+<ul>
+  <li><font color="#000080">Front End</font></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp; Coming soon.</p>
+
+</body>
+
+</html>

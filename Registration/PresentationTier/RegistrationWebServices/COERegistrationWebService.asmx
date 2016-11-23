@@ -1,0 +1,1 @@
+<%@ WebService Language="C#" CodeBehind="COERegistrationWebService.cs" Class="CambridgeSoft.COE.Registration.WebServices.COERegistrationWebService" %>

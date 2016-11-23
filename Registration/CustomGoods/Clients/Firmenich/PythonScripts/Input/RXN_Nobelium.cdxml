@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE CDXML SYSTEM "http://www.cambridgesoft.com/xml/cdxml.dtd" >
+<CDXML
+ CreationProgram="ChemDraw 10.0"
+ Name="RXN_Nobelium.cdxml"
+ BoundingBox="136.17 92.48 363.91 137.32"
+ WindowPosition="0 0"
+ WindowSize="-2147483648 -2147483648"
+ WindowIsZoomed="yes"
+ FractionalWidths="yes"
+ InterpretChemically="yes"
+ ShowAtomQuery="yes"
+ ShowAtomStereo="no"
+ ShowAtomEnhancedStereo="yes"
+ ShowAtomNumber="no"
+ ShowBondQuery="yes"
+ ShowBondRxn="yes"
+ ShowBondStereo="no"
+ ShowTerminalCarbonLabels="no"
+ ShowNonTerminalCarbonLabels="no"
+ HideImplicitHydrogens="no"
+ LabelFont="3"
+ LabelSize="10"
+ LabelFace="96"
+ CaptionFont="4"
+ CaptionSize="12"
+ HashSpacing="2.7"
+ MarginWidth="2"
+ LineWidth="1"
+ BoldWidth="4"
+ BondLength="30"
+ BondSpacing="12"
+ ChainAngle="120"
+ LabelJustification="Auto"
+ CaptionJustification="Left"
+ PrintMargins="36 36 36 36"
+ MacPrintInfo="00030000025802580000000019641380FFCEFFE7199613D30367052803FC00020000025802580000000019641380000100640064000000010001010100000001270F000100010000000000000000000000000002001901900000000000600000000000000000000100000000000000000000000000000000"
+ FixInPlaceExtent="372.36 57.98"
+><colortable>
+<color r="1" g="1" b="1"/>
+<color r="0" g="0" b="0"/>
+<color r="1" g="0" b="0"/>
+<color r="1" g="1" b="0"/>
+<color r="0" g="1" b="0"/>
+<color r="0" g="1" b="1"/>
+<color r="0" g="0" b="1"/>
+<color r="1" g="0" b="1"/>
+<color r="0" g="0" b="0"/>
+<color r="0.7852" g="0" b="0"/>
+</colortable><fonttable>
+<font id="3" charset="iso-8859-1" name="Arial"/>
+<font id="4" charset="iso-8859-1" name="Times New Roman"/>
+</fonttable><page
+ id="1156"
+ BoundingBox="0 0 540 720"
+ HeaderPosition="36"
+ FooterPosition="36"
+ PrintTrimMarks="yes"
+ HeightPages="1"
+ WidthPages="1"
+><fragment
+ id="1107"
+ BoundingBox="308.36 95.69 363.91 133.04"
+><n
+ id="1104"
+ p="311.95 107.83"
+ Z="17"
+ Element="102"
+ NumHydrogens="0"
+ AS="N"
+><t
+ p="308.36 111.73"
+ BoundingBox="308.36 103.39 321.11 111.83"
+ LabelJustification="Left"
+ LabelAlignment="Left"
+><s font="3" size="10" face="96">No</s></t></n><n
+ id="1115"
+ p="354.75 102"
+ Z="19"
+ Element="102"
+ NumHydrogens="0"
+ AS="N"
+><t
+ p="351.16 105.9"
+ BoundingBox="351.16 97.56 363.91 106"
+ LabelJustification="Left"
+ LabelAlignment="Left"
+><s font="3" size="10" face="96">No</s></t></n><n
+ id="1119"
+ p="333.16 129.04"
+ Z="21"
+ Element="102"
+ NumHydrogens="0"
+ AS="N"
+><t
+ p="329.57 132.94"
+ BoundingBox="329.57 124.6 342.32 133.04"
+ LabelJustification="Left"
+ LabelAlignment="Left"
+><s font="3" size="10" face="96">No</s></t></n><b
+ id="1117"
+ Z="20"
+ B="1115"
+ E="1104"
+ Order="any"
+ BS="N"
+><objecttag
+ TagType="Unknown"
+ Name="query"
+><t
+ p="327.45 101.82"
+ BoundingBox="327.45 95.69 340.35 103.37"
+ CaptionLineHeight="variable"
+><s font="3" size="7.5">Any</s></t></objecttag></b><b
+ id="1120"
+ Z="22"
+ B="1119"
+ E="1104"
+ BS="N"
+/><b
+ id="1121"
+ Z="23"
+ B="1119"
+ E="1115"
+ BS="N"
+/></fragment><fragment
+ id="1127"
+ BoundingBox="136.17 92.48 198.91 137.32"
+><n
+ id="1128"
+ p="189.75 104.25"
+ Z="24"
+ color="10"
+ Element="102"
+ NumHydrogens="0"
+ AS="N"
+ AtomNumber="15"
+><t
+ p="186.16 108.15"
+ BoundingBox="186.16 99.81 198.91 108.25"
+ color="10"
+ LabelJustification="Left"
+ LabelAlignment="Left"
+><s font="3" size="10" color="10" face="96">No</s></t></n><n
+ id="1129"
+ p="139.76 99.24"
+ Z="25"
+ color="10"
+ Element="102"
+ NumHydrogens="0"
+ AS="N"
+ AtomNumber="16"
+><t
+ p="136.17 103.14"
+ BoundingBox="136.17 94.8 148.92 103.24"
+ color="10"
+ LabelJustification="Left"
+ LabelAlignment="Left"
+><s font="3" size="10" color="10" face="96">No</s></t></n><n
+ id="1130"
+ p="159.39 133.32"
+ Z="26"
+ color="10"
+ Element="16"
+ NumHydrogens="0"
+ AS="N"
+ AtomNumber="17"
+><t
+ p="156.03 137.22"
+ BoundingBox="156.03 128.76 162.68 137.32"
+ color="10"
+ LabelJustification="Left"
+><s font="3" size="10" color="10" face="96">S</s></t></n><b
+ id="41"
+ Z="27"
+ color="10"
+ B="1129"
+ E="1128"
+ Order="any"
+ BS="N"
+><objecttag
+ TagType="Unknown"
+ Name="query"
+><t
+ p="162.56 98.61"
+ BoundingBox="162.56 92.48 175.46 100.16"
+ color="10"
+ CaptionLineHeight="variable"
+><s font="3" size="7.5" color="10">Any</s></t></objecttag></b><b
+ id="42"
+ Z="28"
+ color="10"
+ B="1130"
+ E="1129"
+ BS="N"
+/><b
+ id="43"
+ Z="29"
+ color="10"
+ B="1128"
+ E="1130"
+ BS="N"
+/></fragment><graphic
+ id="1154"
+ SupersededBy="1157"
+ BoundingBox="278.35 113.63 218.35 113.63"
+ Z="18"
+ GraphicType="Line"
+ ArrowType="FullHead"
+ HeadSize="1500"
+/><scheme
+ id="1158"
+><step
+ id="1159"
+ ReactionStepReactants=" 1127"
+ ReactionStepProducts=" 1107"
+ ReactionStepArrows=" 1154"
+/></scheme><arrow
+ id="1157"
+ BoundingBox="218.35 109.13 278.35 117.38"
+ Z="18"
+ ArrowheadHead="Full"
+ ArrowheadType="Solid"
+ HeadSize="1500"
+ ArrowheadCenterSize="1313"
+ ArrowheadWidth="375"
+ Head3D="278.35 113.63 0"
+ Tail3D="218.35 113.63 0"
+ Center3D="387.53 171.07 0"
+ MajorAxisEnd3D="447.53 171.07 0"
+ MinorAxisEnd3D="387.53 306.52 0"
+/></page></CDXML>

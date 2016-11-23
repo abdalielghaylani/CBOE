@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="914" database="REGDB" dataviewid="4002">
+  <tables>
+    <table id="877" name="VW_TEMPORARYBATCH" alias="Temporary Batch" database="REGDB" primaryKey="912">
+      <fields id="878" name="BATCHNUMBER" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0"/>
+      <fields id="879" name="BOILINGPOINT" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="1"/>
+      <fields id="880" name="CHEMIST" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+      <fields id="881" name="CO" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3"/>
+      <fields id="882" name="COMMENTS" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4"/>
+      <fields id="883" name="COMPOUNDCOUNT" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="5"/>
+      <fields id="884" name="DATECREATED" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="6"/>
+      <fields id="885" name="DATEENTERED" alias="" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" sortOrder="7"/>
+      <fields id="886" name="DATELASTMODIFIED" alias="" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" sortOrder="8"/>
+      <fields id="887" name="DEGREEOFSUBSTITUTION" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="9"/>
+      <fields id="888" name="DELIVERYDATE" alias="" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" sortOrder="10"/>
+      <fields id="889" name="DENSITY" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="11"/>
+      <fields id="890" name="FIRPROJECTID" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="12"/>
+      <fields id="891" name="ITEMNUMBER" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="13"/>
+      <fields id="892" name="MELTINGPOINT" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="14"/>
+      <fields id="893" name="MN" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="15"/>
+      <fields id="894" name="MONOMERICCOMPOSITION" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="16"/>
+      <fields id="895" name="MW" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="17"/>
+      <fields id="896" name="NOTEBOOKREF" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="18"/>
+      <fields id="897" name="NUMANAL" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="19"/>
+      <fields id="898" name="NUMMS" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="20"/>
+      <fields id="899" name="OPTICALROTATION" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="21"/>
+      <fields id="900" name="PERSONCREATED" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="22"/>
+      <fields id="901" name="POLARITY" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="23"/>
+      <fields id="902" name="PROJECTXML" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="24"/>
+      <fields id="903" name="PURITY" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="25"/>
+      <fields id="904" name="RAMIFICATION" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="26"/>
+      <fields id="905" name="REFRACTIONINDEX" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="27"/>
+      <fields id="906" name="REMARKS" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="28"/>
+      <fields id="907" name="RETENTIONINDEX" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="29"/>
+      <fields id="908" name="SAMPLEID" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="30"/>
+      <fields id="909" name="SOLUBILITY" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="31"/>
+      <fields id="910" name="STATUSID" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="32"/>
+      <fields id="911" name="STRUCTUREAGGREGATION" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="33"/>
+      <fields id="912" name="TEMPBATCHID" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="34"/>
+      <fields id="913" name="WORKNUMBER" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="35"/>
+    </table>
+    <table id="914" name="VW_TEMPORARYCOMPOUND" alias="Temporary Compounds" database="REGDB" primaryKey="944">
+      <fields id="915" name="ARCTANDER" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0"/>
+      <fields id="916" name="BASE64_CDX" alias="" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" sortOrder="1"/>
+      <fields id="917" name="BATCHCOMPONENTCOMMENTS" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+      <fields id="918" name="CN" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3"/>
+      <fields id="919" name="COMMENTS" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4"/>
+      <fields id="920" name="COMPOUNDNAME" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="5"/>
+      <fields id="921" name="DATECREATED" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="6"/>
+      <fields id="922" name="DATELASTMODIFIED" alias="" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" sortOrder="7"/>
+      <fields id="923" name="ENPRODUCTID" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="8"/>
+      <fields id="924" name="EXACTMASS" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="9"/>
+      <fields id="925" name="FEMA" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="10"/>
+      <fields id="926" name="FORMULAWEIGHT" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="11"/>
+      <fields id="927" name="FRAGMENTXML" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="12"/>
+      <fields id="928" name="HISTORY" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="13"/>
+      <fields id="929" name="IDENTIFIERXML" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="14"/>
+      <fields id="930" name="LABEL" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="15"/>
+      <fields id="931" name="MOLECULARFORMULA" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="16"/>
+      <fields id="932" name="MSID" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="17"/>
+      <fields id="933" name="NORMALIZEDSTRUCTURE" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="18"/>
+      <fields id="934" name="OCURR" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="19"/>
+      <fields id="935" name="PATENT" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="20"/>
+      <fields id="936" name="PERCENTAGE" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="21"/>
+      <fields id="937" name="PERSONCREATED" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="22"/>
+      <fields id="938" name="PROJECTXML" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="23"/>
+      <fields id="939" name="RATIO" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="24"/>
+      <fields id="940" name="REGID" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="25"/>
+      <fields id="941" name="STEREO" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="26"/>
+      <fields id="942" name="STRUCTUREID" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="27"/>
+      <fields id="943" name="TEMPBATCHID" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="28"/>
+      <fields id="944" name="TEMPCOMPOUNDID" alias="" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="29"/>
+      <fields id="945" name="USENORMALIZATION" alias="" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="30"/>
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="943" childkey="912" parent="914" child="877" jointype="INNER"/>
+  </relationships>
+</COEDataView>

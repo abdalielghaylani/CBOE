@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" basetable="209" database="REGDB" dataviewid="4004" name="Log form for delete/register marked items" description="Log Delete/Register Marked" application="REGISTRATION" dataviewHandling="USE_SERVER_DATAVIEW" xmlns="COE.COEDataView">
+  <tables>
+    <table id="193" name="VW_LOG_BULKREGISTRATION_ID" alias="VW_LOG_BULKREGISTRATION_ID" database="REGDB" primaryKey="194">
+      <fields id="194" name="LOG_ID" dataType="INTEGER" alias="LOG_ID" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="195" name="DUPLICATE_ACTION" dataType="TEXT" alias="DUPLICATE_ACTION" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="196" name="DESCRIPTION" dataType="TEXT" alias="DESCRIPTION" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="197" name="USER_ID" dataType="TEXT" alias="USER_ID" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="198" name="DATETIME_STAMP" dataType="DATE" alias="DATETIME_STAMP" indexType="NONE" mimeType="NONE" visible="false" />
+    </table>
+    <table id="209" name="VW_LOG_BULKREGISTRATION" alias="VW_LOG_BULKREGISTRATION" database="REGDB" primaryKey="210">
+      <fields id="210" name="ID" dataType="INTEGER" alias="LOG_ID" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="211" name="LOG_ID" dataType="INTEGER" alias="LOG_ID" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="212" name="TEMP_ID" dataType="INTEGER" alias="TEMP_ID" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="213" name="ACTION" dataType="TEXT" alias="ACTION" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="214" name="REG_NUMBER" dataType="TEXT" alias="REG_NUMBER" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="215" name="BATCH_NUMBER" dataType="INTEGER" alias="BATCH_NUMBER" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="216" name="COMMENTS" dataType="TEXT" alias="COMMENTS" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="217" name="REG_NUMBER" dataType="TEXT" lookupFieldId="101" lookupDisplayFieldId="102" alias="AGGREGATEDSTRUCTURE" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="218" name="LOG_ID" dataType="TEXT" lookupFieldId="194" lookupDisplayFieldId="196" alias="DESCRIPTION" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="219" name="TEMP_ID" dataType="INTEGER" lookupFieldId="201" lookupDisplayFieldId="202" alias="STRUCTURE" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="220" name="TEMP_ID" dataType="INTEGER" lookupFieldId="201" lookupDisplayFieldId="203" alias="PERSONCREATED" indexType="NONE" mimeType="NONE" visible="false" />
+    </table>
+    <table id="1" name="VW_MIXTURE_REGNUMBER" alias="VW_MIXTURE_REGNUMBER" database="REGDB" primaryKey="100">
+      <fields id="101" name="REGNUMBER" dataType="TEXT" alias="REGNUMBER" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="102" name="STRUCTUREAGGREGATION" dataType="TEXT" alias="STRUCTUREAGGREGATION" indexType="CS_CARTRIDGE" mimeType="NONE" visible="false" />
+    </table>
+    <table id="2" name="VW_TEMPORARYBATCH" alias="VW_TEMPORARYBATCH" database="REGDB" primaryKey="200">
+      <fields id="201" name="TEMPBATCHID" dataType="INTEGER" alias="TEMPID" indexType="NONE" mimeType="NONE" visible="false"/>
+      <fields id="202" name="STRUCTUREAGGREGATION" dataType="TEXT" alias="STRUCTURE" indexType="NONE" mimeType="NONE" visible="false"/>
+      <fields id="203" name="PERSONCREATED" dataType="INTEGER" alias="PERSONCREATED" lookupFieldId="300" lookupDisplayFieldId="301"  indexType="NONE" mimeType="NONE" visible="false" />
+
+    </table>
+    <table id="3" name="PEOPLE" alias="PEOPLE" database="COEDB" primaryKey="300">
+      <fields id="300" name="PERSON_ID" dataType="INTEGER" alias="PERSON_ID" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="301" name="USER_ID" dataType="TEXT" alias="USER_ID" indexType="NONE" mimeType="NONE" visible="false" />
+      <fields id="303" name="USER_CODE" dataType="TEXT" alias="USER_CODE" indexType="NONE" mimeType="NONE" visible="false" />
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="194" childkey="211" parent="193" child="209" jointype="INNER" />
+    <relationship parentkey="214" childkey="101" parent="209" child="1" jointype="OUTER" />
+    <relationship parentkey="212" childkey="201" parent="209" child="2" jointype="OUTER" />
+    <relationship parentkey="300" childkey="203" parent="3" child="2" jointype="OUTER" />
+  </relationships>
+</COEDataView>

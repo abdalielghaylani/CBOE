@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="REGDB" name="Find Duplicates AddIn" description="Find duplicates example dataview to search by compound properties" application="REGISTRATION" dataviewHandling="USE_CLIENT_DATAVIEW" dataviewid="4008">
+	<tables>
+		<table id="1" name="VW_MIXTURE_STRUCTURE" alias="COMPOUND" database="REGDB" isView="0" primaryKey="10">
+			<fields id="10" name="MIXTURECOMPONENTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="MIXTURECOMPONENTID"/>
+			<fields id="11" name="MIXTUREID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="MIXTUREID"/>
+			<fields id="12" name="COMPOUNDID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="COMPOUNDID"/>
+			<fields id="13" name="REGNUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="REGNUMBER"/>
+		</table>
+		<table id="20" name="VW_MIXTURE_REGNUMBER" alias="MIXTURE" database="REGDB" isView="0" primaryKey="21">
+			<fields id="21" name="MIXTUREID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="MIXTUREID"/>
+			<fields id="22" name="REGID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="REGID"/>
+			<fields id="23" name="REGID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" lookupFieldId="61" lookupDisplayFieldId="62" alias="REGNUMBER"/>
+			<fields id="24" name="STRUCTUREAGGREGATION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="STRUCTUREAGGREGATION"/>
+		</table>
+		<table id="60" name="VW_REGISTRYNUMBER" alias="VW_REGISTRYNUMBER" database="REGDB" isView="0" primaryKey="61">
+			<fields id="61" name="REGID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="REGID"/>
+			<fields id="62" name="REGNUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="REGNUMBER"/>
+		</table>
+	</tables>
+	<relationships>
+		<relationship child="20" parent="1" childkey="21" parentkey="11" jointype="OUTER"/>
+	</relationships>
+</COEDataView>

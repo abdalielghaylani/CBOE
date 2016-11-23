@@ -1,0 +1,2762 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Label_Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="About_Title_Label" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AddBatch_Button_Text" xml:space="preserve">
+    <value>Add Batch</value>
+  </data>
+  <data name="AddComponent_Button_Text" xml:space="preserve">
+    <value>Add a new component</value>
+  </data>
+  <data name="AddComponent_Label_Text" xml:space="preserve">
+    <value>Submit a component for review by the Registrar.  Enter information for the component and it's first batch in the form provided. </value>
+  </data>
+  <data name="AddRecord_Label_Text" xml:space="preserve">
+    <value>Submit a mixture for review by the Registrar.  Mixtures must have more than one component.</value>
+  </data>
+  <data name="AddDuplicate_Button_Text" xml:space="preserve">
+    <value>Add Duplicate</value>
+  </data>
+  <data name="AddedBatch_Label_Text" xml:space="preserve">
+    <value>A batch ({0}) was successfully added.</value>
+  </data>
+  <data name="AddForm_Button_Text" xml:space="preserve">
+    <value>Add Form</value>
+  </data>
+  <data name="AddRegistryRecord_Page_Title" xml:space="preserve">
+    <value>Submit Mixture Registry</value>
+    <comment>AddRegistryRecord.aspx Title Page</comment>
+  </data>
+  <data name="AddComponentRecord_Page_Title" xml:space="preserve">
+    <value>Submit Component Registry</value>
+    <comment>AddRegistryRecord.aspx Title Page</comment>
+  </data>
+  <data name="AddMixtureRecord_Page_Title" xml:space="preserve">
+    <value>Submit Mixture Registry</value>
+    <comment>AddRegistryRecord.aspx Title Page</comment>
+  </data>
+  <data name="Back_Button_Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Batch_Prefix_Text" xml:space="preserve">
+    <value>Batch </value>
+  </data>
+  <data name="BatchAdded_Label_Text" xml:space="preserve">
+    <value>The Batch was added successfully</value>
+  </data>
+  <data name="BatchDetails_Page_Title" xml:space="preserve">
+    <value>Batch Details</value>
+  </data>
+  <data name="BatchDetailsTitle_Label_Text" xml:space="preserve">
+    <value>Batch Details Page</value>
+  </data>
+  <data name="BatchID_Label_Text" xml:space="preserve">
+    <value>Batch ID</value>
+  </data>
+  <data name="BeginProcessingMethod_Label_Text" xml:space="preserve">
+    <value>Begin {0}</value>
+  </data>
+  <data name="Cancel_Button_Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CheckDuplicates_Label_Text" xml:space="preserve">
+    <value>The component you are trying to register already exists. &lt;br&gt; Review the list of conflicts and choose whether to use an existing component or create a duplicate</value>
+  </data>
+  <data name="ChooseCompoundForm_Label_Text" xml:space="preserve">
+    <value>Choose a saved component form to load</value>
+  </data>
+  <data name="ChooseMixtureForm_Label_Text" xml:space="preserve">
+    <value>Choose a Template to load</value>
+  </data>
+  <data name="ClearForm_Button_Text" xml:space="preserve">
+    <value>Clear Form</value>
+  </data>
+  <data name="Close_Button_Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CompleteMixtureBatch_Label_Text" xml:space="preserve">
+    <value>Complete batch information</value>
+  </data>
+  <data name="Component_Prefix_Text" xml:space="preserve">
+    <value>Component Registry </value>
+  </data>
+  <data name="NewMixture_Prefix_Text" xml:space="preserve">
+    <value>New Mixture Registry</value>
+  </data>
+  <data name="ComponentDuplicates_URL" xml:space="preserve">
+    <value>~/Forms/ComponentDuplicates/ContentArea/ComponentDuplicates.aspx</value>
+  </data>
+  <data name="Compound_Prefix_Text" xml:space="preserve">
+    <value>Component Registry</value>
+  </data>
+  <data name="CompoundDetailsTitle_Label_Text" xml:space="preserve">
+    <value>Found Components</value>
+  </data>
+  <data name="CompoundID_Label_Text" xml:space="preserve">
+    <value>Component #</value>
+  </data>
+  <data name="CompoundSuccessfullySubmitted_Label_Text" xml:space="preserve">
+    <value>The component was submitted for review.</value>
+  </data>
+  <data name="MixtureSuccessfullySubmitted_Label_Text" xml:space="preserve">
+    <value>The mixture was submitted for review.</value>
+  </data>
+  <data name="RegistrySuccessfullySubmitted_Label_Text" xml:space="preserve">
+    <value>The registry record was submitted for review.</value>
+  </data>
+  <data name="ConfirmEditionChanges_MessageBox_Text" xml:space="preserve">
+    <value>Do you want to save changes?</value>
+  </data>
+  <data name="ConfirmEditionChanges_MessageBox_Title" xml:space="preserve">
+    <value>Saving confirmation</value>
+  </data>
+  <data name="ConfirmSelectedItemsDeletion_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete the selected items?</value>
+  </data>
+  <data name="Continue_Button_Text" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Continue_Label_Text" xml:space="preserve">
+    <value>Complete batch information and submit</value>
+  </data>
+  <data name="CurrentUser_Label_Text" xml:space="preserve">
+    <value>Current Login: </value>
+  </data>
+  <data name="Delete_Button_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteComponent_Button_Text" xml:space="preserve">
+    <value>Remove Component</value>
+  </data>
+  <data name="DeletedCompound_Label_Text" xml:space="preserve">
+    <value>The component was successfully deleted</value>
+  </data>
+  <data name="DeletedCompounds_Label_Text" xml:space="preserve">
+    <value>The component were successfully deleted</value>
+  </data>
+  <data name="DeletedMixture_Label_Text" xml:space="preserve">
+    <value>The mixture registry was successfully deleted</value>
+  </data>
+  <data name="DeletedMixtures_Label_Text" xml:space="preserve">
+    <value>The records were successfully deleted</value>
+  </data>
+  <data name="DeletedComponents_Label_Text" xml:space="preserve">
+    <value>The components were successfully deleted</value>
+  </data>
+  <data name="DeletedRegistry_Label_Text" xml:space="preserve">
+    <value>The record was successfully deleted</value>
+  </data>
+  <data name="DeletedRegistrys_Label_Text" xml:space="preserve">
+    <value>The registry records were successfully deleted</value>
+  </data>
+  <data name="DisplayCompund_Img_Alt" xml:space="preserve">
+    <value>Display Component Info</value>
+  </data>
+  <data name="DisplaySearch_Img_Alt" xml:space="preserve">
+    <value>Display Search Info</value>
+  </data>
+  <data name="Done_Button_Text" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="DoneAddingComponents_Button_Text" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="DuplicateAdded_Label_Text" xml:space="preserve">
+    <value>The Duplicate (Registry - {0}) was successfully added</value>
+  </data>
+  <data name="DuplicateBeingCreated_Msg_Text" xml:space="preserve">
+    <value>This structure already exists in the database but it is associated with other records.  If you wish to proceed with editing the current record, a duplicate component will be created.  Do you want to proceed?</value>
+  </data>
+  <data name="DuplicateBeingCreated_Msg_Title" xml:space="preserve">
+    <value>A duplicate is being created</value>
+  </data>
+  <data name="RegisterMarked_Duplicate_RadioButton_Text" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="DuplicatedRecords_Label_Text" xml:space="preserve">
+    <value>Duplicated Records</value>
+  </data>
+  <data name="DuplicatedRecords_Page_Title" xml:space="preserve">
+    <value>Duplicated Records</value>
+  </data>
+  <data name="DuplicatedComponents_Label_Text" xml:space="preserve">
+    <value>Duplicated Components</value>
+  </data>
+  <data name="DuplicatedComponents_Page_Title" xml:space="preserve">
+    <value>Duplicated Components</value>
+  </data>
+  <data name="DuplicatedMixtures_Label_Text" xml:space="preserve">
+    <value>Duplicated Mixtures</value>
+  </data>
+  <data name="DuplicatedMixtures_Page_Title" xml:space="preserve">
+    <value>Duplicated Mixtures</value>
+  </data>
+  <data name="DuplicatePager_Label_Text" xml:space="preserve">
+    <value>Viewing Duplicate {0} of {1}</value>
+  </data>
+  <data name="DuplicatesExisting_Msg_Text" xml:space="preserve">
+    <value>There are duplicates of this component, click OK to check them.</value>
+  </data>
+  <data name="DuplicatesFound_Msg_Text" xml:space="preserve">
+    <value>Duplicates were found</value>
+  </data>
+  <data name="Edit_Button_Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditCompound_Label_Text" xml:space="preserve">
+    <value>Edit This Component</value>
+  </data>
+  <data name="EditedBatch_Label_Text" xml:space="preserve">
+    <value>A batch ({0}) was successfully updated</value>
+  </data>
+  <data name="EditedCompound_Label_Text" xml:space="preserve">
+    <value>The component (Registry - {0}) was succesfully updated</value>
+  </data>
+  <data name="EditedMixture_Label_Text" xml:space="preserve">
+    <value>The mixture ({0}) was succesfully updated</value>
+  </data>
+  <data name="EditedRecord_Label_Text" xml:space="preserve">
+    <value>The registry record ({0}) was succesfully updated</value>
+  </data>
+  <data name="EditedComponent_Label_Text" xml:space="preserve">
+    <value>The component ({0}) was succesfully updated</value>
+  </data>
+  <data name="EditedTemporaryCompound_Label_Text" xml:space="preserve">
+    <value>The temporary record ({0}) was succesfully updated</value>
+  </data>
+  <data name="EditedTemporaryMixture_Label_Text" xml:space="preserve">
+    <value>The temporary mixture registry ( {0}) was succesfully updated</value>
+  </data>
+  <data name="EditedTemporaryRecord_Label_Text" xml:space="preserve">
+    <value>The temporary registry ( {0}) was succesfully updated</value>
+  </data>
+  <data name="EditedTemporaryComponent_Label_Text" xml:space="preserve">
+    <value>The temporary component registry ( {0}) was succesfully updated</value>
+  </data>
+  <data name="EditMixture_Label_Text" xml:space="preserve">
+    <value>Edit Mixture</value>
+  </data>
+  <data name="EditRecord_Label_Text" xml:space="preserve">
+    <value>Edit Record</value>
+  </data>
+  <data name="EditComponent_Label_Text" xml:space="preserve">
+    <value>Edit Component</value>
+  </data>
+  <data name="EndProcessingMethod_Label_Text" xml:space="preserve">
+    <value>End {0}</value>
+  </data>
+  <data name="ErrorMessage_Label_Text" xml:space="preserve">
+    <value>An error has occurred.&lt;BR&gt;Please go back and try again.</value>
+  </data>
+  <data name="ErrorMessage_WebPanelHeader_Text" xml:space="preserve">
+    <value>The following errors were found:</value>
+  </data>
+  <data name="FileBuildVersion_Label_Text" xml:space="preserve">
+    <value>version: </value>
+  </data>
+  <data name="FormAdded_Label_Text" xml:space="preserve">
+    <value>The Form was added successfully</value>
+  </data>
+  <data name="FormDescription_Label_Text" xml:space="preserve">
+    <value>Template Description</value>
+  </data>
+  <data name="FormInstructions_Label_Text" xml:space="preserve">
+    <value>Fill the form info to save it</value>
+  </data>
+  <data name="FormName_Label_Text" xml:space="preserve">
+    <value>Template Name</value>
+  </data>
+  <data name="GoBack_Label_Text" xml:space="preserve">
+    <value>Go Back</value>
+  </data>
+  <data name="GoTo_MenuItem_Text" xml:space="preserve">
+    <value>Go To</value>
+  </data>
+  <data name="Help_Label_Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_Title_Label" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Home_Page_Title" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="Home_URL" xml:space="preserve">
+    <value>~/Forms/Public/ContentArea/Home.aspx</value>
+  </data>
+  <data name="HomeIntro_Label_Text" xml:space="preserve">
+    <value>To begin each task, you can either expand the appropriate panel on the left,&lt;br /&gt; or simply click one of the links below.</value>
+  </data>
+  <data name="HomeTitle_Label_Text" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="ID_Label_Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="InvalidPage_Label_Text" xml:space="preserve">
+    <value>Invalid Page</value>
+  </data>
+  <data name="InvalidPageDetailed_Label_Text" xml:space="preserve">
+    <value>Invalid Page (Details)</value>
+  </data>
+  <data name="Load_Button_Text" xml:space="preserve">
+    <value>Load Template</value>
+  </data>
+  <data name="LoadCompoundForm_Label_Text" xml:space="preserve">
+    <value>Load a saved registry</value>
+  </data>
+  <data name="LoadCompoundForm_Page_Title" xml:space="preserve">
+    <value>Load a saved registry</value>
+  </data>
+  <data name="LoadMixtureForm_Page_Title" xml:space="preserve">
+    <value>Load Template</value>
+  </data>
+  <data name="LoadRegistryForm_Page_URL" xml:space="preserve">
+    <value>~/Forms/SubmitRecord/ContentArea/LoadMixtureForm.aspx</value>
+  </data>
+  <data name="Messages_Page_Title" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Messages_Title_Label" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="MixtureDetails_Page_Title" xml:space="preserve">
+    <value>Mixture Details Page</value>
+  </data>
+  <data name="MixtureDetailsTitle_Label_Text" xml:space="preserve">
+    <value>Mixture Details</value>
+  </data>
+  <data name="ComponentDetails_Page_Title" xml:space="preserve">
+    <value>Component Details Page</value>
+  </data>
+  <data name="ComponentDetailsTitle_Label_Text" xml:space="preserve">
+    <value>Component Details</value>
+  </data>
+  <data name="RegistryDetails_Page_Title" xml:space="preserve">
+    <value>Record Details Page</value>
+  </data>
+  <data name="RegistryDetailsTitle_Label_Text" xml:space="preserve">
+    <value>Record Details</value>
+  </data>
+  <data name="MixtureDuplicatesExisting_Msg_Text" xml:space="preserve">
+    <value>There are duplicates of this mixture, review the conflicts and select the action.</value>
+  </data>
+  <data name="MixtureDuplicatesExistingPreReg_Msg_Text" xml:space="preserve">
+    <value>There are duplicates of this mixture, review the conflicts and select the action and enter submitter comments.</value>
+  </data>
+  <data name="RecordDuplicatesExisting_Msg_Text" xml:space="preserve">
+    <value>There are duplicates of this record, review the conflicts and select the action.</value>
+  </data>
+  <data name="MixtureDuplicatesExisting_Msg_Title" xml:space="preserve">
+    <value>There are duplicates of this record</value>
+  </data>
+  <data name="RegistryDuplicatesExisting_Msg_Title" xml:space="preserve">
+    <value>There are duplicates of this record</value>
+  </data>
+  <data name="ComponentDuplicatesExisting_Msg_Title" xml:space="preserve">
+    <value>There are duplicates of this component</value>
+  </data>
+  <data name="Mixtures_Label_Text" xml:space="preserve">
+    <value>Mixtures</value>
+  </data>
+  <data name="Records_Label_Text" xml:space="preserve">
+    <value>Records</value>
+  </data>
+  <data name="Components_Label_Text" xml:space="preserve">
+    <value>Components</value>
+  </data>
+  <data name="MixtureSuccessfullySubmited_Label_Text" xml:space="preserve">
+    <value>The mixture was submitted for review</value>
+  </data>
+  <data name="ComponentSuccessfullySubmited_Label_Text" xml:space="preserve">
+    <value>The component was submitted for review</value>
+  </data>
+  <data name="RegistrySuccessfullySubmited_Label_Text" xml:space="preserve">
+    <value>The record was submitted for review</value>
+  </data>
+  <data name="MultiComponent_Label_Text" xml:space="preserve">
+    <value>Multi Component</value>
+  </data>
+  <data name="New_Prefix_Text" xml:space="preserve">
+    <value>New </value>
+  </data>
+  <data name="NewBatch_Prefix_Text" xml:space="preserve">
+    <value>New Batch</value>
+  </data>
+  <data name="NewComponent_PrefixTitle_Text" xml:space="preserve">
+    <value>New Component Registry</value>
+  </data>
+  <data name="NewComponent_Prefix_Text" xml:space="preserve">
+    <value>New Component</value>
+  </data>
+  <data name="NewComponentNode_Text" xml:space="preserve">
+    <value>New Component</value>
+  </data>
+  <data name="NewMixtureComponentNode_Text" xml:space="preserve">
+    <value>Pick Component</value>
+  </data>
+  <data name="NewMixtureComponentNode_ToolTip" xml:space="preserve">
+    <value>Click to pick an existing component</value>
+  </data>
+  <data name="NewCompound_Button_Text" xml:space="preserve">
+    <value>New Component</value>
+  </data>
+  <data name="NewCompound_Prefix_Text" xml:space="preserve">
+    <value>New Component Registry</value>
+  </data>
+  <data name="NewRegistry_Prefix_Text" xml:space="preserve">
+    <value>New Mixture</value>
+  </data>
+  <data name="Next_Button_Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="No_Button_Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoEnoughPrivileges_Label_Text" xml:space="preserve">
+    <value>Sorry, but you are not allowed to browse this page.</value>
+  </data>
+  <data name="NoHits_Label_Text" xml:space="preserve">
+    <value>No hits were found</value>
+  </data>
+  <data name="NoRecordsFound_Label_Text" xml:space="preserve">
+    <value>No Records Found. Please, try again.</value>
+  </data>
+  <data name="NoSelectedItems_Alert_Text" xml:space="preserve">
+    <value>In order to delete an item you should first select it</value>
+  </data>
+  <data name="OK_Button_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OverwriteForm_Msg_Text" xml:space="preserve">
+    <value>Do you want to overwrite uploaded form?</value>
+  </data>
+  <data name="OverwriteForm_Msg_Title" xml:space="preserve">
+    <value>Overwrite confirmation</value>
+  </data>
+  <data name="PageNotFound_Label_Text" xml:space="preserve">
+    <value>Page Not Found. Please, try again.</value>
+  </data>
+  <data name="PatentNumber_Label_Text" xml:space="preserve">
+    <value>Patent Number</value>
+  </data>
+  <data name="PercentageFormat_Error_Text" xml:space="preserve">
+    <value>Invalid Percentage: Format ###{0}##</value>
+  </data>
+  <data name="PercentageTable_Error_Text" xml:space="preserve">
+    <value>Invalid entered value/s in Percentages Table. Please, review the entered field/s and try again.</value>
+  </data>
+  <data name="Previous_Button_Text" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="PublicForm_CheckBox_Text" xml:space="preserve">
+    <value>Public Template</value>
+  </data>
+  <data name="ReccordsAffected_MessageBox_Caption" xml:space="preserve">
+    <value>Records affected: $records. Continue anyway?</value>
+  </data>
+  <data name="ReccordsAffected_MessageBox_Title" xml:space="preserve">
+    <value>There are several registrations affected.</value>
+  </data>
+  <data name="Register_Button_Text" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RegisterCompound_Label_Text" xml:space="preserve">
+    <value>Register this Component</value>
+  </data>
+  <data name="RegisterCompound_Page_Title" xml:space="preserve">
+    <value>Register Component</value>
+    <comment>RegisterCompound.aspx Title Page</comment>
+  </data>
+  <data name="RegisterCompoundTitle_Label_Text" xml:space="preserve">
+    <value>Add Component Input Form</value>
+  </data>
+  <data name="RegisteredMixture_Label_Text" xml:space="preserve">
+    <value>The mixture (&lt;a href="../../ViewMixture/ContentArea/ViewMixture.aspx?RegisteredObjectId={0}"&gt;{0}&lt;/a&gt;) was successfully registered</value>
+  </data>
+  <data name="RegisteredRecord_Label_Text" xml:space="preserve">
+    <value>The record (&lt;a href="../../ViewMixture/ContentArea/ViewMixture.aspx?RegisteredObjectId={0}"&gt;{0}&lt;/a&gt;) was successfully registered</value>
+  </data>
+  <data name="RegisteredComponent_Label_Text" xml:space="preserve">
+    <value>The component (&lt;a href="../../ViewMixture/ContentArea/ViewMixture.aspx?RegisteredObjectId={0}"&gt;{0}&lt;/a&gt;) was successfully registered</value>
+  </data>
+  <data name="RegisterRecord_Label_Text" xml:space="preserve">
+    <value>Review and/or edit the temporary record before submitting it for final registration</value>
+  </data>
+  <data name="RegisterMixture_Label_Text" xml:space="preserve">
+    <value>Review and/or edit the temporary mixture before submitting it for final registration</value>
+  </data>
+  <data name="RegisterRegistry_Label_Text" xml:space="preserve">
+    <value>Review and/or edit the temporary record before submitting it for final registration</value>
+  </data>
+  <data name="RegisterComponent_Label_Text" xml:space="preserve">
+    <value>Review and/or edit the temporary component before submitting it for final registration</value>
+  </data>
+  <data name="RegisterMixture_Page_Title" xml:space="preserve">
+    <value>Register Mixture Page</value>
+  </data>
+  <data name="RegisterComponent_Page_Title" xml:space="preserve">
+    <value>Register Component Page</value>
+  </data>
+  <data name="RegisterRegistry_Page_Title" xml:space="preserve">
+    <value>Register Record Page</value>
+  </data>
+  <data name="RegisterMixtureTitle_Label_Text" xml:space="preserve">
+    <value>Register Mixture</value>
+  </data>
+  <data name="RegisterComponentTitle_Label_Text" xml:space="preserve">
+    <value>Register Component</value>
+  </data>
+  <data name="RegisterRegistryTitle_Label_Text" xml:space="preserve">
+    <value>Register Record</value>
+  </data>
+  <data name="RegistrationNumber_Label_Text" xml:space="preserve">
+    <value>Registration #</value>
+  </data>
+  <data name="Registry_Prefix_Text" xml:space="preserve">
+    <value>Registry </value>
+  </data>
+  <data name="Mixture_Prefix_Text" xml:space="preserve">
+    <value>Mixture Registry</value>
+  </data>
+  <data name="RegistryDuplicates_Page_URL" xml:space="preserve">
+    <value>~/Forms/RegistryDuplicates/ContentArea/RegistryDuplicates.aspx</value>
+  </data>
+  <data name="ReviewRecord_MenuItem_Text" xml:space="preserve">
+    <value>Review Register</value>
+  </data>
+  <data name="ReviewRecord_MenuItem_Tooltip" xml:space="preserve">
+    <value>Review Register a record </value>
+  </data>
+  <data name="ReviewRegisterRecord_Link_Text" xml:space="preserve">
+    <value>Review or Register</value>
+  </data>
+  <data name="ReviewMixture_MenuItem_Text" xml:space="preserve">
+    <value>Review Register Mixture</value>
+  </data>
+  <data name="ReviewMixture_MenuItem_Tooltip" xml:space="preserve">
+    <value>Review Register a mixture </value>
+  </data>
+  <data name="ReviewRegisterMixture_Link_Text" xml:space="preserve">
+    <value>Review or Register Mixture</value>
+  </data>
+  <data name="ReviewComponent_MenuItem_Text" xml:space="preserve">
+    <value>Review Register Component</value>
+  </data>
+  <data name="ReviewComponent_MenuItem_Tooltip" xml:space="preserve">
+    <value>Review Register a component </value>
+  </data>
+  <data name="ReviewRegisterComponent_Link_Text" xml:space="preserve">
+    <value>Review or Register a Component</value>
+  </data>
+  <data name="ReviewRegister_Page_Title" xml:space="preserve">
+    <value>Record Selector</value>
+  </data>
+  <data name="ReviewRegisterMixture_Page_Title" xml:space="preserve">
+    <value>Review/Register Mixture</value>
+  </data>
+  <data name="ReviewRegisterComponent_Page_Title" xml:space="preserve">
+    <value>Review/Register Component</value>
+  </data>
+  <data name="ReviewRegisterEditMixture_Page_Title" xml:space="preserve">
+    <value>Edit Temporary Mixture</value>
+  </data>
+  <data name="ReviewRegisterEditRecord_Page_Title" xml:space="preserve">
+    <value>Edit Temporary Registry</value>
+  </data>
+  <data name="ReviewRegisterEditComponent_Page_Title" xml:space="preserve">
+    <value>Edit Temporary Component</value>
+  </data>
+  <data name="ReviewRegister_URL" xml:space="preserve">
+    <value>~/Forms/ReviewRegister/ContentArea/ReviewRegisterMixture.aspx</value>
+  </data>
+  <data name="ReviewRegisterDescription_Label_Text" xml:space="preserve">
+    <value>Review submitted records and submit them for registration</value>
+  </data>
+  <data name="ReviewRegisterRegistry_Page_Title" xml:space="preserve">
+    <value>Temporary Record Registry</value>
+  </data>
+  <data name="ReviewRegisterRecord_Page_Title" xml:space="preserve">
+    <value>Review/Register Record</value>
+  </data>
+  <data name="ReviewRegisterSearch_Page_Title" xml:space="preserve">
+    <value>Component Selector</value>
+  </data>
+  <data name="ReviewRegisterSearch_URL" xml:space="preserve">
+    <value>~/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx</value>
+  </data>
+  <data name="ReviewRegisterUCTitle_Label_Text" xml:space="preserve">
+    <value>Select a record to review</value>
+  </data>
+  <data name="Save_Button_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveCompoundForm_Page_Title" xml:space="preserve">
+    <value>Save Template</value>
+  </data>
+  <data name="SavedCompound_Label_Text" xml:space="preserve">
+    <value>The component (Name {0}) was successfully saved</value>
+  </data>
+  <data name="SavedRecord_Label_Text" xml:space="preserve">
+    <value>The record (Name {0}) was successfully saved </value>
+  </data>
+  <data name="SavedMixture_Label_Text" xml:space="preserve">
+    <value>The mixture (Name {0}) was successfully saved </value>
+  </data>
+  <data name="SavedComponent_Label_Text" xml:space="preserve">
+    <value>The component (Name {0}) was successfully saved </value>
+  </data>
+  <data name="SaveRegistryForm_Page_URL" xml:space="preserve">
+    <value>~/Forms/SubmitRecord/ContentArea/SaveMixtureForm.aspx</value>
+  </data>
+  <data name="Search_Button_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search_Label_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search_Link_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search_MenuItem_Text" xml:space="preserve">
+    <value>Search Registry</value>
+  </data>
+  <data name="Search_MenuItem_Tooltip" xml:space="preserve">
+    <value>Search a registry</value>
+  </data>
+  <data name="SearchComponent_Button_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchComponent_Label_Text" xml:space="preserve">
+    <value>Find an existing component to associated with this record</value>
+  </data>
+  <data name="SearchComponent_Page_Title" xml:space="preserve">
+    <value>Select component</value>
+  </data>
+  <data name="SearchCompound_Button_Text" xml:space="preserve">
+    <value>Search Component</value>
+  </data>
+  <data name="SearchCompound_Label_Text" xml:space="preserve">
+    <value>Search Component</value>
+  </data>
+  <data name="SearchCompound_Page_URL" xml:space="preserve">
+    <value>~/Forms/SubmitRecord/ContentArea/SearchCompound.aspx</value>
+  </data>
+  <data name="SearchDescription_Label_Text" xml:space="preserve">
+    <value>Retrieve and view registered records</value>
+  </data>
+  <data name="SearchMixture_Label_Text" xml:space="preserve">
+    <value>Search Registry</value>
+  </data>
+  <data name="SearchRegistryRecord_Label_Text" xml:space="preserve">
+    <value>Search </value>
+  </data>
+  <data name="SearchRegistryRecord_Page_Title" xml:space="preserve">
+    <value>Search </value>
+  </data>
+  <data name="SearchRegistryUCTitle_Label_Text" xml:space="preserve">
+    <value>Search Registry</value>
+  </data>
+  <data name="SecuenceID_Label_Text" xml:space="preserve">
+    <value>Sequence #</value>
+  </data>
+  <data name="SecuenceNumber_Label_Text" xml:space="preserve">
+    <value>Sequence #</value>
+  </data>
+  <data name="Select_Button_Text" xml:space="preserve">
+    <value>Pick an existing component</value>
+  </data>
+  <data name="SelectAll_Button_Text" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="Settings_MenuItem_Text" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Settings_MenuItem_Tooltip" xml:space="preserve">
+    <value>Settings Tooltip</value>
+  </data>
+  <data name="SingleComponent_Label_Text" xml:space="preserve">
+    <value>Single Component</value>
+  </data>
+  <data name="SingleCompounds_Label_Text" xml:space="preserve">
+    <value>Single Component</value>
+  </data>
+  <data name="Skip_Button_Text" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="StructureID_Label_Text" xml:space="preserve">
+    <value>Structure #</value>
+  </data>
+  <data name="Submit_Button_Text" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SubmitforReview_Label_Text" xml:space="preserve">
+    <value>Submit For Review</value>
+  </data>
+  <data name="SubmitMixture_Page_Title" xml:space="preserve">
+    <value>Submit Mixture</value>
+  </data>
+  <data name="SubmitRecord_Page_Title" xml:space="preserve">
+    <value>Submit Mixture</value>
+  </data>
+  <data name="SubmitComponent_Page_Title" xml:space="preserve">
+    <value>Submit Component</value>
+  </data>
+  <data name="SubmitRecord_URL" xml:space="preserve">
+    <value>~/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx</value>
+  </data>
+  <data name="SubmitMixture_URL" xml:space="preserve">
+    <value>~/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx</value>
+  </data>
+  <data name="SubmitComponent_URL" xml:space="preserve">
+    <value>~/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx</value>
+  </data>
+  <data name="SubmitRecord_Link_Text" xml:space="preserve">
+    <value>Submit Mixture</value>
+  </data>
+  <data name="SubmitComponent_Link_Text" xml:space="preserve">
+    <value>Submit Component</value>
+  </data>
+  <data name="SubmitMixture_Link_Text" xml:space="preserve">
+    <value>Submit Mixture</value>
+  </data>
+  <data name="SubmitRecord_MenuItem_Text" xml:space="preserve">
+    <value>Submit New Mixture</value>
+  </data>
+  <data name="SubmitComponent_MenuItem_Text" xml:space="preserve">
+    <value>Submit New Component</value>
+  </data>
+  <data name="SubmitMixture_MenuItem_Text" xml:space="preserve">
+    <value>Submit New Mixture</value>
+  </data>
+  <data name="SubmitRecord_MenuItem_Tooltip" xml:space="preserve">
+    <value>Submit a new Record </value>
+  </data>
+  <data name="SubmitComponent_MenuItem_Tooltip" xml:space="preserve">
+    <value>Submit a new Component </value>
+  </data>
+  <data name="SubmitMixture_MenuItem_Tooltip" xml:space="preserve">
+    <value>Submit a new Mixture </value>
+  </data>
+  <data name="SubmitRecordDescription_Label_Text" xml:space="preserve">
+    <value>Add a record to be reviewed by the Registrar</value>
+  </data>
+  <data name="SubmitComponentDescription_Label_Text" xml:space="preserve">
+    <value>Add a component to be reviewed by the Registrar</value>
+  </data>
+  <data name="SubmitMixtureDescription_Label_Text" xml:space="preserve">
+    <value>Add a mixture to be reviewed by the Registrar</value>
+  </data>
+  <data name="SubmittedMixture_Label_Text" xml:space="preserve">
+    <value>The temporary mixture (&lt;a href="../../ReviewRegister/ContentArea/ReviewRegisterMixture.aspx?SubmittedObjectId={0}"&gt;{0}&lt;/a&gt;) was successfully submitted</value>
+  </data>
+  <data name="SubmittedComponent_Label_Text" xml:space="preserve">
+    <value>The temporary component (&lt;a href="../../ReviewRegister/ContentArea/ReviewRegisterMixture.aspx?SubmittedObjectId={0}"&gt;{0}&lt;/a&gt;) was successfully submitted</value>
+  </data>
+  <data name="SubmittedRecord_Label_Text" xml:space="preserve">
+    <value>The temporary mixture (&lt;a href="../../ReviewRegister/ContentArea/ReviewRegisterMixture.aspx?SubmittedObjectId={0}"&gt;{0}&lt;/a&gt;) was successfully submitted</value>
+  </data>
+  <data name="TableEditor_Link_Text" xml:space="preserve">
+    <value>Manage Customizable Tables</value>
+  </data>
+  <data name="TableEditor_MenuItem_Text" xml:space="preserve">
+    <value>Table Editor</value>
+  </data>
+  <data name="TableEditor_MenuItem_Tooltip" xml:space="preserve">
+    <value>Table Editor tooltip</value>
+  </data>
+  <data name="TableEditor_URL" xml:space="preserve">
+    <value>~/Forms/TableEditor/ContentArea/TableEditor.aspx</value>
+  </data>
+  <data name="TableEditorDescription_Label_Text" xml:space="preserve">
+    <value>Browse, edit, add or delete records of a table.</value>
+  </data>
+  <data name="TemporalBatch_Prefix_Text" xml:space="preserve">
+    <value>Temp Batch</value>
+  </data>
+  <data name="TemporalComponent_Prefix_Text" xml:space="preserve">
+    <value>Temporary Component</value>
+  </data>
+  <data name="TemporalID_Label_Text" xml:space="preserve">
+    <value>Temporary ID</value>
+  </data>
+  <data name="TemporalRegistry_Prefix_Text" xml:space="preserve">
+    <value>Temporary Registry</value>
+  </data>
+  <data name="TemporalMixture_Prefix_Text" xml:space="preserve">
+    <value>Temporary Mixture</value>
+  </data>
+  <data name="Temportal_Prefix_Text" xml:space="preserve">
+    <value>Temp </value>
+  </data>
+  <data name="Unknown_Label_Text" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="UnknownErrorMessage_Label_Text" xml:space="preserve">
+    <value>An unknown error has occurred.&lt;BR&gt;Please go back and try again.</value>
+  </data>
+  <data name="Update_Button_Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UseCompound_Button_Text" xml:space="preserve">
+    <value>Use Component</value>
+  </data>
+  <data name="User_Label_Text" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="ViewBatchDetails_Label_Text" xml:space="preserve">
+    <value>View Batch details</value>
+  </data>
+  <data name="ViewComponentDetails_Label_Text" xml:space="preserve">
+    <value>View Component details</value>
+  </data>
+  <data name="ViewMixtureDetails_Label_Text" xml:space="preserve">
+    <value>View Mixture details</value>
+  </data>
+  <data name="ViewRecordDetails_Label_Text" xml:space="preserve">
+    <value>View Record details</value>
+  </data>
+  <data name="ViewMixture_Label_Text" xml:space="preserve">
+    <value>View Mixture</value>
+  </data>
+  <data name="ViewComponent_Label_Text" xml:space="preserve">
+    <value>View Component</value>
+  </data>
+  <data name="ViewRecord_Label_Text" xml:space="preserve">
+    <value>View Record</value>
+  </data>
+  <data name="ViewRecord_Page_Title" xml:space="preserve">
+    <value>View Mixture</value>
+  </data>
+  <data name="ViewMixture_Page_Title" xml:space="preserve">
+    <value>View Mixture</value>
+    <comment>CompoundDetails.aspx Title Page</comment>
+  </data>
+  <data name="ViewComponent_Page_Title" xml:space="preserve">
+    <value>View Component</value>
+    <comment>CompoundDetails.aspx Title Page</comment>
+  </data>
+  <data name="ViewMixture_URL" xml:space="preserve">
+    <value>~/Forms/ViewMixture/ContentArea/ViewMixture.aspx</value>
+  </data>
+  <data name="ViewMixtureSearch_URL" xml:space="preserve">
+    <value>~/Forms/ViewMixture/ContentArea/ViewMixtureSearch.aspx</value>
+  </data>
+  <data name="ViewRegistryRecord_Label_Text" xml:space="preserve">
+    <value>View Record</value>
+  </data>
+  <data name="ViewRegistryRecord_Page_Title" xml:space="preserve">
+    <value>View Record</value>
+    <comment>CompoundDetails.aspx Title Page</comment>
+  </data>
+  <data name="Welcome_Label_Text" xml:space="preserve">
+    <value>Welcome to {0} Registration System</value>
+  </data>
+  <data name="Yes_Button_Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Action_ColHeader_Caption" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Add_AddIn_Button_Text" xml:space="preserve">
+    <value>Add AddIn</value>
+  </data>
+  <data name="Add_Button_Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Add_Event_Button_Text" xml:space="preserve">
+    <value>Add Event</value>
+  </data>
+  <data name="Add_Label_Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Add_Parameter_Button_Text" xml:space="preserve">
+    <value>Add Parameter</value>
+  </data>
+  <data name="Add_Property_Button_Text" xml:space="preserve">
+    <value>Add Property</value>
+  </data>
+  <data name="Add_Rule_Button_Text" xml:space="preserve">
+    <value>Add Rule</value>
+  </data>
+  <data name="AddIn_Configuration_Label_Text" xml:space="preserve">
+    <value>AddIn Configuration</value>
+  </data>
+  <data name="AddIn_Configuration_Panel_Text" xml:space="preserve">
+    <value>AddIn Configuration</value>
+  </data>
+  <data name="AddIn_Label_Text" xml:space="preserve">
+    <value>AddIns</value>
+  </data>
+  <data name="AddIn_List_Label_Text" xml:space="preserve">
+    <value>AddInList</value>
+  </data>
+  <data name="AddIn_List_Panel_Text" xml:space="preserve">
+    <value>AddIn List</value>
+  </data>
+  <data name="AddInEdit_Panel_Text" xml:space="preserve">
+    <value>Edit AddIn</value>
+  </data>
+  <data name="AddInEvents_Panel_Text" xml:space="preserve">
+    <value>AddIn Events</value>
+  </data>
+  <data name="AddIns_MenuItem_Text" xml:space="preserve">
+    <value>AddIns</value>
+  </data>
+  <data name="AddIns_Panel_Text" xml:space="preserve">
+    <value>AddIns</value>
+  </data>
+  <data name="AddInsList_MenuItem_Text" xml:space="preserve">
+    <value>AddIns List:</value>
+  </data>
+  <data name="AddInsList_Panel_Text" xml:space="preserve">
+    <value>AddIns List</value>
+  </data>
+  <data name="AddRole_Button_Text" xml:space="preserve">
+    <value>Add Role</value>
+  </data>
+  <data name="AddSchema_Button_Text" xml:space="preserve">
+    <value>Add Schema</value>
+  </data>
+  <data name="AddSchema_Label_Text" xml:space="preserve">
+    <value>Add Schema</value>
+  </data>
+  <data name="AddUser_Button_Text" xml:space="preserve">
+    <value>Add User</value>
+  </data>
+  <data name="Alias_ColHeader_Caption" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="Alias_Label_Text" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="AllSchemas_Label_Text" xml:space="preserve">
+    <value>All Schemas</value>
+  </data>
+  <data name="Assembly_Label_Text" xml:space="preserve">
+    <value>Assembly:</value>
+  </data>
+  <data name="Back_Label_Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BaseTable_Label_Text" xml:space="preserve">
+    <value>Base Table</value>
+  </data>
+  <data name="Batch_Component_Panel_Text" xml:space="preserve">
+    <value>Batch Component</value>
+  </data>
+  <data name="Batch_Label_Panel_Text" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="BatchComponentProperties_MenuItem_Text" xml:space="preserve">
+    <value>Batch Component Properties</value>
+  </data>
+  <data name="BatchProperties_MenuItem_Text" xml:space="preserve">
+    <value>Batch Properties</value>
+  </data>
+  <data name="ChemBioFinder_Page_Title" xml:space="preserve">
+    <value>COEManager</value>
+  </data>
+  <data name="Choose_Label_Text" xml:space="preserve">
+    <value>Choose...</value>
+  </data>
+  <data name="Class_Label_Text" xml:space="preserve">
+    <value>Class:</value>
+  </data>
+  <data name="Clear_Button_Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Clear_Button_ToolTip" xml:space="preserve">
+    <value>clear all form data</value>
+  </data>
+  <data name="Cancel_Button_ToolTip" xml:space="preserve">
+    <value>cancel current action</value>
+  </data>
+  <data name="Compound_Label_Panel_Text" xml:space="preserve">
+    <value>Component</value>
+  </data>
+  <data name="CompoundProperties_MenuItem_Text" xml:space="preserve">
+    <value>Component Properties</value>
+  </data>
+  <data name="ConfirmRelationShipDeletion_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete the relationship? </value>
+  </data>
+  <data name="CreateAlias_Button_Text" xml:space="preserve">
+    <value>Create Alias</value>
+  </data>
+  <data name="CreateFromAnotherDV_MenuItem_Text" xml:space="preserve">
+    <value>Create from another Dataview</value>
+  </data>
+  <data name="CreateFromMasterDV_MenuItem_Text" xml:space="preserve">
+    <value>Create from master Dataview</value>
+  </data>
+  <data name="CreateMasterDV_MenuItem_Text" xml:space="preserve">
+    <value>Create Master DataView</value>
+  </data>
+  <data name="CurrentDataView_Label_Text" xml:space="preserve">
+    <value>Current Data View</value>
+  </data>
+  <data name="CustomizedDV_Label_Text" xml:space="preserve">
+    <value>I want to choose the users and roles for this Data View</value>
+  </data>
+  <data name="Database_ColHeader_Caption" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="Database_Label_Text" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="DataType_ColHeader_Caption" xml:space="preserve">
+    <value>Data Type</value>
+  </data>
+  <data name="DataViewFromSchema_Label_Text" xml:space="preserve">
+    <value>Enter information for new Dataview from Schema</value>
+  </data>
+  <data name="DataViewManager_MenuItem_Text" xml:space="preserve">
+    <value>Dataview Manager</value>
+  </data>
+  <data name="DateCreated_Label_Text" xml:space="preserve">
+    <value>Date Created</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>MM/dd/yyyy</value>
+  </data>
+  <data name="DateHourFormat" xml:space="preserve">
+    <value>yyyy/MM/dd hh:mm:ss</value>
+  </data>
+  <data name="DefineRelationships_Page_Title" xml:space="preserve">
+    <value>Define Relationships</value>
+  </data>
+  <data name="Delete_AddIn_Button_Text" xml:space="preserve">
+    <value>Delete AddIn</value>
+  </data>
+  <data name="Delete_Event_Button_Text" xml:space="preserve">
+    <value>Delete Event</value>
+  </data>
+  <data name="Delete_Label_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Delete_Parameter_Button_Text" xml:space="preserve">
+    <value>Delete Parameter</value>
+  </data>
+  <data name="Delete_Property_Button_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Delete_Property_Label_Text" xml:space="preserve">
+    <value>Delete Property</value>
+  </data>
+  <data name="Delete_Property_Panel_Text" xml:space="preserve">
+    <value>Select Property</value>
+  </data>
+  <data name="Delete_Rule_Button_Text" xml:space="preserve">
+    <value>Delete Rule</value>
+  </data>
+  <data name="Delete_Rule_Panel_Text" xml:space="preserve">
+    <value>Delete Validation Rule</value>
+  </data>
+  <data name="DeleteProperty_Panel_Text" xml:space="preserve">
+    <value>Delete Property</value>
+  </data>
+  <data name="Description_Label_Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Display_Label_Text" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="DisplayName_ColHeader_Caption" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="Edit_AddIn_Button_Text" xml:space="preserve">
+    <value>Edit AddIn</value>
+  </data>
+  <data name="Edit_Label_Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edit_Parameters_Panel_Text" xml:space="preserve">
+    <value>Edit Parameters</value>
+  </data>
+  <data name="Edit_Role_Role_Title" xml:space="preserve">
+    <value>Edit Role Roles</value>
+  </data>
+  <data name="Edit_Role_Title" xml:space="preserve">
+    <value>Edit Role</value>
+  </data>
+  <data name="Edit_Role_User_Title" xml:space="preserve">
+    <value>Edit Role Users</value>
+  </data>
+  <data name="Edit_User_Title" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="EditDataView_MenuItem_Text" xml:space="preserve">
+    <value>Edit Dataview</value>
+  </data>
+  <data name="EditMasterDataView_MenuItem_Text" xml:space="preserve">
+    <value>Edit Master Dataview</value>
+  </data>
+  <data name="EditTable_Label_Text" xml:space="preserve">
+    <value>Edit Table</value>
+  </data>
+  <data name="EditTableAndFields_Page_Title" xml:space="preserve">
+    <value>Edit Table and Fields</value>
+  </data>
+  <data name="Enter_New_AddIn_Panel_Text" xml:space="preserve">
+    <value>Enter New AddIn</value>
+  </data>
+  <data name="Enter_New_Property_Label_Text" xml:space="preserve">
+    <value>Enter New Property</value>
+  </data>
+  <data name="Enter_New_Property_Panel_Text" xml:space="preserve">
+    <value>Enter New Property</value>
+  </data>
+  <data name="Enter_New_Validation_Rule_Label_Text" xml:space="preserve">
+    <value>Enter New Validation Rule</value>
+  </data>
+  <data name="Enter_New_Validation_Rule_Panel_Text" xml:space="preserve">
+    <value>Enter New Validation Rule</value>
+  </data>
+  <data name="EnterNameDescription_Page_Title" xml:space="preserve">
+    <value>Enter a Name and Description</value>
+  </data>
+  <data name="EnterNewAddIn_Label_Text" xml:space="preserve">
+    <value>Enter New AddIn</value>
+  </data>
+  <data name="Error_Label_Text" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="ErrorsPanel_Title_Text" xml:space="preserve">
+    <value>The following errors were found:</value>
+  </data>
+  <data name="Event_Label_Text" xml:space="preserve">
+    <value>Event:</value>
+  </data>
+  <data name="ExistingDataViews_Label_Text" xml:space="preserve">
+    <value>Existing DataViews</value>
+  </data>
+  <data name="ExistingTables_Label_Text" xml:space="preserve">
+    <value>Existing tables</value>
+  </data>
+  <data name="FooterSeparator_Label_Text" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="FormDesigner_MenuItem_Text" xml:space="preserve">
+    <value>Form Designer</value>
+  </data>
+  <data name="FormDesignerEdit_MenuItem_Text" xml:space="preserve">
+    <value>Edit Form</value>
+  </data>
+  <data name="FormGroup_Label_Text" xml:space="preserve">
+    <value>Form Group</value>
+  </data>
+  <data name="FriendlyName_Label_Text" xml:space="preserve">
+    <value>Friendly Name:</value>
+  </data>
+  <data name="Handler_Label_Text" xml:space="preserve">
+    <value>Handler:</value>
+  </data>
+  <data name="HeaderSeparetor_Label_Text" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="Help_Button_Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_Page_Title" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Home_Button_Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Home_Label_Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Home_MenuItem_Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ID_ColHeader_Caption" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="IndexType_ColHeader_Caption" xml:space="preserve">
+    <value>Index Type</value>
+  </data>
+  <data name="Invalid_Button_Text" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="Invalid_Label_Text" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="InvalidDatasource_Label_Text" xml:space="preserve">
+    <value>Invalid Datasource!</value>
+  </data>
+  <data name="InvalidDataView_Label_Text" xml:space="preserve">
+    <value>Invalid DataView.&lt;br&gt; Please, try again.</value>
+  </data>
+  <data name="InvalidLookUp_Label_Text" xml:space="preserve">
+    <value>Invalid lookUp!</value>
+  </data>
+  <data name="InvalidRelationShips_Label_Text" xml:space="preserve">
+    <value>* Invalid RelationShip! </value>
+  </data>
+  <data name="JoinType_Label_Text" xml:space="preserve">
+    <value>Join Type</value>
+  </data>
+  <data name="Library_Button_Text" xml:space="preserve">
+    <value>Library...</value>
+  </data>
+  <data name="Login_Page_Tiltle" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="Logo_Image_Tooltip" xml:space="preserve">
+    <value> CambridgeSoft Registration Enterprise</value>
+  </data>
+  <data name="LogOff_Label_Text" xml:space="preserve">
+    <value>Log off</value>
+  </data>
+  <data name="Lookup_ColHeader_Caption" xml:space="preserve">
+    <value>LookUp</value>
+  </data>
+  <data name="Lookup_Page_Title" xml:space="preserve">
+    <value>Edit a lookup</value>
+  </data>
+  <data name="LookupFieldTitle_Label_Text" xml:space="preserve">
+    <value>Select Lookup Field:</value>
+  </data>
+  <data name="LookupSortOrder_Label_Text" xml:space="preserve">
+    <value>Select Lookup Sort Direction:</value>
+  </data>
+  <data name="LookupTitle_Label_Text" xml:space="preserve">
+    <value>Define a lookup for this field:</value>
+  </data>
+  <data name="Main_HyperLink_Text" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Manager_Users_Title" xml:space="preserve">
+    <value>Manager Users</value>
+  </data>
+  <data name="MasterDVExists_Label_Text" xml:space="preserve">
+    <value>Already exists a Master Dataview in the Database. &lt;BR&gt; Please try editing that.</value>
+  </data>
+  <data name="MimeType_ColHeader_Caption" xml:space="preserve">
+    <value>Content Type</value>
+  </data>
+  <data name="ModifyParameter_Btn_Text" xml:space="preserve">
+    <value>Modify Parameter</value>
+  </data>
+  <data name="MoveDown_Button_Text" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
+  <data name="MoveUp_Button_Text" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="Name_ColHeader_Caption" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Name_Label_Text" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="NewDataView_Page_Title" xml:space="preserve">
+    <value>Select an existing Data View</value>
+  </data>
+  <data name="NewRelationship_Button_Text" xml:space="preserve">
+    <value>New Relationship</value>
+  </data>
+  <data name="Next_Label_Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="NoDataViews_Label_Text" xml:space="preserve">
+    <value>No Dataviews to display. &lt;BR&gt; Please try creating one from Master Dataview</value>
+  </data>
+  <data name="NoMasterDataView_Label_Text" xml:space="preserve">
+    <value>No Master DataView in the Database. . &lt;BR&gt; Please try creating a Master Dataview from scratch</value>
+  </data>
+  <data name="OrderBy_Label_Text" xml:space="preserve">
+    <value>Order By</value>
+  </data>
+  <data name="ParentColumn_ColHeader_Caption" xml:space="preserve">
+    <value>Parent Column</value>
+  </data>
+  <data name="Precision_Label_Text" xml:space="preserve">
+    <value>Length:</value>
+  </data>
+  <data name="PrimaryKey_ColHeader_Caption" xml:space="preserve">
+    <value>Primary Key</value>
+  </data>
+  <data name="Properties_MenuItem_Text" xml:space="preserve">
+    <value>Properties</value>
+  </data>
+  <data name="Property_List_Label_Text" xml:space="preserve">
+    <value>Property List</value>
+  </data>
+  <data name="Property_List_Panel_Text" xml:space="preserve">
+    <value>Property List</value>
+  </data>
+  <data name="PublicDV_Label_Text" xml:space="preserve">
+    <value>This is a Public Data View (All users and Roles can see it)</value>
+  </data>
+  <data name="Publish_Button_Text" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="Refresh_Button_Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="RegistrationAdmin_Pages_Title" xml:space="preserve">
+    <value>Registration Administration</value>
+  </data>
+  <data name="Relationships_Label_Text" xml:space="preserve">
+    <value>Relationships</value>
+  </data>
+  <data name="Remove_Label_Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RemoveField_Button_Text" xml:space="preserve">
+    <value>Remove Field</value>
+  </data>
+  <data name="RemoveRole_Button_Text" xml:space="preserve">
+    <value>Remove Role</value>
+  </data>
+  <data name="RemoveTable_Button_Text" xml:space="preserve">
+    <value>Remove Table</value>
+  </data>
+  <data name="RemoveUser_Button_Text" xml:space="preserve">
+    <value>Remove User</value>
+  </data>
+  <data name="Resolve_Button_Text" xml:space="preserve">
+    <value>Resolve</value>
+  </data>
+  <data name="Revert_Button_Text" xml:space="preserve">
+    <value>Revert</value>
+  </data>
+  <data name="RootNode_Label_Text" xml:space="preserve">
+    <value>Root Node</value>
+  </data>
+  <data name="Save_Label_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SavedDV_Label_Text" xml:space="preserve">
+    <value>The DataViews has been saved successfully</value>
+  </data>
+  <data name="SchemaPassword_Label_Text" xml:space="preserve">
+    <value>Schema Password</value>
+  </data>
+  <data name="Secutiry_Page_Title" xml:space="preserve">
+    <value>Security Settings</value>
+  </data>
+  <data name="Select_Label_Text" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectBaseTable_Label_Text" xml:space="preserve">
+    <value>Select Base Table</value>
+  </data>
+  <data name="SelectBaseTable_Validator_Text" xml:space="preserve">
+    <value>Please select a base table</value>
+  </data>
+  <data name="SelectTables_Pagel_Title" xml:space="preserve">
+    <value>Select Tables</value>
+  </data>
+  <data name="SiteRights_Label_Text" xml:space="preserve">
+    <value>� {0} CambridgeSoft Corporation. All Rights Reserved.</value>
+  </data>
+  <data name="SortBy_Label_Text" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="SortByDBAsc_Label_Text" xml:space="preserve">
+    <value>DB Asc</value>
+  </data>
+  <data name="SortByDBDesc_Label_Text" xml:space="preserve">
+    <value>DB Desc</value>
+  </data>
+  <data name="SortByIDAsc_Label_Text" xml:space="preserve">
+    <value>ID Asc</value>
+  </data>
+  <data name="SortByIDDesc_Label_Text" xml:space="preserve">
+    <value>ID Desc</value>
+  </data>
+  <data name="SortOrder_ColHeader_Caption" xml:space="preserve">
+    <value>Sort Order</value>
+  </data>
+  <data name="SuccessfullySaveDataView_Label_Text" xml:space="preserve">
+    <value>The DataView  was successfully submitted.</value>
+  </data>
+  <data name="Toggle_Button_Text" xml:space="preserve">
+    <value>Toggle</value>
+  </data>
+  <data name="Type_Label_Text" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="UnsupportedControlType_Label_Text" xml:space="preserve">
+    <value>Unsupported Control Type</value>
+  </data>
+  <data name="UnsupportedFooter_Label_Text" xml:space="preserve">
+    <value>Unsupported kind of Footer UC. You must implement ICOEFooterUC interface</value>
+  </data>
+  <data name="UnsupportedHeader_Label_Text" xml:space="preserve">
+    <value>Unsupported kind of Header UC. You must implement ICOEHeaderUC interface</value>
+  </data>
+  <data name="UpdateFields_Button_Text" xml:space="preserve">
+    <value>Update Fields</value>
+  </data>
+  <data name="UpdateFields_Label_Text" xml:space="preserve">
+    <value>Update Fields</value>
+  </data>
+  <data name="UpdateTable_Button_Text" xml:space="preserve">
+    <value>Update Table</value>
+  </data>
+  <data name="UpdateTable_Label_Text" xml:space="preserve">
+    <value>Update Table</value>
+  </data>
+  <data name="Valid_Button_Text" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="Valid_Label_Text" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="Validate_Button_Text" xml:space="preserve">
+    <value>Validate</value>
+  </data>
+  <data name="Validation_Rule_Panel_Text" xml:space="preserve">
+    <value>Validation Rules</value>
+  </data>
+  <data name="Validation_Rules_Label_Text" xml:space="preserve">
+    <value>Validation Rules</value>
+  </data>
+  <data name="ValidationSummary_Page_Title" xml:space="preserve">
+    <value>Validation Summary</value>
+  </data>
+  <data name="ValidDataSource_Label_Text" xml:space="preserve">
+    <value>Valid Datasource!</value>
+  </data>
+  <data name="ValidToSave_Label_Text" xml:space="preserve">
+    <value>Valid to save into the Database</value>
+  </data>
+  <data name="Value_Label_Text" xml:space="preserve">
+    <value>Value:</value>
+  </data>
+  <data name="Visible_ColHeader_Caption" xml:space="preserve">
+    <value>Visible?</value>
+  </data>
+  <data name="MoveDelete_Page_Title" xml:space="preserve">
+    <value>Move Batch</value>
+  </data>
+  <data name="Delete_Page_Title" xml:space="preserve">
+    <value>Delete Batch</value>
+  </data>
+  <data name="MoveDelete_URL" xml:space="preserve">
+    <value>~/Forms/ViewMixture/ContentArea/MoveDelete.aspx</value>
+  </data>
+  <data name="RegAdmin_Link_Text" xml:space="preserve">
+    <value>Customize Registration </value>
+  </data>
+  <data name="RegAdmin_URL" xml:space="preserve">
+    <value>~/Forms/RegistrationAdmin/ContentArea/Default.aspx</value>
+  </data>
+  <data name="RegAdminDescription_Label_Text" xml:space="preserve">
+    <value>Customize your Registration System.</value>
+  </data>
+  <data name="SearchPerm_Button_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchTemp_Button_Text" xml:space="preserve">
+    <value>Search </value>
+  </data>
+  <data name="SearchCompound_Page_Title" xml:space="preserve">
+    <value>Search Component</value>
+  </data>
+  <data name="SearchRegistry_Page_Title" xml:space="preserve">
+    <value>Search Registry</value>
+  </data>
+  <data name="SearchTempRegistry_Page_Title" xml:space="preserve">
+    <value>Search Temporary Registry</value>
+  </data>
+  <data name="Export_Button_Text" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="Import_Button_Text" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="SearchModule_URL" xml:space="preserve">
+    <value>{0}/ChemBioViz/Forms/Search/ContentArea/ChemBioVizSearch.aspx?embed=ChemBioViz&amp;FormGroupId={1}&amp;AllowFullScan=true</value>
+  </data>
+  <data name="Messages_Page_URL" xml:space="preserve">
+    <value>~/Forms/Public/ContentArea/Messages.aspx</value>
+  </data>
+  <data name="SearchCompounds_Page_Title" xml:space="preserve">
+    <value>Search Components</value>
+  </data>
+  <data name="SearchPerm_Page_Title" xml:space="preserve">
+    <value>Search Permanent Registry</value>
+  </data>
+  <data name="SearchTemp_Page_Title" xml:space="preserve">
+    <value>Search Temporary Records</value>
+  </data>
+  <data name="Delete_Item_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteBatch_Button_Text" xml:space="preserve">
+    <value>Delete Batch</value>
+  </data>
+  <data name="InvaidRegistryID_Label_Text" xml:space="preserve">
+    <value>Invalid Registry. Please try again.</value>
+  </data>
+  <data name="Move_Item_Text" xml:space="preserve">
+    <value>Move</value>
+  </data>
+  <data name="MoveBatch_Button_Text" xml:space="preserve">
+    <value>Move Batch</value>
+  </data>
+  <data name="MoveDeleteBatch_Page_Title" xml:space="preserve">
+    <value>Move Batch</value>
+  </data>
+  <data name="DeleteBatch_Page_Title" xml:space="preserve">
+    <value>Delete Batch</value>
+  </data>
+  <data name="RegistryNumber_Label_Text" xml:space="preserve">
+    <value>Registry Number</value>
+  </data>
+  <data name="SelectAction_Label_Text" xml:space="preserve">
+    <value>Select Action</value>
+  </data>
+  <data name="DeletedBatch_Label_Text" xml:space="preserve">
+    <value>The batch was successfully deleted</value>
+  </data>
+  <data name="MovedBatch_Label_Text" xml:space="preserve">
+    <value>The batch was successfully moved.</value>
+  </data>
+  <data name="MoveBatch_Button" xml:space="preserve">
+    <value>Move Batch</value>
+  </data>
+  <data name="DeleteBatch_Button" xml:space="preserve">
+    <value>Delete Batch</value>
+  </data>
+  <data name="AcceptButton_Text" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="DeleteRegistry_Page_Title" xml:space="preserve">
+    <value>Delete Mixture Record</value>
+  </data>
+  <data name="DeleteRegistryButton_Text" xml:space="preserve">
+    <value>Delete Registry Record</value>
+  </data>
+  <data name="DeleteTempRegistryButton_Text" xml:space="preserve">
+    <value>Delete Temp Registry</value>
+  </data>
+  <data name="DeleteTempComponentButton_Text" xml:space="preserve">
+    <value>Delete Temp Component</value>
+  </data>
+  <data name="DeleteTempMixtureButton_Text" xml:space="preserve">
+    <value>Delete Temp Mixture</value>
+  </data>
+  <data name="DeleteRegistryLabel_Text" xml:space="preserve">
+    <value>Delete Mixture Record</value>
+  </data>
+  <data name="DeleteMixtureButton_Text" xml:space="preserve">
+    <value>Delete Mixture Registry</value>
+  </data>
+  <data name="DeleteMixtureLabel_Text" xml:space="preserve">
+    <value>Delete Mixture Registry</value>
+  </data>
+  <data name="DeleteComponentButton_Text" xml:space="preserve">
+    <value>Delete Component Registry</value>
+  </data>
+  <data name="DeleteComponentLabel_Text" xml:space="preserve">
+    <value>Delete Component Registry</value>
+  </data>
+  <data name="DeletedComponent_Label_Text" xml:space="preserve">
+    <value>The component registry was successfully deleted</value>
+  </data>
+  <data name="DeleteTempRegistry_Page_Title" xml:space="preserve">
+    <value>Delete Registry Record</value>
+  </data>
+  <data name="DeleteTempRegistryLabel_Text" xml:space="preserve">
+    <value>Delete Temp Mixture</value>
+  </data>
+  <data name="DeleteTempMixtureLabel_Text" xml:space="preserve">
+    <value>Delete Temp Mixture</value>
+  </data>
+  <data name="DeleteTempComponentLabel_Text" xml:space="preserve">
+    <value>Delete Temp Component</value>
+  </data>
+  <data name="DeletedTempRegistry_Label_Text" xml:space="preserve">
+    <value>The  record was successfully deleted</value>
+  </data>
+  <data name="DeletedTempMixture_Label_Text" xml:space="preserve">
+    <value>The mixture registry was successfully deleted</value>
+  </data>
+  <data name="DeletedTempComponent_Label_Text" xml:space="preserve">
+    <value>The component registry was successfully deleted</value>
+  </data>
+  <data name="DownPropertyButton_Text" xml:space="preserve">
+    <value>⇓</value>
+  </data>
+  <data name="SelectPropertyOrderLabel_Text" xml:space="preserve">
+    <value>Select Property Order:</value>
+  </data>
+  <data name="UpPropertyButton_Text" xml:space="preserve">
+    <value>⇑</value>
+  </data>
+  <data name="Bulk_Register_Marked_Text" xml:space="preserve">
+    <value>Bulk Register Marked</value>
+  </data>
+  <data name="Show_Log_Information_Text" xml:space="preserve">
+    <value>Show Log Information</value>
+  </data>
+  <data name="Write_Log_Description_Text" xml:space="preserve">
+    <value>Write Log Description</value>
+  </data>
+  <data name="DuplicatedCompound_Button_Text" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="RegisterMarked_Batch_RadioButton_Text" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="RegisterMarked_Button_Text" xml:space="preserve">
+    <value>Register Marked</value>
+  </data>
+  <data name="RegisterMarked_ChooseDupliAction_Label_Text" xml:space="preserve">
+    <value>Please choose duplicate action:</value>
+  </data>
+  <data name="RegisterMarked_Description_Label_Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="RegisterMarked_LeavePage_Url_Text" xml:space="preserve">
+    <value>../../Public/ContentArea/Home.aspx</value>
+  </data>
+  <data name="RegisterMarked_LogId_Label_Text" xml:space="preserve">
+    <value>LogId</value>
+  </data>
+  <data name="RegisterMarked_LogUpdatedPromptMsg1_Label_Text" xml:space="preserve">
+    <value>Log updated.</value>
+  </data>
+  <data name="RegisterMarked_LogUpdatedPromptMsg2_Label_Text" xml:space="preserve">
+    <value>Please use log id to check log details:</value>
+  </data>
+  <data name="RegisterMarked_None_RadioButton_Text" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="RegisterMarked_NullPromptMsg1_Label_Text" xml:space="preserve">
+    <value>Saved hitlist ID is empty.</value>
+  </data>
+  <data name="RegisterMarked_NullPromptMsg2_Label_Text" xml:space="preserve">
+    <value>Bulk registory can not be used:</value>
+  </data>
+  <data name="RegisterMarked_RegisterComplePromptMsg1_Label_Text" xml:space="preserve">
+    <value>Registering completed.</value>
+  </data>
+  <data name="RegisterMarked_RegisterComplePromptMsg2_Label_Text" xml:space="preserve">
+    <value>Please input log description:</value>
+  </data>
+  <data name="RegisterMarked_SeeLogDetails_Button_Text" xml:space="preserve">
+    <value>See Log Details</value>
+  </data>
+  <data name="RegisterMarked_Submit_Button_Text" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="RegisterMarked_Temporary_RadioButton_Text" xml:space="preserve">
+    <value>Temporary</value>
+  </data>
+  <data name="ValidationRules_LinkButton_Text" xml:space="preserve">
+    <value>Validation Rules</value>
+  </data>
+  <data name="CannotDeleteBatch_Label_Text" xml:space="preserve">
+    <value>The selected Registry has only one batch. You cannot delete it.</value>
+  </data>
+  <data name="CannotMoveBatch_Label_Text" xml:space="preserve">
+    <value>The selected Registry has only one batch. You cannot move it.</value>
+  </data>
+  <data name="ConfirmDeleteBatch_Label_Text" xml:space="preserve">
+    <value>Are you sure you want to delete the batch?</value>
+  </data>
+  <data name="ConfirmDeleteRegistry_Label_Text" xml:space="preserve">
+    <value>Are you sure you want to delete the registry?</value>
+  </data>
+  <data name="ConfirmMoveBatch_Label_Text" xml:space="preserve">
+    <value>Are you sure you want to move the batch?</value>
+  </data>
+  <data name="RegNumDoesntExist_Label_Text" xml:space="preserve">
+    <value>The entered RegNum doesn't exist. Please enter a valid RegNum.</value>
+  </data>
+  <data name="AddInsConf_LinkButton_Text" xml:space="preserve">
+    <value>AddIns Configuration:</value>
+  </data>
+  <data name="FomrElementsEdit_LinkButton_Text" xml:space="preserve">
+    <value>Edit Form XML</value>
+  </data>
+  <data name="ImpExpPropList_LinkButton_Text" xml:space="preserve">
+    <value>Import /  Export Configuration</value>
+  </data>
+  <data name="InfoRegAdmin2_Label_Text" xml:space="preserve">
+    <value>In this application you can Manage your dataviews. To begin each task, you can click
+                one of the links below.</value>
+  </data>
+  <data name="PropListAddInsConfTitle_Label_Text" xml:space="preserve">
+    <value>Manage System Behaviors</value>
+  </data>
+  <data name="RegAdminTitle_Label_Text" xml:space="preserve">
+    <value>Registration Admin</value>
+  </data>
+  <data name="SetUpPropList_LinkButton_Text" xml:space="preserve">
+    <value>Manage Data Properties</value>
+  </data>
+  <data name="LatinMessage_Label_Text" xml:space="preserve">
+    <value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat massa at nibh. Maecenas libero. Sed consequat, nisl in semper vehicula, odio nisl elementum enim, sit amet pellentesque leo mauris. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat massa at nibh. Maecenas libero.</value>
+  </data>
+  <data name="ExportCustomization_Label_Text" xml:space="preserve">
+    <value>Export customization to server side local directory</value>
+  </data>
+  <data name="GoToMain_LinkButton_Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="ImportCustomization_Label_Text" xml:space="preserve">
+    <value>Import Customization</value>
+  </data>
+  <data name="PropertyName_Label_Text" xml:space="preserve">
+    <value>Property Name:</value>
+  </data>
+  <data name="PropertyType_Label_Text" xml:space="preserve">
+    <value>Property Type:</value>
+  </data>
+  <data name="TableEditor_Title_Text" xml:space="preserve">
+    <value>Table Editor</value>
+  </data>
+  <data name="RegHomeHideInfo_Label_Text" xml:space="preserve">
+    <value>Allows you to manage and customize the Registration App (including forms and application settings)</value>
+  </data>
+  <data name="AddIns_PageTitle" xml:space="preserve">
+    <value>AddIns</value>
+  </data>
+  <data name="AdvancedCustomizeForms_Page_Title" xml:space="preserve">
+    <value>Advanced Customize Forms</value>
+  </data>
+  <data name="BatchCompProperties_Page_Title" xml:space="preserve">
+    <value>Batch Component Properties</value>
+  </data>
+  <data name="BatchProperties_Page_Title" xml:space="preserve">
+    <value>Batch Properties</value>
+  </data>
+  <data name="CompoundProperties_Page_Title" xml:space="preserve">
+    <value>Component Properties</value>
+  </data>
+  <data name="CustomizeForms_Page_Title" xml:space="preserve">
+    <value>Customize Forms</value>
+  </data>
+  <data name="ImportExport_Page_Title" xml:space="preserve">
+    <value>Import/Export</value>
+  </data>
+  <data name="RegAdminHome_Page_Title" xml:space="preserve">
+    <value>Registration Admin</value>
+  </data>
+  <data name="RegistryProperties_Page_Title" xml:space="preserve">
+    <value>Registry Properties</value>
+  </data>
+  <data name="ValidationRules_Page_Title" xml:space="preserve">
+    <value>Validation Rules</value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>CambridgeSoft</value>
+  </data>
+  <data name="CopyrightInfo" xml:space="preserve">
+    <value>&amp;copy; 2013 PerkinElmer Inc. All Rights Reserved</value>
+  </data>
+  <data name="HomeMain_Label_Text" xml:space="preserve">
+    <value>Welcome to Registration System.</value>
+  </data>
+  <data name="Accept_Button_Text" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="DeleteMarked_Page_Title" xml:space="preserve">
+    <value>Delete Records</value>
+  </data>
+  <data name="FrameworkVersion_Label_Text" xml:space="preserve">
+    <value>CBOE Framework:</value>
+  </data>
+  <data name="RegistrationVersion_Label_Text" xml:space="preserve">
+    <value>COERegistration:</value>
+  </data>
+  <data name="RegAdmin_MenuItem_Text" xml:space="preserve">
+    <value>Customize Registration</value>
+  </data>
+  <data name="RegAdmin_MenuItem_Tooltip" xml:space="preserve">
+    <value>Customize Registration system</value>
+  </data>
+  <data name="SearchTemp_MenuItem_Text" xml:space="preserve">
+    <value>Search Temp</value>
+  </data>
+  <data name="SearchTemp_MenuItem_Tooltip" xml:space="preserve">
+    <value>Search for temporary registrations</value>
+  </data>
+  <data name="LoadedRecord_Label_Text" xml:space="preserve">
+    <value>The record  (Name {0}) was successfully loaded</value>
+  </data>
+  <data name="DownProperty_Button_ToolTip" xml:space="preserve">
+    <value>Change property sort order (Down)</value>
+  </data>
+  <data name="UpProperty_Button_ToolTip" xml:space="preserve">
+    <value>Change property sort order (UP)</value>
+  </data>
+  <data name="InvalidBatchID_Label_Text" xml:space="preserve">
+    <value>Batch ID provided does not exist.</value>
+  </data>
+  <data name="EventList_Label_Text" xml:space="preserve">
+    <value>Event List:</value>
+  </data>
+  <data name="AddInConfiguration_Label_Text" xml:space="preserve">
+    <value>AddIn Configuration:</value>
+  </data>
+  <data name="AddInList_Label_Text" xml:space="preserve">
+    <value>Select an AddIn to Edit or Remove</value>
+  </data>
+  <data name="Enabled_Label_Text" xml:space="preserve">
+    <value>Enabled:</value>
+  </data>
+  <data name="Required_Label_Text" xml:space="preserve">
+    <value>Required:</value>
+  </data>
+  <data name="PickListDomain_Label_Text" xml:space="preserve">
+    <value>...from picklist domain</value>
+  </data>
+  <data name="PickListPanelTitle_Title_Text" xml:space="preserve">
+    <value>Choose a domain:</value>
+  </data>
+  <data name="ConfigSettings_LinkButton_Text" xml:space="preserve">
+    <value>System Settings</value>
+  </data>
+  <data name="OtherSavedCompounds_Label_Text" xml:space="preserve">
+    <value>Other users have saved these Templates:</value>
+  </data>
+  <data name="PreSavedCompounds_Label_Text" xml:space="preserve">
+    <value>My saved Templates:</value>
+  </data>
+  <data name="DeleteAndSeeLog_Button_Text" xml:space="preserve">
+    <value>Delete and see log</value>
+  </data>
+  <data name="AppSettings_Label_Text" xml:space="preserve">
+    <value>Application Settings</value>
+  </data>
+  <data name="AppSettingsSaved_Label_Text" xml:space="preserve">
+    <value>The settings were successfully saved.</value>
+  </data>
+  <data name="Label_Label_Tex" xml:space="preserve">
+    <value>Label:</value>
+  </data>
+  <data name="DeleteProperty_Message" xml:space="preserve">
+    <value>Are you sure you want to delete this property?</value>
+  </data>
+  <data name="DataLoader_LinkButton_Text" xml:space="preserve">
+    <value>Data Loader</value>
+  </data>
+  <data name="ELNSearchPermForm_LinkButton_Text" xml:space="preserve">
+    <value>ELN - Search Perm </value>
+  </data>
+  <data name="ELNSearchTempForm_LinkButton_Text" xml:space="preserve">
+    <value>ELN - Search Temp </value>
+  </data>
+  <data name="ReviewRegister_LinkButton_Text" xml:space="preserve">
+    <value>Review Register</value>
+  </data>
+  <data name="SearchRegistry_LinkButton_Text" xml:space="preserve">
+    <value>Search Registry</value>
+  </data>
+  <data name="SearchTemporary_LinkButton_Text" xml:space="preserve">
+    <value>Search Temporary</value>
+  </data>
+  <data name="SubmitNewRecord_LinkButton_Text" xml:space="preserve">
+    <value>Submit New Record</value>
+  </data>
+  <data name="ViewRegistered_LinkButton_Text" xml:space="preserve">
+    <value>View Registered</value>
+  </data>
+  <data name="CustomizeForms_LinkButton_Text" xml:space="preserve">
+    <value>Customize Forms</value>
+  </data>
+  <data name="SelectProperty_Label_Text" xml:space="preserve">
+    <value>Please select a property</value>
+  </data>
+  <data name="BatchDoesntExist_Label_Text" xml:space="preserve">
+    <value>The Batch ID that you entered could not be found. Please check the entered value.</value>
+  </data>
+  <data name="TablesExportation_Legen_Text" xml:space="preserve">
+    <value>TableList exportation options</value>
+  </data>
+  <data name="SelectAll_Label_Text" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="SelectNone_Label_Text" xml:space="preserve">
+    <value>Select None</value>
+  </data>
+  <data name="NoDescription_Label_Text" xml:space="preserve">
+    <value>There is no description for this item</value>
+  </data>
+  <data name="PageSettingsDisable_Label_Text" xml:space="preserve">
+    <value>COEPageControlSettings is disable. &lt;br&gt; Please check your configuration</value>
+  </data>
+  <data name="AddBatch_Button_ToolTip" xml:space="preserve">
+    <value>Add my batch to the currently displaying duplicated registry. This will conclude the duplicates resolution process.</value>
+  </data>
+  <data name="AddBatchPreReg_Button_ToolTip" xml:space="preserve">
+    <value>Suggest adding a batch to the currently displayed duplicated registry. The suggestion will be stored with the submission for review.</value>
+  </data>
+  <data name="AddBatches_Button_Text" xml:space="preserve">
+    <value>Add Batches</value>
+  </data>
+  <data name="ComponentId_Duplicates_Text" xml:space="preserve">
+    <value>Resolving Component {0}</value>
+  </data>
+  <data name="DuplicateCompound_Button_ToolTip" xml:space="preserve">
+    <value>Create a new registry record duplicating component information.</value>
+  </data>
+  <data name="DuplicateCompoundPreReg_Button_ToolTip" xml:space="preserve">
+    <value>Suggest to create a duplicate of the currently displayed registry. The suggestion will be stored with the submission for review.</value>
+  </data>
+  <data name="DuplicatedCompounds_Status_Text" xml:space="preserve">
+    <value>{0} duplicate component(s) found in the system. You must indicate an action to take to resolve the duplicate.</value>
+  </data>
+  <data name="DuplicatedCompounds_StatusPreReg_Text" xml:space="preserve">
+    <value>{0} duplicate component(s) found.  You must suggest an action to resolve the duplicate.</value>
+  </data>
+  <data name="DuplicatedMixtures_Status_Text" xml:space="preserve">
+    <value>{0} duplicate mixtures(s) found in the system. You must indicate an action to take to resolve the duplicate.</value>
+  </data>
+  <data name="DuplicatedMixtures_StatusPreReg_Text" xml:space="preserve">
+    <value>{0} duplicate mixtures(s) found.  You must suggest an action to resolve the duplicate.</value>
+  </data>
+  <data name="DuplicatedRegistry_Status_Text" xml:space="preserve">
+    <value>{0} duplicate registry record(s) found in the system. You must indicate an action to take to resolve the duplicate.</value>
+  </data>
+  <data name="DuplicatedRegistry_StatusPreReg_Text" xml:space="preserve">
+    <value>{0} duplicate registry record(s) found.  You must suggest an action to resolve the duplicate.</value>
+  </data>
+  <data name="DuplicatedRegistryBatches_Tree_Title" xml:space="preserve">
+    <value>Duplicated Registry Batches</value>
+  </data>
+  <data name="DuplicatedRegistryComponent_Tree_Title" xml:space="preserve">
+    <value>Duplicated Component Registry</value>
+  </data>
+  <data name="DuplicateRegistry_Button_ToolTip" xml:space="preserve">
+    <value>Duplicate this Registry Record. Create a new Registry with my Record, ignoring any existing duplicate. This will conclude the duplicates resolution process.</value>
+  </data>
+  <data name="DuplicateRegistryPreReg_Button_ToolTip" xml:space="preserve">
+    <value>Suggest to create a duplicate mixture.  The suggestion will be stored with the submission for review.</value>
+  </data>
+  <data name="MoveBatch_Button_ToolTip" xml:space="preserve">
+    <value>Move my batches to the currently displaying duplicated registry. This will conclude the duplicates resolution process.</value>
+  </data>
+  <data name="OverwriteCompound_Button_ToolTip" xml:space="preserve">
+    <value>Overwrite my registry. You may need to resolve additional compounds.</value>
+  </data>
+  <data name="RegistryIndex_Pager_Text" xml:space="preserve">
+    <value>Registry {0} of {1}</value>
+  </data>
+  <data name="RegistryNumber_Control_Text" xml:space="preserve">
+    <value>Registry {0}</value>
+  </data>
+  <data name="UseCompound_Button_ToolTip" xml:space="preserve">
+    <value>Create a new registry record linking to the component information of this existing record.</value>
+  </data>
+  <data name="UseCompoundPreReg_Button_ToolTip" xml:space="preserve">
+    <value>Suggest to create a link to the component in the currently displayed registry.  The suggestion will be stored with the submission for review.</value>
+  </data>
+  <data name="AddInFriendlyName_Label_Text" xml:space="preserve">
+    <value>Friendly Name:</value>
+  </data>
+  <data name="ComponentDuplicatesForm_LinkButton_Text" xml:space="preserve">
+    <value>Component Duplicates</value>
+  </data>
+  <data name="RegistryDuplicatesForm_LinkButton_Text" xml:space="preserve">
+    <value>Registry Duplicates </value>
+  </data>
+  <data name="DeleteLog_LinkButton_Text" xml:space="preserve">
+    <value>Delete Log From</value>
+  </data>
+  <data name="SearchComponentsToAdd_LinkButton_Text" xml:space="preserve">
+    <value>Search Components To Add </value>
+  </data>
+  <data name="SearchComponentsToAddRR_LinkButton_Text" xml:space="preserve">
+    <value>Search Components To Add RR</value>
+  </data>
+  <data name="SendToRegitration_LinkButton_Text" xml:space="preserve">
+    <value>Send To Registration </value>
+  </data>
+  <data name="RegCompoundsDontMatch" xml:space="preserve">
+    <value>The batch was not moved becuase components didn't match between registrations. The origin and destination registrations should have the same components.</value>
+  </data>
+  <data name="ExportInfo_Label_Text" xml:space="preserve">
+    <value>From this section you can export to a server side local directory the XML´s files that contain all Registration Application forms, dataviews, tables information and configuration settings.</value>
+  </data>
+  <data name="ImportExportInfo_Label_Text" xml:space="preserve">
+    <value>Form this section you can to import or export Registration Application configuration. </value>
+  </data>
+  <data name="ImportInfo_Label_Text" xml:space="preserve">
+    <value>Available to import configuration from exported XML file.</value>
+  </data>
+  <data name="ImportIni_Label_Text" xml:space="preserve">
+    <value>From this section you can import Registration Application V.10 configuration.</value>
+  </data>
+  <data name="AddDescription_Label_Text" xml:space="preserve">
+    <value>Add a description:</value>
+  </data>
+  <data name="NoRegistriesMarked_Error_Text" xml:space="preserve">
+    <value>There are no registrations marked</value>
+  </data>
+  <data name="OperationProblem_Label_Text" xml:space="preserve">
+    <value>There was a problem with the opration.</value>
+  </data>
+  <data name="OperationSucceeded_Label_Text" xml:space="preserve">
+    <value>Operation succeeded.</value>
+  </data>
+  <data name="ViewLog_Button_Text" xml:space="preserve">
+    <value>View Log</value>
+  </data>
+  <data name="EditPropertiesInfo_Label_Text" xml:space="preserve">
+    <value>From this section you can modified text and number precision</value>
+  </data>
+  <data name="EditProperty_PageTitle" xml:space="preserve">
+    <value>Edit Property</value>
+  </data>
+  <data name="CreateCopies_Button_Text" xml:space="preserve">
+    <value>Create Copies</value>
+  </data>
+  <data name="LocalImportLableInfo_Label_Text" xml:space="preserve">
+    <value>From this section you can import a customization located in server side local directory. </value>
+  </data>
+  <data name="LocalImportLegen_Label_Text" xml:space="preserve">
+    <value>Import from server side local directory</value>
+  </data>
+  <data name="LocalImportExportUrl_Label_Text" xml:space="preserve">
+    <value>Server Path:</value>
+  </data>
+  <data name="MarkedDeleted_Label_Text" xml:space="preserve">
+    <value>The selected registrations were deleted successfully</value>
+  </data>
+  <data name="Collapse_Label_Text" xml:space="preserve">
+    <value>Collapse...</value>
+  </data>
+  <data name="Expand_Label_Text" xml:space="preserve">
+    <value>Expand...</value>
+  </data>
+  <data name="DefineMixtureImageMenuButton_text" xml:space="preserve">
+    <value>Manage Mixture Components</value>
+  </data>
+  <data name="SendToInventoryMenuButton_Text" xml:space="preserve">
+    <value>New Container</value>
+  </data>
+  <data name="SavedObjectId_Error_Message" xml:space="preserve">
+    <value>Selected Object ID does not exist.</value>
+  </data>
+  <data name="CurrentPageState_ErrorMessage" xml:space="preserve">
+    <value>CurrentPageState parameter is not correct</value>
+  </data>
+  <data name="MixtureDuplicatesExistingDirect_Msg_Text" xml:space="preserve">
+    <value>You are about to duplicate records. Do you want to proceed?</value>
+  </data>
+  <data name="ViewEditBatch_Mode_Message" xml:space="preserve">
+    <value>ViewBatch and EditBatch modes are not allowed for singles.</value>
+  </data>
+  <data name="SaveTemplate_Button_Text" xml:space="preserve">
+    <value>Save Template</value>
+  </data>
+  <data name="Orders_Label_Text" xml:space="preserve">
+    <value>Orders:</value>
+  </data>
+  <data name="OrdersContent_Label_Text" xml:space="preserve">
+    <value>www.cambridgesoft.com &lt;br&gt; EMAIL: info@cambridgesoft.com &lt;br&gt; FAX: +1 617-588-9390 &lt;br&gt; TEL: +1 800-315-7300 or +1 617-588-9300</value>
+  </data>
+  <data name="Support_Label_Text" xml:space="preserve">
+    <value>Support:</value>
+  </data>
+  <data name="SupportContent_Label_Text" xml:space="preserve">
+    <value>www.cambridgesoft.com/support/ &lt;br&gt; EMAIL: support@cambridgesoft.com &lt;BR&gt;FAX: +1 617-588-9360 &lt;BR&gt;TEL: +1 617-588-9100</value>
+  </data>
+  <data name="Version_Label_Text" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="VersionContent_Label_Text" xml:space="preserve">
+    <value>CBOE Framework: {0} &lt;br&gt;  Reg Services: {1}</value>
+  </data>
+  <data name="DuplicatedValidationRule_Message" xml:space="preserve">
+    <value>The Validation Rule that you are trying to add already exists.</value>
+  </data>
+  <data name="EditParameters_URL" xml:space="preserve">
+    <value>~/Forms/RegistrationAdmin/ContentArea/ParamEdit.aspx</value>
+  </data>
+  <data name="IncorectParameterRange_Message" xml:space="preserve">
+    <value>Max parameter must be greater than min parameter.</value>
+  </data>
+  <data name="NonEmptyParmeterValue_Message" xml:space="preserve">
+    <value>The Parameter Value can´t be empty.</value>
+  </data>
+  <data name="NonSeletedParameter_Message" xml:space="preserve">
+    <value>Please select one parameter to delete.</value>
+  </data>
+  <data name="NoValidationRulesToDelete_Message" xml:space="preserve">
+    <value>There are not Validation Rule to delete.</value>
+  </data>
+  <data name="NumericRangeErrorMessage" xml:space="preserve">
+    <value>This property can have at most {0} integer and {1} decimal digits.</value>
+  </data>
+  <data name="OneParameterAtLeaseMessage" xml:space="preserve">
+    <value>Please insert one parameter at least.</value>
+  </data>
+  <data name="RegAdmin_ContentArea_URL" xml:space="preserve">
+    <value>~/Forms/RegistrationAdmin/ContentArea/</value>
+  </data>
+  <data name="ReguiredFiledDefaultErrorMessage" xml:space="preserve">
+    <value>The property value is required.</value>
+  </data>
+  <data name="RootPorpertyList_URL" xml:space="preserve">
+    <value>~/Forms/RegistrationAdmin/ContentArea/RootPropertyList.aspx</value>
+  </data>
+  <data name="TextLengthErrorMessage" xml:space="preserve">
+    <value>The property value can have between {0} and {1} characters.</value>
+  </data>
+  <data name="ValidationRuleMinAndMax_Message" xml:space="preserve">
+    <value>This Validation Rule type must have min and max parameters.</value>
+  </data>
+  <data name="ValidWordDefaultErrorMessage" xml:space="preserve">
+    <value>The word is not valid.</value>
+  </data>
+  <data name="EmptyIniFileFolder_Message" xml:space="preserve">
+    <value>The specified path does not contain any ini file. </value>
+  </data>
+  <data name="COEDataViewFileCorrupt_ErrorMessage" xml:space="preserve">
+    <value>The COEDataView file {0} is corrupt.</value>
+  </data>
+  <data name="COEFormFileCorrupt_EroorMessage" xml:space="preserve">
+    <value>The COEFormGroup file {0} is corrupt.</value>
+  </data>
+  <data name="COEObjectConfigFileCorrupt_ErrorMessage" xml:space="preserve">
+    <value>The file {0} is corrupt or does not exist in the specified URL.</value>
+  </data>
+  <data name="COETableFileCorrupt_ErrorMessage" xml:space="preserve">
+    <value>The COETable file {0} is corrupt.</value>
+  </data>
+  <data name="ExportSuccess_Message" xml:space="preserve">
+    <value>The configuration was exported successfully.</value>
+  </data>
+  <data name="ImportConfigurationSuccess_Message" xml:space="preserve">
+    <value>The configuration was imported successfully.</value>
+  </data>
+  <data name="ImportDirectoryStructure_ErrorMessage" xml:space="preserve">
+    <value>The directory structure of the specified url is not correct or some directory is empty.</value>
+  </data>
+  <data name="ImportXmlFile_ErrorMessage" xml:space="preserve">
+    <value>Please select XML file to import.</value>
+  </data>
+  <data name="ImportXmlFilesCorrupt_EroorMessage" xml:space="preserve">
+    <value>The XML´s files that are trying to import are corrupt.</value>
+  </data>
+  <data name="IniFileImportationSuccess_Message" xml:space="preserve">
+    <value>The Registration 10 configuration was imported successfuly.</value>
+  </data>
+  <data name="IniFilePath_Error_Message" xml:space="preserve">
+    <value>The specified directory does not exist.</value>
+  </data>
+  <data name="FormElementsCustomize_SuccessMessage" xml:space="preserve">
+    <value>The customization was applied correctly</value>
+  </data>
+  <data name="FormElementsCustomizeWarnings_Message" xml:space="preserve">
+    <value> but there are some fields that could not be set as hidden because the related properties have a "requiredField" validation rule. Please remove these validations from the followings properties: {0}.</value>
+  </data>
+  <data name="Registering_Label_Text" xml:space="preserve">
+    <value>Registering...</value>
+  </data>
+  <data name="RecordNotFound_Label_Text" xml:space="preserve">
+    <value>Record not found</value>
+  </data>
+  <data name="SelectTemplate_Tooltip_Text" xml:space="preserve">
+    <value>Mark/UnMark template</value>
+  </data>
+  <data name="ReturnToSearchList_Button_Text" xml:space="preserve">
+    <value>return to search results list view</value>
+  </data>
+  <data name="ReturnToSearchList_Button_ToolTip" xml:space="preserve">
+    <value>return to search results list view</value>
+  </data>
+  <data name="ReturnToNewComponent_Button_ToolTip" xml:space="preserve">
+    <value>return to submit new component page</value>
+  </data>
+  <data name="ReturnToNewMixture_Button_ToolTip" xml:space="preserve">
+    <value>return to submit new mixture page</value>
+  </data>
+  <data name="ReturnToNewRecord_Button_ToolTip" xml:space="preserve">
+    <value>return to submit new record page</value>
+  </data>
+  <data name="EditComponent_Button_ToolTip" xml:space="preserve">
+    <value>edit this component</value>
+  </data>
+  <data name="EditRecord_Button_ToolTip" xml:space="preserve">
+    <value>edit this record</value>
+  </data>
+  <data name="EditMixture_Button_ToolTip" xml:space="preserve">
+    <value>edit this mixture</value>
+  </data>
+  <data name="Search_Button_ToolTip" xml:space="preserve">
+    <value>search temporary registry</value>
+  </data>
+  <data name="MoveBatches_Button_Text" xml:space="preserve">
+    <value>Move Batches</value>
+  </data>
+  <data name="MangeAddIn_LinkButton_Text" xml:space="preserve">
+    <value>Manage AddIns</value>
+  </data>
+  <data name="PickListDomainLabel_Text" xml:space="preserve">
+    <value>PickList:</value>
+  </data>
+  <data name="PositiveInteger_ErrorMessage" xml:space="preserve">
+    <value>Min and Max presicion value must be a positive integer</value>
+  </data>
+  <data name="MaxRegistriesMarkedExeeded_Error_Text" xml:space="preserve">
+    <value>You are trying to register more than {0} records, which is not allowed. Please unmark some records and try again.</value>
+  </data>
+  <data name="BatchMoved20037Warning_MessageText" xml:space="preserve">
+    <value>The target record has more components than the source record.&lt;BR&gt; New batch component information should be manually adjusted on the target record.</value>
+  </data>
+  <data name="BatchMoved20038Warning_MessageText" xml:space="preserve">
+    <value>The source record has more components than the target record.&lt;BR&gt; New batch component information should be manually adjusted on the target record.</value>
+  </data>
+  <data name="BatchMovedWithWarning_MessageText" xml:space="preserve">
+    <value>&lt;span style="color:red"&gt;The batch was successfully moved with the followings warnings:&lt;/span&gt;&lt;BR&gt;</value>
+  </data>
+  <data name="DifFragmentsList_MessageText" xml:space="preserve">
+    <value>The Fragment list for the source and target registry records are different.&lt;BR&gt;The fragment list from the target registry record was applied to the moved batch.</value>
+  </data>
+  <data name="NoEditableProperty_Message_Text" xml:space="preserve">
+    <value>This type of property is not editable because it would affect existing data. &lt;br&gt;  You can either delete or hide this property and create a new property with the desired changes. &lt;br&gt;  In order to delete the property, you must first delete any data values previously stored in it.</value>
+  </data>
+  <data name="RestoreSessionObject_URLParameter" xml:space="preserve">
+    <value>RestoreSessionObject</value>
+  </data>
+  <data name="ApproveMarked_Page_Title" xml:space="preserve">
+    <value>Approve Registrations</value>
+  </data>
+  <data name="MoveDelete_PageName" xml:space="preserve">
+    <value>MoveDelete.aspx</value>
+  </data>
+  <data name="UseStructure_Button_Text" xml:space="preserve">
+    <value>Use Structure</value>
+  </data>
+  <data name="AddInNotSelected_MasterPage" xml:space="preserve">
+    <value>Please select an AddIn</value>
+  </data>
+  <data name="ConfirmDeleteAddIn_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete this AddIn? </value>
+  </data>
+  <data name="ConfirmDeleteEvent_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete this Event? </value>
+  </data>
+  <data name="DeleteRequiredAddIns_MasterPage" xml:space="preserve">
+    <value>Required AddIns can´t be deleted</value>
+  </data>
+  <data name="EditXml_Button_Text" xml:space="preserve">
+    <value>Edit Xml</value>
+  </data>
+  <data name="Entered_XML_ErroMessage" xml:space="preserve">
+    <value>The entered XML is not in the correct format</value>
+  </data>
+  <data name="FormGroupSavedSuccessfuly_Message_Text" xml:space="preserve">
+    <value>Selected FormGroup was saved successfuly</value>
+  </data>
+  <data name="SaveXml_Button_Text" xml:space="preserve">
+    <value>Save Xml</value>
+  </data>
+  <data name="XmlToHtml_FilePath" xml:space="preserve">
+    <value>/COECommonResources/XmlToHtml.xsl</value>
+  </data>
+  <data name="ErrorTextNotCoppiedFromClipboard_Alert_Text" xml:space="preserve">
+    <value>Text was not copied from clipboard!</value>
+  </data>
+  <data name="ErrorTextNotCoppiedToClipboard_Alert_Text" xml:space="preserve">
+    <value>Text was not copied to clipboard!</value>
+  </data>
+  <data name="FormGroupSaved_MessagesArea" xml:space="preserve">
+    <value>Selected FormGroup was saved successfuly</value>
+  </data>
+  <data name="InvalidXmlFormat_MasterPage" xml:space="preserve">
+    <value>The XML entered is not in the correct format</value>
+  </data>
+  <data name="SaveConfiguraitionBeforeEditAddIn_MasterPage" xml:space="preserve">
+    <value>Please save configuration before edit a new addin</value>
+  </data>
+  <data name="ConfigurationSaved_MessagesArea" xml:space="preserve">
+    <value>The configuration was successfully saved</value>
+  </data>
+  <data name="EventAlreadyExist_MasterPage" xml:space="preserve">
+    <value>The Event already exist</value>
+  </data>
+  <data name="EventNotSelected_MasterPage" xml:space="preserve">
+    <value>Please, select an event from event list</value>
+  </data>
+  <data name="FriendlyNameAlreadyExist_MasterPage" xml:space="preserve">
+    <value>Inserted Friendly Name already exists</value>
+  </data>
+  <data name="FriendlyNameRequired_MasterPage" xml:space="preserve">
+    <value>Friendly Name field can´t be empty</value>
+  </data>
+  <data name="InvalidAddInConfigurationFormat_MasterPage" xml:space="preserve">
+    <value>The AddIn configuration must be empty or written in XML format</value>
+  </data>
+  <data name="NoAvailableEventToDelete_MasterPage" xml:space="preserve">
+    <value>There is not event to delete</value>
+  </data>
+  <data name="PropertyAlreadyExists_MasterPage" xml:space="preserve">
+    <value>Property {0} already exists or is waiting to be deleted.</value>
+  </data>
+  <data name="PropertySuccessfullyAdded_MessagesArea" xml:space="preserve">
+    <value>The property {0} was added successfully (Please remember to save).</value>
+  </data>
+  <data name="BatchComponentPropertyExists_MasterPage" xml:space="preserve">
+    <value>The property name already exists or is waiting to be in Batch Component Property</value>
+  </data>
+  <data name="BatchPropertyExists_MasterPage" xml:space="preserve">
+    <value>The property name already exists or is waiting to be deleted in Batch Property List</value>
+  </data>
+  <data name="CompoundPropertyExists_MasterPage" xml:space="preserve">
+    <value>The property name already exists or is waiting to be deleted in Compound Property List</value>
+  </data>
+  <data name="InvalidAddInConfiguration_MasterPage" xml:space="preserve">
+    <value>The AddInn configuration should be entered in XML</value>
+  </data>
+  <data name="InvalidPrecisionValue_MasterPage" xml:space="preserve">
+    <value>The precision value must be greater than 0</value>
+  </data>
+  <data name="InvalidPropertyNameFormat_MasterPage" xml:space="preserve">
+    <value>Please insert the property name in correct format</value>
+  </data>
+  <data name="PropertyNameSameAsPropertyType_MasterPage" xml:space="preserve">
+    <value>You´re trying to use a reserved word as property name. Please choose another one.</value>
+  </data>
+  <data name="RegistryPropertyExists_MasterPage" xml:space="preserve">
+    <value>The property name already exists or is waiting to be delete in Registry Property List</value>
+  </data>
+  <data name="PropertyNameRequired_MasterPage" xml:space="preserve">
+    <value>Property name can´t be empty</value>
+  </data>
+  <data name="PropertyNameAndPrecisionValueRequired_MasterPage" xml:space="preserve">
+    <value>Property name and precision value can´t be empty</value>
+  </data>
+  <data name="ConfigurationSavedWithWarnings_MessagesArea" xml:space="preserve">
+    <value>The configuration was saved with the followings warnings &lt;br/&gt;{0}</value>
+  </data>
+  <data name="PropertyDeletedSuccessfully_MessagesArea" xml:space="preserve">
+    <value>The property {0} was deleted successfully (Please remember to save).</value>
+  </data>
+  <data name="ChemscriptBusy_Exception" xml:space="preserve">
+    <value>The chemscript service was busy, please try again.</value>
+  </data>
+  <data name="ConfirmDeleteParameter_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete this parameter?</value>
+  </data>
+  <data name="ConfirmDeleteRegistry_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete current registry?</value>
+  </data>
+  <data name="ConfirmDeleteMixture_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete current mixture registry?</value>
+  </data>
+  <data name="ConfirmDeleteComponent_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete current component registry?</value>
+  </data>
+  <data name="ConfirmDeleteTempRegistry_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete this temporary registry?</value>
+  </data>
+  <data name="ConfirmDeleteTempMixture_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete this temporary mixture registry?</value>
+  </data>
+  <data name="ConfirmDeleteTempComponent_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete current temporary component registry?</value>
+  </data>
+  <data name="ConfirmDeleteValidationRule_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete this Validation Rule?</value>
+  </data>
+  <data name="NotRecordFound_MasterPage" xml:space="preserve">
+    <value>Not record found</value>
+  </data>
+  <data name="EditingComponentsEffectsCaution_MessagesBox" xml:space="preserve">
+    <value>Editing these components will affect all registry records that refer to them. Choose one of the following options:</value>
+  </data>
+  <data name="NoDataToSave_MessagesArea" xml:space="preserve">
+    <value>There are no data to save</value>
+  </data>
+  <data name="AddingBatchNotAllowed_Exception" xml:space="preserve">
+    <value>Adding a batch is not allowed in this context</value>
+  </data>
+  <data name="CannotCreateCompoundForm_Exception" xml:space="preserve">
+    <value>Can't create compound form on this context.</value>
+  </data>
+  <data name="DuplicateNotAllowed_Exception" xml:space="preserve">
+    <value>Can't duplicate in this context</value>
+  </data>
+  <data name="InvalidOrNoSavedHitListID_Exception" xml:space="preserve">
+    <value>Invalid / Not specified Saved HitListId</value>
+  </data>
+  <data name="UnableToLogin_Exception" xml:space="preserve">
+    <value>Unable to Login</value>
+  </data>
+  <data name="UseStructureOnRegistering_Button_ToolTip" xml:space="preserve">
+    <value>Create a new registry record linking to the structure of this existing record.</value>
+  </data>
+  <data name="UseStructureOnRegisteringPreReg_Button_ToolTip" xml:space="preserve">
+    <value>Suggest to create a new registry record linking to the structure of this existing record.</value>
+  </data>
+  <data name="UserNameRequired_Exception" xml:space="preserve">
+    <value>no user name provided</value>
+  </data>
+  <data name="UseStructureOnEdit_Button_ToolTip" xml:space="preserve">
+    <value>Replace the record structure linking to the structure of this existing record.</value>
+  </data>
+  <data name="AddInConfigurationFormat_Exception" xml:space="preserve">
+    <value>The AddIn configuration text must be onlly the InnerXml text</value>
+  </data>
+  <data name="ComponentsDuplicates_LinkButton_Text" xml:space="preserve">
+    <value>Component Duplicates</value>
+  </data>
+  <data name="ReturnToSubmitMixture_Button_Tooltip" xml:space="preserve">
+    <value>Return to submit record view</value>
+  </data>
+  <data name="ComponentsAffected_MessageBox_Title" xml:space="preserve">
+    <value>There are several components affected.</value>
+  </data>
+  <data name="EditingStructureEffectsCaution_MessagesBox" xml:space="preserve">
+    <value>This structure and its data are shared, so these edits will affect all components that refer to it. Choose one of the following options:</value>
+  </data>
+  <data name="UpdateAffectOtherComponents" xml:space="preserve">
+    <value>This update causes other components to be updated as well.</value>
+  </data>
+  <data name="UpdateAffectOtherRecords" xml:space="preserve">
+    <value>This update causes other registrations to be updated as well.</value>
+  </data>
+  <data name="ComponentsDuplicatesSearch_PageTitle" xml:space="preserve">
+    <value>Duplicate Components Information</value>
+  </data>
+  <data name="ComponentDuplicatesSearch_PageName" xml:space="preserve">
+    <value>ComponentDuplicatesSearch.aspx</value>
+  </data>
+  <data name="ComponentDuplicatesSearchPage_URL" xml:space="preserve">
+    <value>/COERegistration/Forms/ComponentDuplicates/ContentArea/ComponentDuplicatesSearch.aspx</value>
+  </data>
+  <data name="ReturnToDuplicatesComponents_Button_Text" xml:space="preserve">
+    <value>Returns to last duplicates search.</value>
+  </data>
+  <data name="IsNotEditable_Message" xml:space="preserve">
+    <value>You are not authorized to edit or delete any information of this Record</value>
+  </data>
+  <data name="SourceAndDestinationMatch_ErrorMessage" xml:space="preserve">
+    <value>The source and destination registrations are the same. Please specify a different destination registration.</value>
+  </data>
+  <data name="FollowingRecordsNotDeleted_Label_Text" xml:space="preserve">
+    <value>The following records were not deleted: {0}</value>
+  </data>
+  <data name="NoRecordWasDeleted_Label_Text" xml:space="preserve">
+    <value>No record was deleted.</value>
+  </data>
+  <data name="SchemaValidationError" xml:space="preserve">
+    <value>Error in line {0}, position {1}: {2}</value>
+  </data>
+  <data name="DulplicateRegistryNumber_Control_Text" xml:space="preserve">
+    <value>Duplicate Registry {0}</value>
+  </data>
+  <data name="DulplicateComponentNumber_Control_Text" xml:space="preserve">
+    <value>Duplicate Component {0}</value>
+  </data>
+  <data name="DulplicateMixtureNumber_Control_Text" xml:space="preserve">
+    <value>Duplicate Mixture {0}</value>
+  </data>
+  <data name="DuplicateRecord_TreeTitle" xml:space="preserve">
+    <value>Duplicate Record</value>
+  </data>
+  <data name="DuplicateMixture_TreeTitle" xml:space="preserve">
+    <value>Duplicate Mixture</value>
+  </data>
+  <data name="RegistryDuplicate_Message" xml:space="preserve">
+    <value>The Registry you are trying to register already exists. &lt;br&gt; Review the list of conflicts and choose whether to Add Batch or Duplicate.</value>
+  </data>
+  <data name="MixtureDuplicate_Message" xml:space="preserve">
+    <value>The mixture you are trying to register already exists. &lt;br&gt; Review the list of conflicts and choose whether to Add Batch or Duplicate.</value>
+  </data>
+  <data name="MixtureDuplicatePreReg_Message" xml:space="preserve">
+    <value>The mixture you are trying to submit already exists. &lt;br&gt; Review the list of conflicts and suggest whether to Add Batch or Duplicate.&lt;br&gt; Enter additional justification in submitter comments. The action is only suggested and will not be taken.</value>
+  </data>
+  <data name="ComponentDuplicate_Message" xml:space="preserve">
+    <value>The component you are trying to register already exists. &lt;br&gt; Review the list of conflicts and choose a duplicate action.</value>
+  </data>
+  <data name="ComponentDuplicatePreReg_Message" xml:space="preserve">
+    <value>The component you are trying to submit already exists. &lt;br&gt; Review the list of conflicts and suggest a duplicate action.&lt;br&gt; Enter additional justification in submitter comments. The action is only suggested and will not be taken.</value>
+  </data>
+  <data name="DuplicateRegistries_NextLinkButton_ToolTip" xml:space="preserve">
+    <value>Go to next conflicting record.</value>
+  </data>
+  <data name="DuplicateRegistries_PreviousLinkButton_ToolTip" xml:space="preserve">
+    <value>Go to previous conflicting record.</value>
+  </data>
+  <data name="StructurePropertyExists_MasterPage" xml:space="preserve">
+    <value>The property name already exists or is waiting to be deleted in Structure Property List</value>
+  </data>
+  <data name="Save_Button_Tooltip_Perm" xml:space="preserve">
+    <value>Save permanent registration {0}</value>
+  </data>
+  <data name="Save_Button_Tooltip_Temp" xml:space="preserve">
+    <value>Save temporary registration {0}</value>
+  </data>
+  <data name="PropertySuccessfullyEdited_MessagesArea" xml:space="preserve">
+    <value>The property {0} was edited successfully (Please remember to save).</value>
+  </data>
+  <data name="ConfirmForceImport_Alert_Text" xml:space="preserve">
+    <value>Force import would override all of your current configuration, Are you sure this is what you expect?</value>
+  </data>
+  <data name="ForceImport_Label_Text" xml:space="preserve">
+    <value>Force import</value>
+  </data>
+  <data name="About_URL" xml:space="preserve">
+    <value>~/Forms/Public/ContentArea/About.aspx</value>
+  </data>
+  <data name="ManagerHome_URL" xml:space="preserve">
+    <value>/COEManager/Forms/Public/ContentArea/Home.aspx</value>
+  </data>
+  <data name="RegAdmin_ImportCustomization_URL" xml:space="preserve">
+    <value>~/Forms/RegistrationAdmin/ContentArea/ImportExportCustom.aspx</value>
+  </data>
+  <data name="RegAdmin_MustImportCustomizationInfo_Text" xml:space="preserve">
+    <value>Your configuration is not present or is defective. In order to fix the system, please import a new customization.</value>
+  </data>
+  <data name="UserHelp_URL" xml:space="preserve">
+    <value>/CBOEHelp/CBOEContextHelp/Registration Webhelp/default.htm</value>
+  </data>
+  <data name="AddMixture_Label_Text" xml:space="preserve">
+    <value>Submit a mixture for review by the Registrar. Select components to add to the mixture by clicking the new component in the tree or selecting from the manage mixture components drop-down menu.</value>
+  </data>
+  <data name="NewContainer_Header_Text" xml:space="preserve">
+    <value>Create new container</value>
+  </data>
+  <data name="Submitter_SuggestedAction_DuplicateComponent" xml:space="preserve">
+    <value>Submitter ({0}) suggests creating a duplicate because: {1}</value>
+  </data>
+  <data name="Submitter_SuggestedAction_DuplicateMixture" xml:space="preserve">
+    <value>Submitter ({0}) suggests creating a duplicate because: {1}</value>
+  </data>
+  <data name="Submitter_SuggestedAction_AddBatchComponent" xml:space="preserve">
+    <value>Submitter ({0}) suggests adding a batch to {1} because: {2}</value>
+  </data>
+  <data name="Submitter_SuggestedAction_AddBatchMixture" xml:space="preserve">
+    <value>Submitter ({0}) suggests adding a batch to {1} because: {2}</value>
+  </data>
+  <data name="Submitter_SuggestedAction_UseStructureComponent" xml:space="preserve">
+    <value>Submitter ({0}) suggests using the structure from {1} because: {2}</value>
+  </data>
+  <data name="Submitter_SuggestedAction_CreateCompountFormComponent" xml:space="preserve">
+    <value>Submitter ({0}) suggests creating a compound form of {1} because: {2}</value>
+  </data>
+  <data name="MixtureError_Creation_Batch_ToolTip" xml:space="preserve">
+    <value>Mixtures must have batch component percentage information before submission</value>
+  </data>
+  <data name="MixtureRegError_Creation_ToolTip" xml:space="preserve">
+    <value>Mixtures must have more than 1 component before registration</value>
+  </data>
+  <data name="MixtureError_Creation_ToolTip" xml:space="preserve">
+    <value>Mixtures must have more than 1 component before submission</value>
+  </data>
+  <data name="MixtureRegError_Creation_Batch_ToolTip" xml:space="preserve">
+    <value>Mixtures must have batch component percentage information before registration</value>
+  </data>
+  <data name="MixtureRegOK_Creation_ToolTip" xml:space="preserve">
+    <value>Click to register mixture</value>
+  </data>
+  <data name="MixtureOK_Creation_ToolTip" xml:space="preserve">
+    <value>Click to submit mixture to temporary table</value>
+  </data>
+  <data name="RegistryOK_Creation_ToolTip" xml:space="preserve">
+    <value>Click to submit mixture to temporary table</value>
+  </data>
+  <data name="RegistryRegOK_Creation_ToolTip" xml:space="preserve">
+    <value>Click to register</value>
+  </data>
+  <data name="ComponentOK_Creation_ToolTip" xml:space="preserve">
+    <value>Click to submit mixture to temporary table</value>
+  </data>
+  <data name="ComponentRegOK_Creation_ToolTip" xml:space="preserve">
+    <value>Click to register mixture</value>
+  </data>
+  <data name="Client_Script_Label" xml:space="preserve">
+    <value>Client Script</value>
+  </data>
+  <data name="ValidationRuleCustom_Message" xml:space="preserve">
+    <value>This Validation Rule type must have clientscript parameters.</value>
+  </data>
+  <data name="ValidationRuleCustomDefault_Message" xml:space="preserve">
+    <value>The Validation failed for this property.</value>
+  </data>
+  <data name="RegistryNumber_Label_ToolTip" xml:space="preserve">
+    <value>Registry number is case sensitive</value>
+  </data>
+  <data name="UnregisteredComponents_Message" xml:space="preserve">
+    <value>Unregistered components are not allowed in mixtures.Please set AllowUnregisteredComponents to true.</value>
+  </data>
+  <data name="MoveBatchDisabled_ToolTip" xml:space="preserve">
+    <value>Move Batch requires that the registry record has more than 1 batch. To move this batch, you will need to add a batch. You can then delete the registry record.</value>
+  </data>
+  <data name="Required_default_admin_datatype" xml:space="preserve">
+    <value>A default {0} entry is required to populate existing empty values for this property.</value>
+    <comment>Used in validations.</comment>
+  </data>
+  <data name="Required_default_admin_numeric_RegExpression" xml:space="preserve">
+    <value>Please enter a numeric value {0}, Default numeric entry can have  {0} as integer part {1} as decimal part.</value>
+    <comment>Used in validations.</comment>
+  </data>
+  <data name="Required_default_admin_textbox_label_text" xml:space="preserve">
+    <value>Default Value {0}</value>
+    <comment>Used in validations.</comment>
+  </data>
+  <data name="Required_default_admin_text_RegExpression" xml:space="preserve">
+    <value>Default text entry must have a length less than or equal to {0}.</value>
+    <comment>Used in validations.</comment>
+  </data>
+  <data name="Required_default_admin_Tooltip" xml:space="preserve">
+    <value>Data already exists in the dataset. Adding a required field validator requires that all empty fields for this property be populated with a default value.</value>
+    <comment>Used in validations.</comment>
+  </data>
+  <data name="ManageProperties_Disable_ToolTip" xml:space="preserve">
+    <value>You must click save inorder to modify newly added properties.</value>
+    <comment>Used in validations.</comment>
+  </data>
+  <data name="ConfirmCancelValidationRule_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to cancel this Validation Rule?</value>
+  </data>
+  <data name="Locked_Registration" xml:space="preserve">
+    <value>Compound is locked in Registration :</value>
+  </data>
+  <data name="Lock_Registration_Page_Title" xml:space="preserve">
+    <value>Lock Registrations</value>
+  </data>
+  <data name="InvalidUser_To_SaveTemplate" xml:space="preserve">
+    <value>You are not allowed to save changes to another users public template</value>
+  </data>
+  <data name="IsNotRegistryDeleteable_Message" xml:space="preserve">
+    <value>You are not authorized to delete this Registry Record</value>
+  </data>
+  <data name="NotAuthorizedToRegisterFollowingRecords_Label_Text" xml:space="preserve">
+    <value>You are not authorized to register the following records: {0}</value>
+  </data>
+  <data name="User_Preference_Save_Message" xml:space="preserve">
+    <value>Preferences saved successfully</value>
+  </data>
+  <data name="User_Preference_Title" xml:space="preserve">
+    <value>User Preference</value>
+  </data>
+  <data name="User_Preference_Note_Text" xml:space="preserve">
+    <value>Note: Red coloured fields indicate mandatory fields when registering,&lt;br&gt; but they are for information only and not required here to save your user preference</value>
+  </data>
+</root>

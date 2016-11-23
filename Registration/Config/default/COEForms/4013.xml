@@ -1,0 +1,1761 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<formGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="4013" dataViewId="0" xmlns="COE.FormGroup">
+  <queryForms defaultForm="0" />
+  <detailsForms defaultForm="0">
+    <detailsForm id="0" defaultDisplayMode="View">
+      <coeForms>
+        <coeForm id="9" dataSourceId="DuplicatesCslaDataSource">
+          <validationRuleList />
+          <title>Registry Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode>
+            <formElement name="RegNumber">
+              <label>Registry Number</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.Duplicates.Current.RegNumber.RegNum</bindingExpression>
+              <Id>RegCIDTextBox</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 120" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="120" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="Projects">
+              <label>Projects</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.Duplicates.Current.ProjectList</bindingExpression>
+              <Id>Mix_ProjectsUltraGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGridUltra</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                <fieldConfig>
+                  <CSSLabelClass>FERegistryLabelVM</CSSLabelClass>
+                  <AddRowTitle>Add Project</AddRowTitle>
+                  <ReadOnly>true</ReadOnly>
+                  <DefaultEmptyRows>0</DefaultEmptyRows>
+                  <NoDataMessage>No Projects associated</NoDataMessage>
+                  <tables>
+                    <table>
+                      <Columns>
+                        <Column name="Project" dataTextValueField="Name" dataSourceID="AllProjectsCslaDataSource">
+                          <formElement>
+                            <Id>Mix_ProjectDropDownList</Id>
+                            <label>Project</label>
+                            <bindingExpression>ProjectID</bindingExpression>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FEDropDownListGrid</CSSClass>
+                                <CSSLabelClass>COERequiredField</CSSLabelClass>
+                                <DataSourceID>AllProjectsCslaDataSource</DataSourceID>
+                                <DataTextField>Name</DataTextField>
+                                <DataValueField>ProjectID</DataValueField>
+                                <ID>Inner_Mix_ProjectDropDownList</ID>
+                                <Columns>
+                                  <Column key="ProjectID" title="Project ID" visible="false" />
+                                  <Column key="Name" title="Name" />
+                                  <Column key="Description" title="Description" />
+                                </Columns>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <!--<height>15px</height>
+
+                              <width>170px</width>
+
+                              <top>300px</top>
+
+                              <left>110px</left>-->
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownListUltra</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Name" />
+                      </Columns>
+                    </table>
+                  </tables>
+                  <!--
+
+                                          <ClientSideEvents>
+
+                                            <Event name="BeforeEnterEdit"></Event>
+
+                                          </ClientSideEvents> -->
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="Identifiers">
+              <label>Registry Identifiers</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.Duplicates.Current.IdentifierList</bindingExpression>
+              <Id>Mix_IdentifiersUltraGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGridUltra</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                <fieldConfig>
+                  <CSSLabelClass>FERegistryLabelVM</CSSLabelClass>
+                  <AddRowTitle>Add Identifier</AddRowTitle>
+                  <ReadOnly>true</ReadOnly>
+                  <DefaultEmptyRows>0</DefaultEmptyRows>
+                  <NoDataMessage>No Identifiers associated</NoDataMessage>
+                  <tables>
+                    <table>
+                      <Columns>
+                        <Column name="ID" visible="false" columnType="Custom" defaultValue="0" />
+                        <!-- Identifier type selection drop down column -->
+                        <Column name="Type" dataTextValueField="Name" dataSourceID="RegistryIdentifiersCslaDataSource">
+                          <formElement>
+                            <Id>Mix_IdentifiersDropDownList</Id>
+                            <label>Type</label>
+                            <bindingExpression>IdentifierID</bindingExpression>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FEDropDownListGrid</CSSClass>
+                                <CSSLabelClass>COERequiredField</CSSLabelClass>
+                                <DataSourceID>RegistryIdentifiersCslaDataSource</DataSourceID>
+                                <DataTextField>Name</DataTextField>
+                                <DataValueField>IdentifierID</DataValueField>
+                                <ID>Inner_Mix_IdentifiersDropDownList</ID>
+                                <Columns>
+                                  <Column key="IdentifierID" title="Identifier ID" visible="false" />
+                                  <Column key="Name" title="Name" />
+                                  <Column key="Description" title="Description" />
+                                </Columns>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <!--<height>15px</height>
+
+                              <width>170px</width>
+
+                              <top>5px</top>
+
+                              <left>250px</left>-->
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownListUltra</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <!-- Identifier Name -->
+                        <Column name="Value">
+                          <formElement>
+                            <Id>VMix_IdentifiersNameTextEdit</Id>
+                            <bindingExpression>InputText</bindingExpression>
+                            <configInfo>
+                              <fieldConfig />
+                              <MaxLength>50</MaxLength>
+                            </configInfo>
+                            <displayInfo>
+                              <!--<height>15px</height>
+
+                              <width>170px</width>
+
+                              <top>5px</top>
+
+                              <left>110px</left>-->
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextEdit</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Name" />
+                      </Columns>
+                    </table>
+                  </tables>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+        <coeForm id="1000" dataSourceId="CurrentDuplicateCslaDataSource">
+          <validationRuleList />
+          <title>Registry Custom Properties</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+        <coeForm id="1" dataSourceId="DuplicateCompoundsCslaDataSource">
+          <validationRuleList />
+          <title>Structure Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo>
+          </layoutInfo>
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode>
+            <formElement name="STRUCT_NAME">
+              <label>Structure Name</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.PropertyList[@Name='STRUCT_NAME'| Value]</bindingExpression>
+              <Id>STRUCT_NAMEProperty</Id>
+              <displayInfo>
+                <cssClass>Std100x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="200" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </addMode>
+          <editMode>
+            <formElement name="STRUCT_NAME">
+              <label>Structure Name</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.PropertyList[@Name='STRUCT_NAME'| Value]</bindingExpression>
+              <Id>STRUCT_NAMEProperty</Id>
+              <displayInfo>
+                <cssClass>Std100x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="200" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </editMode>
+          <viewMode>
+            <formElement name="Structure">
+              <label />
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>Structure</defaultValue>
+              <bindingExpression>Compound.BaseFragment.Structure.Value</bindingExpression>
+              <Id>BaseFragmentStructureViewMode</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEChemDrawEmbedReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FEStructureViewMode</CSSClass>
+                  <Height>200px</Height>
+                  <Width>200px</Width>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="Component ID">
+              <label>Component ID</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.RegNumber.RegNum</bindingExpression>
+              <Id>CIDTextBox</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 120" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="120" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="MF">
+              <label>MF</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.Formula</bindingExpression>
+              <Id>FormulaTextBox</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="MW">
+              <label>MW</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.MolWeight</bindingExpression>
+              <Id>MolWeightTextBox</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                  <Mask>####.##</Mask>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="Structure ID">
+              <label>Structure ID</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.ID</bindingExpression>
+              <Id>CSID</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            <formElement name="Identifiers">
+              <label>Structure Identifiers</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.IdentifierList</bindingExpression>
+              <Id>Structure_IdentifiersUltraGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGridUltra</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                <RemoveButtonCSS>RemoveButtonCSS</RemoveButtonCSS>
+                <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                <SelectedRowStyleCSS>RowSelectedStyleCSS</SelectedRowStyleCSS>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <AddRowTitle>Add Identifier</AddRowTitle>
+                  <RemoveRowTitle>Remove Identifier</RemoveRowTitle>
+                  <ReadOnly>true</ReadOnly>
+                  <NoDataMessage>No Identifiers associated</NoDataMessage>
+                  <DefaultEmptyRows>0</DefaultEmptyRows>
+                  <tables>
+                    <table>
+                      <Columns>
+                        <Column name="ID" visible="false" columnType="Custom" defaultValue="0" />
+                        <!-- Identifier type selection drop down column -->
+                        <Column name="Type" dataTextValueField="Name" dataSourceID="StructureIdentifiersCslaDataSource">
+                          <!--dataSourceID="IdentifiersCslaDataSource">-->
+                          <formElement>
+                            <Id>LStructure_IdentifiersDropDownList</Id>
+                            <label>Type</label>
+                            <bindingExpression>IdentifierID</bindingExpression>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FEDropDownListGrid</CSSClass>
+                                <CSSLabelClass>COERequiredField</CSSLabelClass>
+                                <DataSourceID>StructureIdentifiersCslaDataSource</DataSourceID>
+                                <DataTextField>Name</DataTextField>
+                                <DataValueField>IdentifierID</DataValueField>
+                                <ID>Inner_LStructure_IdentifiersDropDownList</ID>
+                                <Columns>
+                                  <Column key="IdentifierID" title="Identifier ID" visible="false" />
+                                  <Column key="Name" title="Name" />
+                                  <Column key="Description" title="Description" />
+                                </Columns>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownListUltra</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <!-- Identifier Name -->
+                        <Column name="Value">
+                          <formElement>
+                            <Id>LStructure_IdentifiersNameTextEdit</Id>
+                            <bindingExpression>InputText</bindingExpression>
+                            <configInfo>
+                              <fieldConfig />
+                              <MaxLength>50</MaxLength>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextEdit</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Name" />
+                      </Columns>
+                    </table>
+                  </tables>
+                  <ClientSideEvents>
+                  </ClientSideEvents>
+                  <DefaultRows>
+                    <Row>
+                      <cell bindingExpression="IdentifierID" dataValue="5" dataText="Custom_FindFromEditor" />
+                    </Row>
+                  </DefaultRows>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="STRUCT_COMMENTS">
+              <label>Structure Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.PropertyList[@Name='STRUCT_COMMENTS'| Value]</bindingExpression>
+              <Id>STRUCT_COMMENTSProperty</Id>
+              <displayInfo>
+                <cssClass>Std100x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="Max. 200 characters" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="200" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="STRUCT_NAME">
+              <label>Structure Name</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Compound.BaseFragment.Structure.PropertyList[@Name='STRUCT_NAME'| Value]</bindingExpression>
+              <Id>STRUCT_NAMEProperty</Id>
+              <displayInfo>
+                <cssClass>Std100x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="200" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+        <coeForm id="1001" dataSourceId="DuplicateCompoundsCslaDataSource">
+          <validationRuleList />
+          <title>Component custom properties</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode>
+          </addMode>
+          <editMode>
+          </editMode>
+          <viewMode>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+        <coeForm id="0" dataSourceId="DuplicatesCslaDataSource">
+          <validationRuleList />
+          <title>Component Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode>
+            <formElement name="Identifiers">
+              <label>Component Identifiers</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.Duplicates.Current.ComponentList[this.Duplicates.CurrentCompoundIndex].Compound.IdentifierList</bindingExpression>
+              <Id>ACompoundIdentifiersUltraGrid</Id>
+              <displayInfo>
+                <style>width:40%</style>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGridUltra</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <AddRowTitle>Add Identifier</AddRowTitle>
+                  <ReadOnly>true</ReadOnly>
+                  <DefaultEmptyRows>0</DefaultEmptyRows>
+                  <NoDataMessage>No Identifiers associated</NoDataMessage>
+                  <tables>
+                    <table>
+                      <Columns>
+                        <Column name="ID" visible="false" columnType="Custom" defaultValue="0" />
+                        <!-- Identifier type selection drop down column -->
+                        <Column name="Type" dataTextValueField="Name" dataSourceID="CompoundIdentifiersCslaDataSource">
+                          <formElement>
+                            <Id>ACompound_IdentifiersDropDownList</Id>
+                            <label>Type</label>
+                            <bindingExpression>IdentifierID</bindingExpression>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FEDropDownListGrid</CSSClass>
+                                <CSSLabelClass>COERequiredField</CSSLabelClass>
+                                <DataSourceID>CompoundIdentifiersCslaDataSource</DataSourceID>
+                                <DataTextField>Name</DataTextField>
+                                <DataValueField>IdentifierID</DataValueField>
+                                <ID>Inner_ACompound_IdentifiersDropDownList</ID>
+                                <Columns>
+                                  <Column key="IdentifierID" title="Identifier ID" visible="false" />
+                                  <Column key="Name" title="Name" />
+                                  <Column key="Description" title="Description" />
+                                </Columns>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownListUltra</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <!-- Identifier Name -->
+                        <Column name="Description">
+                          <formElement>
+                            <Id>ACompound_IdentifiersNameTextEdit</Id>
+                            <bindingExpression>InputText</bindingExpression>
+                            <configInfo>
+                              <fieldConfig />
+                              <MaxLength>50</MaxLength>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextEdit</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Name" />
+                      </Columns>
+                    </table>
+                  </tables>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+        <coeForm id="3" dataSourceId="DuplicatesCslaDataSource">
+          <validationRuleList />
+          <title>Fragment List</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode>
+            <formElement name="BatchComponentFragmentList">
+              <label />
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.Duplicates.Current.BatchList[0].BatchComponentList[this.Duplicates.CurrentCompoundIndex].BatchComponentFragmentList</bindingExpression>
+              <Id>BatchComponentFragmentList</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEFragments</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                <fieldConfig>
+                  <GridConfigSettings>
+                    <Id>FragmentsListControlView</Id>
+                    <AddFragmentButtonText>New Fragment</AddFragmentButtonText>
+                    <TypesColTitle />
+                    <TypesColWidth />
+                    <TypesColVisible>true</TypesColVisible>
+                    <NamesColTitle />
+                    <NamesColWidth />
+                    <NamesColVisible>true</NamesColVisible>
+                    <MWColTitle />
+                    <MWTitleWidth />
+                    <MWColVisible>true</MWColVisible>
+                    <MWMask>####.##</MWMask>
+                    <FormulaColTitle />
+                    <FormulaColWidth />
+                    <FormulaColVisible>true</FormulaColVisible>
+                    <ReadOnly>LevelZero</ReadOnly>
+                    <ReadOnlyMode>true</ReadOnlyMode>
+                    <InvalidEquivalentValidationText />
+                    <StructureColVisible>false</StructureColVisible>
+                    <DefaultEmptyRows>1</DefaultEmptyRows>
+                    <FragmentTypesDataSourceID>FragmentTypesCslaDataSource</FragmentTypesDataSourceID>
+                    <FragmentNamesDataSourceID>FragmentNamesCslaDataSource</FragmentNamesDataSourceID>
+                  </GridConfigSettings>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+        <coeForm id="2" dataSourceId="CurrentBatchCslaDataSource">
+          <validationRuleList />
+          <title>Batch Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode>
+            <formElement name="Projects">
+              <label>Projects</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.ProjectList</bindingExpression>
+              <Id>Batch_ProjectsUltraGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGridUltra</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                <RemoveButtonCSS>RemoveButtonCSS</RemoveButtonCSS>
+                <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                <SelectedRowStyleCSS>RowSelectedStyleCSS</SelectedRowStyleCSS>
+                <fieldConfig>
+                  <AddRowTitle>Add Project</AddRowTitle>
+                  <RemoveRowTitle>Remove Project</RemoveRowTitle>
+                  <ReadOnly>true</ReadOnly>
+                  <DefaultEmptyRows>1</DefaultEmptyRows>
+                  <tables>
+                    <table>
+                      <Columns>
+                        <Column name="ID" visible="false" columnType="Custom" defaultValue="0" />
+                        <Column name="Project" dataTextValueField="Name" dataSourceID="AllProjectsCslaDataSource">
+                          <formElement>
+                            <Id>Batch_ProjectDropDownList</Id>
+                            <label>Project</label>
+                            <bindingExpression>ProjectID</bindingExpression>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FEDropDownListGrid</CSSClass>
+                                <CSSLabelClass>FELabel</CSSLabelClass>
+                                <DataSourceID>AllProjectsCslaDataSource</DataSourceID>
+                                <DataTextField>Name</DataTextField>
+                                <DataValueField>ProjectID</DataValueField>
+                                <ID>Inner_B_ProjectDropDownList</ID>
+                                <Columns>
+                                  <Column key="ProjectID" title="Project ID" visible="false" />
+                                  <Column key="Name" title="Name" />
+                                  <Column key="Description" title="Description" />
+                                </Columns>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownListUltra</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Name" />
+                      </Columns>
+                    </table>
+                  </tables>
+                  <ClientSideEvents>
+                    <Event name="BeforeEnterEdit">{CustomJS_FilterByUnique(ProjectID)}</Event>
+                  </ClientSideEvents>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+            <formElement name="Identifiers">
+              <label>Identifiers</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.IdentifierList</bindingExpression>
+              <Id>Batch_IdentifiersUltraGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGridUltra</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                <fieldConfig>
+                  <CSSLabelClass>FERegistryLabelVM</CSSLabelClass>
+                  <AddRowTitle>Add Identifier</AddRowTitle>
+                  <ReadOnly>true</ReadOnly>
+                  <DefaultEmptyRows>0</DefaultEmptyRows>
+                  <NoDataMessage>No Identifiers associated</NoDataMessage>
+                  <tables>
+                    <table>
+                      <Columns>
+                        <Column name="ID" visible="false" columnType="Custom" defaultValue="0" />
+                        <!-- Identifier type selection drop down column -->
+                        <Column name="Type" dataTextValueField="Name" dataSourceID="BatchIdentifiersCslaDataSource">
+                          <formElement>
+                            <Id>Batch_IdentifiersDropDownList</Id>
+                            <label>Type</label>
+                            <bindingExpression>IdentifierID</bindingExpression>
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FEDropDownListGrid</CSSClass>
+                                <CSSLabelClass>COERequiredField</CSSLabelClass>
+                                <DataSourceID>BatchIdentifiersCslaDataSource</DataSourceID>
+                                <DataTextField>Name</DataTextField>
+                                <DataValueField>IdentifierID</DataValueField>
+                                <ID>Inner_Batch_IdentifiersDropDownList</ID>
+                                <Columns>
+                                  <Column key="IdentifierID" title="Identifier ID" visible="false" />
+                                  <Column key="Name" title="Name" />
+                                  <Column key="Description" title="Description" />
+                                </Columns>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownListUltra</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <!-- Identifier Name -->
+                        <Column name="Value">
+                          <formElement>
+                            <Id>Batch_IdentifiersNameTextEdit</Id>
+                            <bindingExpression>InputText</bindingExpression>
+                            <configInfo>
+                              <fieldConfig />
+                              <MaxLength>50</MaxLength>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextEdit</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Name" />
+                      </Columns>
+                    </table>
+                  </tables>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="Batch ID">
+              <label>Batch ID</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.ID</bindingExpression>
+              <Id>BatchIDTextBox</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="Date Created">
+              <label>Date Created</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.DateCreated</bindingExpression>
+              <Id>DateCreatedTextBox</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePickerReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                  <NullDateLabel>Pick a date</NullDateLabel>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="Last Modification Date">
+              <label>Last Modification Date</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>this.DateLastModified</bindingExpression>
+              <Id>ModificationDateTextBox</Id>
+              <displayInfo>
+                <cssClass>Std20x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePickerReadOnly</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FETextBoxViewMode</CSSClass>
+                  <NullDateLabel>Pick a date</NullDateLabel>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+        <coeForm id="1002" dataSourceId="DuplicateBatchesCslaDataSource">
+          <validationRuleList />
+          <title>Batch custom properties</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode>
+            <formElement name="FORMULA_WEIGHT">
+              <label>Formula Weight</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='FORMULA_WEIGHT'| Value]</bindingExpression>
+              <Id>FORMULA_WEIGHTProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="float" errorMessage="This property can have at most 8 integer and 6 decimal digits" displayPosition="Top_Left">
+                  <params>
+                    <param name="integerPart" value="8" />
+                    <param name="decimalPart" value="6" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="BATCH_FORMULA">
+              <label>Molecular Formula</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='BATCH_FORMULA'| Value]</bindingExpression>
+              <Id>BATCH_FORMULAProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="200" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="PERCENT_ACTIVE">
+              <label>Percent Active</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='PERCENT_ACTIVE'| Value]</bindingExpression>
+              <Id>PERCENT_ACTIVEProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits" displayPosition="Top_Left">
+                  <params>
+                    <param name="integerPart" value="3" />
+                    <param name="decimalPart" value="2" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </addMode>
+          <editMode>
+            <formElement name="FORMULA_WEIGHT">
+              <label>Formula Weight</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='FORMULA_WEIGHT'| Value]</bindingExpression>
+              <Id>FORMULA_WEIGHTProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="float" errorMessage="This property can have at most 8 integer and 6 decimal digits" displayPosition="Top_Left">
+                  <params>
+                    <param name="integerPart" value="8" />
+                    <param name="decimalPart" value="6" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="BATCH_FORMULA">
+              <label>Molecular Formula</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='BATCH_FORMULA'| Value]</bindingExpression>
+              <Id>BATCH_FORMULAProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="200" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="PERCENT_ACTIVE">
+              <label>Percent Active</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='PERCENT_ACTIVE'| Value]</bindingExpression>
+              <Id>PERCENT_ACTIVEProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits" displayPosition="Top_Left">
+                  <params>
+                    <param name="integerPart" value="3" />
+                    <param name="decimalPart" value="2" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </editMode>
+          <viewMode>
+            <formElement name="FORMULA_WEIGHT">
+              <label>Formula Weight</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='FORMULA_WEIGHT'| Value]</bindingExpression>
+              <Id>FORMULA_WEIGHTProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="float" errorMessage="This property can have at most 8 integer and 6 decimal digits" displayPosition="Top_Left">
+                  <params>
+                    <param name="integerPart" value="8" />
+                    <param name="decimalPart" value="6" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="BATCH_FORMULA">
+              <label>Molecular Formula</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='BATCH_FORMULA'| Value]</bindingExpression>
+              <Id>BATCH_FORMULAProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0" />
+                    <param name="max" value="200" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="PERCENT_ACTIVE">
+              <label>Percent Active</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>PropertyList[@Name='PERCENT_ACTIVE'| Value]</bindingExpression>
+              <Id>PERCENT_ACTIVEProperty</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits" displayPosition="Top_Left">
+                  <params>
+                    <param name="integerPart" value="3" />
+                    <param name="decimalPart" value="2" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo />
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+        <coeForm id="1003" dataSourceId="BatchListCslaDataSource">
+          <validationRuleList />
+          <title>Batch Component custom properties</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo />
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>BatchComponentList</bindingExpression>
+              <Id>BatchComponentGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+                <position>relative</position>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:tables>
+                    <COE:table>
+                      <COE:CSSClass>BatchComponentTableClass</COE:CSSClass>
+                      <COE:headerStyle>color: #FFF; background-color:#B6B6B6; font-family: Verdana; font-size: 11px;text-align:center; border: 1px solid #888;</COE:headerStyle>
+                      <COE:ReadOnly>false</COE:ReadOnly>
+                      <COE:Columns>
+                        <COE:Column name="Component">
+                          <COE:formElement>
+                            <COE:Id>OrderIndex</COE:Id>
+                            <COE:bindingExpression>OrderIndex</COE:bindingExpression>
+                            <COE:displayInfo>
+                              <COE:type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</COE:type>
+                            </COE:displayInfo>
+                          </COE:formElement>
+                        </COE:Column>
+                        <COE:Column name="PERCENTAGE">
+                          <COE:headerText>Percentage</COE:headerText>
+                          <formElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="" xmlns="COE.FormGroup">
+                            <label />
+                            <defaultValue />
+                            <bindingExpression>PropertyList[@Name='PERCENTAGE' | Value]</bindingExpression>
+                            <Id>PERCENTAGEProperty</Id>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                              <visible>false</visible>
+                            </displayInfo>
+                            <validationRuleList>
+                              <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits" displayPosition="Top_Left">
+                                <params>
+                                  <param name="integerPart" value="3" />
+                                  <param name="decimalPart" value="2" />
+                                </params>
+                              </validationRule>
+                            </validationRuleList>
+                            <dataSource />
+                            <dataSourceId />
+                            <displayData />
+                            <COE:configInfo xmlns:COE="COE.FormGroup">
+                              <COE:fieldConfig>
+                                <COE:CSSClass>FETableTextBox</COE:CSSClass>
+                                <COE:TextMode>SingleLine</COE:TextMode>
+                              </COE:fieldConfig>
+                            </COE:configInfo>
+                          </formElement>
+                        </COE:Column>
+                      </COE:Columns>
+                    </COE:table>
+                  </COE:tables>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </addMode>
+          <editMode>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>BatchComponentList</bindingExpression>
+              <Id>BatchComponentGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+                <position>relative</position>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:tables>
+                    <COE:table>
+                      <COE:CSSClass>BatchComponentTableClass</COE:CSSClass>
+                      <COE:headerStyle>color: #FFF; background-color:#B6B6B6; font-family: Verdana; font-size: 11px;text-align:center; border: 1px solid #888;</COE:headerStyle>
+                      <COE:ReadOnly>false</COE:ReadOnly>
+                      <COE:Columns>
+                        <COE:Column name="Component">
+                          <COE:formElement>
+                            <COE:Id>OrderIndex</COE:Id>
+                            <COE:bindingExpression>OrderIndex</COE:bindingExpression>
+                            <COE:displayInfo>
+                              <COE:type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</COE:type>
+                            </COE:displayInfo>
+                          </COE:formElement>
+                        </COE:Column>
+                        <COE:Column name="PERCENTAGE">
+                          <COE:headerText>Percentage</COE:headerText>
+                          <formElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="" xmlns="COE.FormGroup">
+                            <label />
+                            <defaultValue />
+                            <bindingExpression>PropertyList[@Name='PERCENTAGE' | Value]</bindingExpression>
+                            <Id>PERCENTAGEProperty</Id>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                              <visible>false</visible>
+                            </displayInfo>
+                            <validationRuleList>
+                              <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits" displayPosition="Top_Left">
+                                <params>
+                                  <param name="integerPart" value="3" />
+                                  <param name="decimalPart" value="2" />
+                                </params>
+                              </validationRule>
+                            </validationRuleList>
+                            <dataSource />
+                            <dataSourceId />
+                            <displayData />
+                            <COE:configInfo xmlns:COE="COE.FormGroup">
+                              <COE:fieldConfig>
+                                <COE:CSSClass>FETableTextBox</COE:CSSClass>
+                                <COE:TextMode>SingleLine</COE:TextMode>
+                              </COE:fieldConfig>
+                            </COE:configInfo>
+                          </formElement>
+                        </COE:Column>
+                      </COE:Columns>
+                    </COE:table>
+                  </COE:tables>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </editMode>
+          <viewMode>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>BatchComponentList</bindingExpression>
+              <Id>BatchComponentGrid</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+                <position>relative</position>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:tables>
+                    <COE:table>
+                      <COE:CSSClass>BatchComponentTableClass</COE:CSSClass>
+                      <COE:headerStyle>color: #FFF; background-color:#B6B6B6; font-family: Verdana; font-size: 11px;text-align:center; border: 1px solid #888;</COE:headerStyle>
+                      <COE:ReadOnly>false</COE:ReadOnly>
+                      <COE:Columns>
+                        <COE:Column name="Component">
+                          <COE:formElement>
+                            <COE:Id>OrderIndex</COE:Id>
+                            <COE:bindingExpression>OrderIndex</COE:bindingExpression>
+                            <COE:displayInfo>
+                              <COE:type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</COE:type>
+                            </COE:displayInfo>
+                          </COE:formElement>
+                        </COE:Column>
+                        <COE:Column name="PERCENTAGE">
+                          <COE:headerText>Percentage</COE:headerText>
+                          <formElement xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="" xmlns="COE.FormGroup">
+                            <label />
+                            <defaultValue />
+                            <bindingExpression>PropertyList[@Name='PERCENTAGE' | Value]</bindingExpression>
+                            <Id>PERCENTAGEProperty</Id>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                              <visible>false</visible>
+                            </displayInfo>
+                            <validationRuleList>
+                              <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits" displayPosition="Top_Left">
+                                <params>
+                                  <param name="integerPart" value="3" />
+                                  <param name="decimalPart" value="2" />
+                                </params>
+                              </validationRule>
+                            </validationRuleList>
+                            <dataSource />
+                            <dataSourceId />
+                            <displayData />
+                            <COE:configInfo xmlns:COE="COE.FormGroup">
+                              <COE:fieldConfig>
+                                <COE:CSSClass>FETableTextBoxViewMode</COE:CSSClass>
+                                <COE:TextMode>SingleLine</COE:TextMode>
+                              </COE:fieldConfig>
+                            </COE:configInfo>
+                          </formElement>
+                        </COE:Column>
+                      </COE:Columns>
+                    </COE:table>
+                  </COE:tables>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+    </detailsForm>
+  </detailsForms>
+  <style>
+    .ViewRegister{height:380px;width:690;Margin-Bottom:35px;Margin-Left:5px;}
+    .MixtureData{Margin-Top:45px;Margin-Bottom:35px;Margin-Left:5px;}
+    .RegistryForm{height:120px;width:690;Margin-Bottom:35px;Margin-Left:5px;}
+    </style>
+  <listForms defaultForm="0">
+    <listForm id="0" defaultDisplayMode="View">
+      <coeForms>
+        <coeForm id="0" dataSourceId="CompoundListCslaDataSource">
+          <validationRuleList />
+          <layoutInfo />
+          <formDisplay>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <Id>ComponentRepeater</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEFormGeneratorRepeater</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <coeForm id="1">
+                    <title>Component Information</title>
+                    <titleCssClass>COEFormTitle</titleCssClass>
+                    <layoutInfo />
+                    <formDisplay>
+                      <layoutStyle>flowLayout</layoutStyle>
+                      <cssClass>COEFormDisplay</cssClass>
+                    </formDisplay>
+                    <viewMode>
+                      <formElement name="Structure">
+                        <label />
+                        <defaultValue />
+                        <bindingExpression>BaseFragment.Structure.Value</bindingExpression>
+                        <Id>BaseFragmentStructureViewMode</Id>
+                        <displayInfo>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEChemDrawEmbedReadOnly</type>
+                        </displayInfo>
+                        <validationRuleList />
+                        <serverEvents />
+                        <clientEvents />
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>FEStructureViewMode</CSSClass>
+                            <Height>200px</Height>
+                            <Width>200px</Width>
+                          </fieldConfig>
+                        </configInfo>
+                        <dataSource />
+                        <dataSourceId />
+                      </formElement>
+                      <formElement name="RegNum">
+                        <label>Compound Id</label>
+                        <defaultValue />
+                        <bindingExpression>RegNumber.RegNum</bindingExpression>
+                        <Id>CIDTextBox</Id>
+                        <displayInfo>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 120" displayPosition="Top_Left">
+                            <params>
+                              <param name="min" value="0" />
+                              <param name="max" value="120" />
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <serverEvents />
+                        <clientEvents />
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSLabelClass>FELabel</CSSLabelClass>
+                            <CSSClass>FETextBoxViewMode</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <dataSource />
+                        <dataSourceId />
+                      </formElement>
+                      <formElement name="MF">
+                        <label>MF</label>
+                        <defaultValue />
+                        <bindingExpression>BaseFragment.Structure.Formula</bindingExpression>
+                        <Id>FormulaTextBox</Id>
+                        <displayInfo>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                        <validationRuleList />
+                        <serverEvents />
+                        <clientEvents />
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSLabelClass>FELabel</CSSLabelClass>
+                            <CSSClass>FETextBoxViewMode</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <dataSource />
+                        <dataSourceId />
+                      </formElement>
+                      <formElement name="MW">
+                        <label>MW</label>
+                        <defaultValue />
+                        <bindingExpression>BaseFragment.Structure.MolWeight</bindingExpression>
+                        <Id>MolWeightTextBox</Id>
+                        <displayInfo>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                        <validationRuleList />
+                        <serverEvents />
+                        <clientEvents />
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSLabelClass>FELabel</CSSLabelClass>
+                            <CSSClass>FETextBoxViewMode</CSSClass>
+                            <Mask>####.##</Mask>
+                          </fieldConfig>
+                        </configInfo>
+                        <dataSource />
+                        <dataSourceId />
+                      </formElement>
+                      <formElement name="Identifiers">
+                        <label>Identifiers</label>
+                        <defaultValue />
+                        <bindingExpression>IdentifierList</bindingExpression>
+                        <Id>ACompoundIdentifiersUltraGrid</Id>
+                        <displayInfo>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGridUltra</type>
+                        </displayInfo>
+                        <validationRuleList />
+                        <serverEvents />
+                        <clientEvents />
+                        <configInfo>
+                          <HeaderStyleCSS>HeaderStyleCSS</HeaderStyleCSS>
+                          <HeaderHorizontalAlign>Center</HeaderHorizontalAlign>
+                          <AddButtonCSS>AddButtonCSS</AddButtonCSS>
+                          <RowAlternateStyleCSS>RowAlternateStyleCSS</RowAlternateStyleCSS>
+                          <RowStyleCSS>RowStyleCSS</RowStyleCSS>
+                          <fieldConfig>
+                            <CSSLabelClass>FELabel</CSSLabelClass>
+                            <AddRowTitle>Add Identifier</AddRowTitle>
+                            <ReadOnly>true</ReadOnly>
+                            <DefaultEmptyRows>1</DefaultEmptyRows>
+                            <NoDataMessage>No Identifiers associated</NoDataMessage>
+                            <tables>
+                              <table>
+                                <Columns>
+                                  <Column name="ID" visible="false" columnType="Custom" defaultValue="0" />
+                                  <!-- Identifier type selection drop down column -->
+                                  <Column name="Type" dataTextValueField="Name" dataSourceID="CompoundIdentifiersCslaDataSource">
+                                    <formElement>
+                                      <Id>ACompound_IdentifiersDropDownList</Id>
+                                      <label>Type</label>
+                                      <bindingExpression>IdentifierID</bindingExpression>
+                                      <configInfo>
+                                        <fieldConfig>
+                                          <CSSClass>FEDropDownListGrid</CSSClass>
+                                          <CSSLabelClass>COERequiredField</CSSLabelClass>
+                                          <DataSourceID>CompoundIdentifiersCslaDataSource</DataSourceID>
+                                          <DataTextField>Name</DataTextField>
+                                          <DataValueField>IdentifierID</DataValueField>
+                                          <ID>Inner_ACompound_IdentifiersDropDownList</ID>
+                                          <Columns>
+                                            <Column key="IdentifierID" title="Identifier ID" visible="false" />
+                                            <Column key="Name" title="Name" />
+                                            <Column key="Description" title="Description" />
+                                          </Columns>
+                                        </fieldConfig>
+                                      </configInfo>
+                                      <displayInfo>
+                                        <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownListUltra</type>
+                                      </displayInfo>
+                                    </formElement>
+                                  </Column>
+                                  <!-- Identifier Name -->
+                                  <Column name="Description">
+                                    <formElement>
+                                      <Id>ACompound_IdentifiersNameTextEdit</Id>
+                                      <bindingExpression>InputText</bindingExpression>
+                                      <configInfo>
+                                        <fieldConfig />
+                                        <MaxLength>50</MaxLength>
+                                      </configInfo>
+                                      <displayInfo>
+                                        <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextEdit</type>
+                                      </displayInfo>
+                                    </formElement>
+                                  </Column>
+                                  <Column name="Name" />
+                                </Columns>
+                              </table>
+                            </tables>
+                          </fieldConfig>
+                        </configInfo>
+                        <dataSource />
+                        <dataSourceId />
+                      </formElement>
+                      <!-- Resolve Link -->
+                      <formElement>
+                        <defaultValue>Resolve This Component</defaultValue>
+                        <Id>ResolveLinkButton</Id>
+                        <bindingExpression>OrderIndex</bindingExpression>
+                        <serverEvents>
+                          <event eventName="Click" handlerName="ResolveLinkButton_Click" />
+                        </serverEvents>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>FELinkResolveDuplicates</CSSClass>
+                          </fieldConfig>
+                          <CommandArguments>
+                            <param databindingexpression="OrderIndex" formattedText="OrderIndex={0}|" />
+                          </CommandArguments>
+                          <Text>Resolve This Component</Text>
+                        </configInfo>
+                        <displayInfo>
+                          <style>clear:both; margin-left:290px; width:100%</style>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELinkButton</type>
+                        </displayInfo>
+                      </formElement>
+                    </viewMode>
+                  </coeForm>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId>CompoundListCslaDataSource</dataSourceId>
+              <displayData />
+            </formElement>
+          </viewMode>
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+    </listForm>
+  </listForms>
+</formGroup>

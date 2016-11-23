@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.BaseFragment" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\BaseFragment.cs</FileName>
+      <HashCode>IAAAAIgAAAAAxAAAAAhIAIBEEABAgAEAABgBAgABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.IdentifierList" Collapsed="true">
+    <Position X="0.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\IdentifierList.cs</FileName>
+      <HashCode>AAAAAAAAAAAABAAAAAEAAgAAAAAAAAAAAAABAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Command" Collapsed="true">
+    <Position X="0.75" Y="11" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Command.cs</FileName>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.SingleCompoundRegistryRecord" Collapsed="true">
+    <Position X="1" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\SingleCompoundRegistryRecord.cs</FileName>
+      <NewMemberFileName>Compound.cs</NewMemberFileName>
+      <HashCode>IEAACIgQACAAxAAAAAhIBIAAAABAgAEAABgBACABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Compound" Collapsed="true">
+    <Position X="3" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Compound.cs</FileName>
+      <HashCode>IAIgAIkAgAAAxAAAAClIAAAggABAgoEAABhBAgABiCA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Identifier" Collapsed="true">
+    <Position X="0.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Identifier.cs</FileName>
+      <HashCode>IBQAAMgBAAAgxAQEAElIAAAAAAJAgAEAARghAAABqAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Structure" Collapsed="true">
+    <Position X="3" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Structure.cs</FileName>
+      <HashCode>IBQAAMgAAAAAxAQAAAlIAAAAEABAgAMAARghAAABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Component" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Component.cs</FileName>
+      <HashCode>IAAAAIgAADAAxAAAAAlIBAAAEAhAgAEAABgBAAABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.BatchList" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\BatchList.cs</FileName>
+      <HashCode>AAAAAAAAAAAgBAAAABEAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Batch" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Batch.cs</FileName>
+      <HashCode>IAYAAMgAgAAAxAEEAAlIEAAAAADAgAEAABgBAAAByQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.ComponentList" Collapsed="true">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\ComponentList.cs</FileName>
+      <HashCode>AAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAAAECAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.CompoundList" Collapsed="true">
+    <Position X="7.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\CompoundList.cs</FileName>
+      <HashCode>AAAAAAACAAAABAAAAAEAAAAAAAAAAAQAAAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Fragment" Collapsed="true">
+    <Position X="6.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Fragment.cs</FileName>
+      <HashCode>IAQAEMgAAAAgxAAEABlIEAAAAABAgAEAABgBAgAhiQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.FragmentList" Collapsed="true">
+    <Position X="6.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\FragmentList.cs</FileName>
+      <HashCode>AAAAAAAAAAAQBAAAAAEAAAAAAAAAAAAAAAAAAAABAAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.MultiCompoundRegistryRecord" Collapsed="true">
+    <Position X="4.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\MultiCompoundRegistryRecord.cs</FileName>
+      <HashCode>KAYAAMhAwAAAxAAAARlIAIAgiADBgAEAQBghABABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Notebook" Collapsed="true">
+    <Position X="4.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Notebook.cs</FileName>
+      <HashCode>IAQAIMgAAAgAxAAAAClIABQAAARAgAEAADgVAAABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Person" Collapsed="true">
+    <Position X="6.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Person.cs</FileName>
+      <HashCode>IAUAAMgAAIoAxACAQAlIAAAAAABAoAEAABgZAEghiBE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.PersonList" Collapsed="true">
+    <Position X="6.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\PersonList.cs</FileName>
+      <HashCode>AAAAAAIAAAAABAAAAAEAAAAAAAEAAAAAAAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Property" Collapsed="true">
+    <Position X="4.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Property.cs</FileName>
+      <HashCode>MBQAIMgAAAAAxAQIAAlIAAQAAABAgAEAARghAABBiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.PropertyList" Collapsed="true">
+    <Position X="4.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\PropertyList.cs</FileName>
+      <HashCode>AAAAAIAAAAAABAAAAAEAAAAAAAAAAAAAAAAAAAABAQA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.RegNumber" Collapsed="true">
+    <Position X="0.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\RegNumber.cs</FileName>
+      <HashCode>IBQAgMiAAACExAAAIAlIAAAAAABAgAEAABgBCAABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Sequence" Collapsed="true">
+    <Position X="2.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Sequence.cs</FileName>
+      <HashCode>IAQAAMgAAAABxAAAAAlIAAAAAADAlAEAQBgVAAABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Utilization" Collapsed="true">
+    <Position X="2.75" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Utilization.cs</FileName>
+      <HashCode>IBQAgMgAAAAAxAAAAAlIAABAAABAgAEAABgBAQABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.ValidationRule" Collapsed="true">
+    <Position X="4.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\ValidationRule.cs</FileName>
+      <HashCode>IAQAAMgAAAAAxAAAAAlIAAAAAABAgQEAABoBAAABjAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.UtilizationList" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\UtilizationList.cs</FileName>
+      <HashCode>AAAAAAAAAAAABAAAAAEAAAAAAAAAAAAAAQAAAIABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.ValidationRuleList" Collapsed="true">
+    <Position X="4.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\ValidationRuleList.cs</FileName>
+      <HashCode>AABAAAAACAAABAAAAAEAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.Project" Collapsed="true">
+    <Position X="0.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\Project.cs</FileName>
+      <HashCode>IAQAIMgBAAAgxAAEAAlIAgAIAABAgAEAAhgBAAABiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Registration.Services.Types.ProjectList" Collapsed="true">
+    <Position X="0.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>BusinessObjects\ProjectList.cs</FileName>
+      <HashCode>AAAAgAAAAAAABEAAAAEAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

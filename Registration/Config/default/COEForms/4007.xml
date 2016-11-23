@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<formGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="4007" dataViewId="4004" xmlns="COE.FormGroup">
+  <queryForms defaultForm="0">
+    <queryForm id="0" defaultDisplayMode="Add">
+      <coeForms>
+        <coeForm id="0">
+          <validationRuleList />
+          <layoutInfo>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>VW_LOG_BULKREGISTRATION_ID:</defaultValue>
+              <Id>VW_LOG_BULKREGISTRATION_IDLabel</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>LOG_ID</defaultValue>
+              <Id>LOG_IDLabel</Id>
+              <displayInfo>
+                <top>40px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[0].Criterium.Value</bindingExpression>
+              <Id>TempcompoundIdTextBox</Id>
+              <displayInfo>
+                <top>40px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="194" id="1" tableid="193">
+                <numericalCriteria negate="NO" trim="BOTH" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>DUPLICATE_ACTION</defaultValue>
+              <Id>DUPLICATE_ACTIONLabel</Id>
+              <displayInfo>
+                <top>70px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.Items[1].Criterium.Value</bindingExpression>
+              <Id>DUPLICATE_ACTIONTextBox</Id>
+              <displayInfo>
+                <top>70px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="195" id="2" tableid="193">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>DESCRIPTION</defaultValue>
+              <Id>DESCRIPTIONLabel</Id>
+              <displayInfo>
+                <top>100px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[2].Criterium.Value</bindingExpression>
+              <Id>DESCRIPTIONTextBox</Id>
+              <displayInfo>
+                <top>100px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="196" id="3" tableid="193">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>USER_ID</defaultValue>
+              <Id>USER_IDLabel</Id>
+              <displayInfo>
+                <top>130px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[3].Criterium.Value</bindingExpression>
+              <Id>USER_IDTextBox</Id>
+              <displayInfo>
+                <top>130px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="197" id="4" tableid="193">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>DATETIME_STAMP</defaultValue>
+              <Id>DATETIME_STAMPLabel</Id>
+              <displayInfo>
+                <top>160px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[4].Criterium.Value</bindingExpression>
+              <Id>DATETIME_STAMPTextBox</Id>
+              <displayInfo>
+                <top>160px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="198" id="5" tableid="193">
+                <dateCriteria negate="NO" operator="EQUAL" culture="en-US" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>VW_LOG_BULKREGISTRATION:</defaultValue>
+              <Id>VW_LOG_BULKREGISTRATIONLabel</Id>
+              <displayInfo>
+                <top>200px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>TEMP_ID:</defaultValue>
+              <Id>TEMP_IDLabel</Id>
+              <displayInfo>
+                <top>230px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[5].Criterium.Value</bindingExpression>
+              <Id>TEMP_IDTextBox</Id>
+              <displayInfo>
+                <top>230px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="212" id="6" tableid="210">
+                <numericalCriteria negate="NO" trim="BOTH" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>ACTION:</defaultValue>
+              <Id>ACTIONLabel</Id>
+              <displayInfo>
+                <top>260px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.Items[6].Criterium.Value</bindingExpression>
+              <Id>ACTIONTextBox</Id>
+              <displayInfo>
+                <top>260px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="213" id="7" tableid="210">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>REG_NUMBER:</defaultValue>
+              <Id>REG_NUMBERLabel</Id>
+              <displayInfo>
+                <top>290px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[7].Criterium.Value</bindingExpression>
+              <Id>REG_NUMBERTextBox</Id>
+              <displayInfo>
+                <top>290px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="214" id="8" tableid="210">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>BATCH_NUMBER:</defaultValue>
+              <Id>BATCH_NUMBERLabel</Id>
+              <displayInfo>
+                <top>320px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.Items[8].Criterium.Value</bindingExpression>
+              <Id>BATCH_NUMBERTextBox</Id>
+              <displayInfo>
+                <top>320px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="215" id="9" tableid="210">
+                <numericalCriteria negate="NO" trim="BOTH" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue>COMMENTS:</defaultValue>
+              <Id>COMMENTSLabel</Id>
+              <displayInfo>
+                <top>350px</top>
+                <left>10px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FELabel</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[9].Criterium.Value</bindingExpression>
+              <Id>COMMENTSTextBox</Id>
+              <displayInfo>
+                <top>350px</top>
+                <left>190px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <Width>150</Width>
+                  <Height>18</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="216" id="10" tableid="210">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <Id>ValidationSummary</Id>
+              <displayInfo>
+                <height>30px</height>
+                <width>400px</width>
+                <top>400px</top>
+                <left>0px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEValidationSummary</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COEValidationSummary</CSSClass>
+                  <Width>400px</Width>
+                  <Height>30px</Height>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+    </queryForm>
+  </queryForms>
+  <detailsForms defaultForm="0" />
+  <styleSheet>/COERegistration/App_Themes/Blue/COEFormsBlue.css</styleSheet>
+  <listForms defaultForm="0">
+    <listForm id="0" defaultDisplayMode="View">
+      <coeForms>
+        <coeForm id="0" dataMember="">
+          <validationRuleList />
+          <layoutInfo>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Dataset</bindingExpression>
+              <Id>ListView</Id>
+              <displayInfo>
+                <height>250px</height>
+                <width>700px</width>
+                <top>1%</top>
+                <left>1px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <tables>
+                    <table name="Table_193">
+                      <CSSClass>LogTableClass</CSSClass>
+                      <headerStyle>color: #17365D; background-color: #CFD8E6; font-weight: bold; font-family: Verdana; font-size: 11px;border-collapse:collapse;</headerStyle>
+                      <Columns>
+                        <Column name="LOG_ID">
+                          <width>10%</width>
+                          <formElement name="LOG_ID">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="DUPLICATE_ACTION">
+                          <width>10%</width>
+                          <formElement name="DUPLICATE_ACTION">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="DESCRIPTION">
+                          <width>10%</width>
+                          <formElement name="DESCRIPTION">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="DATETIME_STAMP">
+                          <width>12%</width>
+                          <formElement name="DATETIME_STAMP">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                      </Columns>
+                    </table>
+                  </tables>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Dataset</bindingExpression>
+              <Id>ListView</Id>
+              <displayInfo>
+                <height>250px</height>
+                <width>700px</width>
+                <top>20%</top>
+                <left>1px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <tables>
+                    <table name="Table_210">
+                      <CSSClass>myTableClass</CSSClass>
+                      <headerStyle>color: #FFF; background-color: rgb(0, 0, 153); font-weight: bold; font-family: Verdana; font-size: 10px;</headerStyle>
+                      <Columns>
+                        <Column name="LOG_ID">
+                          <width>10%</width>
+                          <formElement name="LOG_ID">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="TEMP_ID">
+                          <width>10%</width>
+                          <formElement name="TEMP_ID">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="REG_NUMBER">
+                          <width>10%</width>
+                          <formElement name="REG_NUMBER">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="COMMENTS">
+                          <width>15%</width>
+                          <formElement name="COMMENTS">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                      </Columns>
+                    </table>
+                  </tables>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <height>500px</height>
+            <width>700px</width>
+            <style>overflow:visible;margin-top:25px;border:1px;</style>
+            <top>1%</top>
+            <left>1px</left>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+      <resultsCriteria sortByHitList="false" xmlns="COE.ResultsCriteria">
+        <tables>
+          <table id="193">
+            <field visible="true" alias="LOG_ID" orderById="0" direction="asc" fieldId="194" />
+            <field visible="true" alias="DUPLICATE_ACTION" orderById="0" direction="asc" fieldId="195" />
+            <field visible="true" alias="DESCRIPTION" orderById="0" direction="asc" fieldId="196" />
+            <field visible="true" alias="USER_ID" orderById="0" direction="asc" fieldId="197" />
+            <field visible="true" alias="DATETIME_STAMP" orderById="0" direction="asc" fieldId="198" />
+          </table>
+          <table id="210">
+            <field visible="true" alias="LOG_ID" orderById="0" direction="asc" fieldId="211" />
+            <field visible="true" alias="TEMP_ID" orderById="0" direction="asc" fieldId="212" />
+            <field visible="true" alias="ACTION" orderById="0" direction="asc" fieldId="213" />
+            <field visible="true" alias="REG_NUMBER" orderById="0" direction="asc" fieldId="214" />
+            <field visible="true" alias="BATCH_NUMBER" orderById="0" direction="asc" fieldId="215" />
+            <field visible="true" alias="COMMENTS" orderById="0" direction="asc" fieldId="216" />
+          </table>
+        </tables>
+      </resultsCriteria>
+    </listForm>
+  </listForms>
+</formGroup>

@@ -1,0 +1,38 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>New Page 2</title>
+</head>
+
+<body>
+
+<p align="center">Mapping between ASP cfserver.ini and .Net config.xml</p>
+<p align="center">&nbsp;</p>
+<p align="left">In general, the section maps to the equivalent section, for 
+example, Global section maps to Global section.</p>
+<p align="left">In general, the flags in cfserver.ini has similar name in 
+config.xml, except underscores are removed from the setting names. Also from all 
+upper case to camel case.</p>
+<p align="left">A few renamed settings are as follows:</p>
+<p align="left">[REGISTRATION]</p>
+<p align="left">ADD_BATCH_FROM_REG_RESULTS&nbsp; -- &lt;registration&gt;&lt;automaticAddFirstBatch&gt;&lt;/registration&gt;</p>
+<p align="left">ALLOW_BATCH_FOR_UNAPPROVED_CMPD -- &lt;registration&gt;&lt;allowBatchForUnapprovedCompound&gt;&lt;/registration&gt;</p>
+<p align="left">&nbsp;</p>
+<p align="left">A few newly added settings:</p>
+<p align="left">&lt;registration&gt;&lt;crateCompoundReviewRequired&gt;</p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;updateCompoundReviewRequired&gt;</p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;createBatchReviewRequired&gt;</p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&lt;updateBatchReviewRequired&gt;</p>
+<p align="left">&lt;/registration&gt;</p>
+<p align="left">&nbsp;</p>
+
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{62268F7C-A7CC-4679-8576-7AC1D2848BC5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CambridgeSoft.COE.Registration.MSUnitTests</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.Registration.MSUnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla">
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=2.1.0.0, Culture=neutral, PublicKeyToken=152312c3a223b399, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging">
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7ae566350f7e2d48, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Registration.Core\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PyEngine3, Version=0.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\PyEngine3.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Batch\BatchTest.cs" />
+    <Compile Include="Batch\BatchListTest.cs" />
+    <Compile Include="Batch\BatchComponentTest.cs" />
+    <Compile Include="Batch\BatchComponentListTest.cs" />
+    <Compile Include="Batch\BatchComponentFragmentTest.cs" />
+    <Compile Include="Batch\BatchComponentFragmentListTest.cs" />
+    <Compile Include="Bulk_Operations\BulkApproveTest.cs" />
+    <Compile Include="Bulk_Operations\BulkDeleteTest.cs" />
+    <Compile Include="Bulk_Operations\BulkLockTest.cs" />
+    <Compile Include="Bulk_Operations\GetRegSettingsCommandTest.cs" />
+    <Compile Include="Chemist\ChemistNameValueListTest.cs" />
+    <Compile Include="Commands\GetTempIDCommandTest.cs" />
+    <Compile Include="Commands\GetRegNumberListFromHitlistIDTest.cs" />
+    <Compile Include="Component\ComponentTest.cs" />
+    <Compile Include="Component\ComponentListTest.cs" />
+    <Compile Include="Component\CompoundTest.cs" />
+    <Compile Include="Component\CompoundListTest.cs" />
+    <Compile Include="Component\CompoundFragmentTest.cs" />
+    <Compile Include="Component\CompoundFragmentListTest.cs" />
+    <Compile Include="Registration.Admin\AddInAssemblyTest.cs" />
+    <Compile Include="Registration.Admin\AddInClassTest.cs" />
+    <Compile Include="Registration.Core\PicklistTest.cs" />
+    <Compile Include="Registration.Core\DTO\CompoundMatchesDTOTest.cs" />
+    <Compile Include="Registration.Core\DTO\MixtureMatchesDTOTest.cs" />
+    <Compile Include="RegSystem\GetDuplicateComponentsCountTest.cs" />
+    <Compile Include="RegSystem\GetAllTempRegistriesCountTest.cs" />
+    <Compile Include="RegSystem\GetApprovedTempRegistriesCountTest.cs" />
+    <Compile Include="RegSystem\GetTempRegistriesCountTest.cs" />
+    <Compile Include="RegSystem\GetApprovedRegistriesCountTest.cs" />
+    <Compile Include="RegSystem\GetPermRegistriesCountTest.cs" />
+    <Compile Include="DuplicateChecker\CompoundMatchResponseTest.cs" />
+    <Compile Include="DuplicateChecker\ComponentDuplicateResolverTest.cs" />
+    <Compile Include="DuplicateChecker\RegistrationMatchResolverTest.cs" />
+    <Compile Include="DuplicateChecker\MixtureMatchResponseTest.cs" />
+    <Compile Include="DuplicateChecker\RegistrationMatcherTest.cs" />
+    <Compile Include="Component\RegSvcUtilitiesTest.cs" />
+    <Compile Include="Component\SequenceListTest.cs" />
+    <Compile Include="Component\SequenceTest.cs" />
+    <Compile Include="Component\IdentifierNameValueListTest.cs" />
+    <Compile Include="Component\FragmentNameValueListTest.cs" />
+    <Compile Include="Component\UserNameValueListTest.cs" />
+    <Compile Include="Component\ProjectNameValueListTest.cs" />
+    <Compile Include="Component\PrefixNameValueListTest.cs" />
+    <Compile Include="Component\InvContainerListTest.cs" />
+    <Compile Include="Component\InvContainerTest.cs" />
+    <Compile Include="Component\IdentifierListTest.cs" />
+    <Compile Include="Component\DocumentListTest.cs" />
+    <Compile Include="Component\DocumentTest.cs" />
+    <Compile Include="Helpers\Authentication.cs" />
+    <Compile Include="Helpers\DALHelper.cs" />
+    <Compile Include="Helpers\GlobalVariables.cs" />
+    <Compile Include="Parameters\ParameterListTest.cs" />
+    <Compile Include="Parameters\ParameterTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration.Admin\AddInListTest.cs" />
+    <Compile Include="Registration.Admin\AddInTest.cs" />
+    <Compile Include="Registration.Admin\COEFormHelperTest.cs" />
+    <Compile Include="Registration.Admin\ConfigurationRegistryRecordTest.cs" />
+    <Compile Include="Registration.Admin\EventListTest.cs" />
+    <Compile Include="Registration.Admin\EventTest.cs" />
+    <Compile Include="Registration.Admin\Helpers\AddInTestHelpers.cs" />
+    <Compile Include="Registration.Admin\Helpers\Helpers.cs" />
+    <Compile Include="Registration.Admin\Helpers\XMLDataLoader.cs" />
+    <Compile Include="Registration.Admin\RegAdminPrivilegeValidatorTest.cs" />
+    <Compile Include="Registration.Admin\RegAdminUtilsTest.cs" />
+    <Compile Include="Registration.Admin\RegNumSequencerTest.cs" />
+    <Compile Include="SubmitComponent\RegistryRecordFactoryTest.cs" />
+    <Compile Include="SubmitComponent\RegistryRecordListTest.cs" />
+    <Compile Include="SubmitComponent\RegistryHelper.cs" />
+    <Compile Include="SubmitComponent\RegistryRecordTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Registration.Admin\XmlData\AddIn.xml" />
+    <Content Include="Registration.Admin\XmlData\AddInList.xml" />
+    <Content Include="Registration.Admin\XmlData\ConfigurationRegistryRecord.xml" />
+    <Content Include="Registration.Admin\XmlData\CustomTableList.xml" />
+    <Content Include="Registration.Admin\XmlData\DataView.xml" />
+    <Content Include="Registration.Admin\XmlData\EventList.xml" />
+    <Content Include="Registration.Admin\XmlData\FormGroup.xml" />
+    <Content Include="Registration.Admin\XmlData\RegAppSettings.xml" />
+    <Content Include="SubmitComponent\Xml_Files\RegistryRecordXml.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Xml_Files\ConfigurationSettings.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj">
+      <Project>{C7998560-8704-4DE0-B00E-A4657273B022}</Project>
+      <Name>CambridgeSoft.COE.Registration.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\CambridgeSoft.COE.RegistrationAdmin.Services\CambridgeSoft.COE.RegistrationAdmin.Services.csproj">
+      <Project>{D8F0637E-6B08-49D4-9046-B39AB9A0F61D}</Project>
+      <Name>CambridgeSoft.COE.RegistrationAdmin.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\RegistrationAddins\CambridgeSoft.COE.Registration.RegistrationAddins.csproj">
+      <Project>{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}</Project>
+      <Name>CambridgeSoft.COE.Registration.RegistrationAddins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Registration.Core\Registration.Core.csproj">
+      <Project>{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}</Project>
+      <Name>Registration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RegistrationWebApp\RegistrationWebApp.csproj">
+      <Project>{0AF2D977-5B4C-40E9-9AF1-CE93F3C92CF4}</Project>
+      <Name>RegistrationWebApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RegistrationWebServices\Registration.WebServices.csproj">
+      <Project>{9D4C05F4-D07A-4CBB-A0A1-26965C53C1C4}</Project>
+      <Name>Registration.WebServices</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Registration.Admin\XmlData\COEDataView.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
