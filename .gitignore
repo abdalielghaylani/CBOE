@@ -2,3 +2,5 @@ obj/
 *.suo
 *proj.user
 packages/
+!**/CommonRuntimeLibraries/*.dll
+!**/CommonRuntimeLibraries/*.pdb
