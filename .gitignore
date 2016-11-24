@@ -1,0 +1,4 @@
+obj/
+*.suo
+*proj.user
+packages/
