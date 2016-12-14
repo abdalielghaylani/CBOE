@@ -19,5 +19,6 @@
 * Modify `build.gradle` file of those projects to include `buildDocker` task
 
 ### MongoDB
+* Refer to [this documentation](http://docs.spring.io/spring-data/mongodb/docs/current/reference/html/) on how to use Spring Data MongoDB
 * [Install MongoDB](https://docs.mongodb.com/manual/administration/install-community/) or run dockerized MongoDB using `docker run -P -d --name mongodb mongo`
 * Update `src/main/resources/application.properties` to include `spring.data.mongodb.uri`
