@@ -5,3 +5,5 @@ packages/
 !**/CommonRuntimeLibraries/*.dll
 !**/CommonRuntimeLibraries/*.pdb
 **/bin
+.gradle/
+.idea/
