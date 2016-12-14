@@ -24,9 +24,9 @@ jar {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+group = 'pkiinformatics'
 task buildDocker(type: Docker, dependsOn: build) {
     push = false
-    group = 'pkiinformatics'
     applicationName = jar.baseName
     dockerfile = file('src/main/docker/Dockerfile')
     doFirst {

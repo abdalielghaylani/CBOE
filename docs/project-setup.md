@@ -15,7 +15,7 @@
 
 ### Docker
 * Refer to [this documentation](https://github.com/Transmode/gradle-docker) on Gradle Docker plugin
-* Create `src/docker/Dockerfile` in projects that should be containerized
+* Create `src/docker/Dockerfile` in projects that should be containerized based on [this documentation](https://spring.io/guides/gs/spring-boot-docker/)
 * Modify `build.gradle` file of those projects to include `buildDocker` task
 
 ### MongoDB
