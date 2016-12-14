@@ -15,6 +15,9 @@
 
 ### Docker
 * Refer to [this documentation](https://github.com/Transmode/gradle-docker) on Gradle Docker plugin
-* Create `src\docker\Dockerfile` in projects that should be containerized
+* Create `src/docker/Dockerfile` in projects that should be containerized
 * Modify `build.gradle` file of those projects to include `buildDocker` task
 
+### MongoDB
+* [Install MongoDB](https://docs.mongodb.com/manual/administration/install-community/) or run dockerized MongoDB using `docker run -P -d --name mongodb mongo`
+* Update `src/main/resources/application.properties` to include `spring.data.mongodb.uri`
