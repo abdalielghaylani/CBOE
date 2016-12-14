@@ -1,0 +1,26 @@
+ext {
+    springRestdocsVersion = '1.1.2.RELEASE'
+    springBootVersion = '1.4.2.RELEASE'
+}
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    group = 'com.perkinelmer.cboe'
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    repositories {
+        mavenCentral()
+    }
+
+    test {
+        reports.junitXml.destination = file("$reports.junitXml.destination/unit")
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.2'
+}

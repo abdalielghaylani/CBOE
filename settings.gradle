@@ -1,0 +1,9 @@
+include 'registration'
+
+rootProject.name = 'cboe'
+rootProject.children.each { project ->
+    String fileBaseName = project.name
+    String projectDirName = "subprojects/$fileBaseName"
+    project.projectDir = new File(settingsDir, projectDirName)
+    assert project.projectDir.isDirectory()
+}
