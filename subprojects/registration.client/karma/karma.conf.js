@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = (config) => {
+module.exports = config => {
     config.set({
         autoWatch: true,
         browsers: ['Chrome', 'PhantomJS'],
@@ -13,12 +13,13 @@ module.exports = (config) => {
         phantomJsLauncher: {
             exitOnResourceError: true
         },
+        port: 9876,
         preprocessors: {
             'karma.entry.js': ['webpack', 'sourcemap']
         },
         reporters: ['dots'],
-        singleRun: false,
-        webpack: require('../webpack/webpack.test'),
+        singleRun: true,
+        webpack: require('../webpack/webpack.test.js'),
         webpackServer: {
             noInfo: true
         }

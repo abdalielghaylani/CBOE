@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const ChunkWebpack = webpack.optimize.CommonsChunkPlugin;
 
 const rootDir = path.resolve(__dirname, '..');
+
 module.exports = {
     debug: true,
     devServer: {
@@ -36,11 +37,10 @@ module.exports = {
         new HtmlWebpack({
             filename: 'index.html',
             inject: 'body',
-            template: path.resolve(rootDir, 'src', 'app', 'index.html')
+            template: path.resolve(rootDir, 'src', 'index.html')
         })
     ],
     resolve: {
         extensions: [ '', '.js', '.ts' ]
     }
 };
-
