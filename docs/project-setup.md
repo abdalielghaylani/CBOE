@@ -53,6 +53,6 @@
     $ ./node_modules/.bin/typings install es6-promise --save
     ```
     Ignore an exception that the last step may throw
-* Configure `tslint.json`, `tsconfig.json`, `karma.conf.js`, `karma.entry.js`, `webpack.test.js` and `webpack.dev.js` based on [this documentation](https://semaphoreci.com/community/tutorials/setting-up-angular-2-with-webpack)
+* Configure `tslint.json`, `tsconfig.json`, `karma.conf.js`, `karma.entry.js`, `webpack.test.js` and `webpack.dev.js` based on [this document](https://semaphoreci.com/community/tutorials/setting-up-angular-2-with-webpack), and [this project](https://github.com/gonzofish/semaphore-ng2-webpack)
 
     

@@ -1,4 +1,5 @@
 include 'registration'
+include 'registration.client'
 
 rootProject.name = 'cboe'
 rootProject.children.each { project ->

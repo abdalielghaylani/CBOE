@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --config ./webpack/webpack.dev.js --colors",
+    "watch": "npm run build -- --watch",
+    "server": "webpack-dev-server --config ./webpack/webpack.dev.js --colors",
+    "start": "npm run server",
     "lint": "tslint ./src/**/*.ts",
-    "start": "webpack-dev-server --config ./webpack/webpack.dev.js",
     "test": "karma start ./karma/karma.conf.js",
     "test:headless": "karma start ./karma/karma.conf.js --browsers PhantomJS --autoWatch=true --singleRun=false",
     "test:single": "karma start ./karma/karma.conf.js --browsers PhantomJS"
