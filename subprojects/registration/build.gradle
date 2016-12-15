@@ -41,8 +41,8 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
+    compile project(':registration.client')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile('org.springframework.data:spring-data-rest-hal-browser')
     compile('org.springframework.boot:spring-boot-starter-hateoas')
@@ -53,3 +53,24 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 }
+
+task copyClient(type: Copy) {
+    from ('../registration.client/dist') {
+        include '**/*.js'
+    }
+    from ('../registration.client/src/main/webapp') {
+        include '*.css'
+        include '*.html'
+    }
+
+    includeEmptyDirs = false
+
+    into "$buildDir/resources/main/static"
+}
+
+
+jar {
+    dependsOn copyClient
+}
+
+task stage(dependsOn: [':registration.client:build', 'jar', 'bootRepackage'])

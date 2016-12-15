@@ -46,13 +46,6 @@
     $ npm install --save-dev karma karma-jasmine jasmine-core karma-chrome-launcher karma-phantomjs-launcher \
       phantomjs-prebuilt karma-sourcemap-loader karma-webpack
     ```
-* Configure Typescript (by generating and updating typings.json) using:
-    ```
-    $ ./node_modules/.bin/typings init
-    $ ./node_modules/.bin/typings install dt~jasmine env~node --save --global
-    $ ./node_modules/.bin/typings install es6-promise --save
-    ```
-    Ignore an exception that the last step may throw
+* Include typings using `npm i --save-dev @types/atmosphere @types/es6-collections @types/es6-promise @types/jasmine @types/node`
 * Configure `tslint.json`, `tsconfig.json`, `karma.conf.js`, `karma.entry.js`, `webpack.test.js` and `webpack.dev.js` based on [this document](https://semaphoreci.com/community/tutorials/setting-up-angular-2-with-webpack), and [this project](https://github.com/gonzofish/semaphore-ng2-webpack)
-
-    
+* Refer to [this documentation](https://webpack.github.io/docs/configuration.html) for Webpack configuration details
