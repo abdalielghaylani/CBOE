@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "tslint ./src/**/*.ts",
+    "start": "webpack-dev-server --config ./webpack/webpack.dev.js",
+    "test": "karma start ./karma/karma.conf.js",
+    "test:headless": "karma start ./karma/karma.conf.js --browsers PhantomJS"
   },
   "keywords": [],
   "author": "",
