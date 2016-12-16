@@ -6,13 +6,14 @@ var path = require('path');
 // Webpack Config
 var webpackConfig = {
     entry: {
-        'polyfills': './src/main/webapp/polyfills.browser.ts',
-        'vendor': './src/main/webapp/vendor.browser.ts',
-        'main': './src/main/webapp/main.browser.ts',
+        'polyfills': './src/main/webapp/polyfills.ts',
+        'vendor': './src/main/webapp/vendor.ts',
+        'main': './src/main/webapp/main.ts',
     },
 
     output: {
         path: './dist',
+        filename: "[name].js"
     },
 
     plugins: [
