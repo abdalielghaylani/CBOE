@@ -30,9 +30,10 @@ var webpackConfig = {
     module: {
         loaders: [
             // .ts files for TypeScript
-            {test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader']},
-            {test: /\.css$/, loaders: ['to-string-loader', 'css-loader']},
-            {test: /\.html$/, loader: 'raw-loader'}
+            { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
+            { test: /\.(ttf|eot|woff)$/, loader: "file-loader?name=/[name].[ext]" },
+            { test: /\.html$/, loader: 'raw-loader' }
         ]
     }
 
