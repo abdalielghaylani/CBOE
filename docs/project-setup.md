@@ -50,4 +50,4 @@
 * Configure `tslint.json`, `tsconfig.json`, `karma.conf.js`, `karma.entry.js`, `webpack.test.js` and `webpack.dev.js` based on [this document](https://semaphoreci.com/community/tutorials/setting-up-angular-2-with-webpack), and [this project](https://github.com/gonzofish/semaphore-ng2-webpack)
 * Refer to [this documentation](https://webpack.github.io/docs/configuration.html) for Webpack configuration details
 * Refer to [this documentation](https://github.com/DevExpress/devextreme-angular) to set up DevExtreme
-* Refer to [this documentation](https://github.com/DevExpress/devextreme-angular/blob/master/docs/using-webpack.md) to include DevExtreme style sheets 
+* Refer to [this documentation](https://github.com/DevExpress/devextreme-angular/blob/master/docs/using-webpack.md) to include DevExtreme style sheets
