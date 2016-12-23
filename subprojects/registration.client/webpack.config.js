@@ -33,7 +33,7 @@ var webpackConfig = {
             // .ts files for TypeScript
             { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
             { test: /\.css$/, loader: 'style-loader!css-loader' },
-            { test: /\.(ttf|eot|woff)$/, loader: "file-loader?name=/[name].[ext]" },
+            { test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: "file-loader?name=/[name].[ext]" },
             { test: /\.html$/, loader: 'raw-loader' },
             { test: /\.scss$/, exclude: /node_modules/, loaders: ['raw-loader', 'sass-loader'] }
         ]

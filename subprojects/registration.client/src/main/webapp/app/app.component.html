@@ -1,22 +1,61 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
+<div id="top-nav" class="navbar  navbar-default  navbar-static-top">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">ChemBioOffice Enterprise: Registration</a>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="navbar-brand" href="">CBOE: Registration</a>
+                </div>
+            </div>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a [routerLink]="['projects']">Projects</a></li>
-                <li><a href="/api">HAL Browser</a></li>
-                <li><a href="/docs/html5/api.html">REST API Documentation</a></li>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a [routerLink]="['home']"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-cog"></span> Configuration <span class="caret"></span>
+                    </a>
+                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                        <li><a [routerLink]="['projects']">Projects</a></li>
+                        <li><a [routerLink]="['table2']">Table 2</a></li>
+                        <li><a [routerLink]="['table3']">Table 3</a></li>
+                        <li><a [routerLink]="['table4']">Table 4</a></li>
+                        <li><a [routerLink]="['table5']">Table 5</a></li>
+                        <li><a [routerLink]="['table6']">Table 6</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-user"></span> Admin <span class="caret"></span>
+                    </a>
+                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                        <li><a [routerLink]="['profile']">Profile</a></li>
+                        <li><a [routerLink]="['logou']"><span class="dx-icon-clear icon"></span> Logout</a></li>
+                    </ul>
+                </li>
+
             </ul>
-            <dx-button text="Press me" (onClick)="helloWorld()"></dx-button>
         </div>
     </div>
-</nav>
-<router-outlet></router-outlet>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 mainbox">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+<!--footer class="text-center">
+    <br/>
+    <div class="pull-center">
+        <div style="font-size:11px;">
+            <img src="/img/PElogo.png" width="60px" alt="PE logo" /> &copy;
+            <span id="copyright">2017</span> PerkinElmer Inc. All Rights Reserved.
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</footer-->

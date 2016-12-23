@@ -9,8 +9,6 @@ import {ProjectsComponent} from '../project/projects.component';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {ProjectService} from "../project/project.service";
 import {DevExtremeModule} from 'devextreme-angular';
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
 
 @NgModule({
     declarations: [WebApp, ProjectsComponent],
