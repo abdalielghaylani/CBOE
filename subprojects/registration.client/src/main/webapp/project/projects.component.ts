@@ -15,8 +15,8 @@ export class ProjectsComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.projectsService.getProjects()
-        //     .subscribe((projects: Project[]) => this.projects = projects,
-        //     error => console.error('ProjectsComponent: cannot get projects from ProjectService'));
+        this.projectsService.getProjects()
+            .subscribe((projects: Project[]) => this.projects = projects,
+            error => console.error('ProjectsComponent: cannot get projects from ProjectService'));
     }
 }
