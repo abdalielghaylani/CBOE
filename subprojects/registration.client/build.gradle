@@ -15,8 +15,12 @@ clean {
     delete "dist"
 }
 
-npm_run_build.inputs.dir new File(projectDir, "src")
-npm_run_build.outputs.dir new File(projectDir, "dist")
-npm_run_build.dependsOn npm_install
+npm_run_build {
+    inputs.dir new File(projectDir, "src")
+    outputs.dir new File(projectDir, "dist")
+    dependsOn npm_install
+}
 
-build.dependsOn npm_run_build
+jar {
+    dependsOn npm_run_build
+}

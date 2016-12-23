@@ -69,7 +69,7 @@ task copyClient(type: Copy) {
 }
 
 
-jar {
+processResources {
     dependsOn copyClient
 }
 

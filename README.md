@@ -5,7 +5,8 @@ This project aims to modernize the applications in ChemBioOffice Enterprise suit
 
 ## Getting Started
   * Run `gradle build` to build all projects
-  * Run `gradle bootRun` to start application
+  * Run `gradle bootRun` to build all projects and start the main application
+  * Run `gradle clean` to clean up the build output
 
 ## Links
   * [Project Setup Details](docs/project-setup.md)
