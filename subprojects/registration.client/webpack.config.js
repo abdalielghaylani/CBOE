@@ -34,7 +34,8 @@ var webpackConfig = {
             { test: /\.ts$/, loaders: ['awesome-typescript-loader', 'angular2-template-loader'] },
             { test: /\.css$/, loader: 'style-loader!css-loader' },
             { test: /\.(ttf|eot|woff)$/, loader: "file-loader?name=/[name].[ext]" },
-            { test: /\.html$/, loader: 'raw-loader' }
+            { test: /\.html$/, loader: 'raw-loader' },
+            { test: /\.scss$/, exclude: /node_modules/, loaders: ['raw-loader', 'sass-loader'] }
         ]
     }
 
