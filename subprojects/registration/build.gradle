@@ -56,7 +56,7 @@ dependencies {
 
 task copyClient(type: Copy) {
     from ('../registration.client/dist') {
-        include '**/*.js'
+        include '**/*.*'
     }
     from ('../registration.client/src/main/webapp') {
         include '*.css'

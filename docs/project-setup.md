@@ -51,3 +51,4 @@
 * Refer to [this documentation](https://webpack.github.io/docs/configuration.html) for Webpack configuration details
 * Refer to [this documentation](https://github.com/DevExpress/devextreme-angular) to set up DevExtreme
 * Refer to [this documentation](https://github.com/DevExpress/devextreme-angular/blob/master/docs/using-webpack.md) to include DevExtreme style sheets
+* Update `webpack.config.js` to update `module.loaders` to set loaders for various file types
