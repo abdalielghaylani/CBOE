@@ -30,9 +30,25 @@ task buildDocker(type: Docker, dependsOn: build) {
     applicationName = jar.baseName
     dockerfile = file('src/main/docker/Dockerfile')
     doFirst {
+        exec {
+            if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+                commandLine 'cmd', '/c', 'scripts\\remove-docker.cmd'
+            } else {
+                commandLine './scripts/remove-docker.sh'
+            }
+        }
         copy {
             from jar
             into stageDir
+        }
+    }
+    doLast {
+        exec {
+            if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+                commandLine 'cmd', '/c', 'scripts\\setup-docker.cmd'
+            } else {
+                commandLine './scripts/setup-docker.sh'
+            }
         }
     }
 }
@@ -67,7 +83,6 @@ task copyClient(type: Copy) {
 
     into "$buildDir/resources/main/static"
 }
-
 
 processResources {
     dependsOn copyClient
