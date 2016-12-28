@@ -48,7 +48,7 @@ var defaultConfig = {
     cache: true,
     debug: true,
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].js',
         sourceMapFilename: '[name].map',
         chunkFilename: '[id].chunk.js'
     },
@@ -61,7 +61,16 @@ var defaultConfig = {
     devServer: {
         historyApiFallback: true,
         watchOptions: {aggregateTimeout: 300, poll: 1000},
-        port: 9000
+        port: 9000,   
+        proxy: {
+            '/api': {
+                target: {
+                    host: "0.0.0.0",
+                    protocol: 'http:',
+                    port: 18088
+                }
+            }
+        }
     },
 
     node: {

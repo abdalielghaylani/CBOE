@@ -12,10 +12,6 @@ export class ProjectService {
 
     constructor(private http: Http) {
         let uri: string = '/api/projects';
-
-        if (!document.location.hostname || document.location.hostname === 'localhost') {
-            uri = 'http://localhost:18088' + uri;
-        }
         this.baseURI = uri;
         this.currentProject = new Project('', '', '', '', false, false);
     }
