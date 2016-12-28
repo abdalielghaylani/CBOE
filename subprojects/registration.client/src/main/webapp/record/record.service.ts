@@ -21,7 +21,6 @@ export class RecordService {
             this.http.get(this.baseURI)
                 .map((response: Response) => response.json()._embedded['records'])
                 .catch(this.handleError);
-
         return observable;
     }
 
@@ -30,7 +29,6 @@ export class RecordService {
             this.http.get(this.baseURI + '/' + id)
                 .map((response: Response) => response.json())
                 .catch(this.handleError);
-
         return observable;
     }
 
@@ -39,7 +37,6 @@ export class RecordService {
             this.http.delete(this.baseURI + '/' + id)
                 .map((response: Response) => console.log('record service: deleted record ' + id + ', HTTP response status: ' + response.status))
                 .catch(this.handleError);
-
         return observable;
     }
 
@@ -53,7 +50,6 @@ export class RecordService {
                     return this.currentRecord;
                 })
                 .catch(this.handleError);
-
         return observable;
     }
 
