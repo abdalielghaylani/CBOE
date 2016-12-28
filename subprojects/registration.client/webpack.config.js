@@ -6,9 +6,9 @@ var path = require('path');
 // Webpack Config
 var webpackConfig = {
     entry: {
-        'polyfills': './src/main/webapp/polyfills.ts',
-        'vendor': './src/main/webapp/vendor.ts',
-        'main': './src/main/webapp/main.ts',
+        'polyfills': './src/polyfills.ts',
+        'vendor': './src/vendor.ts',
+        'index': './src/index.ts',
     },
 
     output: {
@@ -19,7 +19,7 @@ var webpackConfig = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(true),
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['main', 'vendor', 'polyfills'],
+            name: ['index', 'vendor', 'polyfills'],
             minChunks: Infinity
         }),
         new webpack.ProvidePlugin({

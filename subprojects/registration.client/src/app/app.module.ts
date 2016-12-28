@@ -5,11 +5,11 @@ import {WebApp} from './app.component';
 import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
-import {RecordsComponent} from '../record/records.component';
-import {ProjectsComponent} from '../project/projects.component';
+import {RecordsComponent} from '../components/record/records.component';
+import {ProjectsComponent} from '../components/project/projects.component';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {RecordService} from '../record/record.service';
-import {ProjectService} from '../project/project.service';
+import {RecordService} from '../components/record/record.service';
+import {ProjectService} from '../components/project/project.service';
 import {DevExtremeModule} from 'devextreme-angular';
 
 @NgModule({
