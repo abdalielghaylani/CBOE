@@ -21,7 +21,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     contentReady(e: any) {
-        var grid = e.component;
+        let grid = e.component;
         if (grid.columnCount() > 0 && grid.columnOption('_links', 'visible'))
             grid.columnOption('_links', 'visible', false);
     }

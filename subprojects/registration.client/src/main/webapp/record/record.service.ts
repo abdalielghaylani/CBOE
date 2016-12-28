@@ -44,7 +44,7 @@ export class RecordService {
         let observable: Observable<Record> =
             this.http.post(this.baseURI, record)
                 .map((response: Response) => {
-                    console.log('record service: created record ' + response.json().id + ', HTTP response status: ' + response.status)
+                    console.log('record service: created record ' + response.json().id + ', HTTP response status: ' + response.status);
                     console.log('record response location: ' + response.headers.get('Location'));
                     this.currentRecord = response.json();
                     return this.currentRecord;

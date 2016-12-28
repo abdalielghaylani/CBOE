@@ -8,8 +8,8 @@ import {HttpModule} from '@angular/http';
 import {RecordsComponent} from '../record/records.component';
 import {ProjectsComponent} from '../project/projects.component';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {RecordService} from "../record/record.service";
-import {ProjectService} from "../project/project.service";
+import {RecordService} from '../record/record.service';
+import {ProjectService} from '../project/project.service';
 import {DevExtremeModule} from 'devextreme-angular';
 
 @NgModule({

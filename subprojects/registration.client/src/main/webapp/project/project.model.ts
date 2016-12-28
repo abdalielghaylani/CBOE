@@ -6,5 +6,5 @@ export class Project {
         public type: string,
         public isActive: boolean,
         public isPublic: boolean
-    ){};
+    ) {};
 }

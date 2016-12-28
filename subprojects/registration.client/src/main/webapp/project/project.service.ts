@@ -44,7 +44,7 @@ export class ProjectService {
         let observable: Observable<Project> =
             this.http.post(this.baseURI, project)
                 .map((response: Response) => {
-                    console.log('project service: created project ' + response.json().id + ', HTTP response status: ' + response.status)
+                    console.log('project service: created project ' + response.json().id + ', HTTP response status: ' + response.status);
                     console.log('project response location: ' + response.headers.get('Location'));
                     this.currentProject = response.json();
                     return this.currentProject;
