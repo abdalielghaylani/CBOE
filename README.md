@@ -11,7 +11,7 @@ This project aims to modernize the applications in ChemBioOffice Enterprise suit
   
 ## Client Development
   * Run `gradle bootRun` to start the server
-  * Run `npm start` in `subprojects/registration.client` directory
+  * Run `npm run dev` in `subprojects/registration.client` directory
 
 ## Links
   * [Project Setup Details](docs/project-setup.md)
