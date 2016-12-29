@@ -4,6 +4,43 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const basePlugins = [
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.CommonsChunkPlugin({
+        name: ['index', 'vendor', 'polyfills'],
+        minChunks: Infinity
+    }),
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery"
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/index.html',
+        inject: 'body',
+        minify: false,
+        chunksSortMode: 'dependency'
+    }),
+    new webpack.DefinePlugin({
+        __DEV__: process.env.NODE_ENV !== 'production',
+        __PRODUCTION__: process.env.NODE_ENV === 'production',
+        __TEST__: JSON.stringify(process.env.TEST || false),
+        'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })       
+];
+
+const devPlugins = [
+
+];
+
+const prodPlugins = [
+    new webpack.optimize.UglifyJsPlugin({
+        mangle: { keep_fnames: true },
+        compress: {
+            warnings: false
+        }
+    })
+];
+
 const baseConfig = {
     entry: {
         'polyfills': './src/polyfills.ts',
@@ -14,29 +51,9 @@ const baseConfig = {
         root: [path.join(__dirname, 'src')],
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
     },
-    plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(true),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: ['index', 'vendor', 'polyfills'],
-            minChunks: Infinity
-        }),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        }),
-        new HtmlWebpackPlugin({
-            template: './src/index.html',
-            inject: 'body',
-            minify: false,
-            chunksSortMode: 'dependency'
-        }),
-        new webpack.DefinePlugin({
-            __DEV__: process.env.NODE_ENV !== 'production',
-            __PRODUCTION__: process.env.NODE_ENV === 'production',
-            __TEST__: JSON.stringify(process.env.TEST || false),
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-        })       
-    ],
+    plugins: basePlugins
+        .concat(process.env.NODE_ENV === 'production' ? prodPlugins : [])
+        .concat(process.env.NODE_ENV === 'development' ? devPlugins : []),
     devServer: {
         historyApiFallback: { index: '/' },
         watchOptions: { aggregateTimeout: 300, poll: 1000 },
