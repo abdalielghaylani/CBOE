@@ -1,21 +1,19 @@
 'use strict';
 
-var webpack = require('webpack');
-var path = require('path');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Webpack Config
-var webpackConfig = {
+const baseConfig = {
     entry: {
         'polyfills': './src/polyfills.ts',
         'vendor': './src/vendor.ts',
-        'index': './src/index.ts',
+        'index': './src/index.ts'
     },
-
-    output: {
-        path: './dist',
-        filename: "[name].js"
+    resolve: {
+        root: [path.join(__dirname, 'src')],
+        extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
     },
-
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(true),
         new webpack.optimize.CommonsChunkPlugin({
@@ -25,9 +23,24 @@ var webpackConfig = {
         new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+            inject: 'body',
+            minify: false,
+            chunksSortMode: 'dependency',
         })
     ],
-
+    devServer: {
+        historyApiFallback: { index: '/' },
+        watchOptions: { aggregateTimeout: 300, poll: 1000 },
+        port: 9000,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:18088'
+            }
+        }
+    },
     module: {
         loaders: [
             // .ts files for TypeScript
@@ -36,43 +49,9 @@ var webpackConfig = {
             { test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: "file-loader?name=/[name].[ext]" },
             { test: /\.html$/, loader: 'raw-loader' },
             { test: /\.scss$/, exclude: /node_modules/, loaders: ['raw-loader', 'sass-loader'] }
-        ]
-    }
-
-};
-
-
-// Our Webpack Defaults
-var defaultConfig = {
-    devtool: 'cheap-module-source-map',
-    cache: true,
-    debug: true,
-    output: {
-        filename: '[name].js',
-        sourceMapFilename: '[name].map',
-        chunkFilename: '[id].chunk.js'
+        ],
+        noParse: [/zone\.js\/dist\/.+/, /angular2\/bundles\/.+/]
     },
-
-    resolve: {
-        root: [path.join(__dirname, 'src')],
-        extensions: ['', '.ts', '.js']
-    },
-
-    devServer: {
-        historyApiFallback: true,
-        watchOptions: {aggregateTimeout: 300, poll: 1000},
-        port: 9000,   
-        proxy: {
-            '/api': {
-                target: {
-                    host: "0.0.0.0",
-                    protocol: 'http:',
-                    port: 18088
-                }
-            }
-        }
-    },
-
     node: {
         global: 1,
         crypto: 'empty',
@@ -83,5 +62,32 @@ var defaultConfig = {
     }
 };
 
-var webpackMerge = require('webpack-merge');
-module.exports = webpackMerge(defaultConfig, webpackConfig);
+const devConfig = {
+    cache: true,
+    debug: true,
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].js',
+        sourceMapFilename: '[name].js.map',
+        chunkFilename: '[id].chunk.js',
+    },
+    devtool: 'inline-source-map'
+};
+
+const prodConfig = {
+    cache: false,
+    debug: false,
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: '[name].[chunkhash].js',
+        sourceMapFilename: '[name].[chunkhash].js.map',
+        chunkFilename: '[id].chunk.js',
+    },
+    devtool: 'source-map'
+};
+
+module.exports = Object.assign(
+  {},
+  process.env.NODE_ENV === 'production' ? prodConfig : devConfig,
+  baseConfig
+);

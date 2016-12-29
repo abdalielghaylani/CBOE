@@ -74,13 +74,7 @@ task copyClient(type: Copy) {
     from ('../registration.client/dist') {
         include '**/*.*'
     }
-    from ('../registration.client/src') {
-        include '*.css'
-        include '*.html'
-    }
-
     includeEmptyDirs = false
-
     into "$buildDir/resources/main/static"
 }
 

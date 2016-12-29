@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "npm run clean",
-    "build": "webpack --inline --colors --progress --display-error-details --display-cached",
+    "build": "cross-env NODE_ENV=production webpack",
     "clean": "rimraf dist/",
-    "watch": "npm run build -- --watch",
-    "server": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --content-base src",
-    "start": "npm run server",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --colors --progress --display-error-details --display-cached --content-base src",
     "lint": "tslint ./src/**/*.ts",
+    "postinstall": "npm run build",
+    "start": "cross-env NODE_ENV=production webpack-dev-server --inline --colors --progress --display-error-details --display-cached --content-base src",
     "test": "karma start ./karma/karma.conf.js",
     "test:headless": "karma start ./karma/karma.conf.js --browsers PhantomJS --autoWatch=true --singleRun=false",
     "test:single": "karma start ./karma/karma.conf.js --browsers PhantomJS"
