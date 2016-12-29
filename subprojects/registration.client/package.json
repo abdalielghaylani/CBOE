@@ -12,8 +12,8 @@
     "postinstall": "npm run build",
     "start": "cross-env NODE_ENV=production webpack-dev-server --inline --colors --progress --display-error-details --display-cached --content-base src",
     "test": "karma start ./karma/karma.conf.js",
-    "test:headless": "karma start ./karma/karma.conf.js --browsers PhantomJS --autoWatch=true --singleRun=false",
-    "test:single": "karma start ./karma/karma.conf.js --browsers PhantomJS"
+    "test:headless": "karma start ./karma/karma.conf.js --autoWatch=true --singleRun=false",
+    "test:single": "karma start ./karma/karma.conf.js --singleRun=true"
   },
   "keywords": [],
   "author": "",

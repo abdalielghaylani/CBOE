@@ -11,7 +11,8 @@ This project aims to modernize the applications in ChemBioOffice Enterprise suit
   
 ## Client Development
   * Run `gradle bootRun` to start the server
-  * Run `npm run dev` in `subprojects/registration.client` directory
+  * Run `npm run dev` in `subprojects/registration.client` directory to debug
+  * Run `npm test` in `subprojects/registration.client` directory for unit-testing
 
 ## Links
   * [Project Setup Details](docs/project-setup.md)

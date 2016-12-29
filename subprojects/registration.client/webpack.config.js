@@ -130,7 +130,7 @@ const testConfig = {
     }
 };
     
-module.exports = JSON.stringify(process.env.TEST || false) ? testConfig : Object.assign(
+module.exports = (process.env.TEST || false) ? testConfig : Object.assign(
   {},
   process.env.NODE_ENV === 'production' ? prodConfig : devConfig,
   baseConfig

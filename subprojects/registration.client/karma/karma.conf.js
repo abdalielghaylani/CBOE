@@ -1,11 +1,12 @@
 'use strict';
 
+process.env.TEST = true;
+
 module.exports = config => {
     config.set({
         autoWatch: true,
         browsers: ['Chrome'],
         files: [
-            //'../node_modules/es6-shim/es6-shim.min.js',
             'karma.entry.js'
         ],
         frameworks: ['jasmine'],
