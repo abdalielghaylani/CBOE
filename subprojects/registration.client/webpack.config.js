@@ -109,7 +109,28 @@ const prodConfig = {
     devtool: 'source-map'
 };
 
-module.exports = Object.assign(
+const testConfig = {
+    devtool: 'inline-source-map',
+    module: {
+        preLoaders: [
+            { exclude: /node_modules/, loader: 'tslint', test: /\.ts$/ }
+        ],
+        loaders: [
+            { loader: 'raw', test: /\.(css|html)$/ },
+            { exclude: /node_modules/, loader: 'ts', test: /\.ts$/ }
+        ]
+    },
+    resolve: {
+        extensions: ['', '.js', '.ts'],
+        modulesDirectories: ['node_modules'],
+        root: path.resolve('.', 'src')
+    },
+    tslint: {
+        emitErrors: true
+    }
+};
+    
+module.exports = JSON.stringify(process.env.TEST || false) ? testConfig : Object.assign(
   {},
   process.env.NODE_ENV === 'production' ? prodConfig : devConfig,
   baseConfig
