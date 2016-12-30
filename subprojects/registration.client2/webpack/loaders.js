@@ -42,6 +42,12 @@ exports.html = {
 exports.css = {
   test: /\.css$/,
   loader: 'to-string!css?-minimize!postcss',
+  exclude: /node_modules/,
+};
+
+exports.rawcss = {
+  test: /\/dist\/.+\.css$/,
+  loader: 'to-string!css?-minimize!postcss',
 };
 
 // Needed this since webpack was choking on json files within node_modules

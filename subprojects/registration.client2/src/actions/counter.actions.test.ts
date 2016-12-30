@@ -1,5 +1,6 @@
 import { NgRedux } from 'ng2-redux';
 import { CounterActions } from './counter.actions';
+import {} from 'jasmine';
 
 class MockRedux extends NgRedux<any> {
   constructor() {

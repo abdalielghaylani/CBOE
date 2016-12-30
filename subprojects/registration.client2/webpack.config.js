@@ -101,6 +101,7 @@ const baseConfig = {
       loaders.angular,
       loaders.ts,
       loaders.html,
+      loaders.rawcss,
       loaders.css,
       loaders.svg,
       loaders.eot,
