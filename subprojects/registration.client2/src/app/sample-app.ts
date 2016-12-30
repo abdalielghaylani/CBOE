@@ -25,7 +25,11 @@ import {dev} from '../configuration';
   selector: 'rio-sample-app',
   // Allow app to define global styles.
   encapsulation: ViewEncapsulation.None,
-  styles: [ require('../styles/index.css') ],
+  styles: [
+    require('../styles/index.css'),
+    require('devextreme/dist/css/dx.common.css'),
+    require('devextreme/dist/css/dx.light.compact.css')
+ ],
   template: require('./sample-app.html')
 })
 export class RioSampleApp {
