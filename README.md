@@ -3,6 +3,9 @@
 ## Overview
 This project aims to modernize the applications in ChemBioOffice Enterprise suite.
 
+## Prerequisites
+  * Install [yarn](https://yarnpkg.com/en/docs/install)
+  
 ## Getting Started
   * Run `gradle build` to build all projects
   * Run `gradle bootRun` to build all projects and start the main application
