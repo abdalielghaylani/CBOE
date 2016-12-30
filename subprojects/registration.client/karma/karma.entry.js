@@ -1,3 +1,5 @@
+'use strict';
+
 require('reflect-metadata');
 require('zone.js/dist/zone');
 require('zone.js/dist/long-stack-trace-zone');
@@ -16,8 +18,8 @@ jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
 
 coreTesting.TestBed.resetTestEnvironment();
 coreTesting.TestBed.initTestEnvironment(
-    browserTesting.BrowserDynamicTestingModule,
-    browserTesting.platformBrowserDynamicTesting()
+  browserTesting.BrowserDynamicTestingModule,
+  browserTesting.platformBrowserDynamicTesting()
 );
 
 context.keys().forEach(context);
