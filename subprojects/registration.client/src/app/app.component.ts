@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 @Component({
     selector: 'web-app',

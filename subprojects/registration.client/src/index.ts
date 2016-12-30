@@ -10,6 +10,5 @@ if (production) {
   require('zone.js/dist/long-stack-trace-zone');
 }
 if (!test) {
-  platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+  platformBrowserDynamic().bootstrapModule(AppModule);
 }
