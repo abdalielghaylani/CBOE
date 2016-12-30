@@ -1,5 +1,5 @@
 {
-  "name":"angular2-redux-starter",
+  "name":"registration.client",
   "scripts":{},
   "env":{   
     "NPM_CONFIG_PRODUCTION" : {
