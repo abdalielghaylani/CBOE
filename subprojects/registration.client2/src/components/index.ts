@@ -4,7 +4,7 @@ import { RegContainer } from './container';
 import { RegCounter } from './counter';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
-import { RegNavigator, RegNavigatorItem } from './navigator';
+import { RegNavigator, RegNavigatorHeader, RegNavigatorItem } from './navigator';
 import { RegModal, RegModalContent } from './modal';
 import {
   RegForm,
@@ -30,5 +30,6 @@ export {
   RegModal,
   RegModalContent,
   RegNavigator,
+  RegNavigatorHeader,
   RegNavigatorItem
 };

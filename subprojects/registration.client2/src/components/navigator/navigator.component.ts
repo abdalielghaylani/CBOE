@@ -3,11 +3,13 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'reg-navigator',
   template: `
-    <nav
-      [attr.data-testid]="testid"
-      class="flex items-center p1 bg-white border-bottom">
+  <div
+    [attr.data-testid]="testid"
+    class="navbar  navbar-default  navbar-static-top">
+    <div class="container-fluid">
       <ng-content></ng-content>
-    </nav>
+    </div>
+  </div>
   `
 })
 export class RegNavigator {

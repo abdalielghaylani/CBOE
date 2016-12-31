@@ -14,6 +14,7 @@ import { middleware, enhancers, reimmutify } from '../store';
 import {
   RegButton,
   RegNavigator,
+  RegNavigatorHeader,
   RegNavigatorItem,
   RegLogo,
   RegLoginModal

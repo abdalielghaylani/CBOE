@@ -56,6 +56,7 @@ exports.json = {
   loader: 'json-loader',
 };
 
+exports.png = makeFileLoader(/\.png$/);
 exports.svg = makeFileLoader(/\.svg$/);
 exports.eot = makeFileLoader(/\.eot$/);
 exports.woff = makeFileLoader(/\.woff$/);

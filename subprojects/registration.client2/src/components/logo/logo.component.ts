@@ -4,15 +4,17 @@ import { Component } from '@angular/core';
   selector: 'reg-logo',
   styles: [require('./logo.css')],
   template: `
-    <div className="flex items-center">
-      <img
-        class="logo"
-        [src]="LogoImage"
-        alt="Rangle.io"
-      />
+    <div class="col-sm-12">
+      <a class="navbar-brand" href="">
+        <span><img
+          class="logo"
+          [src]="LogoImage"
+          alt="PerkinElmer"
+        /></span> Registration
+      </a>
     </div>
   `
 })
 export class RegLogo {
-  private LogoImage = require('../../assets/rangleio-logo.svg');
+  private LogoImage = require('../../assets/pki-logo.png');
 };
