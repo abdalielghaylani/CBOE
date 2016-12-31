@@ -7,10 +7,20 @@
     </reg-navigator-header>
     <reg-navigator-items>
       <li reg-navigator-item *ngIf="loggedIn$ | async">
-        <a [routerLink]="['/counter']" class="text-decoration-none">Home</a>
+        <a [routerLink]="['/counter']"><i class="glyphicon glyphicon-home"></i> Home</a>
       </li>
-      <li reg-navigator-item *ngIf="loggedIn$ | async">
-        <a [routerLink]="['/about']" class="text-decoration-none">Configuration</a>
+      <li class="dropdown" reg-navigator-item *ngIf="loggedIn$ | async">
+        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+          <span class="glyphicon glyphicon-cog"></span> Configuration <span class="caret"></span>
+        </a>
+        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+          <li><a [routerLink]="['configuration/projects']">Projects</a></li>
+          <li><a [routerLink]="['configuration/table2']">Table 2</a></li>
+          <li><a [routerLink]="['configuration/table3']">Table 3</a></li>
+          <li><a [routerLink]="['configuration/table4']">Table 4</a></li>
+          <li><a [routerLink]="['configuration/table5']">Table 5</a></li>
+          <li><a [routerLink]="['configuration/table6']">Table 6</a></li>
+        </ul>
       </li>
       <li reg-navigator-item *ngIf="loggedIn$ | async">
         <a href="/api" class="text-decoration-none"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a>

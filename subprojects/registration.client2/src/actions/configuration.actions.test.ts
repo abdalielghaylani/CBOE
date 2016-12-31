@@ -1,5 +1,5 @@
 import { NgRedux } from 'ng2-redux';
-import { CounterActions } from './counter.actions';
+import { ConfigurationActions } from './configuration.actions';
 import { } from 'jasmine';
 
 class MockRedux extends NgRedux<any> {
@@ -10,33 +10,33 @@ class MockRedux extends NgRedux<any> {
 }
 
 describe('counter action creators', () => {
-  let actions: CounterActions;
+  let actions: ConfigurationActions;
   let mockRedux: NgRedux<any>;
 
   beforeEach(() => {
     mockRedux = new MockRedux();
-    actions = new CounterActions(mockRedux);
+    actions = new ConfigurationActions(mockRedux);
   });
 
-  it('increment should dispatch INCREMENT_COUNTER action', () => {
+  it('create should dispatch OPEN_CREATE action', () => {
     const expectedAction = {
-      type: CounterActions.INCREMENT_COUNTER
+      type: ConfigurationActions.OPEN_CREATE
     };
 
     spyOn(mockRedux, 'dispatch');
-    actions.increment();
+    actions.create();
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('decrement should dispatch DECREMENT_COUNTER action', () => {
+  it('edit should dispatch OPEN_EDIT action', () => {
     const expectedAction = {
-      type: CounterActions.DECREMENT_COUNTER
+      type: ConfigurationActions.OPEN_EDIT
     };
 
     spyOn(mockRedux, 'dispatch');
-    actions.decrement();
+    actions.edit();
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);

@@ -1,5 +1,6 @@
 import { RegAlert } from './alert';
 import { RegButton } from './button';
+import { RegConfiguration } from './configuration';
 import { RegContainer } from './container';
 import { RegCounter } from './counter';
 import { RegLogo } from './logo';
@@ -17,6 +18,7 @@ import {
 export {
   RegAlert,
   RegButton,
+  RegConfiguration,
   RegContainer,
   RegCounter,
   RegInput,
