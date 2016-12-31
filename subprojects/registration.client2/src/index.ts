@@ -2,7 +2,7 @@
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 
 // The app module
-import {RioSampleAppModule} from './app/sample-app.module';
+import {RegAppModule} from './app/reg-app.module';
 import {enableProdMode} from '@angular/core';
 
 import {production, test} from './configuration';
@@ -15,5 +15,5 @@ if (production) {
 
 if (!test) {
   // Compile and launch the module
-  platformBrowserDynamic().bootstrapModule(RioSampleAppModule);
+  platformBrowserDynamic().bootstrapModule(RegAppModule);
 }

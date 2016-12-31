@@ -2,9 +2,9 @@ import {
   Routes,
   RouterModule
 } from '@angular/router';
-import {SAMPLE_APP_ROUTES} from './sample-app.routes';
+import {REG_APP_ROUTES} from './reg-app.routes';
 
-const appRoutes: Routes = SAMPLE_APP_ROUTES;
+const appRoutes: Routes = REG_APP_ROUTES;
 
 export const appRoutingProviders: any[] = [];
 

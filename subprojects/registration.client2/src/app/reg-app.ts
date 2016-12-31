@@ -22,7 +22,7 @@ import {
 import {dev} from '../configuration';
 
 @Component({
-  selector: 'rio-sample-app',
+  selector: 'reg-app',
   // Allow app to define global styles.
   encapsulation: ViewEncapsulation.None,
   styles: [
@@ -30,9 +30,9 @@ import {dev} from '../configuration';
     require('devextreme/dist/css/dx.common.css'),
     require('devextreme/dist/css/dx.light.compact.css')
  ],
-  template: require('./sample-app.html')
+  template: require('./reg-app.html')
 })
-export class RioSampleApp {
+export class RegApp {
   @select(['session', 'hasError']) hasError$: Observable<boolean>;
   @select(['session', 'isLoading']) isLoading$: Observable<boolean>;
   @select(['session', 'user', 'firstName']) firstName$: Observable<string>;

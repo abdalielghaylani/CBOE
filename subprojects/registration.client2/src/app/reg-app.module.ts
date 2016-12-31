@@ -10,13 +10,13 @@ import { NgReduxRouter } from 'ng2-redux-router';
 import {
   routing,
   appRoutingProviders
-} from './sample-app.routing';
+} from './reg-app.routing';
 import {
   FormsModule,
   FormBuilder,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { RioSampleApp } from './sample-app';
+import { RegApp } from './reg-app';
 import { SessionActions } from '../actions/session.actions';
 import { SessionEpics } from '../epics/session.epics';
 import {
@@ -43,13 +43,13 @@ import { DxDataGridModule } from 'devextreme-angular';
     DxDataGridModule
   ],
   declarations: [
-    RioSampleApp,
+    RegApp,
     RioAboutPage,
     RioCounterPage,
     RioCounter
   ],
   bootstrap: [
-    RioSampleApp
+    RegApp
   ],
   providers: [
     DevToolsExtension,
@@ -60,4 +60,4 @@ import { DxDataGridModule } from 'devextreme-angular';
     SessionEpics
   ]
 })
-export class RioSampleAppModule { }
+export class RegAppModule { }
