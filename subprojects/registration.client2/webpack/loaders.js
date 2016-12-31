@@ -46,7 +46,7 @@ exports.css = {
 };
 
 exports.rawcss = {
-  test: /\/dist\/.+\.css$/,
+  test: /[\/\\]dist[\/\\].+\.css$/,
   loader: 'to-string!css?-minimize!postcss',
 };
 
