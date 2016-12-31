@@ -46,34 +46,34 @@
 <div>
   <rio-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
   </rio-login-modal>
-  <rio-navigator testid="navigator">
-    <rio-navigator-item [mr]=true>
+  <reg-navigator testid="navigator">
+    <reg-navigator-item [mr]=true>
       <rio-logo></rio-logo>
-    </rio-navigator-item>
-    <rio-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
+    </reg-navigator-item>
+    <reg-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
       <a [routerLink]="['/counter']" class="text-decoration-none">Home</a>
-    </rio-navigator-item>
+    </reg-navigator-item>
 
-    <rio-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
+    <reg-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
       <a [routerLink]="['/about']" class="text-decoration-none">Configuration</a>
-    </rio-navigator-item>
+    </reg-navigator-item>
 
-    <rio-navigator-item *ngIf="loggedIn$ | async">
+    <reg-navigator-item *ngIf="loggedIn$ | async">
       <a href="/api" class="text-decoration-none"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a>
-    </rio-navigator-item>
+    </reg-navigator-item>
 
     <div class="flex flex-auto"></div>
 
-    <rio-navigator-item testid="user-profile" *ngIf="loggedIn$ | async" [mr]=true>
+    <reg-navigator-item testid="user-profile" *ngIf="loggedIn$ | async" [mr]=true>
       {{ firstName$ | async }} {{ lastName$ | async }}
-    </rio-navigator-item>
+    </reg-navigator-item>
 
-    <rio-navigator-item [hidden]="loggedOut$ | async">
+    <reg-navigator-item [hidden]="loggedOut$ | async">
       <rio-button className="bg-red white" (click)="actions.logoutUser()">
         Logout
       </rio-button>
-    </rio-navigator-item>
-  </rio-navigator>
+    </reg-navigator-item>
+  </reg-navigator>
   <main>
     <router-outlet></router-outlet>
   </main>

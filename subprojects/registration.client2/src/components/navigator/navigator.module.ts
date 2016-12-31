@@ -1,9 +1,9 @@
-import {NgModule}      from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import {
-  RioNavigator,
-  RioNavigatorItem
+  RegNavigator,
+  RegNavigatorItem
 } from './index';
 
 @NgModule({
@@ -12,12 +12,12 @@ import {
     ReactiveFormsModule
   ],
   declarations: [
-    RioNavigator,
-    RioNavigatorItem
+    RegNavigator,
+    RegNavigatorItem
   ],
   exports: [
-    RioNavigator,
-    RioNavigatorItem
+    RegNavigator,
+    RegNavigatorItem
   ]
 })
-export class RioNavigatorModule { }
+export class RegNavigatorModule { }

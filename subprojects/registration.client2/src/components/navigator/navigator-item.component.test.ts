@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RioNavigatorItem} from './navigator-item.component';
-import {RioNavigatorModule} from './navigator.module';
-import {configureTests} from '../../tests.configure';
+import { RegNavigatorItem } from './navigator-item.component';
+import { RegNavigatorModule } from './navigator.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Navigator Item', () => {
   let fixture;
@@ -13,12 +13,12 @@ describe('Component: Navigator Item', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RioNavigatorModule],
+        imports: [RegNavigatorModule],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioNavigatorItem);
+      fixture = testBed.createComponent(RegNavigatorItem);
       fixture.detectChanges();
       done();
     });
@@ -39,5 +39,5 @@ describe('Component: Navigator Item', () => {
           .toBe('truncate ml2');
       });
     })
-  ));
+    ));
 });

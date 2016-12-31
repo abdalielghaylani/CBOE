@@ -5,9 +5,9 @@ import {
 } from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {RioNavigator} from './navigator.component';
+import {RegNavigator} from './navigator.component';
 import {RioFormModule} from '../form/form.module';
-import {RioNavigatorModule} from './navigator.module';
+import {RegNavigatorModule} from './navigator.module';
 import {configureTests} from '../../tests.configure';
 
 describe('Component: Navigator', () => {
@@ -17,16 +17,16 @@ describe('Component: Navigator', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RioNavigatorModule,
+          RegNavigatorModule,
         ],
         declarations: [
-          RioNavigatorTestController
+          RegNavigatorTestController
         ],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioNavigatorTestController);
+      fixture = testBed.createComponent(RegNavigatorTestController);
       fixture.detectChanges();
       done();
     });
@@ -36,7 +36,7 @@ describe('Component: Navigator', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let query = fixture.debugElement
-        .query(By.directive(RioNavigator));
+        .query(By.directive(RegNavigator));
       expect(query).toBeTruthy();
       expect(query.componentInstance).toBeTruthy();
     });
@@ -46,8 +46,8 @@ describe('Component: Navigator', () => {
 @Component({
   selector: 'test',
   template: `
-    <rio-navigator></rio-navigator>
+    <reg-navigator></reg-navigator>
   `
 })
-class RioNavigatorTestController { }
+class RegNavigatorTestController { }
 

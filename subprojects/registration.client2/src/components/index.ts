@@ -4,7 +4,7 @@ import { RioContainer } from './container';
 import { RioCounter } from './counter';
 import { RioLogo } from './logo';
 import { RioLoginModal, RioLoginForm } from './login';
-import { RioNavigator, RioNavigatorItem } from './navigator';
+import { RegNavigator, RegNavigatorItem } from './navigator';
 import { RioModal, RioModalContent } from './modal';
 import {
   RioForm,
@@ -29,6 +29,6 @@ export {
   RioLabel,
   RioModal,
   RioModalContent,
-  RioNavigator,
-  RioNavigatorItem
+  RegNavigator,
+  RegNavigatorItem
 };

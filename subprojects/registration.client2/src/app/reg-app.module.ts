@@ -26,7 +26,7 @@ import {
 import { RioCounter } from '../components/counter/counter.component';
 import { RioLoginModule } from '../components/login/login.module';
 import { RioUiModule } from '../components/ui/ui.module';
-import { RioNavigatorModule } from '../components/navigator/navigator.module';
+import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { DxDataGridModule } from 'devextreme-angular';
 
 @NgModule({
@@ -38,7 +38,7 @@ import { DxDataGridModule } from 'devextreme-angular';
     CommonModule,
     RioLoginModule,
     RioUiModule,
-    RioNavigatorModule,
+    RegNavigatorModule,
     NgReduxModule.forRoot(),
     DxDataGridModule
   ],

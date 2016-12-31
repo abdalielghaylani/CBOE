@@ -13,8 +13,8 @@ import { middleware, enhancers, reimmutify } from '../store';
 
 import {
   RioButton,
-  RioNavigator,
-  RioNavigatorItem,
+  RegNavigator,
+  RegNavigatorItem,
   RioLogo,
   RioLoginModal
 } from '../components';

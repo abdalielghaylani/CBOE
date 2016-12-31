@@ -1,7 +1,7 @@
 import { Input, Component } from '@angular/core';
 
 @Component({
-  selector: 'rio-navigator-item',
+  selector: 'reg-navigator-item',
   template: `
     <div
       [attr.data-testid]="testid"
@@ -14,7 +14,7 @@ import { Input, Component } from '@angular/core';
     </div>
   `
 })
-export class RioNavigatorItem {
+export class RegNavigatorItem {
   @Input() mr = false;
   @Input() ml = false;
   @Input() testid: string;
