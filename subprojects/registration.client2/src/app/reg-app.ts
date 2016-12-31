@@ -20,6 +20,7 @@ import {
 } from '../components';
 
 import {dev} from '../configuration';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 @Component({
   selector: 'reg-app',
@@ -27,6 +28,7 @@ import {dev} from '../configuration';
   encapsulation: ViewEncapsulation.None,
   styles: [
     require('../styles/index.css'),
+    require('bootstrap/dist/css/bootstrap.min.css'),
     require('devextreme/dist/css/dx.common.css'),
     require('devextreme/dist/css/dx.light.compact.css')
  ],

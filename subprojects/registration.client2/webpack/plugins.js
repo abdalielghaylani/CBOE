@@ -14,6 +14,10 @@ const sourceMap = process.env.TEST
   : [ ];
 
 const basePlugins = [
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+  }),
   new webpack.DefinePlugin({
     __DEV__: process.env.NODE_ENV !== 'production',
     __PRODUCTION__: process.env.NODE_ENV === 'production',
