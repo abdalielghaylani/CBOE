@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'rio-modal-content',
   styles: [require('./modal.css')],
   template: `
-    <div class="p2 z2 bg-white modal relative">
+    <div class="p2 z2 bg-white modal.shown relative">
       <ng-content></ng-content>
     </div>
   `

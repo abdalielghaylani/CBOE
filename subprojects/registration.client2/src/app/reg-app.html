@@ -29,13 +29,13 @@
                     </ul>
                 </li>
                 <li><a href="/api"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a></li>
-                <li class="dropdown">
+                <li class="dropdown" *ngIf="loggedIn$">
                     <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-user"></span> Admin <span class="caret"></span>
+                        <span class="glyphicon glyphicon-user"></span> {{ firstName$ | async }} {{ lastName$ | async }} <span class="caret"></span>
                     </a>
                     <ul id="g-account-menu" class="dropdown-menu" role="menu">
                         <li><a [routerLink]="['profile']">Profile</a></li>
-                        <li><a [routerLink]="['logout']"><span class="dx-icon-clear icon"></span> Logout</a></li>
+                        <li (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="dx-icon-clear icon"></span> Logout</a></li>
                     </ul>
                 </li>
 
@@ -63,12 +63,17 @@
     </rio-navigator-item>
     <rio-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
       <a [routerLink]="['/counter']"
-        class="text-decoration-none">Counter</a>
+        class="text-decoration-none">Home</a>
+    </rio-navigator-item>
+
+    <rio-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
+      <a [routerLink]="['/about']"
+        class="text-decoration-none">Configuration</a>
     </rio-navigator-item>
 
     <rio-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['/about']"
-        class="text-decoration-none">About Us</a>
+      <a href="/api"
+        class="text-decoration-none"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a>
     </rio-navigator-item>
 
     <div class="flex flex-auto"></div>
