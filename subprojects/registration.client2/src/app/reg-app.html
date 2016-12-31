@@ -1,79 +1,65 @@
 <div id="top-nav" class="navbar  navbar-default  navbar-static-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="row">
-                <div class="col-sm-12">
-                    <a class="navbar-brand" href="">CBOE: Registration</a>
-                </div>
-            </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <a class="navbar-brand" href="">CBOE: Registration</a>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a [routerLink]="['records']"><i class="glyphicon glyphicon-home"></i> Home</a></li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-cog"></span> Configuration <span class="caret"></span>
-                    </a>
-                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
-                        <li><a [routerLink]="['projects']">Projects</a></li>
-                        <li><a [routerLink]="['table2']">Table 2</a></li>
-                        <li><a [routerLink]="['table3']">Table 3</a></li>
-                        <li><a [routerLink]="['table4']">Table 4</a></li>
-                        <li><a [routerLink]="['table5']">Table 5</a></li>
-                        <li><a [routerLink]="['table6']">Table 6</a></li>
-                    </ul>
-                </li>
-                <li><a href="/api"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a></li>
-                <li class="dropdown" *ngIf="loggedIn$">
-                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-user"></span> {{ firstName$ | async }} {{ lastName$ | async }} <span class="caret"></span>
-                    </a>
-                    <ul id="g-account-menu" class="dropdown-menu" role="menu">
-                        <li><a [routerLink]="['profile']">Profile</a></li>
-                        <li (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="dx-icon-clear icon"></span> Logout</a></li>
-                    </ul>
-                </li>
+      </div>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]="['records']"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <span class="glyphicon glyphicon-cog"></span> Configuration <span class="caret"></span>
+          </a>
+          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['projects']">Projects</a></li>
+            <li><a [routerLink]="['table2']">Table 2</a></li>
+            <li><a [routerLink]="['table3']">Table 3</a></li>
+            <li><a [routerLink]="['table4']">Table 4</a></li>
+            <li><a [routerLink]="['table5']">Table 5</a></li>
+            <li><a [routerLink]="['table6']">Table 6</a></li>
+          </ul>
+        </li>
+        <li><a href="/api"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a></li>
+        <li class="dropdown" *ngIf="loggedIn$ | async">
+          <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+            <span class="glyphicon glyphicon-user"></span> {{ firstName$ | async }} {{ lastName$ | async }} <span class="caret"></span>
+          </a>
+          <ul id="g-account-menu" class="dropdown-menu" role="menu">
+            <li><a [routerLink]="['profile']">Profile</a></li>
+            <li (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="dx-icon-clear icon"></span> Logout</a></li>
+          </ul>
+        </li>
 
-            </ul>
-        </div>
+      </ul>
     </div>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12 mainbox">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+  </div>
 </div>
 <div>
-  <rio-login-modal
-    (onSubmit)="actions.loginUser($event)"
-    [hasError]="hasError$ | async"
-    [isPending]="isLoading$ | async"
-    *ngIf="loggedOut$ | async">
+  <rio-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
   </rio-login-modal>
   <rio-navigator testid="navigator">
     <rio-navigator-item [mr]=true>
       <rio-logo></rio-logo>
     </rio-navigator-item>
     <rio-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
-      <a [routerLink]="['/counter']"
-        class="text-decoration-none">Home</a>
+      <a [routerLink]="['/counter']" class="text-decoration-none">Home</a>
     </rio-navigator-item>
 
     <rio-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
-      <a [routerLink]="['/about']"
-        class="text-decoration-none">Configuration</a>
+      <a [routerLink]="['/about']" class="text-decoration-none">Configuration</a>
     </rio-navigator-item>
 
     <rio-navigator-item *ngIf="loggedIn$ | async">
-      <a href="/api"
-        class="text-decoration-none"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a>
+      <a href="/api" class="text-decoration-none"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a>
     </rio-navigator-item>
 
     <div class="flex flex-auto"></div>
@@ -83,7 +69,7 @@
     </rio-navigator-item>
 
     <rio-navigator-item [hidden]="loggedOut$ | async">
-      <rio-button className="bg-red white" (click)="actions.logoutUser()" >
+      <rio-button className="bg-red white" (click)="actions.logoutUser()">
         Logout
       </rio-button>
     </rio-navigator-item>
