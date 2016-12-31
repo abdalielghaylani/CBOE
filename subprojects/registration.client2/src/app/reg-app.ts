@@ -15,6 +15,7 @@ import {
   RegButton,
   RegNavigator,
   RegNavigatorHeader,
+  RegNavigatorItems,
   RegNavigatorItem,
   RegLogo,
   RegLoginModal

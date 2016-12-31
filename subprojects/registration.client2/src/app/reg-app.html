@@ -5,24 +5,26 @@
     <reg-navigator-header>
       <reg-logo></reg-logo>
     </reg-navigator-header>
-    <reg-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
-      <a [routerLink]="['/counter']" class="text-decoration-none">Home</a>
-    </reg-navigator-item>
-    <reg-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
-      <a [routerLink]="['/about']" class="text-decoration-none">Configuration</a>
-    </reg-navigator-item>
-    <reg-navigator-item *ngIf="loggedIn$ | async">
-      <a href="/api" class="text-decoration-none"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a>
-    </reg-navigator-item>
-    <div class="flex flex-auto"></div>
-    <reg-navigator-item testid="user-profile" *ngIf="loggedIn$ | async" [mr]=true>
-      {{ firstName$ | async }} {{ lastName$ | async }}
-    </reg-navigator-item>
-    <reg-navigator-item [hidden]="loggedOut$ | async">
-      <reg-button className="bg-red white" (click)="actions.logoutUser()">
-        Logout
-      </reg-button>
-    </reg-navigator-item>
+    <reg-navigator-items>
+      <li reg-navigator-item *ngIf="loggedIn$ | async">
+        <a [routerLink]="['/counter']" class="text-decoration-none">Home</a>
+      </li>
+      <li reg-navigator-item *ngIf="loggedIn$ | async">
+        <a [routerLink]="['/about']" class="text-decoration-none">Configuration</a>
+      </li>
+      <li reg-navigator-item *ngIf="loggedIn$ | async">
+        <a href="/api" class="text-decoration-none"><i class="glyphicon glyphicon-wrench"></i> HAL Browser</a>
+      </li>
+      <li reg-navigator-item class="dropdown" *ngIf="loggedIn$ | async">
+        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+          <span class="glyphicon glyphicon-user"></span> {{ firstName$ | async }} {{ lastName$ | async }} <span class="caret"></span>
+        </a>
+        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+          <li><a [routerLink]="['profile']">Profile</a></li>
+          <li (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="dx-icon-clear icon"></span> Logout</a></li>
+        </ul>
+      </li>
+    </reg-navigator-items>
   </reg-navigator>
   <main>
     <router-outlet></router-outlet>

@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
           class="logo"
           [src]="LogoImage"
           alt="PerkinElmer"
-        /></span> Registration
+        /></span> CBOE: Registration
       </a>
     </div>
   `

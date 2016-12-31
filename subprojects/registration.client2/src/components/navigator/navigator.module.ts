@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {
   RegNavigator,
   RegNavigatorHeader,
+  RegNavigatorItems,
   RegNavigatorItem
 } from './index';
 
@@ -15,11 +16,13 @@ import {
   declarations: [
     RegNavigator,
     RegNavigatorHeader,
+    RegNavigatorItems,
     RegNavigatorItem
   ],
   exports: [
     RegNavigator,
     RegNavigatorHeader,
+    RegNavigatorItems,
     RegNavigatorItem
   ]
 })
