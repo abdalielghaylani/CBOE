@@ -11,7 +11,6 @@ import { ICounter } from '../../store';
   selector: 'reg-configuration',
   template: `
     <div class="flex">
-      <h4>Registration Records</h4>
       <dx-data-grid [columns]='gridColumns' [dataSource]='records' [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'

@@ -4,7 +4,7 @@ import { RegContainer } from '../components';
 @Component({
   selector: 'reg-about-page',
   template: `
-    <reg-container [size]=4 [center]=true>
+    <reg-container>
       <h2 class="caps">About Us</h2>
       <p>
         Rangle.io is a next-generation HTML5 design and development firm

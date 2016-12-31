@@ -10,7 +10,7 @@ import { ICounter } from '../store';
   selector: 'configuration-page',
   providers: [ ConfigurationActions ],
   template: `
-    <reg-container testid="configuration" [size]=2 [center]=true>
+    <reg-container testid="configuration">
       <h2 data-testid="configuration-heading" id="qa-configuration-heading"
         class="center caps">
         Configuration
