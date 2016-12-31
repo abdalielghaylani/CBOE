@@ -8,15 +8,15 @@ import {
 import { ICounter } from '../../store';
 
 @Component({
-  selector: 'rio-counter',
+  selector: 'reg-counter',
   template: `
     <div class="flex">
-      <rio-button
+      <reg-button
         className="bg-black col-2"
         (onClick)="decrement.emit()"
         testid="counter-decrementButton">
         -
-      </rio-button>
+      </reg-button>
 
       <div 
         data-testid="counter-result"
@@ -24,11 +24,11 @@ import { ICounter } from '../../store';
         {{ counter.counter }}
       </div>
 
-      <rio-button className="col-2"
+      <reg-button className="col-2"
         (onClick)="increment.emit()"
         testid="counter-incrementButton">
         +
-      </rio-button>
+      </reg-button>
     </div>
     <div class="flex">
       <h4>Registration Records</h4>
@@ -42,7 +42,7 @@ import { ICounter } from '../../store';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RioCounter {
+export class RegCounter {
   @Input() counter: ICounter;
   @Output() increment = new EventEmitter<void>();
   @Output() decrement = new EventEmitter<void>();

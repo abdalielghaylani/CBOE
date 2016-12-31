@@ -3,10 +3,10 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RioInput} from './input';
-import {FormControl} from '@angular/forms';
-import {RioFormModule} from './form.module';
-import {configureTests} from '../../tests.configure';
+import { RegInput } from './input';
+import { FormControl } from '@angular/forms';
+import { RegFormModule } from './form.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Form Input', () => {
   let fixture;
@@ -15,13 +15,13 @@ describe('Component: Form Input', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RioFormModule,
+          RegFormModule,
         ],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioInput);
+      fixture = testBed.createComponent(RegInput);
       fixture.detectChanges();
       done();
     });
@@ -45,5 +45,5 @@ describe('Component: Form Input', () => {
           .getAttribute('type')).toBe('password');
       });
     })
-  ));
+    ));
 });

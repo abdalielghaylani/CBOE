@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RioLoginModal} from './index';
-import {RioLoginModule} from './login.module';
-import {configureTests} from '../../tests.configure';
+import { RegLoginModal } from './index';
+import { RegLoginModule } from './login.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Login Modal', () => {
   let fixture;
@@ -13,12 +13,12 @@ describe('Component: Login Modal', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RioLoginModule],
+        imports: [RegLoginModule],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioLoginModal);
+      fixture = testBed.createComponent(RegLoginModal);
       fixture.detectChanges();
       done();
     });
@@ -28,9 +28,9 @@ describe('Component: Login Modal', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
       let element = fixture.nativeElement;
-      expect(element.querySelector('rio-modal-content')).not.toBeNull();
+      expect(element.querySelector('reg-modal-content')).not.toBeNull();
       expect(element.querySelector('h1').innerText).toEqual('Login');
-      expect(element.querySelector('rio-login-form')).not.toBeNull();
+      expect(element.querySelector('reg-login-form')).not.toBeNull();
       expect(fixture.componentInstance.onSubmit).toBeTruthy();
     });
   })));

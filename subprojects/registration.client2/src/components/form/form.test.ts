@@ -4,7 +4,7 @@ import {
 } from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {RioForm} from './form';
+import {RegForm} from './form';
 import {
   FormGroup,
   FormControl,
@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import {TestBed} from '@angular/core/testing';
-import {RioFormModule} from './form.module';
+import {RegFormModule} from './form.module';
 import {configureTests} from '../../tests.configure';
 
 describe('Component: Form', () => {
@@ -25,16 +25,16 @@ describe('Component: Form', () => {
         imports: [
           FormsModule,
           ReactiveFormsModule,
-          RioFormModule,
+          RegFormModule,
         ],
         declarations: [
-          RioFormTestController,
+          RegFormTestController,
         ]
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioFormTestController);
+      fixture = testBed.createComponent(RegFormTestController);
       fixture.detectChanges();
       done();
     });
@@ -44,7 +44,7 @@ describe('Component: Form', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let query = fixture.debugElement
-        .query(By.directive(RioForm));
+        .query(By.directive(RegForm));
       expect(query).toBeTruthy();
       expect(query.componentInstance).toBeTruthy();
       expect(query.componentInstance.onSubmit).toBeTruthy();
@@ -56,7 +56,7 @@ describe('Component: Form', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let query = fixture.debugElement
-        .query(By.directive(RioForm));
+        .query(By.directive(RegForm));
       query.componentInstance.onSubmit.subscribe(c => {
         expect(c).toBeDefined();
       });
@@ -69,15 +69,15 @@ describe('Component: Form', () => {
 @Component({
   selector: 'test',
   template: `
-    <rio-form
+    <reg-form
       [group]="group">
       <input
         [formControl]="field1">
       <button type="submit">submit</button>
-    </rio-form>
+    </reg-form>
   `
 })
-class RioFormTestController {
+class RegFormTestController {
   private group: FormGroup;
   private field1: FormControl;
   constructor(private builder: FormBuilder) {

@@ -2,11 +2,11 @@ import {
   TestBed,
   inject
 } from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RioModalContent} from './modal-content.component';
-import {RioModalModule} from './modal.module';
-import {configureTests} from '../../tests.configure';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { RegModalContent } from './modal-content.component';
+import { RegModalModule } from './modal.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Modal Content', () => {
   let fixture;
@@ -15,16 +15,16 @@ describe('Component: Modal Content', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RioModalModule
+          RegModalModule
         ],
         declarations: [
-          RioModalContentTestController
+          RegModalContentTestController
         ],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioModalContentTestController);
+      fixture = testBed.createComponent(RegModalContentTestController);
       fixture.detectChanges();
       done();
     });
@@ -34,7 +34,7 @@ describe('Component: Modal Content', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let query = fixture.debugElement
-        .query(By.directive(RioModalContent));
+        .query(By.directive(RegModalContent));
       expect(query).toBeTruthy();
       expect(query.componentInstance).toBeTruthy();
     });
@@ -44,8 +44,8 @@ describe('Component: Modal Content', () => {
 @Component({
   selector: 'test',
   template: `
-    <rio-modal-content></rio-modal-content>
+    <reg-modal-content></reg-modal-content>
   `
 })
-class RioModalContentTestController {}
+class RegModalContentTestController { }
 

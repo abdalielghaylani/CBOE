@@ -8,15 +8,15 @@ import { createEpicMiddleware } from 'redux-observable';
 import { IAppState, ISession, rootReducer } from '../store';
 import { SessionActions } from '../actions/session.actions';
 import { SessionEpics } from '../epics/session.epics';
-import { RioAboutPage, RioCounterPage } from '../pages';
+import { RegAboutPage, RegCounterPage } from '../pages';
 import { middleware, enhancers, reimmutify } from '../store';
 
 import {
-  RioButton,
+  RegButton,
   RegNavigator,
   RegNavigatorItem,
-  RioLogo,
-  RioLoginModal
+  RegLogo,
+  RegLoginModal
 } from '../components';
 
 import {dev} from '../configuration';

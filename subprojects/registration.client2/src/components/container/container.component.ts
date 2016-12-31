@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'rio-container',
+  selector: 'reg-container',
   template: `
   <div
     [attr.data-testid]="testid"
@@ -17,7 +17,7 @@ import { Component, Input } from '@angular/core';
   <div>
   `
 })
-export class RioContainer {
+export class RegContainer {
   @Input() size = 1;
   @Input() center = false;
   @Input() testid: string;

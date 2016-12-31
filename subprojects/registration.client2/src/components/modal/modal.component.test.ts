@@ -5,8 +5,8 @@ import {
 } from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {RioModal} from './modal.component';
-import {RioModalModule} from './modal.module';
+import {RegModal} from './modal.component';
+import {RegModalModule} from './modal.module';
 import {configureTests} from '../../tests.configure';
 
 describe('Component: Modal', () => {
@@ -16,16 +16,16 @@ describe('Component: Modal', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RioModalModule,
+          RegModalModule,
         ],
         declarations: [
-          RioModalTestController
+          RegModalTestController
         ],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioModalTestController);
+      fixture = testBed.createComponent(RegModalTestController);
       fixture.detectChanges();
       done();
     });
@@ -35,7 +35,7 @@ describe('Component: Modal', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let query = fixture.debugElement
-        .query(By.directive(RioModal));
+        .query(By.directive(RegModal));
       expect(query).toBeTruthy();
       expect(query.componentInstance).toBeTruthy();
     });
@@ -45,8 +45,8 @@ describe('Component: Modal', () => {
 @Component({
   selector: 'test',
   template: `
-    <rio-modal></rio-modal>
+    <reg-modal></reg-modal>
   `
 })
-class RioModalTestController {}
+class RegModalTestController {}
 

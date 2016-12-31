@@ -5,8 +5,8 @@ import {
 } from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {RioFormGroup} from './form-group';
-import {RioFormModule} from './form.module';
+import {RegFormGroup} from './form-group';
+import {RegFormModule} from './form.module';
 import {RegAppModule} from '../../app/reg-app.module';
 import {configureTests} from '../../tests.configure';
 
@@ -16,13 +16,13 @@ describe('Component: Form Group', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RioFormModule],
-        declarations: [RioFormGroupTestController],
+        imports: [RegFormModule],
+        declarations: [RegFormGroupTestController],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioFormGroupTestController);
+      fixture = testBed.createComponent(RegFormGroupTestController);
       fixture.detectChanges();
       done();
     });
@@ -32,7 +32,7 @@ describe('Component: Form Group', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let query = fixture.debugElement
-        .query(By.directive(RioFormGroup));
+        .query(By.directive(RegFormGroup));
       expect(query).toBeTruthy();
       expect(query.componentInstance).toBeTruthy();
     });
@@ -42,10 +42,10 @@ describe('Component: Form Group', () => {
 @Component({
   selector: 'test',
   template: `
-    <rio-form-group
+    <reg-form-group
       qaid="test-1">
-    </rio-form-group>
+    </reg-form-group>
   `
 })
-class RioFormGroupTestController { }
+class RegFormGroupTestController { }
 

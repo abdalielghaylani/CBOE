@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
 import {
-  RioCounterPage,
-  RioAboutPage
+  RegCounterPage,
+  RegAboutPage
 } from '../pages';
 
 export const REG_APP_ROUTES: Routes = [{
@@ -11,8 +11,8 @@ export const REG_APP_ROUTES: Routes = [{
   redirectTo: 'counter'
 }, {
   path: 'counter',
-  component: RioCounterPage
+  component: RegCounterPage
 }, {
   path: 'about',
-  component: RioAboutPage
+  component: RegAboutPage
 }];

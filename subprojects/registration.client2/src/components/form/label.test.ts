@@ -5,8 +5,8 @@ import {
 } from '@angular/core/testing';
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
-import {RioLabel} from './label';
-import {RioFormModule} from './form.module';
+import {RegLabel} from './label';
+import {RegFormModule} from './form.module';
 import {RegAppModule} from '../../app/reg-app.module';
 import {configureTests} from '../../tests.configure';
 
@@ -16,15 +16,15 @@ describe('Component: Label', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RioFormModule],
+        imports: [RegFormModule],
         declarations: [
-          RioLabelTestController
+          RegLabelTestController
         ],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioLabelTestController);
+      fixture = testBed.createComponent(RegLabelTestController);
       fixture.detectChanges();
       done();
     });
@@ -34,7 +34,7 @@ describe('Component: Label', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let query = fixture.debugElement
-        .query(By.directive(RioLabel));
+        .query(By.directive(RegLabel));
       expect(query).toBeTruthy();
       expect(query.componentInstance).toBeTruthy();
     });
@@ -44,7 +44,7 @@ describe('Component: Label', () => {
       fixture.whenStable().then(() => {
         fixture.autoDetectChanges();
         let query = fixture.debugElement
-          .query(By.directive(RioLabel));
+          .query(By.directive(RegLabel));
         expect(query.nativeElement.querySelector('label')
           .getAttribute('id')).toBe('test-1');
       });
@@ -54,10 +54,10 @@ describe('Component: Label', () => {
 @Component({
   selector: 'test',
   template: `
-    <rio-label
+    <reg-label
       qaid="test-1">
-    </rio-label>
+    </reg-label>
   `
 })
-class RioLabelTestController { }
+class RegLabelTestController { }
 

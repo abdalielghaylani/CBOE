@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import { RioContainer } from '../components';
+import { RegContainer } from '../components';
 
 @Component({
-  selector: 'rio-about-page',
+  selector: 'reg-about-page',
   template: `
-    <rio-container [size]=4 [center]=true>
+    <reg-container [size]=4 [center]=true>
       <h2 class="caps">About Us</h2>
       <p>
         Rangle.io is a next-generation HTML5 design and development firm
         dedicated to modern, responsive web and mobile applications.
       </p>
-    </rio-container>
+    </reg-container>
   `
 })
-export class RioAboutPage {}
+export class RegAboutPage {}

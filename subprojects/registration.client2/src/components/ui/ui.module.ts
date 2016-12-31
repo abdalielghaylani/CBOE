@@ -1,25 +1,25 @@
 import {NgModule}      from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RioAlert} from '../alert/alert.component';
-import {RioButton} from '../button/button.component';
-import {RioLogo} from '../logo/logo.component';
-import {RioContainer} from '../container/container.component';
+import {RegAlert} from '../alert/alert.component';
+import {RegButton} from '../button/button.component';
+import {RegLogo} from '../logo/logo.component';
+import {RegContainer} from '../container/container.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    RioAlert,
-    RioButton,
-    RioLogo,
-    RioContainer
+    RegAlert,
+    RegButton,
+    RegLogo,
+    RegContainer
   ],
   exports: [
-    RioAlert,
-    RioButton,
-    RioLogo,
-    RioContainer
+    RegAlert,
+    RegButton,
+    RegLogo,
+    RegContainer
   ]
 })
-export class RioUiModule { }
+export class RegUiModule { }

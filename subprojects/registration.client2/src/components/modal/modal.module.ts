@@ -1,19 +1,19 @@
 import {NgModule}      from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RioModal} from './modal.component';
-import {RioModalContent} from './modal-content.component';
+import {RegModal} from './modal.component';
+import {RegModalContent} from './modal-content.component';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
-    RioModal,
-    RioModalContent
+    RegModal,
+    RegModalContent
   ],
   exports: [
-    RioModal,
-    RioModalContent
+    RegModal,
+    RegModalContent
   ]
 })
-export class RioModalModule { }
+export class RegModalModule { }

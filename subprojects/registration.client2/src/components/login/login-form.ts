@@ -8,73 +8,73 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'rio-login-form',
+  selector: 'reg-login-form',
   template: `
-    <rio-form
+    <reg-form
       [group]="group"
       (onSubmit)="handleSubmit()">
-      <rio-alert 
+      <reg-alert 
         qaid="qa-pending"
         testid="alert-pending"
         status='info'
-        *ngIf="isPending">Loading...</rio-alert>
-      <rio-alert
+        *ngIf="isPending">Loading...</reg-alert>
+      <reg-alert
         qaid="qa-alert"
         testid="alert-error"
         status='error'*ngIf="hasError">
         Invalid username and password
-      </rio-alert>
+      </reg-alert>
 
-      <rio-form-group
+      <reg-form-group
         testid="login-username">
-        <rio-label qaid="qa-uname-label">Username</rio-label>
-        <rio-input
+        <reg-label qaid="qa-uname-label">Username</reg-label>
+        <reg-input
           qaid="qa-uname-input"
           inputType='text'
           placeholder='Username'
-          [control]="username"></rio-input>
-        <rio-form-error
+          [control]="username"></reg-input>
+        <reg-form-error
           qaid="qa-uname-validation"
           [visible]="showNameWarning()">
           Username is required.
-        </rio-form-error>
-      </rio-form-group>
+        </reg-form-error>
+      </reg-form-group>
 
-      <rio-form-group
+      <reg-form-group
         testid="login-password">
-        <rio-label qaid="qa-password-label">Password</rio-label>
-        <rio-input
+        <reg-label qaid="qa-password-label">Password</reg-label>
+        <reg-input
           qaid="qa-password-input"
           inputType='password'
           placeholder='Password'
-          [control]="password"></rio-input>
-        <rio-form-error
+          [control]="password"></reg-input>
+        <reg-form-error
           qaid="qa-password-validation"
           [visible]="showPasswordWarning()">
           Password is required.
-        </rio-form-error>
-      </rio-form-group>
+        </reg-form-error>
+      </reg-form-group>
 
-      <rio-form-group
+      <reg-form-group
         testid="login-submit">
-        <rio-button
+        <reg-button
           qaid="qa-login-button"
           className="mr1"
           type="submit">
           Login
-        </rio-button>
-        <rio-button
+        </reg-button>
+        <reg-button
           qaid="qa-clear-button"
           className="bg-red"
           type="reset"
           (onClick)="reset()">
           Clear
-        </rio-button>
-      </rio-form-group>
-    </rio-form>
+        </reg-button>
+      </reg-form-group>
+    </reg-form>
   `
 })
-export class RioLoginForm {
+export class RegLoginForm {
   @Input() isPending: boolean;
   @Input() hasError: boolean;
   @Output() onSubmit: EventEmitter<Object> = new EventEmitter();

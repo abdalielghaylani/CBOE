@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'rio-button',
+  selector: 'reg-button',
   template: `
     <button
       [attr.data-testid]="testid"
@@ -14,7 +14,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     </button>
   `
 })
-export class RioButton {
+export class RegButton {
   @Input() className: string;
   @Input() type: string;
   @Input() qaid: string;

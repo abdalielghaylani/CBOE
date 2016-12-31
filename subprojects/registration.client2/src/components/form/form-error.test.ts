@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RioFormError} from './form-error';
-import {RioFormModule} from './form.module';
-import {configureTests} from '../../tests.configure';
+import { RegFormError } from './form-error';
+import { RegFormModule } from './form.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Form Error', () => {
   let fixture;
@@ -13,12 +13,12 @@ describe('Component: Form Error', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RioFormModule],
+        imports: [RegFormModule],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioFormError);
+      fixture = testBed.createComponent(RegFormError);
       fixture.detectChanges();
       done();
     });

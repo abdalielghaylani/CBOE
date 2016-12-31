@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'rio-form-group',
+  selector: 'reg-form-group',
   template: `
     <div
         [attr.data-testid]="testid"
@@ -10,6 +10,6 @@ import { Component, Input } from '@angular/core';
     </div>
   `
 })
-export class RioFormGroup {
+export class RegFormGroup {
     @Input() testid: string;
 };

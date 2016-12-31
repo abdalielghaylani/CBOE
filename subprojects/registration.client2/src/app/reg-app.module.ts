@@ -20,12 +20,12 @@ import { RegApp } from './reg-app';
 import { SessionActions } from '../actions/session.actions';
 import { SessionEpics } from '../epics/session.epics';
 import {
-  RioAboutPage,
-  RioCounterPage
+  RegAboutPage,
+  RegCounterPage
 } from '../pages';
-import { RioCounter } from '../components/counter/counter.component';
-import { RioLoginModule } from '../components/login/login.module';
-import { RioUiModule } from '../components/ui/ui.module';
+import { RegCounter } from '../components/counter/counter.component';
+import { RegLoginModule } from '../components/login/login.module';
+import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { DxDataGridModule } from 'devextreme-angular';
 
@@ -36,17 +36,17 @@ import { DxDataGridModule } from 'devextreme-angular';
     BrowserModule,
     routing,
     CommonModule,
-    RioLoginModule,
-    RioUiModule,
+    RegLoginModule,
+    RegUiModule,
     RegNavigatorModule,
     NgReduxModule.forRoot(),
     DxDataGridModule
   ],
   declarations: [
     RegApp,
-    RioAboutPage,
-    RioCounterPage,
-    RioCounter
+    RegAboutPage,
+    RegCounterPage,
+    RegCounter
   ],
   bootstrap: [
     RegApp

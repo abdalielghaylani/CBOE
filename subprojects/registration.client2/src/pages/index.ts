@@ -1,4 +1,4 @@
-import { RioAboutPage } from './about.page';
-import { RioCounterPage } from './counter.page';
+import { RegAboutPage } from './about.page';
+import { RegCounterPage } from './counter.page';
 
-export { RioAboutPage, RioCounterPage };
+export { RegAboutPage, RegCounterPage };

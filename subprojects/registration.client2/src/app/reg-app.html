@@ -44,11 +44,11 @@
   </div>
 </div>
 <div>
-  <rio-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
-  </rio-login-modal>
+  <reg-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
+  </reg-login-modal>
   <reg-navigator testid="navigator">
     <reg-navigator-item [mr]=true>
-      <rio-logo></rio-logo>
+      <reg-logo></reg-logo>
     </reg-navigator-item>
     <reg-navigator-item *ngIf="loggedIn$ | async" [mr]=true>
       <a [routerLink]="['/counter']" class="text-decoration-none">Home</a>
@@ -69,9 +69,9 @@
     </reg-navigator-item>
 
     <reg-navigator-item [hidden]="loggedOut$ | async">
-      <rio-button className="bg-red white" (click)="actions.logoutUser()">
+      <reg-button className="bg-red white" (click)="actions.logoutUser()">
         Logout
-      </rio-button>
+      </reg-button>
     </reg-navigator-item>
   </reg-navigator>
   <main>

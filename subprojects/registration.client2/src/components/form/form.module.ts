@@ -2,11 +2,11 @@ import {NgModule}      from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {
-  RioForm,
-  RioFormGroup,
-  RioFormError,
-  RioInput,
-  RioLabel
+  RegForm,
+  RegFormGroup,
+  RegFormError,
+  RegInput,
+  RegLabel
 } from './index';
 
 @NgModule({
@@ -15,18 +15,18 @@ import {
     ReactiveFormsModule
   ],
   declarations: [
-    RioForm,
-    RioFormGroup,
-    RioFormError,
-    RioLabel,
-    RioInput
+    RegForm,
+    RegFormGroup,
+    RegFormError,
+    RegLabel,
+    RegInput
   ],
   exports: [
-    RioForm,
-    RioFormGroup,
-    RioFormError,
-    RioLabel,
-    RioInput
+    RegForm,
+    RegFormGroup,
+    RegFormError,
+    RegLabel,
+    RegInput
   ]
 })
-export class RioFormModule { }
+export class RegFormModule { }

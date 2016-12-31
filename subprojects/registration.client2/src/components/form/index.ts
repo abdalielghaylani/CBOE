@@ -1,7 +1,7 @@
-import { RioForm } from './form';
-import { RioFormError } from './form-error';
-import { RioFormGroup } from './form-group';
-import { RioLabel } from './label';
-import { RioInput } from './input';
+import { RegForm } from './form';
+import { RegFormError } from './form-error';
+import { RegFormGroup } from './form-group';
+import { RegLabel } from './label';
+import { RegInput } from './input';
 
-export { RioForm, RioFormError, RioFormGroup, RioLabel, RioInput };
+export { RegForm, RegFormError, RegFormGroup, RegLabel, RegInput };

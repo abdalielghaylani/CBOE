@@ -4,9 +4,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import {RioButton} from './button.component';
-import {RioUiModule} from '../../components/ui/ui.module';
-import {RioFormModule} from '../../components/form/form.module';
+import {RegButton} from './button.component';
+import {RegUiModule} from '../../components/ui/ui.module';
+import {RegFormModule} from '../../components/form/form.module';
 import {configureTests} from '../../tests.configure';
 
 let fixture;
@@ -16,14 +16,14 @@ describe('Component: Button', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RioFormModule,
-          RioUiModule,
+          RegFormModule,
+          RegUiModule,
         ],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioButton);
+      fixture = testBed.createComponent(RegButton);
       fixture.detectChanges();
       done();
     });

@@ -3,8 +3,8 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RioLoginForm} from './index';
-import {RioLoginModule} from './login.module';
+import {RegLoginForm} from './index';
+import {RegLoginModule} from './login.module';
 import {configureTests} from '../../tests.configure';
 
 describe('Component: Login Form', () => {
@@ -13,12 +13,12 @@ describe('Component: Login Form', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RioLoginModule],
+        imports: [RegLoginModule],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioLoginForm);
+      fixture = testBed.createComponent(RegLoginForm);
       fixture.detectChanges();
       done();
     });

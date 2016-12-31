@@ -5,7 +5,7 @@ import {
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'rio-input',
+  selector: 'reg-input',
   template: `
     <input
       [id]="qaid"
@@ -16,7 +16,7 @@ import { FormControl } from '@angular/forms';
     />
   `
 })
-export class RioInput {
+export class RegInput {
   @Input() inputType = 'text';
   @Input() placeholder = '';
   @Input() control: FormControl = new FormControl();

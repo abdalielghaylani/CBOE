@@ -3,8 +3,8 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RioAlert} from './alert.component';
-import {RioUiModule} from '../../components/ui/ui.module';
+import {RegAlert} from './alert.component';
+import {RegUiModule} from '../../components/ui/ui.module';
 import {configureTests} from '../../tests.configure';
 
 describe('Component: Alert', () => {
@@ -13,12 +13,12 @@ describe('Component: Alert', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RioUiModule],
+        imports: [RegUiModule],
       });
     };
 
     configureTests(configure).then(testBed => {
-      fixture = testBed.createComponent(RioAlert);
+      fixture = testBed.createComponent(RegAlert);
       fixture.detectChanges();
       done();
     });

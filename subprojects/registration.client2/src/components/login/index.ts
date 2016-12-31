@@ -1,4 +1,4 @@
-import { RioLoginModal } from './login-modal';
-import { RioLoginForm } from './login-form';
+import { RegLoginModal } from './login-modal';
+import { RegLoginForm } from './login-form';
 
-export { RioLoginModal, RioLoginForm };
+export { RegLoginModal, RegLoginForm };

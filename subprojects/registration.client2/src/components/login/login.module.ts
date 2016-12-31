@@ -1,32 +1,32 @@
-import {NgModule}      from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {HttpModule} from '@angular/http';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 import {
   ReactiveFormsModule
 } from '@angular/forms';
 import {
-  RioLoginForm,
-  RioLoginModal
+  RegLoginForm,
+  RegLoginModal
 } from '../index';
-import {RioUiModule} from '../ui/ui.module';
-import {RioModalModule} from '../modal/modal.module';
-import {RioFormModule} from '../form/form.module';
+import { RegUiModule } from '../ui/ui.module';
+import { RegModalModule } from '../modal/modal.module';
+import { RegFormModule } from '../form/form.module';
 
 @NgModule({
   imports: [
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
-    RioUiModule,
-    RioModalModule,
-    RioFormModule
+    RegUiModule,
+    RegModalModule,
+    RegFormModule
   ],
   declarations: [
-    RioLoginModal,
-    RioLoginForm
+    RegLoginModal,
+    RegLoginForm
   ],
   exports: [
-    RioLoginModal
+    RegLoginModal
   ]
 })
-export class RioLoginModule { }
+export class RegLoginModule { }

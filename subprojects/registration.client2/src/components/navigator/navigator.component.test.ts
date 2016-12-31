@@ -6,7 +6,7 @@ import {
 import {Component} from '@angular/core';
 import {By} from '@angular/platform-browser';
 import {RegNavigator} from './navigator.component';
-import {RioFormModule} from '../form/form.module';
+import {RegFormModule} from '../form/form.module';
 import {RegNavigatorModule} from './navigator.module';
 import {configureTests} from '../../tests.configure';
 
