@@ -15,7 +15,7 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'home',
   component: RegHomePage
 }, {
-  path: 'configuration/:tableName',
+  path: 'configuration/:tableId',
   component: RegConfigurationPage
 }, {
   path: 'counter',
