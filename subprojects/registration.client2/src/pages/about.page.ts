@@ -5,10 +5,9 @@ import { RegContainer } from '../components';
   selector: 'reg-about-page',
   template: `
     <reg-container>
-      <h2 class="caps">About Us</h2>
+      <h2 class="caps">About CBOE:Registration Client</h2>
       <p>
-        Rangle.io is a next-generation HTML5 design and development firm
-        dedicated to modern, responsive web and mobile applications.
+        CBOE:Registration is a web-based client application for PerkinElmer Chemical Registration system.
       </p>
     </reg-container>
   `

@@ -58,7 +58,7 @@ repositories {
 }
 
 dependencies {
-    compile project(':registration.client')
+    compile project(':registration.client2')
     compile('org.springframework.boot:spring-boot-starter-data-mongodb')
     compile('org.springframework.data:spring-data-rest-hal-browser')
     compile('org.springframework.boot:spring-boot-starter-hateoas')
@@ -71,7 +71,7 @@ dependencies {
 }
 
 task copyClient(type: Copy) {
-    from ('../registration.client/dist') {
+    from ('../registration.client2/dist') {
         include '**/*.*'
     }
     includeEmptyDirs = false
@@ -82,4 +82,4 @@ processResources {
     dependsOn copyClient
 }
 
-task stage(dependsOn: [':registration.client:build', 'jar', 'bootRepackage'])
+task stage(dependsOn: [':registration.client2:build', 'jar', 'bootRepackage'])
