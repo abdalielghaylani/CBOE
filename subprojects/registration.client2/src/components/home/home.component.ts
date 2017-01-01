@@ -8,11 +8,11 @@ import {
 import { ICounter } from '../../store';
 
 @Component({
-  selector: 'reg-configuration',
+  selector: 'reg-home',
   template: `
     <div class="container">
       <h4 data-testid="configuration-heading" id="qa-configuration-heading">
-        Configuration
+        Home
       </h4>
 
       <dx-data-grid [columns]='gridColumns' [dataSource]='records' [paging]='{pageSize: 10}' 
@@ -25,8 +25,5 @@ import { ICounter } from '../../store';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegConfiguration {
-  @Input() counter: ICounter;
-  @Output() increment = new EventEmitter<void>();
-  @Output() decrement = new EventEmitter<void>();
+export class RegHome {
 };

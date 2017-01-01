@@ -9,7 +9,7 @@ import { RegApp } from './reg-app';
 import { SessionActions } from '../actions/session.actions';
 import { SessionEpics } from '../epics/session.epics';
 import { RegHomePage, RegConfigurationPage, RegAboutPage, RegCounterPage } from '../pages';
-import { RegConfiguration, RegCounter } from '../components';
+import { RegConfiguration, RegCounter, RegHome } from '../components';
 import { RegLoginModule,  } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -31,6 +31,7 @@ import { DxDataGridModule } from 'devextreme-angular';
   declarations: [
     RegApp,
     RegHomePage,
+    RegHome,
     RegConfigurationPage,
     RegConfiguration,
     RegAboutPage,
