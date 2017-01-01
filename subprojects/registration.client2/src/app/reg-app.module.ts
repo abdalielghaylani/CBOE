@@ -8,9 +8,15 @@ import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegApp } from './reg-app';
 import { SessionActions } from '../actions/session.actions';
 import { SessionEpics } from '../epics/session.epics';
-import { RegHomePage, RegConfigurationPage, RegAboutPage, RegCounterPage } from '../pages';
-import { RegConfiguration, RegCounter, RegHome } from '../components';
-import { RegLoginModule,  } from '../components/login/login.module';
+import {
+  RegHomePage,
+  RegHomeDetailPage,
+  RegConfigurationPage,
+  RegAboutPage,
+  RegCounterPage
+} from '../pages';
+import { RegConfiguration, RegCounter, RegHome, RegHomeDetail } from '../components';
+import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { DxDataGridModule } from 'devextreme-angular';
@@ -31,7 +37,9 @@ import { DxDataGridModule } from 'devextreme-angular';
   declarations: [
     RegApp,
     RegHomePage,
+    RegHomeDetailPage,
     RegHome,
+    RegHomeDetail,
     RegConfigurationPage,
     RegConfiguration,
     RegAboutPage,

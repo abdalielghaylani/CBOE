@@ -5,17 +5,17 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { ICounter } from '../../store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'reg-home',
   template: `
     <div class="container">
       <h4 data-testid="configuration-heading" id="qa-configuration-heading">
-        Home
+        Registration Records
       </h4>
 
-      <dx-data-grid [columns]='gridColumns' [dataSource]='records' [paging]='{pageSize: 10}' 
+      <dx-data-grid [columns]='gridColumns' [dataSource]=[] [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
         (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
@@ -26,4 +26,9 @@ import { ICounter } from '../../store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegHome {
+  constructor(private router: Router) { }
+  
+  addRecord() {
+    this.router.navigate(['home/new']);
+  }
 };

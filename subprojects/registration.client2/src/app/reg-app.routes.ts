@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 
 import {
   RegHomePage,
+  RegHomeDetailPage,
   RegConfigurationPage,
   RegCounterPage,
   RegAboutPage
@@ -14,6 +15,9 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'home',
   component: RegHomePage
+}, {
+  path: 'home/:regId',
+  component: RegHomeDetailPage
 }, {
   path: 'configuration/:tableId',
   component: RegConfigurationPage

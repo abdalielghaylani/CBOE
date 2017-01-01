@@ -21,7 +21,7 @@ import {
   RegLoginModal
 } from '../components';
 
-import {dev} from '../configuration';
+import { dev } from '../configuration';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 @Component({
@@ -33,7 +33,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
     require('bootstrap/dist/css/bootstrap.min.css'),
     require('devextreme/dist/css/dx.common.css'),
     require('devextreme/dist/css/dx.light.compact.css')
- ],
+  ],
   template: require('./reg-app.html')
 })
 export class RegApp {
@@ -56,9 +56,9 @@ export class RegApp {
     ngRedux.configureStore(
       rootReducer,
       {},
-      middleware, 
+      middleware,
       devTools.isEnabled() ?
-        [ ...enhancers, devTools.enhancer() ] :
+        [...enhancers, devTools.enhancer()] :
         enhancers);
 
     ngReduxRouter.initialize();
