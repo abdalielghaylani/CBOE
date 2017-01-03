@@ -1,16 +1,16 @@
 [{
   "id": "1",
-  "Username": "admin",
-  "Password": "admin",
-  "FullName": "Admin User"
+  "username": "admin",
+  "password": "admin",
+  "fullname": "Admin User"
 }, {
   "id": "2",
-  "Username": "guest",
-  "Password": "guest",
-  "FullName": "Guest User"
+  "username": "guest",
+  "password": "guest",
+  "fullname": "Guest User"
 }, {
   "id": "3",
-  "Username": "user",
-  "Password": "user",
-  "FullName": "John Doe"
+  "username": "user",
+  "password": "user",
+  "fullname": "John Doe"
 }]

@@ -25,7 +25,7 @@ module.exports = {
       if (username && password) {
         const authorized = users.filter(
           (user) => {
-            return (user.Username === username) && (user.Password === password);
+            return (user.username === username) && (user.password === password);
           });
         if (authorized.length > 0) {
           resolve( {
@@ -37,7 +37,7 @@ module.exports = {
               token: 'abcd1234',
               expires: '2020-01-01',
               profile: {
-                fullName: authorized[0].FullName,
+                fullName: authorized[0].fullname,
               },
             },
           });
