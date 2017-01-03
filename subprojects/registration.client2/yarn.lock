@@ -3158,7 +3158,7 @@ interpret@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.1.tgz#d579fb7f693b858004947af39fa0db49f795602c"
 
-invariant@^2.2.0:
+invariant@^2.2.0, invariant@^2.2.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -3974,11 +3974,7 @@ lodash@^3.8.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.0.1, lodash@^4.1.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.4, lodash@^4.17.2, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.5.1:
-  version "4.17.3"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.3.tgz#557ed7d2a9438cac5fd5a43043ca60cb455e01f7"
-
-lodash@^4.17.4:
+lodash@^4.0.0, lodash@^4.0.1, lodash@^4.1.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.4, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.5.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -5545,6 +5541,18 @@ reduce-function-call@^1.0.1:
   resolved "https://registry.yarnpkg.com/reduce-function-call/-/reduce-function-call-1.0.2.tgz#5a200bf92e0e37751752fe45b0ab330fd4b6be99"
   dependencies:
     balanced-match "^0.4.2"
+
+reduce-reducers@^0.1.0:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/reduce-reducers/-/reduce-reducers-0.1.2.tgz#fa1b4718bc5292a71ddd1e5d839c9bea9770f14b"
+
+redux-actions@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/redux-actions/-/redux-actions-1.2.0.tgz#4f421f1aa74c827d5e8abce6c009d5872c4af3e6"
+  dependencies:
+    invariant "^2.2.1"
+    lodash "^4.13.1"
+    reduce-reducers "^0.1.0"
 
 redux-localstorage@^0.4.0:
   version "0.4.1"

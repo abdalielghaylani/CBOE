@@ -16,29 +16,27 @@ export class SessionEpics {
   login = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
       .mergeMap<IPayloadAction>(({ payload }) => {
-        return Observable.of({
-          type: SessionActions.LOGIN_USER_SUCCESS,
-          payload: {
-            id: '1',
-            token: 'abcd1234',
-            expires: '2020-01-01',
-            profile: {
-              firstName: 'Admin',
-              lastName: 'User'
-            }
-          }
-        });
+        // return Observable.of({
+        //   type: SessionActions.LOGIN_USER_SUCCESS,
+        //   payload: {
+        //     id: '1',
+        //     token: 'abcd1234',
+        //     expires: '2020-01-01',
+        //     profile: {
+        //       fullName: 'Admin User'
+        //     }
+        //   }
+        // });
+        return this.http.post(`${BASE_URL}/auth/login`, payload)
+          .map(result => ({
+            type: SessionActions.LOGIN_USER_SUCCESS,
+            payload: result.json().meta
+          }))
+          .catch(error => {
+            return Observable.of({
+              type: SessionActions.LOGIN_USER_ERROR
+            });
+          });
       });
-      // return this.http.post(`${BASE_URL}/auth/login`, payload)
-      //   .map(result => ({
-      //     type: SessionActions.LOGIN_USER_SUCCESS,
-      //     payload: result.json().meta
-      //   }))
-      //   .catch(error => {
-      //     return Observable.of({
-      //       type: SessionActions.LOGIN_USER_ERROR
-      //     });
-      //   });
-      // });
   }
 }

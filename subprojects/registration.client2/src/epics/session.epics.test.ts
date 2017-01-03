@@ -52,8 +52,7 @@ describe('SessionEpics', () => {
                     meta: {
                       token: '123',
                       user: {
-                        firstName: 'John',
-                        lastName: 'Doe'
+                        fullName: 'John Doe'
                       }
                     }
                   }
@@ -70,8 +69,7 @@ describe('SessionEpics', () => {
               payload: {
                 token: '123',
                 user: {
-                  firstName: 'John',
-                  lastName: 'Doe'
+                  fullName: 'John Doe'
                 }
               }
             })

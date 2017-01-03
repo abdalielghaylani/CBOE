@@ -9,7 +9,7 @@ class MockRedux extends NgRedux<any> {
   dispatch: () => {};
 }
 
-describe('counter action creators', () => {
+describe('home detail action creators', () => {
   let actions: HomeDetailActions;
   let mockRedux: NgRedux<any>;
 

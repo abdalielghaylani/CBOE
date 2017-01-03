@@ -2,18 +2,15 @@
   "id": "1",
   "Username": "admin",
   "Password": "admin",
-  "First": "Super",
-  "Last": "User"
+  "FullName": "Admin User"
 }, {
   "id": "2",
   "Username": "guest",
   "Password": "guest",
-  "First": "Guest",
-  "Last": "User"
+  "FullName": "Guest User"
 }, {
   "id": "3",
   "Username": "user",
   "Password": "user",
-  "First": "John",
-  "Last": "Doe"
+  "FullName": "John Doe"
 }]
