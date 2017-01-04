@@ -68,6 +68,7 @@
     "eslint": "^3.2.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
     "file-loader": "^0.9.0",
+    "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.7.2",
     "html5-history-api": "^4.2.7",
     "immutable": "^3.8.1",
