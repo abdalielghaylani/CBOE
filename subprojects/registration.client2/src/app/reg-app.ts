@@ -39,7 +39,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 export class RegApp {
   @select(['session', 'hasError']) hasError$: Observable<boolean>;
   @select(['session', 'isLoading']) isLoading$: Observable<boolean>;
-  @select(['session', 'user', 'fullName']) fullName$: Observable<string>;
+  @select(s => s.session.user.fullName) fullName$: Observable<string>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   @select(s => !s.session.token) loggedOut$: Observable<boolean>;
 

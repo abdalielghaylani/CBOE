@@ -1,4 +1,4 @@
-import {TypedRecord} from 'typed-immutable-record';
+import { TypedRecord } from 'typed-immutable-record';
 
 export interface IUser {
   fullName: string;
@@ -14,6 +14,5 @@ export interface ISession {
   isLoading: boolean;
 };
 
-export interface ISessionRecord extends TypedRecord<ISessionRecord>,
-  ISession {
+export interface ISessionRecord extends TypedRecord<ISessionRecord>, ISession {
 };
