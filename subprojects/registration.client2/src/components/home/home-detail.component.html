@@ -30,11 +30,19 @@
             <div class="tab-pane fade" id="tab2default">
               <h4>Registry Information</h4>
               <h5>Projects</h5>
-              <div id="projectGridContainer" dx-data-grid="projectGridSettings">
-              </div>
+              <dx-data-grid d='projectGridContainer' [columns]='gridColumns' [dataSource]=[]
+                [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
+                [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
+                (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
+                [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'>
+              </dx-data-grid>
               <h5>Registry Identifiers</h5>
-              <div id="regIdGridContainer" dx-data-grid="regIdGridSettings">
-              </div>
+              <dx-data-grid d='regIdGridContainer' [columns]='gridColumns' [dataSource]=[]
+                [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
+                [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
+                (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
+                [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'>
+              </dx-data-grid>
               <h5>Prefix</h5>
               <div id="prefixGridContainer"></div>
             </div>

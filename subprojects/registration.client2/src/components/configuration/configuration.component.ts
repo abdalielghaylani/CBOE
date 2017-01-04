@@ -10,7 +10,7 @@ import * as _ from 'lodash';
         {{ this.tableName() }}
       </h4>
 
-      <dx-data-grid [columns]='gridColumns' [dataSource]='records' [paging]='{pageSize: 10}' 
+      <dx-data-grid [columns]='gridColumns' [dataSource]=[] [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
         (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
@@ -37,6 +37,6 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   tableName() {
-    return _.upperFirst(this.tableId);
+    return this.tableId.split('-').map(n => _.upperFirst(n)).join(' ');
   }
 };

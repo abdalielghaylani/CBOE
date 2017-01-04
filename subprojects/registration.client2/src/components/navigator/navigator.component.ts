@@ -5,10 +5,8 @@ import { Component, Input } from '@angular/core';
   template: `
   <div
     [attr.data-testid]="testid"
-    class="navbar  navbar-default  navbar-static-top">
-    <div class="container-fluid">
-      <ng-content></ng-content>
-    </div>
+    class="navbar navbar-default navbar-static-top">
+    <ng-content></ng-content>
   </div>
   `
 })
