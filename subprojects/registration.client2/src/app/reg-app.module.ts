@@ -6,8 +6,8 @@ import { NgReduxRouter } from 'ng2-redux-router';
 import { routing, appRoutingProviders } from './reg-app.routing';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegApp } from './reg-app';
-import { SessionActions } from '../actions/session.actions';
-import { SessionEpics } from '../epics/session.epics';
+import { CounterActions, GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
+import { ConfigurationEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
   RegHomePage,
   RegHomeDetailPage,
@@ -55,9 +55,9 @@ import { DxDataGridModule } from 'devextreme-angular';
     DevToolsExtension,
     FormBuilder,
     NgReduxRouter,
-    appRoutingProviders,
-    SessionActions,
-    SessionEpics
+    appRoutingProviders
   ]
+  .concat(ACTION_PROVIDERS)
+  .concat(EPIC_PROVIDERS)
 })
 export class RegAppModule { }

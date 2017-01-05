@@ -9,7 +9,7 @@ class MockRedux extends NgRedux<any> {
   dispatch: () => {};
 }
 
-describe('counter action creators', () => {
+describe('configuration action creators', () => {
   let actions: ConfigurationActions;
   let mockRedux: NgRedux<any>;
 
@@ -37,6 +37,27 @@ describe('counter action creators', () => {
 
     spyOn(mockRedux, 'dispatch');
     actions.edit();
+
+    expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  it('openTableSuccess should dispatch OPEN_TABLE_SUCCESS action', () => {
+    const data = { test: 'test ' };
+    const expectedAction = ConfigurationActions.openTableSuccessAction(data);
+
+    spyOn(mockRedux, 'dispatch');
+    actions.openTableSuccess(data);
+
+    expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  it('openTableError error should dispatch OPEN_TABLE_ERROR action', () => {
+    const expectedAction = ConfigurationActions.openTableErrorAction();
+
+    spyOn(mockRedux, 'dispatch');
+    actions.openTableError();
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);

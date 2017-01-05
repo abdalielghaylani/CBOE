@@ -3,11 +3,11 @@ import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { DevToolsExtension, NgRedux, select } from 'ng2-redux';
 import { NgReduxRouter } from 'ng2-redux-router';
-import { createEpicMiddleware } from 'redux-observable';
+import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
 import { IAppState, ISession, rootReducer } from '../store';
 import { SessionActions } from '../actions/session.actions';
-import { SessionEpics } from '../epics/session.epics';
+import { ConfigurationEpics, SessionEpics } from '../epics';
 import { RegAboutPage, RegCounterPage } from '../pages';
 import { middleware, enhancers, reimmutify } from '../store';
 
@@ -48,9 +48,13 @@ export class RegApp {
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
     private actions: SessionActions,
-    private epics: SessionEpics) {
+    private sessionEpics: SessionEpics,
+    private configEpics: ConfigurationEpics) {
 
-    middleware.push(createEpicMiddleware(this.epics.login));
+    middleware.push(createEpicMiddleware(combineEpics(
+      sessionEpics.login,
+      configEpics.getRecords
+    )));
 
     ngRedux.configureStore(
       rootReducer,

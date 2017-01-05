@@ -28,7 +28,7 @@ describe('grid action creators', () => {
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('add-record should dispatch ADD_RECORD action', () => {
+  it('addRecord should dispatch ADD_RECORD action', () => {
     const expectedAction = GridActions.addRecordAction('test');
 
     spyOn(mockRedux, 'dispatch');
@@ -38,7 +38,7 @@ describe('grid action creators', () => {
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('edit-record should dispatch EDIT_RECORD action', () => {
+  it('editRecord should dispatch EDIT_RECORD action', () => {
     const expectedAction = GridActions.editRecordAction('test', '123');
 
     spyOn(mockRedux, 'dispatch');
@@ -48,11 +48,31 @@ describe('grid action creators', () => {
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
   });
 
-  it('delete-record should dispatch DELETE_RECORD action', () => {
+  it('deleteRecord should dispatch DELETE_RECORD action', () => {
     const expectedAction = GridActions.deleteRecordAction('test', '123');
 
     spyOn(mockRedux, 'dispatch');
     actions.deleteRecord('test', '123');
+
+    expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  it('getRecords should dispatch GET_RECORDS action', () => {
+    const expectedAction = GridActions.getRecordsAction('test', 0, 20);
+
+    spyOn(mockRedux, 'dispatch');
+    actions.getRecords('test', 0, 20);
+
+    expect(mockRedux.dispatch).toHaveBeenCalled();
+    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
+  });
+
+  it('getAllRecords should dispatch GET_ALL_RECORDS action', () => {
+    const expectedAction = GridActions.getAllRecordsAction('test');
+
+    spyOn(mockRedux, 'dispatch');
+    actions.getAllRecords('test');
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
