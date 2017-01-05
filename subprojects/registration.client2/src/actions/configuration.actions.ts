@@ -21,11 +21,11 @@ export class ConfigurationActions {
   }
 
   openTableSuccess(data: any) {
-    ConfigurationActions.openTableSuccessAction(data);
+    this.ngRedux.dispatch(ConfigurationActions.openTableSuccessAction(data));
   }
 
   openTableError() {
-    ConfigurationActions.openTableErrorAction();
+    this.ngRedux.dispatch(ConfigurationActions.openTableErrorAction());
   }
 
   create() {
