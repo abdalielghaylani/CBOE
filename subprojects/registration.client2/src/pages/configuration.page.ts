@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 import { ConfigurationActions } from '../actions';
 import { RegContainer, RegConfiguration } from '../components';
+import { IConfiguration } from '../store/configuration';
 
 @Component({
   selector: 'configuration-page',
@@ -11,6 +12,7 @@ import { RegContainer, RegConfiguration } from '../components';
   template: `
     <reg-container testid="configuration">
       <reg-configuration
+        [configuration]="configuration$ | async"
         (create)="actions.create()"
         (edit)="actions.edit()">
       </reg-configuration>
@@ -18,5 +20,6 @@ import { RegContainer, RegConfiguration } from '../components';
   `
 })
 export class RegConfigurationPage {
+  @select() private configuration$: Observable<IConfiguration>;
   constructor(private actions: ConfigurationActions) {}
 }

@@ -9,17 +9,16 @@ export function counterReducer(
   action: Action): ICounterRecord {
 
   switch (action.type) {
+    case CounterActions.INCREMENT_COUNTER:
+      return state.update('counter', (value) => value + 1);
 
-  case CounterActions.INCREMENT_COUNTER:
-    return state.update('counter', (value) => value + 1);
+    case CounterActions.DECREMENT_COUNTER:
+      return state.update('counter', (value) => value - 1);
 
-  case CounterActions.DECREMENT_COUNTER:
-    return state.update('counter', (value) => value - 1);
+    case SessionActions.LOGOUT_USER:
+      return state.merge(INITIAL_STATE);
 
-  case SessionActions.LOGOUT_USER:
-    return state.merge(INITIAL_STATE);
-
-  default:
-    return state;
+    default:
+      return state;
   }
 }

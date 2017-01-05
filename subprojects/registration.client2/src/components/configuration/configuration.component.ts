@@ -1,14 +1,14 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ConfigurationActions } from '../../actions/configuration.actions';
+import { IConfiguration } from '../../store/configuration';
 import * as _ from 'lodash';
 
 @Component({
   selector: 'reg-configuration',
   template: `
     <div class="container">
-      <h4 data-testid="configuration-heading" id="qa-configuration-heading">
-        {{ this.tableName() }}
-      </h4>
+      <h4 data-testid="configuration-heading" id="qa-configuration-heading">{{ this.tableName() }}</h4>
 
       <dx-data-grid [columns]='gridColumns' [dataSource]=[] [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
@@ -20,15 +20,15 @@ import * as _ from 'lodash';
   `,
 })
 export class RegConfiguration implements OnInit, OnDestroy {
-  @Input() tableId: string = 'projects';
+  @Input() configuration: IConfiguration;
   private sub: any;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private configurationActions: ConfigurationActions) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       let paramLabel = 'tableId';
-      this.tableId = params[paramLabel];
+      this.configurationActions.openTable(params[paramLabel]);
     });
   }
 
@@ -37,6 +37,6 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   tableName() {
-    return this.tableId.split('-').map(n => _.upperFirst(n)).join(' ');
+    return this.configuration.tableId.split('-').map(n => _.upperFirst(n)).join(' ');
   }
 };
