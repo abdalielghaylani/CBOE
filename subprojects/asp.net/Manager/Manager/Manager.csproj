@@ -1,0 +1,1168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2D5117B-1972-4BDF-86B0-A0A2180D64DF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Manager</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.Manager</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AJAXExtensionsToolbox, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\AJAXExtensionsToolbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Shared.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Documents.Excel.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Documents.Excel.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Misc.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Shared.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Shared.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebCalcManager.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebCalcManager.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebChart.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebChart.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebListbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebListbar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebNavigator.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebTab.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebTab.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebToolbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebToolbar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebCombo.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebCombo.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDataInput.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebDataInput.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDateChooser.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebDateChooser.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebHtmlEditor.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebHtmlEditor.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebNavBar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebNavBar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSchedule.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebSchedule.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebScheduleDataProvider.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSpellChecker.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=012e785312e03a6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\System.Web.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Resource.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resource.en-US.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\Resource.es-AR.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.es-AR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\SpotfireServiceClient.cs" />
+    <Compile Include="Forms\ConfigControlSettings\ContentArea\ConfigControlSettings.aspx.cs">
+      <DependentUpon>ConfigControlSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfigControlSettings\ContentArea\ConfigControlSettings.aspx.designer.cs">
+      <DependentUpon>ConfigControlSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\AddInstances.aspx.cs">
+      <DependentUpon>AddInstances.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\AddInstances.aspx.designer.cs">
+      <DependentUpon>AddInstances.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\AddSchema.aspx.cs">
+      <DependentUpon>AddSchema.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\AddSchema.aspx.designer.cs">
+      <DependentUpon>AddSchema.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\AddTable.aspx.cs">
+      <DependentUpon>AddTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\AddTable.aspx.designer.cs">
+      <DependentUpon>AddTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DataviewBoard.aspx.cs">
+      <DependentUpon>DataviewBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DataviewBoard.aspx.designer.cs">
+      <DependentUpon>DataviewBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DeleteDataView.aspx.cs">
+      <DependentUpon>DeleteDataView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DeleteDataView.aspx.designer.cs">
+      <DependentUpon>DeleteDataView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EditDataViewXml.aspx.cs">
+      <DependentUpon>EditDataViewXml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EditDataViewXml.aspx.designer.cs">
+      <DependentUpon>EditDataViewXml.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EditTags.aspx.cs">
+      <DependentUpon>EditTags.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EditTags.aspx.designer.cs">
+      <DependentUpon>EditTags.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\ManageDbInstance.aspx.cs">
+      <DependentUpon>ManageDbInstance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\ManageDbInstance.aspx.designer.cs">
+      <DependentUpon>ManageDbInstance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\HomePage\CustomItems\TotalSchemas.cs" />
+    <Compile Include="Forms\DataViewManager\HomePage\CustomItems\GetTotalDataViewsDashItem.cs" />
+    <Compile Include="Code\Utilities.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DefineLookup.aspx.cs">
+      <DependentUpon>DefineLookup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DefineLookup.aspx.designer.cs">
+      <DependentUpon>DefineLookup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DefineRelationships.aspx.cs">
+      <DependentUpon>DefineRelationships.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\DefineRelationships.aspx.designer.cs">
+      <DependentUpon>DefineRelationships.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EditTableAndFields.aspx.cs">
+      <DependentUpon>EditTableAndFields.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EditTableAndFields.aspx.designer.cs">
+      <DependentUpon>EditTableAndFields.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EnterNameDescription.aspx.cs">
+      <DependentUpon>EnterNameDescription.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\EnterNameDescription.aspx.designer.cs">
+      <DependentUpon>EnterNameDescription.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\HomePage\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\HomePage\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\NewDataView.aspx.cs">
+      <DependentUpon>NewDataView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\NewDataView.aspx.designer.cs">
+      <DependentUpon>NewDataView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\Security.aspx.cs">
+      <DependentUpon>Security.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\Security.aspx.designer.cs">
+      <DependentUpon>Security.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\SelectBaseTable.aspx.cs">
+      <DependentUpon>SelectBaseTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\SelectBaseTable.aspx.designer.cs">
+      <DependentUpon>SelectBaseTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\ValidationSummary.aspx.cs">
+      <DependentUpon>ValidationSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\ValidationSummary.aspx.designer.cs">
+      <DependentUpon>ValidationSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ManageDbInstance.ascx.cs">
+      <DependentUpon>ManageDbInstance.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ManageDbInstance.ascx.designer.cs">
+      <DependentUpon>ManageDbInstance.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\AddSchemas.ascx.cs">
+      <DependentUpon>AddSchemas.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\AddSchemas.ascx.designer.cs">
+      <DependentUpon>AddSchemas.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\AddTable.ascx.cs">
+      <DependentUpon>AddTable.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\AddTable.ascx.designer.cs">
+      <DependentUpon>AddTable.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DataviewManagerFooter.ascx.cs">
+      <DependentUpon>DataviewManagerFooter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DataviewManagerFooter.ascx.designer.cs">
+      <DependentUpon>DataviewManagerFooter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DataviewManagerHeader.ascx.cs">
+      <DependentUpon>DataviewManagerHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DataviewManagerHeader.ascx.designer.cs">
+      <DependentUpon>DataviewManagerHeader.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DataViewSummary.ascx.cs">
+      <DependentUpon>DataViewSummary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DataViewSummary.ascx.designer.cs">
+      <DependentUpon>DataViewSummary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DuplicateTable.ascx.cs">
+      <DependentUpon>DuplicateTable.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\DuplicateTable.ascx.designer.cs">
+      <DependentUpon>DuplicateTable.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\EditTableAndFields.ascx.cs">
+      <DependentUpon>EditTableAndFields.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\EditTableAndFields.ascx.designer.cs">
+      <DependentUpon>EditTableAndFields.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\EditTags.ascx.cs">
+      <DependentUpon>EditTags.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\EditTags.ascx.designer.cs">
+      <DependentUpon>EditTags.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\Lookup.ascx.cs">
+      <DependentUpon>Lookup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\Lookup.ascx.designer.cs">
+      <DependentUpon>Lookup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\NameDescription.ascx.cs">
+      <DependentUpon>NameDescription.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\NameDescription.ascx.designer.cs">
+      <DependentUpon>NameDescription.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\SchemaSummary.ascx.cs">
+      <DependentUpon>SchemaSummary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\SchemaSummary.ascx.designer.cs">
+      <DependentUpon>SchemaSummary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\Security.ascx.cs">
+      <DependentUpon>Security.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\Security.ascx.designer.cs">
+      <DependentUpon>Security.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\SelectBaseTable.ascx.cs">
+      <DependentUpon>SelectBaseTable.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\SelectBaseTable.ascx.designer.cs">
+      <DependentUpon>SelectBaseTable.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\TablesTreeView.ascx.cs">
+      <DependentUpon>TablesTreeView.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\TablesTreeView.ascx.designer.cs">
+      <DependentUpon>TablesTreeView.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\TableSummary.ascx.cs">
+      <DependentUpon>TableSummary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\TableSummary.ascx.designer.cs">
+      <DependentUpon>TableSummary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ToolBar.ascx.cs">
+      <DependentUpon>ToolBar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ToolBar.ascx.designer.cs">
+      <DependentUpon>ToolBar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ValidateItem.ascx.cs">
+      <DependentUpon>ValidateItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ValidateItem.ascx.designer.cs">
+      <DependentUpon>ValidateItem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ValidationSummary.ascx.cs">
+      <DependentUpon>ValidationSummary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\ValidationSummary.ascx.designer.cs">
+      <DependentUpon>ValidationSummary.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\DataViewManager.Master.cs">
+      <DependentUpon>DataViewManager.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\DataViewManager.Master.designer.cs">
+      <DependentUpon>DataViewManager.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\MasterPage.master.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\MasterPage.master.designer.cs">
+      <DependentUpon>MasterPage.master</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\SecurityManager.Master.cs">
+      <DependentUpon>SecurityManager.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\SecurityManager.Master.designer.cs">
+      <DependentUpon>SecurityManager.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageControlSettings\ContentArea\PageControlSettings.aspx.cs">
+      <DependentUpon>PageControlSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\PageControlSettings\ContentArea\PageControlSettings.aspx.designer.cs">
+      <DependentUpon>PageControlSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Messages.aspx.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Messages.aspx.designer.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\ConfirmationArea.ascx.cs">
+      <DependentUpon>ConfirmationArea.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\ConfirmationArea.ascx.designer.cs">
+      <DependentUpon>ConfirmationArea.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\ErrorArea.ascx.cs">
+      <DependentUpon>ErrorArea.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\ErrorArea.ascx.designer.cs">
+      <DependentUpon>ErrorArea.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\ImageButton.ascx.cs">
+      <DependentUpon>ImageButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\ImageButton.ascx.designer.cs">
+      <DependentUpon>ImageButton.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\LabelWithPopUp.ascx.cs">
+      <DependentUpon>LabelWithPopUp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\LabelWithPopUp.ascx.designer.cs">
+      <DependentUpon>LabelWithPopUp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\Login.ascx.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\Login.ascx.designer.cs">
+      <DependentUpon>Login.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuItem.ascx.cs">
+      <DependentUpon>MenuItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuItem.ascx.designer.cs">
+      <DependentUpon>MenuItem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\TextBoxWithPopUp.ascx.cs">
+      <DependentUpon>TextBoxWithPopUp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\TextBoxWithPopUp.ascx.designer.cs">
+      <DependentUpon>TextBoxWithPopUp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ManageGroups.aspx.cs">
+      <DependentUpon>ManageGroups.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ManageGroups.aspx.designer.cs">
+      <DependentUpon>ManageGroups.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\RoleList.aspx.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\RoleList.aspx.designer.cs">
+      <DependentUpon>RoleList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\UserList.aspx.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\UserList.aspx.designer.cs">
+      <DependentUpon>UserList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditRole.aspx.cs">
+      <DependentUpon>EditRole.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditRole.aspx.designer.cs">
+      <DependentUpon>EditRole.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditRoleRoles.aspx.cs">
+      <DependentUpon>EditRoleRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditRoleRoles.aspx.designer.cs">
+      <DependentUpon>EditRoleRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditRoleUsers.aspx.cs">
+      <DependentUpon>EditRoleUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditRoleUsers.aspx.designer.cs">
+      <DependentUpon>EditRoleUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ManageRoles.aspx.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ManageRoles.aspx.designer.cs">
+      <DependentUpon>ManageRoles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\ContentArea\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\HomePage\CustomItems\NumberOfUsers.cs" />
+    <Compile Include="Forms\SecurityManager\HomePage\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\HomePage\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\AddGroup.ascx.cs">
+      <DependentUpon>AddGroup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\AddGroup.ascx.designer.cs">
+      <DependentUpon>AddGroup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ChangePassword.ascx.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ChangePassword.ascx.designer.cs">
+      <DependentUpon>ChangePassword.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditGroup.ascx.cs">
+      <DependentUpon>EditGroup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditGroup.ascx.designer.cs">
+      <DependentUpon>EditGroup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ManageGroups.ascx.cs">
+      <DependentUpon>ManageGroups.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ManageGroups.ascx.designer.cs">
+      <DependentUpon>ManageGroups.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\RoleList.ascx.cs">
+      <DependentUpon>RoleList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\RoleList.ascx.designer.cs">
+      <DependentUpon>RoleList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\SecurityManagerFooter.ascx.cs">
+      <DependentUpon>SecurityManagerFooter.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\SecurityManagerFooter.ascx.designer.cs">
+      <DependentUpon>SecurityManagerFooter.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\SecurityManagerHeader.ascx.cs">
+      <DependentUpon>SecurityManagerHeader.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\SecurityManagerHeader.ascx.designer.cs">
+      <DependentUpon>SecurityManagerHeader.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\UserList.ascx.cs">
+      <DependentUpon>UserList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\UserList.ascx.designer.cs">
+      <DependentUpon>UserList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditRole.ascx.cs">
+      <DependentUpon>EditRole.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditRole.ascx.designer.cs">
+      <DependentUpon>EditRole.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditRoleRoles.ascx.cs">
+      <DependentUpon>EditRoleRoles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditRoleRoles.ascx.designer.cs">
+      <DependentUpon>EditRoleRoles.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditRoleUsers.ascx.cs">
+      <DependentUpon>EditRoleUsers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditRoleUsers.ascx.designer.cs">
+      <DependentUpon>EditRoleUsers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditUser.ascx.cs">
+      <DependentUpon>EditUser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\EditUser.ascx.designer.cs">
+      <DependentUpon>EditUser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ManageRoles.ascx.cs">
+      <DependentUpon>ManageRoles.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ManageRoles.ascx.designer.cs">
+      <DependentUpon>ManageRoles.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ManageUsers.ascx.cs">
+      <DependentUpon>ManageUsers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SecurityManager\UserControls\ManageUsers.ascx.designer.cs">
+      <DependentUpon>ManageUsers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TableEditor\ContentArea\TableEditor.aspx.cs">
+      <DependentUpon>TableEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\TableEditor\ContentArea\TableEditor.aspx.designer.cs">
+      <DependentUpon>TableEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Logoff.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Logoff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logoff.aspx.designer.cs">
+      <DependentUpon>Logoff.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\SpotfireElementManagerService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\SpotfireLibraryService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\SkinFile.skin" />
+    <Content Include="App_Themes\GREEN\SkinFile.skin" />
+    <Content Include="Forms\DataViewManager\ContentArea\AddInstances.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\ManageDbInstance.aspx" />
+    <Content Include="Forms\DataViewManager\UserControls\ManageDbInstance.ascx" />
+    <None Include="Service References\SpotfireElementManagerService\configuration91.svcinfo" />
+    <None Include="Service References\SpotfireElementManagerService\configuration.svcinfo" />
+    <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.DataSourceElement.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.DataSourceType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.EditableSql.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.IMElement.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.Join.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.TableAliasDependencies.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.ValidationResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\SpotfireElementManagerService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SpotfireLibraryService\configuration91.svcinfo" />
+    <None Include="Service References\SpotfireLibraryService\configuration.svcinfo" />
+    <Content Include="Service References\SpotfireLibraryService\Manager.SpotfireLibraryService.DependentItemsKeyValuePair.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireLibraryService\Manager.SpotfireLibraryService.ItemType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireLibraryService\Manager.SpotfireLibraryService.LibraryItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireLibraryService\Manager.SpotfireLibraryService.RequiredItemsKeyValuePair.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SpotfireLibraryService\Manager.SpotfireLibraryService.VisibleTypesKeyValuePair.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\SpotfireLibraryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.Config" />
+    <None Include="Service References\SpotfireLibraryService\LibraryService.wsdl" />
+    <None Include="Service References\SpotfireLibraryService\LibraryService1.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Images\AppIcon.png" />
+    <Content Include="App_Themes\Blue\Images\ClientLogo.PNG" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\AddAlias.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\AddRole.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\AddUser.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Back.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Cancel.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Clear.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Delete.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Next.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Remove.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\RemoveRole.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\RemoveUser.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Save.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Submit.png" />
+    <Content Include="App_Themes\Blue\Images\Controls\Tango\Update.png" />
+    <Content Include="App_Themes\Blue\Images\Invalid.png" />
+    <Content Include="App_Themes\Blue\Images\LogoHeader.png" />
+    <Content Include="App_Themes\Blue\Images\LogoHeader_Home.png" />
+    <Content Include="App_Themes\Blue\Images\watermark.jpg" />
+    <Content Include="App_Themes\Blue\StyleSheet.css" />
+    <Content Include="App_Themes\GREEN\Images\AppIcon.png" />
+    <Content Include="App_Themes\GREEN\Images\ClientLogo.PNG" />
+    <Content Include="App_Themes\GREEN\Images\LogoHeader.png" />
+    <Content Include="App_Themes\GREEN\Images\LogoHeader_Home.png" />
+    <Content Include="App_Themes\GREEN\Images\Test.png" />
+    <Content Include="App_Themes\GREEN\Images\Test_Green.png" />
+    <Content Include="App_Themes\GREEN\Images\watermark.jpg" />
+    <Content Include="App_Themes\GREEN\StyleSheet.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="Forms\Public\ContentArea\JScripts\CommonScripts.js" />
+    <Content Include="Forms\SecurityManager\ContentArea\EditRole.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\EditRoleRoles.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\EditRoleUsers.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\EditUser.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\ManageRoles.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\ManageUsers.aspx" />
+    <Content Include="Forms\SecurityManager\UserControls\EditRole.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\EditRoleRoles.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\EditRoleUsers.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\EditUser.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\ManageRoles.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\ManageUsers.ascx" />
+    <Content Include="Global.asax" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resource.en-US.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Resource.es-AR.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.es-AR.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Resource.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Forms\Master\UserControls\Footer.ascx" />
+    <Content Include="Forms\Master\UserControls\Header.ascx" />
+    <Content Include="Forms\Public\ContentArea\About.aspx" />
+    <Content Include="Forms\Public\ContentArea\Help.aspx" />
+    <Content Include="Forms\Public\ContentArea\Login.aspx" />
+    <Content Include="Forms\Public\ContentArea\Messages.aspx" />
+    <Content Include="Forms\Public\UserControls\ConfirmationArea.ascx" />
+    <Content Include="Forms\Public\UserControls\ErrorArea.ascx" />
+    <Content Include="Forms\Public\UserControls\ImageButton.ascx" />
+    <Content Include="Forms\Public\UserControls\LabelWithPopUp.ascx" />
+    <Content Include="Forms\Public\UserControls\Login.ascx" />
+    <Content Include="Forms\Public\UserControls\TextBoxWithPopUp.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Images\favicon.ico" />
+    <Content Include="App_Themes\Blue\Images\searching.gif" />
+    <Content Include="App_Themes\Common\Images\searching.gif" />
+    <Content Include="App_Themes\HomeBlue\ie6.css" />
+    <Content Include="App_Themes\HomeBlue\ie7.css" />
+    <Content Include="App_Themes\HomeBlue\style.css" />
+    <Content Include="App_Themes\LoginBlue\images\bckg-login.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgBio.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgChem.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgDb.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgDs.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgKm.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgLab.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgMi.gif" />
+    <Content Include="App_Themes\LoginBlue\images\bgSv.gif" />
+    <Content Include="App_Themes\LoginBlue\images\brand.gif" />
+    <Content Include="App_Themes\LoginBlue\images\button.gif" />
+    <Content Include="App_Themes\LoginBlue\images\cambr_brand.jpg" />
+    <Content Include="App_Themes\LoginBlue\images\imput_bkg.gif" />
+    <Content Include="App_Themes\LoginBlue\images\line.gif" />
+    <Content Include="Forms\DataViewManager\HomePage\Home.aspx" />
+    <Content Include="App_Themes\LoginBlue\loginStyle.css" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Add_Green.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Add_Green_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Add_Green_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Arrow_Left_B.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Arrow_Left_B_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Arrow_Left_B_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Arrow_Right_B.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Arrow_Right_B_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Arrow_Right_B_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Check.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Check_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Check_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Clean_Up.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Clean_Up_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Clean_Up_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Cross_R.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Cross_R_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Cross_R_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Edit.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Edit_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Core_Collection\Core_Aqua\PNG\24\Edit_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Database_Register.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Database_Register_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Database_Register_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Database_Server.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Database_Server_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Database_Server_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Delete_To_Bin.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Delete_To_Bin_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Delete_To_Bin_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Exception.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Exception_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\Exception_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\User_Add.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\User_Add_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\User_Add_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\User_Drop.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\User_Drop_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Database_Collection\Database_Aqua\PNG\24\User_Drop_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Forward_3.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Forward_3_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Forward_3_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Reply_3.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Reply_3_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Reply_3_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Users.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Users_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Network_Collection\Network_Aqua\PNG\24\Users_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Save.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Save_As.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Save_As_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Save_As_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Save_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Save_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Users.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Users_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\Users_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Accessibility_Warning.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Accessibility_Warning_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Accessibility_Warning_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Delete.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Delete_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Delete_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\User_Add.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\User_Add_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\User_Add_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\User_Delete.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\User_Delete_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\User_Delete_h.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Wrong.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Wrong_d.png" />
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Collection\Vista_PNG\24\Wrong_h.png" />
+    <Content Include="App_Themes\Blue\Images\Users.png" />
+    <Content Include="App_Themes\Blue\Images\Warning.png" />
+    <Content Include="Forms\DataViewManager\ContentArea\DefineLookup.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\DefineRelationships.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\EditTableAndFields.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\EnterNameDescription.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\NewDataView.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\Security.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\SelectBaseTable.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\ValidationSummary.aspx" />
+    <Content Include="Forms\DataViewManager\UserControls\AddSchemas.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\DataviewManagerHeader.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\DataViewSummary.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\DuplicateTable.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\EditTableAndFields.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\Lookup.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\NameDescription.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\SchemaSummary.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\Security.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\SelectBaseTable.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\TableSummary.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\ToolBar.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\ValidateItem.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\ValidationSummary.ascx" />
+    <Content Include="Forms\Master\MasterPage.master" />
+    <Content Include="Forms\Master\UserControls\Custom\MyCustomControlsLib.dll" />
+    <Content Include="Forms\Public\ContentArea\Home.aspx" />
+    <Content Include="Forms\Public\JScripts\CommonScripts.js" />
+    <Content Include="Forms\Public\UserControls\MenuItem.ascx" />
+    <Content Include="Forms\SecurityManager\ContentArea\ChangePassword.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\RoleList.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\UserList.aspx" />
+    <Content Include="Forms\SecurityManager\HomePage\Home.aspx" />
+    <Content Include="Forms\SecurityManager\UserControls\ChangePassword.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\RoleList.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\UserList.ascx" />
+    <Content Include="Logoff.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Forms\DataViewManager\UserControls\DataviewManagerFooter.ascx" />
+    <Content Include="Forms\Master\DataViewManager.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Images\IconLibrary\Vista_Business_Collection\PNG\24\ok_dialog_btn.PNG" />
+    <Content Include="App_Themes\Blue\Images\ig_tab_light1.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_tab_light2.gif" />
+    <Content Include="App_Themes\Common\Images\Add_Role.png" />
+    <Content Include="App_Themes\Common\Images\Add_User.png" />
+    <Content Include="App_Themes\Common\Images\Cancel.png" />
+    <Content Include="App_Themes\Common\Images\Delete.png" />
+    <Content Include="App_Themes\Common\Images\Done.png" />
+    <Content Include="App_Themes\Common\Images\Edit.png" />
+    <Content Include="App_Themes\Common\Images\Edit_Role.png" />
+    <Content Include="App_Themes\Common\Images\Edit_User.png" />
+    <Content Include="App_Themes\Common\Images\Key.png" />
+    <Content Include="App_Themes\Common\Images\Key_h.png" />
+    <Content Include="Forms\ConfigControlSettings\ContentArea\ConfigControlSettings.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\About.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\AddSchema.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\AddTable.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\DataviewBoard.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\DeleteDataView.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\EditDataViewXml.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\EditTags.aspx" />
+    <Content Include="Forms\DataViewManager\UserControls\AddTable.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\EditTags.ascx" />
+    <Content Include="Forms\DataViewManager\UserControls\TablesTreeView.ascx" />
+    <Content Include="Forms\Master\SecurityManager.Master" />
+    <Content Include="Forms\PageControlSettings\ContentArea\PageControlSettings.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\About.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\Help.aspx" />
+    <Content Include="Forms\SecurityManager\ContentArea\ManageGroups.aspx" />
+    <Content Include="Forms\SecurityManager\UserControls\AddGroup.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\EditGroup.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\ManageGroups.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\SecurityManagerFooter.ascx" />
+    <Content Include="Forms\SecurityManager\UserControls\SecurityManagerHeader.ascx" />
+    <Content Include="Forms\TableEditor\ContentArea\TableEditor.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SpotfireElementManagerService\" />
+    <WCFMetadataStorage Include="Service References\SpotfireLibraryService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\SpotfireElementManagerService\ElementManagerService.wsdl" />
+    <None Include="Service References\SpotfireElementManagerService\ElementManagerService1.wsdl" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/COEManager</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

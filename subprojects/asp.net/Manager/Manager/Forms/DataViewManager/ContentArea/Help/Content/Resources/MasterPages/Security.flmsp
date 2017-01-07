@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="157" MadCap:lastWidth="1064" xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <head>
+        <link rel="stylesheet" type="text/css">
+        </link>
+    </head>
+    <body>
+        <p>
+            <img src="../Images/Security.png" class="banner" />
+        </p>
+        <MadCap:breadcrumbsProxy class="breadcrumbsProxy" />
+        <MadCap:bodyProxy />
+        <img src="../Images/miniTOCborder.png" />
+        <MadCap:miniTocProxy class="minitoc" style="mc-toc-depth: 1;" />
+    </body>
+</html>

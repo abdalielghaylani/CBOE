@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultToc sourceDocument="C:\Documents and Settings\JHarvey\Desktop Documentation\Documentation\CBOE Enterprise 11.0\CheOfficeWebserver\Enterprise core.book" DescendantCount="52">
+    <!-- saved from url=(0014)about:internet -->
+    <TocEntry Title="ChemBioOffice Enterprise User Guide" Link="/Content/MyImport/ChemOffice.htm#ChemOffice_2175815184_1152635" ComputedResetPageLayout="true" ComputedFirstTopic="true" DescendantCount="38">
+        <TocEntry Title="Logging in" Link="/Content/MyImport/Logging_in.htm#ChemOffice_2175815184_1152609" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Starting applications" Link="/Content/MyImport/Starting_applications.htm#ChemOffice_2175815184_1156680" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1152591" depth="0" ComputedFirstTopic="false" DescendantCount="13">
+            <TocEntry Title="Basic searching" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1163986" ComputedFirstTopic="false" DescendantCount="2">
+                <TocEntry Title="Clearing the search form" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1159775" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Retrieving all records" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1159777" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="Viewing search results" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1159765" ComputedFirstTopic="false" DescendantCount="1">
+                <TocEntry Title="Navigating through records" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1165132" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="Text searching" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1162408" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Structure searching" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1162436" ComputedFirstTopic="false" DescendantCount="4">
+                <TocEntry Title="Substructure" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1162444" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Full structure" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1162744" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Exact structure" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1162464" ComputedFirstTopic="false" DescendantCount="0" />
+                <TocEntry Title="Similarity (Tanimoto)" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1163017" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="Formula searching" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1162485" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Numerical searching" Link="/Content/MyImport/Searching_databases.htm#ChemOffice_2175815184_1162523" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#ChemOffice_2175815184_1161465" depth="0" ComputedFirstTopic="false" DescendantCount="1">
+            <TocEntry Title="Undoing a refined search" Link="/Content/MyImport/Refining_search_results.htm#ChemOffice_2175815184_1161506" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Setting search preferences" Link="/Content/MyImport/Setting_search_preferenc.htm#ChemOffice_2175815184_1162590" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Managing queries" Link="/Content/MyImport/Managing_queries.htm#ChemOffice_2175815184_1161450" depth="0" ComputedFirstTopic="false" DescendantCount="5">
+            <TocEntry Title="Saving queries" Link="/Content/MyImport/Managing_queries.htm#ChemOffice_2175815184_1144750" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Restoring queries" Link="/Content/MyImport/Managing_queries.htm#ChemOffice_2175815184_1139251" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing query" Link="/Content/MyImport/Managing_queries.htm#ChemOffice_2175815184_1161304" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting a query" Link="/Content/MyImport/Managing_queries.htm#ChemOffice_2175815184_1161314" ComputedFirstTopic="false" DescendantCount="1">
+                <TocEntry Title="Query history" Link="/Content/MyImport/Managing_queries.htm#ChemOffice_2175815184_1160299" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+        </TocEntry>
+        <TocEntry Title="Managing hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#ChemOffice_2175815184_1160306" depth="0" ComputedFirstTopic="false" DescendantCount="6">
+            <TocEntry Title="Saving hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#ChemOffice_2175815184_1139288" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Restoring hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#ChemOffice_2175815184_1160466" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing a hit list" Link="/Content/MyImport/Managing_hit_lists.htm#ChemOffice_2175815184_1161295" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting a hit list" Link="/Content/MyImport/Managing_hit_lists.htm#ChemOffice_2175815184_1137362" ComputedFirstTopic="false" DescendantCount="1">
+                <TocEntry Title="Hit list history" Link="/Content/MyImport/Managing_hit_lists.htm#ChemOffice_2175815184_1159236" ComputedFirstTopic="false" DescendantCount="0" />
+            </TocEntry>
+            <TocEntry Title="Marking records" Link="/Content/MyImport/Managing_hit_lists.htm#ChemOffice_2175815184_1160262" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Exporting search results" Link="/Content/MyImport/Exporting_search_results.htm#ChemOffice_2175815184_1162112" depth="0" ComputedFirstTopic="false" DescendantCount="2">
+            <TocEntry Title="Creating an export template" Link="/Content/MyImport/Exporting_search_results.htm#ChemOffice_2175815184_1162141" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Printing" Link="/Content/MyImport/Exporting_search_results.htm#ChemOffice_2175815184_1162086" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Retrieving server information" Link="/Content/MyImport/Retrieving_server_inform.htm#ChemOffice_2175815184_1149393" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Home" Link="/Content/MyImport/Retrieving_server_inform.htm#ChemOffice_2175815184_1158736" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Logging off" Link="/Content/MyImport/Retrieving_server_inform.htm#ChemOffice_2175815184_1158722" depth="0" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+    <TocEntry Title="Security" Link="/Content/MyImport/Managing Users and Roles.htm#Managing_Users_and_Roles_2146868402_1005033" ComputedFirstTopic="false" DescendantCount="12">
+        <TocEntry Title="Managing users" Link="/Content/MyImport/Managing Users and Roles.htm#Managing_Users_and_Roles_2146868402_998330" ComputedFirstTopic="false" DescendantCount="3">
+            <TocEntry Title="Adding a new user account" Link="/Content/MyImport/Managing Users and Roles.htm#Managing_Users_and_Roles_2146868402_1003717" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing user accounts" Link="/Content/MyImport/Managing Users and Roles.htm#Managing_Users_and_Roles_2146868402_1004202" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting a user account" Link="/Content/MyImport/Managing Users and Roles.htm#Managing_Users_and_Roles_2146868402_1004290" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Managing roles" Link="/Content/MyImport/Managing_roles.htm#Managing_Users_and_Roles_2146868402_1004673" ComputedFirstTopic="false" DescendantCount="5">
+            <TocEntry Title="Viewing Roles" Link="/Content/MyImport/Managing_roles.htm#Managing_Users_and_Roles_2146868402_1004675" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Adding new roles" Link="/Content/MyImport/Managing_roles.htm#Managing_Users_and_Roles_2146868402_1004677" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Editing roles" Link="/Content/MyImport/Managing_roles.htm#Managing_Users_and_Roles_2146868402_1004683" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Assigning users to Roles" Link="/Content/MyImport/Managing_roles.htm#Managing_Users_and_Roles_2146868402_1004311" ComputedFirstTopic="false" DescendantCount="0" />
+            <TocEntry Title="Deleting a role" Link="/Content/MyImport/Managing_roles.htm#Managing_Users_and_Roles_2146868402_1004325" ComputedFirstTopic="false" DescendantCount="0" />
+        </TocEntry>
+        <TocEntry Title="Server information" Link="/Content/MyImport/Server_information.htm#Managing_Users_and_Roles_2146868402_1004812" ComputedFirstTopic="false" DescendantCount="0" />
+        <TocEntry Title="Logging off" Link="/Content/MyImport/Server_information.htm#Managing_Users_and_Roles_2146868402_998567" ComputedFirstTopic="false" DescendantCount="0" />
+    </TocEntry>
+</CatapultToc>

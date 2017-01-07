@@ -1,0 +1,275 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* =CSS RESET
+------------------------------------------------------------------------------------------ */
+* { margin: 0; padding: 0; text-decoration: none; font-size: 1em; outline: none; }
+code, kbd, samp, pre, tt, var, textarea, input, select, isindex, listing, xmp, plaintext { font: inherit; font-size: 1em; white-space: normal; }
+dfn, i, cite, var, address, em { font-style: normal; }
+th, b, strong, h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+a, img, a img, iframe, form, fieldset, abbr, acronym, object, applet, table { border: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+caption, th, td, center { text-align: left; vertical-align: top; }
+body { line-height: 1; background: white; color: black; }
+q { quotes: "" ""; }
+ul, ol, dir, menu { list-style: none; }
+sub, sup { vertical-align: baseline; }
+a { color: inherit; }
+hr { display: none; } /* we don't need a visual hr in layout */
+font { color: inherit !important; font: inherit !important; color: inherit !important; } /* disables some nasty font attributes in standard browsers */
+marquee { overflow: inherit !important;}
+blink { text-decoration: none; }
+nobr { white-space: normal; }
+.button{cursor:pointer;}
+
+
+/* =General
+------------------------------------------------------------------------------------------ */
+
+body 
+{
+	font-family:Arial, Helvetica, sans-serif;
+	color:#666666;
+}
+
+p
+{
+	font-size:11px;
+	line-height:16px;
+}
+
+.clear
+{
+	clear:both;
+}
+
+/* =Layout
+------------------------------------------------------------------------------------------ */
+
+#wrapper
+{
+	display:block;
+	margin: 0px auto;
+	width:950px;
+}
+
+	#wrapper #brand
+	{
+		
+		display:block;
+		position:relative;
+		float:left;
+		clear:both;
+		/*width:400px;
+		height:45px;
+		background: transparent url(images/brand.gif) top left no-repeat scroll;*/
+		margin:20px 0px 5px 0px;
+	}
+	
+	#wrapper #content
+	{
+		background: #ffffff url(images/bckg-login.gif) top left repeat-x scroll;
+		width:100%;
+		display:block;
+		position:relative;
+		float:left;
+	}
+	
+		#wrapper #content #info
+		{
+			display:block;
+			position:relative;
+			float:left;
+			width:510px;
+			margin: 34px 0px 30px 30px;
+		}
+		
+			#wrapper #content #info p
+			{
+				letter-spacing:1px;
+			}
+			
+			#wrapper #content #info h1
+			{
+				display:block;
+				position:relative;
+				color:#ffffff;
+				font-size:24px;
+				font-weight:bold;
+				margin-bottom:30px;
+			}
+			
+			#wrapper #content #info p.maininfo
+			{
+				font-size: 13px;
+				line-height:15px;
+				margin-bottom:25px;
+				letter-spacing:0px;
+				color: #666666;
+			}
+			
+			#wrapper #content #info .product
+			{
+				display:block;
+				position:relative;
+				float:left;
+				width:250px;
+				margin:10px 5px 10px 0px;
+			}
+			
+				#wrapper #content #info .product img
+				{
+					display:block;
+					position:relative;
+					float:left;
+					margin-right:10px;
+				}
+				
+				#wrapper #content #info .product p
+				{
+					font-size:10px;
+					color:#3d3d3d;
+					line-height:15px;
+					margin-left:10px;
+					letter-spacing:0px;
+				}
+				
+				#wrapper #content #info .product strong
+				{
+					color:#3d3d3d;
+				}
+				
+			#wrapper #content #info #contact
+			{
+				display:block;
+				position:relative;
+				background-color:#eaeaef;
+				padding:5px 10px 10px 10px;
+				height:135px;
+				margin-top:20px;
+			}
+			
+				#wrapper #content #info #contact div 
+				{
+					display:block;
+					position:relative;
+					float:left;
+					width:33%;
+				}
+				
+					#wrapper #content #info #contact div p
+					{
+						font-size:10px;
+						line-height:12px;
+						color:#757575;
+						margin:5px 0px 5px 0px;
+						border-collapse:collapse;
+						letter-spacing:0px;
+					}
+					
+					#wrapper #content #info #contact div p strong
+					{
+						display:block;
+						width:100%;
+						font-weight:bold;
+						color:#5b5b5b;
+						font-size:10px;
+						font-weight:bold;
+						padding-bottom:10px;
+						background: transparent url(images/line.gif) bottom left repeat-x scroll;
+					}
+
+		#wrapper #content #login
+		{
+			width:280px;
+			height:150px;
+			display:block;
+			position:relative;
+			float:right;
+			margin:34px 30px 30px 0px;
+			padding-top:10px;
+			padding-left:5px;
+			background:#FFFFFF url(images/imput_bkg.gif) top left repeat-x;
+			border: 1px solid #333366;
+		}
+		
+			#wrapper #content #login td
+			{
+				font-size:16px;
+				font-weight:bold;
+				padding-bottom:3px;
+				margin: 10px 5px 5px 20px;
+				color:#333333;
+			}
+			
+			#wrapper #content #login label
+			{
+				display:block;
+				overflow:visible;
+				position:relative;
+				float:left;
+				clear:left;
+				font-size:12px;
+				margin: 10px 5px 5px 20px;
+				color:#666666;
+			}
+			
+			#wrapper #content #login input
+			{
+				display:block;
+				position:relative;
+				float:right;
+				clear:right;
+				font-size:11px;
+				margin: 10px 20px 0px 10px;
+				color:#666666;
+				border:1px solid #333366;
+				width:136px;
+				height:15px;
+			}
+			
+			#wrapper #content #login p
+			{
+				display:block;
+				position:relative;
+				float:left;
+				clear:left;
+				margin: 15px 0px 5px 20px;
+			}
+			
+			.failureText
+			{
+				display:block;
+				position:absolute;
+				color: Red;
+				font-size:9px;
+				top: 100px;
+			}
+			
+			#wrapper #content #login .button
+			{
+				display:block;
+				position:relative;
+				font-size:11px;
+				margin: 30px 20px 0px 10px;
+				color:#666666;
+				font-weight: bold;
+				font-size: 9px;
+				width:72px;
+				height:24px;
+				border:none;
+				background: transparent url(/COECommonResources/Utility_Images/BackGroundImages/Button.gif) no-repeat scroll;
+			}
+			
+			#wrapper #content #login .button:hover
+			{
+				background: transparent url(/COECommonResources/Utility_Images/BackGroundImages/Button2.gif) no-repeat scroll;
+			}
+
+	#wrapper .brand
+	{
+		display: block;
+		float:right;
+		position:relative;
+		margin: 34px 35px 0px 0px;
+	}

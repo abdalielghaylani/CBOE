@@ -1,0 +1,896 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://spotfire.tibco.com/ws/2008/11/im.xsd" xmlns:ns2="http://spotfire.tibco.com/ws/2008/11/faults.xsd" name="ElementManagerService" targetNamespace="http://spotfire.tibco.com/ws/2008/11/im.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:ns1="http://spotfire.tibco.com/ws/2008/11/common.xsd" xmlns:tns="http://spotfire.tibco.com/ws/2008/11/im.xsd" elementFormDefault="unqualified" targetNamespace="http://spotfire.tibco.com/ws/2008/11/im.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://spotfire.tibco.com/ws/2008/11/common.xsd" />
+      <xs:import namespace="http://spotfire.tibco.com/ws/2008/11/faults.xsd" />
+      <xs:element name="IMFaultInfo" type="tns:IMFaultInfo" />
+      <xs:element name="addElement" type="tns:addElement" />
+      <xs:element name="addElementResponse" type="tns:addElementResponse" />
+      <xs:element name="addTableAlias" type="tns:addTableAlias" />
+      <xs:element name="addTableAliasResponse" type="tns:addTableAliasResponse" />
+      <xs:element name="findJoins" type="tns:findJoins" />
+      <xs:element name="findJoinsResponse" type="tns:findJoinsResponse" />
+      <xs:element name="getDependentElementsForAliases" type="tns:getDependentElementsForAliases" />
+      <xs:element name="getDependentElementsForAliasesResponse" type="tns:getDependentElementsForAliasesResponse" />
+      <xs:element name="getSQL" type="tns:getSQL" />
+      <xs:element name="getSQLResponse" type="tns:getSQLResponse" />
+      <xs:element name="listDataSourceElements" type="tns:listDataSourceElements" />
+      <xs:element name="listDataSourceElementsResponse" type="tns:listDataSourceElementsResponse" />
+      <xs:element name="listDataSourceTypes" type="tns:listDataSourceTypes" />
+      <xs:element name="listDataSourceTypesResponse" type="tns:listDataSourceTypesResponse" />
+      <xs:element name="loadDataSourceElement" type="tns:loadDataSourceElement" />
+      <xs:element name="loadDataSourceElementResponse" type="tns:loadDataSourceElementResponse" />
+      <xs:element name="loadElement" type="tns:loadElement" />
+      <xs:element name="loadElementResponse" type="tns:loadElementResponse" />
+      <xs:element name="loadElements" type="tns:loadElements" />
+      <xs:element name="loadElementsResponse" type="tns:loadElementsResponse" />
+      <xs:element name="removeTableAliases" type="tns:removeTableAliases" />
+      <xs:element name="removeTableAliasesResponse" type="tns:removeTableAliasesResponse" />
+      <xs:element name="updateElement" type="tns:updateElement" />
+      <xs:element name="updateElementResponse" type="tns:updateElementResponse" />
+      <xs:element name="validateElement" type="tns:validateElement" />
+      <xs:element name="validateElementResponse" type="tns:validateElementResponse" />
+      <xs:element name="validateElements" type="tns:validateElements" />
+      <xs:element name="validateElementsResponse" type="tns:validateElementsResponse" />
+      <xs:complexType name="getDependentElementsForAliases">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="pathList" type="tns:DataSourceElementPath" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataSourceElementPath">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataSourceId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="dataSourceName" type="xs:string" />
+          <xs:element minOccurs="0" name="schema" type="xs:string" />
+          <xs:element minOccurs="0" name="catalog" type="xs:string" />
+          <xs:element minOccurs="0" name="table" type="xs:string" />
+          <xs:element minOccurs="0" name="tableAlias" type="xs:string" />
+          <xs:element minOccurs="0" name="procedure" type="xs:string" />
+          <xs:element minOccurs="0" name="column" type="xs:string" />
+          <xs:element minOccurs="0" name="procedureColumn" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getDependentElementsForAliasesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:TableAliasDependencies" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TableAliasDependencies">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="tns:DataSourceElementPath" />
+          <xs:element name="dependencies" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="dependencies" type="ns1:GUID" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IMFaultInfo" final="extension restriction">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns2:FaultInfo">
+            <xs:sequence>
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="dataSources" nillable="true" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="validationResults" nillable="true" type="tns:ValidationResult" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ValidationResult">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="elementId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="faultCode" type="xs:string" />
+          <xs:element minOccurs="0" name="faultLevel" type="xs:string" />
+          <xs:element minOccurs="0" name="attributeName" type="xs:string" />
+          <xs:element minOccurs="0" name="dataSourceElement" type="tns:DataSourceElementPath" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="stringValue" type="xs:string" />
+          <xs:element name="joinedTables" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="table" type="tns:DataSourceElementPath" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="notJoinedTables" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="table" type="tns:DataSourceElementPath" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="element" type="tns:IMElement" />
+          <xs:element name="ignoreWarnings" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="IMElement" abstract="true">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="parentId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="path" type="xs:string" />
+          <xs:element name="properties" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="tns:Property" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="parameterReferences" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="reference" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Property">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Column">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Filter">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="calculation" type="xs:string" />
+              <xs:element minOccurs="0" name="dataType" type="xs:string" />
+              <xs:element name="drillable" type="xs:boolean" />
+              <xs:element name="sourceColumns" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:DataSourceElementPath" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="aggregationKeys" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="key" type="tns:ColumnAggregationKey" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Filter">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:IMElement">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="filterExpression" type="xs:string" />
+              <xs:element name="filterColumns" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:DataSourceElementPath" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ColumnAggregationKey">
+        <xs:sequence>
+          <xs:element name="sourceColumns" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="sourceColumn" type="tns:DataSourceElementPath" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" name="calculation" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataSource">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:IMElement">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="dataSourceType" type="xs:string" />
+              <xs:element name="writeAllowed" type="xs:boolean" />
+              <xs:element name="fetchSize" type="xs:int" />
+              <xs:element name="batchSize" type="xs:int" />
+              <xs:element name="dataSourceAuthentication" type="xs:boolean" />
+              <xs:element minOccurs="0" name="connectionUrl" type="xs:string" />
+              <xs:element minOccurs="0" name="userName" type="xs:string" />
+              <xs:element minOccurs="0" name="password" type="xs:string" />
+              <xs:element name="maxConnections" type="xs:int" />
+              <xs:element name="minConnections" type="xs:int" />
+              <xs:element name="sessionOpenCommands" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="sessionCloseCommands" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="initializationCommands" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="preCommands" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="postCommands" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="pingCommand" type="xs:string" />
+              <xs:element name="credentialsTimeout" type="xs:int" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Folder">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:IMElement">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="InformationLink">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:IMElement">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="joinDataSourceId" type="ns1:GUID" />
+              <xs:element minOccurs="0" name="transformation" type="tns:Transformation" />
+              <xs:element name="elementRefs" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="reference" type="tns:ElementReference" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="joins" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="join" type="ns1:GUID" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="SQL" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="entry" type="tns:EditableSql" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="preProcedureRefs" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="reference" type="ns1:GUID" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="postProcedureRefs" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="reference" type="ns1:GUID" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="staticFilters" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="filter" type="tns:Parameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="promptableFilters" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="filter" type="tns:Parameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="namedParameterDefinitions" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="definition" type="tns:Parameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element minOccurs="0" name="cacheSettings" type="tns:CacheSettings" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="Transformation" abstract="true">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="DistinctTransformation">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Transformation">
+            <xs:sequence />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PivotTransformation">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Transformation">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="columnNamingPattern" type="xs:string" />
+              <xs:element name="keyRefs" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="reference" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="categoryRefs" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="reference" type="xs:string" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="dataColumns" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:PivotAggregation" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="additionalColumns" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:PivotAggregation" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="PivotAggregation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="columnRef" type="xs:string" />
+          <xs:element minOccurs="0" name="aggregationType" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TransformationChain">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:Transformation">
+            <xs:sequence>
+              <xs:element name="transformationsList" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="transformations" type="tns:Transformation" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ElementReference">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="elementId" type="ns1:GUID" />
+          <xs:element name="hidden" type="xs:boolean" />
+          <xs:element name="promptGroup" type="xs:int" />
+          <xs:element name="properties" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="property" type="tns:Property" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="EditableSql">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataSourceId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="modifiedQuery" type="xs:string" />
+          <xs:element minOccurs="0" name="generatedQuery" type="xs:string" />
+          <xs:element name="modifiedPreCommands" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="modifiedPostCommands" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="generatedPreCommands" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="generatedPostCommands" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="command" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Parameter">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="elementId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="parameterId" type="xs:string" />
+          <xs:element minOccurs="0" name="attachmentId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element minOccurs="0" name="dataType" type="xs:string" />
+          <xs:element minOccurs="0" name="expression" type="xs:string" />
+          <xs:element minOccurs="0" name="promptType" type="xs:string" />
+          <xs:element name="nullable" type="xs:boolean" />
+          <xs:element name="values" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="value" type="xs:string" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="parameters" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="parameter" type="tns:Parameter" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="CacheSettings">
+        <xs:sequence>
+          <xs:element name="cacheable" type="xs:boolean" />
+          <xs:element name="cacheTimeout" type="xs:int" />
+          <xs:element name="cacheValidationQueries">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="cacheValidationQuery" type="tns:ValidationQuery" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ValidationQuery">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dataSourceId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="sqlQuery" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Join">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:IMElement">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="joinCondition" type="tns:JoinCondition" />
+              <xs:element name="defaultJoin" type="xs:boolean" />
+              <xs:element name="targetTables" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="table" type="tns:DataSourceElementPath" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="JoinCondition">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="joinType" type="xs:string" />
+          <xs:element minOccurs="0" name="freehandExpression" type="xs:string" />
+          <xs:element name="joinColumns" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:DataSourceElementPath" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="Procedure">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:IMElement">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="procedureType" type="xs:string" />
+              <xs:element minOccurs="0" name="sourceProcedure" type="tns:DataSourceElementPath" />
+              <xs:element minOccurs="0" name="joinCondition" type="tns:JoinCondition" />
+              <xs:element name="includeAllResultColumns" type="xs:boolean" />
+              <xs:element name="parameters" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="parameter" type="tns:Parameter" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="resultColumns" nillable="true">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element minOccurs="0" maxOccurs="unbounded" name="column" type="tns:ProcedureResultColumn" />
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="ProcedureResultColumn">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+          <xs:element minOccurs="0" name="sourceName" type="xs:string" />
+          <xs:element minOccurs="0" name="dataType" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addElementResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:IMElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listDataSourceTypes">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="listDataSourceTypesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:DataSourceType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataSourceType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="typeName" type="xs:string" />
+          <xs:element minOccurs="0" name="displayName" type="xs:string" />
+          <xs:element minOccurs="0" name="urlPattern" type="xs:string" />
+          <xs:element minOccurs="0" name="pingCommand" type="xs:string" />
+          <xs:element name="fetchSize" type="xs:int" />
+          <xs:element name="batchSize" type="xs:int" />
+          <xs:element name="credentialsTimeout" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listDataSourceElements">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="tns:DataSourceElementPath" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listDataSourceElementsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:DataSourceElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataSourceElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="label" type="tns:DataSourceElementLabel" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element name="attributes" nillable="true">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="attribute" type="tns:DataSourceElementAttribute" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataSourceElementLabel">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="type" type="tns:DataSourceElementType" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DataSourceElementAttribute">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string" />
+          <xs:element minOccurs="0" name="value" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="validateElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="element" type="tns:IMElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="validateElementResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ValidationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="element" type="tns:IMElement" />
+          <xs:element name="ignoreWarnings" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="updateElementResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:IMElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSQL">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="informationLink" type="tns:InformationLink" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getSQLResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:EditableSql" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="elementID" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadElementResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:IMElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadElements">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="elementIds" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadElementsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:IMElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadDataSourceElement">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="tns:DataSourceElementPath" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadDataSourceElementResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:DataSourceElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="validateElements">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="elementIds" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="validateElementsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ValidationResult" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeTableAliases">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="pathList" type="tns:DataSourceElementPath" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeTableAliasesResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="findJoins">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="informationLink" type="tns:InformationLink" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findJoinsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:Join" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addTableAlias">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="tns:DataSourceElementPath" />
+          <xs:element minOccurs="0" name="aliasName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addTableAliasResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:DataSourceElement" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="DataSourceElementType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="DataSource" />
+          <xs:enumeration value="Schema" />
+          <xs:enumeration value="Table" />
+          <xs:enumeration value="Catalog" />
+          <xs:enumeration value="Column" />
+          <xs:enumeration value="Procedure" />
+          <xs:enumeration value="TableAlias" />
+          <xs:enumeration value="ProcedureColumn" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://spotfire.tibco.com/ws/2008/11/faults.xsd" xmlns:ns0="http://spotfire.tibco.com/ws/2008/11/im.xsd" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://spotfire.tibco.com/ws/2008/11/faults.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="FaultInfo" type="tns:FaultInfo" />
+      <xs:complexType name="FaultInfo">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:string" />
+          <xs:element name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="stackTrace" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="InformationModelWebServiceException" nillable="true" type="ns0:IMFaultInfo" />
+    </xs:schema>
+    <xs:schema targetNamespace="http://spotfire.tibco.com/ws/2008/11/common.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="GUID">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="loadElementResponse">
+    <wsdl:part name="parameters" element="ns1:loadElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeTableAliasesResponse">
+    <wsdl:part name="parameters" element="ns1:removeTableAliasesResponse" />
+  </wsdl:message>
+  <wsdl:message name="listDataSourceTypesResponse">
+    <wsdl:part name="parameters" element="ns1:listDataSourceTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="listDataSourceTypes">
+    <wsdl:part name="parameters" element="ns1:listDataSourceTypes" />
+  </wsdl:message>
+  <wsdl:message name="getDependentElementsForAliases">
+    <wsdl:part name="parameters" element="ns1:getDependentElementsForAliases" />
+  </wsdl:message>
+  <wsdl:message name="loadElement">
+    <wsdl:part name="parameters" element="ns1:loadElement" />
+  </wsdl:message>
+  <wsdl:message name="listDataSourceElements">
+    <wsdl:part name="parameters" element="ns1:listDataSourceElements" />
+  </wsdl:message>
+  <wsdl:message name="addElementResponse">
+    <wsdl:part name="parameters" element="ns1:addElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSQL">
+    <wsdl:part name="parameters" element="ns1:getSQL" />
+  </wsdl:message>
+  <wsdl:message name="InformationModelWebServiceException">
+    <wsdl:part name="InformationModelWebServiceException" element="ns2:InformationModelWebServiceException" />
+  </wsdl:message>
+  <wsdl:message name="updateElement">
+    <wsdl:part name="parameters" element="ns1:updateElement" />
+  </wsdl:message>
+  <wsdl:message name="loadDataSourceElement">
+    <wsdl:part name="parameters" element="ns1:loadDataSourceElement" />
+  </wsdl:message>
+  <wsdl:message name="listDataSourceElementsResponse">
+    <wsdl:part name="parameters" element="ns1:listDataSourceElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="addTableAliasResponse">
+    <wsdl:part name="parameters" element="ns1:addTableAliasResponse" />
+  </wsdl:message>
+  <wsdl:message name="addElement">
+    <wsdl:part name="parameters" element="ns1:addElement" />
+  </wsdl:message>
+  <wsdl:message name="validateElementResponse">
+    <wsdl:part name="parameters" element="ns1:validateElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="validateElements">
+    <wsdl:part name="parameters" element="ns1:validateElements" />
+  </wsdl:message>
+  <wsdl:message name="getDependentElementsForAliasesResponse">
+    <wsdl:part name="parameters" element="ns1:getDependentElementsForAliasesResponse" />
+  </wsdl:message>
+  <wsdl:message name="loadElements">
+    <wsdl:part name="parameters" element="ns1:loadElements" />
+  </wsdl:message>
+  <wsdl:message name="findJoinsResponse">
+    <wsdl:part name="parameters" element="ns1:findJoinsResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateElementResponse">
+    <wsdl:part name="parameters" element="ns1:updateElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="validateElementsResponse">
+    <wsdl:part name="parameters" element="ns1:validateElementsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getSQLResponse">
+    <wsdl:part name="parameters" element="ns1:getSQLResponse" />
+  </wsdl:message>
+  <wsdl:message name="addTableAlias">
+    <wsdl:part name="parameters" element="ns1:addTableAlias" />
+  </wsdl:message>
+  <wsdl:message name="removeTableAliases">
+    <wsdl:part name="parameters" element="ns1:removeTableAliases" />
+  </wsdl:message>
+  <wsdl:message name="loadDataSourceElementResponse">
+    <wsdl:part name="parameters" element="ns1:loadDataSourceElementResponse" />
+  </wsdl:message>
+  <wsdl:message name="findJoins">
+    <wsdl:part name="parameters" element="ns1:findJoins" />
+  </wsdl:message>
+  <wsdl:message name="validateElement">
+    <wsdl:part name="parameters" element="ns1:validateElement" />
+  </wsdl:message>
+  <wsdl:message name="loadElementsResponse">
+    <wsdl:part name="parameters" element="ns1:loadElementsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ElementManagerService">
+    <wsdl:operation name="getDependentElementsForAliases">
+      <wsdl:input name="getDependentElementsForAliases" message="ns1:getDependentElementsForAliases" />
+      <wsdl:output name="getDependentElementsForAliasesResponse" message="ns1:getDependentElementsForAliasesResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="addElement">
+      <wsdl:input name="addElement" message="ns1:addElement" />
+      <wsdl:output name="addElementResponse" message="ns1:addElementResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="listDataSourceTypes">
+      <wsdl:input name="listDataSourceTypes" message="ns1:listDataSourceTypes" />
+      <wsdl:output name="listDataSourceTypesResponse" message="ns1:listDataSourceTypesResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="listDataSourceElements">
+      <wsdl:input name="listDataSourceElements" message="ns1:listDataSourceElements" />
+      <wsdl:output name="listDataSourceElementsResponse" message="ns1:listDataSourceElementsResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="validateElement">
+      <wsdl:input name="validateElement" message="ns1:validateElement" />
+      <wsdl:output name="validateElementResponse" message="ns1:validateElementResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="updateElement">
+      <wsdl:input name="updateElement" message="ns1:updateElement" />
+      <wsdl:output name="updateElementResponse" message="ns1:updateElementResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="getSQL">
+      <wsdl:input name="getSQL" message="ns1:getSQL" />
+      <wsdl:output name="getSQLResponse" message="ns1:getSQLResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="loadElement">
+      <wsdl:input name="loadElement" message="ns1:loadElement" />
+      <wsdl:output name="loadElementResponse" message="ns1:loadElementResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="loadElements">
+      <wsdl:input name="loadElements" message="ns1:loadElements" />
+      <wsdl:output name="loadElementsResponse" message="ns1:loadElementsResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="loadDataSourceElement">
+      <wsdl:input name="loadDataSourceElement" message="ns1:loadDataSourceElement" />
+      <wsdl:output name="loadDataSourceElementResponse" message="ns1:loadDataSourceElementResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="validateElements">
+      <wsdl:input name="validateElements" message="ns1:validateElements" />
+      <wsdl:output name="validateElementsResponse" message="ns1:validateElementsResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="removeTableAliases">
+      <wsdl:input name="removeTableAliases" message="ns1:removeTableAliases" />
+      <wsdl:output name="removeTableAliasesResponse" message="ns1:removeTableAliasesResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="findJoins">
+      <wsdl:input name="findJoins" message="ns1:findJoins" />
+      <wsdl:output name="findJoinsResponse" message="ns1:findJoinsResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="addTableAlias">
+      <wsdl:input name="addTableAlias" message="ns1:addTableAlias" />
+      <wsdl:output name="addTableAliasResponse" message="ns1:addTableAliasResponse" />
+      <wsdl:fault name="InformationModelWebServiceException" message="ns1:InformationModelWebServiceException" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

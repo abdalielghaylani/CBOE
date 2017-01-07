@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.springframework.org/schema/beans" xmlns:ns1="http://spotfire.tibco.com/ws/2008/11/im.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns3="http://schemas.xmlsoap.org/soap/http" name="ElementManagerService" targetNamespace="http://www.springframework.org/schema/beans" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://spotfire.tibco.com/ws/2008/11/im.xsd" location="http://shadev437:650/spotfire/ws/ElementManagerService?wsdl=ElementManagerService.wsdl" />
+  <wsdl:types />
+  <wsdl:binding name="ElementManagerServiceSoapBinding" type="ns1:ElementManagerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getDependentElementsForAliases">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDependentElementsForAliases">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDependentElementsForAliasesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addElement">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addElement">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addElementResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listDataSourceTypes">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="listDataSourceTypes">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="listDataSourceTypesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listDataSourceElements">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="listDataSourceElements">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="listDataSourceElementsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateElement">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="validateElement">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="validateElementResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateElement">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="updateElement">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateElementResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSQL">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getSQL">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSQLResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loadElement">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="loadElement">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="loadElementResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loadElements">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="loadElements">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="loadElementsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="loadDataSourceElement">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="loadDataSourceElement">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="loadDataSourceElementResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeTableAliases">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="removeTableAliases">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeTableAliasesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="validateElements">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="validateElements">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="validateElementsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addTableAlias">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addTableAlias">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addTableAliasResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findJoins">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findJoins">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findJoinsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="InformationModelWebServiceException">
+        <soap:fault use="literal" name="InformationModelWebServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ElementManagerService">
+    <wsdl:port name="ElementManagerServicePort" binding="tns:ElementManagerServiceSoapBinding">
+      <soap:address location="http://shadev437:650/spotfire/ws/ElementManagerService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://spotfire.tibco.com/ws/2008/12/library.xsd" xmlns:ns2="http://spotfire.tibco.com/ws/2008/11/faults.xsd" name="LibraryService" targetNamespace="http://spotfire.tibco.com/ws/2008/12/library.xsd" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:ns1="http://spotfire.tibco.com/ws/2008/11/common.xsd" xmlns:ns3="http://spotfire.tibco.com/ws/2008/11/library.xsd" xmlns:tns="http://spotfire.tibco.com/ws/2008/12/library.xsd" xmlns:ns2="http://spotfire.tibco.com/ws/2008/10/userdir.xsd" elementFormDefault="unqualified" targetNamespace="http://spotfire.tibco.com/ws/2008/12/library.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://spotfire.tibco.com/ws/2008/11/common.xsd" />
+      <xs:import namespace="http://spotfire.tibco.com/ws/2008/10/userdir.xsd" />
+      <xs:import namespace="http://spotfire.tibco.com/ws/2008/11/library.xsd" />
+      <xs:element name="copyItems" type="tns:copyItems" />
+      <xs:element name="copyItemsResponse" type="tns:copyItemsResponse" />
+      <xs:element name="deleteItems" type="tns:deleteItems" />
+      <xs:element name="deleteItemsResponse" type="tns:deleteItemsResponse" />
+      <xs:element name="guidToPath" type="tns:guidToPath" />
+      <xs:element name="guidToPathResponse" type="tns:guidToPathResponse" />
+      <xs:element name="listAllUnsatisfiedDependencies" type="tns:listAllUnsatisfiedDependencies" />
+      <xs:element name="listAllUnsatisfiedDependenciesResponse" type="tns:listAllUnsatisfiedDependenciesResponse" />
+      <xs:element name="listAvailableTypes" type="tns:listAvailableTypes" />
+      <xs:element name="listAvailableTypesResponse" type="tns:listAvailableTypesResponse" />
+      <xs:element name="listChildren" type="tns:listChildren" />
+      <xs:element name="listChildrenResponse" type="tns:listChildrenResponse" />
+      <xs:element name="listDependentItems" type="tns:listDependentItems" />
+      <xs:element name="listDependentItemsResponse" type="tns:listDependentItemsResponse" />
+      <xs:element name="loadContent" type="tns:loadContent" />
+      <xs:element name="loadContentResponse" type="tns:loadContentResponse" />
+      <xs:element name="loadItems" type="tns:loadItems" />
+      <xs:element name="loadItemsResponse" type="tns:loadItemsResponse" />
+      <xs:element name="loadTypes" type="tns:loadTypes" />
+      <xs:element name="loadTypesResponse" type="tns:loadTypesResponse" />
+      <xs:element name="loadVisibleTypes" type="tns:loadVisibleTypes" />
+      <xs:element name="loadVisibleTypesResponse" type="tns:loadVisibleTypesResponse" />
+      <xs:element name="moveItems" type="tns:moveItems" />
+      <xs:element name="moveItemsResponse" type="tns:moveItemsResponse" />
+      <xs:element name="pathToGuid" type="tns:pathToGuid" />
+      <xs:element name="pathToGuidResponse" type="tns:pathToGuidResponse" />
+      <xs:element name="saveItem" type="tns:saveItem" />
+      <xs:element name="saveItemResponse" type="tns:saveItemResponse" />
+      <xs:element name="search" type="tns:search" />
+      <xs:element name="searchResponse" type="tns:searchResponse" />
+      <xs:element name="tryDeleteItems" type="tns:tryDeleteItems" />
+      <xs:element name="tryDeleteItemsResponse" type="tns:tryDeleteItemsResponse" />
+      <xs:element name="trySaveItem" type="tns:trySaveItem" />
+      <xs:element name="trySaveItemResponse" type="tns:trySaveItemResponse" />
+      <xs:complexType name="loadContent">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="item" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadContentResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteItems">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="items" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteItemsResponse">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="trySaveItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="item" type="tns:LibraryItem" />
+          <xs:element minOccurs="0" name="attachmentID" type="ns1:GUID" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="LibraryItem" final="extension restriction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="ns1:GUID" />
+          <xs:element name="title" type="xs:string" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element name="type" type="tns:ItemType" />
+          <xs:element minOccurs="0" name="formatVersion" type="xs:string" />
+          <xs:element name="parentId" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="createdBy" type="ns2:UserPrincipal" />
+          <xs:element minOccurs="0" name="modifiedBy" type="ns2:UserPrincipal" />
+          <xs:element minOccurs="0" name="created" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="modified" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="accessed" type="xs:dateTime" />
+          <xs:element name="size" type="xs:long" />
+          <xs:element minOccurs="0" name="path" type="xs:string" />
+          <xs:element name="hidden" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="properties" type="tns:PropertyKeyValuePair" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="dependencies" type="tns:RequiredItem" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="permissions" type="tns:Permission" />
+          <xs:element minOccurs="0" name="content" type="ns1:GUID" />
+          <xs:element maxOccurs="unbounded" name="fieldsSet" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ItemType" final="extension restriction">
+        <xs:sequence>
+          <xs:element name="id" type="ns1:GUID" />
+          <xs:element name="label" type="xs:string" />
+          <xs:element name="labelPrefix" type="xs:string" />
+          <xs:element name="displayName" type="xs:string" />
+          <xs:element name="container" type="xs:boolean" />
+          <xs:element minOccurs="0" name="fileSuffix" type="xs:string" />
+          <xs:element minOccurs="0" name="mimeType" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="PropertyKeyValuePair">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequiredItem">
+        <xs:sequence>
+          <xs:element name="item" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="description" type="xs:string" />
+          <xs:element name="cascadingDelete" type="xs:boolean" />
+          <xs:element name="resolved" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="trySaveItemResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="guidToPath">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="item" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="guidToPathResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadItems">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="items" type="ns1:GUID" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadItemsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tryDeleteItems">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="items" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tryDeleteItemsResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listAllUnsatisfiedDependencies">
+        <xs:sequence />
+      </xs:complexType>
+      <xs:complexType name="listAllUnsatisfiedDependenciesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:RequiredItemsKeyValuePair" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="RequiredItemsKeyValuePair">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="ns1:GUID" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="value" nillable="true" type="tns:RequiredItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadTypes">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="labels" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadTypesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ItemType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="moveItems">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="items" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="destination" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="conflictResolution" type="tns:ConflictResolution" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="moveItemsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listAvailableTypes">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="purpose" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listAvailableTypesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ItemType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="copyItems">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="items" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="destination" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="conflictResolution" type="tns:ConflictResolution" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="copyItemsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="saveItem">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="item" type="tns:LibraryItem" />
+          <xs:element minOccurs="0" name="attachmentID" type="ns1:GUID" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="saveItemResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="search">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="parameters" type="ns3:SearchParameters" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="searchResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="pathToGuid">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="path" type="xs:string" />
+          <xs:element minOccurs="0" name="type" type="tns:ItemType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="pathToGuidResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="ns1:GUID" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listDependentItems">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="items" type="ns1:GUID" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="types" type="tns:ItemType" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listDependentItemsResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:DependentItemsKeyValuePair" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="DependentItemsKeyValuePair">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="ns1:GUID" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="value" nillable="true" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadVisibleTypes">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="purposes" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="loadVisibleTypesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:VisibleTypesKeyValuePair" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="VisibleTypesKeyValuePair">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="key" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="value" nillable="true" type="tns:ItemType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listChildren">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="parent" type="ns1:GUID" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="types" type="tns:ItemType" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:Fields" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="listChildrenResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:LibraryItem" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="Permission">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Read" />
+          <xs:enumeration value="Write" />
+          <xs:enumeration value="Owner" />
+          <xs:enumeration value="Execute" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="Fields">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Default" />
+          <xs:enumeration value="Properties" />
+          <xs:enumeration value="Permissions" />
+          <xs:enumeration value="Dependencies" />
+          <xs:enumeration value="Path" />
+          <xs:enumeration value="Content" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ConflictResolution">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="KeepNew" />
+          <xs:enumeration value="KeepBoth" />
+          <xs:enumeration value="KeepOld" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="PropertyName">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="None" />
+          <xs:enumeration value="Title" />
+          <xs:enumeration value="Modified" />
+          <xs:enumeration value="Created" />
+          <xs:enumeration value="Accessed" />
+          <xs:enumeration value="Content-size" />
+          <xs:enumeration value="Description" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="SortMode">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Ascending" />
+          <xs:enumeration value="Descending" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:ns1="http://spotfire.tibco.com/ws/2008/11/common.xsd" xmlns:ns2="http://spotfire.tibco.com/ws/2008/12/library.xsd" targetNamespace="http://spotfire.tibco.com/ws/2008/11/library.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://spotfire.tibco.com/ws/2008/11/common.xsd" />
+      <xs:import namespace="http://spotfire.tibco.com/ws/2008/12/library.xsd" />
+      <xs:complexType name="SearchParameters">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="types" type="ns2:ItemType" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="locations" type="ns1:GUID" />
+          <xs:element minOccurs="0" name="expression" type="xs:string" />
+          <xs:element name="includeHiddenItems" type="xs:boolean" />
+          <xs:element name="maxResults" type="xs:int" />
+          <xs:element minOccurs="0" name="orderBy" type="ns2:PropertyName" />
+          <xs:element minOccurs="0" name="sortMode" type="ns2:SortMode" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://spotfire.tibco.com/ws/2008/11/faults.xsd" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://spotfire.tibco.com/ws/2008/11/faults.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="FaultInfo" type="tns:FaultInfo" />
+      <xs:complexType name="FaultInfo">
+        <xs:sequence>
+          <xs:element name="errorCode" type="xs:string" />
+          <xs:element name="message" type="xs:string" />
+          <xs:element minOccurs="0" name="stackTrace" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="LibraryException" nillable="true" type="tns:FaultInfo" />
+    </xs:schema>
+    <xs:schema targetNamespace="http://spotfire.tibco.com/ws/2008/11/common.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:simpleType name="GUID">
+        <xs:restriction base="xs:string" />
+      </xs:simpleType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://spotfire.tibco.com/ws/2008/10/userdir.xsd" targetNamespace="http://spotfire.tibco.com/ws/2008/10/userdir.xsd" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="UserPrincipal" final="extension restriction">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:SpotfirePrincipal">
+            <xs:sequence>
+              <xs:element name="enabled" type="xs:boolean" />
+              <xs:element minOccurs="0" name="lastLogin" type="xs:dateTime" />
+              <xs:element name="locked" type="xs:boolean" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="SpotfirePrincipal">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="compositeName" type="xs:string" />
+          <xs:element minOccurs="0" name="displayName" type="xs:string" />
+          <xs:element minOccurs="0" name="domainName" type="xs:string" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="guid" type="xs:string" />
+          <xs:element minOccurs="0" name="name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="listAvailableTypes">
+    <wsdl:part name="parameters" element="ns1:listAvailableTypes" />
+  </wsdl:message>
+  <wsdl:message name="loadTypes">
+    <wsdl:part name="parameters" element="ns1:loadTypes" />
+  </wsdl:message>
+  <wsdl:message name="pathToGuidResponse">
+    <wsdl:part name="parameters" element="ns1:pathToGuidResponse" />
+  </wsdl:message>
+  <wsdl:message name="loadVisibleTypes">
+    <wsdl:part name="parameters" element="ns1:loadVisibleTypes" />
+  </wsdl:message>
+  <wsdl:message name="guidToPathResponse">
+    <wsdl:part name="parameters" element="ns1:guidToPathResponse" />
+  </wsdl:message>
+  <wsdl:message name="tryDeleteItemsResponse">
+    <wsdl:part name="parameters" element="ns1:tryDeleteItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="listAllUnsatisfiedDependenciesResponse">
+    <wsdl:part name="parameters" element="ns1:listAllUnsatisfiedDependenciesResponse" />
+  </wsdl:message>
+  <wsdl:message name="searchResponse">
+    <wsdl:part name="parameters" element="ns1:searchResponse" />
+  </wsdl:message>
+  <wsdl:message name="pathToGuid">
+    <wsdl:part name="parameters" element="ns1:pathToGuid" />
+  </wsdl:message>
+  <wsdl:message name="trySaveItem">
+    <wsdl:part name="parameters" element="ns1:trySaveItem" />
+  </wsdl:message>
+  <wsdl:message name="LibraryException">
+    <wsdl:part name="LibraryException" element="ns2:LibraryException" />
+  </wsdl:message>
+  <wsdl:message name="loadContent">
+    <wsdl:part name="parameters" element="ns1:loadContent" />
+  </wsdl:message>
+  <wsdl:message name="listDependentItems">
+    <wsdl:part name="parameters" element="ns1:listDependentItems" />
+  </wsdl:message>
+  <wsdl:message name="listDependentItemsResponse">
+    <wsdl:part name="parameters" element="ns1:listDependentItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="tryDeleteItems">
+    <wsdl:part name="parameters" element="ns1:tryDeleteItems" />
+  </wsdl:message>
+  <wsdl:message name="deleteItemsResponse">
+    <wsdl:part name="parameters" element="ns1:deleteItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="saveItem">
+    <wsdl:part name="parameters" element="ns1:saveItem" />
+  </wsdl:message>
+  <wsdl:message name="loadItemsResponse">
+    <wsdl:part name="parameters" element="ns1:loadItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="trySaveItemResponse">
+    <wsdl:part name="parameters" element="ns1:trySaveItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="loadContentResponse">
+    <wsdl:part name="parameters" element="ns1:loadContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="guidToPath">
+    <wsdl:part name="parameters" element="ns1:guidToPath" />
+  </wsdl:message>
+  <wsdl:message name="copyItems">
+    <wsdl:part name="parameters" element="ns1:copyItems" />
+  </wsdl:message>
+  <wsdl:message name="saveItemResponse">
+    <wsdl:part name="parameters" element="ns1:saveItemResponse" />
+  </wsdl:message>
+  <wsdl:message name="listAllUnsatisfiedDependencies">
+    <wsdl:part name="parameters" element="ns1:listAllUnsatisfiedDependencies" />
+  </wsdl:message>
+  <wsdl:message name="copyItemsResponse">
+    <wsdl:part name="parameters" element="ns1:copyItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="loadItems">
+    <wsdl:part name="parameters" element="ns1:loadItems" />
+  </wsdl:message>
+  <wsdl:message name="loadVisibleTypesResponse">
+    <wsdl:part name="parameters" element="ns1:loadVisibleTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="listChildren">
+    <wsdl:part name="parameters" element="ns1:listChildren" />
+  </wsdl:message>
+  <wsdl:message name="moveItems">
+    <wsdl:part name="parameters" element="ns1:moveItems" />
+  </wsdl:message>
+  <wsdl:message name="listAvailableTypesResponse">
+    <wsdl:part name="parameters" element="ns1:listAvailableTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="moveItemsResponse">
+    <wsdl:part name="parameters" element="ns1:moveItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="listChildrenResponse">
+    <wsdl:part name="parameters" element="ns1:listChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteItems">
+    <wsdl:part name="parameters" element="ns1:deleteItems" />
+  </wsdl:message>
+  <wsdl:message name="search">
+    <wsdl:part name="parameters" element="ns1:search" />
+  </wsdl:message>
+  <wsdl:message name="loadTypesResponse">
+    <wsdl:part name="parameters" element="ns1:loadTypesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LibraryService">
+    <wsdl:operation name="loadContent">
+      <wsdl:input name="loadContent" message="ns1:loadContent" />
+      <wsdl:output name="loadContentResponse" message="ns1:loadContentResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteItems">
+      <wsdl:input name="deleteItems" message="ns1:deleteItems" />
+      <wsdl:output name="deleteItemsResponse" message="ns1:deleteItemsResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="trySaveItem">
+      <wsdl:input name="trySaveItem" message="ns1:trySaveItem" />
+      <wsdl:output name="trySaveItemResponse" message="ns1:trySaveItemResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="guidToPath">
+      <wsdl:input name="guidToPath" message="ns1:guidToPath" />
+      <wsdl:output name="guidToPathResponse" message="ns1:guidToPathResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="loadItems">
+      <wsdl:input name="loadItems" message="ns1:loadItems" />
+      <wsdl:output name="loadItemsResponse" message="ns1:loadItemsResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="tryDeleteItems">
+      <wsdl:input name="tryDeleteItems" message="ns1:tryDeleteItems" />
+      <wsdl:output name="tryDeleteItemsResponse" message="ns1:tryDeleteItemsResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="listAllUnsatisfiedDependencies">
+      <wsdl:input name="listAllUnsatisfiedDependencies" message="ns1:listAllUnsatisfiedDependencies" />
+      <wsdl:output name="listAllUnsatisfiedDependenciesResponse" message="ns1:listAllUnsatisfiedDependenciesResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="loadTypes">
+      <wsdl:input name="loadTypes" message="ns1:loadTypes" />
+      <wsdl:output name="loadTypesResponse" message="ns1:loadTypesResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="moveItems">
+      <wsdl:input name="moveItems" message="ns1:moveItems" />
+      <wsdl:output name="moveItemsResponse" message="ns1:moveItemsResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="listAvailableTypes">
+      <wsdl:input name="listAvailableTypes" message="ns1:listAvailableTypes" />
+      <wsdl:output name="listAvailableTypesResponse" message="ns1:listAvailableTypesResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="copyItems">
+      <wsdl:input name="copyItems" message="ns1:copyItems" />
+      <wsdl:output name="copyItemsResponse" message="ns1:copyItemsResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="saveItem">
+      <wsdl:input name="saveItem" message="ns1:saveItem" />
+      <wsdl:output name="saveItemResponse" message="ns1:saveItemResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="search">
+      <wsdl:input name="search" message="ns1:search" />
+      <wsdl:output name="searchResponse" message="ns1:searchResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="pathToGuid">
+      <wsdl:input name="pathToGuid" message="ns1:pathToGuid" />
+      <wsdl:output name="pathToGuidResponse" message="ns1:pathToGuidResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="listDependentItems">
+      <wsdl:input name="listDependentItems" message="ns1:listDependentItems" />
+      <wsdl:output name="listDependentItemsResponse" message="ns1:listDependentItemsResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="loadVisibleTypes">
+      <wsdl:input name="loadVisibleTypes" message="ns1:loadVisibleTypes" />
+      <wsdl:output name="loadVisibleTypesResponse" message="ns1:loadVisibleTypesResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+    <wsdl:operation name="listChildren">
+      <wsdl:input name="listChildren" message="ns1:listChildren" />
+      <wsdl:output name="listChildrenResponse" message="ns1:listChildrenResponse" />
+      <wsdl:fault name="LibraryException" message="ns1:LibraryException" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
