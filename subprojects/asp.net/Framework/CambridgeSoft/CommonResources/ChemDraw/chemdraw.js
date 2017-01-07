@@ -27,8 +27,6 @@
 
 // ------------------------------------- GLOBAL DATA -------------------------------------------
 // Global data. VERY IMPORTANT: never never change these.
-var CD_CONTROL151CLSID  = "clsid:F974516A-2072-4af1-B063-489FAA6D4177";
-var CD_CONTROL151CONSTCLSID	= "clsid:CDF38697-B099-4355-92AE-54AF31800E49";
 var CD_CONTROL150CLSID	= "clsid:F974516A-2072-4af1-B063-489FAA6D4177";
 //14.0: Using same GUIDs as 13.0
 var CD_CONTROL140CONSTCLSID	= "clsid:CDF38697-B099-4355-92AE-54AF31800E49";
@@ -552,20 +550,6 @@ function cd_isCDActiveXInstalled() {
 	    var str = "";
 		str = str + "try\n";
 		str = str + "{\n";
-		str = str + " // Try 15.1\n";
-		str = str + " var obj15 = new ActiveXObject(\"ChemDrawControl15.ChemDrawCtl\");\n";
-		str = str + " CD_CONTROL_CLSID = CD_CONTROL151CLSID; obj15='';\n";
-		str = str + "} catch(e15)\n";
-		str = str + "{\n";
-		str = str + " try\n";
-		str = str + " {\n";
-		str = str + "  // Try 15.1Constant\n";
-		str = str + "  var obj15c = new ActiveXObject(\"ChemDrawControlConst11.ChemDrawCtl.15.1\");\n";
-		str = str + "  CD_CONTROL_CLSID = CD_CONTROL151CONSTCLSID; obj15c='';\n";
-		str = str + " } catch(e15c)\n";
-		str = str + " {\n";
-		str = str + "try\n";
-		str = str + "{\n";
 		str = str + " // Try 14.0\n";
 		str = str + " var obj14 = new ActiveXObject(\"ChemDrawControl14.ChemDrawCtl\");\n";
 		str = str + " CD_CONTROL_CLSID = CD_CONTROL140CLSID; obj14='';\n";
@@ -663,20 +647,10 @@ function cd_isCDActiveXInstalled() {
 		str = str + "  }";
 		str = str + " }";
 		str = str + "}";
-		str = str + "}";
-		str = str + "}";
 
 		eval(str);
 	}
 	else {
-	document.write("<OBJECT NAME=\"test_151\" WIDTH=0 HEIGHT=0 CLASSID=\"" + CD_CONTROL151CLSID + "\"><param NAME=ViewOnly VALUE=true></OBJECT>");
-	    if (document.all("test_151").Selection != null)
-	        CD_CONTROL_CLSID = CD_CONTROL151CLSID;
-	    else {
-	        document.write("<OBJECT NAME=\"test_151c\" WIDTH=0 HEIGHT=0 CLASSID=\"" + CD_CONTROL151CONSTCLSID + "\"><param NAME=ViewOnly VALUE=true></OBJECT>");
-	        if (document.all("test_151c").Selection != null)
-				CD_CONTROL_CLSID = CD_CONTROL151CONSTCLSID;
-			else {               
 	    document.write("<OBJECT NAME=\"test_140\" WIDTH=0 HEIGHT=0 CLASSID=\"" + CD_CONTROL140CLSID + "\"><param NAME=ViewOnly VALUE=true></OBJECT>");
 	    if (document.all("test_140").Selection != null)
 	        CD_CONTROL_CLSID = CD_CONTROL140CLSID;
@@ -736,8 +710,6 @@ function cd_isCDActiveXInstalled() {
 				}
 			}
 		}
-	}
-	}
 	}
 	return retval;
 }

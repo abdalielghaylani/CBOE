@@ -15,4 +15,3 @@ SET serveroutput on
 @@Instance_CreateFunction.sql
 @@Instance_CreateJob.sql
 @@Instance_enableProxyForInstanceGlobalUser.sql
-@@pkg_Constant_of_Manage_Roles.sql

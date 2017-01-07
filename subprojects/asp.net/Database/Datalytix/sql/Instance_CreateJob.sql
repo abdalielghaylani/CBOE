@@ -6,28 +6,38 @@
 --CREATE JOB
 --#########################################################
 
-PROMPT Starting Instance_CreateJob.sql...
-
--- Connect and assign privillege
 CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 GRANT CREATE PROCEDURE TO &&globalSchemaName;
 GRANT CREATE JOB TO &&globalSchemaName;
 
--- Create clean hitlist table job
-COL nextScript NEW_VALUE nextScript NOPRINT
-SELECT	CASE
-		WHEN  (SELECT COUNT(1) FROM v$option where Upper(parameter) = 'PARTITIONING' and Upper(value) = 'TRUE') > 0
-		THEN  'Instance_CreateCleanHitlistTableJob.sql'
-		ELSE  'continue.sql'
-	END	AS nextScript 
-FROM	DUAL;
-@@&&nextScript 
+CONNECT &&globalSchemaName/&&globalSchemaPass@&&serverName
 
+-- Create PartitionManagement package
+@@Instance_PartitionManagement.sql
 
--- Create other jobs if have
--- ...
+-- Create DBMS JOB
+VARIABLE jobno number;
+BEGIN
+   -- Delete existed jobs	
+    FOR existedJob IN (
+      SELECT *
+        FROM dba_jobs
+        WHERE UPPER(schema_user) = UPPER('&&globalSchemaName')
+          AND UPPER(WHAT) LIKE UPPER('PartitionManagment.UpdateHitlistPartitions(SYSDATE%'))
+    LOOP
+      DBMS_JOB.REMOVE(existedJob.job);
+    END LOOP;
 
--- Connect and revoke privillege
+    -- Create new job
+    DBMS_JOB.SUBMIT(
+      :jobno, 
+      'PartitionManagment.UpdateHitlistPartitions(SYSDATE, ''' || UPPER ('&&globalSchemaName') || ''');',
+      SYSDATE,
+      'SYSDATE + .5');
+    COMMIT;
+END;
+/
+
 CONNECT &&InstallUser/&&sysPass@&&serverName &&AsSysDBA
 REVOKE CREATE PROCEDURE FROM &&globalSchemaName;
 REVOKE CREATE JOB FROM &&globalSchemaName;

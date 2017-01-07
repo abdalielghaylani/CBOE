@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using CambridgeSoft.COE.Registration.Services.AddIns;
 using CambridgeSoft.COE.Registration.Services.Types;
-using ChemDrawControl15;
+using ChemDrawControl14;
 using System.Xml.XPath;
 using System.Xml;
 using Csla.Validation;

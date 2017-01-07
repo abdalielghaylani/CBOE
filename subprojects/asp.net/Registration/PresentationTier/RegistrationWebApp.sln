@@ -1,8 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework", "..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj", "{4CF61F5B-2D46-4136-B277-5080A04B395B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Registration.Services", "..\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj", "{C7998560-8704-4DE0-B00E-A4657273B022}"
@@ -24,6 +22,34 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registration.Core", "Registration.Core\Registration.Core.csproj", "{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}"
 EndProject
 Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 8
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = ..
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		SccProjectFilePathRelativizedFromConnection0 = PresentationTier\\
+		SccProjectUniqueName1 = ..\\..\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
+		SccLocalPath1 = ..\\..\\Framework\\CambridgeSoft
+		SccProjectFilePathRelativizedFromConnection1 = ServiceTier\\CambridgeSoft.COE.Framework\\
+		SccProjectUniqueName2 = ..\\ServiceTier\\CambridgeSoft.COE.Registration.Services\\CambridgeSoft.COE.Registration.Services.csproj
+		SccLocalPath2 = ..
+		SccProjectFilePathRelativizedFromConnection2 = ServiceTier\\CambridgeSoft.COE.Registration.Services\\
+		SccProjectUniqueName3 = ..\\ServiceTier\\RegistrationAddins\\CambridgeSoft.COE.Registration.RegistrationAddins.csproj
+		SccLocalPath3 = ..
+		SccProjectFilePathRelativizedFromConnection3 = ServiceTier\\RegistrationAddins\\
+		SccProjectUniqueName4 = ..\\ServiceTier\\CambridgeSoft.COE.RegistrationAdmin.Services\\CambridgeSoft.COE.RegistrationAdmin.Services.csproj
+		SccLocalPath4 = ..
+		SccProjectFilePathRelativizedFromConnection4 = ServiceTier\\CambridgeSoft.COE.RegistrationAdmin.Services\\
+		SccProjectUniqueName5 = RegistrationWebApp\\RegistrationWebApp.csproj
+		SccLocalPath5 = ..
+		SccProjectFilePathRelativizedFromConnection5 = PresentationTier\\RegistrationWebApp\\
+		SccProjectUniqueName6 = RegistrationWebServices\\Registration.WebServices.csproj
+		SccLocalPath6 = ..
+		SccProjectFilePathRelativizedFromConnection6 = PresentationTier\\RegistrationWebServices\\
+		SccProjectUniqueName7 = Registration.Core\\Registration.Core.csproj
+		SccLocalPath7 = ..
+		SccProjectFilePathRelativizedFromConnection7 = PresentationTier\\Registration.Core\\
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

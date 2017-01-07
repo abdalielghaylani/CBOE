@@ -8,7 +8,7 @@ using System.Xml;
 using System.IO;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COELoggingService;
-using ChemDrawControl15;
+using ChemDrawControl14;
 
 namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
 {
@@ -122,7 +122,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
                     //create list for holding groups to be deleted
                     List<Group> groupsToDelete = new List<Group>();
 
-                    foreach (ChemDrawControl15.Group group in ctrl.Groups)
+                    foreach (ChemDrawControl14.Group group in ctrl.Groups)
                     {
                         if (group.GroupType == CDGroupType.kCDGroupTypeFragment)
                         {
@@ -162,7 +162,7 @@ namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
                     //get rid of the group itself if only one fragment is left
                     if (ctrl.Groups.Count == 2)
                     {
-                        foreach (ChemDrawControl15.Group group in ctrl.Groups)
+                        foreach (ChemDrawControl14.Group group in ctrl.Groups)
                         {
                             if (group.GroupType == CDGroupType.kCDGroupTypeGroup)
                             {

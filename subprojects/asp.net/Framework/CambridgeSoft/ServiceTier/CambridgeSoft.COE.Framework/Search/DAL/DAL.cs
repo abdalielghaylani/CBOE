@@ -10,7 +10,7 @@ using CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries;
 using CambridgeSoft.COE.Framework.Common.SqlGenerator.NonQueries;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.COEDataViewService;
-using Oracle.DataAccess.Client;
+
 
 namespace CambridgeSoft.COE.Framework.COESearchService
 {
@@ -39,24 +39,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             catch (Exception)
             {
 
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Clears the COEFullPageTable based on the user id.
-        /// </summary>
-        public virtual void ClearCOEFullPageTable()
-        {
-            try
-            {
-                string ClientIdValue = Csla.ApplicationContext.User.Identity.Name;
-                DbCommand dbCommand = DALManager.Database.GetStoredProcCommand(Resources.CentralizedStorageDB + ".delete_coefullpage_table");
-                dbCommand.Parameters.Add(new OracleParameter("i_user_id", OracleDbType.Varchar2, ClientIdValue.ToUpper(), ParameterDirection.Input));
-                DALManager.ExecuteNonQuery(dbCommand);
-            }
-            catch (Exception)
-            {
                 throw;
             }
         }
@@ -217,65 +199,12 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             }
         }
 
-
-        public virtual string GetUserName(string name, int hits, string sql)
-        {
-            try
-            {
-                DbCommand dbcommand = DALManager.Database.GetSqlStringCommand(sql);
-                string username = Convert.ToString(DALManager.ExecuteScalar(dbcommand));
-                if (username == "" && hits == 0)
-                {
-                    hits = Convert.ToInt16(System.Configuration.ConfigurationManager.AppSettings["HitsPerPage"]);                   
-                    string insertsql = "INSERT INTO REGDB.HITSPERPAGE(HITS_ID, HITS_USER_CODE, HITS_USER_ID, HITS)" +
-                                       "SELECT COEDB.PEOPLE.PERSON_ID AS HITS_ID, COEDB.PEOPLE.USER_CODE AS HITS_USER_CODE, COEDB.PEOPLE.USER_ID AS HITS_USER_ID, '" + hits + "'" + " AS HITS FROM COEDB.PEOPLE WHERE COEDB.PEOPLE.USER_ID = '" + name.ToUpper() + "'";
-                    DbCommand insertdbcommand = DALManager.Database.GetSqlStringCommand(insertsql);
-                    int insert = Convert.ToInt32(DALManager.ExecuteNonQuery(insertdbcommand));
-                }
-                else if(username != null && hits != 0)
-                {
-                    string updatesql = "UPDATE REGDB.HITSPERPAGE SET REGDB.HITSPERPAGE.HITS = '" + hits + "'" +" WHERE REGDB.HITSPERPAGE.HITS_USER_ID = '" + name.ToUpper() + "'";
-                    DbCommand updatedbcommand = DALManager.Database.GetSqlStringCommand(updatesql);
-                    int update = Convert.ToInt32(DALManager.ExecuteNonQuery(updatedbcommand));                    
-
-                }
-
-                return username;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-        }
-
-
-        public virtual int GetUserID(int hitsID, string sql)
-        {
-            DbCommand dbcommand = DALManager.Database.GetSqlStringCommand(sql);
-            int Hits = Convert.ToInt16(DALManager.ExecuteScalar(dbcommand));
-            return Hits;
-        }
         /// <summary>
         /// Get RowCount use a DBMS type specific method table
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
         public virtual HitListInfo GetFastRecordCount(HitListInfo hitListInfo, string tableName, string owner)
-        {
-            //this has to be overridden so throw an error if there is not override
-            return null;
-        }
-
-        /// <summary>
-        /// Refreshes the user registry record count
-        /// </summary>
-        /// <param name="hitListInfo">The Hitlist info</param>
-        /// <param name="tableName">contains the table name for the query</param>
-        /// <param name="owner">table owner</param>
-        /// <returns>updated hitlistinfo with record count</returns>
-        public virtual HitListInfo RefreshDatabaseRecordCount(HitListInfo hitListInfo, string tableName, string owner)
         {
             //this has to be overridden so throw an error if there is not override
             return null;

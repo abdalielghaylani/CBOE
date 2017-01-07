@@ -8,7 +8,7 @@ using CambridgeSoft.COE.Registration.Services.AddIns;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Registration.Services.RegistrationAddins.localhost1;
-using ChemDrawControl15;
+using ChemDrawControl14;
 
 
 

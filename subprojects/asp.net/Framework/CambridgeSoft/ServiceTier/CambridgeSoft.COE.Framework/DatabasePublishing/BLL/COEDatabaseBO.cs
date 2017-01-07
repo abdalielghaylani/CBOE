@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Xml;
 
@@ -418,7 +417,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                     if (!CanAddObject())
                         throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject + " COEDatabaseBO");
                     COEDatabaseBO returnBO = DataPortal.Create<COEDatabaseBO>(
-                        new CreateBasedOnCriteria(this.Name, _isPublishRelationships, this.Instance, this.Owner, false));
+                        new CreateBasedOnCriteria(this.Name, password, _isPublishRelationships, this.Instance, this.Owner, false));
 
                     returnBO._isPublished = true;
                     return returnBO;
@@ -434,7 +433,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             }
         }
 
-        public COEDatabaseBO TryPublish(bool needAuthorize = false, string granterUser = null, string password = null)
+        public COEDatabaseBO TryPublish(string password)
         {
             try
             {
@@ -442,15 +441,9 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                 if (this._isPublished == false)
                 {
                     if (!CanAddObject())
-                    {
-                        throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject +
-                                                                    " COEDatabaseBO");
-                    }
-
-                    var criteria = new CreateBasedOnCriteria(this.Name, _isPublishRelationships, this.Instance,
-                        this.Owner, true, needAuthorize, granterUser, password);
-
-                    COEDatabaseBO returnBO = DataPortal.Create<COEDatabaseBO>(criteria);
+                        throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject + " COEDatabaseBO");
+                    COEDatabaseBO returnBO = DataPortal.Create<COEDatabaseBO>(
+                        new CreateBasedOnCriteria(this.Name, password, _isPublishRelationships, this.Instance, this.Owner, true));
 
                     returnBO._isPublished = true;
                     return returnBO;
@@ -472,30 +465,16 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             return DataPortal.Create<COEDatabaseBO>(publishCriteria);
         }
 
-        public COEDatabaseBO RefreshPublish(bool needAuthorize = false, string granterUser = null,
-            string password = null)
+        public COEDatabaseBO RefreshPublish()
         {
             try
             {
                 if (this._isPublished == true)
                 {
                     SetDatabaseName();
-
                     if (!CanEditObject())
-                    {
-                        throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject +
-                                                                    " COEDatabaseBO");
-                    }
-
-                    string dataViewStr = this.BuildDataViewForSchema(_owner, _instanceName);
-                    var dataView = new COEDataView();
-                    dataView.GetFromXML(dataViewStr);
-
-                    // Authorize schema access privileges to COEUSER
-                    this.AuthorizeSchema(ref dataView, this.Name, this.Instance, needAuthorize, granterUser, password);
-
-                    this._coeDataView = dataView;
-
+                        throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject + " COEDatabaseBO");
+                    this.COEDataView.GetFromXML(this.BuildDataViewForSchema(_owner, _instanceName));
                     return DataPortal.Update<COEDatabaseBO>(this);
                 }
                 else
@@ -580,28 +559,28 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         }
 
         [Serializable()]
-        public class CreateBasedOnCriteria
+        protected class CreateBasedOnCriteria
         {
             internal string _password = String.Empty;
-            internal string _targetSchemaName = String.Empty;
-            internal string _granterSchemaName = String.Empty;
+            internal string _name = String.Empty;
             internal string _instanceName = string.Empty;
             internal string _ownerName = string.Empty;
             internal bool _addRelationships = true;
             internal bool _isTestMode = false;
-            internal bool _needAuthorize = false;
 
-            public CreateBasedOnCriteria(string targetSchemaName, bool addRelationships, string instanceName, string ownerName, 
-                bool isTestMode = false, bool needAuthorize = false, string granterSchemaName = null, string granterSchemaPwd = null)
+            public CreateBasedOnCriteria(string name, string password, string instanceName, string ownerName)
             {
-                _targetSchemaName = targetSchemaName;
+                _name = name;
+                _password = password;
                 _instanceName = instanceName;
                 _ownerName = ownerName;
-                _granterSchemaName = granterSchemaName;
-                _password = granterSchemaPwd;
+            }
+
+            public CreateBasedOnCriteria(string name, string password, bool addRelationships, string instanceName, string ownerName, bool isTestMode = false)
+                : this(name, password, instanceName, ownerName)
+            {
                 _addRelationships = addRelationships;
                 _isTestMode = isTestMode;
-                _needAuthorize = needAuthorize;
             }
         }
 
@@ -674,9 +653,9 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 
         private void DataPortal_Create(CreateBasedOnCriteria criteria)
         {
-            _instanceName = criteria._instanceName;
+            _password = criteria._password;
             if (_coeDAL == null) { LoadDAL(); }
-            Insert(_coeDAL, criteria);
+            Insert2(_coeDAL, criteria);
         }
 
         private void DataPortal_Create(PublishOnlyCriteria criteria)
@@ -766,39 +745,42 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 
         protected void Insert(DAL _coeDAL, CreateBasedOnCriteria criteria)
         {
-            if (criteria != null)
+            Insert2(_coeDAL, null);
+        }
+
+        protected void Insert2(DAL _coeDAL, CreateBasedOnCriteria criteria)
+        {
+            var dbInstance = ConfigurationUtilities.GetInstanceData(criteria._instanceName);
+            var globalDbName = dbInstance.IsCBOEInstance ? dbInstance.DatabaseGlobalUser : dbInstance.InstanceName + "." + dbInstance.DatabaseGlobalUser;
+
+            LoadGlobalDAL(globalDbName);
+
+            if (criteria != null && _globalDAL.AuthenticateUser(criteria._name, criteria._password, dbInstance.HostName, dbInstance.Port, dbInstance.SID))
             {
-                var dbInstance = ConfigurationUtilities.GetInstanceData(criteria._instanceName);
-                var globalDbName = dbInstance.IsCBOEInstance
-                    ? dbInstance.DatabaseGlobalUser
-                    : dbInstance.InstanceName + "." + dbInstance.DatabaseGlobalUser;
-
-                // get DAL for coeuser
-                LoadGlobalDAL(globalDbName);
-
                 try
                 {
-                    _name = criteria._targetSchemaName;
+                    //grant select through proxy 
+                    GrantProxyAccess(criteria._name, criteria._password, dbInstance.DatabaseGlobalUser);
 
+                    //dal must be reloaded because grant proxy uses the security dal
+                    LoadDAL();
+                    _name = criteria._name;
                     //get the dataview representation for the schema
-                    string dataViewStr = (this.COEDataView != null && this.COEDataView.Tables.Count > 0)
-                        ? this.COEDataView.ToString()
-                        : BuildDataViewForSchema(criteria);
+                    string dataview = (this.COEDataView != null && this.COEDataView.Tables.Count > 0) ? this.COEDataView.ToString() : BuildDataViewForSchema(criteria);
+                    //insert dataview in coeschema
 
-                    var dbName = dbInstance.IsCBOEInstance
-                        ? criteria._targetSchemaName
-                        : criteria._instanceName + "." + criteria._targetSchemaName;
+                    var dbName = dbInstance.IsCBOEInstance ? criteria._name : criteria._instanceName + "." + criteria._name;
 
                     // If this is test mode, just test the security, do not save into database.
                     if (!criteria._isTestMode)
                     {
-                        _id = _coeDAL.InsertCOEDatabaseDataView(dbName, dataViewStr);
+                        _id = _coeDAL.InsertCOEDatabaseDataView(dbName, dataview);
 
                         // create base roles and add to security role and generic privilege table
                         // Only when its coe instance db, grant permission.
                         if (dbInstance.IsCBOEInstance)
                         {
-                            AddToCOESecurity(criteria._targetSchemaName);
+                            AddToCOESecurity(criteria._name);
                         }
 
                         //add to coeframeworkconfig
@@ -806,13 +788,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                     }
 
                     // populate return object
-                    var dataView = COEDataViewUtilities.DeserializeCOEDataView(dataViewStr);
-
-                    // Authorize privilege on the schema
-                    this.AuthorizeSchema(ref dataView, criteria._targetSchemaName,
-                        criteria._instanceName, criteria._needAuthorize, criteria._granterSchemaName, criteria._password);
-
-                    _coeDataView = dataView;
+                    _coeDataView = (COEDataView)COEDataViewUtilities.DeserializeCOEDataView(dataview);
                     _dateCreated = new SmartDate(DateTime.Now);
                     _isPublished = true;
                     MarkOld();
@@ -826,44 +802,6 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             {
                 throw new Exception("Owner/Password is invalid");
             }
-        }
-
-        // Grant select permission on all tables in the added schema
-        private void AuthorizeSchema(ref COEDataView dataView, string targetSchema,
-            string instance, bool needAuthorize, string granterSchema, string password)
-        {
-            var dbInstance = ConfigurationUtilities.GetInstanceData(instance);
-            var globalDbName = dbInstance.IsCBOEInstance
-                ? dbInstance.DatabaseGlobalUser
-                : dbInstance.InstanceName + "." + dbInstance.DatabaseGlobalUser;
-            var globalDb = ConfigurationUtilities.GetDatabaseData(globalDbName);
-
-            List<string> tableNames = dataView.Tables.Select(table => table.Name).ToList();
-
-            // granter select privilege
-            if (needAuthorize)
-            {
-                OracleDataAccessClientDAL.GrantSelectPrivilegeOnTables(
-                    targetSchema, tableNames, granterSchema, password,
-                    dbInstance.HostName, dbInstance.Port,
-                    dbInstance.SID, globalDb.Owner);
-            }
-
-            // find tables that COEUSER can't SELECT
-            OracleDataAccessClientDAL.FindUnselectableTables(targetSchema, ref tableNames,
-                dbInstance.HostName, dbInstance.Port,
-                dbInstance.SID, globalDb.Owner, DecryptPassword(globalDb.Password));
-
-            // remove unselectable tables from data view
-            foreach (var table in tableNames)
-            {
-                dataView.RemoveTable(table);
-            }
-        }
-
-        private static string DecryptPassword(string password)
-        {
-            return Utilities.IsRijndaelEncrypted(password) ? Utilities.DecryptRijndael(password) : password;
         }
 
         protected override void DataPortal_Insert()
@@ -1014,15 +952,11 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             string qualifiedDatabase = isMainInstance ? owner : instanceName + "." + owner;
 
             DatabaseSchema = this.GetDataSet(_globalDAL, owner);
-
             definedDatabaseSchema = AddIdToTables(_globalDAL, owner, DatabaseSchema);
 
             PublishTableDataView(qualifiedDatabase, coeDataView, definedDatabaseSchema.Tables["DataTables"]);
-
             if (_isPublishRelationships)
-            {
                 PublishRelationDataView(coeDataView, definedDatabaseSchema.Tables["RelationTables"]);
-            }
 
             coeDataView.Database = qualifiedDatabase;
 
@@ -1032,7 +966,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         protected string BuildDataViewForSchema(CreateBasedOnCriteria criteria)
         {
             _isPublishRelationships = criteria._addRelationships;
-            return BuildDataViewForSchema(criteria._targetSchemaName, criteria._instanceName);
+            return BuildDataViewForSchema(criteria._name, criteria._instanceName);
         }
 
         private void AddToCOESecurity(string ownerName)
@@ -1331,7 +1265,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                 indexTypeDataView = new DataView(indexTypeDataTable, "", "table_name, column_name", DataViewRowState.CurrentRows);
             }
 
-            //get the index names of selected database from dba_indexes table - PP on 29Jan2013
+            //get the index names of selected database from all_indexes table - PP on 29Jan2013
             DataTable indexNameDataTable = new DataTable("indexNameDataTable");
             indexNameDataTable = coeDAL.GetIndexFields(dataBase);
             DataView indexNameDataView = null;

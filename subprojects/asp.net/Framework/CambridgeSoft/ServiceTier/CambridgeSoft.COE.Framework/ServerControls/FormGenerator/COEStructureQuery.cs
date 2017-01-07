@@ -1281,8 +1281,8 @@ namespace CambridgeSoft.COE.Framework.Controls.COEFormGenerator
             }
             else
             {
-                Criteria.TetrahedralStereo = SearchCriteria.TetrahedralStereoMatching.Any;
-                Criteria.DoubleBondStereo = SearchCriteria.COEBoolean.No;
+                Criteria.TetrahedralStereo = SearchCriteria.TetrahedralStereoMatching.Yes;
+                Criteria.DoubleBondStereo = SearchCriteria.COEBoolean.Yes;
                 Criteria.RelativeTetStereo = SearchCriteria.COEBoolean.No;
             }
             return Criteria;

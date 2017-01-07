@@ -439,8 +439,6 @@ CREATE OR REPLACE TYPE obj_privilege AS OBJECT(priv_scope VARCHAR2(100), priv_na
 /
 CREATE OR REPLACE TYPE obj_privilege_table IS TABLE OF obj_privilege
 /
---To support wm_concat function in Oracle12c; creating a user defined function for the same
-@@"sql\t_wm_concat.sql"
 
 
 --#########################################################

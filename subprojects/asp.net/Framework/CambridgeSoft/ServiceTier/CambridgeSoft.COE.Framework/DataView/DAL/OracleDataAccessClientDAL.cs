@@ -569,7 +569,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         {
             List<string> lstFields = new List<string>();
 
-            string sql = "select column_name,data_type from dba_tab_columns where table_name =" + DALManager.BuildSqlStringParameterName("tName");
+            string sql = "select column_name,data_type from all_tab_columns where table_name =" + DALManager.BuildSqlStringParameterName("tName");
             DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
             DALManager.Database.AddParameter(dbCommand, DALManager.BuildSqlStringParameterName("tName"), DbType.AnsiString, 255, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, strTableName);
 
@@ -625,16 +625,16 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
                 if (isBAViews)
                 {
-                    sql.AppendFormat(" SELECT COLUMN_NAME , DATA_TYPE, NULLABLE  FROM DBA_TAB_COLUMNS WHERE COLUMN_NAME='ROW_ID' AND OWNER={0} AND TABLE_NAME={1}", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
+                    sql.AppendFormat(" SELECT COLUMN_NAME , DATA_TYPE, NULLABLE  FROM ALL_TAB_COLUMNS WHERE COLUMN_NAME='ROW_ID' AND OWNER={0} AND TABLE_NAME={1}", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
                 }
                 else
                 {
-                    sql.Append(" SELECT dba_cons_columns.table_name, dba_cons_columns.column_name,dba_cons_columns.owner,dba_cons_columns.constraint_name,dba_constraints.constraint_type");
-                    sql.Append(" FROM dba_constraints ");
-                    sql.Append(" INNER JOIN dba_cons_columns ");
-                    sql.Append(" ON  dba_constraints.OWNER=all_cons_columns.OWNER ");
-                    sql.AppendFormat(" WHERE dba_constraints.owner= {0} AND dba_constraints.table_name= {1} AND dba_constraints.constraint_name=dba_cons_columns.constraint_name AND ", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
-                    sql.Append(" UPPER( dba_constraints.constraint_type) IN ('P')");
+                    sql.Append(" SELECT all_cons_columns.table_name, all_cons_columns.column_name,all_cons_columns.owner,all_cons_columns.constraint_name,all_constraints.constraint_type");
+                    sql.Append(" FROM all_constraints ");
+                    sql.Append(" INNER JOIN all_cons_columns ");
+                    sql.Append(" ON  all_constraints.OWNER=all_cons_columns.OWNER ");
+                    sql.AppendFormat(" WHERE all_constraints.owner= {0} AND all_constraints.table_name= {1} AND all_constraints.constraint_name=all_cons_columns.constraint_name AND ", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
+                    sql.Append(" UPPER( all_constraints.constraint_type) IN ('P')");
                 }
                 using (DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql.ToString()))
                 {
@@ -673,7 +673,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             //{
             //    StringBuilder sql = new StringBuilder();
 
-            //    sql.Append(" SELECT  OWNER, COLUMN_NAME, DATA_TYPE, NULLABLE, DATA_LENGTH, DATA_PRECISION, DATA_SCALE FROM DBA_TAB_COLUMNS ");
+            //    sql.Append(" SELECT  OWNER, COLUMN_NAME, DATA_TYPE, NULLABLE, DATA_LENGTH, DATA_PRECISION, DATA_SCALE FROM ALL_TAB_COLUMNS ");
             //    sql.AppendFormat(" WHERE UPPER(OWNER)={0} AND UPPER(TABLE_NAME)={1} ", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
             //    sql.Append(" AND UPPER(DATA_TYPE) IN ('VARCHAR2','NVARCHAR2','NUMBER') AND UPPER(NULLABLE)='N' ");
                 

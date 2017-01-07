@@ -1277,33 +1277,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             }
         }
 
-        public string GetUserName(string name, int hits)
-        {
-            try
-            {
-                string sql = "SELECT HITS_ID FROM REGDB.HITSPERPAGE WHERE HITS_USER_ID = '" + name.ToUpper() +"'";
-                return GetUserName(name, hits, sql);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }
-
-        public int GetHitsPerPage(int ID)
-        {
-            try
-            {
-                string sql = "SELECT HITS FROM REGDB.HITSPERPAGE WHERE HITS_ID = '" + ID + "'";
-                return GetHitsPerPage(ID, sql);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
         private int GetExactRecordCount(COEDataView dataView, ConnStringType connStringType) {
             try {
                 GetExactRecordCountCommand result;
@@ -1311,56 +1284,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 result = DataPortal.Execute<GetExactRecordCountCommand>(new GetExactRecordCountCommand(dataView, connStringType));
                 return result.RecordCount;
             } catch(Exception) {
-                throw;
-            }
-        }
-
-        private string GetUserName(string name, int hits, string sql)
-        {
-            try
-            {
-                GetUserNameCommand result;
-                result = DataPortal.Execute<GetUserNameCommand>(new GetUserNameCommand(name, hits, sql));
-                return result.UserName;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        private int GetHitsPerPage(int ID, string sql)
-        {
-            try
-            {
-                GetUserIDCommand result;
-                result = DataPortal.Execute<GetUserIDCommand>(new GetUserIDCommand(ID, sql));
-                return result.Hits;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-        }
-
-        /// <summary>
-        /// <para>Refreshes the user registry record count.</para>
-        /// </summary>
-        /// <param name="dataView">A database view.</param>
-        /// <returns>The refreshed record count.</returns>
-        public int RefreshDatabaseRecordCount(COEDataView dataView)
-        {
-            try
-            {
-                this.ApplyDataviewHandling(ref dataView);
-                RefreshDatabaseRecordCountCommand result;
-                //this is returned the RefreshDatabaseRecordCountCommand object so you can call methods within it
-                result = DataPortal.Execute<RefreshDatabaseRecordCountCommand>(new RefreshDatabaseRecordCountCommand(dataView, GetConnStringType(dataView)));
-                return result.RecordCount;
-            }
-            catch (Exception)
-            {
                 throw;
             }
         }
@@ -1881,69 +1804,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
         }
 
         [Serializable]
-        private class GetUserNameCommand : CommandBase
-        {
-            private string _username;
-            private string _name;
-            private string _sql;
-            private int _hits;
-            public GetUserNameCommand( string name, int hits, string sql)
-            {
-                _name = name;
-                _sql = sql;
-                _hits = hits;
-            }
-            public string UserName {
-                get { return _username; }
-                set { _username = value; }
-            }
-
-            protected override void  DataPortal_Execute()
-            {
- 	         try {
-                 SearchManager searchManager = new SearchManager();
-                 _username = searchManager.GetUserName(_name, _hits, _sql);
-             } catch(Exception) {
-                 throw;
-             }
-            }            
-
-        }
-
-        [Serializable]
-        private class GetUserIDCommand : CommandBase
-        {
-            private int _hits;
-            private string _sql;
-            private int _hitsID;
-            public GetUserIDCommand(int hits_ID, string sql)
-            {
-               
-                _sql = sql;
-                _hitsID = hits_ID;
-            }
-            public int Hits
-            {
-                get { return _hits; }
-                set { _hits = value; }
-            }
-
-            protected override void DataPortal_Execute()
-            {
-                try
-                {
-                    SearchManager searchManager = new SearchManager();
-                    _hits = searchManager.GetUserID(_hitsID, _sql);
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-
-        }
-
-        [Serializable]
         private class GetFastRecordCountCommand : CommandBase {
             //what is returned from the command
             private int _recordCount;
@@ -1980,47 +1840,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                     searchManager.GetFastRecordCount(info, _dataView, _tableId, _connStringType);
                     _recordCount = info.RecordCount;
                 } catch(Exception) {
-                    throw;
-                }
-            }
-        }
-
-        [Serializable]
-        private class RefreshDatabaseRecordCountCommand : CommandBase
-        {
-            //what is returned from the command
-            private int _recordCount;
-            private int _tableId;
-            private COEDataView _dataView;
-            private ConnStringType _connStringType;
-
-
-            public RefreshDatabaseRecordCountCommand(COEDataView dataView, ConnStringType connStringType)
-            {
-                //constructor to set properties that match input paramters
-                _dataView = dataView;
-                _connStringType = connStringType;
-                //assign base table id as default table id
-                _tableId = _dataView.Basetable; 
-            }
-
-            public int RecordCount
-            {
-                get { return _recordCount; }
-                set { _recordCount = value; }
-            }
-
-            protected override void DataPortal_Execute()
-            {
-                try
-                {
-                    SearchManager searchManager = new SearchManager();
-                    HitListInfo info = new HitListInfo();
-                    searchManager.RefreshDatabaseRecordCount(info, _dataView, _tableId, _connStringType);
-                    _recordCount = info.RecordCount;
-                }
-                catch (Exception)
-                {
                     throw;
                 }
             }

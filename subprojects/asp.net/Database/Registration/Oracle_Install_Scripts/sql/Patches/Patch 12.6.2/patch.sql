@@ -90,12 +90,10 @@ UPDATE &&schemaName..Globals
 COMMIT;
 
 prompt **** Patch &&currentPatch Applied ****
---Added the check for CurrentPatch = 12.6.2 to avoid the oracle error SP2-0309: SQL*Plus command procedures may only be nested to a depth of 20
---This is caused due to the nested script execution has reached the depth limit of 20 starting from 11.0.1
---When 12.6.2 is reached, we end the script execution and go back to the header file and continue the remaining patch scripts as a fresh nested script.
+
 COL setNextPatch NEW_VALUE setNextPatch NOPRINT
 SELECT	CASE
-		WHEN  '&&toVersion'='&&currentPatch' OR '&&currentPatch' = '12.6.2'
+		WHEN  '&&toVersion'='&&currentPatch'
 		THEN  'sql\Patches\stop.sql'
 		ELSE  '"sql\Patches\Patch &&nextPatch\patch.sql"'
 	END	AS setNextPatch 

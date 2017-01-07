@@ -4,9 +4,14 @@ using System.Text;
 using System.Data;
 using System.Data.Common;
 using Oracle.DataAccess.Client;
+using Oracle.DataAccess.Types;
 using Csla.Data;
+using CambridgeSoft.COE.Framework.Common.SqlGenerator;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.Properties;
+using CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries;
+using CambridgeSoft.COE.Framework.Common.SqlGenerator.NonQueries;
+using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 
@@ -88,94 +93,6 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             }
         }
 
-        /// <summary>
-        /// Grant SELECT privilege on the given tables to Datalytix global user through an specified granter user
-        /// </summary>
-        /// <param name="targetSchema">the schema of the tables to grant privilege</param>
-        /// <param name="tableNames">the tables to give privilege</param>
-        /// <param name="granterSchema">the granter user</param>
-        /// <param name="granterPwd">the granter password</param>
-        /// <param name="host">the host name of the oracle database</param>
-        /// <param name="port">the port number of the oracle database</param>
-        /// <param name="serviceName">the service name of the oracle database</param>
-        /// <param name="globalDb">Datalytix global user</param>
-        /// <returns></returns>
-        public static int GrantSelectPrivilegeOnTables(string targetSchema, List<string> tableNames, string granterSchema,
-            string granterPwd, string host, int port, string serviceName, string globalDb)
-        {
-            int tableGranted = 0;
-            using (var con = new Oracle.DataAccess.Client.OracleConnection())
-            {
-                con.ConnectionString = Utilities.GetConnectString(host, port, serviceName, granterSchema, granterPwd);
-                con.Open();
-
-                //execute grant commands
-                foreach (var table in tableNames)
-                {
-                    OracleCommand cmd = con.CreateCommand();
-                    cmd.CommandText = string.Format("GRANT SELECT ON {0}.{1} TO {2}", targetSchema, table, globalDb);
-
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        tableGranted++;
-                    }
-                    catch (Exception ex)
-                    {
-                        // don't care
-                    }
-                }
-            }
-
-            return tableGranted;
-        }
-
-        /// <summary>
-        /// Find all the tables which Datalytix global user has not SELECT privilege
-        /// </summary>
-        /// <param name="targetSchema">the schema of the tables</param>
-        /// <param name="tableNames">the tables to find in</param>
-        /// <param name="host">the host name of the oracle database</param>
-        /// <param name="port">the port number of the oracle database</param>
-        /// <param name="serviceName">the service name of the oracle database</param>
-        /// <param name="globalDb">Datalytix global user</param>
-        /// <param name="globalPwd">Datalytix glogbale user password</param>
-        public static void FindUnselectableTables(string targetSchema, ref List<string> tableNames, string host, int port,
-            string serviceName, string globalDb, string globalPwd)
-        {
-            using (var con = new Oracle.DataAccess.Client.OracleConnection())
-            {
-                con.ConnectionString = Utilities.GetConnectString(host, port, serviceName, globalDb, globalPwd);
-                con.Open();
-
-                var allCmd = con.CreateCommand();
-                allCmd.CommandText = "SELECT * FROM USER_SYS_PRIVS WHERE PRIVILEGE='SELECT ANY TABLE'";
-                using (var allReader = allCmd.ExecuteReader())
-                {
-                    if (allReader.Read())
-                    {
-                        // COEUSER has "SELECT ANY TABLE" privilege
-                        tableNames = new List<string>();
-                    }
-                    else
-                    {
-                        var tablesCmd = con.CreateCommand();
-                        tablesCmd.CommandText =
-                            string.Format(
-                                "SELECT TABLE_NAME FROM USER_TAB_PRIVS WHERE PRIVILEGE = 'SELECT' AND OWNER = '{0}'",
-                                targetSchema.ToUpper());
-                        using (var tablesReader = tablesCmd.ExecuteReader())
-                        {
-                            while (tablesReader.Read())
-                            {
-                                tableNames.Remove(tablesReader.GetString(0));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
         internal override void GrantTable(string databaseName, string tableName)
         {
             if (databaseName != Resources.CentralizedStorageDB) // To avoid: ORA-01749: you may not GRANT/REVOKE privileges to/from yourself
@@ -238,11 +155,11 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                                                         AO.object_type AS type,
                                                         d.isPrimaryKey IS_PRIMARY_KEY,
                                                         row_number() OVER (ORDER BY tc.table_name, tc.column_name) rn
-                                                  FROM dba_Tab_Columns TC
-                                                   INNER JOIN dba_Objects AO
+                                                  FROM All_Tab_Columns TC
+                                                   INNER JOIN All_Objects AO
                                                      ON AO.object_name = TC.table_name
                                                    LEFT OUTER JOIN (SELECT 'true' as isPrimaryKey, cc.column_name, cc.table_name
-				                                                FROM dba_Cons_Columns CC, dba_Constraints C
+				                                                FROM All_Cons_Columns CC, All_Constraints C
 				                                                WHERE CC.constraint_name = C.constraint_name AND
 				                                                 C.constraint_type = 'P' AND
 				                                                 C.owner = CC.owner) d ON d.table_name = tc.table_name AND
@@ -278,9 +195,9 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 		                C.TABLE_NAME AS FK_TABLE_NAME,
 		                B.TABLE_NAME AS PK_TABLE_NAME,
 		                B.COLUMN_NAME AS PK_Column
-                FROM 	DBA_CONSTRAINTS A,
-		                DBA_CONS_COLUMNS B,
-		                DBA_CONS_COLUMNS C
+                FROM 	ALL_CONSTRAINTS A,
+		                ALL_CONS_COLUMNS B,
+		                ALL_CONS_COLUMNS C
                 WHERE 	A.R_CONSTRAINT_NAME=B.CONSTRAINT_NAME
                 AND 	A.CONSTRAINT_NAME=C.CONSTRAINT_NAME
                 AND 	A.OWNER=C.OWNER
@@ -535,8 +452,8 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             try
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT AI.index_name AS indexName, AIC.column_name, AI.table_name FROM dba_indexes AI ");
-                sql.Append("INNER JOIN dba_ind_columns AIC ON AI.table_name= AIC.table_name AND ");
+                sql.Append("SELECT AI.index_name AS indexName, AIC.column_name, AI.table_name FROM all_indexes AI ");
+                sql.Append("INNER JOIN all_ind_columns AIC ON AI.table_name= AIC.table_name AND ");
                 sql.Append("AI.index_name = AIC.index_name and AI.table_owner= AIC.table_owner ");
                 sql.AppendFormat("where AI.table_owner = {0}", DALManager.BuildSqlStringParameterName("database"));
 
@@ -570,8 +487,8 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             try
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT AI.index_name AS indexName, AIC.column_name, AI.table_name FROM dba_indexes AI ");
-                sql.Append("INNER JOIN dba_ind_columns AIC ON AI.table_name= AIC.table_name AND ");
+                sql.Append("SELECT AI.index_name AS indexName, AIC.column_name, AI.table_name FROM all_indexes AI ");
+                sql.Append("INNER JOIN all_ind_columns AIC ON AI.table_name= AIC.table_name AND ");
                 sql.Append("AI.index_name = AIC.index_name and AI.table_owner= AIC.table_owner ");
                 sql.AppendFormat("WHERE AI.table_owner = {0} AND AI.table_name = {1}", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
 
@@ -766,7 +683,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 
         private bool IsSequenceExist(OracleConnection conn, string sequenceName, string owner)
         {
-            string sql = "SELECT COUNT(*) FROM dba_sequences WHERE sequence_name = :sequenceName and SEQUENCE_OWNER = :owner";
+            string sql = "SELECT COUNT(*) FROM all_sequences WHERE sequence_name = :sequenceName and SEQUENCE_OWNER = :owner";
 
             OracleCommand dbCommand = new OracleCommand(sql);
             dbCommand.Connection = conn;

@@ -12,14 +12,10 @@
     <AssemblyName>CambridgeSoft.COE.Registration.Services</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Registration.snk</AssemblyOriginatorKeyFile>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
     <DelaySign>false</DelaySign>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -92,9 +88,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ChemDrawControl15">
-      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl15.dll</HintPath>
+    <Reference Include="Interop.ChemDrawControl14, Version=14.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl14.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b36ca0e12e438b5, processorArchitecture=MSIL">

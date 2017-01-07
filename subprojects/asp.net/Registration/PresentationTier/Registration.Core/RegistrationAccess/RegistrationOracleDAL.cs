@@ -127,26 +127,6 @@ namespace CambridgeSoft.COE.Registration.Access
             }
         }
 
-        public void EndBulkLoadingStrategy()
-        {
-            string session = CambridgeSoft.COE.Framework.Common.COEUser.SessionID.ToString();
-            string cacheKeyTemplate = "{0}.{1}.RegDALConnection";
-            string persistentConnectionKey = string.Format(cacheKeyTemplate, Csla.ApplicationContext.User.Identity.Name, session);
-            try
-            {
-                object existingPersistentConnection = AppDomain.CurrentDomain.GetData(persistentConnectionKey);
-                if (existingPersistentConnection != null)
-                {
-                    _persistentConenctionWrapper = (PersistentConnectionWrapper)existingPersistentConnection;
-                    _persistentConenctionWrapper.Dispose();
-                }
-            }
-            catch (Exception ex)
-            {
-                COEExceptionDispatcher.HandleDALException(ex, null);
-            }        
-        }
-
         /// <summary>
         /// Sets up a cached Oracle.DataAccess.Client.OracleConnection object, and configures
         /// a System.Timers.Timer object to provide a cache time-out mechanism.
