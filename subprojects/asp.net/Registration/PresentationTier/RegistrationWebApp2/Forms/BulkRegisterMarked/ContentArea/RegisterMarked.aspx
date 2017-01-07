@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master"
-    Codebehind="RegisterMarked.aspx.cs" Inherits="RegistrationWebApp.Forms.BulkRegisterMarked.ContentArea.BulkRegister" %>
+    Codebehind="RegisterMarked.aspx.cs" Inherits="RegistrationWebApp2.Forms.BulkRegisterMarked.ContentArea.BulkRegister" %>
 
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>

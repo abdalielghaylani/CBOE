@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="ComponentDuplicates.aspx.cs" Inherits="RegistrationWebApp.Forms.ComponentDuplicates.ContentArea.ComponentDuplicates"
+    Codebehind="ComponentDuplicates.aspx.cs" Inherits="RegistrationWebApp2.Forms.ComponentDuplicates.ContentArea.ComponentDuplicates"
     Title="Untitled Page" EnableViewState="true" ValidateRequest="false" %>
 
 <%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea"

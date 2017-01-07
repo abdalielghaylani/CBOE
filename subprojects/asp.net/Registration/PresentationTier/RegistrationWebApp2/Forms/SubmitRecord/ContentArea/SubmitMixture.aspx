@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="SubmitMixture.aspx.cs" Inherits="RegistrationWebApp.Forms.SubmitRecord.ContentArea.SubmitMixturePage" ValidateRequest="false" %>
+    Codebehind="SubmitMixture.aspx.cs" Inherits="RegistrationWebApp2.Forms.SubmitRecord.ContentArea.SubmitMixturePage" ValidateRequest="false" %>
 
 <%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea"
     TagPrefix="uc2" %>

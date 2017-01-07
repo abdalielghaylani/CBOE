@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master" Inherits="RegistrationWebApp.Forms.Public.ContentArea.About" Codebehind="About.aspx.cs" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master" Inherits="RegistrationWebApp2.Forms.Public.ContentArea.About" Codebehind="About.aspx.cs" %>
 <asp:Content ID="CompoundDetails" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">
     <table class="PagesContentTable" cellspacing="0">
         <tr class="PagesToolBar">

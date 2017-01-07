@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RegistryRecordNavigation.ascx.cs" Inherits="RegistrationWebApp.Forms.Public.UserControls.RegistryRecordNavigation" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RegistryRecordNavigation.ascx.cs" Inherits="RegistrationWebApp2.Forms.Public.UserControls.RegistryRecordNavigation" %>
 <%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
 <asp:HiddenField runat="server" ID="CompoundIDHidden" />

@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" Codebehind="NavigationPanel.ascx.cs"
-    Inherits="RegistrationWebApp.Forms.RegistrationAdmin.UserControls.NavigationPanel" %>
+    Inherits="RegistrationWebApp2.Forms.RegistrationAdmin.UserControls.NavigationPanel" %>
 <ul class="UlTabsHeader">
     <li class="LiFirstTabsHeader"></li>
     <li id="LiPropertyList" class="SelectedTabsHeader" runat="server">

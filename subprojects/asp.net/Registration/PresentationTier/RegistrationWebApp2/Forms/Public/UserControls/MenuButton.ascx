@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MenuButton.ascx.cs" Inherits="RegistrationWebApp.Forms.Public.UserControls.MenuButton" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MenuButton.ascx.cs" Inherits="RegistrationWebApp2.Forms.Public.UserControls.MenuButton" %>
 
 <div style="float:left">
     <div class="MenuButton" id="MainButtonContainer" runat="server">

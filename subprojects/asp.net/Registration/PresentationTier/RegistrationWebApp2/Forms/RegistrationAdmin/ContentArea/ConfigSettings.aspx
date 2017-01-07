@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="ConfigSettings.aspx.cs" Inherits="RegistrationWebApp.Forms.RegistrationAdmin.ContentArea.ConfigSettings" %>
+<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="ConfigSettings.aspx.cs" Inherits="RegistrationWebApp2.Forms.RegistrationAdmin.ContentArea.ConfigSettings" %>
 <%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls.COEConfigSettingManager"
     TagPrefix="COECntrl" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder" runat="server">

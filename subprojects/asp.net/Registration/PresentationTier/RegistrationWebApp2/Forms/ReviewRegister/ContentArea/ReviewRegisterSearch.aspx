@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="ReviewRegisterSearch.aspx.cs" 
-Inherits="RegistrationWebApp.Forms.ReviewRegister.ContentArea.ReviewRegisterSearch"%>
+Inherits="RegistrationWebApp2.Forms.ReviewRegister.ContentArea.ReviewRegisterSearch"%>
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
 <%@ Register Src="~/Forms/Public/UserControls/MessagesBox.ascx" TagName="MessageBox" TagPrefix="uc1" %> 

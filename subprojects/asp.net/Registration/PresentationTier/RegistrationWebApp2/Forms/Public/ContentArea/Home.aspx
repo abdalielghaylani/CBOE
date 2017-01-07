@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="Home.aspx.cs" Inherits="RegistrationWebApp.Forms.Public.ContentArea.Home" %>
+    Codebehind="Home.aspx.cs" Inherits="RegistrationWebApp2.Forms.Public.ContentArea.Home" %>
 <%@Register   Namespace="CambridgeSoft.COE.Framework.Controls.WebParts" Assembly="CambridgeSoft.COE.Framework" TagPrefix="uc1"%>
 <asp:Content ID="PagesContent" ContentPlaceHolderID="ContentPlaceHolder" runat="Server" >
 

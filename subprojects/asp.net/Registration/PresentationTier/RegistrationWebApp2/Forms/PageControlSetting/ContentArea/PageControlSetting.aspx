@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master" CodeBehind="PageControlSetting.aspx.cs" Inherits="RegistrationWebApp.Forms.PageControlSetting.ContentArea.PageControlSetting" EnableSessionState="True" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master" CodeBehind="PageControlSetting.aspx.cs" Inherits="RegistrationWebApp2.Forms.PageControlSetting.ContentArea.PageControlSetting" EnableSessionState="True" %>
 <%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls.COEPageCtrlSettingManager"
     TagPrefix="COECntrl" %>
 <asp:Content ID="CompoundDetails" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">

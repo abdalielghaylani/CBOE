@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="SearchCompound.aspx.cs" Inherits="RegistrationWebApp.Forms.SubmitRecord.ContentArea.SearchCompound" %>
+<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="SearchCompound.aspx.cs" Inherits="RegistrationWebApp2.Forms.SubmitRecord.ContentArea.SearchCompound" %>
 <%@ Register Assembly="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30" Namespace="Csla.Web" TagPrefix="cc2" %>
 <%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls.ChemDraw" TagPrefix="cc1" %>
 <%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea" TagPrefix="uc2" %>
