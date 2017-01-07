@@ -1,0 +1,1785 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<formGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="0" dataViewId="8" xmlns="COE.FormGroup">
+  <style>
+    /*********** Styles for Form generator controls *************/
+    .COEValidationSummary
+    {
+    font-family: Verdana;
+    font-size: 10px;
+    font-weight:bold;
+    cursor: pointer;
+    border: 1px solid rgb(0, 153, 255);
+    }
+    .COECell
+    {
+    background-color: White;
+    font-family: Verdana;
+    font-size: 10px;
+    overflow: hidden;
+    color: rgb(0, 51, 153);
+    }
+    .COEFakeCell
+    {
+    /*border: 1px solid rgb(0, 153, 255);*/
+    border-left: #0099FF 1px solid;
+    border-right: #0099FF 1px solid;
+    border-bottom: #0099FF 1px solid;
+    background-color: White;
+    font-family: Verdana;
+    font-size: 10px;
+    /*border-collapse: collapse;*/
+    overflow: hidden;
+    color: rgb(0, 51, 153);
+    }
+    .COEFakeHeader
+    {
+    border: 1px solid rgb(0, 153, 255);
+    font-family: Verdana;
+    font-size: 10px;
+    width: 100%;
+    font-weight: bold;
+    color: white;
+    background-color:#0099FF;
+    text-align: left;
+    }
+    .LinkButton
+    {
+    font-family: Verdana;
+    font-size: 10px;
+    color:#0E0E6E;
+    font-weight:bold;
+    cursor: pointer;
+    text-decoration:underline;
+    }
+    .COEComplexLink{
+
+    font-family: Verdana;
+    font-size: 10px;
+    color:#0099FF;
+    cursor: pointer;
+    text-decoration:underline;
+    }
+    /* TEXTBOX */
+    .COETextBox
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color: #FFF;
+    border-color:#BCBCBC;
+    /*border-width:thin;*/
+    width: 150px;
+    height: 20px;
+    }
+    .COETextBoxLong
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#fff;
+    border-color:#BCBCBC;
+    border-width:thin;
+    width: 650px;
+    height: 15px;
+    }
+    .COETextBoxLongView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width: 653px;
+    height: 15px;
+    }
+    .COETextBoxNew
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#fff;
+    border-color:#BCBCBC;
+    border-width:thin;
+    width: 120px;
+    height: 15px;
+    }
+    .COETextBoxNewView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width: 120px;
+    height: 15px;
+    }
+    .COETextBox2
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#fff;
+    border-color:#BCBCBC;
+    border-width:thin;
+    width: 617px;
+    height: 15px;
+    }
+    .COETextBoxView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width: 150px;
+    height: 15px;
+    }
+    .COETextBoxViewNew
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:solid 1px #999999;
+    width: 80px;
+    height: 15px;
+    }
+    .COETextBoxViewNewView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width: 80px;
+    height: 15px;
+    }
+    .COETextBox2View
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width: 617px;
+    height: 15px;
+    }
+
+    .COELine
+    {
+    border-color:#ff9900;
+    border-width:1px;
+    }
+
+    /* TEXTAREA */
+    .COETextAreaComments
+    {
+    width: 150px;
+    height: 70px;
+    font-size: 11px;
+    font-family: Verdana;
+    color:#484848;
+    margin-left:5px;
+    background-color:#fff;
+    border-color:#B2B2B2;
+    border-width:thin;
+    }
+    .COETextAreaComments2
+    {
+    width: 615px;
+    height: 70px;
+    font-size: 11px;
+    font-family: Verdana;
+    color:#484848;
+    margin-left:5px;
+    background-color:#fff;
+    border-color:#B2B2B2;
+    border-width:thin;
+    }
+    .COETextAreaCommentsView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width:150px;
+    }
+    .COETextAreaComments2View
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width:617px;
+    }
+
+    /* LABEL */
+    .COELabelTitle
+    {
+    font-size:11px;
+    font-family: Verdana;
+    color:#000066;
+    font-weight: bold;
+    }
+    .COELabelSeparador
+    {
+    font-size:11px;
+    font-family: Verdana;
+    color:#8C8CBF;
+    font-weight: bold;
+    }
+    .COELabelTitle2
+    {
+    font-size:11px;
+    font-family: Verdana;
+    color:#000066;
+    font-weight: bold;
+    padding-left:7px;
+    }
+    .COELabel
+    {
+    color: #374257;
+    font-family:Verdana;
+    font-size:11px;
+    /*background-color:buttonface;*/
+    }
+    .COELabelListItems
+    {
+    color: #374257;
+    font-family:Verdana;
+    font-size:10px;
+    }
+    .COELabelView:before
+    {
+    content:"*";
+    color: #000066;
+    font-family:Verdana;
+    font-size:11px;
+    background-color:white;
+    }
+    .COELabelTextBox
+    {
+    color: #484848;
+    font-family:Verdana;
+    font-size:11px;
+    background-color:white;
+
+    }
+
+    /* TEXTAREALONG */
+    /*.COETextAreaLong
+    {
+    border-color: #484848;
+    border-width:thin;
+    font-family:Verdana;
+    font-size:11px;
+    color:#484848;
+    height: 50px;
+    width: 620px;
+    } */
+    .COETextAreaLongView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #484848;
+    background-color:#EAEAEA;
+    border:0px;
+    width: 653px;
+    height: 15px;
+    }
+    .COETextAreaLong
+    {
+    border-color: #484848;
+    border-width:thin;
+    font-family:Verdana;
+    font-size:11px;
+    color:#484848;
+    height: 50px;
+    width: 650px;
+    }
+
+    /* CHEMDRAW */
+    .COEChemDraw
+    {
+    border-color: #B3B3CC;
+    border-width: 2px;
+    border-style:solid;
+
+    }
+
+    /* DROPDOWN */
+    .COEDropDownListNewView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #000000;
+    background-color:#EAEAEA;
+    border:0px;
+    width: 120px;
+    height: 20px;
+    }
+
+    /* VARIOS */
+    .COEGridView
+    {
+    font-size: 11px;
+    font-family: Verdana;
+    color: #000066;
+    text-align:left;
+    background-color:#fff;
+    border:none;
+    width: 270px;
+    height: 15px;
+    }
+
+
+    .COERequiredField
+    {
+    color: #FF0000;
+    font-family:Verdana;
+    font-size:11px;
+    background-color:white;
+    }
+    .COERequiredField:before
+    {
+    content:"*";
+    }
+
+
+    .MessagesArea
+    {
+
+    }
+    .MessagesAreaTextLabel
+    {
+    background-attachment: fixed;
+    vertical-align: middle;
+    text-transform: none;
+    text-align: center;
+    font-size:11px;
+    font-family: Verdana;
+    color:#000066;
+    font-weight: bold;
+    }
+
+    .HomePageLinks
+    {
+    background-attachment: fixed;
+    vertical-align: middle;
+    text-transform: none;
+    text-align: center;
+    font-size:14px;
+    font-family: Verdana;
+    color:#000066;
+    }
+    .HomePageLinks:hover
+    {
+    background-attachment: fixed;
+    vertical-align: middle;
+    text-transform: none;
+    text-align: center;
+    font-size:14px;
+    font-family: Verdana;
+    color:#0000AA;
+    }
+    .HomePageLinkImages
+    {
+    cursor: pointer;
+    }
+
+    .COELabelTextBox
+    {
+    color: Green;
+    }
+    .LeftPanelUC
+    {
+    height : 425px;
+    }
+
+    .HomeTitleBig
+    {
+    font-size: 18px;
+    color: #000066;
+    font-family: Verdana;
+    font-weight:bold;
+    }
+
+    .HomeTitleMedium
+    {
+    font-size: 11px;
+    color: #484848;
+    font-family: Verdana;
+    font-weight:lighter;
+    }
+
+    .HomeDescription
+    {
+    font-size: 10px;
+    color: #484848;
+    font-family: Verdana;
+    text-align:left;
+    font-weight:lighter;
+    height:50px;
+    width:120px;
+    }
+
+    h1
+    {
+    font-size: 18px;
+    color: #000066;
+    font-family: Verdana;
+    font-weight:bold;
+    margin-left:30px;
+    }
+    h4
+    {
+    font-size: 11px;
+    color: #484848;
+    font-family: Verdana;
+    margin-left:30px;
+    font-weight:lighter;
+    }
+    p
+    {
+    font-size: 10px;
+    color: #484848;
+    font-family: Verdana;
+    text-align:left;
+    margin-left:30px;
+    font-weight:lighter;
+    height:50px;
+    width:120px;
+    }
+
+    .LinksHome a:link
+    {
+
+    font-size: 12px;
+    color: #000066;
+    font-weight:bold;
+    padding-left:30px;
+    cursor: pointer;
+    width:150px;
+    text-decoration:none;
+    }
+    .LinksHome a:hover
+
+    {
+
+    font-size: 12px;
+    color: #999999;
+    font-weight:bold;
+    text-decoration:underline;
+    padding-left:30px;
+    cursor: pointer;
+    }
+
+    .LinksHome a:selected
+    {
+
+    font-size: 12px;
+    color: #000066;
+    padding-left:30px;
+    font-weight:bold;
+    text-decoration:none;
+    cursor: pointer;
+    }
+    .LinksHome a:visited
+    {
+    font-size: 12px;
+    color: #000066;
+    padding-left:30px;
+    font-weight:bold;
+    text-decoration:none;
+    cursor: pointer;
+    }
+
+
+
+    /*********** Home Buttons *************/
+
+    .HomeButtons
+    {
+    width: 70px;
+    height: 70px;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 30px;
+    vertical-align: top;
+    text-align: left;
+    border: none;
+    }
+    .SelectAllText
+    {
+    cursor: pointer;
+    font-size: 10px;
+    font-family: Verdana;
+    color:#000066;
+    text-decoration: underline;
+    padding-left:28px;
+    }
+    .SelectAllText a:hover
+    {
+    cursor: pointer;
+    font-size: 10px;
+    font-family: Verdana;
+    color:#ff0000;
+    text-decoration: underline;
+    padding-left:28px;
+    }
+    .CurrentUserText
+    {
+    color: #000066;
+    font-family:Verdana;
+    font-size:11px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    }
+    .SelectedTextNode
+    {
+    background-color: #BABAD6;
+    font-weight: bold;
+    }
+    .TextNode
+    {
+    }
+    .myTableClass{
+    border: 1px solid rgb(0, 153, 255);
+    background-color: White;
+    font-family: Verdana;
+    font-size: x-small;
+    width: 100%;
+    border-collapse: collapse;
+    }
+
+    .MessagesAreaTextLabel
+    {
+    background-attachment: fixed;
+    vertical-align: middle;
+    text-transform: none;
+    text-align: center;
+    font-size:11px;
+    font-family: Verdana;
+    color:#000066;
+    font-weight: bold;
+    }
+
+    .COELabelTextBox
+    {
+    color: Green;
+    }
+    .COEValidationSummary
+    {
+    font-family: Verdana;
+    font-size: 10px;
+    border-style: none;
+    /*border-color: #000;*/
+    color: #FF0000;
+    }
+    .COEErrorDiv
+    {
+    display: none;
+    position: absolute;
+    border: 2px solid #555;
+    color: #F00;
+    z-index: 100;
+    background-color: #FFDC8A;
+    }
+  </style>
+  <detailsForms>
+    <detailsForm id="0" defaultDisplayMode="View">
+      <coeForms>
+        <!-- COEFormRepeater -->
+        <coeForm id="0" dataSourceId="ComponentListCslaDataSource" displayCulture="fr-CH">
+          <formDisplay>
+            <height>470px</height>
+            <width>680px</width>
+            <style>Margin-Top:30px;Margin-Bottom:35px;Margin-Left:5px;Border-Color:#000066;Border-Style:solid;Border-Width:1px</style>
+          </formDisplay>
+          <viewMode>
+            <formElement>
+              <Id>ComponentRepeater</Id>
+              <dataSourceId>ComponentListCslaDataSource</dataSourceId>
+              <configInfo>
+                <fieldConfig>
+                  <coeForm id="1" displayCulture="fr-CH">
+                    <formDisplay>
+                      <height>470px</height>
+                      <width>680px</width>
+                      <style>Margin-Top:30px;Margin-Bottom:35px;Margin-Left:5px;Border-Color:#000066;Border-Style:solid;Border-Width:1px</style>
+                    </formDisplay>
+                    <viewMode>
+                      <!-- Compound Info Title -->
+                      <formElement>
+                        <Id>CompoundTitleLabel</Id>
+                        <defaultValue>Compound Information b</defaultValue>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabelTitle</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>-20px</top>
+                          <left>0px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <!-- STRUCTURE -->
+                      <formElement>
+                        <Id>BaseFragmentStructure</Id>
+                        <bindingExpression>Compound.BaseFragment.Structure.Value</bindingExpression>
+                        <configInfo>
+                          <fieldConfig>
+                            <Maxlength>30</Maxlength>
+                            <CSSClass>COEChemDraw2</CSSClass>
+                            <Height>300px</Height>
+                            <Width>300px</Width>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>300px</height>
+                          <width>300px</width>
+                          <top>12px</top>
+                          <left>15px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEChemDrawEmbedReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!-- CID -->
+                      <formElement>
+                        <Id>CIDLabel</Id>
+                        <defaultValue>Registry Number</defaultValue>
+                        <bindingExpression/>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>25px</top>
+                          <left>375px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>CIDTextBox</Id>
+                        <bindingExpression>Compound.RegNumber.RegNum</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 120">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="120"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>25px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!-- CN -->
+                      <formElement>
+                        <defaultValue>CN</defaultValue>
+                        <Id>CNLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>55px</top>
+                          <left>454px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>CNTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='CN'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 12">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="12"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>55px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!-- HISTORY -->
+                      <formElement>
+                        <defaultValue>History</defaultValue>
+                        <Id>HistoryLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>85px</top>
+                          <left>432px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>HistoryTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='HISTORY'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 120">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="120"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>85px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!-- PATENT -->
+                      <formElement>
+                        <defaultValue>Patent Cases</defaultValue>
+                        <Id>PatentCasesLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>115px</top>
+                          <left>395px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>PatentCasesTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='PATENT'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 60">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="60"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>200px</width>
+                          <top>115px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!-- COMMENT -->
+                      <formElement>
+                        <Id>CommentLabel</Id>
+                        <defaultValue>Submitter Comment</defaultValue>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>145px</top>
+                          <left>359px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>CommentTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='COMMENTS'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 240">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="240"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextAreaCommentsView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>70px</height>
+                          <width>150px</width>
+                          <top>145px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextAreaReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!--ARCTANDER-->
+                      <formElement>
+                        <Id>ArctanderLabel</Id>
+                        <defaultValue>Arctander</defaultValue>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>210px</top>
+                          <left>415px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>ArctanderTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='ARCTANDER'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="positiveInteger" errorMessage="Value must be a positive integer" />
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 8">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="8"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>210px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+
+                      <!--FEMA-->
+                      <formElement>
+                        <defaultValue>Fema</defaultValue>
+                        <Id>FemaLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>240px</top>
+                          <left>439px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>FemaTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='FEMA'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="positiveInteger" errorMessage="Value must be a positive integer" />
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 8">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="8"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>240px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!--STEREO-->
+                      <formElement>
+                        <defaultValue>Stereo</defaultValue>
+                        <Id>StereoLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>265px</top>
+                          <left>433px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>StereoTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='STEREO'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 255">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="255"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>265px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!--EXACT MASS-->
+                      <formElement>
+                        <defaultValue>Exact Mass</defaultValue>
+                        <Id>ExactMassLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>290px</top>
+                          <left>407px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>ExactMassTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='EXACTMASS'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="double" errorMessage="The value must be number" />
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 10">
+                            <params>
+                              <param name="min" value="0" />
+                              <param name="max" value="10" />
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>290px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+
+                      <!--FORMULA-->
+                      <formElement>
+                        <defaultValue>Formula</defaultValue>
+                        <Id>FormulaLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>315px</top>
+                          <left>423px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>FormulaTextBox</Id>
+                        <bindingExpression>Compound.BaseFragment.Structure.Formula</bindingExpression>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>315px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!--MOL WEIGHT-->
+                      <formElement>
+                        <defaultValue>Mol Weight</defaultValue>
+                        <Id>MolWeightLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>340px</top>
+                          <left>409px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>MolWeightTextBox</Id>
+                        <bindingExpression>Compound.BaseFragment.Structure.MolWeight</bindingExpression>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBoxView</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>170px</width>
+                          <top>340px</top>
+                          <left>480px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!--COMPOUND NAME-->
+                      <formElement>
+                        <defaultValue>Compound Name</defaultValue>
+                        <Id>CompoundNameLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>348px</top>
+                          <left>15px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>CompoundNameTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='COMPOUNDNAME'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 2000">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="2000"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextAreaComments2View</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>617px</width>
+                          <top>365px</top>
+                          <left>13px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextAreaReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                      <!-- OCCUR -->
+                      <formElement>
+                        <defaultValue>Nat.Occ.</defaultValue>
+                        <Id>OcurrLabel</Id>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COELabel</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <top>428px</top>
+                          <left>15px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                        </displayInfo>
+                      </formElement>
+                      <formElement>
+                        <Id>OcurrTextBox</Id>
+                        <bindingExpression>Compound.PropertyList[@Name='OCURR'| Value]</bindingExpression>
+                        <validationRuleList>
+                          <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 120">
+                            <params>
+                              <param name="min" value="0"/>
+                              <param name="max" value="120"/>
+                            </params>
+                          </validationRule>
+                        </validationRuleList>
+                        <configInfo>
+                          <fieldConfig>
+                            <CSSClass>COETextBox2View</CSSClass>
+                          </fieldConfig>
+                        </configInfo>
+                        <displayInfo>
+                          <height>15px</height>
+                          <width>617px</width>
+                          <top>443px</top>
+                          <left>15px</left>
+                          <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+                        </displayInfo>
+                      </formElement>
+                    </viewMode>
+                  </coeForm>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>-20px</top>
+                <left>110px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEFormGeneratorRepeater</type>
+              </displayInfo>
+            </formElement>
+          </viewMode>
+        </coeForm>
+        <!-- BatchComponentCOEFormGenerator-->
+        <coeForm id="1" dataSourceId="BatchCslaDataSource" displayCulture="fr-CH">
+          <formDisplay>
+            <width>680px</width>
+            <style>Margin-Top:30px;Margin-Left:5px;Border-Color:#000066;Border-Style:solid;Border-Width:1px;</style>
+          </formDisplay>
+          <viewMode>
+            <!-- Percentage Info Title -->
+            <formElement>
+              <defaultValue>Percentages</defaultValue>
+              <Id>PercentageTitleLabel</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>-20px</top>
+                <left>0px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!-- PercentageList -->
+            <formElement>
+              <Id>PercentageGridView</Id>
+              <bindingExpression>BatchComponentList</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <tables>
+                    <table>
+                      <CSSClass>myTableClass</CSSClass>
+                      <headerStyle>color: #FFF; background-color: rgb(0, 153, 255); font-weight: bold; font-family: Verdana; font-size: 10px;</headerStyle>
+                      <Columns>
+                        <Column>
+                          <formElement>
+                            <Id>DisplayKey</Id>
+                            <bindingExpression>DisplayKey</bindingExpression>
+                          </formElement>
+                        </Column>
+                        <Column name="Percentage">
+                          <width>70px</width>
+                          <formElement >
+                            <Id>PercentageColumn</Id>
+                            <bindingExpression>PropertyList['PERCENTAGE'].Value</bindingExpression>
+                          </formElement>
+                        </Column>
+                        <Column name="Label">
+                          <width>70px</width>
+                          <formElement>
+                            <Id>LabelColumn</Id>
+                            <bindingExpression>PropertyList['LABEL'].Value</bindingExpression>
+                          </formElement>
+                        </Column>
+                        <Column name="Ratio">
+                          <width>10px</width>
+                          <formElement>
+                            <Id>RatioColumn</Id>
+                            <bindingExpression>PropertyList['RATIO'].Value</bindingExpression>
+                          </formElement>
+                        </Column>
+                        <Column name="Comments">
+                          <width>250px</width>
+                          <formElement>
+                            <Id>CommentsColumn</Id>
+                            <bindingExpression>PropertyList['COMMENTS'].Value</bindingExpression>
+                          </formElement>
+                        </Column>
+                      </Columns>
+                    </table>
+                  </tables>
+                  <ReadOnly>false</ReadOnly>
+                  <CSSClass>COEGridView</CSSClass>
+                  <Style>margin-left:5px;margin-top:5px;margin-bottom:5px;</Style>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <position>relative</position>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEGridView</type>
+              </displayInfo>
+            </formElement>
+          </viewMode>
+        </coeForm>
+        <!-- BatchCOEFormGenerator -->
+        <coeForm id="2" dataSourceId="BatchListCslaDataSource" displayCulture="fr-CH">
+          <formDisplay>
+            <height>340px</height>
+            <width>680px</width>
+            <style>Margin-Top:45px;Margin-Left:5px;Border-Color:#000066;Border-Style:solid;Border-Width:1px;Border-Height:600px</style>
+          </formDisplay>
+          <viewMode>
+            <!-- Batch Info Title -->
+            <formElement>
+              <Id>BatchTitleLabel</Id>
+              <defaultValue>Batch Information</defaultValue>
+              <bindingExpression/>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelTitle</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>-20px</top>
+                <left>0px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+              </displayInfo>
+            </formElement>
+            <!-- BatchID -->
+            <formElement>
+              <Id>BatchIDTextBox</Id>
+              <label>Batch ID</label>
+              <bindingExpression>ID</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxViewNewView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>100px</width>
+                <top>50px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- CHEMIST -->
+            <formElement>
+              <Id>ChemistDropDownList</Id>
+              <label>Chemist</label>
+              <bindingExpression>PropertyList[@Name='CHEMIST' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="positiveInteger" errorMessage="The value must be a positive integer"/>
+                <validationRule validationRuleName="requiredField" errorMessage="You must select a chemist" />
+              </validationRuleList>
+              <dataSourceId>ChemistsCslaDataSource</dataSourceId>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COEDropDownListNewView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                  <dataTextField>Value</dataTextField>
+                  <dataValueField>Key</dataValueField>
+                  <Enable>false</Enable>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>170px</width>
+                <top>50px</top>
+                <left>110px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- PROJECT 	-->
+            <formElement>
+              <Id>FirProjectIdTextBox</Id>
+              <label>Project</label>
+              <bindingExpression>PropertyList[@Name='FIRPROJECTID' | Value]</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxNewView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>212px</width>
+                <top>50px</top>
+                <left>265px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- NOTEBOOK REF -->
+            <formElement>
+              <label>Notebook Ref</label>
+              <Id>NotebookTextBox</Id>
+              <bindingExpression>PropertyList[@Name='NOTEBOOKREF' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 120">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="120"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxNewView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>127px</width>
+                <top>50px</top>
+                <left>405px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- ITEM NUMBER -->
+            <formElement>
+              <Id>ItemNumberTextBox</Id>
+              <label>Item Number</label>
+              <bindingExpression>PropertyList[@Name='ITEMNUMBER' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="positiveInteger" errorMessage="The value must be a positive integer"/>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be at last 10 chars long">
+                  <params>
+                    <param name="min" value="1"/>
+                    <param name="max" value="10"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxNewView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>50px</top>
+                <left>545px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+
+            <!-- SAMPLE NUMBER  -->
+            <formElement>
+              <Id>SampleNumberTextBox</Id>
+              <label>Sample Nº</label>
+              <bindingExpression>PropertyList[@Name='SAMPLEID' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 50">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="50"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>95px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- DATE ENTERED -->
+            <formElement>
+              <Id>DateEnteredTextBox</Id>
+              <label>Synthesis Date</label>
+              <bindingExpression>PropertyList[@Name='DATEENTERED' | Value]</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COEDropDownList</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                  <NullDateLabel>Pick a date</NullDateLabel>
+                  <Width>150</Width>
+                  <Height>15</Height>
+                  <FontSize>11px</FontSize>
+                  <ForeColor>484848</ForeColor>
+                  <BackColor>EAEAEA</BackColor>
+                  <FontNames>Verdana</FontNames>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>212px</width>
+                <top>95px</top>
+                <left>184px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePickerReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- DATE CREATED -->
+            <formElement>
+              <Id>DateCreatedTextBox</Id>
+              <label>Date Created</label>
+              <bindingExpression>DateCreated</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COEDropDownList</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                  <NullDateLabel>Pick a date</NullDateLabel>
+                  <Width>150</Width>
+                  <Height>15</Height>
+                  <FontSize>11px</FontSize>
+                  <ForeColor>484848</ForeColor>
+                  <BackColor>EAEAEA</BackColor>
+                  <FontNames>Verdana</FontNames>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>212px</width>
+                <top>95px</top>
+                <left>349px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePickerReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!--LAST MODIFICATION DATE-->
+            <formElement>
+              <Id>ModificationDateTextBox</Id>
+              <label>Last Modification Date</label>
+              <bindingExpression>DateLastModified</bindingExpression>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COEDropDownList</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                  <NullDateLabel>Pick a date</NullDateLabel>
+                  <Width>150</Width>
+                  <Height>15</Height>
+                  <FontSize>11px</FontSize>
+                  <ForeColor>484848</ForeColor>
+                  <BackColor>EAEAEA</BackColor>
+                  <FontNames>Verdana</FontNames>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>212px</width>
+                <top>95px</top>
+                <left>520px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePickerReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- PURITY -->
+            <formElement>
+              <Id>PurityBox</Id>
+              <label>Purity</label>
+              <bindingExpression>PropertyList[@Name='PURITY' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 200">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="200"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxLongView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>653px</width>
+                <top>135px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- COMMENTS -->
+            <formElement>
+              <Id>CommentsTextArea</Id>
+              <label>Comments</label>
+              <bindingExpression>PropertyList[@Name='COMMENTS' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 60">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="60"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextAreaLongView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>50px</height>
+                <width>653px</width>
+                <top>170px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextAreaReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <formElement>
+              <defaultValue>Phys. Properties</defaultValue>
+              <Id>PropertiesLabel</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelSeparador</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <width>650px</width>
+                <top>245px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <style>border-bottom: #8C8CBF 1px solid</style>
+              </displayInfo>
+            </formElement>
+
+            <!-- OPTICAL ROTATION -->
+            <formElement>
+              <Id>OpticalRotationTextBox</Id>
+              <label>Optical Rotation</label>
+              <bindingExpression>PropertyList[@Name='OPTICALROTATION' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 200">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="200"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <top>265px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- MELTING POINT -->
+            <formElement>
+              <Id>MeltingPointTextBox</Id>
+              <label>Melting Point</label>
+              <bindingExpression>PropertyList[@Name='MELTINGPOINT' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 60">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="60"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>127px</width>
+                <top>265px</top>
+                <left>183px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- BOILING POINT -->
+            <formElement>
+              <Id>BoilingPointTextBox</Id>
+              <label>Boiling Point</label>
+              <bindingExpression>PropertyList[@Name='BOILINGPOINT' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 60">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="60"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>127px</width>
+                <top>265px</top>
+                <left>349px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <formElement>
+              <defaultValue>Polymer</defaultValue>
+              <Id>PolymerLabel</Id>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COELabelSeparador</CSSClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <width>650px</width>
+                <top>305px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                <style>border-bottom: #8C8CBF 1px solid</style>
+              </displayInfo>
+            </formElement>
+
+            <!-- MN -->
+            <formElement>
+              <Id>MnBox</Id>
+              <label>Mn</label>
+              <bindingExpression>PropertyList[@Name='MN' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 200">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="200"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>127px</width>
+                <top>325px</top>
+                <left>15px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- MW -->
+            <formElement>
+              <Id>MwBox</Id>
+              <label>Mw</label>
+              <bindingExpression>PropertyList[@Name='MW' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 200">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="200"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>127px</width>
+                <top>325px</top>
+                <left>183px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+            <!-- MONOMERIC COMPOSITION -->
+            <formElement>
+              <Id>MonomericCompositionTextBox</Id>
+              <label>Monomeric Composition</label>
+              <bindingExpression>PropertyList[@Name='MONOMERICCOMPOSITION' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 60">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="60"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>400px</width>
+                <top>325px</top>
+                <left>349px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+
+
+            <!-- DEGREE OF RAMIFICATION -->
+            <formElement>
+              <Id>RamificationTextBox</Id>
+              <label>Degree of Ramification</label>
+              <bindingExpression>PropertyList[@Name='RAMIFICATION' | Value]</bindingExpression>
+              <validationRuleList>
+                <validationRule validationRuleName="textLength" errorMessage="The length must be between 0 and 60">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="60"/>
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>COETextBoxView</CSSClass>
+                  <CSSLabelClass>COELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <displayInfo>
+                <height>15px</height>
+                <width>400px</width>
+                <top>325px</top>
+                <left>515px</left>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBoxReadOnly</type>
+              </displayInfo>
+            </formElement>
+          </viewMode>
+        </coeForm>
+
+      </coeForms>
+    </detailsForm>
+  </detailsForms>
+</formGroup>

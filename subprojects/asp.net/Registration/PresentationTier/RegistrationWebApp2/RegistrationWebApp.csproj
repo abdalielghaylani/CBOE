@@ -1,0 +1,915 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0AF2D977-5B4C-40E9-9AF1-CE93F3C92CF4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RegistrationWebApp</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.RegistrationWebApp</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>Registration.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\CambridgeSoft.COE.RegistrationWebApp.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AJAXExtensionsToolbox, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\AJAXExtensionsToolbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Shared.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Documents.Excel.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Documents.Excel.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Misc.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Shared.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.Shared.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebCalcManager.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebCalcManager.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebChart.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebChart.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebListbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebListbar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebNavigator.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebTab.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebTab.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebToolbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebToolbar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebCombo.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebCombo.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDataInput.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebDataInput.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDateChooser.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebDateChooser.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebHtmlEditor.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebHtmlEditor.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebNavBar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebNavBar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSchedule.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebSchedule.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebScheduleDataProvider.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSpellChecker.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.Misc.v11.1, Version=11.1.20111.2090, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.Misc.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinGrid.v11.1, Version=11.1.20111.2090, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.UltraWinGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.UltraWinTabControl.v11.1, Version=11.1.20111.2090, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.UltraWinTabControl.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Win.v11.1, Version=11.1.20111.2090, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Win.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ChemDrawControl14, Version=14.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl14.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=012e785312e03a6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Extensions.Design" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Forms\BulkRegisterMarked\ContentArea\LockMarked.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_GlobalResources\Resource.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Code\AllowedActions.cs" />
+    <Compile Include="Code\COECustomFileUpload.cs" />
+    <Compile Include="Code\COENavigationPanelControlEventArgs.cs" />
+    <Compile Include="Code\COERegistrationServices.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Code\CompoundSubmissionBroker.cs" />
+    <Compile Include="Code\Constants.cs" />
+    <Compile Include="Code\DataViewHelper.cs" />
+    <Compile Include="Code\FormGroups.cs" />
+    <Compile Include="Code\ICOENavigationPanelControl.cs" />
+    <Compile Include="Code\ISubmissionBroker.cs" />
+    <Compile Include="Code\MessageCode.cs" />
+    <Compile Include="Code\MixtureSubmissionBroker.cs" />
+    <Compile Include="Code\NodeKeywords.cs" />
+    <Compile Include="Code\RegistrationUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Code\RegistryTypes.cs" />
+    <Compile Include="Code\RegStatusControl.cs" />
+    <Compile Include="Code\ResultsCriteriaHelper.cs" />
+    <Compile Include="Code\SaltAndBacthSuffixTextBox.cs" />
+    <Compile Include="Code\SearchCriteriaHelper.cs" />
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\ApproveMarked.aspx.cs">
+      <DependentUpon>ApproveMarked.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\ApproveMarked.aspx.designer.cs">
+      <DependentUpon>ApproveMarked.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\DeleteMarked.aspx.cs">
+      <DependentUpon>DeleteMarked.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\DeleteMarked.aspx.designer.cs">
+      <DependentUpon>DeleteMarked.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\LockMarked.aspx.cs">
+      <DependentUpon>LockMarked.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\LockMarked.aspx.designer.cs">
+      <DependentUpon>LockMarked.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\RegisterMarked.aspx.cs">
+      <DependentUpon>RegisterMarked.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\BulkRegisterMarked\ContentArea\RegisterMarked.aspx.designer.cs">
+      <DependentUpon>RegisterMarked.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ComponentDuplicates\ContentArea\ComponentDuplicates.aspx.cs">
+      <DependentUpon>ComponentDuplicates.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ComponentDuplicates\ContentArea\ComponentDuplicates.aspx.designer.cs">
+      <DependentUpon>ComponentDuplicates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ComponentDuplicates\ContentArea\ComponentDuplicatesSearch.aspx.cs">
+      <DependentUpon>ComponentDuplicatesSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ComponentDuplicates\ContentArea\ComponentDuplicatesSearch.aspx.designer.cs">
+      <DependentUpon>ComponentDuplicatesSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ComponentDuplicates\ContentArea\DuplicatesResolver.cs" />
+    <Compile Include="Forms\ComponentDuplicates\DuplicatesList.cs" />
+    <Compile Include="Forms\Master\Registration.Master.cs">
+      <DependentUpon>Registration.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\Registration.Master.designer.cs">
+      <DependentUpon>Registration.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Master\UserControls\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PageControlSetting\ContentArea\PageControlSetting.aspx.cs">
+      <DependentUpon>PageControlSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\PageControlSetting\ContentArea\PageControlSetting.aspx.designer.cs">
+      <DependentUpon>PageControlSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Help.aspx.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Help.aspx.designer.cs">
+      <DependentUpon>Help.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Messages.aspx.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\ContentArea\Messages.aspx.designer.cs">
+      <DependentUpon>Messages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuButton.ascx.cs">
+      <DependentUpon>MenuButton.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuButton.ascx.designer.cs">
+      <DependentUpon>MenuButton.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuItem.ascx.cs">
+      <DependentUpon>MenuItem.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MenuItem.ascx.designer.cs">
+      <DependentUpon>MenuItem.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesArea.ascx.cs">
+      <DependentUpon>MessagesArea.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesArea.ascx.designer.cs">
+      <DependentUpon>MessagesArea.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesBox.ascx.cs">
+      <DependentUpon>MessagesBox.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\MessagesBox.ascx.designer.cs">
+      <DependentUpon>MessagesBox.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\RegistryRecordNavigation.ascx.cs">
+      <DependentUpon>RegistryRecordNavigation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\RegistryRecordNavigation.ascx.designer.cs">
+      <DependentUpon>RegistryRecordNavigation.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\RegistrySearch.ascx.cs">
+      <DependentUpon>RegistrySearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\RegistrySearch.ascx.designer.cs">
+      <DependentUpon>RegistrySearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\SearchCompound.ascx.cs">
+      <DependentUpon>SearchCompound.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\Public\UserControls\SearchCompound.ascx.designer.cs">
+      <DependentUpon>SearchCompound.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\AddIns.aspx.cs">
+      <DependentUpon>AddIns.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\AddIns.aspx.designer.cs">
+      <DependentUpon>AddIns.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\AddInsEdit.aspx.cs">
+      <DependentUpon>AddInsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\AddInsEdit.aspx.designer.cs">
+      <DependentUpon>AddInsEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Batch.aspx.cs">
+      <DependentUpon>Batch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Batch.aspx.designer.cs">
+      <DependentUpon>Batch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\BatchComponent.aspx.cs">
+      <DependentUpon>BatchComponent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\BatchComponent.aspx.designer.cs">
+      <DependentUpon>BatchComponent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Compound.aspx.cs">
+      <DependentUpon>Compound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Compound.aspx.designer.cs">
+      <DependentUpon>Compound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ConfigSettings.aspx.cs">
+      <DependentUpon>ConfigSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ConfigSettings.aspx.designer.cs">
+      <DependentUpon>ConfigSettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\CustomizeForms.aspx.cs">
+      <DependentUpon>CustomizeForms.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\CustomizeForms.aspx.designer.cs">
+      <DependentUpon>CustomizeForms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\EditFormsXml.aspx.cs">
+      <DependentUpon>EditFormsXml.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\EditFormsXml.aspx.designer.cs">
+      <DependentUpon>EditFormsXml.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ImportExportCustom.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ImportExportCustom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ImportExportCustom.aspx.designer.cs">
+      <DependentUpon>ImportExportCustom.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ParamEdit.aspx.cs">
+      <DependentUpon>ParamEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ParamEdit.aspx.designer.cs">
+      <DependentUpon>ParamEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\PropertyEdit.aspx.cs">
+      <DependentUpon>PropertyEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\PropertyEdit.aspx.designer.cs">
+      <DependentUpon>PropertyEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\RootPropertyList.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>RootPropertyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\RootPropertyList.aspx.designer.cs">
+      <DependentUpon>RootPropertyList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Structure.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Structure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\Structure.aspx.designer.cs">
+      <DependentUpon>Structure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ValidationRules.aspx.cs">
+      <DependentUpon>ValidationRules.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\ContentArea\ValidationRules.aspx.designer.cs">
+      <DependentUpon>ValidationRules.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\AddInList.ascx.cs">
+      <DependentUpon>AddInList.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\AddInList.ascx.designer.cs">
+      <DependentUpon>AddInList.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\ConfigurationSettingsUC.ascx.cs">
+      <DependentUpon>ConfigurationSettingsUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\ConfigurationSettingsUC.ascx.designer.cs">
+      <DependentUpon>ConfigurationSettingsUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\NavigationPanel.ascx.cs">
+      <DependentUpon>NavigationPanel.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\NavigationPanel.ascx.designer.cs">
+      <DependentUpon>NavigationPanel.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\PropertyListUC.ascx.cs">
+      <DependentUpon>PropertyListUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\PropertyListUC.ascx.designer.cs">
+      <DependentUpon>PropertyListUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\ValidationRules.ascx.cs">
+      <DependentUpon>ValidationRules.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\RegistrationAdmin\UserControls\ValidationRules.ascx.designer.cs">
+      <DependentUpon>ValidationRules.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistryDuplicates\ContentArea\RegistryDuplicates.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>RegistryDuplicates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\RegistryDuplicates\ContentArea\RegistryDuplicates.aspx.designer.cs">
+      <DependentUpon>RegistryDuplicates.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReviewRegister\ContentArea\ReviewRegisterSearch.aspx.cs">
+      <DependentUpon>ReviewRegisterSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ReviewRegister\ContentArea\ReviewRegisterSearch.aspx.designer.cs">
+      <DependentUpon>ReviewRegisterSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SendToInventory\ContentArea\SendToInventory.aspx.cs">
+      <DependentUpon>SendToInventory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SendToInventory\ContentArea\SendToInventory.aspx.designer.cs">
+      <DependentUpon>SendToInventory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\LoadMixtureForm.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>LoadMixtureForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\LoadMixtureForm.aspx.designer.cs">
+      <DependentUpon>LoadMixtureForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\SaveMixtureForm.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SaveMixtureForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\SaveMixtureForm.aspx.designer.cs">
+      <DependentUpon>SaveMixtureForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\SearchCompound.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SearchCompound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\SearchCompound.aspx.designer.cs">
+      <DependentUpon>SearchCompound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewMixture\ContentArea\MoveDelete.aspx.cs">
+      <DependentUpon>MoveDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewMixture\ContentArea\MoveDelete.aspx.designer.cs">
+      <DependentUpon>MoveDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewMixture\ContentArea\ViewMixture.aspx.cs">
+      <DependentUpon>ViewMixture.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ViewMixture\ContentArea\ViewMixture.aspx.designer.cs">
+      <DependentUpon>ViewMixture.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReviewRegister\ContentArea\ReviewRegisterMixture.aspx.cs">
+      <DependentUpon>ReviewRegisterMixture.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ReviewRegister\ContentArea\ReviewRegisterMixture.aspx.designer.cs">
+      <DependentUpon>ReviewRegisterMixture.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewMixture\ContentArea\ViewMixtureSearch.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ViewMixtureSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ViewMixture\ContentArea\ViewMixtureSearch.aspx.designer.cs">
+      <DependentUpon>ViewMixtureSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ReviewRegister\UserControls\CheckDuplicatedRegistryRecords.ascx.cs">
+      <DependentUpon>CheckDuplicatedRegistryRecords.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\ReviewRegister\UserControls\CheckDuplicatedRegistryRecords.ascx.designer.cs">
+      <DependentUpon>CheckDuplicatedRegistryRecords.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\SubmitMixture.aspx.cs">
+      <DependentUpon>SubmitMixture.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitRecord\ContentArea\SubmitMixture.aspx.designer.cs">
+      <DependentUpon>SubmitMixture.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\TableEditor\ContentArea\TableEditor.aspx.cs">
+      <DependentUpon>TableEditor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\TableEditor\ContentArea\TableEditor.aspx.designer.cs">
+      <DependentUpon>TableEditor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Resource.resx">
+      <SubType>Designer</SubType>
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Resource.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="Forms\Public\UserControls\Images\compound.gif" />
+    <Content Include="Webservices\COERegistrationServices.asmx">
+      <CustomToolNamespace>CambridgeSoft.COE.Registration.Services.Web</CustomToolNamespace>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Style_Blue.css" />
+    <Content Include="Forms\Public\UserControls\MessagesArea.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Images\junk.gif" />
+    <Content Include="App_Themes\Blue\Images\linkshome.jpg" />
+    <Content Include="App_Themes\Blue\Images\minus.gif" />
+    <Content Include="App_Themes\Blue\Images\next_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\normal.gif" />
+    <Content Include="App_Themes\Blue\Images\outbox.gif" />
+    <Content Include="App_Themes\Blue\Images\plain_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\plus.gif" />
+    <Content Include="App_Themes\Blue\Images\prev_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\prev_up.gif" />
+    <Content Include="App_Themes\Blue\Images\root.gif" />
+    <Content Include="App_Themes\Blue\Images\search.gif" />
+    <Content Include="App_Themes\Blue\Images\search_no.gif" />
+    <Content Include="App_Themes\Blue\Images\selected.gif" />
+    <Content Include="App_Themes\Blue\Images\sentItems.gif" />
+    <Content Include="App_Themes\Blue\Images\start_down.gif" />
+    <Content Include="App_Themes\Blue\Images\start_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\tasks.gif" />
+    <Content Include="App_Themes\Blue\Images\TitleBar_Bkgd.gif" />
+    <Content Include="App_Themes\Blue\Images\uparrows_white.gif" />
+    <Content Include="App_Themes\Blue\Images\watermark.jpg" />
+    <Content Include="App_Themes\Blue\Images\watermarkhome.gif" />
+    <Content Include="App_Themes\Blue\Images\watermarkhome.jpg" />
+    <Content Include="App_Themes\Blue\Style_Blue.skin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Images\24Icon.png" />
+    <Content Include="App_Themes\Blue\Images\HeadBk.jpg" />
+    <Content Include="App_Themes\Blue\Images\QuestionSign.jpg" />
+    <Content Include="App_Themes\Blue\Images\itembackground.PNG" />
+    <Content Include="App_Themes\Blue\Images\Button.gif" />
+    <Content Include="App_Themes\Blue\Images\LoginBut.gif" />
+    <Content Include="App_Themes\Blue\Images\sprite.png" />
+    <Content Include="App_Themes\Red\Style_Red.css" />
+    <Content Include="Forms\BulkRegisterMarked\ContentArea\DeleteMarked.aspx" />
+    <Content Include="Forms\BulkRegisterMarked\ContentArea\RegisterMarked.aspx" />
+    <Content Include="Forms\ComponentDuplicates\ContentArea\ComponentDuplicates.aspx" />
+    <Content Include="Forms\Master\Registration.Master" />
+    <Content Include="Forms\Master\UserControls\Header.ascx" />
+    <Content Include="Forms\Public\ContentArea\About.aspx" />
+    <Content Include="Forms\Public\ContentArea\Help.aspx" />
+    <Content Include="Forms\Public\ContentArea\Home.aspx" />
+    <Content Include="Forms\Public\ContentArea\Messages.aspx" />
+    <Content Include="Forms\Public\JScripts\CommonScripts.js" />
+    <Content Include="Forms\Public\JScripts\CommonUtilities.js" />
+    <Content Include="Forms\Public\UserControls\Images\batch.gif" />
+    <Content Include="Forms\Public\UserControls\Images\collapse.GIF" />
+    <Content Include="Forms\Public\UserControls\Images\duplicates.gif" />
+    <Content Include="Forms\Public\UserControls\Images\expand.GIF" />
+    <Content Include="Forms\Public\UserControls\Images\minus.gif" />
+    <Content Include="Forms\Public\UserControls\Images\plus.gif" />
+    <Content Include="Forms\Public\UserControls\Images\top_menu_back.gif" />
+    <Content Include="Forms\Public\UserControls\MessagesBox.ascx" />
+    <Content Include="Forms\Public\UserControls\RegistryRecordNavigation.ascx" />
+    <Content Include="Forms\Public\UserControls\SearchCompound.ascx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\AddIns.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\AddInsEdit.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\Batch.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\BatchComponent.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\Compound.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\CustomizeForms.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\Default.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\EditFormsXml.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\ImportExportCustom.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\ParamEdit.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\RootPropertyList.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\ValidationRules.aspx" />
+    <Content Include="Forms\RegistrationAdmin\UserControls\AddInList.ascx" />
+    <Content Include="Forms\RegistrationAdmin\UserControls\NavigationPanel.ascx" />
+    <Content Include="Forms\RegistrationAdmin\UserControls\PropertyListUC.ascx" />
+    <Content Include="Forms\RegistrationAdmin\UserControls\ValidationRules.ascx" />
+    <Content Include="Forms\RegistryDuplicates\ContentArea\RegistryDuplicates.aspx" />
+    <Content Include="Forms\RegistryDuplicates\FormGeneratorXML\RegistryDuplicates.xml" />
+    <Content Include="Forms\ReviewRegister\ContentArea\ReviewRegisterSearch.aspx" />
+    <Content Include="Forms\SubmitRecord\ContentArea\LoadMixtureForm.aspx" />
+    <Content Include="Forms\SubmitRecord\ContentArea\SaveMixtureForm.aspx" />
+    <Content Include="Forms\SubmitRecord\ContentArea\SearchCompound.aspx" />
+    <Content Include="Forms\ViewMixture\ContentArea\MoveDelete.aspx" />
+    <Content Include="Forms\ViewMixture\ContentArea\ViewMixture.aspx" />
+    <Content Include="Forms\ReviewRegister\ContentArea\ReviewRegisterMixture.aspx" />
+    <Content Include="Forms\ViewMixture\ContentArea\ViewMixtureSearch.aspx" />
+    <Content Include="Forms\ReviewRegister\UserControls\CheckDuplicatedRegistryRecords.ascx" />
+    <Content Include="Forms\Settings\COEControlPagesSettings.xml" />
+    <Content Include="Forms\SubmitRecord\ContentArea\SubmitMixture.aspx" />
+    <Content Include="Forms\TableEditor\ContentArea\TableEditor.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj">
+      <Project>{C7998560-8704-4DE0-B00E-A4657273B022}</Project>
+      <Name>CambridgeSoft.COE.Registration.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\CambridgeSoft.COE.RegistrationAdmin.Services\CambridgeSoft.COE.RegistrationAdmin.Services.csproj">
+      <Project>{D8F0637E-6B08-49D4-9046-B39AB9A0F61D}</Project>
+      <Name>CambridgeSoft.COE.RegistrationAdmin.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\RegistrationAddins\CambridgeSoft.COE.Registration.RegistrationAddins.csproj">
+      <Project>{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}</Project>
+      <Name>CambridgeSoft.COE.Registration.RegistrationAddins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Registration.Core\Registration.Core.csproj">
+      <Project>{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}</Project>
+      <Name>Registration.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Blue\Images\Button2RegAdmin.gif" />
+    <Content Include="App_Themes\Blue\Images\ButtonBackground.png" />
+    <Content Include="App_Themes\Blue\Images\ButtonRegAdmin.gif" />
+    <Content Include="App_Themes\Common\Images\DrawStructure.png" />
+    <Content Include="App_Themes\Common\Images\NoStructure.png" />
+    <Content Include="App_Themes\Common\Images\thumbsDown.png" />
+    <Content Include="App_Themes\Common\Images\thumbsUp.png" />
+    <Content Include="App_Themes\Common\Images\UnknownStructure.png" />
+    <Content Include="App_Themes\Common\Images\NonChemicalContent.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Down.PNG" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Up.PNG" />
+    <Content Include="App_Themes\Blue\Images\ButBk_2.gif" />
+    <Content Include="App_Themes\Blue\Images\ButLeft_2.gif" />
+    <Content Include="App_Themes\Blue\Images\ButRight_2.gif" />
+    <Content Include="App_Themes\Blue\Images\Button2.GIF" />
+    <Content Include="App_Themes\Blue\COEFormsBlue.css" />
+    <Content Include="App_Themes\Blue\Images\Add.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Left_B.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Right_B.png" />
+    <Content Include="App_Themes\Blue\Images\Arrow_Right_B_h.png" />
+    <Content Include="App_Themes\Blue\Images\asterisk.gif" />
+    <Content Include="App_Themes\Blue\Images\Brand.gif" />
+    <Content Include="App_Themes\Blue\Images\ButBk.gif" />
+    <Content Include="App_Themes\Blue\Images\ButLeft.gif" />
+    <Content Include="App_Themes\Blue\Images\ButRight.gif" />
+    <Content Include="App_Themes\Blue\Images\buttonbigimage.gif" />
+    <Content Include="App_Themes\Blue\Images\buttonimage.gif" />
+    <Content Include="App_Themes\Blue\Images\buttonimageh.gif" />
+    <Content Include="App_Themes\Blue\Images\calendar.gif" />
+    <Content Include="App_Themes\Blue\Images\col.gif" />
+    <Content Include="App_Themes\Blue\Images\collapse.GIF" />
+    <Content Include="App_Themes\Blue\Images\contacts.gif" />
+    <Content Include="App_Themes\Blue\Images\cs_logo_en.jpg" />
+    <Content Include="App_Themes\Blue\Images\CustomizeRegistration .gif" />
+    <Content Include="App_Themes\Blue\Images\deleted.gif" />
+    <Content Include="App_Themes\Blue\Images\disable.gif" />
+    <Content Include="App_Themes\Blue\Images\downarrows_blue.gif" />
+    <Content Include="App_Themes\Blue\Images\downarrows_white.gif" />
+    <Content Include="App_Themes\Blue\Images\drafts.gif" />
+    <Content Include="App_Themes\Blue\Images\end_hover.gif" />
+    <Content Include="App_Themes\Blue\Images\exp.gif" />
+    <Content Include="App_Themes\Blue\Images\expand.GIF" />
+    <Content Include="App_Themes\Blue\Images\explorerBarHeader.jpg" />
+    <Content Include="App_Themes\Blue\Images\explorerBarHeaderHover.jpg" />
+    <Content Include="App_Themes\Blue\Images\Export.gif" />
+    <Content Include="App_Themes\Blue\Images\flecha.gif" />
+    <Content Include="App_Themes\Blue\Images\folder.gif" />
+    <Content Include="App_Themes\Blue\Images\folders.gif" />
+    <Content Include="App_Themes\Blue\Images\GrayButtonback.JPG" />
+    <Content Include="App_Themes\Blue\Images\header2.gif" />
+    <Content Include="App_Themes\Blue\Images\HeaderGrid2.gif" />
+    <Content Include="App_Themes\Blue\Images\horizpoints.gif" />
+    <Content Include="App_Themes\Blue\Images\hover.gif" />
+    <Content Include="App_Themes\Blue\Images\icon1.gif" />
+    <Content Include="App_Themes\Blue\Images\icon1a.gif" />
+    <Content Include="App_Themes\Blue\Images\icon2.gif" />
+    <Content Include="App_Themes\Blue\Images\icon2a.gif" />
+    <Content Include="App_Themes\Blue\Images\icon3.gif" />
+    <Content Include="App_Themes\Blue\Images\icon3a.gif" />
+    <Content Include="App_Themes\Blue\Images\icon4.gif" />
+    <Content Include="App_Themes\Blue\Images\icon4a.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_tab_light1.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_tab_light2.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_treeOminus.gif" />
+    <Content Include="App_Themes\Blue\Images\ig_treeOplus.gif" />
+    <Content Include="App_Themes\Blue\Images\inbox.gif" />
+    <Content Include="App_Themes\Blue\Images\Next_B.png" />
+    <Content Include="App_Themes\Blue\Images\Next_B_d.png" />
+    <Content Include="App_Themes\Blue\Images\Previous_B.png" />
+    <Content Include="App_Themes\Blue\Images\Previous_B_d.png" />
+    <Content Include="App_Themes\Blue\Images\QuestionSign_3.png" />
+    <Content Include="App_Themes\Blue\Images\importing.gif" />
+    <Content Include="App_Themes\Blue\YUI\container.css" />
+    <Content Include="App_Themes\Blue\YUI\sprite.png" />
+    <Content Include="App_Themes\Common\Images\AddButton.jpg" />
+    <Content Include="App_Themes\Common\Images\Arrow_Right_B_h.png" />
+    <Content Include="App_Themes\Common\Images\backgroundtoolbar.gif" />
+    <Content Include="App_Themes\Common\Images\button.png" />
+    <Content Include="App_Themes\Common\Images\buttonimage.gif" />
+    <Content Include="App_Themes\Common\Images\ClientLogo.jpg" />
+    <Content Include="App_Themes\Common\Images\Collapse.PNG" />
+    <Content Include="App_Themes\Common\Images\CustomizeRegistration .gif" />
+    <Content Include="App_Themes\Common\Images\Expand.PNG" />
+    <Content Include="App_Themes\Common\Images\expansion.PNG" />
+    <Content Include="App_Themes\Common\Images\Export.gif" />
+    <Content Include="App_Themes\Common\Images\HeaderGrid.gif" />
+    <Content Include="App_Themes\Common\Images\panelBk.jpg" />
+    <Content Include="App_Themes\Common\Images\ReviewRegister.gif" />
+    <Content Include="App_Themes\Common\Images\SearchHome.gif" />
+    <Content Include="App_Themes\Common\Images\SetUpProperties.gif" />
+    <Content Include="App_Themes\Common\Images\sprite.png" />
+    <Content Include="App_Themes\Common\Images\SubmitRecord.gif" />
+    <Content Include="App_Themes\Common\Images\TableEditor.gif" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftTabCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftTabCorner2.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\LeftTabCornerLast.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\RighCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\RightTabCorner.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\RightTabCorner2.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBk2.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBodyBk.gif" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabBodyBk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabFooter2Bk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\TabFoterBk.jpg" />
+    <Content Include="App_Themes\Common\Images\Tabs\UlBk.jpg" />
+    <Content Include="App_Themes\Common\Images\User.gif" />
+    <Content Include="App_Themes\HomeBlue\ie6.css" />
+    <Content Include="App_Themes\HomeBlue\ie7.css" />
+    <Content Include="App_Themes\HomeBlue\ie8.css" />
+    <Content Include="App_Themes\HomeBlue\style.css" />
+    <Content Include="App_Themes\Red\COEFormsRed.css" />
+    <Content Include="App_Themes\Red\Images\ButBk.gif" />
+    <Content Include="App_Themes\Red\Images\ButLeft.gif" />
+    <Content Include="App_Themes\Red\Images\ButRight.gif" />
+    <Content Include="App_Themes\Red\Images\Button.gif" />
+    <Content Include="App_Themes\Red\Images\HeadBk.jpg" />
+    <Content Include="App_Themes\Red\Images\LoginBut.gif" />
+    <Content Include="App_Themes\Red\Images\QuestionSign.jpg" />
+    <Content Include="App_Themes\Red\Images\Registration.gif" />
+    <Content Include="App_Themes\Red\Style_Red.skin" />
+    <Content Include="Code\RegistrationService.SDK.xml" />
+    <Content Include="Forms\BulkRegisterMarked\ContentArea\ApproveMarked.aspx" />
+    <Content Include="Forms\ComponentDuplicates\ContentArea\ComponentDuplicatesSearch.aspx" />
+    <Content Include="Forms\PageControlSetting\ContentArea\PageControlSetting.aspx" />
+    <Content Include="Forms\Public\JScripts\COEForm.js" />
+    <Content Include="Forms\Public\JScripts\MessagesBox.js" />
+    <Content Include="Forms\Public\UserControls\MenuButton.ascx" />
+    <Content Include="Forms\Public\UserControls\MenuItem.ascx" />
+    <Content Include="Forms\Public\UserControls\RegistrySearch.ascx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\ConfigSettings.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\PropertyEdit.aspx" />
+    <Content Include="Forms\RegistrationAdmin\ContentArea\Structure.aspx" />
+    <Content Include="Forms\RegistrationAdmin\UserControls\ConfigurationSettingsUC.ascx" />
+    <Content Include="Forms\RegistrationAdmin\Xml\ImportIniFileMapper.xml" />
+    <Content Include="Forms\SendToInventory\ContentArea\SendToInventory.aspx" />
+    <Content Include="Webservices\COERegistrationServicesTesting.htm" />
+    <Content Include="Webservices\CustomWsdlHelpGenerator.aspx" />
+    <Content Include="Forms\BulkRegisterMarked\ContentArea\Web.config" />
+    <None Include="Doc\RegistrationServices.shfbproj" />
+    <None Include="Registration.snk" />
+    <EmbeddedResource Include="Webservices\RegistryRecord.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Forms\SubmitRecord\UserControls\" />
+    <Folder Include="Forms\ViewMixture\UserControls\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>3972</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/COERegistration</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

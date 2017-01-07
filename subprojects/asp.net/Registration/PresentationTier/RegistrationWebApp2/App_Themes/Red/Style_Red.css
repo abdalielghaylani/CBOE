@@ -1,0 +1,2590 @@
+/******** BODY ********/
+.Body
+{
+	background-color: #E1E1E1;
+	margin-top: 0px;
+	margin-left: 0px;
+	padding: 0px;
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	color: #333333;
+	font-size: 11px;
+	line-height: 16px;
+}
+.Wrapper
+{
+	display: block;
+	margin: 0px auto;
+	width: 1024px;
+	background-color: #ffffff;
+	border-left: 1px solid #90004c;
+	border-right: 1px solid #90004c;
+	border-bottom: 4px solid #90004c;
+}
+
+.ContentHome
+{
+	display: block;
+	position: relative;
+	float: left;
+	background-color: #FFFFFF;
+	width: 700px;
+	margin: 0px auto;
+	padding: 0px 5px 150px 5px;
+	width: 1014px;
+}
+
+#wrapper #content .apl_menu h1.fushia
+{
+	font-size: 13px;
+}
+
+/******** HEADER ********/
+.Header
+{
+	background-image: url(Images/HeadBk.jpg);
+	width: 1024px;
+	height: 95px;
+	cursor: pointer;
+}
+
+.MainContent
+{
+	width: 1024px;
+	margin: 0px 0px 0px -1px;
+}
+
+.MenuHeader
+{
+	display: block;
+	position: relative;
+	border-width: 0px;
+	z-index: 1000;
+	height: 20px;
+	text-align: right;
+	float: right;
+	margin-top: 33px;
+}
+
+.Brand
+{
+	display: block;
+	position: relative;
+	width: 420px;
+	height: 51px;
+	margin: 18px 0px 0px 0px;
+	left: 40px;
+	background: transparent url(Images/Registration.gif) top left no-repeat scroll;
+	float: left;
+}
+.header a.LogingBut
+{
+	display: block;
+	position: relative;
+	float: right;
+	width: 70px;
+	height: 19px;
+	background: transparent url(Images/LoginBut.gif) top left no-repeat scroll;
+	margin: 25px 0px 0px 0px;
+	padding: 7px 0px 0px 0px;
+	font-size: 11px;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+a.LogingBut:visited, a.LogingBut:active, a.LogingBut:link
+{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+a.LogingBut:hover
+{
+	color: #FFFFFF;
+	text-decoration: underline;
+}
+.userstatus
+{
+	display: block;
+	position: relative;
+	float: right;
+	width: 120px;
+	height: 16px;
+	margin: 25px 5px 0px 0px;
+	text-align: left;
+	padding-left: 25px;
+	background: transparent url(/coecommonresources/Utility_Images/BackGroundImages/user.gif) center left no-repeat scroll;
+}
+.logingbut
+{
+	display: block;
+	position: relative;
+	float: right;
+	width: 70px;
+	height: 30px;
+	background: transparent url(/coecommonresources/Utility_Images/BackGroundImages/login_but3.gif) top left no-repeat scroll;
+	margin: 22px 0px 0px 0px;
+	padding: 7px 0px 0px 0px;
+	font-size: 11px;
+	text-align: center;
+	color: #FFFFFF;
+}
+/*.UserStatus{
+		display:block;
+		position:relative;
+		float:right;
+		width:120px;
+		height:16px;
+		margin:28px 5px 0px 0px;
+		padding-left:25px;
+		background: transparent url(Images/User.gif) center left no-repeat scroll ;
+		text-align:left;
+		}
+			.UserStatus Strong{
+			font-weight:bolder;
+			}*/
+
+
+/******** MENU ********/
+.Menu
+{
+	border-style: none;
+	color: #FFFFFF;
+	font-family: Verdana;
+	font-size: 11px;
+	height: 20px;
+	text-align: center;
+	vertical-align: top;
+	width: 80px;
+	cursor: pointer;
+}
+
+.MenuHover
+{
+	font-family: Verdana;
+	font-size: 11px;
+	text-align: center;
+	text-decoration: underline;
+	color: #ffffff;
+	height: 20px;
+	width: 80px;
+	vertical-align: top;
+	border-style: none;
+	cursor: pointer;
+}
+.MenuSelected
+{
+	font-family: Verdana;
+	font-size: 11px;
+	text-align: center;
+	text-decoration: underline;
+	color: #ffffff;
+	height: 20px;
+	width: 80px;
+	vertical-align: top;
+	border-style: none;
+	cursor: pointer;
+}
+/******** REIGISTRATION HOME ********/
+
+/*--- DASHBOARD ---*/
+
+#wrapper #dashboard h1
+{
+	border-bottom: 1px solid #000099;
+	border-top: 1px solid #000099;
+	color: #000099;
+	margin-left: 0px;
+}
+/*--- APPLICATION MENU / PANEL ---*/
+#wrapper #content .apl_menu
+{
+	width: 535px;
+	margin: 50px 0px 5px 150px;
+}
+#wrapper #content .apl_menu a.hid
+{
+	margin: -26px 5px 0 511px;
+}
+.blue_small
+{
+	padding: 0px;
+}
+.blue_small a:link, .blue_small a:visited, .blue_small a:hover, .blue_small a:active
+{
+	background-position: 18px -40px;
+}
+.icon_small
+{
+	left: 23px;
+}
+#wrapper #content .apl_menu ul li, .apl_menu ul li:hover
+{
+	width: 80px;
+}
+
+/******** LABELS ********/
+.Label
+{
+	padding-right: 5px;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #484848;
+}
+
+/******** CHECKBOX ********/
+.CheckBox
+{
+	padding-right: 5px;
+	font-size: 8pt;
+	font-family: Verdana;
+	color: #484848;
+	vertical-align: bottom;
+}
+
+/******** Buttons ********//*CLASE DUPLICADA VERIFICAR CUAL SE USA!!!!!!*/
+.ToolbarButton
+{
+	background: transparent url(Images/Button.gif) center center no-repeat;
+	width: 72px;
+	height: 23px;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	border: none;
+}
+
+.ButtonBig
+{
+	background: transparent url(Images/Button.gif) center center no-repeat;
+	width: 73px;
+	height: 22px;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	border: none;
+}
+
+.ButtonXL /*VERIFICAR CUAL SE USA!!!!!!*/
+{
+	background-image: url(images/graybuttonback.jpg);
+	width: 100px;
+	height: 20px;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	border: none;
+}
+
+
+.HyperLinkLike
+{
+	height: 15px;
+	font-size: 10px;
+	color: #90004c;
+	cursor: pointer;
+	border: none;
+	background-color: Transparent;
+	text-decoration: underline;
+}
+.HyperLinkLike a:hover
+{
+	height: 15px;
+	font-size: 10px;
+	color: red;
+	cursor: pointer;
+	border: none;
+	background-color: Transparent;
+	text-decoration: underline;
+}
+
+.Button
+{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #90004c;
+	font-weight: bold;
+	padding-left: 9px;
+	height: 17px;
+	width: 60px;
+	cursor: default;
+}
+
+/******** LinkButton ********/
+
+.LinkButton
+{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #90004c;
+	font-weight: bold;
+	cursor: pointer;
+}
+.LinkButtonHover
+{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #ff9900;
+	font-weight: bold;
+	cursor: pointer;
+}
+.LinkButtonSelected
+{
+	font-family: Verdana;
+	font-size: 10px;
+	color: #90004c;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+/******** WEBPANEL ********/
+/******** WebPanelButtons ********/
+.igwlbExplorerBarHeaderExpanded
+{
+	border-bottom: 2px solid #90004c;
+	background-color: #FFFFFF;
+	width: 245px;
+	height: 22px;
+	font-size: 11px;
+	color: #90004c;
+	font-weight: bold;
+	padding-right: 11px;
+	padding-left: 15px;
+	margin-top: 2px;
+	cursor: pointer;
+}
+.igwlbExplorerBarHeaderCollapsed
+{
+	border-bottom: 2px solid #90004c;
+	background-color: #FFFFFF;
+	width: 245px;
+	height: 22px;
+	font-size: 11px;
+	color: #90004c;
+	font-weight: bold;
+	padding-left: 15px;
+	padding-right: 11px;
+	margin-top: 2px;
+	cursor: pointer;
+}
+.igwlbExplorerBarHeaderHover
+{
+	border-bottom: 2px solid #90004c;
+	background-color: #FFFFFF;
+	width: 245px;
+	height: 22px;
+	font-size: 11px;
+	color: #90004c;
+	font-weight: bold;
+	padding-right: 11px;
+	padding-left: 15px;
+	margin-top: 2px;
+	cursor: pointer;
+}
+
+/******** DefaultGroupStyle ********/
+.igwlbGroupExplorerBarNormal
+{
+	height: 100%;
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #F5F5F5;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+/******** WebPanelItem ********/
+.igwlbItemNormal
+{
+	background-color: white;
+	color: #48AAF3;
+	text-align: left;
+	padding-left: 5px;
+	cursor: default;
+}
+.igwlbItemHover
+{
+	text-align: left;
+	color: #48AAF3;
+	text-decoration: underline;
+	padding-left: 5px;
+	cursor: default;
+}
+
+.igwlbItemSelected
+{
+	text-align: left;
+	color: #48AAF3;
+	text-decoration: underline;
+	padding-left: 5px;
+	cursor: default;
+}
+
+/******** MESSAGES ********/
+
+.MessageLabel
+{
+	font-size: 11px;
+	color: #333333;
+	font-family: Verdana;
+}
+.ConfirmationMessagesRow
+{
+	background-color: #bebebe;
+	height: 20px;
+}
+.ConfirmationMessages
+{
+	font-size: 10px;
+	padding-right: 30px;
+	color: #FFFFFF;
+	font-family: Verdana;
+	font-weight: bold;
+}
+.MessageAreaTable
+{
+	border-right: #FFF7D2 thin solid;
+	border-top: #000066 thin solid;
+	border-left: #FFF7D2 thin solid;
+	border-bottom: #000066 thin solid;
+	background-color: #FFF7D2;
+	text-align: center;
+	height: 30px;
+}
+.MessageTable
+{
+	margin: 0px 33px;
+	width: 90%;
+}
+
+
+/******** ERRORMESSAGE ********/
+
+.ErrorMessages
+{
+	font-size: 11px;
+	color: #FF0000;
+	font-family: Verdana;
+}
+.ErrorMessagesRow
+{
+	font-size: 11px;
+	color: #ff0000;
+	font-family: Verdana;
+}
+/******** ACORDEON ********/
+
+
+.PanelLeft
+{
+	background-color: #FFF;
+	width: 242px;
+	height: 100%;
+}
+
+TD
+{
+	font-size: 8pt;
+	font-family: Verdana;
+}
+
+.labelStyle
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	font-size: 8pt;
+	font-family: Verdana;
+	height: 20px;
+}
+
+.columnListbox
+{
+	border-right: #666666 1px solid;
+	border-top: #666666 1px solid;
+	border-left: #666666 1px solid;
+	border-bottom: #666666 1px solid;
+}
+
+.error
+{
+	font-weight: normal;
+	font-size: 8pt;
+	color: #cc0000;
+	font-family: verdana;
+	text-decoration: none;
+}
+.descriptionPanel
+{
+	font-size: x-small;
+	font-weight: normal;
+	padding-top: 2px;
+	background-color: #FAFAFA;
+	width: 100%;
+	height: 100px;
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 2px;
+	padding-right: 5px;
+	color: #3C7FD1; /* royalblue; */
+	cursor: default;
+}
+.descriptionPanelContent
+{
+	border: solid 1px silver;
+	background-color: #FDFDFD;
+}
+.descriptionPanelHeader
+{
+	font-family: verdana;
+	font-weight: bold;
+	font-size: x-small;
+	background-image: url(Images/silverglass.gif);
+	color: red;
+	padding-top: 2px;
+	padding-left: 3px;
+	border-left: silver 1px solid;
+	border-right: silver 1px solid;
+}
+.content
+{
+	/*background-color:F9F9F9; */
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #000000;
+}
+
+.chartGalleryPanel
+{
+	float: left;
+}
+
+.AcordeonLine
+{
+	background-color: #90004c;
+	height: 1px;
+	width: 210px;
+	margin-top: 20px;
+}
+
+/******** WebPanelInside ********/
+
+.igmiscexpanded
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #90004c;
+	margin-left: 10px;
+	background-color: #DFCADB;
+	width: 210px;
+	height: 20px;
+	cursor: pointer;
+	border-left: solid 8px #F1F1F1;
+	border-bottom: solid 3px #F1F1F1;
+	border-top: solid 3px #F1F1F1;
+}
+.igmischover
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #DFCADB;
+	margin-left: 10px;
+	background-color: #ff0000;
+	width: 210px;
+	height: 20px;
+	cursor: pointer;
+	border-left: solid 8px #F1F1F1;
+	border-bottom: solid 3px #F1F1F1;
+	border-top: solid 3px #F1F1F1;
+}
+.igmisccollapsed
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #90004c;
+	margin-left: 10px;
+	background-color: #DFCADB;
+	width: 210px;
+	height: 20px;
+	cursor: pointer;
+	border-left: solid 8px #F1F1F1;
+	border-bottom: solid 3px #F1F1F1;
+	border-top: solid 3px #F1F1F1;
+}
+
+
+/******** TextBox ********/
+
+.WebTextEdit
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #fff;
+	border-color: #cccccc;
+	border-width: thin;
+}
+
+
+/******** UltraWebTab ********/
+
+.UltraWebTab
+{
+	font-size: 11px;
+	font-family: Verdana;
+	font-weight: bold;
+	color: #333333;
+	margin-left: 10px;
+	height: 100%;
+}
+
+
+/********ContentPane********/
+
+.igwpPanel
+{
+	background-image: url(Images/igwp_panel.jpg);
+	background-repeat: repeat-x;
+	background-color: #90004c;
+	width: 100%;
+}
+
+/******* Search UC ***********/
+
+.SearchUCTitleText
+{
+	font-size: 10px;
+	color: #90004c;
+	font-family: Verdana;
+	font-weight: bold;
+}
+
+/******** CONTENTPages ***************/
+.Home
+{
+	height: 100px;
+	width: 100%;
+	background: #fff url(Images/watermarkhome.jpg) no-repeat center top;
+}
+.Home2
+{
+	height: 100px;
+	width: 100%;
+	background: #fff;
+}
+.PagesContentTable
+{
+	height: 100%;
+	width: 100%;
+	background: #fff url(Images/watermark.jpg) no-repeat right bottom;
+}
+.PagesToolBar
+{
+	background-image: url(../Common/Images/backgroundtoolbar.gif);
+	background-repeat: repeat-x;
+	height: 40px;
+	width: 660px;
+}
+.ColumnContentHeader
+{
+	width: 7px;
+}
+
+.ContentPageTitle
+{
+	font-size: 14px;
+	padding-right: 30px;
+	color: #333333;
+	font-family: Verdana;
+	font-weight: bold;
+	width: 185px;
+}
+.ContentPageTitleSmall
+{
+	font-size: 12px;
+	padding-right: 30px;
+	color: #90004c;
+	font-family: Verdana;
+	font-weight: bold;
+	width: 185px;
+}
+.ContentPageTitle2
+{
+	font-size: 14px;
+	padding-right: 30px;
+	color: #333333;
+	font-family: Verdana;
+	font-weight: bold;
+	width: 100px;
+}
+
+/******** UltraWebGrid ***************/
+.BandLabel
+{
+	font-size: 11px;
+	border-width: thin;
+	border-color: #6372D4;
+	background-color: #000066;
+	height: 15px;
+	color: #fff;
+	font-weight: bold;
+}
+
+.HeaderStyle
+{
+	font-size: 10px;
+	cursor: pointer;
+	font-family: Verdana;
+	color: #90004c;
+	font-weight: bold;
+	height: 20px;
+	background-image: url(../Common/Images/HeaderGrid.gif);
+	text-align: center; /*to fix header style in table editor. add on 2008/08/11*/
+}
+.SelectedHeaderStyle
+{
+	font-size: 10px;
+	cursor: pointer;
+	font-family: Verdana;
+	color: #90004c;
+	height: 20px;
+	background-image: url(Images/HeaderGrid.gif);
+	text-align: center; /*to fix cell text style in table editor. add on 2008/08/11*/
+}
+.FrameStyle
+{
+	font-size: 10px;
+	cursor: pointer;
+	font-family: Verdana;
+	color: #90004c;
+	height: 20px;
+	border-color: #90004c;
+	background-color: #EDEDF3;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: #B3B3CC;
+	border-left-style: solid;
+	border-left-width: 0px; /*to fix frame style when click the delete button in table  editor.add on 2008/08/11*/
+	border-left-color: #B3B3CC;
+}
+.FixedCellStyle
+{
+	height: 20px;
+	width: 100%;
+	background-color: #E2E2E2;
+	text-align: right;
+}
+.SmallBoldText
+{
+	font-size: 10px;
+	color: #000000;
+	font-family: Verdana;
+	font-weight: bold;
+}
+.SmallText
+{
+	font-size: 10px;
+	color: #000000;
+	font-family: Verdana;
+}
+
+/*to fix the row style in table editor.add on 2008/08/11*/
+.RowStyle
+{
+	background-color: White;
+	height: 20px;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #B3B3CC;
+	padding-left: 5px;
+}
+
+/********* CompoundDetails **********/
+.LinkLabel
+{
+	background-image: url(../Common/Images/buttonimage.gif);
+	width: 80px;
+	height: 20px;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	border: none;
+}
+.LinkLabelHover
+{
+	background-image: url(../Common/Images/buttonimage.gif);
+	width: 80px;
+	height: 20px;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	border: none;
+}
+
+.LinkLabelSelected
+{
+	background-image: url(../Common/Images/buttonimage.gif);
+	width: 80px;
+	height: 20px;
+	font-size: 11px;
+	color: #980065;
+	cursor: pointer;
+	border: none;
+}
+
+/*********** Styles for Form generator controls *************/
+
+/* TEXTBOX */
+.COETextBox
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #fff;
+	border-color: #BCBCBC;
+	border-width: thin;
+	width: 150px;
+	height: 15px;
+}
+.COETextBoxLong
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #fff;
+	border-color: #BCBCBC;
+	border-width: thin;
+	width: 650px;
+	height: 15px;
+}
+.COETextBoxLongView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 653px;
+	height: 15px;
+}
+.COETextBoxNew
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #fff;
+	border-color: #BCBCBC;
+	border-width: thin;
+	width: 120px;
+	height: 15px;
+}
+.COETextBoxNewView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 120px;
+	height: 15px;
+}
+.COETextBox2
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #fff;
+	border-color: #BCBCBC;
+	border-width: thin;
+	width: 617px;
+	height: 15px;
+}
+.COETextBoxView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 150px;
+	height: 15px;
+}
+.COETextBoxViewNew
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: solid 1px #999999;
+	width: 80px;
+	height: 15px;
+}
+.COETextBoxViewNewView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 80px;
+	height: 15px;
+}
+.COETextBox2View
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 617px;
+	height: 15px;
+}
+
+.COELine
+{
+	border-color: #ff9900;
+	border-width: 1px;
+}
+
+/* TEXTAREA */
+.COETextAreaComments
+{
+	width: 150px;
+	height: 70px;
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	margin-left: 5px;
+	background-color: #fff;
+	border-color: #B2B2B2;
+	border-width: thin;
+}
+.COETextAreaComments2
+{
+	width: 615px;
+	height: 70px;
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	margin-left: 5px;
+	background-color: #fff;
+	border-color: #B2B2B2;
+	border-width: thin;
+}
+.COETextAreaCommentsView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 150px;
+}
+.COETextAreaComments2View
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 617px;
+}
+
+/* LABEL */
+.COELabelTitle
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #90004c;
+	font-weight: bold;
+}
+.COELabelSeparador
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #8C8CBF;
+	font-weight: bold;
+}
+.COELabelTitle2
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #90004c;
+	font-weight: bold;
+	padding-left: 7px;
+}
+.COELabel
+{
+	color: #484848;
+	font-family: Verdana;
+	font-size: 11px;
+	background-color: white;
+}
+.COELabelView:before
+{
+	content: "*";
+	color: #90004c;
+	font-family: Verdana;
+	font-size: 11px;
+	background-color: white;
+}
+.COELabelTextBox
+{
+	color: #484848;
+	font-family: Verdana;
+	font-size: 11px;
+	background-color: white;
+}
+
+/* TEXTAREALONG */
+/*.COETextAreaLong
+{
+    border-color: #484848;
+    border-width:thin;
+    font-family:Verdana;
+    font-size:11px;
+    color:#484848;
+    height: 50px;
+    width: 620px;
+} */
+.COETextAreaLongView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 653px;
+	height: 15px;
+}
+.COETextAreaLong
+{
+	border-color: #484848;
+	border-width: thin;
+	font-family: Verdana;
+	font-size: 11px;
+	color: #484848;
+	height: 50px;
+	width: 650px;
+}
+
+/* CHEMDRAW */
+.COEChemDraw2
+{
+	border-color: #B3B3CC;
+	height: 300px;
+	width: 300px;
+	border: 2px;
+	border-style: solid;
+}
+.COEChemDraw1
+{
+	border-color: #B3B3CC;
+	height: 200px;
+	width: 200px;
+	border: 2px;
+	border-style: solid;
+}
+.COEChemDraw
+{
+	border-color: #B3B3CC;
+	height: 300px;
+	width: 300px;
+	border-width: 2px;
+	border-style: solid;
+}
+.COEChemDrawThin
+{
+	border-color: #B3B3CC;
+	height: 250px;
+	width: 200px;
+	border-width: 2px;
+	border-style: solid;
+}
+.COEChemDrawWide
+{
+	border-color: #B3B3CC;
+	height: 285px;
+	width: 725px;
+	border-width: 2px;
+	border-style: solid;
+	top: 30px;
+}
+
+/* DROPDOWN */
+.COEDropDownList
+{
+	color: #484848;
+	font-family: Verdana;
+	font-size: 11px;
+	height: 15px;
+	width: 155px;
+	border: solid 1px #999999;
+}
+.COEDropDownListNew
+{
+	border-color: #BCBCBC;
+	color: #484848;
+	font-family: Verdana;
+	font-size: 11px;
+	height: 20px;
+	width: 140px;
+}
+.COEDropDownListNewView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #000000;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 120px;
+	height: 20px;
+}
+.COEDropDownListView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #000000;
+	background-color: #EAEAEA;
+	border: 0px;
+	width: 155px;
+	height: 20px;
+}
+
+.COEDropDownListStatus
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #484848;
+	background-color: #BABAD6;
+	border: 0px;
+	width: 155px;
+	height: 20px;
+}
+/* DATEPICKER */
+.COEDatePicker
+{
+	border-color: #BCBCBC;
+	color: #484848;
+	font-family: Verdana;
+	text-align: left;
+	font-size: 11px;
+	height: 20px;
+	width: 150px;
+}
+
+/* VARIOS */
+.COEGridView
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #90004c;
+	text-align: left;
+	background-color: #fff;
+	border: none;
+	width: 270px;
+	height: 15px;
+}
+
+
+.COERequiredField
+{
+	color: #FF0000;
+	font-family: Verdana;
+	font-size: 11px;
+	background-color: white;
+}
+.COERequiredField:before
+{
+	content: "*";
+}
+
+
+.MessagesArea
+{
+}
+.MessagesAreaTextLabel
+{
+	background-attachment: fixed;
+	vertical-align: middle;
+	text-transform: none;
+	text-align: center;
+	font-size: 11px;
+	font-family: Verdana;
+	color: #90004c;
+	font-weight: bold;
+}
+
+.HomePageLinks
+{
+	background-attachment: fixed;
+	vertical-align: middle;
+	text-transform: none;
+	text-align: center;
+	font-size: 14px;
+	font-family: Verdana;
+	color: #90004c;
+}
+.HomePageLinks:hover
+{
+	background-attachment: fixed;
+	vertical-align: middle;
+	text-transform: none;
+	text-align: center;
+	font-size: 14px;
+	font-family: Verdana;
+	color: #0000AA;
+}
+.HomePageLinkImages
+{
+	cursor: pointer;
+}
+
+.COELabelTextBox
+{
+	color: Green;
+}
+.LeftPanelUC
+{
+	height: 425px;
+}
+
+.HomeTitleBig
+{
+	font-size: 18px;
+	color: #90004c;
+	font-family: Verdana;
+	font-weight: bold;
+}
+
+.HomeTitleMedium
+{
+	font-size: 11px;
+	color: #484848;
+	font-family: Verdana;
+	font-weight: lighter;
+}
+
+.HomeDescription
+{
+	font-size: 10px;
+	color: #484848;
+	font-family: Verdana;
+	text-align: left;
+	font-weight: lighter;
+	height: 50px;
+	width: 120px;
+}
+
+h1
+{
+	font-size: 18px;
+	color: #90004c;
+	font-family: Verdana;
+	font-weight: bold;
+	margin-left: 30px;
+}
+h4
+{
+	font-size: 11px;
+	color: #484848;
+	font-family: Verdana;
+	margin-left: 30px;
+	font-weight: lighter;
+}
+
+p
+{
+	text-align: left;
+	margin-left: 30px;
+	font-weight: lighter; /*height:50px;*/
+}
+
+.LinksHome a:link
+{
+	font-size: 12px;
+	color: #90004c;
+	font-weight: bold;
+	padding-left: 30px;
+	cursor: pointer;
+	width: 150px;
+	text-decoration: none;
+}
+.LinksHome a:hover
+{
+	font-size: 12px;
+	color: #999999;
+	font-weight: bold;
+	text-decoration: underline;
+	padding-left: 30px;
+	cursor: pointer;
+}
+
+.LinksHome a:selected
+{
+	font-size: 12px;
+	color: #000066;
+	padding-left: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
+}
+.LinksHome a:visited
+{
+	font-size: 12px;
+	color: #90004c;
+	padding-left: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/*********** Home Buttons *************/
+
+.HomeButtons
+{
+	width: 70px;
+	height: 70px;
+	vertical-align: middle;
+	cursor: pointer;
+	margin-left: 30px;
+	vertical-align: top;
+	text-align: left;
+	border: none;
+}
+.SelectAllText
+{
+	cursor: pointer;
+	font-size: 10px;
+	font-family: Verdana;
+	color: #90004c;
+	text-decoration: underline;
+	padding-left: 28px;
+}
+.SelectAllText a:hover
+{
+	cursor: pointer;
+	font-size: 10px;
+	font-family: Verdana;
+	color: #ff0000;
+	text-decoration: underline;
+	padding-left: 28px;
+}
+.Footer
+{
+	font-size: 10px;
+	color: #90004c;
+	margin-left: 100px;
+	font-family: Verdana;
+	background-color: #ffffff;
+	border-top: 2px solid #90004c;
+	width: 100%;
+	margin: 0px;
+	clear: both;
+}
+
+.Copyright
+{
+	line-height: 15px;
+	float: left;
+	margin-left: 30px;
+}
+.Version
+{
+	line-height: 15px;
+	float: right;
+	margin-right: 30px;
+}
+
+.CurrentUserText
+{
+	color: #90004c;
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	position: absolute;
+	top: 30px;
+	left: 77%;
+}
+.SelectedTextNode
+{
+	background-color: #BABAD6;
+	font-weight: bold;
+}
+.Goto
+{
+	display: block;
+	width: 150px;
+	height: 22px;
+	text-align: left;
+	font-family: Verdana;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	z-index: 100;
+	position: relative;
+	left: -350px;
+	top: 68px;
+	margin: 0px;
+	float: left;
+}
+.Goto td
+{
+	height: 22px;
+}
+
+.Goto td td
+{
+	height: 22px;
+}
+
+.Item
+{
+	width: 150px;
+	height: 15px; /*background-color:#00008A;*/
+	background-image: url(Images/HeadBk.jpg);
+	background-position: left bottom;
+	cursor: pointer;
+	font-family: Verdana;
+	color: #FAFAFA;
+	font-size: 11px; /*border: #DDD 1px solid;*/
+	border-bottom: #90004c 1px solid;
+}
+.ItemHover
+{
+	width: 150px;
+	height: 15px;
+	background-image: url(../Common/Images/sprite.png);
+	background-position: left top;
+	cursor: pointer;
+	font-family: Verdana;
+	color: #90004c;
+	font-size: 11px;
+}
+
+/**table manager styles**/
+
+.pnlEditRecordStyle
+{
+	background-color: white;
+	font-size: 10px;
+	font-family: Verdana;
+	color: #90004c;
+}
+.pnlEditBtnStyle
+{
+	background-color: white;
+	border-bottom-width: thick;
+	border-bottom-color: Blue;
+}
+.pnlPageStyle
+{
+	background-color: white;
+	border-bottom-width: thick;
+	border-bottom-color: Blue;
+}
+.pnlTableDescriptionStyle
+{
+	background-color: white;
+	border-bottom-width: thick;
+	border-bottom-color: Blue;
+}
+.pnlViewTableStyle
+{
+	background-color: white;
+	border-bottom-width: thick;
+	border-bottom-color: Blue;
+	margin: 10px auto;
+	overflow: auto;
+}
+.ShortActionButton
+{
+	width: 90px;
+	height: 20px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #90004c;
+	font-family: Verdana;
+	background: url(YUI/sprite.png);
+	border-left: #BBBBBB 1px solid;
+	border-top: #BBBBBB 1px solid;
+	border-right: #BBBBBB 2px solid;
+	border-bottom: #BBBBBB 2px solid;
+}
+
+.TableEditorListBox
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #90004c;
+	background-color: #FFFFFF;
+	height: 300px;
+	width: 75px;
+	border-top: #C0C0C0 1px solid;
+	border-left: #C0C0C0 1px solid;
+	border-right: #C0C0C0 1px solid;
+	border-bottom: #C0C0C0 1px solid;
+}
+
+.TableEditorHeaderStyle
+{
+	font-size: 10px;
+	cursor: pointer;
+	font-family: Verdana;
+	color: #90004c;
+	font-weight: bold;
+	height: 20px;
+	background-image: url(images/HeaderGrid.gif);
+	text-align: center;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #B3B3CC;
+}
+
+
+/* =Layout REGISTRATION ADMIN
+------------------------------------------------------------------------------------------ */
+
+.Clear
+{
+	clear: both;
+}
+.ClearProperties
+{
+	width: 780px;
+	clear: both;
+}
+
+
+
+/*=Dashboard (Registration Home Only >> New Layout not applicated yet)
+	----------------------------------------------------------*/
+
+.Dashboard
+{
+	display: block;
+	position: relative;
+	float: left;
+	width: 244px;
+	height: 376px;
+	background-color: Transparent;
+}
+
+.H1Dashboard
+{
+	/*style for <h1>*/
+	margin-bottom: 15px;
+	font-size: 12px;
+	text-transform: uppercase;
+	color: #90004c;
+	border-bottom: 1px solid #90004c;
+	border-top: 1px solid #90004c;
+	line-height: 20px;
+	text-align: center;
+}
+
+.PDashboard
+{
+	/*style for <p>*/
+	margin: 5px 5px 15px 10px;
+}
+
+.SpanDashboard
+{
+	/*style for <span>*/
+	color: #90004c;
+	font-size: 14px;
+}
+
+.MenuRegAdmin
+{
+	display: block;
+	margin: 20px 5px;
+}
+
+.MenuRegAdmin li
+{
+	margin: 5px 0px;
+	color: #333333;
+	font-weight: bold;
+	padding-left: 25px;
+}
+
+.MenuRegAdmin li a
+{
+	color: #333333;
+	text-decoration: none;
+}
+
+.MenuRegAdmin ul.SubMenu
+{
+	margin: 5px 0px 5px 15px;
+}
+
+.MenuRegAdmin ul.SubMenu li
+{
+	margin: 5px 0px;
+	color: #333333;
+	font-weight: bold;
+}
+
+.MenuRegAdmin ul.SubMenu li a
+{
+	color: #333333;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+
+/*=Content (Registration >> New Layout not applicated yet)
+	----------------------------------------------------------*/
+
+.Content
+{
+	display: block;
+	float: left;
+	background-color: #FFFFFF;
+	margin: 0px auto;
+	padding: 0px 5px 5px 5px;
+	width: 100%;
+	padding: 0px !important;
+}
+
+.CustomBrand
+{
+	/* Application Home Only */
+	float: right;
+	display: block;
+	margin: 40px 30px 20px 10px;
+	position: relative;
+}
+
+.Info
+{
+	/* Application Home Only */
+	display: block;
+	float: left;
+	width: 40%;
+	position: relative;
+	margin: 45px 20px 50px 40px;
+}
+
+
+/* PANNEL - Application Home Only 
+		----------------------------------------------------------------------*/
+
+.AplMenu
+{
+	display: block;
+	position: relative;
+	float: none;
+	clear: both;
+	width: 450px;
+	margin: 30px auto 30px auto;
+	background: #e8e8e8 url(../Common/Images/panelBk.jpg) bottom right no-repeat scroll;
+	padding-bottom: 10px;
+}
+
+.AplMenuHomeReg
+{
+	display: block;
+	position: relative;
+	float: none;
+	clear: both;
+	width: 60%;
+	margin: 30px auto 0px auto;
+	background: #e8e8e8 url(../Common/Images/panelBk.jpg) bottom right no-repeat scroll;
+	padding-bottom: 10px;
+}
+
+
+.PAplMenu
+{
+	font-weight: bold;
+	width: 90%;
+	margin: 0px auto;
+	top: 15px;
+}
+
+
+.Items
+{
+	font-weight: bold;
+	width: 90%;
+	top: 15px;
+	margin: 15px 20px;
+	font-weight: bold;
+	padding-top: 15px;
+}
+
+/* HEAD PANELS STYLES (11 applications) */
+
+
+/*DataView Manager*/
+
+.Dvmanager
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #0099ff;
+	color: #0099ff;
+}
+
+.DvmanHelp
+{
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	float: right;
+	margin: -26px 0px 0px 90%; /*ie6 y 7*/
+	z-index: 98;
+	background: transparent url(Images/dvmanager_help2.jpg) top right no-repeat scroll;
+}
+
+/*DocManager*/
+
+.Docmanager
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #90004c;
+	color: #90004c;
+}
+
+
+.DocmanHelp
+{
+	display: block;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	float: right;
+	margin: -26px 0px 0px 90%; /*ie6 y 7*/
+	z-index: 98;
+	background: transparent url(Images/docmanag_help2.jpg) top right no-repeat scroll;
+}
+
+
+/*Registration Enterprise*/
+.Registration
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #90004c;
+	color: #90004c;
+}
+
+/*Security*/
+
+.Security
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #90004c;
+	color: #90004c;
+}
+
+/*Inventory*/
+
+.Inventory
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #009966;
+	color: #009966;
+}
+
+/*ChemBioViz Enterprise*/
+
+.Chembioviz
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #0099ff;
+	color: #0099ff;
+}
+
+
+/*DrugDeg Enterprise*/
+
+.Drugdegent
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #904400;
+	color: #904400;
+}
+
+
+/*Configuration Manager*/
+
+.Configuration
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #90004c;
+	color: #90004c;
+}
+
+
+/*Data Loader*/
+
+.Dloader
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #680084;
+	color: #680084;
+}
+
+
+/*DrugDeg Database*/
+
+.Drugdegdb
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #731e00;
+	color: #731e00;
+}
+
+
+/*Chem ACX*/
+
+.Chemacx
+{
+	display: block;
+	position: relative;
+	clear: both;
+	height: 15px;
+	margin: 0px 0px 5px 0px;
+	font-weight: bold;
+	padding: 5px 5px 5px 10px;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #900004;
+	color: #900004;
+}
+
+
+/*PANNEL - Help information
+			----------------------------------*/
+
+.HelpButton
+{
+	display: block;
+	position: absolute;
+	text-decoration: none;
+	width: 20px;
+	height: 20px;
+	float: right;
+	margin: -26px 0px 0px 0px;
+	left: 95%;
+	z-index: 98;
+	background: transparent url(Images/QuestionSign.jpg) top right no-repeat scroll;
+}
+
+.HelpInfo
+{
+	display: none;
+	position: absolute;
+	background: #cccccc;
+	width: 100%;
+	padding-bottom: 20px;
+	color: #191919;
+	margin: -5px 0px 0px 0px;
+	z-index: 1000;
+	left: 0px;
+}
+
+.HelpInfo span
+{
+	display: block;
+	font-weight: bold;
+	cursor: default;
+	margin: 25px;
+}
+
+
+
+/*PANNEL - LIST OF ICONS
+		---------------------------------------------*/
+
+.AplMenuHomeReg .UlAplMenu
+{
+	display: block;
+	position: relative;
+	width: 90%;
+	min-height: 130px;
+	margin: 25px auto 45px;
+}
+
+.AplMenuHomeReg ul li
+{
+	display: block;
+	position: relative;
+	float: left;
+	width: 73px;
+	height: 77px;
+	margin: 3px 4% 5px 4%; *margin:3px15px5px15px!important;/* Hack IE7*/
+text-align:center;
+}
+
+.AplMenuHomeReg ul li.Clear
+{
+	display: block;
+	position: relative;
+	float: none;
+	clear: both;
+	width: 90%;
+	height: 35px;
+	margin: 0px;
+	list-style-type: none;
+}
+.AplMenuHomeReg ul li:hover
+{
+	border: 1px solid #999999;
+	height: 75px;
+	width: 71px;
+}
+
+.AplMenuHomeReg ul li.Clear:hover
+{
+	border: none;
+	height: 35px;
+	width: 100%;
+}
+
+.AplMenuHomeReg ul li img.I24
+{
+	display: block;
+	position: relative;
+	margin: 5px -18px !important;
+	margin: 5px -10px;
+	left: 50%;
+	left: 34px !important;
+	clear: both;
+	background: transparent url(Images/Button.png) center center no-repeat scroll;
+	padding: 4px 10px 10px 7px;
+}
+.AplMenuHomeReg ul li img.I24:focus
+{
+	border: none;
+}
+
+.AplMenuHomeReg ul li img.I32
+{
+	display: block;
+	position: relative;
+	margin: 3px auto;
+	clear: both;
+	background: transparent url(Images/blue_48.png) bottom left no-repeat scroll;
+	padding: 2px 10px 9px 7px;
+}
+
+.AplMenuHomeReg ul li a.HItem
+{
+	display: block;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	clear: both;
+	color: #333333;
+	line-height: 12px;
+}
+
+.AplMenuHomeReg ul li a.HItem:link, a.HItem:active, a.HItem:focus, a.HItem:hover
+{
+	color: #333333;
+	text-decoration: none;
+}
+
+
+/*reg admin panel*/
+.UlAplMenu
+{
+	display: block;
+	position: relative;
+	margin: -20px 10px 45px 100px;
+}
+.LiAplMenu
+{
+	display: block;
+	position: relative;
+	margin: 5px; /*float:left;*/
+	clear: both;
+	list-style-type: none;
+}
+
+.ClearLiAplMenu
+{
+	display: block;
+	position: relative;
+	float: none;
+	clear: both;
+	width: 100%;
+	height: 0px;
+	margin: 0px;
+}
+
+.I24
+{
+	display: block;
+	position: relative;
+	float: left;
+	margin: 5px;
+	background: transparent url(../Common/Images/button.png) center center no-repeat scroll;
+	padding: 4px 10px 10px 7px;
+	margin-top: -10px;
+}
+.I24:focus
+{
+	border: none;
+}
+
+.I32
+{
+	display: block;
+	position: relative;
+	float: left;
+	margin: 3px;
+	background: transparent url(Images/blue_48.png) bottom left no-repeat scroll;
+	padding: 2px 10px 9px 7px;
+	margin-top: -10px;
+}
+
+.MenuItem
+{
+	display: block;
+	position: relative;
+	text-decoration: none;
+	color: #333333;
+	line-height: 11px;
+}
+
+.MenuItem:link, .MenuItem:active, .MenuItem:focus, .MenuItem:hover
+{
+	color: #333333;
+	text-decoration: none;
+}
+
+
+
+/*Tabs Layout
+-------------------------------------------------------------------*/
+
+
+/*Tabs Layout=HEADER
+-----------------------------*/
+
+.UlTabsHeader
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: block;
+	height: 32px;
+	background: transparent url(../Common/Images/Tabs/UlBk.jpg) left top repeat-x scroll;
+}
+.LiTabsHeader
+{
+	display: block;
+	float: left;
+	margin: 0px;
+	position: relative;
+	background: transparent url(../Common/Images/Tabs/TabBk2.jpg) left 1px repeat-x scroll;
+}
+
+.LiFirstTabsHeader
+{
+	position: relative;
+	display: block;
+	float: left;
+	margin: 0px 5px 0px 0px;
+	width: 14px;
+	height: 32px;
+	background: transparent url(../Common/Images/Tabs/LeftCorner.jpg) left 1px no-repeat scroll;
+}
+
+.LiLastTabsHeader
+{
+	display: block;
+	position: relative;
+	float: right;
+	margin: 0px;
+	width: 14px;
+	height: 32px;
+	background: transparent url(../Common/Images/Tabs/RighCorner.jpg) left 1px no-repeat scroll;
+}
+
+.ATabsHeader
+{
+	padding: 0px;
+	color: #CCCCCC;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	float: left;
+	margin-top: 12px;
+	font-size: 12px;
+}
+
+.ATabsHeaderEditXml
+{
+	/*we need to resize links's font to fix width*/
+	padding: 0px;
+	color: #CCCCCC;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	float: left;
+	margin-top: 11px;
+	font-size: 10px;
+}
+
+
+.LeftCornerTabsHeader
+{
+	display: block;
+	float: left;
+	width: 14px;
+	height: 32px;
+	background: transparent url(../Common/Images/Tabs/LeftTabCorner2.jpg) left 1px no-repeat scroll;
+}
+
+.RigthCornerTabsHeader
+{
+	display: block;
+	float: left;
+	width: 14px;
+	height: 32px;
+	background: transparent url(../Common/Images/Tabs/RightTabCorner2.jpg) right 1px no-repeat scroll;
+}
+
+.SelectedTabsHeader
+{
+	display: block;
+	float: left;
+	margin: 0px;
+	position: relative;
+	top: 1px;
+	background: transparent url(../Common/Images/Tabs/TabBk.jpg) left top repeat-x scroll;
+}
+
+.SelectedTabsHeader .ATabsHeader
+{
+	color: #333333;
+}
+
+.SelectedTabsHeader .ATabsHeaderEditXml
+{
+	/*Advanced Customization Section*/
+	color: #333333;
+}
+
+.SelectedTabsHeader .LeftCornerTabsHeader
+{
+	background: transparent url(../Common/Images/Tabs/LeftTabCorner.jpg) top left no-repeat scroll;
+}
+
+.SelectedTabsHeader .RigthCornerTabsHeader
+{
+	background: transparent url(../Common/Images/Tabs/RightTabCorner.jpg) top right no-repeat scroll;
+}
+
+
+
+/*Tabs Layout=CONTENT
+-----------------------------*/
+
+.TabsContent
+{
+	clear: both;
+	background: transparent url(../Common/Images/Tabs/TabBodyBk.jpg) right top repeat-y scroll;
+	border-left: 2px solid #CCCCCC;
+	padding-top: 5px;
+}
+
+.Goto2
+{
+	/* Links at top right, under tabs header */
+	float: right;
+	margin-right: 20px;
+	color: #90004c;
+}
+
+.PTabsContent
+{
+	/* <span> */
+	display: block;
+	margin: 10px 20px;
+	clear: both;
+}
+
+.FieldsetTabsContent
+{
+	margin: 0px 40px 0px 30px;
+	border: 1px solid #999999;
+}
+
+.LegendTabsContent
+{
+	margin-left: 7px;
+	padding: 0px 5px;
+	font-weight: bold;
+	color: #333333;
+	font-size: 11px;
+}
+
+.DivFieldset
+{
+	/* Center elements into Fieldsets */
+	display: block;
+	margin: 0px auto;
+	width: 60%;
+}
+
+.DivFieldset .Div
+{
+	/* Used to Organize */
+	display: block;
+	margin: 0px;
+	clear: both;
+	width: 100%;
+}
+
+.DivFieldset .DivCent
+{
+	/* Center elements */
+	display: block;
+	margin: 0px;
+	clear: both;
+	width: 100%;
+	text-align: center;
+}
+
+.DivFieldsetEm
+{
+	/* Emphasized text */
+	background-color: #F8F8F8;
+	display: block;
+	float: left;
+	margin: 2px;
+	padding-left: 10px;
+	width: 172px;
+}
+
+.H1Fieldset
+{
+	display: block;
+	margin: 5px;
+	clear: both;
+	font-size: 11px;
+	color: #666666;
+	font-weight: normal;
+	margin-left: 50px;
+}
+
+/*.h1Fieldset {
+			margin: 0;
+			padding: 0 0 1em 0;
+			font-size: 11px;
+		} */
+
+
+
+.LabelFieldset
+{
+	/* They have specified with to center and aling with inputs into a DivFieldset  */
+	width: 12em;
+	float: left;
+	text-align: right;
+	margin-right: 0.5em;
+	margin-top: 0.5em;
+	display: block;
+}
+.LabelFieldsetAddIn
+{
+	/* They have specified with to center and aling with inputs into a DivFieldset  */
+	width: 30em;
+	float: left;
+	text-align: right;
+	margin-right: 0.5em;
+	margin-top: 0.5em;
+	display: block;
+}
+
+/* TabsContent footer */
+
+.TabsFooter
+{
+	display: block;
+	height: 10px;
+	background: transparent url(../Common/Images/Tabs/TabFooter2Bk.jpg) right bottom repeat-x scroll;
+}
+.DivFooter
+{
+	display: block;
+	float: right;
+	width: 14px;
+	height: 10px;
+	background: transparent url(../Common/Images/Tabs/TabFoterBk.jpg) right bottom no-repeat scroll;
+}
+
+/*Form elements USED INTO TABSCONTENT*/
+
+.ControlElements
+{
+	/* Inputs - Setup Property Lists */
+	display: block;
+	float: left;
+	border: 2px inset #cccccc;
+	background-color: #f8f8f8;
+	margin: 2px;
+	font-size: 11px;
+	width: 182px;
+}
+
+/* Form elements - special classes */
+
+Select.ControlElements
+{
+	width: 188px;
+}
+
+.NumericInput
+{
+	display: block;
+	float: left;
+	border: 2px inset #cccccc;
+	background-color: #f8f8f8;
+	margin: 2px;
+	font-size: 11px;
+	width: 50px;
+}
+
+
+.DivFieldset p.MaxMinInput
+{
+	clear: none;
+}
+
+.InputFile
+{
+	margin: 15px 20% 2px;
+}
+
+Select.AddinProp
+{
+	display: block;
+	float: left;
+	border: 2px inset #cccccc;
+	background-color: #f8f8f8;
+	margin: 4px;
+	font-size: 11px;
+	width: 400px;
+}
+
+Select.AddinEvent /*addin section*/
+{
+	display: block;
+	float: left;
+	border: 2px inset #cccccc;
+	background-color: #f8f8f8;
+	margin: 4px 0px 4px 4px;
+	font-size: 11px;
+	width: 250px;
+}
+
+.MultilineInput /*textarea*/
+{
+	display: block;
+	clear: both;
+	height: 150px;
+	width: 75%;
+	float: none;
+	margin: 0 auto 10px auto;
+	border: 2px inset #cccccc;
+	background-color: #f8f8f8;
+}
+
+.MultilineInputXmlEdit /*edit xml textarea - Advanced Customization Section */
+{
+	display: block;
+	clear: both;
+	height: 500px;
+	width: 1000px;
+	float: none;
+	margin: 5px 7px;
+	border: 2px inset #cccccc;
+	background-color: #f8f8f8;
+}
+
+.MultilineDisplayXml
+{
+	width: 1000px;
+	overflow: auto;
+	height: 500px;
+}
+
+
+
+/* BUTTONS */
+
+.Button
+{
+	display: block;
+	width: 72px;
+	height: 23px;
+	background: transparent url(Images/Button.gif) center center no-repeat scroll;
+	color: #000000;
+	font-weight: bold;
+	text-align: center;
+	float: right;
+	margin: 0px 10px 10px 0px;
+	text-decoration: none;
+	padding-top: 7px;
+}
+
+
+
+.Button2
+{
+	height: 23px;
+	text-decoration: none;
+	display: block;
+	float: right;
+	margin: 5px;
+}
+
+.DivCent .Button2
+{
+	float: none;
+}
+
+.Button2 a
+{
+	text-decoration: none;
+	float: left;
+	background: transparent url(Images/ButBk.gif) left top repeat-x scroll;
+	height: 21px;
+	padding-top: 2px;
+}
+
+.Button2 a:hover, a:visited
+{
+	color: #333333;
+}
+.Button2 .Left
+{
+	background: transparent url(Images/ButLeft.gif) left top repeat-x scroll;
+	height: 23px;
+	width: 9px;
+	float: left;
+}
+
+.Button2 .Right
+{
+	background: transparent url(Images/ButRight.gif) left top repeat-x scroll;
+	height: 23px;
+	width: 9px;
+	float: left;
+}
+
+
+/*OTHER*/
+
+.Div .Label
+{
+	float: left;
+}
+
+.ShowXML /*Advanced Customization Section*/
+{
+	display: block;
+	position: relative;
+	width: 660px;
+	background-color: #f8f8f8;
+	padding-left: 20px;
+	font-size: 8px;
+}
+
+/*DashBoard - Home*/
+.DashBoardNumber
+{
+	font: bold 14px Verdana;
+	color: #F00;
+}
+.DashBoardText
+{
+	font: 12px Verdana;
+	color: #009;
+}
+
+/*search*/
+
+iframe
+{
+	border: none;
+}

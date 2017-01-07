@@ -1,0 +1,340 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<!--Control & Page Settings for Reg App -->
+<application name="REGISTRATION">
+  <pages>
+    <page id="ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_SUBMITRECORD_CONTENTAREA_SUBMITMIXTURE_ASPX</control>
+          </controls>
+        </privilege>
+        <!--Setting to disable page's controls-->
+        <privilege name="ADD_COMPOUND_TEMP">
+          <controls>
+            <control>SubmitButton</control>
+            <control>LoadButton</control>
+            <control>SearchComponentButton</control>
+            <control>AddComponentButton</control>
+            <control>DoneAddingButton</control>
+            <control>SubmitButton</control>
+            <control>SaveButton</control>
+          </controls>
+        </privilege>
+        <!--
+        <privilege name="UnknowkPrivilege">
+          <controls>
+            <control type="COEForm" placeHolder="mixtureInformationHolder">DetailForm_1</control>
+          </controls>
+        </privilege>
+        -->
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_BULKREGISTERMARKED_CONTENTAREA_REGISTERMARKED_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_BULKREGISTERMARKED_CONTENTAREA_REGISTERMARKED_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_COMPONENTDUPLICATES_CONTENTAREA_COMPONENTDUPLICATES_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_COMPONENTDUPLICATES_CONTENTAREA_COMPONENTDUPLICATES_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_ADDINS_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_ADDINS_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_ADDINSEDIT_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_ADDINSEDIT_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_BATCH_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_BATCH_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_BATCCOMPONENT_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_BATCCOMPONENT_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_COMPOUND_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_COMPOUND_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_CUSTOMIZEDFORMS_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_CUSTOMIZEDFORMS_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_DEFAULT_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_DEFAULT_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_EDITFORMSXML_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_EDITFORMSXML_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_PARAMEDIT_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_PARAMEDIT_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_ROOTPROPERTYLIST_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_ROOTPROPERTYLIST_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_VALIDATIONRULES_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRATIONADMIN_CONTENTAREA_VALIDATIONRULES_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTRYDUPLICATES_CONTENTAREA_REGISTRYDUPLICATES_ASPX">
+      <privileges>
+        <!--Setting to disable all the page in case the current user doesn't have any (OR Log operator) of the privs.-->
+        <privilege name="ADD_COMPOUND_TEMP|ADD_BATCH_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP|DELETE_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTRYDUPLICATES_CONTENTAREA_REGISTRYDUPLICATES_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REVIEWREGISTER_CONTENTAREA_REVIEWREGISTERSEARCH_ASPX">
+      <privileges>
+        <privilege name="SEARCH_TEMP">
+          <controls>
+            <control>ASP.FORMS_REVIEWREGISTER_CONTENTAREA_REVIEWREGISTERSEARCH_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REVIEWREGISTER_CONTENTAREA_REVIEWREGISTERMIXTURE_ASPX">
+      <privileges>
+        <privilege name="EDIT_COMPOUND_TEMP|REGISTER_TEMP|SEARCH_TEMP" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REVIEWREGISTER_CONTENTAREA_REVIEWREGISTERMIXTURE_ASPX</control>
+          </controls>
+        </privilege>
+        <privilege name="EDIT_COMPOUND_TEMP">
+          <controls>
+            <control>EditButton</control>
+            <control>SubmitButton</control>
+            <control>DoneButton</control>
+          </controls>
+        </privilege>
+        <privilege name="REGISTER_TEMP">
+          <controls>
+            <control>RegisterButton</control>
+            <control>SubmitButton</control>
+            <control>DoneButton</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_VIEWMIXTURE_ASPX">
+      <privileges>
+        <privilege name="EDIT_COMPOUND_REG|SEARCH_REG|EDIT_BATCH_REG" operator="OR">
+          <controls>
+            <control>ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_VIEWMIXTURE_ASPX</control>
+          </controls>
+        </privilege>
+        <privilege name="EDIT_COMPOUND_REG">
+          <controls>
+            <control>EditButton</control>
+            <control>SubmitButton</control>
+          </controls>
+        </privilege>
+        <privilege name="ADD_BATCH_TEMP">
+          <controls>
+            <control>AddBatchButton</control>
+            <control>SubmitButton</control>
+          </controls>
+        </privilege>
+        <privilege name="SUBMIT_DOCS">
+          <controls>
+            <control>AddDocManagerClassic</control>
+          </controls>
+        </privilege>
+        <privilege name="SEARCH_DOCS">
+          <controls>
+            <control>BrowseDocManagerClassic</control>
+          </controls>
+        </privilege>
+        <privilege name="DELETE_MY_DOCS">
+          <controls>
+            <control>DeleteDocManagerClassic</control>
+          </controls>
+        </privilege>
+        <privilege name="DELETE_ALL_DOCS">
+          <controls>
+            <control>DeleteDocManagerClassic</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_LOADCOMPOUNDFORM_ASPX">
+      <privileges>
+        <privilege name="SEARCH_TEMP|ADD_COMPOUND_TEMP|EDIT_COMPOUND_TEMP" operator="AND">
+          <controls>
+            <control>ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_LOADCOMPOUNDFORM_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_REVIEWDUPLICATEDMIXTURES_ASPX">
+      <privileges>
+        <privilege name="REGISTER_TEMP|EDIT_COMPOUND_TEMP|EDIT_BATCH_TEMP" operator="AND">
+          <controls>
+            <control>ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_REVIEWDUPLICATEDMIXTURES_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_REVIEWDUPLICATEDCOMPOUNDS_ASPX">
+      <privileges>
+        <privilege name="REGISTER_TEMP|EDIT_COMPOUND_TEMP" operator="AND">
+          <controls>
+            <control>ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_REVIEWDUPLICATEDCOMPOUNDS_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_SAVECOMPOUNDFORM_ASPX">
+      <privileges>
+        <privilege name="ADD_COMPOUND_TEMP">
+          <controls>
+            <control>ASP.FORMS_CONTENTAREA_SAVECOMPOUNDFORM_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_SUBMITMIXTURESEARCHCOMPOUND_ASPX">
+      <privileges>
+        <privilege name="SEARCH_TEMP|ADD_COMPOUND_TEMP" operator="AND">
+          <controls>
+            <control>ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_SUBMITMIXTURESEARCHCOMPOUND_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_SEARCHREGISTRYRECORD_ASPX">
+      <privileges>
+        <privilege name="SEARCH_REG">
+          <controls>
+            <control>ASP.FORMS_REGISTEREDRECORD_CONTENTAREA_SEARCHREGISTRYRECORD_ASPX</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    <page id="ASP.FORMS_PUBLIC_CONTENTAREA_HOME_ASPX">
+      <privileges>
+        <privilege name="ADD_COMPOUND_TEMP">
+          <controls>
+            <control>SubmitMixtureHomeTextRow</control>
+            <control>SubmitMixtureHomeIconRow</control>
+          </controls>
+        </privilege>
+        <privilege name="REGISTER_TEMP">
+          <controls>
+            <control>ReviewRegisterHomeTextRow</control>
+            <control>ReviewRegisterHomeIconRow</control>
+          </controls>
+        </privilege>
+        <!-- Just for testing purpose 
+        <privilege name="SEARCH_REG|ADD_COMPOUND_TEMP" operator="AND">
+          <controls>
+            <control>ASP.FORMS_CONTENTAREA_HOME_ASPX</control>
+          </controls>
+        </privilege>-->
+      </privileges>
+    </page>
+    <!--
+    <page id="ASP.FORMS_MASTER_REGISTRATION_MASTER">
+      <privileges>
+        <privilege name="ADD_COMPOUND_TEMP">
+          <controls>
+            <control>SubmitMixture</control>
+          </controls>
+        </privilege>
+        <privilege name="REGISTER_TEMP">
+          <controls>
+            <control>ReviewRegister</control>
+          </controls>
+        </privilege>
+      </privileges>
+    </page>
+    -->
+  </pages>
+</application>

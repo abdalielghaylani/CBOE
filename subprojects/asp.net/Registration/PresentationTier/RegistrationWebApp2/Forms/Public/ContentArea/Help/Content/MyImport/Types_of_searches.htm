@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html MadCap:lastBlockDepth="2" MadCap:lastHeight="110" MadCap:lastWidth="624" xmlns:MadCap=" " d1p1:disableMasterStylesheet="true" d1p1:tocPath="Managing temporary records|Types of searches" d1p1:InPreviewMode="false" d1p1:previewFolder="file:///C:/Documents and Settings/Administrator/My Documents/My Projects/Reg Enterprise/Output/Administrator/Temporary/MyWebHelp/Preview/" d1p1:RuntimeFileType="Topic" d1p1:TargetType="WebHelp" d1p1:PathToHelpSystem="../../" d1p1:HelpSystemFileName="default.xml" d1p1:SearchType="Stem" xmlns:d1p1="http://www.madcapsoftware.com/Schemas/MadCap.xsd">
+    <!-- saved from url=(0014)about:internet -->
+    <head><title>Structure search</title>
+        <link href="../Resources/TableStyles/_2col_table.css" rel="stylesheet" />
+        <link href="../SkinSupport/MadCap.css" rel="stylesheet" />
+        <link href="../Resources/Stylesheets/Cambridgesoft1.css" rel="stylesheet" />
+        <script src="../SkinSupport/MadCapAll.js" type="text/javascript">
+        </script>
+    </head>
+    <body>
+        <div class="MCBreadcrumbsBox_breadcrumbsProxy" style=""><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Managing_temporary_recor.htm#Search_temp_1701990757_999217">Managing temporary records</a><span class="MCBreadcrumbsDivider"> &gt; </span><a class="MCBreadcrumbsLink" href="#Search_temp_1701990757_999990">Types of searches</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Structure search</span>
+        </div>
+        <h2 class="Heading2"><a name="Search_temp_1701990757_999990"></a><a name="Search_temp_1701990757_40586"></a>Types of searches</h2>
+        <div class="Body">You can search for records based on any fields in the Search Temporary Records page by specifying the required search criteria.  In Registration Enterprise 11.0.1, the different types of searches you can perform include:</div>
+        <div class="Bullet1-1st">Structure search</div>
+        <div class="Bullet1-inner">Text search</div>
+        <div class="Bullet1-inner">Numeric search</div>
+        <div class="Bullet1-inner">Formula search </div>
+        <div class="Bullet1-last">Date search</div>
+        <div class="Bullet1-last">Boolean search</div>
+        <h3 class="Heading3"><a name="Search_temp_1701990757_1000183"></a>Structure search</h3>
+        <div class="Body">Structure searching lets you search for records based on their chemical structures. Registration Enterprise 11.0.1 provides three types of structure searches:</div>
+        <div class="Bullet1-1st">Substructure searching</div>
+        <div class="Bullet1-inner">Full structure searching</div>
+        <div class="Bullet1-last">Exact searching</div>
+        <h4 class="Heading4">Substructure searching</h4>
+        <div class="Body">Substructure searching is the default structure search type. It retrieves structures that meet the following criteria:</div>
+        <div class="Bullet1-1st">Match the basic chemical structure specified</div>
+        <div class="Bullet1-last">contain additional attachments at open bond positions</div>
+        <div class="Tip" MadCap:autonum="&lt;b&gt;Tip:&lt;/b&gt; " xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span><b>Tip:</b> <![CDATA[ ]]></span></span>To narrow down or broaden search, attach different features such as atom lists and variable bond types to the structure using ChemDraw plug-in. </div>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="substruct search_288x176.jpg" style="margin-top: 6.00048px; margin-bottom: 5.999764px; width: 288; height: 176;" />
+        </p>
+        <p class="Caption">Example of Substructure searching</p>
+        <h4 class="Heading4">Full Structure Searching</h4>
+        <div class="Body">Full structure searching retrieves structures that match the structure specified in the query, without considering additional attachments. Isotopes are recognized as hits.</div>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="full struct search_242x146.jpg" style="margin-left: 1.50048px; margin-right: 3.749764px; margin-bottom: 2.25px; width: 242; height: 146;" />
+        </p>
+        <p class="Caption">Example of Full structure searching</p>
+        <h4 class="Heading4">Exact Searching</h4>
+        <div class="Body">Exact searching retrieves structures that are identical to the structure specified in the query. Isotopes are not recognized as hits.</div>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="exact struct search_288x73.jpg" style="margin-top: 2.24712px; margin-right: 4.133521px; margin-bottom: 2.99736px; width: 288; height: 73;" />
+        </p>
+        <p class="Caption">Example of Exact searching</p>
+        <h4 class="Heading4">Setting search preferences</h4>
+        <div class="Body">Setting the search preferences lets you control the manner in which the results are displayed. These settings are global for a user throughout the application. </div>
+        <div class="Body">To access the search preference options:</div>
+        <div class="Bullet1-last">Click <span class="Action_Object">Options</span> attached to the structure window. The Search Preferences dialog box appears.</div>
+        <h5 class="Heading5">General tab</h5>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="search pref dia.jpg" style="width: 253.9997px;height: 258px;margin-left: 3.00024px;margin-top: 3.00024px;margin-right: 13.5px;margin-bottom: 2.250004px;" />
+        </p>
+        <div class="Body">The various options under the general tab include:</div>
+        <h5 class="HeadingRunIn">Hit any charge on heteroatom</h5>
+        <div class="Body">allow uncharged atoms in the query to match charged atoms in the target. </div>
+        <h5 class="HeadingRunIn">Reaction query must hit reaction center</h5>
+        <div class="Body">allow the reaction centers in the query to overlap with the reaction centers in the target.</div>
+        <h5 class="HeadingRunIn">Hit any Charge on Carbon</h5>
+        <div class="Body">allow uncharged carbon atoms in the query to match charged carbon atoms in the target.</div>
+        <h5 class="HeadingRunIn">Permit extraneous fragments in full structure(exact) searches/Permit extraneous fragments in reaction full structure(exact) searches</h5>
+        <div class="Body">perform exact structure search.</div>
+        <h5 class="HeadingRunIn">Query Fragments can overlap in target selected</h5>
+        <div class="Body">fragments can be overlapped.</div>
+        <h5 class="HeadingRunIn">Tautomeric</h5>
+        <div class="Body">allow to find tautomers in the query.</div>
+        <h5 class="HeadingRunIn">Similarity search</h5>
+        <div class="Body">retrieves chemicals that have structural features similar to the one specified in the query. It does not match specific atoms or bonds. It is useful if you have a general idea of the types of compounds you are looking for, but do not know the precise target compund. You can specify the degree of similiarity. A lower value requires the target to be less similar.</div>
+        <h5 class="Heading5">Stereochemistry tab</h5>
+        <p class="GraphicAnchor">&#160;</p>
+        <p>
+            <img src="search pref stereo_288x289.jpg" style="width: 288; height: 289;" />
+        </p>
+        <div class="Body">The various options under the stereochemistry tab include:</div>
+        <h5 class="HeadingRunIn">Tetrahedral stereo center hits</h5>
+        <div class="Body">Set the Tetrahedral stereo center hits. </div>
+        <div class="Bullet1-1st">Select <span class="Action_Object">Same</span> to match the target exactly.</div>
+        <div class="Bullet1-inner">Select <span class="Action_Object">Either</span> to match same or opposite configuration at the center of the target.</div>
+        <div class="Bullet1-inner">Select <span class="Action_Object">Any</span> to match any target.</div>
+        <div class="Bullet1-last">Select <span class="Action_Object">Thick bonds represent relative stereochemistry</span> to match a relative relationship between centers. When activated, any thick bond drawn in the reference compound is interpreted as relative stereochemistry when searching or comparing possible duplicates </div>
+        <h5 class="HeadingRunIn">Double bonds hits</h5>
+        <div class="Body">Set the Double bonds hits.</div>
+        <div class="Bullet1-1st">Select <span class="Action_Object">Same</span> to match the target exactly.</div>
+        <div class="Bullet1-last">Select <span class="Action_Object">Any</span> to match any configuration in the target.</div>
+        <h3 class="Heading3"><a name="Search_temp_1701990757_1003677"></a>Text search</h3>
+        <div class="Body">In text searching, use wildcard character(*) to broaden the search and use ‘=’to narrow to exact wording. The following table lists a few examples of text search.</div>
+        <div class="Body">&#160;</div>
+        <table class="TableStyle__2col_table" style="width: 271px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="112px" />
+            <col width="159px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Text entered</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">Records retrieved</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">*ben</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves  records that start with "ben", but may have any characters after. Retrieves benzene and benzofuran, but not bromobenzene. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">*ben*</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves records that have any character before "ben" and any character after "ben" in the name field. Retrieves benzene, bromobenzene, and benzofuran</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">=Benzene</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves the exact text specified. Retrieves Benzene.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">
+                        <p class="TableText">Ben*chl</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColEnd">
+                        <p class="TableText">Retrieves compounds with "ben" at the beginning, any character after "ben" and before "chl" and any character after "chl". Retrieves Benzyl chloride. </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 class="Heading3"><a name="Search_temp_1701990757_1000901"></a>Numeric search</h3>
+        <div class="Body">You can retrieve data such as boling points and molecular weights using numeric search. When performing a numeric search, you can specify a range using a hyphen between the values at either end of the range. Ranges may also be indicated using inequality operators(&lt;,&gt;) together with the AND operator.</div>
+        <div class="Body">The query is a decimal value or range. If a single value is given, the number of significant digits determines the precision of the search. A hit is any value that rounds off to the query. </div>
+        <div class="Body">The following table lists a few examples of numeric search.</div>
+        <div class="Body">&#160;</div>
+        <table class="TableStyle__2col_table" style="width: 274px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="104px" />
+            <col width="170px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Value in numeric field</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">Records retrieved</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">78</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Values from 78 and greater inclusive. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">78.15</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Values from 78.15 and greater, inclusive</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">89.5-90.5</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Values from 89.5 to 90.5</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">90.05-91.05</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Values from 90.05 to 91.05</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">90-100</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Values from 90 through 100, inclusive</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">
+                        <p class="TableText">&gt;90 and &lt;100</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColEnd">
+                        <p class="TableText">Values from 90 through 100, exclusive</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 class="Heading3"><a name="Search_temp_1701990757_1001127"></a>Formula search</h3>
+        <div class="Body">Formula searching lets you search molecular stochiometry, either exactly or in the range you specify. Formula queries consists of:</div>
+        <div class="Bullet1-1st">Element symbols</div>
+        <div class="Bullet1-last">Element count or ranges</div>
+        <div class="Body">Element symbols may be one or two letters. Symbols may be in upper case or lower case. Symbols may be repeated. For example, CH3CH3 is interpreted as C2H6. To avoid ambiguities:</div>
+        <div class="Bullet1-1st">Capitalize the symbols properly and insert spaces between elements</div>
+        <div class="Bullet1-last">Use the Periodic Table to enter formulas</div>
+        <div class="Body">Element counts are single integers or ranges. If a count is omitted, it is assumed to be 1. Parentheses may be used to group elements and apply a count to the entire group. For example, (CH2)3 is interpreted as C3H6. Spaces or non-alphanumeric characters other than parentheses are ignored.</div>
+        <div class="Note" MadCap:autonum="&lt;b&gt;Note:&lt;/b&gt; " xmlns:MadCap="http://www.madcapsoftware.com/Schemas/MadCap.xsd"><span class="autonumber"><span><b>Note:</b> <![CDATA[ ]]></span></span>Formula searches are completely non-structural: CH3CH2OH matches both dimethyl ether and ethyl alcohol because both compounds have the same condensed formula: C2H6O. </div>
+        <div class="Body">The following table lists a few examples of formula search.</div>
+        <p class="GraphicAnchor">&#160;</p>
+        <table class="TableStyle__2col_table" style="width: 275px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="94px" />
+            <col width="181px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Formula entered</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">Records retrieved</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">C6H6</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Compounds with 6 carbon and 6 hydrogen, plus any number of other elements. Retrieves C6H6, C6H6N2O.</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">=C6H6</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves compounds with exactly 6 carbon and 6 hydrogen and no other elements</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">C6</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves compounds with 6 carbon plus any number of other elements </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">
+                        <p class="TableText">C6 N1-3</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColEnd">
+                        <p class="TableText">Retrieve compounds with 6 carbon and one to three nitrogen, plus any number of other elements </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 class="Heading3"><a name="Search_temp_1701990757_1001971"></a>Date Search</h3>
+        <div class="Body">Date searching lets you dearch data based on the date field. You can specify a range using a hyphen between the values at either end of the range. Ranges may also be indicated using inequality operators(&lt;,&gt;) together with the AND operator.</div>
+        <div class="Body">The following table lists a few examples of date search.</div>
+        <div class="Body">&#160;</div>
+        <table class="TableStyle__2col_table" style="width: 274px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="109px" />
+            <col width="165px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Date entered</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">Records retrieved</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Apr 11, 1971</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves all entries with the exact date of April 11, 1971</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Mar 31, 1971-July 1, 1971</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves all entries from Apr 1-June 30 1971</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">&gt;4/11/71</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Retrieves any record after April 11, 1971</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColSep">
+                        <p class="TableText">&gt;4/11/71 AND &lt;7/21/71</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowEnd_ColEnd">
+                        <p class="TableText">Retrieves any entry between April 11 and July 21, 1971</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 class="Heading3"><a name="Search_temp_1701990757_1001977"></a>Boolean search</h3>
+        <div class="Body">You can perform boolean search using boolean operators AND, OR, and NOT.</div>
+        <div class="Body">The following table lists a few examples of boolean search.</div>
+        <p class="GraphicAnchor">&#160;</p>
+        <table class="TableStyle__2col_table" style="width: 259px;caption-side: top;mc-table-style: url('../Resources/TableStyles/_2col_table.css');" cellspacing="0">
+            <col width="61px" />
+            <col width="73px" />
+            <col width="125px" />
+            <thead>
+                <tr>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Operator</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColSep">
+                        <p class="TableHead">Criteria</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Head_0_0_RowSep_ColEnd">
+                        <p class="TableHead">Records retrieved</p>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">AND</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColSep">
+                        <p class="TableText">Ben* AND *bromo*</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowSep_ColEnd">
+                        <p class="TableText">Records that contain on the same field benzofuran and bromobenzene. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">OR</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColSep">
+                        <p class="TableText">Ben* OR *bromo*</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_1_0_RowSep_ColEnd">
+                        <p class="TableText">Records that contain benzofuran or bromobenzene. </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColSep">
+                        <p class="TableText">NOT</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColSep">
+                        <p class="TableText">Ben* NOT *bromo*</p>
+                    </td>
+                    <td class="TableStyle__2col_table_Body_0_0_RowEnd_ColEnd">
+                        <p class="TableText">Records containing benzofuran but not bromobenzene. </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <h3 class="Heading3">&#160;</h3>
+        <div class="Body">&#160;</div>
+        <img src="../Resources/Images/miniTOCborder.png" />
+        <script type="text/javascript" src="../SkinSupport/MadCapBodyEnd.js">
+        </script>
+    </body>
+</html>

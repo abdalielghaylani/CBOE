@@ -1,0 +1,90 @@
+<%@ Master Language="C#" AutoEventWireup="true" Codebehind="Registration.master.cs"
+    Inherits="RegistrationMaster" %>
+<%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
+<%@ Register Src="UserControls/Header.ascx" TagName="Header" TagPrefix="uc1" %>
+<%@ Register TagPrefix="iglbar" Namespace="Infragistics.WebUI.UltraWebListbar" Assembly="Infragistics2.WebUI.UltraWebListbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls" TagPrefix="cc3" %>  
+<%@ Register Assembly="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30"
+    Namespace="Csla.Web" TagPrefix="cc1" %> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<meta http-equiv="X-UA-Compatible" content="IE=8"/>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+<style type="text/css" media="screen">
+        @import url(../../../App_Themes/HomeBlue/style.css);		 
+</style>
+
+<!--[if lt IE 7]><style type="text/css" media="screen">@import url(../../../App_Themes/HomeBlue/ie6.css);</style><![endif]-->
+<!--[if IE 7]><style type="text/css" media="screen">@import url(../../../App_Themes/HomeBlue/ie7.css);</style><![endif]--> 
+<!--[if IE 8]><style type="text/css" media="screen">@import url(../../../App_Themes/HomeBlue/ie8.css);</style><![endif]-->
+    <!-- CBOE-1792 added code to display Registration help on F1 click. Debu 05SEP13 -->
+    <script language="javascript" type="text/javascript">
+        function onkeydown_handler(){
+            switch (event.keyCode) {
+                case 112: // 'F1'
+                    document.onhelp = function () { return (false); }
+                    window.onhelp = function () { return (false); }
+                    event.returnValue = false;
+                    event.keyCode = 0;
+                    window.open('/CBOEHelp/CBOEContextHelp/Registration Webhelp/default.htm');
+                    break;
+            }
+        }
+        document.attachEvent("onkeydown", onkeydown_handler);
+    </script> 
+</head>
+<body class="Body" runat="server" id="MainBody">
+    <form id="MainForm" runat="server">
+        <asp:HiddenField ID="LeftPanelStateHidden" Value="" runat="server" />
+        <div class="Wrapper">
+            <uc1:Header ID="HeaderUserControl" runat="server"></uc1:Header>
+            <table class="MainContent" cellspacing="0" cellpadding="0" id="mainContentTable" runat="server">
+                <tr>
+                    <td valign="top" style="background-color:#f5f5f5;height:100%">
+                        <div runat="server" id="LeftPanelContainer" style="width:257px;">
+                          <img alt="Click to toggle" id="Panel" runat="server" onclick="toggleContainer();" style="height:19px;width:257px;cursor:pointer;"></img>
+                                <iglbar:UltraWebListbar ID="UltraWebListbarControl" runat="server" GroupExpandEffect="None"
+                                    ViewType="ExplorerBar" HeaderClickAction="None" OnGroupClicked="UltraWebListbarControl_GroupClicked" CssClass="UltraWebListbarControl">
+                                    <Groups>
+                                    
+                                    </Groups>
+                                    <DefaultGroupHeaderAppearance>
+                                        <CollapsedAppearance>
+                                            <Style Cursor="Hand" CssClass="AccordionHead" />
+                                        </CollapsedAppearance>
+                                        <HoverAppearance>
+                                            <Style Cursor="Hand" CssClass="AccordionHead" />
+                                        </HoverAppearance>
+                                        <ExpandedAppearance>
+                                            <Images ExpansionIndicatorImage-Url="~/App_Themes/Common/Images/expansion.png"></Images>
+                                            <Style Cursor="Hand" CssClass="AccordionHead" />
+                                        </ExpandedAppearance>
+                                    </DefaultGroupHeaderAppearance>
+                                </iglbar:UltraWebListbar>
+                        </div>
+                    </td>
+                    <td valign="top" align="left" runat="server" id="ContentAreaRow">
+                    <cc3:ErrorControl ID="ErrorControlYUI" runat="server" Hidden="true"/>
+                        <asp:Panel ID="MainContentContainer" runat="server">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </asp:Panel>
+                    </td>
+                </tr>
+            </table>
+        </div>
+         <cc1:CslaDataSource ID="SequenceListByPersonIDCslaDataSource" runat="server" OnSelectObject="SequenceListByPersonIDCslaDataSource_SelectObject" TypeSupportsSorting="true"
+                    TypeAssemblyName="CambridgeSoft.COE.Registration.Services" TypeName="CambridgeSoft.COE.Registration.Services.Types.SecuenceList" >
+                </cc1:CslaDataSource>
+         <cc1:CslaDataSource ID="SequenceListAllCslaDataSource" runat="server" OnSelectObject="SequenceListAllCslaDataSource_SelectObject" TypeSupportsSorting="true"
+                    TypeAssemblyName="CambridgeSoft.COE.Registration.Services" TypeName="CambridgeSoft.COE.Registration.Services.Types.SecuenceList" >
+                </cc1:CslaDataSource>
+         <cc1:CslaDataSource ID="ProjectsAllCslaDataSource" runat="server" OnSelectObject="ProjectsAllCslaDataSource_SelectObject"
+                    TypeSupportsSorting="true" TypeAssemblyName="CambridgeSoft.COE.Registration.Services"
+                    TypeName="CambridgeSoft.COE.Registration.Services.Types.ProjectsList">
+                </cc1:CslaDataSource>
+    </form>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Overview of the COERegistrationServices asmx Page</title>
+</head>
+
+<body>
+
+<p>Testing the COERegistrationServices SOAP methods through the asmx page</p>
+<p>Standard &quot;CRUD&quot; methods provided:</p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="449" id="AutoNumber1">
+  <tr>
+    <td width="50">&nbsp;</td>
+    <td width="232">temporary</td>
+    <td width="163">permanent</td>
+  </tr>
+  <tr>
+    <td width="50"><b>C</b>reate</td>
+    <td width="232"><font color="#FF00FF">CreateTemporaryRegistryRecord</font></td>
+    <td width="163"><font color="#FF00FF">CreateRegistryRecord</font></td>
+  </tr>
+  <tr>
+    <td width="50"><b>R</b>etrieve</td>
+    <td width="232"><font color="#FF00FF">RetrieveTemporaryRegistryRecord</font></td>
+    <td width="163"><font color="#FF00FF">RetrieveRegistryRecord</font></td>
+  </tr>
+  <tr>
+    <td width="50"><b>U</b>pdate</td>
+    <td width="232"><font color="#FF00FF">UpdateTemporaryRegistryRecord</font></td>
+    <td width="163"><font color="#FF00FF">UpdateRegistryRecord</font></td>
+  </tr>
+  <tr>
+    <td width="50"><b>D</b>elete</td>
+    <td width="232"><font color="#FF00FF">DeleteTemporaryRegistryRecord</font></td>
+    <td width="163">&nbsp;</td>
+  </tr>
+</table>
+<p>Also certain &quot;execute&quot; methods:</p>
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="37%" id="AutoNumber2">
+  <tr>
+    <td width="53%">temporary</td>
+    <td width="47%">permanent</td>
+  </tr>
+  <tr>
+    <td width="53%"><font color="#FF00FF">GetTempID</font></td>
+    <td width="47%"><font color="#FF00FF">CheckUniqueRegistryRecord</font></td>
+  </tr>
+  <tr>
+    <td width="53%">&nbsp;</td>
+    <td width="47%"><font color="#FF00FF">RetrieveMatchingFragmentList</font></td>
+  </tr>
+  <tr>
+    <td width="53%">&nbsp;</td>
+    <td width="47%"><font color="#FF00FF">SaveRegistryRecord</font></td>
+  </tr>
+</table>
+<p>If your Registration database is empty you will want to use the Registration 
+system to create at least one temporary and one permanent registry record.<br>
+Note the integer ID of the temporary record; probably 1; and note string RegNum of the permanent record; probably &quot;AB-000001&quot;.</p>
+<p>You can test <font color="#FF00FF">RetrieveTemporaryRegistryRecord</font> 
+using the ID of a known record.<br>
+Having retrieved an existing record you can copy the MultiCompoundRegistryRecord 
+XML to notepad for use in further tests.<br>
+Now you can use <font color="#FF00FF">GetTempID</font> to get a new unused ID. 
+Note the ID.<br>
+If you attempt to <font color="#FF00FF">RetrieveTemporaryRegistryRecord</font> 
+using the new ID you will get an &quot;Unable to GetRegistryRecord&quot; error.<br>
+Now modify the XML from the earlier retrieve by changing the ID tag to the new 
+ID value.<br>
+Invoke <font color="#FF00FF">CreateTemporaryRegistryRecord</font> and submit the 
+modified XML to create a new temporary registration record.<br>
+The response will match the new ID value.<br>
+You can also use <font color="#FF00FF">RetrieveTemporaryRegistryRecord</font> to 
+verify that the new record has been added.<br>
+You can modify values in the XML and submit the modified XML to
+<font color="#FF00FF">UpdateTemporaryRegistryRecord</font> and use
+<font color="#FF00FF">RetrieveTemporaryRegistryRecord</font> to verify that the 
+update took place.<br>
+[Not all fields are updateable and some tags require that the update=&quot;yes&quot; 
+attribute be added?]<br>
+Finally, <font color="#FF00FF">DeleteTemporaryRegistryRecord</font> can be used 
+to delete a temporary registry record.<br>
+The deletion can be confirmed by trying to use <font color="#FF00FF">DeleteTemporaryRegistryRecord</font> 
+again or by attempting to <font color="#FF00FF">RetrieveTemporaryRegistryRecord</font>.</p>
+<p>You can test <font color="#FF00FF">RetrieveRegistryRecord</font> using the 
+RegNum of a known record.<br>
+Having retrieved an existing record you can copy the MultiCompoundRegistryRecord 
+XML to notepad for use in further tests.<br>
+You can submit this XML unmodified to <font color="#FF00FF">CreateRegistryRecord</font> 
+using a duplicateAction of D to create a duplicate registry record. The response 
+will be the new RegNum.<br>
+You can exercise the other&nbsp; duplicateAction values as well.<br>
+You can modify values in the XML and submit the modified XML to
+<font color="#FF00FF">UpdateRegistryRecord</font> and use <font color="#FF00FF">RetrieveRegistryRecord</font> 
+to verify that the update took place.<br>
+[Not all fields are updateable and some tags require that the update=&quot;yes&quot; 
+attribute be added?]<br>
+You can pass the XML into <font color="#FF00FF">CheckUniqueRegistryRecord</font> 
+and the response will consist of the duplicates, if any. Generally the Z should 
+be C although M is available.<br>
+If the record would be unique they response is an empty string.</p>
+<p><font color="#FF00FF">RetrieveMatchingFragmentList</font> retrieves a 
+fragment list based on the provided searchExpression.<br>
+The searchExpression is comprised of one or more search terms separated by the | 
+character.<br>
+For example the simple search term <font face="Courier New">molweight &lt; 100</font> 
+would return all fragments with a MolWeight less than 100.<br>
+Naturally, you must have fragments in your database in order for fragments to be 
+returned.<br>
+Other search terms you might try include molweight between 90 and 100.<br>
+Search expressions are more completely documented on the asmx page itself.</p>
+<p>The <font color="#FF00FF">SaveRegistryRecord</font> method can be executed 
+but without a corresponding retrieve it's hard to test.</p>
+
+</body>
+
+</html>
