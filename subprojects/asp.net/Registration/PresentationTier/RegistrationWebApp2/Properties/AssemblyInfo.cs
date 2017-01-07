@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RegistrationWebApp")]
+[assembly: AssemblyTitle("CBOE Registration Client")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CambridgeSoft")]
-[assembly: AssemblyProduct("RegistrationWebApp")]
+[assembly: AssemblyCompany("PerkinElmer")]
+[assembly: AssemblyProduct("CBOE Registration")]
 [assembly: AssemblyCopyright("© Copyright 2001-2015 PerkinElmer Informatics, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3d5900ae-111a-45be-96b3-d9e4606ca793")]
+[assembly: Guid("291ABA89-F44E-4C82-B193-94268B44DE3D")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("12.1.0.0")]
-[assembly: AssemblyFileVersion("12.1.0.0")]
+[assembly: AssemblyVersion("17.0.0.1")]
+[assembly: AssemblyFileVersion("17.0.0.1")]

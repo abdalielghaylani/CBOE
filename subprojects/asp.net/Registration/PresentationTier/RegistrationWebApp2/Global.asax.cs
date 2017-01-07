@@ -13,7 +13,7 @@ using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using Resources;
 
-public class Reg_Global : System.Web.HttpApplication
+public class Reg2_Global : System.Web.HttpApplication
 {
 
     protected void Application_Start(object sender, EventArgs e)

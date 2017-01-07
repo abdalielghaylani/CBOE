@@ -1,1 +1,1 @@
-<%@ Application Codebehind="Global.asax.cs" Inherits="Reg_Global" Language="C#" %>
+<%@ Application Codebehind="Global.asax.cs" Inherits="Reg2_Global" Language="C#" %>
