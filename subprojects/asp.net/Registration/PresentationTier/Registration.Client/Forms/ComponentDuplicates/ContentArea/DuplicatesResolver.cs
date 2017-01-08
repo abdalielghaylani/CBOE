@@ -23,7 +23,7 @@ using CambridgeSoft.COE.Framework.Common.Exceptions;
 using CambridgeSoft.COE.Framework.Common.Validation;
 
 
-namespace RegistrationWebApp.Forms.ComponentDuplicates.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea
 {
     [Serializable]
     public class DuplicatesResolver

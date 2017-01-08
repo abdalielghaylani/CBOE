@@ -16,7 +16,7 @@ using Infragistics.WebUI.UltraWebNavigator;
 using Resources;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.Master.UserControls
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Master.UserControls
 {
     public partial class Header : System.Web.UI.UserControl, ICOEHeaderUC
     {

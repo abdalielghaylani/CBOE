@@ -18,12 +18,12 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.Types.Exceptions;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
-using RegistrationWebApp.Forms.Master;
+using PerkinElmer.CBOE.Registration.Client.Forms.Master;
 using Resources;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
-using RegistrationWebApp.Code;
+using PerkinElmer.CBOE.Registration.Client.Code;
 
-namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
 {
     public partial class SaveMixtureForm : System.Web.UI.Page
     {
@@ -67,8 +67,8 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             
             #region Page Settings
-            if (Request[RegistrationWebApp.Constants.FormGroup_UrlParameter] != null)
-                int.TryParse(Request[RegistrationWebApp.Constants.FormGroup_UrlParameter], out _formGroup);
+            if (Request[PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter] != null)
+                int.TryParse(Request[PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter], out _formGroup);
             // To make easier to read the code.
             if (this.Master is RegistrationMaster)
             {
@@ -97,7 +97,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
             {
                 string savedObjectId = this.SaveCompoundForm();
 
-                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SubmitMixture_URL, RegistrationWebApp.Constants.SavedObjectId_UrlParameter, savedObjectId, RegistrationWebApp.Constants.RegistryTypeParameter, Request[RegistrationWebApp.Constants.RegistryTypeParameter]), false);
+                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SubmitMixture_URL, PerkinElmer.CBOE.Registration.Client.Constants.SavedObjectId_UrlParameter, savedObjectId, PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, Request[PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter]), false);
             }
             //catch (DataPortalException nae)
             //{
@@ -121,7 +121,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             try
             {
-                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SubmitMixture_URL, RegistrationWebApp.Constants.SavedObjectId_UrlParameter, -1, RegistrationWebApp.Constants.RegistryTypeParameter, Request[RegistrationWebApp.Constants.RegistryTypeParameter]), false);
+                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SubmitMixture_URL, PerkinElmer.CBOE.Registration.Client.Constants.SavedObjectId_UrlParameter, -1, PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, Request[PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter]), false);
                 //Server.Transfer(Resource.SubmitMixture_URL, false);
             }
             catch (Exception exception)
@@ -192,7 +192,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
 
             try
             {
-                RegistryRecord currentRecord = (RegistryRecord)Session[RegistrationWebApp.Constants.MultiCompoundObject_Session];
+                RegistryRecord currentRecord = (RegistryRecord)Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session];
                 string _databaseName = COEConfiguration.GetDatabaseNameFromAppName(COEAppName.Get().ToString());
                 string name = this.FormNameTextBox.Text;
                 string description = this.FormDescriptionTextBox.Text;

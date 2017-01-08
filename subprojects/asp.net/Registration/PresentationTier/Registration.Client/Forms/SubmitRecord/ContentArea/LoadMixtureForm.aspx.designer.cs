@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea {
     
     
     public partial class LoadMixtureForm {
@@ -64,7 +64,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// SavedCompoundsLabel control.

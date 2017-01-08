@@ -19,7 +19,7 @@ using Infragistics.WebUI.UltraWebGrid;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
 {
     public partial class SearchCompound : GUIShellPage
     {
@@ -129,9 +129,9 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
             {
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
                 if (((Button)sender).CommandName.Equals("GoToReviewRegisterMixture"))
-                    Server.Transfer(String.Format("{0}?{1}={2}", Resource.ReviewRegister_URL, RegistrationWebApp.Constants.RegistryTypeParameter, Request[RegistrationWebApp.Constants.RegistryTypeParameter]), false);
+                    Server.Transfer(String.Format("{0}?{1}={2}", Resource.ReviewRegister_URL, PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, Request[PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter]), false);
                 else
-                    Server.Transfer(String.Format("{0}?{1}={2}", Resource.SubmitMixture_URL,RegistrationWebApp.Constants.RegistryTypeParameter, Request[RegistrationWebApp.Constants.RegistryTypeParameter] ),false);
+                    Server.Transfer(String.Format("{0}?{1}={2}", Resource.SubmitMixture_URL,PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, Request[PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter] ),false);
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
             }
             catch (Exception exception)

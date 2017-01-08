@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.Master.UserControls {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Master.UserControls {
     
     
     public partial class Header {

@@ -13,7 +13,7 @@ using Resources;
 using System.Reflection;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.PageControlSetting.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.PageControlSetting.ContentArea
 {
     public partial class PageControlSetting : GUIShellPage
     {

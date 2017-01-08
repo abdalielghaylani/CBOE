@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.ComponentDuplicates.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea {
     
     
     public partial class ComponentDuplicates {
@@ -73,7 +73,7 @@ namespace RegistrationWebApp.Forms.ComponentDuplicates.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// ExplanationContainerRow control.

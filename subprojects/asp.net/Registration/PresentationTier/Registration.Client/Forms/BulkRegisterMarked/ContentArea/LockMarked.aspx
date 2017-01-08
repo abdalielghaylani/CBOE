@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="LockMarked.aspx.cs" Inherits="RegistrationWebApp2.Forms.BulkRegisterMarked.ContentArea.LockMarked"  Title="Untitled Page" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="LockMarked.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea.LockMarked"  Title="Untitled Page" %>
 
 <%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls.COEFormGenerator"
     TagPrefix="cc2" %>

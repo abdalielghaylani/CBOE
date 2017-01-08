@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master"
-    Codebehind="TableEditor.aspx.cs" Inherits="RegistrationWebApp2.Forms.TableEditor.ContentArea.TableEditor"
+    Codebehind="TableEditor.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.TableEditor.ContentArea.TableEditor"
     ValidateRequest="false" %>
 
 <%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls.COETableManager"

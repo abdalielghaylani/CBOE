@@ -10,7 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.Public.UserControls
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls
 {
     public partial class MenuItem : System.Web.UI.UserControl
     {

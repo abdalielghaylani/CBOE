@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="SaveMixtureForm.aspx.cs" Inherits="RegistrationWebApp2.Forms.SubmitRecord.ContentArea.SaveMixtureForm" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" CodeBehind="SaveMixtureForm.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea.SaveMixtureForm" Title="Untitled Page" %>
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
 <%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea" TagPrefix="uc2" %>

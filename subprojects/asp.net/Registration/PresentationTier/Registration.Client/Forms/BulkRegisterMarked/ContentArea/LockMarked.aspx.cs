@@ -14,7 +14,7 @@ using System.Reflection;
 using CambridgeSoft.COE.Registration.Services;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.BulkRegisterMarked.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea
 {
     public partial class LockMarked : GUIShellPage
     {

@@ -20,7 +20,7 @@ namespace CambridgeSoft.COE.Registration
         #region Properties
         private RegistryRecord RegistryRecord
         {
-            get { return (RegistryRecord)Page.Session[RegistrationWebApp.Constants.MultiCompoundObject_Session]; }
+            get { return (RegistryRecord)Page.Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session]; }
         }
         #endregion
 

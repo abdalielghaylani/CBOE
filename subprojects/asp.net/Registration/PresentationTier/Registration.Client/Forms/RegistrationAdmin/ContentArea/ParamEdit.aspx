@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.master" AutoEventWireup="true"
-    Codebehind="ParamEdit.aspx.cs" Inherits="CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.ContentArea.ParamEdit"
+    Codebehind="ParamEdit.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea.ParamEdit"
     Title="Untitled Page" %>
 
 <%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"

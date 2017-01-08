@@ -8,7 +8,7 @@ using Infragistics.WebUI.UltraWebListbar;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
 
-namespace RegistrationWebApp.Forms.Public.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.ContentArea
 {
     public partial class Messages : GUIShellPage
     {

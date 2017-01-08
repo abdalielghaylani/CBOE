@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="RootPropertyList.aspx.cs" Inherits="CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.ContentArea.RootPropertyList"
+    Codebehind="RootPropertyList.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea.RootPropertyList"
     Title="Untitled Page" %>
 
 <%@ Register Src="../UserControls/PropertyListUC.ascx" TagName="PropertyList" TagPrefix="uc1" %>

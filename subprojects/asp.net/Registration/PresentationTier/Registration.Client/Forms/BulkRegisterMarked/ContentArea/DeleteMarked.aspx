@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="DeleteMarked.aspx.cs" Inherits="RegistrationWebApp2.Forms.BulkRegisterMarked.ContentArea.DeleteMarked"
+    Codebehind="DeleteMarked.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea.DeleteMarked"
     Title="Untitled Page" %>
 
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"

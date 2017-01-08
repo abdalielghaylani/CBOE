@@ -13,7 +13,7 @@ using Resources;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using System.Reflection;
 
-namespace RegistrationWebApp.Forms.ComponentDuplicates.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea
 {
     public partial class ComponentDuplicatesSearch : GUIShellPage
     {

@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.master" AutoEventWireup="true"
-    Codebehind="Default.aspx.cs" Inherits="CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.ContentArea.Default"
+    Codebehind="Default.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea.Default"
     Title="Cambridge Soft - Registration Admin" ValidateRequest="false" %>
 
 <asp:Content ID="Content" ContentPlaceHolderID="ContentPlaceHolder" runat="server">

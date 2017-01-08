@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.ViewMixture.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.ViewMixture.ContentArea {
     
     
     public partial class MoveDelete {
@@ -46,7 +46,7 @@ namespace RegistrationWebApp.Forms.ViewMixture.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// FromRow control.
@@ -139,6 +139,15 @@ namespace RegistrationWebApp.Forms.ViewMixture.ContentArea {
         protected global::System.Web.UI.WebControls.Button MoveButton;
         
         /// <summary>
+        /// SubmitButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SubmitButton;
+        
+        /// <summary>
         /// ToDeleteRegistry control.
         /// </summary>
         /// <remarks>
@@ -173,14 +182,5 @@ namespace RegistrationWebApp.Forms.ViewMixture.ContentArea {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button DeleteRegButton;
-        
-        /// <summary>
-        /// SubmitButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SubmitButton;
     }
 }

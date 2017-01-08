@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ValidationRules.ascx.cs"
-    Inherits="CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.UserControls.ValidationRules" %>
+    Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls.ValidationRules" %>
 <%@ Register Assembly="Infragistics2.WebUI.WebDateChooser.v11.1" Namespace="Infragistics.WebUI.WebSchedule"
     TagPrefix="igsch" %>
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"

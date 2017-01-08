@@ -1,4 +1,4 @@
-<%@ Page AutoEventWireup="true" Codebehind="SendToInventory.aspx.cs" Inherits="RegistrationWebApp2.Forms.SendToInventory.SendToInventory"
+<%@ Page AutoEventWireup="true" Codebehind="SendToInventory.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.SendToInventory.SendToInventory"
     Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" %>
 
 

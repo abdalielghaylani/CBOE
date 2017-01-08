@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea {
     
     
     public partial class ImportExportCustom {
@@ -19,7 +19,7 @@ namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// LinkButtonGoToMain control.
@@ -200,14 +200,5 @@ namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonExport;
-        
-        /// <summary>
-        /// INIGroup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl INIGroup;
     }
 }

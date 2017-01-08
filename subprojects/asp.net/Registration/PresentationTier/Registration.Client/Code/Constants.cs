@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 /// <summary>
 /// Summary description for Constants
 /// </summary>
-namespace RegistrationWebApp
+namespace PerkinElmer.CBOE.Registration.Client
 {
     public class Constants
     {

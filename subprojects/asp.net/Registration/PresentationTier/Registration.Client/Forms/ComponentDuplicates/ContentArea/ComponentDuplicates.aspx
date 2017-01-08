@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="ComponentDuplicates.aspx.cs" Inherits="RegistrationWebApp2.Forms.ComponentDuplicates.ContentArea.ComponentDuplicates"
+    Codebehind="ComponentDuplicates.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea.ComponentDuplicates"
     Title="Untitled Page" EnableViewState="true" ValidateRequest="false" %>
 
 <%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea"
@@ -69,7 +69,7 @@
                 <cc1:CslaDataSource ID="DuplicatesCslaDataSource" runat="server"
                     OnSelectObject="DuplicatesCslaDataSource_SelectObject"
                     TypeAssemblyName="CambridgeSoft.COE.RegistrationWebApp"
-                    TypeName="CambridgeSoft.COE.RegistrationWebApp.Forms.ComponentDuplicates.ContentArea.DuplicatesResolver">
+                    TypeName="CambridgeSoft.COE.PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea.DuplicatesResolver">
                 </cc1:CslaDataSource>
                 <cc1:CslaDataSource ID="DuplicateCompoundsCslaDataSource" runat="server"
                     OnSelectObject="DuplicateCompoundsCslaDataSource_SelectObject"

@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="True" Codebehind="PropertyListUC.ascx.cs"
-    Inherits="CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.UserControls.PropertyListUC" %>
+    Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls.PropertyListUC" %>
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
 <%@ Register Src="ValidationRules.ascx" TagName="ValidationRules" TagPrefix="uc1" %>

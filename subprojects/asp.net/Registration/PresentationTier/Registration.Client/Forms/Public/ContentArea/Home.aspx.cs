@@ -9,7 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using System.Reflection;
 using Resources;
 using System.Configuration;
-using RegistrationWebApp.Forms.Master;
+using PerkinElmer.CBOE.Registration.Client.Forms.Master;
 using CambridgeSoft.COE.Framework.Controls.WebParts;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
@@ -18,7 +18,7 @@ using System.Web.UI.WebControls.WebParts;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Registration.Services.Types;
 
-namespace RegistrationWebApp.Forms.Public.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.ContentArea
 {
     public partial class Home : GUIShellPage
     {

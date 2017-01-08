@@ -14,7 +14,7 @@ using System.Reflection;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.ViewMixture.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.ViewMixture.ContentArea
 {
     public partial class MoveDelete : GUIShellPage
     {

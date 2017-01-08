@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.Public.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.ContentArea {
     
     
     public partial class Home {

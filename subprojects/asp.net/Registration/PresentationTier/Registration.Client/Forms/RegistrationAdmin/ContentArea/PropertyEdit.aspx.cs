@@ -22,7 +22,7 @@ using CambridgeSoft.COE.RegistrationAdmin;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.RegistrationAdmin.Services.Common;
 
-namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea
 {
     public partial class PropertyEdit : System.Web.UI.Page
     {

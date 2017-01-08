@@ -15,7 +15,7 @@ using Resources;
 using System.Reflection;
 using CambridgeSoft.COE.Registration.Services;
 
-namespace RegistrationWebApp.Forms.BulkRegisterMarked.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea
 {
     public partial class DeleteMarked : GUIShellPage
     {

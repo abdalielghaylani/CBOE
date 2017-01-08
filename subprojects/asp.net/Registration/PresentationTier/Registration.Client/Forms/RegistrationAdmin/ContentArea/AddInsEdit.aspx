@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.master" AutoEventWireup="true"
-    ValidateRequest="false" Codebehind="AddInsEdit.aspx.cs" Inherits="CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.ContentArea.AddInsEdit"
+    ValidateRequest="false" Codebehind="AddInsEdit.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea.AddInsEdit"
     Title="Untitled Page" %>
 
 <%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"

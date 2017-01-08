@@ -26,16 +26,16 @@ using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.Controls.COEDataMapper;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
-using RegistrationWebApp.Forms.Master;
+using PerkinElmer.CBOE.Registration.Client.Forms.Master;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.Validation;
-using RegistrationWebApp.Code;
+using PerkinElmer.CBOE.Registration.Client.Code;
 using CambridgeSoft.COE.Registration;
 
-namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea
 {
     public partial class ReviewRegisterMixture : GUIShellPage
     {
@@ -281,7 +281,7 @@ namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
         {
             get
             {
-                string requestSubmittedObjectID = Request[RegistrationWebApp.Constants.SubmittedObjectId_UrlParameter];
+                string requestSubmittedObjectID = Request[PerkinElmer.CBOE.Registration.Client.Constants.SubmittedObjectId_UrlParameter];
                 if (Session[Constants.MultiCompoundObject_Session] == null || SubmittedObjectId != requestSubmittedObjectID)
                 {
                     if (!string.IsNullOrEmpty(requestSubmittedObjectID))
@@ -294,11 +294,11 @@ namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
                         }
                     }
 
-                    if (Session[RegistrationWebApp.Constants.MultiCompoundObject_Session] == null)
+                    if (Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session] == null)
                         _masterPage.DisplayErrorMessage(Resource.NotRecordFound_MasterPage, true);
                 }
 
-                return (RegistryRecord)Session[RegistrationWebApp.Constants.MultiCompoundObject_Session];
+                return (RegistryRecord)Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session];
             }
             set
             {
@@ -368,10 +368,10 @@ namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
                     this.IsEditModeEnable = false;
                     this.LoadControlInAccordionPanel();
                     this.SetControlsAttributtes();
-                    if (Request[RegistrationWebApp.Constants.CurrentPageState_UrlParameter] != null)
+                    if (Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter] != null)
                     {
-                        string mode = Request[RegistrationWebApp.Constants.CurrentPageState_UrlParameter] as string;
-                        if (Request[RegistrationWebApp.Constants.SubmittedObjectId_UrlParameter] != null)
+                        string mode = Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter] as string;
+                        if (Request[PerkinElmer.CBOE.Registration.Client.Constants.SubmittedObjectId_UrlParameter] != null)
                         {
                             if (mode.ToLower().Contains("edit"))
                                 this.IsEditModeEnable = true;
@@ -401,9 +401,9 @@ namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
                         CurrentComponentIndex = 0;
                         this.DisplayRecord();
                     }
-                    if (Request[RegistrationWebApp.Constants.RegisteredCompoundId_UrlParameter] != null)
+                    if (Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredCompoundId_UrlParameter] != null)
                     {
-                        this.ReplaceExistingComponent(Request[RegistrationWebApp.Constants.RegisteredCompoundId_UrlParameter], Request[RegistrationWebApp.Constants.RegisteredRegId_UrlParameter]);
+                        this.ReplaceExistingComponent(Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredCompoundId_UrlParameter], Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredRegId_UrlParameter]);
                         IsEditModeEnable = true;
                         SetPageMode(PageState.ViewComponent, string.Empty);
                     }//Fix for CSBR 166611- Duplicate Resolution does not display exact Duplicates.
@@ -640,7 +640,7 @@ namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             try
             {
-                if (Request[RegistrationWebApp.Constants.CurrentPageState_UrlParameter] != null && Request[RegistrationWebApp.Constants.CurrentPageState_UrlParameter].ToLower().Trim() == "endnewregistry")
+                if (Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter] != null && Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter].ToLower().Trim() == "endnewregistry")
                     Server.Transfer(Resource.SubmitMixture_URL);
                 else
                     //Fix for 148546

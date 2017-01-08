@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Drawing;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.Public.UserControls
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls
 {
     public enum MessageBoxIcons
     {

@@ -29,7 +29,7 @@ using CambridgeSoft.COE.Framework.Common.Exceptions;
 
 using CambridgeSoft.COE.Registration.Services;
 using CambridgeSoft.COE.Registration.Services.Types;
-using RegistrationWebApp.Code;
+using PerkinElmer.CBOE.Registration.Client.Code;
 
 namespace CambridgeSoft.COE.Registration.Services
 {

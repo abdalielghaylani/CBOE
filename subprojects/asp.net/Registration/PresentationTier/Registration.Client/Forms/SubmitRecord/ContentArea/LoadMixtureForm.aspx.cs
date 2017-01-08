@@ -18,15 +18,15 @@ using Resources;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 using CambridgeSoft.COE.Framework.Common;
-using RegistrationWebApp.Forms.Master;
+using PerkinElmer.CBOE.Registration.Client.Forms.Master;
 using System.Xml;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.Controls.ChemDraw;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
-using RegistrationWebApp.Code;
+using PerkinElmer.CBOE.Registration.Client.Code;
 using CambridgeSoft.COE.Registration.Services.Types;
 
-namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
 {
     public partial class LoadMixtureForm : System.Web.UI.Page
     {
@@ -64,8 +64,8 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
         {
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             #region Page Settings
-            if(Request[RegistrationWebApp.Constants.FormGroup_UrlParameter] != null)
-                int.TryParse(Request[RegistrationWebApp.Constants.FormGroup_UrlParameter], out _formGroup);
+            if(Request[PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter] != null)
+                int.TryParse(Request[PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter], out _formGroup);
 
             if(this.Master is RegistrationMaster)
             {
@@ -152,7 +152,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             try
             {
-                Server.Transfer(string.Format("{0}?{1}={2}",Resource.SubmitMixture_URL,RegistrationWebApp.Constants.RegistryTypeParameter, Request[RegistrationWebApp.Constants.RegistryTypeParameter]));
+                Server.Transfer(string.Format("{0}?{1}={2}",Resource.SubmitMixture_URL,PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, Request[PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter]));
             }
             catch (Exception exception)
             {
@@ -175,7 +175,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
                     if(bool.Parse(currentRow.Cells.FromKey(Constants.DeleteColumn).Value.ToString()))
                     {
                         //string _databaseName = COEConfiguration.GetDatabaseNameFromAppName(COEAppName.Get().ToString());
-                        COEGenericObjectStorageBO.Delete(int.Parse(currentRow.Cells.FromKey(RegistrationWebApp.Constants.IdColumn).Value.ToString()));
+                        COEGenericObjectStorageBO.Delete(int.Parse(currentRow.Cells.FromKey(PerkinElmer.CBOE.Registration.Client.Constants.IdColumn).Value.ToString()));
                         haveDeletedItems = true;
                         deletedItems++;
                     }
@@ -347,7 +347,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea
         private void SelectCompoundForm(int genericObjectID)
         {
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-            Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SubmitMixture_URL, Constants.SavedObjectId_UrlParameter, genericObjectID.ToString(), RegistrationWebApp.Constants.RegistryTypeParameter, Request[RegistrationWebApp.Constants.RegistryTypeParameter]), true);
+            Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SubmitMixture_URL, Constants.SavedObjectId_UrlParameter, genericObjectID.ToString(), PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, Request[PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter]), true);
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         }
 

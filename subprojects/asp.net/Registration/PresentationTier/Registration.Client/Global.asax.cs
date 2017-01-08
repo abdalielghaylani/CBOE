@@ -20,8 +20,8 @@ public class Reg2_Global : System.Web.HttpApplication
     {
         HttpContext.Current.Application.Lock();
         AppDomain.CurrentDomain.DomainUnload += new EventHandler(AppDomainUnloading);
-        HttpContext.Current.Application[RegistrationWebApp.Constants.AppName] = GUIShellUtilities.GetApplicationName();
-        HttpContext.Current.Application[RegistrationWebApp.Constants.AppPagesTitle] = GUIShellUtilities.GetDefaultPagesTitle();
+        HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.AppName] = GUIShellUtilities.GetApplicationName();
+        HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.AppPagesTitle] = GUIShellUtilities.GetDefaultPagesTitle();
         HttpContext.Current.Application[GUIShellTypes.EnablePopUpForBrowserVersions] = GUIShellUtilities.GetPopUpBrowserVersions();
         HttpContext.Current.Application[GUIShellTypes.Themes] = GUIShellUtilities.GetThemes();
         HttpContext.Current.Application.UnLock();
@@ -45,7 +45,7 @@ public class Reg2_Global : System.Web.HttpApplication
         //Coverity fix - CID 11866 - no need to check for null value of server exception, as the event will trigger only when any error occurs.
         if (serverEx != null)
         {
-            string policyName = RegistrationWebApp.Constants.REG_OTHER_POLICY;
+            string policyName = PerkinElmer.CBOE.Registration.Client.Constants.REG_OTHER_POLICY;
 
             //Default error 'code'; not very user-friendly in reality
             string error = CambridgeSoft.COE.Framework.GUIShell.GUIShellTypes.MessagesCode.Unknown.ToString();

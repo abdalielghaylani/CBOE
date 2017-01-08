@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.RegistrationAdmin.UserControls
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls
 {
     public partial class ConfigurationSettingsUC : System.Web.UI.UserControl
     {

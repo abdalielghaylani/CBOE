@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.BulkRegisterMarked.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea {
     
     
     public partial class LockMarked {
@@ -55,6 +55,6 @@ namespace RegistrationWebApp.Forms.BulkRegisterMarked.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea {
     
     
     public partial class SubmitMixturePage {
@@ -100,7 +100,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MenuButton SubmissionTemplateImageMenuButton;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton SubmissionTemplateImageMenuButton;
         
         /// <summary>
         /// DefineMixtureImageMenuButton control.
@@ -109,7 +109,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MenuButton DefineMixtureImageMenuButton;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton DefineMixtureImageMenuButton;
         
         /// <summary>
         /// ActionToDoHiddenField control.
@@ -145,7 +145,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// mixtureInformationHolder control.
@@ -163,7 +163,7 @@ namespace RegistrationWebApp.Forms.SubmitRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesBox ConfirmationMessageBox;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesBox ConfirmationMessageBox;
         
         /// <summary>
         /// mixtureCslaDataSource control.

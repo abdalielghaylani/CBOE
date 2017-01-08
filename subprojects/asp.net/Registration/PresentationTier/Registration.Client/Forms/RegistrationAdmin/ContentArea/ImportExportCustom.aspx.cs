@@ -23,7 +23,7 @@ using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.RegistrationAdmin;
 
-namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea
 {
     public partial class ImportExportCustom : GUIShellPage
     {

@@ -19,13 +19,13 @@ using Resources;
 using Infragistics.WebUI.UltraWebListbar;
 using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using RegistrationWebApp.Forms.Master;
+using PerkinElmer.CBOE.Registration.Client.Forms.Master;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEFormService;
-using RegistrationWebApp.Forms.ComponentDuplicates;
+using PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
-using RegistrationWebApp.Code;
+using PerkinElmer.CBOE.Registration.Client.Code;
 using CambridgeSoft.COE.Registration;
 using CambridgeSoft.COE.Registration.Services.Common;
 using System.Text;
@@ -35,7 +35,7 @@ using CambridgeSoft.COE.Framework.Common.Validation;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace RegistrationWebApp.Forms.RegistryDuplicates
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistryDuplicates
 {
     public partial class RegistryDuplicates : GUIShellPage
     {
@@ -138,7 +138,7 @@ namespace RegistrationWebApp.Forms.RegistryDuplicates
         {
             get
             {
-                return (RegistryRecord)Session[RegistrationWebApp.Constants.MultiCompoundObject_Session];
+                return (RegistryRecord)Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session];
             }
         }
 
@@ -156,14 +156,14 @@ namespace RegistrationWebApp.Forms.RegistryDuplicates
             {
                 if (Session[Constants.DuplicateMultiCompounds_Session] == null)
                 {
-                    string duplicatesIdList = Session[RegistrationWebApp.Constants.DuplicateIdsList_Session].ToString();
+                    string duplicatesIdList = Session[PerkinElmer.CBOE.Registration.Client.Constants.DuplicateIdsList_Session].ToString();
                     if (!string.IsNullOrEmpty(duplicatesIdList))
                     {
-                        Session[RegistrationWebApp.Constants.DuplicateMultiCompounds_Session] = new DuplicatesList(duplicatesIdList, RegistryRecord.ComponentList.Count > 1);
-                        Session.Remove(RegistrationWebApp.Constants.DuplicateIdsList_Session);
+                        Session[PerkinElmer.CBOE.Registration.Client.Constants.DuplicateMultiCompounds_Session] = new DuplicatesList(duplicatesIdList, RegistryRecord.ComponentList.Count > 1);
+                        Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.DuplicateIdsList_Session);
                     }
                 }
-                return (DuplicatesList)Session[RegistrationWebApp.Constants.DuplicateMultiCompounds_Session];
+                return (DuplicatesList)Session[PerkinElmer.CBOE.Registration.Client.Constants.DuplicateMultiCompounds_Session];
             }
         }
 
@@ -192,15 +192,15 @@ namespace RegistrationWebApp.Forms.RegistryDuplicates
         {
             get
             {
-                if (Request.Params[RegistrationWebApp.Constants.AllowedActionsParameter] != null && Session[RegistrationWebApp.Constants.AllowedActionsParameter] == null)
+                if (Request.Params[PerkinElmer.CBOE.Registration.Client.Constants.AllowedActionsParameter] != null && Session[PerkinElmer.CBOE.Registration.Client.Constants.AllowedActionsParameter] == null)
                 {
-                    return (AllowedActions)Enum.Parse(typeof(AllowedActions), Request.Params[RegistrationWebApp.Constants.AllowedActionsParameter]);
+                    return (AllowedActions)Enum.Parse(typeof(AllowedActions), Request.Params[PerkinElmer.CBOE.Registration.Client.Constants.AllowedActionsParameter]);
                 }
-                return Session[Constants.AllowedActionsParameter] != null ? (AllowedActions)Session[RegistrationWebApp.Constants.AllowedActionsParameter] : AllowedActions.All;
+                return Session[Constants.AllowedActionsParameter] != null ? (AllowedActions)Session[PerkinElmer.CBOE.Registration.Client.Constants.AllowedActionsParameter] : AllowedActions.All;
             }
             set
             {
-                Session[RegistrationWebApp.Constants.AllowedActionsParameter] = value;
+                Session[PerkinElmer.CBOE.Registration.Client.Constants.AllowedActionsParameter] = value;
             }
         }
 

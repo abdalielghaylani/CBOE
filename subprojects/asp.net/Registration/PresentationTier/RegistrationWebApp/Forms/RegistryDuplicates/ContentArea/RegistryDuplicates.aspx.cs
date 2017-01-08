@@ -1,13 +1,6 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
@@ -16,10 +9,8 @@ using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using System.Xml;
 using Resources;
-using Infragistics.WebUI.UltraWebListbar;
 using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using RegistrationWebApp.Forms.Master;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEFormService;
@@ -27,12 +18,8 @@ using RegistrationWebApp.Forms.ComponentDuplicates;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using RegistrationWebApp.Code;
 using CambridgeSoft.COE.Registration;
-using CambridgeSoft.COE.Registration.Services.Common;
 using System.Text;
-using CambridgeSoft.COE.Framework.ExceptionHandling;
-using CambridgeSoft.COE.Framework.Common.Exceptions;
 using CambridgeSoft.COE.Framework.Common.Validation;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace RegistrationWebApp.Forms.RegistryDuplicates

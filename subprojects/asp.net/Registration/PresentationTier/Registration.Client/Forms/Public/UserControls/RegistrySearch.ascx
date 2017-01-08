@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RegistrySearch.ascx.cs" Inherits="RegistrationWebApp2.Forms.Public.UserControls.RegistrySearch" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="RegistrySearch.ascx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.RegistrySearch" %>
 <table id="MessagesInfoTable" runat="server" class="LeftPanelUC">
     <tr valign="top">
         <td valign="top" align="center">

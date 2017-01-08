@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.RegistrationAdmin.UserControls {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls {
     public partial class NavigationPanel : System.Web.UI.UserControl
     {
         #region Properties

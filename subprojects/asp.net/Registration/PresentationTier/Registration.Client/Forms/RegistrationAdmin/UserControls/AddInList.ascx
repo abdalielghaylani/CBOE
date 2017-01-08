@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" Codebehind="AddInList.ascx.cs" Inherits="CambridgeSoft.COE.RegistrationAdminWebApp.Forms.RegistrationAdmin.UserControls.AddInList" %>
+<%@ Control Language="C#" AutoEventWireup="true" Codebehind="AddInList.ascx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls.AddInList" %>
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
 <%@ Register Assembly="Infragistics2.WebUI.WebDataInput.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"

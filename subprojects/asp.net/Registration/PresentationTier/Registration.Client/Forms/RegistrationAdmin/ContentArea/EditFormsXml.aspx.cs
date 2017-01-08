@@ -17,7 +17,7 @@ using System.Reflection;
 using Resources;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea
 {
     public partial class EditFormsXml : GUIShellPage
     {

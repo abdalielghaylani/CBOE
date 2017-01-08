@@ -1,6 +1,6 @@
 using System;
 
-namespace RegistrationWebApp.Code
+namespace PerkinElmer.CBOE.Registration.Client.Code
 {
     /// <summary>
     /// Supported Node Keywords for left webtree.

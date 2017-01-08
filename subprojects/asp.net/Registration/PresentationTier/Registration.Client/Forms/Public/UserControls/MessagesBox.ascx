@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MessagesBox.ascx.cs" Inherits="RegistrationWebApp2.Forms.Public.UserControls.MessagesBox" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MessagesBox.ascx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesBox" %>
 
 <script type="text/javascript">
 var popupMaskId = "<%=popupMask.ClientID %>";

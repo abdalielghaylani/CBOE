@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="RegistryDuplicates.aspx.cs" Inherits="RegistrationWebApp2.Forms.RegistryDuplicates.RegistryDuplicates"
+    Codebehind="RegistryDuplicates.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistryDuplicates.RegistryDuplicates"
     Title="Untitled Page" ValidateRequest="false" %>
 
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"

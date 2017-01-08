@@ -7,7 +7,7 @@ using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
 using Resources;
 
-namespace RegistrationWebApp.Forms.Public.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.ContentArea
 {
     public partial class About : GUIShellPage
     {

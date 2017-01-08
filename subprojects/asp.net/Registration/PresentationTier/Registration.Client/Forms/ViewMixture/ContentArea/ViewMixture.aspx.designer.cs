@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
+namespace PerkinElmer.CBOE.Registration.Client.Forms.RegisteredRecord.ContentArea {
     
     
     public partial class ViewMixture {
@@ -100,7 +100,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MenuButton DeleteRecordImageMenuButton;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton DeleteRecordImageMenuButton;
         
         /// <summary>
         /// DefineMixtureImageMenuButton control.
@@ -109,7 +109,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MenuButton DefineMixtureImageMenuButton;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton DefineMixtureImageMenuButton;
         
         /// <summary>
         /// SendToInventoryImageMenuButton control.
@@ -118,7 +118,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MenuButton SendToInventoryImageMenuButton;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton SendToInventoryImageMenuButton;
         
         /// <summary>
         /// ActionToDoHiddenField control.
@@ -145,7 +145,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// mixtureInformationHolder control.
@@ -163,7 +163,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesBox ConfirmationMessageBox;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesBox ConfirmationMessageBox;
         
         /// <summary>
         /// DuplicatesMessageBox control.
@@ -172,7 +172,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesBox DuplicatesMessageBox;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesBox DuplicatesMessageBox;
         
         /// <summary>
         /// StoppingMessageBox control.
@@ -181,7 +181,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesBox StoppingMessageBox;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesBox StoppingMessageBox;
         
         /// <summary>
         /// CopiesMessageBox control.
@@ -190,7 +190,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::RegistrationWebApp.Forms.Public.UserControls.MessagesBox CopiesMessageBox;
+        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesBox CopiesMessageBox;
         
         /// <summary>
         /// mixtureCslaDataSource control.

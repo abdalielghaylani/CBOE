@@ -11,9 +11,9 @@ using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Registration.Services.Types;
 using Resources;
-using RegistrationWebApp.Code;
+using PerkinElmer.CBOE.Registration.Client.Code;
 
-namespace RegistrationWebApp.Forms.Public.UserControls
+namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls
 {
     public partial class RegistrySearch : System.Web.UI.UserControl, ICOENavigationPanelControl
     {

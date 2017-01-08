@@ -22,7 +22,7 @@ using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 
-namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
+namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea
 {
     public partial class ReviewRegisterSearch : GUIShellPage
     {
@@ -118,10 +118,10 @@ namespace RegistrationWebApp.Forms.ReviewRegister.ContentArea
                 }else
                     url = RegUtilities.GetSearchTempURL(true) + "&RememberPreviousState=true";
                 
-                  if (ServerCache.Exists(RegistrationWebApp.Constants.ClearCache, typeof(RegistrationWebApp.Constants)))
+                  if (ServerCache.Exists(PerkinElmer.CBOE.Registration.Client.Constants.ClearCache, typeof(PerkinElmer.CBOE.Registration.Client.Constants)))
                   {
                       cacheClearQuery = "&" + Constants.ClearCache + "=" + Constants.ClearCache;
-                      ServerCache.Remove(RegistrationWebApp.Constants.ClearCache, typeof(RegistrationWebApp.Constants));
+                      ServerCache.Remove(PerkinElmer.CBOE.Registration.Client.Constants.ClearCache, typeof(PerkinElmer.CBOE.Registration.Client.Constants));
                   }
 
                 this.SearchTempFrame.Attributes["src"] = url + cacheClearQuery;
