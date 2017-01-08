@@ -66,10 +66,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Infragistics2.Shared.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Infragistics2.Shared.v11.1.dll</HintPath>
@@ -191,7 +187,6 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -259,7 +254,6 @@
     <Compile Include="Code\ResultsCriteriaHelper.cs" />
     <Compile Include="Code\SaltAndBacthSuffixTextBox.cs" />
     <Compile Include="Code\SearchCriteriaHelper.cs" />
-    <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Forms\BulkRegisterMarked\ContentArea\ApproveMarked.aspx.cs">
       <DependentUpon>ApproveMarked.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -636,54 +630,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model\BATCH.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BATCHCOMPONENT.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BATCHCOMPONENTFRAGMENT.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BATCH_IDENTIFIER.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\BATCH_PROJECT.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\COMPOUND_FRAGMENT.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\FRAGMENT.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\FRAGMENTTYPE.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PICKLIST.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PICKLISTDOMAIN.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\PROJECT.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\RegModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RegModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\RegModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\RegModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RegModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -953,23 +899,6 @@
     <Content Include="Forms\BulkRegisterMarked\ContentArea\Web.config" />
     <None Include="Doc\RegistrationServices.shfbproj" />
     <Content Include="packages.config" />
-    <EntityDeploy Include="Model\RegModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RegModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Model\RegModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RegModel.edmx</DependentUpon>
-      <LastGenOutput>RegModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Model\RegModel.edmx.diagram">
-      <DependentUpon>RegModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Model\RegModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RegModel.edmx</DependentUpon>
-      <LastGenOutput>RegModel.cs</LastGenOutput>
-    </Content>
     <None Include="Registration.snk" />
     <EmbeddedResource Include="Webservices\RegistryRecord.xsd">
       <SubType>Designer</SubType>
@@ -979,6 +908,8 @@
     <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Forms\SubmitRecord\UserControls\" />
     <Folder Include="Forms\ViewMixture\UserControls\" />
   </ItemGroup>
