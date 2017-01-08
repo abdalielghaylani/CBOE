@@ -89,9 +89,9 @@ public class Reg2_Global : System.Web.HttpApplication
             member.Login(Request["ticket"].ToString(), true);
         }
         CambridgeSoft.COE.Framework.Common.WebUtils.SetCslaPrincipal();
-        Csla.ApplicationContext.GlobalContext["USER_PERSONID"] = HttpContext.Current.Session["USER_PERSONID"];
+        if (HttpContext.Current.Session != null)
+            Csla.ApplicationContext.GlobalContext["USER_PERSONID"] = HttpContext.Current.Session["USER_PERSONID"];
     }
-
 
     protected void Application_AuthenticateRequest(Object sender, EventArgs e)
     {
