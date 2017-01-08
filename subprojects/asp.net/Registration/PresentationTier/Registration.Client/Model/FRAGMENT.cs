@@ -7,13 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client
+namespace PerkinElmer.CBOE.Registration.Client.Model
 {
     using System;
     using System.Collections.Generic;
     
     public partial class FRAGMENT
     {
+        public FRAGMENT()
+        {
+            this.COMPOUND_FRAGMENT = new HashSet<COMPOUND_FRAGMENT>();
+        }
+    
         public int FRAGMENT_ID { get; set; }
         public string BASE64_CDX { get; set; }
         public string STRUCTUREFORMAT { get; set; }
@@ -26,6 +31,7 @@ namespace PerkinElmer.CBOE.Registration.Client
         public Nullable<System.DateTime> CREATED { get; set; }
         public Nullable<System.DateTime> MODIFIED { get; set; }
     
+        public virtual ICollection<COMPOUND_FRAGMENT> COMPOUND_FRAGMENT { get; set; }
         public virtual FRAGMENTTYPE FRAGMENTTYPE { get; set; }
     }
 }

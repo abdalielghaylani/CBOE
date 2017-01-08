@@ -7,21 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client
+namespace PerkinElmer.CBOE.Registration.Client.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class FRAGMENTTYPE
+    public partial class BATCHCOMPONENTFRAGMENT
     {
-        public FRAGMENTTYPE()
-        {
-            this.FRAGMENTS = new HashSet<FRAGMENT>();
-        }
-    
         public int ID { get; set; }
-        public string DESCRIPTION { get; set; }
+        public Nullable<int> BATCHCOMPONENTID { get; set; }
+        public Nullable<int> COMPOUNDFRAGMENTID { get; set; }
+        public Nullable<decimal> EQUIVALENT { get; set; }
+        public Nullable<int> ORDERINDEX { get; set; }
     
-        public virtual ICollection<FRAGMENT> FRAGMENTS { get; set; }
+        public virtual BATCHCOMPONENT BATCHCOMPONENT { get; set; }
+        public virtual COMPOUND_FRAGMENT COMPOUND_FRAGMENT { get; set; }
     }
 }

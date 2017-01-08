@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client
+namespace PerkinElmer.CBOE.Registration.Client.Model
 {
     using System;
     using System.Data.Entity;
@@ -25,10 +25,16 @@ namespace PerkinElmer.CBOE.Registration.Client
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<PROJECT> PROJECTS { get; set; }
+        public DbSet<BATCH_IDENTIFIER> BATCH_IDENTIFIER { get; set; }
+        public DbSet<BATCH_PROJECT> BATCH_PROJECT { get; set; }
+        public DbSet<BATCHCOMPONENT> BATCHCOMPONENTs { get; set; }
+        public DbSet<BATCHCOMPONENTFRAGMENT> BATCHCOMPONENTFRAGMENTs { get; set; }
+        public DbSet<BATCH> BATCHES { get; set; }
+        public DbSet<COMPOUND_FRAGMENT> COMPOUND_FRAGMENT { get; set; }
         public DbSet<FRAGMENT> FRAGMENTS { get; set; }
         public DbSet<FRAGMENTTYPE> FRAGMENTTYPEs { get; set; }
         public DbSet<PICKLIST> PICKLISTs { get; set; }
         public DbSet<PICKLISTDOMAIN> PICKLISTDOMAINs { get; set; }
+        public DbSet<PROJECT> PROJECTS { get; set; }
     }
 }

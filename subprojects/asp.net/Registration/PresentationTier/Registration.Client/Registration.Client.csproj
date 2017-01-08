@@ -633,40 +633,58 @@
     <Compile Include="Forms\TableEditor\ContentArea\TableEditor.aspx.designer.cs">
       <DependentUpon>TableEditor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FRAGMENT.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FRAGMENTTYPE.cs">
-      <DependentUpon>RegModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="PICKLIST.cs">
+    <Compile Include="Model\BATCH.cs">
       <DependentUpon>RegModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PICKLISTDOMAIN.cs">
+    <Compile Include="Model\BATCHCOMPONENT.cs">
       <DependentUpon>RegModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="PROJECT.cs">
+    <Compile Include="Model\BATCHCOMPONENTFRAGMENT.cs">
       <DependentUpon>RegModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegModel.Context.cs">
+    <Compile Include="Model\BATCH_IDENTIFIER.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BATCH_PROJECT.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\COMPOUND_FRAGMENT.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FRAGMENT.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FRAGMENTTYPE.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PICKLIST.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PICKLISTDOMAIN.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\PROJECT.cs">
+      <DependentUpon>RegModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\RegModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RegModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegModel.cs">
+    <Compile Include="Model\RegModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RegModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="RegModel.Designer.cs">
+    <Compile Include="Model\RegModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RegModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\Resource.resx">
@@ -935,27 +953,27 @@
     <Content Include="Forms\BulkRegisterMarked\ContentArea\Web.config" />
     <None Include="Doc\RegistrationServices.shfbproj" />
     <Content Include="packages.config" />
-    <None Include="Registration.snk" />
-    <EmbeddedResource Include="Webservices\RegistryRecord.xsd">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EntityDeploy Include="RegModel.edmx">
+    <EntityDeploy Include="Model\RegModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RegModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="RegModel.Context.tt">
+    <Content Include="Model\RegModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RegModel.edmx</DependentUpon>
       <LastGenOutput>RegModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="RegModel.edmx.diagram">
+    <Content Include="Model\RegModel.edmx.diagram">
       <DependentUpon>RegModel.edmx</DependentUpon>
     </Content>
-    <Content Include="RegModel.tt">
+    <Content Include="Model\RegModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RegModel.edmx</DependentUpon>
       <LastGenOutput>RegModel.cs</LastGenOutput>
     </Content>
+    <None Include="Registration.snk" />
+    <EmbeddedResource Include="Webservices\RegistryRecord.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\licenses.licx" />

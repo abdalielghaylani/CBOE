@@ -1,0 +1,796 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PerkinElmer.CBOE.Registration.Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BATCH_IDENTIFIER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="TYPE" Type="number" Precision="8" Scale="0" />
+          <Property Name="BATCHID" Type="number" Precision="8" Scale="0" />
+          <Property Name="VALUE" Type="varchar2" MaxLength="2000" />
+          <Property Name="ORDERINDEX" Type="number" Precision="8" Scale="0" />
+        </EntityType>
+        <EntityType Name="BATCH_PROJECT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="BATCHID" Type="number" Precision="8" Scale="0" />
+          <Property Name="PROJECTID" Type="number" Precision="8" Scale="0" />
+          <Property Name="ORDERINDEX" Type="number" Precision="8" Scale="0" />
+        </EntityType>
+        <EntityType Name="BATCHCOMPONENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="BATCHID" Type="number" Precision="8" Scale="0" />
+          <Property Name="MIXTURECOMPONENTID" Type="number" Precision="8" Scale="0" />
+          <Property Name="ORDERINDEX" Type="number" Precision="8" Scale="0" />
+          <Property Name="PERCENTAGE" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="BATCHCOMPONENTFRAGMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="BATCHCOMPONENTID" Type="number" Precision="8" Scale="0" />
+          <Property Name="COMPOUNDFRAGMENTID" Type="number" Precision="8" Scale="0" />
+          <Property Name="EQUIVALENT" Type="number" Precision="38" Scale="0" />
+          <Property Name="ORDERINDEX" Type="number" Precision="8" Scale="0" />
+        </EntityType>
+        <EntityType Name="BATCHES">
+          <Key>
+            <PropertyRef Name="BATCH_INTERNAL_ID" />
+          </Key>
+          <Property Name="BATCH_INTERNAL_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="BATCH_NUMBER" Type="number" Precision="5" Scale="0" />
+          <Property Name="REG_INTERNAL_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="FULLREGNUMBER" Type="varchar2" MaxLength="50" />
+          <Property Name="STATUS_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="ENTRY_PERSON_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="BATCH_REG_PERSON_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="LAST_MOD_DATE" Type="date" />
+          <Property Name="TEMP_ID" Type="number" Precision="8" Scale="0" />
+          <Property Name="TEMPBATCHID" Type="number" Precision="8" Scale="0" />
+          <Property Name="DATECREATED" Type="date" />
+          <Property Name="PERSONAPPROVED" Type="number" Precision="8" Scale="0" />
+          <Property Name="SCIENTIST_ID" Type="varchar2" MaxLength="10" />
+          <Property Name="CREATION_DATE" Type="date" />
+          <Property Name="NOTEBOOK_TEXT" Type="varchar2" MaxLength="100" />
+          <Property Name="AMOUNT" Type="number" Precision="14" Scale="6" />
+          <Property Name="AMOUNT_UNITS" Type="varchar2" MaxLength="10" />
+          <Property Name="APPEARANCE" Type="varchar2" MaxLength="50" />
+          <Property Name="PURITY" Type="number" Precision="5" Scale="2" />
+          <Property Name="PURITY_COMMENTS" Type="varchar2" MaxLength="50" />
+          <Property Name="SAMPLEID" Type="varchar2" MaxLength="200" />
+          <Property Name="SOLUBILITY" Type="varchar2" MaxLength="100" />
+          <Property Name="BATCH_COMMENT" Type="varchar2" MaxLength="200" />
+          <Property Name="STORAGE_REQ_AND_WARNINGS" Type="varchar2" MaxLength="200" />
+          <Property Name="FORMULA_WEIGHT" Type="number" Precision="14" Scale="6" />
+          <Property Name="BATCH_FORMULA" Type="varchar2" MaxLength="200" />
+          <Property Name="PERCENT_ACTIVE" Type="number" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="COMPOUND_FRAGMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="COMPOUNDID" Type="number" Precision="8" Scale="0" />
+          <Property Name="FRAGMENTID" Type="number" Precision="8" Scale="0" />
+          <Property Name="EQUIVALENTS" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="FRAGMENTS">
+          <Key>
+            <PropertyRef Name="FRAGMENT_ID" />
+          </Key>
+          <Property Name="FRAGMENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="BASE64_CDX" Type="clob" />
+          <Property Name="STRUCTUREFORMAT" Type="varchar2" MaxLength="150" />
+          <Property Name="DATETIME_STAMP" Type="varchar2" MaxLength="30" />
+          <Property Name="CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="250" />
+          <Property Name="FRAGMENTTYPEID" Type="number" Precision="8" Scale="0" />
+          <Property Name="MOLWEIGHT" Type="number" Precision="38" Scale="0" />
+          <Property Name="FORMULA" Type="varchar2" MaxLength="200" />
+          <Property Name="CREATED" Type="date" />
+          <Property Name="MODIFIED" Type="date" />
+        </EntityType>
+        <EntityType Name="FRAGMENTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PICKLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="PICKLISTDOMAINID" Type="number" Precision="8" Scale="0" />
+          <Property Name="PICKLISTVALUE" Type="varchar2" MaxLength="1000" />
+          <Property Name="ACTIVE" Type="nchar" MaxLength="1" />
+          <Property Name="SORTORDER" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="PICKLISTDOMAIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="EXT_TABLE" Type="varchar2" MaxLength="100" />
+          <Property Name="EXT_ID_COL" Type="varchar2" MaxLength="30" />
+          <Property Name="EXT_DISPLAY_COL" Type="varchar2" MaxLength="30" />
+          <Property Name="EXT_SQL_FILTER" Type="varchar2" MaxLength="2000" />
+          <Property Name="LOCKED" Type="nchar" MaxLength="1" />
+          <Property Name="EXT_SQL_SORTORDER" Type="varchar2" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PROJECTS">
+          <Key>
+            <PropertyRef Name="PROJECT_INTERNAL_ID" />
+          </Key>
+          <Property Name="PROJECT_INTERNAL_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="PROJECT_NAME" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="ACTIVE" Type="nchar" MaxLength="1" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="500" />
+          <Property Name="TYPE" Type="nchar" MaxLength="1" />
+          <Property Name="IS_PUBLIC" Type="nchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="BATCH_IDENTIFIER_BATCHES_FK">
+          <End Role="BATCHES" Type="Self.BATCHES" Multiplicity="0..1" />
+          <End Role="BATCH_IDENTIFIER" Type="Self.BATCH_IDENTIFIER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHES">
+              <PropertyRef Name="BATCH_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCH_IDENTIFIER">
+              <PropertyRef Name="BATCHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCH_PROJECT_BATCHES">
+          <End Role="BATCHES" Type="Self.BATCHES" Multiplicity="0..1" />
+          <End Role="BATCH_PROJECT" Type="Self.BATCH_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHES">
+              <PropertyRef Name="BATCH_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCH_PROJECT">
+              <PropertyRef Name="BATCHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCH_PROJECT_PROJECTS">
+          <End Role="PROJECTS" Type="Self.PROJECTS" Multiplicity="0..1" />
+          <End Role="BATCH_PROJECT" Type="Self.BATCH_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECTS">
+              <PropertyRef Name="PROJECT_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCH_PROJECT">
+              <PropertyRef Name="PROJECTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCHCOMPFRAGMENT_BATCOM">
+          <End Role="BATCHCOMPONENT" Type="Self.BATCHCOMPONENT" Multiplicity="0..1" />
+          <End Role="BATCHCOMPONENTFRAGMENT" Type="Self.BATCHCOMPONENTFRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHCOMPONENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BATCHCOMPONENTFRAGMENT">
+              <PropertyRef Name="BATCHCOMPONENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCHCOMPFRAGMENT_COMFRA">
+          <End Role="COMPOUND_FRAGMENT" Type="Self.COMPOUND_FRAGMENT" Multiplicity="0..1" />
+          <End Role="BATCHCOMPONENTFRAGMENT" Type="Self.BATCHCOMPONENTFRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPOUND_FRAGMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BATCHCOMPONENTFRAGMENT">
+              <PropertyRef Name="COMPOUNDFRAGMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCHCOMPONENT_BATCH">
+          <End Role="BATCHES" Type="Self.BATCHES" Multiplicity="0..1" />
+          <End Role="BATCHCOMPONENT" Type="Self.BATCHCOMPONENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHES">
+              <PropertyRef Name="BATCH_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCHCOMPONENT">
+              <PropertyRef Name="BATCHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COMPOUND_FRAGMENT_FRAGMENTS">
+          <End Role="FRAGMENTS" Type="Self.FRAGMENTS" Multiplicity="0..1" />
+          <End Role="COMPOUND_FRAGMENT" Type="Self.COMPOUND_FRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FRAGMENTS">
+              <PropertyRef Name="FRAGMENT_ID" />
+            </Principal>
+            <Dependent Role="COMPOUND_FRAGMENT">
+              <PropertyRef Name="FRAGMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FRAGMENTTYPE_FRAGMENTS">
+          <End Role="FRAGMENTTYPE" Type="Self.FRAGMENTTYPE" Multiplicity="0..1" />
+          <End Role="FRAGMENTS" Type="Self.FRAGMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FRAGMENTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FRAGMENTS">
+              <PropertyRef Name="FRAGMENTTYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PICKLIST_PICKLISTDOMAIN">
+          <End Role="PICKLISTDOMAIN" Type="Self.PICKLISTDOMAIN" Multiplicity="0..1" />
+          <End Role="PICKLIST" Type="Self.PICKLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PICKLISTDOMAIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PICKLIST">
+              <PropertyRef Name="PICKLISTDOMAINID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PerkinElmerCBOERegistrationModelStoreContainer">
+          <EntitySet Name="BATCH_IDENTIFIER" EntityType="Self.BATCH_IDENTIFIER" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="BATCH_PROJECT" EntityType="Self.BATCH_PROJECT" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="BATCHCOMPONENT" EntityType="Self.BATCHCOMPONENT" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="BATCHCOMPONENTFRAGMENT" EntityType="Self.BATCHCOMPONENTFRAGMENT" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="BATCHES" EntityType="Self.BATCHES" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="COMPOUND_FRAGMENT" EntityType="Self.COMPOUND_FRAGMENT" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="FRAGMENTS" EntityType="Self.FRAGMENTS" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="FRAGMENTTYPE" EntityType="Self.FRAGMENTTYPE" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="PICKLIST" EntityType="Self.PICKLIST" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="PICKLISTDOMAIN" EntityType="Self.PICKLISTDOMAIN" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="REGDB" store:Type="Tables" />
+          <AssociationSet Name="BATCH_IDENTIFIER_BATCHES_FK" Association="Self.BATCH_IDENTIFIER_BATCHES_FK">
+            <End Role="BATCHES" EntitySet="BATCHES" />
+            <End Role="BATCH_IDENTIFIER" EntitySet="BATCH_IDENTIFIER" />
+          </AssociationSet>
+          <AssociationSet Name="BATCH_PROJECT_BATCHES" Association="Self.BATCH_PROJECT_BATCHES">
+            <End Role="BATCHES" EntitySet="BATCHES" />
+            <End Role="BATCH_PROJECT" EntitySet="BATCH_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="BATCH_PROJECT_PROJECTS" Association="Self.BATCH_PROJECT_PROJECTS">
+            <End Role="PROJECTS" EntitySet="PROJECTS" />
+            <End Role="BATCH_PROJECT" EntitySet="BATCH_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="BATCHCOMPFRAGMENT_BATCOM" Association="Self.BATCHCOMPFRAGMENT_BATCOM">
+            <End Role="BATCHCOMPONENT" EntitySet="BATCHCOMPONENT" />
+            <End Role="BATCHCOMPONENTFRAGMENT" EntitySet="BATCHCOMPONENTFRAGMENT" />
+          </AssociationSet>
+          <AssociationSet Name="BATCHCOMPFRAGMENT_COMFRA" Association="Self.BATCHCOMPFRAGMENT_COMFRA">
+            <End Role="COMPOUND_FRAGMENT" EntitySet="COMPOUND_FRAGMENT" />
+            <End Role="BATCHCOMPONENTFRAGMENT" EntitySet="BATCHCOMPONENTFRAGMENT" />
+          </AssociationSet>
+          <AssociationSet Name="BATCHCOMPONENT_BATCH" Association="Self.BATCHCOMPONENT_BATCH">
+            <End Role="BATCHES" EntitySet="BATCHES" />
+            <End Role="BATCHCOMPONENT" EntitySet="BATCHCOMPONENT" />
+          </AssociationSet>
+          <AssociationSet Name="COMPOUND_FRAGMENT_FRAGMENTS" Association="Self.COMPOUND_FRAGMENT_FRAGMENTS">
+            <End Role="FRAGMENTS" EntitySet="FRAGMENTS" />
+            <End Role="COMPOUND_FRAGMENT" EntitySet="COMPOUND_FRAGMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FRAGMENTTYPE_FRAGMENTS" Association="Self.FRAGMENTTYPE_FRAGMENTS">
+            <End Role="FRAGMENTTYPE" EntitySet="FRAGMENTTYPE" />
+            <End Role="FRAGMENTS" EntitySet="FRAGMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="PICKLIST_PICKLISTDOMAIN" Association="Self.PICKLIST_PICKLISTDOMAIN">
+            <End Role="PICKLISTDOMAIN" EntitySet="PICKLISTDOMAIN" />
+            <End Role="PICKLIST" EntitySet="PICKLIST" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PerkinElmer.CBOE.Registration.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BATCH_IDENTIFIER">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="TYPE" Type="Int32" />
+          <Property Name="BATCHID" Type="Int32" />
+          <Property Name="VALUE" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ORDERINDEX" Type="Int32" />
+          <NavigationProperty Name="BATCH" Relationship="Self.BATCH_IDENTIFIER_BATCHES_FK" FromRole="BATCH_IDENTIFIER" ToRole="BATCHES" />
+        </EntityType>
+        <EntityType Name="BATCH_PROJECT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="BATCHID" Type="Int32" />
+          <Property Name="PROJECTID" Type="Int32" />
+          <Property Name="ORDERINDEX" Type="Int32" />
+          <NavigationProperty Name="BATCH" Relationship="Self.BATCH_PROJECT_BATCHES" FromRole="BATCH_PROJECT" ToRole="BATCHES" />
+          <NavigationProperty Name="PROJECT" Relationship="Self.BATCH_PROJECT_PROJECTS" FromRole="BATCH_PROJECT" ToRole="PROJECTS" />
+        </EntityType>
+        <EntityType Name="BATCHCOMPONENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="BATCHID" Type="Int32" />
+          <Property Name="MIXTURECOMPONENTID" Type="Int32" />
+          <Property Name="ORDERINDEX" Type="Int32" />
+          <Property Name="PERCENTAGE" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="BATCHCOMPONENTFRAGMENTs" Relationship="Self.BATCHCOMPFRAGMENT_BATCOM" FromRole="BATCHCOMPONENT" ToRole="BATCHCOMPONENTFRAGMENT" />
+          <NavigationProperty Name="BATCH" Relationship="Self.BATCHCOMPONENT_BATCH" FromRole="BATCHCOMPONENT" ToRole="BATCHES" />
+        </EntityType>
+        <EntityType Name="BATCHCOMPONENTFRAGMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="BATCHCOMPONENTID" Type="Int32" />
+          <Property Name="COMPOUNDFRAGMENTID" Type="Int32" />
+          <Property Name="EQUIVALENT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="ORDERINDEX" Type="Int32" />
+          <NavigationProperty Name="BATCHCOMPONENT" Relationship="Self.BATCHCOMPFRAGMENT_BATCOM" FromRole="BATCHCOMPONENTFRAGMENT" ToRole="BATCHCOMPONENT" />
+          <NavigationProperty Name="COMPOUND_FRAGMENT" Relationship="Self.BATCHCOMPFRAGMENT_COMFRA" FromRole="BATCHCOMPONENTFRAGMENT" ToRole="COMPOUND_FRAGMENT" />
+        </EntityType>
+        <EntityType Name="BATCH">
+          <Key>
+            <PropertyRef Name="BATCH_INTERNAL_ID" />
+          </Key>
+          <Property Name="BATCH_INTERNAL_ID" Type="Int32" Nullable="false" />
+          <Property Name="BATCH_NUMBER" Type="Int16" />
+          <Property Name="REG_INTERNAL_ID" Type="Int32" />
+          <Property Name="FULLREGNUMBER" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS_ID" Type="Int32" />
+          <Property Name="ENTRY_PERSON_ID" Type="Int32" />
+          <Property Name="BATCH_REG_PERSON_ID" Type="Int32" />
+          <Property Name="LAST_MOD_DATE" Type="DateTime" />
+          <Property Name="TEMP_ID" Type="Int32" />
+          <Property Name="TEMPBATCHID" Type="Int32" />
+          <Property Name="DATECREATED" Type="DateTime" />
+          <Property Name="PERSONAPPROVED" Type="Int32" />
+          <Property Name="SCIENTIST_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CREATION_DATE" Type="DateTime" />
+          <Property Name="NOTEBOOK_TEXT" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="AMOUNT" Type="Decimal" Precision="14" Scale="6" />
+          <Property Name="AMOUNT_UNITS" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="APPEARANCE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PURITY" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="PURITY_COMMENTS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SAMPLEID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SOLUBILITY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="BATCH_COMMENT" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="STORAGE_REQ_AND_WARNINGS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FORMULA_WEIGHT" Type="Decimal" Precision="14" Scale="6" />
+          <Property Name="BATCH_FORMULA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="PERCENT_ACTIVE" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="BATCH_IDENTIFIER" Relationship="Self.BATCH_IDENTIFIER_BATCHES_FK" FromRole="BATCHES" ToRole="BATCH_IDENTIFIER" />
+          <NavigationProperty Name="BATCH_PROJECT" Relationship="Self.BATCH_PROJECT_BATCHES" FromRole="BATCHES" ToRole="BATCH_PROJECT" />
+          <NavigationProperty Name="BATCHCOMPONENTs" Relationship="Self.BATCHCOMPONENT_BATCH" FromRole="BATCHES" ToRole="BATCHCOMPONENT" />
+        </EntityType>
+        <EntityType Name="COMPOUND_FRAGMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="COMPOUNDID" Type="Int32" />
+          <Property Name="FRAGMENTID" Type="Int32" />
+          <Property Name="EQUIVALENTS" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="BATCHCOMPONENTFRAGMENTs" Relationship="Self.BATCHCOMPFRAGMENT_COMFRA" FromRole="COMPOUND_FRAGMENT" ToRole="BATCHCOMPONENTFRAGMENT" />
+          <NavigationProperty Name="FRAGMENT" Relationship="Self.COMPOUND_FRAGMENT_FRAGMENTS" FromRole="COMPOUND_FRAGMENT" ToRole="FRAGMENTS" />
+        </EntityType>
+        <EntityType Name="FRAGMENT">
+          <Key>
+            <PropertyRef Name="FRAGMENT_ID" />
+          </Key>
+          <Property Name="FRAGMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="BASE64_CDX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="STRUCTUREFORMAT" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DATETIME_STAMP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FRAGMENTTYPEID" Type="Int32" />
+          <Property Name="MOLWEIGHT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FORMULA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED" Type="DateTime" />
+          <Property Name="MODIFIED" Type="DateTime" />
+          <NavigationProperty Name="COMPOUND_FRAGMENT" Relationship="Self.COMPOUND_FRAGMENT_FRAGMENTS" FromRole="FRAGMENTS" ToRole="COMPOUND_FRAGMENT" />
+          <NavigationProperty Name="FRAGMENTTYPE" Relationship="Self.FRAGMENTTYPE_FRAGMENTS" FromRole="FRAGMENTS" ToRole="FRAGMENTTYPE" />
+        </EntityType>
+        <EntityType Name="FRAGMENTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FRAGMENTS" Relationship="Self.FRAGMENTTYPE_FRAGMENTS" FromRole="FRAGMENTTYPE" ToRole="FRAGMENTS" />
+        </EntityType>
+        <EntityType Name="PICKLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PICKLISTDOMAINID" Type="Int32" />
+          <Property Name="PICKLISTVALUE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="SORTORDER" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="PICKLISTDOMAIN" Relationship="Self.PICKLIST_PICKLISTDOMAIN" FromRole="PICKLIST" ToRole="PICKLISTDOMAIN" />
+        </EntityType>
+        <EntityType Name="PICKLISTDOMAIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_TABLE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_ID_COL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_DISPLAY_COL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_SQL_FILTER" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="LOCKED" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="EXT_SQL_SORTORDER" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PICKLISTs" Relationship="Self.PICKLIST_PICKLISTDOMAIN" FromRole="PICKLISTDOMAIN" ToRole="PICKLIST" />
+        </EntityType>
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="PROJECT_INTERNAL_ID" />
+          </Key>
+          <Property Name="PROJECT_INTERNAL_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROJECT_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTIVE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="IS_PUBLIC" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="BATCH_PROJECT" Relationship="Self.BATCH_PROJECT_PROJECTS" FromRole="PROJECTS" ToRole="BATCH_PROJECT" />
+        </EntityType>
+        <Association Name="BATCH_IDENTIFIER_BATCHES_FK">
+          <End Role="BATCHES" Type="Self.BATCH" Multiplicity="0..1" />
+          <End Role="BATCH_IDENTIFIER" Type="Self.BATCH_IDENTIFIER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHES">
+              <PropertyRef Name="BATCH_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCH_IDENTIFIER">
+              <PropertyRef Name="BATCHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCH_PROJECT_BATCHES">
+          <End Role="BATCHES" Type="Self.BATCH" Multiplicity="0..1" />
+          <End Role="BATCH_PROJECT" Type="Self.BATCH_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHES">
+              <PropertyRef Name="BATCH_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCH_PROJECT">
+              <PropertyRef Name="BATCHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCH_PROJECT_PROJECTS">
+          <End Role="PROJECTS" Type="Self.PROJECT" Multiplicity="0..1" />
+          <End Role="BATCH_PROJECT" Type="Self.BATCH_PROJECT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROJECTS">
+              <PropertyRef Name="PROJECT_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCH_PROJECT">
+              <PropertyRef Name="PROJECTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCHCOMPFRAGMENT_BATCOM">
+          <End Role="BATCHCOMPONENT" Type="Self.BATCHCOMPONENT" Multiplicity="0..1" />
+          <End Role="BATCHCOMPONENTFRAGMENT" Type="Self.BATCHCOMPONENTFRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHCOMPONENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BATCHCOMPONENTFRAGMENT">
+              <PropertyRef Name="BATCHCOMPONENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCHCOMPONENT_BATCH">
+          <End Role="BATCHES" Type="Self.BATCH" Multiplicity="0..1" />
+          <End Role="BATCHCOMPONENT" Type="Self.BATCHCOMPONENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BATCHES">
+              <PropertyRef Name="BATCH_INTERNAL_ID" />
+            </Principal>
+            <Dependent Role="BATCHCOMPONENT">
+              <PropertyRef Name="BATCHID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BATCHCOMPFRAGMENT_COMFRA">
+          <End Role="COMPOUND_FRAGMENT" Type="Self.COMPOUND_FRAGMENT" Multiplicity="0..1" />
+          <End Role="BATCHCOMPONENTFRAGMENT" Type="Self.BATCHCOMPONENTFRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPOUND_FRAGMENT">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BATCHCOMPONENTFRAGMENT">
+              <PropertyRef Name="COMPOUNDFRAGMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="COMPOUND_FRAGMENT_FRAGMENTS">
+          <End Role="FRAGMENTS" Type="Self.FRAGMENT" Multiplicity="0..1" />
+          <End Role="COMPOUND_FRAGMENT" Type="Self.COMPOUND_FRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FRAGMENTS">
+              <PropertyRef Name="FRAGMENT_ID" />
+            </Principal>
+            <Dependent Role="COMPOUND_FRAGMENT">
+              <PropertyRef Name="FRAGMENTID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FRAGMENTTYPE_FRAGMENTS">
+          <End Role="FRAGMENTTYPE" Type="Self.FRAGMENTTYPE" Multiplicity="0..1" />
+          <End Role="FRAGMENTS" Type="Self.FRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FRAGMENTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FRAGMENTS">
+              <PropertyRef Name="FRAGMENTTYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PICKLIST_PICKLISTDOMAIN">
+          <End Role="PICKLISTDOMAIN" Type="Self.PICKLISTDOMAIN" Multiplicity="0..1" />
+          <End Role="PICKLIST" Type="Self.PICKLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PICKLISTDOMAIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PICKLIST">
+              <PropertyRef Name="PICKLISTDOMAINID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BATCH_IDENTIFIER" EntityType="Self.BATCH_IDENTIFIER" />
+          <EntitySet Name="BATCH_PROJECT" EntityType="Self.BATCH_PROJECT" />
+          <EntitySet Name="BATCHCOMPONENTs" EntityType="Self.BATCHCOMPONENT" />
+          <EntitySet Name="BATCHCOMPONENTFRAGMENTs" EntityType="Self.BATCHCOMPONENTFRAGMENT" />
+          <EntitySet Name="BATCHES" EntityType="Self.BATCH" />
+          <EntitySet Name="COMPOUND_FRAGMENT" EntityType="Self.COMPOUND_FRAGMENT" />
+          <EntitySet Name="FRAGMENTS" EntityType="Self.FRAGMENT" />
+          <EntitySet Name="FRAGMENTTYPEs" EntityType="Self.FRAGMENTTYPE" />
+          <EntitySet Name="PICKLISTs" EntityType="Self.PICKLIST" />
+          <EntitySet Name="PICKLISTDOMAINs" EntityType="Self.PICKLISTDOMAIN" />
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECT" />
+          <AssociationSet Name="BATCH_IDENTIFIER_BATCHES_FK" Association="Self.BATCH_IDENTIFIER_BATCHES_FK">
+            <End Role="BATCHES" EntitySet="BATCHES" />
+            <End Role="BATCH_IDENTIFIER" EntitySet="BATCH_IDENTIFIER" />
+          </AssociationSet>
+          <AssociationSet Name="BATCH_PROJECT_BATCHES" Association="Self.BATCH_PROJECT_BATCHES">
+            <End Role="BATCHES" EntitySet="BATCHES" />
+            <End Role="BATCH_PROJECT" EntitySet="BATCH_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="BATCH_PROJECT_PROJECTS" Association="Self.BATCH_PROJECT_PROJECTS">
+            <End Role="PROJECTS" EntitySet="PROJECTS" />
+            <End Role="BATCH_PROJECT" EntitySet="BATCH_PROJECT" />
+          </AssociationSet>
+          <AssociationSet Name="BATCHCOMPFRAGMENT_BATCOM" Association="Self.BATCHCOMPFRAGMENT_BATCOM">
+            <End Role="BATCHCOMPONENT" EntitySet="BATCHCOMPONENTs" />
+            <End Role="BATCHCOMPONENTFRAGMENT" EntitySet="BATCHCOMPONENTFRAGMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="BATCHCOMPONENT_BATCH" Association="Self.BATCHCOMPONENT_BATCH">
+            <End Role="BATCHES" EntitySet="BATCHES" />
+            <End Role="BATCHCOMPONENT" EntitySet="BATCHCOMPONENTs" />
+          </AssociationSet>
+          <AssociationSet Name="BATCHCOMPFRAGMENT_COMFRA" Association="Self.BATCHCOMPFRAGMENT_COMFRA">
+            <End Role="COMPOUND_FRAGMENT" EntitySet="COMPOUND_FRAGMENT" />
+            <End Role="BATCHCOMPONENTFRAGMENT" EntitySet="BATCHCOMPONENTFRAGMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="COMPOUND_FRAGMENT_FRAGMENTS" Association="Self.COMPOUND_FRAGMENT_FRAGMENTS">
+            <End Role="FRAGMENTS" EntitySet="FRAGMENTS" />
+            <End Role="COMPOUND_FRAGMENT" EntitySet="COMPOUND_FRAGMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FRAGMENTTYPE_FRAGMENTS" Association="Self.FRAGMENTTYPE_FRAGMENTS">
+            <End Role="FRAGMENTTYPE" EntitySet="FRAGMENTTYPEs" />
+            <End Role="FRAGMENTS" EntitySet="FRAGMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="PICKLIST_PICKLISTDOMAIN" Association="Self.PICKLIST_PICKLISTDOMAIN">
+            <End Role="PICKLISTDOMAIN" EntitySet="PICKLISTDOMAINs" />
+            <End Role="PICKLIST" EntitySet="PICKLISTs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PerkinElmerCBOERegistrationModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="BATCH_IDENTIFIER">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.BATCH_IDENTIFIER">
+              <MappingFragment StoreEntitySet="BATCH_IDENTIFIER">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="BATCHID" ColumnName="BATCHID" />
+                <ScalarProperty Name="VALUE" ColumnName="VALUE" />
+                <ScalarProperty Name="ORDERINDEX" ColumnName="ORDERINDEX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BATCH_PROJECT">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.BATCH_PROJECT">
+              <MappingFragment StoreEntitySet="BATCH_PROJECT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BATCHID" ColumnName="BATCHID" />
+                <ScalarProperty Name="PROJECTID" ColumnName="PROJECTID" />
+                <ScalarProperty Name="ORDERINDEX" ColumnName="ORDERINDEX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BATCHCOMPONENTs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.BATCHCOMPONENT">
+              <MappingFragment StoreEntitySet="BATCHCOMPONENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BATCHID" ColumnName="BATCHID" />
+                <ScalarProperty Name="MIXTURECOMPONENTID" ColumnName="MIXTURECOMPONENTID" />
+                <ScalarProperty Name="ORDERINDEX" ColumnName="ORDERINDEX" />
+                <ScalarProperty Name="PERCENTAGE" ColumnName="PERCENTAGE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BATCHCOMPONENTFRAGMENTs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.BATCHCOMPONENTFRAGMENT">
+              <MappingFragment StoreEntitySet="BATCHCOMPONENTFRAGMENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BATCHCOMPONENTID" ColumnName="BATCHCOMPONENTID" />
+                <ScalarProperty Name="COMPOUNDFRAGMENTID" ColumnName="COMPOUNDFRAGMENTID" />
+                <ScalarProperty Name="EQUIVALENT" ColumnName="EQUIVALENT" />
+                <ScalarProperty Name="ORDERINDEX" ColumnName="ORDERINDEX" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BATCHES">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.BATCH">
+              <MappingFragment StoreEntitySet="BATCHES">
+                <ScalarProperty Name="BATCH_INTERNAL_ID" ColumnName="BATCH_INTERNAL_ID" />
+                <ScalarProperty Name="BATCH_NUMBER" ColumnName="BATCH_NUMBER" />
+                <ScalarProperty Name="REG_INTERNAL_ID" ColumnName="REG_INTERNAL_ID" />
+                <ScalarProperty Name="FULLREGNUMBER" ColumnName="FULLREGNUMBER" />
+                <ScalarProperty Name="STATUS_ID" ColumnName="STATUS_ID" />
+                <ScalarProperty Name="ENTRY_PERSON_ID" ColumnName="ENTRY_PERSON_ID" />
+                <ScalarProperty Name="BATCH_REG_PERSON_ID" ColumnName="BATCH_REG_PERSON_ID" />
+                <ScalarProperty Name="LAST_MOD_DATE" ColumnName="LAST_MOD_DATE" />
+                <ScalarProperty Name="TEMP_ID" ColumnName="TEMP_ID" />
+                <ScalarProperty Name="TEMPBATCHID" ColumnName="TEMPBATCHID" />
+                <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+                <ScalarProperty Name="PERSONAPPROVED" ColumnName="PERSONAPPROVED" />
+                <ScalarProperty Name="SCIENTIST_ID" ColumnName="SCIENTIST_ID" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="NOTEBOOK_TEXT" ColumnName="NOTEBOOK_TEXT" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="AMOUNT_UNITS" ColumnName="AMOUNT_UNITS" />
+                <ScalarProperty Name="APPEARANCE" ColumnName="APPEARANCE" />
+                <ScalarProperty Name="PURITY" ColumnName="PURITY" />
+                <ScalarProperty Name="PURITY_COMMENTS" ColumnName="PURITY_COMMENTS" />
+                <ScalarProperty Name="SAMPLEID" ColumnName="SAMPLEID" />
+                <ScalarProperty Name="SOLUBILITY" ColumnName="SOLUBILITY" />
+                <ScalarProperty Name="BATCH_COMMENT" ColumnName="BATCH_COMMENT" />
+                <ScalarProperty Name="STORAGE_REQ_AND_WARNINGS" ColumnName="STORAGE_REQ_AND_WARNINGS" />
+                <ScalarProperty Name="FORMULA_WEIGHT" ColumnName="FORMULA_WEIGHT" />
+                <ScalarProperty Name="BATCH_FORMULA" ColumnName="BATCH_FORMULA" />
+                <ScalarProperty Name="PERCENT_ACTIVE" ColumnName="PERCENT_ACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPOUND_FRAGMENT">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.COMPOUND_FRAGMENT">
+              <MappingFragment StoreEntitySet="COMPOUND_FRAGMENT">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="COMPOUNDID" ColumnName="COMPOUNDID" />
+                <ScalarProperty Name="FRAGMENTID" ColumnName="FRAGMENTID" />
+                <ScalarProperty Name="EQUIVALENTS" ColumnName="EQUIVALENTS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FRAGMENTS">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.FRAGMENT">
+              <MappingFragment StoreEntitySet="FRAGMENTS">
+                <ScalarProperty Name="FRAGMENT_ID" ColumnName="FRAGMENT_ID" />
+                <ScalarProperty Name="BASE64_CDX" ColumnName="BASE64_CDX" />
+                <ScalarProperty Name="STRUCTUREFORMAT" ColumnName="STRUCTUREFORMAT" />
+                <ScalarProperty Name="DATETIME_STAMP" ColumnName="DATETIME_STAMP" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="FRAGMENTTYPEID" ColumnName="FRAGMENTTYPEID" />
+                <ScalarProperty Name="MOLWEIGHT" ColumnName="MOLWEIGHT" />
+                <ScalarProperty Name="FORMULA" ColumnName="FORMULA" />
+                <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+                <ScalarProperty Name="MODIFIED" ColumnName="MODIFIED" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FRAGMENTTYPEs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE">
+              <MappingFragment StoreEntitySet="FRAGMENTTYPE">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PICKLISTs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.PICKLIST">
+              <MappingFragment StoreEntitySet="PICKLIST">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PICKLISTDOMAINID" ColumnName="PICKLISTDOMAINID" />
+                <ScalarProperty Name="PICKLISTVALUE" ColumnName="PICKLISTVALUE" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="SORTORDER" ColumnName="SORTORDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PICKLISTDOMAINs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.PICKLISTDOMAIN">
+              <MappingFragment StoreEntitySet="PICKLISTDOMAIN">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="EXT_TABLE" ColumnName="EXT_TABLE" />
+                <ScalarProperty Name="EXT_ID_COL" ColumnName="EXT_ID_COL" />
+                <ScalarProperty Name="EXT_DISPLAY_COL" ColumnName="EXT_DISPLAY_COL" />
+                <ScalarProperty Name="EXT_SQL_FILTER" ColumnName="EXT_SQL_FILTER" />
+                <ScalarProperty Name="LOCKED" ColumnName="LOCKED" />
+                <ScalarProperty Name="EXT_SQL_SORTORDER" ColumnName="EXT_SQL_SORTORDER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROJECTS">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.PROJECT">
+              <MappingFragment StoreEntitySet="PROJECTS">
+                <ScalarProperty Name="PROJECT_INTERNAL_ID" ColumnName="PROJECT_INTERNAL_ID" />
+                <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="IS_PUBLIC" ColumnName="IS_PUBLIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

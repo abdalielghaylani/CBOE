@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db0dc25c05d94a4cb890eb400c6527f3" Name="Diagram1">
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.BATCH_IDENTIFIER" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.BATCH_PROJECT" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.BATCHCOMPONENT" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.BATCHCOMPONENTFRAGMENT" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.BATCH" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.COMPOUND_FRAGMENT" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.FRAGMENT" Width="1.5" PointX="0.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE" Width="1.5" PointX="1.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.PICKLIST" Width="1.5" PointX="10" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.PICKLISTDOMAIN" Width="1.5" PointX="7.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PerkinElmer.CBOE.Registration.Model.PROJECT" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.BATCH_IDENTIFIER_BATCHES_FK" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.BATCH_PROJECT_BATCHES" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.BATCH_PROJECT_PROJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.BATCHCOMPFRAGMENT_BATCOM" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.BATCHCOMPONENT_BATCH" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.BATCHCOMPFRAGMENT_COMFRA" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.COMPOUND_FRAGMENT_FRAGMENTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE_FRAGMENTS" ManuallyRouted="false" />
+        <AssociationConnector Association="PerkinElmer.CBOE.Registration.Model.PICKLIST_PICKLISTDOMAIN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

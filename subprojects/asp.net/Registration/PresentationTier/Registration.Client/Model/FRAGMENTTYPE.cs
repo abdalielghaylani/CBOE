@@ -7,18 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client
+namespace PerkinElmer.CBOE.Registration.Client.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class PROJECT
+    public partial class FRAGMENTTYPE
     {
-        public int PROJECT_INTERNAL_ID { get; set; }
-        public string PROJECT_NAME { get; set; }
-        public string ACTIVE { get; set; }
+        public FRAGMENTTYPE()
+        {
+            this.FRAGMENTS = new HashSet<FRAGMENT>();
+        }
+    
+        public int ID { get; set; }
         public string DESCRIPTION { get; set; }
-        public string TYPE { get; set; }
-        public string IS_PUBLIC { get; set; }
+    
+        public virtual ICollection<FRAGMENT> FRAGMENTS { get; set; }
     }
 }

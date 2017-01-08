@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client
+namespace PerkinElmer.CBOE.Registration.Client.Model
 {
     using System;
     using System.Collections.Generic;
