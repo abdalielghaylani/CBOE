@@ -2159,15 +2159,11 @@ namespace CambridgeSoft.COE.Registration.Services
                     return fullPrototypeXml;
                 case "BATCH":
                     return doc.SelectSingleNode("//MultiCompoundRegistryRecord/BatchList/Batch").OuterXml;
-                    break;
                 case "COMPONENT":
                     return doc.SelectSingleNode("//MultiCompoundRegistryRecord/ComponentList/Component").OuterXml;
-                    break;
                 default:
                     throw new ArgumentOutOfRangeException("objectType", "The specified object type is not valid");
             }
-
-            return null;
         }
 
         #region >Private methods<

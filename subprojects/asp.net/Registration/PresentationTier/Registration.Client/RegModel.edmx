@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PerkinElmer.CBOE.Registration.Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FRAGMENTS">
+          <Key>
+            <PropertyRef Name="FRAGMENT_ID" />
+          </Key>
+          <Property Name="FRAGMENT_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="BASE64_CDX" Type="clob" />
+          <Property Name="STRUCTUREFORMAT" Type="varchar2" MaxLength="150" />
+          <Property Name="DATETIME_STAMP" Type="varchar2" MaxLength="30" />
+          <Property Name="CODE" Type="varchar2" MaxLength="10" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="250" />
+          <Property Name="FRAGMENTTYPEID" Type="number" Precision="8" Scale="0" />
+          <Property Name="MOLWEIGHT" Type="number" Precision="38" Scale="0" />
+          <Property Name="FORMULA" Type="varchar2" MaxLength="200" />
+          <Property Name="CREATED" Type="date" />
+          <Property Name="MODIFIED" Type="date" />
+        </EntityType>
+        <EntityType Name="FRAGMENTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PICKLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="PICKLISTDOMAINID" Type="number" Precision="8" Scale="0" />
+          <Property Name="PICKLISTVALUE" Type="varchar2" MaxLength="1000" />
+          <Property Name="ACTIVE" Type="nchar" MaxLength="1" />
+          <Property Name="SORTORDER" Type="number" Precision="38" Scale="0" />
+        </EntityType>
+        <EntityType Name="PICKLISTDOMAIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="255" />
+          <Property Name="EXT_TABLE" Type="varchar2" MaxLength="100" />
+          <Property Name="EXT_ID_COL" Type="varchar2" MaxLength="30" />
+          <Property Name="EXT_DISPLAY_COL" Type="varchar2" MaxLength="30" />
+          <Property Name="EXT_SQL_FILTER" Type="varchar2" MaxLength="2000" />
+          <Property Name="LOCKED" Type="nchar" MaxLength="1" />
+          <Property Name="EXT_SQL_SORTORDER" Type="varchar2" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PROJECTS">
+          <Key>
+            <PropertyRef Name="PROJECT_INTERNAL_ID" />
+          </Key>
+          <Property Name="PROJECT_INTERNAL_ID" Type="number" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="PROJECT_NAME" Type="varchar2" MaxLength="250" Nullable="false" />
+          <Property Name="ACTIVE" Type="nchar" MaxLength="1" />
+          <Property Name="DESCRIPTION" Type="varchar2" MaxLength="500" />
+          <Property Name="TYPE" Type="nchar" MaxLength="1" />
+          <Property Name="IS_PUBLIC" Type="nchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FRAGMENTTYPE_FRAGMENTS">
+          <End Role="FRAGMENTTYPE" Type="Self.FRAGMENTTYPE" Multiplicity="0..1" />
+          <End Role="FRAGMENTS" Type="Self.FRAGMENTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FRAGMENTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FRAGMENTS">
+              <PropertyRef Name="FRAGMENTTYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PICKLIST_PICKLISTDOMAIN">
+          <End Role="PICKLISTDOMAIN" Type="Self.PICKLISTDOMAIN" Multiplicity="0..1" />
+          <End Role="PICKLIST" Type="Self.PICKLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PICKLISTDOMAIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PICKLIST">
+              <PropertyRef Name="PICKLISTDOMAINID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PerkinElmerCBOERegistrationModelStoreContainer">
+          <EntitySet Name="FRAGMENTS" EntityType="Self.FRAGMENTS" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="FRAGMENTTYPE" EntityType="Self.FRAGMENTTYPE" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="PICKLIST" EntityType="Self.PICKLIST" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="PICKLISTDOMAIN" EntityType="Self.PICKLISTDOMAIN" Schema="REGDB" store:Type="Tables" />
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECTS" Schema="REGDB" store:Type="Tables" />
+          <AssociationSet Name="FRAGMENTTYPE_FRAGMENTS" Association="Self.FRAGMENTTYPE_FRAGMENTS">
+            <End Role="FRAGMENTTYPE" EntitySet="FRAGMENTTYPE" />
+            <End Role="FRAGMENTS" EntitySet="FRAGMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="PICKLIST_PICKLISTDOMAIN" Association="Self.PICKLIST_PICKLISTDOMAIN">
+            <End Role="PICKLISTDOMAIN" EntitySet="PICKLISTDOMAIN" />
+            <End Role="PICKLIST" EntitySet="PICKLIST" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PerkinElmer.CBOE.Registration.Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PROJECT">
+          <Key>
+            <PropertyRef Name="PROJECT_INTERNAL_ID" />
+          </Key>
+          <Property Name="PROJECT_INTERNAL_ID" Type="Int32" Nullable="false" />
+          <Property Name="PROJECT_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ACTIVE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="IS_PUBLIC" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PROJECTS" EntityType="Self.PROJECT" />
+          <EntitySet Name="FRAGMENTS" EntityType="PerkinElmer.CBOE.Registration.Model.FRAGMENT" />
+          <EntitySet Name="FRAGMENTTYPEs" EntityType="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE" />
+          <EntitySet Name="PICKLISTs" EntityType="PerkinElmer.CBOE.Registration.Model.PICKLIST" />
+          <EntitySet Name="PICKLISTDOMAINs" EntityType="PerkinElmer.CBOE.Registration.Model.PICKLISTDOMAIN" />
+          <AssociationSet Name="FRAGMENTTYPE_FRAGMENTS" Association="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE_FRAGMENTS">
+            <End Role="FRAGMENTTYPE" EntitySet="FRAGMENTTYPEs" />
+            <End Role="FRAGMENT" EntitySet="FRAGMENTS" />
+          </AssociationSet>
+          <AssociationSet Name="PICKLIST_PICKLISTDOMAIN" Association="PerkinElmer.CBOE.Registration.Model.PICKLIST_PICKLISTDOMAIN">
+            <End Role="PICKLISTDOMAIN" EntitySet="PICKLISTDOMAINs" />
+            <End Role="PICKLIST" EntitySet="PICKLISTs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FRAGMENT">
+          <Key>
+            <PropertyRef Name="FRAGMENT_ID" />
+          </Key>
+          <Property Name="FRAGMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="BASE64_CDX" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="STRUCTUREFORMAT" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="DATETIME_STAMP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="CODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="FRAGMENTTYPEID" Type="Int32" />
+          <Property Name="MOLWEIGHT" Type="Decimal" Precision="38" Scale="0" />
+          <Property Name="FORMULA" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CREATED" Type="DateTime" />
+          <Property Name="MODIFIED" Type="DateTime" />
+          <NavigationProperty Name="FRAGMENTTYPE" Relationship="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE_FRAGMENTS" FromRole="FRAGMENT" ToRole="FRAGMENTTYPE" />
+        </EntityType>
+        <EntityType Name="FRAGMENTTYPE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FRAGMENTS" Relationship="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE_FRAGMENTS" FromRole="FRAGMENTTYPE" ToRole="FRAGMENT" />
+        </EntityType>
+        <EntityType Name="PICKLIST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="PICKLISTDOMAINID" Type="Int32" />
+          <Property Name="PICKLISTVALUE" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ACTIVE" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="SORTORDER" Type="Decimal" Precision="38" Scale="0" />
+          <NavigationProperty Name="PICKLISTDOMAIN" Relationship="PerkinElmer.CBOE.Registration.Model.PICKLIST_PICKLISTDOMAIN" FromRole="PICKLIST" ToRole="PICKLISTDOMAIN" />
+        </EntityType>
+        <EntityType Name="PICKLISTDOMAIN">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_TABLE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_ID_COL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_DISPLAY_COL" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="EXT_SQL_FILTER" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="LOCKED" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="EXT_SQL_SORTORDER" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PICKLISTs" Relationship="PerkinElmer.CBOE.Registration.Model.PICKLIST_PICKLISTDOMAIN" FromRole="PICKLISTDOMAIN" ToRole="PICKLIST" />
+        </EntityType>
+        <Association Name="FRAGMENTTYPE_FRAGMENTS">
+          <End Type="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE" Role="FRAGMENTTYPE" Multiplicity="0..1" />
+          <End Type="PerkinElmer.CBOE.Registration.Model.FRAGMENT" Role="FRAGMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FRAGMENTTYPE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="FRAGMENT">
+              <PropertyRef Name="FRAGMENTTYPEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PICKLIST_PICKLISTDOMAIN">
+          <End Type="PerkinElmer.CBOE.Registration.Model.PICKLISTDOMAIN" Role="PICKLISTDOMAIN" Multiplicity="0..1" />
+          <End Type="PerkinElmer.CBOE.Registration.Model.PICKLIST" Role="PICKLIST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PICKLISTDOMAIN">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PICKLIST">
+              <PropertyRef Name="PICKLISTDOMAINID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PerkinElmerCBOERegistrationModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="PROJECTS">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.PROJECT">
+              <MappingFragment StoreEntitySet="PROJECTS">
+                <ScalarProperty Name="PROJECT_INTERNAL_ID" ColumnName="PROJECT_INTERNAL_ID" />
+                <ScalarProperty Name="PROJECT_NAME" ColumnName="PROJECT_NAME" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="IS_PUBLIC" ColumnName="IS_PUBLIC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FRAGMENTS">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.FRAGMENT">
+              <MappingFragment StoreEntitySet="FRAGMENTS">
+                <ScalarProperty Name="MODIFIED" ColumnName="MODIFIED" />
+                <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+                <ScalarProperty Name="FORMULA" ColumnName="FORMULA" />
+                <ScalarProperty Name="MOLWEIGHT" ColumnName="MOLWEIGHT" />
+                <ScalarProperty Name="FRAGMENTTYPEID" ColumnName="FRAGMENTTYPEID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="CODE" ColumnName="CODE" />
+                <ScalarProperty Name="DATETIME_STAMP" ColumnName="DATETIME_STAMP" />
+                <ScalarProperty Name="STRUCTUREFORMAT" ColumnName="STRUCTUREFORMAT" />
+                <ScalarProperty Name="BASE64_CDX" ColumnName="BASE64_CDX" />
+                <ScalarProperty Name="FRAGMENT_ID" ColumnName="FRAGMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FRAGMENTTYPEs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.FRAGMENTTYPE">
+              <MappingFragment StoreEntitySet="FRAGMENTTYPE">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PICKLISTs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.PICKLIST">
+              <MappingFragment StoreEntitySet="PICKLIST">
+                <ScalarProperty Name="SORTORDER" ColumnName="SORTORDER" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="PICKLISTVALUE" ColumnName="PICKLISTVALUE" />
+                <ScalarProperty Name="PICKLISTDOMAINID" ColumnName="PICKLISTDOMAINID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PICKLISTDOMAINs">
+            <EntityTypeMapping TypeName="PerkinElmer.CBOE.Registration.Model.PICKLISTDOMAIN">
+              <MappingFragment StoreEntitySet="PICKLISTDOMAIN">
+                <ScalarProperty Name="EXT_SQL_SORTORDER" ColumnName="EXT_SQL_SORTORDER" />
+                <ScalarProperty Name="LOCKED" ColumnName="LOCKED" />
+                <ScalarProperty Name="EXT_SQL_FILTER" ColumnName="EXT_SQL_FILTER" />
+                <ScalarProperty Name="EXT_DISPLAY_COL" ColumnName="EXT_DISPLAY_COL" />
+                <ScalarProperty Name="EXT_ID_COL" ColumnName="EXT_ID_COL" />
+                <ScalarProperty Name="EXT_TABLE" ColumnName="EXT_TABLE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
