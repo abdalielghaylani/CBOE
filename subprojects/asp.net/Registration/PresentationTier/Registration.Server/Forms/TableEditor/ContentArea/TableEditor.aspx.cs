@@ -13,7 +13,7 @@ using Resources;
 using System.Reflection;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.TableEditor.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.TableEditor.ContentArea
 {
     public partial class TableEditor : GUIShellPage
     {

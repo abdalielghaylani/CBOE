@@ -15,8 +15,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml;
 
 using RegistrationWebApp;
-using PerkinElmer.CBOE.Registration.Client.Forms.Master;
-using PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls;
+using PerkinElmer.COE.Registration.Server.Forms.Master;
+using PerkinElmer.COE.Registration.Server.Forms.Public.UserControls;
 
 using Resources;
 
@@ -38,11 +38,11 @@ using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.Exceptions;
 using CambridgeSoft.COE.Framework.Common.Validation;
 using CambridgeSoft.COE.Registration.Services.Types;
-using PerkinElmer.CBOE.Registration.Client.Code;
+using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration;
 using System.Linq;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegisteredRecord.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.RegisteredRecord.ContentArea
 {
     public partial class ViewMixture : GUIShellPage
     {
@@ -256,7 +256,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegisteredRecord.ContentAre
             if (Session[Constants.MultiCompoundObject_Session] != null && !RegistryRecord.ReferenceEquals(value, Session[Constants.MultiCompoundObject_Session]))
                 ((IDisposable)Session[Constants.MultiCompoundObject_Session]).Dispose();
 
-            Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session] = value;
+            Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session] = value;
         }
 
         private enum SubForms
@@ -540,7 +540,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegisteredRecord.ContentAre
             {
                 if (Request[Constants.CurrentPageState_UrlParameter] != null)
                 {
-                    string mode = Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter] as string;
+                    string mode = Request[PerkinElmer.COE.Registration.Server.Constants.CurrentPageState_UrlParameter] as string;
                     switch (mode.ToLower())
                     {
                         case "end":
@@ -2757,7 +2757,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegisteredRecord.ContentAre
             {
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod,
                                            MethodBase.GetCurrentMethod().Name);
-                if (Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredCompoundId_UrlParameter] != null)
+                if (Request[PerkinElmer.COE.Registration.Server.Constants.RegisteredCompoundId_UrlParameter] != null)
                 {
                     int index = Session["currentCompoundIndex"] != null ? (int)Session["currentCompoundIndex"] : 0;
                     Session["currentCompoundIndex"] = null;
@@ -2821,16 +2821,16 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegisteredRecord.ContentAre
 
             if (RegUtilities.GetInventoryIntegration())
             {
-                if (!(Convert.ToString(HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.InvHasRegIdInGroupingField]).ToLower() == "true" &&
-                    Convert.ToString(HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.InvHasRegBatchIdInGroupingField]).ToLower() == "true"))
+                if (!(Convert.ToString(HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.InvHasRegIdInGroupingField]).ToLower() == "true" &&
+                    Convert.ToString(HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.InvHasRegBatchIdInGroupingField]).ToLower() == "true"))
                 {
                     COESearch simpleSearch = new COESearch(RegUtilities.GetInvGroupingFieldsDataViewID());
                     ResultPageInfo rpi = new ResultPageInfo(0, 100, 1, 101);
                     DataResult dr = simpleSearch.GetDataPage(rpi, new string[] { "GROUPINGFIELDS.FIELDNAME" });
                     if (dr != null && dr.ResultSet != null)
                     {
-                        HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.InvHasRegIdInGroupingField] = dr.ResultSet.Contains("REG_ID_FK").ToString();
-                        HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.InvHasRegBatchIdInGroupingField] = dr.ResultSet.Contains("BATCH_NUMBER_FK").ToString();
+                        HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.InvHasRegIdInGroupingField] = dr.ResultSet.Contains("REG_ID_FK").ToString();
+                        HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.InvHasRegBatchIdInGroupingField] = dr.ResultSet.Contains("BATCH_NUMBER_FK").ToString();
                         if (dr.ResultSet.Contains("REG_ID_FK") || dr.ResultSet.Contains("BATCH_NUMBER_FK"))
                             RegUtilities.SetCOEPageSettings(true);
                     }

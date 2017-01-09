@@ -17,7 +17,7 @@ using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea
 {
     public partial class ParamEdit : GUIShellPage
     {

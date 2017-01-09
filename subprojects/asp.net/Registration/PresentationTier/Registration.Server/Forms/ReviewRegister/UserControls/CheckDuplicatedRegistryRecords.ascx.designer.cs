@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.UserControls {
+namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.UserControls {
     
     
     public partial class CheckDuplicatedRegistryRecords {

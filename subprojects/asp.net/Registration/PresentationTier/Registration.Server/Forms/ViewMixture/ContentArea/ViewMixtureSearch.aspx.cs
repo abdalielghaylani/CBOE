@@ -22,7 +22,7 @@ using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.Caching;
 
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea
 {
     public partial class ViewMixtureSearch : GUIShellPage
     {
@@ -85,10 +85,10 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea
                     else 
                         CallerString = "&RememberPreviousState=true";
 
-                if (ServerCache.Exists(PerkinElmer.CBOE.Registration.Client.Constants.ClearCache, typeof(PerkinElmer.CBOE.Registration.Client.Constants)))
+                if (ServerCache.Exists(PerkinElmer.COE.Registration.Server.Constants.ClearCache, typeof(PerkinElmer.COE.Registration.Server.Constants)))
                 {
                     cacheClearQuery = "&" + Constants.ClearCache + "=" + Constants.ClearCache;
-                    ServerCache.Remove(PerkinElmer.CBOE.Registration.Client.Constants.ClearCache, typeof(PerkinElmer.CBOE.Registration.Client.Constants));
+                    ServerCache.Remove(PerkinElmer.COE.Registration.Server.Constants.ClearCache, typeof(PerkinElmer.COE.Registration.Server.Constants));
                 }
 
                 this.SearchPermFrame.Attributes["src"] = RegUtilities.GetSearchPermURL() + CallerString + cacheClearQuery;

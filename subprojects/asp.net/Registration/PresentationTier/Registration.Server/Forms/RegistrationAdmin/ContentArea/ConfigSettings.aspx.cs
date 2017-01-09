@@ -12,10 +12,10 @@ using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
 using Resources;
-using PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls;
+using PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea
 {
     public partial class ConfigSettings : GUIShellPage
     {

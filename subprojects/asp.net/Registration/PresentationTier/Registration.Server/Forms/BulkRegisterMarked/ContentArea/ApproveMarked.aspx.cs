@@ -14,7 +14,7 @@ using System.Reflection;
 using CambridgeSoft.COE.Registration.Services;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.BulkRegisterMarked.ContentArea
 {
     public partial class ApproveMarked : GUIShellPage
     {

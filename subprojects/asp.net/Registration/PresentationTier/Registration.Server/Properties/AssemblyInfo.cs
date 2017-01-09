@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CBOE Registration Client")]
+[assembly: AssemblyTitle("COE Registration Server")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("PerkinElmer")]
-[assembly: AssemblyProduct("CBOE Registration")]
-[assembly: AssemblyCopyright("© Copyright 2001-2015 PerkinElmer Informatics, Inc.")]
+[assembly: AssemblyProduct("COE Registration")]
+[assembly: AssemblyCopyright("© Copyright 2017 PerkinElmer Informatics, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("17.0.0.1")]
-[assembly: AssemblyFileVersion("17.0.0.1")]
+[assembly: AssemblyVersion("17.1.0.1")]
+[assembly: AssemblyFileVersion("17.1.0.1")]

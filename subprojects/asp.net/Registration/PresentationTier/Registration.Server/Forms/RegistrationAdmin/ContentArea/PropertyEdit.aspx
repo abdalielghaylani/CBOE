@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="PropertyEdit.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea.PropertyEdit"
+    Codebehind="PropertyEdit.aspx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea.PropertyEdit"
     Title="Untitled Page" %>
 
 <%@ Register Src="~/Forms/Public/UserControls/MessagesArea.ascx" TagName="MessagesArea"

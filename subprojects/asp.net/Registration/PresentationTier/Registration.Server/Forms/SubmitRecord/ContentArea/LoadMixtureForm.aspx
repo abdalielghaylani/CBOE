@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" EnableViewState="true" AutoEventWireup="true" CodeBehind="LoadMixtureForm.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea.LoadMixtureForm" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" EnableViewState="true" AutoEventWireup="true" CodeBehind="LoadMixtureForm.aspx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea.LoadMixtureForm" Title="Untitled Page" %>
 
 <%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls.ChemDraw"
     TagPrefix="cc2" %>

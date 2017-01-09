@@ -7,10 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls
-{
-    public partial class AddInList
-    {
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls {
+    
+    
+    public partial class AddInList {
+        
         /// <summary>
         /// MessagesAreaUserControl control.
         /// </summary>
@@ -18,8 +19,8 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
-
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        
         /// <summary>
         /// LinkButtonBack control.
         /// </summary>
@@ -28,7 +29,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton LinkButtonBack;
-
+        
         /// <summary>
         /// LabelAddInList control.
         /// </summary>
@@ -37,7 +38,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelAddInList;
-
+        
         /// <summary>
         /// AddInsUltraWebTree control.
         /// </summary>
@@ -46,7 +47,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Infragistics.WebUI.UltraWebNavigator.UltraWebTree AddInsUltraWebTree;
-
+        
         /// <summary>
         /// ButtonEditAddIn control.
         /// </summary>
@@ -55,7 +56,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonEditAddIn;
-
+        
         /// <summary>
         /// BtnDeleteAddIn control.
         /// </summary>
@@ -64,7 +65,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnDeleteAddIn;
-
+        
         /// <summary>
         /// NewAddInPanel control.
         /// </summary>
@@ -73,7 +74,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewAddInPanel;
-
+        
         /// <summary>
         /// LabelFrienlyName control.
         /// </summary>
@@ -82,7 +83,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelFrienlyName;
-
+        
         /// <summary>
         /// TexBoxFriendlyName control.
         /// </summary>
@@ -91,7 +92,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TexBoxFriendlyName;
-
+        
         /// <summary>
         /// LblAssembly control.
         /// </summary>
@@ -100,7 +101,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblAssembly;
-
+        
         /// <summary>
         /// DdlAssemblies control.
         /// </summary>
@@ -109,7 +110,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DdlAssemblies;
-
+        
         /// <summary>
         /// LblClass control.
         /// </summary>
@@ -118,7 +119,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblClass;
-
+        
         /// <summary>
         /// DdlClass control.
         /// </summary>
@@ -127,7 +128,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DdlClass;
-
+        
         /// <summary>
         /// LblHandler control.
         /// </summary>
@@ -136,7 +137,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblHandler;
-
+        
         /// <summary>
         /// DdlHandler control.
         /// </summary>
@@ -145,7 +146,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DdlHandler;
-
+        
         /// <summary>
         /// LblEvent control.
         /// </summary>
@@ -154,7 +155,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblEvent;
-
+        
         /// <summary>
         /// DdlEvent control.
         /// </summary>
@@ -163,7 +164,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList DdlEvent;
-
+        
         /// <summary>
         /// LabelEventList control.
         /// </summary>
@@ -172,7 +173,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelEventList;
-
+        
         /// <summary>
         /// EventsUltraWebTree control.
         /// </summary>
@@ -181,7 +182,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Infragistics.WebUI.UltraWebNavigator.UltraWebTree EventsUltraWebTree;
-
+        
         /// <summary>
         /// BtnAddEvent control.
         /// </summary>
@@ -190,7 +191,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnAddEvent;
-
+        
         /// <summary>
         /// BtnDeleteEvent control.
         /// </summary>
@@ -199,7 +200,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnDeleteEvent;
-
+        
         /// <summary>
         /// LabelAddInConfiguration control.
         /// </summary>
@@ -208,7 +209,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LabelAddInConfiguration;
-
+        
         /// <summary>
         /// TextBoxConf control.
         /// </summary>
@@ -217,7 +218,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TextBoxConf;
-
+        
         /// <summary>
         /// BtnAddAddIn control.
         /// </summary>
@@ -226,7 +227,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnAddAddIn;
-
+        
         /// <summary>
         /// Btn_Save control.
         /// </summary>

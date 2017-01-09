@@ -1,5 +1,5 @@
 <%@ Page Language="C#" ValidateRequest="false" MasterPageFile="~/Forms/Master/Registration.Master"
-    AutoEventWireup="true" Codebehind="AddIns.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea.AddIns"
+    AutoEventWireup="true" Codebehind="AddIns.aspx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea.AddIns"
     Title="Untitled Page" %>
 
 <%@ Register Src="../UserControls/AddInList.ascx" TagName="AddInList" TagPrefix="uc1" %>

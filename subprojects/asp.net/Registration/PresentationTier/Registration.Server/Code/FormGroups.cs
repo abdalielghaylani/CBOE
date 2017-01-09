@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-namespace PerkinElmer.CBOE.Registration.Client.Code
+namespace PerkinElmer.COE.Registration.Server.Code
 {
     public enum FormGroups
     {

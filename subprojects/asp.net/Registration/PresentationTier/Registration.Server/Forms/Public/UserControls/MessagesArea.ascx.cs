@@ -10,7 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.Public.UserControls
 {
     [Themeable(true)]
     public partial class MessagesArea : System.Web.UI.UserControl

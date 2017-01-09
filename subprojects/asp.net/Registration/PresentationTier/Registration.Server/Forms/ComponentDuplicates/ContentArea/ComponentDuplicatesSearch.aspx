@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true"
-    Codebehind="ComponentDuplicatesSearch.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea.ComponentDuplicatesSearch"
+    Codebehind="ComponentDuplicatesSearch.aspx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates.ContentArea.ComponentDuplicatesSearch"
     Title="Untitled Page" %>
 
 <%@ Register Assembly="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30"

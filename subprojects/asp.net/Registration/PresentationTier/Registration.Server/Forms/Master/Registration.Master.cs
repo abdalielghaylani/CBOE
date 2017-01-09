@@ -15,8 +15,8 @@ using Infragistics.WebUI.Misc;
 using Resources;
 using CambridgeSoft.COE.Framework.Controls;
 using RegistrationWebApp;
-using PerkinElmer.CBOE.Registration.Client;
-using PerkinElmer.CBOE.Registration.Client.Code;
+using PerkinElmer.COE.Registration.Server;
+using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration.Services.Types;
 
 public partial class RegistrationMaster : GUIShellMaster
@@ -139,7 +139,7 @@ public partial class RegistrationMaster : GUIShellMaster
             this.Panel.Src = RegUtilities.ThemesCommonImagesPath + "Collapse.png";
         }
         this.ErrorControlHidden(true);
-        this.SetJScriptReference("RegistrationUtils", PerkinElmer.CBOE.Registration.Client.Constants.PublicCommonJScriptsPath);
+        this.SetJScriptReference("RegistrationUtils", PerkinElmer.COE.Registration.Server.Constants.PublicCommonJScriptsPath);
         if (Session["PluginDownloadURL"] == null)
         {
             Session["PluginDownloadURL"] = CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetApplicationData(CambridgeSoft.COE.Framework.Common.COEAppName.Get()).PluginDownloadURL;
@@ -598,7 +598,7 @@ public partial class RegistrationMaster : GUIShellMaster
     /// <param name="e"></param>
     protected void UltraWebListbarControl_GroupClicked(object sender, WebListbarGroupEvent e)
     {
-        string ticket = Request[PerkinElmer.CBOE.Registration.Client.Constants.Ticket_UrlParameter] != null ? PerkinElmer.CBOE.Registration.Client.Constants.Ticket_UrlParameter + "=" + Request[PerkinElmer.CBOE.Registration.Client.Constants.Ticket_UrlParameter] : string.Empty;
+        string ticket = Request[PerkinElmer.COE.Registration.Server.Constants.Ticket_UrlParameter] != null ? PerkinElmer.COE.Registration.Server.Constants.Ticket_UrlParameter + "=" + Request[PerkinElmer.COE.Registration.Server.Constants.Ticket_UrlParameter] : string.Empty;
         try
         {
             if (!string.IsNullOrEmpty(ticket) && e.Group.TargetUrl.Contains("?"))
@@ -672,11 +672,11 @@ public partial class RegistrationMaster : GUIShellMaster
     public override void DisplayConfirmationMessage(string message)
     {
         RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-        Control confirmationArea = this.FindControl(PerkinElmer.CBOE.Registration.Client.Constants.ContentPlaceHolderID).FindControl(PerkinElmer.CBOE.Registration.Client.Constants.MessagesAreaUCID);
+        Control confirmationArea = this.FindControl(PerkinElmer.COE.Registration.Server.Constants.ContentPlaceHolderID).FindControl(PerkinElmer.COE.Registration.Server.Constants.MessagesAreaUCID);
         if (confirmationArea != null)
         {
-            if (confirmationArea is PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea)
-                ((PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea)confirmationArea).AreaText = !string.IsNullOrEmpty(message) ? message : String.Empty;
+            if (confirmationArea is PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea)
+                ((PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea)confirmationArea).AreaText = !string.IsNullOrEmpty(message) ? message : String.Empty;
         }
         RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
@@ -714,7 +714,7 @@ public partial class RegistrationMaster : GUIShellMaster
         {
             string friendlyMessage = RegUtilities.ConvertToFriendly(message);
             //Find ctrl
-            Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.CBOE.Registration.Client.Constants.ErrorYUIPanelID);
+            Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.COE.Registration.Server.Constants.ErrorYUIPanelID);
             if (ErrorCtrl != null)
             {
                 if (ErrorCtrl is ErrorControl)
@@ -751,7 +751,7 @@ public partial class RegistrationMaster : GUIShellMaster
         {
             string friendlyMessage = RegUtilities.ConvertToFriendly(message);
             //Find ctrl
-            Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.CBOE.Registration.Client.Constants.ErrorYUIPanelID);
+            Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.COE.Registration.Server.Constants.ErrorYUIPanelID);
             if (ErrorCtrl != null)
             {
                 if (ErrorCtrl is ErrorControl)
@@ -783,7 +783,7 @@ public partial class RegistrationMaster : GUIShellMaster
         {
             string friendlyMessage = RegUtilities.ConvertToFriendly(ex.Message);
             //Find ctrl
-            Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.CBOE.Registration.Client.Constants.ErrorYUIPanelID);
+            Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.COE.Registration.Server.Constants.ErrorYUIPanelID);
             if (ErrorCtrl != null)
             {
                 if (ErrorCtrl is ErrorControl)
@@ -813,7 +813,7 @@ public partial class RegistrationMaster : GUIShellMaster
     /// <param name="status"></param>
     private void ErrorControlHidden(bool status)
     {
-        Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.CBOE.Registration.Client.Constants.ErrorYUIPanelID);
+        Control ErrorCtrl = this.FindControl(GUIShellTypes.MainFormID).FindControl(PerkinElmer.COE.Registration.Server.Constants.ErrorYUIPanelID);
         if (ErrorCtrl is ErrorControl)
             ((ErrorControl)ErrorCtrl).Hidden = status;
     }

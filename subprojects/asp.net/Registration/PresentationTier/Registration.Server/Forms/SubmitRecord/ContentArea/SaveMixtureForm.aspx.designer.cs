@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea {
+namespace PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea {
     
     
     public partial class SaveMixtureForm {
@@ -46,7 +46,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// ErrorMessagesRow control.

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.TableEditor.ContentArea {
+namespace PerkinElmer.COE.Registration.Server.Forms.TableEditor.ContentArea {
     
     
     public partial class TableEditor {

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
-using PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls;
+using PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls;
 using System.Text;
 using System.IO;
 using System.Xml;
@@ -20,7 +20,7 @@ using System.Reflection;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Registration.Services.Types;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea
 {
     public partial class Default : GUIShellPage
     {
@@ -157,8 +157,8 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentAr
         {
             ConfigurationRegistryRecord = null;
             // This is to ensure that the user is not forced to go to import a config. This assures there is a safe customization imported. Do not remove.
-            if (Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session] == null)
-                Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session] = Session["NewRegistryRecord"] != null ? Session["NewRegistryRecord"] : RegUtilities.GetNewRegistryRecord();
+            if (Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session] == null)
+                Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session] = Session["NewRegistryRecord"] != null ? Session["NewRegistryRecord"] : RegUtilities.GetNewRegistryRecord();
             // Set NewRegistryRecord session to null [User may change the configuration ] to load new settings.
             Session["NewRegistryRecord"] = null;
         }

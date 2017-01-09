@@ -18,10 +18,10 @@ using System.Resources;
 using Resources;
 using System.Reflection;
 using CambridgeSoft.COE.Registration.Services.Common;
-using PerkinElmer.CBOE.Registration.Client.Code;
+using PerkinElmer.COE.Registration.Server.Code;
 
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.Public.UserControls
 {
     [Serializable]
     public partial class RegistryRecordNavigation : System.Web.UI.UserControl, ICOENavigationPanelControl

@@ -6,7 +6,7 @@ using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Registration;
 
 
-namespace PerkinElmer.CBOE.Registration.Client.Code
+namespace PerkinElmer.COE.Registration.Server.Code
 {
     public class MixtureSubmissionBroker: ISubmissionBroker
     {

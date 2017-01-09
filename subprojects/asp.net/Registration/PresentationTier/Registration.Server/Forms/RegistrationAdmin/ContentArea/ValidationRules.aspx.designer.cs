@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea {
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea {
     
     
     public partial class ValidationRules {
@@ -19,6 +19,6 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentAr
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls.ValidationRules ValidationRules1;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls.ValidationRules ValidationRules1;
     }
 }

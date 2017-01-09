@@ -11,7 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.Public.UserControls
 {
     public partial class MenuButton : System.Web.UI.UserControl
     {

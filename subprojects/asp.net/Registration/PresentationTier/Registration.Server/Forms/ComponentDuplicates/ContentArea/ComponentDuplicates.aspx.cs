@@ -20,7 +20,7 @@ using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Resources;
 using Csla.Validation;
-using PerkinElmer.CBOE.Registration.Client.Forms.Master;
+using PerkinElmer.COE.Registration.Server.Forms.Master;
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
@@ -28,11 +28,11 @@ using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.Exceptions;
 using CambridgeSoft.COE.Framework.Common.Validation;
-using PerkinElmer.CBOE.Registration.Client.Code;
+using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration;
 
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates.ContentArea
 {
     public partial class ComponentDuplicates : GUIShellPage
     {

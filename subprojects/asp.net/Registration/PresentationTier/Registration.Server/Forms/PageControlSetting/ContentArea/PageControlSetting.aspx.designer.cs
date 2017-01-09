@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.PageControlSetting.ContentArea {
+namespace PerkinElmer.COE.Registration.Server.Forms.PageControlSetting.ContentArea {
     
     
     public partial class PageControlSetting {

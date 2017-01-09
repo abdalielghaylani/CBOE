@@ -32,13 +32,13 @@ using Csla;
 using Infragistics.WebUI.UltraWebListbar;
 using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using PerkinElmer.CBOE.Registration.Client.Forms.Master;
+using PerkinElmer.COE.Registration.Server.Forms.Master;
 using Resources;
 using CambridgeSoft.COE.Framework.Common.Validation;
-using PerkinElmer.CBOE.Registration.Client.Code;
+using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea
 {
     public partial class SubmitMixturePage : GUIShellPage
     {
@@ -371,7 +371,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
                     this.SetControlsAttributtes();
                     this.ShowTreeButtons(false);
 
-                    if (!this.RestoreSavedObject() && !this.ReplaceExistingComponent(Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredCompoundId_UrlParameter], Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredRegId_UrlParameter]) && !this.RestoreSessionObject())
+                    if (!this.RestoreSavedObject() && !this.ReplaceExistingComponent(Request[PerkinElmer.COE.Registration.Server.Constants.RegisteredCompoundId_UrlParameter], Request[PerkinElmer.COE.Registration.Server.Constants.RegisteredRegId_UrlParameter]) && !this.RestoreSessionObject())
                     {
                         //you will not get into this sectio of the code if the above if statment finds that there was a search for components
                         this.RegistryRecord = null;
@@ -743,7 +743,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
                     break;
                 case "LoadTemplate":
                     RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-                    Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.LoadRegistryForm_Page_URL, PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, CurrentRegistryType), false);
+                    Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.LoadRegistryForm_Page_URL, PerkinElmer.COE.Registration.Server.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.COE.Registration.Server.Constants.RegistryTypeParameter, CurrentRegistryType), false);
                     RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
                     break;
             }
@@ -833,7 +833,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             try
             {
-                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.LoadRegistryForm_Page_URL, PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, CurrentRegistryType), false);
+                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.LoadRegistryForm_Page_URL, PerkinElmer.COE.Registration.Server.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.COE.Registration.Server.Constants.RegistryTypeParameter, CurrentRegistryType), false);
             }
             catch (Exception exception)
             {
@@ -848,7 +848,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             try
             {
-                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SaveRegistryForm_Page_URL, PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, CurrentRegistryType), false);
+                Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}", Resource.SaveRegistryForm_Page_URL, PerkinElmer.COE.Registration.Server.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.COE.Registration.Server.Constants.RegistryTypeParameter, CurrentRegistryType), false);
             }
             catch (Exception exception)
             {
@@ -1554,7 +1554,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
             PageState previousState = CurrentPageState;
             CurrentPageState = mode;
 
-            RegistryRecord registryRecord = (RegistryRecord)Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session];             
+            RegistryRecord registryRecord = (RegistryRecord)Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session];             
 
             this.DefineMixtureImageMenuButton.Visible = true;
             switch (mode)
@@ -2534,7 +2534,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
             {
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod,
                                            MethodBase.GetCurrentMethod().Name);
-                if (Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredCompoundId_UrlParameter] != null && Request[PerkinElmer.CBOE.Registration.Client.Constants.RegisteredRegId_UrlParameter] != null)
+                if (Request[PerkinElmer.COE.Registration.Server.Constants.RegisteredCompoundId_UrlParameter] != null && Request[PerkinElmer.COE.Registration.Server.Constants.RegisteredRegId_UrlParameter] != null)
                 {
                     int index = Session["currentCompoundIndex"] != null ? (int)Session["currentCompoundIndex"] : 0;
                     Session["currentCompoundIndex"] = null;
@@ -2774,7 +2774,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
                     }
                     else
                     {
-                        Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}&{5}={6}", Resource.SaveRegistryForm_Page_URL, PerkinElmer.CBOE.Registration.Client.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter, CurrentPageState, PerkinElmer.CBOE.Registration.Client.Constants.RegistryTypeParameter, CurrentRegistryType), false);
+                        Server.Transfer(string.Format("{0}?{1}={2}&{3}={4}&{5}={6}", Resource.SaveRegistryForm_Page_URL, PerkinElmer.COE.Registration.Server.Constants.FormGroup_UrlParameter, (int)FormGroups.MultiCompound, PerkinElmer.COE.Registration.Server.Constants.CurrentPageState_UrlParameter, CurrentPageState, PerkinElmer.COE.Registration.Server.Constants.RegistryTypeParameter, CurrentRegistryType), false);
                     }
                 }
                 else
@@ -2976,12 +2976,12 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
 
                         this.RegistryRecord = record; // If flow is good accept the new one or update with the previous flow.
                         this.RegistryRecord.UpdateDrawingType();  // Added updatedrawing type to set the structure drawing type of temp compounds.
-                        if (Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter] != null)
+                        if (Request[PerkinElmer.COE.Registration.Server.Constants.CurrentPageState_UrlParameter] != null)
                         {
-                            if (Enum.IsDefined(typeof(PageState), Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter].ToString()))
+                            if (Enum.IsDefined(typeof(PageState), Request[PerkinElmer.COE.Registration.Server.Constants.CurrentPageState_UrlParameter].ToString()))
                             {
 
-                                this.SetPageMode((PageState)Enum.Parse(typeof(PageState), Request[PerkinElmer.CBOE.Registration.Client.Constants.CurrentPageState_UrlParameter].ToString(), true), string.Empty);
+                                this.SetPageMode((PageState)Enum.Parse(typeof(PageState), Request[PerkinElmer.COE.Registration.Server.Constants.CurrentPageState_UrlParameter].ToString(), true), string.Empty);
                             }
                         }
                         else
@@ -3185,7 +3185,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea
         {
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod,
                                        MethodBase.GetCurrentMethod().Name);
-            Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session);
+            Session.Remove(PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session);
 
             string url = this._masterPage.AccordionControl.Groups.FromKey(this.AccordionGroupToListen).TargetUrl;
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod,

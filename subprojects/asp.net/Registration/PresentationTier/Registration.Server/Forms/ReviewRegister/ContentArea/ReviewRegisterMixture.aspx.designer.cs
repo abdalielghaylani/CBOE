@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea {
+namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea {
     
     
     public partial class ReviewRegisterMixture {
@@ -109,7 +109,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea 
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton DeleteRecordImageMenuButton;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MenuButton DeleteRecordImageMenuButton;
         
         /// <summary>
         /// DefineMixtureImageMenuButton control.
@@ -118,7 +118,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea 
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton DefineMixtureImageMenuButton;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MenuButton DefineMixtureImageMenuButton;
         
         /// <summary>
         /// ActionToDoHiddenField control.
@@ -154,7 +154,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea 
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// mixtureInformationHolder control.
@@ -172,7 +172,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea 
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesBox CompoundDuplicatesMessageBox;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesBox CompoundDuplicatesMessageBox;
         
         /// <summary>
         /// mixtureCslaDataSource control.

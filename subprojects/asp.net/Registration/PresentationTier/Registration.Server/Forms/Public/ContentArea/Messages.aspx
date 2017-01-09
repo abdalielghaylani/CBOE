@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.Public.ContentArea.Messages" EnableTheming="true" Codebehind="Messages.aspx.cs" %>
+<%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.Master" AutoEventWireup="true" Inherits="PerkinElmer.COE.Registration.Server.Forms.Public.ContentArea.Messages" EnableTheming="true" Codebehind="Messages.aspx.cs" %>
 <%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
 <asp:Content ID="CompoundDetails" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">

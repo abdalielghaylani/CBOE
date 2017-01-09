@@ -531,11 +531,11 @@ namespace CambridgeSoft.COE.Framework.Controls.COEFormGenerator
             base.OnPreRender(e);
             //setting the visibility of the control based onthe Registration sequence and the Limit value.
             bool bControlVisibility = false;
-            if (HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session] != null)
+            if (HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session] != null)
             {
                 try
                 {
-                    RegistryRecord registryRecord = (RegistryRecord)(HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session]);
+                    RegistryRecord registryRecord = (RegistryRecord)(HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session]);
                     if (registryRecord.RegNum != "")
                     {
                         string sregnum = registryRecord.RegNum;

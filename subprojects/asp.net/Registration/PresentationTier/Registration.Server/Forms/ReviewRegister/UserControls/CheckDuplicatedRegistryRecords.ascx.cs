@@ -8,9 +8,9 @@ using Infragistics.WebUI.UltraWebNavigator;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Registration.Services.Types;
 using Resources;
-using PerkinElmer.CBOE.Registration.Client.Code;
+using PerkinElmer.COE.Registration.Server.Code;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.UserControls
 {
     [Serializable]
     public partial class CheckDuplicatedRegistryRecords : System.Web.UI.UserControl, ICOENavigationPanelControl

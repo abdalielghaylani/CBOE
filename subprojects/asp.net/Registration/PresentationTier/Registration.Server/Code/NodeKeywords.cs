@@ -1,6 +1,6 @@
 using System;
 
-namespace PerkinElmer.CBOE.Registration.Client.Code
+namespace PerkinElmer.COE.Registration.Server.Code
 {
     /// <summary>
     /// Supported Node Keywords for left webtree.

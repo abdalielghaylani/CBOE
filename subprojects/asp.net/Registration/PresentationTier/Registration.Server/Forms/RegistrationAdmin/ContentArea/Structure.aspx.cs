@@ -10,13 +10,13 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Csla.Web;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
-using PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls;
+using PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls;
 using Resources;
 using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea
 {
     public partial class Structure : GUIShellPage
     {

@@ -17,11 +17,11 @@ using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.Controls.COEDataMapper;
 using System.Collections;
 using System.Collections.Generic;
-using PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea;
+using PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates.ContentArea;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.RegistrationAdmin.Services.Common;
 using RegistrationWebApp;
-using PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates;
+using PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates;
 using System.IO;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.Exceptions;
@@ -287,7 +287,7 @@ public class RegUtilities
                 int endIndex = duplicatesXml.LastIndexOf("</COMPOUNDLIST>") + "</COMPOUNDLIST>".Length;
                 duplicatesXml = duplicatesXml.Substring(startIndex, endIndex - startIndex);
 
-                HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.DuplicateCompoundIdsList_Session] = duplicatesXml;
+                HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.DuplicateCompoundIdsList_Session] = duplicatesXml;
 
                 DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, duplicatesXml, isPreReg);
 
@@ -327,7 +327,7 @@ public class RegUtilities
                 int endIndex = duplicatesXml.LastIndexOf("</REGISTRYLIST>") + "</REGISTRYLIST>".Length;
                 duplicatesXml = duplicatesXml.Substring(startIndex, endIndex - startIndex);
 
-                HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.DuplicateIdsList_Session] = duplicatesXml;
+                HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.DuplicateIdsList_Session] = duplicatesXml;
 
                 DuplicatesList duplicatesList = new DuplicatesList(duplicatesXml, true, registryRecord.ComponentList.Count > 1);
 
@@ -449,12 +449,12 @@ public class RegUtilities
                             GetConfigSetting(Groups.CBV, "MarkedHitsMax")
                             );
 
-        if (restoreHitListId && HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.TempSearchedInfo] != null)
+        if (restoreHitListId && HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.TempSearchedInfo] != null)
         {
-            if (HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.TempSearchedInfo] is SearchedInfo)
+            if (HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.TempSearchedInfo] is SearchedInfo)
             {
-                url += "&" + "HitListID=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.TempSearchedInfo]).HitListID.ToString();
-                url += "&" + "HitListType=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.TempSearchedInfo]).HitListType.ToString();
+                url += "&" + "HitListID=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.TempSearchedInfo]).HitListID.ToString();
+                url += "&" + "HitListType=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.TempSearchedInfo]).HitListType.ToString();
             }
         }
         return url;
@@ -667,19 +667,19 @@ public class RegUtilities
         string url = GUIShellUtilities.GetSearchEngineURL();
         url += string.Format("?FormGroupId={0}&embed=ChemBioViz&AppName={1}&KeepRecordCountSynchronized={2}&AllowFullScan={4}&MarkedHitsMax={5}",
                             GetConfigSetting(Groups.CBV, "ViewRegistrySearchFormGroupId"),
-                            HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.AppName].ToString(),
+                            HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.AppName].ToString(),
                             bool.TrueString,
                             bool.TrueString,
                             bool.TrueString,
                             GetConfigSetting(Groups.CBV, "MarkedHitsMax")
                             );
 
-        if (HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.PermSearchedInfo] != null)
+        if (HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.PermSearchedInfo] != null)
         {
-            if (HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.PermSearchedInfo] is SearchedInfo)
+            if (HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.PermSearchedInfo] is SearchedInfo)
             {
-                url += "&" + "HitListID=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.PermSearchedInfo]).HitListID.ToString();
-                url += "&" + "HitListType=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.PermSearchedInfo]).HitListType.ToString();
+                url += "&" + "HitListID=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.PermSearchedInfo]).HitListID.ToString();
+                url += "&" + "HitListType=" + ((SearchedInfo)HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.PermSearchedInfo]).HitListType.ToString();
             }
         }
         return url;
@@ -794,16 +794,16 @@ public class RegUtilities
     /// <param name="Session">Session obj to remove states</param>
     public static void CleanSession(System.Web.SessionState.HttpSessionState Session)
     {
-        Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.CompoundsToResolve_Session);
-        Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.DuplicateCompoundIdsList_Session);
-        Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.DuplicateCompoundObjects_Session);
-        Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.DuplicateIdsList_Session);
-        Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.DuplicateMultiCompounds_Session);
+        Session.Remove(PerkinElmer.COE.Registration.Server.Constants.CompoundsToResolve_Session);
+        Session.Remove(PerkinElmer.COE.Registration.Server.Constants.DuplicateCompoundIdsList_Session);
+        Session.Remove(PerkinElmer.COE.Registration.Server.Constants.DuplicateCompoundObjects_Session);
+        Session.Remove(PerkinElmer.COE.Registration.Server.Constants.DuplicateIdsList_Session);
+        Session.Remove(PerkinElmer.COE.Registration.Server.Constants.DuplicateMultiCompounds_Session);
 
-        if (Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session] != null)
-            ((IDisposable)Session[PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session]).Dispose();
+        if (Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session] != null)
+            ((IDisposable)Session[PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session]).Dispose();
 
-        Session.Remove(PerkinElmer.CBOE.Registration.Client.Constants.MultiCompoundObject_Session);
+        Session.Remove(PerkinElmer.COE.Registration.Server.Constants.MultiCompoundObject_Session);
     }
 
     /// <summary>
@@ -831,8 +831,8 @@ public class RegUtilities
     /// <returns>App name</returns>
     public static string GetApplicationName()
     {
-        return HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.AppName] != null ?
-                HttpContext.Current.Application[PerkinElmer.CBOE.Registration.Client.Constants.AppName].ToString().ToUpper() : string.Empty;
+        return HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.AppName] != null ?
+                HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.AppName].ToString().ToUpper() : string.Empty;
     }
 
     /// <summary>
@@ -991,7 +991,7 @@ public class RegUtilities
     {
         set
         {
-            HttpContext.Current.Session[PerkinElmer.CBOE.Registration.Client.Constants.AvailableRecord] = (value == true) ? "NO" : "YES"; // This ensures that configuration is defective and user must import the configuration.
+            HttpContext.Current.Session[PerkinElmer.COE.Registration.Server.Constants.AvailableRecord] = (value == true) ? "NO" : "YES"; // This ensures that configuration is defective and user must import the configuration.
         }
     }
 

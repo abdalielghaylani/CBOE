@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea" Codebehind="MessagesArea.ascx.cs" %>
+<%@ Control Language="C#" AutoEventWireup="true" Inherits="PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea" Codebehind="MessagesArea.ascx.cs" %>
 <table width="100%" runat="server" id="MessageAreTable" class="MessageAreaTable">
     <tr>
         <td>

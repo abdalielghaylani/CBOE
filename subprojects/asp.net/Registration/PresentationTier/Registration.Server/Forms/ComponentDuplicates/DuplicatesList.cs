@@ -4,7 +4,7 @@ using System.Xml;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates
+namespace PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates
 {
     public class DuplicatesList : IEnumerable
     {

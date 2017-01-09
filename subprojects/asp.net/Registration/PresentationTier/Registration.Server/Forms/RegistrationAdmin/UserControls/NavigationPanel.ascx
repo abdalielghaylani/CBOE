@@ -1,5 +1,5 @@
 <%@ Control Language="C#" AutoEventWireup="true" Codebehind="NavigationPanel.ascx.cs"
-    Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls.NavigationPanel" %>
+    Inherits="PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls.NavigationPanel" %>
 <ul class="UlTabsHeader">
     <li class="LiFirstTabsHeader"></li>
     <li id="LiPropertyList" class="SelectedTabsHeader" runat="server">

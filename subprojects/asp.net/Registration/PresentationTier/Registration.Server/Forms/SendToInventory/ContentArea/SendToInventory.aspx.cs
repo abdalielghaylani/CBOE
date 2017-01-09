@@ -14,7 +14,7 @@ using System.Reflection;
 using Resources;
 using CambridgeSoft.COE.Registration.Services.Types;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.SendToInventory
+namespace PerkinElmer.COE.Registration.Server.Forms.SendToInventory
 {
     public partial class SendToInventory : GUIShellPage
     {

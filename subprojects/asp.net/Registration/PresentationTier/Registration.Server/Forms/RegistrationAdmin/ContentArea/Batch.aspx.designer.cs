@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea {
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea {
     
     
     public partial class Batch {
@@ -19,7 +19,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentAr
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls.NavigationPanel PropertiesPanel;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls.NavigationPanel PropertiesPanel;
         
         /// <summary>
         /// PropertyList1 control.
@@ -28,6 +28,6 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentAr
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls.PropertyListUC PropertyList1;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls.PropertyListUC PropertyList1;
     }
 }

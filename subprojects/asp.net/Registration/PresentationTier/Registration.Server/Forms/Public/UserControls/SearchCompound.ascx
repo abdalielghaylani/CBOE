@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchCompound.ascx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.SearchCompound" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="SearchCompound.ascx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.SearchCompound" %>
 <%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
     Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
 <input type="hidden" runat="server" id="CompoundIDHidden" />    

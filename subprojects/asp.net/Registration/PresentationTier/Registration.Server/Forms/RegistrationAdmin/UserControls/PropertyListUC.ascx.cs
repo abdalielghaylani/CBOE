@@ -26,7 +26,7 @@ using CambridgeSoft.COE.RegistrationAdmin;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.RegistrationAdmin.Services.Common;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls
 {
     public partial class PropertyListUC : System.Web.UI.UserControl
     {
@@ -977,7 +977,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
             else
                 ShowConfirmationMessage(string.Format(Resource.ConfigurationSavedWithWarnings_MessagesArea, error));
             //Below cached object is used in search engines when user updates the configuration.
-             LocalCache.Add(PerkinElmer.CBOE.Registration.Client.Constants.ClearCache, typeof(PerkinElmer.CBOE.Registration.Client.Constants), PerkinElmer.CBOE.Registration.Client.Constants.ClearCache, LocalCache.NoAbsoluteExpiration, TimeSpan.FromMinutes(60), COECacheItemPriority.Normal);
+             LocalCache.Add(PerkinElmer.COE.Registration.Server.Constants.ClearCache, typeof(PerkinElmer.COE.Registration.Server.Constants), PerkinElmer.COE.Registration.Server.Constants.ClearCache, LocalCache.NoAbsoluteExpiration, TimeSpan.FromMinutes(60), COECacheItemPriority.Normal);
 
             //this.ErrorMessagesRow.Visible = false;
 

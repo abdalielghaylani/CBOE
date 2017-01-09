@@ -1,4 +1,4 @@
-<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MenuButton.ascx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MenuButton" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MenuButton.ascx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MenuButton" %>
 
 <div style="float:left">
     <div class="MenuButton" id="MainButtonContainer" runat="server">

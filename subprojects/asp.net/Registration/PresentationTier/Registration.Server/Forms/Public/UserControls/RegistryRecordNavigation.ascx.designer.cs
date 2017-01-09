@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls {
+namespace PerkinElmer.COE.Registration.Server.Forms.Public.UserControls {
     
     
     public partial class RegistryRecordNavigation {

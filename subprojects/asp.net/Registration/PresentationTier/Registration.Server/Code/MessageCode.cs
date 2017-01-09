@@ -1,6 +1,6 @@
 using System;
 
-namespace PerkinElmer.CBOE.Registration.Client.Code
+namespace PerkinElmer.COE.Registration.Server.Code
 {
     public enum MessagesCode
     {

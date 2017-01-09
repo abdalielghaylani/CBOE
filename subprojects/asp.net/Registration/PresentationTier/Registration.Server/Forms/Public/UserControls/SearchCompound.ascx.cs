@@ -10,9 +10,9 @@ using Resources;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using System.Reflection;
-using PerkinElmer.CBOE.Registration.Client.Code;
+using PerkinElmer.COE.Registration.Server.Code;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.Public.UserControls
 {
     /// <summary>
     /// This is an example of a User Control implementing the ICOENavigationPanelControl interface.

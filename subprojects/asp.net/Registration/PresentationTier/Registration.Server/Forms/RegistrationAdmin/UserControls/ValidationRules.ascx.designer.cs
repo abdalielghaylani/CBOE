@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls {
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls {
     
     
     public partial class ValidationRules {

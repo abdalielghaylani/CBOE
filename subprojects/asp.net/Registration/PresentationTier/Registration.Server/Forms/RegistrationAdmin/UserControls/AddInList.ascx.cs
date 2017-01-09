@@ -15,7 +15,7 @@ using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls
 {
     public partial class AddInList : System.Web.UI.UserControl
     {

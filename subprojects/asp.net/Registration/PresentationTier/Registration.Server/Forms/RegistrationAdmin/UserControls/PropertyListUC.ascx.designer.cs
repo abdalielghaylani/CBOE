@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls {
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls {
     
     
     public partial class PropertyListUC {
@@ -46,7 +46,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserContr
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// LblName control.

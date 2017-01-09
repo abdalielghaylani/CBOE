@@ -24,7 +24,7 @@ using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls
+namespace PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls
 {
     public partial class ValidationRules : System.Web.UI.UserControl
     {

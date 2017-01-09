@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea {
+namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea {
     
     
     public partial class ReviewRegisterSearch {
@@ -46,7 +46,7 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea 
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
         
         /// <summary>
         /// SearchTempFrame control.

@@ -17,8 +17,8 @@
     <OutputPath>C:\RegistrationServices\Old\Help\</OutputPath>
     <HtmlHelpName>RegistrationServices</HtmlHelpName>
     <DocumentationSources>
-      <DocumentationSource sourceFile="..\Bin\CambridgeSoft.COE.PerkinElmer.CBOE.Registration.Client.dll" />
-      <DocumentationSource sourceFile="..\Bin\CambridgeSoft.COE.PerkinElmer.CBOE.Registration.Client.XML" />
+      <DocumentationSource sourceFile="..\Bin\CambridgeSoft.COE.PerkinElmer.COE.Registration.Server.dll" />
+      <DocumentationSource sourceFile="..\Bin\CambridgeSoft.COE.PerkinElmer.COE.Registration.Server.XML" />
     </DocumentationSources>
     <VisibleItems>InheritedMembers, InheritedFrameworkMembers, Protected, SealedProtected</VisibleItems>
     <FooterText>
@@ -36,23 +36,23 @@
       <Filter entryType="Namespace" fullName="Registration.Client.Forms.RegistrationAdmin.ContentArea" isExposed="False" />
       <Filter entryType="Namespace" fullName="Registration.Client.Forms.RegistrationAdmin.UserControls" isExposed="False" />
       <Filter entryType="Namespace" fullName="RegistrationWebApp" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.ComponentDuplicates.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.Master.UserControls" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.PageControlSetting.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.Public.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.RegisteredRecord.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.UserControls" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.RegistryDuplicates" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.ReviewRegister.UserControls" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.SendToInventory" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.SubmitRecord.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.TableEditor.ContentArea" isExposed="False" />
-      <Filter entryType="Namespace" fullName="PerkinElmer.CBOE.Registration.Client.Forms.ViewMixture.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.BulkRegisterMarked.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.Master.UserControls" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.PageControlSetting.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.Public.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.Public.UserControls" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.RegisteredRecord.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.UserControls" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.RegistryDuplicates" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.UserControls" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.SendToInventory" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.TableEditor.ContentArea" isExposed="False" />
+      <Filter entryType="Namespace" fullName="PerkinElmer.COE.Registration.Server.Forms.ViewMixture.ContentArea" isExposed="False" />
       <Filter entryType="Namespace" fullName="CambridgeSoft.COE.Framework.GUIShell" isExposed="False" />
     </ApiFilter>
     <ContentPlacement>AboveNamespaces</ContentPlacement>

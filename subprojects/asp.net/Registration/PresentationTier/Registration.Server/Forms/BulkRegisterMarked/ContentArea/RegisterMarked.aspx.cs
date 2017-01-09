@@ -21,7 +21,7 @@ using Infragistics.WebUI.UltraWebGrid;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Registration;
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.BulkRegisterMarked.ContentArea
+namespace PerkinElmer.COE.Registration.Server.Forms.BulkRegisterMarked.ContentArea
 {
     public partial class BulkRegister : GUIShellPage
     {

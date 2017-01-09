@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master" CodeBehind="PageControlSetting.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.PageControlSetting.ContentArea.PageControlSetting" EnableSessionState="True" %>
+<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Forms/Master/Registration.Master" CodeBehind="PageControlSetting.aspx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.PageControlSetting.ContentArea.PageControlSetting" EnableSessionState="True" %>
 <%@ Register Assembly="CambridgeSoft.COE.Framework" Namespace="CambridgeSoft.COE.Framework.Controls.COEPageCtrlSettingManager"
     TagPrefix="COECntrl" %>
 <asp:Content ID="CompoundDetails" ContentPlaceHolderID="ContentPlaceHolder" Runat="Server">

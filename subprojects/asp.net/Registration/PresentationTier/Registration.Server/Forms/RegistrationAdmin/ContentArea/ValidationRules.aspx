@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Forms/Master/Registration.master" AutoEventWireup="true"
-    Codebehind="ValidationRules.aspx.cs" Inherits="PerkinElmer.CBOE.Registration.Client.Forms.RegistrationAdmin.ContentArea.ValidationRules"
+    Codebehind="ValidationRules.aspx.cs" Inherits="PerkinElmer.COE.Registration.Server.Forms.RegistrationAdmin.ContentArea.ValidationRules"
     Title="Untitled Page" %>
 
 <%@ Register Src="../UserControls/ValidationRules.ascx" TagName="ValidationRules"

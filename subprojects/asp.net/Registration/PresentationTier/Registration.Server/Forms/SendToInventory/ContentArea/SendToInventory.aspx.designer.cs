@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PerkinElmer.CBOE.Registration.Client.Forms.SendToInventory {
+namespace PerkinElmer.COE.Registration.Server.Forms.SendToInventory {
     
     
     public partial class SendToInventory {
@@ -55,6 +55,6 @@ namespace PerkinElmer.CBOE.Registration.Client.Forms.SendToInventory {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::PerkinElmer.CBOE.Registration.Client.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
+        protected global::PerkinElmer.COE.Registration.Server.Forms.Public.UserControls.MessagesArea MessagesAreaUserControl;
     }
 }
