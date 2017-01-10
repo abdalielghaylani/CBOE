@@ -22,7 +22,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var key in tables.Keys)
             {
                 var table = new Dictionary<string, string>();
-                table[key] = tables[key];
+                table["tableName"] = key;
+                table["label"] = tables[key];
                 tableList.Add(table);
             }
             return tableList.AsEnumerable().FilterByOptions(options).SortByOptions(options).PageByOptions(options);
