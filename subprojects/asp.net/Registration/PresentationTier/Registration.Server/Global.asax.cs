@@ -13,6 +13,7 @@ using System.Web.UI;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using Resources;
+using System.Net.Http.Formatting;
 
 namespace PerkinElmer.COE.Registration.Server
 {
@@ -21,6 +22,8 @@ namespace PerkinElmer.COE.Registration.Server
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
+            GlobalConfiguration.Configuration.Formatters.Clear();
+            GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
             HttpContext.Current.Application.Lock();
             AppDomain.CurrentDomain.DomainUnload += new EventHandler(AppDomainUnloading);
             HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.AppName] = GUIShellUtilities.GetApplicationName();
@@ -91,9 +94,11 @@ namespace PerkinElmer.COE.Registration.Server
                 CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider member = new CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider();
                 member.Login(Request["ticket"].ToString(), true);
             }
-            CambridgeSoft.COE.Framework.Common.WebUtils.SetCslaPrincipal();
             if (HttpContext.Current.Session != null)
+            {
+                CambridgeSoft.COE.Framework.Common.WebUtils.SetCslaPrincipal();
                 Csla.ApplicationContext.GlobalContext["USER_PERSONID"] = HttpContext.Current.Session["USER_PERSONID"];
+            }
         }
 
         protected void Application_AuthenticateRequest(Object sender, EventArgs e)
@@ -110,7 +115,7 @@ namespace PerkinElmer.COE.Registration.Server
                     }
                     else if (Request.Cookies["COESSO"] != null && !string.IsNullOrEmpty(Request.Cookies["COESSO"].Value))
                     {
-                        authTicket = FormsAuthentication.Decrypt(Response.Cookies["COESSO"].Value);
+                        authTicket = FormsAuthentication.Decrypt(Request.Cookies["COESSO"].Value);
                     }
                 }
                 catch

@@ -168,14 +168,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl14.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.OData.Core, Version=6.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.OData.Core.6.10.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.OData.Edm, Version=6.10.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.OData.Edm.6.10.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Edm.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -200,6 +192,10 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -219,10 +215,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.OData, Version=5.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.OData.5.5.1\lib\net45\System.Web.OData.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -233,7 +225,7 @@
   <ItemGroup>
     <Content Include="Forms\BulkRegisterMarked\ContentArea\LockMarked.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Web.config" />
+    <Content Include="Controllers\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resource.designer.cs">
@@ -257,6 +249,7 @@
     <Compile Include="Code\MessageCode.cs" />
     <Compile Include="Code\MixtureSubmissionBroker.cs" />
     <Compile Include="Code\NodeKeywords.cs" />
+    <Compile Include="Code\QueryHelper.cs" />
     <Compile Include="Code\RegistrationUtilities.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -265,7 +258,7 @@
     <Compile Include="Code\ResultsCriteriaHelper.cs" />
     <Compile Include="Code\SaltAndBacthSuffixTextBox.cs" />
     <Compile Include="Code\SearchCriteriaHelper.cs" />
-    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\CustomTablesController.cs" />
     <Compile Include="Forms\BulkRegisterMarked\ContentArea\ApproveMarked.aspx.cs">
       <DependentUpon>ApproveMarked.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
