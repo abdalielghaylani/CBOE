@@ -1,39 +1,39 @@
-<div>
-  <reg-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
-  </reg-login-modal>
-  <reg-navigator testid="navigator">
-    <reg-navigator-header>
-      <reg-logo></reg-logo>
-    </reg-navigator-header>
-    <reg-navigator-items>
-      <li reg-navigator-item *ngIf="loggedIn$ | async">
-        <a [routerLink]="['home']"><i class="fa fa-home fa-lg maroon"></i> Home</a>
-      </li>
-      <li class="dropdown" reg-navigator-item *ngIf="loggedIn$ | async">
-        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-          <span class="fa fa-gears fa-lg maroon"></span> Configuration <span class="caret"></span>
-        </a>
-        <ul id="g-account-menu" class="dropdown-menu" role="menu">
-          <li><a [routerLink]="['configuration/projects']"><i class="fa fa-table fa-lg maroon"></i> Projects</a></li>
-          <li><a [routerLink]="['configuration/picklists']"><i class="fa fa-table fa-lg maroon"></i> Picklists</a></li>
-          <li><a [routerLink]="['configuration/notebooks']"><i class="fa fa-table fa-lg maroon"></i> Notebooks</a></li>
-          <li><a [routerLink]="['configuration/fragments']"><i class="fa fa-table fa-lg maroon"></i> Fragments</a></li>
-          <li><a [routerLink]="['configuration/fragment-types']"><i class="fa fa-table fa-lg maroon"></i> Fragment Types</a></li>
-          <li><a [routerLink]="['configuration/sequences']"><i class="fa fa-table fa-lg maroon"></i> Sequences</a></li>
-          <li><a [routerLink]="['configuration/identifier-types']"><i class="fa fa-table fa-lg maroon"></i> Identifier Types</a></li>
-          <li><a [routerLink]="['configuration/sites']"><i class="fa fa-table fa-lg maroon"></i> Sites</a></li>
-        </ul>
-      </li>
-      <li reg-navigator-item *ngIf="loggedIn$ | async">
-        <a href="/api/browser" class="text-decoration-none" target="API Browser"><i class="fa fa-wrench fa-lg maroon"></i> API Browser</a>
-      </li>
-      <li reg-navigator-item *ngIf="loggedIn$ | async">
-        <a [routerLink]="['profile']"><span class="fa fa-user-circle-o fa-lg maroon"></span> {{ fullName$ | async }}</a>
-      </li>
-      <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="fa fa-sign-out fa-lg maroon"></span></a></li>
-    </reg-navigator-items>
-  </reg-navigator>
-  <main>
-    <router-outlet></router-outlet>
-  </main>
-</div>
+<reg-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async"
+  *ngIf="loggedOut$ | async">
+</reg-login-modal>
+<reg-navigator testid="navigator" *ngIf="loggedIn$ | async">
+  <reg-navigator-header>
+    <reg-logo></reg-logo>
+  </reg-navigator-header>
+  <reg-navigator-items>
+    <li reg-navigator-item *ngIf="loggedIn$ | async">
+      <a [routerLink]="['home']"><i class="fa fa-home fa-lg maroon"></i> Home</a>
+    </li>
+    <li class="dropdown" reg-navigator-item *ngIf="loggedIn$ | async">
+      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+        <span class="fa fa-gears fa-lg maroon"></span> Configuration <span class="caret"></span>
+      </a>
+      <ul id="g-account-menu" class="dropdown-menu" role="menu">
+        <li><a [routerLink]="['configuration/projects']"><i class="fa fa-table fa-lg maroon"></i> Projects</a></li>
+        <li><a [routerLink]="['configuration/picklists']"><i class="fa fa-table fa-lg maroon"></i> Picklists</a></li>
+        <li><a [routerLink]="['configuration/notebooks']"><i class="fa fa-table fa-lg maroon"></i> Notebooks</a></li>
+        <li><a [routerLink]="['configuration/fragments']"><i class="fa fa-table fa-lg maroon"></i> Fragments</a></li>
+        <li><a [routerLink]="['configuration/fragment-types']"><i class="fa fa-table fa-lg maroon"></i> Fragment Types</a></li>
+        <li><a [routerLink]="['configuration/sequences']"><i class="fa fa-table fa-lg maroon"></i> Sequences</a></li>
+        <li><a [routerLink]="['configuration/identifier-types']"><i class="fa fa-table fa-lg maroon"></i> Identifier Types</a></li>
+        <li><a [routerLink]="['configuration/sites']"><i class="fa fa-table fa-lg maroon"></i> Sites</a></li>
+      </ul>
+    </li>
+    <li reg-navigator-item *ngIf="loggedIn$ | async">
+      <a href="/api/browser" class="text-decoration-none" target="API Browser"><i class="fa fa-wrench fa-lg maroon"></i> API Browser</a>
+    </li>
+    <li reg-navigator-item *ngIf="loggedIn$ | async">
+      <a [routerLink]="['profile']"><span class="fa fa-user-circle-o fa-lg maroon"></span> {{ fullName$ | async }}</a>
+    </li>
+    <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="fa fa-sign-out fa-lg maroon"></span></a></li>
+  </reg-navigator-items>
+</reg-navigator>
+<main>
+  <router-outlet></router-outlet>
+</main>
+<reg-footer></reg-footer>

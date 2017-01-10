@@ -5,7 +5,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   template: `
     <reg-modal>
       <reg-modal-content>
-        <h1 class='mt0'>Login</h1>
         <reg-login-form
           [isPending]="isPending"
           [hasError]="hasError"

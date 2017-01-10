@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
     <div
       [id]="qaid"
       [attr.data-testid]="testid"
-      class="bold black"
+      class="label label-danger"
       [ngClass]="{ 'display-none': !visible }">
       <ng-content></ng-content>
     </div>
