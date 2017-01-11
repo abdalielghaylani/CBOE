@@ -18,7 +18,8 @@ import {
   RegNavigatorItems,
   RegNavigatorItem,
   RegLogo,
-  RegLoginModal
+  RegLoginModal,
+  RegFooter
 } from '../components';
 
 import { dev } from '../configuration';

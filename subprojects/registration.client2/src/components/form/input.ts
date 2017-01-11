@@ -6,11 +6,12 @@ import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'reg-input',
+  styles: [require('./input.css')],
   template: `
     <input
       [id]="qaid"
       [type]="inputType"
-      class="block col-12 mb1 input"
+      [class]="classname"
       [attr.placeholder]="placeholder"
       [formControl]="control"
     />
@@ -21,4 +22,5 @@ export class RegInput {
   @Input() placeholder = '';
   @Input() control: FormControl = new FormControl();
   @Input() qaid: string;
+  @Input() classname: string;
 };

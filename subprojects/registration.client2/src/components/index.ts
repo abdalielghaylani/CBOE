@@ -15,6 +15,7 @@ import {
   RegLabel,
   RegInput
 } from './form';
+import { RegFooter } from './footer';
 
 export {
   RegAlert,
@@ -37,5 +38,6 @@ export {
   RegNavigator,
   RegNavigatorHeader,
   RegNavigatorItems,
-  RegNavigatorItem
+  RegNavigatorItem,
+  RegFooter
 };

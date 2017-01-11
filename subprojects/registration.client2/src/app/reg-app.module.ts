@@ -19,6 +19,7 @@ import { RegConfiguration, RegCounter, RegHome, RegHomeDetail } from '../compone
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
+import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
 import { DxDataGridModule } from 'devextreme-angular';
 
@@ -32,6 +33,7 @@ import { DxDataGridModule } from 'devextreme-angular';
     RegLoginModule,
     RegUiModule,
     RegNavigatorModule,
+    RegFooterModule,
     ToolModule,
     NgReduxModule.forRoot(),
     DxDataGridModule
