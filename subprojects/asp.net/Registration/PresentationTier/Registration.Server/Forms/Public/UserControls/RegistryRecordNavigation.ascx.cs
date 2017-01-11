@@ -18,7 +18,7 @@ using System.Resources;
 using Resources;
 using System.Reflection;
 using CambridgeSoft.COE.Registration.Services.Common;
-using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Controls;
 
 
 namespace PerkinElmer.COE.Registration.Server.Forms.Public.UserControls

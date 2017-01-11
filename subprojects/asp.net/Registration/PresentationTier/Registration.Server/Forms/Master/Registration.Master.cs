@@ -18,6 +18,7 @@ using RegistrationWebApp;
 using PerkinElmer.COE.Registration.Server;
 using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration.Services.Types;
+using PerkinElmer.COE.Registration.Server.Controls;
 
 public partial class RegistrationMaster : GUIShellMaster
 {

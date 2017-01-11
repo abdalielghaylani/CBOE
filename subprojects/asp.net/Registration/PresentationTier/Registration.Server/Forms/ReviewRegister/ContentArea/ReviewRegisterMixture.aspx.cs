@@ -1,21 +1,14 @@
 using System;
 using System.Data;
 using System.Text;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using System.Reflection;
 using Resources;
 using System.Collections.Generic;
 using System.Xml;
 using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using Infragistics.WebUI.UltraWebListbar;
 using Csla;
 using Csla.Validation;
 using CambridgeSoft.COE.Framework.GUIShell;
@@ -26,14 +19,14 @@ using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.Controls.COEDataMapper;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
-using PerkinElmer.COE.Registration.Server.Forms.Master;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.Validation;
-using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration;
+using PerkinElmer.COE.Registration.Server.Controls;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea
 {

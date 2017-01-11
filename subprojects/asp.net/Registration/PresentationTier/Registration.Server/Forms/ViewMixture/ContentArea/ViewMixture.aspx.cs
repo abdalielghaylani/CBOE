@@ -1,27 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Text;
 using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Xml;
 
-using RegistrationWebApp;
-using PerkinElmer.COE.Registration.Server.Forms.Master;
 using PerkinElmer.COE.Registration.Server.Forms.Public.UserControls;
 
 using Resources;
 
 using Csla.Validation;
-using Infragistics.WebUI.UltraWebListbar;
 using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 
@@ -41,6 +33,7 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration;
 using System.Linq;
+using PerkinElmer.COE.Registration.Server.Controls;
 
 namespace PerkinElmer.COE.Registration.Server.Forms.RegisteredRecord.ContentArea
 {

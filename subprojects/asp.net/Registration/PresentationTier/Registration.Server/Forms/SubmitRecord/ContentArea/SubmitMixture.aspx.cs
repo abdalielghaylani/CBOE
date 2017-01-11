@@ -2,14 +2,10 @@ using System;
 using System.Data;
 using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Reflection;
 using System.Text;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml;
 
@@ -19,24 +15,20 @@ using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
-using CambridgeSoft.COE.Framework.Types.Exceptions;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 using CambridgeSoft.COE.Framework.Controls.COEDataMapper;
-using CambridgeSoft.COE.Registration.Services.Common;
 using CambridgeSoft.COE.Registration.Services.Types;
 
 using Csla.Validation;
-using Csla;
-using Infragistics.WebUI.UltraWebListbar;
 using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using PerkinElmer.COE.Registration.Server.Forms.Master;
 using Resources;
 using CambridgeSoft.COE.Framework.Common.Validation;
 using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration;
+using PerkinElmer.COE.Registration.Server.Controls;
 
 namespace PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea
 {

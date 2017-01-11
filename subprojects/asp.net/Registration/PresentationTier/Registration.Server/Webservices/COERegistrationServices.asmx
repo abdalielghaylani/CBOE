@@ -1,1 +1,1 @@
-<%@ WebService Language="C#" CodeBehind="~/App_Code/COERegistrationServices.cs" Class="CambridgeSoft.COE.Registration.Services.COERegistrationServices" %>
+<%@ WebService Language="C#" CodeBehind="~/Webservices/COERegistrationServices.cs" Class="PerkinElmer.COE.Registration.Server.Webservices.COERegistrationServices" %>

@@ -8,11 +8,11 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-namespace CambridgeSoft.COE.Framework.GUIShell
+namespace PerkinElmer.COE.Registration.Server.Controls
 {
     /// <summary>
     /// This is a Custom EventArgs to handle our custom information 
-    /// about the control wich implement ICoeNavigationPanelControl
+    /// about the control which implements ICoeNavigationPanelControl
     /// </summary>
     [Serializable]
     public class COENavigationPanelControlEventArgs : EventArgs

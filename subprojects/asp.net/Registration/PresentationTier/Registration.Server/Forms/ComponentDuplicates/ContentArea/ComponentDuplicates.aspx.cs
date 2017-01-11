@@ -1,14 +1,6 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Collections.Generic;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
@@ -20,16 +12,14 @@ using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Resources;
 using Csla.Validation;
-using PerkinElmer.COE.Registration.Server.Forms.Master;
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
-using CambridgeSoft.COE.Framework.Common.Exceptions;
-using CambridgeSoft.COE.Framework.Common.Validation;
 using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration;
+using PerkinElmer.COE.Registration.Server.Controls;
 
 
 namespace PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates.ContentArea

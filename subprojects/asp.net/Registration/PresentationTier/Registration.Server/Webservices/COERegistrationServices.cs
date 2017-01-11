@@ -30,8 +30,9 @@ using CambridgeSoft.COE.Framework.Common.Exceptions;
 using CambridgeSoft.COE.Registration.Services;
 using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Registration;
 
-namespace CambridgeSoft.COE.Registration.Services
+namespace PerkinElmer.COE.Registration.Server.Webservices
 {
     /// <summary>
     /// Summary description for COERegistrationServices
@@ -2168,7 +2169,7 @@ namespace CambridgeSoft.COE.Registration.Services
 
         #region >Private methods<
 
-        static COELog _coeLog = COELog.GetSingleton(Registration.Services.Common.Constants.SERVICENAME);
+        static COELog _coeLog = COELog.GetSingleton(CambridgeSoft.COE.Registration.Constants.SERVICENAME);
 
         /// <summary>
         /// Strips a UTF8 or UTF16 byte-order mark from the incoming string.

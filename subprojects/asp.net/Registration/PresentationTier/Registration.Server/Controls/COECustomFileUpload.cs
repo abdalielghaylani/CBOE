@@ -10,7 +10,7 @@ using System.Xml;
 using CambridgeSoft.COE.Framework.Controls.COEDataMapper;
 
 [assembly: TagPrefix("CambridgeSoft.COE.Framework.Controls.COEFormGenerator", "COECntrl")]
-namespace CambridgeSoft.COE.Framework.Controls.COEFormGenerator
+namespace PerkinElmer.COE.Registration.Server.Controls
 {
     /// <summary>
     /// COE FileUpload web control.

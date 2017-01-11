@@ -1,7 +1,7 @@
 using System;
 using CambridgeSoft.COE.Registration.Services.Types;
 
-namespace CambridgeSoft.COE.Framework.GUIShell
+namespace PerkinElmer.COE.Registration.Server.Controls
 {
     public interface ICOENavigationPanelControl
     {

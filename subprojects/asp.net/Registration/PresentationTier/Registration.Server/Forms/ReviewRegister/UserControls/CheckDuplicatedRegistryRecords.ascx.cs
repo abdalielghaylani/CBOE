@@ -8,7 +8,7 @@ using Infragistics.WebUI.UltraWebNavigator;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Registration.Services.Types;
 using Resources;
-using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Controls;
 
 namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.UserControls
 {

@@ -235,16 +235,16 @@
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\AllowedActions.cs" />
-    <Compile Include="Code\COECustomFileUpload.cs" />
-    <Compile Include="Code\COENavigationPanelControlEventArgs.cs" />
-    <Compile Include="Code\COERegistrationServices.cs">
+    <Compile Include="Controls\COECustomFileUpload.cs" />
+    <Compile Include="Controls\COENavigationPanelControlEventArgs.cs" />
+    <Compile Include="Webservices\COERegistrationServices.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Code\CompoundSubmissionBroker.cs" />
     <Compile Include="Code\Constants.cs" />
     <Compile Include="Code\DataViewHelper.cs" />
     <Compile Include="Code\FormGroups.cs" />
-    <Compile Include="Code\ICOENavigationPanelControl.cs" />
+    <Compile Include="Controls\ICOENavigationPanelControl.cs" />
     <Compile Include="Code\ISubmissionBroker.cs" />
     <Compile Include="Code\MessageCode.cs" />
     <Compile Include="Code\MixtureSubmissionBroker.cs" />

@@ -10,7 +10,7 @@ using Resources;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using System.Reflection;
-using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Controls;
 
 namespace PerkinElmer.COE.Registration.Server.Forms.Public.UserControls
 {
