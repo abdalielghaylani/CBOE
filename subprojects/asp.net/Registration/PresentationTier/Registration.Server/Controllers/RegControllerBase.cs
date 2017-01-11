@@ -13,6 +13,7 @@ using CambridgeSoft.COE.Registration.Access;
 using Csla.Data;
 using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using Newtonsoft.Json.Linq;
+using System.Web;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -74,6 +75,29 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return ExtractData(reader);
             }
+        }
+
+        public static string GetAbsoluteUrl(string relativeUrl, bool globalScope = false)
+        {
+            if (string.IsNullOrEmpty(relativeUrl))
+                return relativeUrl;
+
+            if (HttpContext.Current == null)
+                return relativeUrl;
+
+            if (!globalScope)
+            {
+                if (relativeUrl.StartsWith("/"))
+                    relativeUrl = relativeUrl.Insert(0, "~");
+                if (!relativeUrl.StartsWith("~/"))
+                    relativeUrl = relativeUrl.Insert(0, "~/");
+                relativeUrl = VirtualPathUtility.ToAbsolute(relativeUrl);
+            }
+
+            var url = HttpContext.Current.Request.Url;
+            var port = url.Port != 80 ? (":" + url.Port) : String.Empty;
+
+            return String.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
         }
     }
 }

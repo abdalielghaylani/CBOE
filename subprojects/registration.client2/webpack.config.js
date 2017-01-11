@@ -93,8 +93,7 @@ const baseConfig = {
   devServer: {
     historyApiFallback: { index: '/' },
     proxy: Object.assign({}, proxy(), {
-      '/api/auth': 'http://localhost:3000',
-      '/api': 'http://localhost:18088',
+      '/api': 'http://localhost/Registration.Server',
     }),
   },
 
