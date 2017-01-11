@@ -55,18 +55,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return null;
         }
 
+        [HttpPost]
         [Route("api/CustomTables/{tableName}")]
         public int Post(dynamic data)
         {
             return 0;
         }
 
+        [HttpPut]
         [Route("api/CustomTables/{tableName}/{id}")]
         public int Put(dynamic data)
         {
             return 0;
         }
 
+        [HttpDelete]
         [Route("api/CustomTables/{tableName}/{id}")]
         public int Delete(int id)
         {
