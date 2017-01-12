@@ -11,5 +11,5 @@ import { Component, Input } from '@angular/core';
         </div>`
 })
 export class RegFooter {
-  //@Input() testid: string;
+  // @Input() testid: string;
 };
