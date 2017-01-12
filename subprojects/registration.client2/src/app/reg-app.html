@@ -10,7 +10,7 @@
       <a [routerLink]="['temp-records']"><i class="fa fa-table fa-lg maroon"></i> Review Temporary</a>
     </li>
     <li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['temp-records/-1']"><i class="fa fa-flask fa-lg maroon"></i> Submit New Compound</a>
+      <a [routerLink]="['new-record']"><i class="fa fa-flask fa-lg maroon"></i> Submit New Compound</a>
     </li>
     <li reg-navigator-item *ngIf="loggedIn$ | async">
       <a [routerLink]="['records']"><i class="fa fa-search fa-lg maroon"></i> Search Registry</a>

@@ -2,17 +2,19 @@ import {
   Component,
   Input,
   Output,
+  OnInit,
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { RecordsActions } from '../../actions';
 
 @Component({
   selector: 'reg-records',
   template: `
     <div class="container">
       <h4 data-testid="configuration-heading" id="qa-configuration-heading">
-        Registration Records
+        <span *ngIf="temporary">Temporary</span> Registration Records
       </h4>
 
       <dx-data-grid [columns]='gridColumns' [dataSource]=[] [paging]='{pageSize: 10}' 
@@ -25,10 +27,16 @@ import { Router } from '@angular/router';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecords {
-  constructor(private router: Router) { }
+export class RegRecords implements OnInit {
+  @Input() temporary: boolean = false;
+
+  constructor(private router: Router, private recordsActions: RecordsActions) { }
   
+  ngOnInit() {
+    this.recordsActions.openRecords(this.temporary);
+  }
+
   addRecord() {
-    this.router.navigate(['records/-1']);
+    this.router.navigate(['new-record']);
   }
 };

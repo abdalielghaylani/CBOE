@@ -18,6 +18,8 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements OnInit {
+  @Input() id: number = -1;
+  @Input() temporary: boolean = false;
   private drawingTool;
   private creatingCDD: boolean = false;
 

@@ -1,4 +1,5 @@
-import { Component, Inject, ApplicationRef } from '@angular/core';
+import { Component, Inject, ApplicationRef, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
@@ -11,11 +12,16 @@ import { RegContainer, RegRecordDetail } from '../components';
   template: `
     <reg-container testid="records">
       <reg-record-detail
+        [temporary]="temporary"
         (submit)="actions.submit()">
       </reg-record-detail>
     </reg-container>
   `
 })
 export class RegRecordDetailPage {
-  constructor(private actions: RecordDetailActions) {}
+  @Input() id: number = -1;
+  @Input() temporary: boolean = false;
+
+  constructor(private router: Router, private actions: RecordDetailActions) {
+  }
 }

@@ -4,7 +4,6 @@ import { RegConfiguration } from './configuration';
 import { RegContainer } from './container';
 import { RegCounter } from './counter';
 import { RegRecords, RegRecordDetail } from './registry';
-import { RegTempRecords } from './temp-registry';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
 import { RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem } from './navigator';
@@ -33,7 +32,6 @@ export {
   RegFormGroup,
   RegRecords,
   RegRecordDetail,
-  RegTempRecords,
   RegLabel,
   RegModal,
   RegModalContent,
