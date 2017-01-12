@@ -5,8 +5,9 @@ import {
 import { makeTypedFactory } from 'typed-immutable-record';
 
 export const ConfigurationFactory = makeTypedFactory<IConfiguration, IConfigurationRecord>({
-  tableId: 'projects',
-  rows: []
+  tableId: '',
+  rows: [],
+  customTables: []
 });
 
 export const INITIAL_STATE = ConfigurationFactory();

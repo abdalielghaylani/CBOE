@@ -33,7 +33,7 @@
     <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="fa fa-sign-out fa-lg maroon"></span></a></li>
   </reg-navigator-items>
 </reg-navigator>
-<main>
+<main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
   <router-outlet></router-outlet>
 </main>
 <reg-footer></reg-footer>

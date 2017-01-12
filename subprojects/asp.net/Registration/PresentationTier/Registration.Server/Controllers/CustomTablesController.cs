@@ -8,41 +8,41 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using PerkinElmer.COE.Registration.Server.Code;
+using Newtonsoft.Json.Linq;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
-    public class CustomTablesController : ApiController
+    public class CustomTablesController : RegControllerBase
     {
-        public IEnumerable<IDictionary<string, string>> Get()
+        [Route("api/CustomTables")]
+        public JArray Get()
         {
-            var options = Request.GetQueryNameValuePairs()
-                .ToDictionary(x => x.Key, x => JsonConvert.DeserializeObject(x.Value));
-            var tableList = new List<IDictionary<string, string>>();
+            var tableList = new JArray();
             var tables = COETableEditorUtilities.getTables();
             foreach (var key in tables.Keys)
             {
-                var table = new Dictionary<string, string>();
-                table["tableName"] = key;
-                table["label"] = tables[key];
+                var table = new JObject(
+                    new JProperty("tableName", key),
+                    new JProperty("label", tables[key])
+                );
                 tableList.Add(table);
             }
-            return tableList.AsEnumerable().FilterByOptions(options).SortByOptions(options).PageByOptions(options);
+            return tableList;
         }
 
         [Route("api/CustomTables/{tableName}")]
-        public IEnumerable<dynamic> Get(string tableName)
+        public IEnumerable<JToken> Get(string tableName)
         {
             var options = Request.GetQueryNameValuePairs()
                 .ToDictionary(x => x.Key, x => JsonConvert.DeserializeObject(x.Value));
-            var projects = new List<dynamic>();
+            var projects = new JArray();
             COETableEditorBOList.NewList().TableName = tableName;
             var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
             foreach (DataRow dr in dt.Rows)
             {
-                dynamic expando = new ExpandoObject();
-                var p = expando as IDictionary<String, object>;
+                var p = new JObject();
                 foreach (DataColumn dc in dt.Columns)
-                    p[dc.ColumnName] = dr[dc];
+                    p.Add(new JProperty(dc.ColumnName, dr[dc]));
                 projects.Add(p);
             }
             var query = projects.AsEnumerable().FilterByOptions(options).SortByOptions(options).PageByOptions(options);

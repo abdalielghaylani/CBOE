@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { IPayloadAction, SessionActions } from '../actions';
+import { IPayloadAction, ConfigurationActions, SessionActions } from '../actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -11,21 +11,23 @@ const BASE_URL = '/api';
 
 @Injectable()
 export class SessionEpics {
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
-  login = (action$: Observable<IPayloadAction>) => {
+  handleLoginUser = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
       .mergeMap<IPayloadAction>(({ payload }) => {
         return this.http.post(`${BASE_URL}/auth/login`, payload)
-          .map(result => ({
-            type: SessionActions.LOGIN_USER_SUCCESS,
-            payload: result.json().meta
-          }))
-          .catch(error => {
-            return Observable.of({
-              type: SessionActions.LOGIN_USER_ERROR
-            });
-          });
+          .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
+          .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+      });
+  }
+
+  handleLoginUserSuccess = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
+      .mergeMap<IPayloadAction>(() => {
+        return this.http.get(`${BASE_URL}/CustomTables`)
+          .map(result => ConfigurationActions.customTablesSuccessAction(result.json()))
+          .catch(error => Observable.of(ConfigurationActions.customTablesErrorAction()));
       });
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
+import { createAction } from 'redux-actions';
 import { IAppState } from '../store';
 
 @Injectable()
@@ -8,6 +9,9 @@ export class SessionActions {
   static LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS';
   static LOGIN_USER_ERROR = 'LOGIN_USER_ERROR';
   static LOGOUT_USER = 'LOGOUT_USER';
+  static loginUserAction = createAction(SessionActions.LOGIN_USER);
+  static loginUserSuccessAction = createAction(SessionActions.LOGIN_USER_SUCCESS);
+  static loginUserErrorAction = createAction(SessionActions.LOGIN_USER_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) {}
 

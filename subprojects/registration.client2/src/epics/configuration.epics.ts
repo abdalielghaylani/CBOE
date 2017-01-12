@@ -13,7 +13,7 @@ const BASE_URL = '/api';
 export class ConfigurationEpics {
   constructor(private http: Http) { }
 
-  getRecords = (action$: Observable<IPayloadAction>) => {
+  handleOpenTable = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === ConfigurationActions.OPEN_TABLE)
       .mergeMap<IPayloadAction>(({ payload }) => {
         let tableId: string = payload.tableId;

@@ -11,6 +11,9 @@ export function configurationReducer(
 ): IConfigurationRecord {
 
   switch (action.type) {
+    case ConfigurationActions.CUSTOM_TABLES_SUCCESS:
+      return state.update('customTables', () => action.payload);
+    
     case ConfigurationActions.OPEN_TABLE:
       return state.update('tableId', () => action.payload.tableId);
 

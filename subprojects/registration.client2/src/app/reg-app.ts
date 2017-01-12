@@ -54,8 +54,8 @@ export class RegApp {
     private configEpics: ConfigurationEpics) {
 
     middleware.push(createEpicMiddleware(combineEpics(
-      sessionEpics.login,
-      configEpics.getRecords
+      sessionEpics.handleLoginUser,
+      configEpics.handleOpenTable
     )));
 
     ngRedux.configureStore(
