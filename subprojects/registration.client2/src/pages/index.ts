@@ -1,7 +1,7 @@
-import { RegHomePage } from './home.page';
-import { RegHomeDetailPage } from './home-detail.page';
+import { RegRecordsPage } from './records.page';
+import { RegRecordDetailPage } from './record-detail.page';
 import { RegConfigurationPage } from './configuration.page';
 import { RegAboutPage } from './about.page';
 import { RegCounterPage } from './counter.page';
 
-export { RegHomePage, RegHomeDetailPage, RegConfigurationPage, RegAboutPage, RegCounterPage };
+export { RegRecordsPage, RegRecordDetailPage, RegConfigurationPage, RegAboutPage, RegCounterPage };

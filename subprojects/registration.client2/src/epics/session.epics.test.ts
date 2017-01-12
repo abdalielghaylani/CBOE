@@ -9,15 +9,15 @@ import {
   ResponseOptions,
   Response
 } from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
-import {SessionActions} from '../actions/session.actions';
-import {SessionEpics} from './session.epics';
+import { SessionActions } from '../actions/session.actions';
+import { SessionEpics } from './session.epics';
 import {
   MockBackend,
   MockConnection
 } from '@angular/http/testing/mock_backend';
-import {configureTests} from '../tests.configure';
+import { configureTests } from '../tests.configure';
 
 describe('SessionEpics', () => {
   beforeEach(done => {
@@ -48,31 +48,31 @@ describe('SessionEpics', () => {
           (connection: MockConnection) => {
             connection.mockRespond(new Response(
               new ResponseOptions({
-                  body: {
-                    meta: {
-                      token: '123',
-                      user: {
-                        fullName: 'John Doe'
-                      }
+                body: {
+                  meta: {
+                    token: '123',
+                    user: {
+                      fullName: 'John Doe'
                     }
                   }
                 }
+              }
               )
             ));
           });
 
-        const action$ = Observable.of({type: SessionActions.LOGIN_USER});
-        sessionEpics.login(action$)
+        const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
+        sessionEpics.handleLoginUser(action$)
           .subscribe(
-            action => expect(action).toEqual({
-              type: SessionActions.LOGIN_USER_SUCCESS,
-              payload: {
-                token: '123',
-                user: {
-                  fullName: 'John Doe'
-                }
+          action => expect(action).toEqual({
+            type: SessionActions.LOGIN_USER_SUCCESS,
+            payload: {
+              token: '123',
+              user: {
+                fullName: 'John Doe'
               }
-            })
+            }
+          })
           );
       })));
 
@@ -87,11 +87,11 @@ describe('SessionEpics', () => {
           connection.mockError(new Error('some error'));
         });
 
-      const action$ = Observable.of({type: SessionActions.LOGIN_USER});
-      sessionEpics.login(action$)
+      const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
+      sessionEpics.handleLoginUser(action$)
         .subscribe(
-          action => expect(action).toEqual({
-            type: SessionActions.LOGIN_USER_ERROR
-          }));
+        action => expect(action).toEqual({
+          type: SessionActions.LOGIN_USER_ERROR
+        }));
     })));
 });

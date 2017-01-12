@@ -3,7 +3,7 @@ import { RegButton } from './button';
 import { RegConfiguration } from './configuration';
 import { RegContainer } from './container';
 import { RegCounter } from './counter';
-import { RegHome, RegHomeDetail } from './home';
+import { RegRecords, RegRecordDetail } from './registry';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
 import { RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem } from './navigator';
@@ -30,8 +30,8 @@ export {
   RegForm,
   RegFormError,
   RegFormGroup,
-  RegHome,
-  RegHomeDetail,
+  RegRecords,
+  RegRecordDetail,
   RegLabel,
   RegModal,
   RegModalContent,

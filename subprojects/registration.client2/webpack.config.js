@@ -76,7 +76,7 @@ const prodConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
-    publicPath: '/',
+    publicPath: '',
     sourceMapFilename: '[name].[chunkhash].js.map',
     chunkFilename: '[id].chunk.js',
   },

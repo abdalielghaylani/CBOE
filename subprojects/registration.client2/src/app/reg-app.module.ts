@@ -9,13 +9,13 @@ import { RegApp } from './reg-app';
 import { CounterActions, GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
 import { ConfigurationEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
-  RegHomePage,
-  RegHomeDetailPage,
+  RegRecordsPage,
+  RegRecordDetailPage,
   RegConfigurationPage,
   RegAboutPage,
   RegCounterPage
 } from '../pages';
-import { RegConfiguration, RegCounter, RegHome, RegHomeDetail } from '../components';
+import { RegConfiguration, RegCounter, RegRecords, RegRecordDetail } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -40,10 +40,10 @@ import { DxDataGridModule } from 'devextreme-angular';
   ],
   declarations: [
     RegApp,
-    RegHomePage,
-    RegHomeDetailPage,
-    RegHome,
-    RegHomeDetail,
+    RegRecordsPage,
+    RegRecordDetailPage,
+    RegRecords,
+    RegRecordDetail,
     RegConfigurationPage,
     RegConfiguration,
     RegAboutPage,

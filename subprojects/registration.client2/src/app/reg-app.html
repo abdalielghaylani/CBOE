@@ -7,7 +7,13 @@
   </reg-navigator-header>
   <reg-navigator-items>
     <li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['home']"><i class="fa fa-home fa-lg maroon"></i> Home</a>
+      <a [routerLink]="['records']"><i class="fa fa-table fa-lg maroon"></i> Review Temporary</a>
+    </li>
+    <li reg-navigator-item *ngIf="loggedIn$ | async">
+      <a [routerLink]="['records']"><i class="fa fa-flask fa-lg maroon"></i> Submit New Compound</a>
+    </li>
+    <li reg-navigator-item *ngIf="loggedIn$ | async">
+      <a [routerLink]="['records']"><i class="fa fa-search fa-lg maroon"></i> Search Registry</a>
     </li>
     <li class="dropdown" reg-navigator-item *ngIf="loggedIn$ | async">
       <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
@@ -25,9 +31,9 @@
         <li><a [routerLink]="['configuration/VW_SITES']"><i class="fa fa-table fa-lg maroon"></i> Sites</a></li>
       </ul>
     </li>
-    <li reg-navigator-item *ngIf="loggedIn$ | async">
+    <!--li reg-navigator-item *ngIf="loggedIn$ | async">
       <a href="/api/browser" class="text-decoration-none" target="API Browser"><i class="fa fa-wrench fa-lg maroon"></i> API Browser</a>
-    </li>
+    </li-->
     <li reg-navigator-item *ngIf="loggedIn$ | async">
       <a [routerLink]="['profile']"><span class="fa fa-user-circle-o fa-lg maroon"></span> {{ fullName$ | async }}</a>
     </li>

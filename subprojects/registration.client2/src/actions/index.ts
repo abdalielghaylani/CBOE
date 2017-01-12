@@ -2,8 +2,8 @@ import { Action } from 'redux';
 import { ConfigurationActions } from './configuration.actions';
 import { CounterActions } from './counter.actions';
 import { GridActions, IGridBaseAction, IGridPullAction, IGridRecordAction } from './grid.actions';
-import { HomeActions } from './home.actions';
-import { HomeDetailActions } from './home-detail.actions';
+import { RecordsActions } from './records.actions';
+import { RecordDetailActions } from './record-detail.actions';
 import { SessionActions } from './session.actions';
 
 export interface IPayloadAction extends Action {
@@ -15,6 +15,6 @@ export {
   ConfigurationActions,
   CounterActions,
   GridActions, IGridBaseAction, IGridPullAction, IGridRecordAction,
-  HomeActions, HomeDetailActions,
+  RecordsActions, RecordDetailActions,
   SessionActions
 };
