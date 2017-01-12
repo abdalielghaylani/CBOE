@@ -17,9 +17,9 @@ export class ConfigurationEpics {
     return action$.filter(({ type }) => type === ConfigurationActions.OPEN_TABLE)
       .mergeMap<IPayloadAction>(({ payload }) => {
         let tableId: string = payload.tableId;
-        return this.http.get(`${BASE_URL}/` + tableId)
-          .map(result => ConfigurationActions.openTableSuccessAction(result.json()._embedded[tableId]))
-          .catch(error => Observable.of(ConfigurationActions.openTableErrorAction()));
+        return this.http.get(`${BASE_URL}/CustomTables/` + tableId)
+          .map(result => ConfigurationActions.openTableSuccessAction(result.json()))
+          .catch(error => { return Observable.of(ConfigurationActions.openTableErrorAction()); });
       });
   }
 }

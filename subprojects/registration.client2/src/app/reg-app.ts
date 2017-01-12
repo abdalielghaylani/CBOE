@@ -55,6 +55,7 @@ export class RegApp {
 
     middleware.push(createEpicMiddleware(combineEpics(
       sessionEpics.handleLoginUser,
+      sessionEpics.handleLoginUserSuccess,
       configEpics.handleOpenTable
     )));
 
