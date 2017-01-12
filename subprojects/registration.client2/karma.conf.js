@@ -81,13 +81,13 @@ module.exports = (config) => {
       },
     },
 
-    remapIstanbulReporter: {
-      src: './coverage/chrome/coverage-final.json',
-      reports: {
-        html: 'coverage',
-      },
-      timeoutNotCreated: 5000,
-    },
+    // remapIstanbulReporter: {
+    //   src: './coverage/chrome/coverage-final.json',
+    //   reports: {
+    //     html: 'coverage',
+    //   },
+    //   timeoutNotCreated: 5000,
+    // },
 
     port: 9999,
     colors: true,
