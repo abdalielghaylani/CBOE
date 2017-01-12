@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import {
   RegRecordsPage,
   RegRecordDetailPage,
+  RegTempRecordsPage,
   RegConfigurationPage,
   RegCounterPage,
   RegAboutPage
@@ -11,21 +12,18 @@ import {
 export const REG_APP_ROUTES: Routes = [{
   pathMatch: 'full',
   path: '',
-  redirectTo: 'records'
+  redirectTo: 'temp-records'
+}, {
+  path: 'temp-records',
+  component: RegTempRecordsPage
+}, {
+  path: 'temp-records/:id',
+  component: RegRecordDetailPage
 }, {
   path: 'records',
   component: RegRecordsPage
 }, {
-  path: 'review',
-  component: RegRecordsPage
-}, {
-  path: 'review/:id',
-  component: RegRecordsPage
-}, {
-  path: 'registry',
-  component: RegRecordsPage
-}, {
-  path: 'registry/:id',
+  path: 'records/:id',
   component: RegRecordDetailPage
 }, {
   path: 'configuration/:tableId',

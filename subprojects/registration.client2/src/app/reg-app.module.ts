@@ -11,11 +11,12 @@ import { ConfigurationEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
   RegRecordsPage,
   RegRecordDetailPage,
+  RegTempRecordsPage,
   RegConfigurationPage,
   RegAboutPage,
   RegCounterPage
 } from '../pages';
-import { RegConfiguration, RegCounter, RegRecords, RegRecordDetail } from '../components';
+import { RegConfiguration, RegCounter, RegRecords, RegRecordDetail, RegTempRecords } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -42,8 +43,10 @@ import { DxDataGridModule } from 'devextreme-angular';
     RegApp,
     RegRecordsPage,
     RegRecordDetailPage,
+    RegTempRecordsPage,
     RegRecords,
     RegRecordDetail,
+    RegTempRecords,
     RegConfigurationPage,
     RegConfiguration,
     RegAboutPage,
