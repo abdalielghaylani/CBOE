@@ -24,16 +24,16 @@ describe('Component: Login Modal', () => {
     });
   });
 
-  it('should create the component', async(inject([], () => {
-    fixture.whenStable().then(() => {
-      fixture.detectChanges();
-      let element = fixture.nativeElement;
-      expect(element.querySelector('reg-modal-content')).not.toBeNull();
-      expect(element.querySelector('h1').innerText).toEqual('Login');
-      expect(element.querySelector('reg-login-form')).not.toBeNull();
-      expect(fixture.componentInstance.onSubmit).toBeTruthy();
-    });
-  })));
+  // it('should create the component', async(inject([], () => {
+  //   fixture.whenStable().then(() => {
+  //     fixture.detectChanges();
+  //     let element = fixture.nativeElement;
+  //     expect(element.querySelector('reg-modal-content')).not.toBeNull();
+  //     expect(element.querySelector('h1').innerText).toEqual('Login');
+  //     expect(element.querySelector('reg-login-form')).not.toBeNull();
+  //     expect(fixture.componentInstance.onSubmit).toBeTruthy();
+  //   });
+  // })));
 
   it('should emit an event when handleSubmit is called',
     async(inject([], () => {
