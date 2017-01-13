@@ -7,7 +7,7 @@ import { routing, appRoutingProviders } from './reg-app.routing';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegApp } from './reg-app';
 import { CounterActions, GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
-import { ConfigurationEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
+import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
   RegRecordsPage,
   RegRecordDetailPage,

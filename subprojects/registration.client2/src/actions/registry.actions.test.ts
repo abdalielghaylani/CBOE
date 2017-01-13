@@ -1,5 +1,5 @@
 import { NgRedux } from 'ng2-redux';
-import { RecordsActions } from './records.actions';
+import { RegistryActions } from './registry.actions';
 import { } from 'jasmine';
 
 class MockRedux extends NgRedux<any> {
@@ -10,17 +10,17 @@ class MockRedux extends NgRedux<any> {
 }
 
 describe('counter action creators', () => {
-  let actions: RecordsActions;
+  let actions: RegistryActions;
   let mockRedux: NgRedux<any>;
 
   beforeEach(() => {
     mockRedux = new MockRedux();
-    actions = new RecordsActions(mockRedux);
+    actions = new RegistryActions(mockRedux);
   });
 
   it('create should dispatch OPEN_CREATE action', () => {
     const expectedAction = {
-      type: RecordsActions.OPEN_CREATE
+      type: RegistryActions.OPEN_CREATE
     };
 
     spyOn(mockRedux, 'dispatch');
@@ -32,7 +32,7 @@ describe('counter action creators', () => {
 
   it('edit should dispatch OPEN_EDIT action', () => {
     const expectedAction = {
-      type: RecordsActions.OPEN_EDIT
+      type: RegistryActions.OPEN_EDIT
     };
 
     spyOn(mockRedux, 'dispatch');
@@ -44,7 +44,7 @@ describe('counter action creators', () => {
 
   it('search should dispatch SEARCH action', () => {
     const expectedAction = {
-      type: RecordsActions.SEARCH
+      type: RegistryActions.SEARCH
     };
 
     spyOn(mockRedux, 'dispatch');

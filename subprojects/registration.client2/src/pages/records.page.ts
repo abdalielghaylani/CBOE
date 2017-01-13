@@ -1,18 +1,19 @@
 import { Component, Inject, ApplicationRef, Input } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
-import { RecordsActions } from '../actions';
+import { RegistryActions } from '../actions';
 import { RegContainer, RegRecords } from '../components';
+import { IRegistry } from '../store';
 
 @Component({
   selector: 'records-page',
-  providers: [RecordsActions],
+  providers: [RegistryActions],
   template: `
     <reg-container testid="records">
       <reg-records
-        [temporary]="temporary"
+        [registry]="boundRecords$ | async"
         (create)="actions.create()"
         (edit)="actions.edit()"
         (search)="actions.search()">
@@ -21,9 +22,11 @@ import { RegContainer, RegRecords } from '../components';
   `
 })
 export class RegRecordsPage {
-  @Input() temporary: boolean = false;
+  @select(s => s.records) private records$: Observable<IRegistry>;
+  @select(s => s.tempRecords) private tempRecords$: Observable<IRegistry>;
+  private boundRecords$: Observable<IRegistry>;
 
-  constructor(private router: Router, private actions: RecordsActions) {
-    this.temporary = (router.url.match(/.*temp-records.*/g) || []).length > 0;
+  constructor(private router: Router, private actions: RegistryActions) {
+    this.boundRecords$ = (router.url.match(/.*temp-records.*/g) || []).length > 0 ? this.tempRecords$ : this.records$;
   }
 }

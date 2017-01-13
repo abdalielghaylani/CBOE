@@ -7,9 +7,9 @@ import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
 import { IAppState, ISession, rootReducer } from '../store';
 import { SessionActions } from '../actions/session.actions';
-import { ConfigurationEpics, SessionEpics } from '../epics';
+import { ConfigurationEpics, RegistryEpics, SessionEpics } from '../epics';
 import { RegAboutPage, RegCounterPage } from '../pages';
-import { middleware, enhancers, reimmutify } from '../store';
+import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
 
 import {
   RegButton,
@@ -50,18 +50,23 @@ export class RegApp {
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
     private actions: SessionActions,
-    private sessionEpics: SessionEpics,
-    private configEpics: ConfigurationEpics) {
+    private configEpics: ConfigurationEpics,
+    private registryEpics: RegistryEpics,
+    private sessionEpics: SessionEpics) {
 
     middleware.push(createEpicMiddleware(combineEpics(
       sessionEpics.handleLoginUser,
       sessionEpics.handleLoginUserSuccess,
-      configEpics.handleOpenTable
+      configEpics.handleOpenTable,
+      registryEpics.handleOpenRecords
     )));
 
     ngRedux.configureStore(
       rootReducer,
-      {},
+      {
+        records: RegistryFactory({ temporary: false, rows: [] }),
+        tempRecords: RegistryFactory({ temporary: true, rows: [] })
+      },
       middleware,
       devTools.isEnabled() ?
         [...enhancers, devTools.enhancer()] :

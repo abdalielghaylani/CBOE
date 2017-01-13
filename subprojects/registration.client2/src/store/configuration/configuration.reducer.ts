@@ -7,7 +7,7 @@ import { DxDataGridModule, DxDataGridComponent } from 'devextreme-angular';
 
 export function configurationReducer(
   state: IConfigurationRecord = INITIAL_STATE,
-  action: ReduxActions.Action<{ tableId: any; }>
+  action: ReduxActions.Action<any>
 ): IConfigurationRecord {
 
   switch (action.type) {
@@ -15,7 +15,7 @@ export function configurationReducer(
       return state.update('customTables', () => action.payload);
     
     case ConfigurationActions.OPEN_TABLE:
-      return state.update('tableId', () => action.payload.tableId);
+      return state.update('tableId', () => (<ReduxActions.Action<{ tableId: any; }>>action).payload.tableId);
 
     case ConfigurationActions.OPEN_TABLE_SUCCESS:
       return state.update('rows', () => action.payload);

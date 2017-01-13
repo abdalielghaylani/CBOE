@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { ConfigurationActions } from './configuration.actions';
 import { CounterActions } from './counter.actions';
 import { GridActions, IGridBaseAction, IGridPullAction, IGridRecordAction } from './grid.actions';
-import { RecordsActions } from './records.actions';
+import { RegistryActions } from './registry.actions';
 import { RecordDetailActions } from './record-detail.actions';
 import { SessionActions } from './session.actions';
 
@@ -15,6 +15,6 @@ export {
   ConfigurationActions,
   CounterActions,
   GridActions, IGridBaseAction, IGridPullAction, IGridRecordAction,
-  RecordsActions, RecordDetailActions,
+  RegistryActions, RecordDetailActions,
   SessionActions
 };

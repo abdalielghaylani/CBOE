@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { IConfiguration } from '../../store/configuration';
+import { IConfiguration } from '../../store';
 import * as _ from 'lodash';
 
 @Component({
