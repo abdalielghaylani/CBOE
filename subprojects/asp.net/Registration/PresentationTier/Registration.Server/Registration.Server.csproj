@@ -907,6 +907,7 @@
     <Content Include="Forms\BulkRegisterMarked\ContentArea\Web.config" />
     <None Include="Doc\RegistrationServices.shfbproj" />
     <Content Include="packages.config" />
+    <None Include="Properties\PublishProfiles\Default Profile.pubxml" />
     <None Include="Registration.snk" />
     <EmbeddedResource Include="Webservices\RegistryRecord.xsd">
       <SubType>Designer</SubType>
