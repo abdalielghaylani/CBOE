@@ -12,14 +12,18 @@ import * as _ from 'lodash';
 
       <dx-data-grid [dataSource]=this.configuration.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
-        (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
-        [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'
+        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true,
         (onContentReady)='onContentReady($event)'
-        (onCellPrepared)='onCellPrepared($event)'>
+        (onCellPrepared)='onCellPrepared($event)'
+        (onInitNewRow)='onInitNewRow($event)'
+        (onEditingStart)='onEditingStart($event)'
+        (onRowRemoving)='onRowRemoving($event)'>
+          <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+          </dxo-editing>
       </dx-data-grid>
     </div>
   `,
+  styles: [require('./configuration.component.css')]
 })
 export class RegConfiguration implements OnInit, OnDestroy {
   @Input() configuration: IConfiguration;
@@ -58,6 +62,15 @@ export class RegConfiguration implements OnInit, OnDestroy {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       }
     }
+  }
+
+  onInitNewRow(e) {
+  }
+
+  onEditingStart(e) {
+  }
+
+  onRowRemoving(e) {
   }
 
   tableName() {
