@@ -25,7 +25,7 @@ describe('registry reducer', () => {
   });
 
   it('should send data on OPEN_RECORDS_SUCCESS', () => {
-    let data = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }]
+    let data = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
     const previousValue = initState.temporary;
     const nextState = registryReducer(
       initState,

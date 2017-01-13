@@ -6,3 +6,23 @@
   height: 400px;
   width: 100%;
 }
+
+/deep/ .dx-command-edit .dx-link {
+  font-size: 18px;
+  margin: 0 3px;
+  text-decoration: none;
+}
+
+/deep/ .dx-command-edit .dx-link:hover {
+  opacity: 0.8;
+}
+
+/deep/ #select-position {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/deep/ .select-position span {
+  margin-right: 10px;
+  vertical-align: middle;
+}
