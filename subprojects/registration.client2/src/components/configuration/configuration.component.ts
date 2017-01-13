@@ -12,12 +12,18 @@ import * as _ from 'lodash';
 
       <dx-data-grid [dataSource]=this.configuration.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
-        (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
-        [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'>
+        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true,
+        (onContentReady)='onContentReady($event)'
+        (onCellPrepared)='onCellPrepared($event)'
+        (onInitNewRow)='onInitNewRow($event)'
+        (onEditingStart)='onEditingStart($event)'
+        (onRowRemoving)='onRowRemoving($event)'>
+          <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+          </dxo-editing>
       </dx-data-grid>
     </div>
   `,
+  styles: [require('./configuration.component.css')]
 })
 export class RegConfiguration implements OnInit, OnDestroy {
   @Input() configuration: IConfiguration;
@@ -34,6 +40,37 @@ export class RegConfiguration implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  onContentReady(e) {
+    e.component.columnOption('command:edit', {
+      visibleIndex: -1,
+      width: 80
+    });
+  }
+
+  onCellPrepared(e) {
+    if (e.rowType === 'data' && e.column.command === 'edit') {
+      let isEditing = e.row.isEditing;
+      let $links = e.cellElement.find('.dx-link');
+      $links.text('');
+      if (isEditing) {
+        $links.filter('.dx-link-save').addClass('dx-icon-save');
+        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
+      } else {
+        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+      }
+    }
+  }
+
+  onInitNewRow(e) {
+  }
+
+  onEditingStart(e) {
+  }
+
+  onRowRemoving(e) {
   }
 
   tableName() {

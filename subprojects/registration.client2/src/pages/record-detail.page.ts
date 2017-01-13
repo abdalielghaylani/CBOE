@@ -11,7 +11,6 @@ import { IRegistry, IConfiguration } from '../store';
   selector: 'record-detail-page',
   providers: [ RecordDetailActions ],
   template: `
-  <div>==={{ (this.records$ | async).name }}===</div>
     <reg-container testid="records">
       <reg-record-detail
         [temporary]="temporary"
