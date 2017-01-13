@@ -1,6 +1,8 @@
 ﻿using System.Web.Http;
 using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -33,10 +35,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #endregion // Tempoary Records
 
         [Route("api/RegistryRecords/StructureImage/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
-        public static object GetStructureImage(int compoundId, int height = 300, int width = 300, int resolution = 300)
+        public object GetStructureImage(int compoundId, int height = 300, int width = 300, int resolution = 300)
         {
-            object[] args = { string.Empty, "image/png", 300d, 300d, "300" };
-            return typeof(COEChemDrawConverterUtils).GetMethod("ConvertStructure", System.Reflection.BindingFlags.Static).Invoke(null, args);
+            var queryParams = new Dictionary<string, object>();
+            queryParams.Add(":regid", compoundId);
+            var structureData = (string)ExtractData("SELECT structureaggregation data FROM vw_mixture_regnumber WHERE regid=:regid", queryParams)[0]["DATA"];
+            var args = new object[] { structureData, "image/png", 300d, 300d, "300" };
+            return typeof(COEChemDrawConverterUtils).GetMethod("GetStructureResource", BindingFlags.Static | BindingFlags.NonPublic, null,
+                new System.Type[] { typeof(string), typeof(string), typeof(double), typeof(double), typeof(string) }, null).Invoke(null, args);
         }
     }
 }
