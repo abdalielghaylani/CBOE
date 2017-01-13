@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, APP_BASE_HREF, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
 import { NgReduxRouter } from 'ng2-redux-router';
@@ -57,7 +57,9 @@ import { DxDataGridModule } from 'devextreme-angular';
     DevToolsExtension,
     FormBuilder,
     NgReduxRouter,
-    appRoutingProviders
+    appRoutingProviders,
+    { provide: APP_BASE_HREF, useValue: '/Registration.Server' },
+    { provide: LocationStrategy, useClass: PathLocationStrategy }
   ]
   .concat(ACTION_PROVIDERS)
   .concat(EPIC_PROVIDERS)
