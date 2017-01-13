@@ -39,6 +39,10 @@ export class RegRecords implements OnInit {
 
   constructor(private router: Router, private registryActions: RegistryActions) { }
 
+  ngOnInit() {
+    this.registryActions.openRecords(this.registry.temporary);
+  }
+
   onContentReady(e) {
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
@@ -59,10 +63,6 @@ export class RegRecords implements OnInit {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       }
     }
-  }
-
-  ngOnInit() {
-    this.registryActions.openRecords(this.registry.temporary);
   }
 
   addRecord() {
