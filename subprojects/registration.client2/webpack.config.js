@@ -1,5 +1,6 @@
 'use strict';
 
+const basePath = '/Registration.Server/';
 const path = require('path');
 const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
@@ -23,7 +24,7 @@ const devConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '/',
+    publicPath: basePath,
     sourceMapFilename: '[name].js.map',
     chunkFilename: '[id].chunk.js',
   },
@@ -76,7 +77,7 @@ const prodConfig = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[chunkhash].js',
-    publicPath: '',
+    publicPath: basePath,
     sourceMapFilename: '[name].[chunkhash].js.map',
     chunkFilename: '[id].chunk.js',
   },
@@ -91,9 +92,12 @@ const baseConfig = {
   plugins: plugins,
 
   devServer: {
-    historyApiFallback: { index: '/' },
+    historyApiFallback: { index: basePath },
     proxy: Object.assign({}, proxy(), {
-      '/api': 'http://localhost/Registration.Server',
+      '/Registration.Server/api': {
+        target: 'http://localhost/Registration.Server/api',
+        pathRewrite: { '^/Registration.Server/api': '' },
+      },
     }),
   },
 

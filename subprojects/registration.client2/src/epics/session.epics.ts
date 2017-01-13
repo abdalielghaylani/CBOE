@@ -7,7 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 
-const BASE_URL = 'api';
+const BASE_URL = '/Registration.Server/api';
 
 @Injectable()
 export class SessionEpics {
