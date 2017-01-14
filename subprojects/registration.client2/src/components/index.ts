@@ -3,11 +3,12 @@ import { RegButton } from './button';
 import { RegConfiguration } from './configuration';
 import { RegContainer } from './container';
 import { RegCounter } from './counter';
-import { RegRecords, RegRecordDetail } from './registry';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
 import { RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem } from './navigator';
 import { RegModal, RegModalContent } from './modal';
+import { RegRecords, RegRecordDetail } from './registry';
+import { RegStructureImage } from './structure-image';
 import {
   RegForm,
   RegFormError,
@@ -32,6 +33,7 @@ export {
   RegFormGroup,
   RegRecords,
   RegRecordDetail,
+  RegStructureImage,
   RegLabel,
   RegModal,
   RegModalContent,

@@ -15,7 +15,7 @@ import {
   RegAboutPage,
   RegCounterPage
 } from '../pages';
-import { RegConfiguration, RegCounter, RegRecords, RegRecordDetail } from '../components';
+import { RegConfiguration, RegCounter, RegRecords, RegRecordDetail, RegStructureImage } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -44,6 +44,7 @@ import { DxDataGridModule } from 'devextreme-angular';
     RegRecordDetailPage,
     RegRecords,
     RegRecordDetail,
+    RegStructureImage,
     RegConfigurationPage,
     RegConfiguration,
     RegAboutPage,

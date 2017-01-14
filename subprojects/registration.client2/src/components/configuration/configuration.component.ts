@@ -12,7 +12,8 @@ import * as _ from 'lodash';
 
       <dx-data-grid [dataSource]=this.configuration.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true,
+        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
+        rowAlternationEnabled=true,
         (onContentReady)='onContentReady($event)'
         (onCellPrepared)='onCellPrepared($event)'
         (onInitNewRow)='onInitNewRow($event)'
@@ -20,6 +21,9 @@ import * as _ from 'lodash';
         (onRowRemoving)='onRowRemoving($event)'>
           <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
           </dxo-editing>
+          <div *dxTemplate="let data of 'cellTemplate'">
+            <reg-structure-image [src]="data.value"></reg-structure-image>
+          </div>
       </dx-data-grid>
     </div>
   `,
@@ -43,6 +47,11 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   onContentReady(e) {
+    e.component.columnOption(0, 'visible', false);
+    e.component.columnOption('STRUCTURE', {
+      width: 150,
+      cellTemplate: 'cellTemplate'
+    });
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80

@@ -237,6 +237,7 @@
     <Compile Include="Code\AllowedActions.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\RegControllerBase.cs" />
+    <Compile Include="Controllers\StructureImageController.cs" />
     <Compile Include="Controllers\RegistryRecordsController.cs" />
     <Compile Include="Controls\COECustomFileUpload.cs" />
     <Compile Include="Controls\COENavigationPanelControlEventArgs.cs" />

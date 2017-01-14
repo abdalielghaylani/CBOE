@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   template: `
   <div
     [attr.data-testid]="testid"
-    class="container-fluid">
+    class="container-fluid pb4">
     <ng-content></ng-content>
   <div>
   `

@@ -29,7 +29,7 @@ describe('Component: Container', () => {
       fixture.whenStable().then(() => {
         const compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector('div').getAttribute('class'))
-          .toBe('container-fluid');
+          .toBe('container-fluid pb4');
       });
     })
   ));
