@@ -58,9 +58,7 @@ import { DxDataGridModule } from 'devextreme-angular';
     DevToolsExtension,
     FormBuilder,
     NgReduxRouter,
-    appRoutingProviders,
-    { provide: APP_BASE_HREF, useValue: '/Registration.Server' },
-    { provide: LocationStrategy, useClass: PathLocationStrategy }
+    appRoutingProviders
   ]
   .concat(ACTION_PROVIDERS)
   .concat(EPIC_PROVIDERS)

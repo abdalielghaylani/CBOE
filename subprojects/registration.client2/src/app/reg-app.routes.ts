@@ -11,21 +11,21 @@ import {
 export const REG_APP_ROUTES: Routes = [{
   pathMatch: 'full',
   path: '',
-  redirectTo: 'temp-records'
+  redirectTo: '/records/temp'
 }, {
-  path: 'temp-records',
+  path: 'records/temp',
   component: RegRecordsPage
 }, {
   path: 'records',
   component: RegRecordsPage
 }, {
-  path: 'new-record',
-  component: RegRecordDetailPage
-}, {
-  path: 'temp-records/:id',
+  path: 'records/new',
   component: RegRecordDetailPage
 }, {
   path: 'records/:id',
+  component: RegRecordDetailPage
+}, {
+  path: 'records/temp/:id',
   component: RegRecordDetailPage
 }, {
   path: 'configuration/:tableId',

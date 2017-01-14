@@ -27,6 +27,6 @@ export class RegRecordsPage {
   private boundRecords$: Observable<IRegistry>;
 
   constructor(private router: Router, private actions: RegistryActions) {
-    this.boundRecords$ = (router.url.match(/.*temp-records.*/g) || []).length > 0 ? this.tempRecords$ : this.records$;
+    this.boundRecords$ = (router.url.match(/.*\/temp.*/g) || []).length > 0 ? this.tempRecords$ : this.records$;
   }
 }

@@ -21,11 +21,11 @@ import { IRegistry } from '../../store';
       <dx-data-grid [dataSource]=this.registry.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true
-        (onRowRemoving)='deleteRecord($event)'
-        (onInitNewRow)='addRecord()' 
-        (onEditingStart)='editRecord($event)' 
         (onContentReady)='onContentReady($event)'
-        (onCellPrepared)='onCellPrepared($event)'>
+        (onCellPrepared)='onCellPrepared($event)'
+        (onInitNewRow)='onInitNewRow($event)'
+        (onEditingStart)='onEditingStart($event)'
+        (onRowRemoving)='onRowRemoving($event)'>
         <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="registry.temporary" [allowAdding]="true"></dxo-editing>
       </dx-data-grid>
     </div>
@@ -65,7 +65,18 @@ export class RegRecords implements OnInit {
     }
   }
 
-  addRecord() {
-    this.router.navigate(['new-record']);
+  onInitNewRow(e) {
+    this.router.navigate(['records/new']);
+    e.cancel = true;
+  }
+
+  onEditingStart(e) {
+    let path = 'records' + (this.registry.temporary ? '/temp' : '');
+    let id = e.data[Object.keys(e.data)[0]];
+    this.router.navigate([path, id]);
+    e.cancel = true;
+  }
+
+  onRowRemoving(e) {
   }
 };
