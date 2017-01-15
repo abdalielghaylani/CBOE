@@ -13,7 +13,7 @@ const BASE_URL = '/Registration.Server/api';
 @Component({
   selector: 'reg-structure-image',
   template: `
-   <img [attr.data-testid]="testid" [src]="srcUrl$ | async" class='structure-image' />
+   <img src="{{ srcUrl$ | async }}" class='structure-image' />
   `,
   styles: [require('./structure-image.component.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,7 +29,7 @@ export class RegStructureImage {
 
   private srcUrl$: Observable<string>;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   ngOnInit() {
     if (this.src) {
