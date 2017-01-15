@@ -11,11 +11,11 @@ export function registryReducer(
 ): IRegistryRecord {
 
   switch (action.type) {
+    case RegistryActions.OPEN_RECORDS:
+      return state.update('rows', () => []);
+
     case RegistryActions.OPEN_RECORDS_SUCCESS:
       return state.update('rows', () => action.payload);
-
-    case RegistryActions.OPEN_RECORDS_ERROR:
-      return state.update('rows', () => []);
 
     default:
       return state;

@@ -15,13 +15,11 @@ export function configurationReducer(
       return state.update('customTables', () => action.payload);
     
     case ConfigurationActions.OPEN_TABLE:
-      return state.update('tableId', () => (<ReduxActions.Action<{ tableId: any; }>>action).payload.tableId);
+      return state.update('tableId', () => (<ReduxActions.Action<{ tableId: any; }>>action).payload.tableId)
+        .update('rows', () => []);
 
     case ConfigurationActions.OPEN_TABLE_SUCCESS:
       return state.update('rows', () => action.payload);
-
-    case ConfigurationActions.OPEN_TABLE_ERROR:
-      return state.update('rows', () => []);
 
     default:
       return state;

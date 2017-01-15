@@ -11,7 +11,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #region Permanent Records
         public JArray Get()
         {
-            return ExtractData("SELECT regid id, name, created, modified, personcreated as creator, 'api/RegistryRecords/StructureImage/' || regid || '/300/300/300' as structureuri, regnumber, statusid as status, approved FROM vw_mixture_regnumber");
+            return ExtractData("SELECT regid id, name, created, modified, personcreated as creator, 'record.' || regid as structure, regnumber, statusid as status, approved FROM vw_mixture_regnumber");
         }
 
         public dynamic Get(int id)
@@ -24,7 +24,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/RegistryRecords/Temp")]
         public JArray GetTemp()
         {
-            return ExtractData("SELECT tempcompoundid id, tempbatchid batchid, formulaweight MW, molecularformula MF, datecreated created, datelastmodified modified, personcreated as creator, 'api/RegistryRecords/StructureImage/' || tempcompoundid || '/300/300/300' as structureUri FROM vw_temporarycompound");
+            return ExtractData("SELECT tempcompoundid id, tempbatchid batchid, formulaweight MW, molecularformula MF, datecreated created, datelastmodified modified, personcreated as creator, 'temprecord.' || tempcompoundid as structure FROM vw_temporarycompound");
         }
 
         [Route("api/RegistryRecords/Temp/{id}")]
@@ -33,16 +33,5 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return null;
         }
         #endregion // Tempoary Records
-
-        [Route("api/RegistryRecords/StructureImage/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
-        public object GetStructureImage(int compoundId, int height = 300, int width = 300, int resolution = 300)
-        {
-            var queryParams = new Dictionary<string, object>();
-            queryParams.Add(":regid", compoundId);
-            var structureData = (string)ExtractData("SELECT structureaggregation data FROM vw_mixture_regnumber WHERE regid=:regid", queryParams)[0]["DATA"];
-            var args = new object[] { structureData, "image/png", 300d, 300d, "300" };
-            return typeof(COEChemDrawConverterUtils).GetMethod("GetStructureResource", BindingFlags.Static | BindingFlags.NonPublic, null,
-                new System.Type[] { typeof(string), typeof(string), typeof(double), typeof(double), typeof(string) }, null).Invoke(null, args);
-        }
     }
 }

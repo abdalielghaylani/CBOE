@@ -19,11 +19,11 @@ import * as _ from 'lodash';
         (onInitNewRow)='onInitNewRow($event)'
         (onEditingStart)='onEditingStart($event)'
         (onRowRemoving)='onRowRemoving($event)'>
-          <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
-          </dxo-editing>
-          <div *dxTemplate="let data of 'cellTemplate'">
-            <reg-structure-image [src]="data.value"></reg-structure-image>
-          </div>
+        <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+        </dxo-editing>
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <reg-structure-image [src]="data.value"></reg-structure-image>
+        </div>
       </dx-data-grid>
     </div>
   `,

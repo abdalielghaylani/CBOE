@@ -27,6 +27,9 @@ import { IRegistry } from '../../store';
         (onEditingStart)='onEditingStart($event)'
         (onRowRemoving)='onRowRemoving($event)'>
         <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="registry.temporary" [allowAdding]="true"></dxo-editing>
+        <div *dxTemplate="let data of 'cellTemplate'">
+          <reg-structure-image [src]="data.value"></reg-structure-image>
+        </div>
       </dx-data-grid>
     </div>
   `,
@@ -44,6 +47,14 @@ export class RegRecords implements OnInit {
   }
 
   onContentReady(e) {
+    e.component.columnOption('command:edit', {
+      visibleIndex: -1,
+      width: 80
+    });
+    e.component.columnOption('STRUCTURE', {
+      width: 150,
+      cellTemplate: 'cellTemplate'
+    });
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80

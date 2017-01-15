@@ -15,11 +15,12 @@ describe('configuration reducer', () => {
     expect(Iterable.isIterable(initState)).toBe(true);
   });
 
-  it('should open table  on OPEN_TABLE', () => {
+  it('should update table and clear rows on OPEN_TABLE', () => {
     const previousValue = initState.tableId;
     const nextState = configurationReducer(
       initState,
       { type: ConfigurationActions.OPEN_TABLE, payload: { tableId: 'table' } });
     expect(nextState.tableId).toEqual('table');
+    expect(nextState.rows).toEqual([]);
   });
 });
