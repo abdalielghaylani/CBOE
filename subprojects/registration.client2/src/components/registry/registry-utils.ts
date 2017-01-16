@@ -4,9 +4,25 @@ export function getDocument(data: string): Document {
   return new DOMParser().parseFromString(data);
 }
 
-export function getDocumentElement(data: string) {
-  let output = this.getDocument(data);
-  return new DOMParser().parseFromString(output.documentElement.firstChild.textContent).documentElement;
+function fixStructureElement(element: Element) {
+  if (element.textContent.startsWith('VmpD')) {
+    element.textContent = element.textContent.replace(/[\r\n]/g, '');
+  }
+}
+
+function fixStructureElements(elements: NodeListOf<Element>) {
+  for (let i = 0; i < elements.length; ++i) {
+    fixStructureElement(elements.item(i));
+  }
+}
+export function fixStructureData(data: Document) {
+  fixStructureElements(data.getElementsByTagName('Structure'));
+  fixStructureElements(data.getElementsByTagName('StructureAggregation'));
+  fixStructureElements(data.getElementsByTagName('NormalizedStructure'));
+}
+
+export function serializeData(data: Document): string {
+  return new XMLSerializer().serializeToString(data.documentElement);
 }
 
 export function getElementValue(element: Element, path: string): string {

@@ -15,8 +15,7 @@ import { IRegistry } from '../store';
       <reg-record-detail
         [temporary]="(registry$ | async).temporary"
         [id]="(registry$ | async).currentId"
-        [data]="(registry$ | async).data"
-        (submit)="actions.submit()">
+        [data]="(registry$ | async).data">
       </reg-record-detail>
     </reg-container>
   `

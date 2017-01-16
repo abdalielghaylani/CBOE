@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, URLSearchParams } from '@angular/http';
 import { Action } from 'redux';
 import { NgRedux } from 'ng2-redux';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions } from '../actions';
@@ -58,55 +58,62 @@ export class RegistryEpics {
       });
   }
 
-  handleSaveRecord = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+  handleSaveRecord = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Save the record into a temporary storage
-        let data: Document = payload.data;
         // Create CreateTemporaryRegistryRecord
         let url: string = `${WS_URL}/CreateTemporaryRegistryRecord`;
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
-  handleSaveRecordSuccess = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+  handleSaveRecordSuccess = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE_SUCCESS)
       .mergeMap<IPayloadAction>(({ payload }) => {
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
-  handleUpdateRecord = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+  handleUpdateRecord = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.UPDATE)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Update the database with the data retrieved and modified
         // Check if it is a temporary or permanent to find out the right end-point
-        let temporary: boolean = registryUtils.getElementValue(payload.data.documentElement, 'RegNumeer/RegNumber') ? false : true;
+        let temporary: boolean = registryUtils.getElementValue(payload.documentElement, 'RegNumeer/RegNumber') ? false : true;
         // Call UpdateRegistryRecord or UpdateTemporaryRegistryRecord
         let url: string = temporary ? `${WS_URL}/UpdateTemporaryRegistryRecord` : `${WS_URL}/UpdateRegistryRecord`;
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
-  handleUpdateRecordSuccess = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+  handleUpdateRecordSuccess = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_SUCCESS)
       .mergeMap<IPayloadAction>(({ payload }) => {
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
-  handleRegisterRecord = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+  handleRegisterRecord = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.REGISTER)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Call CreateRegistryRecord
         let url: string = `${WS_URL}/CreateRegistryRecord`;
-        return Observable.of({ type: RegActions.IGNORE_ACTION });
+        let data = new URLSearchParams();
+        // registryUtils.fixStructureData(payload);
+        data.append('xml', registryUtils.serializeData(payload));
+        data.append('duplicateAction', 'N');
+        return this.http.post(url, data)
+          .map(result => RecordDetailActions.registerSuccessAction(result.text()))
+          .catch(error => Observable.of(RecordDetailActions.registerErrorAction()));
       });
   }
 
-  handleRegisterRecordSuccess = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+  handleRegisterRecordSuccess = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_SUCCESS)
       .mergeMap<IPayloadAction>(({ payload }) => {
+        // <ReturnList><ActionDuplicateTaken>N</ActionDuplicateTaken><RegID>30</RegID><RegNum>AB-000012</RegNum><BatchNumber>1</BatchNumber>
+        // <BatchID>22</BatchID></ReturnList>
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }

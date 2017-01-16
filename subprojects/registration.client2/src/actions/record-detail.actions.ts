@@ -16,8 +16,14 @@ export class RecordDetailActions {
   static REGISTER_SUCCESS = 'REGISTER_SUCCESS';
   static REGISTER_ERROR = 'REGISTER_ERROR';
   static saveAction = createAction(RecordDetailActions.SAVE);
+  static saveSuccessAction = createAction(RecordDetailActions.SAVE_SUCCESS);
+  static saveErrorAction = createAction(RecordDetailActions.SAVE_ERROR);
   static updateAction = createAction(RecordDetailActions.UPDATE);
+  static updateSuccessAction = createAction(RecordDetailActions.UPDATE_SUCCESS);
+  static updateErrorAction = createAction(RecordDetailActions.UPDATE_ERROR);
   static registerAction = createAction(RecordDetailActions.REGISTER);
+  static registerSuccessAction = createAction(RecordDetailActions.REGISTER_SUCCESS);
+  static registerErrorAction = createAction(RecordDetailActions.REGISTER_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 

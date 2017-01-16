@@ -33,6 +33,7 @@ export class RegRecordDetail implements OnInit {
   ngOnInit() {
     let output = registryUtils.getDocument(this.data);
     this.document = registryUtils.getDocument(output.documentElement.firstChild.textContent);
+    registryUtils.fixStructureData(this.document);
     this.createDrawingTool();
   }
 
