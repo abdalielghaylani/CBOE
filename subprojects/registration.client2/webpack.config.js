@@ -98,6 +98,10 @@ const baseConfig = {
         target: 'http://localhost/Registration.Server/api',
         pathRewrite: { '^/Registration.Server/api': '' },
       },
+      '/Registration.Server/Webservices': {
+        target: 'http://localhost/Registration.Server/Webservices',
+        pathRewrite: { '^/Registration.Server/Webservices': '' },
+      },
       '/coecommonresources': 'http://localhost',
     }),
   },

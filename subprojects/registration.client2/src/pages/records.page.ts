@@ -22,8 +22,8 @@ import { IRegistry } from '../store';
   `
 })
 export class RegRecordsPage {
-  @select(s => s.records) private records$: Observable<IRegistry>;
-  @select(s => s.tempRecords) private tempRecords$: Observable<IRegistry>;
+  @select(s => s.registry.records) private records$: Observable<IRegistry>;
+  @select(s => s.registry.tempRecords) private tempRecords$: Observable<IRegistry>;
   private boundRecords$: Observable<IRegistry>;
 
   constructor(private router: Router, private actions: RegistryActions) {

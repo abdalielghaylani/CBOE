@@ -20,6 +20,6 @@ import { IConfiguration } from '../store/configuration';
   `
 })
 export class RegConfigurationPage {
-  @select() private configuration$: Observable<IConfiguration>;
+  @select() configuration$: Observable<IConfiguration>;
   constructor(private actions: ConfigurationActions) {}
 }

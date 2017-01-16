@@ -25,6 +25,6 @@ import { ICounter } from '../store';
   `
 })
 export class RegCounterPage {
-  @select() private counter$: Observable<ICounter>;
+  @select() counter$: Observable<ICounter>;
   constructor(private actions: CounterActions) {}
 }

@@ -7,7 +7,7 @@ import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
 import { IAppState, ISession, rootReducer } from '../store';
 import { SessionActions } from '../actions/session.actions';
-import { ConfigurationEpics, RegistryEpics, SessionEpics } from '../epics';
+import { ConfigurationEpics, RegistryEpics, RouterEpics, SessionEpics } from '../epics';
 import { RegAboutPage, RegCounterPage } from '../pages';
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
 
@@ -52,21 +52,20 @@ export class RegApp {
     private actions: SessionActions,
     private configEpics: ConfigurationEpics,
     private registryEpics: RegistryEpics,
+    private routerEpics: RouterEpics,
     private sessionEpics: SessionEpics) {
 
     middleware.push(createEpicMiddleware(combineEpics(
-      sessionEpics.handleLoginUser,
-      sessionEpics.handleLoginUserSuccess,
       configEpics.handleOpenTable,
-      registryEpics.handleOpenRecords
+      registryEpics.handleOpenRecords,
+      routerEpics.handleUpdateLocation,
+      sessionEpics.handleLoginUser,
+      sessionEpics.handleLoginUserSuccess
     )));
 
     ngRedux.configureStore(
       rootReducer,
-      {
-        records: RegistryFactory({ temporary: false, rows: [] }),
-        tempRecords: RegistryFactory({ temporary: true, rows: [] })
-      },
+      {},
       middleware,
       devTools.isEnabled() ?
         [...enhancers, devTools.enhancer()] :

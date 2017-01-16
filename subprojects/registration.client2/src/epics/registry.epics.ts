@@ -18,7 +18,7 @@ export class RegistryEpics {
       .mergeMap<IPayloadAction>(({ payload }) => {
         let temporary: boolean = payload;
         return this.http.get(`${BASE_URL}/RegistryRecords` + (payload ? '/Temp' : ''))
-          .map(result => RegistryActions.openRecordsSuccessAction(result.json()))
+          .map(result => RegistryActions.openRecordsSuccessAction(temporary, result.json()))
           .catch(error => Observable.of(RegistryActions.openRecordsErrorAction()));
       });
   }

@@ -16,7 +16,6 @@ describe('registry reducer', () => {
   });
 
   it('should do nothing on OPEN_RECORDS_ERROR', () => {
-    const previousValue = initState.temporary;
     const nextState = registryReducer(
       initState,
       RegistryActions.openRecordsErrorAction()
@@ -29,9 +28,9 @@ describe('registry reducer', () => {
     const previousValue = initState.temporary;
     const nextState = registryReducer(
       initState,
-      RegistryActions.openRecordsSuccessAction(data)
+      RegistryActions.openRecordsSuccessAction(true, data)
     );
-    expect(nextState.rows).toEqual(data);
+    expect(nextState.tempRecords.rows).toEqual(data);
   });
 
   it('should clear rows on OPEN_RECORDS', () => {
@@ -40,6 +39,6 @@ describe('registry reducer', () => {
       initState,
       RegistryActions.openRecordsAction(true)
     );
-    expect(nextState.rows).toEqual([]);
+    expect(nextState.tempRecords.rows).toEqual([]);
   });
 });

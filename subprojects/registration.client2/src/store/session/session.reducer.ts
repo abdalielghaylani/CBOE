@@ -7,7 +7,6 @@ import {
   UserFactory,
 } from './session.initial-state';
 
-
 export function sessionReducer(
   state: ISessionRecord = INITIAL_STATE,
   action: IPayloadAction): ISessionRecord {

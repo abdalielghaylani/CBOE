@@ -24,8 +24,8 @@ export class RegRecordDetailPage {
   private sub: any;
   @Input() id: number = -1;
   @Input() temporary: boolean = false;
-  @select(s => s.records) records$: Observable<IRegistry>;
-  @select() private configuration$: Observable<IConfiguration>;
+  @select(s => s.registry.records) records$: Observable<IRegistry>;
+  @select() configuration$: Observable<IConfiguration>;
 
   constructor(private router: Router, private route: ActivatedRoute, private actions: RecordDetailActions) {
     this.temporary = (router.url.match(/.*\/temp.*/g) || []).length > 0;

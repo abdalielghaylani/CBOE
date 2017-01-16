@@ -10,16 +10,14 @@ export interface IAppState {
   counter?: counter.ICounter;
   session?: session.ISession;
   configuration?: configuration.IConfiguration;
-  records: registry.IRegistry;
-  tempRecords: registry.IRegistry;
+  registry?: registry.IRegistry;
 };
 
 export const rootReducer = combineReducers<IAppState>({
   counter: counter.counterReducer,
   session: session.sessionReducer,
   configuration: configuration.configurationReducer,
-  records: registry.registryReducer,
-  tempRecords: registry.registryReducer,
+  registry: registry.registryReducer,
   router: routerReducer,
 });
 
