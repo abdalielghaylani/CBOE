@@ -7,8 +7,9 @@ import {
   OnInit,
   ElementRef,
 } from '@angular/core';
+import { RecordDetailActions } from '../../actions';
 import { ICounter } from '../../store';
-import { DOMParser, DOMParserStatic } from 'xmldom';
+import * as registryUtils from './registry-utils';
 
 declare var jQuery: any;
 
@@ -22,41 +23,21 @@ export class RegRecordDetail implements OnInit {
   @Input() id: number = -1;
   @Input() temporary: boolean = false;
   @Input() data: string;
-  private documentElement: Element;
+  private document: Document;
   private drawingTool;
   private creatingCDD: boolean = false;
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef, private actions: RecordDetailActions) {
   }
 
   ngOnInit() {
-    let output = new DOMParser().parseFromString(this.data);
-    this.documentElement = new DOMParser().parseFromString(output.documentElement.firstChild.textContent).documentElement;
+    let output = registryUtils.getDocument(this.data);
+    this.document = registryUtils.getDocument(output.documentElement.firstChild.textContent);
     this.createDrawingTool();
   }
 
-  getElementValue(element: Element, path: string): string {
-    let pathSegments: string[] = path.split('/');
-    let first: string = pathSegments.shift();
-    if (first) {
-      let nextElement: Element = null;
-      let elements = element.getElementsByTagName(first);
-      for (let i = 0; i < elements.length; ++i) {
-        let e = elements.item(i);
-        if (e.parentNode === element) {
-          nextElement = e;
-          break;
-        }
-      }
-      if (nextElement) {
-        if (pathSegments.length === 0) {
-          return nextElement.textContent;
-        } else {
-          return this.getElementValue(nextElement, pathSegments.join('/'));
-        }
-      }
-    }
-    return null;
+  getElementValue(e: Element, path: string) {
+    return registryUtils.getElementValue(e, path);
   }
 
   createDrawingTool = function () {
@@ -105,4 +86,16 @@ export class RegRecordDetail implements OnInit {
       this.drawingTool = undefined;
     }
   };
+
+  save() {
+    this.actions.save(this.document);
+  }
+
+  update() {
+    this.actions.update(this.document);
+  }
+
+  register() {
+    this.actions.register(this.document);
+  }
 };

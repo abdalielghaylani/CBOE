@@ -84,6 +84,11 @@ const prodConfig = {
   devtool: 'source-map',
 };
 
+// const serverHost = 'http://localhost';
+// const serverHost = 'http://165.88.34.121';
+const serverHost = 'http://165.88.130.57';
+// const serverHost = 'http://amc1262e14r6d17.pkiapps.net';
+
 const baseConfig = {
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
@@ -95,14 +100,14 @@ const baseConfig = {
     historyApiFallback: { index: basePath },
     proxy: Object.assign({}, proxy(), {
       '/Registration.Server/api': {
-        target: 'http://localhost/Registration.Server/api',
+        target: serverHost + '/Registration.Server/api',
         pathRewrite: { '^/Registration.Server/api': '' },
       },
       '/Registration.Server/Webservices': {
-        target: 'http://localhost/Registration.Server/Webservices',
+        target: serverHost + '/Registration.Server/Webservices',
         pathRewrite: { '^/Registration.Server/Webservices': '' },
       },
-      '/coecommonresources': 'http://localhost',
+      '/coecommonresources': serverHost,
     }),
   },
 

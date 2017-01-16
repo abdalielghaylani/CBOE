@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Action } from 'redux';
 import { NgRedux } from 'ng2-redux';
-import { IPayloadAction, RegistryActions, GridActions } from '../actions';
+import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions } from '../actions';
 import { IAppState } from '../store';
 import { UPDATE_LOCATION } from 'ng2-redux-router';
 import { Observable } from 'rxjs/Observable';
@@ -10,6 +10,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
+import * as registryUtils from '../components/registry/registry-utils';
 
 const BASE_URL = '/Registration.Server/api';
 const WS_URL = '/Registration.Server/Webservices/COERegistrationServices.asmx';
@@ -54,6 +55,59 @@ export class RegistryEpics {
           payload.temporary ?
             Observable.of({ type: UPDATE_LOCATION, payload: `records/temp/${payload.id}` }) :
             Observable.of({ type: UPDATE_LOCATION, payload: `records/${payload.id}` });
+      });
+  }
+
+  handleSaveRecord = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.SAVE)
+      .mergeMap<IPayloadAction>(({ payload }) => {
+        // Save the record into a temporary storage
+        let data: Document = payload.data;
+        // Create CreateTemporaryRegistryRecord
+        let url: string = `${WS_URL}/CreateTemporaryRegistryRecord`;
+        return Observable.of({ type: RegActions.IGNORE_ACTION });
+      });
+  }
+
+  handleSaveRecordSuccess = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.SAVE_SUCCESS)
+      .mergeMap<IPayloadAction>(({ payload }) => {
+        return Observable.of({ type: RegActions.IGNORE_ACTION });
+      });
+  }
+
+  handleUpdateRecord = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.UPDATE)
+      .mergeMap<IPayloadAction>(({ payload }) => {
+        // Update the database with the data retrieved and modified
+        // Check if it is a temporary or permanent to find out the right end-point
+        let temporary: boolean = registryUtils.getElementValue(payload.data.documentElement, 'RegNumeer/RegNumber') ? false : true;
+        // Call UpdateRegistryRecord or UpdateTemporaryRegistryRecord
+        let url: string = temporary ? `${WS_URL}/UpdateTemporaryRegistryRecord` : `${WS_URL}/UpdateRegistryRecord`;
+        return Observable.of({ type: RegActions.IGNORE_ACTION });
+      });
+  }
+
+  handleUpdateRecordSuccess = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_SUCCESS)
+      .mergeMap<IPayloadAction>(({ payload }) => {
+        return Observable.of({ type: RegActions.IGNORE_ACTION });
+      });
+  }
+
+  handleRegisterRecord = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.REGISTER)
+      .mergeMap<IPayloadAction>(({ payload }) => {
+        // Call CreateRegistryRecord
+        let url: string = `${WS_URL}/CreateRegistryRecord`;
+        return Observable.of({ type: RegActions.IGNORE_ACTION });
+      });
+  }
+
+  handleRegisterRecordSuccess = (action$: Observable<ReduxActions.Action<{ data: Document }>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_SUCCESS)
+      .mergeMap<IPayloadAction>(({ payload }) => {
+        return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 }
