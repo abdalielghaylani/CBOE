@@ -30,17 +30,19 @@ export class RouterEpics {
           let params: string[] = path.substring(startIndex).split('/');
           let temporary = params[2] === 'temp';
           if ((temporary && params.length === 4) || (!temporary && params.length === 3)) {
-            let id = +params[params.length - 1];
-            let records = temporary ?
-              this.ngRedux.getState().registry.tempRecords :
-              this.ngRedux.getState().registry.records;
-            let data = records.rows.find(r => r[Object.keys(r)[0]] === id);
-            let url = temporary ?
-              `${BASE_URL}/RetrieveTemporaryRegistryRecord?id=${id}` :
-              `${BASE_URL}/RetrieveRegistryRecord?regNum=${data.REGNUMBER}`;
-            return this.http.get(url)
-            .map(result => RegistryActions.retrieveRecordSuccessAction(temporary, result.text()))
-            .catch(error => Observable.of(RegistryActions.retrieveRecordErrorAction()));
+            let id = params[2] === 'new' ? -1 : +params[params.length - 1];
+            if (id >= 0) {
+              let records = temporary ?
+                this.ngRedux.getState().registry.tempRecords :
+                this.ngRedux.getState().registry.records;
+              let data = records.rows.find(r => r[Object.keys(r)[0]] === id);
+              let url = temporary ?
+                `${BASE_URL}/RetrieveTemporaryRegistryRecord?id=${id}` :
+                `${BASE_URL}/RetrieveRegistryRecord?regNum=${data.REGNUMBER}`;
+              return this.http.get(url)
+                .map(result => RegistryActions.retrieveRecordSuccessAction(temporary, result.text()))
+                .catch(error => Observable.of(RegistryActions.retrieveRecordErrorAction()));
+            }
           }
         }
         return Observable.of(RegActions.ignoreAction());
