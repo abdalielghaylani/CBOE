@@ -8,6 +8,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { ICounter } from '../../store';
+import { DOMParser, DOMParserStatic } from 'xmldom';
 
 declare var jQuery: any;
 
@@ -21,6 +22,7 @@ export class RegRecordDetail implements OnInit {
   @Input() id: number = -1;
   @Input() temporary: boolean = false;
   @Input() data: string;
+  private documentElement: Element;
   private drawingTool;
   private creatingCDD: boolean = false;
 
@@ -28,7 +30,33 @@ export class RegRecordDetail implements OnInit {
   }
 
   ngOnInit() {
+    let output = new DOMParser().parseFromString(this.data);
+    this.documentElement = new DOMParser().parseFromString(output.documentElement.firstChild.textContent).documentElement;
     this.createDrawingTool();
+  }
+
+  getElementValue(element: Element, path: string): string {
+    let pathSegments: string[] = path.split('/');
+    let first: string = pathSegments.shift();
+    if (first) {
+      let nextElement: Element = null;
+      let elements = element.getElementsByTagName(first);
+      for (let i = 0; i < elements.length; ++i) {
+        let e = elements.item(i);
+        if (e.parentNode === element) {
+          nextElement = e;
+          break;
+        }
+      }
+      if (nextElement) {
+        if (pathSegments.length === 0) {
+          return nextElement.textContent;
+        } else {
+          return this.getElementValue(nextElement, pathSegments.join('/'));
+        }
+      }
+    }
+    return null;
   }
 
   createDrawingTool = function () {
