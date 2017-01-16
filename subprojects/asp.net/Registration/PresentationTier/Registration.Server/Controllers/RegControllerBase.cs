@@ -69,6 +69,32 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return data;
         }
 
+        protected object ExtractValue(string sql, Dictionary<string, object> args = null)
+        {
+            using (var reader = GetReader(sql, args))
+            {
+                object value = null;
+                while (reader.Read())
+                {
+                    var fieldType = reader.GetFieldType(0);
+                    switch (fieldType.Name.ToLower())
+                    {
+                        case "int16":
+                        case "int32":
+                            value = reader.GetInt32(0);
+                            break;
+                        case "datetime":
+                            value = reader.GetDateTime(0);
+                            break;
+                        default:
+                            value = reader.GetString(0);
+                            break;
+                    }
+                }
+                return value;
+            }
+        }
+
         protected JArray ExtractData(string sql, Dictionary<string, object> args = null)
         {
             using (var reader = GetReader(sql, args))
