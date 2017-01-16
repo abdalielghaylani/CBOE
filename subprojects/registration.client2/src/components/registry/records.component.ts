@@ -26,7 +26,7 @@ import { IRegistry } from '../../store';
         (onInitNewRow)='onInitNewRow($event)'
         (onEditingStart)='onEditingStart($event)'
         (onRowRemoving)='onRowRemoving($event)'>
-        <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="registry.temporary" [allowAdding]="true"></dxo-editing>
+        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="registry.temporary" [allowAdding]="false"></dxo-editing>
         <div *dxTemplate="let data of 'cellTemplate'">
           <reg-structure-image [src]="data.value"></reg-structure-image>
         </div>
@@ -77,15 +77,14 @@ export class RegRecords implements OnInit {
   }
 
   onInitNewRow(e) {
-    this.router.navigate(['records/new']);
     e.cancel = true;
+    this.registryActions.retrieveRecord(this.registry.temporary, -1);
   }
 
   onEditingStart(e) {
-    let path = 'records' + (this.registry.temporary ? '/temp' : '');
-    let id = e.data[Object.keys(e.data)[0]];
-    this.router.navigate([path, id]);
     e.cancel = true;
+    let id = e.data[Object.keys(e.data)[0]];
+    this.registryActions.retrieveRecord(this.registry.temporary, id);
   }
 
   onRowRemoving(e) {

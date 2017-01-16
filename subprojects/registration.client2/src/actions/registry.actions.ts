@@ -11,6 +11,7 @@ export class RegistryActions {
   static OPEN_RECORDS = 'OPEN_RECORDS';
   static OPEN_RECORDS_SUCCESS = 'OPEN_RECORDS_SUCCESS';
   static OPEN_RECORDS_ERROR = 'OPEN_RECORDS_ERROR';
+  static RETRIEVE_RECORD = 'RETRIEVE_RECORD';
   static RETRIEVE_RECORD_SUCCESS = 'RETRIEVE_RECORD_SUCCESS';
   static RETRIEVE_RECORD_ERROR = 'RETRIEVE_RECORD_ERROR';
   static openRecordsAction = createAction(RegistryActions.OPEN_RECORDS,
@@ -18,8 +19,10 @@ export class RegistryActions {
   static openRecordsSuccessAction = createAction(RegistryActions.OPEN_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR);
+  static retrieveRecordAction = createAction(RegistryActions.RETRIEVE_RECORD,
+    (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveRecordSuccessAction = createAction(RegistryActions.RETRIEVE_RECORD_SUCCESS,
-    (temporary: boolean, data: string) => ({ temporary, data }));
+    (temporary: boolean, id: number, data: string) => ({ temporary, id, data }));
   static retrieveRecordErrorAction = createAction(RegistryActions.RETRIEVE_RECORD_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
@@ -40,8 +43,12 @@ export class RegistryActions {
     this.ngRedux.dispatch(RegistryActions.openRecordsAction(temporary));
   }
 
-  retrieveRecordSuccess(temporary: boolean, data: string) {
-    this.ngRedux.dispatch(RegistryActions.retrieveRecordSuccessAction(temporary, data));
+  retrieveRecord(temporary: boolean, id: number) {
+    this.ngRedux.dispatch(RegistryActions.retrieveRecordAction(temporary, id));
+  }
+
+  retrieveRecordSuccess(temporary: boolean, id: number, data: string) {
+    this.ngRedux.dispatch(RegistryActions.retrieveRecordSuccessAction(temporary, id, data));
   }
 
   retrieveRecordError() {

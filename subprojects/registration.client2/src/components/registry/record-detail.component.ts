@@ -20,6 +20,7 @@ declare var jQuery: any;
 export class RegRecordDetail implements OnInit {
   @Input() id: number = -1;
   @Input() temporary: boolean = false;
+  @Input() data: string;
   private drawingTool;
   private creatingCDD: boolean = false;
 

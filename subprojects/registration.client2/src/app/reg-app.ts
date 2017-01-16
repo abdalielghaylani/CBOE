@@ -6,8 +6,8 @@ import { NgReduxRouter } from 'ng2-redux-router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
 import { IAppState, ISession, rootReducer } from '../store';
-import { SessionActions } from '../actions/session.actions';
-import { ConfigurationEpics, RegistryEpics, RouterEpics, SessionEpics } from '../epics';
+import { RegistryActions, SessionActions } from '../actions';
+import { ConfigurationEpics, RegistryEpics, SessionEpics } from '../epics';
 import { RegAboutPage, RegCounterPage } from '../pages';
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
 
@@ -50,15 +50,16 @@ export class RegApp {
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
     private actions: SessionActions,
+    private registryActions: RegistryActions,
     private configEpics: ConfigurationEpics,
     private registryEpics: RegistryEpics,
-    private routerEpics: RouterEpics,
     private sessionEpics: SessionEpics) {
 
     middleware.push(createEpicMiddleware(combineEpics(
       configEpics.handleOpenTable,
       registryEpics.handleOpenRecords,
-      routerEpics.handleUpdateLocation,
+      registryEpics.handleRetrieveRecord,
+      registryEpics.handleRetrieveRecordSuccess,
       sessionEpics.handleLoginUser,
       sessionEpics.handleLoginUserSuccess
     )));

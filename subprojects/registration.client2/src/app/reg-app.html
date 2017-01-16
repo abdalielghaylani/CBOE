@@ -9,8 +9,8 @@
     <li reg-navigator-item *ngIf="loggedIn$ | async">
       <a [routerLink]="['records/temp']"><i class="fa fa-table fa-lg maroon"></i> Review Temporary</a>
     </li>
-    <li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['records/new']"><i class="fa fa-flask fa-lg maroon"></i> Submit New Compound</a>
+    <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="registryActions.retrieveRecord(false, -1)">
+      <a><i class="fa fa-flask fa-lg maroon"></i> Submit New Compound</a>
     </li>
     <li reg-navigator-item *ngIf="loggedIn$ | async">
       <a [routerLink]="['records']"><i class="fa fa-search fa-lg maroon"></i> Search Registry</a>
@@ -37,7 +37,7 @@
     <li reg-navigator-item *ngIf="loggedIn$ | async">
       <a [routerLink]="['profile']"><span class="fa fa-user-circle-o fa-lg maroon"></span> {{ fullName$ | async }}</a>
     </li>
-    <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a href="javscript:void(0)"><span class="fa fa-sign-out fa-lg maroon"></span></a></li>
+    <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a><span class="fa fa-sign-out fa-lg maroon"></span></a></li>
   </reg-navigator-items>
 </reg-navigator>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">

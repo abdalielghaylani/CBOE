@@ -5,40 +5,24 @@ import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 import { RecordDetailActions } from '../actions';
 import { RegContainer, RegRecordDetail } from '../components';
-import { IRegistry, IConfiguration } from '../store';
+import { IRegistry } from '../store';
 
 @Component({
   selector: 'record-detail-page',
-  providers: [ RecordDetailActions ],
+  providers: [RecordDetailActions],
   template: `
     <reg-container testid="records">
       <reg-record-detail
-        [temporary]="temporary"
-        [id]="id"
+        [temporary]="(registry$ | async).temporary"
+        [id]="(registry$ | async).currentId"
+        [data]="(registry$ | async).data"
         (submit)="actions.submit()">
       </reg-record-detail>
     </reg-container>
   `
 })
 export class RegRecordDetailPage {
-  private sub: any;
-  @Input() id: number = -1;
-  @Input() temporary: boolean = false;
-  @select(s => s.registry.records) records$: Observable<IRegistry>;
-  @select() configuration$: Observable<IConfiguration>;
+  @select(s => s.registry) registry$: Observable<IRegistry>;
 
-  constructor(private router: Router, private route: ActivatedRoute, private actions: RecordDetailActions) {
-    this.temporary = (router.url.match(/.*\/temp.*/g) || []).length > 0;
-  }
-
-  ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
-      let paramLabel = 'id';
-      this.id = params[paramLabel];
-    });
-  }
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
-  }  
+  constructor(private router: Router, private actions: RecordDetailActions) { }
 }

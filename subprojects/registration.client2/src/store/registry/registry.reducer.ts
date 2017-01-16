@@ -24,6 +24,13 @@ export function registryReducer(
       let a2: ReduxActions.Action<IRecords> = action as ReduxActions.Action<IRecords>;
       return state.updateIn(recordsPath(a2.payload.temporary), () => a2.payload.rows);
 
+    case RegistryActions.RETRIEVE_RECORD_SUCCESS:
+      let a3: ReduxActions.Action<{ temporary: boolean, id: number, data: string }>
+        = action as ReduxActions.Action<{ temporary: boolean, id: number, data: string }>;
+      return state.update('temporary', () => a3.payload.temporary)
+        .update('currentId', () => a3.payload.id)
+        .update('data', () => a3.payload.data);
+
     default:
       return state;
   }
