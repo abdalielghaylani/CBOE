@@ -38,7 +38,7 @@ export class RegistryEpics {
         let url = payload.id < 0 ?
           `${WS_URL}/RetrieveNewRegistryRecord` :
           payload.temporary ?
-            `${WS_URL}/RetrieveTemporaryRegistryRecord?id=${payload.id}` :
+            `${WS_URL}/RetrieveTemporaryRegistryRecord?id=${data.BATCHID}` :
             `${WS_URL}/RetrieveRegistryRecord?regNum=${data.REGNUMBER}`;
         return this.http.get(url)
           .map(result => RegistryActions.retrieveRecordSuccessAction(payload.temporary, payload.id, result.text()))
