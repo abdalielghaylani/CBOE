@@ -113,7 +113,11 @@ export class RegistryEpics {
       .mergeMap<IPayloadAction>(({ payload }) => {
         // <ReturnList><ActionDuplicateTaken>N</ActionDuplicateTaken><RegID>30</RegID><RegNum>AB-000012</RegNum><BatchNumber>1</BatchNumber>
         // <BatchID>22</BatchID></ReturnList>
-        return Observable.of({ type: RegActions.IGNORE_ACTION });
+        let response: Document = registryUtils.getDocument(registryUtils.getDocument(payload).documentElement.textContent);
+        let regNumber = registryUtils.getElementValue(response.documentElement, 'RegNum');
+        return regNumber ?
+          Observable.of({ type: UPDATE_LOCATION, payload: `records` }) :
+          Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
