@@ -3,6 +3,7 @@ using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Reflection;
+using CambridgeSoft.COE.Framework.COETableEditorService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -11,6 +12,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/ViewConfig/Lookups")]
         public JObject GetLookups()
         {
+            var customTables = new JArray();
+            var tables = COETableEditorUtilities.getTables();
+            foreach (var key in tables.Keys)
+            {
+                var table = new JObject(
+                    new JProperty("tableName", key),
+                    new JProperty("label", tables[key])
+                );
+                customTables.Add(table);
+            }
             return new JObject(
                 new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
                 new JProperty("fragments", ExtractData("SELECT * FROM VW_FRAGMENT")),
@@ -21,7 +32,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("pickListDomains", ExtractData("SELECT * FROM VW_PICKLISTDOMAIN")),
                 new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
                 new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
-                new JProperty("sites", ExtractData("SELECT * FROM VW_SITES"))
+                new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
+                new JProperty("customTables", customTables)
             );
         }
     }
