@@ -6,19 +6,21 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
+import { select, NgRedux } from 'ng2-redux';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { RegistryActions } from '../../actions';
-import { IRegistry } from '../../store';
+import { IAppState, IRecords } from '../../store';
 
 @Component({
   selector: 'reg-records',
   template: `
     <div class="container">
       <h4 data-testid="configuration-heading" id="qa-configuration-heading">
-        <span *ngIf="registry.temporary">Temporary</span> Registration Records
+        <span *ngIf="records.temporary">Temporary</span> Registration Records
       </h4>
 
-      <dx-data-grid [dataSource]=this.registry.rows [paging]='{pageSize: 10}' 
+      <dx-data-grid [columns]=records.gridColumns [dataSource]=records.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true
         (onContentReady)='onContentReady($event)'
@@ -26,7 +28,7 @@ import { IRegistry } from '../../store';
         (onInitNewRow)='onInitNewRow($event)'
         (onEditingStart)='onEditingStart($event)'
         (onRowRemoving)='onRowRemoving($event)'>
-        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="registry.temporary" [allowAdding]="false"></dxo-editing>
+        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
         <div *dxTemplate="let data of 'cellTemplate'">
           <reg-structure-image [src]="data.value"></reg-structure-image>
         </div>
@@ -38,23 +40,16 @@ import { IRegistry } from '../../store';
 })
 export class RegRecords implements OnInit {
   @Input() title: string;
-  @Input() registry: IRegistry;
+  @Input() records: IRecords;
+  @select(s => s.configuration.lookups) lookups$: Observable<any>;
 
-  constructor(private router: Router, private registryActions: RegistryActions) { }
+  constructor(private router: Router, private ngRedux: NgRedux<IAppState>, private registryActions: RegistryActions) { }
 
   ngOnInit() {
-    this.registryActions.openRecords(this.registry.temporary);
+    this.registryActions.openRecords(this.records.temporary);
   }
 
   onContentReady(e) {
-    e.component.columnOption('command:edit', {
-      visibleIndex: -1,
-      width: 80
-    });
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      cellTemplate: 'cellTemplate'
-    });
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80
@@ -78,13 +73,13 @@ export class RegRecords implements OnInit {
 
   onInitNewRow(e) {
     e.cancel = true;
-    this.registryActions.retrieveRecord(this.registry.temporary, -1);
+    this.registryActions.retrieveRecord(this.records.temporary, -1);
   }
 
   onEditingStart(e) {
     e.cancel = true;
     let id = e.data[Object.keys(e.data)[0]];
-    this.registryActions.retrieveRecord(this.registry.temporary, id);
+    this.registryActions.retrieveRecord(this.records.temporary, id);
   }
 
   onRowRemoving(e) {

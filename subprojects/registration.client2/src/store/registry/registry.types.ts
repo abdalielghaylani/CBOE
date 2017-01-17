@@ -3,6 +3,7 @@ import { TypedRecord } from 'typed-immutable-record';
 export interface IRecords {
   temporary: boolean;
   rows: any[];
+  gridColumns: any[];
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, IRecords {

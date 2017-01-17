@@ -31,6 +31,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
   encapsulation: ViewEncapsulation.None,
   styles: [
     require('../styles/index.css'),
+    require('./reg-app.css'),
     require('bootstrap/dist/css/bootstrap.min.css'),
     require('font-awesome/css/font-awesome.min.css'),
     require('devextreme/dist/css/dx.common.css'),

@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select, NgRedux } from 'ng2-redux';
+import * as x2js from 'x2js';
 import { RecordDetailActions } from '../../actions';
 import { IAppState } from '../../store';
 import * as registryUtils from './registry-utils';
@@ -26,9 +27,13 @@ export class RegRecordDetail implements OnInit {
   @Input() temporary: boolean = false;
   @Input() data: string;
   @select(s => s.registry.structureData) structureData$: Observable<string>;
-  private document: Document;
   private drawingTool;
   private creatingCDD: boolean = false;
+  private projects: any[];
+  private recordString: string;
+  private recordJson: any;
+  private recordDoc: Document;
+  private rootJson: { CompoundList: any[], ProjectList: any[], PropertyList: any[], RegNumber: any, StructureAggregation: string };
 
   constructor(private elementRef: ElementRef, private ngRedux: NgRedux<IAppState>, private actions: RecordDetailActions) {
   }
@@ -36,9 +41,21 @@ export class RegRecordDetail implements OnInit {
   ngOnInit() {
     this.createDrawingTool();
     let output = registryUtils.getDocument(this.data);
-    this.document = registryUtils.getDocument(output.documentElement.firstChild.textContent);
-    // registryUtils.fixStructureData(this.document);
-    this.actions.loadStructure(registryUtils.getElementValue(this.document.documentElement,
+    this.recordString = output.documentElement.firstChild.textContent;
+    this.recordDoc = registryUtils.getDocument(this.recordString);
+    registryUtils.fixStructureData(this.recordDoc);
+    let x2jsTool = new x2js.default({
+        arrayAccessFormPaths : [
+           'MultiCompoundRegistryRecord.ComponentList.Component',
+           'MultiCompoundRegistryRecord.ComponentList.Component.Compound.PropertyList.Property',
+           'MultiCompoundRegistryRecord.BatchList.Batch',
+           'MultiCompoundRegistryRecord.ProjectList.Project',
+           'MultiCompoundRegistryRecord.PropertyList.Proprty',
+        ]
+    });
+    this.recordJson = x2jsTool.dom2js(this.recordDoc);
+    this.rootJson = this.recordJson.MultiCompoundRegistryRecord;
+    this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
     this.structureData$.subscribe((value: string) => this.loadCdxml(value));
   }
@@ -104,14 +121,14 @@ export class RegRecordDetail implements OnInit {
   };
 
   save() {
-    this.actions.save(this.document);
+    this.actions.save(this.recordDoc);
   }
 
   update() {
-    this.actions.update(this.document);
+    this.actions.update(this.recordDoc);
   }
 
   register() {
-    this.actions.register(this.document);
+    this.actions.register(this.recordDoc);
   }
 };

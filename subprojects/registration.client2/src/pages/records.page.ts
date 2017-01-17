@@ -13,7 +13,7 @@ import { IRegistry } from '../store';
   template: `
     <reg-container testid="records">
       <reg-records
-        [registry]="boundRecords$ | async"
+        [records]="boundRecords$ | async"
         (create)="actions.create()"
         (edit)="actions.edit()"
         (search)="actions.search()">

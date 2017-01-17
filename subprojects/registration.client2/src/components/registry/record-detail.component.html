@@ -8,8 +8,8 @@
       </div>
       <h4 data-testid="configuration-heading" id="qa-configuration-heading">
         <span class="records-detail-title lg-pb2" *ngIf="id < 0">Register a New Compound</span>
-        <span class="records-detail-title lg-pb2" *ngIf="id >= 0 && !temporary">Edit a Registry Record: {{ getElementValue(this.document.documentElement, 'RegNumber/RegNumber') }}</span>
-        <span class="records-detail-title lg-pb2" *ngIf="id >= 0 && temporary">Edit a Temporary Record: {{ getElementValue(this.document.documentElement, 'ID') }}</span>
+        <span class="records-detail-title lg-pb2" *ngIf="id >= 0 && !temporary">Edit a Registry Record: {{ getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber') }}</span>
+        <span class="records-detail-title lg-pb2" *ngIf="id >= 0 && temporary">Edit a Temporary Record: {{ getElementValue(this.recordDoc.documentElement, 'ID') }}</span>
       </h4>
       <div class="panel with-nav-tabs panel-default">
         <div class="panel-heading">

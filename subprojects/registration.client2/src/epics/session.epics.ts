@@ -25,9 +25,9 @@ export class SessionEpics {
   handleLoginUserSuccess = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
       .mergeMap<IPayloadAction>(() => {
-        return this.http.get(`${BASE_URL}/CustomTables`)
-          .map(result => ConfigurationActions.customTablesSuccessAction(result.json()))
-          .catch(error => Observable.of(ConfigurationActions.customTablesErrorAction()));
+        return this.http.get(`${BASE_URL}/ViewConfig/Lookups`)
+          .map(result => ConfigurationActions.loadLookupsSuccessAction(result.json()))
+          .catch(error => Observable.of(ConfigurationActions.loadLookupsErrorAction()));
       });
   }
 }
