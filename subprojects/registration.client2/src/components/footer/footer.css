@@ -1,0 +1,12 @@
+#footer {
+  background-color: #222;
+  bottom: 0;
+  height: 24px;
+  left: 60px;
+  position: fixed;
+  transition-duration: 0.5s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  width: 100%;
+  z-index: 80;
+}

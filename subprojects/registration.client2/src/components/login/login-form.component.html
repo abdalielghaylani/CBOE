@@ -1,35 +1,53 @@
-<div class="pen-title">
-  <reg-login-logo></reg-login-logo>
+<reg-login-logo></reg-login-logo>
+<div id="content">
+  <img [src]="BannerImage" class="bg">
+<div class="modal-dialog login-box shadow">
+    <div class="modal-content">
+    <div class="modal-header">
+      <img [src]="RegistrationLogo" class="img-responsive center-block" />
+    </div>
+    <div class="modal-body">
+      <reg-form [group]="group" (onSubmit)="handleSubmit()">
+        <reg-alert qaid="qa-pending" testid="alert-pending" status='info' *ngIf="isPending">Loading...</reg-alert>
+        <reg-alert qaid="qa-alert" testid="alert-error" status='error' *ngIf="hasError">
+          Invalid username and password
+        </reg-alert>
+        <reg-form-group testid="login-username">
+          <reg-input-login classname="form-control input-lg" groupid="username-group" qaid="qa-uname-input" inputType='text' placeholder='Username'
+            [control]="username">
+            <reg-input-group>
+              <i class="fa fa-user" aria-hidden="true" style="color:white"></i>
+</reg-input-group>
+</reg-input-login>
+<reg-form-error qaid="qa-uname-validation" [visible]="showNameWarning()">
+  Username is required.
+</reg-form-error>
+</reg-form-group>
+<reg-form-group testid="login-password">
+  <reg-input-login classname="form-control input-lg" groupid="password-group" qaid="qa-password-input" inputType='password'
+    placeholder='Password' [control]="password">
+    <reg-input-group>
+      <i class="fa fa-lock" aria-hidden="true" style="color:white"></i>
+</reg-input-group>
+</reg-input-login>
+<reg-form-error qaid="qa-password-validation" [visible]="showPasswordWarning()">
+  Password is required.
+</reg-form-error>
+</reg-form-group>
+<reg-form-group testid="login-submit">
+  <reg-button qaid="qa-login-button" className="btn-xl background-blue white hover-background-gray" type="submit">
+    Sign in
+  </reg-button>
+</reg-form-group>
+</reg-form>
+    </div>
+ </div>
 </div>
-<!-- Form Module-->
-<div class="module form-module">
-  <div class="forms">
-    <h2>Manager Login</h2>
-    <reg-form [group]="group" (onSubmit)="handleSubmit()">
-      <reg-alert qaid="qa-pending" testid="alert-pending" status='info' *ngIf="isPending">Loading...</reg-alert>
-      <reg-alert qaid="qa-alert" testid="alert-error" status='error' *ngIf="hasError">
-        Invalid username and password
-      </reg-alert>
-      <reg-form-group testid="login-username">
-        <reg-input classname="logininputstyle" qaid="qa-uname-input" inputType='text' placeholder='Username' [control]="username"></reg-input>
-        <reg-form-error qaid="qa-uname-validation" [visible]="showNameWarning()">
-          Username is required.
-        </reg-form-error>
-      </reg-form-group>
-      <reg-form-group testid="login-password">
-        <reg-input classname="logininputstyle" qaid="qa-password-input" inputType='password' placeholder='Password' [control]="password"></reg-input>
-        <reg-form-error qaid="qa-password-validation" [visible]="showPasswordWarning()">
-          Password is required.
-        </reg-form-error>
-      </reg-form-group>
-      <reg-form-group testid="login-submit">
-        <reg-button qaid="qa-login-button" className="mr1" type="submit">
-          Login
-        </reg-button>
-        <reg-button qaid="qa-clear-button" className="bg-red" type="reset" (onClick)="reset()">
-          Clear
-        </reg-button>
-      </reg-form-group>
-    </reg-form>
-    <!--</form>-->
-  </div>
+
+
+<!--<div class="search-background">
+  <img [src]="BannerImage">
+</div>
+<div class="well-searchbox">
+    
+</div>-->

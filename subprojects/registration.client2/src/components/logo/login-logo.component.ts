@@ -9,10 +9,8 @@ import { Component } from '@angular/core';
           [src]="LogoImage"
           alt="PerkinElmer"
         /></span>
-      </a></div>
-      <div>
-    <span>Welcome to <a>ChemBioOffice Enterprise</a></span></div>`
+      </a></div>`
 })
 export class RegLoginLogo {
-  private LogoImage = require('../../assets/pki-logo.png');
+  private LogoImage = require('../../assets/pe.svg');
 };

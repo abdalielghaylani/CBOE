@@ -6,7 +6,9 @@ import {
   RegFormGroup,
   RegFormError,
   RegInput,
-  RegLabel
+  RegInputLogin,
+  RegLabel,
+  RegInputGroup
 } from './index';
 
 @NgModule({
@@ -19,14 +21,18 @@ import {
     RegFormGroup,
     RegFormError,
     RegLabel,
-    RegInput
+    RegInput,
+    RegInputLogin,
+    RegInputGroup
   ],
   exports: [
     RegForm,
     RegFormGroup,
     RegFormError,
     RegLabel,
-    RegInput
+    RegInput,
+    RegInputLogin,
+    RegInputGroup
   ]
 })
 export class RegFormModule { }

@@ -1,4 +1,4 @@
-﻿using System.Web.Http;
+using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System;

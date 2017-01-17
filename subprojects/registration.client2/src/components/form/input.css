@@ -1,16 +1,10 @@
-.logininputstyle {
-  border: 1px solid #d9d9d9;
-  box-sizing: border-box;
-  display: block;
-  font-weight: 400;
-  margin: 0 0 20px;
-  outline: none;
-  padding: 10px 15px;
-  transition: 0.3s ease;
-  width: 100%;
-}
-
-.logininputstyle:focus {
-  border: 1px solid #33b5e5;
-  color: #333;
+input-lg,
+.input-group-lg > .form-control,
+.input-group-lg > .input-group-addon,
+.input-group-lg > .input-group-btn > .btn {
+  border-radius: 9px;
+  font-size: 18px;
+  height: 42px;
+  line-height: 1.33333;
+  padding: 8px 24px;
 }

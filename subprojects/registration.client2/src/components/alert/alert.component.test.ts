@@ -39,19 +39,19 @@ describe('Component: Alert', () => {
         const status_class = [
           {
             status: 'info',
-            class: 'bg-blue',
+            class: 'alert-info',
           },
           {
             status: 'warning',
-            class: 'bg-yellow',
+            class: 'alert-warning',
           },
           {
             status: 'success',
-            class: 'bg-green',
+            class: 'alert-success',
           },
           {
             status: 'error',
-            class: 'bg-red',
+            class: 'alert-danger',
           },
         ];
 

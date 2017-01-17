@@ -36,7 +36,6 @@ describe('Component: Login Form', () => {
       expect(element.querySelector('#qa-password-validation').className)
         .toContain('display-none');
       expect(element.querySelector('#qa-login-button')).not.toBeNull();
-      expect(element.querySelector('#qa-clear-button')).not.toBeNull();
       expect(fixture.componentInstance.onSubmit).toBeTruthy();
     });
   })));
@@ -99,27 +98,6 @@ describe('Component: Login Form', () => {
         });
         let button = fixture.nativeElement.querySelector('#qa-login-button');
         button.click();
-      });
-    }))
-  );
-
-  it('should call reset when the clear button is clicked',
-    async(inject([], () => {
-      fixture.whenStable().then(() => {
-        fixture.componentInstance.username.setValue('user');
-        fixture.componentInstance.password.setValue('pass');
-        fixture.detectChanges();
-        expect(fixture.componentInstance.username.value).toEqual('user');
-        expect(fixture.componentInstance.password.value).toEqual('pass');
-
-        spyOn(fixture.componentInstance, 'reset').and.callThrough();
-        let button = fixture.nativeElement.querySelector('#qa-clear-button');
-        button.click();
-
-        fixture.detectChanges();
-        expect(fixture.componentInstance.reset).toHaveBeenCalled();
-        expect(fixture.componentInstance.username.value).toBeFalsy();
-        expect(fixture.componentInstance.password.value).toBeFalsy();
       });
     }))
   );

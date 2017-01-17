@@ -14,7 +14,9 @@ import {
   RegFormError,
   RegFormGroup,
   RegLabel,
-  RegInput
+  RegInput,
+  RegInputGroup,
+  RegInputLogin
 } from './form';
 import { RegFooter } from './footer';
 
@@ -25,6 +27,8 @@ export {
   RegContainer,
   RegCounter,
   RegInput,
+  RegInputLogin,
+  RegInputGroup,
   RegLogo,
   RegLoginModal,
   RegLoginForm,

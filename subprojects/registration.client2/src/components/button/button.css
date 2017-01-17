@@ -1,0 +1,47 @@
+.btn {
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.white {
+  color: #fff !important;
+}
+
+.btn-xl {
+  font-size: 110%;
+  padding: 13px 34px;
+}
+
+.hover-background-gray:hover {
+  background-color: #999 !important;
+}
+
+.btn:hover,
+.btn:focus,
+.btn.focus {
+  color: #333;
+  text-decoration: none;
+}
+
+input[type='submit'].btn-block,
+input[type='reset'].btn-block,
+input[type='button'].btn-block {
+  width: 100%;
+}
+
+.background-blue {
+  background-color: #00a0e1 !important;
+}

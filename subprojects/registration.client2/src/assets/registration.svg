@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="175px" height="40px" viewBox="0 0 175 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Registration</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Registration">
+            <text font-family="Frutiger-Bold, Frutiger" font-size="20.16" font-weight="bold" letter-spacing="-0.560000017" fill="#999999">
+                <tspan x="64.16" y="26.98">Registration</tspan>
+            </text>
+            <g id="Logo" transform="translate(2.000000, 4.000000)" opacity="0.316814366">
+                <polygon id="Polygon" fill="#00A1DE" points="35.7633428 6.72 45.2751967 12.2116714 45.2751967 23.1950142 35.7633428 28.6866856 26.2514889 23.1950142 26.2514889 12.2116714"></polygon>
+                <polygon id="Polygon-Copy" fill="#58A618" points="35.7633428 0 45.2751967 5.4916714 45.2751967 16.4750142 35.7633428 21.9666856 26.2514889 16.4750142 26.2514889 5.4916714"></polygon>
+                <polygon id="Polygon-Copy-2" fill="#EBB700" points="24.8433428 6.72 34.3551967 12.2116714 34.3551967 23.1950142 24.8433428 28.6866856 15.3314889 23.1950142 15.3314889 12.2116714"></polygon>
+                <polygon id="Polygon-Copy-4" fill="#999999" points="48.5718539 6.72 58.0837078 12.2116714 58.0837078 23.1950142 48.5718539 28.6866856 39.06 23.1950142 39.06 12.2116714"></polygon>
+                <polygon id="Polygon-Copy-3" fill="#E98300" points="9.72334279 6.72 19.2351967 12.2116714 19.2351967 23.1950142 9.72334279 28.6866856 0.211488916 23.1950142 0.211488916 12.2116714"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,8 +1,9 @@
 .loginlogo {
+  margin-left: 10px;
   vertical-align: top;
 }
 
 .logo {
+  height: 40px;
   vertical-align: top;
-  width: 90px;
 }
