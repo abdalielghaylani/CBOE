@@ -18,6 +18,7 @@ export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({
   temporary: true,
   currentId: -1,
   data: null,
+  structureData: '',
 });
 
 export const INITIAL_STATE = RegistryFactory();

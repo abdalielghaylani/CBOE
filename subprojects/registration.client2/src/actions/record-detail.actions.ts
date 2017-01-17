@@ -3,7 +3,6 @@ import { NgRedux } from 'ng2-redux';
 import { createAction } from 'redux-actions';
 import { IAppState } from '../store';
 
-
 @Injectable()
 export class RecordDetailActions {
   static SAVE = 'SAVE';
@@ -15,6 +14,7 @@ export class RecordDetailActions {
   static REGISTER = 'REGISTER';
   static REGISTER_SUCCESS = 'REGISTER_SUCCESS';
   static REGISTER_ERROR = 'REGISTER_ERROR';
+  static LOAD_STRUCTURE = 'LOAD_STRUCTURE';
   static saveAction = createAction(RecordDetailActions.SAVE);
   static saveSuccessAction = createAction(RecordDetailActions.SAVE_SUCCESS);
   static saveErrorAction = createAction(RecordDetailActions.SAVE_ERROR);
@@ -24,6 +24,7 @@ export class RecordDetailActions {
   static registerAction = createAction(RecordDetailActions.REGISTER);
   static registerSuccessAction = createAction(RecordDetailActions.REGISTER_SUCCESS);
   static registerErrorAction = createAction(RecordDetailActions.REGISTER_ERROR);
+  static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -37,5 +38,9 @@ export class RecordDetailActions {
 
   register(data: Document) {
     this.ngRedux.dispatch(RecordDetailActions.registerAction(data));
+  }
+
+  loadStructure(data: Document) {
+    this.ngRedux.dispatch(RecordDetailActions.loadStructureAction(data));
   }
 }

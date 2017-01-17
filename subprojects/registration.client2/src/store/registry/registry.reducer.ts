@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { RegistryActions, GridActions, IPayloadAction } from '../../actions';
+import { RegistryActions, RecordDetailActions, IPayloadAction } from '../../actions';
 import { SessionActions } from '../../actions/session.actions';
 import { INITIAL_STATE } from './registry.initial-state';
 import { IRegistryRecord, IRecords } from './registry.types';
@@ -30,6 +30,9 @@ export function registryReducer(
       return state.update('temporary', () => a3.payload.temporary)
         .update('currentId', () => a3.payload.id)
         .update('data', () => a3.payload.data);
+
+    case RecordDetailActions.UPDATE:
+      return state.update('structureData', () => '');
 
     default:
       return state;

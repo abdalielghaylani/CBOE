@@ -7,8 +7,10 @@ import {
   OnInit,
   ElementRef,
 } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { select, NgRedux } from 'ng2-redux';
 import { RecordDetailActions } from '../../actions';
-import { ICounter } from '../../store';
+import { IAppState } from '../../store';
 import * as registryUtils from './registry-utils';
 
 declare var jQuery: any;
@@ -23,11 +25,12 @@ export class RegRecordDetail implements OnInit {
   @Input() id: number = -1;
   @Input() temporary: boolean = false;
   @Input() data: string;
+  @select(s => s.registry.structureData) structureData$: Observable<string>;
   private document: Document;
   private drawingTool;
   private creatingCDD: boolean = false;
 
-  constructor(private elementRef: ElementRef, private actions: RecordDetailActions) {
+  constructor(private elementRef: ElementRef, private ngRedux: NgRedux<IAppState>, private actions: RecordDetailActions) {
   }
 
   ngOnInit() {
@@ -35,13 +38,23 @@ export class RegRecordDetail implements OnInit {
     this.document = registryUtils.getDocument(output.documentElement.firstChild.textContent);
     registryUtils.fixStructureData(this.document);
     this.createDrawingTool();
+    this.structureData$.subscribe((value: string) => this.loadCdxml(value));
+  }
+
+  loadCdxml(cdxml: string) {
+    if (this.drawingTool && !this.creatingCDD) {
+      this.drawingTool.clear();
+      if (cdxml) {
+        this.drawingTool.loadCDXML(cdxml);
+      }
+    }
   }
 
   getElementValue(e: Element, path: string) {
     return registryUtils.getElementValue(e, path);
   }
 
-  createDrawingTool = function () {
+  createDrawingTool() {
     if (this.drawingTool || this.creatingCDD) {
       return;
     }

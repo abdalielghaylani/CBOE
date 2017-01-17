@@ -13,6 +13,7 @@ export interface IRegistry {
   tempRecords: IRecordsRecord;
   temporary: boolean;
   currentId: number;
+  structureData: string;
   data: string;
 }
 
