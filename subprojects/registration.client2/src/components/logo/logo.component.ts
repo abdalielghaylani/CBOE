@@ -13,5 +13,5 @@ import { Component } from '@angular/core';
       <div></div>`
 })
 export class RegLogo {
-  private LogoImage = require('../../assets/pki-logo.png');
+  private LogoImage = require('../../assets/registration.svg');
 };
