@@ -15,6 +15,8 @@ export class RecordDetailActions {
   static REGISTER_SUCCESS = 'REGISTER_SUCCESS';
   static REGISTER_ERROR = 'REGISTER_ERROR';
   static LOAD_STRUCTURE = 'LOAD_STRUCTURE';
+  static LOAD_STRUCTURE_SUCCESS = 'LOAD_STRUCTURE_SUCCESS';
+  static LOAD_STRUCTURE_ERROR = 'LOAD_STRUCTURE_ERROR';
   static saveAction = createAction(RecordDetailActions.SAVE);
   static saveSuccessAction = createAction(RecordDetailActions.SAVE_SUCCESS);
   static saveErrorAction = createAction(RecordDetailActions.SAVE_ERROR);
@@ -25,6 +27,8 @@ export class RecordDetailActions {
   static registerSuccessAction = createAction(RecordDetailActions.REGISTER_SUCCESS);
   static registerErrorAction = createAction(RecordDetailActions.REGISTER_ERROR);
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
+  static loadStructureSuccessAction = createAction(RecordDetailActions.LOAD_STRUCTURE_SUCCESS);
+  static loadStructureErrorAction = createAction(RecordDetailActions.LOAD_STRUCTURE_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -40,7 +44,15 @@ export class RecordDetailActions {
     this.ngRedux.dispatch(RecordDetailActions.registerAction(data));
   }
 
-  loadStructure(data: Document) {
+  loadStructure(data: string) {
     this.ngRedux.dispatch(RecordDetailActions.loadStructureAction(data));
+  }
+
+  loadStructureSuccess(data: string) {
+    this.ngRedux.dispatch(RecordDetailActions.loadStructureSuccessAction(data));
+  }
+
+  loadStructureError(data: string) {
+    this.ngRedux.dispatch(RecordDetailActions.loadStructureErrorAction(data));
   }
 }

@@ -34,10 +34,12 @@ export class RegRecordDetail implements OnInit {
   }
 
   ngOnInit() {
+    this.createDrawingTool();
     let output = registryUtils.getDocument(this.data);
     this.document = registryUtils.getDocument(output.documentElement.firstChild.textContent);
-    registryUtils.fixStructureData(this.document);
-    this.createDrawingTool();
+    // registryUtils.fixStructureData(this.document);
+    this.actions.loadStructure(registryUtils.getElementValue(this.document.documentElement,
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
     this.structureData$.subscribe((value: string) => this.loadCdxml(value));
   }
 
@@ -93,7 +95,7 @@ export class RegRecordDetail implements OnInit {
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
   };
 
-  removePreviousDrawingTool = function() {
+  removePreviousDrawingTool = function () {
     if (this.drawingTool) {
       let container = jQuery(this.elementRef.nativeElement).find('.cdContainer');
       container.find('div')[2].remove();

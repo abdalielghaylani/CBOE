@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams } from '@angular/http';
+import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Action } from 'redux';
 import { NgRedux } from 'ng2-redux';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions } from '../actions';
@@ -115,6 +115,20 @@ export class RegistryEpics {
         // <ReturnList><ActionDuplicateTaken>N</ActionDuplicateTaken><RegID>30</RegID><RegNum>AB-000012</RegNum><BatchNumber>1</BatchNumber>
         // <BatchID>22</BatchID></ReturnList>
         return Observable.of({ type: RegActions.IGNORE_ACTION });
+      });
+  }
+
+  handleLoadStructure = (action$: Observable<ReduxActions.Action<string>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.LOAD_STRUCTURE)
+      .mergeMap<IPayloadAction>(({ payload }) => {
+        // Call CreateRegistryRecord
+        let url: string = `${BASE_URL}/DataConversion/ToCdxml`;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        let data: string = payload;
+        return this.http.post(url, { data }, options)
+          .map(result => RecordDetailActions.loadStructureSuccessAction(result.json()))
+          .catch(error => Observable.of(RecordDetailActions.loadStructureErrorAction()));
       });
   }
 }

@@ -66,6 +66,7 @@ export class RegApp {
       registryEpics.handleUpdateRecordSuccess,
       registryEpics.handleRegisterRecord,
       registryEpics.handleRegisterRecordSuccess,
+      registryEpics.handleLoadStructure,
       sessionEpics.handleLoginUser,
       sessionEpics.handleLoginUserSuccess
     )));

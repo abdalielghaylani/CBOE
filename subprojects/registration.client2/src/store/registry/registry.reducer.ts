@@ -31,8 +31,9 @@ export function registryReducer(
         .update('currentId', () => a3.payload.id)
         .update('data', () => a3.payload.data);
 
-    case RecordDetailActions.UPDATE:
-      return state.update('structureData', () => '');
+    case RecordDetailActions.LOAD_STRUCTURE_SUCCESS:
+      let cdxml = (action.payload as { data }).data;
+      return state.update('structureData', () => cdxml);
 
     default:
       return state;
