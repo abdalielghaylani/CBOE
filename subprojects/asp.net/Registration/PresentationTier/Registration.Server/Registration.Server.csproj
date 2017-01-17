@@ -168,6 +168,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl14.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
@@ -237,6 +238,7 @@
     <Compile Include="Code\AllowedActions.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\RegControllerBase.cs" />
+    <Compile Include="Controllers\DataConversionController.cs" />
     <Compile Include="Controllers\StructureImageController.cs" />
     <Compile Include="Controllers\RegistryRecordsController.cs" />
     <Compile Include="Controls\COECustomFileUpload.cs" />
