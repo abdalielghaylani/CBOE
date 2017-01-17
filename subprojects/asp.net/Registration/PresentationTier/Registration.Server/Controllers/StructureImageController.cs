@@ -28,7 +28,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new System.Type[] { typeof(string), typeof(string), typeof(double), typeof(double), typeof(string) }, null).Invoke(null, args);
             var response = Request.CreateResponse(HttpStatusCode.OK, returnValue);
             var cacheControl = new CacheControlHeaderValue { Public = true, MaxAge = TimeSpan.FromDays(1) };
-            response.Headers.CacheControl = cacheControl;
+            //response.Headers.CacheControl = cacheControl;
             return response;
         }
     }

@@ -1,4 +1,4 @@
-using System.Web.Http;
+﻿using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System;
@@ -10,20 +10,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     public class DataConversionController : RegControllerBase
     {
-        [HttpPost]
-        [Route("api/DataConversion/ToCdxml")]
-        public JObject ToCdxml()
+        private JObject Convert(string fromType, string toType, string fromData)
         {
-            var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
             ChemDrawCtl ctrl = null;
             try
             {
                 ctrl = new ChemDrawCtl();
                 ctrl.Objects.Clear();
                 ctrl.DataEncoded = true;
-                ctrl.Objects.set_Data("chemical/x-cdx", null, null, null, fromData);
+                ctrl.Objects.set_Data(fromType, null, null, null, fromData);
                 var toData = new JObject(
-                    new JProperty("data", ctrl.get_Data("text/xml"))
+                    new JProperty("data", ctrl.get_Data(toType))
                 );
                 return toData;
             }
@@ -33,6 +30,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     Marshal.ReleaseComObject(ctrl);
                 GC.Collect();
             }
+        }
+
+        [HttpPost]
+        [Route("api/DataConversion/ToCdxml")]
+        public JObject ToCdxml()
+        {
+            var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
+            return Convert("chemical/x-cdx", "text/xml", fromData);
+        }
+
+        [HttpPost]
+        [Route("api/DataConversion/FromCdxml")]
+        public JObject FromCdxml()
+        {
+            var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
+            return Convert("text/xml", "chemical/x-cdx", fromData);
         }
     }
 }

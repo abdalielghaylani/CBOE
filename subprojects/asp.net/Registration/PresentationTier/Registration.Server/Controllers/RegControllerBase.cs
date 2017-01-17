@@ -58,6 +58,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         case "datetime":
                             fieldData = reader.GetDateTime(i);
                             break;
+                        case "decimal":
+                            fieldData = (double)reader.GetDecimal(i);
+                            break;
                         default:
                             fieldData = reader.GetString(i);
                             break;
