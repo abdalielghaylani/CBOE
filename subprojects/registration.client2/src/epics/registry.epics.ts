@@ -3,7 +3,7 @@ import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Action } from 'redux';
 import { NgRedux } from 'ng2-redux';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions } from '../actions';
-import { IAppState } from '../store';
+import { IRecordDetail, IAppState } from '../store';
 import { UPDATE_LOCATION } from 'ng2-redux-router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -42,7 +42,11 @@ export class RegistryEpics {
             `${WS_URL}/RetrieveTemporaryRegistryRecord?id=${data.BATCHID}` :
             `${WS_URL}/RetrieveRegistryRecord?regNum=${data.REGNUMBER}`;
         return this.http.get(url)
-          .map(result => RegistryActions.retrieveRecordSuccessAction(payload.temporary, payload.id, result.text()))
+          .map(result => RegistryActions.retrieveRecordSuccessAction({
+            temporary: payload.temporary,
+            id: payload.id,
+            data: result.text()
+          } as IRecordDetail))
           .catch(error => Observable.of(RegistryActions.retrieveRecordErrorAction()));
       });
   }

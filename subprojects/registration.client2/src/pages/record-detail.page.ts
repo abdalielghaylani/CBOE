@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { select } from 'ng2-redux';
 import { RecordDetailActions } from '../actions';
 import { RegContainer, RegRecordDetail } from '../components';
-import { IRegistry } from '../store';
+import { IRecordDetail } from '../store';
 
 @Component({
   selector: 'record-detail-page',
@@ -13,15 +13,15 @@ import { IRegistry } from '../store';
   template: `
     <reg-container testid="records">
       <reg-record-detail
-        [temporary]="(registry$ | async).temporary"
-        [id]="(registry$ | async).currentId"
-        [data]="(registry$ | async).data">
+        [temporary]="(recordDetail$ | async).temporary"
+        [id]="(recordDetail$ | async).id"
+        [data]="(recordDetail$ | async).data">
       </reg-record-detail>
     </reg-container>
   `
 })
 export class RegRecordDetailPage {
-  @select(s => s.registry) registry$: Observable<IRegistry>;
+  @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
 
   constructor(private router: Router, private actions: RecordDetailActions) { }
 }

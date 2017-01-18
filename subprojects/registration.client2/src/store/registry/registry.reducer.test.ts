@@ -2,7 +2,7 @@ import { Iterable } from 'immutable';
 import { RegistryFactory } from './registry.initial-state';
 import { registryReducer } from './registry.reducer';
 import { RegistryActions, RecordDetailActions } from '../../actions';
-import { IRegistryRecord } from './registry.types';
+import { IRegistryRecord, IRecordDetail } from './registry.types';
 
 describe('registry reducer', () => {
   let initState: IRegistryRecord;
@@ -24,7 +24,6 @@ describe('registry reducer', () => {
   });
 
   it('should clear record rows on OPEN_RECORDS(false)', () => {
-    const previousValue = initState.temporary;
     const nextState = registryReducer(
       initState,
       RegistryActions.openRecordsAction(false)
@@ -33,7 +32,6 @@ describe('registry reducer', () => {
   });
 
   it('should clear temp record rows on OPEN_RECORDS(true)', () => {
-    const previousValue = initState.temporary;
     const nextState = registryReducer(
       initState,
       RegistryActions.openRecordsAction(true)
@@ -64,20 +62,28 @@ describe('registry reducer', () => {
     const data = '<xml>encoded-temp-cdxml-data</xml>';
     const firstState = registryReducer(
       initState,
-      RegistryActions.retrieveRecordSuccessAction(true, id, data)
+      RegistryActions.retrieveRecordSuccessAction({
+        temporary: true,
+        id: id,
+        data: data
+      } as IRecordDetail)
     );
-    expect(firstState.temporary).toEqual(true);
-    expect(firstState.currentId).toEqual(id);
-    expect(firstState.data).toEqual(data);
+    expect(firstState.currentRecord.temporary).toEqual(true);
+    expect(firstState.currentRecord.id).toEqual(id);
+    expect(firstState.currentRecord.data).toEqual(data);
     const id2 = 101;
     const data2 = '<xml>encoded-cdxml-data</xml>';
     const secondState = registryReducer(
       firstState,
-      RegistryActions.retrieveRecordSuccessAction(false, id2, data2)
+      RegistryActions.retrieveRecordSuccessAction({
+        temporary: false,
+        id: id2,
+        data: data2
+      } as IRecordDetail)
     );
-    expect(secondState.temporary).toEqual(false);
-    expect(secondState.currentId).toEqual(id2);
-    expect(secondState.data).toEqual(data2);
+    expect(secondState.currentRecord.temporary).toEqual(false);
+    expect(secondState.currentRecord.id).toEqual(id2);
+    expect(secondState.currentRecord.data).toEqual(data2);
   });
 
   it('should set structureData on LOAD_STRUCTURE_SUCCESS', () => {
