@@ -4,8 +4,9 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnInit,
+  OnInit, AfterViewInit,
   ElementRef,
+  ViewChildren, QueryList
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { select, NgRedux } from 'ng2-redux';
@@ -14,6 +15,7 @@ import { RecordDetailActions } from '../../actions';
 import { IAppState } from '../../store';
 import * as registryUtils from './registry-utils';
 import * as regTypes from './registry.types';
+import { DxFormComponent } from 'devextreme-angular';
 
 declare var jQuery: any;
 
@@ -24,10 +26,12 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements OnInit {
+  @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() id: number = -1;
   @Input() temporary: boolean = false;
   @Input() data: string;
   @select(s => s.registry.structureData) structureData$: Observable<string>;
+  private lookups: any;
   private drawingTool;
   private creatingCDD: boolean = false;
   private projects: any[];
@@ -46,8 +50,10 @@ export class RegRecordDetail implements OnInit {
       Batch: any[]
     }
   };
-  private batchItems: any;
+  private componentItems: any;
+  private compoundItems: any;
   private fragmentItems: any;
+  private batchItems: any;
 
   constructor(private elementRef: ElementRef, private ngRedux: NgRedux<IAppState>, private actions: RecordDetailActions) {
   }
@@ -75,8 +81,10 @@ export class RegRecordDetail implements OnInit {
     this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
     this.structureData$.subscribe((value: string) => this.loadCdxml(value));
-    this.batchItems = regTypes.BATCH_DESC_LIST;
+    this.componentItems = regTypes.COMPONENT_DESC_LIST;
+    this.compoundItems = regTypes.COMPOUND_DESC_LIST;
     this.fragmentItems = regTypes.FRAGMENT_DESC_LIST;
+    this.batchItems = regTypes.BATCH_DESC_LIST;
   }
 
   loadCdxml(cdxml: string) {

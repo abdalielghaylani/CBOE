@@ -8,6 +8,73 @@ export class FragmentData {
   DateLastModified: Date;
 }
 
+export const COMPONENT_DESC_LIST = [{
+  dataField: 'ComponentIndex',
+  dataType: 'number',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'ComponentComments',
+  dataType: 'string',
+  colSpan: 2
+}, {
+  dataField: 'StereochemistryComments',
+  dataType: 'string',
+  colSpan: 2
+}];
+
+export const COMPOUND_DESC_LIST = [{
+  dataField: 'CompoundID',
+  dataType: 'number',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'DateCreated',
+  dataType: 'date',
+  editorType: 'dxDateBox',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'PersonCreated',
+  dataType: 'string',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'PersonApproved',
+  dataType: 'string',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'DateLastModified',
+  dataType: 'date',
+  editorType: 'dxDateBox'
+}];
+
+export const FRAGMENT_DESC_LIST = [{
+  dataField: 'FragmentID',
+  label: 'Last Modified Date',
+  dataType: 'date',
+  editorType: 'dxDateBox',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'Code',
+  label: 'Last Modified Date',
+  dataType: 'number',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'FragmentType',
+  dataType: 'string',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'Structure',
+  dataType: 'string',
+  editorOptions: { disabled: true }
+}, {
+  dataField: 'DateCreated',
+  dataType: 'date',
+  editorType: 'dxDateBox',
+}, {
+  dataField: 'DateLastModified',
+  label: 'Last Modified Date',
+  dataType: 'date',
+  editorType: 'dxDateBox',
+}];
+
 export const BATCH_DESC_LIST = [{
   dataField: 'BatchID',
   dataType: 'number',
@@ -19,15 +86,20 @@ export const BATCH_DESC_LIST = [{
   editorOptions: { disabled: true }
 }, {
   dataField: 'DateLastModified',
-  caption: 'Last Modified Date',
+  label: 'Last Modified Date',
   dataType: 'date',
   editorType: 'dxDateBox',
   editorOptions: { disabled: true }
 }, {
   dataField: 'PersonCreated',
-  caption: 'Scientist',
+  label: 'Scientist',
   dataType: 'string',
-  editorOptions: { disabled: true }
+  editorType: 'dxSelectBox',
+  editorOptions: {
+    displayExpr: 'USERID',
+    valueExpr: 'PERSONID',
+    placeholder: ''
+  }
 }, {
   dataField: 'SynthesisDate',
   dataType: 'date',
@@ -73,34 +145,4 @@ export const BATCH_DESC_LIST = [{
   dataField: 'StorageRequirementsWarnings',
   dataType: 'string',
   colSpan: 2
-}];
-
-export const FRAGMENT_DESC_LIST = [{
-  dataField: 'FragmentID',
-  caption: 'Last Modified Date',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'Code',
-  caption: 'Last Modified Date',
-  dataType: 'number',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'FragmentType',
-  dataType: 'string',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'Structure',
-  dataType: 'string',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'DateCreated',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'DateLastModified',
-  caption: 'Last Modified Date',
-  dataType: 'date',
-  editorType: 'dxDateBox',
 }];
