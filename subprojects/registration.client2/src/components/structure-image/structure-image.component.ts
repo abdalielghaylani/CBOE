@@ -37,7 +37,9 @@ export class RegStructureImage {
       this.type = srcValues[0];
       this.id = +srcValues[1];
     }
-    let url = `${BASE_URL}/StructureImage/${this.type}/${this.id}/${this.height}/${this.width}/${this.resolution}`;
-    this.srcUrl$ = this.http.get(url).map(res => res.text().replace(/\"/g, ''));
+    if (this.type && this.id) {
+      let url = `${BASE_URL}/StructureImage/${this.type}/${this.id}/${this.height}/${this.width}/${this.resolution}`;
+      this.srcUrl$ = this.http.get(url).map(res => res.text().replace(/\"/g, ''));
+    }
   }
 };
