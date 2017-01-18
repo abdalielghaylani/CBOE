@@ -40,7 +40,7 @@ export class RegRecordDetail implements OnInit {
     RegNumber: any,
     StructureAggregation: string,
     BatchList: {
-      Batch: Batch[]
+      Batch: any[]
     }
   };
   private batchItems: any;
