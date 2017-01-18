@@ -4,11 +4,12 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnInit, AfterViewInit,
+  OnInit, OnDestroy, AfterViewInit,
   ElementRef,
   ViewChildren, QueryList
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from 'ng2-redux';
 import * as x2js from 'x2js';
 import { RecordDetailActions } from '../../actions';
@@ -25,7 +26,7 @@ declare var jQuery: any;
   template: require('./record-detail.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecordDetail implements OnInit {
+export class RegRecordDetail implements OnInit, OnDestroy {
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() id: number = -1;
   @Input() temporary: boolean = false;
@@ -54,6 +55,7 @@ export class RegRecordDetail implements OnInit {
   private compoundItems: any;
   private fragmentItems: any;
   private batchItems: any;
+  private loadSubscription: Subscription;
 
   constructor(private elementRef: ElementRef, private ngRedux: NgRedux<IAppState>, private actions: RecordDetailActions) {
   }
@@ -80,11 +82,15 @@ export class RegRecordDetail implements OnInit {
     }
     this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
-    this.structureData$.subscribe((value: string) => this.loadCdxml(value));
+    this.loadSubscription = this.structureData$.subscribe((value: string) => this.loadCdxml(value));
     this.componentItems = regTypes.COMPONENT_DESC_LIST;
     this.compoundItems = regTypes.COMPOUND_DESC_LIST;
     this.fragmentItems = regTypes.FRAGMENT_DESC_LIST;
     this.batchItems = regTypes.BATCH_DESC_LIST;
+  }
+
+  ngOnDestroy() {
+    this.loadSubscription.unsubscribe();
   }
 
   loadCdxml(cdxml: string) {

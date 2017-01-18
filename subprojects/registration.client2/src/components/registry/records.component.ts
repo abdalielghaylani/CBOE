@@ -3,12 +3,14 @@ import {
   Input,
   Output,
   OnInit,
+  OnDestroy,
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { select, NgRedux } from 'ng2-redux';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { RegistryActions } from '../../actions';
 import { IAppState, IRecords } from '../../store';
 
@@ -38,14 +40,24 @@ import { IAppState, IRecords } from '../../store';
   styles: [require('./records.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecords implements OnInit {
+export class RegRecords implements OnInit, OnDestroy {
   @Input() title: string;
   @Input() records: IRecords;
   @select(s => s.configuration.lookups) lookups$: Observable<any>;
+  @select(s => s.session.token) token$: Observable<string>;
+  private refreshSubscription: Subscription;
 
   constructor(private router: Router, private ngRedux: NgRedux<IAppState>, private registryActions: RegistryActions) { }
 
   ngOnInit() {
+    this.refreshSubscription = this.token$.subscribe(s => { if (s) { this.updateContents(); } });
+  }
+
+  ngOnDestroy() {
+    this.refreshSubscription.unsubscribe();
+  }
+
+  updateContents() {
     this.registryActions.openRecords(this.records.temporary);
   }
 
