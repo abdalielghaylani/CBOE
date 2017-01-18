@@ -5,15 +5,15 @@ import { INITIAL_STATE } from './registry.initial-state';
 import { IRegistryRecord, IRecords } from './registry.types';
 import { DxDataGridModule, DxDataGridComponent } from 'devextreme-angular';
 
-function recordsPath(temporary: boolean): any[] {
-  let records: string = temporary ? 'tempRecords' : 'records';
-  return [ records, 'rows' ];
-}
-
 export function registryReducer(
   state: IRegistryRecord = INITIAL_STATE,
   action: IPayloadAction
 ): IRegistryRecord {
+
+  let recordsPath = (temporary: boolean): any[] => {
+    let records: string = temporary ? 'tempRecords' : 'records';
+    return [records, 'rows'];
+  };
 
   switch (action.type) {
     case RegistryActions.OPEN_RECORDS:

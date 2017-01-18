@@ -23,34 +23,40 @@ describe('registry reducer', () => {
     expect(nextState).toEqual(initState);
   });
 
-  it('should clear rows on OPEN_RECORDS', () => {
+  it('should clear record rows on OPEN_RECORDS(false)', () => {
     const previousValue = initState.temporary;
-    const firstState = registryReducer(
+    const nextState = registryReducer(
+      initState,
+      RegistryActions.openRecordsAction(false)
+    );
+    expect(nextState.records.rows).toEqual([]);
+  });
+
+  it('should clear temp record rows on OPEN_RECORDS(true)', () => {
+    const previousValue = initState.temporary;
+    const nextState = registryReducer(
       initState,
       RegistryActions.openRecordsAction(true)
     );
-    expect(firstState.tempRecords.rows).toEqual([]);
-    const secondState = registryReducer(
-      firstState,
-      RegistryActions.openRecordsAction(false)
-    );
-    expect(secondState.records.rows).toEqual([]);
+    expect(nextState.tempRecords.rows).toEqual([]);
   });
 
-  it('should send data on OPEN_RECORDS_SUCCESS', () => {
+  it('should set record rows on OPEN_RECORDS_SUCCESS(false)', () => {
     const data = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
-    const firstState = registryReducer(
+    const nextState = registryReducer(
+      initState,
+      RegistryActions.openRecordsSuccessAction(false, data)
+    );
+    expect(nextState.records.rows).toEqual(data);
+  });
+
+  it('should set temp record rows on OPEN_RECORDS_SUCCESS(true)', () => {
+    const data = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
+    const nextState = registryReducer(
       initState,
       RegistryActions.openRecordsSuccessAction(true, data)
     );
-    expect(firstState.tempRecords.rows).toEqual(data);
-    const data2 = data.concat({ c1: 'v31', c2: 'v32' });
-    const secondState = registryReducer(
-      firstState,
-      RegistryActions.openRecordsSuccessAction(false, data2)
-    );
-    expect(secondState.tempRecords.rows).toEqual(data);
-    expect(secondState.records.rows).toEqual(data2);
+    expect(nextState.tempRecords.rows).toEqual(data);
   });
 
   it('should set record data on RETRIEVE_RECORD_SUCCESS', () => {
