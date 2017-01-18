@@ -3,8 +3,8 @@
     <form class="form-inline" role="form" ng-submit="search(query)">
       <div>
         <button (click)="update()" class="mr1 btn btn-primary pull-right" *ngIf="id >= 0">Update</button>
-        <button (click)="save()" class="mr1 btn btn-primary pull-right"*ngIf="id < 0">Save</button>
-        <button (click)="register()" class="mr1 btn btn-primary pull-right"*ngIf="temporary || id < 0">Register</button>
+        <button (click)="save()" class="mr1 btn btn-primary pull-right" *ngIf="id < 0">Save</button>
+        <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="temporary || id < 0">Register</button>
       </div>
       <h4 data-testid="configuration-heading" id="qa-configuration-heading">
         <span class="records-detail-title lg-pb2" *ngIf="id < 0">Register a New Compound</span>
@@ -36,21 +36,15 @@
             <div class="tab-pane fade" id="tab2default">
               <h4>Registry Information</h4>
               <h5>Projects</h5>
-              <dx-data-grid d='projectGridContainer' [columns]='gridColumns' [dataSource]=[]
-                [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-                [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
-                (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
-                [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'>
-              </dx-data-grid>
-              <h5>Registry Identifiers</h5>
-              <dx-data-grid d='regIdGridContainer' [columns]='gridColumns' [dataSource]=[]
-                [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-                [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' (onRowRemoving)='deleteRecord($event)'
-                (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true,
-                [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'>
-              </dx-data-grid>
-              <h5>Prefix</h5>
-              <div id="prefixGridContainer"></div>
+              <dx-data-grid d='projectGridContainer' [columns]='gridColumns' [dataSource]=[] [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }' [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
+                (onRowRemoving)='deleteRecord($event)' (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true, [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'>
+                </dx-data-grid>
+                <h5>Registry Identifiers</h5>
+                <dx-data-grid d='regIdGridContainer' [columns]='gridColumns' [dataSource]=[] [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }' [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
+                  (onRowRemoving)='deleteRecord($event)' (onInitNewRow)='addRecord()' (onEditingStart)='editRecord($event)' rowAlternationEnabled=true, [editing]='{ mode: form, allowUpdating: true, allowDeleting: true, allowAdding: true }'>
+                  </dx-data-grid>
+                  <h5>Prefix</h5>
+                  <div id="prefixGridContainer"></div>
             </div>
             <div class="tab-pane fade" id="tab3default">
               <h4>Component Information</h4>
@@ -60,6 +54,7 @@
             </div>
             <div class="tab-pane fade" id="tab5default">
               <h4>Batch Information</h4>
+              <dx-form id="form" [formData]="rootJson.BatchList.Batch[0]" [colCount]="2" [items]="batchItems"></dx-form>
             </div>
           </div>
         </div>

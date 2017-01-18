@@ -21,7 +21,13 @@ import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
-import { DxDataGridModule } from 'devextreme-angular';
+import {
+  DxCheckBoxModule,
+  DxDataGridModule,
+  DxSelectBoxModule,
+  DxNumberBoxModule,
+  DxFormModule
+} from 'devextreme-angular';
 
 @NgModule({
   imports: [
@@ -36,7 +42,11 @@ import { DxDataGridModule } from 'devextreme-angular';
     RegFooterModule,
     ToolModule,
     NgReduxModule.forRoot(),
-    DxDataGridModule
+    DxCheckBoxModule,
+    DxDataGridModule,
+    DxSelectBoxModule,
+    DxNumberBoxModule,
+    DxFormModule
   ],
   declarations: [
     RegApp,
@@ -60,7 +70,7 @@ import { DxDataGridModule } from 'devextreme-angular';
     NgReduxRouter,
     appRoutingProviders
   ]
-  .concat(ACTION_PROVIDERS)
-  .concat(EPIC_PROVIDERS)
+    .concat(ACTION_PROVIDERS)
+    .concat(EPIC_PROVIDERS)
 })
 export class RegAppModule { }

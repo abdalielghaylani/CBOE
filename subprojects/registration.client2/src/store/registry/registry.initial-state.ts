@@ -34,7 +34,7 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>(
       allowFiltering: false,
       cellTemplate: 'cellTemplate',
       caption: 'Structure',
-      width: 150,
+      width: 160,
     }, {
       dataField: 'REGNUMBER',
       dataType: 'string',
@@ -89,7 +89,7 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>(
       allowFiltering: false,
       cellTemplate: 'cellTemplate',
       caption: 'Structure',
-      width: 150,
+      width: 160,
     }]
   }
 )();
