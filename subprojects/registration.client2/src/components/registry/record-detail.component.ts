@@ -13,6 +13,7 @@ import * as x2js from 'x2js';
 import { RecordDetailActions } from '../../actions';
 import { IAppState } from '../../store';
 import * as registryUtils from './registry-utils';
+import * as regTypes from './registry.types';
 
 declare var jQuery: any;
 
@@ -34,7 +35,9 @@ export class RegRecordDetail implements OnInit {
   private recordJson: any;
   private recordDoc: Document;
   private rootJson: {
-    CompoundList: any[],
+    ComponentList: {
+      Component: any[]
+    },
     ProjectList: any[],
     PropertyList: any[],
     RegNumber: any,
@@ -44,6 +47,7 @@ export class RegRecordDetail implements OnInit {
     }
   };
   private batchItems: any;
+  private fragmentItems: any;
 
   constructor(private elementRef: ElementRef, private ngRedux: NgRedux<IAppState>, private actions: RecordDetailActions) {
   }
@@ -65,72 +69,14 @@ export class RegRecordDetail implements OnInit {
     });
     this.recordJson = x2jsTool.dom2js(this.recordDoc);
     this.rootJson = this.recordJson.MultiCompoundRegistryRecord;
+    if (!this.rootJson.ComponentList.Component[0].Compound.FragmentList) {
+      this.rootJson.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new regTypes.FragmentData()] };
+    }
     this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
     this.structureData$.subscribe((value: string) => this.loadCdxml(value));
-    this.batchItems = [{
-      dataField: 'BatchID',
-      dataType: 'number',
-      editorOptions: { disabled: true }
-    }, {
-      dataField: 'DateCreated',
-      dataType: 'date',
-      editorOptions: { disabled: true }
-    }, {
-      dataField: 'DateLastModified',
-      caption: 'Last Modified Date',
-      dataType: 'date',
-      editorOptions: { disabled: true }
-    }, {
-      dataField: 'PersonCreated',
-      caption: 'Scientist',
-      dataType: 'string',
-      editorOptions: { disabled: true }
-    }, {
-      dataField: 'SynthesisDate',
-      dataType: 'date',
-    }, {
-      dataField: 'NotebookReference',
-      dataType: 'string'
-    }, {
-      dataField: 'Amount',
-      dataType: 'string'
-    }, {
-      dataField: 'Unit',
-      dataType: 'string'
-    }, {
-      dataField: 'Appearance',
-      dataType: 'string'
-    }, {
-      dataField: 'Purity',
-      dataType: 'string'
-    }, {
-      dataField: 'PurityComments',
-      dataType: 'string'
-    }, {
-      dataField: 'SampleID',
-      dataType: 'string'
-    }, {
-      dataField: 'Solubility',
-      dataType: 'string'
-    }, {
-      dataField: 'PercentActive',
-      dataType: 'string'
-    }, {
-      dataField: 'FormulaWeight',
-      dataType: 'string'
-    }, {
-      dataField: 'MolecularFormula',
-      dataType: 'string'
-    }, {
-      dataField: 'BatchComments',
-      dataType: 'string',
-      colSpan: 2
-    }, {
-      dataField: 'StorageRequirementsWarnings',
-      dataType: 'string',
-      colSpan: 2
-    }];
+    this.batchItems = regTypes.BATCH_DESC_LIST;
+    this.fragmentItems = regTypes.FRAGMENT_DESC_LIST;
   }
 
   loadCdxml(cdxml: string) {

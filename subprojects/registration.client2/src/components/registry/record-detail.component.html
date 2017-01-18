@@ -48,13 +48,15 @@
             </div>
             <div class="tab-pane fade" id="tab3default">
               <h4>Component Information</h4>
+              <dx-form id="componentForm" [formData]="rootJson.ComponentList.Component[0]" [colCount]="2"></dx-form>
             </div>
             <div class="tab-pane fade" id="tab4default">
               <h4>Fragment Information</h4>
+              <dx-form id="fragmentForm" [formData]="rootJson.ComponentList.Component[0].Compound.FragmentList.Fragment[0]" [colCount]="2" [items]="this.fragmentItems"></dx-form>
             </div>
             <div class="tab-pane fade" id="tab5default">
               <h4>Batch Information</h4>
-              <dx-form id="form" [formData]="rootJson.BatchList.Batch[0]" [colCount]="2" [items]="batchItems"></dx-form>
+              <dx-form id="batchForm" [formData]="rootJson.BatchList.Batch[0]" [colCount]="2" [items]="batchItems"></dx-form>
             </div>
           </div>
         </div>
