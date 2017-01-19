@@ -27,7 +27,7 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   }, {
     dataField: 'CREATOR',
     caption: 'Created By',
-    lookup: {},
+    lookup: 'users',
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',
@@ -80,7 +80,7 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   }, {
     dataField: 'CREATOR',
     caption: 'Created By',
-    lookup: {},
+    lookup: 'users',
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',

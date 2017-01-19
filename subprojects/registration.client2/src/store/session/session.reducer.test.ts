@@ -51,4 +51,13 @@ describe('Session Reducer', () => {
     expect(nextState.get('hasError')).toBeFalsy;
     expect(nextState.get('token')).toEqual(null);
   });
+
+  it('should update lookups on LOAD_LOOKUPS_SUCCESS', () => {
+    const data = { users: [{ id: 1, name: 'user one' }] };
+    const previousState = initState;
+    const nextState = sessionReducer(
+      previousState,
+      SessionActions.loadLookupsSuccessAction(data));
+    expect(nextState.lookups).toEqual(data);
+  });
 });

@@ -33,13 +33,4 @@ describe('configuration reducer', () => {
       ConfigurationActions.openTableSuccessAction(data));
     expect(nextState.rows).toEqual(data);
   });
-
-  it('should update lookups on LOAD_LOOKUPS_SUCCESS', () => {
-    const data = { users: [{ id: 1, name: 'user one' }] };
-    const previousState = initState;
-    const nextState = configurationReducer(
-      previousState,
-      ConfigurationActions.loadLookupsSuccessAction(data));
-    expect(nextState.lookups).toEqual(data);
-  });
 });

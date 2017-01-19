@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { IPayloadAction, ConfigurationActions, SessionActions } from '../actions';
+import { IPayloadAction, SessionActions } from '../actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -26,8 +26,8 @@ export class SessionEpics {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
       .mergeMap<IPayloadAction>(() => {
         return this.http.get(`${BASE_URL}/ViewConfig/Lookups`)
-          .map(result => ConfigurationActions.loadLookupsSuccessAction(result.json()))
-          .catch(error => Observable.of(ConfigurationActions.loadLookupsErrorAction()));
+          .map(result => SessionActions.loadLookupsSuccessAction(result.json()))
+          .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
       });
   }
 }

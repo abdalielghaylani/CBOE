@@ -13,20 +13,15 @@ import { IRegistry } from '../store';
   template: `
     <reg-container testid="records">
       <reg-records
-        [records]="boundRecords$ | async"
-        (create)="actions.create()"
-        (edit)="actions.edit()"
-        (search)="actions.search()">
+        [temporary]="temporary">
       </reg-records>
     </reg-container>
   `
 })
 export class RegRecordsPage {
-  @select(s => s.registry.records) private records$: Observable<IRegistry>;
-  @select(s => s.registry.tempRecords) private tempRecords$: Observable<IRegistry>;
-  private boundRecords$: Observable<IRegistry>;
+  private temporary: boolean;
 
   constructor(private router: Router, private actions: RegistryActions) {
-    this.boundRecords$ = (router.url.match(/.*\/temp.*/g) || []).length > 0 ? this.tempRecords$ : this.records$;
+    this.temporary = (router.url.match(/.*\/temp.*/g) || []).length > 0;
   }
 }

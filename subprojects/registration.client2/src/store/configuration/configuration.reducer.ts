@@ -11,9 +11,6 @@ export function configurationReducer(
 ): IConfigurationRecord {
 
   switch (action.type) {
-    case ConfigurationActions.LOAD_LOOKUPS_SUCCESS:
-      return state.update('lookups', () => action.payload);
-    
     case ConfigurationActions.OPEN_TABLE:
       return state.update('tableId', () => (<ReduxActions.Action<{ tableId: any; }>>action).payload.tableId)
         .update('rows', () => []);

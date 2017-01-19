@@ -12,6 +12,7 @@ export interface ISession {
   user: IUser;
   hasError: boolean;
   isLoading: boolean;
+  lookups: any;
 };
 
 export interface ISessionRecord extends TypedRecord<ISessionRecord>, ISession {
