@@ -49,6 +49,8 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       Batch: any[]
     }
   };
+  private id: number;
+  private temporary: boolean;
   private componentItems: any;
   private compoundItems: any;
   private fragmentItems: any;
@@ -78,6 +80,8 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   }
 
   loadData(data: IRecordDetail) {
+    this.temporary = data.temporary;
+    this.id = data.id;
     let output = registryUtils.getDocument(data.data);
     this.recordString = output.documentElement.firstChild.textContent;
     this.recordDoc = registryUtils.getDocument(this.recordString);
