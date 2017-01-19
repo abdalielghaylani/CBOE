@@ -23,7 +23,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
         <span *ngIf="temporary">Temporary</span> Registration Records
       </h4>
 
-      <dx-data-grid [columns]=gridColumns [dataSource]=records.rows [paging]='{pageSize: 10}' 
+      <dx-data-grid [columns]=records.gridColumns [dataSource]=records.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true
         (onContentReady)='onContentReady($event)'
@@ -45,18 +45,14 @@ export class RegRecords implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Input() temporary: boolean;
   @select(s => s.session.lookups) lookups$: Observable<any>;
-  @select(s => s.registry.tempRecords) tempRecords$: Observable<IRecords>;
-  @select(s => s.registry.records) regRecords$: Observable<IRecords>;
   private records$: Observable<IRecords>;
-  private recordsSubscription: Subscription;
   private lookupsSubscription: Subscription;
+  private recordsSubscription: Subscription;
   private lookups: any;
   private records: IRecords;
-  private gridColumns: any[];
 
   constructor(private router: Router, private ngRedux: NgRedux<IAppState>, private registryActions: RegistryActions) { 
     this.records = { temporary: this.temporary, rows: [], gridColumns: [] };
-    this.gridColumns = [];
   }
 
   ngOnInit() {
@@ -80,8 +76,8 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   updateContents(records: IRecords) {
-    this.records = records;
-    this.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
+    this.records.rows = records.rows;
+    this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
     if (this.grid && this.grid.instance) {
       this.grid.instance.refresh();
     }
