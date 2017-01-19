@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from 'ng2-redux';
 import * as x2js from 'x2js';
 import { RecordDetailActions } from '../../actions';
-import { IAppState } from '../../store';
+import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry-utils';
 import * as regTypes from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
@@ -28,11 +28,9 @@ declare var jQuery: any;
 })
 export class RegRecordDetail implements OnInit, OnDestroy {
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
-  @Input() id: number = -1;
-  @Input() temporary: boolean = false;
-  @Input() data: string;
+  @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.structureData) structureData$: Observable<string>;
-  private lookups: any;
+  private title: string;
   private drawingTool;
   private creatingCDD: boolean = false;
   private projects: any[];
@@ -55,14 +53,32 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   private compoundItems: any;
   private fragmentItems: any;
   private batchItems: any;
+  private dataSubscription: Subscription;
   private loadSubscription: Subscription;
+  private componentData: any;
+  private compoundData: any;
+  private fragmentData: any;
+  private batchData: any;
 
   constructor(private elementRef: ElementRef, private ngRedux: NgRedux<IAppState>, private actions: RecordDetailActions) {
   }
 
   ngOnInit() {
     this.createDrawingTool();
-    let output = registryUtils.getDocument(this.data);
+    this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+  }
+
+  ngOnDestroy() {
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
+    }
+    if (this.loadSubscription) {
+      this.loadSubscription.unsubscribe();
+    }
+  }
+
+  loadData(data: IRecordDetail) {
+    let output = registryUtils.getDocument(data.data);
     this.recordString = output.documentElement.firstChild.textContent;
     this.recordDoc = registryUtils.getDocument(this.recordString);
     registryUtils.fixStructureData(this.recordDoc);
@@ -83,14 +99,19 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
     this.loadSubscription = this.structureData$.subscribe((value: string) => this.loadCdxml(value));
+    this.title = data.id < 0 ?
+      'Register a New Compound' :
+      data.temporary ?
+        'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
+        'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
     this.componentItems = regTypes.COMPONENT_DESC_LIST;
     this.compoundItems = regTypes.COMPOUND_DESC_LIST;
     this.fragmentItems = regTypes.FRAGMENT_DESC_LIST;
     this.batchItems = regTypes.BATCH_DESC_LIST;
-  }
-
-  ngOnDestroy() {
-    this.loadSubscription.unsubscribe();
+    this.componentData = this.rootJson.ComponentList.Component[0];
+    this.compoundData = this.rootJson.ComponentList.Component[0].Compound;
+    this.fragmentData = this.rootJson.ComponentList.Component[0].Compound.FragmentList.Fragment[0];
+    this.batchData = this.rootJson.BatchList.Batch[0];
   }
 
   loadCdxml(cdxml: string) {

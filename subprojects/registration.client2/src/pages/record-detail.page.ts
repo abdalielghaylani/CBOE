@@ -12,16 +12,11 @@ import { IRecordDetail } from '../store';
   providers: [RecordDetailActions],
   template: `
     <reg-container testid="records">
-      <reg-record-detail
-        [temporary]="(recordDetail$ | async).temporary"
-        [id]="(recordDetail$ | async).id"
-        [data]="(recordDetail$ | async).data">
+      <reg-record-detail>
       </reg-record-detail>
     </reg-container>
   `
 })
 export class RegRecordDetailPage {
-  @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
-
   constructor(private router: Router, private actions: RecordDetailActions) { }
 }

@@ -6,11 +6,7 @@
         <button (click)="save()" class="mr1 btn btn-primary pull-right" *ngIf="id < 0">Save</button>
         <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="temporary || id < 0">Register</button>
       </div>
-      <h4 data-testid="configuration-heading" id="qa-configuration-heading">
-        <span class="records-detail-title lg-pb2" *ngIf="id < 0">Register a New Compound</span>
-        <span class="records-detail-title lg-pb2" *ngIf="id >= 0 && !temporary">Edit a Registry Record: {{ getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber') }}</span>
-        <span class="records-detail-title lg-pb2" *ngIf="id >= 0 && temporary">Edit a Temporary Record: {{ getElementValue(this.recordDoc.documentElement, 'ID') }}</span>
-      </h4>
+      <h4 data-testid="configuration-heading" id="qa-configuration-heading">{{title}}</h4>
       <div class="panel with-nav-tabs panel-default">
         <div class="panel-heading">
           <ul class="nav nav-tabs">
@@ -46,17 +42,17 @@
             </div>
             <div class="tab-pane fade" id="tab3default">
               <h4>Component Information</h4>
-              <dx-form id="componentForm" [formData]="rootJson.ComponentList.Component[0]" [colCount]="2" [items]="componentItems"></dx-form>
+              <dx-form id="componentForm" [formData]="componentData" [colCount]="2" [items]="componentItems"></dx-form>
               <h5></h5>
-              <dx-form id="compoundForm" [formData]="rootJson.ComponentList.Component[0].Compound" [colCount]="2" [items]="compoundItems"></dx-form>
+              <dx-form id="compoundForm" [formData]="compoundData" [colCount]="2" [items]="compoundItems"></dx-form>
             </div>
             <div class="tab-pane fade" id="tab4default">
               <h4>Fragment Information</h4>
-              <dx-form id="fragmentForm" [formData]="rootJson.ComponentList.Component[0].Compound.FragmentList.Fragment[0]" [colCount]="2" [items]="fragmentItems"></dx-form>
+              <dx-form id="fragmentForm" [formData]="fragmentData" [colCount]="2" [items]="fragmentItems"></dx-form>
             </div>
             <div class="tab-pane fade" id="tab5default">
               <h4>Batch Information</h4>
-              <dx-form id="batchForm" [formData]="rootJson.BatchList.Batch[0]" [colCount]="2" [items]="batchItems"></dx-form>
+              <dx-form id="batchForm" [formData]="batchData" [colCount]="2" [items]="batchItems"></dx-form>
             </div>
           </div>
         </div>
