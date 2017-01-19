@@ -68,6 +68,8 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  // Trigger data retrieval for the view to show.
+  // Select the view model from redux store, and listen to it.
   retrieveContents(lookups: any) {
     this.lookups = lookups;
     this.registryActions.openRecords(this.temporary);
@@ -75,12 +77,23 @@ export class RegRecords implements OnInit, OnDestroy {
     this.recordsSubscription = this.records$.subscribe(d => { this.updateContents(d); });
   }
 
-  updateContents(records: IRecords) {
+  copyToLocal(records: IRecords) {
+    // Copy obserable to local variable that the views are bound to.
+    // Along the way, modify values as necessary.
+    this.records.temporary = records.temporary;
     this.records.rows = records.rows;
     this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
+  }
+
+  refreshView() {
     if (this.grid && this.grid.instance) {
       this.grid.instance.refresh();
     }
+  }
+
+  updateContents(records: IRecords) {
+    this.copyToLocal(records);
+    this.refreshView();
   }
 
   updateGridColumn(gridColumn) {
