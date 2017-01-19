@@ -1,97 +1,64 @@
 import {
-  fakeAsync,
-  inject,
-  TestBed,
+    fakeAsync,
+    inject,
+    TestBed,
 } from '@angular/core/testing';
 import {
-  HttpModule,
-  XHRBackend,
-  ResponseOptions,
-  Response
+    HttpModule,
+    XHRBackend,
+    ResponseOptions,
+    Response
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import { SessionActions } from '../actions/session.actions';
 import { SessionEpics } from './session.epics';
 import {
-  MockBackend,
-  MockConnection
+    MockBackend,
+    MockConnection
 } from '@angular/http/testing/mock_backend';
 import { configureTests } from '../tests.configure';
 
 describe('SessionEpics', () => {
-  beforeEach(done => {
-    const configure = (testBed: TestBed) => {
-      testBed.configureTestingModule({
-        imports: [HttpModule],
-        providers: [
-          {
-            provide: XHRBackend,
-            useClass: MockBackend
-          },
-          SessionEpics
-        ]
-      });
-    };
+    beforeEach(done => {
+        const configure = (testBed: TestBed) => {
+            testBed.configureTestingModule({
+                imports: [HttpModule],
+                providers: [
+                    { provide: XHRBackend, useClass: MockBackend },
+                    SessionEpics
+                ]
+            });
+        };
+        configureTests(configure).then(done);
+    });
 
-    configureTests(configure).then(done);
-  });
+    it('should process a successful login', fakeAsync(
+        inject([XHRBackend, SessionEpics], (mockBackend, sessionEpics) => {
+            const data = { token: '123', user: { fullName: 'John Doe' } };
+            mockBackend.connections.subscribe((connection: MockConnection) => {
+                connection.mockRespond(new Response(
+                    new ResponseOptions({ body: { meta: data } })
+                ));
+            });
 
-  it(
-    'should process a successful login',
-    fakeAsync(
-      inject([
-        XHRBackend,
-        SessionEpics
-      ], (mockBackend, sessionEpics) => {
-        mockBackend.connections.subscribe(
-          (connection: MockConnection) => {
-            connection.mockRespond(new Response(
-              new ResponseOptions({
-                body: {
-                  meta: {
-                    token: '123',
-                    user: {
-                      fullName: 'John Doe'
-                    }
-                  }
-                }
-              }
-              )
-            ));
-          });
+            const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
+            sessionEpics.handleLoginUser(action$).subscribe(action =>
+                expect(action).toEqual({ type: SessionActions.LOGIN_USER_SUCCESS, payload: data })
+            );
+        })
+    ));
 
-        const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
-        sessionEpics.handleLoginUser(action$)
-          .subscribe(
-          action => expect(action).toEqual({
-            type: SessionActions.LOGIN_USER_SUCCESS,
-            payload: {
-              token: '123',
-              user: {
-                fullName: 'John Doe'
-              }
-            }
-          })
-          );
-      })));
+    it('should process a login error', fakeAsync(
+        inject([XHRBackend, SessionEpics], (mockBackend, sessionEpics) => {
+            mockBackend.connections.subscribe((connection: MockConnection) => {
+                connection.mockError(new Error('some error'));
+            });
 
-  it(
-    'should process a login error',
-    fakeAsync(inject([
-      XHRBackend,
-      SessionEpics
-    ], (mockBackend, sessionEpics) => {
-      mockBackend.connections.subscribe(
-        (connection: MockConnection) => {
-          connection.mockError(new Error('some error'));
-        });
-
-      const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
-      sessionEpics.handleLoginUser(action$)
-        .subscribe(
-        action => expect(action).toEqual({
-          type: SessionActions.LOGIN_USER_ERROR
-        }));
-    })));
+            const action$ = Observable.of({ type: SessionActions.LOGIN_USER });
+            sessionEpics.handleLoginUser(action$).subscribe(action =>
+                expect(action).toEqual({ type: SessionActions.LOGIN_USER_ERROR })
+            );
+        })
+    ));
 });
