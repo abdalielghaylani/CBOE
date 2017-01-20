@@ -10,7 +10,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
-import * as registryUtils from '../components/registry/registry-utils';
+import * as registryUtils from '../components/registry/registry.utils';
 
 const BASE_URL = '/Registration.Server/api';
 const WS_URL = '/Registration.Server/Webservices/COERegistrationServices.asmx';
@@ -25,7 +25,7 @@ export class RegistryEpics {
         let temporary: boolean = payload;
         return this.http.get(`${BASE_URL}/RegistryRecords` + (payload ? '/Temp' : ''))
           .map(result => RegistryActions.openRecordsSuccessAction(temporary, result.json()))
-          .catch(error => Observable.of(RegistryActions.openRecordsErrorAction()));
+          .catch(error => Observable.of(RegistryActions.openRecordsErrorAction(error)));
       });
   }
 
@@ -47,7 +47,7 @@ export class RegistryEpics {
             id: payload.id,
             data: result.text()
           } as IRecordDetail))
-          .catch(error => Observable.of(RegistryActions.retrieveRecordErrorAction()));
+          .catch(error => Observable.of(RegistryActions.retrieveRecordErrorAction(error)));
       });
   }
 
@@ -108,7 +108,7 @@ export class RegistryEpics {
           + '&duplicateAction=N';
         return this.http.post(url, data, { headers })
           .map(result => RecordDetailActions.registerSuccessAction(result.text()))
-          .catch(error => Observable.of(RecordDetailActions.registerErrorAction()));
+          .catch(error => Observable.of(RecordDetailActions.registerErrorAction(error)));
       });
   }
 
@@ -135,7 +135,7 @@ export class RegistryEpics {
         let data: string = payload;
         return this.http.post(url, { data }, options)
           .map(result => RecordDetailActions.loadStructureSuccessAction(result.json()))
-          .catch(error => Observable.of(RecordDetailActions.loadStructureErrorAction()));
+          .catch(error => Observable.of(RecordDetailActions.loadStructureErrorAction(error)));
       });
   }
 }

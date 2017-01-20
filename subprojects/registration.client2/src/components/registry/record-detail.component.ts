@@ -14,7 +14,7 @@ import { select, NgRedux } from 'ng2-redux';
 import * as x2js from 'x2js';
 import { RecordDetailActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
-import * as registryUtils from './registry-utils';
+import * as registryUtils from './registry.utils';
 import * as regTypes from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 

@@ -2,6 +2,7 @@ import { Action } from 'redux';
 import { RegistryActions, RecordDetailActions, IPayloadAction } from '../../actions';
 import { INITIAL_STATE } from './registry.initial-state';
 import { IRegistryRecord, IRecordDetail, IRecords } from './registry.types';
+import * as regAppUtils from '../../app/reg-app.utils';
 
 export function registryReducer(
   state: IRegistryRecord = INITIAL_STATE,

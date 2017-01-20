@@ -19,10 +19,10 @@ export const configureTests = (configure: (testBed: TestBed) => void) => {
   }
 
   testBed.configureCompiler({
-      providers: [
-        {provide: ComponentFixtureAutoDetect, useValue: true},
-      ]
-    });
+    providers: [
+      { provide: ComponentFixtureAutoDetect, useValue: true },
+    ]
+  });
 
   configure(testBed);
 

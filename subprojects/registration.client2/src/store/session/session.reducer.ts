@@ -1,11 +1,12 @@
 import { IPayloadAction } from '../../actions';
-import { SessionActions } from '../../actions/session.actions';
+import { RegistryActions, RecordDetailActions, SessionActions } from '../../actions';
 import { ISessionRecord } from './session.types';
 import {
   INITIAL_STATE,
   INITIAL_USER_STATE,
   UserFactory,
 } from './session.initial-state';
+import * as regAppUtils from '../../app/reg-app.utils';
 
 export function sessionReducer(
   state: ISessionRecord = INITIAL_STATE,
@@ -41,6 +42,19 @@ export function sessionReducer(
 
     case SessionActions.LOAD_LOOKUPS_SUCCESS:
       return state.update('lookups', () => action.payload);
+
+    case RegistryActions.OPEN_RECORDS_ERROR:
+    case RegistryActions.RETRIEVE_RECORD_ERROR:
+    case RecordDetailActions.LOAD_STRUCTURE_ERROR:
+    case RecordDetailActions.LOAD_STRUCTURE_ERROR:
+    case RecordDetailActions.SAVE_ERROR:
+    case RecordDetailActions.REGISTER_ERROR:
+    case RecordDetailActions.UPDATE_ERROR:
+      if (action.payload.status && action.payload.status === 404) {
+        return INITIAL_STATE;
+      }
+      regAppUtils.notifyError(action.payload);
+      return state;
 
     default:
       return state;

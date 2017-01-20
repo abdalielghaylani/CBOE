@@ -1,7 +1,7 @@
 import { NgRedux } from 'ng2-redux';
 import { RecordDetailActions } from './record-detail.actions';
 import { } from 'jasmine';
-import * as registryUtils from '../components/registry/registry-utils';
+import * as registryUtils from '../components/registry/registry.utils';
 
 class MockRedux extends NgRedux<any> {
   constructor() {
