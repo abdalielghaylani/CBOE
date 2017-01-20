@@ -8,7 +8,9 @@ import { Component, Input } from '@angular/core';
     <div class="row">
       <div class="col-md-8 hidden-sm hidden-xs">
         <p id="copyright">
-          <a target="_blank" href="http://www.perkinelmer.com/" class="text-muted hover-gray">©2017 PerkinElmer</a>
+          <a target="_blank" href="http://www.perkinelmer.com/" class="text-muted hover-gray">
+          <u><small>©2017 PerkinElmer</small></u>
+          </a>
           |
           <a target="_blank" href="http://www.perkinelmer.com/corporate/policies/privacy-policy.html" class="text-muted hover-gray">
             <u><small>Privacy Policy</small></u>

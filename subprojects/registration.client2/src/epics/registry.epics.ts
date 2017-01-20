@@ -103,10 +103,11 @@ export class RegistryEpics {
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Call CreateRegistryRecord
         let url: string = `${WS_URL}/CreateRegistryRecord`;
-        let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', Accepts: 'applicatoin/xml' });
-        let data = 'xml=' + encodeURIComponent(registryUtils.serializeData(payload))
-          + '&duplicateAction=N';
-        return this.http.post(url, data, { headers })
+        let data = new URLSearchParams();
+        // registryUtils.fixStructureData(payload);
+        data.append('xml', registryUtils.serializeData(payload));
+        data.append('duplicateAction', 'N');
+        return this.http.post(url, data)
           .map(result => RecordDetailActions.registerSuccessAction(result.text()))
           .catch(error => Observable.of(RecordDetailActions.registerErrorAction(error)));
       });

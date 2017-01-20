@@ -2,10 +2,11 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'reg-navigator',
+  styles: [require('./navbar.css')],
   template: `
   <div
     [attr.data-testid]="testid"
-    class="navbar navbar-default navbar-static-top">
+    class="navbar navbar-default navbar-fixed-top navbar-top">
     <ng-content></ng-content>
   </div>
   `

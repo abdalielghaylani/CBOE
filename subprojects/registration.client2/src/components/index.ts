@@ -19,6 +19,8 @@ import {
   RegInputLogin
 } from './form';
 import { RegFooter } from './footer';
+import { RegSidebar } from './navigator/sidebar.component';
+import { RegPageHeader } from './page-header/page-header.component';
 
 export {
   RegAlert,
@@ -45,5 +47,7 @@ export {
   RegNavigatorHeader,
   RegNavigatorItems,
   RegNavigatorItem,
-  RegFooter
+  RegSidebar,
+  RegFooter,
+  RegPageHeader
 };

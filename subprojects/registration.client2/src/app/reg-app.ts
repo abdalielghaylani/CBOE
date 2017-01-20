@@ -19,6 +19,7 @@ import {
   RegNavigatorItem,
   RegLogo,
   RegLoginModal,
+  RegSidebar,
   RegFooter
 } from '../components';
 

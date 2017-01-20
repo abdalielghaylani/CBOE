@@ -1,46 +1,95 @@
-<reg-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async"
-  *ngIf="loggedOut$ | async">
+<reg-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
 </reg-login-modal>
 <reg-navigator testid="navigator" *ngIf="loggedIn$ | async">
   <reg-navigator-header>
     <reg-logo></reg-logo>
   </reg-navigator-header>
   <reg-navigator-items>
-    <li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['records/temp']"><i class="fa fa-table fa-lg maroon"></i> Review Temporary</a>
-    </li>
-    <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="registryActions.retrieveRecord(false, -1)">
-      <a class="pointer-cursor"><i class="fa fa-flask fa-lg maroon"></i> Submit New Compound</a>
-    </li>
-    <li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['records']"><i class="fa fa-search fa-lg maroon"></i> Search Registry</a>
-    </li>
     <li class="dropdown" reg-navigator-item *ngIf="loggedIn$ | async">
-      <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
-        <span class="fa fa-gears fa-lg maroon"></span> Configuration <span class="caret"></span>
+      <a class="dropdown-toggle coolgray text-relaxed margin-none background-white" role="button" data-toggle="dropdown" href="#">
+        <span class="fa fa-gears fa-lg #A4AEB5"></span> Configuration <span class="caret"></span>
       </a>
       <ul id="g-account-menu" class="dropdown-menu" role="menu">
-        <li><a [routerLink]="['configuration/VW_PROJECT']"><i class="fa fa-table fa-lg maroon"></i> Projects</a></li>
-        <li><a [routerLink]="['configuration/VW_PICKLIST']"><i class="fa fa-table fa-lg maroon"></i> Picklist Values</a></li>
-        <li><a [routerLink]="['configuration/VW_PICKLISTDOMAIN']"><i class="fa fa-table fa-lg maroon"></i> Picklist Domains</a></li>
-        <li><a [routerLink]="['configuration/VW_NOTEBOOKS']"><i class="fa fa-table fa-lg maroon"></i> Notebooks</a></li>
-        <li><a [routerLink]="['configuration/VW_FRAGMENT']"><i class="fa fa-table fa-lg maroon"></i> Fragments</a></li>
-        <li><a [routerLink]="['configuration/VW_FRAGMENTTYPE']"><i class="fa fa-table fa-lg maroon"></i> Fragment Types</a></li>
-        <li><a [routerLink]="['configuration/VW_SEQUENCE']"><i class="fa fa-table fa-lg maroon"></i> Sequences</a></li>
-        <li><a [routerLink]="['configuration/VW_IDENTIFIERTYPE']"><i class="fa fa-table fa-lg maroon"></i> Identifier Types</a></li>
-        <li><a [routerLink]="['configuration/VW_SITES']"><i class="fa fa-table fa-lg maroon"></i> Sites</a></li>
+        <li>
+          <a [routerLink]="['configuration/VW_PROJECT']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-file-code-o fa-lg  #A4AEB5"></i> Projects</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_PICKLIST']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-bookmark fa-lg  #A4AEB5"></i> Picklist Values</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_PICKLISTDOMAIN']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-external-link fa-lg  #A4AEB5"></i> Picklist Domains</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_NOTEBOOKS']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-book fa-lg  #A4AEB5"></i> Notebooks</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_FRAGMENT']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-cubes fa-lg #A4AEB5"></i> Fragments</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_FRAGMENTTYPE']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-cube fa-lg #A4AEB5"></i> Fragment Types</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_SEQUENCE']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-bolt fa-lg #A4AEB5"></i> Sequences</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_IDENTIFIERTYPE']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-table fa-lg #A4AEB5"></i> Identifier Types</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li>
+          <a [routerLink]="['configuration/VW_SITES']" class="coolgray text-relaxed margin-none">
+            <i class="fa fa-sitemap fa-lg #A4AEB5"></i> Sites</a>
+        </li>
       </ul>
     </li>
     <!--li reg-navigator-item *ngIf="loggedIn$ | async">
       <a href="/api/browser" class="text-decoration-none" target="API Browser"><i class="fa fa-wrench fa-lg maroon"></i> API Browser</a>
     </li-->
     <li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['profile']"><span class="fa fa-user-circle-o fa-lg maroon"></span> {{ fullName$ | async }}</a>
+      <a [routerLink]="['profile']">
+        <span class="fa fa-user-circle-o fa-lg #A4AEB5"></span>
+        <span class="welcome coolgray text-relaxed">Welcome</span>
+        <span class="username black text-relaxed">{{ fullName$ | async }}</span>
+      </a>
     </li>
-    <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a><span class="fa fa-sign-out fa-lg maroon"></span></a></li>
+    <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>
   </reg-navigator-items>
 </reg-navigator>
+<reg-sidebar *ngIf="loggedIn$ | async" id="tools">
+  <reg-sidebar-item>
+    <circle-icon title="Home" circleColor="yellow" iconName="home" iconColor="yellow"></circle-icon>
+  </reg-sidebar-item>
+  <reg-sidebar-item>
+    <circle-icon title="Submit New Compound" circleColor="maroon" iconName="flask" iconColor="maroon" (click)="registryActions.retrieveRecord(false, -1)">
+    </circle-icon>
+  </reg-sidebar-item>
+  <reg-sidebar-item>
+    <circle-icon title="Search Registry" circleColor="purple" iconName="search" iconColor="purple" routeLink="records">
+    </circle-icon>
+  </reg-sidebar-item>
+  <reg-sidebar-item>
+    <circle-icon title="Review Register" circleColor="green" iconName="eye" iconColor="green" routeLink="records/temp">
+    </circle-icon>
+  </reg-sidebar-item>
+</reg-sidebar>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
-  <router-outlet></router-outlet>
+  <div id="content">
+    <!-- wrap -->
+    <router-outlet></router-outlet>
+  </div>
 </main>
 <reg-footer></reg-footer>

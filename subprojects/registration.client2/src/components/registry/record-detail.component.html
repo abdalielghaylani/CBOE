@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid border-light background-white">
   <div>
     <form class="form-inline" role="form" ng-submit="search(query)">
       <div>
@@ -6,7 +6,9 @@
         <button (click)="save()" class="mr1 btn btn-primary pull-right" *ngIf="id < 0">Save</button>
         <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="temporary || id < 0">Register</button>
       </div>
-      <h4 data-testid="configuration-heading" id="qa-configuration-heading">{{title}}</h4>
+      <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+           {{title}}
+      </reg-page-header>
       <div class="panel with-nav-tabs panel-default">
         <div class="panel-heading">
           <ul class="nav nav-tabs">

@@ -18,11 +18,10 @@ import { DxDataGridComponent } from 'devextreme-angular';
 @Component({
   selector: 'reg-records',
   template: `
-    <div class="container">
-      <h4 data-testid="configuration-heading" id="qa-configuration-heading">
-        <span *ngIf="temporary">Temporary</span> Registration Records
-      </h4>
-
+    <div class="container-fluid border-light background-white">
+      <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+            <span *ngIf="records.temporary">Temporary</span> Registration Records
+      </reg-page-header>
       <dx-data-grid [columns]=records.gridColumns [dataSource]=records.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true

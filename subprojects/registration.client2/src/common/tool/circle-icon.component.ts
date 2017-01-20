@@ -9,8 +9,8 @@ import {
 @Component({
   selector: 'circle-icon',
   template: `
-   <a [attr.data-testid]="testid" data-toggle="tooltip" data-placement="right" aria-describedby="tooltip"
-    title="{{ title }}" href="javacript:void(0)" (onClick)="handleClick($event)">
+   <a (onClick)="handleClick($event)" class="pointer-cursor" [attr.data-testid]="testid" data-toggle="tooltip" data-placement="right" aria-describedby="tooltip"
+    title="{{ title }}" href="javacript:void(0)" [routerLink]="routeLink">
      <span class="fa-stack fa-2x">
        <i class="fa fa-circle{{ getCircleType() }} fa-stack-2x {{ getCircleColor() }}"></i>
        <i class="fa fa-{{ iconName }} fa-stack-1x {{ getIconColor() }}"></i>
@@ -27,6 +27,7 @@ export class CircleIcon {
   @Input() filled: boolean = false;
   @Input() iconName: string;
   @Input() iconColor: string;
+  @Input() routeLink: string;
   @Output() onClick = new EventEmitter<any>();
 
   handleClick(event) {

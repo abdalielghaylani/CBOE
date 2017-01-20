@@ -5,7 +5,9 @@ import {
   RegNavigator,
   RegNavigatorHeader,
   RegNavigatorItems,
-  RegNavigatorItem
+  RegNavigatorItem,
+  RegSidebar,
+  RegSidebarItem
 } from './index';
 
 @NgModule({
@@ -17,13 +19,17 @@ import {
     RegNavigator,
     RegNavigatorHeader,
     RegNavigatorItems,
-    RegNavigatorItem
+    RegNavigatorItem,
+    RegSidebar,
+    RegSidebarItem
   ],
   exports: [
     RegNavigator,
     RegNavigatorHeader,
     RegNavigatorItems,
-    RegNavigatorItem
+    RegNavigatorItem,
+    RegSidebar,
+    RegSidebarItem
   ]
 })
 export class RegNavigatorModule { }
