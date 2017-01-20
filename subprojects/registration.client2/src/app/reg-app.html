@@ -71,18 +71,18 @@
 </reg-navigator>
 <reg-sidebar *ngIf="loggedIn$ | async" id="tools">
   <reg-sidebar-item>
-    <circle-icon title="Home" circleColor="yellow" iconName="home" iconColor="yellow"></circle-icon>
+    <circle-icon title="Review Temporary" color="green" iconName="table"></circle-icon>
   </reg-sidebar-item>
   <reg-sidebar-item>
-    <circle-icon title="Submit New Compound" circleColor="maroon" iconName="flask" iconColor="maroon" (click)="registryActions.retrieveRecord(false, -1)">
+    <circle-icon title="Submit New Compound" color="teal" iconName="flask" (click)="registryActions.retrieveRecord(false, -1)">
     </circle-icon>
   </reg-sidebar-item>
   <reg-sidebar-item>
-    <circle-icon title="Search Registry" circleColor="purple" iconName="search" iconColor="purple" routeLink="records">
+    <circle-icon title="Search Registry" color="blue" iconName="search" routeLink="records">
     </circle-icon>
   </reg-sidebar-item>
   <reg-sidebar-item>
-    <circle-icon title="Review Register" circleColor="green" iconName="eye" iconColor="green" routeLink="records/temp">
+    <circle-icon title="Configuration" color="purple" iconName="gears" routeLink="configuration/VW_PROJECT">
     </circle-icon>
   </reg-sidebar-item>
 </reg-sidebar>
