@@ -71,7 +71,7 @@
 </reg-navigator>
 <reg-sidebar *ngIf="loggedIn$ | async" id="tools">
   <reg-sidebar-item>
-    <circle-icon title="Review Temporary" color="green" iconName="table"></circle-icon>
+    <circle-icon title="Review Temporary" color="green" iconName="table" routeLink="records/temp"></circle-icon>
   </reg-sidebar-item>
   <reg-sidebar-item>
     <circle-icon title="Submit New Compound" color="teal" iconName="flask" (click)="registryActions.retrieveRecord(false, -1)">
