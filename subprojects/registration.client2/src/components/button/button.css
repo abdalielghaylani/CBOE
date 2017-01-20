@@ -17,7 +17,7 @@
 }
 
 .white {
-  color: #fff !important;
+  color: #ffffff !important;
 }
 
 .btn-xl {
@@ -26,13 +26,13 @@
 }
 
 .hover-background-gray:hover {
-  background-color: #999 !important;
+  background-color: #999999 !important;
 }
 
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333;
+  color: #333333;
   text-decoration: none;
 }
 

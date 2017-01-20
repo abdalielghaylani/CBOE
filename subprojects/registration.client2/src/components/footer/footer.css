@@ -1,5 +1,5 @@
 #footer {
-  background-color: #222;
+  background-color: #222222;
   bottom: 0;
   height: 24px;
   left: 0;
@@ -8,5 +8,5 @@
   transition-property: all;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   width: 100%;
-  z-index: 80;
+  z-index: 1001;
 }
