@@ -46,6 +46,7 @@ export class RegApp {
   @select(s => s.session.user.fullName) fullName$: Observable<string>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   @select(s => !s.session.token) loggedOut$: Observable<boolean>;
+  @select(s => s.router) routerLink$: Observable<string>;
 
   constructor(
     private devTools: DevToolsExtension,

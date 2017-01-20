@@ -1,13 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, HostBinding, Input } from '@angular/core';
 
-@Component({
-  selector: 'reg-sidebar-item',
-  template: `
-  <li>
-    <ng-content></ng-content>
-  </li>
-  `
+@Directive({
+  selector: '[reg-sidebar-item]',
 })
 export class RegSidebarItem {
-
+  constructor(private el: ElementRef) { }
+  @Input() testid: string;
 };

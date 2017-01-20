@@ -18,7 +18,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 @Component({
   selector: 'reg-records',
   template: `
-    <div class="container-fluid border-light background-white">
+    <div class="container-fluid border-light background-white pb2">
       <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
             <span *ngIf="records.temporary">Temporary</span> Registration Records
       </reg-page-header>

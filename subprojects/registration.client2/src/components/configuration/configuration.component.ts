@@ -7,8 +7,8 @@ import * as _ from 'lodash';
 @Component({
   selector: 'reg-configuration',
   template: `
-    <div class="container">
-      <h4 data-testid="configuration-heading" id="qa-configuration-heading">{{ this.tableName() }}</h4>
+    <div class="container-fluid border-light background-white pb2">
+      <reg-page-header>{{ this.tableName() }}</reg-page-header>
 
       <dx-data-grid [dataSource]=this.configuration.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
@@ -83,6 +83,12 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   tableName() {
-    return this.configuration.tableId.split('-').map(n => _.upperFirst(n)).join(' ');
+    let tableName = this.configuration.tableId;
+    tableName = tableName.toLowerCase()
+      .replace('vw_', '').replace('domain', ' domain').replace('type', ' type');
+    if (!tableName.endsWith('s')) {
+      tableName += 's';
+    }
+    return tableName.split(' ').map(n => _.upperFirst(n)).join(' ');
   }
 };

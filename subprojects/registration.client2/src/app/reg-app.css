@@ -73,7 +73,7 @@
 
 .page-header {
   border-bottom: 1px solid #eeeeee;
-  margin: 40px 0 20px;
+  margin: 20px 0 20px !important;
   padding-bottom: 9px;
 }
 
