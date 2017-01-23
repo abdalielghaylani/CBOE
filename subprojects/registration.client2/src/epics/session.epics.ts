@@ -26,7 +26,11 @@ export class SessionEpics {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
       .mergeMap<IPayloadAction>(() => {
         return this.http.get(`${BASE_URL}/ViewConfig/Lookups`)
-          .map(result => SessionActions.loadLookupsSuccessAction(result.json()))
+          .map(result => {
+            return result.url.indexOf('index.html') > 0
+              ? SessionActions.logoutUserAction()
+              : SessionActions.loadLookupsSuccessAction(result.json());
+          })
           .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
       });
   }

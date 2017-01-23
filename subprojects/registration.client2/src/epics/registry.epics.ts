@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Action } from 'redux';
 import { NgRedux } from 'ng2-redux';
-import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions } from '../actions';
+import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
 import { IRecordDetail, IAppState } from '../store';
 import { UPDATE_LOCATION } from 'ng2-redux-router';
 import { Observable } from 'rxjs/Observable';
@@ -24,7 +24,11 @@ export class RegistryEpics {
       .mergeMap<IPayloadAction>(({ payload }) => {
         let temporary: boolean = payload;
         return this.http.get(`${BASE_URL}/RegistryRecords` + (payload ? '/Temp' : ''))
-          .map(result => RegistryActions.openRecordsSuccessAction(temporary, result.json()))
+          .map(result => {
+            return result.url.indexOf('index.html') > 0
+              ? SessionActions.logoutUserAction()
+              : RegistryActions.openRecordsSuccessAction(temporary, result.json());
+          })
           .catch(error => Observable.of(RegistryActions.openRecordsErrorAction(error)));
       });
   }
@@ -42,11 +46,15 @@ export class RegistryEpics {
             `${WS_URL}/RetrieveTemporaryRegistryRecord?id=${data.BATCHID}` :
             `${WS_URL}/RetrieveRegistryRecord?regNum=${data.REGNUMBER}`;
         return this.http.get(url)
-          .map(result => RegistryActions.retrieveRecordSuccessAction({
-            temporary: payload.temporary,
-            id: payload.id,
-            data: result.text()
-          } as IRecordDetail))
+          .map(result => {
+            return result.url.indexOf('index.html') > 0
+              ? SessionActions.logoutUserAction()
+              : RegistryActions.retrieveRecordSuccessAction({
+                temporary: payload.temporary,
+                id: payload.id,
+                data: result.text()
+              } as IRecordDetail);
+          })
           .catch(error => Observable.of(RegistryActions.retrieveRecordErrorAction(error)));
       });
   }
@@ -108,7 +116,11 @@ export class RegistryEpics {
         data.append('xml', registryUtils.serializeData(payload));
         data.append('duplicateAction', 'N');
         return this.http.post(url, data)
-          .map(result => RecordDetailActions.registerSuccessAction(result.text()))
+          .map(result => {
+            return result.url.indexOf('index.html') > 0
+              ? SessionActions.logoutUserAction()
+              : RecordDetailActions.registerSuccessAction(result.text());
+          })
           .catch(error => Observable.of(RecordDetailActions.registerErrorAction(error)));
       });
   }
@@ -135,7 +147,11 @@ export class RegistryEpics {
         let options = new RequestOptions({ headers: headers });
         let data: string = payload;
         return this.http.post(url, { data }, options)
-          .map(result => RecordDetailActions.loadStructureSuccessAction(result.json()))
+          .map(result => {
+            return result.url.indexOf('index.html') > 0
+              ? SessionActions.logoutUserAction()
+              : RecordDetailActions.loadStructureSuccessAction(result.json());
+          })
           .catch(error => Observable.of(RecordDetailActions.loadStructureErrorAction(error)));
       });
   }
