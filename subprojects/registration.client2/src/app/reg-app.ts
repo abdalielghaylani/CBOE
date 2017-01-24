@@ -32,6 +32,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
   encapsulation: ViewEncapsulation.None,
   styles: [
     require('../styles/index.css'),
+    require('../styles/colors.css'),
     require('./reg-app.css'),
     require('bootstrap/dist/css/bootstrap.min.css'),
     require('font-awesome/css/font-awesome.min.css'),
@@ -47,6 +48,8 @@ export class RegApp {
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   @select(s => !s.session.token) loggedOut$: Observable<boolean>;
   @select(s => s.router) routerLink$: Observable<string>;
+
+  public fullScreenEnabled: boolean = false;
 
   constructor(
     private devTools: DevToolsExtension,
@@ -84,4 +87,5 @@ export class RegApp {
 
     ngReduxRouter.initialize();
   }
+
 };

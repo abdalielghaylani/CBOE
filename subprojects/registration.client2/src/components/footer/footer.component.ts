@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'reg-footer',
   styles: [require('./footer.css')],
-  template: `<div id="footer">
+  template: `<div id="footer" [ngClass]="cssClass">
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8 hidden-sm hidden-xs">
@@ -27,4 +27,5 @@ import { Component, Input } from '@angular/core';
 </div>`
 })
 export class RegFooter {
+  @Input() cssClass: string;
 };

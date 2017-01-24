@@ -6,11 +6,12 @@ import { Component, Input } from '@angular/core';
   template: `
   <div
     [attr.data-testid]="testid"
-    class="navbar navbar-default navbar-fixed-top navbar-top">
+    [ngClass]="cssClass">
     <ng-content></ng-content>
   </div>
   `
 })
 export class RegNavigator {
   @Input() testid: string;
+  @Input() cssClass: string;
 };

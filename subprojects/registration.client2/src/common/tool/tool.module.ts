@@ -5,7 +5,8 @@ import { RouterModule } from '@angular/router';
 import {
   CircleIcon,
   PageWithTools,
-  ToolPanel
+  ToolPanel,
+  FullScreenIcon
 } from './index';
 
 @NgModule({
@@ -17,13 +18,15 @@ import {
   declarations: [
     CircleIcon,
     PageWithTools,
-    ToolPanel
+    ToolPanel,
+    FullScreenIcon
   ],
   exports: [
     CircleIcon,
     PageWithTools,
     ToolPanel,
-    RouterModule
+    RouterModule,
+    FullScreenIcon
   ]
 })
 export class ToolModule { }

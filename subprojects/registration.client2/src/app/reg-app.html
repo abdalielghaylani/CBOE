@@ -1,6 +1,6 @@
 <reg-login-modal (onSubmit)="actions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
 </reg-login-modal>
-<reg-navigator testid="navigator" *ngIf="(loggedIn$ | async)">
+<reg-navigator testid="navigator" *ngIf="(loggedIn$ | async)" [cssClass]="this.fullScreenEnabled? 'navbar-fullScreen' :'navbar navbar-default navbar-fixed-top navbar-top'">
   <reg-navigator-header>
     <reg-logo></reg-logo>
   </reg-navigator-header>
@@ -69,7 +69,7 @@
     <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="actions.logoutUser()"><a><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>
   </reg-navigator-items>
 </reg-navigator>
-<reg-sidebar *ngIf="loggedIn$ | async" id="tools">
+<reg-sidebar *ngIf="loggedIn$ | async" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
     <circle-icon title="Review Temporary" color="green" iconName="table" routeLink="records/temp"></circle-icon>
   </li>
@@ -86,10 +86,13 @@
     </circle-icon>
   </li>
 </reg-sidebar>
+<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" id="fullscreenIcon"
+  [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'"  >
+</full-screen-icon>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
-  <div id="content">
+  <div id="content" [ngClass]="this.fullScreenEnabled? 'content-fullScreen' :'content'">
     <!-- wrap -->
     <router-outlet></router-outlet>
   </div>
 </main>
-<reg-footer></reg-footer>
+<reg-footer [cssClass]="this.fullScreenEnabled? 'footer-fullScreen' :'footer'"></reg-footer>
