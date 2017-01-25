@@ -14,8 +14,8 @@
   margin-top: 45px;
   overflow-y: scroll;
   padding-bottom: 89px;
-  padding-left: 80px;
-  padding-right: 20px;
+  padding-left: 60px;
+  padding-right: 5px;
   padding-top: 20px;
   position: fixed;
   transition-duration: 0.5s;
@@ -137,8 +137,15 @@
   color: #555555;
 }
 
-#fullscreenIcon {
+#expandIcon {
   bottom: 22px;
+  left: 2px;
+  position: fixed;
+  z-index: 9999;
+}
+
+#compressIcon {
+  bottom: 2px;
   left: 2px;
   position: fixed;
   z-index: 9999;
@@ -156,7 +163,7 @@
   margin-left: 0;
   margin-top: 0;
   overflow-y: scroll;
-  padding: 20px !important;
+  padding: 20px 2px 2px 2px !important;
   position: fixed;
   transition-duration: 0.5s;
   transition-property: all;

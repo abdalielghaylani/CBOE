@@ -86,8 +86,9 @@
     </circle-icon>
   </li>
 </reg-sidebar>
-<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" id="fullscreenIcon"
-  [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'"  >
+<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" 
+  [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'" 
+  [iconName]="this.fullScreenEnabled? 'compress' : 'expand'" [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
 </full-screen-icon>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
   <div id="content" [ngClass]="this.fullScreenEnabled? 'content-fullScreen' :'content'">
