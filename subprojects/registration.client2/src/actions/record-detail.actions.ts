@@ -8,15 +8,15 @@ export class RecordDetailActions {
   static RETRIEVE_RECORD = 'RETRIEVE_RECORD';
   static RETRIEVE_RECORD_SUCCESS = 'RETRIEVE_RECORD_SUCCESS';
   static RETRIEVE_RECORD_ERROR = 'RETRIEVE_RECORD_ERROR';
-  static SAVE = 'SAVE';
-  static SAVE_SUCCESS = 'SAVE_SUCCESS';
-  static SAVE_ERROR = 'SAVE_ERROR';
-  static UPDATE = 'UPDATE';
-  static UPDATE_SUCCESS = 'UPDATE_SUCCESS';
-  static UPDATE_ERROR = 'UPDATE_ERROR';
-  static REGISTER = 'REGISTER';
-  static REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-  static REGISTER_ERROR = 'REGISTER_ERROR';
+  static SAVE_RECORD = 'SAVE_RECORD';
+  static SAVE_RECORD_SUCCESS = 'SAVE_RECORD_SUCCESS';
+  static SAVE_RECORD_ERROR = 'SAVE_RECORD_ERROR';
+  static UPDATE_RECORD = 'UPDATE_RECORD';
+  static UPDATE_RECORD_SUCCESS = 'UPDATE_RECORD_SUCCESS';
+  static UPDATE_RECORD_ERROR = 'UPDATE_RECORD_ERROR';
+  static REGISTER_RECORD = 'REGISTER_RECORD';
+  static REGISTER_RECORD_SUCCESS = 'REGISTER_RECORD_SUCCESS';
+  static REGISTER_RECORD_ERROR = 'REGISTER_RECORD_ERROR';
   static LOAD_STRUCTURE = 'LOAD_STRUCTURE';
   static LOAD_STRUCTURE_SUCCESS = 'LOAD_STRUCTURE_SUCCESS';
   static LOAD_STRUCTURE_ERROR = 'LOAD_STRUCTURE_ERROR';
@@ -24,15 +24,15 @@ export class RecordDetailActions {
     (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveRecordSuccessAction = createAction(RecordDetailActions.RETRIEVE_RECORD_SUCCESS);
   static retrieveRecordErrorAction = createAction(RecordDetailActions.RETRIEVE_RECORD_ERROR);
-  static saveAction = createAction(RecordDetailActions.SAVE);
-  static saveSuccessAction = createAction(RecordDetailActions.SAVE_SUCCESS);
-  static saveErrorAction = createAction(RecordDetailActions.SAVE_ERROR);
-  static updateAction = createAction(RecordDetailActions.UPDATE);
-  static updateSuccessAction = createAction(RecordDetailActions.UPDATE_SUCCESS);
-  static updateErrorAction = createAction(RecordDetailActions.UPDATE_ERROR);
-  static registerAction = createAction(RecordDetailActions.REGISTER);
-  static registerSuccessAction = createAction(RecordDetailActions.REGISTER_SUCCESS);
-  static registerErrorAction = createAction(RecordDetailActions.REGISTER_ERROR);
+  static saveRecordAction = createAction(RecordDetailActions.SAVE_RECORD);
+  static saveRecordSuccessAction = createAction(RecordDetailActions.SAVE_RECORD_SUCCESS);
+  static saveRecordErrorAction = createAction(RecordDetailActions.SAVE_RECORD_ERROR);
+  static updateRecordAction = createAction(RecordDetailActions.UPDATE_RECORD);
+  static updateRecordSuccessAction = createAction(RecordDetailActions.UPDATE_RECORD_SUCCESS);
+  static updateRecordErrorAction = createAction(RecordDetailActions.UPDATE_RECORD_ERROR);
+  static registerRecordAction = createAction(RecordDetailActions.REGISTER_RECORD);
+  static registerRecordSuccessAction = createAction(RecordDetailActions.REGISTER_RECORD_SUCCESS);
+  static registerRecordErrorAction = createAction(RecordDetailActions.REGISTER_RECORD_ERROR);
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
   static loadStructureSuccessAction = createAction(RecordDetailActions.LOAD_STRUCTURE_SUCCESS);
   static loadStructureErrorAction = createAction(RecordDetailActions.LOAD_STRUCTURE_ERROR);
@@ -51,16 +51,16 @@ export class RecordDetailActions {
     this.ngRedux.dispatch(RecordDetailActions.retrieveRecordErrorAction());
   }
 
-  save(data: Document) {
-    this.ngRedux.dispatch(RecordDetailActions.saveAction(data));
+  saveRecord(data: Document) {
+    this.ngRedux.dispatch(RecordDetailActions.saveRecordAction(data));
   }
 
-  update(data: Document) {
-    this.ngRedux.dispatch(RecordDetailActions.updateAction(data));
+  updateRecord(data: Document) {
+    this.ngRedux.dispatch(RecordDetailActions.updateRecordAction(data));
   }
 
-  register(data: Document) {
-    this.ngRedux.dispatch(RecordDetailActions.registerAction(data));
+  registerRecord(data: Document) {
+    this.ngRedux.dispatch(RecordDetailActions.registerRecordAction(data));
   }
 
   loadStructure(data: string) {

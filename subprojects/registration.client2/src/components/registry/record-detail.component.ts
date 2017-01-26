@@ -186,14 +186,14 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   };
 
   save() {
-    this.actions.save(this.recordDoc);
+    this.actions.saveRecord(this.recordDoc);
   }
 
   update() {
-    this.actions.update(this.recordDoc);
+    this.actions.updateRecord(this.recordDoc);
   }
 
   register() {
-    this.actions.register(this.recordDoc);
+    this.actions.registerRecord(this.recordDoc);
   }
 };
