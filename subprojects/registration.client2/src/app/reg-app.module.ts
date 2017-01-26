@@ -6,16 +6,15 @@ import { NgReduxRouter } from 'ng2-redux-router';
 import { routing, appRoutingProviders } from './reg-app.routing';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegApp } from './reg-app';
-import { CounterActions, GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
+import { GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
   RegRecordsPage,
   RegRecordDetailPage,
   RegConfigurationPage,
-  RegAboutPage,
-  RegCounterPage
+  RegAboutPage
 } from '../pages';
-import { RegConfiguration, RegCounter, RegRecords, RegRecordDetail, RegStructureImage } from '../components';
+import { RegConfiguration, RegRecords, RegRecordDetail, RegStructureImage } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -57,9 +56,7 @@ import {
     RegStructureImage,
     RegConfigurationPage,
     RegConfiguration,
-    RegAboutPage,
-    RegCounterPage,
-    RegCounter
+    RegAboutPage
   ],
   bootstrap: [
     RegApp

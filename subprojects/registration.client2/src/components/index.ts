@@ -2,7 +2,6 @@ import { RegAlert } from './alert';
 import { RegButton } from './button';
 import { RegConfiguration } from './configuration';
 import { RegContainer } from './container';
-import { RegCounter } from './counter';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
 import { RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem } from './navigator';
@@ -27,7 +26,6 @@ export {
   RegButton,
   RegConfiguration,
   RegContainer,
-  RegCounter,
   RegInput,
   RegInputLogin,
   RegInputGroup,

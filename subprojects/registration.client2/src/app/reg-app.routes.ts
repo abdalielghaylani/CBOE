@@ -4,7 +4,6 @@ import {
   RegRecordsPage,
   RegRecordDetailPage,
   RegConfigurationPage,
-  RegCounterPage,
   RegAboutPage
 } from '../pages';
 
@@ -30,9 +29,6 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'configuration/:tableId',
   component: RegConfigurationPage
-}, {
-  path: 'counter',
-  component: RegCounterPage
 }, {
   path: 'about',
   component: RegAboutPage

@@ -8,7 +8,7 @@ import { createEpicMiddleware, combineEpics } from 'redux-observable';
 import { IAppState, ISession, rootReducer } from '../store';
 import { RegistryActions, SessionActions } from '../actions';
 import { ConfigurationEpics, RegistryEpics, SessionEpics } from '../epics';
-import { RegAboutPage, RegCounterPage } from '../pages';
+import { RegAboutPage } from '../pages';
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
 
 import {

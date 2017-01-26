@@ -1,5 +1,4 @@
 import { IAppState, rootReducer, deimmutify, reimmutify } from './store';
-import { ICounter } from './counter';
 import { IConfiguration, ConfigurationFactory } from './configuration';
 import { IRecordDetail, IRecords, IRegistry, RegistryFactory } from './registry';
 import { ISession } from './session';
@@ -13,7 +12,6 @@ export {
   IConfiguration, ConfigurationFactory,
   IRecordDetail, IRecords, IRegistry, RegistryFactory,
   ISession,
-  ICounter,
   rootReducer,
   reimmutify
 };
