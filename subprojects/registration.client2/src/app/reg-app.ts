@@ -63,16 +63,7 @@ export class RegApp {
 
     middleware.push(createEpicMiddleware(combineEpics(
       configEpics.handleOpenTable,
-      registryEpics.handleOpenRecords,
-      registryEpics.handleRetrieveRecord,
-      registryEpics.handleRetrieveRecordSuccess,
-      registryEpics.handleSaveRecord,
-      registryEpics.handleSaveRecordSuccess,
-      registryEpics.handleUpdateRecord,
-      registryEpics.handleUpdateRecordSuccess,
-      registryEpics.handleRegisterRecord,
-      registryEpics.handleRegisterRecordSuccess,
-      registryEpics.handleLoadStructure,
+      registryEpics.handleRegistryActions,
       sessionEpics.handleLoginUser,
       sessionEpics.handleLoginUserSuccess
     )));

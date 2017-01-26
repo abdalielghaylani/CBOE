@@ -25,7 +25,9 @@ describe('configuration.epics', () => {
     inject([XHRBackend, ConfigurationEpics], (mockBackend, configureEpics) => {
       const data = [{ id: 1, value: 'v1' }, { id: 2, value: 'v2' }];
       mockBackend.connections.subscribe((connection: MockConnection) => {
-        connection.mockRespond(new Response(new ResponseOptions({ body: data })));
+        let response = new Response(new ResponseOptions({ body: data }));
+        response.url = '';
+        connection.mockRespond(response);
       });
 
       const action$ = Observable.of(ConfigurationActions.openTableAction('table'));

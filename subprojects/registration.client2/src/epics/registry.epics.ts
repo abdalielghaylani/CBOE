@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
-import { Action } from 'redux';
+import { Action, MiddlewareAPI } from 'redux';
+import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
 import { NgRedux } from 'ng2-redux';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
 import { IRecordDetail, IAppState } from '../store';
@@ -19,7 +20,22 @@ const WS_URL = '/Registration.Server/Webservices/COERegistrationServices.asmx';
 export class RegistryEpics {
   constructor(private http: Http, private ngRedux: NgRedux<IAppState>) { }
 
-  handleOpenRecords = (action$: Observable<IPayloadAction>) => {
+  handleRegistryActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
+    return combineEpics(
+      this.handleOpenRecords,
+      this.handleRetrieveRecord,
+      this.handleRetrieveRecordSuccess,
+      this.handleSaveRecord,
+      this.handleSaveRecordSuccess,
+      this.handleUpdateRecord,
+      this.handleUpdateRecordSuccess,
+      this.handleRegisterRecord,
+      this.handleRegisterRecordSuccess,
+      this.handleLoadStructure,
+    )(action$, store);
+  }
+
+  private handleOpenRecords: Epic = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap<IPayloadAction>(({ payload }) => {
         let temporary: boolean = payload;
@@ -33,7 +49,7 @@ export class RegistryEpics {
       });
   }
 
-  handleRetrieveRecord = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
+  private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
     return action$.filter(({ type }) => type === RegistryActions.RETRIEVE_RECORD)
       .mergeMap<IPayloadAction>(({ payload }) => {
         let records = payload.temporary ?
@@ -59,7 +75,7 @@ export class RegistryEpics {
       });
   }
 
-  handleRetrieveRecordSuccess = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number, data: string }>>) => {
+  private handleRetrieveRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number, data: string }>>) => {
     return action$.filter(({ type }) => type === RegistryActions.RETRIEVE_RECORD_SUCCESS)
       .mergeMap<IPayloadAction>(({ payload }) => {
         return payload.id < 0 ?
@@ -70,7 +86,7 @@ export class RegistryEpics {
       });
   }
 
-  handleSaveRecord = (action$: Observable<ReduxActions.Action<Document>>) => {
+  private handleSaveRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Save the record into a temporary storage
@@ -80,14 +96,14 @@ export class RegistryEpics {
       });
   }
 
-  handleSaveRecordSuccess = (action$: Observable<ReduxActions.Action<string>>) => {
+  private handleSaveRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE_SUCCESS)
       .mergeMap<IPayloadAction>(({ payload }) => {
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
-  handleUpdateRecord = (action$: Observable<ReduxActions.Action<Document>>) => {
+  private handleUpdateRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.UPDATE)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Update the database with the data retrieved and modified
@@ -99,14 +115,14 @@ export class RegistryEpics {
       });
   }
 
-  handleUpdateRecordSuccess = (action$: Observable<ReduxActions.Action<string>>) => {
+  private handleUpdateRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_SUCCESS)
       .mergeMap<IPayloadAction>(({ payload }) => {
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
-  handleRegisterRecord = (action$: Observable<ReduxActions.Action<Document>>) => {
+  private handleRegisterRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.REGISTER)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Call CreateRegistryRecord
@@ -125,7 +141,7 @@ export class RegistryEpics {
       });
   }
 
-  handleRegisterRecordSuccess = (action$: Observable<ReduxActions.Action<string>>) => {
+  private handleRegisterRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_SUCCESS)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // <ReturnList><ActionDuplicateTaken>N</ActionDuplicateTaken><RegID>30</RegID><RegNum>AB-000012</RegNum><BatchNumber>1</BatchNumber>
@@ -138,7 +154,7 @@ export class RegistryEpics {
       });
   }
 
-  handleLoadStructure = (action$: Observable<ReduxActions.Action<string>>) => {
+  private handleLoadStructure: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.LOAD_STRUCTURE)
       .mergeMap<IPayloadAction>(({ payload }) => {
         // Call CreateRegistryRecord

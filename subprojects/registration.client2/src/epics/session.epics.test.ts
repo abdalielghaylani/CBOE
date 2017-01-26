@@ -37,9 +37,11 @@ describe('SessionEpics', () => {
         inject([XHRBackend, SessionEpics], (mockBackend, sessionEpics) => {
             const data = { token: '123', user: { fullName: 'John Doe' } };
             mockBackend.connections.subscribe((connection: MockConnection) => {
-                connection.mockRespond(new Response(
+                let response = new Response(
                     new ResponseOptions({ body: { meta: data } })
-                ));
+                );
+                response.url = '';
+                connection.mockRespond(response);
             });
 
             const action$ = Observable.of({ type: SessionActions.LOGIN_USER });

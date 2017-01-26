@@ -3,6 +3,7 @@ import { HttpModule, XHRBackend, ResponseOptions, Response } from '@angular/http
 import { MockBackend, MockConnection } from '@angular/http/testing/mock_backend';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
+import { ActionsObservable } from 'redux-observable';
 import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
 import { NgReduxRouter } from 'ng2-redux-router';
 import { RegistryActions } from '../actions';
@@ -25,29 +26,31 @@ describe('configuration.epics', () => {
   });
 
   it('should open and retrieve records', fakeAsync(
-    inject([XHRBackend, RegistryEpics], (mockBackend, registryEpics) => {
+    inject([XHRBackend, RegistryEpics], (mockBackend, registryEpics: RegistryEpics) => {
       const temporary: boolean = true;
       const data = [{ id: 1, value: 'v1' }, { id: 2, value: 'v2' }];
       mockBackend.connections.subscribe((connection: MockConnection) => {
-        connection.mockRespond(new Response(new ResponseOptions({ body: data })));
+        let response = new Response(new ResponseOptions({ body: data }));
+        response.url = '';
+        connection.mockRespond(response);
       });
 
-      const action$ = Observable.of(RegistryActions.openRecordsAction(temporary));
-      registryEpics.handleOpenRecords(action$).subscribe(action =>
+      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction(temporary)));
+      registryEpics.handleRegistryActions(action$, null).subscribe(action =>
         expect(action).toEqual(RegistryActions.openRecordsSuccessAction(temporary, data))
       );
     })
   ));
 
   it('should process a open-records error', fakeAsync(
-    inject([XHRBackend, RegistryEpics], (mockBackend, registryEpics) => {
+    inject([XHRBackend, RegistryEpics], (mockBackend, registryEpics: RegistryEpics) => {
       const error = new Error('cannot get records');
       mockBackend.connections.subscribe((connection: MockConnection) => {
         connection.mockError(error);
       });
 
-      const action$ = Observable.of(RegistryActions.openRecordsAction(true));
-      registryEpics.handleOpenRecords(action$).subscribe(action =>
+      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction(true)));
+      registryEpics.handleRegistryActions(action$, null).subscribe(action =>
         expect(action).toEqual(RegistryActions.openRecordsErrorAction(error))
       );
     })
