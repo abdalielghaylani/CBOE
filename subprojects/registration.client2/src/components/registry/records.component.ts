@@ -126,13 +126,13 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onInitNewRow(e) {
     e.cancel = true;
-    this.registryActions.retrieveRecord(this.records.temporary, -1);
+    this.router.navigate(['records/new']);
   }
 
   onEditingStart(e) {
     e.cancel = true;
     let id = e.data[Object.keys(e.data)[0]];
-    this.registryActions.retrieveRecord(this.records.temporary, id);
+    this.router.navigate([`records/${this.temporary ? 'temp' : ''}/${id}`]);
   }
 
   onRowRemoving(e) {

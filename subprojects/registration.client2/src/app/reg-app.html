@@ -73,8 +73,8 @@
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
     <circle-icon title="Review Temporary" color="green" iconName="table" routeLink="records/temp"></circle-icon>
   </li>
-  <li reg-sidebar-item class="{{ (routerLink$ | async).startsWith('records/') && !(routerLink$ | async).endsWith('/temp')  ? 'selected' : '' }}">
-    <circle-icon title="Submit New Compound" color="teal" iconName="flask" routeLink="" (click)="this.registryActions.retrieveRecord(true, -1)">
+  <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('records/') >= 0 && !(routerLink$ | async).endsWith('/temp')  ? 'selected' : '' }}">
+    <circle-icon title="Submit New Compound" color="teal" iconName="flask" routeLink="records/new">
     </circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('records') ? 'selected' : '' }}">

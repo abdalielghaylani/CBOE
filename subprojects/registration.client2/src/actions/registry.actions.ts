@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { createAction } from 'redux-actions';
-import { IRecordDetail, IAppState } from '../store';
+import { IAppState } from '../store';
 
 @Injectable()
 export class RegistryActions {
@@ -11,18 +11,11 @@ export class RegistryActions {
   static OPEN_RECORDS = 'OPEN_RECORDS';
   static OPEN_RECORDS_SUCCESS = 'OPEN_RECORDS_SUCCESS';
   static OPEN_RECORDS_ERROR = 'OPEN_RECORDS_ERROR';
-  static RETRIEVE_RECORD = 'RETRIEVE_RECORD';
-  static RETRIEVE_RECORD_SUCCESS = 'RETRIEVE_RECORD_SUCCESS';
-  static RETRIEVE_RECORD_ERROR = 'RETRIEVE_RECORD_ERROR';
   static openRecordsAction = createAction(RegistryActions.OPEN_RECORDS,
     (temporary: boolean) => (temporary));
   static openRecordsSuccessAction = createAction(RegistryActions.OPEN_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR);
-  static retrieveRecordAction = createAction(RegistryActions.RETRIEVE_RECORD,
-    (temporary: boolean, id: number) => ({ temporary, id }));
-  static retrieveRecordSuccessAction = createAction(RegistryActions.RETRIEVE_RECORD_SUCCESS);
-  static retrieveRecordErrorAction = createAction(RegistryActions.RETRIEVE_RECORD_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -40,17 +33,5 @@ export class RegistryActions {
 
   openRecords(temporary: boolean) {
     this.ngRedux.dispatch(RegistryActions.openRecordsAction(temporary));
-  }
-
-  retrieveRecord(temporary: boolean, id: number) {
-    this.ngRedux.dispatch(RegistryActions.retrieveRecordAction(temporary, id));
-  }
-
-  retrieveRecordSuccess(data: IRecordDetail) {
-    this.ngRedux.dispatch(RegistryActions.retrieveRecordSuccessAction(data));
-  }
-
-  retrieveRecordError() {
-    this.ngRedux.dispatch(RegistryActions.retrieveRecordErrorAction());
   }
 }

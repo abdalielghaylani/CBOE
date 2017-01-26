@@ -23,7 +23,7 @@ export function registryReducer(
       let a2 = action as ReduxActions.Action<IRecords>;
       return state.updateIn(recordsPath(a2.payload.temporary), () => a2.payload.rows);
 
-    case RegistryActions.RETRIEVE_RECORD_SUCCESS:
+    case RecordDetailActions.RETRIEVE_RECORD_SUCCESS:
       let a3 = action as ReduxActions.Action<IRecordDetail>;
       return state.update('currentRecord', () => a3.payload);
 

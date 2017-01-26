@@ -12,11 +12,21 @@ import { IRecordDetail } from '../store';
   providers: [RecordDetailActions],
   template: `
     <reg-container testid="records">
-      <reg-record-detail>
+      <reg-record-detail
+        [temporary]="temporary"
+        [id]="id">
       </reg-record-detail>
     </reg-container>
   `
 })
 export class RegRecordDetailPage {
-  constructor(private router: Router, private actions: RecordDetailActions) { }
+  private temporary: boolean;
+  private id: number;
+  
+  constructor(private router: Router, private actions: RecordDetailActions) {
+    let urlSegments = router.url.split('/');
+    this.temporary = !!urlSegments.find(s => s === 'temp');
+    let id = urlSegments[urlSegments.length - 1];
+    this.id = id === 'new' ? -1 : +id;
+  }
 }

@@ -24,7 +24,6 @@ export class RegistryEpics {
     return combineEpics(
       this.handleOpenRecords,
       this.handleRetrieveRecord,
-      this.handleRetrieveRecordSuccess,
       this.handleSaveRecord,
       this.handleSaveRecordSuccess,
       this.handleUpdateRecord,
@@ -50,7 +49,7 @@ export class RegistryEpics {
   }
 
   private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
-    return action$.filter(({ type }) => type === RegistryActions.RETRIEVE_RECORD)
+    return action$.filter(({ type }) => type === RecordDetailActions.RETRIEVE_RECORD)
       .mergeMap<IPayloadAction>(({ payload }) => {
         let records = payload.temporary ?
           this.ngRedux.getState().registry.tempRecords :
@@ -65,24 +64,13 @@ export class RegistryEpics {
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
-              : RegistryActions.retrieveRecordSuccessAction({
+              : RecordDetailActions.retrieveRecordSuccessAction({
                 temporary: payload.temporary,
                 id: payload.id,
                 data: result.text()
               } as IRecordDetail);
           })
-          .catch(error => Observable.of(RegistryActions.retrieveRecordErrorAction(error)));
-      });
-  }
-
-  private handleRetrieveRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number, data: string }>>) => {
-    return action$.filter(({ type }) => type === RegistryActions.RETRIEVE_RECORD_SUCCESS)
-      .mergeMap<IPayloadAction>(({ payload }) => {
-        return payload.id < 0 ?
-          Observable.of({ type: UPDATE_LOCATION, payload: 'records/new' }) :
-          payload.temporary ?
-            Observable.of({ type: UPDATE_LOCATION, payload: `records/temp/${payload.id}` }) :
-            Observable.of({ type: UPDATE_LOCATION, payload: `records/${payload.id}` });
+          .catch(error => Observable.of(RecordDetailActions.retrieveRecordErrorAction(error)));
       });
   }
 

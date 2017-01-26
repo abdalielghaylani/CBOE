@@ -62,7 +62,7 @@ describe('registry reducer', () => {
     const data = '<xml>encoded-temp-cdxml-data</xml>';
     const firstState = registryReducer(
       initState,
-      RegistryActions.retrieveRecordSuccessAction({
+      RecordDetailActions.retrieveRecordSuccessAction({
         temporary: true,
         id: id,
         data: data
@@ -75,7 +75,7 @@ describe('registry reducer', () => {
     const data2 = '<xml>encoded-cdxml-data</xml>';
     const secondState = registryReducer(
       firstState,
-      RegistryActions.retrieveRecordSuccessAction({
+      RecordDetailActions.retrieveRecordSuccessAction({
         temporary: false,
         id: id2,
         data: data2

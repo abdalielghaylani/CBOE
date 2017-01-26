@@ -5,7 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   OnInit, OnDestroy, AfterViewInit,
-  ElementRef,
+  ElementRef, ChangeDetectorRef,
   ViewChildren, QueryList
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -28,6 +28,8 @@ declare var jQuery: any;
 })
 export class RegRecordDetail implements OnInit, OnDestroy {
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
+  @Input() temporary: boolean;
+  @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.structureData) structureData$: Observable<string>;
   private title: string;
@@ -49,8 +51,6 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       Batch: any[]
     }
   };
-  private id: number;
-  private temporary: boolean;
   private componentItems: any;
   private compoundItems: any;
   private fragmentItems: any;
@@ -62,11 +62,16 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   private fragmentData: any;
   private batchData: any;
 
-  constructor(private elementRef: ElementRef, private ngRedux: NgRedux<IAppState>, private actions: RecordDetailActions) {
+  constructor(
+    private elementRef: ElementRef,
+    private ngRedux: NgRedux<IAppState>,
+    private actions: RecordDetailActions,
+    private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.createDrawingTool();
+    this.actions.retrieveRecord(this.temporary, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
   }
 
@@ -80,8 +85,9 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   }
 
   loadData(data: IRecordDetail) {
-    this.temporary = data.temporary;
-    this.id = data.id;
+    if (this.temporary !== data.temporary || this.id !== data.id) {
+      return;
+    }
     let output = registryUtils.getDocument(data.data);
     this.recordString = output.documentElement.firstChild.textContent;
     this.recordDoc = registryUtils.getDocument(this.recordString);
@@ -116,6 +122,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     this.compoundData = this.rootJson.ComponentList.Component[0].Compound;
     this.fragmentData = this.rootJson.ComponentList.Component[0].Compound.FragmentList.Fragment[0];
     this.batchData = this.rootJson.BatchList.Batch[0];
+    this.cd.markForCheck();
   }
 
   loadCdxml(cdxml: string) {
