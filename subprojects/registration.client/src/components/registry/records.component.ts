@@ -5,7 +5,7 @@ import {
   OnInit,
   OnDestroy,
   EventEmitter,
-  ChangeDetectionStrategy,
+  ChangeDetectorRef, ChangeDetectionStrategy,
 } from '@angular/core';
 import { select, NgRedux } from 'ng2-redux';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -50,7 +50,11 @@ export class RegRecords implements OnInit, OnDestroy {
   private lookups: any;
   private records: IRecords;
 
-  constructor(private router: Router, private ngRedux: NgRedux<IAppState>, private registryActions: RegistryActions) { 
+  constructor(
+    private router: Router,
+    private ngRedux: NgRedux<IAppState>,
+    private registryActions: RegistryActions,
+    private changeDetector: ChangeDetectorRef) { 
     this.records = { temporary: this.temporary, rows: [], gridColumns: [] };
   }
 
@@ -76,23 +80,14 @@ export class RegRecords implements OnInit, OnDestroy {
     this.recordsSubscription = this.records$.subscribe(d => { this.updateContents(d); });
   }
 
-  copyToLocal(records: IRecords) {
-    // Copy obserable to local variable that the views are bound to.
-    // Along the way, modify values as necessary.
+  updateContents(records: IRecords) {
+    if (this.temporary !== records.temporary) {
+      return;
+    }
     this.records.temporary = records.temporary;
     this.records.rows = records.rows;
     this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
-  }
-
-  refreshView() {
-    if (this.grid && this.grid.instance) {
-      this.grid.instance.refresh();
-    }
-  }
-
-  updateContents(records: IRecords) {
-    this.copyToLocal(records);
-    this.refreshView();
+    this.changeDetector.markForCheck();
   }
 
   updateGridColumn(gridColumn) {

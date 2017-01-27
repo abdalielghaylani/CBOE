@@ -66,7 +66,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     private elementRef: ElementRef,
     private ngRedux: NgRedux<IAppState>,
     private actions: RecordDetailActions,
-    private cd: ChangeDetectorRef) {
+    private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -122,7 +122,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     this.compoundData = this.rootJson.ComponentList.Component[0].Compound;
     this.fragmentData = this.rootJson.ComponentList.Component[0].Compound.FragmentList.Fragment[0];
     this.batchData = this.rootJson.BatchList.Batch[0];
-    this.cd.markForCheck();
+    this.changeDetector.markForCheck();
   }
 
   loadCdxml(cdxml: string) {
