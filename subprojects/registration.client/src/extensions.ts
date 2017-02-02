@@ -1,5 +1,13 @@
 export { }
 
+declare global {
+  interface String {
+    format(any): String;
+    decodeHtml(): String;
+    encodeHtml(): String;
+  }
+}
+
 String.prototype.format = String.prototype.format ||
   function () {
     'use strict';
