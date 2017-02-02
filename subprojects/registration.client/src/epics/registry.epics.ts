@@ -11,6 +11,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
+import * as regAppUtils from '../app/reg-app.utils';
 import * as registryUtils from '../components/registry/registry.utils';
 import { basePath } from '../configuration';
 
@@ -154,6 +155,7 @@ export class RegistryEpics {
         // <BatchID>22</BatchID></ReturnList>
         let response: Document = registryUtils.getDocument(registryUtils.getDocument(payload).documentElement.textContent);
         let regNumber = registryUtils.getElementValue(response.documentElement, 'RegNum');
+        regAppUtils.notify(regNumber ? `${regNumber} was created successfully` : 'Registration failed!', regNumber ? 'success' : 'error', 5000);
         return regNumber ?
           Observable.of({ type: UPDATE_LOCATION, payload: `records` }) :
           Observable.of({ type: RegActions.IGNORE_ACTION });
