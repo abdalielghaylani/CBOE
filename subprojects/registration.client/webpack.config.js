@@ -1,6 +1,6 @@
 'use strict';
 
-const basePath = '/Registration.Server/';
+const basePath = process.env.NODE_ENV === 'production' ? '/Registration.Server/' : '/';
 const path = require('path');
 const proxy = require('./server/webpack-dev-proxy');
 const loaders = require('./webpack/loaders');
@@ -89,6 +89,21 @@ const prodConfig = {
 // const serverHost = 'http://165.88.130.57';
 const serverHost = 'http://amc1262e14r6d17.pkiapps.net';
 
+const proxySettings = {};
+proxySettings[basePath + 'api'] = {
+  target: serverHost + '/Registration.Server/api',
+  pathRewrite: {
+    '^/api': '',
+  },
+};
+proxySettings[basePath + 'Webservices'] = {
+  target: serverHost + '/Registration.Server/Webservices',
+  pathRewrite: {
+    '^/Webservices': '',
+  },
+};
+proxySettings[basePath + 'coecommonresources'] = serverHost;
+
 const baseConfig = {
   resolve: {
     extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
@@ -97,18 +112,10 @@ const baseConfig = {
   plugins: plugins,
 
   devServer: {
-    historyApiFallback: { index: basePath },
-    proxy: Object.assign({}, proxy(), {
-      '/Registration.Server/api': {
-        target: serverHost + '/Registration.Server/api',
-        pathRewrite: { '^/Registration.Server/api': '' },
-      },
-      '/Registration.Server/Webservices': {
-        target: serverHost + '/Registration.Server/Webservices',
-        pathRewrite: { '^/Registration.Server/Webservices': '' },
-      },
-      '/coecommonresources': serverHost,
-    }),
+    historyApiFallback: {
+      index: basePath,
+    },
+    proxy: Object.assign({}, proxy(), proxySettings),
   },
 
   module: {

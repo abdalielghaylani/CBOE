@@ -7,8 +7,9 @@ import {
 } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { basePath } from '../../configuration';
 
-const BASE_URL = '/Registration.Server/api';
+const BASE_URL = `${basePath}api`;
 
 @Component({
   selector: 'reg-structure-image',

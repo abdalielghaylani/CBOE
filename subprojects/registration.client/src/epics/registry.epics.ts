@@ -12,9 +12,10 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import * as registryUtils from '../components/registry/registry.utils';
+import { basePath } from '../configuration';
 
-const BASE_URL = '/Registration.Server/api';
-const WS_URL = '/Registration.Server/Webservices/COERegistrationServices.asmx';
+const BASE_URL = `${basePath}api`;
+const WS_URL = `${basePath}Webservices/COERegistrationServices.asmx`;
 
 @Injectable()
 export class RegistryEpics {

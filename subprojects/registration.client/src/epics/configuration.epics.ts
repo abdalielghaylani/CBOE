@@ -6,8 +6,9 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
+import { basePath } from '../configuration';
 
-const BASE_URL = '/Registration.Server/api';
+const BASE_URL = `${basePath}api`;
 
 @Injectable()
 export class ConfigurationEpics {
