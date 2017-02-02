@@ -7,6 +7,8 @@ import {enableProdMode} from '@angular/core';
 
 import {production, test} from './configuration';
 
+import './extensions';
+
 if (production) {
   enableProdMode();
 } else {

@@ -16,6 +16,17 @@ import { basePath } from '../configuration';
 
 const BASE_URL = `${basePath}api`;
 const WS_URL = `${basePath}Webservices/COERegistrationServices.asmx`;
+const WS_ENVELOPE = `<soap12:Envelope
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+<soap12:Header>
+  <COECredentials xmlns="CambridgeSoft.COE.Registration.Services.Web"><AuthenticationTicket>{token}</AuthenticationTicket></COECredentials>
+</soap12:Header>
+<soap12:Body>
+  <{method} xmlns="CambridgeSoft.COE.Registration.Services.Web"><xml>{xml}</xml>{additional}</{method}>
+</soap12:Body>
+</soap12:Envelope>`;
 
 @Injectable()
 export class RegistryEpics {
@@ -114,13 +125,19 @@ export class RegistryEpics {
   private handleRegisterRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_RECORD)
       .mergeMap<IPayloadAction>(({ payload }) => {
-        // Call CreateRegistryRecord
-        let url: string = `${WS_URL}/CreateRegistryRecord`;
-        let data = new URLSearchParams();
+        // This should come from the user/configuration
+        const duplicateAction = 'N';
+        const params = {
+          token: this.ngRedux.getState().session.token,
+          method: 'CreateRegistryRecord',
+          xml: registryUtils.serializeData(payload).encodeHtml(),
+          additional: `<duplicateAction>${duplicateAction}</duplicateAction>`
+        };
+        let data = WS_ENVELOPE.format(params);
+        let headers = new Headers({ 'Content-Type': 'application/soap+xml', charset: 'utf-8', 'Content-Length': data.length });
+        let options = new RequestOptions({ headers: headers });
         // registryUtils.fixStructureData(payload);
-        data.append('xml', registryUtils.serializeData(payload));
-        data.append('duplicateAction', 'N');
-        return this.http.post(url, data)
+        return this.http.post(WS_URL, data, options)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
