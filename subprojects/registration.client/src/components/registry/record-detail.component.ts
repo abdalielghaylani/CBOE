@@ -186,6 +186,9 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   };
 
   save() {
+    // Retrieve CDXML from CDD
+    registryUtils.setElementValue(this.recordDoc.documentElement,
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
     this.actions.saveRecord(this.recordDoc);
   }
 

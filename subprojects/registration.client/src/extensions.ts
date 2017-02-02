@@ -16,12 +16,14 @@ String.prototype.format = String.prototype.format ||
     return str;
   };
 
+String.prototype.decodeHtml = String.prototype.decodeHtml ||
+  function () {
+    'use strict';
+    return jQuery('<textarea/>').html(this.toString()).text();
+  };
+
 String.prototype.encodeHtml = String.prototype.encodeHtml ||
   function () {
     'use strict';
-    return this.replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&apos;');
+    return jQuery('<textarea/>').text(this.toString()).html();
   };

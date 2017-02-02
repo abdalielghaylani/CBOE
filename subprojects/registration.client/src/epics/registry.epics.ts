@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Action, MiddlewareAPI } from 'redux';
+import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
 import { NgRedux } from 'ng2-redux';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
@@ -89,18 +90,50 @@ export class RegistryEpics {
 
   private handleSaveRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD)
-      .mergeMap<IPayloadAction>(({ payload }) => {
-        // Save the record into a temporary storage
-        // Create CreateTemporaryRegistryRecord
-        let url: string = `${WS_URL}/CreateTemporaryRegistryRecord`;
-        return Observable.of({ type: RegActions.IGNORE_ACTION });
+      .mergeMap<IPayloadAction>(a => {
+        // Convert CDXML to encoded-CDX first
+        const structPath = 'ComponentList/Component/Compound/BaseFragment/Structure/Structure';
+        let data = registryUtils.getElementValue(a.payload.documentElement, structPath);
+        let url: string = `${BASE_URL}/DataConversion/FromCdxml`;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(url, { data }, options)
+          .map(result => {
+            if (result.url.indexOf('index.html') > 0) {
+              return SessionActions.logoutUserAction();
+            } else {
+              registryUtils.setElementValue(a.payload.documentElement, structPath, result.json().data);
+              return RecordDetailActions.saveRecordSuccessAction(a.payload);
+            }
+          })
+          .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
       });
   }
 
-  private handleSaveRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
+  private handleSaveRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD_SUCCESS)
-      .mergeMap<IPayloadAction>(({ payload }) => {
-        return Observable.of({ type: RegActions.IGNORE_ACTION });
+      .mergeMap<IPayloadAction>(a => {
+        // Save the record into a temporary storage
+        // Create CreateTemporaryRegistryRecord
+        const params = {
+          token: this.ngRedux.getState().session.token,
+          method: 'CreateTemporaryRegistryRecord',
+          xml: registryUtils.serializeData(a.payload).encodeHtml(),
+          additional: ''
+        };
+        let data = WS_ENVELOPE.format(params);
+        let headers = new Headers({ 'Content-Type': 'application/soap+xml', charset: 'utf-8' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(WS_URL, data, options)
+          .map(result => {
+            if (result.url.indexOf('index.html') > 0) {
+              return SessionActions.logoutUserAction();
+            } else {
+              regAppUtils.notifySuccess('The record was saved in the temporary registry successfully!', 5000);
+              return createAction(UPDATE_LOCATION)(`records/temp`);
+            }
+          })
+          .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
       });
   }
 
@@ -135,9 +168,8 @@ export class RegistryEpics {
           additional: `<duplicateAction>${duplicateAction}</duplicateAction>`
         };
         let data = WS_ENVELOPE.format(params);
-        let headers = new Headers({ 'Content-Type': 'application/soap+xml', charset: 'utf-8', 'Content-Length': data.length });
+        let headers = new Headers({ 'Content-Type': 'application/soap+xml', charset: 'utf-8' });
         let options = new RequestOptions({ headers: headers });
-        // registryUtils.fixStructureData(payload);
         return this.http.post(WS_URL, data, options)
           .map(result => {
             return result.url.indexOf('index.html') > 0

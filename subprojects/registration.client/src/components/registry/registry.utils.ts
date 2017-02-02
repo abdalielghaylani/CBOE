@@ -25,7 +25,7 @@ export function serializeData(data: Document): string {
   return new XMLSerializer().serializeToString(data.documentElement);
 }
 
-export function getElementValue(element: Element, path: string): string {
+export function getElement(element: Element, path: string): Element {
   let pathSegments: string[] = path.split('/');
   let first: string = pathSegments.shift();
   if (first) {
@@ -40,11 +40,23 @@ export function getElementValue(element: Element, path: string): string {
     }
     if (nextElement) {
       if (pathSegments.length === 0) {
-        return nextElement.textContent;
+        return nextElement;
       } else {
-        return this.getElementValue(nextElement, pathSegments.join('/'));
+        return this.getElement(nextElement, pathSegments.join('/'));
       }
     }
   }
   return null;
+}
+
+export function getElementValue(element: Element, path: string): string {
+  let nextElement = this.getElement(element, path);
+  return nextElement ? nextElement.textContent : null;
+}
+
+export function setElementValue(element: Element, path: string, value: string) {
+  let nextElement = this.getElement(element, path);
+  if (nextElement) {
+    nextElement.textContent = value;
+  }
 }
