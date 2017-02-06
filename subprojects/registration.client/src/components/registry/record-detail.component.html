@@ -55,7 +55,7 @@
             </div>
             <div class="tab-pane fade" id="tab5default">
               <h4>Batch Information</h4>
-              <dx-form id="batchForm" [formData]="regRecord.BatchList.Batch[0]" [colCount]="2" [items]="batchItems"></dx-form>
+              <dx-form id="batchForm" [formData]="regRecordVM.batchList[0]" [colCount]="2" [items]="regRecordVM.batchList[0].columns"></dx-form>
             </div>
           </div>
         </div>

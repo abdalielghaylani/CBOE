@@ -153,7 +153,7 @@ export class CParam {
 }
 
 export class CParamList {
-  param?: CParam[];
+  param?: CParam[] = [];
 }
 
 export class CValidationRule {
@@ -163,7 +163,7 @@ export class CValidationRule {
 }
 
 export class CValidationRuleList {
-  validationRule: CValidationRule[];
+  validationRule: CValidationRule[] = [];
 }
 
 export class CProperty {
@@ -177,7 +177,7 @@ export class CProperty {
 }
 
 export class CPropertyList {
-  Property: CProperty[];
+  Property: CProperty[] = [];
 }
 
 export class CRegNumber {
@@ -200,8 +200,19 @@ export class CIdentifier {
   InputText?: String; // Dehydrohedione (DHH)
 }
 
+export class CIdentifierVM {
+  id?: Number;
+  identifierId?: Number;
+  inputText?: String;
+  constructor(m: CIdentifier) {
+    this.id = m.ID ? m.ID : undefined;
+    this.identifierId = m.IdentifierID ? +m.IdentifierID.__text : undefined;
+    this.inputText = m.InputText;
+  }
+}
+
 export class CIdentifierList {
-  Identifier: CIdentifier[];
+  Identifier: CIdentifier[] = [];
 }
 
 export class CProjectID {
@@ -217,7 +228,7 @@ export class CProject {
 }
 
 export class CProjectList {
-  Project: CProject[];
+  Project: CProject[] = [];
 }
 
 export class CChemicalStructure {
@@ -247,7 +258,7 @@ export class CFragment {
 }
 
 export class CFragmentList {
-  Fragment: CFragment[] = [ new CFragment() ];
+  Fragment: CFragment[] = [new CFragment()];
 }
 
 export class CCompound {
@@ -271,8 +282,39 @@ export class CComponent {
   Compound: CCompound = new CCompound();
 }
 
+export class CComponentVM {
+  id?: Number;
+  componentIndex?: Number;
+  compoundId?: Number;
+  dateCreated?: Date;
+  dateLastModified?: Date;
+  personCreated?: Number;
+  personApproved?: Number;
+  regNumber?: String;
+  identifierList?: CIdentifierVM[];
+  constructor(m: CComponent) {
+    this.id = m.ID;
+    this.componentIndex = m.ComponentIndex;
+    this.compoundId = m.Compound.CompoundID;
+    this.dateCreated = m.Compound.DateCreated ? new Date(m.Compound.DateCreated) : undefined;
+    this.dateLastModified = m.Compound.DateLastModified ? new Date(m.Compound.DateLastModified) : undefined;
+    this.personCreated = m.Compound.PersonCreated;
+    this.personApproved = m.Compound.PersonApproved;
+    this.regNumber = m.Compound.RegNumber ? m.Compound.RegNumber.RegNumber : undefined;
+    this.identifierList = m.Compound.IdentifierList ? m.Compound.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
+    if (m.Compound.PropertyList) {
+      m.Compound.PropertyList.Property.forEach(p => {
+        let propertyName = p._name;
+        if (propertyName) {
+          this[propertyName as string] = p.__text;
+        }
+      });
+    }
+  }
+}
+
 export class CComponentList {
-  Component: CComponent[] = [ new CComponent() ];
+  Component: CComponent[] = [new CComponent()];
 }
 
 export class CBatchComponentFragmentList {
@@ -291,7 +333,7 @@ export class CBatchComponent {
 }
 
 export class CBatchComponentList {
-  BatchComponent: CBatchComponent[];
+  BatchComponent: CBatchComponent[] = [];
 }
 
 export class CPerson {
@@ -314,6 +356,68 @@ export class CBatch {
   IdentifierList?: CIdentifierList;
   PropertyList?: CPropertyList;
   BatchComponentList?: CBatchComponentList;
+}
+
+export class CBatchVM {
+  id?: Number;
+  batchNumber?: Number;
+  fullRegNumber?: String;
+  dateCreated?: Date;
+  dateLastModified?: Date;
+  personCreated?: Number;
+  personApproved?: Number;
+  personRegistered?: Number;
+  statusId?: Number;
+  identifierList?: CIdentifierVM[] = [];
+  projectList?: number[] = [];
+  columns?: any[] = [];
+  constructor(m: CBatch) {
+    this.id = m.BatchID;
+    this.batchNumber = m.BatchNumber;
+    this.fullRegNumber = m.FullRegNumber;
+    this.dateCreated = m.DateCreated ? new Date(m.DateCreated) : undefined;
+    this.dateLastModified = m.DateLastModified ? new Date(m.DateLastModified) : undefined;
+    this.personCreated = m.PersonCreated ? +m.PersonCreated.__text : undefined;
+    this.personApproved = m.PersonApproved ? +m.PersonApproved.__text : undefined;
+    this.personRegistered = m.PersonRegistered ? +m.PersonRegistered.__text : undefined;
+    this.statusId = m.StatusID;
+    this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
+    this.columns.push({
+      dataField: 'id',
+      dataType: 'number',
+      label: { text: 'Batch ID' },
+      editorOptions: { disabled: true }
+    });
+    this.columns.push({
+      dataField: 'dateCreated',
+      dataType: 'date',
+      label: { text: 'Date Created' },
+      editorOptions: { disabled: true }
+    });
+    this.columns.push({
+      dataField: 'dateLastModified',
+      dataType: 'date',
+      label: { text: 'Last Modification Date' },
+      editorOptions: { disabled: true }
+    });
+    if (m.PropertyList) {
+      m.PropertyList.Property.forEach(p => {
+        let propertyName = p._name;
+        if (propertyName) {
+          this[propertyName as string] = p._type === 'DATE' ? new Date(p.__text) : p.__text;
+          // TODO: The lable, visibility, data type, etc. should be extracted from property and view config
+          this.columns.push({
+            dataField: propertyName,
+            dataType: p._type === 'DATE' ? 'date' : 'string'
+          });
+        }
+      });
+    }
+    if (m.ProjectList) {
+      this.projectList = [];
+      m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
+    }
+  }
 }
 
 export class CBatchList {
@@ -342,7 +446,7 @@ export class CAddIn {
 }
 
 export class CAddInList {
-  AddIn: CAddIn[];
+  AddIn: CAddIn[] = [];
 }
 
 export class CRegistryRecord {
@@ -379,15 +483,14 @@ export class CRegistryRecordVM {
   dateCreated?: Date;
   dateLastModified?: Date;
   personCreated?: Number;
-  personApproved?: Number; //
-  structureAggregation?: String; // VmpD...
-  statusID?: Number; // 3
-  PropertyList?: CPropertyList;
-  RegNumber?: CRegNumber;
-  IdentifierList?: CIdentifierList;
-  ProjectList?: CProjectList;
-  ComponentList: CComponentList = new CComponentList();
-  BatchList: CBatchList = new CBatchList();
+  personApproved?: Number;
+  structureAggregation?: String;
+  statusId?: Number;
+  regNumber?: String;
+  identifierList?: CIdentifierVM[] = [];
+  projectList?: number[] = [];
+  componentList?: CComponentVM[] = [];
+  batchList: CBatchVM[] = [];
   constructor(m: CRegistryRecord) {
     this.sameBatchesIdentity = m._SameBatchesIdentity ? m._SameBatchesIdentity === 'True' : undefined;
     this.activeRLS = m._ActiveRLS;
@@ -399,12 +502,29 @@ export class CRegistryRecordVM {
     this.personCreated = m.PersonCreated;
     this.personApproved = m.PersonApproved;
     this.structureAggregation = m.StructureAggregation;
-    this.statusID = m.StatusID;
+    this.statusId = m.StatusID;
+    this.regNumber = m.RegNumber ? m.RegNumber.RegNumber : undefined;
+    this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
+    if (m.PropertyList) {
+      m.PropertyList.Property.forEach(p => {
+        let propertyName = p._name;
+        if (propertyName) {
+          this[propertyName as string] = p.__text;
+        }
+      });
+    }
+    if (m.ProjectList) {
+      this.projectList = [];
+      m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
+    }
+    if (m.ComponentList) {
+      this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c));
+    }
+    if (m.BatchList) {
+      this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b));
+    }
   }
 }
-
-// export class CMultiCompoundRegistryRecord implements IMultiCompoundRegistryRecord {
-// }
 
 export function buildRegistryItems(registryRecord: CRegistryRecord, lookups: any): any[] {
   let items: any[] = [{
