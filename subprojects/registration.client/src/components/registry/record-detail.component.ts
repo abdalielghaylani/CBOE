@@ -40,12 +40,10 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   private recordJson: any;
   private recordDoc: Document;
   private regRecord: regTypes.CRegistryRecord = new regTypes.CRegistryRecord();
-  private regRecordVM: regTypes.CRegistryRecordVM = new regTypes.CRegistryRecordVM(this.regRecord); 
-  private registryItems: any;
+  private regRecordVM: regTypes.CRegistryRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, null); 
   private componentItems: any;
   private compoundItems: any;
   private fragmentItems: any;
-  private registryData: any;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
 
@@ -90,7 +88,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     });
     this.recordJson = x2jsTool.dom2js(this.recordDoc);
     this.regRecord = this.recordJson.MultiCompoundRegistryRecord;
-    this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord); 
+    this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, this.ngRedux.getState().session.lookups); 
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new regTypes.FragmentData()] };
     }
@@ -102,8 +100,6 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       data.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    this.registryItems = regTypes.buildRegistryItems(this.regRecord, this.ngRedux.getState().session.lookups);
-    this.registryData = regTypes.buildRegistryData(this.regRecord);
     this.componentItems = regTypes.COMPONENT_DESC_LIST;
     this.compoundItems = regTypes.COMPOUND_DESC_LIST;
     this.fragmentItems = regTypes.FRAGMENT_DESC_LIST;

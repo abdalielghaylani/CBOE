@@ -75,78 +75,6 @@ export const FRAGMENT_DESC_LIST = [{
   editorType: 'dxDateBox',
 }];
 
-export const BATCH_DESC_LIST = [{
-  dataField: 'BatchID',
-  dataType: 'number',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'DateCreated',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'DateLastModified',
-  label: 'Last Modified Date',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'PersonCreated',
-  label: 'Scientist',
-  dataType: 'string',
-  editorType: 'dxSelectBox',
-  editorOptions: {
-    displayExpr: 'USERID',
-    valueExpr: 'PERSONID',
-    placeholder: ''
-  }
-}, {
-  dataField: 'SynthesisDate',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'NotebookReference',
-  dataType: 'string'
-}, {
-  dataField: 'Amount',
-  dataType: 'string'
-}, {
-  dataField: 'Unit',
-  dataType: 'string'
-}, {
-  dataField: 'Appearance',
-  dataType: 'string'
-}, {
-  dataField: 'Purity',
-  dataType: 'string'
-}, {
-  dataField: 'PurityComments',
-  dataType: 'string'
-}, {
-  dataField: 'SampleID',
-  dataType: 'string'
-}, {
-  dataField: 'Solubility',
-  dataType: 'string'
-}, {
-  dataField: 'PercentActive',
-  dataType: 'string'
-}, {
-  dataField: 'FormulaWeight',
-  dataType: 'string'
-}, {
-  dataField: 'MolecularFormula',
-  dataType: 'string'
-}, {
-  dataField: 'BatchComments',
-  dataType: 'string',
-  colSpan: 2
-}, {
-  dataField: 'StorageRequirementsWarnings',
-  dataType: 'string',
-  colSpan: 2
-}];
-
 export class CParam {
   _name: String; // min
   _value: String; // 0
@@ -202,11 +130,9 @@ export class CIdentifier {
 
 export class CIdentifierVM {
   id?: Number;
-  identifierId?: Number;
   inputText?: String;
   constructor(m: CIdentifier) {
-    this.id = m.ID ? m.ID : undefined;
-    this.identifierId = m.IdentifierID ? +m.IdentifierID.__text : undefined;
+    this.id = m.IdentifierID ? +m.IdentifierID.__text : undefined;
     this.inputText = m.InputText;
   }
 }
@@ -404,7 +330,7 @@ export class CBatchVM {
       m.PropertyList.Property.forEach(p => {
         let propertyName = p._name;
         if (propertyName) {
-          this[propertyName as string] = p._type === 'DATE' ? new Date(p.__text) : p.__text;
+          this[propertyName as string] = getPropertyValue(p);
           // TODO: The lable, visibility, data type, etc. should be extracted from property and view config
           this.columns.push({
             dataField: propertyName,
@@ -491,7 +417,8 @@ export class CRegistryRecordVM {
   projectList?: number[] = [];
   componentList?: CComponentVM[] = [];
   batchList: CBatchVM[] = [];
-  constructor(m: CRegistryRecord) {
+  columns: any[] = [];
+  constructor(m: CRegistryRecord, lookups: any) {
     this.sameBatchesIdentity = m._SameBatchesIdentity ? m._SameBatchesIdentity === 'True' : undefined;
     this.activeRLS = m._ActiveRLS;
     this.isEditable = m._IsEditable ? m._IsEditable === 'True' : undefined;
@@ -505,6 +432,61 @@ export class CRegistryRecordVM {
     this.statusId = m.StatusID;
     this.regNumber = m.RegNumber ? m.RegNumber.RegNumber : undefined;
     this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
+    if (m.ProjectList) {
+      this.projectList = [];
+      m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
+    }
+    this.columns.push({
+      dataField: 'projectList',
+      label: { text: 'Projects' },
+      template: function (d, itemElement) {
+        (jQuery('<div>')
+          .appendTo(itemElement) as any)
+          .dxTagBox({
+            value: d.editorOptions.value ? d.editorOptions.value : [],
+            valueExpr: 'PROJECTID',
+            displayExpr: 'NAME',
+            dataSource: lookups ? lookups.projects : [],
+            onValueChanged: function (e) {
+              d.component.option('formData.' + d.dataField, e.value);
+            }
+          });
+      }
+    });
+    this.columns.push({
+      dataField: 'identifierList',
+      label: { text: 'Project Identifiers' },
+      template: function (d, itemElement) {
+        (jQuery('<div>')
+          .appendTo(itemElement) as any)
+          .dxDataGrid({
+            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
+            columns: [{
+              dataField: 'id',
+              caption: 'Identifier',
+              editorType: 'dxLookup',
+              lookup: {
+                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
+                displayExpr: 'NAME',
+                valueExpr: 'ID',
+                placeholder: 'Select Identifier'
+              }
+            }, {
+              dataField: 'inputText',
+              caption: 'Value'
+            }],
+            editing: {
+              mode: 'row',
+              allowUpdating: true,
+              allowDeleting: true,
+              allowAdding: true
+            },
+            onCellPrepared: function (e) {
+              onCellPrepared(e);
+            }
+          });
+      },
+    });
     if (m.PropertyList) {
       m.PropertyList.Property.forEach(p => {
         let propertyName = p._name;
@@ -512,10 +494,6 @@ export class CRegistryRecordVM {
           this[propertyName as string] = p.__text;
         }
       });
-    }
-    if (m.ProjectList) {
-      this.projectList = [];
-      m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
     }
     if (m.ComponentList) {
       this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c));
@@ -526,43 +504,33 @@ export class CRegistryRecordVM {
   }
 }
 
-export function buildRegistryItems(registryRecord: CRegistryRecord, lookups: any): any[] {
-  let items: any[] = [{
-    dataField: 'RegNumber',
-    dataType: 'string',
-    editorOptions: { disabled: true }
-  }, {
-    dataField: 'Projects',
-    template: function (d, itemElement) {
-      (jQuery('<div>')
-        .appendTo(itemElement) as any)
-        .dxTagBox({
-          value: d.editorOptions.value,
-          valueExpr: 'PROJECTID',
-          displayExpr: 'NAME',
-          dataSource: lookups.projects,
-          onValueChanged: function (e) {
-            d.component.option('formData.' + d.dataField, e.value);
-          }
-        });
+function onCellPrepared(e) {
+  if (e.rowType === 'data' && e.column.command === 'edit') {
+    let isEditing = e.row.isEditing;
+    let $links = e.cellElement.find('.dx-link');
+    $links.text('');
+    if (isEditing) {
+      $links.filter('.dx-link-save').addClass('dx-icon-save');
+      $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
+    } else {
+      $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+      $links.filter('.dx-link-delete').addClass('dx-icon-trash');
     }
-  }];
-  // items.push({
-  //   dataField: 'Identifiers',
-  //   dataType: 'number',
-  //   lookup: { dataSource: lookups.users, displayExpr: 'USERID', valueExpr: 'PERSONID' },
-  //   editorOptions: { disabled: true }
-  // });
-  //
-  // TODO: Should add more items based on custom properties
-  return items;
+  }
 }
 
-export function buildRegistryData(registryRecord: CRegistryRecord): any {
-  let data: any = {};
-  data.RegNumber = registryRecord.RegNumber.RegNumber;
-  // TODO: Should get the project IDs from the project list
-  data.Projects = [];
-  return data;
+function getPropertyValue(p: CProperty): any {
+  let value = undefined;
+  let textValue = p.__text;
+  if (textValue) {
+    textValue = textValue.trim();
+  }
+  switch (p._type) {
+    case 'DATE':
+      if (textValue) {
+        value = new Date(textValue);
+      }
+      break;
+  }
+  return value;
 }
-
