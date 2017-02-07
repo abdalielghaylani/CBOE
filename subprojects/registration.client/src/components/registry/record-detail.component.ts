@@ -17,6 +17,7 @@ import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
 import * as regTypes from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
+import { basePath } from '../../configuration';
 
 declare var jQuery: any;
 
@@ -35,6 +36,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   private title: string;
   private drawingTool;
   private creatingCDD: boolean = false;
+  private cdxml: string;
   private projects: any[];
   private recordString: string;
   private recordJson: any;
@@ -58,6 +60,12 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     this.createDrawingTool();
     this.actions.retrieveRecord(this.temporary, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+    let self = this;
+    // jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    //   if (self.drawingTool) {
+    //     self.drawingTool.setViewOnly(jQuery(e.target).attr('href') !== '#tab1default');
+    //   }
+    // });
   }
 
   ngOnDestroy() {
@@ -112,6 +120,8 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       if (cdxml) {
         this.drawingTool.loadCDXML(cdxml);
       }
+    } else {
+      this.cdxml = cdxml;
     }
   }
 
@@ -124,10 +134,6 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       return;
     }
     this.creatingCDD = true;
-    let ccData = '';
-    if (this.drawingTool !== undefined) {
-      ccData = this.drawingTool.getCDXML();
-    }
     this.removePreviousDrawingTool();
 
     let cddContainer = jQuery(this.elementRef.nativeElement).find('.cdContainer');
@@ -143,8 +149,8 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       parent: this,
       callback: function (drawingTool) {
         this.parent.drawingTool = drawingTool;
-        if (ccData !== '') {
-          drawingTool.loadCDXML(ccData);
+        if (!this.parent.cdxml) {
+          drawingTool.loadCDXML(this.parent.cdxml);
         }
         jQuery(this.parent.elementRef.nativeElement).find('.click_catch').addClass('hidden');
         if (drawingTool) {
@@ -152,7 +158,8 @@ export class RegRecordDetail implements OnInit, OnDestroy {
         }
         this.parent.creatingCDD = false;
         drawingTool.fitToContainer();
-      }
+      },
+      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml'
     };
 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);

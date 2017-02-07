@@ -27,6 +27,9 @@ export function registryReducer(
       let a3 = action as ReduxActions.Action<IRecordDetail>;
       return state.update('currentRecord', () => a3.payload);
 
+    case RecordDetailActions.LOAD_STRUCTURE:
+      return state.update('structureData', () => null );
+
     case RecordDetailActions.LOAD_STRUCTURE_SUCCESS:
       let cdxml = (action.payload as { data }).data;
       return state.update('structureData', () => cdxml);
