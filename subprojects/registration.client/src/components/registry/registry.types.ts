@@ -331,11 +331,7 @@ export class CBatchVM {
         let propertyName = p._name;
         if (propertyName) {
           this[propertyName as string] = getPropertyValue(p);
-          // TODO: The lable, visibility, data type, etc. should be extracted from property and view config
-          this.columns.push({
-            dataField: propertyName,
-            dataType: p._type === 'DATE' ? 'date' : 'string'
-          });
+          this.columns.push(getPropertyColumn(p));
         }
       });
     }
@@ -439,6 +435,7 @@ export class CRegistryRecordVM {
     this.columns.push({
       dataField: 'projectList',
       label: { text: 'Projects' },
+      colSpan: 2,
       template: function (d, itemElement) {
         (jQuery('<div>')
           .appendTo(itemElement) as any)
@@ -455,7 +452,8 @@ export class CRegistryRecordVM {
     });
     this.columns.push({
       dataField: 'identifierList',
-      label: { text: 'Project Identifiers' },
+      label: { text: 'Registry Identifiers' },
+      colSpan: 2,
       template: function (d, itemElement) {
         (jQuery('<div>')
           .appendTo(itemElement) as any)
@@ -464,7 +462,7 @@ export class CRegistryRecordVM {
             columns: [{
               dataField: 'id',
               caption: 'Identifier',
-              editorType: 'dxLookup',
+              editorType: 'dxSelectBox',
               lookup: {
                 dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
                 displayExpr: 'NAME',
@@ -491,7 +489,8 @@ export class CRegistryRecordVM {
       m.PropertyList.Property.forEach(p => {
         let propertyName = p._name;
         if (propertyName) {
-          this[propertyName as string] = p.__text;
+          this[propertyName as string] = getPropertyValue(p);
+          this.columns.push(getPropertyColumn(p));
         }
       });
     }
@@ -517,6 +516,18 @@ function onCellPrepared(e) {
       $links.filter('.dx-link-delete').addClass('dx-icon-trash');
     }
   }
+}
+
+function getPropertyColumn(p: CProperty): any {
+  let column: any = {
+    dataField: p._name.toLowerCase(),
+    dataType: p._type === 'DATE' ? 'date' : 'string'
+  };
+  // if (p._precision > 100) {
+  //   column.colSpan = 2;
+  //   column.editorType = 'dxTextArea';
+  // }
+  return column;
 }
 
 function getPropertyValue(p: CProperty): any {

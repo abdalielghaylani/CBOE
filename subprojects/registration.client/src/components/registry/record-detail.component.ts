@@ -60,12 +60,6 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     this.createDrawingTool();
     this.actions.retrieveRecord(this.temporary, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
-    let self = this;
-    // jQuery('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    //   if (self.drawingTool) {
-    //     self.drawingTool.setViewOnly(jQuery(e.target).attr('href') !== '#tab1default');
-    //   }
-    // });
   }
 
   ngOnDestroy() {
@@ -149,15 +143,16 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       parent: this,
       callback: function (drawingTool) {
         this.parent.drawingTool = drawingTool;
-        if (!this.parent.cdxml) {
-          drawingTool.loadCDXML(this.parent.cdxml);
-        }
         jQuery(this.parent.elementRef.nativeElement).find('.click_catch').addClass('hidden');
         if (drawingTool) {
           drawingTool.setViewOnly(false);
         }
         this.parent.creatingCDD = false;
         drawingTool.fitToContainer();
+        if (this.parent.cdxml) {
+          drawingTool.loadCDXML(this.parent.cdxml);
+          this.parent.cdxml = null;
+        }
       },
       licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml'
     };
