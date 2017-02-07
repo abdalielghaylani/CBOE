@@ -1,0 +1,87 @@
+<div class="container-fluid border-light background-white">
+    <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+        {{title}}
+    </reg-page-header>
+    <div class="panel with-nav-tabs panel-default">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1default" data-toggle="tab">Advanced Search</a></li>
+                <li><a href="#tab2default" data-toggle="tab">Query Management</a></li>
+                <li><a href="#tab3default" data-toggle="tab">Preferences</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <button (click)="clear()" class="mr1 btn btn-primary pull-right">Clear</button>
+                <button (click)="search()" class="mr1 btn btn-primary pull-right">Search</button>
+            </div><br/>
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1default">
+                    <div class="panel-group" id="accordion">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading" style='border-left: 4px solid #f38787;'>
+<h4 class="panel-title">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                                    Registry Information</a>
+</h4>
+</div>
+<div id="collapseOne" class="panel-collapse collapse">
+    <div class="panel-body">
+        <dx-form id="registrySearchForm" [colCount]="2" [items]="registrySearchItems"></dx-form>
+        Search Type:
+        <chem-draw-tool></chem-draw-tool>
+    </div>
+</div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading" style='border-left: 4px solid #65c465;'>
+<h4 class="panel-title">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Structure Information</a>
+</h4>
+</div>
+<div id="collapseTwo" class="panel-collapse collapse">
+    <div class="panel-body">
+        <dx-form id="structureSearchForm" [colCount]="2" [items]="structureSearchItems"></dx-form>
+    </div>
+</div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading" style='border-left: 4px solid #98b3fa;'>
+<h4 class="panel-title">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        Component Information </a>
+</h4>
+</div>
+<div id="collapseThree" class="panel-collapse collapse">
+    <div class="panel-body">
+        <dx-form id="componentSearchForm" [colCount]="2" [items]="componentSearchItems"></dx-form>
+    </div>
+</div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading" style='border-left: 4px solid #9900ff;'>
+<h4 class="panel-title">
+    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                Batch Information </a>
+</h4>
+</div>
+<div id="collapseFour" class="panel-collapse collapse">
+    <div class="panel-body">
+        <dx-form id="batchSearchForm" [colCount]="2" [items]="batchSearchItems"></dx-form>
+    </div>
+</div>
+</div>
+</div>
+<div class="tab-pane fade" id="tab2default">
+    <h4>Query Management</h4>
+</div>
+<div class="tab-pane fade" id="tab2default">
+    <h4>Preferences</h4>
+</div>
+</div>
+
+</div>
+</div>
+</div>

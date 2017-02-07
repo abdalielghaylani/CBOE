@@ -4,7 +4,8 @@ import {
   RegRecordsPage,
   RegRecordDetailPage,
   RegConfigurationPage,
-  RegAboutPage
+  RegAboutPage,
+  RegRecordSearchPage
 } from '../pages';
 
 export const REG_APP_ROUTES: Routes = [{
@@ -20,6 +21,9 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'records/new',
   component: RegRecordDetailPage
+}, {
+  path: 'records/search',
+  component: RegRecordSearchPage
 }, {
   path: 'records/:id',
   component: RegRecordDetailPage

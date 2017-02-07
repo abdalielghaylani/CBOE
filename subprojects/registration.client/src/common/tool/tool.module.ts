@@ -6,7 +6,8 @@ import {
   CircleIcon,
   PageWithTools,
   ToolPanel,
-  FullScreenIcon
+  FullScreenIcon,
+  ChemDrawingTool
 } from './index';
 
 @NgModule({
@@ -19,14 +20,16 @@ import {
     CircleIcon,
     PageWithTools,
     ToolPanel,
-    FullScreenIcon
+    FullScreenIcon,
+    ChemDrawingTool
   ],
   exports: [
     CircleIcon,
     PageWithTools,
     ToolPanel,
     RouterModule,
-    FullScreenIcon
+    FullScreenIcon,
+    ChemDrawingTool
   ]
 })
 export class ToolModule { }

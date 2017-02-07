@@ -12,9 +12,10 @@ import {
   RegRecordsPage,
   RegRecordDetailPage,
   RegConfigurationPage,
-  RegAboutPage
+  RegAboutPage,
+  RegRecordSearchPage
 } from '../pages';
-import { RegConfiguration, RegRecords, RegRecordDetail, RegStructureImage } from '../components';
+import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -50,8 +51,10 @@ import {
   declarations: [
     RegApp,
     RegRecordsPage,
+    RegRecordSearchPage,
     RegRecordDetailPage,
     RegRecords,
+    RegRecordSearch,
     RegRecordDetail,
     RegStructureImage,
     RegConfigurationPage,
