@@ -17,6 +17,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/CustomTables")]
         public JArray Get()
         {
+            CheckAuthentication();
             var tableList = new JArray();
             var tables = COETableEditorUtilities.getTables();
             foreach (var key in tables.Keys)
@@ -33,6 +34,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/CustomTables/{tableName}")]
         public IEnumerable<JToken> Get(string tableName)
         {
+            CheckAuthentication();
             var options = Request.GetQueryNameValuePairs()
                 .ToDictionary(x => x.Key, x => JsonConvert.DeserializeObject(x.Value));
             var projects = new JArray();
@@ -52,6 +54,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/CustomTables/{tableName}/{id}")]
         public dynamic Get(string tableName, int id)
         {
+            CheckAuthentication();
             return null;
         }
 
@@ -59,6 +62,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/CustomTables/{tableName}")]
         public int Post(dynamic data)
         {
+            CheckAuthentication();
             return 0;
         }
 
@@ -66,6 +70,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/CustomTables/{tableName}/{id}")]
         public int Put(dynamic data)
         {
+            CheckAuthentication();
             return 0;
         }
 
@@ -73,6 +78,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/CustomTables/{tableName}/{id}")]
         public int Delete(int id)
         {
+            CheckAuthentication();
             return 0;
         }
     }

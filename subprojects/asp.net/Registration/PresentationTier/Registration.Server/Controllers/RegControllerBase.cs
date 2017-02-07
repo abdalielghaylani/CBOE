@@ -14,6 +14,8 @@ using Csla.Data;
 using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using Newtonsoft.Json.Linq;
 using System.Web;
+using System.Net.Http.Headers;
+using CambridgeSoft.COE.Framework.COESecurityService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -104,6 +106,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return ExtractData(reader);
             }
+        }
+
+        protected void CheckAuthentication()
+        {
+            string sessionToken = "";
+            CookieHeaderValue cookie = Request.Headers.GetCookies("COESSO").FirstOrDefault();
+            if (cookie != null)
+                sessionToken = cookie["COESSO"].Value;
+            if (string.IsNullOrEmpty(sessionToken) || !COEPrincipal.Login(sessionToken, true))
+                throw new InvalidOperationException("Authentication failed");
         }
 
         public static string GetAbsoluteUrl(string relativeUrl, bool globalScope = false)
