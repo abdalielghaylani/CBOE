@@ -2,7 +2,6 @@ import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angu
 import { ActivatedRoute } from '@angular/router';
 import { ConfigurationActions } from '../../actions/configuration.actions';
 import { IConfiguration } from '../../store';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'reg-configuration',
@@ -89,6 +88,6 @@ export class RegConfiguration implements OnInit, OnDestroy {
     if (!tableName.endsWith('s')) {
       tableName += 's';
     }
-    return tableName.split(' ').map(n => _.upperFirst(n)).join(' ');
+    return tableName.split(' ').map(n => n.charAt(0).toUpperCase() + n.slice(1)).join(' ');
   }
 };
