@@ -90,7 +90,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     });
     this.recordJson = x2jsTool.dom2js(this.recordDoc);
     this.regRecord = this.recordJson.MultiCompoundRegistryRecord;
-    this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, this.ngRedux.getState().session.lookups); 
+    this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, this.ngRedux.getState()); 
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new regTypes.FragmentData()] };
     }

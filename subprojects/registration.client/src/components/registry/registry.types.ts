@@ -1,3 +1,5 @@
+import { IAppState } from '../../store';
+
 export class FragmentData {
   FragmentID: number;
   Code: number;
@@ -414,7 +416,7 @@ export class CRegistryRecordVM {
   componentList?: CComponentVM[] = [];
   batchList: CBatchVM[] = [];
   columns: any[] = [];
-  constructor(m: CRegistryRecord, lookups: any) {
+  constructor(m: CRegistryRecord, state: IAppState) {
     this.sameBatchesIdentity = m._SameBatchesIdentity ? m._SameBatchesIdentity === 'True' : undefined;
     this.activeRLS = m._ActiveRLS;
     this.isEditable = m._IsEditable ? m._IsEditable === 'True' : undefined;
@@ -443,7 +445,7 @@ export class CRegistryRecordVM {
             value: d.editorOptions.value ? d.editorOptions.value : [],
             valueExpr: 'PROJECTID',
             displayExpr: 'NAME',
-            dataSource: lookups ? lookups.projects : [],
+            dataSource: state.session.lookups ? state.session.lookups.projects : [],
             onValueChanged: function (e) {
               d.component.option('formData.' + d.dataField, e.value);
             }
@@ -464,7 +466,7 @@ export class CRegistryRecordVM {
               caption: 'Identifier',
               editorType: 'dxSelectBox',
               lookup: {
-                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
+                dataSource: state.session.lookups ? state.session.lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
                 displayExpr: 'NAME',
                 valueExpr: 'ID',
                 placeholder: 'Select Identifier'
