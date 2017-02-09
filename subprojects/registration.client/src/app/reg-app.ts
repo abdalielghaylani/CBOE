@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
-import { DevToolsExtension, NgRedux, select } from 'ng2-redux';
-import { NgReduxRouter } from 'ng2-redux-router';
+import { DevToolsExtension, NgRedux, select } from '@angular-redux/store';
+import { NgReduxRouter } from '@angular-redux/router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
 
 import { IAppState, ISession, rootReducer } from '../store';

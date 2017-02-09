@@ -8,9 +8,10 @@ import {
   ElementRef, ChangeDetectorRef,
   ViewChildren, QueryList
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { select, NgRedux } from 'ng2-redux';
+import { select, NgRedux } from '@angular-redux/store';
 import * as x2js from 'x2js';
 import { RecordDetailActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
@@ -42,7 +43,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   private recordJson: any;
   private recordDoc: Document;
   private regRecord: regTypes.CRegistryRecord = new regTypes.CRegistryRecord();
-  private regRecordVM: regTypes.CRegistryRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, null); 
+  private regRecordVM: regTypes.CRegistryRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, null);
   private componentItems: any;
   private compoundItems: any;
   private fragmentItems: any;
@@ -51,12 +52,18 @@ export class RegRecordDetail implements OnInit, OnDestroy {
 
   constructor(
     private elementRef: ElementRef,
+    private router: Router,
     private ngRedux: NgRedux<IAppState>,
     private actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+    let state = this.ngRedux.getState();
+    if (this.id >= 0 && (state.registry.records.rows.length === 0 && state.registry.tempRecords.rows.length === 0)) {
+      this.router.navigate(['/']);
+      return;
+    }
     this.createDrawingTool();
     this.actions.retrieveRecord(this.temporary, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
@@ -90,7 +97,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     });
     this.recordJson = x2jsTool.dom2js(this.recordDoc);
     this.regRecord = this.recordJson.MultiCompoundRegistryRecord;
-    this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, this.ngRedux.getState()); 
+    this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, this.ngRedux.getState());
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new regTypes.FragmentData()] };
     }
@@ -154,7 +161,8 @@ export class RegRecordDetail implements OnInit, OnDestroy {
           this.parent.cdxml = null;
         }
       },
-      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml'
+      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
+      config: { features: { disabled: ['ExtendedCopyPaste'] } }
     };
 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);

@@ -3,10 +3,10 @@ import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from '@angular-redux/store';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
 import { IRecordDetail, IAppState } from '../store';
-import { UPDATE_LOCATION } from 'ng2-redux-router';
+import { UPDATE_LOCATION } from '@angular-redux/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -50,7 +50,7 @@ export class RegistryEpics {
 
   private handleOpenRecords: Epic = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         let temporary: boolean = payload;
         return this.http.get(`${BASE_URL}/RegistryRecords` + (payload ? '/Temp' : ''))
           .map(result => {
@@ -64,7 +64,7 @@ export class RegistryEpics {
 
   private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.RETRIEVE_RECORD)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         let records = payload.temporary ?
           this.ngRedux.getState().registry.tempRecords :
           this.ngRedux.getState().registry.records;
@@ -90,7 +90,7 @@ export class RegistryEpics {
 
   private handleSaveRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD)
-      .mergeMap<IPayloadAction>(a => {
+      .mergeMap(a => {
         // Convert CDXML to encoded-CDX first
         const structPath = 'ComponentList/Component/Compound/BaseFragment/Structure/Structure';
         let data = registryUtils.getElementValue(a.payload.documentElement, structPath);
@@ -112,7 +112,7 @@ export class RegistryEpics {
 
   private handleSaveRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD_SUCCESS)
-      .mergeMap<IPayloadAction>(a => {
+      .mergeMap(a => {
         // Save the record into a temporary storage
         // Create CreateTemporaryRegistryRecord
         const params = {
@@ -139,7 +139,7 @@ export class RegistryEpics {
 
   private handleUpdateRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_RECORD)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         // Update the database with the data retrieved and modified
         // Check if it is a temporary or permanent to find out the right end-point
         let temporary: boolean = registryUtils.getElementValue(payload.documentElement, 'RegNumeer/RegNumber') ? false : true;
@@ -151,14 +151,14 @@ export class RegistryEpics {
 
   private handleUpdateRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_RECORD_SUCCESS)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
   private handleRegisterRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_RECORD)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         // This should come from the user/configuration
         const duplicateAction = 'N';
         const params = {
@@ -182,7 +182,7 @@ export class RegistryEpics {
 
   private handleRegisterRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_RECORD_SUCCESS)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         // <ReturnList><ActionDuplicateTaken>N</ActionDuplicateTaken><RegID>30</RegID><RegNum>AB-000012</RegNum><BatchNumber>1</BatchNumber>
         // <BatchID>22</BatchID></ReturnList>
         let response: Document = registryUtils.getDocument(registryUtils.getDocument(payload).documentElement.textContent);
@@ -196,7 +196,7 @@ export class RegistryEpics {
 
   private handleLoadStructure: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.LOAD_STRUCTURE)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         // Call CreateRegistryRecord
         let url: string = `${BASE_URL}/DataConversion/ToCdxml`;
         let headers = new Headers({ 'Content-Type': 'application/json' });

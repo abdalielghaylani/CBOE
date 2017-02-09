@@ -16,7 +16,7 @@ export class ConfigurationEpics {
 
   handleOpenTable = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === ConfigurationActions.OPEN_TABLE)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         let tableId: string = payload.tableId;
         return this.http.get(`${BASE_URL}/CustomTables/` + tableId)
           .map(result => {

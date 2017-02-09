@@ -1,11 +1,12 @@
 import { fakeAsync, inject, TestBed, } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
 import { HttpModule, XHRBackend, ResponseOptions, Response } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing/mock_backend';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import { ActionsObservable } from 'redux-observable';
-import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
-import { NgReduxRouter } from 'ng2-redux-router';
+import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
+import { NgReduxRouter } from '@angular-redux/router';
 import { RegistryActions } from '../actions';
 import { RegistryEpics } from './registry.epics';
 import { configureTests } from '../tests.configure';
@@ -14,7 +15,7 @@ describe('configuration.epics', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [HttpModule, NgReduxModule.forRoot()],
+        imports: [HttpModule, RouterModule],
         providers: [
           NgReduxRouter,
           { provide: XHRBackend, useClass: MockBackend },

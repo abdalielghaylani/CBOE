@@ -445,7 +445,7 @@ export class CRegistryRecordVM {
             value: d.editorOptions.value ? d.editorOptions.value : [],
             valueExpr: 'PROJECTID',
             displayExpr: 'NAME',
-            dataSource: state.session.lookups ? state.session.lookups.projects : [],
+            dataSource: state && state.session.lookups ? state.session.lookups.projects : [],
             onValueChanged: function (e) {
               d.component.option('formData.' + d.dataField, e.value);
             }
@@ -466,7 +466,7 @@ export class CRegistryRecordVM {
               caption: 'Identifier',
               editorType: 'dxSelectBox',
               lookup: {
-                dataSource: state.session.lookups ? state.session.lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
+                dataSource: state && state.session.lookups ? state.session.lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
                 displayExpr: 'NAME',
                 valueExpr: 'ID',
                 placeholder: 'Select Identifier'

@@ -2,7 +2,7 @@ import { Component, Inject, ApplicationRef, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
-import { select } from 'ng2-redux';
+import { select } from '@angular-redux/store';
 import { RecordDetailActions } from '../actions';
 import { RegContainer, RegRecordDetail } from '../components';
 import { IRecordDetail } from '../store';

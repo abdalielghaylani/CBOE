@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, APP_BASE_HREF, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
-import { NgReduxRouter } from 'ng2-redux-router';
+import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
+import { NgReduxRouter } from '@angular-redux/router';
 import { routing, appRoutingProviders } from './reg-app.routing';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegApp } from './reg-app';
@@ -41,7 +41,7 @@ import {
     RegNavigatorModule,
     RegFooterModule,
     ToolModule,
-    NgReduxModule.forRoot(),
+    NgReduxModule,
     DxCheckBoxModule,
     DxDataGridModule,
     DxSelectBoxModule,

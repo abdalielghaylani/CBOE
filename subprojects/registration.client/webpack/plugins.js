@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ForkCheckerPlugin =
-  require('awesome-typescript-loader').ForkCheckerPlugin;
 
 const postcss = require('./postcss');
 
@@ -30,7 +28,7 @@ const basePlugins = [
     minify: false,
     chunksSortMode: 'dependency',
   }),
-  new webpack.NoErrorsPlugin(),
+  new webpack.NoEmitOnErrorsPlugin(),
   new CopyWebpackPlugin([
     { from: 'src/assets', to: 'assets' },
   ]),
@@ -45,8 +43,6 @@ const basePlugins = [
 ].concat(sourceMap);
 
 const devPlugins = [
-  // do type checking in a separate process
-  new ForkCheckerPlugin(),
   new StyleLintPlugin({
     configFile: './.stylelintrc',
     files: 'src/**/*.css',
@@ -66,8 +62,6 @@ const devPlugins = [
 ];
 
 const prodPlugins = [
-  // do type checking in a separate process
-  new ForkCheckerPlugin(),
   new webpack.optimize.CommonsChunkPlugin({
     name: [
       'vendor',

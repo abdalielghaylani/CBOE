@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { select, NgRedux } from 'ng2-redux';
+import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 

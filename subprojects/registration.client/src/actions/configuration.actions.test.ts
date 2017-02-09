@@ -1,4 +1,4 @@
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from '@angular-redux/store';
 import { ConfigurationActions } from './configuration.actions';
 import { } from 'jasmine';
 

@@ -7,7 +7,7 @@ import {
   EventEmitter,
   ChangeDetectorRef, ChangeDetectionStrategy,
 } from '@angular/core';
-import { select, NgRedux } from 'ng2-redux';
+import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';

@@ -69,7 +69,8 @@ export class ChemDrawingTool {
           this.parent.cdxml = null;
         }
       },
-      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml'
+      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
+      config: { features: { disabled: ['ExtendedCopyPaste'] } }
     };
 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);

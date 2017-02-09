@@ -16,7 +16,7 @@ export class SessionEpics {
 
   handleLoginUser = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
-      .mergeMap<IPayloadAction>(({ payload }) => {
+      .mergeMap(({ payload }) => {
         return this.http.post(`${BASE_URL}/auth/login`, payload)
           .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
           .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
@@ -25,7 +25,7 @@ export class SessionEpics {
 
   handleLoginUserSuccess = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
-      .mergeMap<IPayloadAction>(() => {
+      .mergeMap(() => {
         return this.http.get(`${BASE_URL}/ViewConfig/Lookups`)
           .map(result => {
             return result.url.indexOf('index.html') > 0

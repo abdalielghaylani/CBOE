@@ -13,7 +13,7 @@ exports.angular = { // ships in ES6 format now
 exports.tslint = {
   enforce: 'pre',
   test: /\.ts$/,
-  loader: 'tslint',
+  loader: 'tslint-loader',
   exclude: /node_modules/,
 };
 
@@ -35,19 +35,19 @@ exports.istanbulInstrumenter = {
 
 exports.html = {
   test: /\.html$/,
-  loader: 'raw',
+  loader: 'raw-loader',
   exclude: /node_modules/,
 };
 
 exports.css = {
   test: /\.css$/,
-  loader: 'to-string!css?-minimize!postcss',
+  loader: 'to-string-loader!css-loader?-minimize!postcss-loader',
   exclude: /node_modules/,
 };
 
 exports.rawcss = {
   test: /[\/\\]dist[\/\\].+\.css$|\.min\.css$/,
-  loader: 'to-string!css?-minimize!postcss',
+  loader: 'to-string-loader!css-loader?-minimize!postcss-loader',
 };
 
 // Needed this since webpack was choking on json files within node_modules
@@ -66,6 +66,6 @@ exports.ttf = makeFileLoader(/\.ttf$/);
 function makeFileLoader(pattern) {
   return {
     test: pattern,
-    loader: 'file',
+    loader: 'file-loader',
   };
 }

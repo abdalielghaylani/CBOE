@@ -1,4 +1,4 @@
-import { NgRedux } from 'ng2-redux';
+import { NgRedux } from '@angular-redux/store';
 import { GridActions } from './grid.actions';
 import { } from 'jasmine';
 
