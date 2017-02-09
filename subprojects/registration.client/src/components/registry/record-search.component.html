@@ -28,7 +28,7 @@
 </div>
 <div id="collapseOne" class="panel-collapse collapse">
     <div class="panel-body">
-        <dx-form id="registrySearchForm" [colCount]="2" [items]="registrySearchItems"></dx-form>
+        <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [items]="registrySearch.columns"></dx-form>
         Search Type:
         <chem-draw-tool></chem-draw-tool>
     </div>
@@ -42,7 +42,7 @@
 </div>
 <div id="collapseTwo" class="panel-collapse collapse">
     <div class="panel-body">
-        <dx-form id="structureSearchForm" [colCount]="2" [items]="structureSearchItems"></dx-form>
+        <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [items]="structureSearch.columns"></dx-form>
     </div>
 </div>
 </div>
@@ -55,7 +55,7 @@
 </div>
 <div id="collapseThree" class="panel-collapse collapse">
     <div class="panel-body">
-        <dx-form id="componentSearchForm" [colCount]="2" [items]="componentSearchItems"></dx-form>
+        <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [items]="componentSearch.columns"></dx-form>
     </div>
 </div>
 </div>
@@ -69,7 +69,7 @@
 </div>
 <div id="collapseFour" class="panel-collapse collapse">
     <div class="panel-body">
-        <dx-form id="batchSearchForm" [colCount]="2" [items]="batchSearchItems"></dx-form>
+        <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [items]="batchSearch.columns"></dx-form>
     </div>
 </div>
 </div>

@@ -6,6 +6,7 @@ import {
   ChangeDetectionStrategy,
   ElementRef
 } from '@angular/core';
+import { basePath } from '../../configuration';
 
 @Component({
   selector: 'chem-draw-tool',
@@ -27,6 +28,7 @@ export class ChemDrawingTool {
   private drawingTool;
 
   private creatingCDD: boolean = false;
+  private cdxml: string;
   constructor(
     private elementRef: ElementRef) {
 
@@ -41,10 +43,6 @@ export class ChemDrawingTool {
       return;
     }
     this.creatingCDD = true;
-    let ccData = '';
-    if (this.drawingTool !== undefined) {
-      ccData = this.drawingTool.getCDXML();
-    }
     this.removePreviousDrawingTool();
 
     let cddContainer = jQuery(this.elementRef.nativeElement).find('.cdContainer');
@@ -60,16 +58,18 @@ export class ChemDrawingTool {
       parent: this,
       callback: function (drawingTool) {
         this.parent.drawingTool = drawingTool;
-        if (ccData !== '') {
-          drawingTool.loadCDXML(ccData);
-        }
         jQuery(this.parent.elementRef.nativeElement).find('.chem-draw').addClass('hidden');
         if (drawingTool) {
           drawingTool.setViewOnly(false);
         }
         this.parent.creatingCDD = false;
         drawingTool.fitToContainer();
-      }
+        if (this.parent.cdxml) {
+          drawingTool.loadCDXML(this.parent.cdxml);
+          this.parent.cdxml = null;
+        }
+      },
+      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml'
     };
 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
@@ -82,5 +82,16 @@ export class ChemDrawingTool {
       this.drawingTool = undefined;
     }
   };
+
+  loadCdxml(cdxml: string) {
+    if (this.drawingTool && !this.creatingCDD) {
+      this.drawingTool.clear();
+      if (cdxml) {
+        this.drawingTool.loadCDXML(cdxml);
+      }
+    } else {
+      this.cdxml = cdxml;
+    }
+  }
 
 };

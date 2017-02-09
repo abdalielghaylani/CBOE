@@ -24,11 +24,10 @@ declare var jQuery: any;
 })
 export class RegRecordSearch implements OnInit, OnDestroy {
   private title: string = 'Search Permanent Registry';
-  private registrySearchItems: any;
-  private structureSearchItems: any;
-  private componentSearchItems: any;
-  private batchSearchItems: any;
-
+  private registrySearch: regSearchTypes.CRegSearchVM = new regSearchTypes.CRegSearchVM();
+  private structureSearch: regSearchTypes.CStructureSearchVM = new regSearchTypes.CStructureSearchVM();
+  private componentSearch: regSearchTypes.CCompoundSearchVM = new regSearchTypes.CCompoundSearchVM();
+  private batchSearch: regSearchTypes.CBatchSearchVM = new regSearchTypes.CBatchSearchVM();
 
   constructor(
     private elementRef: ElementRef,
@@ -36,10 +35,6 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.registrySearchItems = regSearchTypes.REGISTRY_SEARCH_DESC_LIST;
-    this.structureSearchItems = regSearchTypes.STRUCTURE_SEARCH_DESC_LIST;
-    this.componentSearchItems = regSearchTypes.COMPONENT_SEARCH_DESC_LIST;
-    this.batchSearchItems = regSearchTypes.BATCH_SEARCH_DESC_LIST;
   }
 
   ngOnDestroy() {
