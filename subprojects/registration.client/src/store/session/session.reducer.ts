@@ -6,7 +6,7 @@ import {
   INITIAL_USER_STATE,
   UserFactory,
 } from './session.initial-state';
-import * as regAppUtils from '../../app/reg-app.utils';
+import { notifyError } from '../../app/reg-app.utils';
 
 export function sessionReducer(
   state: ISessionRecord = INITIAL_STATE,
@@ -46,14 +46,13 @@ export function sessionReducer(
     case RegistryActions.OPEN_RECORDS_ERROR:
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
     case RecordDetailActions.LOAD_STRUCTURE_ERROR:
-    case RecordDetailActions.LOAD_STRUCTURE_ERROR:
     case RecordDetailActions.SAVE_RECORD_ERROR:
     case RecordDetailActions.REGISTER_RECORD_ERROR:
     case RecordDetailActions.UPDATE_RECORD_ERROR:
       if (action.payload.status && action.payload.status === 404) {
         return INITIAL_STATE;
       }
-      regAppUtils.notifyError(action.payload);
+      notifyError(action.payload);
       return state;
 
     default:

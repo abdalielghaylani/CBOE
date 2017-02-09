@@ -1,7 +1,8 @@
 import { Iterable } from 'immutable';
 import { ISessionRecord } from './session.types';
 import { sessionReducer } from './session.reducer';
-import { SessionActions } from '../../actions/session.actions';
+import { INITIAL_STATE } from './session.initial-state';
+import { SessionActions, RecordDetailActions, RegistryActions } from '../../actions';
 
 describe('Session Reducer', () => {
   let initState: ISessionRecord;
@@ -59,5 +60,72 @@ describe('Session Reducer', () => {
       previousState,
       SessionActions.loadLookupsSuccessAction(data));
     expect(nextState.lookups).toEqual(data);
+  });
+
+  it ('should clear state on errors with 404 status', () => {
+    const error = { status: 404 };
+    const previousState = initState;
+    let nextState = sessionReducer(
+      previousState,
+      RegistryActions.openRecordsErrorAction(error));
+    expect(nextState).toEqual(INITIAL_STATE);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.retrieveRecordErrorAction(error));
+    expect(nextState).toEqual(INITIAL_STATE);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.loadStructureErrorAction(error));
+    expect(nextState).toEqual(INITIAL_STATE);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.saveRecordErrorAction(error));
+    expect(nextState).toEqual(INITIAL_STATE);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.registerRecordErrorAction(error));
+    expect(nextState).toEqual(INITIAL_STATE);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.updateRecordErrorAction(error));
+    expect(nextState).toEqual(INITIAL_STATE);
+  });
+
+  it ('should do nothing on errors with non-404 error', () => {
+    const error = 'error';
+    const previousState = initState;
+    let nextState = sessionReducer(
+      previousState,
+      RegistryActions.openRecordsErrorAction(error));
+    expect(nextState).toEqual(previousState);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.retrieveRecordErrorAction(error));
+    expect(nextState).toEqual(previousState);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.loadStructureErrorAction(error));
+    expect(nextState).toEqual(previousState);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.saveRecordErrorAction(error));
+    expect(nextState).toEqual(previousState);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.registerRecordErrorAction(error));
+    expect(nextState).toEqual(previousState);
+    nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.updateRecordErrorAction(error));
+    expect(nextState).toEqual(previousState);
+  });
+
+  it ('should do nothing on success cases', () => {
+    const response = { status: 200, body: 'OK '};
+    const previousState = initState;
+    let nextState = sessionReducer(
+      previousState,
+      RecordDetailActions.updateRecordErrorAction(response));
+    expect(nextState).toEqual(previousState);
   });
 });

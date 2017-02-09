@@ -33,4 +33,12 @@ describe('configuration reducer', () => {
       ConfigurationActions.openTableSuccessAction(data));
     expect(nextState.rows).toEqual(data);
   });
+
+  it('should ignore OPEN_TABLE_ERROR', () => {
+    const nextState = configurationReducer(
+      initState,
+      ConfigurationActions.openTableErrorAction('error')
+    );
+    expect(nextState).toEqual(initState);
+  });  
 });

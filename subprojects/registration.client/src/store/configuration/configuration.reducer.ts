@@ -1,9 +1,6 @@
-import { Action } from 'redux';
-import { ConfigurationActions, GridActions } from '../../actions';
-import { SessionActions } from '../../actions/session.actions';
+import { ConfigurationActions } from '../../actions';
 import { INITIAL_STATE } from './configuration.initial-state';
 import { IConfigurationRecord } from './configuration.types';
-import { DxDataGridModule, DxDataGridComponent } from 'devextreme-angular';
 
 export function configurationReducer(
   state: IConfigurationRecord = INITIAL_STATE,

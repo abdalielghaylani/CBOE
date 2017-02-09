@@ -15,7 +15,7 @@ describe('configuration.epics', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [HttpModule, RouterModule],
+        imports: [HttpModule, RouterModule, NgReduxModule],
         providers: [
           NgReduxRouter,
           { provide: XHRBackend, useClass: MockBackend },
