@@ -1,4 +1,5 @@
 import { IAppState } from '../../store';
+import { FormGroupType, CFormGroup, CFormElement } from '../../common';
 
 export class FragmentData {
   FragmentID: number;
@@ -102,6 +103,8 @@ export class CProperty {
   _type: String; // TEXT
   _precision?: Number; // 200
   _sortOrder?: Number; // 0
+  _pickListDomainID?: Number;
+  _pickListDisplayValue?: String;
   validationRuleList?: CValidationRuleList;
   __text?: String;
 }
@@ -299,7 +302,7 @@ export class CBatchVM {
   identifierList?: CIdentifierVM[] = [];
   projectList?: number[] = [];
   columns?: any[] = [];
-  constructor(m: CBatch) {
+  constructor(m: CBatch, state: IAppState) {
     this.id = m.BatchID;
     this.batchNumber = m.BatchNumber;
     this.fullRegNumber = m.FullRegNumber;
@@ -329,11 +332,17 @@ export class CBatchVM {
       editorOptions: { disabled: true }
     });
     if (m.PropertyList) {
+      let formGroupType = FormGroupType.SubmitMixture;
+      let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
+      let formElements = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => f._id === '1002')[0].editMode.formElement : [];
       m.PropertyList.Property.forEach(p => {
         let propertyName = p._name;
         if (propertyName) {
           this[propertyName as string] = getPropertyValue(p);
-          this.columns.push(getPropertyColumn(p));
+          let column = getPropertyColumn(p, state, formElements);
+          if (column) {
+            this.columns.push(column);
+          }
         }
       });
     }
@@ -488,11 +497,17 @@ export class CRegistryRecordVM {
       },
     });
     if (m.PropertyList) {
+      let formGroupType = FormGroupType.SubmitMixture;
+      let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
+      let formElements = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => f._id === '1000')[0].editMode.formElement : [];
       m.PropertyList.Property.forEach(p => {
         let propertyName = p._name;
         if (propertyName) {
           this[propertyName as string] = getPropertyValue(p);
-          this.columns.push(getPropertyColumn(p));
+          let column = getPropertyColumn(p, state, formElements);
+          if (column) {
+            this.columns.push(column);
+          }
         }
       });
     }
@@ -500,7 +515,7 @@ export class CRegistryRecordVM {
       this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c));
     }
     if (m.BatchList) {
-      this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b));
+      this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b, state));
     }
   }
 }
@@ -520,11 +535,43 @@ function onCellPrepared(e) {
   }
 }
 
-function getPropertyColumn(p: CProperty): any {
+function getPicklist(domainId: number, state: IAppState, name: String) {
+  let pickList = {
+    dataSource: [],
+    displayExpr: 'NAME',
+    valueExpr: 'ID',
+    placeholder: 'Select ' + name
+  };
+  switch (domainId) {
+    case 3:
+      pickList.dataSource = state && state.session.lookups ? state.session.lookups.users : [];
+      pickList.displayExpr = 'USERID';
+      pickList.valueExpr = 'PERSONID';
+      break;
+  }
+  return pickList;
+}
+
+function getPropertyColumn(p: CProperty, state: IAppState, formElements: CFormElement[]): any {
+  let filtered = formElements.filter(fe => fe._name === p._name);
+  let formElement = filtered && filtered.length > 0 ? filtered[0] : null;
+  if (formElement && formElement.displayInfo.visible === 'false') {
+    return null;
+  }
   let column: any = {
-    dataField: p._name.toLowerCase(),
+    dataField: p._name,
     dataType: p._type === 'DATE' ? 'date' : 'string'
   };
+  let label: any = {};
+  if (formElement) {
+    label.text = formElement.label;
+    column.label = label;
+  }
+  if (p._type === 'PICKLISTDOMAIN') {
+    column.dataType = 'number';
+    column.editorType = 'dxSelectBox';
+    column.editorOptions = getPicklist(+p._pickListDomainID, state, formElement.label);
+  }
   // if (p._precision > 100) {
   //   column.colSpan = 2;
   //   column.editorType = 'dxTextArea';
@@ -543,6 +590,12 @@ function getPropertyValue(p: CProperty): any {
       if (textValue) {
         value = new Date(textValue);
       }
+      break;
+    case 'PICKLISTDOMAIN':
+      value = +textValue;
+      break;
+    default:
+      value = textValue;
       break;
   }
   return value;

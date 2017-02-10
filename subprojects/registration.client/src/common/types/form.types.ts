@@ -44,7 +44,7 @@ export class CCoeFormMode {
 }
 
 export class CCoeForm {
-  _id?: Number;
+  _id?: String;
   _dataSourceId?: String;
   title?: String;
   titleCssClass?: String;

@@ -10,9 +10,13 @@ export class ConfigurationActions {
   static OPEN_TABLE_ERROR = 'OPEN_TABLE_ERROR';
   static OPEN_CREATE = 'OPEN_CREATE';
   static OPEN_EDIT = 'OPEN_EDIT';
+  static LOAD_FORMGROUP = 'LOAD_FORMGROUP';
+  static LOAD_FORMGROUP_SUCCESS = 'LOAD_FORMGROUP_SUCCESS';
   static openTableAction = createAction(ConfigurationActions.OPEN_TABLE);
   static openTableSuccessAction = createAction(ConfigurationActions.OPEN_TABLE_SUCCESS);
   static openTableErrorAction = createAction(ConfigurationActions.OPEN_TABLE_ERROR);
+  static loadFormGroupAction = createAction(ConfigurationActions.LOAD_FORMGROUP);
+  static loadFormGroupSuccessAction = createAction(ConfigurationActions.LOAD_FORMGROUP_SUCCESS);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 

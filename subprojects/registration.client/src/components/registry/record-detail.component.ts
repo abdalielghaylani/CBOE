@@ -13,12 +13,13 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import * as x2js from 'x2js';
-import { RecordDetailActions } from '../../actions';
+import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
 import * as regTypes from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath } from '../../configuration';
+import { FormGroupType, getFormGroupData } from '../../common';
 
 declare var jQuery: any;
 
@@ -97,6 +98,14 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     });
     this.recordJson = x2jsTool.dom2js(this.recordDoc);
     this.regRecord = this.recordJson.MultiCompoundRegistryRecord;
+    let state = this.ngRedux.getState();
+    let formGroupType = FormGroupType.SubmitMixture;
+    if (!state.configuration.formGroups[FormGroupType[formGroupType]]) {
+      this.ngRedux.dispatch(ConfigurationActions.loadFormGroupAction({
+        type: formGroupType,
+        data: getFormGroupData(state, formGroupType)
+       }));
+    }
     this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, this.ngRedux.getState());
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new regTypes.FragmentData()] };
