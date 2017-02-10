@@ -26,3 +26,14 @@
   margin-right: 10px;
   vertical-align: middle;
 }
+
+.list-header {
+  color: #928b81;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.query-list-item {
+  font-weight: 500;
+  color: #58a618;
+}

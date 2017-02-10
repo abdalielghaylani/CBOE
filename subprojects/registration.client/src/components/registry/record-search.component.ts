@@ -28,6 +28,8 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   private structureSearch: regSearchTypes.CStructureSearchVM = new regSearchTypes.CStructureSearchVM();
   private componentSearch: regSearchTypes.CCompoundSearchVM = new regSearchTypes.CCompoundSearchVM();
   private batchSearch: regSearchTypes.CBatchSearchVM = new regSearchTypes.CBatchSearchVM();
+  private queryManagement: regSearchTypes.CQueryManagementVM = new regSearchTypes.CBatchSearchVM();
+
 
   constructor(
     private elementRef: ElementRef,
@@ -35,9 +37,14 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.loadData();
   }
 
   ngOnDestroy() {
+  }
+
+  loadData() {
+  // bind data for queryManagement here
   }
 
   search() {

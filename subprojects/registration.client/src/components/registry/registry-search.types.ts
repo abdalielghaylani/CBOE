@@ -454,3 +454,24 @@ function getPropertyColumn(p: CProperty): any {
   };
   return column;
 }
+
+export class CQueryManagementVM {
+  latestQueriesList?: CQueriesList;
+  savedQueriesList?: CQueriesList;
+}
+
+export class CQueries {
+  ID?: Number; // 381
+  Name?: String;
+}
+
+export class CQueriesList {
+  Items: CQueries[] = [];
+}
+
+export class CRegistrySearchVM {
+  registrySearch?: CRegSearchVM;
+  structureSearch?: CStructureSearchVM;
+  componentSearch?: CCompoundSearchVM;
+  batchSearch?: CBatchSearchVM;
+}
