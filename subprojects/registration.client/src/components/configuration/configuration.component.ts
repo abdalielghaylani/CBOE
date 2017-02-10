@@ -1,5 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { select } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
 import { IConfiguration } from '../../store';
 
@@ -9,7 +12,7 @@ import { IConfiguration } from '../../store';
     <div class="container-fluid border-light background-white pb2">
       <reg-page-header>{{ this.tableName() }}</reg-page-header>
 
-      <dx-data-grid [dataSource]=this.configuration.rows [paging]='{pageSize: 10}' 
+      <dx-data-grid [dataSource]=this.rows [paging]='{pageSize: 10}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
         rowAlternationEnabled=true,
@@ -26,25 +29,47 @@ import { IConfiguration } from '../../store';
       </dx-data-grid>
     </div>
   `,
-  styles: [require('./configuration.component.css')]
+  styles: [require('./configuration.component.css')],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfiguration implements OnInit, OnDestroy {
-  @Input() configuration: IConfiguration;
-  private sub: any;
+  @select(s => s.configuration.customTables) customTables$: Observable<any>;
+  private tableId: string;
+  private rows: any[] = [];
+  private sub: Subscription;
+  private dataSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private configurationActions: ConfigurationActions) { }
+  constructor(
+    private route: ActivatedRoute,
+    private changeDetector: ChangeDetectorRef,
+    private configurationActions: ConfigurationActions
+  ) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       let paramLabel = 'tableId';
-      this.configurationActions.openTable(params[paramLabel]);
+      this.tableId = params[paramLabel];
+      this.configurationActions.openTable(this.tableId);
     });
+    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
   }
 
   ngOnDestroy() {
-    this.sub.unsubscribe();
+    if (this.sub) {
+      this.sub.unsubscribe();
+    }
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
+    }    
   }
 
+  loadData(customTables: any) {
+    if (customTables && customTables[this.tableId]) {
+      this.rows = customTables[this.tableId];
+      this.changeDetector.markForCheck();
+    }
+  }
+  
   onContentReady(e) {
     e.component.columnOption(0, 'visible', false);
     e.component.columnOption('STRUCTURE', {
@@ -82,7 +107,7 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   tableName() {
-    let tableName = this.configuration.tableId;
+    let tableName = this.tableId;
     tableName = tableName.toLowerCase()
       .replace('vw_', '').replace('domain', ' domain').replace('type', ' type');
     if (!tableName.endsWith('s')) {

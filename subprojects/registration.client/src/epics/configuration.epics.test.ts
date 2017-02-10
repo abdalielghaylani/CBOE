@@ -30,22 +30,25 @@ describe('configuration.epics', () => {
         connection.mockRespond(response);
       });
 
-      const action$ = Observable.of(ConfigurationActions.openTableAction('table'));
+      const tableId = 'table1';
+      const action$ = Observable.of(ConfigurationActions.openTableAction(tableId));
       configureEpics.handleOpenTable(action$).subscribe(action =>
-        expect(action).toEqual(ConfigurationActions.openTableSuccessAction(data))
+        expect(action).toEqual(ConfigurationActions.openTableSuccessAction({ tableId, data }))
       );
     })
   ));
 
   it('should process a open-table error', fakeAsync(
     inject([XHRBackend, ConfigurationEpics], (mockBackend, configureEpics) => {
+      const error = new Error('cannot get table data');
       mockBackend.connections.subscribe((connection: MockConnection) => {
-        connection.mockError(new Error('cannot get table data'));
+        connection.mockError(error);
       });
 
-      const action$ = Observable.of(ConfigurationActions.openTableAction('table'));
+      const tableId = 'table1';
+      const action$ = Observable.of(ConfigurationActions.openTableAction(tableId));
       configureEpics.handleOpenTable(action$).subscribe(action =>
-        expect(action).toEqual({ type: ConfigurationActions.OPEN_TABLE_ERROR })
+        expect(action).toEqual(ConfigurationActions.openTableErrorAction({ tableId, error }))
       );
     })
   ));

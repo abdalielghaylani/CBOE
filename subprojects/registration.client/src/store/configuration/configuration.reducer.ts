@@ -1,6 +1,7 @@
 import { ConfigurationActions } from '../../actions';
 import { INITIAL_STATE } from './configuration.initial-state';
 import { IConfigurationRecord } from './configuration.types';
+import { copyObjectAndSet } from '../../common';
 
 export function configurationReducer(
   state: IConfigurationRecord = INITIAL_STATE,
@@ -9,11 +10,13 @@ export function configurationReducer(
 
   switch (action.type) {
     case ConfigurationActions.OPEN_TABLE:
-      return state.update('tableId', () => (<ReduxActions.Action<{ tableId: any; }>>action).payload.tableId)
-        .update('rows', () => []);
+      let a1 = action as ReduxActions.Action<string>;
+      let tableId = a1.payload;
+      return state.update('customTables', () => copyObjectAndSet(state.customTables, tableId, []));
 
     case ConfigurationActions.OPEN_TABLE_SUCCESS:
-      return state.update('rows', () => action.payload);
+      let a2 = action as ReduxActions.Action<{ tableId, data }>;
+      return state.update('customTables', () => copyObjectAndSet(state.customTables, a2.payload.tableId, a2.payload.data));
 
     default:
       return state;

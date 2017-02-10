@@ -17,14 +17,17 @@ export class ConfigurationEpics {
   handleOpenTable = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === ConfigurationActions.OPEN_TABLE)
       .mergeMap(({ payload }) => {
-        let tableId: string = payload.tableId;
+        let tableId: string = payload;
         return this.http.get(`${BASE_URL}/CustomTables/` + tableId)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
-              : ConfigurationActions.openTableSuccessAction(result.json());
+              : ConfigurationActions.openTableSuccessAction({
+                tableId,
+                data: result.json()
+              });
           })
-          .catch(error => { return Observable.of(ConfigurationActions.openTableErrorAction()); });
+          .catch(error => Observable.of(ConfigurationActions.openTableErrorAction({ tableId, error })));
       });
   }
 }

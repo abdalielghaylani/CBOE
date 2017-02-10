@@ -10,7 +10,7 @@ export class ConfigurationActions {
   static OPEN_TABLE_ERROR = 'OPEN_TABLE_ERROR';
   static OPEN_CREATE = 'OPEN_CREATE';
   static OPEN_EDIT = 'OPEN_EDIT';
-  static openTableAction = createAction(ConfigurationActions.OPEN_TABLE, tableId => ({ tableId }));
+  static openTableAction = createAction(ConfigurationActions.OPEN_TABLE);
   static openTableSuccessAction = createAction(ConfigurationActions.OPEN_TABLE_SUCCESS);
   static openTableErrorAction = createAction(ConfigurationActions.OPEN_TABLE_ERROR);
 
