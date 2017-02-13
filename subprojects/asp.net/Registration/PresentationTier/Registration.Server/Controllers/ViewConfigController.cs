@@ -115,7 +115,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
                 new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
                 new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
-                new JProperty("units", ExtractData("SELECT * FROM VW_UNITS")),
+                new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
                 new JProperty("formGroups", formGroups),
                 new JProperty("customTables", customTables)
             );
