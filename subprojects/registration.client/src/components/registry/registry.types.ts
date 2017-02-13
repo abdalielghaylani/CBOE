@@ -184,7 +184,7 @@ export class CComponentVM {
   regNumber?: String;
   identifierList?: CIdentifierVM[];
   columns: any[] = [];
-  constructor(m: CComponent, state: IAppState) {
+  constructor(m: CComponent, formGroupType: FormGroupType, state: IAppState) {
     this.id = m.ID;
     this.componentIndex = m.ComponentIndex;
     this.compoundId = m.Compound.CompoundID;
@@ -230,7 +230,7 @@ export class CComponentVM {
           });
       },
     });    
-    buildPropertyList(this, m.Compound.PropertyList, FormGroupType.SubmitMixture, 1001, state);
+    buildPropertyList(this, m.Compound.PropertyList, formGroupType, 1001, state);
   }
 }
 
@@ -292,7 +292,7 @@ export class CBatchVM {
   identifierList?: CIdentifierVM[] = [];
   projectList?: number[] = [];
   columns?: any[] = [];
-  constructor(m: CBatch, state: IAppState) {
+  constructor(m: CBatch, formGroupType: FormGroupType, state: IAppState) {
     this.id = m.BatchID;
     this.batchNumber = m.BatchNumber;
     this.fullRegNumber = m.FullRegNumber;
@@ -321,7 +321,7 @@ export class CBatchVM {
       label: { text: 'Last Modification Date' },
       editorOptions: { disabled: true }
     });
-    buildPropertyList(this, m.PropertyList, FormGroupType.SubmitMixture, 1002, state);
+    buildPropertyList(this, m.PropertyList, formGroupType, 1002, state);
     if (m.ProjectList) {
       this.projectList = [];
       m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
@@ -401,7 +401,7 @@ export class CRegistryRecordVM {
   componentList?: CComponentVM[] = [];
   batchList: CBatchVM[] = [];
   columns: any[] = [];
-  constructor(m: CRegistryRecord, state: IAppState) {
+  constructor(m: CRegistryRecord, formGroupType: FormGroupType, state: IAppState) {
     this.sameBatchesIdentity = m._SameBatchesIdentity ? m._SameBatchesIdentity === 'True' : undefined;
     this.activeRLS = m._ActiveRLS;
     this.isEditable = m._IsEditable ? m._IsEditable === 'True' : undefined;
@@ -472,12 +472,12 @@ export class CRegistryRecordVM {
           });
       },
     });
-    buildPropertyList(this, m.PropertyList, FormGroupType.SubmitMixture, 1000, state);
+    buildPropertyList(this, m.PropertyList, formGroupType, 1000, state);
     if (m.ComponentList) {
-      this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c, state));
+      this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c, formGroupType, state));
     }
     if (m.BatchList) {
-      this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b, state));
+      this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b, formGroupType, state));
     }
   }
 }

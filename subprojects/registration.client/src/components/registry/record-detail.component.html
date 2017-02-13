@@ -2,9 +2,10 @@
   <div>
     <form class="form-inline" role="form" ng-submit="search(query)">
       <div>
-        <button (click)="update()" class="mr1 btn btn-primary pull-right" *ngIf="id >= 0">Update</button>
-        <button (click)="save()" class="mr1 btn btn-primary pull-right" *ngIf="id < 0">Save</button>
-        <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="temporary || id < 0">Register</button>
+        <button (click)="edit()" class="mr1 btn btn-primary pull-right" *ngIf="id >= 0 &amp;&amp; !editMode">Edit</button>
+        <button (click)="cancel()" class="mr1 btn btn-primary pull-right" *ngIf="editMode">Cancel</button>
+        <button (click)="save()" class="mr1 btn btn-primary pull-right" *ngIf="id < 0 || editMode">Save</button>
+        <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="(temporary &amp;&amp; !editMode) || id < 0 ">Register</button>
       </div>
       <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
            {{title}}

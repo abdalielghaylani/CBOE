@@ -58,6 +58,8 @@ export class CCoeForm {
 }
 
 export class CCoeForms {
+  _id?: Number;
+  _defaultDisplayMode?: String;
   coeForm: CCoeForm[] = [];
 }
 

@@ -1,10 +1,12 @@
-import { IAppState } from '../../store';
-import { FormGroupType, CFormGroup } from '../types/form.types';
+import { NgRedux } from '@angular-redux/store';
 import { DOMParser, DOMParserStatic, XMLSerializer } from 'xmldom';
 import * as x2js from 'x2js';
+import { ConfigurationActions } from '../../actions';
+import { IAppState } from '../../store';
+import { FormGroupType, CFormGroup } from '../types/form.types';
 
 export function getFormGroupData(state: IAppState, type: FormGroupType): string {
-  let groups = (state.session.lookups.formGroups as Array<{name, data}>).filter(fg => fg.name === FormGroupType[type]);
+  let groups = (state.session.lookups.formGroups as Array<{ name, data }>).filter(fg => fg.name === FormGroupType[type]);
   return groups && groups.length > 0 ? groups[0].data : null;
 }
 
@@ -38,4 +40,14 @@ export function convertToFormGroup(data: string): CFormGroup {
     ]
   });
   return (x2jsTool.dom2js(doc) as any).formGroup as CFormGroup;
+}
+
+export function prepareFormGroupData(formGroupType: FormGroupType, ngRedux: NgRedux<IAppState>) {
+  let state = ngRedux.getState();
+  if (!state.configuration.formGroups[FormGroupType[formGroupType]]) {
+    ngRedux.dispatch(ConfigurationActions.loadFormGroupAction({
+      type: formGroupType,
+      data: getFormGroupData(state, formGroupType)
+    }));
+  }
 }

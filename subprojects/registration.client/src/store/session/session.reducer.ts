@@ -6,7 +6,7 @@ import {
   INITIAL_USER_STATE,
   UserFactory,
 } from './session.initial-state';
-import { notifyError } from '../../app/reg-app.utils';
+import { notifyError } from '../../common';
 
 export function sessionReducer(
   state: ISessionRecord = INITIAL_STATE,

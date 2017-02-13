@@ -16,7 +16,8 @@ import * as x2js from 'x2js';
 import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
-import * as regTypes from './registry.types';
+import { CFormGroup, prepareFormGroupData, notify } from '../../common';
+import { CRegistryRecord, CRegistryRecordVM, FragmentData, FRAGMENT_DESC_LIST } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath } from '../../configuration';
 import { FormGroupType, getFormGroupData } from '../../common';
@@ -36,15 +37,15 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.structureData) structureData$: Observable<string>;
   private title: string;
+  private formGroupType: FormGroupType = FormGroupType.SubmitMixture;
+  private editMode: boolean = false;
   private drawingTool;
   private creatingCDD: boolean = false;
   private cdxml: string;
-  private projects: any[];
   private recordString: string;
-  private recordJson: any;
   private recordDoc: Document;
-  private regRecord: regTypes.CRegistryRecord = new regTypes.CRegistryRecord();
-  private regRecordVM: regTypes.CRegistryRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, null);
+  private regRecord: CRegistryRecord = new CRegistryRecord();
+  private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this.formGroupType, null);
   private fragmentItems: any;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
@@ -84,6 +85,15 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     let output = registryUtils.getDocument(data.data);
     this.recordString = output.documentElement.firstChild.textContent;
     this.recordDoc = registryUtils.getDocument(this.recordString);
+    this.title = data.id < 0 ?
+      'Register a New Compound' :
+      data.temporary ?
+        'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
+        'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
+    if (data.id >= 0 && !data.temporary) {
+      // TODO: For mixture, this should be ReviewRegistryMixture
+      this.formGroupType = FormGroupType.ViewMixture;
+    }
     registryUtils.fixStructureData(this.recordDoc);
     let x2jsTool = new x2js.default({
       arrayAccessFormPaths: [
@@ -96,29 +106,20 @@ export class RegRecordDetail implements OnInit, OnDestroy {
         'MultiCompoundRegistryRecord.PropertyList.Property',
       ]
     });
-    this.recordJson = x2jsTool.dom2js(this.recordDoc);
-    this.regRecord = this.recordJson.MultiCompoundRegistryRecord;
-    let state = this.ngRedux.getState();
-    let formGroupType = FormGroupType.SubmitMixture;
-    if (!state.configuration.formGroups[FormGroupType[formGroupType]]) {
-      this.ngRedux.dispatch(ConfigurationActions.loadFormGroupAction({
-        type: formGroupType,
-        data: getFormGroupData(state, formGroupType)
-       }));
-    }
-    this.regRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, this.ngRedux.getState());
+    let recordJson: any = x2jsTool.dom2js(this.recordDoc);
+    this.regRecord = recordJson.MultiCompoundRegistryRecord;
+    prepareFormGroupData(this.formGroupType, this.ngRedux);
+    this.editMode = this.getFormEditMode(this.formGroupType, this.ngRedux.getState());
+    this.regRecordVM = new CRegistryRecordVM(this.regRecord, this.formGroupType, this.ngRedux.getState());
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
-      this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new regTypes.FragmentData()] };
+      this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
     }
     this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
     this.loadSubscription = this.structureData$.subscribe((value: string) => this.loadCdxml(value));
-    this.title = data.id < 0 ?
-      'Register a New Compound' :
-      data.temporary ?
-        'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
-        'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    this.fragmentItems = regTypes.FRAGMENT_DESC_LIST;
+    this.fragmentItems = FRAGMENT_DESC_LIST;
+    this.temporary = data.temporary;
+    this.id = data.id;
     this.changeDetector.markForCheck();
   }
 
@@ -184,17 +185,38 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   };
 
   save() {
-    // Retrieve CDXML from CDD
-    registryUtils.setElementValue(this.recordDoc.documentElement,
-      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
-    this.actions.saveRecord(this.recordDoc);
+    if (this.id < 0) {
+      // Retrieve CDXML from CDD
+      registryUtils.setElementValue(this.recordDoc.documentElement,
+        'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
+      this.actions.saveRecord(this.recordDoc);
+    } else {
+      notify('Saving is not supported yet!', 'error');
+      // this.actions.updateRecord(this.recordDoc);
+      this.setEditMode(false);
+    }
   }
 
-  update() {
-    this.actions.updateRecord(this.recordDoc);
+  cancel() {
+    this.setEditMode(false);
+  }
+
+  edit() {
+    notify('Editing is experimental', 'error');
+    this.setEditMode(true);
   }
 
   register() {
     this.actions.registerRecord(this.recordDoc);
+  }
+
+  private getFormEditMode(formGroupType: FormGroupType, state: IAppState): boolean {
+    let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
+    return formGroup ? formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' : false;
+  }
+
+  private setEditMode(editMode: boolean) {
+    this.editMode = editMode;
+    this.changeDetector.markForCheck();
   }
 };

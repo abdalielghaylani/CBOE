@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
+import { UPDATE_LOCATION } from '@angular-redux/router';
+import { NgRedux } from '@angular-redux/store';
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { NgRedux } from '@angular-redux/store';
+import { Observable } from 'rxjs/Observable';
+import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
 import { IRecordDetail, IAppState } from '../store';
-import { UPDATE_LOCATION } from '@angular-redux/router';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
-import * as regAppUtils from '../app/reg-app.utils';
 import * as registryUtils from '../components/registry/registry.utils';
 import { basePath } from '../configuration';
 
@@ -129,7 +129,7 @@ export class RegistryEpics {
             if (result.url.indexOf('index.html') > 0) {
               return SessionActions.logoutUserAction();
             } else {
-              regAppUtils.notifySuccess('The record was saved in the temporary registry successfully!', 5000);
+              notifySuccess('The record was saved in the temporary registry successfully!', 5000);
               return createAction(UPDATE_LOCATION)(`records/temp`);
             }
           })
@@ -187,7 +187,7 @@ export class RegistryEpics {
         // <BatchID>22</BatchID></ReturnList>
         let response: Document = registryUtils.getDocument(registryUtils.getDocument(payload).documentElement.textContent);
         let regNumber = registryUtils.getElementValue(response.documentElement, 'RegNum');
-        regAppUtils.notify(regNumber ? `${regNumber} was created successfully` : 'Registration failed!', regNumber ? 'success' : 'error', 5000);
+        notify(regNumber ? `${regNumber} was created successfully` : 'Registration failed!', regNumber ? 'success' : 'error', 5000);
         return regNumber ?
           Observable.of({ type: UPDATE_LOCATION, payload: `records` }) :
           Observable.of({ type: RegActions.IGNORE_ACTION });
