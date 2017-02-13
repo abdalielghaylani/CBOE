@@ -15,8 +15,7 @@
             <li class="active"><a href="#tab1default" data-toggle="tab">Structure</a></li>
             <li><a href="#tab2default" data-toggle="tab">Registry</a></li>
             <li><a href="#tab3default" data-toggle="tab">Component</a></li>
-            <li><a href="#tab4default" data-toggle="tab">Fragment</a></li>
-            <li><a href="#tab5default" data-toggle="tab">Batch</a></li>
+            <li><a href="#tab4default" data-toggle="tab">Batch</a></li>
           </ul>
         </div>
         <div class="panel-body">
@@ -37,15 +36,11 @@
             </div>
             <div class="tab-pane fade" id="tab3default">
               <h4>Component Information</h4>
-              <dx-form id="componentForm" [formData]="regRecord.ComponentList.Component[0]" [colCount]="2" [items]="componentItems"></dx-form>
-              <h5></h5>
-              <dx-form id="compoundForm" [formData]="regRecord.ComponentList.Component[0].Compound" [colCount]="2" [items]="compoundItems"></dx-form>
-            </div>
-            <div class="tab-pane fade" id="tab4default">
+              <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [colCount]="2" [items]="regRecordVM.componentList[0].columns"></dx-form>
               <h4>Fragment Information</h4>
               <dx-form id="fragmentForm" [formData]="regRecord.ComponentList.Component[0].Compound.FragmentList.Fragment[0]" [colCount]="2" [items]="fragmentItems"></dx-form>
             </div>
-            <div class="tab-pane fade" id="tab5default">
+            <div class="tab-pane fade" id="tab4default">
               <h4>Batch Information</h4>
               <dx-form id="batchForm" [formData]="regRecordVM.batchList[0]" [colCount]="2" [items]="regRecordVM.batchList[0].columns"></dx-form>
             </div>

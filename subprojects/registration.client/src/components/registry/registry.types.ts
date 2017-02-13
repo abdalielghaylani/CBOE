@@ -11,52 +11,12 @@ export class FragmentData {
   DateLastModified: Date;
 }
 
-export const COMPONENT_DESC_LIST = [{
-  dataField: 'ComponentIndex',
-  dataType: 'number',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'ComponentComments',
-  dataType: 'string',
-  colSpan: 2
-}, {
-  dataField: 'StereochemistryComments',
-  dataType: 'string',
-  colSpan: 2
-}];
-
-export const COMPOUND_DESC_LIST = [{
-  dataField: 'CompoundID',
-  dataType: 'number',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'DateCreated',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'PersonCreated',
-  dataType: 'string',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'PersonApproved',
-  dataType: 'string',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'DateLastModified',
-  dataType: 'date',
-  editorType: 'dxDateBox'
-}];
-
 export const FRAGMENT_DESC_LIST = [{
   dataField: 'FragmentID',
-  label: 'Last Modified Date',
-  dataType: 'date',
-  editorType: 'dxDateBox',
+  dataType: 'number',
   editorOptions: { disabled: true }
 }, {
   dataField: 'Code',
-  label: 'Last Modified Date',
   dataType: 'number',
   editorOptions: { disabled: true }
 }, {
@@ -223,7 +183,8 @@ export class CComponentVM {
   personApproved?: Number;
   regNumber?: String;
   identifierList?: CIdentifierVM[];
-  constructor(m: CComponent) {
+  columns: any[] = [];
+  constructor(m: CComponent, state: IAppState) {
     this.id = m.ID;
     this.componentIndex = m.ComponentIndex;
     this.compoundId = m.Compound.CompoundID;
@@ -233,14 +194,43 @@ export class CComponentVM {
     this.personApproved = m.Compound.PersonApproved;
     this.regNumber = m.Compound.RegNumber ? m.Compound.RegNumber.RegNumber : undefined;
     this.identifierList = m.Compound.IdentifierList ? m.Compound.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
-    if (m.Compound.PropertyList) {
-      m.Compound.PropertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = p.__text;
-        }
-      });
-    }
+    // TODO: The built-in property view should also come from configuration
+    this.columns.push({
+      dataField: 'identifierList',
+      label: { text: 'Component Identifiers' },
+      colSpan: 2,
+      template: function (d, itemElement) {
+        (jQuery('<div>')
+          .appendTo(itemElement) as any)
+          .dxDataGrid({
+            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
+            columns: [{
+              dataField: 'id',
+              caption: 'Identifier',
+              editorType: 'dxSelectBox',
+              lookup: {
+                dataSource: state && state.session.lookups ? state.session.lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
+                displayExpr: 'NAME',
+                valueExpr: 'ID',
+                placeholder: 'Select Identifier'
+              }
+            }, {
+              dataField: 'inputText',
+              caption: 'Value'
+            }],
+            editing: {
+              mode: 'row',
+              allowUpdating: true,
+              allowDeleting: true,
+              allowAdding: true
+            },
+            onCellPrepared: function (e) {
+              onCellPrepared(e);
+            }
+          });
+      },
+    });    
+    buildPropertyList(this, m.Compound.PropertyList, FormGroupType.SubmitMixture, 1001, state);
   }
 }
 
@@ -331,21 +321,7 @@ export class CBatchVM {
       label: { text: 'Last Modification Date' },
       editorOptions: { disabled: true }
     });
-    if (m.PropertyList) {
-      let formGroupType = FormGroupType.SubmitMixture;
-      let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
-      let formElements = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => f._id === '1002')[0].editMode.formElement : [];
-      m.PropertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = getPropertyValue(p);
-          let column = getPropertyColumn(p, state, formElements);
-          if (column) {
-            this.columns.push(column);
-          }
-        }
-      });
-    }
+    buildPropertyList(this, m.PropertyList, FormGroupType.SubmitMixture, 1002, state);
     if (m.ProjectList) {
       this.projectList = [];
       m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
@@ -496,23 +472,9 @@ export class CRegistryRecordVM {
           });
       },
     });
-    if (m.PropertyList) {
-      let formGroupType = FormGroupType.SubmitMixture;
-      let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
-      let formElements = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => f._id === '1000')[0].editMode.formElement : [];
-      m.PropertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = getPropertyValue(p);
-          let column = getPropertyColumn(p, state, formElements);
-          if (column) {
-            this.columns.push(column);
-          }
-        }
-      });
-    }
+    buildPropertyList(this, m.PropertyList, FormGroupType.SubmitMixture, 1000, state);
     if (m.ComponentList) {
-      this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c));
+      this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c, state));
     }
     if (m.BatchList) {
       this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b, state));
@@ -535,13 +497,40 @@ function onCellPrepared(e) {
   }
 }
 
-function getPicklist(domainId: number, state: IAppState, name: String) {
+function getPicklist(domainId: number, formElement: CFormElement, state: IAppState) {
+  let pickListDomains = state.session.lookups.pickListDomains;
+  let placeholder = 'Select ' + (formElement ? formElement.label : '...');
   let pickList = {
     dataSource: [],
     displayExpr: 'NAME',
     valueExpr: 'ID',
-    placeholder: 'Select ' + name
+    placeholder: placeholder,
+    showClearButton: true
   };
+  let filtered = pickListDomains.filter(d => d.ID === domainId);
+  if (filtered.length === 1) {
+    let pickListDomain = filtered[0];
+    let extTable = pickListDomain.EXT_TABLE ? pickListDomain.EXT_TABLE.toUpperCase() : null;
+    // TODO: Should support external tables
+    if (extTable && extTable.indexOf('REGDB.') === 0) {
+      let lookup = extTable.replace('REGDB.', '');
+      // TODO: Should support all internal tables geneticall
+      if (lookup === 'VW_UNIT') {
+        pickList.dataSource = state && state.session.lookups ? state.session.lookups.units : [];
+      } else if (lookup === 'VW_PEOPLE') {
+        pickList.dataSource = state && state.session.lookups ? state.session.lookups.users : [];
+      } else if (lookup === 'VW_NOTEBOOKS') {
+        pickList.dataSource = state && state.session.lookups ? state.session.lookups.notebooks : [];
+      } else {
+        pickList.dataSource = [];
+      }
+      // TODO: Should apply filter and sort order
+      // EXT_SQL_FILTER: Where active='T'
+      // EXT_SQL_SORTORDER: ORDER BY SORTORDER ASC
+      pickList.displayExpr = pickListDomain.EXT_DISPLAY_COL;
+      pickList.valueExpr = pickListDomain.EXT_ID_COL;
+    }
+  }
   switch (domainId) {
     case 3:
       pickList.dataSource = state && state.session.lookups ? state.session.lookups.users : [];
@@ -552,7 +541,7 @@ function getPicklist(domainId: number, state: IAppState, name: String) {
   return pickList;
 }
 
-function getPropertyColumn(p: CProperty, state: IAppState, formElements: CFormElement[]): any {
+function getPropertyColumn(p: CProperty, formElements: CFormElement[], state: IAppState): any {
   let filtered = formElements.filter(fe => fe._name === p._name);
   let formElement = filtered && filtered.length > 0 ? filtered[0] : null;
   if (formElement && formElement.displayInfo.visible === 'false') {
@@ -570,7 +559,7 @@ function getPropertyColumn(p: CProperty, state: IAppState, formElements: CFormEl
   if (p._type === 'PICKLISTDOMAIN') {
     column.dataType = 'number';
     column.editorType = 'dxSelectBox';
-    column.editorOptions = getPicklist(+p._pickListDomainID, state, formElement.label);
+    column.editorOptions = getPicklist(+p._pickListDomainID, formElement, state);
   }
   // if (p._precision > 100) {
   //   column.colSpan = 2;
@@ -600,3 +589,21 @@ function getPropertyValue(p: CProperty): any {
   }
   return value;
 }
+
+function buildPropertyList(vm: any, propertyList: CPropertyList, formGroupType: FormGroupType, coeFormId: number, state: IAppState) {
+  if (propertyList) {
+    let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
+    let formElements = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId)[0].editMode.formElement : [];
+    propertyList.Property.forEach(p => {
+      let propertyName = p._name;
+      if (propertyName) {
+        vm[propertyName as string] = getPropertyValue(p);
+        let column = getPropertyColumn(p, formElements, state);
+        if (column) {
+          vm.columns.push(column);
+        }
+      }
+    });
+  }
+}
+

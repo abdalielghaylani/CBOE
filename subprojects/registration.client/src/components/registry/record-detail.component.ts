@@ -45,8 +45,6 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   private recordDoc: Document;
   private regRecord: regTypes.CRegistryRecord = new regTypes.CRegistryRecord();
   private regRecordVM: regTypes.CRegistryRecordVM = new regTypes.CRegistryRecordVM(this.regRecord, null);
-  private componentItems: any;
-  private compoundItems: any;
   private fragmentItems: any;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
@@ -91,6 +89,8 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       arrayAccessFormPaths: [
         'MultiCompoundRegistryRecord.ComponentList.Component',
         'MultiCompoundRegistryRecord.ComponentList.Component.Compound.PropertyList.Property',
+        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.FragmentList.Fragment',
+        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.IdentifierList.Identifier',
         'MultiCompoundRegistryRecord.BatchList.Batch',
         'MultiCompoundRegistryRecord.ProjectList.Project',
         'MultiCompoundRegistryRecord.PropertyList.Property',
@@ -118,8 +118,6 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       data.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    this.componentItems = regTypes.COMPONENT_DESC_LIST;
-    this.compoundItems = regTypes.COMPOUND_DESC_LIST;
     this.fragmentItems = regTypes.FRAGMENT_DESC_LIST;
     this.changeDetector.markForCheck();
   }
