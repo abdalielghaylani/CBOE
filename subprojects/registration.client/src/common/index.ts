@@ -1,6 +1,7 @@
 import { ToolModule } from './tool/tool.module';
 import {
-  FormGroupType, CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
+  FormGroupType, SubFormType,
+  CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
   IFormContainer
 } from './types';
 import {
@@ -11,7 +12,8 @@ import {
 
 export { ToolModule };
 export {
-  FormGroupType, CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
+  FormGroupType, SubFormType,
+  CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
   IFormContainer
 };
 export {

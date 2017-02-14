@@ -2,6 +2,11 @@
   cursor: pointer;
 }
 
+.dx-form-group-caption {
+  font-size: 18px;
+  font-weight: 500;
+}
+
 /deep/ .dx-toast-content {
   margin-bottom: 100px;
   max-width: 1000px;

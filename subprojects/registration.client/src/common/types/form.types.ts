@@ -18,6 +18,22 @@ export enum FormGroupType {
   SearchComponentToAddFormRR
 }
 
+export enum SubFormType {
+  MixtureDrawingForm = 0,
+  ComponentForm = 1,
+  BatchComponentForm = 3,
+  BatchForm = 4,
+  BatchComponentFragmentsForm = 5,
+  BatchComponentFragmentsFormEdit = 6,
+  BatchFragmentList = 7,
+  DocManagerForm = 8,
+  InvContainerForm = 9,
+  RegistryCustomProperties = 1000,
+  CompoundCustomProperties = 1001,
+  BatchCustomProperties = 1002,
+  BatchComponentCustomProperties = 1003
+}
+
 export class CDisplayInfo {
   cssClass?: String;
   type?: String;

@@ -36,10 +36,7 @@
               <dx-form id="registryForm" [formData]="regRecordVM" [colCount]="2" [items]="regRecordVM.columns" [readOnly]="!editMode"></dx-form>
             </div>
             <div class="tab-pane fade" id="tab3default">
-              <h4>Component Information</h4>
-              <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [colCount]="2" [items]="regRecordVM.componentList[0].columns" [readOnly]="!editMode"></dx-form>
-              <h4>Fragment Information</h4>
-              <dx-form id="fragmentForm" [formData]="regRecord.ComponentList.Component[0].Compound.FragmentList.Fragment[0]" [colCount]="2" [items]="fragmentItems" [readOnly]="!editMode"></dx-form>
+              <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [readOnly]="!editMode"></dx-form>
             </div>
             <div class="tab-pane fade" id="tab4default">
               <h4>Batch Information</h4>
