@@ -1,5 +1,5 @@
 import { IAppState } from '../../store';
-import { FormGroupType, CFormGroup, CFormElement } from '../../common';
+import { FormGroupType, CFormGroup, CFormElement, IFormContainer } from '../../common';
 
 export class FragmentData {
   FragmentID: number;
@@ -184,7 +184,8 @@ export class CComponentVM {
   regNumber?: String;
   identifierList?: CIdentifierVM[];
   columns: any[] = [];
-  constructor(m: CComponent, formGroupType: FormGroupType, state: IAppState) {
+  constructor(m: CComponent, container: IFormContainer) {
+    let lookups = getLookups(container);
     this.id = m.ID;
     this.componentIndex = m.ComponentIndex;
     this.compoundId = m.Compound.CompoundID;
@@ -203,13 +204,14 @@ export class CComponentVM {
         (jQuery('<div>')
           .appendTo(itemElement) as any)
           .dxDataGrid({
+            disabled: !container.editMode,
             dataSource: d.editorOptions.value ? d.editorOptions.value : [],
             columns: [{
               dataField: 'id',
               caption: 'Identifier',
               editorType: 'dxSelectBox',
               lookup: {
-                dataSource: state && state.session.lookups ? state.session.lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
+                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
                 displayExpr: 'NAME',
                 valueExpr: 'ID',
                 placeholder: 'Select Identifier'
@@ -230,7 +232,7 @@ export class CComponentVM {
           });
       },
     });    
-    buildPropertyList(this, m.Compound.PropertyList, formGroupType, 1001, state);
+    buildPropertyList(this, m.Compound.PropertyList, 1001, container);
   }
 }
 
@@ -292,7 +294,7 @@ export class CBatchVM {
   identifierList?: CIdentifierVM[] = [];
   projectList?: number[] = [];
   columns?: any[] = [];
-  constructor(m: CBatch, formGroupType: FormGroupType, state: IAppState) {
+  constructor(m: CBatch, container: IFormContainer) {
     this.id = m.BatchID;
     this.batchNumber = m.BatchNumber;
     this.fullRegNumber = m.FullRegNumber;
@@ -321,7 +323,7 @@ export class CBatchVM {
       label: { text: 'Last Modification Date' },
       editorOptions: { disabled: true }
     });
-    buildPropertyList(this, m.PropertyList, formGroupType, 1002, state);
+    buildPropertyList(this, m.PropertyList, 1002, container);
     if (m.ProjectList) {
       this.projectList = [];
       m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
@@ -401,7 +403,8 @@ export class CRegistryRecordVM {
   componentList?: CComponentVM[] = [];
   batchList: CBatchVM[] = [];
   columns: any[] = [];
-  constructor(m: CRegistryRecord, formGroupType: FormGroupType, state: IAppState) {
+  constructor(m: CRegistryRecord, container: IFormContainer) {
+    let lookups = getLookups(container);
     this.sameBatchesIdentity = m._SameBatchesIdentity ? m._SameBatchesIdentity === 'True' : undefined;
     this.activeRLS = m._ActiveRLS;
     this.isEditable = m._IsEditable ? m._IsEditable === 'True' : undefined;
@@ -427,10 +430,11 @@ export class CRegistryRecordVM {
         (jQuery('<div>')
           .appendTo(itemElement) as any)
           .dxTagBox({
+            disabled: !container.editMode,
             value: d.editorOptions.value ? d.editorOptions.value : [],
             valueExpr: 'PROJECTID',
             displayExpr: 'NAME',
-            dataSource: state && state.session.lookups ? state.session.lookups.projects : [],
+            dataSource: lookups ? lookups.projects : [],
             onValueChanged: function (e) {
               d.component.option('formData.' + d.dataField, e.value);
             }
@@ -445,13 +449,14 @@ export class CRegistryRecordVM {
         (jQuery('<div>')
           .appendTo(itemElement) as any)
           .dxDataGrid({
+            disabled: !container.editMode,
             dataSource: d.editorOptions.value ? d.editorOptions.value : [],
             columns: [{
               dataField: 'id',
               caption: 'Identifier',
               editorType: 'dxSelectBox',
               lookup: {
-                dataSource: state && state.session.lookups ? state.session.lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
+                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
                 displayExpr: 'NAME',
                 valueExpr: 'ID',
                 placeholder: 'Select Identifier'
@@ -472,12 +477,12 @@ export class CRegistryRecordVM {
           });
       },
     });
-    buildPropertyList(this, m.PropertyList, formGroupType, 1000, state);
+    buildPropertyList(this, m.PropertyList, 1000, container);
     if (m.ComponentList) {
-      this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c, formGroupType, state));
+      this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c, container));
     }
     if (m.BatchList) {
-      this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b, formGroupType, state));
+      this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b, container));
     }
   }
 }
@@ -497,8 +502,9 @@ function onCellPrepared(e) {
   }
 }
 
-function getPicklist(domainId: number, formElement: CFormElement, state: IAppState) {
-  let pickListDomains = state.session.lookups.pickListDomains;
+function getPicklist(domainId: number, formElement: CFormElement, container: IFormContainer) {
+  let lookups = getLookups(container);
+  let pickListDomains = lookups ? lookups.pickListDomains : [];
   let placeholder = 'Select ' + (formElement ? formElement.label : '...');
   let pickList = {
     dataSource: [],
@@ -516,11 +522,11 @@ function getPicklist(domainId: number, formElement: CFormElement, state: IAppSta
       let lookup = extTable.replace('REGDB.', '');
       // TODO: Should support all internal tables geneticall
       if (lookup === 'VW_UNIT') {
-        pickList.dataSource = state && state.session.lookups ? state.session.lookups.units : [];
+        pickList.dataSource = lookups ? lookups.units : [];
       } else if (lookup === 'VW_PEOPLE') {
-        pickList.dataSource = state && state.session.lookups ? state.session.lookups.users : [];
+        pickList.dataSource = lookups ? lookups.users : [];
       } else if (lookup === 'VW_NOTEBOOKS') {
-        pickList.dataSource = state && state.session.lookups ? state.session.lookups.notebooks : [];
+        pickList.dataSource = lookups ? lookups.notebooks : [];
       } else {
         pickList.dataSource = [];
       }
@@ -531,17 +537,10 @@ function getPicklist(domainId: number, formElement: CFormElement, state: IAppSta
       pickList.valueExpr = pickListDomain.EXT_ID_COL;
     }
   }
-  switch (domainId) {
-    case 3:
-      pickList.dataSource = state && state.session.lookups ? state.session.lookups.users : [];
-      pickList.displayExpr = 'USERID';
-      pickList.valueExpr = 'PERSONID';
-      break;
-  }
   return pickList;
 }
 
-function getPropertyColumn(p: CProperty, formElements: CFormElement[], state: IAppState): any {
+function getPropertyColumn(p: CProperty, formElements: CFormElement[], container: IFormContainer): any {
   let filtered = formElements.filter(fe => fe._name === p._name);
   let formElement = filtered && filtered.length > 0 ? filtered[0] : null;
   if (formElement && formElement.displayInfo.visible === 'false') {
@@ -559,13 +558,18 @@ function getPropertyColumn(p: CProperty, formElements: CFormElement[], state: IA
   if (p._type === 'PICKLISTDOMAIN') {
     column.dataType = 'number';
     column.editorType = 'dxSelectBox';
-    column.editorOptions = getPicklist(+p._pickListDomainID, formElement, state);
+    column.editorOptions = getPicklist(+p._pickListDomainID, formElement, container);
   }
   // if (p._precision > 100) {
   //   column.colSpan = 2;
   //   column.editorType = 'dxTextArea';
   // }
   return column;
+}
+
+function getLookups(container: IFormContainer): any {
+  let state: IAppState = container.ngRedux.getState();
+  return state.session ? state.session.lookups : undefined;
 }
 
 function getPropertyValue(p: CProperty): any {
@@ -590,15 +594,15 @@ function getPropertyValue(p: CProperty): any {
   return value;
 }
 
-function buildPropertyList(vm: any, propertyList: CPropertyList, formGroupType: FormGroupType, coeFormId: number, state: IAppState) {
+function buildPropertyList(vm: any, propertyList: CPropertyList, coeFormId: number, container: IFormContainer) {
   if (propertyList) {
-    let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
+  let formGroup = container.formGroup;
     let formElements = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId)[0].editMode.formElement : [];
     propertyList.Property.forEach(p => {
       let propertyName = p._name;
       if (propertyName) {
         vm[propertyName as string] = getPropertyValue(p);
-        let column = getPropertyColumn(p, formElements, state);
+        let column = getPropertyColumn(p, formElements, container);
         if (column) {
           vm.columns.push(column);
         }

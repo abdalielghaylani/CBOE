@@ -1,3 +1,6 @@
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../store';
+
 export enum FormGroupType {
   SubmitMixture,
   ReviewRegisterMixture,
@@ -90,4 +93,10 @@ export class CFormGroup {
     public detailsForms?: CDetailsForms,
     public listForms?: CListForms
   ) { }
+}
+
+export interface IFormContainer {
+  ngRedux: NgRedux<IAppState>;
+  formGroup: CFormGroup;
+  editMode: boolean;
 }

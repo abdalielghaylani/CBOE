@@ -20,7 +20,7 @@ import { CFormGroup, prepareFormGroupData, notify } from '../../common';
 import { CRegistryRecord, CRegistryRecordVM, FragmentData, FRAGMENT_DESC_LIST } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath } from '../../configuration';
-import { FormGroupType, getFormGroupData } from '../../common';
+import { FormGroupType, IFormContainer, getFormGroupData } from '../../common';
 
 declare var jQuery: any;
 
@@ -30,30 +30,30 @@ declare var jQuery: any;
   template: require('./record-detail.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecordDetail implements OnInit, OnDestroy {
+export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.structureData) structureData$: Observable<string>;
+  public formGroup: CFormGroup;
+  public editMode: boolean = false;
   private title: string;
-  private formGroupType: FormGroupType = FormGroupType.SubmitMixture;
-  private editMode: boolean = false;
   private drawingTool;
   private creatingCDD: boolean = false;
   private cdxml: string;
   private recordString: string;
   private recordDoc: Document;
   private regRecord: CRegistryRecord = new CRegistryRecord();
-  private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this.formGroupType, null);
+  private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
   private fragmentItems: any;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
 
   constructor(
+    public ngRedux: NgRedux<IAppState>,
     private elementRef: ElementRef,
     private router: Router,
-    private ngRedux: NgRedux<IAppState>,
     private actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef) {
   }
@@ -90,10 +90,6 @@ export class RegRecordDetail implements OnInit, OnDestroy {
       data.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    if (data.id >= 0 && !data.temporary) {
-      // TODO: For mixture, this should be ReviewRegistryMixture
-      this.formGroupType = FormGroupType.ViewMixture;
-    }
     registryUtils.fixStructureData(this.recordDoc);
     let x2jsTool = new x2js.default({
       arrayAccessFormPaths: [
@@ -108,9 +104,16 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     });
     let recordJson: any = x2jsTool.dom2js(this.recordDoc);
     this.regRecord = recordJson.MultiCompoundRegistryRecord;
-    prepareFormGroupData(this.formGroupType, this.ngRedux);
-    this.editMode = this.getFormEditMode(this.formGroupType, this.ngRedux.getState());
-    this.regRecordVM = new CRegistryRecordVM(this.regRecord, this.formGroupType, this.ngRedux.getState());
+    let formGroupType = FormGroupType.SubmitMixture;
+    if (data.id >= 0 && !data.temporary) {
+      // TODO: For mixture, this should be ReviewRegistryMixture
+      formGroupType = FormGroupType.ViewMixture;
+    }
+    prepareFormGroupData(formGroupType, this.ngRedux);
+    let state = this.ngRedux.getState();
+    this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup;
+    this.editMode = this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
+    this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
     }
@@ -191,7 +194,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
         'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
       this.actions.saveRecord(this.recordDoc);
     } else {
-      notify('Saving is not supported yet!', 'error');
+      notify('Saving is not supported yet!', 'warning');
       // this.actions.updateRecord(this.recordDoc);
       this.setEditMode(false);
     }
@@ -202,7 +205,7 @@ export class RegRecordDetail implements OnInit, OnDestroy {
   }
 
   edit() {
-    notify('Editing is experimental', 'error');
+    notify('Editing is experimental', 'warning');
     this.setEditMode(true);
   }
 
@@ -210,13 +213,16 @@ export class RegRecordDetail implements OnInit, OnDestroy {
     this.actions.registerRecord(this.recordDoc);
   }
 
-  private getFormEditMode(formGroupType: FormGroupType, state: IAppState): boolean {
-    let formGroup = state ? state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup : null;
-    return formGroup ? formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' : false;
-  }
-
   private setEditMode(editMode: boolean) {
     this.editMode = editMode;
     this.changeDetector.markForCheck();
+    this.forms.forEach(f => {
+      // f.items.forEach(i => {
+      //   if (i.template) {
+      //     i.disabled = !editMode;
+      //   }
+      // });
+      f.instance.repaint();
+    });
   }
 };
