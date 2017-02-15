@@ -12,6 +12,8 @@ using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using System;
+using CambridgeSoft.COE.Framework.GUIShell;
+using CambridgeSoft.COE.Framework.Common;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -21,89 +23,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public JObject GetLookups()
         {
             CheckAuthentication();
-            var formGroups = new JArray();
-            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SubmitMixture);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.SubmitMixture.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.ReviewRegisterMixture);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.ReviewRegisterMixture.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.ViewMixture);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.ViewMixture.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchTemporary);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.SearchTemporary.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.SearchPermanent.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.ELNSearchTempForm);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.ELNSearchTempForm.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.ELNSearchPermForm);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.ELNSearchPermForm.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.DataLoaderForm);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.DataLoaderForm.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.RegistryDuplicatesForm);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.RegistryDuplicatesForm.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.ComponentDuplicatesForm);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.ComponentDuplicatesForm.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SendToRegistrationForm);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.SendToRegistrationForm.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.DeleteLogFrom);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.DeleteLogFrom.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchComponentToAddForm);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.SearchComponentToAddForm.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchComponentToAddFormRR);
-            formGroups.Add(new JObject(
-                new JProperty("name", COEFormHelper.COEFormGroups.SearchComponentToAddFormRR.ToString()),
-                new JProperty("data", configRegRecord.FormGroup.ToString())
-            ));
-            var customTables = new JArray();
-            var tables = COETableEditorUtilities.getTables();
-            foreach (var key in tables.Keys)
-            {
-                var table = new JObject(
-                    new JProperty("tableName", key),
-                    new JProperty("label", tables[key])
-                );
-                customTables.Add(table);
-            }
-
             return new JObject(
                 new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
                 new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
@@ -116,9 +35,77 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
                 new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
                 new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
-                new JProperty("formGroups", formGroups),
-                new JProperty("customTables", customTables)
+                new JProperty("formGroups", GetFormGroups()),
+                new JProperty("customTables", GetCustomTables()),
+                new JProperty("systemSettings", GetSystemSettings())
+
             );
+        }
+
+        private static JArray GetFormGroups()
+        {
+            var formGroups = new JArray();
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            foreach (COEFormHelper.COEFormGroups formGroupType in Enum.GetValues(typeof(COEFormHelper.COEFormGroups)))
+            {
+                configRegRecord.COEFormHelper.Load(formGroupType);
+                formGroups.Add(new JObject(
+                    new JProperty("name", formGroupType.ToString()),
+                    new JProperty("data", configRegRecord.FormGroup.ToString())
+                ));
+            }
+            return formGroups;
+        }
+
+        private static JArray GetCustomTables()
+        {
+            var customTables = new JArray();
+            var tables = COETableEditorUtilities.getTables();
+            foreach (var key in tables.Keys)
+            {
+                var table = new JObject(
+                    new JProperty("tableName", key),
+                    new JProperty("label", tables[key])
+                );
+                customTables.Add(table);
+            }
+            return customTables;
+        }
+
+        private JArray GetSystemSettings()
+        {
+            // [{ group: .., settings: [ ] }, ... ]
+            var systemSettings = new JArray();
+            var app = GUIShellUtilities.GetApplicationName();
+            AppSettingsData appSet = FrameworkUtils.GetAppConfigSettings(app);
+            foreach (var g in appSet.SettingsGroup)
+            {
+                var settings = new JArray();
+                foreach (var s in g.Settings)
+                {
+                    var setting = new JObject(
+                        new JProperty("name", s.Name),
+                        new JProperty("value", s.Value),
+                        new JProperty("description", s.Description),
+                        new JProperty("allowedValues", s.AllowedValues),
+                        new JProperty("controlType", s.ControlType),
+                        new JProperty("isAdmin", s.IsAdmin),
+                        new JProperty("isHidden", s.IsHidden),
+                        new JProperty("picklistDatabaseName", s.PicklistDatabaseName),
+                        new JProperty("picklistType", s.PicklistType),
+                        new JProperty("processorClass", s.ProcessorClass)
+                    );
+                    settings.Add(setting);
+                }
+                var groupSettings = new JObject(
+                    new JProperty("name", g.Name),
+                    new JProperty("title", g.Title),
+                    new JProperty("description", g.Description),
+                    new JProperty("settings", settings)
+                );
+                systemSettings.Add(groupSettings);
+            }
+            return systemSettings;
         }
     }
 }
