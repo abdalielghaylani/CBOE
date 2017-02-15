@@ -29,17 +29,27 @@ export class RegStructureImage {
   @Input() src: string;
 
   private srcUrl$: Observable<string>;
+  private modDate: string;
 
   constructor(private http: Http) { }
 
   ngOnInit() {
     if (this.src) {
-      let srcValues = this.src.split('.');
-      this.type = srcValues[0];
-      this.id = +srcValues[1];
+      let typeId = this.src.split('/');
+      this.type = typeId[0];
+      let idModDate = typeId[1].split('?');
+      if (idModDate.length === 1) {
+        this.id = +typeId[1];
+      } else {
+        this.id = +idModDate[0];
+        this.modDate = idModDate[1];
+      }
     }
     if (this.type && this.id) {
-      let url = `${BASE_URL}/StructureImage/${this.type}/${this.id}/${this.height}/${this.width}/${this.resolution}`;
+      let url = `${BASE_URL}/StructureUrl/${this.type}/${this.id}/${this.height}/${this.width}/${this.resolution}`;
+      if (this.modDate) {
+        url += `?${this.modDate}`;
+      }
       this.srcUrl$ = this.http.get(url).map(res => res.text().replace(/\"/g, ''));
     }
   }

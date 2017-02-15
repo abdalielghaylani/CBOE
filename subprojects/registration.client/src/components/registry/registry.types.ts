@@ -1,4 +1,5 @@
 import { IAppState } from '../../store';
+import { basePath } from '../../configuration';
 import { FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer } from '../../common';
 
 export class FragmentData {
@@ -145,7 +146,7 @@ export class CBaseFragment {
 }
 
 export class CFragment {
-  // Incomplete
+  Code?: Number;
 }
 
 export class CFragmentList {
@@ -196,7 +197,9 @@ export class CComponentVM {
     this.personApproved = m.Compound.PersonApproved;
     this.regNumber = m.Compound.RegNumber ? m.Compound.RegNumber.RegNumber : undefined;
     this.identifierList = m.Compound.IdentifierList ? m.Compound.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
-    this.fragmentList = m.Compound.FragmentList.Fragment;
+    this.fragmentList = m.Compound.FragmentList.Fragment
+      ? m.Compound.FragmentList.Fragment.map(f => lookups.fragments.filter(d => +f.Code === +d.CODE)[0])
+      : [];
     // TODO: The built-in property view should also come from configuration
     this.columns.push({
       dataField: 'identifierList',
@@ -234,40 +237,71 @@ export class CComponentVM {
           });
       },
     });
-    let componetInfoGroup = {
+    this.columns = [{
       itemType: 'group',
       caption: 'Component Information',
       items: []
-    };
-    let coeForm = getCoeFormById(container.formGroup, SubFormType.CompoundCustomProperties);
-    if (coeForm) {
-      buildPropertyList(this, m.Compound.PropertyList, coeForm, container);
-      if (coeForm.title) {
-        componetInfoGroup.caption = coeForm.title as string;
-      }
-      componetInfoGroup.items = this.columns.slice();
-      this.columns = [];
-    }
-    let fragmentInfoGroup = {
+    }, {
       itemType: 'group',
       caption: 'Fragment Information',
       items: []
-    };
+    }];
+    let coeForm = getCoeFormById(container.formGroup, SubFormType.CompoundCustomProperties);
+    if (coeForm) {
+      let groupItem = this.columns[0];
+      buildPropertyList(this, groupItem.items, m.Compound.PropertyList, coeForm, container);
+      if (coeForm.title) {
+        groupItem.caption = coeForm.title as string;
+      }
+    }
     coeForm = getCoeFormById(container.formGroup, SubFormType.BatchComponentFragmentsForm);
     if (coeForm) {
+      let groupItem = this.columns[1];
       if (coeForm.title) {
-        fragmentInfoGroup.caption = coeForm.title as string;
+        groupItem.caption = coeForm.title as string;
       }
-      fragmentInfoGroup.items = [{
+      groupItem.items = [{
         dataField: 'fragmentList',
         label: { text: 'Fragments', visible: false },
         colSpan: 1,
         template: function (d, itemElement) {
-          (jQuery('<div>')
+          (jQuery('<div />')
             .appendTo(itemElement) as any)
             .dxDataGrid({
               disabled: !container.editMode,
               dataSource: d.editorOptions.value ? d.editorOptions.value : [],
+              columns: [{
+                dataField: 'FRAGMENTTYPEID',
+                caption: 'Type',
+                editorType: 'dxSelectBox',
+                lookup: {
+                  dataSource: lookups ? lookups.fragmentTypes : [],
+                  displayExpr: 'DESCRIPTION',
+                  valueExpr: 'ID'
+                },
+                width: 80
+              }, {
+                dataField: 'STRUCTURE',
+                caption: 'Structure',
+                width: 150,
+                cellTemplate: function(c, o) {
+                  jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
+                }
+              }, {
+                dataField: 'CODE',
+                caption: 'Code',
+                width: 50
+              }, {
+                dataField: 'DESCRIPTION',
+                caption: 'Description'
+              }, {
+                dataField: 'MOLWEIGHT',
+                caption: 'MW',
+                width: 100
+              }, {
+                dataField: 'FORMULA',
+                caption: 'MF'
+              }],
               editing: {
                 mode: 'row',
                 allowUpdating: true,
@@ -281,7 +315,6 @@ export class CComponentVM {
         }
       }];
     }
-    this.columns = [componetInfoGroup, fragmentInfoGroup];
   }
 }
 
@@ -372,7 +405,7 @@ export class CBatchVM {
       label: { text: 'Last Modification Date' },
       editorOptions: { disabled: true }
     });
-    buildPropertyList(this, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.BatchCustomProperties), container);
+    buildPropertyList(this, this.columns, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.BatchCustomProperties), container);
     if (m.ProjectList) {
       this.projectList = [];
       m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
@@ -526,7 +559,7 @@ export class CRegistryRecordVM {
           });
       },
     });
-    buildPropertyList(this, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.RegistryCustomProperties), container);
+    buildPropertyList(this, this.columns, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.RegistryCustomProperties), container);
     if (m.ComponentList) {
       this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c, container));
     }
@@ -648,7 +681,11 @@ function getCoeFormById(formGroup: CFormGroup, coeFormId: number) {
   return filtered && filtered.length > 0 ? filtered[0] : null;
 }
 
-function buildPropertyList(vm: any, propertyList: CPropertyList, coeForm: CCoeForm, container: IFormContainer) {
+/**
+ * Adds the custom properties to the given view-model object, and
+ * adds the property column description into the given column array. 
+ */
+function buildPropertyList(vm: any, columns: any[], propertyList: CPropertyList, coeForm: CCoeForm, container: IFormContainer) {
   if (propertyList) {
     let formElements = coeForm ? coeForm.editMode.formElement : [];
     propertyList.Property.forEach(p => {
@@ -657,7 +694,7 @@ function buildPropertyList(vm: any, propertyList: CPropertyList, coeForm: CCoeFo
         vm[propertyName as string] = getPropertyValue(p);
         let column = getPropertyColumn(p, formElements, container);
         if (column) {
-          vm.columns.push(column);
+          columns.push(column);
         }
       }
     });
