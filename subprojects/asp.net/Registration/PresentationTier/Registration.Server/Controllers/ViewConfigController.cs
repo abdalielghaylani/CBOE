@@ -106,7 +106,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             return new JObject(
                 new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
-                new JProperty("fragments", ExtractData("SELECT * FROM VW_FRAGMENT")),
+                new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
                 new JProperty("fragmentTypes", ExtractData("SELECT * FROM VW_FRAGMENTTYPE")),
                 new JProperty("identifierTypes", ExtractData("SELECT * FROM VW_IDENTIFIERTYPE")),
                 new JProperty("notebooks", ExtractData("SELECT * FROM VW_NOTEBOOK")),
