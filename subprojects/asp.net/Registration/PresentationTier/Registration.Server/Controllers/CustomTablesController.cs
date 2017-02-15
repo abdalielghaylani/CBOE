@@ -44,7 +44,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 var p = new JObject();
                 foreach (DataColumn dc in dt.Columns)
-                    p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment." + dr[0].ToString() : dr[dc]));
+                    p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
                 projects.Add(p);
             }
             var query = projects.AsEnumerable().FilterByOptions(options).SortByOptions(options).PageByOptions(options);
