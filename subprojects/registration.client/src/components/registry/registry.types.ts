@@ -322,8 +322,20 @@ export class CComponentList {
   Component: CComponent[] = [new CComponent()];
 }
 
+export class CFragmentID {
+  _update?: String;
+  __text?: String;
+}
+
+export class CBatchComponentFragment {
+  ID?: Number;
+  FragmentID?: CFragmentID;
+  Equivalents?: Number;
+  OrderIndex?: Number;
+}
+
 export class CBatchComponentFragmentList {
-  // Incompoete
+  BatchComponentFragment: CBatchComponentFragment[] = [];
 }
 
 export class CBatchComponent {

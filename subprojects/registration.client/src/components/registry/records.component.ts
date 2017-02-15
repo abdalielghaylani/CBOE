@@ -32,9 +32,6 @@ import { DxDataGridComponent } from 'devextreme-angular';
         (onEditingStart)='onEditingStart($event)'
         (onRowRemoving)='onRowRemoving($event)'>
         <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
-        <div *dxTemplate="let data of 'cellTemplate'">
-          <reg-structure-image [src]="data.value"></reg-structure-image>
-        </div>
       </dx-data-grid>
     </div>
   `,

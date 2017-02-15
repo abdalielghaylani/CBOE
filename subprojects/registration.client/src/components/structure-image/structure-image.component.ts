@@ -34,7 +34,7 @@ export class RegStructureImage {
   constructor(private http: Http) { }
 
   ngOnInit() {
-    if (this.src) {
+    if (this.src && this.src.indexOf('/') > 0) {
       let typeId = this.src.split('/');
       this.type = typeId[0];
       let idModDate = typeId[1].split('?');

@@ -4,6 +4,7 @@ import {
   IRegistry, IRegistryRecord,
 } from './registry.types';
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
+import { basePath } from '../../configuration';
 
 const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: false,
@@ -32,7 +33,9 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'STRUCTURE',
     dataType: 'string',
     allowFiltering: false,
-    cellTemplate: 'cellTemplate',
+    cellTemplate: function(c, o) {
+      jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
+    },
     caption: 'Structure',
     width: 160,
   }, {
@@ -85,7 +88,9 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'STRUCTURE',
     dataType: 'string',
     allowFiltering: false,
-    cellTemplate: 'cellTemplate',
+    cellTemplate: function(c, o) {
+      jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
+    },
     caption: 'Structure',
     width: 160,
   }]

@@ -98,6 +98,8 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
         'MultiCompoundRegistryRecord.ComponentList.Component.Compound.FragmentList.Fragment',
         'MultiCompoundRegistryRecord.ComponentList.Component.Compound.IdentifierList.Identifier',
         'MultiCompoundRegistryRecord.BatchList.Batch',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
         'MultiCompoundRegistryRecord.ProjectList.Project',
         'MultiCompoundRegistryRecord.PropertyList.Property',
       ]

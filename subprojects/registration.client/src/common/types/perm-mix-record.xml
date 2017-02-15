@@ -1,19 +1,11 @@
-<MultiCompoundRegistryRecord SameBatchesIdentity="True" ActiveRLS="Off" IsEditable="True">
-    <ID>83</ID>
-    <StatusID>1</StatusID>
-    <DateCreated>2017-02-02 04:40:17 AM</DateCreated>
-    <DateLastModified>2017-02-02 04:40:17 AM</DateLastModified>
-    <SubmissionComments />
+<MultiCompoundRegistryRecord SameBatchesIdentity="True" ActiveRLS="Off" IsEditable="True" IsRegistryDeleteable="True">
+    <ID>1061</ID>
+    <DateCreated>2017-02-15 04:16:15 AM</DateCreated>
+    <DateLastModified>2017-02-15 04:16:15 AM</DateLastModified>
     <PersonCreated>2</PersonCreated>
     <PersonApproved />
     <StructureAggregation>VmpD</StructureAggregation>
-    <RegNumber>
-        <RegID>0</RegID>
-        <SequenceNumber />
-        <RegNumber />
-        <SequenceID>1</SequenceID>
-    </RegNumber>
-    <IdentifierList />
+    <StatusID>3</StatusID>
     <PropertyList>
         <Property name="REG_COMMENTS" friendlyName="REG_COMMENTS" type="TEXT" precision="200" sortOrder="0">
             <validationRuleList>
@@ -26,22 +18,30 @@
             </validationRuleList>
         </Property>
     </PropertyList>
+    <RegNumber>
+        <RegID>2021</RegID>
+        <SequenceNumber>55</SequenceNumber>
+        <RegNumber>AB-000055</RegNumber>
+        <SequenceID>1</SequenceID>
+    </RegNumber>
+    <IdentifierList />
     <ProjectList>
         <Project>
-            <ID>23</ID>
+            <ID>461</ID>
             <ProjectID Description="Hedione Process Optimization" Name="Hedione Process Optimization" Active="T">2</ProjectID>
         </Project>
     </ProjectList>
     <ComponentList>
         <Component>
             <ID />
-            <ComponentIndex>-63</ComponentIndex>
+            <ComponentIndex>-1041</ComponentIndex>
             <Compound>
-                <CompoundID>63</CompoundID>
-                <DateCreated>2017-02-02 04:40:17 AM</DateCreated>
+                <CompoundID>1041</CompoundID>
+                <DateCreated>2017-02-15 04:16:15 am</DateCreated>
                 <PersonCreated>2</PersonCreated>
-                <PersonApproved />
-                <DateLastModified>2017-02-02 04:40:17 AM</DateLastModified>
+                <PersonApproved>2</PersonApproved>
+                <PersonRegistered>2</PersonRegistered>
+                <DateLastModified>2017-02-15 04:16:15 am</DateLastModified>
                 <Tag />
                 <PropertyList>
                     <Property name="CMP_COMMENTS" friendlyName="CMP_COMMENTS" type="TEXT" precision="200" sortOrder="0">
@@ -66,19 +66,21 @@
                     </Property>
                 </PropertyList>
                 <RegNumber>
-                    <RegID>0</RegID>
-                    <RegNumber />
+                    <RegID>2022</RegID>
+                    <SequenceNumber>946</SequenceNumber>
+                    <RegNumber>C000946</RegNumber>
                     <SequenceID>2</SequenceID>
-                    <SequenceNumber />
                 </RegNumber>
+                <CanPropogateComponentEdits>True</CanPropogateComponentEdits>
                 <BaseFragment>
                     <Structure>
-                        <StructureID>0</StructureID>
+                        <StructureID>2001</StructureID>
                         <StructureFormat />
                         <Structure molWeight="196.26938" formula="C9H12N2OS">VmpD</Structure>
-                        <DrawingType>0</DrawingType>
                         <NormalizedStructure>VmpD</NormalizedStructure>
-                        <UseNormalization>T</UseNormalization>
+                        <UseNormalization>F</UseNormalization>
+                        <DrawingType>0</DrawingType>
+                        <CanPropogateStructureEdits>True</CanPropogateStructureEdits>
                         <PropertyList>
                             <Property name="STRUCT_COMMENTS" friendlyName="STRUCT_COMMENTS" type="TEXT" precision="200" sortOrder="0">
                                 <validationRuleList>
@@ -98,7 +100,7 @@
                                             <param name="max" value="2000" />
                                         </params>
                                     </validationRule>
-                                </validationRuleList>5,5a,6,7-tetrahydro-4H,9H-thiazolo[4',5':5,6]pyrido[1,2-c][1,3]oxazine\n       
+                                </validationRuleList>5,5a,6,7-tetrahydro-4H,9H-thiazolo[4',5':5,6]pyrido[1,2-c][1,3]oxazine
                             </Property>
                         </PropertyList>
                         <IdentifierList />
@@ -106,68 +108,175 @@
                 </BaseFragment>
                 <FragmentList>
                     <Fragment>
+                        <CompoundFragmentID>21</CompoundFragmentID>
                         <FragmentID>27</FragmentID>
                         <Code>27</Code>
-                        <Description>Ammonia salt</Description>
-                        <DateCreated>2009-06-30</DateCreated>
-                        <DateLastModified>2009-06-30</DateLastModified>
+                        <Name>Ammonia salt</Name>
+                        <FragmentTypeID lookupTable="FragmentType" lookupField="ID" displayField="Description" displayValue="Salt">1</FragmentTypeID>
+                        <DateCreated>2009-06-30 06:02:31 am</DateCreated>
+                        <DateLastModified>2009-06-30 06:02:31 am</DateLastModified>
+                        <Equivalents />
                         <Structure>
+                            <StructureFormat />
                             <Structure molWeight="17.03052" formula="H3N">VmpD</Structure>
                         </Structure>
                     </Fragment>
                     <Fragment>
+                        <CompoundFragmentID>22</CompoundFragmentID>
                         <FragmentID>23</FragmentID>
                         <Code>23</Code>
-                        <Description>4-Methylbenzenesulphonic acid salt</Description>
-                        <DateCreated>2009-06-30</DateCreated>
-                        <DateLastModified>2009-06-30</DateLastModified>
+                        <Name>4-Methylbenzenesulphonic acid salt</Name>
+                        <FragmentTypeID lookupTable="FragmentType" lookupField="ID" displayField="Description" displayValue="Salt">1</FragmentTypeID>
+                        <DateCreated>2009-06-30 06:02:31 am</DateCreated>
+                        <DateLastModified>2009-06-30 06:02:31 am</DateLastModified>
+                        <Equivalents />
                         <Structure>
+                            <StructureFormat />
                             <Structure molWeight="172.20162" formula="C7H8O3S">VmpD</Structure>
                         </Structure>
                     </Fragment>
                     <Fragment>
+                        <CompoundFragmentID>23</CompoundFragmentID>
                         <FragmentID>1032</FragmentID>
                         <Code>1032</Code>
-                        <Description>Ethyl formate </Description>
-                        <DateCreated>2009-06-30</DateCreated>
-                        <DateLastModified>2009-06-30</DateLastModified>
+                        <Name>Ethyl formate </Name>
+                        <FragmentTypeID lookupTable="FragmentType" lookupField="ID" displayField="Description" displayValue="Solvate">2</FragmentTypeID>
+                        <DateCreated>2009-06-30 06:02:34 am</DateCreated>
+                        <DateLastModified>2009-06-30 06:02:34 am</DateLastModified>
+                        <Equivalents />
                         <Structure>
+                            <StructureFormat />
                             <Structure molWeight="74.07854" formula="C3H6O2">VmpD</Structure>
+                        </Structure>
+                    </Fragment>
+                    <Fragment>
+                        <CompoundFragmentID>24</CompoundFragmentID>
+                        <FragmentID>1</FragmentID>
+                        <Code>1</Code>
+                        <Name>Hydrochloride</Name>
+                        <FragmentTypeID lookupTable="FragmentType" lookupField="ID" displayField="Description" displayValue="Salt">1</FragmentTypeID>
+                        <DateCreated>2009-06-30 06:02:31 am</DateCreated>
+                        <DateLastModified>2009-06-30 06:02:31 am</DateLastModified>
+                        <Equivalents />
+                        <Structure>
+                            <StructureFormat />
+                            <Structure molWeight="36.46094" formula="ClH">VmpD</Structure>
                         </Structure>
                     </Fragment>
                 </FragmentList>
                 <IdentifierList>
                     <Identifier>
-                        <IdentifierID Name="Chemical Name" Active="T">4</IdentifierID>
+                        <ID>2721</ID>
+                        <IdentifierID Description="Chemical Name" Name="Chemical Name" Active="T">4</IdentifierID>
                         <InputText>Name x</InputText>
-                        <OrderIndex>1</OrderIndex>
                     </Identifier>
                     <Identifier>
-                        <IdentifierID Name="Synonym" Active="T">2</IdentifierID>
+                        <ID>2722</ID>
+                        <IdentifierID Description="Synonym" Name="Synonym" Active="T">2</IdentifierID>
                         <InputText>Syn 1</InputText>
-                        <OrderIndex>2</OrderIndex>
                     </Identifier>
                 </IdentifierList>
+            </Compound>
+        </Component>
+        <Component>
+            <ID />
+            <ComponentIndex>-1042</ComponentIndex>
+            <Compound>
+                <CompoundID>1042</CompoundID>
+                <DateCreated>2017-02-15 04:16:15 am</DateCreated>
+                <PersonCreated>2</PersonCreated>
+                <PersonApproved>2</PersonApproved>
+                <PersonRegistered>2</PersonRegistered>
+                <DateLastModified>2017-02-15 04:16:15 am</DateLastModified>
+                <Tag />
+                <PropertyList>
+                    <Property name="CMP_COMMENTS" friendlyName="CMP_COMMENTS" type="TEXT" precision="200" sortOrder="0">
+                        <validationRuleList>
+                            <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters">
+                                <params>
+                                    <param name="min" value="0" />
+                                    <param name="max" value="200" />
+                                </params>
+                            </validationRule>
+                        </validationRuleList>
+                    </Property>
+                    <Property name="STRUCTURE_COMMENTS_TXT" friendlyName="STRUCTURE_COMMENTS_TXT" type="TEXT" precision="200" sortOrder="1">
+                        <validationRuleList>
+                            <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters">
+                                <params>
+                                    <param name="min" value="0" />
+                                    <param name="max" value="200" />
+                                </params>
+                            </validationRule>
+                        </validationRuleList>
+                    </Property>
+                </PropertyList>
+                <RegNumber>
+                    <RegID>2023</RegID>
+                    <SequenceNumber>56</SequenceNumber>
+                    <RegNumber>AB-000056</RegNumber>
+                    <SequenceID>1</SequenceID>
+                </RegNumber>
+                <CanPropogateComponentEdits>True</CanPropogateComponentEdits>
+                <BaseFragment>
+                    <Structure>
+                        <StructureID>2003</StructureID>
+                        <StructureFormat />
+                        <Structure molWeight="167.20656" formula="C12H9N">VmpD</Structure>
+                        <NormalizedStructure />
+                        <UseNormalization>F</UseNormalization>
+                        <DrawingType>0</DrawingType>
+                        <CanPropogateStructureEdits>True</CanPropogateStructureEdits>
+                        <PropertyList>
+                            <Property name="STRUCT_COMMENTS" friendlyName="STRUCT_COMMENTS" type="TEXT" precision="200" sortOrder="0">
+                                <validationRuleList>
+                                    <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 200 characters">
+                                        <params>
+                                            <param name="min" value="0" />
+                                            <param name="max" value="200" />
+                                        </params>
+                                    </validationRule>
+                                </validationRuleList>
+                            </Property>
+                            <Property name="STRUCT_NAME" friendlyName="STRUCT_NAME" type="TEXT" precision="2000" sortOrder="1">
+                                <validationRuleList>
+                                    <validationRule validationRuleName="textLength" errorMessage="The property value can have between 0 and 2000 characters">
+                                        <params>
+                                            <param name="min" value="0" />
+                                            <param name="max" value="2000" />
+                                        </params>
+                                    </validationRule>
+                                </validationRuleList>1H-cyclopenta[c]isoquinoline
+                            </Property>
+                        </PropertyList>
+                        <IdentifierList />
+                    </Structure>
+                </BaseFragment>
+                <FragmentList />
+                <IdentifierList />
             </Compound>
         </Component>
     </ComponentList>
     <BatchList>
         <Batch>
-            <BatchID>83</BatchID>
-            <BatchNumber>0</BatchNumber>
-            <DateCreated>2017-02-02 04:40:17 AM</DateCreated>
-            <PersonCreated>2</PersonCreated>
-            <PersonApproved />
-            <DateLastModified>2017-02-02 04:40:17 AM</DateLastModified>
-            <StatusID>1</StatusID>
+            <BatchID>1881</BatchID>
+            <BatchNumber>1</BatchNumber>
+            <FullRegNumber>1881</FullRegNumber>
+            <DateCreated>2017-02-15</DateCreated>
+            <PersonCreated displayName="CSSADMIN">2</PersonCreated>
+            <PersonApproved displayName="CSSADMIN">2</PersonApproved>
+            <PersonRegistered displayName="CSSADMIN">2</PersonRegistered>
+            <DateLastModified>2017-02-15</DateLastModified>
+            <StatusID>3</StatusID>
+            <IsBatchEditable>True</IsBatchEditable>
             <ProjectList />
             <IdentifierList />
             <PropertyList>
-                <Property name="SCIENTIST_ID" friendlyName="SCIENTIST_ID" type="PICKLISTDOMAIN" precision="" pickListDomainID="3" pickListDisplayValue="" sortOrder="0">
-                    <validationRuleList />2\n    
+                <Property name="SCIENTIST_ID" friendlyName="SCIENTIST_ID" type="PICKLISTDOMAIN" precision="" pickListDomainID="3" pickListDisplayValue="CSSADMIN" sortOrder="0">
+                    <validationRuleList />2
                 </Property>
                 <Property name="CREATION_DATE" friendlyName="CREATION_DATE" type="DATE" precision="" sortOrder="1">
-                    <validationRuleList />2017-02-02 12:00:00 PM\n    
+                    <validationRuleList />2017-02-02
                 </Property>
                 <Property name="NOTEBOOK_TEXT" friendlyName="NOTEBOOK_TEXT" type="TEXT" precision="100" sortOrder="2">
                     <validationRuleList>
@@ -276,7 +385,7 @@
                                 <param name="decimalPart" value="6" />
                             </params>
                         </validationRule>
-                    </validationRuleList>442.54816\n    
+                    </validationRuleList>510.47942
                 </Property>
                 <Property name="BATCH_FORMULA" friendlyName="BATCH_FORMULA" type="TEXT" precision="200" sortOrder="13">
                     <validationRuleList>
@@ -286,7 +395,7 @@
                                 <param name="max" value="200" />
                             </params>
                         </validationRule>
-                    </validationRuleList>C9H12N2OS·1C7H8O3S·1C3H6O2\n    
+                    </validationRuleList>C9H12N2OS·2ClH·1C3H6O2 C12H9N
                 </Property>
                 <Property name="PERCENT_ACTIVE" friendlyName="PERCENT_ACTIVE" type="NUMBER" precision="5.2" sortOrder="14">
                     <validationRuleList>
@@ -302,16 +411,17 @@
                                 <param name="max" value="100" />
                             </params>
                         </validationRule>
-                    </validationRuleList>44.35\n    
+                    </validationRuleList>100
                 </Property>
             </PropertyList>
             <BatchComponentList>
                 <BatchComponent>
-                    <ID />
-                    <BatchID>83</BatchID>
-                    <CompoundID>63</CompoundID>
-                    <ComponentIndex>-63</ComponentIndex>
-                    <ComponentRegNum />
+                    <ID>1861</ID>
+                    <BatchID>1881</BatchID>
+                    <CompoundID>1041</CompoundID>
+                    <MixtureComponentID>1041</MixtureComponentID>
+                    <ComponentIndex>-1041</ComponentIndex>
+                    <ComponentRegNum>C000946</ComponentRegNum>
                     <PropertyList>
                         <Property name="PERCENTAGE" friendlyName="PERCENTAGE" type="NUMBER" precision="5.2" sortOrder="0">
                             <validationRuleList>
@@ -332,18 +442,45 @@
                     </PropertyList>
                     <BatchComponentFragmentList>
                         <BatchComponentFragment>
-                            <ID>0</ID>
-                            <FragmentID update="yes">23</FragmentID>
-                            <Equivalents>1</Equivalents>
-                            <OrderIndex>1</OrderIndex>
-                        </BatchComponentFragment>
-                        <BatchComponentFragment insert="yes">
-                            <ID>0</ID>
+                            <ID>21</ID>
+                            <CompoundFragmentID>23</CompoundFragmentID>
                             <FragmentID>1032</FragmentID>
                             <Equivalents>1</Equivalents>
-                            <OrderIndex>2</OrderIndex>
+                        </BatchComponentFragment>
+                        <BatchComponentFragment>
+                            <ID>22</ID>
+                            <CompoundFragmentID>24</CompoundFragmentID>
+                            <FragmentID>1</FragmentID>
+                            <Equivalents>2</Equivalents>
                         </BatchComponentFragment>
                     </BatchComponentFragmentList>
+                </BatchComponent>
+                <BatchComponent>
+                    <ID>1862</ID>
+                    <BatchID>1881</BatchID>
+                    <CompoundID>1042</CompoundID>
+                    <MixtureComponentID>1042</MixtureComponentID>
+                    <ComponentIndex>-1042</ComponentIndex>
+                    <ComponentRegNum>AB-000056</ComponentRegNum>
+                    <PropertyList>
+                        <Property name="PERCENTAGE" friendlyName="PERCENTAGE" type="NUMBER" precision="5.2" sortOrder="0">
+                            <validationRuleList>
+                                <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits">
+                                    <params>
+                                        <param name="integerPart" value="3" />
+                                        <param name="decimalPart" value="2" />
+                                    </params>
+                                </validationRule>
+                                <validationRule validationRuleName="numericRange">
+                                    <params>
+                                        <param name="min" value="0" />
+                                        <param name="max" value="100" />
+                                    </params>
+                                </validationRule>
+                            </validationRuleList>
+                        </Property>
+                    </PropertyList>
+                    <BatchComponentFragmentList />
                 </BatchComponent>
             </BatchComponentList>
         </Batch>
@@ -353,8 +490,9 @@
             <Event eventName="Inserting" eventHandler="OnInsertHandler" />
             <Event eventName="Updating" eventHandler="OnUpdateHandler" />
             <AddInConfiguration>
-                <ScriptFile>C:\\Program Files\\CambridgeSoft\\ChemOfficeEnterprise12.1.0.0\\Registration\\PythonScripts\\parentscript.py</ScriptFile>
-                <!--Commented <PythonWebServiceURL> to bypass soap\n\t\t\t<PythonWebServiceURL>http://localhost/PyEngine/Service.asmx</PythonWebServiceURL> -->
+                <ScriptFile>C:\Program Files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\Registration\PythonScripts\parentscript.py</ScriptFile>
+                <!--Commented <PythonWebServiceURL> to bypass soap
+			<PythonWebServiceURL>http://localhost/PyEngine/Service.asmx</PythonWebServiceURL> -->
                 <StructuresIdsToAvoid>-2|-3|</StructuresIdsToAvoid>
             </AddInConfiguration>
         </AddIn>
