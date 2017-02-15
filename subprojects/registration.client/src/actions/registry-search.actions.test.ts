@@ -19,8 +19,10 @@ describe('registry action creators', () => {
   });
 
   it('search should dispatch SEARCH_RECORDS action', () => {
+    const data = { temporary: true, history: false, id: 0 };
     const expectedAction = {
-      type: RegistrySearchActions.SEARCH_RECORDS
+      type: RegistrySearchActions.SEARCH_RECORDS,
+      payload: data
     };
 
     spyOn(mockRedux, 'dispatch');
