@@ -1,9 +1,6 @@
+import { IAppState } from '../../store';
+import { FormGroupType, CFormGroup, CFormElement } from '../../common';
 export const REGISTRY_SEARCH_DESC_LIST = [{
-  dataField: 'PersonCreated',
-  label: { text: 'Created By' },
-  dataType: 'string',
-  editorType: 'dxSelectBox',
-}, {
   dataField: 'RegNumber',
   label: { text: 'Registry Number' },
   dataType: 'string',
@@ -22,16 +19,6 @@ export const REGISTRY_SEARCH_DESC_LIST = [{
   label: { text: 'Sequence Number' },
   dataType: 'string',
 }, {
-  dataField: 'PREFIX',
-  label: { text: 'Prefix' },
-  dataType: 'string',
-  editorType: 'dxSelectBox',
-}, {
-  dataField: 'REGISTRY_PROJECT',
-  label: { text: 'Registry Project Name' },
-  dataType: 'string',
-  editorType: 'dxSelectBox',
-}, {
   dataField: 'MolWeight',
   label: { text: 'MW' },
   dataType: 'string',
@@ -39,11 +26,6 @@ export const REGISTRY_SEARCH_DESC_LIST = [{
   dataField: 'Formula',
   label: { text: 'MF' },
   dataType: 'string',
-}, {
-  dataField: 'IDENTIFIERTYPE',
-  label: { text: 'Registry Identifier' },
-  dataType: 'string',
-  editorType: 'dxSelectBox',
 }, {
   dataField: 'IdentifierValue',
   label: { text: 'Value' },
@@ -60,6 +42,25 @@ export const REGISTRY_SEARCH_DESC_LIST = [{
   editorType: 'dxFileUploader',
 }
 ];
+
+export class CRegSearch {
+  ID?: Number; // 921
+  PersonCreated?: String;
+  RegNumber?: String;
+  STARTDATECREATED?: String;
+  ENDDATECREATED?: String;
+  SeqNumber?: String;
+  PREFIX?: String;
+  REGISTRY_PROJECT?: String;
+  MolWeight?: String;
+  MF?: String;
+  IDENTIFIERTYPE?: String;
+  IdentifierValue?: String;
+  REG_COMMENTS?: String;
+  SDF_upload?: String;
+  PropertyList?: CPropertyList;
+  ProjectList?: CProjectList;
+}
 
 export class CRegSearchVM {
   personCreated?: Number;
@@ -80,7 +81,7 @@ export class CRegSearchVM {
   registryComments?: String;
   sdfFile?: File;
   columns: any[] = [];
-  constructor(propertyList?: CPropertyList) {
+  constructor(m: CRegSearch, state: IAppState, propertyList?: CPropertyList) {
     this.columns.push(REGISTRY_SEARCH_DESC_LIST);
     if (REGISTRY_SEARCH_DESC_LIST) {
       REGISTRY_SEARCH_DESC_LIST.forEach(p => {
@@ -96,11 +97,61 @@ export class CRegSearchVM {
         }
       });
     }
+    this.columns.splice(0, 0, {
+      dataField: 'PersonCreated',
+      label: { text: 'Created By' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
+        valueExpr: 'PERSONID',
+        displayExpr: 'USERID'
+      }
+    });
+
+    this.columns.splice(4, 0, {
+      dataField: 'PREFIX',
+      label: { text: 'Prefix' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.sequences.filter(i => (i.TYPE === 'R' || i.TYPE === 'A')) : [],
+        valueExpr: 'SEQUENCEID',
+        displayExpr: 'PREFIX'
+      }
+    });
+
+    this.columns.splice(7, 0, {
+      dataField: 'REGISTRY_PROJECT',
+      label: { text: 'Registry Project Name' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.projects.filter(i => ((i.TYPE === 'R' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F'))) : [],
+        valueExpr: 'PROJECTID',
+        displayExpr: 'NAME'
+      }
+    });
+
+    this.columns.splice(10, 0, {
+      dataField: 'IDENTIFIERTYPE',
+      label: { text: 'Registry Identifier' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.identifierTypes.filter(i => ((i.TYPE === 'R' || i.TYPE === 'A') && i.ACTIVE === 'T')) : [],
+        displayExpr: 'NAME',
+        valueExpr: 'ID',
+      }
+    });
   }
 }
 
 export class CRegIdentifierList {
-  Project: CRegIdentifier[] = [];
+  Identifier: CRegIdentifier[] = [];
 }
 
 export class CRegIdentifier {
@@ -109,7 +160,7 @@ export class CRegIdentifier {
 }
 
 export class CPersonCreatedList {
-  Project: CPersonCreated[] = [];
+  Created: CPersonCreated[] = [];
 }
 
 export class CPersonCreated {
@@ -118,7 +169,7 @@ export class CPersonCreated {
 }
 
 export class CPrefixList {
-  Project: CPrefix[] = [];
+  Prefix: CPrefix[] = [];
 }
 
 export class CPrefix {
@@ -182,11 +233,13 @@ export const STRUCTURE_SEARCH_DESC_LIST = [{
   dataType: 'string',
   editorType: 'dxTextArea',
 }];
-
+export class CStructureSearch {
+  StructureComments?: String;
+}
 export class CStructureSearchVM {
   structureComments?: String;
   columns: any[] = [];
-  constructor(propertyList?: CPropertyList) {
+  constructor(m: CStructureSearch, state: IAppState, propertyList?: CPropertyList) {
     this.columns.push(STRUCTURE_SEARCH_DESC_LIST);
     if (STRUCTURE_SEARCH_DESC_LIST) {
       STRUCTURE_SEARCH_DESC_LIST.forEach(p => {
@@ -210,11 +263,6 @@ export const COMPONENT_SEARCH_DESC_LIST = [{
   label: { text: 'Component ID' },
   dataType: 'string'
 }, {
-  dataField: 'IDENTIFIERTYPE',
-  label: { text: 'Component Identifier' },
-  dataType: 'string',
-  editorType: 'dxSelectBox'
-}, {
   dataField: 'IdentifierValue',
   label: { text: 'Value' },
   dataType: 'string'
@@ -234,8 +282,15 @@ export const COMPONENT_SEARCH_DESC_LIST = [{
   editorType: 'dxTextArea'
 }
 ];
-
-export class CCompoundSearchVM {
+export class CComponentSearch {
+  COMPONENTID: String;
+  IDENTIFIERTYPE: String;
+  IdentifierValue: String;
+  CHEM_NAME_AUTOGEN: String;
+  CMP_COMMENTS: String;
+  STRUCTURE_COMMENTS_TXT: String;
+}
+export class CComponentSearchVM {
   componentID?: String;
   identifierType?: Number;
   IdentifierValue?: String;
@@ -244,7 +299,7 @@ export class CCompoundSearchVM {
   cmpComments: String;
   structureComments: String;
   columns: any[] = [];
-  constructor(propertyList?: CPropertyList) {
+  constructor(m: CComponentSearch, state: IAppState, propertyList?: CPropertyList) {
     this.columns.push(COMPONENT_SEARCH_DESC_LIST);
     if (COMPONENT_SEARCH_DESC_LIST) {
       COMPONENT_SEARCH_DESC_LIST.forEach(p => {
@@ -260,6 +315,20 @@ export class CCompoundSearchVM {
         }
       });
     }
+
+    this.columns.splice(2, 0, {
+      dataField: 'IDENTIFIERTYPE',
+      label: { text: 'Component Identifier' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.identifierTypes.filter(i => ((i.TYPE === 'C' || i.TYPE === 'A') && i.ACTIVE === 'T')) : [],
+        displayExpr: 'NAME',
+        valueExpr: 'ID',
+      }
+    });
+
   }
 }
 
@@ -292,21 +361,6 @@ export const BATCH_SEARCH_DESC_LIST = [{
   dataType: 'string',
   editorType: 'dxDateBox',
 }, {
-  dataField: 'BATCH_PROJECT',
-  label: { text: 'Batch Project Name' },
-  dataType: 'string',
-  editorType: 'dxSelectBox',
-}, {
-  dataField: 'PERSONCREATED',
-  label: { text: 'Created By' },
-  dataType: 'string',
-  editorType: 'dxSelectBox',
-}, {
-  dataField: 'SCIENTIST_ID',
-  label: { text: 'Scientist' },
-  dataType: 'string',
-  editorType: 'dxSelectBox',
-}, {
   dataField: 'START_CREATION_DATE',
   label: { text: 'Start Synthesis Date' },
   dataType: 'string',
@@ -320,11 +374,6 @@ export const BATCH_SEARCH_DESC_LIST = [{
   dataField: 'AMOUNT',
   label: { text: 'Amount' },
   dataType: 'string'
-}, {
-  dataField: 'AMOUNT_UNITS',
-  label: { text: 'Units' },
-  dataType: 'string',
-  editorType: 'dxSelectBox'
 }, {
   dataField: 'APPEARANCE',
   label: { text: 'Appearance' },
@@ -366,6 +415,29 @@ export const BATCH_SEARCH_DESC_LIST = [{
 }
 ];
 
+export class CBatchSearch {
+  BatchID: String;
+  FULLREGNUMBER: String;
+  START_DATECREATED: String;
+  END_DATECREATED: String;
+  BATCH_PROJECT: String;
+  PERSONCREATED: String;
+  SCIENTIST_ID: String;
+  START_CREATION_DATE: String;
+  END_CREATION_DATE: String;
+  AMOUNT: String;
+  AMOUNT_UNITS: String;
+  APPEARANCE: String;
+  PURITY: String;
+  PURITY_COMMENTS: String;
+  SAMPLEID: String;
+  SOLUBILITY: String;
+  BATCH_COMMENT: String;
+  STORAGE_REQ_AND_WARNINGS: String;
+  FORMULA_WEIGHT: String;
+  NotebookReference: String;
+}
+
 export class CBatchSearchVM {
   batchID: String;
   fullRegistryNumber: String;
@@ -393,7 +465,7 @@ export class CBatchSearchVM {
   noteBookReference?: Number;
   noteBookReferenceList?: CNoteBookReferenceList;
   columns: any[] = [];
-  constructor(propertyList?: CPropertyList) {
+  constructor(m: CBatchSearch, state: IAppState, propertyList?: CPropertyList) {
     this.columns.push(BATCH_SEARCH_DESC_LIST);
     if (BATCH_SEARCH_DESC_LIST) {
       BATCH_SEARCH_DESC_LIST.forEach(p => {
@@ -409,6 +481,70 @@ export class CBatchSearchVM {
         }
       });
     }
+
+    this.columns.splice(2, 0, {
+      dataField: 'IDENTIFIERTYPE',
+      label: { text: 'Component Identifier' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.identifierTypes.filter(i => ((i.TYPE === 'C' || i.TYPE === 'A') && i.ACTIVE === 'T')) : [],
+        displayExpr: 'NAME',
+        valueExpr: 'ID',
+      }
+    });
+
+    this.columns.splice(5, 0, {
+      dataField: 'BATCH_PROJECT',
+      label: { text: 'Batch Project Name' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.projects.filter(i => ((i.TYPE === 'B' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F'))) : [],
+        valueExpr: 'PROJECTID',
+        displayExpr: 'NAME'
+      }
+    });
+
+    this.columns.splice(7, 0, {
+      dataField: 'PERSONCREATED',
+      label: { text: 'Created By' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
+        valueExpr: 'PERSONID',
+        displayExpr: 'USERID'
+      }
+    });
+
+    this.columns.splice(8, 0, {
+      dataField: 'SCIENTIST_ID',
+      label: { text: 'Scientist' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
+        valueExpr: 'PERSONID',
+        displayExpr: 'USERID'
+      }
+    });
+
+    this.columns.splice(12, 0, {
+      dataField: 'AMOUNT_UNITS',
+      label: { text: 'Units' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.units : [],
+        valueExpr: 'ID',
+        displayExpr: 'UNIT'
+      }
+    });
+
   }
 }
 
@@ -469,9 +605,24 @@ export class CQueriesList {
   Items: CQueries[] = [];
 }
 
-export class CRegistrySearchVM {
-  registrySearch?: CRegSearchVM;
-  structureSearch?: CStructureSearchVM;
-  componentSearch?: CCompoundSearchVM;
-  batchSearch?: CBatchSearchVM;
+export class CSearchFormVM {
+  ID?: Number;
+  registrySearch?: CRegSearch;
+  structureSearch?: CStructureSearch;
+  componentSearch?: CComponentSearch;
+  batchSearch?: CBatchSearch;
+  registrySearchVM?: CRegSearchVM;
+  structureSearchVM?: CStructureSearchVM;
+  componentSearchVM?: CComponentSearchVM;
+  batchSearchVM?: CBatchSearchVM;
+  constructor(state: IAppState) {
+    this.registrySearch = new CRegSearch();
+    this.structureSearch = new CStructureSearch();
+    this.componentSearch = new CComponentSearch();
+    this.batchSearch = new CBatchSearch();
+    this.registrySearchVM = new CRegSearchVM(this.registrySearch, state);
+    this.structureSearchVM = new CStructureSearchVM(this.structureSearch, state);
+    this.componentSearchVM = new CComponentSearchVM(this.componentSearch, state);
+    this.batchSearchVM = new CBatchSearchVM(this.batchSearch, state);
+  }
 }
