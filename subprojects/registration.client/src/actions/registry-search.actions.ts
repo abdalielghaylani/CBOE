@@ -15,7 +15,7 @@ export class RegistrySearchActions {
   static RETRIEVE_QUERY_FORM_SUCCESS = 'RETRIEVE_QUERY_FORM_SUCCESS';
   static RETRIEVE_QUERY_FORM_ERROR = 'RETRIEVE_QUERY_FORM_ERROR';
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
-    (temporary: boolean, history?: boolean, id: Number) => (temporary));
+    (temporary: boolean, history: boolean, id: Number) => (temporary));
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
