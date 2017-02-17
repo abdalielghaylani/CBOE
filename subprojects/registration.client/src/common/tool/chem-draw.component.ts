@@ -11,9 +11,9 @@ import { basePath } from '../../configuration';
 @Component({
   selector: 'chem-draw-tool',
   styles: [`.cdContainer {
-            border:1px solid #e0e0eb;
+            border:5px solid #f0f0f0;
             height: 300px;
-            width: 640px;
+            width: 100%;
           }`],
   template: `
             <div class='cdContainer'>

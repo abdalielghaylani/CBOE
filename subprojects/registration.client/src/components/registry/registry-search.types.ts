@@ -60,6 +60,7 @@ export class CRegSearch {
   SDF_upload?: String;
   PropertyList?: CPropertyList;
   ProjectList?: CProjectList;
+  searchTypeValue?: String;
 }
 
 export class CRegSearchVM {
@@ -81,6 +82,7 @@ export class CRegSearchVM {
   registryComments?: String;
   sdfFile?: File;
   columns: any[] = [];
+  searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
   constructor(m: CRegSearch, state: IAppState, propertyList?: CPropertyList) {
     this.columns.push(REGISTRY_SEARCH_DESC_LIST);
     if (REGISTRY_SEARCH_DESC_LIST) {
@@ -592,8 +594,15 @@ function getPropertyColumn(p: CProperty): any {
 }
 
 export class CQueryManagementVM {
-  latestQueriesList?: CQueriesList;
-  savedQueriesList?: CQueriesList;
+  latestQueriesList?: CQueries[];
+  savedQueriesList?: CQueries[];
+  constructor() {
+    // mock data to be deleted
+    this.latestQueriesList = [{ ID: 1, Name: 'TEMP 17022017001' }, { ID: 2, Name: 'TEMP 17022017002' }, { ID: 3, Name: 'TEMP 17022017003 ' }];
+    this.savedQueriesList = [{ ID: 1, Name: 'SAVED 17022017001' }, { ID: 1, Name: 'SAVED 17022017002' }, { ID: 1, Name: 'SAVED 17022017003' }];
+    // mock data to be deleted
+
+  }
 }
 
 export class CQueries {
@@ -601,8 +610,74 @@ export class CQueries {
   Name?: String;
 }
 
-export class CQueriesList {
-  Items: CQueries[] = [];
+export const HITLIST_EDIT_DESC_LIST = [{
+  dataField: 'Name',
+  label: { text: 'Name' },
+  dataType: 'string',
+  editorType: 'dxTextBox',
+}, {
+  dataField: 'Description',
+  label: { text: 'Description' },
+  dataType: 'string',
+  editorType: 'dxTextArea',
+}, {
+  dataField: 'IsPublic',
+  label: { text: 'Is Public' },
+  dataType: 'boolean',
+  editorType: 'dxCheckBox',
+}
+];
+
+export class CManageHitlistVM {
+  editColumns: any[] = [];
+  items?: CQueries[];
+  hitlistValue?: String;
+  hitlistEdit?: boolean;
+  hitlistRestore?: boolean;
+  hitlistDelete?: boolean;
+  unionHitlist: boolean;
+  substractHitlist: boolean;
+  intersectHitlist: boolean;
+  replaceHitlist: boolean;
+  constructor(m: CQueryManagementVM) {
+    this.editColumns.push(HITLIST_EDIT_DESC_LIST);
+    if (HITLIST_EDIT_DESC_LIST) {
+      HITLIST_EDIT_DESC_LIST.forEach(p => {
+        this.editColumns.push(p);
+      });
+    }
+    this.items = m.latestQueriesList.concat(m.savedQueriesList);
+  }
+}
+
+export const PREFERENCES_LIST = [{
+  dataField: 'HitsCount',
+  label: { text: 'Hits per page' },
+  dataType: 'Number',
+  editorType: 'dxTextBox',
+}, {
+  dataField: 'FilterChildData',
+  text: 'Filter child data by search',
+  dataType: 'boolean',
+  editorType: 'dxCheckBox',
+}, {
+  dataField: 'HighlightSubStructure',
+  text: 'Highlight sub-structures',
+  dataType: 'boolean',
+  editorType: 'dxCheckBox',
+}
+];
+
+export class CPreferenceVM {
+  columns: any[] = [];
+  constructor() {
+    this.columns.push(PREFERENCES_LIST);
+    if (PREFERENCES_LIST) {
+      PREFERENCES_LIST.forEach(p => {
+        this.columns.push(p);
+      });
+    }
+  }
 }
 
 export class CSearchFormVM {
@@ -615,6 +690,9 @@ export class CSearchFormVM {
   structureSearchVM?: CStructureSearchVM;
   componentSearchVM?: CComponentSearchVM;
   batchSearchVM?: CBatchSearchVM;
+  queryManagementVM?: CQueryManagementVM;
+  hitlistVM?: CManageHitlistVM;
+  preferenceVM?: CPreferenceVM;
   constructor(state: IAppState) {
     this.registrySearch = new CRegSearch();
     this.structureSearch = new CStructureSearch();
@@ -624,5 +702,8 @@ export class CSearchFormVM {
     this.structureSearchVM = new CStructureSearchVM(this.structureSearch, state);
     this.componentSearchVM = new CComponentSearchVM(this.componentSearch, state);
     this.batchSearchVM = new CBatchSearchVM(this.batchSearch, state);
+    this.queryManagementVM = new CQueryManagementVM();
+    this.hitlistVM = new CManageHitlistVM(this.queryManagementVM);
+    this.preferenceVM = new CPreferenceVM();
   }
 }
