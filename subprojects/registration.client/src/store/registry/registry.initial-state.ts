@@ -96,7 +96,7 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   }]
 })();
 
-const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDetailRecord>({
+export const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDetailRecord>({
   temporary: true,
   id: -1,
   data: null,

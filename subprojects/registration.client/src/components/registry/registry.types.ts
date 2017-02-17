@@ -1,43 +1,19 @@
 import { IAppState } from '../../store';
 import { basePath } from '../../configuration';
-import { FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer } from '../../common';
+import {
+  FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
+  GroupSettingType, getSetting
+} from '../../common';
 
 export class FragmentData {
   FragmentID: number;
-  Code: number;
+  Code: string;
   FragmentType: string;
   Description: string;
   Structure: string;
   DateCreated: Date;
   DateLastModified: Date;
 }
-
-export const FRAGMENT_DESC_LIST = [{
-  dataField: 'FragmentID',
-  dataType: 'number',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'Code',
-  dataType: 'number',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'FragmentType',
-  dataType: 'string',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'Structure',
-  dataType: 'string',
-  editorOptions: { disabled: true }
-}, {
-  dataField: 'DateCreated',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'DateLastModified',
-  label: 'Last Modified Date',
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}];
 
 export class CParam {
   _name: String; // min
@@ -146,7 +122,9 @@ export class CBaseFragment {
 }
 
 export class CFragment {
-  Code?: Number;
+  FragmentID?: Number;
+  ComponentFragmentID?: Number;
+  Code?: String;
 }
 
 export class CFragmentList {
@@ -185,6 +163,7 @@ export class CComponentVM {
   regNumber?: String;
   identifierList?: CIdentifierVM[];
   fragmentList?: CFragment[];
+  batchComponentFragmentList?: CBatchComponentFragmentVM[] = [];
   columns: any[] = [];
   constructor(m: CComponent, container: IFormContainer) {
     let lookups = getLookups(container);
@@ -197,9 +176,7 @@ export class CComponentVM {
     this.personApproved = m.Compound.PersonApproved;
     this.regNumber = m.Compound.RegNumber ? m.Compound.RegNumber.RegNumber : undefined;
     this.identifierList = m.Compound.IdentifierList ? m.Compound.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
-    this.fragmentList = m.Compound.FragmentList.Fragment
-      ? m.Compound.FragmentList.Fragment.map(f => lookups.fragments.filter(d => +f.Code === +d.CODE)[0])
-      : [];
+    this.fragmentList = m.Compound.FragmentList.Fragment;
     // TODO: The built-in property view should also come from configuration
     this.columns.push({
       dataField: 'identifierList',
@@ -241,10 +218,6 @@ export class CComponentVM {
       itemType: 'group',
       caption: 'Component Information',
       items: []
-    }, {
-      itemType: 'group',
-      caption: 'Fragment Information',
-      items: []
     }];
     let coeForm = getCoeFormById(container.formGroup, SubFormType.CompoundCustomProperties);
     if (coeForm) {
@@ -254,67 +227,6 @@ export class CComponentVM {
         groupItem.caption = coeForm.title as string;
       }
     }
-    coeForm = getCoeFormById(container.formGroup, SubFormType.BatchComponentFragmentsForm);
-    if (coeForm) {
-      let groupItem = this.columns[1];
-      if (coeForm.title) {
-        groupItem.caption = coeForm.title as string;
-      }
-      groupItem.items = [{
-        dataField: 'fragmentList',
-        label: { text: 'Fragments', visible: false },
-        colSpan: 1,
-        template: function (d, itemElement) {
-          (jQuery('<div />')
-            .appendTo(itemElement) as any)
-            .dxDataGrid({
-              disabled: !container.editMode,
-              dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-              columns: [{
-                dataField: 'FRAGMENTTYPEID',
-                caption: 'Type',
-                editorType: 'dxSelectBox',
-                lookup: {
-                  dataSource: lookups ? lookups.fragmentTypes : [],
-                  displayExpr: 'DESCRIPTION',
-                  valueExpr: 'ID'
-                },
-                width: 80
-              }, {
-                dataField: 'STRUCTURE',
-                caption: 'Structure',
-                width: 150,
-                cellTemplate: function(c, o) {
-                  jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
-                }
-              }, {
-                dataField: 'CODE',
-                caption: 'Code',
-                width: 50
-              }, {
-                dataField: 'DESCRIPTION',
-                caption: 'Description'
-              }, {
-                dataField: 'MOLWEIGHT',
-                caption: 'MW',
-                width: 100
-              }, {
-                dataField: 'FORMULA',
-                caption: 'MF'
-              }],
-              editing: {
-                mode: 'row',
-                allowUpdating: true,
-                allowDeleting: true,
-                allowAdding: true
-              },
-              onCellPrepared: function (e) {
-                onCellPrepared(e);
-              }
-            });
-        }
-      }];
-    }
   }
 }
 
@@ -322,16 +234,47 @@ export class CComponentList {
   Component: CComponent[] = [new CComponent()];
 }
 
-export class CFragmentID {
-  _update?: String;
-  __text?: String;
-}
-
 export class CBatchComponentFragment {
   ID?: Number;
-  FragmentID?: CFragmentID;
+  FragmentID?: Number;
+  ComponentFragmentID?: Number;
   Equivalents?: Number;
   OrderIndex?: Number;
+}
+
+export class CBatchComponentFragmentVM {
+  batch: CBatchVM;
+  component: CComponentVM;
+  fragment: any;
+  equivalents?: Number;
+  fragmentId?: Number;
+  fragmentTypeId?: Number;
+  code?: String;
+  structure?: String;
+  description?: String;
+  molWeight?: Number;
+  formula?: String;
+  columns?: any[] = [];
+  constructor(
+    m: CBatchComponentFragment,
+    batch: CBatchVM,
+    components: CComponentVM[],
+    container: IFormContainer) {
+    let lookups = getLookups(container);
+    this.batch = batch;
+    this.component = components.length === 1
+      ? components[0]
+      : components.find(cvm => !cvm.fragmentList.find(f => +f.ComponentFragmentID === +m.ComponentFragmentID));
+    this.fragment = lookups ? lookups.fragments.find(f => +f.FRAGMENTID === +m.FragmentID) : {};
+    this.fragmentId = this.fragment.FRAGMENTID;
+    this.fragmentTypeId = this.fragment.FRAGMENTTYPEID;
+    this.code = this.fragment.CODE;
+    this.structure = this.fragment.STRUCTURE;
+    this.description = this.fragment.DESCRIPTION;
+    this.molWeight = this.fragment.MOLWEIGHT;
+    this.formula = this.fragment.FORMULA;
+    this.equivalents = +m.Equivalents;
+  }
 }
 
 export class CBatchComponentFragmentList {
@@ -387,6 +330,7 @@ export class CBatchVM {
   statusId?: Number;
   identifierList?: CIdentifierVM[] = [];
   projectList?: number[] = [];
+  batchComponentFragmentList?: CBatchComponentFragmentVM[] = [];
   columns?: any[] = [];
   constructor(m: CBatch, container: IFormContainer) {
     this.id = m.BatchID;
@@ -399,25 +343,32 @@ export class CBatchVM {
     this.personRegistered = m.PersonRegistered ? +m.PersonRegistered.__text : undefined;
     this.statusId = m.StatusID;
     this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
-    this.columns.push({
+    this.columns = [{
+      itemType: 'group',
+      caption: 'Batch Information',
+      colCount: 2,
+      items: []
+    }];
+    let groupItem = this.columns[0];
+    groupItem.items.push({
       dataField: 'id',
       dataType: 'number',
       label: { text: 'Batch ID' },
       editorOptions: { disabled: true }
     });
-    this.columns.push({
+    groupItem.items.push({
       dataField: 'dateCreated',
       dataType: 'date',
       label: { text: 'Date Created' },
       editorOptions: { disabled: true }
     });
-    this.columns.push({
+    groupItem.items.push({
       dataField: 'dateLastModified',
       dataType: 'date',
       label: { text: 'Last Modification Date' },
       editorOptions: { disabled: true }
     });
-    buildPropertyList(this, this.columns, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.BatchCustomProperties), container);
+    buildPropertyList(this, groupItem.items, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.BatchCustomProperties), container);
     if (m.ProjectList) {
       this.projectList = [];
       m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
@@ -571,14 +522,133 @@ export class CRegistryRecordVM {
           });
       },
     });
+    let batchComponentFragmentList: CBatchComponentFragmentVM[] = [];
     buildPropertyList(this, this.columns, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.RegistryCustomProperties), container);
     if (m.ComponentList) {
       this.componentList = m.ComponentList.Component.map(c => new CComponentVM(c, container));
     }
     if (m.BatchList) {
       this.batchList = m.BatchList.Batch.map(b => new CBatchVM(b, container));
+      // Build the batch component fragment list
+      // A batch component fragment is associated with a batch
+      // and points to component fragment, and fragment id.
+      // From this one should extract:
+      // 1. Batch ID
+      // 2. Component
+      // 3. Fragment ID and all other fragment data from Fragments tables
+      // 4. Equivalents
+      m.BatchList.Batch.forEach(b => {
+        if (batchComponentFragmentList && b.BatchComponentList) {
+          b.BatchComponentList.BatchComponent.forEach(bc => {
+            if (bc.BatchComponentFragmentList) {
+              bc.BatchComponentFragmentList.BatchComponentFragment.forEach(bcf =>
+                batchComponentFragmentList.push(
+                  new CBatchComponentFragmentVM(
+                    bcf,
+                    this.batchList.find(bvm => bvm.id === b.BatchID),
+                    this.componentList, container)
+                )
+              );
+            }
+          });
+        }
+      });
+    }
+
+    // Depending on the SBI setting of SBI, add the list to component or batch
+    if (m._SameBatchesIdentity && m._SameBatchesIdentity === 'True') {
+      this.componentList.forEach(cvm => {
+        cvm.batchComponentFragmentList = batchComponentFragmentList.filter(bcf => bcf.component === cvm);
+        cvm.columns.push(buildBatchCompoundFragmentGroup(container));
+      });
+    } else {
+      this.batchList.forEach(bvm => {
+        bvm.batchComponentFragmentList = batchComponentFragmentList.filter(bcf => bcf.batch === bvm);
+        bvm.columns.push(buildBatchCompoundFragmentGroup(container));
+      });
     }
   }
+}
+
+/**
+ * Build the form group contents for batch compound fragments
+ */
+function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
+  let groupItem = {
+    itemType: 'group',
+    caption: 'Fragment Information',
+    items: []
+  };
+  let lookups = getLookups(container);
+  let coeForm = getCoeFormById(container.formGroup, SubFormType.BatchComponentFragmentsForm);
+  if (coeForm) {
+    if (coeForm.title) {
+      groupItem.caption = coeForm.title as string;
+    }
+    groupItem.items = [{
+      dataField: 'batchComponentFragmentList',
+      label: { text: 'Fragments', visible: false },
+      colSpan: 1,
+      template: function (d, itemElement) {
+        (jQuery('<div />')
+          .appendTo(itemElement) as any)
+          .dxDataGrid({
+            disabled: !container.editMode,
+            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
+            columns: [{
+              dataField: 'fragmentTypeId',
+              caption: 'Type',
+              editorType: 'dxSelectBox',
+              lookup: {
+                dataSource: lookups ? lookups.fragmentTypes : [],
+                displayExpr: 'DESCRIPTION',
+                valueExpr: 'ID'
+              },
+              width: 80
+            }, {
+              dataField: 'equivalents',
+              caption: 'Equivalent',
+              width: 120
+            }, {
+              dataField: 'code',
+              caption: 'Code',
+              width: 50
+            }, {
+              dataField: 'structure',
+              caption: 'Structure',
+              allowEditing: false,
+              width: 150,
+              cellTemplate: function (c, o) {
+                jQuery(`<img src="${basePath}api/StructureImage/${o.data.structure}" />`).appendTo(c);
+              }
+            }, {
+              dataField: 'description',
+              caption: 'Description',
+              allowEditing: false
+            }, {
+              dataField: 'molWeight',
+              caption: 'MW',
+              allowEditing: false,
+              width: 100
+            }, {
+              dataField: 'formula',
+              caption: 'MF',
+              allowEditing: false
+            }],
+            editing: {
+              mode: 'row',
+              allowUpdating: true,
+              allowDeleting: true,
+              allowAdding: true
+            },
+            onCellPrepared: function (e) {
+              onCellPrepared(e);
+            }
+          });
+      }
+    }];
+  }
+  return groupItem;
 }
 
 function onCellPrepared(e) {

@@ -1,5 +1,5 @@
 import { RegistryActions, RecordDetailActions, IPayloadAction } from '../../actions';
-import { INITIAL_STATE } from './registry.initial-state';
+import { INITIAL_STATE, INITIAL_RECORD_DETAIL } from './registry.initial-state';
 import { IRegistryRecord, IRecordDetail, IRecords } from './registry.types';
 
 export function registryReducer(
@@ -20,6 +20,9 @@ export function registryReducer(
     case RegistryActions.OPEN_RECORDS_SUCCESS:
       let a2 = action as ReduxActions.Action<IRecords>;
       return state.updateIn(recordsPath(a2.payload.temporary), () => a2.payload.rows);
+
+    case RecordDetailActions.CLEAR_RECORD:
+      return state.update('currentRecord', () => INITIAL_RECORD_DETAIL);
 
     case RecordDetailActions.RETRIEVE_RECORD_SUCCESS:
       let a3 = action as ReduxActions.Action<IRecordDetail>;

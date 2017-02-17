@@ -5,6 +5,7 @@ import { IRecordDetail, IAppState } from '../store';
 
 @Injectable()
 export class RecordDetailActions {
+  static CLEAR_RECORD = 'CLEAR_RECORD';
   static RETRIEVE_RECORD = 'RETRIEVE_RECORD';
   static RETRIEVE_RECORD_SUCCESS = 'RETRIEVE_RECORD_SUCCESS';
   static RETRIEVE_RECORD_ERROR = 'RETRIEVE_RECORD_ERROR';
@@ -20,6 +21,7 @@ export class RecordDetailActions {
   static LOAD_STRUCTURE = 'LOAD_STRUCTURE';
   static LOAD_STRUCTURE_SUCCESS = 'LOAD_STRUCTURE_SUCCESS';
   static LOAD_STRUCTURE_ERROR = 'LOAD_STRUCTURE_ERROR';
+  static clearRecordAction = createAction(RecordDetailActions.CLEAR_RECORD);
   static retrieveRecordAction = createAction(RecordDetailActions.RETRIEVE_RECORD,
     (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveRecordSuccessAction = createAction(RecordDetailActions.RETRIEVE_RECORD_SUCCESS);
@@ -38,6 +40,10 @@ export class RecordDetailActions {
   static loadStructureErrorAction = createAction(RecordDetailActions.LOAD_STRUCTURE_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
+
+  clearRecord() {
+    this.ngRedux.dispatch(RecordDetailActions.clearRecordAction());
+  }
 
   retrieveRecord(temporary: boolean, id: number) {
     this.ngRedux.dispatch(RecordDetailActions.retrieveRecordAction(temporary, id));

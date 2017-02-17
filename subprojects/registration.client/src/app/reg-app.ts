@@ -31,9 +31,9 @@ import 'bootstrap/dist/js/bootstrap.min.js';
   // Allow app to define global styles.
   encapsulation: ViewEncapsulation.None,
   styles: [
+    require('./reg-app.css'),
     require('../styles/index.css'),
     require('../styles/colors.css'),
-    require('./reg-app.css'),
     require('bootstrap/dist/css/bootstrap.min.css'),
     require('font-awesome/css/font-awesome.min.css'),
     require('devextreme/dist/css/dx.common.css'),

@@ -17,7 +17,7 @@ import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
 import { CFormGroup, prepareFormGroupData, notify } from '../../common';
-import { CRegistryRecord, CRegistryRecordVM, FragmentData, FRAGMENT_DESC_LIST } from './registry.types';
+import { CRegistryRecord, CRegistryRecordVM, FragmentData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData } from '../../common';
@@ -46,7 +46,6 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
   private recordDoc: Document;
   private regRecord: CRegistryRecord = new CRegistryRecord();
   private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
-  private fragmentItems: any;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
 
@@ -76,6 +75,7 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
     if (this.loadSubscription) {
       this.loadSubscription.unsubscribe();
     }
+    this.actions.clearRecord();
   }
 
   loadData(data: IRecordDetail) {
@@ -122,9 +122,6 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
     this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
     this.loadSubscription = this.structureData$.subscribe((value: string) => this.loadCdxml(value));
-    this.fragmentItems = FRAGMENT_DESC_LIST;
-    this.temporary = data.temporary;
-    this.id = data.id;
     this.changeDetector.markForCheck();
   }
 

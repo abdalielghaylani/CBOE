@@ -15,6 +15,7 @@ function fixStructureElements(elements: NodeListOf<Element>) {
     fixStructureElement(elements.item(i));
   }
 }
+
 export function fixStructureData(data: Document) {
   fixStructureElements(data.getElementsByTagName('Structure'));
   fixStructureElements(data.getElementsByTagName('StructureAggregation'));
