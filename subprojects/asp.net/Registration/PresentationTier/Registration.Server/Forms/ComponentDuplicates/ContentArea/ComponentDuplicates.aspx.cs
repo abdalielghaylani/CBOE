@@ -13,7 +13,7 @@ using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
 using Resources;
 using Csla.Validation;
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+using CS = CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
@@ -263,7 +263,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates.ContentA
             get
             {
                 if (Session["DisplayCulture"] == null)
-                    Session["DisplayCulture"] = ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
+                    Session["DisplayCulture"] = CS.ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
                 return (string)Session["DisplayCulture"];
             }
         }
@@ -1422,7 +1422,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates.ContentA
         {
             try
             {
-                string databaseName = COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
+                string databaseName = CS.COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
                 e.BusinessObject = PickListNameValueList.GetPickListNameValueList(databaseName, "Status");
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
