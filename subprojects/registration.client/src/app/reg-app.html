@@ -73,12 +73,12 @@
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
     <circle-icon title="Review Temporary" color="green" iconName="table" routeLink="records/temp"></circle-icon>
   </li>
-  <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('records/') >= 0 && !(routerLink$ | async).endsWith('/temp')  ? 'selected' : '' !(routerLink$ | async).endsWith('/search')  ? 'selected' : '' }">
+  <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp')  ? 'selected' : '' !(routerLink$ | async).endsWith('/search')  ? 'selected' : '' }">
     <circle-icon title="Submit New Compound" color="teal" iconName="flask" routeLink="records/new">
     </circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('records') ? 'selected' : '' || (routerLink$ | async).endsWith('search') ? 'selected' : '' }}">
-    <circle-icon title="Search Registry" color="blue" iconName="search" routeLink="records/search">
+    <circle-icon title="Search Registry" color="blue" iconName="search" routeLink="records">
     </circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('configuration') > 0 ? 'selected' : '' }}">
