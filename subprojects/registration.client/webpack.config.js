@@ -84,10 +84,10 @@ const prodConfig = {
   devtool: 'source-map',
 };
 
-const serverHost = 'http://localhost';
+// const serverHost = 'http://localhost';
 // const serverHost = 'http://165.88.34.121';
 // const serverHost = 'http://165.88.130.57';
-// const serverHost = 'http://amc1262e14r6d17.pkiapps.net';
+const serverHost = 'http://amc1262e14r6d17.pkiapps.net';
 
 const proxySettings = {};
 proxySettings[basePath + 'api'] = {
