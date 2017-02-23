@@ -216,11 +216,12 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
     this.editMode = editMode;
     this.changeDetector.markForCheck();
     this.forms.forEach(f => {
-      // f.items.forEach(i => {
-      //   if (i.template) {
-      //     i.disabled = !editMode;
-      //   }
-      // });
+      f.items.forEach(i => {
+        if (i.template) {
+          i.disabled = !editMode;
+        }
+      });
+      f.readOnly = !editMode;
       f.instance.repaint();
     });
   }
