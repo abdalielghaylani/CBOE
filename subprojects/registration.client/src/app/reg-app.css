@@ -2,6 +2,11 @@
   cursor: pointer;
 }
 
+.dx-command-select {
+  width: 40px !important;
+  min-width: 40px !important;
+}
+
 .dx-form-group-caption {
   font-size: 18px !important;
   font-weight: 500;
