@@ -5,7 +5,7 @@ using System.Xml;
 using CambridgeSoft.COE.Registration.Services.AddIns;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COELoggingService;
-using ChemDrawControl14;
+using ChemDrawControl15;
 using System.Collections.Generic;
 
 namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins

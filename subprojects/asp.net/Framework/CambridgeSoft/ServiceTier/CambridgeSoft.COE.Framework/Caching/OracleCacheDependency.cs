@@ -47,12 +47,6 @@ namespace CambridgeSoft.COE.Framework.Caching
                 manageConnectionClosing = true;
             }
 
-            _dependency = new OracleDependency(_cmd);
-            _dependency.QueryBasedNotification = false;
-            _cmd.Notification.Timeout = 2400;
-
-            _dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
-
             if (_cmd.CommandText.ToLower().Contains("rowid"))
             {
                 // Fix Coverity: CID-28978 Resource leak
@@ -65,10 +59,20 @@ namespace CambridgeSoft.COE.Framework.Caching
                 }
             }
             else
+            {
+                _dependency = new OracleDependency(_cmd);
+                _dependency.QueryBasedNotification = false;
+                _cmd.Notification.Timeout = 2400;
+
+                _dependency.OnChange += new OnChangeEventHandler(dependency_OnChange);
                 _cmd.ExecuteNonQuery();
+            }
 
             if(manageConnectionClosing)
+            {
                 _cmd.Connection.Close();
+                _cmd.Connection.Dispose();
+            }
 
             
         }

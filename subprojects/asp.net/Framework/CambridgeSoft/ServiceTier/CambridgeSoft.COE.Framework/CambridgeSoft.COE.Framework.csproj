@@ -13,13 +13,13 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Framework.snk</AssemblyOriginatorKeyFile>
     <SccLocalPath>
-    </SccLocalPath>
+ 	</SccLocalPath>
     <SccAuxPath>
     </SccAuxPath>
     <SccProvider>
-    </SccProvider>
+ 	</SccProvider>
     <SccProjectName>
-    </SccProjectName>
+ 	</SccProjectName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -261,10 +261,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ChemDrawControl14, Version=14.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Interop.ChemDrawControl15">
+      <HintPath>..\..\CommonRuntimeLibraries\Interop.ChemDrawControl15.dll</HintPath>
       <EmbedInteropTypes>False</EmbedInteropTypes>
-      <HintPath>..\..\CommonRuntimeLibraries\Interop.ChemDrawControl14.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b36ca0e12e438b5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

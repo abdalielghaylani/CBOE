@@ -9,6 +9,7 @@ using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
 using CambridgeSoft.COE.Framework.COEDataViewService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.GUIShell;
+using Infragistics.WebUI.UltraWebGrid;
 
 public partial class AddSchemas : System.Web.UI.UserControl
 {
@@ -154,6 +155,7 @@ public partial class AddSchemas : System.Web.UI.UserControl
     #endregion
 
     #region Event Handlers
+
     protected void PublishSchemaButton_ButtonClicked(object sender, EventArgs e)
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
@@ -163,7 +165,7 @@ public partial class AddSchemas : System.Web.UI.UserControl
             && this.InstanceDropDownList.SelectedIndex > 0
             && this.SchemaDropDownList.SelectedIndex > 0)
         {
-            //First try to publish it, then lauch the add schemas event.
+            //First try to publish it, then launch the add schemas event.
             this.InstanceOfSchemaToAdd = this.InstanceDropDownList.SelectedValue;
             this.SchemaToAdd = this.SchemaDropDownList.SelectedValue;
             bool published = this.PublishSchema(this.SchemaToAdd);
@@ -187,6 +189,7 @@ public partial class AddSchemas : System.Web.UI.UserControl
                     ErrorOcurred(this, new EventArgs());
             }
         }
+
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
     
@@ -202,6 +205,27 @@ public partial class AddSchemas : System.Web.UI.UserControl
         }
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
+
+    protected void AuthorizeCheckBox_CheckedChanged(object sender, EventArgs e)
+    {
+        if (this.AuthorizeCheckBox.Checked)
+        {
+            this.PasswordTextBox.Enabled = true;
+            this.GranterUserRequiredField.Enabled = true;
+            this.GranterUserTextBox.Enabled = true;
+            this.PasswordRequiredField.Enabled = true;
+        }
+        else
+        {
+            this.PasswordTextBox.Enabled = false;
+            this.PasswordTextBox.Text = string.Empty;
+            this.GranterUserRequiredField.Enabled = false;
+            this.GranterUserTextBox.Enabled = false;
+            this.GranterUserTextBox.Text = string.Empty;
+            this.PasswordRequiredField.Enabled = false;
+        }
+    }
+
     #endregion
 
     #region Methods
@@ -210,19 +234,21 @@ public partial class AddSchemas : System.Web.UI.UserControl
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         this.AddSchemaTitleLabel.Text = Resources.Resource.AddSchema_Label_Text;
         this.SchemaNameTitleLabel.Text = Resources.Resource.Database_Label_Text;
+        this.GranterUserLabel.Text = Resources.Resource.GranterUser_Label_Text;
         this.PasswordTitleLabel.Text = Resources.Resource.Password_Label_Text;
         this.PublishSchemaButton.ButtonText = Resources.Resource.Publish_Button_Text;
         this.CancelImageButton.ButtonText = Resources.Resource.Cancel_Button_Text;
         this.PasswordRequiredField.ErrorMessage = Resources.Resource.PasswordRequired_Label_Text;
+        this.GranterUserRequiredField.ErrorMessage = Resources.Resource.GranterUserRequired_Label_Text;
         this.SchemaRequiredFieldValidator.ErrorMessage = Resources.Resource.SchemaRequired_LabelText;
-        this.PublishRelationshipsLabel.Text = Resources.Resource.PublishRelationships_Label_Text;
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
-    private bool PublishSchema(string databaseName)
+    private bool PublishSchema(string schemaName)
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
 
+        // UI setting validation
         if (this.InstanceDropDownList.Text == "Select data source" ||
             this.SchemaDropDownList.Text == "Select schema")
         {
@@ -232,74 +258,91 @@ public partial class AddSchemas : System.Web.UI.UserControl
         }
 
         bool retVal = false;
-        if (!string.IsNullOrEmpty(databaseName))
+
+        // Get all schemas for the selected instance (data source)
+        var schemas = this.InstanceSchemas[this.InstanceDropDownList.Text];
+
+        // database is equal to schema here
+        COEDatabaseBO schemaToPublish = schemas.GetDatabase(schemaName);
+
+        if (schemaToPublish != null)
         {
-            var schemas = this.InstanceSchemas[this.InstanceDropDownList.Text];
-            //Get the password to send as an argument to publish.
-            string password = this.PasswordTextBox.Text;
-            //Get the check box value for publishing relationships of tables
-            bool isPublishRelationships = this.PublishRelationshipsCheckBox.Checked;
-
-            COEDatabaseBO database = schemas.GetDatabase(databaseName);
-            COEDatabaseBO publishedDataBase;
-            if (database != null)
+            try
             {
-                try
+                if (schemaToPublish.IsValid)
                 {
-                    //set the IsPublishRelationships property to publish relationships
-                    database.IsPublishRelationships = isPublishRelationships;
-                    if (database.IsValid)
+                    // Set the IsPublishRelationships property to publish relationships
+                    schemaToPublish.IsPublishRelationships = this.PublishRelationshipsCheckBox.Checked;
+
+                    // Execute publish
+                    COEDatabaseBO publishedSchema = schemaToPublish.TryPublish(
+                        this.AuthorizeCheckBox.Checked, this.GranterUserTextBox.Text, this.PasswordTextBox.Text);
+
+                    // If publish succeed, update sessions, else Keep no change
+                    if (publishedSchema == null)
                     {
-                        // Try to publish the schema, just test the security, not save into database.
-                        publishedDataBase = database.TryPublish(password);
-                        if (publishedDataBase != null) //If it fails, keep it on the list with no changes.
+                        _errorMessage = "The publish function reutrn a NULL.";
+                        _showError = true;
+                    }
+                    else
+                    {
+                        if (publishedSchema.COEDataView.Tables.Count < 1)
                         {
-                            schemas.Remove(database);
-                            schemas.Add(publishedDataBase);
-                            retVal = true;
-
-                            // Add the schema to session for temp saving, they will be saved on submiting.
-                            var schemaOnPublishing = Session[Constants.COESchemasOnPublishing] as Dictionary<string, COEDatabaseBO>;
-
-                            if (schemaOnPublishing == null)
-                            {
-                                schemaOnPublishing = new Dictionary<string, COEDatabaseBO>();
-                            }
+                            _errorMessage =
+                                "No table can be published. Please select Authorize privilege and input proper granter account to grant SELECT privilege to COEUSER.";
+                            _showError = true;
+                        }
+                        else
+                        {
+                            // Add the schema to session for temp saving, they will be saved on submitting.
+                            var schemaOnPublishing =
+                                Session[Constants.COESchemasOnPublishing] as Dictionary<string, COEDatabaseBO>
+                                ?? new Dictionary<string, COEDatabaseBO>();
 
                             var qualifiedSchemaName =
-                                Utilities.GetQualifyInstaceSchemaName(this.InstanceDropDownList.SelectedValue, this.SchemaDropDownList.SelectedValue);
+                                Utilities.GetQualifyInstaceSchemaName(
+                                    this.InstanceDropDownList.SelectedValue, this.SchemaDropDownList.SelectedValue);
 
                             if (schemaOnPublishing.ContainsKey(qualifiedSchemaName.ToUpper()))
                             {
                                 schemaOnPublishing.Remove(qualifiedSchemaName.ToUpper());
                             }
 
-                            schemaOnPublishing.Add(qualifiedSchemaName.ToUpper(), publishedDataBase);
+                            schemaOnPublishing.Add(qualifiedSchemaName.ToUpper(), publishedSchema);
                             Session[Constants.COESchemasOnPublishing] = schemaOnPublishing;
-                        }
 
-                        this.DataBind(schemas);
+                            // Update schema list to re-bind the UI
+                            schemas.Remove(schemaToPublish);
+                            schemas.Add(publishedSchema);
+                            this.DataBind(schemas);
 
-                        // Remove the local cache of COEConfigurationBO
-                        COEConfigurationBO.RemoveLocalCache("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-                    }
-                    else
-                    {
-                        _errorMessage = string.Empty;
-                        foreach (Csla.Validation.BrokenRule rule in database.BrokenRulesCollection)
-                        {
-                            _errorMessage += rule.Description + "\n";
+                            // Everything is OK
+                            retVal = true;
                         }
-                        _showError = true;
                     }
+
+                    // Remove the local cache of COEConfigurationBO
+                    COEConfigurationBO.RemoveLocalCache(
+                        "CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
                 }
-                catch (Exception ex)
+                else
                 {
-                    _errorMessage = ex.GetBaseException().Message;
+                    // For invalid schema to publish
+                    _errorMessage = string.Empty;
+                    foreach (Csla.Validation.BrokenRule rule in schemaToPublish.BrokenRulesCollection)
+                    {
+                        _errorMessage += rule.Description + "\n";
+                    }
                     _showError = true;
                 }
             }
+            catch (Exception ex)
+            {
+                _errorMessage = ex.GetBaseException().Message;
+                _showError = true;
+            }
         }
+
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         return retVal;
     }

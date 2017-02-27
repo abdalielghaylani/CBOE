@@ -1,6 +1,6 @@
 using System;
 using System.Timers;
-using ChemDrawControl14;
+using ChemDrawControl15;
 using CambridgeSoft.COE.Framework.COELoggingService;
 
 /* JED: DO NOT USE THIS OBJECT - I will retire it soon due to inconsistent, occasional COM failures

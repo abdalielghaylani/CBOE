@@ -31,7 +31,7 @@ using CambridgeSoft.COE.Framework.Common.Validation;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
-using ChemDrawControl14;
+using ChemDrawControl15;
 
 namespace CambridgeSoft.COE.Registration.Services.Types
 {
@@ -1718,6 +1718,27 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             }
             return result;
         }
+
+        public static void EndBulkLoadingStrategy()
+        {
+            try
+            {
+                if ((System.Diagnostics.Process.GetCurrentProcess().ProcessName == "DataLoader.exe" && System.Diagnostics.Process.GetProcessesByName("DataLoader.exe").Length > 0) || (System.Diagnostics.Process.GetCurrentProcess().ProcessName == "DataLoaderGUI.exe" && System.Diagnostics.Process.GetProcessesByName("DataLoaderGUI.exe").Length > 0))
+                {
+                    string msg = "EndBulkLoadingStrategy";
+                    _coeLog.LogStart(msg);
+                    RegistrationOracleDAL regDal = null;
+                    DalUtils.GetRegistrationDAL(ref regDal, Constants.SERVICENAME);
+                    regDal.EndBulkLoadingStrategy();
+                    _coeLog.LogEnd(msg);
+                }
+            }
+            catch (Exception exception)
+            {
+                COEExceptionDispatcher.HandleBLLException(exception);
+            }
+        }
+
         public void CleanFoundDuplicates()
         {
             this._foundDuplicates = string.Empty;

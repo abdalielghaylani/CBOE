@@ -42,7 +42,7 @@ namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea
         private const string EXCEPTIONCODE = "LocalImportError ";
         private const string FIXEDINSTALLPATH = "Registration";
         private const string FILE_SEARCH_PATTERN = "*.xml";
-
+        private string ConfirmationMsg = Resources.Resource.ConfirmForceImport_Alert_Text;
         private string _currentExportDir;
 
         #endregion
@@ -63,11 +63,26 @@ namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea
                     FillTables();
                     SetActionFromURL();
                 }
+                string Script = @"function confirmation()
+                                {
+                                    var checkbox = document.getElementById('" + this.ForceImportCheckBox.ClientID + @"');
+                                    var Message = '" + ConfirmationMsg + @"'                                  
+                                    if(checkbox.checked)
+                                    {                                    
+                                    var result = confirm(Message); 
+                                    if(result == true)
+                                    alert('Please continue and press import');
+                                    else
+                                    checkbox.checked = false;
+                                    }
+                                }";
+                if (!this.Page.ClientScript.IsStartupScriptRegistered(typeof(ImportExportCustom), "confirmation"))
+                    this.Page.ClientScript.RegisterStartupScript(typeof(ImportExportCustom), "confirmation", Script, true);
                 _masterPage.SetDefaultAction(this.LinkButtonGoToMain.UniqueID);
                 _masterPage.MakeCtrlShowProgressModal(this.ButtonLocalImport.ClientID, "Importing configuration...", string.Empty, true);
                 _masterPage.MakeCtrlShowProgressModal(this.ButtonExport.ClientID, "Exporting configuration...", string.Empty, true);
                 //_masterPage.MakeCtrlShowProgressModal(this.ButtonIniFile.ClientID, "Importing configuration...", string.Empty, true);
-                this.ButtonLocalImport.OnClientClick = string.Format("if(document.getElementById('{0}').checked) return confirm('{1}');", this.ForceImportCheckBox.ClientID, Resources.Resource.ConfirmForceImport_Alert_Text);
+                //this.ButtonLocalImport.OnClientClick = string.Format("if(document.getElementById('{0}').checked) return confirm('{1}');", this.ForceImportCheckBox.ClientID, Resources.Resource.ConfirmForceImport_Alert_Text);
             }
             catch (Exception exception)
             {
@@ -213,6 +228,7 @@ namespace RegistrationWebApp.Forms.RegistrationAdmin.ContentArea
             //this.LabelIniServerPath.Text = Resource.LocalImportExportUrl_Label_Text;
             //this.TextBoxIniServerPath.Text = AppRootInstallPath + IMPORTINIFILEPATH;
             this.ForceImportCheckBox.Text = Resource.ForceImport_Label_Text;
+            this.ForceImportCheckBox.Attributes.Add("onclick", "confirmation()");
         }
 
         private void SetActionFromURL()

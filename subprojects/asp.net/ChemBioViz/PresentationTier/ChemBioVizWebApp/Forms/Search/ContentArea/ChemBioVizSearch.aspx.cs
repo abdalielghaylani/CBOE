@@ -742,7 +742,7 @@ public partial class ChemBioVizSearch : GUIShellPage
         {
             if (Session["DefaultGridPageSize"] == null)
             {
-                Session["DefaultGridPageSize"] = 10;
+                Session["DefaultGridPageSize"] = this.GetHitsForUser();
 
                 if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["GridPageSize"]))
                     Session["DefaultGridPageSize"] = int.Parse(ConfigurationManager.AppSettings["GridPageSize"]);
@@ -951,6 +951,7 @@ public partial class ChemBioVizSearch : GUIShellPage
             }
             if (Request.QueryString["CurrentIndex"] == null)
             {
+                this.BusinessObject.RefreshDatabaseRecordCount();
                 this.RestorePreviousState();
             }
             _masterPage.LeftPanelState = this.DefaultPanelState;
@@ -1648,12 +1649,35 @@ public partial class ChemBioVizSearch : GUIShellPage
         catch (Exception) { }
     }
 
+    public int GetHitsForUser()
+    {
+        int hits=0;
+        string userName = this.User.Identity.Name;
+        if (userName != string.Empty)
+        {
+            string name = this.BusinessObject.UserNameExists(userName, hits);
+            if (name != "")
+            {
+                int ID = Convert.ToInt16(name);
+                hits = this.BusinessObject.GetHits(ID);
+            }
+            else
+            {
+                hits = 10;
+            }
+        }
+        return hits;
+
+    }
+
     void Preferences_CommandRaised(object sender, COENavigationPanelControlEventArgs e)
     {
         if (e.EventType == "SetPreferences")
         {
             PreferencesPane prefs = (PreferencesPane)sender;
-            this.DefaultGridPageSize = prefs.HitsPerPage;
+            string userID = this.BusinessObject.UserNameExists(this.User.Identity.Name, prefs.HitsPerPage);
+            int hit = this.BusinessObject.GetHits(Convert.ToInt16(userID));
+            this.DefaultGridPageSize = hit;
             this.DefaultListViewFormIndex = prefs.ListViewFormIndex;
             this.DefaultDetailsViewFormIndex = prefs.DetailsViewFormIndex;
             this.SearchAction = prefs.IsListSearchAction ? FormGroup.CurrentFormEnum.ListForm : FormGroup.CurrentFormEnum.DetailForm;

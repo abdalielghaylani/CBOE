@@ -1358,6 +1358,18 @@ namespace CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService
         {
             return this.SearchService.GetFastRecordCount(this.DataView);
         }
+
+        public string UserNameExists(string name, int hits)
+        {            
+            string username = SearchService.GetUserName(name, hits);
+            return username;
+        }
+
+        public int GetHits(int ID)
+        {
+            int hits = SearchService.GetHitsPerPage(ID);
+            return hits;
+        }
         #endregion
 
         #region Factory Methods
@@ -1380,6 +1392,10 @@ namespace CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService
             this.CurrentRecordIndex = 1;
         }
 
+        public void RefreshDatabaseRecordCount()
+        {
+            this.SearchService.RefreshDatabaseRecordCount(this.DataView);
+        }
 
         public static GenericBO NewGenericBO()
         {

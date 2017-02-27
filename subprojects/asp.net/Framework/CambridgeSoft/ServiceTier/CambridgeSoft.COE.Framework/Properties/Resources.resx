@@ -297,6 +297,9 @@
   <data name="CentralizedStorageDB" xml:space="preserve">
     <value>COEDB</value>
   </data>
+  <data name="DatalytixDB" xml:space="preserve">
+    <value>COEUSER</value>
+  </data>
   <data name="COEHitListIDSequence" xml:space="preserve">
     <value>COEHITLISTID_SEQ</value>
   </data>
@@ -692,6 +695,12 @@
   </data>
   <data name="ErrorRelationship_4" xml:space="preserve">
     <value>for table index </value>
+  </data>
+  <data name="COEFullPageTable" xml:space="preserve">
+    <value>COEFULLPAGE</value>
+  </data>
+  <data name="ClientIdField" xml:space="preserve">
+    <value>CLIENT_ID</value>
   </data>
   <data name="GeneratorData_CSORACLECARTRIDGE_CSCARTRIDGE" xml:space="preserve">
     <value>CSCARTRIDGE</value>

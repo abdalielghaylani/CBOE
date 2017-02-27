@@ -18,11 +18,10 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://shadev437:650/spotfire/ws/LibraryService?wsdl" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://shadev436:750/spotfire/ws/pub/LibraryService?wsdl" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LibraryService.wsdl" MetadataType="Wsdl" ID="3d71e947-e467-4d10-87fe-45c177ffa150" SourceId="1" SourceUrl="http://shadev437:650/spotfire/ws/LibraryService?wsdl=LibraryService.wsdl" />
-    <MetadataFile FileName="LibraryService1.wsdl" MetadataType="Wsdl" ID="71d85f44-7617-4983-b9f2-b4b8720777a9" SourceId="1" SourceUrl="http://shadev437:650/spotfire/ws/LibraryService?wsdl" />
+    <MetadataFile FileName="LibraryService21.wsdl" MetadataType="Wsdl" ID="32032bec-6cc5-4d0a-8fa7-808e3dada153" SourceId="1" SourceUrl="http://shadev436:750/spotfire/ws/pub/LibraryService?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

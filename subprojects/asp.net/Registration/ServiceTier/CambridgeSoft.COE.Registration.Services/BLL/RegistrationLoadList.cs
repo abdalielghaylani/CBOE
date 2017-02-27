@@ -141,6 +141,10 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 COEExceptionDispatcher.HandleBLLException(exception);
                 return null;
             }
+            finally
+            {
+                RegistryRecord.EndBulkLoadingStrategy();
+            }
         } 
                 
         /// <summary>
@@ -164,6 +168,10 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 COEExceptionDispatcher.HandleBLLException(exception);
                 return null;
             }
+            finally
+            {
+                RegistryRecord.EndBulkLoadingStrategy();
+            }
         }
 
         /// <summary>
@@ -186,6 +194,10 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             {
                 COEExceptionDispatcher.HandleBLLException(exception);
                 return null;
+            }
+            finally
+            {
+                RegistryRecord.EndBulkLoadingStrategy();
             }
         }
 

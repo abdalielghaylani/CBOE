@@ -10,14 +10,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CambridgeSoft.COE.Registration.Services.RegistrationAddins</RootNamespace>
     <AssemblyName>CambridgeSoft.COE.Registration.RegistrationAddins</AssemblyName>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Registration.snk</AssemblyOriginatorKeyFile>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -93,10 +89,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
-    <Reference Include="Interop.ChemDrawControl14, Version=14.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Interop.ChemDrawControl15">
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl15.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Interop.ChemDrawControl14.dll</HintPath>
     </Reference>
     <Reference Include="IronMath, Version=1.0.60816.1877, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -114,7 +109,6 @@
     <Reference Include="PyEngine3, Version=0.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\PyEngine3.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

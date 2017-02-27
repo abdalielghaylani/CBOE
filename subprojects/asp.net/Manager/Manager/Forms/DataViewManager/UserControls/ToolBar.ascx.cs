@@ -180,6 +180,7 @@ public partial class ToolBar : System.Web.UI.UserControl
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
+    // Obsoleted event function
     void RefreshSchemaImageButton_ButtonClicked(object sender, EventArgs e)
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);

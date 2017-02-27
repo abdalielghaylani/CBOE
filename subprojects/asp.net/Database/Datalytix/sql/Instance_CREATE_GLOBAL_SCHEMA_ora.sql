@@ -15,7 +15,7 @@ BEGIN
 
 	select count(*) into isOracleENTEdition from v$version where lower(banner) like '%enterprise%';
    
-	SELECT COUNT(1) INTO n FROM dba_tables where owner=UPPER('&&globalSchemaName') and table_name = Upper('TEMPCHITLISTID');
+	SELECT COUNT(1) INTO n FROM all_tables where owner=UPPER('&&globalSchemaName') and table_name = Upper('TEMPCHITLISTID');
 	
 	IF n < 1 THEN
 		IF isOracleENTEdition = 1 THEN
@@ -39,7 +39,7 @@ BEGIN
 		EXECUTE IMMEDIATE 'CREATE INDEX ' || UPPER ('&&globalSchemaName') || '.IDX_TEMPCHITLISTID_DATESTAMP ON '  || UPPER ('&&globalSchemaName') || '.TEMPCHITLISTID (DATESTAMP ASC)  TABLESPACE ' || UPPER('&&indexTableSpaceName');
 	END IF;
 
-	SELECT COUNT(1) INTO n FROM dba_tables where owner=UPPER('&&globalSchemaName') and table_name = Upper('TEMPCHITLIST');
+	SELECT COUNT(1) INTO n FROM all_tables where owner=UPPER('&&globalSchemaName') and table_name = Upper('TEMPCHITLIST');
 	
 	IF n < 1 THEN
 		IF isOracleENTEdition = 1 THEN

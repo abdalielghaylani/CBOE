@@ -359,6 +359,38 @@ namespace CambridgeSoft.COE.Framework.COESearchService
         }
 
         /// <summary>
+        /// Refreshes the user registry record count
+        /// </summary>
+        /// <param name="hitListInfo">The Hitlist info</param>
+        /// <param name="tableName">contains the table name for the query</param>
+        /// <param name="owner">table owner</param>
+        /// <returns>updated hitlistinfo with record count</returns>
+        public override HitListInfo RefreshDatabaseRecordCount(HitListInfo hitListInfo, string tableName, string owner)
+        {
+            try
+            {
+                if (owner.ToUpper() == Resources.RegistrationDatabaseName && tableName.ToUpper() == "VW_MIXTURE_REGNUMBER")
+                {
+                    string ClientIdValue = Csla.ApplicationContext.User.Identity.Name;
+                    string returnValue = "0";
+                    DbCommand dbCommand = DALManager.Database.GetStoredProcCommand(Resources.RegistrationDatabaseName + ".refresh_User_regnum_count");
+                    dbCommand.Parameters.Add(new OracleParameter("RETURN_VALUE", OracleDbType.Int32, 0, ParameterDirection.ReturnValue, true, 8, 0, String.Empty, DataRowVersion.Current, returnValue));
+                    dbCommand.Parameters.Add(new OracleParameter("i_proj", OracleDbType.Int32, DBNull.Value, ParameterDirection.Input));
+                    dbCommand.Parameters.Add(new OracleParameter("i_user_id", OracleDbType.Varchar2, ClientIdValue.ToUpper(), ParameterDirection.Input));
+                    DALManager.ExecuteNonQuery(dbCommand);
+                    returnValue = Convert.ToString(dbCommand.Parameters[0].Value);
+                    hitListInfo.RecordCount = Convert.ToInt32(returnValue);
+                    hitListInfo.IsExactRecordCount = true;
+                }
+                return hitListInfo;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Override: Get RowCount via statisstics if table size is less then a threshold
         /// </summary>
         /// <param name="hitListInfo"></param>
@@ -369,45 +401,62 @@ namespace CambridgeSoft.COE.Framework.COESearchService
         {
             try
             {
-                int pThreshold1 = 1000000;
-                int pThreshold2 = pThreshold1;
-                int approx_count = 0;
-                string pTableName = tableName;
-                string pOwner = owner;
-
-                string sql = "select num_rows from all_tables where table_name = " + DALManager.BuildSqlStringParameterName("pTableName") +
-                             " and owner= " + DALManager.BuildSqlStringParameterName("pOwner");
-                //create stored procedure command type
-                DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
-
-                DALManager.Database.AddInParameter(dbCommand, "pTableName", DbType.AnsiString, tableName);
-                DALManager.Database.AddInParameter(dbCommand, "pOwner", DbType.AnsiString, owner);
-                DataSet dataset = DALManager.ExecuteDataSet(dbCommand);
-                DataRow dr;
-                if (dataset != null && dataset.Tables.Count > 0 && dataset.Tables[0].Rows.Count > 0)
+                DataSet dataset;
+                if (owner.ToUpper() == Resources.RegistrationDatabaseName && tableName.ToUpper() == "VW_MIXTURE_REGNUMBER")
                 {
-                    dr = dataset.Tables[0].Rows[0];
-                    approx_count = Convert.ToInt32(dr["num_rows"]);
-                }
-                if (approx_count > pThreshold1)
-                {
-                    hitListInfo.RecordCount = approx_count;
-                    hitListInfo.IsExactRecordCount = false;
+                    string ClientIdValue = Csla.ApplicationContext.User.Identity.Name;
+                    string sql = "select reg_num_cnt as ExactRecordCount from " + Resources.RegistrationDatabaseName + ".user_regnum_count where upper(user_id) = " + DALManager.BuildSqlStringParameterName("pUserID");
+                    DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
+
+                    DALManager.Database.AddInParameter(dbCommand, "pUserID", DbType.AnsiString, ClientIdValue.ToUpper());
+                    dataset = DALManager.ExecuteDataSet(dbCommand);
+                    if (dataset != null && dataset.Tables.Count > 0 && dataset.Tables[0].Rows.Count > 0)
+                    {
+                        DataRow dr = dataset.Tables[0].Rows[0];
+                        hitListInfo.RecordCount = Convert.ToInt32(dr["ExactRecordCount"]);
+                        hitListInfo.IsExactRecordCount = true;
+                    }
                 }
                 else
                 {
-                    sql = "select count(*) as ExactRecordCount from " + pOwner + "." + pTableName;
+                    int pThreshold1 = 1000000;
+                    int pThreshold2 = pThreshold1;
+                    int approx_count = 0;
+                    string pTableName = tableName;
+                    string pOwner = owner;
+
+                    string sql = "select num_rows from dba_tables where table_name = " + DALManager.BuildSqlStringParameterName("pTableName") +
+                                 " and owner= " + DALManager.BuildSqlStringParameterName("pOwner");
                     //create stored procedure command type
-                    dbCommand = DALManager.Database.GetSqlStringCommand(sql);
+                    DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
 
                     DALManager.Database.AddInParameter(dbCommand, "pTableName", DbType.AnsiString, tableName);
                     DALManager.Database.AddInParameter(dbCommand, "pOwner", DbType.AnsiString, owner);
                     dataset = DALManager.ExecuteDataSet(dbCommand);
+                    DataRow dr;
                     if (dataset != null && dataset.Tables.Count > 0 && dataset.Tables[0].Rows.Count > 0)
                     {
                         dr = dataset.Tables[0].Rows[0];
-                        hitListInfo.RecordCount = Convert.ToInt32(dr["ExactRecordCount"]);
-                        hitListInfo.IsExactRecordCount = true;
+                        approx_count = Convert.ToInt32(dr["num_rows"]);
+                    }
+                    if (approx_count > pThreshold1)
+                    {
+                        hitListInfo.RecordCount = approx_count;
+                        hitListInfo.IsExactRecordCount = false;
+                    }
+                    else
+                    {
+                        sql = "select count(*) as ExactRecordCount from " + pOwner + "." + pTableName;
+                        //create stored procedure command type
+                        dbCommand = DALManager.Database.GetSqlStringCommand(sql);
+
+                        dataset = DALManager.ExecuteDataSet(dbCommand);
+                        if (dataset != null && dataset.Tables.Count > 0 && dataset.Tables[0].Rows.Count > 0)
+                        {
+                            dr = dataset.Tables[0].Rows[0];
+                            hitListInfo.RecordCount = Convert.ToInt32(dr["ExactRecordCount"]);
+                            hitListInfo.IsExactRecordCount = true;
+                        }
                     }
                 }
                 dataset.Dispose();
@@ -415,7 +464,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }

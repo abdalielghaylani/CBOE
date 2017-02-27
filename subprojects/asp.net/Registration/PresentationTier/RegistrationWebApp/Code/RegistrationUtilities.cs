@@ -370,7 +370,7 @@ public class RegUtilities
     public static bool CheckIfMWAndFormulaMatch(string Base64_1, string Base64_2)
     {
 
-        ChemDrawControl14.ChemDrawCtl ctl = new ChemDrawControl14.ChemDrawCtl();
+        ChemDrawControl15.ChemDrawCtl ctl = new ChemDrawControl15.ChemDrawCtl();
         ctl.Objects.Clear();
         ctl.DataEncoded = true;
         ctl.Objects.set_Data("chemical/x-cdx", null, null, null, UnicodeEncoding.ASCII.GetBytes(Base64_1));

@@ -1201,7 +1201,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         }
 
         /// <summary>
-        /// This method is sepcially for refreshing tables in ENBIOASSAYVIEWS schema
+        /// Obsoleted method
+        /// This method is specially for refreshing tables in ENBIOASSAYVIEWS schema
         /// </summary>
         /// <param name="strDatabase"></param>
         void RefreshSchema(string strDatabase)

@@ -694,11 +694,17 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
             // To add button captions. Tao Ran. 2008-07-10
             uwdList.InitializeRow += new Infragistics.WebUI.UltraWebGrid.InitializeRowEventHandler(uwdList_InitializeRow);
             //added on 2008/11/05 to fix 3457 bug
-            btnRefresh.Visible = false;
+            if (ddlTableName.SelectedIndex != 0)
+            {
+                btnRefresh.Visible = true;
+            }
+            else
+            {
+                btnRefresh.Visible = false;
+            }
             if (btnAdd != null)
             {
                 btnAdd.Click += new EventHandler(btnAdd_Click);
-                btnRefresh.Visible = true;
             }
             btnEdit.Click += new EventHandler(btnEdit_Click);
             btnCancel.Click += new EventHandler(btnCancle_Click);
@@ -910,7 +916,7 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
             rowViewTable.Cells.Add(cellViewTable);
             tblViewTable.Rows.Add(rowViewTable);
             pnlViewTable.ID = "PanelViewTable";
-            
+
             pnlViewTable.Controls.Add(tblViewTable);
 
             //init different pages's Panel
@@ -1195,7 +1201,7 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
         /// <param name="pnl"> Current panel (pnlAddRecord,pnlEditRecord)</param>
         /// <param name="selectedMode"> currently selected Mode <see cref="M190pxodeOfAction"/></param>
         void CreateForm(COETableEditorBO DataItem, ref Infragistics.WebUI.Misc.WebPanel pnl, ModeOfAction selectedMode)
-        {         
+        {
             //Table tblContainer = new Table();
             // Coverity Fix CID - 10544 (from local server)
             using (Table tblContainer = new Table())
@@ -1224,7 +1230,7 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
                     foreach (Column pd in DataItem.Columns)
                     {
                         TableRow tblRowContainer = new TableRow();
-                       
+
                         //added to fix CSBR - 135109
                         if (COETableEditorUtilities.GetHiddenProperty(CurrentTable, pd.FieldName))
                             tblRowContainer.Style.Add(HtmlTextWriterStyle.Display, "none");
@@ -1656,7 +1662,7 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
                 throw ex;
             }
             finally
-            {               
+            {
                 cell.Dispose();
                 row.Dispose();
                 operateTable.Dispose();
@@ -2214,7 +2220,6 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
                 uwdList.DisplayLayout.Pager.AllowPaging = true;
             else
                 uwdList.DisplayLayout.Pager.AllowPaging = false;
-
         }
 
         /// <summary>
@@ -2624,7 +2629,7 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
                 lblEditTable.Visible = true;
                 labTableDescription.Visible = true;
                 pnlPage.Visible = true;
-
+                btnRefresh.Visible = true;
                 HideEditPanel();
             }
             else
@@ -2635,9 +2640,9 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
                 pnlViewChildTable.Visible = false;
                 // to fix CSBR-154568: Use the defined method to set visibility of Add button
                 SetAddButtonVisibility(false);
+                btnRefresh.Visible = false;
                 btnCancel.Visible = btnEdit.Visible = false;
             }
-
         }
 
         private void SetActiveRow(UltraGridRow ultraGridRow)
@@ -2970,7 +2975,6 @@ AgcCAAEAAAcQAAEAAAAEAAAA8AADAE5VTEwAAAAAAAAAAA==";
                 pnlViewTable.Visible = true;
                 labTableDescription.Visible = true;
                 SetAddButtonVisibility(true);
-
                 HideEditPanel();
             }
         }

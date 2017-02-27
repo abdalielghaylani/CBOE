@@ -130,12 +130,12 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
 
         internal override COECacheDependency GetDependency(string applicationName)
         {
-            string sql = "select rowid from " + Resources.SecurityDatabaseName + ".COECONFIGURATION where upper(DESCRIPTION) = " + DALManager.BuildSqlStringParameterName("appName");
+            string sql = "select rowid from " + Resources.SecurityDatabaseName + ".COECONFIGURATION where upper(DESCRIPTION) = '" + DALManager.BuildSqlStringParameterName("appName") + "'";
             OracleConnection conn = DALManager.Database.CreateConnection() as OracleConnection;
-
             OracleCommand cmd = new OracleCommand(sql, conn);
             cmd.Parameters.Add(new OracleParameter(DALManager.BuildSqlStringParameterName("appName"), OracleDbType.Varchar2, applicationName, ParameterDirection.Input));
-            return new OracleCacheDependency(cmd);
+            OracleCacheDependency dependency = new OracleCacheDependency(cmd);
+            return dependency;
 
         }
 
