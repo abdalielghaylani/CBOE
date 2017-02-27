@@ -43,11 +43,14 @@ import * as regSearchTypes from './registry-search.types';
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true
         (onToolbarPreparing)="onToolbarPreparing($event)"
+        (onSelectionChanged)="onSelectionChanged($event)"
         (onContentReady)='onContentReady($event)'
         (onCellPrepared)='onCellPrepared($event)'
         (onInitNewRow)='onInitNewRow($event)'
         (onEditingStart)='onEditingStart($event)'
-        (onRowRemoving)='onRowRemoving($event)'>
+        (onRowRemoving)='onRowRemoving($event)'
+        [hoverStateEnabled]="true"
+        [selectedRowKeys]="[]" >
         <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
         <dxo-selection mode="multiple"></dxo-selection>
         <div *dxTemplate="let data of 'content'">
@@ -62,6 +65,16 @@ import * as regSearchTypes from './registry-search.types';
         <div class="btn-group btn-group-sm">
           <button class="btn btn-group btn-group-sm rose text-relaxed"  data-original-title="Print" (click)="printRecords()"  >
           <i class="fa fa-print"></i>Print</button>
+        </div>
+        <div class="btn-group btn-group-sm" *ngIf="!rowSelected">
+          <button type="button" class="btn dropdown-toggle rose text-relaxed" data-original-title="Marked" (click)="showMarked()">
+          <i class="fa fa-filter"></i>Show Marked 
+          </button>
+        </div>
+         <div class="btn-group btn-group-sm" *ngIf="rowSelected">
+          <button type="button" class="btn dropdown-toggle rose text-relaxed" data-original-title="Marked" (click)="showSearchResults()">
+          <i class="fa fa-level-up"></i>Show Search Results 
+          </button>
         </div>
        </div>
       </dx-data-grid>
@@ -80,6 +93,9 @@ export class RegRecords implements OnInit, OnDestroy {
   private lookups: any;
   private records: IRecords;
   private popupVisible: boolean = false;
+  private rowSelected: boolean = false;
+  private selectedRows: any[];
+  private tempResultRows: any[];
   private regsearch: regSearchTypes.CSaveQuery = new regSearchTypes.CSaveQuery();
 
   constructor(
@@ -160,6 +176,10 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  onSelectionChanged(e) {
+    this.selectedRows = e.selectedRowKeys;
+  }
+
   onSearchClick(e) {
     e.cancel = true;
     this.router.navigate(['records/search']);
@@ -189,6 +209,21 @@ export class RegRecords implements OnInit, OnDestroy {
 
   cancelSaveQuery() {
     this.popupVisible = false;
+  }
+
+  showMarked() {
+    if (this.selectedRows) {
+      this.rowSelected = true;
+      this.tempResultRows = this.records.rows;
+      this.records.rows = this.selectedRows;
+    }
+  }
+
+  showSearchResults() {
+    this.rowSelected = false;
+    this.records.rows = this.tempResultRows;
+    this.selectedRows = [];
+    this.tempResultRows = [];
   }
 
   printRecords() {
@@ -221,5 +256,4 @@ export class RegRecords implements OnInit, OnDestroy {
       </html>`);
     popupWin.document.close();
   }
-
 };
