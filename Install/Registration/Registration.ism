@@ -254,6 +254,7 @@
 		<col key="yes" def="s72">Name</col>
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
+		<row><td>ISSELFREG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isregsvr.dll</td></row>
 		<row><td>NewBinary1</td><td/><td>&lt;ISProductFolder&gt;\Support\Themes\InstallShield Blue Theme\banner.jpg</td></row>
 		<row><td>NewBinary10</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CompleteSetupIco.ibd</td></row>
 		<row><td>NewBinary11</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CustomSetupIco.ibd</td></row>
@@ -1037,6 +1038,10 @@
 		<row><td>ISIISUninstall</td><td>3073</td><td>binIISHelper</td><td>ISIISUninstall</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
+		<row><td>ISSelfRegisterCosting</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterCosting</td><td/><td/></row>
+		<row><td>ISSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFiles</td><td/><td/></row>
+		<row><td>ISSelfRegisterFinalize</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFinalize</td><td/><td/></row>
+		<row><td>ISUnSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISUnSelfRegisterFiles</td><td/><td/></row>
 		<row><td>SetARPINSTALLLOCATION</td><td>51</td><td>ARPINSTALLLOCATION</td><td>[INSTALLDIR]</td><td/><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%SystemRoot]\Profiles\All Users</td><td/><td/></row>
 		<row><td>ShowMsiLog</td><td>226</td><td>SystemFolder</td><td>[SystemFolder]notepad.exe "[MsiLogFileLocation]"</td><td/><td>Shows Property-driven MSI Log</td></row>
@@ -1959,6 +1964,7 @@
 		<row><td>resource.designer.cs</td><td>App_GlobalResources</td><td>RESOUR~1.CS|Resource.designer.cs</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\App_GlobalResources\Resource.designer.cs</td><td>1</td><td/></row>
 		<row><td>resource.resx</td><td>App_GlobalResources</td><td>RESOUR~1.RES|Resource.resx</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\App_GlobalResources\Resource.resx</td><td>1</td><td/></row>
 		<row><td>sautinsoft.rtftohtml.dll</td><td>RegServerBin</td><td>SAUTIN~1.DLL|SautinSoft.RtfToHtml.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\dist\bin\SautinSoft.RtfToHtml.dll</td><td>1</td><td/></row>
+		<row><td>swashbuckle.core.dll</td><td>RegServerBin</td><td>SWASHB~1.DLL|Swashbuckle.Core.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\dist\bin\Swashbuckle.Core.dll</td><td>1</td><td/></row>
 		<row><td>system.linq.dynamic.dll</td><td>RegServerBin</td><td>SYSTEM~1.DLL|System.Linq.Dynamic.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\dist\bin\System.Linq.Dynamic.dll</td><td>1</td><td/></row>
 		<row><td>system.net.http.formatting.d</td><td>RegServerBin</td><td>SYSTEM~1.DLL|System.Net.Http.Formatting.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\dist\bin\System.Net.Http.Formatting.dll</td><td>1</td><td/></row>
 		<row><td>system.web.http.dll</td><td>RegServerBin</td><td>SYSTEM~1.DLL|System.Web.Http.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\dist\bin\System.Web.Http.dll</td><td>1</td><td/></row>
@@ -4092,6 +4098,10 @@
 		<row><td>ISIISRollback</td><td/><td>3501</td><td/><td/></row>
 		<row><td>ISIISUninstall</td><td>Installed</td><td>3502</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>ISFOUNDNEWERPRODUCTVERSION</td><td>450</td><td>ISPreventDowngrade</td><td/></row>
+		<row><td>ISSelfRegisterCosting</td><td/><td>2201</td><td/><td/></row>
+		<row><td>ISSelfRegisterFiles</td><td/><td>5601</td><td/><td/></row>
+		<row><td>ISSelfRegisterFinalize</td><td/><td>6601</td><td/><td/></row>
+		<row><td>ISUnSelfRegisterFiles</td><td/><td>2202</td><td/><td/></row>
 		<row><td>InstallFiles</td><td/><td>4000</td><td>InstallFiles</td><td/></row>
 		<row><td>InstallFinalize</td><td/><td>6600</td><td>InstallFinalize</td><td/></row>
 		<row><td>InstallInitialize</td><td/><td>1501</td><td>InstallInitialize</td><td/></row>
