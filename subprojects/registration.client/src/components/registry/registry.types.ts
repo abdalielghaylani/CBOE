@@ -346,7 +346,13 @@ export class CBatchVM {
     this.columns = [{
       itemType: 'group',
       caption: 'Batch Information',
-      colCount: 2,
+      colCount: 'auto',
+      colCountByScreen: {
+        lg: 3,
+        md: 2,
+        sm: 1,
+        xs: 1
+      },
       items: []
     }];
     let groupItem = this.columns[0];
@@ -604,11 +610,11 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
                 displayExpr: 'DESCRIPTION',
                 valueExpr: 'ID'
               },
-              width: 80
+              width: 60
             }, {
               dataField: 'equivalents',
               caption: 'Equivalent',
-              width: 120
+              width: 80
             }, {
               dataField: 'code',
               caption: 'Code',
@@ -628,8 +634,7 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
             }, {
               dataField: 'molWeight',
               caption: 'MW',
-              allowEditing: false,
-              width: 100
+              allowEditing: false
             }, {
               dataField: 'formula',
               caption: 'MF',

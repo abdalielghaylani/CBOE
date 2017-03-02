@@ -27,6 +27,7 @@ declare var jQuery: any;
 })
 export class RegRecordSearch implements OnInit, OnDestroy {
   private title: string = 'Search Permanent Registry';
+  private tabSelected: string = 'search';
   private regsearch: regSearchTypes.CSearchFormVM;
 
   constructor(
@@ -55,15 +56,19 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   clear() {
 
   }
-  back() {
+
+  retrieveAll() {
     this.router.navigate(['records']);
   }
+
   editHitlist() {
     this.regsearch.hitlistVM.hitlistEdit = true;
     this.regsearch.hitlistVM.hitlistRestore = false;
   }
+
   restoreHitlist() {
     this.regsearch.hitlistVM.hitlistEdit = false;
     this.regsearch.hitlistVM.hitlistRestore = true;
   }
+
 };

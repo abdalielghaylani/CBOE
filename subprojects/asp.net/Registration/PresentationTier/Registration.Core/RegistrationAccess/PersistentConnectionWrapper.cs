@@ -112,7 +112,7 @@ namespace CambridgeSoft.COE.Registration.Access
                     try
                     {
                         string minLife = System.Configuration.ConfigurationManager.AppSettings["MinimumInactiveLifespan"];
-                        if (minLife != null) { _maximumInactiveLifespan = Convert.ToInt32(minLife); }
+                        if (minLife != null) { _minimumInactiveLifespan = Convert.ToInt32(minLife); }
                     }
                     finally { }
 
@@ -141,6 +141,7 @@ namespace CambridgeSoft.COE.Registration.Access
                         //    , allowConnectionTimeOut
                         //    , String.Format(notification, _minimumInactiveLifespan.ToString(), _maximumInactiveLifespan.ToString())
                         //);
+                        _coeLog.Log(String.Format("The timer lifespan was reset to {0} milliseconds", _maximumInactiveLifespan.ToString()));
                         _lifespan = _maximumInactiveLifespan;
                     }
 

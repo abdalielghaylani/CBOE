@@ -628,6 +628,18 @@ export const HITLIST_EDIT_DESC_LIST = [{
 }
 ];
 
+export class CSaveQuery {
+  editColumns: any[] = [];
+  constructor() {
+    this.editColumns.push(HITLIST_EDIT_DESC_LIST);
+    if (HITLIST_EDIT_DESC_LIST) {
+      HITLIST_EDIT_DESC_LIST.forEach(p => {
+        this.editColumns.push(p);
+      });
+    }
+  }
+}
+
 export class CManageHitlistVM {
   editColumns: any[] = [];
   items?: CQueries[];

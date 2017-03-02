@@ -24,7 +24,7 @@ using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.COESearchService;
 using CambridgeSoft.COE.Framework.Controls.COEDataMapper;
 using CambridgeSoft.COE.Framework.COEFormService;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+using CS = CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common.Exceptions;
@@ -349,7 +349,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.RegisteredRecord.ContentArea
             get
             {
                 if (Session["DisplayCulture"] == null)
-                    Session["DisplayCulture"] = ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
+                    Session["DisplayCulture"] = CS.ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
                 return (string)Session["DisplayCulture"];
             }
         }

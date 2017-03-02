@@ -14,7 +14,7 @@ using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.Common.Messaging;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+using CS = CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
@@ -292,7 +292,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea
             get
             {
                 if (Session["DisplayCulture"] == null)
-                    Session["DisplayCulture"] = ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
+                    Session["DisplayCulture"] = CS.ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
                 return (string)Session["DisplayCulture"];
             }
         }
@@ -859,7 +859,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea
                 {
                     case MessageBoxMode.MessageBox:
 
-                        string _databaseName = COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
+                        string _databaseName = CS.COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
                         COEGenericObjectStorageBO storageBO = COEGenericObjectStorageBO.Get(int.Parse(Request[Constants.SavedObjectId_UrlParameter]));
                         this.RegistryRecord.UpdateDrawingType();
                         this.RegistryRecord.ApplyAddIns();
@@ -2940,7 +2940,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.SubmitRecord.ContentArea
                 {
                     if (int.Parse(genericObjectID) > 0)
                     {
-                        string _databaseName = COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
+                        string _databaseName = CS.COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
                         COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(int.Parse(genericObjectID));
                         //if this is coming from a stored template - reset the default scientistID
                         string COEGenericObjectXml = genericStorageBO.COEGenericObject;

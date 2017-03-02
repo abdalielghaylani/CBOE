@@ -1075,6 +1075,28 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             }
         }
 
+        public void RefreshDatabaseRecordCount(HitListInfo hitListInfoPara, COEDataView dataView, int tableId, ConnStringType connStringType)
+        {
+            coeLog.LogStart("RefreshDatabaseRecordCount", 1, System.Diagnostics.SourceLevels.All);
+
+            dataView = this.ApplyDataviewFilter(dataView, tableId);
+
+            var databaseName = dataView.GetDatabaseNameById(tableId);
+
+            var instanceDAL = this.GetDALByDatabase(connStringType, ConfigurationUtilities.GetDatabaseGlobalUser(databaseName));
+
+            if (instanceDAL != null)
+            {
+                string tableName = dataView.Tables.getById(tableId).Name;
+                hitListInfoPara = instanceDAL.RefreshDatabaseRecordCount(hitListInfoPara, tableName, ConfigurationUtilities.GetDatabaseData(databaseName).Owner);
+                coeLog.LogEnd("RefreshDatabaseRecordCount: " + hitListInfoPara.RecordCount, 1, System.Diagnostics.SourceLevels.All);
+            }
+            else
+            {
+                throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+            }
+        }
+
         /// <summary>
         /// Get exact row count
         /// </summary>
@@ -1098,6 +1120,36 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 coeLog.LogEnd("GetExactRecordCount: " + count, 1, System.Diagnostics.SourceLevels.All);
 
                 return count;
+            }
+            else
+            {
+                throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+            }
+        }
+
+        public string GetUserName(string name, int hits, string sql)
+        {
+            ConnStringType connStringType = ConnStringType.OWNERPROXY;
+            LoadCOEDAL(connStringType);
+             if (coeDAL != null)
+            {
+            string username = coeDAL.GetUserName(name, hits, sql);
+            return username;
+             }
+             else
+             {
+                 throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+             }
+        }
+
+        public int GetUserID(int hitsID, string sql)
+        {
+            ConnStringType connStringType = ConnStringType.OWNERPROXY;
+            LoadCOEDAL(connStringType);
+            if (coeDAL != null)
+            {
+                int Hits = coeDAL.GetUserID(hitsID, sql);
+                return Hits;
             }
             else
             {
@@ -1452,7 +1504,10 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                         pagingInfo.RecordCount = pagingInfo.End + 1 - pagingInfo.Start;
                     }
 
-                    Query currentPageQuery = this.BuildCOECurrentPageQuery(dataViewLookUp, dataView, noPagingQuery, avoidHitlistTable, dbmsType, pagingInfo, resultsCriteria.SortByHitList, searchCriteria);
+                    Query fullPageQuery = null;
+                    if (pagingInfo.Start == 1)
+                        fullPageQuery = this.BuildCOEFullPageQuery(dataViewLookUp, dataView, noPagingQuery, avoidHitlistTable, dbmsType, pagingInfo, resultsCriteria.SortByHitList, searchCriteria);
+                    Query currentPageQuery = this.BuildCOECurrentPageQuery(pagingInfo);
 #if DEBUG
                     System.Diagnostics.Debug.WriteLine("Parent Query (without paging)");
                     parentQuery.UseParameters = false;
@@ -1465,15 +1520,18 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                     parentQuery = this.SurroundWithOuterQuery(parentQuery, dbmsType, dataView, this.GetEmptySearchCriteria());
                     parentQuery = this.RefactorQueryForAggregateFunctions(parentQuery, parentQuery.GetMainTable() as Query, dataViewLookUp, false);
 
-                    foreach (SearchProcessor processor in processors)
+                    if (pagingInfo.Start == 1)
                     {
-                        //Jordans suggest to figure out a mechanism to not call a processor that does not do anything on Pre/Post/Process
-                        string type = processor.GetType().Name;
-                        coeLog.Log(type + " Process", 1, System.Diagnostics.SourceLevels.All);
-                        processor.Process(currentPageQuery.GetMainTable() as Query);
-                        coeLog.Log(type + " Process", 1, System.Diagnostics.SourceLevels.All);
+                        foreach (SearchProcessor processor in processors)
+                        {
+                            //Jordans suggest to figure out a mechanism to not call a processor that does not do anything on Pre/Post/Process
+                            string type = processor.GetType().Name;
+                            coeLog.Log(type + " Process", 1, System.Diagnostics.SourceLevels.All);
+                            processor.Process(fullPageQuery.GetMainTable() as Query);
+                            coeLog.Log(type + " Process", 1, System.Diagnostics.SourceLevels.All);
+                        }
+                        this.InsertIntoCOEFullPage(fullPageQuery);
                     }
-
                     this.InsertIntoCOECurrentPage(currentPageQuery);
                     coeLog.LogStart(methodSignature + "Building Query for ChildTables Creation");
 
@@ -1956,7 +2014,47 @@ namespace CambridgeSoft.COE.Framework.COESearchService
         }
 
         /// <summary>
-        /// Builds the current page query that later on will be used to insert into COEDB.COECurrentPage(BasePrimaryKey, SortOrder). There is some
+        /// Builds the current page query that later on will be used to insert into COEDB.COECurrentPage(BasePrimaryKey, SortOrder, ClientId).
+        /// </summary>
+        /// <param name="pagingInfo"></param>
+        /// <returns>A Query</returns>
+        private Query BuildCOECurrentPageQuery(PagingInfo pagingInfo)
+        {
+            var avoidPaging = pagingInfo.End <= 0 && pagingInfo.RecordCount <= 0;
+            Query outerQuery = new Query();
+            outerQuery.SetMainTable(new Table(Resources.CentralizedStorageDB + "." + Resources.COEFullPageTable));
+            Field primaryKeyField = new Field(Resources.BaseTablePrimaryKeyField, DbType.Int32);
+            Field sortOrderField = new Field(Resources.SortOrderField, DbType.Int32);
+            Field clientIDField = new Field(Resources.ClientIdField, DbType.String);
+
+            outerQuery.AddSelectItem(new SelectClauseField(primaryKeyField));
+            outerQuery.AddSelectItem(new SelectClauseField(sortOrderField));
+
+            if (!avoidPaging)
+            {
+                string ClientIdValue = Csla.ApplicationContext.User.Identity.Name;
+                WhereClauseEqual equalConstraint = new WhereClauseEqual();
+                equalConstraint.DataField = clientIDField;
+                equalConstraint.Val = new Value(ClientIdValue.ToUpper(), DbType.String);
+                outerQuery.AddWhereItem(equalConstraint);
+
+                WhereClauseGreaterThan greaterEqual = new WhereClauseGreaterThan();
+                greaterEqual.GreaterEqual = true;
+                greaterEqual.DataField = sortOrderField;
+                greaterEqual.Val = new Value(pagingInfo.Start.ToString(), DbType.Int32);
+                outerQuery.AddWhereItem(greaterEqual);
+
+                WhereClauseLessThan lessEqual = new WhereClauseLessThan();
+                lessEqual.LessEqual = true;
+                lessEqual.DataField = sortOrderField;
+                lessEqual.Val = new Value(pagingInfo.End.ToString(), DbType.Int32);
+                outerQuery.AddWhereItem(lessEqual);
+            }
+            return outerQuery;
+        }
+
+        /// <summary>
+        /// Builds the coe full page query that later on will be used to insert into COEDB.COEFullPage(BasePrimaryKey, SortOrder, ClientId). There is some
         /// extra step prior to actually inserting, which is executing processors. That is why insertion method is separated from query construction.
         /// </summary>
         /// <param name="dataviewLookup"></param>
@@ -1966,7 +2064,8 @@ namespace CambridgeSoft.COE.Framework.COESearchService
         /// <param name="dbmsType"></param>
         /// <param name="pagingInfo"></param>
         /// <param name="sortByHitList"></param>
-        private Query BuildCOECurrentPageQuery(CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData.DataView dataviewLookup, COEDataView dataView, Query noPagingQuery, bool avoidHitlist, DBMSType dbmsType, PagingInfo pagingInfo, bool sortByHitList, SearchCriteria searchCriteria)
+        /// <returns>A Query</returns>
+        private Query BuildCOEFullPageQuery(CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData.DataView dataviewLookup, COEDataView dataView, Query noPagingQuery, bool avoidHitlist, DBMSType dbmsType, PagingInfo pagingInfo, bool sortByHitList, SearchCriteria searchCriteria)
         {
             var avoidPaging = pagingInfo.End <= 0 && pagingInfo.RecordCount <= 0;
             
@@ -2060,34 +2159,34 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             // keys are not allowed in COECURRENTPAGE.
             // We would always group by the primary key, and then we would group by all the sorting clauses (inside the analitycal row num) that
             // are not aggregated clauses.
-            GroupByClause groupByClause = new GroupByClause();
-            groupByClause.Items.Add(new GroupByClauseItem(selectClausePK));
-            foreach (OrderByClauseItem obClause in analyticalSortOrder.Clauses)
-            {
-                if (!obClause.Item.Equals(selectClausePK) && !(obClause.Item is SelectClauseAggregateFunction))
+            //GroupByClause groupByClause = new GroupByClause();
+            //groupByClause.Items.Add(new GroupByClauseItem(selectClausePK));
+            //foreach (OrderByClauseItem obClause in analyticalSortOrder.Clauses)
+            //{
+            //    if (!obClause.Item.Equals(selectClausePK) && !(obClause.Item is SelectClauseAggregateFunction))
 
-                    // For lookup fields, we cannot simply add the Lookup SelectClauseItem to the GroupBy clause because
-                    // a subselect is not allowed in the group by.  Instead, we need to build a new SelectClauseField
-                    // using the lookup field.  That is sufficient to ensure disticntnes of the results.
-                    if (obClause.Item.DataField.GetType().ToString() == @"CambridgeSoft.COE.Framework.Common.SqlGenerator.Lookup")
-                    {
-                        // Get a reference to the lookup so that we can get the fieldName of the lookup field and
-                        // and build a new field to pass to the GroupBy clause
-                        Lookup luf = (Lookup)obClause.Item.DataField;
-                        Field fld = new Field();
-                        fld.FieldId = luf.FieldId;
-                        fld.FieldName = luf.FieldName;
-                        SelectClauseField scf = new SelectClauseField();
-                        scf.DataField = fld;
-                        groupByClause.Items.Add(new GroupByClauseItem(scf));
-                    }
-                    else
-                    {
-                        groupByClause.Items.Add(new GroupByClauseItem(obClause.Item));
-                    }
+            //        // For lookup fields, we cannot simply add the Lookup SelectClauseItem to the GroupBy clause because
+            //        // a subselect is not allowed in the group by.  Instead, we need to build a new SelectClauseField
+            //        // using the lookup field.  That is sufficient to ensure disticntnes of the results.
+            //        if (obClause.Item.DataField.GetType().ToString() == @"CambridgeSoft.COE.Framework.Common.SqlGenerator.Lookup")
+            //        {
+            //            // Get a reference to the lookup so that we can get the fieldName of the lookup field and
+            //            // and build a new field to pass to the GroupBy clause
+            //            Lookup luf = (Lookup)obClause.Item.DataField;
+            //            Field fld = new Field();
+            //            fld.FieldId = luf.FieldId;
+            //            fld.FieldName = luf.FieldName;
+            //            SelectClauseField scf = new SelectClauseField();
+            //            scf.DataField = fld;
+            //            groupByClause.Items.Add(new GroupByClauseItem(scf));
+            //        }
+            //        else
+            //        {
+            //            groupByClause.Items.Add(new GroupByClauseItem(obClause.Item));
+            //        }
 
-            }
-            currentPageQuery.SetGroupByClause(groupByClause);
+            //}
+            //currentPageQuery.SetGroupByClause(groupByClause);
 
             //As we have created the analytical row num, we are getting rid of the order by.
             currentPageQuery.SetOrderByClause(new OrderByClause());
@@ -2109,22 +2208,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 outerQuery.AddSelectItem(new SelectClauseLiteral("rownum"));
             else
                 outerQuery.AddSelectItem(new SelectClauseField(sortOrderField));
-
-            // Finally, let's add the where to get a single page.
-            if (!avoidPaging)
-            {
-                WhereClauseGreaterThan greaterEqual = new WhereClauseGreaterThan();
-                greaterEqual.GreaterEqual = true;
-                greaterEqual.DataField = sortOrderField;
-                greaterEqual.Val = new Value(pagingInfo.Start.ToString(), DbType.Int32);
-                outerQuery.AddWhereItem(greaterEqual);
-
-                WhereClauseLessThan lessEqual = new WhereClauseLessThan();
-                lessEqual.LessEqual = true;
-                lessEqual.DataField = sortOrderField;
-                lessEqual.Val = new Value(pagingInfo.End.ToString(), DbType.Int32);
-                outerQuery.AddWhereItem(lessEqual);
-            }
 
             // Do not enclose the whole select in parenthesis, because this query is to be executed.
             // (ODP thows an error if the whole query is surrounded by parenthesis).
@@ -2149,7 +2232,26 @@ namespace CambridgeSoft.COE.Framework.COESearchService
 
             coeDAL.ExecuteNonQuery(insert);
         }
-        
+
+
+        /// <summary>
+        /// It inserts the full page query into database:
+        /// INSERT INTO COEDB.COEFULLPAGE(BASETABLEPRIMARYKEY, SORTORDER) (QUERY)
+        /// </summary>
+        /// <param name="query">The full page query to be inserted into the COEFullPage table (COEDB.COEFULLPAGE)</param>
+        private void InsertIntoCOEFullPage(Query query)
+        {
+            coeDAL.ClearCOEFullPageTable();; // Need to clear the current data in this table before inserting new set of search results.
+
+            Insert insert = new Insert();
+            insert.MainTable = new Table(Resources.COEFullPageTable);
+            insert.MainTable.Database = Resources.CentralizedStorageDB;
+            insert.Fields.Add(new Field(Resources.BaseTablePrimaryKeyField, DbType.Int32));
+            insert.Fields.Add(new Field(Resources.SortOrderField, DbType.Double));
+            insert.SelectStatement = query;
+            coeDAL.ExecuteNonQuery(insert);
+        }
+
         /// <summary>
         /// Looks for ResultCriteria.Field against the structure columns and turns them into HighlightedStructure criterias
         /// </summary>

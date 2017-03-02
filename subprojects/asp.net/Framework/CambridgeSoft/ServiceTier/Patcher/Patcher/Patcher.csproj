@@ -10,10 +10,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CambridgeSoft.COE.Patcher</RootNamespace>
     <AssemblyName>COEPatcher</AssemblyName>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <IsWebBootstrapper>true</IsWebBootstrapper>
     <StartupObject>CambridgeSoft.COE.Patcher.Program</StartupObject>
     <SignAssembly>true</SignAssembly>
@@ -275,6 +279,15 @@
     <Compile Include="Target12.6.2\CBOE2620.cs" />
     <Compile Include="Target12.6.2\CBOE2642.cs" />
     <Compile Include="Target12.6.2\CBOE3870.cs" />
+    <Compile Include="Target12.6.3\CBOE4255.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Target12.6.3\CBOE4493.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Target12.6.3\CBOE4553.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Utilities\PatcherUtility.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +339,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="PatchLists\12.6.2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.6.3.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="README.txt">

@@ -154,6 +154,22 @@ namespace Manager.Forms.DataViewManager.UserControls
             this.SchemaDropDownList.DataSource = GetSchemas(selectedInstance);
             this.SchemaDropDownList.DataBind();
 
+            SaveDatabaseSession();
+
+            SaveInstanceSession();
+            SaveSchemaSession();
+
+            this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "", "SetSchemaName('" + Session["DatabaseName"] + "');", true);
+        }
+
+        protected void SchemaDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SaveSchemaSession();
+        }
+
+        // The value of this session sometimes may in pattern "instance.schema"
+        private void SaveDatabaseSession()
+        {
             if (!string.IsNullOrEmpty(this.SchemaDropDownList.SelectedValue))
             {
                 Session["DatabaseName"] = this.SchemaDropDownList.SelectedValue;
@@ -162,8 +178,32 @@ namespace Manager.Forms.DataViewManager.UserControls
             {
                 Session["DatabaseName"] = string.Empty;
             }
+        }
 
-            this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "", "SetSchemaName('" + Session["DatabaseName"] + "');", true);
+        // Schema name for the schema combobox value
+        private void SaveSchemaSession()
+        {
+            if (!string.IsNullOrEmpty(this.SchemaDropDownList.SelectedValue))
+            {
+                Session["SchemaName"] = this.SchemaDropDownList.SelectedValue;
+            }
+            else
+            {
+                Session["SchemaName"] = string.Empty;
+            }
+        }
+
+        // Instance name for the data source combobox value
+        private void SaveInstanceSession()
+        {
+            if (!string.IsNullOrEmpty(this.InstanceDropDownList.SelectedValue))
+            {
+                Session["InstanceName"] = this.InstanceDropDownList.SelectedValue;
+            }
+            else
+            {
+                Session["InstanceName"] = string.Empty;
+            }
         }
 
         #endregion
@@ -225,6 +265,10 @@ namespace Manager.Forms.DataViewManager.UserControls
             {
                 this.SchemaDropDownList.SelectedValue = GetSchemasFromBaseTableID(basetableId);
             }
+
+            SaveInstanceSession();
+            SaveSchemaSession();
+
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         }
 

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Manager")]
-[assembly: AssemblyCopyright("© Copyright 2001-2015 PerkinElmer Informatics, Inc.")]
+[assembly: AssemblyCopyright("© Copyright 2001-2016 PerkinElmer Informatics, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

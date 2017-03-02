@@ -63,7 +63,7 @@ function OpenAddTable(element)
                             </div>
                             <div id="SchemaDiv">
                                 <label for="<%= this.SchemaDropDownList.ClientID %>"><%= Resources.Resource.Schema_Label_Text %>:</label> 
-                                <asp:DropDownList ID="SchemaDropDownList" ClientIDMode="Static" runat="server"></asp:DropDownList> 
+                                <asp:DropDownList ID="SchemaDropDownList" ClientIDMode="Static" runat="server" AutoPostBack="true" OnSelectedIndexChanged="SchemaDropDownList_SelectedIndexChanged"></asp:DropDownList> 
                                 <asp:LinkButton ID="RemoveSchema" runat="server" CssClass="ImageButton" OnClientClick="RemoveSchemaFromMaster();"><%= Resources.Resource.Remove_Label_Text %></asp:LinkButton>                                
                             </div>
                             <div id="AutoCompleteDiv">

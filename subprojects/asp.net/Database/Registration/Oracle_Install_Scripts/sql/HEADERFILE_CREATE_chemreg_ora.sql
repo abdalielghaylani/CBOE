@@ -17,6 +17,8 @@ Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA;
 	@@Drops.sql
 	@@Tablespaces.sql
 	@@Users.sql
+--Altering schema user to support oracle 12c
+	@@alter_schemauser_for_oracle12c.sql
 
 Connect &&securitySchemaName/&&securitySchemaPass@&&serverName
 
@@ -44,11 +46,25 @@ Connect &&schemaName/&&schemaPass@&&serverName
 Connect &&InstallUser/&&sysPass@&&serverName &&AsSysDBA;
 
 	@@CREATE_chemreg_test_users.sql
+--Additional grants to the schema user to support oracle 12c
+	@@Grant_schemauser_for_oracle12c.sql
 	@@Grants.sql
 
 	@@sql\Patches\Parameters.sql
 	@@"sql\Patches\Patch 11.0.1\Parameters.sql"
 	@@"sql\Patches\Patch 11.0.2\patch.sql"
+
+--When 12.6.2 is reached, we end the script execution and continue the remaining patch scripts as a fresh nested script to avoid.
+--This is to avoid the oracle error SP2-0309: SQL*Plus command procedures may only be nested to a depth of 20.
+--This is caused due to the nested script execution has reached the depth limit of 20 starting from 11.0.1
+	SELECT	CASE
+		WHEN  '&&currentPatch' = '12.6.2'
+		THEN  '"sql\Patches\Patch &&nextPatch\patch.sql"'
+		ELSE  'sql\Patches\stop.sql'
+	END	AS setNextPatch 
+	FROM	DUAL;
+
+	@&&setNextPatch 
 
 	SET serveroutput on
 	BEGIN

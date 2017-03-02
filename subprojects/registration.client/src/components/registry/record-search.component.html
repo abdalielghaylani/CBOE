@@ -1,12 +1,24 @@
 <div class="container-fluid border-light background-white">
+  <div style="margin-top: 15px" *ngIf="tabSelected == 'search'">
+    <button (click)="clear()" class="mr1 btn btn-primary pull-right" >
+              <i class="fa fa-eraser"></i>
+              Clear</button>
+    <button (click)="search()" class="mr1 btn btn-primary pull-right">
+              <i class="fa fa fa-search"></i>
+              Search</button>
+              
+  </div>
+  <div style="margin-top: 15px" *ngIf="tabSelected == 'preference'">
+    <button class="mr1 btn btn-primary pull-right">
+      Restore Defaults</button>
+    <button class="mr1 btn btn-primary pull-right" >
+      Save</button>
+  </div>
   <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
   </reg-page-header>
   <div class="btn-toolbar">
     <div class="btn-group">
-      <div class="btn-group btn-group-sm">
-        <button class="btn btn-group btn-group-sm rose text-relaxed" (click)="back()" data-original-title="Back"><i class="fa fa-backward"></i> Back</button>
-      </div>
       <div class="btn-group btn-group-sm">
         <button type="button" class="btn dropdown-toggle rose text-relaxed" data-toggle="dropdown">
 			Restore Query <span class="caret"></span>
@@ -19,29 +31,21 @@
       </div>
     </div>
     <div class="btn-group btn-group-sm">
-      <button class="btn btn-group btn-group-sm rose text-relaxed" data-original-title="Back">
+      <button class="btn btn-group btn-group-sm rose text-relaxed" data-original-title="Back" (click)="retrieveAll()">
           <i class="fa fa-database"></i> Retrieve All</button>
     </div>
   </div>
   <div class="panel with-nav-tabs panel-default">
     <div class="panel-heading">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#tab1default" data-toggle="tab">Advanced Search</a></li>
-        <li><a href="#tab2default" data-toggle="tab">Query Management</a></li>
-        <li><a href="#tab3default" data-toggle="tab">Preferences</a></li>
+        <li class="active" (click)="tabSelected = 'search'"><a href="#tab1default" data-toggle="tab">Advanced Search</a></li>
+        <li (click)="tabSelected = 'query'"><a href="#tab2default" data-toggle="tab">Query Management</a></li>
+        <li (click)="tabSelected = 'preference'"><a href="#tab3default" data-toggle="tab">Preferences</a></li>
       </ul>
     </div>
     <div class="panel-body">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1default">
-          <div class="row" style="margin-bottom:5px">
-            <button (click)="clear()" class="mr1 btn btn-primary pull-right">
-              <i class="fa fa-eraser"></i>
-              Clear</button>
-            <button (click)="search()" class="mr1 btn btn-primary pull-right">
-              <i class="fa fa fa-search"></i>
-              Search</button>
-          </div>
           <div class="panel-group" id="accordion">
             <div class="panel panel-default">
               <div class="panel-heading" style='border-left: 4px solid #f38787;'>
@@ -177,8 +181,6 @@
                           <a *ngIf="regsearch.hitlistVM.hitlistValue" class="fa fa-recycle" title="Restore" (click)="restoreHitlist()" style="font-size:22px;text-decoration:none "></a>&nbsp;
                           <a *ngIf="regsearch.hitlistVM.hitlistValue" class="fa fa-trash" title="Delete" (click)="deleteHitlist()" style="font-size:22px;text-decoration:none "></a>
                         </div>
-                        <!-- <h4>{{regsearch.hitlistVM.hitlistValue}}
-                      </h4>-->
                       </div>
                     </div>
                     <div class="panel-body" *ngIf="regsearch.hitlistVM.hitlistEdit || regsearch.hitlistVM.hitlistRestore">
@@ -220,8 +222,7 @@
         </div>
         <div class="tab-pane fade" id="tab3default">
           <dx-form id="preferenceForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="regsearch.preferenceVM.columns"></dx-form>
-          <button class="mr1 btn btn-primary">Save</button>
-          <button class="mr1 btn btn-primary">Restore Defaults</button>
+
         </div>
       </div>
     </div>

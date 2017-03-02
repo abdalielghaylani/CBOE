@@ -492,6 +492,36 @@ namespace CambridgeSoft.COE.Framework.Common
             }
             return idNotExists;
         }
+
+        /// <summary>
+        /// Remove a table and all related relationships
+        /// </summary>
+        /// <param name="tableName">The name of table to be removed</param>
+        public void RemoveTable(string tableName)
+        {
+            for (int i = tables.Count - 1; i >= 0; i--)
+            {
+                if (tableName.ToUpper().Equals(tables[i].Name.ToUpper()))
+                {
+                    // remove relationships
+                    for (int j = relationships.Count - 1; j >= 0; j--)
+                    {
+                        if (relationships[j].Child == tables[i].Id || relationships[j].Parent == tables[i].Id)
+                        {
+                            relationships.RemoveAt(j);
+                        }
+                    }
+
+                    // reset base table
+                    if (this.baseTable == tables[i].Id)
+                    {
+                        this.baseTable = -1;
+                    }
+
+                    tables.RemoveAt(i);
+                }
+            }
+        }
         #endregion
 
         #region Additional Classes

@@ -11,7 +11,7 @@ using Resources;
 using System.Configuration;
 using PerkinElmer.COE.Registration.Server.Forms.Master;
 using CambridgeSoft.COE.Framework.Controls.WebParts;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+using CS = CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.Common;
 using System.Web.UI.WebControls.WebParts;
@@ -105,7 +105,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.Public.ContentArea
             //this.WelcomeLiteral.Text = Resource.Welcome_Label_Text + HttpContext.Current.User.Identity.Name.ToUpper();
             this.PE_Logo.ImageUrl = "/coecommonresources/Utility_Images/BackGroundImages/PKI_FTB_Logo_RGB_small.jpg";
             this.MainTextLiteral.Text = Resource.HomeMain_Label_Text;
-            this.FrameworkVersionLiteral.Text = Resource.FrameworkVersion_Label_Text + ConfigurationUtilities.GetFrameworkFileVersion();
+            this.FrameworkVersionLiteral.Text = Resource.FrameworkVersion_Label_Text + CS.ConfigurationUtilities.GetFrameworkFileVersion();
             this.RegVersionLiteral.Text = Resource.RegistrationVersion_Label_Text + CambridgeSoft.COE.Registration.Services.Common.RegSvcUtilities.GetFileVersion();
 
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
@@ -122,7 +122,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.Public.ContentArea
         {
             RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
 
-            ApplicationHome homeData = ConfigurationUtilities.GetApplicationHomeData(RegUtilities.GetApplicationName());
+            ApplicationHome homeData = CS.ConfigurationUtilities.GetApplicationHomeData(RegUtilities.GetApplicationName());
             int numberOfColumns = 1;
             WebPartManager webmgr = WebPartManager1;
             int wpUsed = 0;

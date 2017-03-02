@@ -7,7 +7,7 @@ using CambridgeSoft.COE.Framework.COESearchService;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using System.Data;
-using ChemDrawControl14;
+using ChemDrawControl15;
 
 namespace CambridgeSoft.COE.Registration.Services.RegistrationAddins
 {

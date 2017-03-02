@@ -147,6 +147,9 @@
   <data name="AddSchema_Label_Text" xml:space="preserve">
     <value>Add Schema</value>
   </data>
+  <data name="RefreshSchema_Label_Text" xml:space="preserve">
+    <value>Refresh Schema</value>
+  </data>
   <data name="AddTable_Page_Title" xml:space="preserve">
     <value>Add Table</value>
   </data>
@@ -235,7 +238,7 @@
     <value>Are you sure you want to delete the relationship? </value>
   </data>
   <data name="CopyrightInfo" xml:space="preserve">
-    <value>&amp;copy; Copyright 2001-2015 PerkinElmer Informatics, Inc.</value>
+    <value>&amp;copy; Copyright 2001-2016 PerkinElmer Informatics, Inc.</value>
   </data>
   <data name="CreateAlias_Button_Text" xml:space="preserve">
     <value>Create Alias</value>
@@ -666,6 +669,12 @@
   <data name="ParentTable_ColHeader_Caption" xml:space="preserve">
     <value>Parent Table</value>
   </data>
+  <data name="GranterUser_Label_Text" xml:space="preserve">
+    <value>Granter user</value>
+  </data>
+  <data name="GranterUserRequired_Label_Text" xml:space="preserve">
+    <value>Granter user cannot be empty</value>
+  </data>
   <data name="Password_Label_Text" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -704,6 +713,9 @@
   </data>
   <data name="Publish_Button_Text" xml:space="preserve">
     <value>Publish</value>
+  </data>
+  <data name="Refresh_Button_Text" xml:space="preserve">
+    <value>Refresh</value>
   </data>
   <data name="PublishingSchema_Div_Text" xml:space="preserve">
     <value>Publishing Schema...</value>

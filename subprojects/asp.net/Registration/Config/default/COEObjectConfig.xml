@@ -230,7 +230,7 @@
       <Event eventName="Inserting" eventHandler="OnInsertHandler" />
       <Event eventName="Updating" eventHandler="OnUpdateHandler" />
       <AddInConfiguration>
-        <ScriptFile>C:\Program Files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\Registration\PythonScripts\parentscript.py</ScriptFile>
+        <ScriptFile>C:\Program Files (x86)\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\Registration\PythonScripts\parentscript.py</ScriptFile>
         <!--Commented <PythonWebServiceURL> to bypass soap
 			<PythonWebServiceURL>http://localhost/PyEngine/Service.asmx</PythonWebServiceURL> -->
         <StructuresIdsToAvoid>-2|-3|</StructuresIdsToAvoid>

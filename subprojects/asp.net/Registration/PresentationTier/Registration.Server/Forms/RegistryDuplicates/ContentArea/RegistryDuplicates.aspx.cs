@@ -11,7 +11,7 @@ using System.Xml;
 using Resources;
 using Infragistics.WebUI.UltraWebNavigator;
 using Microsoft.Practices.EnterpriseLibrary.ExceptionHandling;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+using CS = CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEFormService;
 using PerkinElmer.COE.Registration.Server.Forms.ComponentDuplicates;
@@ -229,7 +229,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.RegistryDuplicates
             get
             {
                 if (Session["DisplayCulture"] == null)
-                    Session["DisplayCulture"] = ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
+                    Session["DisplayCulture"] = CS.ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
                 return (string)Session["DisplayCulture"];
             }
         }

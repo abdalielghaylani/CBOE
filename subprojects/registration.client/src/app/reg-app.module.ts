@@ -26,7 +26,8 @@ import {
   DxDataGridModule,
   DxSelectBoxModule,
   DxNumberBoxModule,
-  DxFormModule
+  DxFormModule,
+  DxPopupModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -46,7 +47,8 @@ import {
     DxDataGridModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
-    DxFormModule
+    DxFormModule,
+    DxPopupModule
   ],
   declarations: [
     RegApp,

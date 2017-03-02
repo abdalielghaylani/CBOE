@@ -66,6 +66,60 @@ public partial class AddSchemas {
     protected global::System.Web.UI.WebControls.RequiredFieldValidator SchemaRequiredFieldValidator;
     
     /// <summary>
+    /// AuthorizeCheckBox control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.CheckBox AuthorizeCheckBox;
+    
+    /// <summary>
+    /// GranterUserRow control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlTableRow GranterUserRow;
+    
+    /// <summary>
+    /// GranterUserLabel control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Label GranterUserLabel;
+    
+    /// <summary>
+    /// GranterUserTextBox control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.TextBox GranterUserTextBox;
+    
+    /// <summary>
+    /// GranterUserRequiredField control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator GranterUserRequiredField;
+    
+    /// <summary>
+    /// PasswordRow control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.HtmlControls.HtmlTableRow PasswordRow;
+    
+    /// <summary>
     /// PasswordTitleLabel control.
     /// </summary>
     /// <remarks>
@@ -91,15 +145,6 @@ public partial class AddSchemas {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::System.Web.UI.WebControls.RequiredFieldValidator PasswordRequiredField;
-    
-    /// <summary>
-    /// PublishRelationshipsLabel control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label PublishRelationshipsLabel;
     
     /// <summary>
     /// PublishRelationshipsCheckBox control.

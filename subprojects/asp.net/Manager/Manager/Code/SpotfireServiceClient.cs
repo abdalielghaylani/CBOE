@@ -42,15 +42,21 @@ namespace Manager.Code
     {
         private readonly string spotfireServiceUrl = "{0}/spotfire/ws";
         private readonly string elementManagerServiceAddress = "{0}/ElementManagerService?";
-        private readonly string libraryServiceAddress = "{0}/LibraryService?";
+        private readonly string libraryServiceAddress = "{0}/pub/LibraryService?";
         private readonly string userName;
         private readonly string password;
 
+        private SpotfireServer server;
         private ElementManagerServiceClient spotfireElementManagerServiceClient;
         private LibraryServiceClient spotfireLibraryServiceClient;
 
         private const string instanceDatasourcePathPattern = "DLDS_{0}_{1}";
         private const string dataviewFolderPattern = "Dataviews_{0}";
+
+        private static readonly TimeSpan SendTimeout = new TimeSpan(0, 5, 0);
+        private static readonly TimeSpan ReceiveTimeout = new TimeSpan(0, 5, 0);
+        private static readonly TimeSpan CloseTimeout = new TimeSpan(0, 2, 0);
+        private static readonly TimeSpan OpenTimeout = new TimeSpan(0, 2, 0);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpotfireServiceClient"/> class. 
@@ -67,6 +73,15 @@ namespace Manager.Code
             this.libraryServiceAddress = string.Format(libraryServiceAddress, spotfireServiceUrl);
 
             ServicePointManager.ServerCertificateValidationCallback += ServerCertificateValidationCallback;
+
+            // get Spotfire server information
+            server = new SpotfireServer(spotfireUrl);
+
+            // Check version, Spotfire 7.5 or higher
+            if (this.server.Version < new Version("35.0.0.350"))
+            {
+                throw new Exception("The minimum support version for this program is Spotfire 7.5. Please install proper Datalytix version for other Spotfire versions.");
+            }
 
             // initialize element manager service client
             InitializeElementManagerServiceClient();
@@ -89,7 +104,7 @@ namespace Manager.Code
         internal LibraryServiceClient SpotfireLibraryServiceClient
         {
             get { return spotfireLibraryServiceClient; }
-        } 
+        }
 
         #region Static Methods
 
@@ -105,19 +120,19 @@ namespace Manager.Code
             string userName = spotfire.SpotfireUser;
             string password = DecryptPassword(spotfire.SpotfirePassword);
 
-            var errorMsg = ActionWithExceptionHandling(() =>
-            {
-                // Publish database instance to Spotfire server
-                using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
-                {
-                    var rootFolderId = spotfireServiceClient.GetDatalytixRootFolder();
-                    spotfireServiceClient.DeleteDataSource(
-                        rootFolderId,
-                        string.Format(instanceDatasourcePathPattern, instanceBO.InstanceName.Trim().ToUpper(), instanceBO.Id));
-                }
-            });
 
-            return errorMsg;
+            // Publish database instance to Spotfire server
+            using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
+            {
+                var errorMsg = ActionWithExceptionHandling((client) =>
+                    {
+                        var rootFolderId = spotfireServiceClient.GetDatalytixRootFolder();
+                        spotfireServiceClient.DeleteDataSource(
+                            rootFolderId,
+                            string.Format(instanceDatasourcePathPattern, instanceBO.InstanceName.Trim().ToUpper(), instanceBO.Id));
+                    }, spotfireServiceClient);
+                return errorMsg;
+            }
         }
 
         /// <summary>
@@ -132,10 +147,9 @@ namespace Manager.Code
             string userName = spotfire.SpotfireUser;
             string password = DecryptPassword(spotfire.SpotfirePassword);
 
-            var errorMsg = ActionWithExceptionHandling(() =>
+            using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
             {
-                // Publish database instance to Spotfire server
-                using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
+                var errorMsg = ActionWithExceptionHandling((client) =>
                 {
                     var rootFolderId = spotfireServiceClient.GetDatalytixRootFolder();
                     spotfireServiceClient.CreateDataSource(
@@ -148,10 +162,10 @@ namespace Manager.Code
                         string.IsNullOrEmpty(instanceBO.Password) ? GetPassword(instanceBO) : DecryptPassword(instanceBO.Password),
                         true,
                         instanceBO.DriverType);
-                }
-            });
+                }, spotfireServiceClient);
 
-            return errorMsg;
+                return errorMsg;
+            }
         }
 
         /// <summary>
@@ -166,72 +180,72 @@ namespace Manager.Code
             string userName = spotfire.SpotfireUser;
             string password = DecryptPassword(spotfire.SpotfirePassword);
 
-            var errorMsg = ActionWithExceptionHandling(() =>
+            // Publish database instance to Spotfire server
+			using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
             {
-                // Publish database instance to Spotfire server
-                using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
+                var errorMsg = ActionWithExceptionHandling((client) =>
                 {
-                    var defaultInstance = ConfigurationUtilities.GetMainInstance();
-                    var rootFolderId = spotfireServiceClient.GetDatalytixRootFolder();
+                        var defaultInstance = ConfigurationUtilities.GetMainInstance();
+                        var rootFolderId = spotfireServiceClient.GetDatalytixRootFolder();
 
-                    var instanceDataviewRootId = spotfireServiceClient.CreateFolder(
-                        string.Format(dataviewFolderPattern, defaultInstance.Id), rootFolderId);
+                        var instanceDataviewRootId = spotfireServiceClient.CreateFolder(
+                            string.Format(dataviewFolderPattern, defaultInstance.Id), rootFolderId);
 
-                    var coeDataView = dataview.COEDataView;
-                    var dataviewFolderId =
-                        spotfireServiceClient.CreateFolder(
-                            coeDataView.DataViewID.ToString(CultureInfo.InvariantCulture),
-                            instanceDataviewRootId);
-
-                    foreach (var table in coeDataView.Tables)
-                    {
-                        var tableFolderId =
+                        var coeDataView = dataview.COEDataView;
+                        var dataviewFolderId =
                             spotfireServiceClient.CreateFolder(
-                                table.Id.ToString(CultureInfo.InvariantCulture),
-                                dataviewFolderId);
+                                coeDataView.DataViewID.ToString(CultureInfo.InvariantCulture),
+                                instanceDataviewRootId);
 
-                        // Create or find the exsiting data source from Spotfire server
-                        var database = ConfigurationUtilities.GetDatabaseData(table.Database, true);
-
-                        if (database == null)
+                        foreach (var table in coeDataView.Tables)
                         {
-                            throw new ApplicationException(string.Format("Database '{0}' is not found in configuration file.", table.Database));
+                            var tableFolderId =
+                                spotfireServiceClient.CreateFolder(
+                                    table.Id.ToString(CultureInfo.InvariantCulture),
+                                    dataviewFolderId);
+
+                            // Create or find the exsiting data source from Spotfire server
+                            var database = ConfigurationUtilities.GetDatabaseData(table.Database, true);
+
+                            if (database == null)
+                            {
+                                throw new ApplicationException(string.Format("Database '{0}' is not found in configuration file.", table.Database));
+                            }
+                            if (database.InstanceData == null)
+                            {
+                                throw new ApplicationException(string.Format("Data source for database '{0}' is not found in configuration file", table.Database));
+                            }
+
+                            var instance = database.InstanceData;
+
+                            var globalDbName = instance.IsCBOEInstance ? instance.DatabaseGlobalUser : instance.Name + "." + instance.DatabaseGlobalUser;
+                            var globalDatabase = ConfigurationUtilities.GetDatabaseData(globalDbName, true);
+
+                            if (globalDatabase == null)
+                            {
+                                throw new ApplicationException(string.Format("Global database for data source '{0}' is not found in configuration file.", instance.InstanceName));
+                            }
+
+                            var datasourceId = spotfireServiceClient.CreateDataSource(
+                                rootFolderId,
+                                string.Format(instanceDatasourcePathPattern, instance.InstanceName.Trim().ToUpper(), instance.Id),
+                                instance.HostName,
+                                instance.Port,
+                                instance.SID,
+                                instance.DatabaseGlobalUser,
+                                DecryptPassword(globalDatabase.Password));
+
+                            var publishingError = PublishTableFields(spotfireServiceClient, datasourceId, tableFolderId, database, dataview, table);
+
+                            if (!string.IsNullOrEmpty(publishingError))
+                            {
+                                throw new System.ApplicationException(publishingError);
+                            }
                         }
-                        if (database.InstanceData == null)
-                        {
-                            throw new ApplicationException(string.Format("Data source for database '{0}' is not found in configuration file", table.Database));
-                        }
+                }, spotfireServiceClient);
 
-                        var instance = database.InstanceData;
-
-                        var globalDbName = instance.IsCBOEInstance ? instance.DatabaseGlobalUser : instance.Name + "." + instance.DatabaseGlobalUser;
-                        var globalDatabase = ConfigurationUtilities.GetDatabaseData(globalDbName, true);
-
-                        if (globalDatabase == null)
-                        {
-                            throw new ApplicationException(string.Format("Global database for data source '{0}' is not found in configuration file.", instance.InstanceName));
-                        }
-
-                        var datasourceId = spotfireServiceClient.CreateDataSource(
-                            rootFolderId,
-                            string.Format(instanceDatasourcePathPattern, instance.InstanceName.Trim().ToUpper(), instance.Id),
-                            instance.HostName,
-                            instance.Port,
-                            instance.SID,
-                            instance.DatabaseGlobalUser,
-                            DecryptPassword(globalDatabase.Password));
-
-                        var publishingError = PublishTableFields(spotfireServiceClient, datasourceId, tableFolderId, database, dataview, table);
-
-                        if (!string.IsNullOrEmpty(publishingError))
-                        {
-                            throw new System.ApplicationException(publishingError);
-                        }
-                    }
-                }
-            });
-
-            return errorMsg;
+                return errorMsg;
+            }
         }
 
         /// <summary>
@@ -246,10 +260,10 @@ namespace Manager.Code
             string userName = spotfire.SpotfireUser;
             string password = DecryptPassword(spotfire.SpotfirePassword);
 
-            var errorMsg = ActionWithExceptionHandling(() =>
+            // Delete dataview in Spotfire server
+			using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
             {
-                // Delete dataview in Spotfire server
-                using (var spotfireServiceClient = new SpotfireServiceClient(spotfireUrl, userName, password))
+                var errorMsg = ActionWithExceptionHandling((client) =>
                 {
                     var defaultInstance = ConfigurationUtilities.GetMainInstance();
                     var rootFolderId = spotfireServiceClient.GetDatalytixRootFolder();
@@ -262,10 +276,11 @@ namespace Manager.Code
                             instanceDataviewRootId);
 
                     spotfireServiceClient.DeleteFolder(dataviewFolderId);
-                }
-            });
 
-            return errorMsg;
+                }, spotfireServiceClient);
+
+                return errorMsg;
+            }
         }
 
         #endregion
@@ -320,19 +335,18 @@ namespace Manager.Code
         public string CreateFolder(string name, string parentId = null, string description = "")
         {
             string parentPath = "/";
-            ItemType[] types = spotfireLibraryServiceClient.loadTypes(new[] { "spotfire.folder" });
 
             if (parentId == null)
             {
-                parentId = spotfireLibraryServiceClient.pathToGuid(parentPath, types[0]);
+                parentId = spotfireLibraryServiceClient.pathToId(parentPath, "spotfire.folder");
             }
             else
             {
-                parentPath = spotfireLibraryServiceClient.guidToPath(parentId);
+                parentPath = spotfireLibraryServiceClient.idToPath(parentId);
             }
 
             // Check folder exist in current parent folder
-            var folderId = spotfireLibraryServiceClient.pathToGuid(parentPath + "/" + name, types[0]);
+            var folderId = spotfireLibraryServiceClient.pathToId(parentPath + "/" + name, "spotfire.folder");
             if (folderId != null)
             {
                 return folderId;
@@ -359,7 +373,7 @@ namespace Manager.Code
         /// <param name="folderId">The folder id.</param>
         public void DeleteFolder(string folderId)
         {
-            spotfireLibraryServiceClient.deleteItems(new[] { folderId });
+            spotfireLibraryServiceClient.removeItems(new[] { folderId });
         }
 
         /// <summary>
@@ -395,9 +409,8 @@ namespace Manager.Code
             }
 
             // Check datasource exist in current parent folder
-            ItemType[] types = spotfireLibraryServiceClient.loadTypes(new[] { "spotfire.datasource" });
-            var parentPath = spotfireLibraryServiceClient.guidToPath(folderId);
-            var datasourceId = spotfireLibraryServiceClient.pathToGuid(parentPath + "/" + instanceName, types[0]);
+            var parentPath = spotfireLibraryServiceClient.idToPath(folderId);
+            var datasourceId = spotfireLibraryServiceClient.pathToId(parentPath + "/" + instanceName, "spotfire.datasource");
             var connectionUrl = string.Format(GetConnectionUrlPattern(driverType), serverUrl, port, sid);
             var pingCmd = "SELECT 1 FROM DUAL";
             
@@ -484,10 +497,9 @@ namespace Manager.Code
         /// <param name="instanceName"> The instance name. </param>
         public void DeleteDataSource(string folderId, string instanceName)
         {
-            ItemType[] types = spotfireLibraryServiceClient.loadTypes(new[] { "spotfire.datasource" });
-            var parentPath = spotfireLibraryServiceClient.guidToPath(folderId);
-            var datasourceId = spotfireLibraryServiceClient.pathToGuid(parentPath + "/" + instanceName, types[0]);
-            spotfireLibraryServiceClient.deleteItems(new[] { datasourceId });
+            var parentPath = spotfireLibraryServiceClient.idToPath(folderId);
+            var datasourceId = spotfireLibraryServiceClient.pathToId(parentPath + "/" + instanceName, "spotfire.datasource");
+            spotfireLibraryServiceClient.removeItems(new[] { datasourceId });
         }
 
         /// <summary>
@@ -526,14 +538,13 @@ namespace Manager.Code
             }
 
             // Check column exist in current parent folder
-            ItemType[] types = spotfireLibraryServiceClient.loadTypes(new[] { "spotfire.column" });
-            var parentPath = spotfireLibraryServiceClient.guidToPath(folderId);
-            var columnId = spotfireLibraryServiceClient.pathToGuid(parentPath + "/" + alias, types[0]);
+            var parentPath = spotfireLibraryServiceClient.idToPath(folderId);
+            var columnId = spotfireLibraryServiceClient.pathToId(parentPath + "/" + alias, "spotfire.column");
             if (columnId != null)
             {
                 if (updateExisting)
                 {
-                    spotfireLibraryServiceClient.deleteItems(new[] { columnId });
+                    spotfireLibraryServiceClient.removeItems(new[] { columnId });
                 }
                 else
                 {
@@ -584,14 +595,13 @@ namespace Manager.Code
             string joinName = fieldId + "-" + lookupFieldId;
 
             // Check column exist in current parent folder
-            ItemType[] types = spotfireLibraryServiceClient.loadTypes(new[] { "spotfire.join" });
-            var parentPath = spotfireLibraryServiceClient.guidToPath(tableFolderId);
-            var joinId = spotfireLibraryServiceClient.pathToGuid(parentPath + "/" + joinName, types[0]);
+            var parentPath = spotfireLibraryServiceClient.idToPath(tableFolderId);
+            var joinId = spotfireLibraryServiceClient.pathToId(parentPath + "/" + joinName, "spotfire.join");
             if (joinId != null)
             {
                 if (updateExisting)
                 {
-                    spotfireLibraryServiceClient.deleteItems(new[] { joinId });
+                    spotfireLibraryServiceClient.removeItems(new[] { joinId });
                 }
                 else
                 {
@@ -664,66 +674,97 @@ namespace Manager.Code
             return Utilities.IsRijndaelEncrypted(password) ? Utilities.DecryptRijndael(password) : password;
         }
 
-        private static string ActionWithExceptionHandling(Action action, bool logException = true)
+        private static string ActionWithExceptionHandling(Action<SpotfireServiceClient> action, SpotfireServiceClient client, bool logException = true)
         {
             var errorMsg = string.Empty;
             var errorMsgWillLog = string.Empty;
 
-            try
+            // retry times
+            int times = 0;
+
+            while (true)
             {
-                action();
-            }
-            catch (MessageSecurityException securityEx)
-            {
-                errorMsg = "Invalid username or password for Spotfire server";
-                errorMsgWillLog = securityEx.Message;
-            }
-            catch (EndpointNotFoundException endpointNotFoundEx)
-            {
-                errorMsg = "Spotfire service cannot be reached. please check Spotfire service address.";
-                errorMsgWillLog = endpointNotFoundEx.Message;
-            }
-            catch (FaultException<Manager.SpotfireElementManagerService.IMFaultInfo> faultEx)
-            {
-                if (faultEx.Message.Contains("Error(s) found during validation"))
+                try
                 {
-                    errorMsg = "Validation error, this maybe caused by invalid driver type or invalid data source username and password.";
+                    times++;
+                    action(client);
+                    break;
                 }
-                else if (faultEx.Message.Contains("Conflicting name"))
+                catch (MessageSecurityException securityEx)
                 {
-                    errorMsg = "Duplicate columns in dataview:" + faultEx.Message.Substring(16);
+                    // retry times
+                    if (times > 3)
+                    {
+                        errorMsg = "Invalid username or password for Spotfire server";
+                        errorMsgWillLog = securityEx.Message;
+
+                        break;
+                    }
+
+                    // For Spotfire 7.5 server, regenerate XSRF token when expaired
+                    client.server.Update();
                 }
-                else
+                catch (EndpointNotFoundException endpointNotFoundEx)
+                {
+                    errorMsg = "Spotfire service cannot be reached. please check Spotfire service address.";
+                    errorMsgWillLog = endpointNotFoundEx.Message;
+					
+                    break;
+                }
+                catch (FaultException<Manager.SpotfireElementManagerService.IMFaultInfo> faultEx)
+                {
+                    if (faultEx.Message.Contains("Error(s) found during validation"))
+                    {
+                        errorMsg = "Validation error, this maybe caused by invalid driver type or invalid data source username and password.";
+                    }
+                    else if (faultEx.Message.Contains("Conflicting name"))
+                    {
+                        errorMsg = "Duplicate columns in dataview:" + faultEx.Message.Substring(16);
+                    }
+                    else
+                    {
+                        errorMsg = "Unknown exception happend while calling Spotfire server. Please contact with Spotfire server administrator.";
+                    }
+
+                    errorMsgWillLog = faultEx.Message;
+
+                    break;
+                }
+                catch (SecurityNegotiationException negotiationEx)
+                {
+                    errorMsg = "It is failed to validate the server certficate, please install the certificate or ignore the certification error by configuration setting";
+                    errorMsgWillLog = negotiationEx.Message;
+
+                    break;
+                }
+                catch (CommunicationException communicationEx)
+                {
+                    errorMsg = "Error happend while communicating with Spotfire server, please try it later.";
+                    errorMsgWillLog = communicationEx.Message;
+
+                    break;
+                }
+                catch (ApplicationException appEx)
+                {
+                    errorMsg = appEx.Message;
+                    errorMsgWillLog = appEx.Message;
+
+                    break;
+                }
+                catch (TimeoutException timeoutEx)
+                {
+                    errorMsg = "Spotfire service timeout, please try it later.";
+                    errorMsgWillLog = timeoutEx.Message;
+
+                    break;
+                }
+                catch (Exception ex)
                 {
                     errorMsg = "Unknown exception happend while calling Spotfire server. Please contact with Spotfire server administrator.";
-                }
+                    errorMsgWillLog = ex.Message;
 
-                errorMsgWillLog = faultEx.Message;
-            }
-            catch (SecurityNegotiationException negotiationEx)
-            {
-                errorMsg = "It is failed to validate the server certficate, please install the certificate or ignore the certification error by configuration setting";
-                errorMsgWillLog = negotiationEx.Message;
-            }
-            catch (CommunicationException communicationEx)
-            {
-                errorMsg = "Error happend while communicating with Spotfire server, please try it later.";
-                errorMsgWillLog = communicationEx.Message;
-            }
-            catch (ApplicationException appEx)
-            {
-                errorMsg = appEx.Message;
-                errorMsgWillLog = appEx.Message;
-            }
-            catch (TimeoutException timeoutEx)
-            {
-                errorMsg = "Spotfire service timeout, please try it later.";
-                errorMsgWillLog = timeoutEx.Message;
-            }
-            catch (Exception ex)
-            {
-                errorMsg = "Unknown exception happend while calling Spotfire server. Please contact with Spotfire server administrator.";
-                errorMsgWillLog = ex.Message;
+                    break;
+                }
             }
 
             if (logException)
@@ -784,7 +825,7 @@ namespace Manager.Code
 
                 tasks.Add(Task.Factory.StartNew(() =>
                 {
-                    var errorMsg = ActionWithExceptionHandling(() =>
+                    var errorMsg = ActionWithExceptionHandling((client) =>
                     {
                         spotfireServiceClient.CreateColumn(
                             datasourceId,
@@ -797,7 +838,7 @@ namespace Manager.Code
                             "%1",
                             true,
                             contentProperty);
-                    }, false);
+                    }, spotfireServiceClient, false);
 
                     if (!string.IsNullOrEmpty(errorMsg))
                     {
@@ -827,7 +868,7 @@ namespace Manager.Code
 
                     tasks.Add(Task.Factory.StartNew(() =>
                     {
-                        var errorMsg = ActionWithExceptionHandling(() =>
+                        var errorMsg = ActionWithExceptionHandling((client) =>
                         {
                             spotfireServiceClient.CreateColumn(
                                 datasourceId,
@@ -839,7 +880,7 @@ namespace Manager.Code
                                 fieldId + "_formula",
                                 formulaExpression,
                                 true);
-                        }, false);
+                        }, spotfireServiceClient, false);
 
                         if (!string.IsNullOrEmpty(errorMsg))
                         {
@@ -849,7 +890,7 @@ namespace Manager.Code
 
                     tasks.Add(Task.Factory.StartNew(() =>
                     {
-                        var errorMsg = ActionWithExceptionHandling(() =>
+                        var errorMsg = ActionWithExceptionHandling((client) =>
                         {
                             spotfireServiceClient.CreateColumn(
                                 datasourceId,
@@ -861,7 +902,7 @@ namespace Manager.Code
                                 fieldId + "_molweight",
                                 molWeightExpression,
                                 true);
-                        }, false);
+                        }, spotfireServiceClient, false);
 
                         if (!string.IsNullOrEmpty(errorMsg))
                         {
@@ -883,7 +924,7 @@ namespace Manager.Code
 
                     tasks.Add(Task.Factory.StartNew(() =>
                     {
-                        var errorMsg = ActionWithExceptionHandling(() =>
+                        var errorMsg = ActionWithExceptionHandling((client) =>
                         {
                             spotfireServiceClient.CreateJoin(fieldId,
                                 fieldName,
@@ -896,7 +937,7 @@ namespace Manager.Code
                                 lookupSchema,
                                 lookupTable.Name,
                                 true);
-                        }, false);
+                        }, spotfireServiceClient, false);
 
                         if (!string.IsNullOrEmpty(errorMsg))
                         {
@@ -955,13 +996,18 @@ namespace Manager.Code
                     Mode = this.elementManagerServiceAddress.StartsWith("https", StringComparison.InvariantCultureIgnoreCase) ? BasicHttpSecurityMode.Transport : BasicHttpSecurityMode.TransportCredentialOnly,
                     Transport = { ClientCredentialType = HttpClientCredentialType.Basic }
                 },
-                MaxReceivedMessageSize = 10000000
+                MaxReceivedMessageSize = 10000000,
+                OpenTimeout = OpenTimeout,
+                CloseTimeout = CloseTimeout,
+                SendTimeout = SendTimeout,
+                ReceiveTimeout = ReceiveTimeout
             };
 
             WebRequest.RegisterPrefix(this.elementManagerServiceAddress, new WebRequestCreater());
             var endpointAddress = new EndpointAddress(this.elementManagerServiceAddress);
 
             this.spotfireElementManagerServiceClient = new ElementManagerServiceClient(basicHttpbinding, endpointAddress);
+            this.spotfireElementManagerServiceClient.Endpoint.Behaviors.Add(new CustomEndpointBehavior(this.server));
             this.spotfireElementManagerServiceClient.ClientCredentials.UserName.UserName = userName;
             this.spotfireElementManagerServiceClient.ClientCredentials.UserName.Password = password;
 
@@ -992,7 +1038,7 @@ namespace Manager.Code
         }
 
         private void InitializeLibraryServiceClient()
-        { 
+        {
             var basicHttpbinding = new BasicHttpBinding
             {
                 Name = "LibraryServiceSoapBinding",
@@ -1001,13 +1047,18 @@ namespace Manager.Code
                     Mode = this.libraryServiceAddress.StartsWith("https", StringComparison.InvariantCultureIgnoreCase) ? BasicHttpSecurityMode.Transport : BasicHttpSecurityMode.TransportCredentialOnly,
                     Transport = { ClientCredentialType = HttpClientCredentialType.Basic }
                 },
-                MaxReceivedMessageSize = 10000000
+                MaxReceivedMessageSize = 10000000,
+                OpenTimeout = OpenTimeout,
+                CloseTimeout = CloseTimeout,
+                SendTimeout = SendTimeout,
+                ReceiveTimeout = ReceiveTimeout
             };
 
             WebRequest.RegisterPrefix(this.libraryServiceAddress, new WebRequestCreater());
             var endpointAddress = new EndpointAddress(this.libraryServiceAddress);
 
             this.spotfireLibraryServiceClient = new LibraryServiceClient(basicHttpbinding, endpointAddress);
+            this.spotfireLibraryServiceClient.Endpoint.Behaviors.Add(new CustomEndpointBehavior(this.server));
             this.spotfireLibraryServiceClient.ClientCredentials.UserName.UserName = userName;
             this.spotfireLibraryServiceClient.ClientCredentials.UserName.Password = password;
 

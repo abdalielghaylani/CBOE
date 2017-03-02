@@ -193,7 +193,7 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
         'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
       this.actions.saveRecord(this.recordDoc);
     } else {
-      notify('Saving is not supported yet!', 'warning');
+      // notify('Saving is not supported yet!', 'warning');
       // this.actions.updateRecord(this.recordDoc);
       this.setEditMode(false);
     }
@@ -204,7 +204,7 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
   }
 
   edit() {
-    notify('Editing is experimental', 'warning');
+    // notify('Editing is experimental', 'warning');
     this.setEditMode(true);
   }
 
@@ -216,11 +216,12 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
     this.editMode = editMode;
     this.changeDetector.markForCheck();
     this.forms.forEach(f => {
-      // f.items.forEach(i => {
-      //   if (i.template) {
-      //     i.disabled = !editMode;
-      //   }
-      // });
+      f.items.forEach(i => {
+        if (i.template) {
+          i.disabled = !editMode;
+        }
+      });
+      f.readOnly = !editMode;
       f.instance.repaint();
     });
   }

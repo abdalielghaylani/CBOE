@@ -56,6 +56,7 @@ namespace Manager.Forms.DataViewManager.ContentArea
         #endregion
 
         #region Event handlers
+
         void AddSchemaUC_SchemaCancelAdd(object sender, CommandEventArgs e)
         {
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
@@ -95,9 +96,11 @@ namespace Manager.Forms.DataViewManager.ContentArea
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "redirect", "window.parent.location.href = 'DataviewBoard.aspx?IsMaster=true&schemaSelected=" + instanceSchema + "';", true);
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         }
+
         #endregion
 
         #region Private Methods
+
         public COEDataViewBO GetDataViewBO()
         {
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
@@ -246,12 +249,13 @@ namespace Manager.Forms.DataViewManager.ContentArea
 
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         }
-        #endregion
 
         protected override void SetControlsAttributtes()
         {
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         }
+
+        #endregion
     }
 }

@@ -17,7 +17,7 @@ using CambridgeSoft.COE.Framework.Common.GUIShell.DataServices;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.Controls.COEDataMapper;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+using CS = CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Common;
@@ -321,7 +321,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea
             get
             {
                 if (Session["DisplayCulture"] == null)
-                    Session["DisplayCulture"] = ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
+                    Session["DisplayCulture"] = CS.ConfigurationUtilities.GetApplicationData(COEAppName.Get().ToString()).DisplayCulture;
                 return (string)Session["DisplayCulture"];
             }
         }
@@ -2490,7 +2490,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea
                 {
                     if (int.Parse(genericObjectID) > 0)
                     {
-                        string _databaseName = COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
+                        string _databaseName = CS.COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
                         COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(int.Parse(genericObjectID));
 
                         RegistryRecord record = RegistryRecord.NewRegistryRecord();
@@ -2961,7 +2961,7 @@ namespace PerkinElmer.COE.Registration.Server.Forms.ReviewRegister.ContentArea
         {
             try
             {
-                string databaseName = COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
+                string databaseName = CS.COEConfiguration.GetDatabaseNameFromAppName(CambridgeSoft.COE.Framework.Common.COEAppName.Get().ToString());
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
                 e.BusinessObject = PickListNameValueList.GetPickListNameValueList(databaseName, "Status");
                 RegUtilities.WriteToRegLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);

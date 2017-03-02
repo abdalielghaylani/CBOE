@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="8naBuSy1do1mgOXmiJkojX0hn/4=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="HBdpONgEuaz4w95GRhhZtaRWVok=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="LibraryServiceSoapBinding">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="LibraryServicePort" contract="SpotfireLibraryService.LibraryService" bindingType="basicHttpBinding" address="http://shadev437:650/spotfire/ws/LibraryService" bindingConfiguration="LibraryServiceSoapBinding">
+    <endpoint name="LibraryServicePort" contract="SpotfireLibraryService.LibraryService" bindingType="basicHttpBinding" address="http://shadev436:750/spotfire/ws/pub/LibraryService" bindingConfiguration="LibraryServiceSoapBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://shadev437:650/spotfire/ws/LibraryService</serializedValue>
+          <serializedValue>http://shadev436:750/spotfire/ws/pub/LibraryService</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

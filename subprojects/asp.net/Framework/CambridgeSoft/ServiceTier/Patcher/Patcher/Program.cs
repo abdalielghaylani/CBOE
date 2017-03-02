@@ -55,6 +55,7 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "11.0.2":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\11.0.3.txt");
@@ -70,8 +71,9 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
-                        case "11.0.3": 
+                        case "11.0.3":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\11.0.4.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.1.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.1.1.txt");
@@ -84,6 +86,7 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "11.0.4":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.1.0.txt");
@@ -97,6 +100,7 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "12.1.0":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.1.1.txt");
@@ -109,8 +113,9 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
-						case "12.1.1":
+                        case "12.1.1":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.3.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.3.1.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.4.0.txt");
@@ -120,6 +125,7 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "12.1.3":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.3.0.txt");
@@ -131,6 +137,7 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "12.5.0":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.1.txt");
@@ -138,27 +145,36 @@ namespace CambridgeSoft.COE.Patcher
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
-                        case "12.5.1":                          
+                        case "12.5.1":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.2.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "12.5.2":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.5.3.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
-                        case "12.5.3":                            
+                        case "12.5.3":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.0.txt");
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "12.6.0":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                         case "12.6.1":
                             Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.2.txt");
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
+                            break;
+                        case "12.6.2":
+                            Patch(userInput[0], userInput[1], userInput[2], ".\\PatchLists\\12.6.3.txt");
                             break;
                     }
                 }

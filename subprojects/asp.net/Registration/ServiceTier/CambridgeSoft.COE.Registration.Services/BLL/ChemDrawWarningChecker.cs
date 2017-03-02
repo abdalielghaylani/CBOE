@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using CambridgeSoft.COE.Registration.Services.AddIns;
-using ChemDrawControl14;
+using ChemDrawControl15;
 using CambridgeSoft.COE.Registration.Services.Types;
 using System.Xml;
 using CambridgeSoft.COE.Registration.Services.Properties;

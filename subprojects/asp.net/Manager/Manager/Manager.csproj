@@ -187,6 +187,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.es-AR.resx</DependentUpon>
     </Compile>
+    <Compile Include="Code\CustomEndpointBehavior.cs" />
+    <Compile Include="Code\CustomMessageInspector.cs" />
+    <Compile Include="Code\SpotfireServer.cs" />
     <Compile Include="Code\SpotfireServiceClient.cs" />
     <Compile Include="Forms\ConfigControlSettings\ContentArea\ConfigControlSettings.aspx.cs">
       <DependentUpon>ConfigControlSettings.aspx</DependentUpon>
@@ -256,7 +259,14 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Forms\DataViewManager\ContentArea\ManageDbInstance.aspx.designer.cs">
-      <DependentUpon>ManageDbInstance.aspx</DependentUpon>
+      <DependentUpon>ManageDbInstance.aspx</DependentUpon>    
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\RefreshSchema.aspx.cs">
+      <DependentUpon>RefreshSchema.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\ContentArea\RefreshSchema.aspx.designer.cs">
+      <DependentUpon>RefreshSchema.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\DataViewManager\HomePage\CustomItems\TotalSchemas.cs" />
     <Compile Include="Forms\DataViewManager\HomePage\CustomItems\GetTotalDataViewsDashItem.cs" />
@@ -407,6 +417,13 @@
     </Compile>
     <Compile Include="Forms\DataViewManager\UserControls\NameDescription.ascx.designer.cs">
       <DependentUpon>NameDescription.ascx</DependentUpon>
+    </Compile>    
+    <Compile Include="Forms\DataViewManager\UserControls\RefreshSchema.ascx.cs">
+      <DependentUpon>RefreshSchema.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\DataViewManager\UserControls\RefreshSchema.ascx.designer.cs">
+      <DependentUpon>RefreshSchema.ascx</DependentUpon>
     </Compile>
     <Compile Include="Forms\DataViewManager\UserControls\SchemaSummary.ascx.cs">
       <DependentUpon>SchemaSummary.ascx</DependentUpon>
@@ -814,9 +831,11 @@
     <Content Include="App_Themes\GREEN\SkinFile.skin" />
     <Content Include="Forms\DataViewManager\ContentArea\AddInstances.aspx" />
     <Content Include="Forms\DataViewManager\ContentArea\ManageDbInstance.aspx" />
+    <Content Include="Forms\DataViewManager\ContentArea\RefreshSchema.aspx" />
     <Content Include="Forms\DataViewManager\UserControls\ManageDbInstance.ascx" />
     <None Include="Service References\SpotfireElementManagerService\configuration91.svcinfo" />
     <None Include="Service References\SpotfireElementManagerService\configuration.svcinfo" />
+    <Content Include="Forms\DataViewManager\UserControls\RefreshSchema.ascx" />
     <Content Include="Service References\SpotfireElementManagerService\Manager.SpotfireElementManagerService.DataSourceElement.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

@@ -20,7 +20,7 @@
             </div>    
             <div class="product">
             	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgChem.gif" alt="Desktop software" />
-              <p><strong>BioSAR Enterprise</strong> is a catalog-driven data mining and analysis application that presents both form and table views within a single web-based interface. </p>
+              <p><strong>Datalytix™ </strong> Datalytix™ enables self-service import of relevant data into TIBCO Spotfire® software from scientifically significant data sources. This empowers scientists to ask questions of their data as soon as they are realized, accelerating time to insight. </p>
             </div>
             <div class="product">
             	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgMi.gif" alt="Desktop software" />
@@ -32,7 +32,7 @@
             </div>
             <div class="product">
             	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgBio.gif" alt="Desktop software" />
-              <p><strong>Document Manager</strong> provides searching for chemical structures in documents, files, and folders.  </p>
+              <p><strong>DataView Manager</strong> is an application designed to define your database schemas, tables and relationships that are made available for Datalytix users for searching purpose.  </p>
             </div>
             <div class="clear"></div>
             <br />
