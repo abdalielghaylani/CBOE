@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IRecordDetail, IAppState } from '../store';
+import { IAppState } from '../store';
 
 @Injectable()
 export class RegistrySearchActions {
@@ -14,8 +14,14 @@ export class RegistrySearchActions {
   static RETRIEVE_QUERY_FORM = 'RETRIEVE_QUERY_FORM';
   static RETRIEVE_QUERY_FORM_SUCCESS = 'RETRIEVE_QUERY_FORM_SUCCESS';
   static RETRIEVE_QUERY_FORM_ERROR = 'RETRIEVE_QUERY_FORM_ERROR';
+  static OPEN_HITLISTS = 'OPEN_HITLISTS';
+  static OPEN_HITLISTS_SUCCESS = 'OPEN_HITLISTS_SUCCESS';
+  static OPEN_HITLISTS_ERROR = 'OPEN_HITLISTS_ERROR';
+  static openHitlistsAction = createAction(RegistrySearchActions.OPEN_HITLISTS);
+  static openHitlistsSuccessAction = createAction(RegistrySearchActions.OPEN_HITLISTS_SUCCESS);
+  static openHitlistsErrorAction = createAction(RegistrySearchActions.OPEN_HITLISTS_ERROR);
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
-    (temporary: boolean, history: boolean, id: Number) => ({temporary, history, id}));
+    (temporary: boolean, history: boolean, id: Number) => ({ temporary, history, id }));
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
@@ -66,4 +72,7 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryFormErrorAction());
   }
 
+  openHitlists() {
+    this.ngRedux.dispatch(RegistrySearchActions.openHitlistsAction());
+  }
 }

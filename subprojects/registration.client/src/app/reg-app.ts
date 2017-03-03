@@ -4,10 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { DevToolsExtension, NgRedux, select } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
-
 import { IAppState, ISession, rootReducer } from '../store';
 import { RegistryActions, SessionActions } from '../actions';
-import { ConfigurationEpics, RegistryEpics, SessionEpics } from '../epics';
+import { ConfigurationEpics, RegistryEpics, SessionEpics, RegistrySearchEpics } from '../epics';
 import { RegAboutPage } from '../pages';
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
 
@@ -59,11 +58,13 @@ export class RegApp {
     private registryActions: RegistryActions,
     private configEpics: ConfigurationEpics,
     private registryEpics: RegistryEpics,
+    private registrySearchEpics: RegistrySearchEpics,
     private sessionEpics: SessionEpics) {
 
     middleware.push(createEpicMiddleware(combineEpics(
       configEpics.handleOpenTable,
       registryEpics.handleRegistryActions,
+      registrySearchEpics.handleRegistrySearchActions,
       sessionEpics.handleLoginUser,
       sessionEpics.handleLoginUserSuccess
     )));

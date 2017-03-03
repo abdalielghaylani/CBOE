@@ -121,7 +121,10 @@
                   <ul class="list-group">
                     <li *ngFor="let tempQuery of regsearch.queryManagementVM.latestQueriesList" class="list-group-item">
                       <a class="dropdown-toggle query-list-item" data-toggle="dropdown">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i> &nbsp; {{tempQuery.Name}} <span class="caret"></span></a>
+                        <span class="caret "></span> &nbsp;  
+                        {{ tempQuery.DateCreated._date.replace('T',' ') }}
+                         &nbsp;(Hits :{{ tempQuery.NumberOfHits }})
+                         </a>
                       <ul class="dropdown-menu">
                         <li><a class="query-list-item text-relaxed">Restore Hitlist</a></li>
                         <li class="divider"></li>
@@ -146,7 +149,9 @@
                   <ul class="list-group">
                     <li *ngFor="let savedQuery of regsearch.queryManagementVM.savedQueriesList" class="list-group-item">
                       <a class="dropdown-toggle query-list-item" data-toggle="dropdown">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i> &nbsp; {{savedQuery.Name}} <span class="caret"></span></a>
+                          <span class="caret "></span> &nbsp;  {{savedQuery.Name}} 
+                         &nbsp;(Hits :{{ savedQuery.NumberOfHits }})
+                        </a>
                       <ul class="dropdown-menu">
                         <li><a class="query-list-item text-relaxed">Restore Hitlist</a></li>
                         <li class="divider"></li>

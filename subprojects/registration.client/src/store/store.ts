@@ -4,17 +4,18 @@ import * as session from './session';
 import * as configuration from './configuration';
 import * as registry from './registry';
 
-
 export interface IAppState {
   session?: session.ISession;
   configuration?: configuration.IConfiguration;
   registry?: registry.IRegistry;
+  registrysearch?: registry.IRegistrySearch;
 };
 
 export const rootReducer = combineReducers<IAppState>({
   session: session.sessionReducer,
   configuration: configuration.configurationReducer,
   registry: registry.registryReducer,
+  registrysearch: registry.registrySearchReducer,
   router: routerReducer,
 });
 

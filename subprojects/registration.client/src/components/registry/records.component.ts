@@ -63,6 +63,10 @@ import * as regSearchTypes from './registry-search.types';
           <i class="fa fa-floppy-o"></i>Save Query</button>
         </div>
         <div class="btn-group btn-group-sm">
+          <button class="btn btn-group btn-group-sm rose text-relaxed" (click)="editQuery(1)" data-original-title="Save Query">
+          <i class="fa fa-pencil-square-o"></i>Edit Current Query</button>
+        </div>
+        <div class="btn-group btn-group-sm">
           <button class="btn btn-group btn-group-sm rose text-relaxed"  data-original-title="Print" (click)="printRecords()"  >
           <i class="fa fa-print"></i>Print</button>
         </div>
@@ -205,6 +209,10 @@ export class RegRecords implements OnInit, OnDestroy {
 
   saveQuery() {
     this.popupVisible = true;
+  }
+
+  editQuery(id: Number) {
+    this.router.navigate([`records/search/${id}`]);
   }
 
   cancelSaveQuery() {

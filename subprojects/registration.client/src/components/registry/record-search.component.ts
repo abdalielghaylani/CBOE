@@ -14,7 +14,7 @@ import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 import { RegistrySearchActions, ConfigurationActions } from '../../actions';
-import { IAppState, IRecordDetail } from '../../store';
+import { IAppState, ISearchRecords } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 
 declare var jQuery: any;
@@ -29,6 +29,9 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   private title: string = 'Search Permanent Registry';
   private tabSelected: string = 'search';
   private regsearch: regSearchTypes.CSearchFormVM;
+  private hitlistData$: Observable<ISearchRecords>;
+  private recordsSubscription: Subscription;
+  private records: ISearchRecords;
 
   constructor(
     private router: Router,
@@ -39,16 +42,22 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.regsearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
-    this.loadData();
-  }
-
-  ngOnDestroy() {
+    this.actions.openHitlists();
+    this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
+    this.recordsSubscription = this.hitlistData$.subscribe(() => { this.loadData(); });
   }
 
   loadData() {
-
+    this.regsearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
+    this.changeDetector.markForCheck();
   }
+
+  ngOnDestroy() {
+    if (this.recordsSubscription) {
+      this.recordsSubscription.unsubscribe();
+    }
+  }
+
 
   search() {
 

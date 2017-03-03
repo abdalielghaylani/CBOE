@@ -25,6 +25,9 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/search',
   component: RegRecordSearchPage
 }, {
+  path: 'records/search/:id',
+  component: RegRecordSearchPage
+}, {
   path: 'records/:id',
   component: RegRecordDetailPage
 }, {

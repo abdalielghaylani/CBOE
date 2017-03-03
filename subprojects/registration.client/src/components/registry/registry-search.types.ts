@@ -596,12 +596,9 @@ function getPropertyColumn(p: CProperty): any {
 export class CQueryManagementVM {
   latestQueriesList?: CQueries[];
   savedQueriesList?: CQueries[];
-  constructor() {
-    // mock data to be deleted
-    this.latestQueriesList = [{ ID: 1, Name: 'TEMP 17022017001' }, { ID: 2, Name: 'TEMP 17022017002' }, { ID: 3, Name: 'TEMP 17022017003 ' }];
-    this.savedQueriesList = [{ ID: 1, Name: 'SAVED 17022017001' }, { ID: 1, Name: 'SAVED 17022017002' }, { ID: 1, Name: 'SAVED 17022017003' }];
-    // mock data to be deleted
-
+  constructor(state: IAppState) {
+    this.latestQueriesList = state.registrysearch.hitlist.rows.filter(i => (i.HistlistType === 0));
+    this.savedQueriesList = state.registrysearch.hitlist.rows.filter(i => (i.HistlistType === 1));
   }
 }
 
@@ -651,14 +648,14 @@ export class CManageHitlistVM {
   substractHitlist: boolean;
   intersectHitlist: boolean;
   replaceHitlist: boolean;
-  constructor(m: CQueryManagementVM) {
+  constructor(state: IAppState) {
     this.editColumns.push(HITLIST_EDIT_DESC_LIST);
     if (HITLIST_EDIT_DESC_LIST) {
       HITLIST_EDIT_DESC_LIST.forEach(p => {
         this.editColumns.push(p);
       });
     }
-    this.items = m.latestQueriesList.concat(m.savedQueriesList);
+    this.items = state.registrysearch.hitlist.rows;
   }
 }
 
@@ -714,8 +711,8 @@ export class CSearchFormVM {
     this.structureSearchVM = new CStructureSearchVM(this.structureSearch, state);
     this.componentSearchVM = new CComponentSearchVM(this.componentSearch, state);
     this.batchSearchVM = new CBatchSearchVM(this.batchSearch, state);
-    this.queryManagementVM = new CQueryManagementVM();
-    this.hitlistVM = new CManageHitlistVM(this.queryManagementVM);
+    this.queryManagementVM = new CQueryManagementVM(state);
+    this.hitlistVM = new CManageHitlistVM(state);
     this.preferenceVM = new CPreferenceVM();
   }
 }
