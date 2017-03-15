@@ -22,17 +22,20 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/new',
   component: RegRecordDetailPage
 }, {
-  path: 'records/search',
-  component: RegRecordSearchPage
-}, {
-  path: 'records/search/:id',
-  component: RegRecordSearchPage
-}, {
   path: 'records/:id',
   component: RegRecordDetailPage
 }, {
   path: 'records/temp/:id',
   component: RegRecordDetailPage
+}, {
+  path: 'search',
+  component: RegRecordSearchPage
+}, {
+  path: 'search/temp',
+  component: RegRecordSearchPage
+}, {
+  path: 'search/:id',
+  component: RegRecordSearchPage
 }, {
   path: 'configuration/:tableId',
   component: RegConfigurationPage

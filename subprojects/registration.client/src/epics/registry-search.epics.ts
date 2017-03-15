@@ -13,6 +13,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import { basePath } from '../configuration';
+import { notify, notifySuccess } from '../common';
 
 const BASE_URL = `${basePath}api`;
 
@@ -23,23 +24,63 @@ export class RegistrySearchEpics {
   handleRegistrySearchActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
     return combineEpics(
       this.handleopenHitlists,
+      this.handledeleteHitlists,
+      this.handleEditHitlist,
+      this.handleSaveHitlist
     )(action$, store);
   }
 
   private handleopenHitlists: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.OPEN_HITLISTS)
       .mergeMap(() => {
-          return this.http.get(`${BASE_URL}/search/hitlists`)
-            .map(result => {
-              return result.url.indexOf('index.html') > 0
-                ? SessionActions.logoutUserAction()
-                : RegistrySearchActions.openHitlistsSuccessAction(result.json());
-            })
-            .catch(error => Observable.of(RegistrySearchActions.openHitlistsErrorAction(error)));
-        // return RegistrySearchActions.openHitlistsSuccessAction([{id:1,Name:'Temp'},{id:1,Name:'Temp2'}]);
+        return this.http.get(`${BASE_URL}/search/hitlists`)
+          .map(result => {
+            return result.url.indexOf('index.html') > 0
+              ? SessionActions.logoutUserAction()
+              : RegistrySearchActions.openHitlistsSuccessAction(result.json());
+          })
+          .catch(error => Observable.of(RegistrySearchActions.openHitlistsErrorAction(error)));
       });
   }
 
+  private handledeleteHitlists: Epic = (action$: Observable<ReduxActions.Action<{ type: number, id: number }>>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.DELETE_HITLISTS)
+      .mergeMap(({ payload }) => {
+        return this.http.delete(`${BASE_URL}/search/hitlists/` + payload.id + `/` + payload.type)
+          .map(result => {
+            if (result.url.indexOf('index.html') > 0) {
+              SessionActions.logoutUserAction();
+            } else {
+              notifySuccess('The selected hitlist deleted successfully!', 5000);
+              return RegistrySearchActions.openHitlistsAction();
+            }
+          })
+          .catch(error => Observable.of(RegistrySearchActions.deleteHitlistsErrorAction(error)));
+      });
+  }
 
+  handleEditHitlist = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.EDIT_HITLISTS)
+      .mergeMap(({ payload }) => {
+        return this.http.put(`${BASE_URL}/search/hitlists`, payload)
+          .map(result => {
+            notifySuccess('The selected hitlist updated successfully!', 5000);
+            return RegistrySearchActions.openHitlistsAction();
+          })
+          .catch(error => Observable.of(RegistrySearchActions.editHitlistsErrorAction()));
+      });
+  }
+
+   handleSaveHitlist = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.SAVE_HITLISTS)
+      .mergeMap(({ payload }) => {
+        return this.http.post(`${BASE_URL}/search/hitlists`, payload)
+          .map(result => {
+            notifySuccess('The selected hitlist saved successfully!', 5000);
+            return RegistrySearchActions.openHitlistsAction();
+          })
+          .catch(error => Observable.of(RegistrySearchActions.saveHitlistsErrorAction()));
+      });
+  }
 
 }

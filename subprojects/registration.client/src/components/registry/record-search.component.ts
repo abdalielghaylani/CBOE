@@ -26,12 +26,15 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordSearch implements OnInit, OnDestroy {
-  private title: string = 'Search Permanent Registry';
+  @Input() temporary: boolean;
+  private title: string;
   private tabSelected: string = 'search';
   private regsearch: regSearchTypes.CSearchFormVM;
   private hitlistData$: Observable<ISearchRecords>;
   private recordsSubscription: Subscription;
   private records: ISearchRecords;
+  private selectedHitlist: Number;
+  private popupVisible: boolean = false;
 
   constructor(
     private router: Router,
@@ -48,6 +51,7 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   }
 
   loadData() {
+    this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
     this.regsearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
     this.changeDetector.markForCheck();
   }
@@ -67,17 +71,42 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   }
 
   retrieveAll() {
-    this.router.navigate(['records']);
+    this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
   }
 
-  editHitlist() {
+  editHitlist(id) {
+    this.selectedHitlist = id;
     this.regsearch.hitlistVM.hitlistEdit = true;
     this.regsearch.hitlistVM.hitlistRestore = false;
   }
 
-  restoreHitlist() {
+  restoreHitlist(id) {
+    this.selectedHitlist = id;
     this.regsearch.hitlistVM.hitlistEdit = false;
     this.regsearch.hitlistVM.hitlistRestore = true;
   }
+
+  deleteHitlist(htype, id) {
+    let res = confirm('Are you sure you want to delete this hitlist?');
+    if (res === true) {
+      this.actions.deleteHitlists(htype, id);
+    }
+  }
+
+  cancelHitlist() {
+    this.selectedHitlist = null;
+  }
+
+  saveHitlist() {
+
+  }
+  
+  showRestore() {
+    this.popupVisible = true;
+  }
+  hideRestorePopup() {
+    this.popupVisible = false;
+  }
+
 
 };

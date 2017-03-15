@@ -172,12 +172,10 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onToolbarPreparing(e) {
-    if (!this.records.temporary) {
-      e.toolbarOptions.items.unshift({
-        location: 'before',
-        template: 'content'
-      });
-    }
+    e.toolbarOptions.items.unshift({
+      location: 'before',
+      template: 'content'
+    });
   }
 
   onSelectionChanged(e) {
@@ -186,7 +184,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onSearchClick(e) {
     e.cancel = true;
-    this.router.navigate(['records/search']);
+    this.router.navigate([`search/${this.temporary ? 'temp' : ''}`]);
   }
 
   onInitNewRow(e) {
@@ -204,7 +202,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   newQuery() {
-    this.router.navigate(['records/search']);
+    this.router.navigate([`search/${this.temporary ? 'temp' : ''}`]);
   }
 
   saveQuery() {
@@ -212,7 +210,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   editQuery(id: Number) {
-    this.router.navigate([`records/search/${id}`]);
+    this.router.navigate([`search/${id}`]);
   }
 
   cancelSaveQuery() {

@@ -17,9 +17,22 @@ export class RegistrySearchActions {
   static OPEN_HITLISTS = 'OPEN_HITLISTS';
   static OPEN_HITLISTS_SUCCESS = 'OPEN_HITLISTS_SUCCESS';
   static OPEN_HITLISTS_ERROR = 'OPEN_HITLISTS_ERROR';
+  static DELETE_HITLISTS = 'DELETE_HITLISTS';
+  static DELETE_HITLISTS_ERROR = 'DELETE_HITLISTS_ERROR';
+  static EDIT_HITLISTS = 'EDIT_HITLISTS';
+  static EDIT_HITLISTS_ERROR = 'EDIT_HITLISTS_ERROR';
+  static SAVE_HITLISTS = 'SAVE_HITLISTS';
+  static SAVE_HITLISTS_ERROR = 'SAVE_HITLISTS_ERROR';
   static openHitlistsAction = createAction(RegistrySearchActions.OPEN_HITLISTS);
   static openHitlistsSuccessAction = createAction(RegistrySearchActions.OPEN_HITLISTS_SUCCESS);
   static openHitlistsErrorAction = createAction(RegistrySearchActions.OPEN_HITLISTS_ERROR);
+  static editHitlistsAction = createAction(RegistrySearchActions.EDIT_HITLISTS);
+  static editHitlistsErrorAction = createAction(RegistrySearchActions.EDIT_HITLISTS_ERROR);
+  static saveHitlistsAction = createAction(RegistrySearchActions.SAVE_HITLISTS);
+  static saveHitlistsErrorAction = createAction(RegistrySearchActions.SAVE_HITLISTS_ERROR);
+  static deleteHitlistsAction = createAction(RegistrySearchActions.DELETE_HITLISTS,
+    (type: number, id: number) => ({ type, id }));
+  static deleteHitlistsErrorAction = createAction(RegistrySearchActions.DELETE_HITLISTS_ERROR);
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
     (temporary: boolean, history: boolean, id: Number) => ({ temporary, history, id }));
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
@@ -75,4 +88,17 @@ export class RegistrySearchActions {
   openHitlists() {
     this.ngRedux.dispatch(RegistrySearchActions.openHitlistsAction());
   }
+
+  deleteHitlists(type: number, id: number) {
+    this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistsAction(type, id));
+  }
+
+  editHitlists(data) {
+    this.ngRedux.dispatch(RegistrySearchActions.editHitlistsAction(data));
+  };
+
+   saveHitlists(data) {
+    this.ngRedux.dispatch(RegistrySearchActions.saveHitlistsAction(data));
+  };
+
 }

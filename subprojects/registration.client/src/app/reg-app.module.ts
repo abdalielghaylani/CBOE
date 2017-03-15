@@ -15,7 +15,7 @@ import {
   RegAboutPage,
   RegRecordSearchPage
 } from '../pages';
-import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage } from '../components';
+import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagemnt } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -56,6 +56,7 @@ import {
     RegRecordSearchPage,
     RegRecordDetailPage,
     RegRecords,
+    RegQueryManagemnt,
     RegRecordSearch,
     RegRecordDetail,
     RegStructureImage,

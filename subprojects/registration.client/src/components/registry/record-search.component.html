@@ -1,17 +1,17 @@
 <div class="container-fluid border-light background-white">
   <div style="margin-top: 15px" *ngIf="tabSelected == 'search'">
-    <button (click)="clear()" class="mr1 btn btn-primary pull-right" >
+    <button (click)="clear()" class="mr1 btn btn-primary pull-right">
               <i class="fa fa-eraser"></i>
               Clear</button>
     <button (click)="search()" class="mr1 btn btn-primary pull-right">
               <i class="fa fa fa-search"></i>
               Search</button>
-              
+
   </div>
   <div style="margin-top: 15px" *ngIf="tabSelected == 'preference'">
     <button class="mr1 btn btn-primary pull-right">
       Restore Defaults</button>
-    <button class="mr1 btn btn-primary pull-right" >
+    <button class="mr1 btn btn-primary pull-right">
       Save</button>
   </div>
   <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
@@ -46,7 +46,29 @@
     <div class="panel-body">
       <div class="tab-content">
         <div class="tab-pane fade in active" id="tab1default">
-          <div class="panel-group" id="accordion">
+          <div class="panel-group" id="accordion" *ngIf="temporary">
+            <div class="panel">
+              <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
+                <h4 class="panel-title">
+                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTemp">
+                                                                    Temporary Information</span>
+                </h4>
+              </div>
+              <div id="collapseTemp" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <div>
+                    <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
+                    <dx-select-box [items]="regsearch.temporarySearchVM.searchTypeItems" [value]="regsearch.temporarySearch.searchTypeValue">
+                    </dx-select-box>
+                  </div>
+                  <chem-draw-tool></chem-draw-tool>
+                  <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.temporarySearch"
+                    [items]="regsearch.temporarySearchVM.columns"></dx-form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel-group" id="accordion" *ngIf="!temporary">
             <div class="panel panel-default">
               <div class="panel-heading" style='border-left: 4px solid #f38787;'>
                 <h4 class="panel-title">
@@ -62,7 +84,8 @@
                     </dx-select-box>
                   </div>
                   <chem-draw-tool></chem-draw-tool>
-                  <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch" [items]="regsearch.registrySearchVM.columns"></dx-form>
+                  <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch"
+                    [items]="regsearch.registrySearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -74,7 +97,8 @@
               </div>
               <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch" [items]="regsearch.structureSearchVM.columns"></dx-form>
+                  <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch"
+                    [items]="regsearch.structureSearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -87,11 +111,11 @@
               </div>
               <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch" [items]="regsearch.componentSearchVM.columns"></dx-form>
+                  <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch"
+                    [items]="regsearch.componentSearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
-
             <div class="panel panel-default">
               <div class="panel-heading" style='border-left: 4px solid #9900ff;'>
                 <h4 class="panel-title">
@@ -108,126 +132,10 @@
           </div>
         </div>
         <div class="tab-pane fade" id="tab2default">
-          <div class="row">
-            <div class="panel col-sm-6">
-              <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseQueryOne">
-                                                                    Recent Queries</span>
-                </h4>
-              </div>
-              <div id="collapseQueryOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <ul class="list-group">
-                    <li *ngFor="let tempQuery of regsearch.queryManagementVM.latestQueriesList" class="list-group-item">
-                      <a class="dropdown-toggle query-list-item" data-toggle="dropdown">
-                        <span class="caret "></span> &nbsp;  
-                        {{ tempQuery.DateCreated._date.replace('T',' ') }}
-                         &nbsp;(Hits :{{ tempQuery.NumberOfHits }})
-                         </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="query-list-item text-relaxed">Restore Hitlist</a></li>
-                        <li class="divider"></li>
-                        <li><a class="query-list-item text-relaxed">Perform Query</a></li>
-                        <li class="divider"></li>
-                        <li><a class="query-list-item text-relaxed">Restore Query To Form</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="panel col-sm-6">
-              <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseQueryTwo">
-                                                                    Saved Queries</span>
-                </h4>
-              </div>
-              <div id="collapseQueryTwo" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <ul class="list-group">
-                    <li *ngFor="let savedQuery of regsearch.queryManagementVM.savedQueriesList" class="list-group-item">
-                      <a class="dropdown-toggle query-list-item" data-toggle="dropdown">
-                          <span class="caret "></span> &nbsp;  {{savedQuery.Name}} 
-                         &nbsp;(Hits :{{ savedQuery.NumberOfHits }})
-                        </a>
-                      <ul class="dropdown-menu">
-                        <li><a class="query-list-item text-relaxed">Restore Hitlist</a></li>
-                        <li class="divider"></li>
-                        <li><a class="query-list-item text-relaxed">Perform Query</a></li>
-                        <li class="divider"></li>
-                        <li><a class="query-list-item text-relaxed">Restore Query To Form</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="panel col-sm-12">
-              <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseQueryThree">
-                                                                    Manage Hitlist</span>
-                </h4>
-              </div>
-              <div id="collapseQueryThree" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <span class="col-sm-2" style="color: #333;font-weight: 700;font-size:12px">Hitlist :</span>
-                          <dx-select-box class="col-sm-6" [items]="regsearch.hitlistVM.items" valueExpr="ID" displayExpr='Name' [(value)]="regsearch.hitlistVM.hitlistValue">
-                          </dx-select-box>&nbsp;&nbsp;
-                          <a *ngIf="regsearch.hitlistVM.hitlistValue" class="fa fa-pencil-square-o" title="Edit" (click)="editHitlist()" style="font-size:22px;text-decoration:none"></a>&nbsp;
-                          <a *ngIf="regsearch.hitlistVM.hitlistValue" class="fa fa-recycle" title="Restore" (click)="restoreHitlist()" style="font-size:22px;text-decoration:none "></a>&nbsp;
-                          <a *ngIf="regsearch.hitlistVM.hitlistValue" class="fa fa-trash" title="Delete" (click)="deleteHitlist()" style="font-size:22px;text-decoration:none "></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel-body" *ngIf="regsearch.hitlistVM.hitlistEdit || regsearch.hitlistVM.hitlistRestore">
-                      <div id="edit-hitlist" *ngIf="regsearch.hitlistVM.hitlistEdit">
-                        <span style="color: #333;font-weight: 700;font-size:14px;margin-bottom:5px">Fill query details for editing
-                        </span>
-                        <dx-form id="editHitlistForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="regsearch.hitlistVM.editColumns"></dx-form>
-                        <div style="margin-top: 15px">
-                          <button class="mr1 btn btn-primary">Edit</button>
-                          <button class="mr1 btn btn-primary">Cancel</button>
-                        </div>
-                      </div>
-                      <div id="restore-hitlist" *ngIf="regsearch.hitlistVM.hitlistRestore">
-                        <span style="color: #333;font-weight: 700;font-size:14px;margin-bottom:5px">Please choose a restore type below
-                        </span>
-                        <div class="radio">
-                          <label><input type="radio" [value]="regsearch.hitlistVM.replaceHitlist" name="optradio">Replace current list</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" [value]="regsearch.hitlistVM.intersectHitlist" name="optradio">Intersect with current list</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" [value]="regsearch.hitlistVM.substractHitlist" name="optradio">Subtract from current list</label>
-                        </div>
-                        <div class="radio">
-                          <label><input type="radio" [value]="regsearch.hitlistVM.unionHitlist" name="optradio">Union with current list</label>
-                        </div>
-                        <div style="margin-top:10px">
-                          <button class="mr1 btn btn-primary">Restore</button>
-                          <button class="mr1 btn btn-primary">Cancel</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <reg-search-query [hitlistColumns]="regsearch.queryManagementVM.gridColumns" ></reg-search-query>
         </div>
         <div class="tab-pane fade" id="tab3default">
           <dx-form id="preferenceForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="regsearch.preferenceVM.columns"></dx-form>
-
         </div>
       </div>
     </div>
