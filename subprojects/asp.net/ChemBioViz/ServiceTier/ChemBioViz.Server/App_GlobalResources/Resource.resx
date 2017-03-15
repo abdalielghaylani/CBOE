@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Label_Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="About_Page_Title" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="ActionLink_Disabled_Style" xml:space="preserve">
+    <value>color:grey;cursor:arrow;</value>
+  </data>
+  <data name="Back_Button_Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Back_Label_Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Cancel_Button_Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChemBioViz_Page_Title" xml:space="preserve">
+    <value>ChemBioViz Web</value>
+  </data>
+  <data name="DefaultDetailView_Label_Text" xml:space="preserve">
+    <value>Default detail view:</value>
+  </data>
+  <data name="Clear_Button_Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Close_Button_Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Collapse_Label_Text" xml:space="preserve">
+    <value>Hide...</value>
+  </data>
+  <data name="CopyrightInfo" xml:space="preserve">
+    <value>&amp;copy; 2013 PerkinElmer Inc. All Rights Reserved</value>
+  </data>
+  <data name="Database_Label_Text" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="DataViewManager_MenuItem_Text" xml:space="preserve">
+    <value>Dataview Manager</value>
+  </data>
+  <data name="DateCreated_Label_Text" xml:space="preserve">
+    <value>Date Created</value>
+  </data>
+  <data name="Delete_Button_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmation_Label_Text" xml:space="preserve">
+    <value>Are you sure you want to delete this hitlist?</value>
+  </data>
+  <data name="DeleteConfirmation_Label_Title" xml:space="preserve">
+    <value>Confirm that you want to delete hitlist number:</value>
+  </data>
+  <data name="Description_Label_Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionRequired_Error_Text" xml:space="preserve">
+    <value>Description is required</value>
+  </data>
+  <data name="Details_Page_Title" xml:space="preserve">
+    <value> - Structure Details</value>
+  </data>
+  <data name="DisplayPreferences_Label_Text" xml:space="preserve">
+    <value>Display Preferences</value>
+  </data>
+  <data name="Edit_Button_Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="ErrorMessage_Label_Text" xml:space="preserve">
+    <value>An error has occurred.&lt;BR&gt;Please go back and try again.</value>
+  </data>
+  <data name="ErrorsPanel_Title_Text" xml:space="preserve">
+    <value>The following errors were found:</value>
+  </data>
+  <data name="ExchangeOperands_Button_Text" xml:space="preserve">
+    <value>Exchange operands</value>
+  </data>
+  <data name="Expand_Label_Text" xml:space="preserve">
+    <value>Expand...</value>
+  </data>
+  <data name="FillQueryDetails_Label_Text" xml:space="preserve">
+    <value>Fill query details for editing</value>
+  </data>
+  <data name="Footer_SavePanel_Text" xml:space="preserve">
+    <value>Fill in the properties and click save...</value>
+  </data>
+  <data name="FooterSeparator_Label_Text" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="FragmentsOverlap_Label_Text" xml:space="preserve">
+    <value>Query fragments can overlap in target</value>
+  </data>
+  <data name="FullStructureSimilarity_Label_Text" xml:space="preserve">
+    <value>Full structure similarity</value>
+  </data>
+  <data name="GoTo_MenuItem_Text" xml:space="preserve">
+    <value>GoTo</value>
+  </data>
+  <data name="HeaderSeparetor_Label_Text" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="Help_Button_Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_Label_Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_Page_Title" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HitAnyChargeOnCarbon_Label_Text" xml:space="preserve">
+    <value>Hit any charge on carbon</value>
+  </data>
+  <data name="HitAnyChargeOnHetero_Label_Text" xml:space="preserve">
+    <value>Hit any charge on heteroatom</value>
+  </data>
+  <data name="Hitlist_Button_Text" xml:space="preserve">
+    <value>Return to Hits</value>
+  </data>
+  <data name="HitList_MenuItem_Text" xml:space="preserve">
+    <value>Hitlist</value>
+  </data>
+  <data name="HitListID_Label_Text" xml:space="preserve">
+    <value>Hitlist ID</value>
+  </data>
+  <data name="HitListInfo_Label_Text" xml:space="preserve">
+    <value>HitList Info</value>
+  </data>
+  <data name="HitListType_Label_Text" xml:space="preserve">
+    <value>Hitlist Type</value>
+  </data>
+  <data name="HitsPerPage_Label_Text" xml:space="preserve">
+    <value>Hits per page</value>
+  </data>
+  <data name="Home_Button_Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Home_Label_Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Home_Page_Title" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="IgnoreImplicitHydrogens_Label_Text" xml:space="preserve">
+    <value>Ignore implicit hydrogens</value>
+  </data>
+  <data name="Intersect_Button_Text" xml:space="preserve">
+    <value>Intersect</value>
+  </data>
+  <data name="IntersectType_Label_Text" xml:space="preserve">
+    <value>Intersect with current list</value>
+  </data>
+  <data name="InvalidEnteredInput_Lable_Text" xml:space="preserve">
+    <value>Invalid entered value/s. &lt;BR&gt;Please check your entered values and try again.</value>
+  </data>
+  <data name="InvalidHttpRequest_Label_Text" xml:space="preserve">
+    <value>Potentially dangerous value entered.&lt;BR&gt;&lt;BR&gt;This error may occur when entering:&lt;ul&gt;&lt;li&gt;HTML tags&lt;/li&gt;&lt;/ul&gt;Please check your entered values and try again</value>
+  </data>
+  <data name="IsPublic_Label_Text" xml:space="preserve">
+    <value>Is Public</value>
+  </data>
+  <data name="LargeExportWarning_Alert_Text" xml:space="preserve">
+    <value>You about to export a large amount of records, this may cause problems. Do you want to proceed?</value>
+  </data>
+  <data name="List_Page_Title" xml:space="preserve">
+    <value> - Found Stuctures</value>
+  </data>
+  <data name="SkipListView_Label_Text" xml:space="preserve">
+    <value>Skip list view:</value>
+  </data>
+  <data name="Logo_Image_Tooltip" xml:space="preserve">
+    <value>CambridgeSoft Enterprise Manager</value>
+  </data>
+  <data name="LogOff_Label_Text" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="Main_HyperLink_Text" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Manage_MenuItem_Text" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="MarkAll_Button_Text" xml:space="preserve">
+    <value>Mark All</value>
+  </data>
+  <data name="MarkedHits_MenuItem_Text" xml:space="preserve">
+    <value>Marked Hits</value>
+  </data>
+  <data name="MarkedHitsCount" xml:space="preserve">
+    <value>Marked hits count</value>
+  </data>
+  <data name="MarkHit_Button_Text" xml:space="preserve">
+    <value>Mark</value>
+  </data>
+  <data name="MarkingAllHits_Label_Text" xml:space="preserve">
+    <value>Marking all hits...</value>
+  </data>
+  <data name="MatchDoubleBondStereo_Label_Text" xml:space="preserve">
+    <value>Match double bond stereo</value>
+  </data>
+  <data name="MatchTetrahedralStereo_Label_Text" xml:space="preserve">
+    <value>Match tetrahedral stereo</value>
+  </data>
+  <data name="MaxRecordsReachedString" xml:space="preserve">
+    <value>You have reached the maximum number of hits.  Please refine your query.</value>
+  </data>
+  <data name="Messages_Page_Title" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Name_Label_Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameRequired_Error_Text" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="NewQuery_Button_Text" xml:space="preserve">
+    <value>New Query</value>
+  </data>
+  <data name="NoEnoughPrivileges_Label_Text" xml:space="preserve">
+    <value>Sorry, but you are not allowed to browse this page.</value>
+  </data>
+  <data name="NoRecordsFound_Label_Text" xml:space="preserve">
+    <value>Sorry your search returned 0 hits.</value>
+  </data>
+  <data name="NoSelectedHitList" xml:space="preserve">
+    <value>You have not selected a hitlist. Please select one to work with from the dropdown.</value>
+  </data>
+  <data name="NumberOfHits_Label_Text" xml:space="preserve">
+    <value>Number of Hits</value>
+  </data>
+  <data name="OK_Button_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OperationConfirmation_Label_Title" xml:space="preserve">
+    <value>Are you sure you want to perform the following operation?</value>
+  </data>
+  <data name="Operations_Label_Text" xml:space="preserve">
+    <value>HitList Operations</value>
+  </data>
+  <data name="PageNotFound_Label_Text" xml:space="preserve">
+    <value>Page Not Found. Please, try again.</value>
+  </data>
+  <data name="PermitExtraneousFragmentsInFull_Label_Text" xml:space="preserve">
+    <value>Permit extraneous fragments in Full Structure Searches</value>
+  </data>
+  <data name="PermitExtraneousFragmentsInReactionFull_Label_Text" xml:space="preserve">
+    <value>Permit extraneous fragments in Reaction Full Structure Searches</value>
+  </data>
+  <data name="Query_Page_Title" xml:space="preserve">
+    <value> - Search Structure</value>
+  </data>
+  <data name="ReactionQuery_Label_Text" xml:space="preserve">
+    <value>Reaction query must hit reaction center</value>
+  </data>
+  <data name="Refine_Button_Text" xml:space="preserve">
+    <value>Refine</value>
+  </data>
+  <data name="ReplaceType_Label_Text" xml:space="preserve">
+    <value>Replace current list</value>
+  </data>
+  <data name="Restore_Button_Text" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="RestoreConfirmation_Label_Text" xml:space="preserve">
+    <value>Are you sure you want to restore this hitlist?</value>
+  </data>
+  <data name="RestoreConfirmation_Label_Title" xml:space="preserve">
+    <value>Confirm that you want to restore hitlist number:</value>
+  </data>
+  <data name="RestoreMarkedHits_MenuItem_Text" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="RetrieveAll_Button_Text" xml:space="preserve">
+    <value>Retrieve All</value>
+  </data>
+  <data name="Save_Button_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SaveMarkedHits_MenuItem_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search_Button_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Search_MenuItem_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchComponent_MenuItem_Text" xml:space="preserve">
+    <value>Search Component</value>
+  </data>
+  <data name="SearchCriteriaID_Label_Text" xml:space="preserve">
+    <value>Query ID</value>
+  </data>
+  <data name="SearchingImg_Alt_Text" xml:space="preserve">
+    <value>Searching</value>
+  </data>
+  <data name="SearchingInProgressFormatter" xml:space="preserve">
+    <value>Searching over {0} records...</value>
+  </data>
+  <data name="SelectHitList_Label_Text" xml:space="preserve">
+    <value>Select Hitlist</value>
+  </data>
+  <data name="SelectRestoreType_Label_Text" xml:space="preserve">
+    <value>Please choose a restore type below</value>
+  </data>
+  <data name="SendMarkedHitsTo_MenuItem_Text" xml:space="preserve">
+    <value>Send To</value>
+  </data>
+  <data name="Similarity_Label_Text" xml:space="preserve">
+    <value>Similarity search (20-100%)</value>
+  </data>
+  <data name="SiteRights_Label_Text" xml:space="preserve">
+    <value>© {0} CambridgeSoft Corporation. All Rights Reserved.</value>
+  </data>
+  <data name="StereochemistryOptions_Label_Text" xml:space="preserve">
+    <value>Stereochemistry Options</value>
+  </data>
+  <data name="Subtract_Button_Text" xml:space="preserve">
+    <value>Subtract</value>
+  </data>
+  <data name="SubtractType_Label_Text" xml:space="preserve">
+    <value>Subtract from current list</value>
+  </data>
+  <data name="Tautomeric_Label_Text" xml:space="preserve">
+    <value>Tautomeric</value>
+  </data>
+  <data name="ThickBondsRel_Label_Text" xml:space="preserve">
+    <value>Thick bonds represent relative stereochemistry</value>
+  </data>
+  <data name="TotalSearcheableRecords_Label_Text" xml:space="preserve">
+    <value>Total Searchable Records: {0}</value>
+  </data>
+  <data name="Union_Button_Text" xml:space="preserve">
+    <value>Union</value>
+  </data>
+  <data name="UnionType_Label_Text" xml:space="preserve">
+    <value>Union with current list</value>
+  </data>
+  <data name="UnknownErrorMessage_Label_Text" xml:space="preserve">
+    <value>An unknown error has occurred.&lt;BR&gt;Please go back and try again.</value>
+  </data>
+  <data name="UnMarkAll_Button_Text" xml:space="preserve">
+    <value>Un Mark All</value>
+  </data>
+  <data name="UnmarkingAllHits_Label_Text" xml:space="preserve">
+    <value>Unmarking all hits...</value>
+  </data>
+  <data name="UnsupportedControlType_Label_Text" xml:space="preserve">
+    <value>Unsupported Control Type</value>
+  </data>
+  <data name="UnsupportedFooter_Label_Text" xml:space="preserve">
+    <value>Unsupported kind of Footer UC. You must implement ICOEFooterUC interface</value>
+  </data>
+  <data name="UnsupportedHeader_Label_Text" xml:space="preserve">
+    <value>Unsupported kind of Header UC. You must implement ICOEHeaderUC interface</value>
+  </data>
+  <data name="User_Label_Text" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Welcome_Label_Text" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="SaveExportedRecord_Title_Text" xml:space="preserve">
+    <value>Save {0} records as {1}?</value>
+  </data>
+  <data name="FilterChildData_LabelText" xml:space="preserve">
+    <value>Filter child data by search:</value>
+  </data>
+  <data name="DefaultListView_Label_Text" xml:space="preserve">
+    <value>Default list view:</value>
+  </data>
+  <data name="HighlightSubstructures_Label_Text" xml:space="preserve">
+    <value>Highlight sub-structures:</value>
+  </data>
+  <data name="ApplyChangesToCurrentSearch" xml:space="preserve">
+    <value>Would you like to apply the changes to the current search?</value>
+  </data>
+  <data name="No_Button_Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Yes_Button_Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="NoDisplaysReason_ToolTip_Text" xml:space="preserve">
+    <value>The current form doesn't have display views</value>
+  </data>
+  <data name="NoListsReason_ToolTip_Text" xml:space="preserve">
+    <value>The current form doesn't have list views</value>
+  </data>
+  <data name="Not13OrHigherReason_Tooltip_Text" xml:space="preserve">
+    <value>CsCartridge 13 or higher is required for enabling this feature</value>
+  </data>
+  <data name="ManageHitLists_Label_Text" xml:space="preserve">
+    <value>Manage Hitlists</value>
+  </data>
+  <data name="RecentQueries_Label_Text" xml:space="preserve">
+    <value>Recent Queries</value>
+  </data>
+  <data name="SavedQueries_Label_Text" xml:space="preserve">
+    <value>Saved Queries</value>
+  </data>
+</root>

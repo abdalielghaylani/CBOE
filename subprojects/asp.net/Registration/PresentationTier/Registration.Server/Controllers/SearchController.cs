@@ -26,6 +26,9 @@ using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
+using CambridgeSoft.COE.Framework;
+using CambridgeSoft.COE.Framework.COESearchCriteriaService;
+using Newtonsoft.Json.Linq;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -56,14 +59,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var savedHitLists = COEHitListBOList.GetSavedHitListList(dbName, COEUser.Name, formGroup.Id);
             foreach (var h in tempHitLists)
             {
-                result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs));
+                result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
+            }
+            foreach (var h in savedHitLists)
+            {
+                result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
             }
             return result;
         }
 
-
         /// <summary>
-        /// Deletes a hitlist by its ID
+        /// Deletes a hitlist by its and ID
         /// </summary>
         /// <remarks>Deletes a hitlist by its ID</remarks>
         /// <param name="id">Id of the hitlist that needs to be deleted</param>
@@ -72,11 +78,113 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpDelete]
-        [Route("api/search/hitlists/{id}")]
+        [Route("api/search/hitlists/{id}/{HitlistType}")]
         [SwaggerOperation("SearchHitlistsIdDelete")]
-        public virtual void SearchHitlistsIdDelete(int? id)
+        public void SearchHitlistsIdDelete(int id, int HitlistType)
         {
-            throw new NotImplementedException();
+            CheckAuthentication();
+            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
+            switch (HitlistType)
+            {
+                case 0:
+                    COEHitListBO.Delete(HitListType.TEMP, id);
+                    break;
+                case 1:
+                    COEHitListBO.Delete(HitListType.SAVED, id);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Edit a query
+        /// </summary>
+        /// <remarks>Edit a query</remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Invalid ID</response>
+        /// <response code="404">Hitlist not found</response>
+        /// <response code="0">Unexpected error</response>
+        [HttpPut]
+        [Route("api/search/hitlists")]
+        [SwaggerOperation("EditQuery")]
+        public void EditQuery()
+        {
+            CheckAuthentication();
+            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
+            HitListType hitlistType = new HitListType();
+            switch ((int)hitlistData["HitlistType"])
+            {
+                case 0:
+                    hitlistType = HitListType.TEMP;
+                    break;
+                case 1:
+                    hitlistType = HitListType.SAVED;
+                    break;
+            }
+            COEHitListBO hitlistBO = COEHitListBO.Get(hitlistType, (int)hitlistData["hitlistID"]);
+            hitlistBO.Name = hitlistData["Name"].ToString();
+            hitlistBO.Description = hitlistData["Description"].ToString();
+            hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
+            hitlistBO.Update();
+
+            if (hitlistBO.SearchCriteriaID > 0)
+            {
+                COESearchCriteriaBO searchCriteria = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+                searchCriteria.Name = hitlistBO.Name;
+                searchCriteria.Description = hitlistBO.Description;
+                searchCriteria.IsPublic = hitlistBO.IsPublic;
+                searchCriteria.Update();
+            }
+        }
+
+
+        /// <summary>
+        /// Save a hitlist
+        /// </summary>
+        /// <remarks>Save a hitlist</remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Invalid ID</response>
+        /// <response code="404">Hitlist not found</response>
+        /// <response code="0">Unexpected error</response>
+        [HttpPost]
+        [Route("api/search/hitlists")]
+        [SwaggerOperation("SearchHitlistsSave")]
+        public void SearchHitlistsSave()
+        {
+            CheckAuthentication();
+            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
+            HitListType hitlistType = new HitListType();
+            switch ((int)hitlistData["HitlistType"])
+            {
+                case 0:
+                    hitlistType = HitListType.TEMP;
+                    break;
+                case 1:
+                    hitlistType = HitListType.SAVED;
+                    break;
+            }
+            COEHitListBO hl = COEHitListBO.Get(hitlistType, (int)hitlistData["hitlistID"]);
+            if (hl != null && hl.HitListID > 0)
+            {
+                COESearchCriteriaBO sc = null;
+                if (hl.SearchCriteriaID > 0)
+                {
+                    sc = COESearchCriteriaBO.Get(hl.SearchCriteriaType, hl.SearchCriteriaID);
+                    sc.Name = hitlistData["Name"].ToString();
+                    sc.Description = hitlistData["Description"].ToString();
+                    sc.IsPublic = (bool)hitlistData["IsPublic"];
+                    sc = sc.Save();
+                }
+
+                hl.Name = hitlistData["Name"].ToString();
+                hl.Description = hitlistData["Description"].ToString();
+                hl.IsPublic = (bool)hitlistData["IsPublic"];
+                if (sc != null)
+                {
+                    hl.SearchCriteriaID = sc.ID;
+                    hl.SearchCriteriaType = sc.SearchCriteriaType;
+                }
+                hl = hl.Save();
+            }
         }
 
 

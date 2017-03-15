@@ -20,6 +20,8 @@ using System.Xml;
 using Newtonsoft.Json;
 using CambridgeSoft.COE.Framework;
 using CambridgeSoft.COE.Framework.Common;
+using Csla;
+using CambridgeSoft.COE.Framework.COEHitListService;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -42,7 +44,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <param name="Name">Name of this hit-list object.</param>
         /// <param name="Description">Description of this hit-list object.</param>
         /// <param name="MarkedHitIDs">IDs of all marked hits.</param>
-        public Hitlist(int? ID = null, int? HitlistID = null, HitListType HistlistType = HitListType.ALL, int? NumberOfHits = null, bool? IsPublic = null, int? SearchCriteriaID = null, SearchCriteriaType SearchCriteriaType = SearchCriteriaType.TEMP, string Name = null, string Description = null, List<int> MarkedHitIDs = null)
+        public Hitlist(int? ID = null, int? HitlistID = null, HitListType HistlistType = HitListType.ALL, int? NumberOfHits = null, bool? IsPublic = null, int? SearchCriteriaID = null, SearchCriteriaType SearchCriteriaType = SearchCriteriaType.TEMP, string Name = null, string Description = null, List<int> MarkedHitIDs = null, SmartDate? DateCreated = null)
         {
             this.ID = ID;
             this.HitlistID = HitlistID;
@@ -54,6 +56,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             this.Name = Name;
             this.Description = Description;
             this.MarkedHitIDs = MarkedHitIDs;
+            this.DateCreated = (SmartDate)DateCreated;
         }
 
         /// <summary>
@@ -120,6 +123,12 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public List<int> MarkedHitIDs { get; set; }
 
         /// <summary>
+        /// Gets or Sets DateCreated
+        /// </summary>
+        [DataMember(Name = "DateCreated")]
+        public SmartDate DateCreated { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -137,6 +146,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  MarkedHitIDs: ").Append(MarkedHitIDs).Append("\n");
+            sb.Append("  DateCreated: ").Append("test").Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -224,6 +234,11 @@ namespace PerkinElmer.COE.Registration.Server.Models
                     this.MarkedHitIDs == other.MarkedHitIDs ||
                     this.MarkedHitIDs != null &&
                     this.MarkedHitIDs.SequenceEqual(other.MarkedHitIDs)
+                ) &&
+                 (
+                    this.DateCreated.Date == other.DateCreated.Date ||
+                    this.DateCreated.Date != null &&
+                    this.DateCreated.Equals(other.DateCreated.Date)
                 );
         }
 
@@ -258,6 +273,8 @@ namespace PerkinElmer.COE.Registration.Server.Models
                     hash = hash * 59 + this.Description.GetHashCode();
                 if (this.MarkedHitIDs != null)
                     hash = hash * 59 + this.MarkedHitIDs.GetHashCode();
+                if (this.DateCreated != null)
+                    hash = hash * 59 + this.DateCreated.GetHashCode();
                 return hash;
             }
         }
