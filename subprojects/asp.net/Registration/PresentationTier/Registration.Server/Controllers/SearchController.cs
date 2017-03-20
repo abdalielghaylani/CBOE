@@ -29,6 +29,9 @@ using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework;
 using CambridgeSoft.COE.Framework.COESearchCriteriaService;
 using Newtonsoft.Json.Linq;
+using System.Data;
+using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
+using CambridgeSoft.COE.Framework.COESearchService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -37,6 +40,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     /// </summary>
     public class SearchApiController : RegControllerBase
     {
+        GenericBO objGenericBO;
+        int HitlistID, HitlistType, RestoreType;
+        int resultHitListID, hitListID1, hitListID2;
+        HitListType hitListID1Type, hitListID2Type;
 
         /// <summary>
         /// Returns all hitlists.
@@ -198,6 +205,130 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
+        [Route("api/search/restorehitlists/{hitlistID}/{hitlistType}")]
+        [SwaggerOperation("SearchHitlistsRestore")]
+        public JArray SearchHitlistsRestore(string hitlistID, string hitlistType)
+        {
+            CheckAuthentication();
+            HitlistID = Convert.ToInt32(hitlistID);
+            HitlistType = Convert.ToInt32(hitlistType);
+            return RestoreHitlists(HitlistID, HitlistType);
+        }
+
+        /// <summary>
+        /// Returns a hitlist by its ID
+        /// </summary>
+        /// <remarks>Returns a hitlist by its ID</remarks>
+        /// <param name="id">Id of the hitlist that needs to be fetched</param>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Invalid ID</response>
+        /// <response code="404">Hitlist not found</response>
+        /// <response code="0">Unexpected error</response>
+        [HttpGet]
+        [Route("api/search/restorehitlistsactions")]
+        public JArray HitlistsRestoreActions()
+        {
+            CheckAuthentication();
+            JArray objJArray = new JArray();
+            CambridgeSoft.COE.Framework.COEHitListService.DAL objDAL = new CambridgeSoft.COE.Framework.COEHitListService.DAL();
+            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
+            if (hitlistData != null)
+            {
+                hitListID1 = Convert.ToInt32(hitlistData["HitlistID1"].ToString());
+                hitListID2 = Convert.ToInt32(hitlistData["HitlistID2"].ToString());
+                RestoreType = Convert.ToInt32(hitlistData["RestoreType"].ToString());
+
+                switch ((int)hitlistData["HitlistType1"])
+                {
+                    case 0:
+                        hitListID1Type = HitListType.TEMP;
+                        break;
+                    case 1:
+                        hitListID1Type = HitListType.SAVED;
+                        break;
+                }
+                switch ((int)hitlistData["HitlistType2"])
+                {
+                    case 0:
+                        hitListID2Type = HitListType.TEMP;
+                        break;
+                    case 1:
+                        hitListID2Type = HitListType.SAVED;
+                        break;
+                }
+            }
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+            var formGroup = configRegRecord.FormGroup;
+            int dataViewID = formGroup.Id;
+            const string databaseName = "COEDB";
+
+            switch (RestoreType)
+            {
+                case 0: //restore
+                    RestoreHitlists(HitlistID, HitlistType);
+                    break;
+                case 1: //intersect      
+                    resultHitListID = objDAL.IntersectHitLists(hitListID1, hitListID1Type, hitListID2, hitListID2Type, databaseName, dataViewID);
+                    objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                    break;
+                case 2: //subtract
+                    resultHitListID = objDAL.SubtractHitLists(hitListID1, hitListID1Type, hitListID2, hitListID2Type, databaseName, dataViewID);
+                    objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                    break;
+                case 3: //union
+                    resultHitListID = objDAL.SubtractHitLists(hitListID1, hitListID1Type, hitListID2, hitListID2Type, databaseName, dataViewID);
+                    objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                    break;
+            }
+            return objJArray;
+        }
+
+        /// <summary>
+        /// Save a hitlist
+        /// </summary>
+        /// <remarks>Save a hitlist</remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Invalid ID</response>
+        /// <response code="404">Hitlist not found</response>
+        /// <response code="0">Unexpected error</response>
+        [HttpPost]
+        [Route("api/search/markedhits")]
+        [SwaggerOperation("MarkedHitsSave")]
+        public int MarkedHitsSave()
+        {
+            CheckAuthentication();
+            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+            var formGroup = configRegRecord.FormGroup;
+            objGenericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
+            COEHitListBO bo = objGenericBO.MarkedHitList;
+            bo.Name = hitlistData["Name"].ToString();
+            bo.Description = hitlistData["Description"].ToString();
+            bo.HitListType = HitListType.SAVED;
+            bo.Save();
+            int markedCount = this.objGenericBO.GetMarkedCount();
+            return markedCount;
+        }
+
+
+        /// <summary>
+        /// Returns a hitlist by its ID
+        /// </summary>
+        /// <remarks>Returns a hitlist by its ID</remarks>
+        /// <param name="id">Id of the hitlist that needs to be fetched</param>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Invalid ID</response>
+        /// <response code="404">Hitlist not found</response>
+        /// <response code="0">Unexpected error</response>
+        [HttpGet]
         [Route("api/search/hitlists/{id}")]
         [SwaggerOperation("SearchHitlistsIdGet")]
         [SwaggerResponse(200, type: typeof(Hitlist))]
@@ -234,6 +365,29 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             ? JsonConvert.DeserializeObject<Hitlist>(exampleJson)
             : default(Hitlist);
             return example;
+        }
+
+        public JArray RestoreHitlists(int HitlistID, int HitlistType)
+        {
+            JArray objJArray = new JArray();
+            if (HitlistID != null)
+            {
+                switch (HitlistType)
+                {
+                    case 0: //TempHitlist
+                        objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + HitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                        break;
+                    case 1: //SavedHitlist
+                        objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coesavedhitlist s where s.hitlistid=" + HitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                        break;
+                }
+                return objJArray;
+            }
+            return null;
         }
     }
 }
