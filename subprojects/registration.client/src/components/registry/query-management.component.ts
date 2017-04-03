@@ -18,49 +18,15 @@ import * as regSearchTypes from './registry-search.types';
 
 @Component({
   selector: 'reg-search-query',
-  template: `<dx-popup
-        class="popup"
-        [width]="350"
-        [height]="300"
-        [showTitle]="true"
-        title="Restore Hitlist"
-        [dragEnabled]="false"
-        [closeOnOutsideClick]="true"
-        [(visible)]="popupVisible">
-        <div *dxTemplate="let data of 'content'">
-            <div class="panel" id="restore-hitlist" *ngIf="popupVisible">
-                          <div class="panel-heading">
-                            <b style="font-size:14px;">Please choose a restore type below</b>
-                          </div>
-                          <div class="panel-body">
-                            <div class="radio">
-                              <label><input type="radio" name="optradio">Replace current list</label>
-                            </div>
-                            <div class="radio">
-                              <label><input type="radio" name="optradio">Intersect with current list</label>
-                            </div>
-                            <div class="radio">
-                              <label><input type="radio" name="optradio">Subtract from current list</label>
-                            </div>
-                            <div class="radio">
-                              <label><input type="radio" name="optradio">Union with current list</label>
-                            </div>
-                            <div style="margin-top: 15px">
-                              <button class="mr1 btn btn-primary">Restore</button>
-                              <a class="mr1 btn btn-primary" (click)="hideRestorePopup()">Cancel</a>
-                            </div>
-                          </div>
-               </div>
-        </div>
-    </dx-popup>
-      <dx-data-grid id="grdSearchQuery" [columns]=hitlistColumns
-        [dataSource]=records [paging]='{pageSize: 20}' 
+  template: `
+      <dx-data-grid id="grdSearchQuery" [columns]=hitlistVM.gridColumns [attr.data-target]=hitlistVM
+      [masterDetail]="{ enabled: false, template: 'detail' }"
+        [dataSource]=records [paging]='{pageSize: 15}' 
         [pager]='{ showPageSizeSelector: true, allowedPageSizes: [10,15,20], showInfo: true }'
         [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true
         (onEditorPreparing)='onEditorPreparing($event)'
         (onRowRemoving)='onRowRemoving($event)'
         (onCellPrepared)='onCellPrepared($event)'
-        (onEditingStart)='onEditingStart($event)'
         (onContentReady)='onContentReady($event)'
         (onRowUpdating)='onRowUpdating($event)' >
         <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" 
@@ -68,30 +34,51 @@ import * as regSearchTypes from './registry-search.types';
                 confirmDeleteMessage: 'Are you sure you want to delete this hitlist?',
                 confirmDeleteTitle: 'Remove Hitlist'
             }" ></dxo-editing>
+        <div *dxTemplate="let data of 'detail'">
+            <div class="panel center-block panel-default" id="restore-hitlist" style="width:70%" >
+            <div class="panel-heading">
+                <h3 class="panel-title">Please choose a restore type below </h3>
+            </div>
+                          <div class="panel-body">
+                          <dx-radio-group
+                              valueExpr="key"
+                              displayExpr="value"
+                              [dataSource]="hitlistVM.getRestoreDataSource()"
+                              [(value)]="hitlistVM.advancedRestoreType">
+                          </dx-radio-group>
+                          <div style="margin-top: 25px">
+                            <button class="mr1 btn btn-default" data-dismiss="modal" (click)="advancedRestorePopup(data)" >Restore</button>
+                            <a class="mr1 btn btn-default" (click)="hideRestore(data)">Cancel</a>
+                          </div>
+              </div>
+              </div>
+        </div>
        <div *dxTemplate="let d of 'restoreCellTemplate'" >
-          <a class="fa fa-recycle grd-icon" aria-hidden="true" title='Restore Hitlist'></a>&nbsp;
+          <a class="fa fa-recycle grd-icon" aria-hidden="true" title='Restore Hitlist' data-dismiss="modal" (click)="restoreSelectedHitlist(d.data)"></a>&nbsp;
           <a class="fa fa-bolt grd-icon" aria-hidden="true" title='Perform Query'></a>&nbsp;
           <a class="fa fa-eyedropper grd-icon" aria-hidden="true" title='Restore Query To Form'></a>&nbsp;
-          <a class="fa fa fa-filter grd-icon" aria-hidden="true" title='Advanced' (click)="showRestorePopup($event)"></a>
+          <a class="fa fa fa-filter grd-icon" aria-hidden="true" title='Advanced' (click)="showRestore(d)"></a>
        </div>
         <div *dxTemplate="let d of 'saveCellTemplate'" >
-        <a *ngIf="d.data.HistlistType === 0" class="fa fa-plus-circle grd-icon" aria-hidden="true" 
+        <a *ngIf="d.data.HistlistType === 0" class="fa fa fa-floppy-o grd-icon" aria-hidden="true" 
         title='Add to saved hitlist' 
         (click)="moveToSaveHitlist(d.data)"></a>&nbsp;
         {{d.value}}
         </div>
       </dx-data-grid>
+      
      `,
   styles: [require('./records.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegQueryManagemnt implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
-  @Input() hitlistColumns: any;
+  @Input() hitlistVM: any;
   private hitlistData$: Observable<ISearchRecords>;
   private records: any[];
+  private currentHitlist: any[any];
+  private selectedHitlist: any[any];
   private recordsSubscription: Subscription;
-  private popupVisible: boolean = false;
 
   constructor(
     private router: Router,
@@ -112,7 +99,9 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
   }
 
   loadData() {
+    this.hitlistVM.advancedRestoreType = 0;
     this.records = this.ngRedux.getState().registrysearch.hitlist.rows;
+    this.currentHitlist = this.ngRedux.getState().registrysearch.hitlist.currentHitlistInfo;
     this.changeDetector.markForCheck();
   }
 
@@ -142,9 +131,6 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
       }
     }
   }
-  onEditingStart(e) {
-
-  }
 
   onRowUpdating(e) {
     this.actions.editHitlists(
@@ -158,7 +144,6 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
   }
 
   moveToSaveHitlist(e) {
-    alert(e);
     this.actions.saveHitlists(
       {
         Name: e.Name,
@@ -176,12 +161,41 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
     }
   }
 
-  showRestorePopup(e) {
-
-    this.popupVisible = true;
+  showRestore(e) {
+    e.component.collapseAll(-1);
+    e.component.expandRow(e.key);
+    this.selectedHitlist = { 'HitlistID': e.data.ID, 'HitlistType': e.data.HistlistType };
+    if (this.currentHitlist) {
+      this.hitlistVM.isCurrentHitlist = true;
+    }
   }
-  hideRestorePopup() {
-    this.popupVisible = false;
+  hideRestore(e) {
+    e.component.collapseAll(-1);
+  }
+
+  advancedRestorePopup(e) {
+    this.actions.retrieveHitlist(
+      {
+        type: 1,
+        data: {
+          HitlistID1: this.selectedHitlist.HitlistID,
+          HitlistID2: !this.currentHitlist.HitlistID ? 0 : this.currentHitlist.HitlistID,
+          RestoreType: this.hitlistVM.advancedRestoreType,
+          HitlistType1: this.selectedHitlist.HitlistType,
+          HitlistType2: !this.currentHitlist.HitlistType ? 0 : this.currentHitlist.HitlistType,
+        }
+      });
+    this.router.navigate([`records/restore`]);
+  }
+
+  restoreSelectedHitlist(e) {
+    this.actions.retrieveHitlist(
+      {
+        HitlistType: e.HistlistType,
+        HitlistID: e.ID,
+        type: 0
+      });
+    this.router.navigate([`records/restore`]);
   }
 
 };

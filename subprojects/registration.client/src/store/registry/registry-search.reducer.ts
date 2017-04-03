@@ -9,8 +9,11 @@ export function registrySearchReducer(
 
   switch (action.type) {
     case RegistrySearchActions.OPEN_HITLISTS_SUCCESS:
-      let a2 = action as ReduxActions.Action<ISearchRecords>;
-      return state.updateIn(['hitlist', 'rows'], () => a2.payload);
+      let a1 = action as ReduxActions.Action<ISearchRecords>;
+      return state.updateIn(['hitlist', 'rows'], () => a1.payload);
+    case RegistrySearchActions.RETRIEVE_QUERY_LIST:
+      let a2 = action as ReduxActions.Action<any>;
+      return state.updateIn(['hitlist', 'currentHitlistInfo'], () => a2.payload);
     default:
       return state;
   }

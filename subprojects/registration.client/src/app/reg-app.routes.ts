@@ -19,6 +19,9 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records',
   component: RegRecordsPage
 }, {
+  path: 'records/restore',
+  component: RegRecordsPage
+}, {
   path: 'records/new',
   component: RegRecordDetailPage
 }, {
@@ -27,6 +30,9 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'records/temp/:id',
   component: RegRecordDetailPage
+}, {
+  path: 'search',
+  component: RegRecordSearchPage
 }, {
   path: 'search',
   component: RegRecordSearchPage

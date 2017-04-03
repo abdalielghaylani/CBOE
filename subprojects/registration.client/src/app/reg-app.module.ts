@@ -23,11 +23,14 @@ import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
 import {
   DxCheckBoxModule,
+  DxRadioGroupModule,
   DxDataGridModule,
   DxSelectBoxModule,
   DxNumberBoxModule,
   DxFormModule,
-  DxPopupModule
+  DxPopupModule,
+  DxLoadIndicatorModule,
+  DxLoadPanelModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -44,11 +47,14 @@ import {
     ToolModule,
     NgReduxModule,
     DxCheckBoxModule,
+    DxRadioGroupModule,
     DxDataGridModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
     DxFormModule,
-    DxPopupModule
+    DxPopupModule,
+    DxLoadIndicatorModule,
+    DxLoadPanelModule
   ],
   declarations: [
     RegApp,

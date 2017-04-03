@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { Http } from '@angular/http';
 import { UPDATE_LOCATION } from '@angular-redux/router';
-import { IPayloadAction, RegistrySearchActions, SessionActions, IGridPullAction } from '../actions';
+import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions, IGridPullAction } from '../actions';
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
@@ -26,7 +26,8 @@ export class RegistrySearchEpics {
       this.handleopenHitlists,
       this.handledeleteHitlists,
       this.handleEditHitlist,
-      this.handleSaveHitlist
+      this.handleSaveHitlist,
+      this.handleRetrieveHitlist
     )(action$, store);
   }
 
@@ -71,7 +72,7 @@ export class RegistrySearchEpics {
       });
   }
 
-   handleSaveHitlist = (action$: Observable<IPayloadAction>) => {
+  handleSaveHitlist = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.SAVE_HITLISTS)
       .mergeMap(({ payload }) => {
         return this.http.post(`${BASE_URL}/search/hitlists`, payload)
@@ -80,6 +81,32 @@ export class RegistrySearchEpics {
             return RegistrySearchActions.openHitlistsAction();
           })
           .catch(error => Observable.of(RegistrySearchActions.saveHitlistsErrorAction()));
+      });
+  }
+
+  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.RETRIEVE_QUERY_LIST)
+      .mergeMap(({ payload }) => {
+        // restoreType 0 -: Restore hitlist
+        // restoreType 1 -: Restore by union/intersect/substract
+        if (payload.type === 0) {
+          return this.http.get(`${BASE_URL}/search/restorehitlists/` + payload.HitlistID + `/` + payload.HitlistType)
+            .map(result => {
+              return result.url.indexOf('index.html') > 0
+                ? SessionActions.logoutUserAction()
+                : RegistryActions.openRecordsSuccessAction(false, result.json());
+            })
+            .catch(error => Observable.of(RegistrySearchActions.retrieveQueryListErrorAction(error)));
+        }
+        if (payload.type === 1) {
+          return this.http.post(`${BASE_URL}/search/restorehitlistsactions`, payload.data)
+            .map(result => {
+              return result.url.indexOf('index.html') > 0
+                ? SessionActions.logoutUserAction()
+                : RegistryActions.openRecordsSuccessAction(false, result.json());
+            })
+            .catch(error => Observable.of(RegistrySearchActions.retrieveQueryListErrorAction(error)));
+        }
       });
   }
 

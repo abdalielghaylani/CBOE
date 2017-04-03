@@ -7,6 +7,7 @@ import {
   ElementRef
 } from '@angular/core';
 import { basePath } from '../../configuration';
+import * as registryUtils from '../../components/registry/registry.utils';
 
 @Component({
   selector: 'chem-draw-tool',
@@ -26,14 +27,14 @@ import { basePath } from '../../configuration';
 })
 export class ChemDrawingTool {
   private drawingTool;
-
+  private recordDoc: Document;
   private creatingCDD: boolean = false;
   private cdxml: string;
   constructor(
     private elementRef: ElementRef) {
 
   }
-  
+
   ngOnInit() {
     this.createDrawingTool();
   }
@@ -93,6 +94,10 @@ export class ChemDrawingTool {
     } else {
       this.cdxml = cdxml;
     }
+  }
+
+  getValue() {
+    return this.drawingTool.getCDXML();
   }
 
 };

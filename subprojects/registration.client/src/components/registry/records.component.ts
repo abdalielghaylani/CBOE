@@ -11,101 +11,44 @@ import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { RegistryActions } from '../../actions';
-import { IAppState, IRecords } from '../../store';
+import { RegistryActions, RegistrySearchActions } from '../../actions';
+import { IAppState, IRecords, ISearchRecords } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
 
 @Component({
   selector: 'reg-records',
-  template: `
-  <div class="container-fluid border-light background-white pb2">
-      <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
-            <span *ngIf="records.temporary">Temporary</span> Registration Records
-      </reg-page-header>
-      <dx-popup
-        [width]="300"
-        [height]="250"
-        [showTitle]="true"
-        title="Save Query"
-        [dragEnabled]="false"
-        [closeOnOutsideClick]="true"
-        [(visible)]="popupVisible">
-        <div *dxTemplate="let data of 'content'">
-         <dx-form id="editHitlistForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="regsearch.editColumns"></dx-form>
-          <div style="margin-top: 15px">
-          <button class="mr1 btn btn-primary">Save</button>
-          <button class="mr1 btn btn-primary" (click)="cancelSaveQuery()">Cancel</button>
-          </div>
-        </div>
-      </dx-popup>
-      <dx-data-grid id="grdRecords" [columns]=records.gridColumns [dataSource]=records.rows [paging]='{pageSize: 10}' 
-        [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true
-        (onToolbarPreparing)="onToolbarPreparing($event)"
-        (onSelectionChanged)="onSelectionChanged($event)"
-        (onContentReady)='onContentReady($event)'
-        (onCellPrepared)='onCellPrepared($event)'
-        (onInitNewRow)='onInitNewRow($event)'
-        (onEditingStart)='onEditingStart($event)'
-        (onRowRemoving)='onRowRemoving($event)'
-        [hoverStateEnabled]="true"
-        [selectedRowKeys]="[]" >
-        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
-        <dxo-selection mode="multiple"></dxo-selection>
-        <div *dxTemplate="let data of 'content'">
-        <div class="btn-group btn-group-sm">
-          <button class="btn btn-group btn-group-sm rose text-relaxed"  data-original-title="New Query" (click)="newQuery()">
-          <i class="fa fa-list-alt"></i>New Query</button>
-        </div>
-        <div class="btn-group btn-group-sm">
-          <button class="btn btn-group btn-group-sm rose text-relaxed" (click)="saveQuery()" data-original-title="Save Query">
-          <i class="fa fa-floppy-o"></i>Save Query</button>
-        </div>
-        <div class="btn-group btn-group-sm">
-          <button class="btn btn-group btn-group-sm rose text-relaxed" (click)="editQuery(1)" data-original-title="Save Query">
-          <i class="fa fa-pencil-square-o"></i>Edit Current Query</button>
-        </div>
-        <div class="btn-group btn-group-sm">
-          <button class="btn btn-group btn-group-sm rose text-relaxed"  data-original-title="Print" (click)="printRecords()"  >
-          <i class="fa fa-print"></i>Print</button>
-        </div>
-        <div class="btn-group btn-group-sm" *ngIf="!rowSelected">
-          <button type="button" class="btn dropdown-toggle rose text-relaxed" data-original-title="Marked" (click)="showMarked()">
-          <i class="fa fa-filter"></i>Show Marked 
-          </button>
-        </div>
-         <div class="btn-group btn-group-sm" *ngIf="rowSelected">
-          <button type="button" class="btn dropdown-toggle rose text-relaxed" data-original-title="Marked" (click)="showSearchResults()">
-          <i class="fa fa-level-up"></i>Show Search Results 
-          </button>
-        </div>
-       </div>
-      </dx-data-grid>
-    </div>     
-     `,
+  template: require('./records.component.html'),
   styles: [require('./records.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecords implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Input() temporary: boolean;
+  @Input() restore: boolean;
   @select(s => s.session.lookups) lookups$: Observable<any>;
+  @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   private records$: Observable<IRecords>;
   private lookupsSubscription: Subscription;
   private recordsSubscription: Subscription;
+  private hitlistSubscription: Subscription;
   private lookups: any;
   private records: IRecords;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
-  private selectedRows: any[];
+  private selectedRows: any[] = [];
   private tempResultRows: any[];
-  private regsearch: regSearchTypes.CSaveQuery = new regSearchTypes.CSaveQuery();
+  private hitlistVM: regSearchTypes.CQueryManagementVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
+  private hitlistData$: Observable<ISearchRecords>;
+  private isMarkedQuery: boolean;
+  private loadIndicatorVisible: boolean = false;
 
   constructor(
     private router: Router,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
+    private actions: RegistrySearchActions,
     private changeDetector: ChangeDetectorRef) {
     this.records = { temporary: this.temporary, rows: [], gridColumns: [] };
   }
@@ -121,15 +64,31 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.recordsSubscription) {
       this.recordsSubscription.unsubscribe();
     }
+    if (this.hitlistSubscription) {
+      this.hitlistSubscription.unsubscribe();
+    }
+  }
+
+  loadData() {
+    this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
+    this.changeDetector.markForCheck();
   }
 
   // Trigger data retrieval for the view to show.
   // Select the view model from redux store, and listen to it.
   retrieveContents(lookups: any) {
+    if (this.loggedIn$) {
+      this.loadIndicatorVisible = true;
+    }
     this.lookups = lookups;
-    this.registryActions.openRecords(this.temporary);
+    if (!this.restore) {
+      this.registryActions.openRecords(this.temporary);
+    }
     this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
     this.recordsSubscription = this.records$.subscribe(d => { this.updateContents(d); });
+    this.actions.openHitlists();
+    this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
+    this.hitlistSubscription = this.hitlistData$.subscribe(() => { this.loadData(); });
   }
 
   updateContents(records: IRecords) {
@@ -156,6 +115,11 @@ export class RegRecords implements OnInit, OnDestroy {
     });
   }
 
+  onRowPrepared(e) {
+    if (e.rowType === 'data') {
+      this.loadIndicatorVisible = false;
+    }
+  }
   onCellPrepared(e) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let isEditing = e.row.isEditing;
@@ -198,15 +162,31 @@ export class RegRecords implements OnInit, OnDestroy {
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}/${id}`]);
   }
 
-  onRowRemoving(e) {
+  manageQueries() {
+    this.actions.openHitlists();
   }
 
   newQuery() {
     this.router.navigate([`search/${this.temporary ? 'temp' : ''}`]);
   }
 
-  saveQuery() {
+  saveQuery(isMarked: boolean) {
+    this.isMarkedQuery = isMarked;
+    this.hitlistVM.saveQueryVM.clear();
     this.popupVisible = true;
+  }
+  saveHitlist() {
+    if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
+      if (this.isMarkedQuery === true) {
+        this.hitlistVM.saveQueryVM.clear();
+        notifySuccess('Marked records saved successfully!', 5000);
+      } else {
+        this.hitlistVM.saveQueryVM.clear();
+        notifySuccess('Query saved successfully!', 5000);
+      }
+    } else {
+      notifyError('Name and Description is required!', 5000);
+    }
   }
 
   editQuery(id: Number) {
@@ -261,5 +241,18 @@ export class RegRecords implements OnInit, OnDestroy {
     <body onload="window.print();window.close()">${printContents}</body>
       </html>`);
     popupWin.document.close();
+  }
+
+  onShown() {
+    setTimeout(() => {
+      this.loadIndicatorVisible = false;
+    }, 3000);
+  }
+
+  onHidden() {
+  }
+
+  showLoadPanel() {
+    this.loadIndicatorVisible = true;
   }
 };

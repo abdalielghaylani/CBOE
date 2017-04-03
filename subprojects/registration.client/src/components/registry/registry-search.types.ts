@@ -64,24 +64,9 @@ export class CRegSearch {
 }
 
 export class CRegSearchVM {
-  personCreated?: Number;
-  regNumber?: String;
-  startdateCreated?: Date;
-  enddateCreated?: Date;
-  createdByList?: CPersonCreatedList;
-  seqNumber?: String;
-  prefixKey?: Number;
-  prefixList?: CPrefixList;
-  rgistryProjectID?: Number;
-  projectList?: CProjectList;
-  mw?: String;
-  mf?: String;
-  regIdentifier?: Number;
-  regidentifierList?: CRegIdentifierList;
-  identifierValue?: String;
-  registryComments?: String;
   sdfFile?: File;
   columns: any[] = [];
+  structureData: any;
   searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
   constructor(m: CRegSearch, state: IAppState, propertyList?: CPropertyList) {
     this.columns.push(REGISTRY_SEARCH_DESC_LIST);
@@ -810,10 +795,36 @@ export const HITLIST_GRD_COLUMNS = [{
 export class CQueryManagementVM {
   gridColumns?: any[];
   queriesList?: CQueries[];
+  advancedRestoreType?: number;
+  isCurrentHitlist?: boolean;
+  saveQueryVM?: CSaveQuery;
   constructor(state: IAppState) {
     this.queriesList = state.registrysearch.hitlist.rows;
     this.gridColumns = HITLIST_GRD_COLUMNS;
+    this.advancedRestoreType = 0;
+    this.isCurrentHitlist = false;
+    this.saveQueryVM = new CSaveQuery();
   }
+
+  getRestoreDataSource() {
+    return [{
+      key: 0,
+      value: 'Subtract from entire list'
+    }, {
+      key: 2,
+      value: 'Subtract from current list',
+      disabled: !this.isCurrentHitlist
+    }, {
+      key: 1,
+      value: 'Intersect with current list',
+      disabled: !this.isCurrentHitlist
+    }, {
+      key: 3,
+      value: 'Union with current list',
+      disabled: !this.isCurrentHitlist
+    }];
+  }
+
 }
 
 export class CQueries {
@@ -839,8 +850,15 @@ export const HITLIST_EDIT_DESC_LIST = [{
 }
 ];
 
+export class CSaveData {
+  Name?: string; // 921
+  Description?: String;
+  IsPublic?: boolean;
+}
+
 export class CSaveQuery {
   editColumns: any[] = [];
+  data?: CSaveData;
   constructor() {
     this.editColumns.push(HITLIST_EDIT_DESC_LIST);
     if (HITLIST_EDIT_DESC_LIST) {
@@ -848,28 +866,12 @@ export class CSaveQuery {
         this.editColumns.push(p);
       });
     }
+    this.data = new CSaveData();
   }
-}
-
-export class CManageHitlistVM {
-  editColumns: any[] = [];
-  items?: CQueries[];
-  hitlistValue?: String;
-  hitlistEdit?: boolean;
-  hitlistRestore?: boolean;
-  hitlistDelete?: boolean;
-  unionHitlist: boolean;
-  substractHitlist: boolean;
-  intersectHitlist: boolean;
-  replaceHitlist: boolean;
-  constructor(state: IAppState) {
-    this.editColumns.push(HITLIST_EDIT_DESC_LIST);
-    if (HITLIST_EDIT_DESC_LIST) {
-      HITLIST_EDIT_DESC_LIST.forEach(p => {
-        this.editColumns.push(p);
-      });
-    }
-    this.items = state.registrysearch.hitlist.rows;
+  clear() {
+    this.data.Name = '';
+    this.data.Description = '';
+    this.data.IsPublic = false;
   }
 }
 
@@ -915,8 +917,6 @@ export class CSearchFormVM {
   structureSearchVM?: CStructureSearchVM;
   componentSearchVM?: CComponentSearchVM;
   batchSearchVM?: CBatchSearchVM;
-  queryManagementVM?: CQueryManagementVM;
-  hitlistVM?: CManageHitlistVM;
   preferenceVM?: CPreferenceVM;
   constructor(state: IAppState) {
     this.registrySearch = new CRegSearch();
@@ -929,8 +929,6 @@ export class CSearchFormVM {
     this.structureSearchVM = new CStructureSearchVM(this.structureSearch, state);
     this.componentSearchVM = new CComponentSearchVM(this.componentSearch, state);
     this.batchSearchVM = new CBatchSearchVM(this.batchSearch, state);
-    this.queryManagementVM = new CQueryManagementVM(state);
-    this.hitlistVM = new CManageHitlistVM(state);
     this.preferenceVM = new CPreferenceVM();
   }
 }

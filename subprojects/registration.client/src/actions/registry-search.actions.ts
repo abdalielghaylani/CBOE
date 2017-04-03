@@ -38,8 +38,7 @@ export class RegistrySearchActions {
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
-  static retrieveQueryListAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST,
-    (temporary: boolean, id: number) => ({ temporary, id }));
+  static retrieveQueryListAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST);
   static retrieveQueryListSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST_SUCCESS);
   static retrieveQueryListErrorAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST_ERROR);
   static retrieveQueryFormAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM,
@@ -59,18 +58,6 @@ export class RegistrySearchActions {
 
   searchRecordsError() {
     this.ngRedux.dispatch(RegistrySearchActions.searchRecordsErrorAction());
-  }
-
-  retrieveQueryList(temporary: boolean, id: number) {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryListAction(temporary, id));
-  }
-
-  retrieveQueryListSuccess(data: any[]) {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryListSuccessAction(data));
-  }
-
-  retrieveQueryListError() {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryListErrorAction());
   }
 
   retrieveQueryForm(temporary: boolean, id: number) {
@@ -97,8 +84,11 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.editHitlistsAction(data));
   };
 
-   saveHitlists(data) {
+  saveHitlists(data) {
     this.ngRedux.dispatch(RegistrySearchActions.saveHitlistsAction(data));
   };
 
+  retrieveHitlist(data) {
+    this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryListAction(data));
+  };
 }

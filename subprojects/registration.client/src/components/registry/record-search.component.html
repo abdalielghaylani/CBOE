@@ -39,8 +39,7 @@
     <div class="panel-heading">
       <ul class="nav nav-tabs">
         <li class="active" (click)="tabSelected = 'search'"><a href="#tab1default" data-toggle="tab">Advanced Search</a></li>
-        <li (click)="tabSelected = 'query'"><a href="#tab2default" data-toggle="tab">Query Management</a></li>
-        <li (click)="tabSelected = 'preference'"><a href="#tab3default" data-toggle="tab">Preferences</a></li>
+        <li (click)="tabSelected = 'preference'"><a href="#tab2default" data-toggle="tab">Preferences</a></li>
       </ul>
     </div>
     <div class="panel-body">
@@ -132,9 +131,6 @@
           </div>
         </div>
         <div class="tab-pane fade" id="tab2default">
-          <reg-search-query [hitlistColumns]="regsearch.queryManagementVM.gridColumns" ></reg-search-query>
-        </div>
-        <div class="tab-pane fade" id="tab3default">
           <dx-form id="preferenceForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="regsearch.preferenceVM.columns"></dx-form>
         </div>
       </div>
