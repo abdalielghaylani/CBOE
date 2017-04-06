@@ -13,15 +13,18 @@ import { IRegistry } from '../store';
   template: `
     <reg-container testid="records">
       <reg-records
-        [temporary]="temporary">
+        [temporary]="temporary"
+        [restore]="restore">
       </reg-records>
     </reg-container>
   `
 })
 export class RegRecordsPage {
   private temporary: boolean;
+  private restore: boolean;
 
   constructor(private router: Router, private actions: RegistryActions) {
     this.temporary = (router.url.match(/.*\/temp.*/g) || []).length > 0;
+    this.restore = (router.url.match(/.*\/restore.*/g) || []).length > 0;
   }
 }

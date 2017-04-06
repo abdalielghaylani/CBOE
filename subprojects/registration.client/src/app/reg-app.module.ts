@@ -15,7 +15,7 @@ import {
   RegAboutPage,
   RegRecordSearchPage
 } from '../pages';
-import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage } from '../components';
+import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagemnt } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -23,11 +23,14 @@ import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
 import {
   DxCheckBoxModule,
+  DxRadioGroupModule,
   DxDataGridModule,
   DxSelectBoxModule,
   DxNumberBoxModule,
   DxFormModule,
-  DxPopupModule
+  DxPopupModule,
+  DxLoadIndicatorModule,
+  DxLoadPanelModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -44,11 +47,14 @@ import {
     ToolModule,
     NgReduxModule,
     DxCheckBoxModule,
+    DxRadioGroupModule,
     DxDataGridModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
     DxFormModule,
-    DxPopupModule
+    DxPopupModule,
+    DxLoadIndicatorModule,
+    DxLoadPanelModule
   ],
   declarations: [
     RegApp,
@@ -56,6 +62,7 @@ import {
     RegRecordSearchPage,
     RegRecordDetailPage,
     RegRecords,
+    RegQueryManagemnt,
     RegRecordSearch,
     RegRecordDetail,
     RegStructureImage,

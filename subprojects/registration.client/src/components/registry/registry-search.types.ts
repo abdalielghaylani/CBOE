@@ -64,24 +64,9 @@ export class CRegSearch {
 }
 
 export class CRegSearchVM {
-  personCreated?: Number;
-  regNumber?: String;
-  startdateCreated?: Date;
-  enddateCreated?: Date;
-  createdByList?: CPersonCreatedList;
-  seqNumber?: String;
-  prefixKey?: Number;
-  prefixList?: CPrefixList;
-  rgistryProjectID?: Number;
-  projectList?: CProjectList;
-  mw?: String;
-  mf?: String;
-  regIdentifier?: Number;
-  regidentifierList?: CRegIdentifierList;
-  identifierValue?: String;
-  registryComments?: String;
   sdfFile?: File;
   columns: any[] = [];
+  structureData: any;
   searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
   constructor(m: CRegSearch, state: IAppState, propertyList?: CPropertyList) {
     this.columns.push(REGISTRY_SEARCH_DESC_LIST);
@@ -147,6 +132,188 @@ export class CRegSearchVM {
           state.session.lookups.identifierTypes.filter(i => ((i.TYPE === 'R' || i.TYPE === 'A') && i.ACTIVE === 'T')) : [],
         displayExpr: 'NAME',
         valueExpr: 'ID',
+      }
+    });
+  }
+}
+
+export const TEMP_SEARCH_DESC_LIST = [{
+  dataField: 'TempBatchID',
+  label: { text: 'TempBatchID' },
+  dataType: 'string',
+}, {
+  dataField: 'STARTDATECREATED',
+  label: { text: 'Start Date Created' },
+  dataType: 'date',
+  editorType: 'dxDateBox',
+}, {
+  dataField: 'ENDDATECREATED',
+  label: { text: 'End Date Created' },
+  dataType: 'date',
+  editorType: 'dxDateBox',
+}, {
+  dataField: 'MolWeight',
+  label: { text: 'MW' },
+  dataType: 'string',
+}, {
+  dataField: 'Formula',
+  label: { text: 'MF' },
+  dataType: 'string',
+}, {
+  dataField: 'NotebookReference',
+  label: { text: 'Notebook Reference' },
+  dataType: 'string'
+}, {
+  dataField: 'START_CREATION_DATE',
+  label: { text: 'Start Synthesis Date' },
+  dataType: 'date',
+  editorType: 'dxDateBox',
+}, {
+  dataField: 'END_CREATION_DATE',
+  label: { text: 'End Synthesis Date' },
+  dataType: 'date',
+  editorType: 'dxDateBox',
+}, {
+  dataField: 'AMOUNT',
+  label: { text: 'Amount' },
+  dataType: 'string'
+}, {
+  dataField: 'APPEARANCE',
+  label: { text: 'Appearance' },
+  dataType: 'string'
+}, {
+  dataField: 'PURITY',
+  label: { text: 'Purity' },
+  dataType: 'string'
+}, {
+  dataField: 'PURITY_COMMENTS',
+  label: { text: 'Purity Comments' },
+  dataType: 'string'
+}, {
+  dataField: 'SAMPLEID',
+  label: { text: 'Sample ID' },
+  dataType: 'string'
+}, {
+  dataField: 'SOLUBILITY',
+  label: { text: 'Solubility' },
+  dataType: 'string'
+}, {
+  dataField: 'BATCH_COMMENT',
+  label: { text: 'Batch Comments' },
+  dataType: 'string',
+  editorType: 'dxTextArea'
+}, {
+  dataField: 'STORAGE_REQ_AND_WARNINGS',
+  label: { text: 'Storage Requirements Warnings' },
+  dataType: 'string',
+  editorType: 'dxTextArea'
+}
+];
+
+export class CTemporarySearch {
+  ID?: Number;
+  TempBatchID?: String;
+  STARTDATECREATED?: Date;
+  ENDDATECREATED?: Date;
+  MolWeight?: String;
+  MF?: String;
+  SCIENTIST_ID?: String;
+  PREFIX?: String;
+  REGISTRY_PROJECT?: String;
+  NotebookReference?: String;
+  START_CREATION_DATE?: Date;
+  END_CREATION_DATE?: Date;
+  AMOUNT?: String;
+  AMOUNT_UNITS?: String;
+  APPEARANCE: String;
+  PURITY: String;
+  PURITY_COMMENTS: String;
+  SAMPLEID: String;
+  SOLUBILITY: String;
+  BATCH_COMMENT: String;
+  STORAGE_REQ_AND_WARNINGS: String;
+  searchTypeValue?: String;
+}
+
+export class CTemporarySearchVM {
+  columns: any[] = [];
+  searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
+  constructor(m: CTemporarySearch, state: IAppState, propertyList?: CPropertyList) {
+    this.columns.push(TEMP_SEARCH_DESC_LIST);
+    if (TEMP_SEARCH_DESC_LIST) {
+      TEMP_SEARCH_DESC_LIST.forEach(p => {
+        this.columns.push(p);
+      });
+    }
+    if (propertyList) {
+      propertyList.Property.forEach(p => {
+        let propertyName = p._name;
+        if (propertyName) {
+          this[propertyName as string] = getPropertyValue(p);
+          this.columns.push(getPropertyColumn(p));
+        }
+      });
+    }
+    this.columns.splice(4, 0, {
+      dataField: 'PersonCreated',
+      label: { text: 'Created By' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
+        valueExpr: 'PERSONID',
+        displayExpr: 'USERID'
+      }
+    });
+
+    this.columns.splice(7, 0, {
+      dataField: 'SCIENTIST_ID',
+      label: { text: 'Scientist' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
+        valueExpr: 'PERSONID',
+        displayExpr: 'USERID'
+      }
+    });
+
+    this.columns.splice(8, 0, {
+      dataField: 'PREFIX',
+      label: { text: 'Prefix' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.sequences.filter(i => (i.TYPE === 'R' || i.TYPE === 'A')) : [],
+        valueExpr: 'SEQUENCEID',
+        displayExpr: 'PREFIX'
+      }
+    });
+
+    this.columns.splice(9, 0, {
+      dataField: 'REGISTRY_PROJECT',
+      label: { text: 'Registry Project Name' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.projects.filter(i => ((i.TYPE === 'R' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F'))) : [],
+        valueExpr: 'PROJECTID',
+        displayExpr: 'NAME'
+      }
+    });
+
+    this.columns.splice(12, 0, {
+      dataField: 'AMOUNT_UNITS',
+      label: { text: 'Units' },
+      dataType: 'string',
+      editorType: 'dxSelectBox',
+      editorOptions: {
+        dataSource: state && state.session.lookups ?
+          state.session.lookups.units : [],
+        valueExpr: 'ID',
+        displayExpr: 'UNIT'
       }
     });
   }
@@ -593,16 +760,71 @@ function getPropertyColumn(p: CProperty): any {
   return column;
 }
 
-export class CQueryManagementVM {
-  latestQueriesList?: CQueries[];
-  savedQueriesList?: CQueries[];
-  constructor() {
-    // mock data to be deleted
-    this.latestQueriesList = [{ ID: 1, Name: 'TEMP 17022017001' }, { ID: 2, Name: 'TEMP 17022017002' }, { ID: 3, Name: 'TEMP 17022017003 ' }];
-    this.savedQueriesList = [{ ID: 1, Name: 'SAVED 17022017001' }, { ID: 1, Name: 'SAVED 17022017002' }, { ID: 1, Name: 'SAVED 17022017003' }];
-    // mock data to be deleted
+export const HITLIST_GRD_COLUMNS = [{
+  dataField: 'Name',
+  dataType: 'String',
+  cellTemplate: 'saveCellTemplate'
+}, {
+  dataField: 'Description',
+  dataType: 'String'
+}, {
+  dataField: 'IsPublic'
+}, {
+  caption: 'Number of hits',
+  dataField: 'NumberOfHits',
+  dataType: Number,
+  allowEditing: false
+}, {
+  dataField: 'DateCreated._date',
+  caption: 'Date Created',
+  dataType: 'date',
+  allowEditing: false
+}, {
+  dataField: 'HistlistType',
+  caption: 'Queries',
+  lookup: { dataSource: [{ id: 0, name: 'Recent' }, { id: 1, name: 'Saved' }], valueExpr: 'id', displayExpr: 'name' },
+  groupIndex: 0,
+  allowEditing: false
+},
+{
+  caption: 'Restore',
+  cellTemplate: 'restoreCellTemplate'
+}
+];
 
+export class CQueryManagementVM {
+  gridColumns?: any[];
+  queriesList?: CQueries[];
+  advancedRestoreType?: number;
+  isCurrentHitlist?: boolean;
+  saveQueryVM?: CSaveQuery;
+  constructor(state: IAppState) {
+    this.queriesList = state.registrysearch.hitlist.rows;
+    this.gridColumns = HITLIST_GRD_COLUMNS;
+    this.advancedRestoreType = 0;
+    this.isCurrentHitlist = false;
+    this.saveQueryVM = new CSaveQuery();
   }
+
+  getRestoreDataSource() {
+    return [{
+      key: 0,
+      value: 'Subtract from entire list'
+    }, {
+      key: 2,
+      value: 'Subtract from current list',
+      disabled: !this.isCurrentHitlist
+    }, {
+      key: 1,
+      value: 'Intersect with current list',
+      disabled: !this.isCurrentHitlist
+    }, {
+      key: 3,
+      value: 'Union with current list',
+      disabled: !this.isCurrentHitlist
+    }];
+  }
+
 }
 
 export class CQueries {
@@ -628,8 +850,15 @@ export const HITLIST_EDIT_DESC_LIST = [{
 }
 ];
 
+export class CSaveData {
+  Name?: string; // 921
+  Description?: String;
+  IsPublic?: boolean;
+}
+
 export class CSaveQuery {
   editColumns: any[] = [];
+  data?: CSaveData;
   constructor() {
     this.editColumns.push(HITLIST_EDIT_DESC_LIST);
     if (HITLIST_EDIT_DESC_LIST) {
@@ -637,28 +866,12 @@ export class CSaveQuery {
         this.editColumns.push(p);
       });
     }
+    this.data = new CSaveData();
   }
-}
-
-export class CManageHitlistVM {
-  editColumns: any[] = [];
-  items?: CQueries[];
-  hitlistValue?: String;
-  hitlistEdit?: boolean;
-  hitlistRestore?: boolean;
-  hitlistDelete?: boolean;
-  unionHitlist: boolean;
-  substractHitlist: boolean;
-  intersectHitlist: boolean;
-  replaceHitlist: boolean;
-  constructor(m: CQueryManagementVM) {
-    this.editColumns.push(HITLIST_EDIT_DESC_LIST);
-    if (HITLIST_EDIT_DESC_LIST) {
-      HITLIST_EDIT_DESC_LIST.forEach(p => {
-        this.editColumns.push(p);
-      });
-    }
-    this.items = m.latestQueriesList.concat(m.savedQueriesList);
+  clear() {
+    this.data.Name = '';
+    this.data.Description = '';
+    this.data.IsPublic = false;
   }
 }
 
@@ -697,25 +910,25 @@ export class CSearchFormVM {
   registrySearch?: CRegSearch;
   structureSearch?: CStructureSearch;
   componentSearch?: CComponentSearch;
+  temporarySearch?: CTemporarySearch;
   batchSearch?: CBatchSearch;
   registrySearchVM?: CRegSearchVM;
+  temporarySearchVM?: CTemporarySearchVM;
   structureSearchVM?: CStructureSearchVM;
   componentSearchVM?: CComponentSearchVM;
   batchSearchVM?: CBatchSearchVM;
-  queryManagementVM?: CQueryManagementVM;
-  hitlistVM?: CManageHitlistVM;
   preferenceVM?: CPreferenceVM;
   constructor(state: IAppState) {
     this.registrySearch = new CRegSearch();
     this.structureSearch = new CStructureSearch();
     this.componentSearch = new CComponentSearch();
     this.batchSearch = new CBatchSearch();
+    this.temporarySearch = new CTemporarySearch();
     this.registrySearchVM = new CRegSearchVM(this.registrySearch, state);
+    this.temporarySearchVM = new CTemporarySearchVM(this.temporarySearch, state);
     this.structureSearchVM = new CStructureSearchVM(this.structureSearch, state);
     this.componentSearchVM = new CComponentSearchVM(this.componentSearch, state);
     this.batchSearchVM = new CBatchSearchVM(this.batchSearch, state);
-    this.queryManagementVM = new CQueryManagementVM();
-    this.hitlistVM = new CManageHitlistVM(this.queryManagementVM);
     this.preferenceVM = new CPreferenceVM();
   }
 }

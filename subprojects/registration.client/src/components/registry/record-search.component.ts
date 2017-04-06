@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
   OnInit, OnDestroy, AfterViewInit,
   ElementRef, ChangeDetectorRef,
-  ViewChildren, QueryList
+  ViewChildren, QueryList, ViewChild
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,8 +14,9 @@ import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 import { RegistrySearchActions, ConfigurationActions } from '../../actions';
-import { IAppState, IRecordDetail } from '../../store';
+import { IAppState, ISearchRecords } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ChemDrawingTool } from '../../common/tool';
 
 declare var jQuery: any;
 
@@ -26,9 +27,12 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordSearch implements OnInit, OnDestroy {
-  private title: string = 'Search Permanent Registry';
+  @Input() temporary: boolean;
+  private title: string;
   private tabSelected: string = 'search';
   private regsearch: regSearchTypes.CSearchFormVM;
+  @ViewChild(ChemDrawingTool)
+  private drawingTool: ChemDrawingTool;
 
   constructor(
     private router: Router,
@@ -39,36 +43,23 @@ export class RegRecordSearch implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
     this.regsearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
-    this.loadData();
   }
 
   ngOnDestroy() {
   }
 
-  loadData() {
-
-  }
-
   search() {
-
+    this.regsearch.registrySearchVM.structureData = this.drawingTool.getValue();
   }
-  clear() {
 
+  clear() {
+    this.drawingTool.loadCdxml(null);
   }
 
   retrieveAll() {
-    this.router.navigate(['records']);
-  }
-
-  editHitlist() {
-    this.regsearch.hitlistVM.hitlistEdit = true;
-    this.regsearch.hitlistVM.hitlistRestore = false;
-  }
-
-  restoreHitlist() {
-    this.regsearch.hitlistVM.hitlistEdit = false;
-    this.regsearch.hitlistVM.hitlistRestore = true;
+    this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
   }
 
 };
