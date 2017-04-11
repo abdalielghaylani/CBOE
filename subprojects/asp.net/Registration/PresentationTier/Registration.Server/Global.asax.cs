@@ -26,8 +26,8 @@ namespace PerkinElmer.COE.Registration.Server
             GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
             HttpContext.Current.Application.Lock();
             AppDomain.CurrentDomain.DomainUnload += new EventHandler(AppDomainUnloading);
-            HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.AppName] = GUIShellUtilities.GetApplicationName();
-            HttpContext.Current.Application[PerkinElmer.COE.Registration.Server.Constants.AppPagesTitle] = GUIShellUtilities.GetDefaultPagesTitle();
+            HttpContext.Current.Application[RegistrationWebApp.Constants.AppName] = GUIShellUtilities.GetApplicationName();
+            HttpContext.Current.Application[RegistrationWebApp.Constants.AppPagesTitle] = GUIShellUtilities.GetDefaultPagesTitle();
             HttpContext.Current.Application[GUIShellTypes.EnablePopUpForBrowserVersions] = GUIShellUtilities.GetPopUpBrowserVersions();
             HttpContext.Current.Application[GUIShellTypes.Themes] = GUIShellUtilities.GetThemes();
             HttpContext.Current.Application.UnLock();
@@ -51,7 +51,7 @@ namespace PerkinElmer.COE.Registration.Server
             //Coverity fix - CID 11866 - no need to check for null value of server exception, as the event will trigger only when any error occurs.
             if (serverEx != null)
             {
-                string policyName = PerkinElmer.COE.Registration.Server.Constants.REG_OTHER_POLICY;
+                string policyName = RegistrationWebApp.Constants.REG_OTHER_POLICY;
 
                 //Default error 'code'; not very user-friendly in reality
                 string error = CambridgeSoft.COE.Framework.GUIShell.GUIShellTypes.MessagesCode.Unknown.ToString();
