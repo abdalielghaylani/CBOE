@@ -96,12 +96,7 @@ proxySettings[basePath + 'api'] = {
     '^/api': '',
   },
 };
-proxySettings[basePath + 'Webservices'] = {
-  target: serverHost + '/Registration.Server/Webservices',
-  pathRewrite: {
-    '^/Webservices': '',
-  },
-};
+proxySettings['/COERegistration/Webservices'] = serverHost;
 proxySettings[basePath + 'coecommonresources'] = serverHost;
 
 const baseConfig = {
