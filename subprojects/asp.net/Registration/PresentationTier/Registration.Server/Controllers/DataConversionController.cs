@@ -22,7 +22,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             dynamic cdObjects = chemDrawCtl.Objects;
             cdObjects.Clear();
             chemDrawCtl.DataEncoded = true;
-            cdObjects.set_Data(fromType, null, null, null, fromData);
+            chemDrawCtl.set_Data(fromType, fromData);
             var toData = new JObject(
                 new JProperty("data", chemDrawCtl.get_Data(toType))
             );
