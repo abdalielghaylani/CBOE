@@ -3,6 +3,7 @@ using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Reflection;
+using CambridgeSoft.COE.Registration.Services;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -31,8 +32,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route("api/RegistryRecords/Temp/{id}")]
         public dynamic GetTemp(int id)
         {
-            CheckAuthentication();
-            return null;
+            using (var service = new COERegistrationServices())
+            {
+                service.Credentials.AuthenticationTicket = GetSessionToken();
+                return service.RetrieveTemporaryRegistryRecord(id);
+            }
         }
         #endregion // Tempoary Records
     }
