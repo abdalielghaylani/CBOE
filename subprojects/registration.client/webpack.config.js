@@ -96,8 +96,12 @@ proxySettings[basePath + 'api'] = {
     '^/api': '',
   },
 };
+proxySettings['/COEManager'] = serverHost;
 proxySettings['/COERegistration/Webservices'] = serverHost;
-proxySettings[basePath + 'coecommonresources'] = serverHost;
+proxySettings[basePath + 'COECommonResources'] = serverHost;
+for (const targetUrl in proxySettings) {
+  proxySettings[targetUrl.toLowerCase()] = proxySettings[targetUrl];
+}
 
 const baseConfig = {
   resolve: {
