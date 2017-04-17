@@ -96,6 +96,12 @@ proxySettings[basePath + 'api'] = {
     '^/api': '',
   },
 };
+proxySettings[basePath + 'swagger'] = {
+  target: serverHost + '/Registration.Server/swagger',
+  pathRewrite: {
+    '^/swagger': '',
+  },
+};
 proxySettings['/COEManager'] = serverHost;
 proxySettings['/COERegistration/Webservices'] = serverHost;
 proxySettings[basePath + 'COECommonResources'] = serverHost;
