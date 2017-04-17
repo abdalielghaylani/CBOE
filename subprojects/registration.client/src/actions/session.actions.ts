@@ -22,8 +22,8 @@ export class SessionActions {
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
-  checkLogin() {
-    this.ngRedux.dispatch(SessionActions.checkLoginAction());
+  checkLogin(token: string) {
+    this.ngRedux.dispatch(SessionActions.checkLoginAction(token));
   }
 
   loginUser(credentials) {

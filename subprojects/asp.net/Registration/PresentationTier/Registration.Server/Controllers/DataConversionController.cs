@@ -2,9 +2,10 @@
 using Newtonsoft.Json.Linq;
 using System.Net.Http;
 using System;
-using ChemDrawControl14;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Web;
+using System.Reflection;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -12,24 +13,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     {
         private JObject Convert(string fromType, string toType, string fromData)
         {
-            ChemDrawCtl ctrl = null;
-            try
-            {
-                ctrl = new ChemDrawCtl();
-                ctrl.Objects.Clear();
-                ctrl.DataEncoded = true;
-                ctrl.Objects.set_Data(fromType, null, null, null, fromData);
-                var toData = new JObject(
-                    new JProperty("data", ctrl.get_Data(toType))
-                );
-                return toData;
-            }
-            finally
-            {
-                if (ctrl != null)
-                    Marshal.ReleaseComObject(ctrl);
-                GC.Collect();
-            }
+            // CacheableChemdrawControl may dispose automatically when timeout elapses.
+            // In other words, it does not need to be disposed of explicitly in this code.
+            // In order to support multiple versions of ChemDrawCtl, all calls to ChemDrawCtl are done dynamically.
+            var assemblyName = Assembly.GetCallingAssembly().GetName().Name;
+            dynamic cacheableChemDrawCtl = (object)CambridgeSoft.COE.Framework.Caching.CacheableChemdrawControl.GetCachedChemdrawControl(assemblyName);
+            dynamic chemDrawCtl =  cacheableChemDrawCtl.Control;
+            dynamic cdObjects = chemDrawCtl.Objects;
+            cdObjects.Clear();
+            chemDrawCtl.DataEncoded = true;
+            chemDrawCtl.set_Data(fromType, fromData);
+            var toData = new JObject(
+                new JProperty("data", chemDrawCtl.get_Data(toType))
+            );
+            return toData;
         }
 
         [HttpPost]

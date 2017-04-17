@@ -35,4 +35,20 @@ export class SessionEpics {
           .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
       });
   }
+
+  handleCheckLogin = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({ type }) => type === SessionActions.CHECK_LOGIN)
+      .mergeMap(({ payload }) => {
+        return this.http.get(`${BASE_URL}/auth/validate/${payload}`)
+          // .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
+          // .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+          .map(result => {
+            let validationData = result.json();
+            return validationData.isValid ?
+              SessionActions.loginUserSuccessAction(validationData.meta) :
+              SessionActions.loginUserErrorAction();
+          })
+          .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+      });
+  }
 }

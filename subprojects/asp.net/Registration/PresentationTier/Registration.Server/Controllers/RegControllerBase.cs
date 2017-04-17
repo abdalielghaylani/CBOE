@@ -108,12 +108,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
+        protected string GetSessionToken()
+        {
+            CookieHeaderValue cookie = Request.Headers.GetCookies("COESSO").FirstOrDefault();
+            return cookie != null ? cookie["COESSO"].Value : string.Empty;
+        }
+
         protected void CheckAuthentication()
         {
-            string sessionToken = "";
-            CookieHeaderValue cookie = Request.Headers.GetCookies("COESSO").FirstOrDefault();
-            if (cookie != null)
-                sessionToken = cookie["COESSO"].Value;
+            string sessionToken = GetSessionToken();
             if (string.IsNullOrEmpty(sessionToken) || !COEPrincipal.Login(sessionToken, true))
                 throw new InvalidOperationException("Authentication failed");
         }

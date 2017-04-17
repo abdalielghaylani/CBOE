@@ -17,7 +17,7 @@ import * as registryUtils from '../components/registry/registry.utils';
 import { basePath } from '../configuration';
 
 const BASE_URL = `${basePath}api`;
-const WS_URL = `${basePath}Webservices/COERegistrationServices.asmx`;
+const WS_URL = `/COERegistration/Webservices/COERegistrationServices.asmx`;
 const WS_ENVELOPE = `<soap12:Envelope
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
