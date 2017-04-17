@@ -54,7 +54,7 @@ export class RegApp {
     private devTools: DevToolsExtension,
     private ngRedux: NgRedux<IAppState>,
     private ngReduxRouter: NgReduxRouter,
-    private actions: SessionActions,
+    private sessionActions: SessionActions,
     private registryActions: RegistryActions,
     private configEpics: ConfigurationEpics,
     private registryEpics: RegistryEpics,
@@ -66,7 +66,8 @@ export class RegApp {
       registryEpics.handleRegistryActions,
       registrySearchEpics.handleRegistrySearchActions,
       sessionEpics.handleLoginUser,
-      sessionEpics.handleLoginUserSuccess
+      sessionEpics.handleLoginUserSuccess,
+      sessionEpics.handleCheckLogin
     )));
 
     ngRedux.configureStore(
@@ -78,6 +79,19 @@ export class RegApp {
         enhancers);
 
     ngReduxRouter.initialize();
+
+    this.checkLogin();
+  }
+
+  checkLogin() {
+    // See if auth token cookie is available.
+    console.log('cookie:' + document.cookie);
+    let token = document.cookie.split('; ').map(c => c.split('=')).find(c => c[0] === 'CS%5FSEC%5FUserName');
+    // If token is available, check if cookie is valid.
+    if (token) {
+      console.log('user-name:' + token[1]);
+      this.sessionActions.checkLogin(token[1]);
+    }
   }
 
 };
