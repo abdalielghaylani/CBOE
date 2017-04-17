@@ -47,6 +47,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 cookie.Expires = DateTime.Now.AddMinutes(60);
                 cookie.Domain = Request.RequestUri.Host;
                 cookie.Path = "/";
+                cookie.HttpOnly = true;
                 response.Headers.AddCookies(new CookieHeaderValue[] { cookie });
                 return response;
             }
@@ -57,27 +58,48 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
-        [Route("api/auth/validate/{token}")]
-        public HttpResponseMessage Validate(string token)
+        [HttpGet]
+        [Route("api/auth/validate/{userName}")]
+        public HttpResponseMessage Validate(string userName)
         {
             var errorMessage = new StringBuilder();
             try
             {
-                errorMessage.AppendLine(string.Format("Validating token, {0}...", token));
-                var webClient = new WebClient();
-                var validateUrl = "/COESingleSignOn/SingleSignOn.asmx/ValidateTicket?encryptedTicket=";
-                validateUrl = GetAbsoluteUrl(validateUrl, true);
-                string response;
-                errorMessage.AppendLine(string.Format("Opening {0}...", validateUrl));
-                using (var validateResponse = new StreamReader(webClient.OpenRead(validateUrl + token)))
-                    response = validateResponse.ReadToEnd();
-                var xml = new XmlDocument();
-                xml.LoadXml(response);
-                response = xml.DocumentElement.FirstChild.InnerText.Trim();
-                errorMessage.AppendLine(string.Format("Valid: {0}", response));
-                var responseJobject = Request.CreateResponse(HttpStatusCode.OK, new JObject(
-                    new JProperty("data", Boolean.Parse(response))
-                ));
+                bool isValid = false;
+                const string SSO_URL = "/COESingleSignOn/SingleSignOn.asmx/";
+                var ssoCookies = Request.Headers.GetCookies();
+                var tokenCookie = ssoCookies == null || ssoCookies.First() == null ? null : ssoCookies.First().Cookies.First(c => c.Name == "COESSO");
+                var token = tokenCookie == null ? null : tokenCookie.Value; 
+                if (!string.IsNullOrEmpty(token))
+                {
+                    errorMessage.AppendLine(string.Format("Validating token, {0}...", token));
+                    var webClient = new WebClient();
+                    var validateUrl = SSO_URL + "ValidateTicket?encryptedTicket=";
+                    validateUrl = GetAbsoluteUrl(validateUrl, true);
+                    string response;
+                    errorMessage.AppendLine(string.Format("Opening {0}...", validateUrl));
+                    using (var validateResponse = new StreamReader(webClient.OpenRead(validateUrl + token)))
+                        response = validateResponse.ReadToEnd();
+                    var xml = new XmlDocument();
+                    xml.LoadXml(response);
+                    isValid = Boolean.Parse(xml.DocumentElement.FirstChild.InnerText.Trim());
+                }
+                errorMessage.AppendLine(string.Format("Valid: {0}", isValid));
+                var responseObject = new JObject(
+                    new JProperty("isValid", isValid)
+                );
+                if (isValid)
+                {
+                    responseObject.Add(
+                        new JProperty("meta",
+                            new JObject(
+                                new JProperty("token", token),
+                                new JProperty("profile", new JObject(new JProperty("fullName", userName)))
+                            )
+                        )
+                    );
+                }
+                var responseJobject = Request.CreateResponse(HttpStatusCode.OK, responseObject);
                 return responseJobject;
             }
             catch (Exception ex)

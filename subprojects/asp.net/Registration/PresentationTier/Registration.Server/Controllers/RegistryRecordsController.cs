@@ -4,6 +4,8 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Reflection;
 using CambridgeSoft.COE.Registration.Services;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -29,6 +31,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return ExtractData("SELECT tempcompoundid id, tempbatchid batchid, formulaweight MW, molecularformula MF, datecreated created, datelastmodified modified, personcreated as creator, 'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS') as structure FROM vw_temporarycompound ORDER BY tempbatchid DESC");
         }
 
+        [HttpGet]
         [Route("api/RegistryRecords/Temp/{id}")]
         public dynamic GetTemp(int id)
         {
@@ -36,6 +39,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 service.Credentials.AuthenticationTicket = GetSessionToken();
                 return service.RetrieveTemporaryRegistryRecord(id);
+            }
+        }
+
+        [HttpDelete]
+        [Route("api/RegistryRecords/Temp/{id}")]
+        public Task<HttpResponseMessage> DeleteTemp(int id)
+        {
+            using (var service = new COERegistrationServices())
+            {
+                service.Credentials.AuthenticationTicket = GetSessionToken();
+                var response = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
+                response.Content = new StringContent(service.DeleteTemporaryRegistryRecord(id));
+                return Task.FromResult(response);
             }
         }
         #endregion // Tempoary Records
