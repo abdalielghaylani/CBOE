@@ -207,12 +207,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route("api/search/restorehitlists/{hitlistID}/{hitlistType}")]
         [SwaggerOperation("SearchHitlistsRestore")]
-        public JArray SearchHitlistsRestore(string hitlistID, string hitlistType)
+        public JArray SearchHitlistsRestore(int hitlistID, int hitlistType, int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
-            HitlistID = Convert.ToInt32(hitlistID);
-            HitlistType = Convert.ToInt32(hitlistType);
-            return RestoreHitlists(HitlistID, HitlistType);
+            return RestoreHitlists(hitlistID, hitlistType, skip, count, sort);
         }
 
         /// <summary>
@@ -226,11 +224,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="0">Unexpected error</response>
         [HttpGet]
         [Route("api/search/restorehitlistsactions")]
-        public JArray HitlistsRestoreActions()
+        public JArray HitlistsRestoreActions(int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
             JArray objJArray = new JArray();
-            CambridgeSoft.COE.Framework.COEHitListService.DAL objDAL = new CambridgeSoft.COE.Framework.COEHitListService.DAL();
+            var objDAL = new CambridgeSoft.COE.Framework.COEHitListService.DAL();
             var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
             if (hitlistData != null)
             {
@@ -367,22 +365,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return example;
         }
 
-        public JArray RestoreHitlists(int HitlistID, int HitlistType)
+        public JArray RestoreHitlists(int hitlistID, int hitlistType, int? skip = null, int? count = null, string sort = null)
         {
             JArray objJArray = new JArray();
-            if (HitlistID != null)
+            if (hitlistID != null)
             {
-                switch (HitlistType)
+                switch (hitlistType)
                 {
                     case 0: //TempHitlist
                         objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
                    "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + HitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + hitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
                         break;
                     case 1: //SavedHitlist
                         objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
                    "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coesavedhitlist s where s.hitlistid=" + HitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coesavedhitlist s where s.hitlistid=" + hitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
                         break;
                 }
                 return objJArray;

@@ -49,6 +49,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 for (int i = 0; i < fieldCount; ++i)
                 {
                     var fieldName = reader.GetName(i);
+                    // Skip row_num field if any
+                    if (fieldName.Equals("row_num", StringComparison.OrdinalIgnoreCase))
+                        continue;
                     var fieldType = reader.GetFieldType(i);
                     object fieldData;
                     switch (fieldType.Name.ToLower())
@@ -91,6 +94,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         case "datetime":
                             value = reader.GetDateTime(0);
                             break;
+                        case "decimal":
+                            value = reader.GetDecimal(0);
+                            break;
                         default:
                             value = reader.GetString(0);
                             break;
@@ -100,8 +106,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
-        protected JArray ExtractData(string sql, Dictionary<string, object> args = null)
+        protected JArray ExtractData(string sql, Dictionary<string, object> args = null, int? skip = null, int? count = null)
         {
+            if ((skip != null && skip.Value > 0) || count != null)
+            {
+                int lowerLimit = Math.Max(skip == null ? 0 : skip.Value, 0);
+                int upperLimit = Math.Max(count == null ? lowerLimit + 1 : lowerLimit + count.Value, lowerLimit + 1);
+                sql = string.Format("SELECT ROWNUM row_num, q1.* FROM ({0}) q1 WHERE ROWNUM <= :upperLimt", sql);
+                if (args == null) args = new Dictionary<string, object>();
+                args.Add(":upperLimit", upperLimit);
+                if (lowerLimit > 0)
+                {
+                    sql = string.Format("SELECT q2.* FROM ({0}) q2 WHERE row_num > :lowerLimit", sql);
+                    args.Add(":lowerLimit", lowerLimit);
+                }
+            }
             using (var reader = GetReader(sql, args))
             {
                 return ExtractData(reader);
