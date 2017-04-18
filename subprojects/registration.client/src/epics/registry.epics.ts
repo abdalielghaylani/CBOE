@@ -56,7 +56,7 @@ export class RegistryEpics {
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
-              : RegistryActions.openRecordsSuccessAction(temporary, result.json());
+              : RegistryActions.openRecordsSuccessAction(result.json());
           })
           .catch(error => Observable.of(RegistryActions.openRecordsErrorAction(error)));
       });

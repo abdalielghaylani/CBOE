@@ -94,7 +94,7 @@ export class RegistrySearchEpics {
             .map(result => {
               return result.url.indexOf('index.html') > 0
                 ? SessionActions.logoutUserAction()
-                : RegistryActions.openRecordsSuccessAction(false, result.json());
+                : RegistryActions.openRecordsSuccessAction(result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveQueryListErrorAction(error)));
         }
@@ -103,7 +103,7 @@ export class RegistrySearchEpics {
             .map(result => {
               return result.url.indexOf('index.html') > 0
                 ? SessionActions.logoutUserAction()
-                : RegistryActions.openRecordsSuccessAction(false, result.json());
+                : RegistryActions.openRecordsSuccessAction(result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveQueryListErrorAction(error)));
         }

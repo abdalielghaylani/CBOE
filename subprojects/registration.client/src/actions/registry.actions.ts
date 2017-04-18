@@ -14,7 +14,7 @@ export class RegistryActions {
   static openRecordsAction = createAction(RegistryActions.OPEN_RECORDS,
     (temporary: boolean) => (temporary));
   static openRecordsSuccessAction = createAction(RegistryActions.OPEN_RECORDS_SUCCESS,
-    (temporary: boolean, rows: any[]) => ({ temporary, rows }));
+    (data: { temporary: boolean, rows: any[], totalCount: number }) => (data));
   static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
