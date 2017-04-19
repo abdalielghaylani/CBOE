@@ -31,7 +31,7 @@ export class RegistrySearchActions {
   static saveHitlistsAction = createAction(RegistrySearchActions.SAVE_HITLISTS);
   static saveHitlistsErrorAction = createAction(RegistrySearchActions.SAVE_HITLISTS_ERROR);
   static deleteHitlistsAction = createAction(RegistrySearchActions.DELETE_HITLISTS,
-    (type: number, id: number) => ({ type, id }));
+    (id: number) => ({ id }));
   static deleteHitlistsErrorAction = createAction(RegistrySearchActions.DELETE_HITLISTS_ERROR);
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
     (temporary: boolean, history: boolean, id: Number) => ({ temporary, history, id }));
@@ -76,8 +76,8 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.openHitlistsAction());
   }
 
-  deleteHitlists(type: number, id: number) {
-    this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistsAction(type, id));
+  deleteHitlists(id: number) {
+    this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistsAction(id));
   }
 
   editHitlists(data) {

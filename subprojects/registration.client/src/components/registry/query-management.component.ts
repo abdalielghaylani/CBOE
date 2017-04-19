@@ -106,7 +106,7 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
-    this.actions.deleteHitlists(e.data.HistlistType, e.data.ID);
+    this.actions.deleteHitlists(e.data.ID);
     this.loadData();
   }
 

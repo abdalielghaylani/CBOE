@@ -44,10 +44,10 @@ export class RegistrySearchEpics {
       });
   }
 
-  private handledeleteHitlists: Epic = (action$: Observable<ReduxActions.Action<{ type: number, id: number }>>) => {
+  private handledeleteHitlists: Epic = (action$: Observable<ReduxActions.Action<{ id: number }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.DELETE_HITLISTS)
       .mergeMap(({ payload }) => {
-        return this.http.delete(`${BASE_URL}/search/hitlists/` + payload.id + `/` + payload.type)
+        return this.http.delete(`${BASE_URL}/search/hitlists/${payload.id}`)
           .map(result => {
             if (result.url.indexOf('index.html') > 0) {
               SessionActions.logoutUserAction();
