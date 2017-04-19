@@ -23,15 +23,14 @@ export class RegistrySearchEpics {
 
   handleRegistrySearchActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
     return combineEpics(
-      this.handleopenHitlists,
-      this.handledeleteHitlists,
-      this.handleEditHitlist,
-      this.handleSaveHitlist,
+      this.handleOpenHitlists,
+      this.handleDeleteHitlist,
+      this.handleUpdateHitlist,
       this.handleRetrieveHitlist
     )(action$, store);
   }
 
-  private handleopenHitlists: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
+  private handleOpenHitlists: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.OPEN_HITLISTS)
       .mergeMap(() => {
         return this.http.get(`${BASE_URL}/search/hitlists`)
@@ -44,43 +43,31 @@ export class RegistrySearchEpics {
       });
   }
 
-  private handledeleteHitlists: Epic = (action$: Observable<ReduxActions.Action<{ id: number }>>) => {
-    return action$.filter(({ type }) => type === RegistrySearchActions.DELETE_HITLISTS)
+  private handleDeleteHitlist: Epic = (action$: Observable<ReduxActions.Action<{ id: number }>>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.DELETE_HITLIST)
       .mergeMap(({ payload }) => {
         return this.http.delete(`${BASE_URL}/search/hitlists/${payload.id}`)
           .map(result => {
             if (result.url.indexOf('index.html') > 0) {
               SessionActions.logoutUserAction();
             } else {
-              notifySuccess('The selected hitlist deleted successfully!', 5000);
+              notifySuccess('The selected hitlist was deleted successfully!', 5000);
               return RegistrySearchActions.openHitlistsAction();
             }
           })
-          .catch(error => Observable.of(RegistrySearchActions.deleteHitlistsErrorAction(error)));
+          .catch(error => Observable.of(RegistrySearchActions.deleteHitlistErrorAction(error)));
       });
   }
 
-  handleEditHitlist = (action$: Observable<IPayloadAction>) => {
-    return action$.filter(({ type }) => type === RegistrySearchActions.EDIT_HITLISTS)
+  handleUpdateHitlist = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.UPDATE_HITLIST)
       .mergeMap(({ payload }) => {
         return this.http.put(`${BASE_URL}/search/hitlists`, payload)
           .map(result => {
-            notifySuccess('The selected hitlist updated successfully!', 5000);
+            notifySuccess('The selected hitlist was updated successfully!', 5000);
             return RegistrySearchActions.openHitlistsAction();
           })
-          .catch(error => Observable.of(RegistrySearchActions.editHitlistsErrorAction()));
-      });
-  }
-
-  handleSaveHitlist = (action$: Observable<IPayloadAction>) => {
-    return action$.filter(({ type }) => type === RegistrySearchActions.SAVE_HITLISTS)
-      .mergeMap(({ payload }) => {
-        return this.http.post(`${BASE_URL}/search/hitlists`, payload)
-          .map(result => {
-            notifySuccess('The selected hitlist saved successfully!', 5000);
-            return RegistrySearchActions.openHitlistsAction();
-          })
-          .catch(error => Observable.of(RegistrySearchActions.saveHitlistsErrorAction()));
+          .catch(error => Observable.of(RegistrySearchActions.updateHitlistErrorAction()));
       });
   }
 

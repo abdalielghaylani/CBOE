@@ -43,15 +43,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private const string dbName = "REGDB";
 
         /// <summary>
-        /// Returns all hitlists.
+        /// Returns all hit-lists.
         /// </summary>
-        /// <remarks>This call may be used to retrieve all hitlists</remarks>
+        /// <remarks>This call may be used to retrieve all hit-lists</remarks>
         /// <response code="200">Success</response>
         [HttpGet]
         [Route("api/search/hitlists")]
-        [SwaggerOperation("SearchHitlistsGet")]
+        [SwaggerOperation("GetHitlists")]
         [SwaggerResponse(200, type: typeof(List<Hitlist>))]
-        public List<Hitlist> SearchHitlistsGet()
+        public List<Hitlist> GetHitlists()
         {
             CheckAuthentication();
             var result = new List<Hitlist>();
@@ -72,7 +72,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
-        /// Deletes a hitlist by its and ID
+        /// Deletes a hitlist by its ID
         /// </summary>
         /// <remarks>Deletes a hitlist by its ID</remarks>
         /// <param name="id">Id of the hitlist that needs to be deleted</param>
@@ -91,95 +91,87 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
-        /// Edit a query
+        /// Update a hitlist
+        /// If the given hit-list is found only in the temporary list but the type is specified as saved,
+        /// it is considered as a request to save the temporary hit-list as a saved hit-list.
         /// </summary>
-        /// <remarks>Edit a query</remarks>
+        /// <remarks>Update a hitlist</remarks>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid ID</response>
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpPut]
         [Route("api/search/hitlists")]
-        [SwaggerOperation("EditQuery")]
-        public void EditQuery()
+        [SwaggerOperation("UpdateHitlist")]
+        public void UpdateHitlist()
         {
             CheckAuthentication();
             var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-            HitListType hitlistType = new HitListType();
-            switch ((int)hitlistData["HitlistType"])
+            var hitlistType = (HitListType)(int)hitlistData["HitlistType"];
+            var hitlistBO = COEHitListBO.Get(hitlistType, (int)hitlistData["hitlistID"]);
+            if (hitlistBO == null) return;
+            bool saveHitlist = false;
+            if (hitlistType == HitListType.SAVED && hitlistBO.HitListID == 0)
             {
-                case 0:
-                    hitlistType = HitListType.TEMP;
-                    break;
-                case 1:
-                    hitlistType = HitListType.SAVED;
-                    break;
+                // Saving temporary hit-list
+                saveHitlist = true;
+                hitlistBO = COEHitListBO.Get(HitListType.TEMP, (int)hitlistData["hitlistID"]);
             }
-            COEHitListBO hitlistBO = COEHitListBO.Get(hitlistType, (int)hitlistData["hitlistID"]);
-            hitlistBO.Name = hitlistData["Name"].ToString();
-            hitlistBO.Description = hitlistData["Description"].ToString();
-            hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
-            hitlistBO.Update();
-
-            if (hitlistBO.SearchCriteriaID > 0)
+            if (hitlistBO.HitListID > 0)
             {
-                COESearchCriteriaBO searchCriteria = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
-                searchCriteria.Name = hitlistBO.Name;
-                searchCriteria.Description = hitlistBO.Description;
-                searchCriteria.IsPublic = hitlistBO.IsPublic;
-                searchCriteria.Update();
+                hitlistBO.Name = hitlistData["Name"].ToString();
+                hitlistBO.Description = hitlistData["Description"].ToString();
+                hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
+                if (hitlistBO.SearchCriteriaID > 0)
+                {
+                    var searchCriteria = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+                    searchCriteria.Name = hitlistBO.Name;
+                    searchCriteria.Description = hitlistBO.Description;
+                    searchCriteria.IsPublic = hitlistBO.IsPublic;
+                    searchCriteria = saveHitlist? searchCriteria.Save() : searchCriteria.Update();
+                    if (saveHitlist)
+                    {
+                        hitlistBO.SearchCriteriaID = searchCriteria.ID;
+                        hitlistBO.SearchCriteriaType = searchCriteria.SearchCriteriaType;
+                    }
+                }
+                hitlistBO = saveHitlist ? hitlistBO.Save() : hitlistBO.Update();
             }
         }
 
-
         /// <summary>
-        /// Save a hitlist
+        /// Create a hitlist
         /// </summary>
-        /// <remarks>Save a hitlist</remarks>
+        /// <remarks>Create a hitlist</remarks>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid ID</response>
-        /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpPost]
         [Route("api/search/hitlists")]
-        [SwaggerOperation("SearchHitlistsSave")]
-        public void SearchHitlistsSave()
+        [SwaggerOperation("CreateHitlist")]
+        public int CreateHitlist()
         {
             CheckAuthentication();
             var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-            HitListType hitlistType = new HitListType();
-            switch ((int)hitlistData["HitlistType"])
-            {
-                case 0:
-                    hitlistType = HitListType.TEMP;
-                    break;
-                case 1:
-                    hitlistType = HitListType.SAVED;
-                    break;
-            }
-            COEHitListBO hl = COEHitListBO.Get(hitlistType, (int)hitlistData["hitlistID"]);
-            if (hl != null && hl.HitListID > 0)
-            {
-                COESearchCriteriaBO sc = null;
-                if (hl.SearchCriteriaID > 0)
-                {
-                    sc = COESearchCriteriaBO.Get(hl.SearchCriteriaType, hl.SearchCriteriaID);
-                    sc.Name = hitlistData["Name"].ToString();
-                    sc.Description = hitlistData["Description"].ToString();
-                    sc.IsPublic = (bool)hitlistData["IsPublic"];
-                    sc = sc.Save();
-                }
-
-                hl.Name = hitlistData["Name"].ToString();
-                hl.Description = hitlistData["Description"].ToString();
-                hl.IsPublic = (bool)hitlistData["IsPublic"];
-                if (sc != null)
-                {
-                    hl.SearchCriteriaID = sc.ID;
-                    hl.SearchCriteriaType = sc.SearchCriteriaType;
-                }
-                hl = hl.Save();
-            }
+            CambridgeSoft.COE.Framework.COEHitListService.DAL objDAL = null;
+            int id;
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+            var formGroup = configRegRecord.FormGroup;
+            var genericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
+            string Name = hitlistData["Name"].ToString();
+            bool IsPublic = Convert.ToBoolean(hitlistData["IsPublic"].ToString());
+            string Description = hitlistData["Description"].ToString();
+            string UserID = COEUser.Name;
+            int NumHits = Convert.ToInt32(hitlistData["NumHits"].ToString());
+            string DatabaseName = "REGDB";
+            int HitListID = Convert.ToInt32(hitlistData["HitListID"].ToString());
+            int DataViewID = formGroup.DataViewId;
+            HitListType HitlistType = (HitListType)(int)hitlistData["HitlistType"];
+            int SearchcriteriaId = Convert.ToInt32(hitlistData["SearchcriteriaId"].ToString()); ;
+            string SearchcriteriaType = hitlistData["SearchcriteriaType"].ToString();
+            id = objDAL.CreateNewTempHitList(Name, IsPublic, Description, UserID, NumHits, DatabaseName, HitListID, DataViewID, HitlistType, SearchcriteriaId, SearchcriteriaType);
+            return id;
         }
 
 
@@ -294,7 +286,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpPost]
         [Route("api/search/markedhits")]
         [SwaggerOperation("MarkedHitsSave")]
-        private int MarkedHitsSave()
+        public int MarkedHitsSave()
         {
             CheckAuthentication();
             var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;

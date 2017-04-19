@@ -106,7 +106,7 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
-    this.actions.deleteHitlists(e.data.ID);
+    this.actions.deleteHitlist(e.data.ID);
     this.loadData();
   }
 
@@ -133,26 +133,23 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
   }
 
   onRowUpdating(e) {
-    this.actions.editHitlists(
-      {
-        Name: e.newData.Name ? e.newData.Name : e.oldData.Name,
-        Description: e.newData.Description ? e.newData.Description : e.oldData.Description,
-        IsPublic: (e.newData.IsPublic === undefined ? e.oldData.IsPublic : e.newData.IsPublic) === true ? 1 : 0,
-        HitlistType: e.oldData.HistlistType,
-        hitlistID: e.oldData.ID
-      });
+    this.actions.updateHitlist({
+      Name: e.newData.Name ? e.newData.Name : e.oldData.Name,
+      Description: e.newData.Description ? e.newData.Description : e.oldData.Description,
+      IsPublic: (e.newData.IsPublic === undefined ? e.oldData.IsPublic : e.newData.IsPublic) === true ? 1 : 0,
+      HitlistType: e.oldData.HistlistType,
+      hitlistID: e.oldData.ID
+    });
   }
 
   moveToSaveHitlist(e) {
-    this.actions.saveHitlists(
-      {
-        Name: e.Name,
-        Description: e.Description,
-        IsPublic: e.IsPublic,
-        HitlistType: e.HistlistType,
-        hitlistID: e.ID
-      });
-
+    this.actions.updateHitlist({
+      Name: e.Name,
+      Description: e.Description,
+      IsPublic: e.IsPublic,
+      HitlistType: 1,
+      hitlistID: e.ID
+    });
   }
 
   onEditorPreparing(e) {
