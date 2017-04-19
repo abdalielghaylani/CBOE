@@ -10,7 +10,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     public class RegistryRecordsController : RegControllerBase
     {
         #region Permanent Records
-        [Route("api/RegistryRecords")]
+        [Route("api/records")]
         public JObject Get(int? skip = null, int? count = null, string sort = null)
         {
             var records = new JArray();
@@ -31,6 +31,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             );
         }
 
+        [HttpGet]
+        [Route("api/records/{id}")]
         public dynamic Get(int id)
         {
             return null;
@@ -38,7 +40,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #endregion // Permanent Records
 
         #region Temporary Records
-        [Route("api/RegistryRecords/Temp")]
+        [Route("api/temp-records")]
         public JObject GetTemp(int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
@@ -51,7 +53,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
-        [Route("api/RegistryRecords/Temp/{id}")]
+        [Route("api/temp-records/{id}")]
         public dynamic GetTemp(int id)
         {
             using (var service = new COERegistrationServices())
@@ -62,7 +64,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route("api/RegistryRecords/Temp/{id}")]
+        [Route("api/temp-records/{id}")]
         public Task<HttpResponseMessage> DeleteTemp(int id)
         {
             using (var service = new COERegistrationServices())

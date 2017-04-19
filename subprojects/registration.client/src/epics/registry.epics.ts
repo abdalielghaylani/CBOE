@@ -52,7 +52,7 @@ export class RegistryEpics {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap(({ payload }) => {
         let temporary: boolean = payload;
-        return this.http.get(`${BASE_URL}/RegistryRecords` + (payload ? '/Temp' : ''))
+        return this.http.get(`${BASE_URL}/${payload ? 'temp-' : ''}records`)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
