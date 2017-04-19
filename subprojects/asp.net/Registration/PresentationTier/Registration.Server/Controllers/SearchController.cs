@@ -72,7 +72,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
-        /// Deletes a hitlist by its ID
+        /// Deletes a hitlist
         /// </summary>
         /// <remarks>Deletes a hitlist by its ID</remarks>
         /// <param name="id">Id of the hitlist that needs to be deleted</param>
@@ -82,7 +82,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="0">Unexpected error</response>
         [HttpDelete]
         [Route("api/search/hitlists/{id}")]
-        [SwaggerOperation("DeleteHitlistByID")]
+        [SwaggerOperation("DeleteHitlist")]
         public void SearchHitlistsIdDelete(int id)
         {
             CheckAuthentication();
@@ -92,30 +92,31 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         /// <summary>
         /// Update a hitlist
+        /// </summary>
+        /// <remarks>Update a hitlist by its ID
         /// If the given hit-list is found only in the temporary list but the type is specified as saved,
         /// it is considered as a request to save the temporary hit-list as a saved hit-list.
-        /// </summary>
-        /// <remarks>Update a hitlist</remarks>
+        /// </remarks>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid ID</response>
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpPut]
-        [Route("api/search/hitlists")]
+        [Route("api/search/hitlists/{id}")]
         [SwaggerOperation("UpdateHitlist")]
-        public void UpdateHitlist()
+        public void UpdateHitlist(int id)
         {
             CheckAuthentication();
             var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
             var hitlistType = (HitListType)(int)hitlistData["HitlistType"];
-            var hitlistBO = COEHitListBO.Get(hitlistType, (int)hitlistData["hitlistID"]);
+            var hitlistBO = COEHitListBO.Get(hitlistType, id);
             if (hitlistBO == null) return;
             bool saveHitlist = false;
             if (hitlistType == HitListType.SAVED && hitlistBO.HitListID == 0)
             {
                 // Saving temporary hit-list
                 saveHitlist = true;
-                hitlistBO = COEHitListBO.Get(HitListType.TEMP, (int)hitlistData["hitlistID"]);
+                hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
             }
             if (hitlistBO.HitListID > 0)
             {
@@ -318,31 +319,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerOperation("SearchHitlistsIdGet")]
         [SwaggerResponse(200, type: typeof(Hitlist))]
         public virtual Hitlist SearchHitlistsIdGet(int? id)
-        {
-            string exampleJson = null;
-
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<Hitlist>(exampleJson)
-            : default(Hitlist);
-            return example;
-        }
-
-
-        /// <summary>
-        /// Updates a hitlist by its ID
-        /// </summary>
-        /// <remarks>Updates a hitlist by its ID</remarks>
-        /// <param name="body">The hitlist data</param>
-        /// <param name="id">Id of the hitlist that needs to be updated</param>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid ID</response>
-        /// <response code="404">Hitlist not found</response>
-        /// <response code="0">Unexpected error</response>
-        [HttpPut]
-        [Route("api/search/hitlists/{id}")]
-        [SwaggerOperation("SearchHitlistsIdPut")]
-        [SwaggerResponse(200, type: typeof(Hitlist))]
-        public virtual Hitlist SearchHitlistsIdPut([FromBody]Hitlist body, int? id)
         {
             string exampleJson = null;
 

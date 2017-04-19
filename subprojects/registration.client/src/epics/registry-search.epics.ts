@@ -62,7 +62,7 @@ export class RegistrySearchEpics {
   handleUpdateHitlist = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.UPDATE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.put(`${BASE_URL}/search/hitlists`, payload)
+        return this.http.put(`${BASE_URL}/search/hitlists/${payload.hitlistID}`, payload)
           .map(result => {
             notifySuccess('The selected hitlist was updated successfully!', 5000);
             return RegistrySearchActions.openHitlistsAction();
