@@ -191,8 +191,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             args.Add(":hitlistid", id);
             return new JObject(
                 new JProperty("temporary", false),
-                new JProperty("rows", ExtractData(query, args, skip, count)),
-                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args)))
+                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
+                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                new JProperty("rows", ExtractData(query, args, skip, count))
             );
         }
 
