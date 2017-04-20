@@ -72,18 +72,18 @@ export class RegistrySearchEpics {
   }
 
   private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
-    return action$.filter(({ type }) => type === RegistrySearchActions.RETRIEVE_QUERY_LIST)
+    return action$.filter(({ type }) => type === RegistrySearchActions.RETRIEVE_HITLIST)
       .mergeMap(({ payload }) => {
         // restoreType 0 -: Restore hitlist
         // restoreType 1 -: Restore by union/intersect/substract
         if (payload.type === 0) {
-          return this.http.get(`${BASE_URL}/search/restorehitlists/` + payload.HitlistID + `/` + payload.HitlistType)
+          return this.http.get(`${BASE_URL}/search/hitlists/` + payload.id + `/records`)
             .map(result => {
               return result.url.indexOf('index.html') > 0
                 ? SessionActions.logoutUserAction()
                 : RegistryActions.openRecordsSuccessAction(result.json());
             })
-            .catch(error => Observable.of(RegistrySearchActions.retrieveQueryListErrorAction(error)));
+            .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         }
         if (payload.type === 1) {
           return this.http.post(`${BASE_URL}/search/restorehitlistsactions`, payload.data)
@@ -92,7 +92,7 @@ export class RegistrySearchEpics {
                 ? SessionActions.logoutUserAction()
                 : RegistryActions.openRecordsSuccessAction(result.json());
             })
-            .catch(error => Observable.of(RegistrySearchActions.retrieveQueryListErrorAction(error)));
+            .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         }
       });
   }

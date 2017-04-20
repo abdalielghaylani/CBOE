@@ -8,9 +8,9 @@ export class RegistrySearchActions {
   static SEARCH_RECORDS = 'SEARCH_RECORDS';
   static SEARCH_RECORDS_SUCCESS = 'SEARCH_RECORDS_SUCCESS';
   static SEARCH_RECORDS_ERROR = 'SEARCH_RECORDS_ERROR';
-  static RETRIEVE_QUERY_LIST = 'RETRIEVE_QUERY_LIST';
-  static RETRIEVE_QUERY_LIST_SUCCESS = 'RETRIEVE_QUERY_LIST_SUCCESS';
-  static RETRIEVE_QUERY_LIST_ERROR = 'RETRIEVE_QUERY_LIST_ERROR';
+  static RETRIEVE_HITLIST = 'RETRIEVE_HITLIST';
+  static RETRIEVE_HITLIST_SUCCESS = 'RETRIEVE_HITLIST_SUCCESS';
+  static RETRIEVE_HITLIST_ERROR = 'RETRIEVE_HITLIST_ERROR';
   static RETRIEVE_QUERY_FORM = 'RETRIEVE_QUERY_FORM';
   static RETRIEVE_QUERY_FORM_SUCCESS = 'RETRIEVE_QUERY_FORM_SUCCESS';
   static RETRIEVE_QUERY_FORM_ERROR = 'RETRIEVE_QUERY_FORM_ERROR';
@@ -36,9 +36,9 @@ export class RegistrySearchActions {
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
-  static retrieveQueryListAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST);
-  static retrieveQueryListSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST_SUCCESS);
-  static retrieveQueryListErrorAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST_ERROR);
+  static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST);
+  static retrieveHitlistSuccessAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_SUCCESS);
+  static retrieveHitlistErrorAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_ERROR);
   static retrieveQueryFormAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM,
     (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveQueryFormSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_SUCCESS);
@@ -83,6 +83,6 @@ export class RegistrySearchActions {
   };
 
   retrieveHitlist(data) {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryListAction(data));
+    this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(data));
   };
 }

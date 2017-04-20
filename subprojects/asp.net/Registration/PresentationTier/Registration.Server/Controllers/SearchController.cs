@@ -129,7 +129,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     searchCriteria.Name = hitlistBO.Name;
                     searchCriteria.Description = hitlistBO.Description;
                     searchCriteria.IsPublic = hitlistBO.IsPublic;
-                    searchCriteria = saveHitlist? searchCriteria.Save() : searchCriteria.Update();
+                    searchCriteria = saveHitlist ? searchCriteria.Save() : searchCriteria.Update();
                     if (saveHitlist)
                     {
                         hitlistBO.SearchCriteriaID = searchCriteria.ID;
@@ -175,23 +175,43 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return id;
         }
 
+        private JObject GetHitlistRecordsInternal(int id, int? skip = null, int? count = null, string sort = null)
+        {
+            var hitlistType = HitListType.TEMP;
+            var hitlistBO = COEHitListBO.Get(hitlistType, id);
+            // This is an error condition.
+            // it might be better to throw an exception here.
+            if (hitlistBO == null) return new JObject();
+            if (hitlistBO.HitListID == 0) hitlistType = HitListType.SAVED;
+            var tableName = "vw_mixture_regnumber";
+            var whereClause = string.Format(" WHERE mixtureid in (SELECT ID FROM COEDB.{0} WHERE hitlistid=:hitlistid)",
+                hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
+            var query = GetQuery(tableName + whereClause, RecordColumns, sort, "modified", "regid");
+            var args = new Dictionary<string, object>();
+            args.Add(":hitlistid", id);
+            return new JObject(
+                new JProperty("temporary", false),
+                new JProperty("rows", ExtractData(query, args, skip, count)),
+                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args)))
+            );
+        }
 
         /// <summary>
-        /// Returns a hitlist by its ID
+        /// Returns the list of registry records for a hitlist
         /// </summary>
-        /// <remarks>Returns a hitlist by its ID</remarks>
+        /// <remarks>Returns the list of registry records for a hitlist by its ID</remarks>
         /// <param name="id">Id of the hitlist that needs to be fetched</param>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid ID</response>
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route("api/search/restorehitlists/{hitlistID}/{hitlistType}")]
-        [SwaggerOperation("SearchHitlistsRestore")]
-        public JArray SearchHitlistsRestore(int hitlistID, int hitlistType, int? skip = null, int? count = null, string sort = null)
+        [Route("api/search/hitlists/{id}/records")]
+        [SwaggerOperation("GetHitlistRecords")]
+        public JObject GetHitlistRecords(int id, int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
-            return RestoreHitlists(hitlistID, hitlistType, skip, count, sort);
+            return GetHitlistRecordsInternal(id, skip, count, sort);
         }
 
         /// <summary>
@@ -204,76 +224,41 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route("api/search/restorehitlistsactions")]
-        public JArray HitlistsRestoreActions(int? skip = null, int? count = null, string sort = null)
+        [Route("api/search/hitlists/{id1}/{op}/{id2}/records")]
+        [SwaggerOperation("GetAdvHitlistRecords")]
+        public JObject GetAdvHitlistRecords(int id1, int op, int id2, int? skip = null, int? count = null, string sort = null)
         {
-            int HitlistID = 0;
-            int HitlistType = 0;
-            int RestoreType = 0;
-            int resultHitListID = 0;
-            int hitListID1 = 0;
-            int hitListID2 = 0;
-            HitListType hitListID1Type = HitListType.TEMP;
-            HitListType hitListID2Type = HitListType.TEMP;
-
             CheckAuthentication();
-            JArray objJArray = new JArray();
-            var objDAL = new CambridgeSoft.COE.Framework.COEHitListService.DAL();
-            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-            if (hitlistData != null)
-            {
-                hitListID1 = Convert.ToInt32(hitlistData["HitlistID1"].ToString());
-                hitListID2 = Convert.ToInt32(hitlistData["HitlistID2"].ToString());
-                RestoreType = Convert.ToInt32(hitlistData["RestoreType"].ToString());
-
-                switch ((int)hitlistData["HitlistType1"])
-                {
-                    case 0:
-                        hitListID1Type = HitListType.TEMP;
-                        break;
-                    case 1:
-                        hitListID1Type = HitListType.SAVED;
-                        break;
-                }
-                switch ((int)hitlistData["HitlistType2"])
-                {
-                    case 0:
-                        hitListID2Type = HitListType.TEMP;
-                        break;
-                    case 1:
-                        hitListID2Type = HitListType.SAVED;
-                        break;
-                }
-            }
+            JObject data = new JObject();
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
             configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
             var formGroup = configRegRecord.FormGroup;
             int dataViewID = formGroup.Id;
-            switch (RestoreType)
+            switch (op)
             {
-                case 0: //restore
-                    RestoreHitlists(HitlistID, HitlistType);
-                    break;
                 case 1: //intersect      
-                    resultHitListID = objDAL.IntersectHitLists(hitListID1, hitListID1Type, hitListID2, hitListID2Type, dbName, dataViewID);
-                    objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   // resultHitListID = objDAL.IntersectHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
+                   // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   //"vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   //"where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
                     break;
                 case 2: //subtract
-                    resultHitListID = objDAL.SubtractHitLists(hitListID1, hitListID1Type, hitListID2, hitListID2Type, dbName, dataViewID);
-                    objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   // resultHitListID = objDAL.SubtractHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
+                   // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   //"vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   //"where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
                     break;
                 case 3: //union
-                    resultHitListID = objDAL.SubtractHitLists(hitListID1, hitListID1Type, hitListID2, hitListID2Type, dbName, dataViewID);
-                    objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   // resultHitListID = objDAL.SubtractHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
+                   // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
+                   //"vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   //"where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                    break;
+                default: // Subtract from entire list
+                    data = GetHitlistRecordsInternal(id1);
                     break;
             }
-            return objJArray;
+            return data;
         }
 
         /// <summary>
@@ -328,24 +313,5 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return example;
         }
 
-        private JArray RestoreHitlists(int hitlistID, int hitlistType, int? skip = null, int? count = null, string sort = null)
-        {
-            JArray records = new JArray();
-            switch (hitlistType)
-            {
-                case 0: //TempHitlist
-                    records = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + hitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
-                    break;
-                case 1: //SavedHitlist
-                    records = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                "where vw_mixture_regnumber.mixtureid in (select id from coedb.coesavedhitlist s where s.hitlistid=" + hitlistID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
-                    break;
-            }
-            return records;
-            return null;
-        }
     }
 }

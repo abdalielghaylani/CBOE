@@ -186,13 +186,7 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
   }
 
   restoreSelectedHitlist(e) {
-    this.actions.retrieveHitlist(
-      {
-        HitlistType: e.HistlistType,
-        HitlistID: e.ID,
-        type: 0
-      });
-    this.router.navigate([`records/restore`]);
+    this.actions.retrieveHitlist({ id: e.ID, type: 0 });
   }
 
 };

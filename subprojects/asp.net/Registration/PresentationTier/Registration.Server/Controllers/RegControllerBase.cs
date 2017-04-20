@@ -21,6 +21,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     public class RegControllerBase : ApiController
     {
+        private const string sortDesc = " desc";
+        private const string sortAsc = " asc";
         private RegistrationOracleDAL regDal = null;
 
         private RegistrationOracleDAL RegDal
@@ -161,6 +163,83 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var port = url.Port != 80 ? (":" + url.Port) : String.Empty;
 
             return String.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
+        }
+
+        protected class RecordColumn
+        {
+            public string definition;
+            public string label;
+            public bool sortable;
+        }
+
+        protected static string CleanupSortTerm(RecordColumn[] columns, string sortTerm)
+        {
+            var desc = sortTerm.EndsWith(sortDesc);
+            var t = sortTerm.Replace(sortDesc, string.Empty).Replace(sortAsc, string.Empty).Trim();
+            var dc = columns.FirstOrDefault(c => c.definition.Equals(t));
+            if (dc == null) dc = columns.FirstOrDefault(c => c.label != null && c.label.Equals(t));
+            t = dc == null ? string.Empty : dc.definition;
+            if (desc) t += sortDesc;
+            return t;
+        }
+
+        protected static RecordColumn[] RecordColumns
+        {
+            get
+            {
+                return new RecordColumn[]
+                {
+                    new RecordColumn{ definition = "regid", label = "id", sortable = true },
+                    new RecordColumn{ definition = "name", sortable = true },
+                    new RecordColumn{ definition = "created", sortable = true },
+                    new RecordColumn{ definition = "modified", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false },
+                    new RecordColumn{ definition = "regnumber", sortable = true },
+                    new RecordColumn{ definition = "statusid", label = "status", sortable = true },
+                    new RecordColumn{ definition = "approved", sortable = true }
+                };
+            }
+        }
+
+        protected static RecordColumn[] TempRecordColumns
+        {
+            get
+            {
+                return new RecordColumn[]
+                {
+                    new RecordColumn{ definition = "tempcompoundid", label = "id", sortable = true },
+                    new RecordColumn{ definition = "tempbatchid", label = "batchid", sortable = true },
+                    new RecordColumn{ definition = "formulaweight", label = "mw", sortable = true },
+                    new RecordColumn{ definition = "molecularformula", label = "mf", sortable = true },
+                    new RecordColumn{ definition = "datecreated", label = "created", sortable = true },
+                    new RecordColumn{ definition = "datelastmodified", label = "modified", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false }
+                };
+            }
+        }
+
+        protected static string GetSelectTerms(RecordColumn[] columns)
+        {
+            return String.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
+        }
+
+        protected static string GetSortTerms(RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
+        {
+            // Default sorting order is descending order by modified date
+            if (string.IsNullOrEmpty(sortTerms)) sortTerms = string.Empty;
+            sortTerms = String.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
+                .Select(t => CleanupSortTerm(columns, t)).Where(t => !string.IsNullOrEmpty(t)));
+            if (string.IsNullOrEmpty(sortTerms)) sortTerms = defaultColumn + sortDesc;
+            // Make the sorting unique
+            if (!sortTerms.Contains(uniqueColumn)) sortTerms += ", " + uniqueColumn;
+            return sortTerms;
+        }
+
+        protected static string GetQuery(string tableName, RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
+        {
+            return string.Format("SELECT {0} FROM {1} ORDER BY {2}", GetSelectTerms(columns), tableName, GetSortTerms(columns, sortTerms, defaultColumn, uniqueColumn));
         }
     }
 }
