@@ -13,7 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { RegistryActions, RegistrySearchActions } from '../../actions';
-import { IAppState, IRecords, ISearchRecords } from '../../store';
+import { IAppState, CRecordsData, IRecords, ISearchRecords } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
@@ -53,7 +53,7 @@ export class RegRecords implements OnInit, OnDestroy {
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
     private changeDetector: ChangeDetectorRef) {
-    this.records = { temporary: this.temporary, rows: [], gridColumns: [], filterRow: { visible: true } };
+    this.records = { temporary: this.temporary, data: new CRecordsData(), gridColumns: [], filterRow: { visible: true } };
   }
 
   ngOnInit() {
@@ -105,24 +105,24 @@ export class RegRecords implements OnInit, OnDestroy {
     });
   }
 
-  openRegistryRecords(records: any) {
-    if (records.rows.rows !== undefined) {
+  openRegistryRecords(records: IRecords) {
+    if (records.data.rows) {
       this.loadIndicatorVisible = false;
       if (this.recordsVM.startPoint === 0) {
         this.records.temporary = records.temporary;
-        this.recordsVM.totalRecordCount = records.rows.rows[0] === undefined ? this.recordsVM.totalRecordCount : records.rows.rows[0].totalCount;
-        if (records.rows.rows[0].rows.length < this.recordsVM.totalRecordCount) {
+        this.recordsVM.totalRecordCount = records.data.totalCount ? records.data.totalCount : this.recordsVM.totalRecordCount;
+        if (records.data.rows.length < this.recordsVM.totalRecordCount) {
           this.records.filterRow = { visible: false };
           this.recordsVM.fullDataLoaded = false;
           this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
         }
-        this.recordsVM.setFetchedRows(records.rows.rows[0].rows, true);
+        this.recordsVM.setFetchedRows(records.data.rows, true);
         this.createCustomStore(this);
         this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
         this.changeDetector.markForCheck();
 
-      } else if (this.recordsVM.startPoint > 0 && this.recordsVM.startPoint === Number(records.rows.rows[1].skip)) {
-        this.recordsVM.setFetchedRows(records.rows.rows[0].rows, false);
+      } else if (this.recordsVM.startPoint > 0 && this.recordsVM.startPoint === Number(records.data.startIndex)) {
+        this.recordsVM.setFetchedRows(records.data.rows, false);
         this.createCustomStore(this);
         this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
         this.changeDetector.markForCheck();
@@ -131,7 +131,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   createCustomStore(ref) {
-    this.records.rows = new CustomStore({
+    this.records.data.rows = new CustomStore({
       load: function (loadOptions) {
         if (loadOptions.sort !== null) {
           let tsortCriteria = loadOptions.sort[0].desc === false ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
@@ -271,14 +271,14 @@ export class RegRecords implements OnInit, OnDestroy {
   showMarked() {
     if (this.selectedRows) {
       this.rowSelected = true;
-      this.tempResultRows = this.records.rows;
-      this.records.rows = this.selectedRows;
+      this.tempResultRows = this.records.data.rows;
+      this.records.data.rows = this.selectedRows;
     }
   }
 
   showSearchResults() {
     this.rowSelected = false;
-    this.records.rows = this.tempResultRows;
+    this.records.data.rows = this.tempResultRows;
     this.selectedRows = [];
     this.tempResultRows = [];
   }

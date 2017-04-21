@@ -1,5 +1,6 @@
 import {
   IRecordDetail, IRecordDetailRecord,
+  IRecordsData, CRecordsData,
   IRecords, IRecordsRecord,
   IRegistry, IRegistryRecord,
 } from './registry.types';
@@ -8,7 +9,7 @@ import { basePath } from '../../configuration';
 
 const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: false,
-  rows: [],
+  data: new CRecordsData(),
   gridColumns: [{
     dataField: 'ID',
     dataType: 'number',
@@ -56,7 +57,7 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
 
 const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: true,
-  rows: [],
+  data: new CRecordsData(),
   gridColumns: [{
     dataField: 'ID',
     dataType: 'number',

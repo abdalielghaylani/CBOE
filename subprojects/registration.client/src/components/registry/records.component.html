@@ -24,7 +24,7 @@
       [shading]="false" [closeOnOutsideClick]="false">
     </dx-load-panel>
     <div id="divDataGrid">
-      <dx-data-grid height="600px" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.rows" [searchPanel]='records.filterRow'
+      <dx-data-grid height="600px" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.data.rows" [searchPanel]='records.filterRow'
         [filterRow]=records.filterRow rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)"
         (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
         (onRowPrepared)='onRowPrepared($event)' (onEditingStart)='onEditingStart($event)' [hoverStateEnabled]="true" [selectedRowKeys]="[]">

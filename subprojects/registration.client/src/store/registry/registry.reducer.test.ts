@@ -28,7 +28,7 @@ describe('registry reducer', () => {
       initState,
       RegistryActions.openRecordsAction(false)
     );
-    expect(nextState.records.rows).toEqual([]);
+    expect(nextState.records.data.rows).toEqual([]);
   });
 
   it('should clear temp record rows on OPEN_RECORDS(true)', () => {
@@ -36,7 +36,7 @@ describe('registry reducer', () => {
       initState,
       RegistryActions.openRecordsAction(true)
     );
-    expect(nextState.tempRecords.rows).toEqual([]);
+    expect(nextState.tempRecords.data.rows).toEqual([]);
   });
 
   it('should set record rows on OPEN_RECORDS_SUCCESS(false)', () => {
@@ -46,7 +46,7 @@ describe('registry reducer', () => {
       initState,
       RegistryActions.openRecordsSuccessAction(true, data)
     );
-    expect(nextState.records.rows).toEqual(rows);
+    expect(nextState.records.data.rows).toEqual(rows);
   });
 
   it('should set temp record rows on OPEN_RECORDS_SUCCESS(true)', () => {
@@ -56,7 +56,7 @@ describe('registry reducer', () => {
       initState,
       RegistryActions.openRecordsSuccessAction(true, data)
     );
-    expect(nextState.tempRecords.rows).toEqual(rows);
+    expect(nextState.tempRecords.data.rows).toEqual(rows);
   });
 
   it('should set record data on RETRIEVE_RECORD_SUCCESS', () => {

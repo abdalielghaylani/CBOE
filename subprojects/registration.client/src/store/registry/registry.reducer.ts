@@ -10,7 +10,7 @@ export function registryReducer(
   let recordsPath = (payload: any): any[] => {
     let temporary: boolean = payload.temporary;
     let records: string = temporary ? 'tempRecords' : 'records';
-    return [records, 'rows'];
+    return [records, 'data'];
   };
 
   switch (action.type) {
@@ -20,7 +20,7 @@ export function registryReducer(
 
     case RegistryActions.OPEN_RECORDS_SUCCESS:
       let a2 = action as ReduxActions.Action<IRecords>;
-      return state.updateIn(recordsPath(a2.payload), () => a2.payload);
+      return state.updateIn(recordsPath(a2.payload), () => a2.payload.data);
 
     case RecordDetailActions.CLEAR_RECORD:
       return state.update('currentRecord', () => INITIAL_RECORD_DETAIL);

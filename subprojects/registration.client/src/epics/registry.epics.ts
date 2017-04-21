@@ -52,12 +52,12 @@ export class RegistryEpics {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap(({ payload }) => {
         let temporary: boolean = payload;
-        return this.http.get(`${BASE_URL}/` +
-          (payload.temporary ? '/temp-records' : 'records') + '?skip=' + payload.skip + '&count=' + payload.take + `&sort=` + payload.sort)
+        return this.http.get(`${BASE_URL}/${payload.temporary ? 'temp-' : ''}records`
+          + '?skip=' + payload.skip + '&count=' + payload.take + `&sort=` + payload.sort)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
-              : RegistryActions.openRecordsSuccessAction(payload.temporary, [result.json()].concat({ skip: payload.skip }));
+              : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
           })
           .catch(error => Observable.of(RegistryActions.openRecordsErrorAction(error)));
       });
@@ -69,7 +69,7 @@ export class RegistryEpics {
         let records = payload.temporary ?
           this.ngRedux.getState().registry.tempRecords :
           this.ngRedux.getState().registry.records;
-        let data = payload.id < 0 ? undefined : records.rows.find(r => r[Object.keys(r)[0]] === payload.id);
+        let data = payload.id < 0 ? undefined : records.data.rows.find(r => r[Object.keys(r)[0]] === payload.id);
         let url = payload.id < 0 ?
           `${WS_URL}/RetrieveNewRegistryRecord` :
           payload.temporary ?
