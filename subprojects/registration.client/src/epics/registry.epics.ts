@@ -69,7 +69,7 @@ export class RegistryEpics {
         let records = payload.temporary ?
           this.ngRedux.getState().registry.tempRecords :
           this.ngRedux.getState().registry.records;
-        let data = records.rows.find(r => r[Object.keys(r)[0]] === payload.id);
+        let data = payload.id < 0 ? undefined : records.rows.find(r => r[Object.keys(r)[0]] === payload.id);
         let url = payload.id < 0 ?
           `${WS_URL}/RetrieveNewRegistryRecord` :
           payload.temporary ?
