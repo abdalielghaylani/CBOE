@@ -12,9 +12,9 @@ export class RegistryActions {
   static OPEN_RECORDS_SUCCESS = 'OPEN_RECORDS_SUCCESS';
   static OPEN_RECORDS_ERROR = 'OPEN_RECORDS_ERROR';
   static openRecordsAction = createAction(RegistryActions.OPEN_RECORDS,
-    (temporary: boolean) => (temporary));
+    (payload: any) => (payload));
   static openRecordsSuccessAction = createAction(RegistryActions.OPEN_RECORDS_SUCCESS,
-    (data: { temporary: boolean, rows: any[], totalCount: number }) => (data));
+    (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
@@ -31,7 +31,7 @@ export class RegistryActions {
     this.ngRedux.dispatch({ type: RegistryActions.SEARCH });
   }
 
-  openRecords(temporary: boolean) {
-    this.ngRedux.dispatch(RegistryActions.openRecordsAction(temporary));
+  openRecords(payload: any) {
+    this.ngRedux.dispatch(RegistryActions.openRecordsAction(payload));
   }
 }

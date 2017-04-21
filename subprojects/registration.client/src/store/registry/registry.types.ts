@@ -10,8 +10,9 @@ export interface IRecordDetailRecord extends TypedRecord<IRecordDetailRecord>, I
 
 export interface IRecords {
   temporary: boolean;
-  rows: any[];
+  rows: any;
   gridColumns: any[];
+  filterRow: any;
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, IRecords { }
@@ -24,3 +25,4 @@ export interface IRegistry {
 }
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }
+

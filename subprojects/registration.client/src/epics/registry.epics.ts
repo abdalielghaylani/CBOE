@@ -48,15 +48,16 @@ export class RegistryEpics {
     )(action$, store);
   }
 
-  private handleOpenRecords: Epic = (action$: Observable<IPayloadAction>) => {
+ private handleOpenRecords: Epic = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap(({ payload }) => {
         let temporary: boolean = payload;
-        return this.http.get(`${BASE_URL}/${payload ? 'temp-' : ''}records`)
+        return this.http.get(`${BASE_URL}/` +
+          (payload.temporary ? '/temp-records' : 'records') + '?skip=' + payload.skip + '&count=' + payload.take + `&sort=` + payload.sort)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
-              : RegistryActions.openRecordsSuccessAction(result.json());
+              : RegistryActions.openRecordsSuccessAction(payload.temporary, [result.json()].concat({ skip: payload.skip }));
           })
           .catch(error => Observable.of(RegistryActions.openRecordsErrorAction(error)));
       });

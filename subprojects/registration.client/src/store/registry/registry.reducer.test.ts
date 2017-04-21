@@ -41,20 +41,20 @@ describe('registry reducer', () => {
 
   it('should set record rows on OPEN_RECORDS_SUCCESS(false)', () => {
     const rows = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
-    const data = { temporary: false, rows: rows, totalCount: rows.length };
+    const data = [{ temporary: false, rows: rows, totalCount: rows.length }];
     const nextState = registryReducer(
       initState,
-      RegistryActions.openRecordsSuccessAction(data)
+      RegistryActions.openRecordsSuccessAction(true, data)
     );
     expect(nextState.records.rows).toEqual(rows);
   });
 
   it('should set temp record rows on OPEN_RECORDS_SUCCESS(true)', () => {
     const rows = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
-    const data = { temporary: true, rows: rows, totalCount: rows.length };
+    const data = [{ temporary: true, rows: rows, totalCount: rows.length }];
     const nextState = registryReducer(
       initState,
-      RegistryActions.openRecordsSuccessAction(data)
+      RegistryActions.openRecordsSuccessAction(true, data)
     );
     expect(nextState.tempRecords.rows).toEqual(rows);
   });
