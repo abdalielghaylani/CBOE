@@ -5,6 +5,7 @@ import {
   GroupSettingType, getSetting
 } from '../../common';
 import { fetchLimit } from '../../configuration';
+import { IRecordsData } from '../../store';
 
 export class FragmentData {
   FragmentID: number;
@@ -793,27 +794,20 @@ export class RecordsVM {
   startPoint: number = 0;
   fullDataLoaded: boolean = true;
   totalRecordCount: number = 0;
-  currentrows?: any = [];
+  currentRows?: any = [];
   fetchLimit: number = fetchLimit;
   totalFetched: number = 0;
   sortCriteria: string = 'ID';
-  setFetchedRows(d: any, i: boolean) {
-    if (i === true) {
-      this.currentrows = d;
+  setRecordData(d: IRecordsData, initial: boolean) {
+    this.totalRecordCount = d.totalCount;
+    if (initial) {
+      this.currentRows = d.rows;
     } else {
-      this.currentrows = this.currentrows.concat(d);
+      this.currentRows = this.currentRows.concat(d);
     }
-    this.totalFetched = this.currentrows.length;
+    this.totalFetched = this.currentRows.length;
   }
   getFetchedRows() {
-    return this.currentrows;
-  }
-}
-export class Tfetchedrow {
-  rows: any;
-  id: Number;
-  constructor(d, o) {
-    this.rows = d;
-    this.id = o;
+    return this.currentRows;
   }
 }

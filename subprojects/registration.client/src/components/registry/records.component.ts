@@ -116,13 +116,12 @@ export class RegRecords implements OnInit, OnDestroy {
           this.recordsVM.fullDataLoaded = false;
           this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
         }
-        this.recordsVM.setFetchedRows(records.data.rows, true);
+        this.recordsVM.setRecordData(records.data, true);
         this.createCustomStore(this);
         this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
         this.changeDetector.markForCheck();
-
       } else if (this.recordsVM.startPoint > 0 && this.recordsVM.startPoint === Number(records.data.startIndex)) {
-        this.recordsVM.setFetchedRows(records.data.rows, false);
+        this.recordsVM.setRecordData(records.data, false);
         this.createCustomStore(this);
         this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
         this.changeDetector.markForCheck();
@@ -130,13 +129,13 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  createCustomStore(ref) {
+  createCustomStore(ref: RegRecords) {
     this.records.data.rows = new CustomStore({
       load: function (loadOptions) {
         if (loadOptions.sort !== null) {
-          let tsortCriteria = loadOptions.sort[0].desc === false ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
-          if (ref.recordsVM.sortCriteria !== tsortCriteria && ref.recordsVM.fullDataLoaded === false) {
-            ref.recordsVM.sortCriteria = tsortCriteria;
+          let sortCriteria = !loadOptions.sort[0].desc ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
+          if (ref.recordsVM.sortCriteria !== sortCriteria && !ref.recordsVM.fullDataLoaded) {
+            ref.recordsVM.sortCriteria = sortCriteria;
             ref.recordsVM.startPoint = 0;
             ref.recordsVM.totalFetched = 0;
             ref.recordsVM.fullDataLoaded = false;
@@ -177,7 +176,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onRowPrepared(e) {
     if (e.rowType === 'data') {
-      if (this.recordsVM.fullDataLoaded === false) {
+      if (!this.recordsVM.fullDataLoaded) {
         if (e.rowIndex === this.recordsVM.totalFetched - 1) {
           this.updateContents();
         }
