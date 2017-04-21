@@ -20,8 +20,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var query = GetQuery(tableName, RecordColumns, sort, "modified", "regid");
             return new JObject(
                 new JProperty("temporary", false),
-                new JProperty("rows", ExtractData(query, null, skip, count)),
-                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName)))
+                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
+                new JProperty("rows", ExtractData(query, null, skip, count))
             );
         }
 
@@ -42,8 +43,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var query = GetQuery(tableName, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
             return new JObject(
                 new JProperty("temporary", true),
-                new JProperty("rows", ExtractData(query, null, skip, count)),
-                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName)))
+                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
+                new JProperty("rows", ExtractData(query, null, skip, count))
             );
         }
 
