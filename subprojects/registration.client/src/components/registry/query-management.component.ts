@@ -18,56 +18,7 @@ import * as regSearchTypes from './registry-search.types';
 
 @Component({
   selector: 'reg-search-query',
-  template: `
-      <dx-data-grid id="grdSearchQuery" [columns]=hitlistVM.gridColumns [attr.data-target]=hitlistVM
-      [masterDetail]="{ enabled: false, template: 'detail' }"
-        [dataSource]=records [paging]='{pageSize: 15}' 
-        [pager]='{ showPageSizeSelector: true, allowedPageSizes: [10,15,20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true
-        (onEditorPreparing)='onEditorPreparing($event)'
-        (onRowRemoving)='onRowRemoving($event)'
-        (onCellPrepared)='onCellPrepared($event)'
-        (onContentReady)='onContentReady($event)'
-        (onRowUpdating)='onRowUpdating($event)' >
-        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" 
-        [texts]=" {
-                confirmDeleteMessage: 'Are you sure you want to delete this hitlist?',
-                confirmDeleteTitle: 'Remove Hitlist'
-            }" ></dxo-editing>
-        <div *dxTemplate="let data of 'detail'">
-            <div class="panel center-block panel-default" id="restore-hitlist" style="width:70%" >
-            <div class="panel-heading">
-                <h3 class="panel-title">Please choose a restore type below </h3>
-            </div>
-                          <div class="panel-body">
-                          <dx-radio-group
-                              valueExpr="key"
-                              displayExpr="value"
-                              [dataSource]="hitlistVM.getRestoreDataSource()"
-                              [(value)]="hitlistVM.advancedRestoreType">
-                          </dx-radio-group>
-                          <div style="margin-top: 25px">
-                            <button class="mr1 btn btn-default" data-dismiss="modal" (click)="advancedRestorePopup(data)" >Restore</button>
-                            <a class="mr1 btn btn-default" (click)="hideRestore(data)">Cancel</a>
-                          </div>
-              </div>
-              </div>
-        </div>
-       <div *dxTemplate="let d of 'restoreCellTemplate'" >
-          <a class="fa fa-recycle grd-icon" aria-hidden="true" title='Restore Hitlist' data-dismiss="modal" (click)="restoreSelectedHitlist(d.data)"></a>&nbsp;
-          <a class="fa fa-bolt grd-icon" aria-hidden="true" title='Perform Query'></a>&nbsp;
-          <a class="fa fa-eyedropper grd-icon" aria-hidden="true" title='Restore Query To Form'></a>&nbsp;
-          <a class="fa fa fa-filter grd-icon" aria-hidden="true" title='Advanced' (click)="showRestore(d)"></a>
-       </div>
-        <div *dxTemplate="let d of 'saveCellTemplate'" >
-        <a *ngIf="d.data.HistlistType === 0" class="fa fa fa-floppy-o grd-icon" aria-hidden="true" 
-        title='Add to saved hitlist' 
-        (click)="moveToSaveHitlist(d.data)"></a>&nbsp;
-        {{d.value}}
-        </div>
-      </dx-data-grid>
-      
-     `,
+  template: require('./query-management.component.html'),
   styles: [require('./records.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
