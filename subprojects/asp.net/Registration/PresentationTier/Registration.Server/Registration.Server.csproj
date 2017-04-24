@@ -136,6 +136,8 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\RegControllerBase.cs" />
     <Compile Include="Controllers\DataConversionController.cs" />
+    <Compile Include="Controllers\BatchController.cs" />
+    <Compile Include="Controllers\ComponentController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ViewConfigController.cs" />
     <Compile Include="Controllers\StructureImageController.cs" />
