@@ -254,6 +254,7 @@
 		<col key="yes" def="s72">Name</col>
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
+		<row><td>ISLockPermissions.dll</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\ISLockPermissions.dll</td></row>
 		<row><td>ISSELFREG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isregsvr.dll</td></row>
 		<row><td>NewBinary1</td><td/><td>&lt;ISProductFolder&gt;\Support\Themes\InstallShield Blue Theme\banner.jpg</td></row>
 		<row><td>NewBinary10</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CompleteSetupIco.ibd</td></row>
@@ -342,6 +343,7 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
+		<row><td>AllOtherFiles</td><td>{00B27677-4259-4572-9FDE-BFC176D91628}</td><td>COMMONRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>App_GlobalResources</td><td>{8B68C0DA-EE40-48A4-82F1-539FCFE82736}</td><td>APP_GLOBALRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerBin</td><td>{07FC7566-E929-422E-B976-B7E7847F86F0}</td><td>BIN</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerForms</td><td>{5522BE4D-90B5-4031-BC5B-B1D06D30F90E}</td><td>FORMS</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1017,6 +1019,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>COMMONRESOURCES</td><td>AllOtherFiles</td></row>
 		<row><td>INSTALLDIR</td><td>RegistrationPool</td></row>
 		<row><td>INSTALLDIR</td><td>RegistrationWebSite</td></row>
 	</table>
@@ -1028,11 +1031,24 @@
 		<col def="S0">Target</col>
 		<col def="I4">ExtendedType</col>
 		<col def="S255">ISComments</col>
+		<row><td>CheckCBOE</td><td>38</td><td/><td>On error resume next
+Dim strService
+Set objIIS = GetObject("IIS://localhost/W3SVC/1/Root")
+Set objVirtualDirectory = objIIS.GetObject("IISWebVirtualDir", "COEManager")
+strService= objVirtualDirectory.path
+If strService  ="" then
+Else                          
+  Set objVirtualDirectory = objIIS.GetObject("IISWebVirtualDir", "COECommonResources")
+  Session.Property("COMMONRESOURCES")=objVirtualDirectory.path
+End If
+</td><td/><td/></row>
 		<row><td>ISIISCleanup</td><td>1</td><td>binIISHelper</td><td>ISIISCleanup</td><td/><td/></row>
 		<row><td>ISIISCosting</td><td>1</td><td>binIISHelper</td><td>ISIISCosting</td><td/><td/></row>
 		<row><td>ISIISInstall</td><td>3073</td><td>binIISHelper</td><td>ISIISInstall</td><td/><td/></row>
 		<row><td>ISIISRollback</td><td>3329</td><td>binIISHelper</td><td>ISIISRollback</td><td/><td/></row>
 		<row><td>ISIISUninstall</td><td>3073</td><td>binIISHelper</td><td>ISIISUninstall</td><td/><td/></row>
+		<row><td>ISLockPermissionsCost</td><td>1</td><td>ISLockPermissions.dll</td><td>ISLockPermissionsCostAction</td><td/><td/></row>
+		<row><td>ISLockPermissionsInstall</td><td>3073</td><td>ISLockPermissions.dll</td><td>ISLockPermissionsInstallAction</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
 		<row><td>ISSelfRegisterCosting</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterCosting</td><td/><td/></row>
@@ -1109,6 +1125,7 @@
 		<row><td>BIN</td><td>REGISTRATION.SERVER</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>CAMBRIDGESOFT</td><td>ProgramFilesFolder</td><td>CAMBRI~1|CambridgeSoft</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE12.1.0.0</td><td>CAMBRIDGESOFT</td><td>CHEMOF~1|ChemOfficeEnterprise12.1.0.0</td><td/><td>0</td><td/></row>
+		<row><td>COMMONRESOURCES</td><td>INSTALLDIR</td><td>COMMON~1|CommonResources</td><td/><td>0</td><td/></row>
 		<row><td>CommonAppDataFolder</td><td>TARGETDIR</td><td>.:Common~1|CommonAppData</td><td/><td>0</td><td/></row>
 		<row><td>CommonFiles64Folder</td><td>TARGETDIR</td><td>.:Common64</td><td/><td>0</td><td/></row>
 		<row><td>CommonFilesFolder</td><td>TARGETDIR</td><td>.:Common</td><td/><td>0</td><td/></row>
@@ -1837,6 +1854,7 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>RegistrationClient</td><td>AllOtherFiles</td></row>
 		<row><td>RegistrationClient</td><td>RegistrationClient</td></row>
 		<row><td>RegistrationClient</td><td>RegistrationClientAssets</td></row>
 		<row><td>RegistrationClient</td><td>RegistrationPool</td></row>
@@ -2109,6 +2127,7 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
+		<row><td>AllOtherFiles</td><td/><td/><td>_B90BE541_DC5F_42B5_942F_904BD529A112_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>App_GlobalResources</td><td/><td/><td>_BE004D9C_65EC_4BB2_9938_BDDA8945BD46_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerBin</td><td/><td/><td>_5740C332_7115_45A3_B1F0_88CF471CAA95_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerForms</td><td/><td/><td>_ECC6E74F_944C_4580_97A0_02FDD4580594_FILTER</td><td/><td/><td/><td/></row>
@@ -2252,7 +2271,6 @@
 		<col def="L255">DisplayName</col>
 		<col def="i4">Type</col>
 		<col def="S72">Component_</col>
-		<row><td>IisItem1</td><td/><td>##ID_STRING8##</td><td>4</td><td>RegistrationPool</td></row>
 		<row><td>IisItem2</td><td/><td>##ID_STRING10##</td><td>1</td><td>RegistrationWebSite</td></row>
 		<row><td>IisItem3</td><td>IisItem2</td><td>##ID_STRING11##</td><td>2</td><td>RegistrationWebSite</td></row>
 	</table>
@@ -2269,7 +2287,6 @@
 		<col def="L0">MetaDataValue</col>
 		<col def="I4">Order</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>ISIISProperty1</td><td>IisItem1</td><td/><td>Attributes</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty10</td><td>IisItem2</td><td/><td>Path</td><td/><td/><td/><td/><td>IISROOTFOLDER</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty11</td><td>IisItem2</td><td/><td>AccessFlags</td><td/><td/><td/><td/><td>513</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty12</td><td>IisItem2</td><td/><td>ContentIndexed</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
@@ -2280,7 +2297,6 @@
 		<row><td>ISIISProperty17</td><td>IisItem2</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty18</td><td>IisItem2</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty19</td><td>IisItem2</td><td/><td>ServerBindings</td><td/><td/><td/><td/><td>*:80:</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty2</td><td>IisItem1</td><td/><td>RecycleMinutes</td><td/><td/><td/><td/><td>1740</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty20</td><td>IisItem2</td><td/><td>SiteNumber</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty21</td><td>IisItem2</td><td/><td>DefaultDoc</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty22</td><td>IisItem3</td><td/><td>Path</td><td/><td/><td/><td/><td>REGISTRATION.SERVER</td><td>0</td><td>0</td></row>
@@ -2291,16 +2307,9 @@
 		<row><td>ISIISProperty27</td><td>IisItem3</td><td/><td>DontLog</td><td/><td/><td/><td/><td>0</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty28</td><td>IisItem3</td><td/><td>AppIsolated</td><td/><td/><td/><td/><td>2</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty29</td><td>IisItem3</td><td/><td>AuthFlags</td><td/><td/><td/><td/><td>5</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty3</td><td>IisItem1</td><td/><td>RecycleRequests</td><td/><td/><td/><td/><td>-1</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty30</td><td>IisItem3</td><td/><td>ScriptTimeout</td><td/><td/><td/><td/><td>90</td><td>0</td><td>0</td></row>
 		<row><td>ISIISProperty31</td><td>IisItem3</td><td/><td>SessionTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty32</td><td>IisItem3</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING8##</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty4</td><td>IisItem1</td><td/><td>IdleTimeout</td><td/><td/><td/><td/><td>20</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty5</td><td>IisItem1</td><td/><td>QueueLimit</td><td/><td/><td/><td/><td>4000</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty6</td><td>IisItem1</td><td/><td>CPUMon</td><td/><td/><td/><td/><td/><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty7</td><td>IisItem1</td><td/><td>MaxProc</td><td/><td/><td/><td/><td>1</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty8</td><td>IisItem1</td><td/><td>managedRuntimeVersion</td><td/><td/><td/><td/><td>v4.0</td><td>0</td><td>0</td></row>
-		<row><td>ISIISProperty9</td><td>IisItem1</td><td/><td>managedPipelineMode</td><td/><td/><td/><td/><td>Integrated</td><td>0</td><td>0</td></row>
+		<row><td>ISIISProperty32</td><td>IisItem3</td><td/><td>AppPoolId</td><td/><td/><td/><td/><td>##ID_STRING13##</td><td>0</td><td>0</td></row>
 	</table>
 
 	<table name="ISInstallScriptAction">
@@ -2363,6 +2372,7 @@
 		<col key="yes" def="s255">User</col>
 		<col def="I4">Permission</col>
 		<col def="I4">Attributes</col>
+		<row><td>COMMONRESOURCES</td><td>CreateFolder</td><td>[%USERDOMAIN]</td><td>Everyone</td><td>1880031743</td><td>0</td></row>
 	</table>
 
 	<table name="ISLogicalDisk">
@@ -3921,6 +3931,7 @@
 		<row><td>ID_STRING10</td><td>1033</td><td>Default Web Site</td><td>0</td><td/><td>2032491169</td></row>
 		<row><td>ID_STRING11</td><td>1033</td><td>Registration.Server</td><td>0</td><td/><td>2032505505</td></row>
 		<row><td>ID_STRING12</td><td>1033</td><td>index.html</td><td>0</td><td/><td>2032523937</td></row>
+		<row><td>ID_STRING13</td><td>1033</td><td>ChemOfficeEnterprise</td><td>0</td><td/><td>-1037760187</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>ChemBioOffice Enterprise Registration</td><td>0</td><td/><td>1898265965</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>ChemBioOffice Enterprise Registration</td><td>0</td><td/><td>1898272109</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>RegistrationClient</td><td>0</td><td/><td>1898297005</td></row>
@@ -4082,6 +4093,8 @@
 		<row><td>ISIISInstall</td><td>REMOVE&lt;&gt;"ALL"</td><td>4001</td><td/><td/></row>
 		<row><td>ISIISRollback</td><td/><td>3501</td><td/><td/></row>
 		<row><td>ISIISUninstall</td><td>Installed</td><td>3502</td><td/><td/></row>
+		<row><td>ISLockPermissionsCost</td><td/><td>1401</td><td/><td/></row>
+		<row><td>ISLockPermissionsInstall</td><td/><td>5901</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>ISFOUNDNEWERPRODUCTVERSION</td><td>450</td><td>ISPreventDowngrade</td><td/></row>
 		<row><td>ISSelfRegisterCosting</td><td/><td>2201</td><td/><td/></row>
 		<row><td>ISSelfRegisterFiles</td><td/><td>5601</td><td/><td/></row>
@@ -4194,6 +4207,7 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAFIAZQBnAGkAcwB0AHIAYQB0AGkAbwBuAA==
 		<col def="I4">ISAttributes</col>
 		<row><td>AppSearch</td><td/><td>400</td><td>AppSearch</td><td/></row>
 		<row><td>CCPSearch</td><td>CCP_TEST</td><td>500</td><td>CCPSearch</td><td/></row>
+		<row><td>CheckCBOE</td><td>Not Installed</td><td>200</td><td/><td/></row>
 		<row><td>CostFinalize</td><td/><td>1000</td><td>CostFinalize</td><td/></row>
 		<row><td>CostInitialize</td><td/><td>800</td><td>CostInitialize</td><td/></row>
 		<row><td>ExecuteAction</td><td/><td>1300</td><td>ExecuteAction</td><td/></row>
