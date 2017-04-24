@@ -1,5 +1,6 @@
 import {
   IRecordDetail, IRecordDetailRecord,
+  IRecordsData, CRecordsData,
   IRecords, IRecordsRecord,
   IRegistry, IRegistryRecord,
 } from './registry.types';
@@ -8,7 +9,7 @@ import { basePath } from '../../configuration';
 
 const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: false,
-  rows: [],
+  data: new CRecordsData(),
   gridColumns: [{
     dataField: 'ID',
     dataType: 'number',
@@ -33,7 +34,7 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'STRUCTURE',
     dataType: 'string',
     allowFiltering: false,
-    cellTemplate: function(c, o) {
+    cellTemplate: function (c, o) {
       jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
     },
     caption: 'Structure',
@@ -50,12 +51,13 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'APPROVED',
     dataType: 'string',
     caption: 'Approved',
-  }]
+  }],
+  filterRow: { visible: true }
 })();
 
 const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: true,
-  rows: [],
+  data: new CRecordsData(),
   gridColumns: [{
     dataField: 'ID',
     dataType: 'number',
@@ -88,12 +90,13 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'STRUCTURE',
     dataType: 'string',
     allowFiltering: false,
-    cellTemplate: function(c, o) {
+    cellTemplate: function (c, o) {
       jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
     },
     caption: 'Structure',
     width: 160,
-  }]
+  }],
+  filterRow: { visible: true }
 })();
 
 export const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDetailRecord>({

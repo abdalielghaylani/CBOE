@@ -8,10 +8,26 @@ export interface IRecordDetail {
 
 export interface IRecordDetailRecord extends TypedRecord<IRecordDetailRecord>, IRecordDetail { }
 
+export interface IRecordsData {
+  temporary: boolean;
+  startIndex: number;
+  totalCount: number;
+  rows: any[] | any;
+}
+
+export class CRecordsData implements IRecordsData {
+  temporary: boolean = false;
+  startIndex: number = 0;
+  totalCount: number = 0;
+  rows: any[] | Function = [];
+  constructor() {}
+}
+
 export interface IRecords {
   temporary: boolean;
-  rows: any[];
+  data: IRecordsData;
   gridColumns: any[];
+  filterRow: any;
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, IRecords { }
@@ -24,3 +40,4 @@ export interface IRegistry {
 }
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }
+

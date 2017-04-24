@@ -28,17 +28,17 @@ describe('configuration.epics', () => {
 
   it('should open and retrieve records', fakeAsync(
     inject([XHRBackend, RegistryEpics], (mockBackend, registryEpics: RegistryEpics) => {
-      const temporary: boolean = true;
-      const data = [{ id: 1, value: 'v1' }, { id: 2, value: 'v2' }];
+      const payload: any = { temporary: true };
+      const data = [{ temporary: true, rows: [{ id: 1, value: 'v1' }, { id: 2, value: 'v2' }], totalCount: 2 }];
       mockBackend.connections.subscribe((connection: MockConnection) => {
         let response = new Response(new ResponseOptions({ body: data }));
         response.url = '';
         connection.mockRespond(response);
       });
 
-      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction(temporary)));
+      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction(payload)));
       registryEpics.handleRegistryActions(action$, null).subscribe(action =>
-        expect(action).toEqual(RegistryActions.openRecordsSuccessAction(temporary, data))
+        expect(action).toEqual(RegistryActions.openRecordsSuccessAction(payload.temporary, data))
       );
     })
   ));

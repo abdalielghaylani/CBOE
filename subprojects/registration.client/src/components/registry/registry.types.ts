@@ -4,6 +4,8 @@ import {
   FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
   GroupSettingType, getSetting
 } from '../../common';
+import { fetchLimit } from '../../configuration';
+import { IRecordsData } from '../../store';
 
 export class FragmentData {
   FragmentID: number;
@@ -788,3 +790,24 @@ function buildPropertyList(vm: any, columns: any[], propertyList: CPropertyList,
   }
 }
 
+export class RecordsVM {
+  startPoint: number = 0;
+  fullDataLoaded: boolean = true;
+  totalRecordCount: number = 0;
+  currentRows?: any = [];
+  fetchLimit: number = fetchLimit;
+  totalFetched: number = 0;
+  sortCriteria: string = 'ID';
+  setRecordData(d: IRecordsData, initial: boolean) {
+    this.totalRecordCount = d.totalCount;
+    if (initial) {
+      this.currentRows = d.rows;
+    } else {
+      this.currentRows = this.currentRows.concat(d);
+    }
+    this.totalFetched = this.currentRows.length;
+  }
+  getFetchedRows() {
+    return this.currentRows;
+  }
+}

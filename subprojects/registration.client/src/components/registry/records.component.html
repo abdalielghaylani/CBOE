@@ -16,22 +16,25 @@
   <div>
     <div class="row">
       <h5 class="col-sm-6" style="font-size: 12px;font-weight: 600; color: #b3b3b3">
-        <label class="label label-success">&nbsp; {{records.rows.length}} &nbsp;</label> records matching your query</h5>
+        <label class="label label-success">&nbsp; {{recordsVM.totalRecordCount}}  &nbsp;</label> records matching your query</h5>
       <span class="col-sm-6 pull-right" style="font-size: 12px;font-weight: 600; color: #b3b3b3; text-align:right" *ngIf="selectedRows.length!==0">
         Marked hits count:&nbsp;<label class="label label-success">&nbsp;{{selectedRows.length}}&nbsp;</label></span>
     </div>
-    <dx-load-panel #loadPanel shadingColor="rgba(ff,ff,ff,0.1)" [position]="{ of: '#divDataGrid' }" [(visible)]="loadIndicatorVisible"
-      [showIndicator]="true" [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+    <dx-load-panel #loadPanel [position]="{ of: '#divDataGrid' }" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true"
+      [shading]="false" [closeOnOutsideClick]="false">
     </dx-load-panel>
     <div id="divDataGrid">
-      <dx-data-grid id="grdRecords" [columns]=records.gridColumns [dataSource]=records.rows [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)"
-        (onSelectionChanged)="onSelectionChanged($event)" (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)'
-        (onInitNewRow)='onInitNewRow($event)' (onRowPrepared)='onRowPrepared($event)' (onEditingStart)='onEditingStart($event)'
-        [hoverStateEnabled]="true" [selectedRowKeys]="[]">
+      <dx-data-grid height="600px" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.data.rows" [searchPanel]='records.filterRow'
+        [filterRow]=records.filterRow rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)"
+        (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
+        (onRowPrepared)='onRowPrepared($event)' (onEditingStart)='onEditingStart($event)' [hoverStateEnabled]="true" [selectedRowKeys]="[]">
         <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
         <dxo-selection mode="multiple"></dxo-selection>
-        <div *dxTemplate="let data of 'content'">
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-scrolling mode="infinite"></dxo-scrolling>
+        <dxo-remote-operations [sorting]="true"></dxo-remote-operations>
+        <dxo-sorting mode="single"></dxo-sorting>
+        <div *dxTemplate="let data of 'toolbarContents'">
           <div class="btn-group btn-group-sm">
             <button class="btn btn-group btn-group-sm rose text-relaxed" data-original-title="New Query" (click)="newQuery()">
           <i class="fa fa-list-alt"></i>New Query</button>

@@ -6,16 +6,19 @@ import {
   OnDestroy,
   EventEmitter,
   ChangeDetectorRef, ChangeDetectionStrategy,
+  Directive, HostListener
 } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { RegistryActions, RegistrySearchActions } from '../../actions';
-import { IAppState, IRecords, ISearchRecords } from '../../store';
+import { IAppState, CRecordsData, IRecords, ISearchRecords } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
+import { RecordsVM } from './registry.types';
+import CustomStore from 'devextreme/data/custom_store';
 
 @Component({
   selector: 'reg-records',
@@ -43,14 +46,14 @@ export class RegRecords implements OnInit, OnDestroy {
   private hitlistData$: Observable<ISearchRecords>;
   private isMarkedQuery: boolean;
   private loadIndicatorVisible: boolean = false;
-
+  private recordsVM: RecordsVM = new RecordsVM();
   constructor(
     private router: Router,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
     private changeDetector: ChangeDetectorRef) {
-    this.records = { temporary: this.temporary, rows: [], gridColumns: [] };
+    this.records = { temporary: this.temporary, data: new CRecordsData(), gridColumns: [], filterRow: { visible: true } };
   }
 
   ngOnInit() {
@@ -69,41 +72,88 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  loadData() {
-    this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
-    this.changeDetector.markForCheck();
-  }
-
   // Trigger data retrieval for the view to show.
-  // Select the view model from redux store, and listen to it.
   retrieveContents(lookups: any) {
+    this.lookups = lookups;
     if (this.loggedIn$) {
       this.loadIndicatorVisible = true;
     }
-    this.lookups = lookups;
-    if (!this.restore) {
-      this.registryActions.openRecords(this.temporary);
+    if (this.restore) {
+      this.restoreHitlist();
+    } else {
+      this.loadData();
     }
-    this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
-    this.recordsSubscription = this.records$.subscribe(d => { this.updateContents(d); });
-    this.actions.openHitlists();
-    this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
-    this.hitlistSubscription = this.hitlistData$.subscribe(() => { this.loadData(); });
   }
 
-  updateContents(records: IRecords) {
-    if (this.temporary !== records.temporary) {
-      return;
+  restoreHitlist() {
+  }
+
+  loadData() {
+    this.registryActions.openRecords({
+      temporary: this.temporary,
+      skip: this.recordsVM.startPoint,
+      take: this.recordsVM.fetchLimit,
+      sort: this.recordsVM.sortCriteria
+    });
+    this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
+    this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
+    this.actions.openHitlists();
+    this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
+    this.hitlistSubscription = this.hitlistData$.subscribe(() => {
+      this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
+      this.changeDetector.markForCheck();
+    });
+  }
+
+  openRegistryRecords(records: IRecords) {
+    if (records.data.rows) {
+      this.loadIndicatorVisible = false;
+      if (this.recordsVM.startPoint === 0) {
+        this.records.temporary = records.temporary;
+        this.recordsVM.totalRecordCount = records.data.totalCount ? records.data.totalCount : this.recordsVM.totalRecordCount;
+        if (records.data.rows.length < this.recordsVM.totalRecordCount) {
+          this.records.filterRow = { visible: false };
+          this.recordsVM.fullDataLoaded = false;
+          this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
+        }
+        this.recordsVM.setRecordData(records.data, true);
+        this.createCustomStore(this);
+        this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
+        this.changeDetector.markForCheck();
+      } else if (this.recordsVM.startPoint > 0 && this.recordsVM.startPoint === Number(records.data.startIndex)) {
+        this.recordsVM.setRecordData(records.data, false);
+        this.createCustomStore(this);
+        this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
+        this.changeDetector.markForCheck();
+      }
     }
-    this.records.temporary = records.temporary;
-    this.records.rows = records.rows;
-    this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
-    this.changeDetector.markForCheck();
+  }
+
+  createCustomStore(ref: RegRecords) {
+    this.records.data.rows = new CustomStore({
+      load: function (loadOptions) {
+        if (loadOptions.sort !== null) {
+          let sortCriteria = !loadOptions.sort[0].desc ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
+          if (ref.recordsVM.sortCriteria !== sortCriteria && !ref.recordsVM.fullDataLoaded) {
+            ref.recordsVM.sortCriteria = sortCriteria;
+            ref.recordsVM.startPoint = 0;
+            ref.recordsVM.totalFetched = 0;
+            ref.recordsVM.fullDataLoaded = false;
+            ref.updateContents();
+          }
+        }
+        return ref.recordsVM.getFetchedRows();
+      }
+    });
   }
 
   updateGridColumn(gridColumn) {
     if (gridColumn.lookup) {
-      gridColumn.lookup = { dataSource: this.lookups.users, displayExpr: 'USERID', valueExpr: 'PERSONID' };
+      gridColumn.lookup = {
+        dataSource: this.lookups.users,
+        displayExpr: 'USERID',
+        valueExpr: 'PERSONID'
+      };
     }
     return gridColumn;
   }
@@ -115,9 +165,29 @@ export class RegRecords implements OnInit, OnDestroy {
     });
   }
 
+  updateContents() {
+    this.registryActions.openRecords({
+      temporary: this.temporary,
+      skip: this.recordsVM.startPoint,
+      take: this.recordsVM.fetchLimit,
+      sort: this.recordsVM.sortCriteria
+    });
+  }
+
   onRowPrepared(e) {
     if (e.rowType === 'data') {
-      this.loadIndicatorVisible = false;
+      if (!this.recordsVM.fullDataLoaded) {
+        if (e.rowIndex === this.recordsVM.totalFetched - 1) {
+          this.updateContents();
+        }
+        if (e.rowIndex + 1 === this.recordsVM.totalRecordCount) {
+          this.recordsVM.fullDataLoaded = true;
+          this.records.filterRow = { visible: true };
+        }
+        if (e.rowIndex > 0 && e.rowIndex === this.recordsVM.totalFetched - this.recordsVM.fetchLimit) {
+          // alert(e.component.pageIndex());
+        }
+      }
     }
   }
   onCellPrepared(e) {
@@ -138,7 +208,7 @@ export class RegRecords implements OnInit, OnDestroy {
   onToolbarPreparing(e) {
     e.toolbarOptions.items.unshift({
       location: 'before',
-      template: 'content'
+      template: 'toolbarContents'
     });
   }
 
@@ -200,14 +270,14 @@ export class RegRecords implements OnInit, OnDestroy {
   showMarked() {
     if (this.selectedRows) {
       this.rowSelected = true;
-      this.tempResultRows = this.records.rows;
-      this.records.rows = this.selectedRows;
+      this.tempResultRows = this.records.data.rows;
+      this.records.data.rows = this.selectedRows;
     }
   }
 
   showSearchResults() {
     this.rowSelected = false;
-    this.records.rows = this.tempResultRows;
+    this.records.data.rows = this.tempResultRows;
     this.selectedRows = [];
     this.tempResultRows = [];
   }
@@ -241,18 +311,5 @@ export class RegRecords implements OnInit, OnDestroy {
     <body onload="window.print();window.close()">${printContents}</body>
       </html>`);
     popupWin.document.close();
-  }
-
-  onShown() {
-    setTimeout(() => {
-      this.loadIndicatorVisible = false;
-    }, 3000);
-  }
-
-  onHidden() {
-  }
-
-  showLoadPanel() {
-    this.loadIndicatorVisible = true;
   }
 };

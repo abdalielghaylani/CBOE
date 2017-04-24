@@ -1,22 +1,33 @@
-﻿using System.Web.Http;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
-using Newtonsoft.Json.Linq;
+﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using CambridgeSoft.COE.Registration.Services;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web.Http;
+using Newtonsoft.Json.Linq;
+using CambridgeSoft.COE.Registration.Services;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     public class RegistryRecordsController : RegControllerBase
     {
         #region Permanent Records
-        public JArray Get()
+        [Route("api/records")]
+        public JObject Get(int? skip = null, int? count = null, string sort = null)
         {
-            return ExtractData("SELECT regid id, name, created, modified, personcreated as creator, 'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS') as structure, regnumber, statusid as status, approved FROM vw_mixture_regnumber ORDER BY modified DESC");
+            CheckAuthentication();
+            var tableName = "vw_mixture_regnumber";
+            var query = GetQuery(tableName, RecordColumns, sort, "modified", "regid");
+            return new JObject(
+                new JProperty("temporary", false),
+                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
+                new JProperty("rows", ExtractData(query, null, skip, count))
+            );
         }
 
+        [HttpGet]
+        [Route("api/records/{id}")]
         public dynamic Get(int id)
         {
             return null;
@@ -24,15 +35,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #endregion // Permanent Records
 
         #region Temporary Records
-        [Route("api/RegistryRecords/Temp")]
-        public JArray GetTemp()
+        [Route("api/temp-records")]
+        public JObject GetTemp(int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
-            return ExtractData("SELECT tempcompoundid id, tempbatchid batchid, formulaweight MW, molecularformula MF, datecreated created, datelastmodified modified, personcreated as creator, 'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS') as structure FROM vw_temporarycompound ORDER BY tempbatchid DESC");
+            var tableName = "vw_temporarycompound";
+            var query = GetQuery(tableName, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
+            return new JObject(
+                new JProperty("temporary", true),
+                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
+                new JProperty("rows", ExtractData(query, null, skip, count))
+            );
         }
 
         [HttpGet]
-        [Route("api/RegistryRecords/Temp/{id}")]
+        [Route("api/temp-records/{id}")]
         public dynamic GetTemp(int id)
         {
             using (var service = new COERegistrationServices())
@@ -43,7 +61,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route("api/RegistryRecords/Temp/{id}")]
+        [Route("api/temp-records/{id}")]
         public Task<HttpResponseMessage> DeleteTemp(int id)
         {
             using (var service = new COERegistrationServices())

@@ -18,7 +18,7 @@ export function sessionReducer(
         token: null,
         user: INITIAL_USER_STATE,
         hasError: false,
-        isLoading: true,
+        isLoading: false,
       });
 
     case SessionActions.LOGIN_USER_SUCCESS:

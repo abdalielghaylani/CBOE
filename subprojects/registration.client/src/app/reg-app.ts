@@ -85,11 +85,9 @@ export class RegApp {
 
   checkLogin() {
     // See if auth token cookie is available.
-    console.log('cookie:' + document.cookie);
     let token = document.cookie.split('; ').map(c => c.split('=')).find(c => c[0] === 'CS%5FSEC%5FUserName');
     // If token is available, check if cookie is valid.
     if (token) {
-      console.log('user-name:' + token[1]);
       this.sessionActions.checkLogin(token[1]);
     }
   }

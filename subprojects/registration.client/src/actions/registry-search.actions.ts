@@ -8,39 +8,37 @@ export class RegistrySearchActions {
   static SEARCH_RECORDS = 'SEARCH_RECORDS';
   static SEARCH_RECORDS_SUCCESS = 'SEARCH_RECORDS_SUCCESS';
   static SEARCH_RECORDS_ERROR = 'SEARCH_RECORDS_ERROR';
-  static RETRIEVE_QUERY_LIST = 'RETRIEVE_QUERY_LIST';
-  static RETRIEVE_QUERY_LIST_SUCCESS = 'RETRIEVE_QUERY_LIST_SUCCESS';
-  static RETRIEVE_QUERY_LIST_ERROR = 'RETRIEVE_QUERY_LIST_ERROR';
+  static RETRIEVE_HITLIST = 'RETRIEVE_HITLIST';
+  static RETRIEVE_HITLIST_SUCCESS = 'RETRIEVE_HITLIST_SUCCESS';
+  static RETRIEVE_HITLIST_ERROR = 'RETRIEVE_HITLIST_ERROR';
   static RETRIEVE_QUERY_FORM = 'RETRIEVE_QUERY_FORM';
   static RETRIEVE_QUERY_FORM_SUCCESS = 'RETRIEVE_QUERY_FORM_SUCCESS';
   static RETRIEVE_QUERY_FORM_ERROR = 'RETRIEVE_QUERY_FORM_ERROR';
   static OPEN_HITLISTS = 'OPEN_HITLISTS';
   static OPEN_HITLISTS_SUCCESS = 'OPEN_HITLISTS_SUCCESS';
   static OPEN_HITLISTS_ERROR = 'OPEN_HITLISTS_ERROR';
-  static DELETE_HITLISTS = 'DELETE_HITLISTS';
-  static DELETE_HITLISTS_ERROR = 'DELETE_HITLISTS_ERROR';
-  static EDIT_HITLISTS = 'EDIT_HITLISTS';
-  static EDIT_HITLISTS_ERROR = 'EDIT_HITLISTS_ERROR';
+  static DELETE_HITLIST = 'DELETE_HITLIST';
+  static DELETE_HITLIST_ERROR = 'DELETE_HITLIST_ERROR';
+  static UPDATE_HITLIST = 'UPDATE_HITLIST';
+  static UPDATE_HITLIST_ERROR = 'UPDATE_HITLIST_ERROR';
   static SAVE_HITLISTS = 'SAVE_HITLISTS';
   static SAVE_HITLISTS_ERROR = 'SAVE_HITLISTS_ERROR';
   static openHitlistsAction = createAction(RegistrySearchActions.OPEN_HITLISTS);
   static openHitlistsSuccessAction = createAction(RegistrySearchActions.OPEN_HITLISTS_SUCCESS);
   static openHitlistsErrorAction = createAction(RegistrySearchActions.OPEN_HITLISTS_ERROR);
-  static editHitlistsAction = createAction(RegistrySearchActions.EDIT_HITLISTS);
-  static editHitlistsErrorAction = createAction(RegistrySearchActions.EDIT_HITLISTS_ERROR);
-  static saveHitlistsAction = createAction(RegistrySearchActions.SAVE_HITLISTS);
-  static saveHitlistsErrorAction = createAction(RegistrySearchActions.SAVE_HITLISTS_ERROR);
-  static deleteHitlistsAction = createAction(RegistrySearchActions.DELETE_HITLISTS,
-    (type: number, id: number) => ({ type, id }));
-  static deleteHitlistsErrorAction = createAction(RegistrySearchActions.DELETE_HITLISTS_ERROR);
+  static updateHitlistAction = createAction(RegistrySearchActions.UPDATE_HITLIST);
+  static updateHitlistErrorAction = createAction(RegistrySearchActions.UPDATE_HITLIST_ERROR);
+  static deleteHitlistAction = createAction(RegistrySearchActions.DELETE_HITLIST,
+    (id: number) => ({ id }));
+  static deleteHitlistErrorAction = createAction(RegistrySearchActions.DELETE_HITLIST_ERROR);
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
     (temporary: boolean, history: boolean, id: Number) => ({ temporary, history, id }));
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
-  static retrieveQueryListAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST);
-  static retrieveQueryListSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST_SUCCESS);
-  static retrieveQueryListErrorAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_LIST_ERROR);
+  static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST);
+  static retrieveHitlistSuccessAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_SUCCESS);
+  static retrieveHitlistErrorAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_ERROR);
   static retrieveQueryFormAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM,
     (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveQueryFormSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_SUCCESS);
@@ -76,19 +74,15 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.openHitlistsAction());
   }
 
-  deleteHitlists(type: number, id: number) {
-    this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistsAction(type, id));
+  deleteHitlist(id: number) {
+    this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistAction(id));
   }
 
-  editHitlists(data) {
-    this.ngRedux.dispatch(RegistrySearchActions.editHitlistsAction(data));
-  };
-
-  saveHitlists(data) {
-    this.ngRedux.dispatch(RegistrySearchActions.saveHitlistsAction(data));
+  updateHitlist(data) {
+    this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(data));
   };
 
   retrieveHitlist(data) {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryListAction(data));
+    this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(data));
   };
 }

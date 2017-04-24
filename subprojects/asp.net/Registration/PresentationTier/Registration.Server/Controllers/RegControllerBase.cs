@@ -21,6 +21,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     public class RegControllerBase : ApiController
     {
+        private const string sortDesc = " desc";
+        private const string sortAsc = " asc";
         private RegistrationOracleDAL regDal = null;
 
         private RegistrationOracleDAL RegDal
@@ -49,6 +51,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 for (int i = 0; i < fieldCount; ++i)
                 {
                     var fieldName = reader.GetName(i);
+                    // Skip row_num field if any
+                    if (fieldName.Equals("row_num", StringComparison.OrdinalIgnoreCase))
+                        continue;
                     var fieldType = reader.GetFieldType(i);
                     object fieldData;
                     switch (fieldType.Name.ToLower())
@@ -91,6 +96,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         case "datetime":
                             value = reader.GetDateTime(0);
                             break;
+                        case "decimal":
+                            value = reader.GetDecimal(0);
+                            break;
                         default:
                             value = reader.GetString(0);
                             break;
@@ -100,8 +108,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
-        protected JArray ExtractData(string sql, Dictionary<string, object> args = null)
+        protected JArray ExtractData(string sql, Dictionary<string, object> args = null, int? skip = null, int? count = null)
         {
+            if ((skip != null && skip.Value > 0) || count != null)
+            {
+                int lowerLimit = Math.Max(skip == null ? 0 : skip.Value, 0);
+                int upperLimit = Math.Max(count == null ? lowerLimit + 1 : lowerLimit + count.Value, lowerLimit + 1);
+                sql = string.Format("SELECT ROWNUM row_num, q1.* FROM ({0}) q1 WHERE ROWNUM <= :upperLimt", sql);
+                if (args == null) args = new Dictionary<string, object>();
+                args.Add(":upperLimit", upperLimit);
+                if (lowerLimit > 0)
+                {
+                    sql = string.Format("SELECT q2.* FROM ({0}) q2 WHERE row_num > :lowerLimit", sql);
+                    args.Add(":lowerLimit", lowerLimit);
+                }
+            }
             using (var reader = GetReader(sql, args))
             {
                 return ExtractData(reader);
@@ -142,6 +163,83 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var port = url.Port != 80 ? (":" + url.Port) : String.Empty;
 
             return String.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
+        }
+
+        protected class RecordColumn
+        {
+            public string definition;
+            public string label;
+            public bool sortable;
+        }
+
+        protected static string CleanupSortTerm(RecordColumn[] columns, string sortTerm)
+        {
+            var desc = sortTerm.EndsWith(sortDesc);
+            var t = sortTerm.Replace(sortDesc, string.Empty).Replace(sortAsc, string.Empty).Trim();
+            var dc = columns.FirstOrDefault(c => c.definition.Equals(t));
+            if (dc == null) dc = columns.FirstOrDefault(c => c.label != null && c.label.Equals(t));
+            t = dc == null ? string.Empty : dc.definition;
+            if (desc) t += sortDesc;
+            return t;
+        }
+
+        protected static RecordColumn[] RecordColumns
+        {
+            get
+            {
+                return new RecordColumn[]
+                {
+                    new RecordColumn{ definition = "regid", label = "id", sortable = true },
+                    new RecordColumn{ definition = "name", sortable = true },
+                    new RecordColumn{ definition = "created", sortable = true },
+                    new RecordColumn{ definition = "modified", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false },
+                    new RecordColumn{ definition = "regnumber", sortable = true },
+                    new RecordColumn{ definition = "statusid", label = "status", sortable = true },
+                    new RecordColumn{ definition = "approved", sortable = true }
+                };
+            }
+        }
+
+        protected static RecordColumn[] TempRecordColumns
+        {
+            get
+            {
+                return new RecordColumn[]
+                {
+                    new RecordColumn{ definition = "tempcompoundid", label = "id", sortable = true },
+                    new RecordColumn{ definition = "tempbatchid", label = "batchid", sortable = true },
+                    new RecordColumn{ definition = "formulaweight", label = "mw", sortable = true },
+                    new RecordColumn{ definition = "molecularformula", label = "mf", sortable = true },
+                    new RecordColumn{ definition = "datecreated", label = "created", sortable = true },
+                    new RecordColumn{ definition = "datelastmodified", label = "modified", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false }
+                };
+            }
+        }
+
+        protected static string GetSelectTerms(RecordColumn[] columns)
+        {
+            return String.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
+        }
+
+        protected static string GetSortTerms(RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
+        {
+            // Default sorting order is descending order by modified date
+            if (string.IsNullOrEmpty(sortTerms)) sortTerms = string.Empty;
+            sortTerms = String.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
+                .Select(t => CleanupSortTerm(columns, t)).Where(t => !string.IsNullOrEmpty(t)));
+            if (string.IsNullOrEmpty(sortTerms)) sortTerms = defaultColumn + sortDesc;
+            // Make the sorting unique
+            if (!sortTerms.Contains(uniqueColumn)) sortTerms += ", " + uniqueColumn;
+            return sortTerms;
+        }
+
+        protected static string GetQuery(string tableName, RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
+        {
+            return string.Format("SELECT {0} FROM {1} ORDER BY {2}", GetSelectTerms(columns), tableName, GetSortTerms(columns, sortTerms, defaultColumn, uniqueColumn));
         }
     }
 }
