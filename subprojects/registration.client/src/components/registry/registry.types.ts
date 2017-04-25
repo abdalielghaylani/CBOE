@@ -625,6 +625,8 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
               dataField: 'structure',
               caption: 'Structure',
               allowEditing: false,
+              allowFiltering: false,
+              allowSorting: false,
               width: 150,
               cellTemplate: function (c, o) {
                 jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);

@@ -33,7 +33,9 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',
+    allowEditing: false,
     allowFiltering: false,
+    allowSorting: false,
     cellTemplate: function (c, o) {
       jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
     },
@@ -89,7 +91,9 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',
+    allowEditing: false,
     allowFiltering: false,
+    allowSorting: false,
     cellTemplate: function (c, o) {
       jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
     },

@@ -74,6 +74,8 @@ export class RegConfiguration implements OnInit, OnDestroy {
     e.component.columnOption(0, 'visible', false);
     e.component.columnOption('STRUCTURE', {
       width: 150,
+      allowFiltering: false,
+      allowSorting: false,
       cellTemplate: 'cellTemplate'
     });
     e.component.columnOption('command:edit', {
