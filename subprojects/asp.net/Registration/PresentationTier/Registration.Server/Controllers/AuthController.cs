@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using PerkinElmer.COE.Registration.Server.Code;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,7 +16,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     public class AuthController : RegControllerBase
     {
         [HttpPost]
-        [Route("api/auth/login")]
+        [Route(Consts.apiPrefix + "auth/login")]
         public HttpResponseMessage Login()
         {
             var errorMessage = new StringBuilder();
@@ -59,7 +60,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
-        [Route("api/auth/validate/{userName}")]
+        [Route(Consts.apiPrefix + "auth/validate/{userName}")]
         public HttpResponseMessage Validate(string userName)
         {
             var errorMessage = new StringBuilder();
@@ -109,7 +110,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
-        [Route("api/auth/renew/{token}")]
+        [Route(Consts.apiPrefix + "auth/renew/{token}")]
         public HttpResponseMessage Renew(string token)
         {
             var errorMessage = new StringBuilder();

@@ -32,6 +32,7 @@ using Newtonsoft.Json.Linq;
 using System.Data;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.COESearchService;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -48,7 +49,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <remarks>This call may be used to retrieve all hit-lists</remarks>
         /// <response code="200">Success</response>
         [HttpGet]
-        [Route("api/search/hitlists")]
+        [Route(Consts.apiPrefix + "hitlists")]
         [SwaggerOperation("GetHitlists")]
         [SwaggerResponse(200, type: typeof(List<Hitlist>))]
         public List<Hitlist> GetHitlists()
@@ -81,7 +82,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpDelete]
-        [Route("api/search/hitlists/{id}")]
+        [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("DeleteHitlist")]
         public void SearchHitlistsIdDelete(int id)
         {
@@ -102,7 +103,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpPut]
-        [Route("api/search/hitlists/{id}")]
+        [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("UpdateHitlist")]
         public void UpdateHitlist(int id)
         {
@@ -148,7 +149,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Invalid ID</response>
         /// <response code="0">Unexpected error</response>
         [HttpPost]
-        [Route("api/search/hitlists")]
+        [Route(Consts.apiPrefix + "hitlists")]
         [SwaggerOperation("CreateHitlist")]
         public int CreateHitlist()
         {
@@ -207,7 +208,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route("api/search/hitlists/{id}/records")]
+        [Route(Consts.apiPrefix + "hitlists/{id}/records")]
         [SwaggerOperation("GetHitlistRecords")]
         public JObject GetHitlistRecords(int id, int? skip = null, int? count = null, string sort = null)
         {
@@ -225,7 +226,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route("api/search/hitlists/{id1}/{op}/{id2}/records")]
+        [Route(Consts.apiPrefix + "hitlists/{id1}/{op}/{id2}/records")]
         [SwaggerOperation("GetAdvHitlistRecords")]
         public JObject GetAdvHitlistRecords(int id1, int op, int id2, int? skip = null, int? count = null, string sort = null)
         {
@@ -271,7 +272,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpPost]
-        [Route("api/search/markedhits")]
+        [Route(Consts.apiPrefix + "markedhits")]
         [SwaggerOperation("MarkedHitsSave")]
         public int MarkedHitsSave()
         {
@@ -301,7 +302,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Hitlist not found</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route("api/search/hitlists/{id}")]
+        [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("SearchHitlistsIdGet")]
         [SwaggerResponse(200, type: typeof(Hitlist))]
         public virtual Hitlist SearchHitlistsIdGet(int? id)

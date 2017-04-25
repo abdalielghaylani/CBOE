@@ -58,7 +58,7 @@ passport.deserializeUser( (id, done) => {
   done(null, authPassport.getUserById(id, users));
 });
 
-app.post('/api/auth/login',
+app.post('/api/v1/auth/login',
   passport.authenticate('local'),
   (req, res) => {
     res.status(200).send(JSON.stringify(req.user));

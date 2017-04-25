@@ -14,7 +14,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     public class CustomTablesController : RegControllerBase
     {
-        [Route("api/CustomTables")]
+        [Route(Consts.apiPrefix + "CustomTables")]
         public JArray Get()
         {
             CheckAuthentication();
@@ -31,7 +31,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return tableList;
         }
 
-        [Route("api/CustomTables/{tableName}")]
+        [Route(Consts.apiPrefix + "CustomTables/{tableName}")]
         public IEnumerable<JToken> Get(string tableName)
         {
             CheckAuthentication();
@@ -51,7 +51,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return query;
         }
 
-        [Route("api/CustomTables/{tableName}/{id}")]
+        [Route(Consts.apiPrefix + "CustomTables/{tableName}/{id}")]
         public dynamic Get(string tableName, int id)
         {
             CheckAuthentication();
@@ -59,7 +59,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route("api/CustomTables/{tableName}")]
+        [Route(Consts.apiPrefix + "CustomTables/{tableName}")]
         public int Post(dynamic data)
         {
             CheckAuthentication();
@@ -67,7 +67,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPut]
-        [Route("api/CustomTables/{tableName}/{id}")]
+        [Route(Consts.apiPrefix + "CustomTables/{tableName}/{id}")]
         public int Put(dynamic data)
         {
             CheckAuthentication();
@@ -75,7 +75,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route("api/CustomTables/{tableName}/{id}")]
+        [Route(Consts.apiPrefix + "CustomTables/{tableName}/{id}")]
         public int Delete(int id)
         {
             CheckAuthentication();

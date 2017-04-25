@@ -6,9 +6,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
-import { basePath } from '../configuration';
-
-const BASE_URL = `${basePath}api`;
+import { apiUrlPrefix } from '../configuration';
 
 @Injectable()
 export class ConfigurationEpics {
@@ -18,7 +16,7 @@ export class ConfigurationEpics {
     return action$.filter(({ type }) => type === ConfigurationActions.OPEN_TABLE)
       .mergeMap(({ payload }) => {
         let tableId: string = payload;
-        return this.http.get(`${BASE_URL}/CustomTables/` + tableId)
+        return this.http.get(`${apiUrlPrefix}CustomTables/` + tableId)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()

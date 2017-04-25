@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Web;
 using System.Reflection;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -30,7 +31,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route("api/DataConversion/ToCdxml")]
+        [Route(Consts.apiPrefix + "DataConversion/ToCdxml")]
         public JObject ToCdxml()
         {
             var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
@@ -38,7 +39,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route("api/DataConversion/FromCdxml")]
+        [Route(Consts.apiPrefix + "DataConversion/FromCdxml")]
         public JObject FromCdxml()
         {
             var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();

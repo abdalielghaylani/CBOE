@@ -1,5 +1,5 @@
 import { IAppState } from '../../store';
-import { basePath } from '../../configuration';
+import { apiUrlPrefix } from '../../configuration';
 import {
   FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
   GroupSettingType, getSetting
@@ -627,7 +627,7 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
               allowEditing: false,
               width: 150,
               cellTemplate: function (c, o) {
-                jQuery(`<img src="${basePath}api/StructureImage/${o.data.structure}" />`).appendTo(c);
+                jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
               }
             }, {
               dataField: 'description',
