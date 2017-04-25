@@ -227,6 +227,7 @@
 	<table name="AppSearch">
 		<col key="yes" def="s72">Property</col>
 		<col key="yes" def="s72">Signature_</col>
+		<row><td>CBOE</td><td>NewSignature1</td></row>
 		<row><td>IISROOTFOLDER</td><td>_IISROOTFOLDER</td></row>
 		<row><td>IIS_VERSION</td><td>_IIS_VERSION</td></row>
 	</table>
@@ -343,8 +344,8 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>AllOtherFiles</td><td>{00B27677-4259-4572-9FDE-BFC176D91628}</td><td>COMMONRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>App_GlobalResources</td><td>{8B68C0DA-EE40-48A4-82F1-539FCFE82736}</td><td>APP_GLOBALRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ComonResources</td><td>{00B27677-4259-4572-9FDE-BFC176D91628}</td><td>COMMONRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerBin</td><td>{07FC7566-E929-422E-B976-B7E7847F86F0}</td><td>BIN</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerForms</td><td>{5522BE4D-90B5-4031-BC5B-B1D06D30F90E}</td><td>FORMS</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerRoot</td><td>{53F8F555-94AB-4D51-9663-F7DB51BCA96C}</td><td>REGISTRATION.SERVER</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1019,7 +1020,7 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>COMMONRESOURCES</td><td>AllOtherFiles</td></row>
+		<row><td>COMMONRESOURCES</td><td>ComonResources</td></row>
 		<row><td>INSTALLDIR</td><td>RegistrationPool</td></row>
 		<row><td>INSTALLDIR</td><td>RegistrationWebSite</td></row>
 	</table>
@@ -1169,6 +1170,8 @@ End If
 		<col key="yes" def="S72">Parent</col>
 		<col key="yes" def="S255">Path</col>
 		<col def="I2">Depth</col>
+		<row><td>NewSignature1</td><td>NewSignature2</td><td>ChemOffice</td><td>2</td></row>
+		<row><td>NewSignature2</td><td></td><td>[IISROOTFOLDER]</td><td/></row>
 	</table>
 
 	<table name="DuplicateFile">
@@ -1854,7 +1857,7 @@ End If
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>RegistrationClient</td><td>AllOtherFiles</td></row>
+		<row><td>RegistrationClient</td><td>ComonResources</td></row>
 		<row><td>RegistrationClient</td><td>RegistrationClient</td></row>
 		<row><td>RegistrationClient</td><td>RegistrationClientAssets</td></row>
 		<row><td>RegistrationClient</td><td>RegistrationPool</td></row>
@@ -2127,8 +2130,8 @@ End If
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>AllOtherFiles</td><td/><td/><td>_B90BE541_DC5F_42B5_942F_904BD529A112_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>App_GlobalResources</td><td/><td/><td>_BE004D9C_65EC_4BB2_9938_BDDA8945BD46_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ComonResources</td><td/><td/><td>_B90BE541_DC5F_42B5_942F_904BD529A112_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerBin</td><td/><td/><td>_5740C332_7115_45A3_B1F0_88CF471CAA95_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerForms</td><td/><td/><td>_ECC6E74F_944C_4580_97A0_02FDD4580594_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerRoot</td><td/><td/><td>_BE0D6A50_DDD4_4208_A927_50E2940DB1E7_FILTER</td><td/><td/><td/><td/></row>
@@ -3932,6 +3935,7 @@ End If
 		<row><td>ID_STRING11</td><td>1033</td><td>Registration.Server</td><td>0</td><td/><td>2032505505</td></row>
 		<row><td>ID_STRING12</td><td>1033</td><td>index.html</td><td>0</td><td/><td>2032523937</td></row>
 		<row><td>ID_STRING13</td><td>1033</td><td>ChemOfficeEnterprise</td><td>0</td><td/><td>-1037760187</td></row>
+		<row><td>ID_STRING14</td><td>1033</td><td>This system doesn't seem to have CBOE 12.6.3 installed. Please run this Installer on a system having CBOE 12.6.3</td><td>0</td><td/><td>-903518874</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>ChemBioOffice Enterprise Registration</td><td>0</td><td/><td>1898265965</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>ChemBioOffice Enterprise Registration</td><td>0</td><td/><td>1898272109</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>RegistrationClient</td><td>0</td><td/><td>1898297005</td></row>
@@ -4242,6 +4246,7 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAFIAZQBnAGkAcwB0AHIAYQB0AGkAbwBuAA==
 	<table name="LaunchCondition">
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
+		<row><td>CBOE</td><td>##ID_STRING14##</td></row>
 	</table>
 
 	<table name="ListBox">
@@ -4562,7 +4567,7 @@ UwBJAE4ARwBMAEUAXwBFAFgARQBfAEkATQBBAEcARQABAFIAZQBnAGkAcwB0AHIAYQB0AGkAbwBuAA==
 		<row><td>RebootYesNo</td><td>Yes</td><td/></row>
 		<row><td>ReinstallModeText</td><td>omus</td><td/></row>
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
-		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;INSTALLDIR;IIS_VERSION;IISROOTFOLDER</td><td/></row>
+		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;INSTALLDIR;IIS_VERSION;IISROOTFOLDER;CBOE</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
 		<row><td>UpgradeCode</td><td>{19C3721D-E235-47AA-A9C7-E42F195B65BD}</td><td/></row>
 		<row><td>_IsMaintenance</td><td>Change</td><td/></row>
