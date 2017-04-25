@@ -5,8 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
-using CambridgeSoft.COE.Registration.Services;
 using Swashbuckle.Swagger.Annotations;
+using CambridgeSoft.COE.Registration.Services;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -21,7 +22,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Invalid request</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route("api/v1/batches")]
+        [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("GetBatchs")]
         [SwaggerResponse(200, type: typeof(List<JObject>))]
         public async Task<IHttpActionResult> GetBatchs(int? recordId = null, int? skip = null, int? count = null, string sort = null)
@@ -44,7 +45,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         // The model does not have to be complete up-front.
         // Add just enough members such as ID to get started.
         [HttpGet]
-        [Route("api/v1/batches/{id}")]
+        [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("GetBatch")]
         [SwaggerResponse(200, type: typeof(JObject))]
         public async Task<IHttpActionResult> GetBatch(int id)
@@ -57,18 +58,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route("api/v1/batches")]
+        [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("CreateBatch")]
         [SwaggerResponse(201, type: typeof(JObject))]
         public async Task<IHttpActionResult> CreateBatch(JObject batch)
         {
             CheckAuthentication();
             var id = -1;
-            return Created<JObject>(string.Format("api/v1/batches/{0}", id), batch);
+            return Created<JObject>(string.Format("{0}batches/{1}", Consts.apiPrefix, id), batch);
         }
 
         [HttpPut]
-        [Route("api/v1/batches/{id}")]
+        [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("UpdateBatch")]
         [SwaggerResponse(200, type: typeof(string))]
         public async Task<IHttpActionResult> UpdateBatch(int id)
@@ -78,7 +79,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route("api/v1/batches/{id}")]
+        [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("DeleteBatch")]
         [SwaggerResponse(200, type: typeof(string))]
         public async Task<IHttpActionResult> DeleteBatch(int id)
