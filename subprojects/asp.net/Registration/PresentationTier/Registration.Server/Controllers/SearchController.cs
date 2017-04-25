@@ -185,13 +185,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (hitlistBO == null) return new JObject();
             if (hitlistBO.HitListID == 0) hitlistType = HitListType.SAVED;
             var tableName = "vw_mixture_regnumber";
-            var whereClause = string.Format(" WHERE mixtureid in (SELECT ID FROM COEDB.{0} WHERE hitlistid=:hitlistid)",
+            var whereClause = string.Format(" WHERE mixtureid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
                 hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
             var query = GetQuery(tableName + whereClause, RecordColumns, sort, "modified", "regid");
             var args = new Dictionary<string, object>();
-            args.Add(":hitlistid", id);
+            args.Add(":hitlistId", id);
             return new JObject(
                 new JProperty("temporary", false),
+                new JProperty("hitlistId", id),
                 new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("rows", ExtractData(query, args, skip, count))
