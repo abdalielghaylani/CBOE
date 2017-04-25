@@ -17,7 +17,7 @@ export function getFormGroup(state: IAppState, type: FormGroupType): CFormGroup 
 
 export function convertToFormGroup(data: string): CFormGroup {
   let doc = new DOMParser().parseFromString(data);
-  let x2jsTool = new x2js.default({
+  let x2jsTool = new x2js({
     arrayAccessFormPaths: [
       'formGroup.queryForms.queryForm',
       'formGroup.queryForms.queryForm.coeForms.coeForm',

@@ -47,7 +47,6 @@
     "@types/jasmine": "^2.5.40",
     "@types/node": "^6.0.55",
     "@types/redux-actions": "^1.2.2",
-    "@types/x2js": "0.0.27",
     "@types/xmldom": "^0.1.28",
     "autoprefixer": "^6.3.3",
     "autoprefixer-core": "^6.0.1",
@@ -126,7 +125,7 @@
     "webpack-dev-server": "^2.3.0",
     "webpack-hot-middleware": "^2.16.1",
     "webpack-split-by-path": "^2.0.0",
-    "x2js": "^3.1.0",
+    "x2js": "^3.1.1",
     "xmldom": "^0.1.27",
     "zone.js": "0.7.6"
   },

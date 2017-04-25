@@ -91,7 +91,7 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
     registryUtils.fixStructureData(this.recordDoc);
-    let x2jsTool = new x2js.default({
+    let x2jsTool = new x2js({
       arrayAccessFormPaths: [
         'MultiCompoundRegistryRecord.ComponentList.Component',
         'MultiCompoundRegistryRecord.ComponentList.Component.Compound.PropertyList.Property',
