@@ -20,7 +20,9 @@ export class CRecordsData implements IRecordsData {
   startIndex: number = 0;
   totalCount: number = 0;
   rows: any[] | Function = [];
-  constructor() {}
+  constructor(temporary: boolean) {
+    this.temporary = temporary;
+  }
 }
 
 export interface IRecords {

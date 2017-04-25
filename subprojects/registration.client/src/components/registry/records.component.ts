@@ -53,7 +53,12 @@ export class RegRecords implements OnInit, OnDestroy {
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
     private changeDetector: ChangeDetectorRef) {
-    this.records = { temporary: this.temporary, data: new CRecordsData(), gridColumns: [], filterRow: { visible: true } };
+    this.records = {
+      temporary: this.temporary,
+      data: new CRecordsData(this.temporary),
+      gridColumns: [],
+      filterRow: { visible: true }
+    };
   }
 
   ngOnInit() {

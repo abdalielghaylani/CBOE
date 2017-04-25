@@ -1,13 +1,13 @@
 import { RegistryActions, RecordDetailActions, IPayloadAction } from '../../actions';
 import { INITIAL_STATE, INITIAL_RECORD_DETAIL } from './registry.initial-state';
-import { IRegistryRecord, IRecordDetail, IRecords } from './registry.types';
+import { IRegistryRecord, IRecordDetail, IRecords, CRecordsData } from './registry.types';
 
 export function registryReducer(
   state: IRegistryRecord = INITIAL_STATE,
   action: IPayloadAction
 ): IRegistryRecord {
 
-  let recordsPath = (payload: any): any[] => {
+  let recordsDataPath = (payload: any): string[] => {
     let temporary: boolean = payload.temporary;
     let records: string = temporary ? 'tempRecords' : 'records';
     return [records, 'data'];
@@ -16,11 +16,11 @@ export function registryReducer(
   switch (action.type) {
     case RegistryActions.OPEN_RECORDS:
       let a1 = action as ReduxActions.Action<boolean>;
-      return state.updateIn(recordsPath(a1.payload), () => []);
+      return state.updateIn(recordsDataPath(a1.payload), () => new CRecordsData(a1.payload));
 
     case RegistryActions.OPEN_RECORDS_SUCCESS:
       let a2 = action as ReduxActions.Action<IRecords>;
-      return state.updateIn(recordsPath(a2.payload), () => a2.payload.data);
+      return state.updateIn(recordsDataPath(a2.payload), () => a2.payload.data);
 
     case RecordDetailActions.CLEAR_RECORD:
       return state.update('currentRecord', () => INITIAL_RECORD_DETAIL);
