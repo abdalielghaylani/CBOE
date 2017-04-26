@@ -135,7 +135,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   createCustomStore(ref: RegRecords) {
-    this.records.data.rows = new CustomStore({
+    ref.records.data.rows = new CustomStore({
       load: function (loadOptions) {
         if (loadOptions.sort !== null) {
           let sortCriteria = !loadOptions.sort[0].desc ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
@@ -146,6 +146,10 @@ export class RegRecords implements OnInit, OnDestroy {
             ref.recordsVM.fullDataLoaded = false;
             ref.updateContents();
           }
+        }
+        if (ref.recordsVM.totalFetched === ref.recordsVM.totalRecordCount) {
+          ref.recordsVM.fullDataLoaded = true;
+          ref.records.filterRow = { visible: true };
         }
         return ref.recordsVM.getFetchedRows();
       }
@@ -184,13 +188,6 @@ export class RegRecords implements OnInit, OnDestroy {
       if (!this.recordsVM.fullDataLoaded) {
         if (e.rowIndex === this.recordsVM.totalFetched - 1) {
           this.updateContents();
-        }
-        if (e.rowIndex + 1 === this.recordsVM.totalRecordCount) {
-          this.recordsVM.fullDataLoaded = true;
-          this.records.filterRow = { visible: true };
-        }
-        if (e.rowIndex > 0 && e.rowIndex === this.recordsVM.totalFetched - this.recordsVM.fetchLimit) {
-          // alert(e.component.pageIndex());
         }
       }
     }
