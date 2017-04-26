@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json.Linq;
-using PerkinElmer.COE.Registration.Server.Code;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -10,9 +7,13 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Xml;
+using Microsoft.Web.Http;
+using Newtonsoft.Json.Linq;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class AuthController : RegControllerBase
     {
         [HttpPost]

@@ -8,9 +8,11 @@ using Newtonsoft.Json.Linq;
 using CambridgeSoft.COE.Registration.Services;
 using Swashbuckle.Swagger.Annotations;
 using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class ComponentController : RegControllerBase
     {
         /// <summary>

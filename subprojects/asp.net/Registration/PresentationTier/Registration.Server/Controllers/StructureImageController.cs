@@ -10,9 +10,11 @@ using System;
 using System.Web;
 using System.IO;
 using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class StructureImageController : RegControllerBase
     {
         private string GetStructureRelativePath(string type, int compoundId, int height, int width, int resolution)

@@ -7,8 +7,8 @@ namespace PerkinElmer.COE.Registration.Server.Code
 {
     public static class Consts
     {
-        public const string apiVersion = "v1";
+        public const string apiVersion = "1.0";
 
-        public const string apiPrefix = "api/" + apiVersion + "/";
+        public const string apiPrefix = "api/v{version:apiVersion}/";
     }
 }
