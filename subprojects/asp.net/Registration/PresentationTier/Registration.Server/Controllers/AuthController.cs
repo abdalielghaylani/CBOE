@@ -18,12 +18,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     {
         [HttpPost]
         [Route(Consts.apiPrefix + "auth/login")]
-        public HttpResponseMessage Login()
+        public HttpResponseMessage Login([FromBody]JObject userData)
         {
             var errorMessage = new StringBuilder();
             try
             {
-                var userData = Request.Content.ReadAsAsync<JObject>().Result;
                 errorMessage.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
                 var webClient = new WebClient();
                 var loginUrl = string.Format("/COESingleSignOn/SingleSignOn.asmx/GetAuthenticationTicket?userName={0}&password=", userData["username"]);
@@ -45,12 +44,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         )
                     )
                 ));
-                var cookie = new CookieHeaderValue("COESSO", token);
-                cookie.Expires = DateTime.Now.AddMinutes(60);
-                cookie.Domain = Request.RequestUri.Host;
-                cookie.Path = "/";
-                cookie.HttpOnly = true;
-                response.Headers.AddCookies(new CookieHeaderValue[] { cookie });
+                var ssoCookie = new CookieHeaderValue("COESSO", token);
+                ssoCookie.Path = "/";
+                var inactivityCookie = new CookieHeaderValue("DisableInactivity", "true");
+                inactivityCookie.Path = "/";
+                inactivityCookie.Expires = DateTime.Now.AddMinutes(25);
+                response.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie, inactivityCookie });
                 return response;
             }
             catch (Exception ex)
