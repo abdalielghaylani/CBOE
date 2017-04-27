@@ -6,9 +6,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
-import { basePath } from '../configuration';
-
-const BASE_URL = `${basePath}api`;
+import { apiUrlPrefix } from '../configuration';
 
 @Injectable()
 export class SessionEpics {
@@ -17,7 +15,7 @@ export class SessionEpics {
   handleLoginUser = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
       .mergeMap(({ payload }) => {
-        return this.http.post(`${BASE_URL}/auth/login`, payload)
+        return this.http.post(`${apiUrlPrefix}auth/login`, payload)
           .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
           .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
       });
@@ -26,7 +24,7 @@ export class SessionEpics {
   handleLoginUserSuccess = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
       .mergeMap(() => {
-        return this.http.get(`${BASE_URL}/ViewConfig/Lookups`)
+        return this.http.get(`${apiUrlPrefix}ViewConfig/Lookups`)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
@@ -39,7 +37,7 @@ export class SessionEpics {
   handleCheckLogin = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.CHECK_LOGIN)
       .mergeMap(({ payload }) => {
-        return this.http.get(`${BASE_URL}/auth/validate/${payload}`)
+        return this.http.get(`${apiUrlPrefix}auth/validate/${payload}`)
           // .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
           // .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
           .map(result => {

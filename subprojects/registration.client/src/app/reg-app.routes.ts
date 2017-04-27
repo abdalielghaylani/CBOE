@@ -13,6 +13,9 @@ export const REG_APP_ROUTES: Routes = [{
   path: '',
   redirectTo: '/records/temp'
 }, {
+  path: 'index.html',
+  redirectTo: '/records/temp'
+}, {
   path: 'records/temp',
   component: RegRecordsPage
 }, {

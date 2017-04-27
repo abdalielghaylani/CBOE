@@ -9,9 +9,12 @@ using System.Net.Http.Headers;
 using System;
 using System.Web;
 using System.IO;
+using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class StructureImageController : RegControllerBase
     {
         private string GetStructureRelativePath(string type, int compoundId, int height, int width, int resolution)
@@ -29,7 +32,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new System.Type[] { typeof(string), typeof(string), typeof(double), typeof(double), typeof(string) }, null).Invoke(null, args);
         }
 
-        [Route("api/StructureImage/{type}/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
+        [Route(Consts.apiPrefix + "StructureImage/{type}/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
         public HttpResponseMessage GetStructureImage(string type, int compoundId, int height = 150, int width = 200, int resolution = 300)
         {
             var relPath = GetStructureRelativePath(type, compoundId, height, width, resolution);
@@ -42,7 +45,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return response;
         }
 
-        [Route("api/StructureUrl/{type}/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
+        [Route(Consts.apiPrefix + "StructureUrl/{type}/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
         public HttpResponseMessage GetStructureUrl(string type, int compoundId, int height = 150, int width = 200, int resolution = 300)
         {
             var relPath = GetStructureRelativePath(type, compoundId, height, width, resolution);

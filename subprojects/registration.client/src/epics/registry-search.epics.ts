@@ -12,10 +12,8 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
-import { basePath } from '../configuration';
+import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
-
-const BASE_URL = `${basePath}api`;
 
 @Injectable()
 export class RegistrySearchEpics {
@@ -33,7 +31,7 @@ export class RegistrySearchEpics {
   private handleOpenHitlists: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.OPEN_HITLISTS)
       .mergeMap(() => {
-        return this.http.get(`${BASE_URL}/search/hitlists`)
+        return this.http.get(`${apiUrlPrefix}hitlists`)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
@@ -46,7 +44,7 @@ export class RegistrySearchEpics {
   private handleDeleteHitlist: Epic = (action$: Observable<ReduxActions.Action<{ id: number }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.DELETE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.delete(`${BASE_URL}/search/hitlists/${payload.id}`)
+        return this.http.delete(`${apiUrlPrefix}hitlists/${payload.id}`)
           .map(result => {
             if (result.url.indexOf('index.html') > 0) {
               SessionActions.logoutUserAction();
@@ -62,7 +60,7 @@ export class RegistrySearchEpics {
   handleUpdateHitlist = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.UPDATE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.put(`${BASE_URL}/search/hitlists/${payload.hitlistID}`, payload)
+        return this.http.put(`${apiUrlPrefix}hitlists/${payload.hitlistID}`, payload)
           .map(result => {
             notifySuccess('The selected hitlist was updated successfully!', 5000);
             return RegistrySearchActions.openHitlistsAction();
@@ -77,7 +75,7 @@ export class RegistrySearchEpics {
         // restoreType 0 -: Restore hitlist
         // restoreType 1 -: Restore by union/intersect/substract
         if (payload.type === 0) {
-          return this.http.get(`${BASE_URL}/search/hitlists/` + payload.id + `/records`)
+          return this.http.get(`${apiUrlPrefix}hitlists/` + payload.id + `/records`)
             .map(result => {
               return result.url.indexOf('index.html') > 0
                 ? SessionActions.logoutUserAction()
@@ -86,7 +84,7 @@ export class RegistrySearchEpics {
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         }
         if (payload.type === 1) {
-          return this.http.post(`${BASE_URL}/search/restorehitlistsactions`, payload.data)
+          return this.http.post(`${apiUrlPrefix}restorehitlistsactions`, payload.data)
             .map(result => {
               return result.url.indexOf('index.html') > 0
                 ? SessionActions.logoutUserAction()

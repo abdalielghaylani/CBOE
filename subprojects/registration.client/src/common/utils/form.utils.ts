@@ -1,6 +1,6 @@
 import { NgRedux } from '@angular-redux/store';
 import { DOMParser, DOMParserStatic, XMLSerializer } from 'xmldom';
-import * as x2js from 'x2js';
+import * as X2JS from 'x2js';
 import { ConfigurationActions } from '../../actions';
 import { IAppState } from '../../store';
 import { FormGroupType, CFormGroup } from '../types/form.types';
@@ -17,7 +17,7 @@ export function getFormGroup(state: IAppState, type: FormGroupType): CFormGroup 
 
 export function convertToFormGroup(data: string): CFormGroup {
   let doc = new DOMParser().parseFromString(data);
-  let x2jsTool = new x2js.default({
+  let x2jsTool = new X2JS.default({
     arrayAccessFormPaths: [
       'formGroup.queryForms.queryForm',
       'formGroup.queryForms.queryForm.coeForms.coeForm',

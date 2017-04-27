@@ -7,9 +7,12 @@ using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using CambridgeSoft.COE.Registration.Services;
 using Swashbuckle.Swagger.Annotations;
+using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class ComponentController : RegControllerBase
     {
         /// <summary>
@@ -21,7 +24,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Invalid request</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route("api/v1/components")]
+        [Route(Consts.apiPrefix + "components")]
         [SwaggerOperation("GetComponents")]
         [SwaggerResponse(200, type: typeof(List<JObject>))]
         public async Task<IHttpActionResult> GetComponents(int? recordId = null, int? skip = null, int? count = null, string sort = null)
@@ -34,7 +37,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
-        [Route("api/v1/components/{id}")]
+        [Route(Consts.apiPrefix + "components/{id}")]
         [SwaggerOperation("GetComponent")]
         [SwaggerResponse(200, type: typeof(JObject))]
         public async Task<IHttpActionResult> GetComponent(int id)
@@ -45,18 +48,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route("api/v1/components")]
+        [Route(Consts.apiPrefix + "components")]
         [SwaggerOperation("CreateComponent")]
         [SwaggerResponse(201, type: typeof(JObject))]
         public async Task<IHttpActionResult> CreateComponent(JObject component)
         {
             CheckAuthentication();
             var id = -1;
-            return Created<JObject>(string.Format("api/v1/components/{0}", id), component);
+            return Created<JObject>(string.Format("{0}components/{1}", Consts.apiPrefix, id), component);
         }
 
         [HttpPut]
-        [Route("api/v1/components/{id}")]
+        [Route(Consts.apiPrefix + "components/{id}")]
         [SwaggerOperation("UpdateComponent")]
         [SwaggerResponse(200, type: typeof(string))]
         public async Task<IHttpActionResult> UpdateComponent(int id)
@@ -66,7 +69,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route("api/v1/components/{id}")]
+        [Route(Consts.apiPrefix + "components/{id}")]
         [SwaggerOperation("DeleteComponent")]
         [SwaggerResponse(200, type: typeof(string))]
         public async Task<IHttpActionResult> DeleteComponent(int id)

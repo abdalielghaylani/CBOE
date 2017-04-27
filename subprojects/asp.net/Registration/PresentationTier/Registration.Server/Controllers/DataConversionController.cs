@@ -6,9 +6,12 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Web;
 using System.Reflection;
+using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class DataConversionController : RegControllerBase
     {
         private JObject Convert(string fromType, string toType, string fromData)
@@ -30,7 +33,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route("api/DataConversion/ToCdxml")]
+        [Route(Consts.apiPrefix + "DataConversion/ToCdxml")]
         public JObject ToCdxml()
         {
             var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
@@ -38,7 +41,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route("api/DataConversion/FromCdxml")]
+        [Route(Consts.apiPrefix + "DataConversion/FromCdxml")]
         public JObject FromCdxml()
         {
             var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();

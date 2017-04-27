@@ -5,11 +5,11 @@ import {
   IRegistry, IRegistryRecord,
 } from './registry.types';
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
-import { basePath } from '../../configuration';
+import { apiUrlPrefix } from '../../configuration';
 
 const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: false,
-  data: new CRecordsData(),
+  data: new CRecordsData(false),
   gridColumns: [{
     dataField: 'ID',
     dataType: 'number',
@@ -33,9 +33,11 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',
+    allowEditing: false,
     allowFiltering: false,
+    allowSorting: false,
     cellTemplate: function (c, o) {
-      jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
+      jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
     },
     caption: 'Structure',
     width: 160,
@@ -57,7 +59,7 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
 
 const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: true,
-  data: new CRecordsData(),
+  data: new CRecordsData(true),
   gridColumns: [{
     dataField: 'ID',
     dataType: 'number',
@@ -89,9 +91,11 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',
+    allowEditing: false,
     allowFiltering: false,
+    allowSorting: false,
     cellTemplate: function (c, o) {
-      jQuery(`<img src="${basePath}api/StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
+      jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
     },
     caption: 'Structure',
     width: 160,

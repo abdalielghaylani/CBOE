@@ -14,9 +14,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import * as registryUtils from '../components/registry/registry.utils';
-import { basePath } from '../configuration';
+import { apiUrlPrefix } from '../configuration';
 
-const BASE_URL = `${basePath}api`;
 const WS_URL = `/COERegistration/Webservices/COERegistrationServices.asmx`;
 const WS_ENVELOPE = `<soap12:Envelope
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -52,7 +51,7 @@ export class RegistryEpics {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap(({ payload }) => {
         let temporary: boolean = payload;
-        return this.http.get(`${BASE_URL}/${payload.temporary ? 'temp-' : ''}records`
+        return this.http.get(`${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records`
           + '?skip=' + payload.skip + '&count=' + payload.take + `&sort=` + payload.sort)
           .map(result => {
             return result.url.indexOf('index.html') > 0
@@ -95,7 +94,7 @@ export class RegistryEpics {
         // Convert CDXML to encoded-CDX first
         const structPath = 'ComponentList/Component/Compound/BaseFragment/Structure/Structure';
         let data = registryUtils.getElementValue(a.payload.documentElement, structPath);
-        let url: string = `${BASE_URL}/DataConversion/FromCdxml`;
+        let url: string = `${apiUrlPrefix}DataConversion/FromCdxml`;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(url, { data }, options)
@@ -199,7 +198,7 @@ export class RegistryEpics {
     return action$.filter(({ type }) => type === RecordDetailActions.LOAD_STRUCTURE)
       .mergeMap(({ payload }) => {
         // Call CreateRegistryRecord
-        let url: string = `${BASE_URL}/DataConversion/ToCdxml`;
+        let url: string = `${apiUrlPrefix}DataConversion/ToCdxml`;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         let data: string = payload;

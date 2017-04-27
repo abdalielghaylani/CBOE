@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
-import * as x2js from 'x2js';
+import * as X2JS from 'x2js';
 import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
@@ -30,7 +30,7 @@ declare var jQuery: any;
   template: require('./record-detail.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
+export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
   @Input() id: number;
@@ -91,7 +91,7 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
     registryUtils.fixStructureData(this.recordDoc);
-    let x2jsTool = new x2js.default({
+    let x2jsTool = new X2JS.default({
       arrayAccessFormPaths: [
         'MultiCompoundRegistryRecord.ComponentList.Component',
         'MultiCompoundRegistryRecord.ComponentList.Component.Compound.PropertyList.Property',
@@ -100,6 +100,7 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
         'MultiCompoundRegistryRecord.BatchList.Batch',
         'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
         'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
+        'MultiCompoundRegistryRecord.IdentifierList.Identifier',
         'MultiCompoundRegistryRecord.ProjectList.Project',
         'MultiCompoundRegistryRecord.PropertyList.Property',
       ]
@@ -114,7 +115,7 @@ export class RegRecordDetail implements  IFormContainer, OnInit, OnDestroy {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup;
-    this.editMode = this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
+    this.editMode = this.id < 0 || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
     this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };

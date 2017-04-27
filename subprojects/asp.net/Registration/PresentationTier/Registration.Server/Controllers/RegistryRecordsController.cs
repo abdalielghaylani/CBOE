@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Newtonsoft.Json.Linq;
 using CambridgeSoft.COE.Registration.Services;
+using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
         #region Permanent Records
-        [Route("api/records")]
+        [Route(Consts.apiPrefix + "records")]
         public JObject Get(int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
@@ -27,7 +30,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
-        [Route("api/records/{id}")]
+        [Route(Consts.apiPrefix + "records/{id}")]
         public dynamic Get(int id)
         {
             return null;
@@ -35,7 +38,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #endregion // Permanent Records
 
         #region Temporary Records
-        [Route("api/temp-records")]
+        [Route(Consts.apiPrefix + "temp-records")]
         public JObject GetTemp(int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
@@ -50,7 +53,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
-        [Route("api/temp-records/{id}")]
+        [Route(Consts.apiPrefix + "temp-records/{id}")]
         public dynamic GetTemp(int id)
         {
             using (var service = new COERegistrationServices())
@@ -61,7 +64,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route("api/temp-records/{id}")]
+        [Route(Consts.apiPrefix + "temp-records/{id}")]
         public Task<HttpResponseMessage> DeleteTemp(int id)
         {
             using (var service = new COERegistrationServices())

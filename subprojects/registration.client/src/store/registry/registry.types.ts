@@ -12,6 +12,7 @@ export interface IRecordsData {
   temporary: boolean;
   startIndex: number;
   totalCount: number;
+  hitlistId?: number;
   rows: any[] | any;
 }
 
@@ -19,8 +20,15 @@ export class CRecordsData implements IRecordsData {
   temporary: boolean = false;
   startIndex: number = 0;
   totalCount: number = 0;
+  histlistId?: number = 0;
   rows: any[] | Function = [];
-  constructor() {}
+  constructor(temporary: boolean, rows: any[] = undefined) {
+    this.temporary = temporary;
+    if (rows) {
+      this.rows = rows;
+      this.totalCount = rows.length;
+    }
+  }
 }
 
 export interface IRecords {

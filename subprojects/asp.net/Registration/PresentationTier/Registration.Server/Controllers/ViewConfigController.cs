@@ -1,25 +1,28 @@
-﻿using System.Web.Http;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
-using Newtonsoft.Json.Linq;
+﻿using System;
+using System.Web.Http;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Linq;
+using Newtonsoft.Json.Linq;
+using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using CambridgeSoft.COE.Framework.COETableEditorService;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework.COESecurityService;
-using System;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.Common;
+using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class ViewConfigController : RegControllerBase
     {
-        [Route("api/ViewConfig/Lookups")]
+        [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
         public JObject GetLookups()
         {
             CheckAuthentication();

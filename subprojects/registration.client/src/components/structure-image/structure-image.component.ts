@@ -7,9 +7,7 @@ import {
 } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { basePath } from '../../configuration';
-
-const BASE_URL = `${basePath}api`;
+import { apiUrlPrefix } from '../../configuration';
 
 @Component({
   selector: 'reg-structure-image',
@@ -46,7 +44,7 @@ export class RegStructureImage {
       }
     }
     if (this.type && this.id) {
-      let url = `${BASE_URL}/StructureUrl/${this.type}/${this.id}/${this.height}/${this.width}/${this.resolution}`;
+      let url = `${apiUrlPrefix}StructureUrl/${this.type}/${this.id}/${this.height}/${this.width}/${this.resolution}`;
       if (this.modDate) {
         url += `?${this.modDate}`;
       }
