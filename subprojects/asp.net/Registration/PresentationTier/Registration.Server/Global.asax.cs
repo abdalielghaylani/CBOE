@@ -14,13 +14,12 @@ using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using Resources;
 using System.Net.Http.Formatting;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server
 {
     public class Global : System.Web.HttpApplication
     {
-        private const string ssoCookieName = "COESSO";
-
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
@@ -104,7 +103,7 @@ namespace PerkinElmer.COE.Registration.Server
         {
             if (Request.IsAuthenticated) return;
 
-            var ssoCookie = Request.Cookies[ssoCookieName];
+            var ssoCookie = Request.Cookies[Consts.ssoCookieName];
             var ssoCookieValue = ssoCookie == null ? null : ssoCookie.Value;
             FormsAuthenticationTicket authTicket = null;
             try
@@ -126,8 +125,8 @@ namespace PerkinElmer.COE.Registration.Server
             System.Security.Principal.GenericPrincipal principal = new System.Security.Principal.GenericPrincipal(id, null);
             // Attach the new principal object to the current HttpContext object
             Context.User = principal;
-            Response.Cookies[ssoCookieName].Value = ssoCookieValue;
-            Response.Cookies[ssoCookieName].Path = "/";
+            Response.Cookies[Consts.ssoCookieName].Value = ssoCookieValue;
+            Response.Cookies[Consts.ssoCookieName].Path = "/";
             Response.Cookies["DisableInactivity"].Value = "true";
             Response.Cookies["DisableInactivity"].Path = "/";
             Response.Cookies["DisableInactivity"].Expires = DateTime.Now.AddMinutes(25);
@@ -222,9 +221,9 @@ namespace PerkinElmer.COE.Registration.Server
             }
             else
             {
-                if (Request.Cookies[ssoCookieName] != null && !string.IsNullOrEmpty(Request.Cookies[ssoCookieName].Value))
+                if (Request.Cookies[Consts.ssoCookieName] != null && !string.IsNullOrEmpty(Request.Cookies[Consts.ssoCookieName].Value))
                 {
-                    userIdentifier = Request.Cookies[ssoCookieName].Value;
+                    userIdentifier = Request.Cookies[Consts.ssoCookieName].Value;
                     isTicket = true;
                 }
                 else

@@ -67,6 +67,7 @@ export class RegApp {
       registrySearchEpics.handleRegistrySearchActions,
       sessionEpics.handleLoginUser,
       sessionEpics.handleLoginUserSuccess,
+      sessionEpics.handleLogoutUser,
       sessionEpics.handleCheckLogin
     )));
 

@@ -10,5 +10,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
         public const string apiVersion = "1.0";
 
         public const string apiPrefix = "api/v{version:apiVersion}/";
+
+        public const string ssoCookieName = "COESSO";
     }
 }

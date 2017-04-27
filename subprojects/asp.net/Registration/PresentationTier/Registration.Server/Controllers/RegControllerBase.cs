@@ -1,21 +1,21 @@
-﻿using CambridgeSoft.COE.Framework.COETableEditorService;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Web;
 using System.Web.Http;
-using PerkinElmer.COE.Registration.Server.Code;
+using Csla.Data;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Registration.Access;
-using Csla.Data;
 using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
-using Newtonsoft.Json.Linq;
-using System.Web;
-using System.Net.Http.Headers;
 using CambridgeSoft.COE.Framework.COESecurityService;
+using CambridgeSoft.COE.Framework.COETableEditorService;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -131,8 +131,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected string GetSessionToken()
         {
-            CookieHeaderValue cookie = Request.Headers.GetCookies("COESSO").FirstOrDefault();
-            return cookie != null ? cookie["COESSO"].Value : string.Empty;
+            CookieHeaderValue cookie = Request.Headers.GetCookies(Consts.ssoCookieName).FirstOrDefault();
+            return cookie != null ? cookie[Consts.ssoCookieName].Value : string.Empty;
         }
 
         protected void CheckAuthentication()
