@@ -147,6 +147,10 @@
     <Compile Include="Controllers\ViewConfigController.cs" />
     <Compile Include="Controllers\StructureImageController.cs" />
     <Compile Include="Controllers\RegistryRecordsController.cs" />
+<<<<<<< HEAD
+=======
+    <Compile Include="Models\Component.cs" />
+>>>>>>> master
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\Hitlist.cs" />
     <Compile Include="Code\QueryHelper.cs" />
