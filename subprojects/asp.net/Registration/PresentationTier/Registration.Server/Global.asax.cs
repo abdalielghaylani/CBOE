@@ -19,32 +19,31 @@ namespace PerkinElmer.COE.Registration.Server
 {
     public class Global : System.Web.HttpApplication
     {
+        private const string ssoCookieName = "COESSO";
+
         protected void Application_Start(object sender, EventArgs e)
         {
             GlobalConfiguration.Configure(WebApiConfig.Register);
             GlobalConfiguration.Configuration.Formatters.Clear();
             GlobalConfiguration.Configuration.Formatters.Add(new JsonMediaTypeFormatter());
             HttpContext.Current.Application.Lock();
-            AppDomain.CurrentDomain.DomainUnload += new EventHandler(AppDomainUnloading);
+            AppDomain.CurrentDomain.DomainUnload += AppDomainUnloading;
             HttpContext.Current.Application[RegistrationWebApp.Constants.AppName] = GUIShellUtilities.GetApplicationName();
             HttpContext.Current.Application[RegistrationWebApp.Constants.AppPagesTitle] = GUIShellUtilities.GetDefaultPagesTitle();
-            HttpContext.Current.Application[GUIShellTypes.EnablePopUpForBrowserVersions] = GUIShellUtilities.GetPopUpBrowserVersions();
-            HttpContext.Current.Application[GUIShellTypes.Themes] = GUIShellUtilities.GetThemes();
             HttpContext.Current.Application.UnLock();
         }
 
-        public void AppDomainUnloading(object s, EventArgs e)
+        private void AppDomainUnloading(object s, EventArgs e)
         {
             System.Environment.Exit(0);
         }
 
-        void Application_End(object sender, EventArgs e)
+        protected void Application_End(object sender, EventArgs e)
         {
             //  Code that runs on application shutdown
-
         }
 
-        void Application_Error(object sender, EventArgs e)
+        protected void Application_Error(object sender, EventArgs e)
         {
             //What was the error we encountered?
             Exception serverEx = this.Server.GetLastError().GetBaseException();
@@ -101,83 +100,40 @@ namespace PerkinElmer.COE.Registration.Server
             }
         }
 
-        protected void Application_AuthenticateRequest(Object sender, EventArgs e)
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-            if (!Request.IsAuthenticated)
-            {
-                FormsAuthenticationTicket authTicket = null;
+            if (Request.IsAuthenticated) return;
 
-                try
-                {
-                    if (Request["ticket"] != null)
-                    {
-                        authTicket = FormsAuthentication.Decrypt(Request["ticket"]);
-                    }
-                    else if (Request.Cookies["COESSO"] != null && !string.IsNullOrEmpty(Request.Cookies["COESSO"].Value))
-                    {
-                        authTicket = FormsAuthentication.Decrypt(Request.Cookies["COESSO"].Value);
-                    }
-                }
-                catch
-                {
-                    // Log exception details (omitted for simplicity)
-                    return;
-                }
-                if (null == authTicket)
-                {
-                    // Cookie failed to decrypt.
-                    return;
-                }
-                else
-                {
-                    authTicket = FormsAuthentication.RenewTicketIfOld(authTicket);
-                    // Create an Identity object
-                    FormsIdentity id = new FormsIdentity(authTicket);
-                    // This principal will flow throughout the request.
-                    System.Security.Principal.GenericPrincipal principal = new System.Security.Principal.GenericPrincipal(id, null);
-                    // Attach the new principal object to the current HttpContext object
-                    Context.User = principal;
-                    Response.Cookies["COESSO"].Value = Request["ticket"].ToString();
-                    Response.Cookies["COESSO"].Path = "/";
-                    Response.Cookies["DisableInactivity"].Value = "true";
-                    Response.Cookies["DisableInactivity"].Path = "/";
-                    Response.Cookies["DisableInactivity"].Expires = DateTime.Now.AddMinutes(25);
-                }
+            var ssoCookie = Request.Cookies[ssoCookieName];
+            var ssoCookieValue = ssoCookie == null ? null : ssoCookie.Value;
+            FormsAuthenticationTicket authTicket = null;
+            try
+            {
+                if (!string.IsNullOrEmpty(ssoCookieValue))
+                    authTicket = FormsAuthentication.Decrypt(ssoCookieValue);
             }
+            catch
+            {
+                // Log exception details (omitted for simplicity)
+                return;
+            }
+            if (null == authTicket) return;
+
+            authTicket = FormsAuthentication.RenewTicketIfOld(authTicket);
+            // Create an Identity object
+            FormsIdentity id = new FormsIdentity(authTicket);
+            // This principal will flow throughout the request.
+            System.Security.Principal.GenericPrincipal principal = new System.Security.Principal.GenericPrincipal(id, null);
+            // Attach the new principal object to the current HttpContext object
+            Context.User = principal;
+            Response.Cookies[ssoCookieName].Value = ssoCookieValue;
+            Response.Cookies[ssoCookieName].Path = "/";
+            Response.Cookies["DisableInactivity"].Value = "true";
+            Response.Cookies["DisableInactivity"].Path = "/";
+            Response.Cookies["DisableInactivity"].Expires = DateTime.Now.AddMinutes(25);
         }
 
-        // Code that runs when a new session is started
-        void Session_Start(object sender, EventArgs e)
-        {
-            DoLogin();
-            // Get RegistryRecord prototype to avoid multiple calls.
-            if (HttpContext.Current.Session["NewRegistryRecord"] == null)
-            {
-                RegUtilities.GetNewRegistryRecord(); // Dont change.
-                // Note : Some pages will call registryrecord object at prerendercomplete[Submitmixutre.aspx], it will not force user to import configuration if is defect, works independent of any page events.
-            }
-            // COEPageControlSettings.
-            if (!string.IsNullOrEmpty(RegUtilities.GetConfigSetting("MISC", "PageControlsManager")))
-                if (RegUtilities.GetConfigSetting("MISC", "PageControlsManager").ToUpper() == "ENABLE")
-                    RegUtilities.SetCOEPageSettings(false);
-
-            if (!string.IsNullOrEmpty(RegUtilities.GetConfigSetting("MISC", "EnableLogging")))
-                CambridgeSoft.COE.Framework.COELoggingService.COELog.GetSingleton("COERegistration").Enabled = bool.Parse(RegUtilities.GetConfigSetting("MISC", "EnableLogging"));
-
-            if (Request["ticket"] == null && Request.Headers["Cookie"] != null && Request.Headers["Cookie"].IndexOf("ASP.NET_SessionId") >= 0 && (Request.Cookies["DisableInactivity"] == null || string.IsNullOrEmpty(Request.Cookies["DisableInactivity"].Value)) && !Request.Url.Query.Contains("Inactivity=true"))
-            {
-                DoLogout();
-                Response.Redirect("/COEManager/Forms/Public/ContentArea/Login.aspx?Inactivity=true&ReturnURL=" + HttpContext.Current.Request.Url.ToString());
-            }
-        }
-
-        void Session_End(object sender, EventArgs e)
-        {
-            //CambridgeSoft.COE.Framework.GUIShell.GUIShellUtilities.DoLogout();
-            //this.DoLogout();
-        }
-
-        void Application_PreRequestHandlerExecute(object sender, EventArgs e)
+        protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)
         {
             HttpApplication app = sender as HttpApplication;
 
@@ -208,7 +164,38 @@ namespace PerkinElmer.COE.Registration.Server
             }
         }
 
-        public void DoLogin()
+        // Code that runs when a new session is started
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            DoLogin();
+            // Get RegistryRecord prototype to avoid multiple calls.
+            if (HttpContext.Current.Session["NewRegistryRecord"] == null)
+            {
+                RegUtilities.GetNewRegistryRecord(); // Dont change.
+                // Note : Some pages will call registryrecord object at prerendercomplete[Submitmixutre.aspx], it will not force user to import configuration if is defect, works independent of any page events.
+            }
+            // COEPageControlSettings.
+            if (!string.IsNullOrEmpty(RegUtilities.GetConfigSetting("MISC", "PageControlsManager")))
+                if (RegUtilities.GetConfigSetting("MISC", "PageControlsManager").ToUpper() == "ENABLE")
+                    RegUtilities.SetCOEPageSettings(false);
+
+            if (!string.IsNullOrEmpty(RegUtilities.GetConfigSetting("MISC", "EnableLogging")))
+                CambridgeSoft.COE.Framework.COELoggingService.COELog.GetSingleton("COERegistration").Enabled = bool.Parse(RegUtilities.GetConfigSetting("MISC", "EnableLogging"));
+
+            if (Request["ticket"] == null && Request.Headers["Cookie"] != null && Request.Headers["Cookie"].IndexOf("ASP.NET_SessionId") >= 0 && (Request.Cookies["DisableInactivity"] == null || string.IsNullOrEmpty(Request.Cookies["DisableInactivity"].Value)) && !Request.Url.Query.Contains("Inactivity=true"))
+            {
+                DoLogout();
+                Response.Redirect("/COEManager/Forms/Public/ContentArea/Login.aspx?Inactivity=true&ReturnURL=" + HttpContext.Current.Request.Url.ToString());
+            }
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            //CambridgeSoft.COE.Framework.GUIShell.GUIShellUtilities.DoLogout();
+            //this.DoLogout();
+        }
+
+        private void DoLogin()
         {
             string appName = string.Empty;
             bool isTicket = true;
@@ -235,9 +222,9 @@ namespace PerkinElmer.COE.Registration.Server
             }
             else
             {
-                if (Request.Cookies["COESSO"] != null && !string.IsNullOrEmpty(Request.Cookies["COESSO"].Value))
+                if (Request.Cookies[ssoCookieName] != null && !string.IsNullOrEmpty(Request.Cookies[ssoCookieName].Value))
                 {
-                    userIdentifier = Request.Cookies["COESSO"].Value;
+                    userIdentifier = Request.Cookies[ssoCookieName].Value;
                     isTicket = true;
                 }
                 else
