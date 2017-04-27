@@ -15,9 +15,11 @@ using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.Common;
 using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class ViewConfigController : RegControllerBase
     {
         [Route(Consts.apiPrefix + "ViewConfig/Lookups")]

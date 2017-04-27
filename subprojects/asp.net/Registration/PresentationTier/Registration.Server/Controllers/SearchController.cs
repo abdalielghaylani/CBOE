@@ -33,12 +33,11 @@ using System.Data;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.COESearchService;
 using PerkinElmer.COE.Registration.Server.Code;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    [ApiVersion(Consts.apiVersion)]
     public class SearchController : RegControllerBase
     {
         private const string dbName = "REGDB";

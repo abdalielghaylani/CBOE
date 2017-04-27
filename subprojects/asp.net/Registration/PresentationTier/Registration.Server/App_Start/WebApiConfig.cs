@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
+using Microsoft.Web.Http.Routing;
 // using Microsoft.Owin.Security.OAuth;
 // using Newtonsoft.Json.Serialization;
 
@@ -21,11 +23,14 @@ namespace PerkinElmer.COE.Registration.Server
             // config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             // Web API routes
-            config.MapHttpAttributeRoutes();
+            var constraintResolver = new DefaultInlineConstraintResolver();
+            constraintResolver.ConstraintMap.Add("apiVersion", typeof(ApiVersionRouteConstraint));
+            config.MapHttpAttributeRoutes(constraintResolver);
+            config.AddApiVersioning();
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
+                routeTemplate: "api/v{version:apiVersion}/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
         }

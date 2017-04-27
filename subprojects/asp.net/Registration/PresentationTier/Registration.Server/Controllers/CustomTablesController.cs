@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using PerkinElmer.COE.Registration.Server.Code;
 using Newtonsoft.Json.Linq;
+using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
+    [ApiVersion(Consts.apiVersion)]
     public class CustomTablesController : RegControllerBase
     {
         [Route(Consts.apiPrefix + "CustomTables")]

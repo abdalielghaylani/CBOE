@@ -805,7 +805,7 @@ export class RecordsVM {
     if (initial) {
       this.currentRows = d.rows;
     } else {
-      this.currentRows = this.currentRows.concat(d);
+      this.currentRows = this.currentRows.concat(d.rows);
     }
     this.totalFetched = this.currentRows.length;
   }
