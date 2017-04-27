@@ -147,6 +147,7 @@
     <Compile Include="Controllers\ViewConfigController.cs" />
     <Compile Include="Controllers\StructureImageController.cs" />
     <Compile Include="Controllers\RegistryRecordsController.cs" />
+    <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\Hitlist.cs" />
     <Compile Include="Code\QueryHelper.cs" />
     <Compile Include="Controllers\CustomTablesController.cs" />
