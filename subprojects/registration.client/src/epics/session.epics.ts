@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { IPayloadAction, SessionActions } from '../actions';
+import { IPayloadAction, SessionActions, RegActions } from '../actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -31,6 +31,15 @@ export class SessionEpics {
               : SessionActions.loadLookupsSuccessAction(result.json());
           })
           .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
+      });
+  }
+
+  handleLogoutUser = (action$: Observable<IPayloadAction>) => {
+    return action$.filter(({ type }) => type === SessionActions.LOGOUT_USER)
+      .mergeMap(() => {
+        return this.http.get(`${apiUrlPrefix}auth/logout`)
+          .map(result => RegActions.ignoreAction())
+          .catch(error => Observable.of(RegActions.ignoreAction()));
       });
   }
 
