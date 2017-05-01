@@ -8,6 +8,8 @@ using Newtonsoft.Json.Linq;
 using CambridgeSoft.COE.Registration.Services;
 using PerkinElmer.COE.Registration.Server.Code;
 using Microsoft.Web.Http;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -15,41 +17,49 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     public class RegistryRecordsController : RegControllerBase
     {
         #region Permanent Records
+        [HttpGet]
         [Route(Consts.apiPrefix + "records")]
-        public JObject Get(int? skip = null, int? count = null, string sort = null)
+        [SwaggerOperation("GetRecords")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetRecords(int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
             var tableName = "vw_mixture_regnumber";
             var query = GetQuery(tableName, RecordColumns, sort, "modified", "regid");
-            return new JObject(
+            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, new JObject(
                 new JProperty("temporary", false),
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
                 new JProperty("rows", ExtractData(query, null, skip, count))
-            );
+            ));
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         [HttpGet]
         [Route(Consts.apiPrefix + "records/{id}")]
-        public dynamic Get(int id)
+        public dynamic GetRecord(int id)
         {
             return null;
         }
         #endregion // Permanent Records
 
         #region Temporary Records
+        [HttpGet]
         [Route(Consts.apiPrefix + "temp-records")]
-        public JObject GetTemp(int? skip = null, int? count = null, string sort = null)
+        [SwaggerOperation("GetTemp")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetTemp(int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
             var tableName = "vw_temporarycompound";
             var query = GetQuery(tableName, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
-            return new JObject(
+            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, new JObject(
                 new JProperty("temporary", true),
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
                 new JProperty("rows", ExtractData(query, null, skip, count))
-            );
+            ));
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         [HttpGet]
@@ -65,14 +75,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         [HttpDelete]
         [Route(Consts.apiPrefix + "temp-records/{id}")]
-        public Task<HttpResponseMessage> DeleteTemp(int id)
+        [SwaggerOperation("DeleteTemp")]
+        [SwaggerResponse(200, type: typeof(string))]
+        public async Task<IHttpActionResult> DeleteTemp(int id)
         {
             using (var service = new COERegistrationServices())
             {
                 service.Credentials.AuthenticationTicket = GetSessionToken();
-                var response = new HttpResponseMessage(System.Net.HttpStatusCode.OK);
-                response.Content = new StringContent(service.DeleteTemporaryRegistryRecord(id));
-                return Task.FromResult(response);
+                var responseMessage = Request.CreateResponse(HttpStatusCode.OK, service.DeleteTemporaryRegistryRecord(id));
+                return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
             }
         }
         #endregion // Tempoary Records

@@ -21,6 +21,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     {
         [HttpPost]
         [Route(Consts.apiPrefix + "auth/login")]
+        [SwaggerOperation("Login")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(string))]
         public async Task<IHttpActionResult> Login([FromBody]JObject userData)
         {
             HttpResponseMessage responseMessage;
@@ -57,7 +60,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
-                responseMessage = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Login failed!", ex);
+                message.AppendLine("Login failed!");
+                responseMessage = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message.ToString(), ex);
             }
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
@@ -80,7 +84,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "auth/validate/{userName}")]
         public HttpResponseMessage Validate(string userName)
         {
-            var errorMessage = new StringBuilder();
+            var message = new StringBuilder();
             try
             {
                 bool isValid = false;
@@ -90,19 +94,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var token = tokenCookie == null ? null : tokenCookie.Value; 
                 if (!string.IsNullOrEmpty(token))
                 {
-                    errorMessage.AppendLine(string.Format("Validating token, {0}...", token));
+                    message.AppendLine(string.Format("Validating token, {0}...", token));
                     var webClient = new WebClient();
                     var validateUrl = SSO_URL + "ValidateTicket?encryptedTicket=";
                     validateUrl = GetAbsoluteUrl(validateUrl, true);
                     string response;
-                    errorMessage.AppendLine(string.Format("Opening {0}...", validateUrl));
+                    message.AppendLine(string.Format("Opening {0}...", validateUrl));
                     using (var validateResponse = new StreamReader(webClient.OpenRead(validateUrl + token)))
                         response = validateResponse.ReadToEnd();
                     var xml = new XmlDocument();
                     xml.LoadXml(response);
                     isValid = Boolean.Parse(xml.DocumentElement.FirstChild.InnerText.Trim());
                 }
-                errorMessage.AppendLine(string.Format("Valid: {0}", isValid));
+                message.AppendLine(string.Format("Valid: {0}", isValid));
                 var responseObject = new JObject(
                     new JProperty("isValid", isValid)
                 );
@@ -122,30 +126,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
-                errorMessage.AppendLine("Validation failed!");
-                throw new InvalidOperationException(errorMessage.ToString(), ex);
+                message.AppendLine("Validation failed!");
+                throw new InvalidOperationException(message.ToString(), ex);
             }
         }
 
         [Route(Consts.apiPrefix + "auth/renew/{token}")]
         public HttpResponseMessage Renew(string token)
         {
-            var errorMessage = new StringBuilder();
+            var message = new StringBuilder();
             try
             {
                 var userData = Request.Content.ReadAsAsync<JObject>().Result;
-                errorMessage.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
+                message.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
                 var webClient = new WebClient();
                 var loginUrl = string.Format("/COESingleSignOn/SingleSignOn.asmx/GetAuthenticationTicket?userName={0}&password=", userData["username"]);
                 loginUrl = GetAbsoluteUrl(loginUrl, true);
                 string newToken;
-                errorMessage.AppendLine(string.Format("Opening {0}...", loginUrl));
+                message.AppendLine(string.Format("Opening {0}...", loginUrl));
                 using (var loginResponse = new StreamReader(webClient.OpenRead(loginUrl + userData["password"])))
                     newToken = loginResponse.ReadToEnd();
                 var xml = new XmlDocument();
                 xml.LoadXml(newToken);
                 newToken = xml.DocumentElement.FirstChild.InnerText.Trim();
-                errorMessage.AppendLine(string.Format("Token: {0}", newToken));
+                message.AppendLine(string.Format("Token: {0}", newToken));
                 var response = Request.CreateResponse(HttpStatusCode.OK, new JObject(
                     new JProperty("data", new JObject(new JProperty("msg", "LOGIN SUCCESSFUL"))),
                     new JProperty("meta",
@@ -164,8 +168,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
-                errorMessage.AppendLine("Login failed!");
-                throw new InvalidOperationException(errorMessage.ToString(), ex);
+                message.AppendLine("Login failed!");
+                throw new InvalidOperationException(message.ToString(), ex);
             }
         }
     }

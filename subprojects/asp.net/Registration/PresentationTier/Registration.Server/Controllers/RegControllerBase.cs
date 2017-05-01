@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Dynamic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Authentication;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Csla.Data;
@@ -139,7 +142,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             string sessionToken = GetSessionToken();
             if (string.IsNullOrEmpty(sessionToken) || !COEPrincipal.Login(sessionToken, true))
-                throw new InvalidOperationException("Authentication failed");
+                throw new AuthenticationException();
+        }
+
+        protected async Task<IHttpActionResult> CallGetMethod(Func<object> method)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                CheckAuthentication();
+                var tableList = new JArray();
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, method());
+            }
+            catch (Exception ex)
+            {
+                responseMessage = Request.CreateErrorResponse(
+                    ex is AuthenticationException ?
+                    HttpStatusCode.Unauthorized :
+                    HttpStatusCode.InternalServerError, ex);
+            }
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         public static string GetAbsoluteUrl(string relativeUrl, bool globalScope = false)

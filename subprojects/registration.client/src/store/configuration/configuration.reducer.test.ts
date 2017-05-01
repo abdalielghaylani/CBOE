@@ -21,12 +21,12 @@ describe('configuration reducer', () => {
     const nextState = configurationReducer(
       previousState,
       ConfigurationActions.openTableAction(tableId));
-    expect(nextState.customTables[tableId]).toEqual([]);
+    expect(nextState.customTables[tableId]).toEqual({ rows: [] });
   });
 
   it('should update rows on OPEN_TABLE_SUCCESS', () => {
     const tableId = 'table1';
-    const data = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
+    const data = { rows: [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }] };
     const previousState = initState;
     const nextState = configurationReducer(
       previousState,
