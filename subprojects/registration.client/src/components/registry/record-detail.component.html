@@ -1,4 +1,4 @@
-<div class="container-fluid border-light background-white">
+<div class="viewcontainer">
   <div>
     <form class="form-inline" role="form" ng-submit="search(query)">
       <div>
@@ -8,7 +8,7 @@
         <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="(temporary &amp;&amp; !editMode) || id < 0 ">Register</button>
       </div>
       <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
-           {{title}}
+        {{title}}
       </reg-page-header>
       <div class="panel with-nav-tabs panel-default">
         <div class="panel-heading">

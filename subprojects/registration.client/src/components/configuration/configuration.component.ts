@@ -9,7 +9,7 @@ import { ICustomTableData, IConfiguration } from '../../store';
 @Component({
   selector: 'reg-configuration',
   template: `
-    <div class="container-fluid border-light background-white pb2">
+    <div class="viewcontainer">
       <reg-page-header>{{ this.tableName() }}</reg-page-header>
 
       <dx-data-grid [dataSource]=this.rows [paging]='{pageSize: 10}' 
