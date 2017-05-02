@@ -1,4 +1,5 @@
-<reg-login-modal (onSubmit)="sessionActions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
+<reg-login-modal (onSubmit)="sessionActions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async"
+  *ngIf="loggedOut$ | async">
 </reg-login-modal>
 <reg-navigator testid="navigator" *ngIf="(loggedIn$ | async)" [cssClass]="this.fullScreenEnabled? 'navbar-fullScreen' :'navbar navbar-default navbar-fixed-top navbar-top'">
   <reg-navigator-header>
@@ -71,23 +72,26 @@
 </reg-navigator>
 <reg-sidebar *ngIf="loggedIn$ | async" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
-    <circle-icon title="Review Temporary" color="green" iconName="table" routeLink="records/temp"></circle-icon>
+    <circle-icon title="Review Temporary" color="yellow" isSelected="{{ (routerLink$ | async).endsWith('/temp') }}" iconName="table"
+      routeLink="records/temp"></circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') ? 'selected' : '' }}">
-    <circle-icon title="Submit New Compound" color="teal" iconName="flask" routeLink="records/new">
+    <circle-icon title="Submit New Compound" color="purple" iconName="flask" isSelected="{{(routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') }}"
+      routeLink="records/new">
     </circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('records') ? 'selected' : '' || (routerLink$ | async).endsWith('search') ? 'selected' : '' }}">
-    <circle-icon title="Search Registry" color="blue" iconName="search" routeLink="records">
+    <circle-icon title="Search Registry" color="purple-neutral" iconName="search" isSelected="{{(routerLink$ | async).endsWith('records') || (routerLink$ | async).endsWith('search')}} "
+      routeLink="records">
     </circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('configuration') > 0 ? 'selected' : '' }}">
-    <circle-icon title="Configuration" color="purple" iconName="gears" routeLink="configuration/VW_PROJECT">
+    <circle-icon title="Configuration" color="green-mid" iconName="gears" isSelected="{{((routerLink$ | async).indexOf('configuration') > 0)}}"
+      routeLink="configuration/VW_PROJECT">
     </circle-icon>
   </li>
 </reg-sidebar>
-<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" 
-  [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'" 
+<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'"
   [iconName]="this.fullScreenEnabled? 'compress' : 'expand'" [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
 </full-screen-icon>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">

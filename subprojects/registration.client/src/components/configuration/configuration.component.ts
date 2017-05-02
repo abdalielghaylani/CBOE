@@ -4,12 +4,12 @@ import { select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { IConfiguration } from '../../store';
+import { ICustomTableData, IConfiguration } from '../../store';
 
 @Component({
   selector: 'reg-configuration',
   template: `
-    <div class="container-fluid border-light background-white pb2">
+    <div class="viewcontainer">
       <reg-page-header>{{ this.tableName() }}</reg-page-header>
 
       <dx-data-grid [dataSource]=this.rows [paging]='{pageSize: 10}' 
@@ -65,7 +65,8 @@ export class RegConfiguration implements OnInit, OnDestroy {
 
   loadData(customTables: any) {
     if (customTables && customTables[this.tableId]) {
-      this.rows = customTables[this.tableId];
+      let customTableData: ICustomTableData = customTables[this.tableId];
+      this.rows = customTableData.rows;
       this.changeDetector.markForCheck();
     }
   }

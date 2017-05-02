@@ -195,6 +195,13 @@
   top: -110px;
 }
 
-#content .container-fluid {
-  min-height: 300px;
+.regcontainer {
+  height: 100%;
+  margin-left: 15px;
+  margin-right: 10px;
+}
+
+.viewcontainer {
+  padding-left: 15px;
+  padding-right: 15px;
 }
