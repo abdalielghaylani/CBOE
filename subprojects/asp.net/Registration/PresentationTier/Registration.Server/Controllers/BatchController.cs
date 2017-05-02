@@ -9,6 +9,8 @@ using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Registration.Services;
 using PerkinElmer.COE.Registration.Server.Code;
 using Microsoft.Web.Http;
+using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Registration;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -24,16 +26,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Invalid request</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route(Consts.apiPrefix + "batches")]
+        [Route(Consts.apiPrefix + "batches/{Id}/records")]
         [SwaggerOperation("GetBatchs")]
-        [SwaggerResponse(200, type: typeof(List<JObject>))]
-        public async Task<IHttpActionResult> GetBatchs(int? recordId = null, int? skip = null, int? count = null, string sort = null)
+        public JObject GetBatchs(int? id = null, int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
-            // Get the list of batches asynchronously
-            // And return the list
-            List<JObject> data = null;
-            return Ok(data);
+            var tableName = "batches";
+            var whereClause = " WHERE FULLREGNUMBER=:fullregNumber";
+            var query = GetQuery(tableName + whereClause, RecordColumns, sort, "TEMPBATCHID", "BATCH_INTERNAL_ID");
+            var args = new Dictionary<string, object>();
+            args.Add(":fullregNumber", id);
+            return new JObject(
+                new JProperty("batch", false),
+                new JProperty("fullregNumber", id),
+                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
+                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                new JProperty("rows", ExtractData(query, args, skip, count))
+            );
         }
 
         // TODO: Add comments for summary, remarks, and response codes.
@@ -50,44 +59,50 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("GetBatch")]
         [SwaggerResponse(200, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetBatch(int id)
+        public Batch GetBatch(int id)
         {
             CheckAuthentication();
-            // TODO: This has to be implemented.
-            // The method to return batch data from DAL should be an asynchronous method.
-            if (id < 0) return NotFound();
-            return Ok(new JObject());
+            var bacthRecord = new Batch();
+            //bacthRecord = (Batch)CambridgeSoft.COE.Registration.Services.Types.Batch.GetBatch(id);
+            return bacthRecord;
         }
 
         [HttpPost]
         [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("CreateBatch")]
-        [SwaggerResponse(201, type: typeof(JObject))]
-        public async Task<IHttpActionResult> CreateBatch(JObject batch)
+        public void CreateBatch(JObject batch)
         {
             CheckAuthentication();
-            var id = -1;
-            return Created<JObject>(string.Format("{0}batches/{1}", Consts.apiPrefix, id), batch);
+            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
+            Batch batchNew = new Batch();
+            batchNew.ID = (int)hitlistData["id"];
+            batchNew.TempBatchID = (int)hitlistData["tempBatchID"];
+            batchNew.BatchNumber = (int)hitlistData["batchNumber"];
+            batchNew.FullRegNumber = (string)hitlistData["fullRegNumber"];
+            batchNew.DateCreated = (DateTime)hitlistData["dateCreated"];
+            batchNew.PersonCreated = (int)hitlistData["personCreated"];
+            batchNew.PersonRegistered = (int)hitlistData["personRegistered"];
+            batchNew.PersonApproved = (int)hitlistData["personApproved"];
+            batchNew.DateLastModified = (DateTime)hitlistData["dateLastModified"];
+            //batchNew.Status = (RegistryStatus)hitlistData["status"].ToString();
         }
 
         [HttpPut]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("UpdateBatch")]
-        [SwaggerResponse(200, type: typeof(string))]
-        public async Task<IHttpActionResult> UpdateBatch(int id)
+        public void UpdateBatch(int id)
         {
             CheckAuthentication();
-            return Ok(string.Format("The batch #{0} was updated successfully!", id));
+            //return Ok(string.Format("The batch #{0} was updated successfully!", id));
         }
 
         [HttpDelete]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("DeleteBatch")]
-        [SwaggerResponse(200, type: typeof(string))]
-        public async Task<IHttpActionResult> DeleteBatch(int id)
+        public void DeleteBatch(int id)
         {
             CheckAuthentication();
-            return Ok(string.Format("The batch #{0} was deleted successfully!", id));
+            CambridgeSoft.COE.Registration.Services.Types.Batch.DeleteBatch(id);
         }
     }
 }
