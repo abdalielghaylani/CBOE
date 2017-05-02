@@ -26,7 +26,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Invalid request</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route(Consts.apiPrefix + "batches/{Id}/records")]
+        [Route(Consts.apiPrefix + "batchs/Id/records")]
         [SwaggerOperation("GetBatchs")]
         public JObject GetBatchs(int? id = null, int? skip = null, int? count = null, string sort = null)
         {
@@ -59,12 +59,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("GetBatch")]
         [SwaggerResponse(200, type: typeof(JObject))]
-        public Batch GetBatch(int id)
+        public JArray GetBatch(int id)
         {
             CheckAuthentication();
-            var bacthRecord = new Batch();
-            //bacthRecord = (Batch)CambridgeSoft.COE.Registration.Services.Types.Batch.GetBatch(id);
-            return bacthRecord;
+            JArray data = new JArray();
+            string fullregNumber = string.Empty;
+            fullregNumber = CambridgeSoft.COE.Registration.Services.Types.Batch.GetBatch(id).RegNumber.ToString();
+            return ExtractData("SELECT BATCH_INTERNAL_ID, TEMPBATCHID, BATCH_NUMBER, FULLREGNUMBER, DATECREATED, ENTRY_PERSON_ID, BATCH_REG_PERSON_ID, PERSONAPPROVED, LAST_MOD_DATE, STATUS_ID FROM REGDB.batches WHERE FULLREGNUMBER="+ fullregNumber +"");
         }
 
         [HttpPost]
@@ -84,7 +85,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             batchNew.PersonRegistered = (int)hitlistData["personRegistered"];
             batchNew.PersonApproved = (int)hitlistData["personApproved"];
             batchNew.DateLastModified = (DateTime)hitlistData["dateLastModified"];
-            //batchNew.Status = (RegistryStatus)hitlistData["status"].ToString();
         }
 
         [HttpPut]
@@ -99,6 +99,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("DeleteBatch")]
+        [SwaggerResponse(200, type: typeof(string))] 
         public void DeleteBatch(int id)
         {
             CheckAuthentication();
