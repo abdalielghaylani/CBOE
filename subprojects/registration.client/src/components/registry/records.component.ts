@@ -294,7 +294,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   showMarked() {
-    if (this.selectedRows) {
+    if (this.selectedRows && !this.rowSelected) {
       this.rowSelected = true;
       this.tempResultRows = this.records.data.rows;
       this.records.data.rows = this.selectedRows;
@@ -302,10 +302,12 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   showSearchResults() {
-    this.rowSelected = false;
-    this.records.data.rows = this.tempResultRows;
-    this.selectedRows = [];
-    this.tempResultRows = [];
+    if (this.rowSelected) {
+      this.rowSelected = false;
+      this.selectedRows = this.records.data.rows;
+      this.records.data.rows = this.tempResultRows;
+      this.tempResultRows = [];
+    }
   }
 
   printRecords() {

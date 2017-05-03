@@ -63,6 +63,12 @@ export class RegRecordSearch implements OnInit, OnDestroy {
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
   }
 
+  savePreference(e) {
+  }
+
+  restorePreference(e) {
+  }
+
   cancel(e) {
     this.onClose.emit(e);
   }

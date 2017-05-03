@@ -1,9 +1,4 @@
-<div class="btn-group btn-group-sx pull-right" role="group" aria-label="" style="margin:5px">
-  <button type="button" class="btn btn-default border-2 status background-green border-green" (click)="cancel($event)">
-    <i class="fa fa fa-close white" aria-hidden="true"></i>
-  </button>
-  <button type="button" class="btn btn-default border-2 status border-green green" (click)="cancel($event)">Close</button>
-</div>
+<command-button testid="close-query-management-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
 <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
   Query Management
 </reg-page-header>
