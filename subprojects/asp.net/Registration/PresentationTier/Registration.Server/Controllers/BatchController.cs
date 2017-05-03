@@ -11,6 +11,7 @@ using PerkinElmer.COE.Registration.Server.Code;
 using Microsoft.Web.Http;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Registration;
+using System.Net;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -26,9 +27,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Invalid request</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route(Consts.apiPrefix + "batchs/Id/records")]
+        [Route(Consts.apiPrefix + "batches/{id}/records")]
         [SwaggerOperation("GetBatchs")]
-        public JObject GetBatchs(int? id = null, int? skip = null, int? count = null, string sort = null)
+        [SwaggerResponse(200, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetBatchs(int? id = null, int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
             var tableName = "batches";
@@ -36,13 +38,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var query = GetQuery(tableName + whereClause, RecordColumns, sort, "TEMPBATCHID", "BATCH_INTERNAL_ID");
             var args = new Dictionary<string, object>();
             args.Add(":fullregNumber", id);
-            return new JObject(
+            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, new JObject(
                 new JProperty("batch", false),
                 new JProperty("fullregNumber", id),
                 new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("rows", ExtractData(query, args, skip, count))
-            );
+            ));
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         // TODO: Add comments for summary, remarks, and response codes.
@@ -63,14 +66,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             CheckAuthentication();
             JArray data = new JArray();
-            string fullregNumber = string.Empty;
-            fullregNumber = CambridgeSoft.COE.Registration.Services.Types.Batch.GetBatch(id).RegNumber.ToString();
-            return ExtractData("SELECT BATCH_INTERNAL_ID, TEMPBATCHID, BATCH_NUMBER, FULLREGNUMBER, DATECREATED, ENTRY_PERSON_ID, BATCH_REG_PERSON_ID, PERSONAPPROVED, LAST_MOD_DATE, STATUS_ID FROM REGDB.batches WHERE FULLREGNUMBER="+ fullregNumber +"");
+            string fullregNumber = CambridgeSoft.COE.Registration.Services.Types.Batch.GetBatch(id).RegNumber.ToString();
+            return ExtractData("SELECT BATCH_INTERNAL_ID, TEMPBATCHID, BATCH_NUMBER, FULLREGNUMBER, DATECREATED, ENTRY_PERSON_ID, BATCH_REG_PERSON_ID, PERSONAPPROVED, LAST_MOD_DATE, STATUS_ID FROM REGDB.batches WHERE FULLREGNUMBER=" + fullregNumber + "");
         }
 
         [HttpPost]
         [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("CreateBatch")]
+        [SwaggerResponse(201, type: typeof(JObject))]
         public void CreateBatch(JObject batch)
         {
             CheckAuthentication();
@@ -97,9 +100,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route(Consts.apiPrefix + "batches/{id}")]
+        [Route(Consts.apiPrefix + "batchs/{id}")]
         [SwaggerOperation("DeleteBatch")]
-        [SwaggerResponse(200, type: typeof(string))] 
+        [SwaggerResponse(200, type: typeof(string))]
         public void DeleteBatch(int id)
         {
             CheckAuthentication();
