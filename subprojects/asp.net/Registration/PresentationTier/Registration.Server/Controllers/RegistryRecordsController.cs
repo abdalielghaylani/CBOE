@@ -46,20 +46,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #region Temporary Records
         [HttpGet]
         [Route(Consts.apiPrefix + "temp-records")]
-        [SwaggerOperation("GetTemp")]
+        [SwaggerOperation("GetTempRecords")]
         [SwaggerResponse(200, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetTemp(int? skip = null, int? count = null, string sort = null)
+        [SwaggerResponse(401, type: typeof(string))]
+        [SwaggerResponse(500, type: typeof(string))]
+        public async Task<IHttpActionResult> GetTempRecords(int? skip = null, int? count = null, string sort = null)
         {
-            CheckAuthentication();
-            var tableName = "vw_temporarycompound";
-            var query = GetQuery(tableName, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
-            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, new JObject(
-                new JProperty("temporary", true),
-                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
-                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
-                new JProperty("rows", ExtractData(query, null, skip, count))
-            ));
-            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+            return await CallGetMethod(() =>
+            {
+                var tableName = "vw_temporarycompound";
+                var query = GetQuery(tableName, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
+                return new JObject(
+                    new JProperty("temporary", true),
+                    new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
+                    new JProperty("rows", ExtractData(query, null, skip, count))
+                );
+            });
         }
 
         [HttpGet]

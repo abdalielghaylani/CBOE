@@ -57,9 +57,9 @@ export class SessionEpics {
             let validationData = result.json();
             return validationData.isValid ?
               SessionActions.loginUserSuccessAction(validationData.meta) :
-              SessionActions.loginUserErrorAction();
+              RegActions.ignoreAction();
           })
-          .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+          .catch(error => Observable.of(RegActions.ignoreAction()));
       });
   }
 }
