@@ -1,3 +1,14 @@
+<div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px">
+  <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="cancel($event)">
+    <i class="fa fa fa-undo white" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="cancel($event)">
+    <strong>Cancel</strong>
+  </button>
+</div>
+<reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+  Query Management
+</reg-page-header>
 <dx-data-grid id="grdSearchQuery" [columns]=hitlistVM.gridColumns [attr.data-target]=hitlistVM [masterDetail]="{ enabled: false, template: 'detail' }" [dataSource]=records [paging]='{pageSize: 15}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [10,15,20], showInfo: true }'
   [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true (onEditorPreparing)='onEditorPreparing($event)' (onRowRemoving)='onRowRemoving($event)' (onCellPrepared)='onCellPrepared($event)' (onContentReady)='onContentReady($event)'
   (onRowUpdating)='onRowUpdating($event)'>

@@ -25,6 +25,7 @@ import * as regSearchTypes from './registry-search.types';
 export class RegQueryManagemnt implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Input() hitlistVM: any;
+  @Output() onClose = new EventEmitter<any>();
   private hitlistData$: Observable<ISearchRecords>;
   private records: any[];
   private currentHitlist: any[any];
@@ -138,6 +139,11 @@ export class RegQueryManagemnt implements OnInit, OnDestroy {
 
   restoreSelectedHitlist(e) {
     this.actions.retrieveHitlist({ id: e.ID, type: 0 });
+    this.onClose.emit(e);
+  }
+
+  cancel(e) {
+    this.onClose.emit(e);
   }
 
 };
