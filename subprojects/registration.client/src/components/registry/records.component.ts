@@ -47,6 +47,9 @@ export class RegRecords implements OnInit, OnDestroy {
   private isMarkedQuery: boolean;
   private loadIndicatorVisible: boolean = false;
   private recordsVM: RecordsVM = new RecordsVM();
+  private grdheight: string;
+  private currentIndex: number = 0;
+
   constructor(
     private router: Router,
     private ngRedux: NgRedux<IAppState>,
@@ -57,7 +60,7 @@ export class RegRecords implements OnInit, OnDestroy {
       temporary: this.temporary,
       data: new CRecordsData(this.temporary),
       gridColumns: [],
-      filterRow: { visible: true }
+      filterRow: true
     };
   }
 
@@ -112,6 +115,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.changeDetector.markForCheck();
       });
     }
+    this.grdheight = ((window.screen.height) - 360).toString();
   }
 
   openRegistryRecords(records: IRecords) {
@@ -121,7 +125,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.records.temporary = records.temporary;
         this.recordsVM.totalRecordCount = records.data.totalCount ? records.data.totalCount : this.recordsVM.totalRecordCount;
         if (records.data.rows.length < this.recordsVM.totalRecordCount) {
-          this.records.filterRow = { visible: false };
+          this.records.filterRow = false;
           this.recordsVM.fullDataLoaded = false;
           this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
         }
@@ -153,7 +157,7 @@ export class RegRecords implements OnInit, OnDestroy {
         }
         if (ref.recordsVM.totalFetched === ref.recordsVM.totalRecordCount) {
           ref.recordsVM.fullDataLoaded = true;
-          ref.records.filterRow = { visible: true };
+          ref.records.filterRow = true;
         }
         return ref.recordsVM.getFetchedRows();
       }
@@ -240,10 +244,11 @@ export class RegRecords implements OnInit, OnDestroy {
 
   manageQueries() {
     this.actions.openHitlists();
+    this.currentIndex = 1;
   }
 
   newQuery() {
-    this.router.navigate([`search/${this.temporary ? 'temp' : ''}`]);
+    this.currentIndex = 2;
   }
 
   saveQuery(isMarked: boolean) {
@@ -271,6 +276,10 @@ export class RegRecords implements OnInit, OnDestroy {
 
   cancelSaveQuery() {
     this.popupVisible = false;
+  }
+
+  headerClicked(e) {
+    this.currentIndex = 0;
   }
 
   showMarked() {

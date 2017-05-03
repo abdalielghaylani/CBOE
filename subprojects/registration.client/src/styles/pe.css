@@ -1,0 +1,31 @@
+.count {
+  font-size: 130%;
+  display: inline-block;
+  height: 48px;
+}
+
+.count .count-type {
+  font-size: 60%;
+  text-align: center;
+}
+
+.round {
+  border-radius: 6px;
+}
+
+.round-lg {
+  border-radius: 12px;
+}
+
+.padding-xs {
+  padding: 1px 5px;
+}
+
+.border-2 {
+  border-width: 2px !important;
+  border-style: solid;
+}
+
+.dx-datagrid-header-panel .dx-toolbar {
+  margin-bottom: 14px !important;
+}

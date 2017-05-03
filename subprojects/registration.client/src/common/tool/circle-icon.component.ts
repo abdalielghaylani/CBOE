@@ -8,10 +8,12 @@ import {
 
 @Component({
   selector: 'circle-icon',
-  template: `<a (onClick)="handleClick($event)" [attr.isSelected]="isSelected" class="pointer-cursor" 
+  template: `
+  <a (onClick)="handleClick($event)" [attr.isSelected]="isSelected" class="pointer-cursor" 
    [attr.data-testid]="testid" data-toggle="tooltip" data-placement="right" aria-describedby="tooltip"
     title="{{ title }}" href="javacript:void(0)" [routerLink]="routeLink">
-     <span class="fa-stack fa-2x">
+     <i class="fa fa-{{ iconName }} fa-2x {{ getIconColor() }} fa-border" aria-hidden="true" *ngIf="isSelected.trim() === 'false'" ></i>
+     <span class="fa-stack fa-2x" *ngIf="isSelected.trim() === 'true'">
        <i class="fa fa-square{{ getCircleType() }} fa-stack-2x {{ getCircleColor() }}"></i>
        <i class="fa fa-{{ iconName }} fa-stack-1x {{ getIconColor() }}"></i>
      </span>

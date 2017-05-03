@@ -32,6 +32,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
     require('./reg-app.css'),
     require('../styles/index.css'),
     require('../styles/colors.css'),
+    require('../styles/pe.css'),
     require('bootstrap/dist/css/bootstrap.min.css'),
     require('font-awesome/css/font-awesome.min.css'),
     require('devextreme/dist/css/dx.common.css'),
