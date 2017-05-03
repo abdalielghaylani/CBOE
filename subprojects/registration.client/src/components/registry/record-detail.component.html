@@ -1,11 +1,37 @@
 <div class="viewcontainer">
   <div>
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <div>
-        <button (click)="edit()" class="mr1 btn btn-primary pull-right" *ngIf="id >= 0 &amp;&amp; !editMode">Edit</button>
-        <button (click)="cancel()" class="mr1 btn btn-primary pull-right" *ngIf="editMode">Cancel</button>
-        <button (click)="save()" class="mr1 btn btn-primary pull-right" *ngIf="id < 0 || editMode">Save</button>
-        <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="(temporary &amp;&amp; !editMode) || id < 0 ">Register</button>
+      <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px" *ngIf="id >= 0 &amp;&amp; !editMode">
+        <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+              <i class="fa fa fa-edit white" aria-hidden="true"></i>
+            </button>
+        <button (click)="edit()" type="button" class="btn btn-default border-2 status border-blue blue">
+              <strong>Edit</strong>
+            </button>
+      </div>
+      <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px" *ngIf="editMode">
+        <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+              <i class="fa fa fa-undo white" aria-hidden="true"></i>
+            </button>
+        <button (click)="cancel()" type="button" class="btn btn-default border-2 status border-blue blue">
+              <strong>Cancel</strong>
+            </button>
+      </div>
+      <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px" *ngIf="id < 0 || editMode">
+        <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+              <i class="fa fa fa-floppy-o white" aria-hidden="true"></i>
+            </button>
+        <button (click)="save()" type="button" class="btn btn-default border-2 status border-blue blue">
+              <strong>Save</strong>
+            </button>
+      </div>
+      <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px" *ngIf="(temporary &amp;&amp; !editMode) || id < 0 ">
+        <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+              <i class="fa fa fa-registered white" aria-hidden="true"></i>
+            </button>
+        <button (click)="register()" type="button" class="btn btn-default border-2 status border-blue blue">
+              <strong>Register</strong>
+            </button>
       </div>
       <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
         {{title}}
