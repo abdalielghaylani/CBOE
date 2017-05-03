@@ -87,15 +87,11 @@
   </div>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=1">
-  <reg-page-header testid="configuration-heading" id="qa-configuration-heading" [isCloseButtonVisible]="true" (onClick)="headerClicked($event);">
+  <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
     Query Management
   </reg-page-header>
   <reg-search-query [hitlistVM]="hitlistVM"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-page-header testid="configuration-heading" id="qa-configuration-heading" [isCloseButtonVisible]="true" (onClick)="headerClicked($event);">
-    <span *ngIf="records.temporary">Search Temporary Records</span>
-    <span *ngIf="!records.temporary">Search Permanent Registry</span>
-  </reg-page-header>
-  <reg-record-search></reg-record-search>
+  <reg-record-search (onClose)="headerClicked($event)"></reg-record-search>
 </div>

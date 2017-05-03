@@ -28,6 +28,7 @@ declare var jQuery: any;
 })
 export class RegRecordSearch implements OnInit, OnDestroy {
   @Input() temporary: boolean;
+  @Output() onClose = new EventEmitter<any>();
   private title: string;
   private tabSelected: string = 'search';
   private regsearch: regSearchTypes.CSearchFormVM;
@@ -60,6 +61,10 @@ export class RegRecordSearch implements OnInit, OnDestroy {
 
   retrieveAll() {
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+  }
+
+  cancel(event) {
+    this.onClose.emit(event);
   }
 
 };
