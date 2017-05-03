@@ -17,8 +17,6 @@ export class RegLoginPage {
     // See if auth token cookie is available.
     let token = document.cookie.split('; ').map(c => c.split('=')).find(c => c[0] === 'CS%5FSEC%5FUserName');
     // If token is available, check if cookie is valid.
-    if (token) {
-      this.sessionActions.checkLogin(token[1]);
-    }
+    this.sessionActions.checkLogin(token ? token[1] : undefined);
   }
 }

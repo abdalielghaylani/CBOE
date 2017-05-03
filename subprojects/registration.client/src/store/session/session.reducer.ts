@@ -37,6 +37,7 @@ export function sessionReducer(
         isLoading: false,
       });
 
+    case SessionActions.CHECK_LOGIN:
     case SessionActions.LOGOUT_USER:
       return INITIAL_STATE;
 
