@@ -50,7 +50,8 @@ export class SessionEpics {
   handleCheckLogin = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.CHECK_LOGIN)
       .mergeMap(({ payload }) => {
-        return this.http.get(`${apiUrlPrefix}auth/validate/${payload}`)
+        return !payload ? Observable.of(RegActions.ignoreAction()) :
+          this.http.get(`${apiUrlPrefix}auth/validate/${payload}`)
           // .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
           // .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
           .map(result => {
