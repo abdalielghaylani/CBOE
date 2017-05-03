@@ -5,7 +5,7 @@ import {
   OnInit,
   OnDestroy,
   EventEmitter,
-  ChangeDetectorRef, ChangeDetectionStrategy,
+  ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener
 } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
@@ -47,7 +47,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private isMarkedQuery: boolean;
   private loadIndicatorVisible: boolean = false;
   private recordsVM: RecordsVM = new RecordsVM();
-  private grdheight: string;
+  private gridHeight: string;
   private currentIndex: number = 0;
 
   constructor(
@@ -55,6 +55,7 @@ export class RegRecords implements OnInit, OnDestroy {
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
+    private element: ElementRef,
     private changeDetector: ChangeDetectorRef) {
     this.records = {
       temporary: this.temporary,
@@ -96,6 +97,10 @@ export class RegRecords implements OnInit, OnDestroy {
   restoreHitlist() {
   }
 
+  getGridHeight() {
+    return ((this.element.nativeElement.parentElement.clientHeight) - 100).toString();
+  }
+
   loadData() {
     this.registryActions.openRecords({
       temporary: this.temporary,
@@ -115,7 +120,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.changeDetector.markForCheck();
       });
     }
-    this.grdheight = ((window.screen.height) - 360).toString();
+    this.gridHeight = this.getGridHeight();
   }
 
   openRegistryRecords(records: IRecords) {
@@ -175,6 +180,11 @@ export class RegRecords implements OnInit, OnDestroy {
     return gridColumn;
   }
 
+  onResize(event: any) {
+    this.grid.height = this.getGridHeight();
+    this.grid.instance.repaint();
+  }
+
   onContentReady(e) {
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
@@ -200,6 +210,7 @@ export class RegRecords implements OnInit, OnDestroy {
       }
     }
   }
+
   onCellPrepared(e) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let isEditing = e.row.isEditing;
