@@ -100,7 +100,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route(Consts.apiPrefix + "batchs/{id}")]
+        [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("DeleteBatch")]
         [SwaggerResponse(200, type: typeof(string))]
         public void DeleteBatch(int id)
