@@ -1,0 +1,6 @@
+<div [attr.data-testid]="testid" class="btn-group btn-group-{{size}} pull-right" role="group" aria-label="" style="margin:5px">
+  <button type="button" class="btn btn-default border-2 status background-{{color}} border-{{color}}" (click)="handleClick($event)">
+    <i class="fa fa-{{iconName}} white" aria-hidden="true"></i>
+  </button>
+  <button type="button" class="btn btn-default border-2 status border-{{color}} {{color}}" (click)="handleClick($event)">{{title}}</button>
+</div>
