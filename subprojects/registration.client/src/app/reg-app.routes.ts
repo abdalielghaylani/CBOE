@@ -4,17 +4,17 @@ import {
   RegRecordsPage,
   RegRecordDetailPage,
   RegConfigurationPage,
-  RegAboutPage,
+  RegLoginPage,
   RegRecordSearchPage
 } from '../pages';
 
 export const REG_APP_ROUTES: Routes = [{
   pathMatch: 'full',
   path: '',
-  redirectTo: '/records/temp'
+  redirectTo: '/login'
 }, {
   path: 'index.html',
-  redirectTo: '/records/temp'
+  redirectTo: '/login'
 }, {
   path: 'records/temp',
   component: RegRecordsPage
@@ -49,6 +49,6 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'configuration/:tableId',
   component: RegConfigurationPage
 }, {
-  path: 'about',
-  component: RegAboutPage
+  path: 'login',
+  component: RegLoginPage
 }];

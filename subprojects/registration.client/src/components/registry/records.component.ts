@@ -101,13 +101,17 @@ export class RegRecords implements OnInit, OnDestroy {
       sort: this.recordsVM.sortCriteria
     });
     this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
-    this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
+    if (!this.recordsSubscription) {
+      this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
+    }
     this.actions.openHitlists();
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
-    this.hitlistSubscription = this.hitlistData$.subscribe(() => {
-      this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
-      this.changeDetector.markForCheck();
-    });
+    if (this.hitlistSubscription) {
+      this.hitlistSubscription = this.hitlistData$.subscribe(() => {
+        this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
+        this.changeDetector.markForCheck();
+      });
+    }
   }
 
   openRegistryRecords(records: IRecords) {
