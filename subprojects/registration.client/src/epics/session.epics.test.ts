@@ -9,6 +9,7 @@ import {
     ResponseOptions,
     Response
 } from '@angular/http';
+import { RouterTestingModule } from '@angular/router/testing';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import { SessionActions } from '../actions/session.actions';
@@ -23,7 +24,7 @@ describe('SessionEpics', () => {
     beforeEach(done => {
         const configure = (testBed: TestBed) => {
             testBed.configureTestingModule({
-                imports: [HttpModule],
+                imports: [HttpModule, RouterTestingModule],
                 providers: [
                     { provide: XHRBackend, useClass: MockBackend },
                     SessionEpics
