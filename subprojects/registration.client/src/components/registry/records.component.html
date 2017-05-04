@@ -23,7 +23,7 @@
       [shading]="false" [closeOnOutsideClick]="false">
     </dx-load-panel>
     <div id="divDataGrid">
-      <dx-data-grid [height]="gridHeight" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.data.rows" rowAlternationEnabled=true
+      <dx-data-grid [height]="gridHeight" id="grdRecords" [columns]=records.gridColumns [dataSource]="dataStore" rowAlternationEnabled=true
         (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onContentReady)='onContentReady($event)'
         (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)' (onRowPrepared)='onRowPrepared($event)'
         (onEditingStart)='onEditingStart($event)' [hoverStateEnabled]="true">
@@ -36,10 +36,10 @@
         <dxo-filter-row [visible]="records.filterRow.visible"></dxo-filter-row>
         <dxo-search-panel [visible]="records.filterRow.visible" [width]="240" placeholder="Search..."></dxo-search-panel>
         <div *dxTemplate="let data of 'toolbarContents'">
-          <div class="count green" [hidden]="recordsVM.totalRecordCount==0">
+          <div class="count green" [hidden]="records.data.totalCount==0">
             <div class="count-type">Record matching</div>
             <div class="count-type-amount border-green round border-2 padding-xs">
-              {{recordsVM.totalRecordCount}}
+              {{records.data.totalCount}}
               <i class="fa fa-book" aria-hidden="true"></i>
             </div>
           </div>
