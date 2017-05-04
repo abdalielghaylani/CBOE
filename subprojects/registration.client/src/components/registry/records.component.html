@@ -1,9 +1,11 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
   <command-button testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
-  <command-button *ngIf="!temporary" testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>  
-  <command-button *ngIf="false" testid="edit-query-button" (onClick)="editQuery(1)" iconName="edit" title="Edit Query"></command-button>
-  <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
-  <command-button *ngIf="!temporary" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+  <div *ngIf="!temporary">
+    <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>  
+    <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
+    <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
+    <command-button *ngIf="!records.data.hitlistId" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+  </div>
   <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
     <span *ngIf="records.temporary">Temporary</span> Registration Records
   </reg-page-header>

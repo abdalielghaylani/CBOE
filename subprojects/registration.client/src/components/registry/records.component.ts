@@ -269,7 +269,9 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   editQuery(id: Number) {
-    this.router.navigate([`search/${id}`]);
+    // TODO: It should show the search page and populate the contents with hitlist query.
+    // this.router.navigate([`search/${id}`]);
+    this.currentIndex = 2;
   }
 
   cancelSaveQuery() {
