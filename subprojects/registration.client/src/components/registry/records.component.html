@@ -33,8 +33,8 @@
         <dxo-scrolling mode="infinite"></dxo-scrolling>
         <dxo-remote-operations [sorting]="true"></dxo-remote-operations>
         <dxo-sorting mode="single"></dxo-sorting>
-        <dxo-filter-row [visible]="records.filterRow"></dxo-filter-row>
-        <dxo-search-panel [visible]="records.filterRow" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-filter-row [visible]="records.filterRow.visible"></dxo-filter-row>
+        <dxo-search-panel [visible]="records.filterRow.visible" [width]="240" placeholder="Search..."></dxo-search-panel>
         <div *dxTemplate="let data of 'toolbarContents'">
           <div class="count green" [hidden]="recordsVM.totalRecordCount==0">
             <div class="count-type">Record matching</div>

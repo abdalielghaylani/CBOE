@@ -61,7 +61,7 @@ export class RegRecords implements OnInit, OnDestroy {
       temporary: this.temporary,
       data: new CRecordsData(this.temporary),
       gridColumns: [],
-      filterRow: true
+      filterRow: { visible: true }
     };
   }
 
@@ -130,7 +130,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.records.temporary = records.temporary;
         this.recordsVM.totalRecordCount = records.data.totalCount ? records.data.totalCount : this.recordsVM.totalRecordCount;
         if (records.data.rows.length < this.recordsVM.totalRecordCount) {
-          this.records.filterRow = false;
+          this.records.filterRow.visible = false;
           this.recordsVM.fullDataLoaded = false;
           this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
         }
@@ -162,7 +162,7 @@ export class RegRecords implements OnInit, OnDestroy {
         }
         if (ref.recordsVM.totalFetched === ref.recordsVM.totalRecordCount) {
           ref.recordsVM.fullDataLoaded = true;
-          ref.records.filterRow = true;
+          ref.records.filterRow.visible = true;
         }
         return ref.recordsVM.getFetchedRows();
       }
