@@ -35,7 +35,6 @@
         <dxo-sorting mode="single"></dxo-sorting>
         <dxo-filter-row [visible]="records.filterRow"></dxo-filter-row>
         <dxo-search-panel [visible]="records.filterRow" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <dxo-state-storing [enabled]="true" type="localStorage" storageKey="storage"></dxo-state-storing>
         <div *dxTemplate="let data of 'toolbarContents'">
           <div class="count green" [hidden]="recordsVM.totalRecordCount==0">
             <div class="count-type">Record matching</div>
