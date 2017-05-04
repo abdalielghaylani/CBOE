@@ -51,8 +51,13 @@ export class RegistryEpics {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap(({ payload }) => {
         let temporary: boolean = payload;
-        return this.http.get(`${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records`
-          + '?skip=' + payload.skip + '&count=' + payload.take + `&sort=` + payload.sort)
+        let url = `${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records`;
+        let params = '';
+        if (payload.skip) { params += `?skip=${payload.skip}`; }
+        if (payload.take) { params += `${params ? '&' : '?'}count=${payload.take}`; }
+        if (payload.sort) { params += `${params ? '&' : '?'}sort=${payload.sort}`; }
+        url += params;
+        return this.http.get(url)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()

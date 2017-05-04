@@ -5,7 +5,7 @@ import {
   OnInit,
   OnDestroy,
   EventEmitter,
-  ChangeDetectorRef, ChangeDetectionStrategy,
+  ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener
 } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
@@ -47,17 +47,21 @@ export class RegRecords implements OnInit, OnDestroy {
   private isMarkedQuery: boolean;
   private loadIndicatorVisible: boolean = false;
   private recordsVM: RecordsVM = new RecordsVM();
+  private gridHeight: string;
+  private currentIndex: number = 0;
+
   constructor(
     private router: Router,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
+    private element: ElementRef,
     private changeDetector: ChangeDetectorRef) {
     this.records = {
       temporary: this.temporary,
       data: new CRecordsData(this.temporary),
       gridColumns: [],
-      filterRow: { visible: true }
+      filterRow: true
     };
   }
 
@@ -93,6 +97,10 @@ export class RegRecords implements OnInit, OnDestroy {
   restoreHitlist() {
   }
 
+  getGridHeight() {
+    return ((this.element.nativeElement.parentElement.clientHeight) - 100).toString();
+  }
+
   loadData() {
     this.registryActions.openRecords({
       temporary: this.temporary,
@@ -101,13 +109,18 @@ export class RegRecords implements OnInit, OnDestroy {
       sort: this.recordsVM.sortCriteria
     });
     this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
-    this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
+    if (!this.recordsSubscription) {
+      this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
+    }
     this.actions.openHitlists();
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
-    this.hitlistSubscription = this.hitlistData$.subscribe(() => {
-      this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
-      this.changeDetector.markForCheck();
-    });
+    if (this.hitlistSubscription) {
+      this.hitlistSubscription = this.hitlistData$.subscribe(() => {
+        this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
+        this.changeDetector.markForCheck();
+      });
+    }
+    this.gridHeight = this.getGridHeight();
   }
 
   openRegistryRecords(records: IRecords) {
@@ -117,7 +130,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.records.temporary = records.temporary;
         this.recordsVM.totalRecordCount = records.data.totalCount ? records.data.totalCount : this.recordsVM.totalRecordCount;
         if (records.data.rows.length < this.recordsVM.totalRecordCount) {
-          this.records.filterRow = { visible: false };
+          this.records.filterRow = false;
           this.recordsVM.fullDataLoaded = false;
           this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
         }
@@ -149,7 +162,7 @@ export class RegRecords implements OnInit, OnDestroy {
         }
         if (ref.recordsVM.totalFetched === ref.recordsVM.totalRecordCount) {
           ref.recordsVM.fullDataLoaded = true;
-          ref.records.filterRow = { visible: true };
+          ref.records.filterRow = true;
         }
         return ref.recordsVM.getFetchedRows();
       }
@@ -165,6 +178,11 @@ export class RegRecords implements OnInit, OnDestroy {
       };
     }
     return gridColumn;
+  }
+
+  onResize(event: any) {
+    this.grid.height = this.getGridHeight();
+    this.grid.instance.repaint();
   }
 
   onContentReady(e) {
@@ -192,6 +210,7 @@ export class RegRecords implements OnInit, OnDestroy {
       }
     }
   }
+
   onCellPrepared(e) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let isEditing = e.row.isEditing;
@@ -236,10 +255,11 @@ export class RegRecords implements OnInit, OnDestroy {
 
   manageQueries() {
     this.actions.openHitlists();
+    this.currentIndex = 1;
   }
 
   newQuery() {
-    this.router.navigate([`search/${this.temporary ? 'temp' : ''}`]);
+    this.currentIndex = 2;
   }
 
   saveQuery(isMarked: boolean) {
@@ -247,6 +267,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.hitlistVM.saveQueryVM.clear();
     this.popupVisible = true;
   }
+  
   saveHitlist() {
     if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
       if (this.isMarkedQuery === true) {
@@ -269,8 +290,12 @@ export class RegRecords implements OnInit, OnDestroy {
     this.popupVisible = false;
   }
 
+  headerClicked(e) {
+    this.currentIndex = 0;
+  }
+
   showMarked() {
-    if (this.selectedRows) {
+    if (this.selectedRows && !this.rowSelected) {
       this.rowSelected = true;
       this.tempResultRows = this.records.data.rows;
       this.records.data.rows = this.selectedRows;
@@ -278,10 +303,12 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   showSearchResults() {
-    this.rowSelected = false;
-    this.records.data.rows = this.tempResultRows;
-    this.selectedRows = [];
-    this.tempResultRows = [];
+    if (this.rowSelected) {
+      this.rowSelected = false;
+      this.selectedRows = this.records.data.rows;
+      this.records.data.rows = this.tempResultRows;
+      this.tempResultRows = [];
+    }
   }
 
   printRecords() {

@@ -1,37 +1,28 @@
+<command-button testid="close-search-button" (onClick)="cancel($event)" iconName="close" title="Cancel"></command-button>
+<div *ngIf="tabSelected == 'search'">
+  <command-button testid="clear-search-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
+  <command-button testid="search-button" (onClick)="search()" iconName="search" title="Search"></command-button>
+  <div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+    <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+      <i class="fa-undo white" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restore <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><button type="button" class="btn">Last Hitlist</button></li>
+      <li><button type="button" class="btn">Last Query</button></li>
+      <li><button type="button" class="btn">Last Query to Form</button></li>
+    </ul>
+  </div>
+</div>
+<div style="margin-top:5px;margin-bottom:5px" *ngIf="tabSelected == 'preference'">
+  <command-button testid="restore-preference-button" (onClick)="restorePreference()" iconName="reply" title="Restore Defaults"></command-button>
+  <command-button testid="save-preference-button" (onClick)="savePreference()" iconName="floppy-o" title="Save"></command-button>
+</div>
+<reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+  <span *ngIf="temporary">Search Temporary Records</span>
+  <span *ngIf="!temporary">Search Permanent Registry</span>
+</reg-page-header>
 <div class="viewcontainer">
-  <div style="margin-top: 15px" *ngIf="tabSelected == 'search'">
-    <button (click)="clear()" class="mr1 btn btn-primary pull-right">
-      <i class="fa fa-eraser"></i> Clear</button>
-    <button (click)="search()" class="mr1 btn btn-primary pull-right">
-      <i class="fa fa fa-search"></i> Search</button>
-  </div>
-  <div style="margin-top: 15px" *ngIf="tabSelected == 'preference'">
-    <button class="mr1 btn btn-primary pull-right">
-      Restore Defaults</button>
-    <button class="mr1 btn btn-primary pull-right">
-      Save</button>
-  </div>
-  <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
-    {{title}}
-  </reg-page-header>
-  <div class="btn-toolbar">
-    <div class="btn-group">
-      <div class="btn-group btn-group-sm">
-        <button type="button" class="btn dropdown-toggle rose text-relaxed" data-toggle="dropdown">
-			Restore Query <span class="caret"></span>
-		  </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a class="rose text-relaxed">Restore Last Hitlist</a></li>
-          <li><a class="rose text-relaxed">Perform Last Query</a></li>
-          <li><a class="rose text-relaxed">Restore Last Query To Form</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="btn-group btn-group-sm">
-      <button class="btn btn-group btn-group-sm rose text-relaxed" data-original-title="Back" (click)="retrieveAll()">
-          <i class="fa fa-database"></i> Retrieve All</button>
-    </div>
-  </div>
   <div class="panel with-nav-tabs panel-default">
     <div class="panel-heading">
       <ul class="nav nav-tabs">
@@ -58,8 +49,7 @@
                     </dx-select-box>
                   </div>
                   <chem-draw-tool></chem-draw-tool>
-                  <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.temporarySearch"
-                    [items]="regsearch.temporarySearchVM.columns"></dx-form>
+                  <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.temporarySearch" [items]="regsearch.temporarySearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -80,8 +70,7 @@
                     </dx-select-box>
                   </div>
                   <chem-draw-tool></chem-draw-tool>
-                  <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch"
-                    [items]="regsearch.registrySearchVM.columns"></dx-form>
+                  <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch" [items]="regsearch.registrySearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -93,8 +82,7 @@
               </div>
               <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch"
-                    [items]="regsearch.structureSearchVM.columns"></dx-form>
+                  <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch" [items]="regsearch.structureSearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -107,8 +95,7 @@
               </div>
               <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch"
-                    [items]="regsearch.componentSearchVM.columns"></dx-form>
+                  <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch" [items]="regsearch.componentSearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>

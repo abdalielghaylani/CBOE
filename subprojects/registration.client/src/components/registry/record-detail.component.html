@@ -1,12 +1,10 @@
 <div class="viewcontainer">
   <div>
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <div>
-        <button (click)="edit()" class="mr1 btn btn-primary pull-right" *ngIf="id >= 0 &amp;&amp; !editMode">Edit</button>
-        <button (click)="cancel()" class="mr1 btn btn-primary pull-right" *ngIf="editMode">Cancel</button>
-        <button (click)="save()" class="mr1 btn btn-primary pull-right" *ngIf="id < 0 || editMode">Save</button>
-        <button (click)="register()" class="mr1 btn btn-primary pull-right" *ngIf="(temporary &amp;&amp; !editMode) || id < 0 ">Register</button>
-      </div>
+      <command-button *ngIf="id >= 0 &amp;&amp; !editMode" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
+      <command-button *ngIf="editMode" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
+      <command-button *ngIf="id < 0 || editMode" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title="Save"></command-button>
+      <command-button *ngIf="(temporary &amp;&amp; !editMode) || id < 0" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
       <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
         {{title}}
       </reg-page-header>

@@ -12,6 +12,7 @@ import {
   RegRecordsPage,
   RegRecordDetailPage,
   RegConfigurationPage,
+  RegLoginPage,
   RegAboutPage,
   RegRecordSearchPage
 } from '../pages';
@@ -68,6 +69,7 @@ import {
     RegStructureImage,
     RegConfigurationPage,
     RegConfiguration,
+    RegLoginPage,
     RegAboutPage
   ],
   bootstrap: [
