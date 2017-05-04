@@ -267,6 +267,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.hitlistVM.saveQueryVM.clear();
     this.popupVisible = true;
   }
+  
   saveHitlist() {
     if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
       if (this.isMarkedQuery === true) {
