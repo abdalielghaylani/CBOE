@@ -799,7 +799,7 @@ export class RecordsVM {
   currentRows?: any = [];
   fetchLimit: number = fetchLimit;
   totalFetched: number = 0;
-  sortCriteria: string = 'ID';
+  sortCriteria: string = undefined;
   setRecordData(d: IRecordsData, initial: boolean) {
     this.totalRecordCount = d.totalCount;
     if (initial) {
