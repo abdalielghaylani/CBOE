@@ -6,7 +6,8 @@
     <button type="button" class="btn btn-default border-2 status background-blue border-blue">
       <i class="fa-undo white" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restore <span class="caret"></span></button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">Restore <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><button type="button" class="btn">Last Hitlist</button></li>
       <li><button type="button" class="btn">Last Query</button></li>
@@ -22,17 +23,18 @@
   <span *ngIf="temporary">Search Temporary Records</span>
   <span *ngIf="!temporary">Search Permanent Registry</span>
 </reg-page-header>
-<div class="viewcontainer">
-  <div class="panel with-nav-tabs panel-default">
-    <div class="panel-heading">
-      <ul class="nav nav-tabs">
-        <li class="active" (click)="tabSelected = 'search'"><a href="#tab1default" data-toggle="tab">Advanced Search</a></li>
-        <li (click)="tabSelected = 'preference'"><a href="#tab2default" data-toggle="tab">Preferences</a></li>
-      </ul>
-    </div>
-    <div class="panel-body">
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="tab1default">
+
+<div class="panel with-nav-tabs panel-default">
+  <div class="panel-heading">
+    <ul class="nav nav-tabs">
+      <li class="active" (click)="tabSelected = 'search'"><a href="#tab1default" data-toggle="tab">Advanced Search</a></li>
+      <li (click)="tabSelected = 'preference'"><a href="#tab2default" data-toggle="tab">Preferences</a></li>
+    </ul>
+  </div>
+  <div class="panel-body">
+    <div class="tab-content">
+      <div class="tab-pane fade in active" id="tab1default">
+        <dx-scroll-view id="scrollview" [height]="getPanelHeight()" scrollByContent=true scrollByThumb=true showScrollbar=true>
           <div class="panel-group" id="accordion" *ngIf="temporary">
             <div class="panel">
               <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
@@ -49,7 +51,8 @@
                     </dx-select-box>
                   </div>
                   <chem-draw-tool></chem-draw-tool>
-                  <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.temporarySearch" [items]="regsearch.temporarySearchVM.columns"></dx-form>
+                  <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.temporarySearch"
+                    [items]="regsearch.temporarySearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -70,7 +73,8 @@
                     </dx-select-box>
                   </div>
                   <chem-draw-tool></chem-draw-tool>
-                  <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch" [items]="regsearch.registrySearchVM.columns"></dx-form>
+                  <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch"
+                    [items]="regsearch.registrySearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -82,7 +86,8 @@
               </div>
               <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch" [items]="regsearch.structureSearchVM.columns"></dx-form>
+                  <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch"
+                    [items]="regsearch.structureSearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -95,7 +100,8 @@
               </div>
               <div id="collapseThree" class="panel-collapse collapse">
                 <div class="panel-body">
-                  <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch" [items]="regsearch.componentSearchVM.columns"></dx-form>
+                  <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch"
+                    [items]="regsearch.componentSearchVM.columns"></dx-form>
                 </div>
               </div>
             </div>
@@ -113,10 +119,13 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="tab-pane fade" id="tab2default">
+        </dx-scroll-view>
+      </div>
+      <div class="tab-pane fade" id="tab2default">
+        <dx-scroll-view id="scrollview" [height]="getPanelHeight()" scrollByContent=true scrollByThumb=true showScrollbar=true>
           <dx-form id="preferenceForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="regsearch.preferenceVM.columns"></dx-form>
-        </div>
+        </dx-scroll-view>
       </div>
     </div>
   </div>
+</div>

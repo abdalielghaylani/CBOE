@@ -29,6 +29,7 @@ declare var jQuery: any;
 export class RegRecordSearch implements OnInit, OnDestroy {
   @Input() temporary: boolean;
   @Output() onClose = new EventEmitter<any>();
+  @Input() parentHeight: string;
   private title: string;
   private tabSelected: string = 'search';
   private regsearch: regSearchTypes.CSearchFormVM;
@@ -71,6 +72,10 @@ export class RegRecordSearch implements OnInit, OnDestroy {
 
   cancel(e) {
     this.onClose.emit(e);
+  }
+
+  getPanelHeight() {
+    return (Number(this.parentHeight) - 100).toString();
   }
 
 };

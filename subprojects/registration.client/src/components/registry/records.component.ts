@@ -167,6 +167,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onResize(event: any) {
+    this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
     this.grid.instance.repaint();
   }
@@ -253,7 +254,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.hitlistVM.saveQueryVM.clear();
     this.popupVisible = true;
   }
-  
+
   saveHitlist() {
     if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
       if (this.isMarkedQuery === true) {
