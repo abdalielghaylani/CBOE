@@ -33,14 +33,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> GetBatchs(int? id = null, int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
-            var tableName = "batches";
-            var whereClause = " WHERE FULLREGNUMBER=:fullregNumber";
-            var query = GetQuery(tableName + whereClause, RecordColumns, sort, "TEMPBATCHID", "BATCH_INTERNAL_ID");
+            var tableName = "VW_BATCH";
+            var whereClause = " WHERE REGID=:regId";
+            var query = GetQuery(tableName + whereClause, BatchColumns, sort, "BATCHID", "TEMPBATCHID");
             var args = new Dictionary<string, object>();
-            args.Add(":fullregNumber", id);
+            args.Add(":regId", id);
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, new JObject(
                 new JProperty("batch", false),
-                new JProperty("fullregNumber", id),
+                new JProperty("regId", id),
                 new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("rows", ExtractData(query, args, skip, count))
@@ -66,8 +66,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             CheckAuthentication();
             JArray data = new JArray();
-            string fullregNumber = CambridgeSoft.COE.Registration.Services.Types.Batch.GetBatch(id).RegNumber.ToString();
-            return ExtractData("SELECT BATCH_INTERNAL_ID, TEMPBATCHID, BATCH_NUMBER, FULLREGNUMBER, DATECREATED, ENTRY_PERSON_ID, BATCH_REG_PERSON_ID, PERSONAPPROVED, LAST_MOD_DATE, STATUS_ID FROM REGDB.batches WHERE FULLREGNUMBER=" + fullregNumber + "");
+            return ExtractData("SELECT BATCHID, TEMPBATCHID, BATCHNUMBER, FULLREGNUMBER, DATECREATED, PERSONCREATED, PERSONREGISTERED, PERSONAPPROVED, DATELASTMODIFIED FROM REGDB.VW_BATCH WHERE BATCHID=" + id + "");
+
         }
 
         [HttpPost]

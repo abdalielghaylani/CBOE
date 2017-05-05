@@ -242,6 +242,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
+        protected static RecordColumn[] BatchColumns
+        {
+            get
+            {
+                return new RecordColumn[]
+                {
+                    new RecordColumn{ definition = "batchid", label = "id", sortable = true },
+                    new RecordColumn{ definition = "tempbatchid", label = "tempbatchid", sortable = true },
+                    new RecordColumn{ definition = "batchnumber", label = "batchnumber", sortable = true },
+                    new RecordColumn{ definition = "fullregnumber", label = "fullregnumber", sortable = true },
+                    new RecordColumn{ definition = "datecreated", label = "created", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label = "personcreated", sortable = true },
+                    new RecordColumn{ definition = "personregistered", label = "personregistered", sortable = true },
+                    new RecordColumn{ definition = "personapproved", label = "personapproved", sortable = true },
+                    new RecordColumn{ definition = "datelastmodified", label = "modified", sortable = true }
+                };
+            }
+        }
+
         protected static string GetSelectTerms(RecordColumn[] columns)
         {
             return String.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
