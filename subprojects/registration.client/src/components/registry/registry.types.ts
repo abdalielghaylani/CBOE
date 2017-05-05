@@ -4,8 +4,8 @@ import {
   FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
   GroupSettingType, getSetting
 } from '../../common';
-import { fetchLimit } from '../../configuration';
-import { IRecordsData } from '../../store';
+import { IRecordsData, IRecords } from '../../store';
+
 
 export class FragmentData {
   FragmentID: number;
@@ -792,24 +792,19 @@ function buildPropertyList(vm: any, columns: any[], propertyList: CPropertyList,
   }
 }
 
-export class RecordsVM {
-  startPoint: number = 0;
-  fullDataLoaded: boolean = true;
-  totalRecordCount: number = 0;
-  currentRows?: any = [];
-  fetchLimit: number = fetchLimit;
-  totalFetched: number = 0;
-  sortCriteria: string = undefined;
-  setRecordData(d: IRecordsData, initial: boolean) {
-    this.totalRecordCount = d.totalCount;
-    if (initial) {
-      this.currentRows = d.rows;
+export class CRecords implements IRecords {
+  filterRow: { visible: boolean } = { visible: true };
+  constructor(public temporary: boolean, public data: IRecordsData, public gridColumns: any[] = []) {
+  }
+  setRecordData(d: IRecordsData) {
+    if (d.startIndex === 0) {
+      this.data = d;
     } else {
-      this.currentRows = this.currentRows.concat(d.rows);
+      this.data.totalCount = d.totalCount;
+      this.data.rows = this.data.rows.concat(d.rows);
     }
-    this.totalFetched = this.currentRows.length;
   }
   getFetchedRows() {
-    return this.currentRows;
+    return this.data.rows;
   }
 }

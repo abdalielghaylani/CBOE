@@ -1,9 +1,11 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
-  <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>  
   <command-button testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
-  <command-button *ngIf="false" testid="edit-query-button" (onClick)="editQuery(1)" iconName="edit" title="Edit Query"></command-button>
-  <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
-  <command-button testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+  <div *ngIf="!temporary">
+    <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>  
+    <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
+    <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
+    <command-button *ngIf="!records.data.hitlistId" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+  </div>
   <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
     <span *ngIf="records.temporary">Temporary</span> Registration Records
   </reg-page-header>
@@ -23,7 +25,7 @@
       [shading]="false" [closeOnOutsideClick]="false">
     </dx-load-panel>
     <div id="divDataGrid">
-      <dx-data-grid [height]="gridHeight" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.data.rows" rowAlternationEnabled=true
+      <dx-data-grid [height]="gridHeight" id="grdRecords" [columns]=records.gridColumns [dataSource]="dataStore" rowAlternationEnabled=true
         (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onContentReady)='onContentReady($event)'
         (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)' (onRowPrepared)='onRowPrepared($event)'
         (onEditingStart)='onEditingStart($event)' [hoverStateEnabled]="true">
@@ -33,13 +35,13 @@
         <dxo-scrolling mode="infinite"></dxo-scrolling>
         <dxo-remote-operations [sorting]="true"></dxo-remote-operations>
         <dxo-sorting mode="single"></dxo-sorting>
-        <dxo-filter-row [visible]="records.filterRow"></dxo-filter-row>
-        <dxo-search-panel [visible]="records.filterRow" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-filter-row [visible]="records.filterRow.visible"></dxo-filter-row>
+        <dxo-search-panel [visible]="records.filterRow.visible" [width]="240" placeholder="Search..."></dxo-search-panel>
         <div *dxTemplate="let data of 'toolbarContents'">
-          <div class="count green" [hidden]="recordsVM.totalRecordCount==0">
+          <div class="count green" [hidden]="records.data.totalCount==0">
             <div class="count-type">Record matching</div>
             <div class="count-type-amount border-green round border-2 padding-xs">
-              {{recordsVM.totalRecordCount}}
+              {{records.data.totalCount}}
               <i class="fa fa-book" aria-hidden="true"></i>
             </div>
           </div>

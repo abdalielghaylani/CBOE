@@ -17,8 +17,9 @@ import { IAppState, CRecordsData, IRecords, ISearchRecords } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { RecordsVM } from './registry.types';
+import { CRecords } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
+import { fetchLimit } from '../../configuration';
 
 @Component({
   selector: 'reg-records',
@@ -37,7 +38,6 @@ export class RegRecords implements OnInit, OnDestroy {
   private recordsSubscription: Subscription;
   private hitlistSubscription: Subscription;
   private lookups: any;
-  private records: IRecords;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
   private selectedRows: any[] = [];
@@ -46,9 +46,11 @@ export class RegRecords implements OnInit, OnDestroy {
   private hitlistData$: Observable<ISearchRecords>;
   private isMarkedQuery: boolean;
   private loadIndicatorVisible: boolean = false;
-  private recordsVM: RecordsVM = new RecordsVM();
+  private records: CRecords;
   private gridHeight: string;
   private currentIndex: number = 0;
+  private dataStore: CustomStore;
+  private sortCriteria: string;
 
   constructor(
     private router: Router,
@@ -57,12 +59,8 @@ export class RegRecords implements OnInit, OnDestroy {
     private actions: RegistrySearchActions,
     private element: ElementRef,
     private changeDetector: ChangeDetectorRef) {
-    this.records = {
-      temporary: this.temporary,
-      data: new CRecordsData(this.temporary),
-      gridColumns: [],
-      filterRow: true
-    };
+    this.records = new CRecords(this.temporary, new CRecordsData(this.temporary));
+    this.createCustomStore(this);
   }
 
   ngOnInit() {
@@ -104,9 +102,9 @@ export class RegRecords implements OnInit, OnDestroy {
   loadData() {
     this.registryActions.openRecords({
       temporary: this.temporary,
-      skip: this.recordsVM.startPoint,
-      take: this.recordsVM.fetchLimit,
-      sort: this.recordsVM.sortCriteria
+      skip: this.records.data.rows.length,
+      take: fetchLimit,
+      sort: this.sortCriteria
     });
     this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
     if (!this.recordsSubscription) {
@@ -124,47 +122,35 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   openRegistryRecords(records: IRecords) {
-    if (records.data.rows) {
-      this.loadIndicatorVisible = false;
-      if (this.recordsVM.startPoint === 0) {
-        this.records.temporary = records.temporary;
-        this.recordsVM.totalRecordCount = records.data.totalCount ? records.data.totalCount : this.recordsVM.totalRecordCount;
-        if (records.data.rows.length < this.recordsVM.totalRecordCount) {
-          this.records.filterRow = false;
-          this.recordsVM.fullDataLoaded = false;
-          this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
-        }
-        this.recordsVM.setRecordData(records.data, true);
-        this.createCustomStore(this);
-        this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
-        this.changeDetector.markForCheck();
-      } else if (this.recordsVM.startPoint > 0 && this.recordsVM.startPoint === Number(records.data.startIndex)) {
-        this.recordsVM.setRecordData(records.data, false);
-        this.createCustomStore(this);
-        this.recordsVM.startPoint = this.recordsVM.startPoint + this.recordsVM.fetchLimit;
-        this.changeDetector.markForCheck();
+    this.loadIndicatorVisible = false;
+    if (records.data.startIndex === 0) {
+      this.records.temporary = records.temporary;
+      if (records.data.rows.length < records.data.totalCount) {
+        this.records.filterRow.visible = false;
       }
+      this.records.setRecordData(records.data);
+      this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
+    } else if (this.records.data.rows.length > 0 && this.records.data.rows.length === records.data.startIndex) {
+      this.records.setRecordData(records.data);
     }
+    this.createCustomStore(this);
+    this.changeDetector.markForCheck();
   }
 
   createCustomStore(ref: RegRecords) {
-    ref.records.data.rows = new CustomStore({
+    ref.dataStore = new CustomStore({
       load: function (loadOptions) {
         if (loadOptions.sort !== null) {
           let sortCriteria = !loadOptions.sort[0].desc ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
-          if (ref.recordsVM.sortCriteria !== sortCriteria && !ref.recordsVM.fullDataLoaded) {
-            ref.recordsVM.sortCriteria = sortCriteria;
-            ref.recordsVM.startPoint = 0;
-            ref.recordsVM.totalFetched = 0;
-            ref.recordsVM.fullDataLoaded = false;
+          if (ref.sortCriteria !== sortCriteria && ref.records.data.rows.length !== ref.records.data.totalCount) {
+            ref.sortCriteria = sortCriteria;
             ref.updateContents();
           }
         }
-        if (ref.recordsVM.totalFetched === ref.recordsVM.totalRecordCount) {
-          ref.recordsVM.fullDataLoaded = true;
-          ref.records.filterRow = true;
+        if (ref.records.data.rows.length === ref.records.data.totalCount) {
+          ref.records.filterRow.visible = true;
         }
-        return ref.recordsVM.getFetchedRows();
+        return ref.records.getFetchedRows();
       }
     });
   }
@@ -195,16 +181,16 @@ export class RegRecords implements OnInit, OnDestroy {
   updateContents() {
     this.registryActions.openRecords({
       temporary: this.temporary,
-      skip: this.recordsVM.startPoint,
-      take: this.recordsVM.fetchLimit,
-      sort: this.recordsVM.sortCriteria
+      skip: this.records.data.rows.length,
+      take: fetchLimit,
+      sort: this.sortCriteria
     });
   }
 
   onRowPrepared(e) {
     if (e.rowType === 'data') {
-      if (!this.recordsVM.fullDataLoaded) {
-        if (e.rowIndex === this.recordsVM.totalFetched - 1) {
+      if (this.records.data.rows.length < this.records.data.totalCount) {
+        if (e.rowIndex === this.records.data.rows.length - 1) {
           this.updateContents();
         }
       }
@@ -283,7 +269,9 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   editQuery(id: Number) {
-    this.router.navigate([`search/${id}`]);
+    // TODO: It should show the search page and populate the contents with hitlist query.
+    // this.router.navigate([`search/${id}`]);
+    this.currentIndex = 2;
   }
 
   cancelSaveQuery() {

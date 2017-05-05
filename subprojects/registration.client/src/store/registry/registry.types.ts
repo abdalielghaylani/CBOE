@@ -35,7 +35,7 @@ export interface IRecords {
   temporary: boolean;
   data: IRecordsData;
   gridColumns: any[];
-  filterRow: any;
+  filterRow: { visible: boolean };
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, IRecords { }

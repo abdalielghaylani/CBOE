@@ -760,7 +760,7 @@ function getPropertyColumn(p: CProperty): any {
   return column;
 }
 
-export const HITLIST_GRD_COLUMNS = [{
+export const HITLIST_GRID_COLUMNS = [{
   dataField: 'Name',
   dataType: 'String',
   cellTemplate: 'saveCellTemplate'
@@ -768,12 +768,14 @@ export const HITLIST_GRD_COLUMNS = [{
   dataField: 'Description',
   dataType: 'String'
 }, {
-  dataField: 'IsPublic'
+  dataField: 'IsPublic',
+  width: '60px'
 }, {
-  caption: 'Number of hits',
+  caption: '# Hits',
   dataField: 'NumberOfHits',
   dataType: Number,
-  allowEditing: false
+  allowEditing: false,
+  width: '60px'
 }, {
   dataField: 'DateCreated._date',
   caption: 'Date Created',
@@ -788,7 +790,8 @@ export const HITLIST_GRD_COLUMNS = [{
 },
 {
   caption: 'Restore',
-  cellTemplate: 'restoreCellTemplate'
+  cellTemplate: 'restoreCellTemplate',
+  width: '200px'
 }
 ];
 
@@ -800,7 +803,7 @@ export class CQueryManagementVM {
   saveQueryVM?: CSaveQuery;
   constructor(state: IAppState) {
     this.queriesList = state.registrysearch.hitlist.rows;
-    this.gridColumns = HITLIST_GRD_COLUMNS;
+    this.gridColumns = HITLIST_GRID_COLUMNS;
     this.advancedRestoreType = 0;
     this.isCurrentHitlist = false;
     this.saveQueryVM = new CSaveQuery();

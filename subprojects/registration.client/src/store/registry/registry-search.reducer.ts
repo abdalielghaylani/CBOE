@@ -5,8 +5,6 @@ export function registrySearchReducer(
   state: IRegistrySearchRecord = INITIAL_STATE,
   action: IPayloadAction
 ): IRegistrySearchRecord {
-
-
   switch (action.type) {
     case RegistrySearchActions.OPEN_HITLISTS_SUCCESS:
       let a1 = action as ReduxActions.Action<ISearchRecords>;
