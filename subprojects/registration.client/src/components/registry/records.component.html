@@ -26,7 +26,7 @@
     </dx-load-panel>
     <div id="divDataGrid">
       <dx-data-grid [height]="gridHeight" id="grdRecords" [columns]=records.gridColumns [dataSource]="dataStore" rowAlternationEnabled=true
-        (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onContentReady)='onContentReady($event)'
+        (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onInitialize)='onInitialize($event)'
         (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)' (onRowPrepared)='onRowPrepared($event)'
         (onEditingStart)='onEditingStart($event)' [hoverStateEnabled]="true">
         <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
