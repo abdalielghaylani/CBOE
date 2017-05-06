@@ -15,26 +15,18 @@ describe('registry reducer', () => {
     expect(Iterable.isIterable(initState)).toBe(true);
   });
 
-  it('should do nothing on OPEN_RECORDS_ERROR', () => {
+  it('should clear record rows on OPEN_RECORDS_ERROR(false)', () => {
     const nextState = registryReducer(
       initState,
-      RegistryActions.openRecordsErrorAction()
-    );
-    expect(nextState).toEqual(initState);
-  });
-
-  it('should clear record rows on OPEN_RECORDS(false)', () => {
-    const nextState = registryReducer(
-      initState,
-      RegistryActions.openRecordsAction(false)
+      RegistryActions.openRecordsErrorAction(false)
     );
     expect(nextState.records.data.rows).toEqual([]);
   });
 
-  it('should clear temp record rows on OPEN_RECORDS(true)', () => {
+  it('should clear temp record rows on OPEN_RECORDS_ERROR(true)', () => {
     const nextState = registryReducer(
       initState,
-      RegistryActions.openRecordsAction(true)
+      RegistryActions.openRecordsErrorAction(true)
     );
     expect(nextState.tempRecords.data.rows).toEqual([]);
   });

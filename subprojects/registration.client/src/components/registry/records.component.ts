@@ -210,6 +210,13 @@ export class RegRecords implements OnInit, OnDestroy {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       }
+      // if (e.rowIndex === this.records.data.rows.length - 1
+      //   && this.records.data.rows.length < this.records.data.totalCount) {
+      //   new Promise((resolve, reject) => {
+      //       this.updateContents();
+      //       resolve(this.records.data.rows);
+      //     });
+      // }
     }
   }
 

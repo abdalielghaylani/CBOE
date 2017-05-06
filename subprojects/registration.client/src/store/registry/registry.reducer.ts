@@ -14,7 +14,7 @@ export function registryReducer(
   };
 
   switch (action.type) {
-    case RegistryActions.OPEN_RECORDS:
+    case RegistryActions.OPEN_RECORDS_ERROR:
       let a1 = action as ReduxActions.Action<boolean>;
       return state.updateIn(recordsDataPath(a1.payload), () => new CRecordsData(a1.payload));
 
