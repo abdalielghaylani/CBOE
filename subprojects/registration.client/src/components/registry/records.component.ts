@@ -172,7 +172,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.grid.instance.repaint();
   }
 
-  onInitialize(e) {
+  onInitialized(e) {
     if (!e.component.columnOption('command:edit', 'visibleIndex')) {
       e.component.columnOption('command:edit', {
         visibleIndex: -1,
