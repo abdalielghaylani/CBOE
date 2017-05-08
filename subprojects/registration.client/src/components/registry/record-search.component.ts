@@ -74,8 +74,4 @@ export class RegRecordSearch implements OnInit, OnDestroy {
     this.onClose.emit(e);
   }
 
-  getPanelHeight() {
-    return (Number(this.parentHeight) - 100).toString();
-  }
-
 };
