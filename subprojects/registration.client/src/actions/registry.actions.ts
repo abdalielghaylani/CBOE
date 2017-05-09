@@ -18,7 +18,8 @@ export class RegistryActions {
     (payload: any) => (payload));
   static openRecordsSuccessAction = createAction(RegistryActions.OPEN_RECORDS_SUCCESS,
     (temporary: boolean, data: any) => ({ temporary, data }));
-  static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR);
+  static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR,
+    (payload: any) => (payload));
   static deleteRecordAction = createAction(RegistryActions.DELETE_RECORD,
     (temporary: boolean, id: number) => ({temporary, id}));
   static deleteRecordSuccessAction = createAction(RegistryActions.DELETE_RECORD_SUCCESS);

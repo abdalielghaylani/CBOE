@@ -1,152 +1,108 @@
-<div class="viewcontainer">
-  <div *ngIf="tabSelected == 'search'">
-    <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px">
-      <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="clear()">
-          <i class="fa fa fa-eraser white" aria-hidden="true"></i>
-        </button>
-      <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="clear()">
-          <strong>Clear</strong>
-        </button>
-    </div>
-    <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px">
-      <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="search()">
-          <i class="fa fa fa-search white" aria-hidden="true"></i>
-        </button>
-      <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="search()">
-          <strong>Search</strong>
-        </button>
-    </div>
+<command-button testid="close-search-button" (onClick)="cancel($event)" iconName="close" title="Cancel"></command-button>
+<div *ngIf="tabSelected == 'search'">
+  <command-button testid="clear-search-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
+  <command-button testid="search-button" (onClick)="search()" iconName="search" title="Search"></command-button>
+  <div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+    <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+      <i class="fa-undo white" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restore <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><button type="button" class="btn">Last Hitlist</button></li>
+      <li><button type="button" class="btn">Last Query</button></li>
+      <li><button type="button" class="btn">Last Query to Form</button></li>
+    </ul>
   </div>
-  <div style="margin-top:5px;margin-bottom:5px" *ngIf="tabSelected == 'preference'">
-    <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px">
-      <button type="button" class="btn btn-default border-2 status background-blue border-blue">
-          <i class="fa fa fa-reply white" aria-hidden="true"></i>
-        </button>
-      <button type="button" class="btn btn-default border-2 status border-blue blue">
-          <strong>Restore Defaults</strong>
-        </button>
-    </div>
-    <div class="btn-group btn-group-sm pull-right" role="group" aria-label="" style="margin:5px">
-      <button type="button" class="btn btn-default border-2 status background-blue border-blue">
-          <i class="fa fa fa-floppy-o white" aria-hidden="true"></i>
-        </button>
-      <button type="button" class="btn btn-default border-2 status border-blue blue">
-          <strong>Save</strong>
-        </button>
-    </div>
-  </div>
-  <div class="btn-toolbar">
-    <div class="btn-group">
-      <div class="btn-group btn-group-sm">
-        <button type="button" class="btn dropdown-toggle rose text-relaxed" data-toggle="dropdown">
-			Restore Query <span class="caret"></span>
-		  </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a class="rose text-relaxed">Restore Last Hitlist</a></li>
-          <li><a class="rose text-relaxed">Perform Last Query</a></li>
-          <li><a class="rose text-relaxed">Restore Last Query To Form</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="panel with-nav-tabs panel-default">
-    <div class="panel-heading">
-      <ul class="nav nav-tabs">
-        <li class="active" (click)="tabSelected = 'search'"><a href="#tab1default" data-toggle="tab">Advanced Search</a></li>
-        <li (click)="tabSelected = 'preference'"><a href="#tab2default" data-toggle="tab">Preferences</a></li>
-      </ul>
-    </div>
-    <div class="panel-body">
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="tab1default">
-          <div class="panel-group" id="accordion" *ngIf="temporary">
-            <div class="panel">
-              <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTemp">
-                                                                    Temporary Information</span>
-                </h4>
-              </div>
-              <div id="collapseTemp" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <div>
-                    <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-                    <dx-select-box [items]="regsearch.temporarySearchVM.searchTypeItems" [value]="regsearch.temporarySearch.searchTypeValue">
-                    </dx-select-box>
-                  </div>
-                  <chem-draw-tool></chem-draw-tool>
-                  <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.temporarySearch"
-                    [items]="regsearch.temporarySearchVM.columns"></dx-form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="panel-group" id="accordion" *ngIf="!temporary">
-            <div class="panel panel-default">
-              <div class="panel-heading" style='border-left: 4px solid #f38787;'>
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                                    Registry Information</span>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  <div>
-                    <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-                    <dx-select-box [items]="regsearch.registrySearchVM.searchTypeItems" [value]="regsearch.registrySearch.searchTypeValue">
-                    </dx-select-box>
-                  </div>
-                  <chem-draw-tool></chem-draw-tool>
-                  <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch"
-                    [items]="regsearch.registrySearchVM.columns"></dx-form>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" style='border-left: 4px solid #65c465;'>
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Structure Information</span>
-                </h4>
-              </div>
-              <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch"
-                    [items]="regsearch.structureSearchVM.columns"></dx-form>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" style='border-left: 4px solid #98b3fa;'>
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                        Component Information </span>
-                </h4>
-              </div>
-              <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch"
-                    [items]="regsearch.componentSearchVM.columns"></dx-form>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" style='border-left: 4px solid #9900ff;'>
-                <h4 class="panel-title">
-                  <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                                Batch Information </span>
-                </h4>
-              </div>
-              <div id="collapseFour" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.batchSearch" [items]="regsearch.batchSearchVM.columns"></dx-form>
-                </div>
-              </div>
-            </div>
-          </div>
+</div>
+<div style="margin-top:5px;margin-bottom:5px" *ngIf="tabSelected == 'preference'">
+  <command-button testid="restore-preference-button" (onClick)="restorePreference()" iconName="reply" title="Restore Defaults"></command-button>
+  <command-button testid="save-preference-button" (onClick)="savePreference()" iconName="floppy-o" title="Save"></command-button>
+</div>
+<reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+  <span *ngIf="temporary">Search Temporary Records</span>
+  <span *ngIf="!temporary">Search Permanent Registry</span>
+</reg-page-header>
+
+<div class="panel with-nav-tabs panel-default">
+  <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
+    <div class="panel-group" id="accordion" *ngIf="temporary">
+      <div class="panel">
+        <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
+          <h4 class="panel-title">
+            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTemp">Temporary Information</span>
+          </h4>
         </div>
-        <div class="tab-pane fade" id="tab2default">
-          <dx-form id="preferenceForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="regsearch.preferenceVM.columns"></dx-form>
+        <div id="collapseTemp" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div>
+              <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
+              <dx-select-box [items]="regSearch.temporarySearchVM.searchTypeItems" [value]="regSearch.temporarySearch.searchTypeValue">
+              </dx-select-box>
+            </div>
+            <chem-draw-tool></chem-draw-tool>
+            <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.temporarySearch" [items]="regSearch.temporarySearchVM.columns"></dx-form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    <div class="panel-group" id="accordion" *ngIf="!temporary">
+      <div class="panel panel-default">
+        <div class="panel-heading" style='border-left: 4px solid #f38787;'>
+          <h4 class="panel-title">
+            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                                              Registry Information</span>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div>
+              <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
+              <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearch.searchTypeValue">
+              </dx-select-box>
+            </div>
+            <chem-draw-tool></chem-draw-tool>
+            <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.registrySearch" [items]="regSearch.registrySearchVM.columns"></dx-form>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" style='border-left: 4px solid #65c465;'>
+          <h4 class="panel-title">
+            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Structure Information</span>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+          <div class="panel-body">
+            <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearch" [items]="regSearch.structureSearchVM.columns"></dx-form>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" style='border-left: 4px solid #98b3fa;'>
+          <h4 class="panel-title">
+            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                  Component Information </span>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+          <div class="panel-body">
+            <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearch" [items]="regSearch.componentSearchVM.columns"></dx-form>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" style='border-left: 4px solid #9900ff;'>
+          <h4 class="panel-title">
+            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                          Batch Information </span>
+          </h4>
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+          <div class="panel-body">
+            <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearch" [items]="regSearch.batchSearchVM.columns"></dx-form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dx-scroll-view>
+</div>

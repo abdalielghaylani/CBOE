@@ -152,24 +152,24 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     let cdWidth = cddContainer.innerWidth() - 4;
     let attachmentElement = cddContainer[0];
     let cdHeight = attachmentElement.offsetHeight;
+    const self = this;
     jQuery(this.elementRef.nativeElement).find('.click_catch').height(cdHeight);
     let params = {
       element: attachmentElement,
       height: (cdHeight - 2),
       width: cdWidth,
       viewonly: false,
-      parent: this,
       callback: function (drawingTool) {
-        this.parent.drawingTool = drawingTool;
-        jQuery(this.parent.elementRef.nativeElement).find('.click_catch').addClass('hidden');
+        self.drawingTool = drawingTool;
+        jQuery(self.elementRef.nativeElement).find('.click_catch').addClass('hidden');
         if (drawingTool) {
           drawingTool.setViewOnly(false);
         }
-        this.parent.creatingCDD = false;
+        self.creatingCDD = false;
         drawingTool.fitToContainer();
-        if (this.parent.cdxml) {
-          drawingTool.loadCDXML(this.parent.cdxml);
-          this.parent.cdxml = null;
+        if (self.cdxml) {
+          drawingTool.loadCDXML(self.cdxml);
+          self.cdxml = null;
         }
       },
       licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',

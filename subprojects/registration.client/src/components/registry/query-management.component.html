@@ -1,10 +1,17 @@
-<dx-data-grid id="grdSearchQuery" [columns]=hitlistVM.gridColumns [attr.data-target]=hitlistVM [masterDetail]="{ enabled: false, template: 'detail' }" [dataSource]=records [paging]='{pageSize: 15}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [10,15,20], showInfo: true }'
-  [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' rowAlternationEnabled=true (onEditorPreparing)='onEditorPreparing($event)' (onRowRemoving)='onRowRemoving($event)' (onCellPrepared)='onCellPrepared($event)' (onContentReady)='onContentReady($event)'
-  (onRowUpdating)='onRowUpdating($event)'>
+<command-button testid="close-query-management-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+<reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+  Query Management
+</reg-page-header>
+<dx-data-grid id="grdSearchQuery" [height]="parentHeight" [columns]=hitlistVM.gridColumns [attr.data-target]=hitlistVM [masterDetail]="{ enabled: false, template: 'detail' }"
+  [dataSource]=records rowAlternationEnabled=true (onEditorPreparing)='onEditorPreparing($event)' (onRowRemoving)='onRowRemoving($event)'
+  (onCellPrepared)='onCellPrepared($event)' (onContentReady)='onContentReady($event)' (onRowUpdating)='onRowUpdating($event)'>
   <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" [texts]="{
       confirmDeleteMessage: 'Are you sure you want to delete this hitlist?',
       confirmDeleteTitle: 'Remove Hitlist'
   }"></dxo-editing>
+  <dxo-scrolling mode="infinite"></dxo-scrolling>
+  <dxo-filter-row [visible]="true"></dxo-filter-row>
+  <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
   <div *dxTemplate="let data of 'detail'">
     <div class="panel center-block panel-default" id="restore-hitlist" style="width:70%">
       <div class="panel-heading">

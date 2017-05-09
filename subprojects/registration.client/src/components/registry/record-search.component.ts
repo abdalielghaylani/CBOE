@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnInit, OnDestroy, AfterViewInit,
+  OnInit, OnDestroy, OnChanges,
   ElementRef, ChangeDetectorRef,
   ViewChildren, QueryList, ViewChild
 } from '@angular/core';
@@ -26,13 +26,16 @@ declare var jQuery: any;
   template: require('./record-search.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecordSearch implements OnInit, OnDestroy {
+export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Input() temporary: boolean;
+  @Input() parentHeight: string;
+  @Input() activated: boolean;
+  @Output() onClose = new EventEmitter<any>();
   private title: string;
   private tabSelected: string = 'search';
-  private regsearch: regSearchTypes.CSearchFormVM;
+  private regSearch: regSearchTypes.CSearchFormVM;
   @ViewChild(ChemDrawingTool)
-  private drawingTool: ChemDrawingTool;
+  private chemDrawWeb: ChemDrawingTool;
 
   constructor(
     private router: Router,
@@ -44,22 +47,38 @@ export class RegRecordSearch implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
-    this.regsearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
+    this.regSearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
   }
 
   ngOnDestroy() {
   }
 
+  ngOnChanges() {
+    if (this.activated && this.chemDrawWeb) {
+      this.chemDrawWeb.activate();
+    }
+  }
+
   search() {
-    this.regsearch.registrySearchVM.structureData = this.drawingTool.getValue();
+    this.regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();
   }
 
   clear() {
-    this.drawingTool.loadCdxml(null);
+    this.chemDrawWeb.loadCdxml(null);
   }
 
   retrieveAll() {
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+  }
+
+  savePreference(e) {
+  }
+
+  restorePreference(e) {
+  }
+
+  cancel(e) {
+    this.onClose.emit(e);
   }
 
 };

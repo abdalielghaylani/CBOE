@@ -31,7 +31,8 @@ import {
   DxFormModule,
   DxPopupModule,
   DxLoadIndicatorModule,
-  DxLoadPanelModule
+  DxLoadPanelModule,
+  DxScrollViewModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -55,7 +56,8 @@ import {
     DxFormModule,
     DxPopupModule,
     DxLoadIndicatorModule,
-    DxLoadPanelModule
+    DxLoadPanelModule,
+    DxScrollViewModule
   ],
   declarations: [
     RegApp,
