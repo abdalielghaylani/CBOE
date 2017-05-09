@@ -79,5 +79,5 @@
   <reg-search-query [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-record-search (onClose)="headerClicked($event)" [parentHeight]="gridHeight"></reg-record-search>
+  <reg-record-search (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>

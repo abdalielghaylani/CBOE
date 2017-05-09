@@ -36,11 +36,11 @@
           <div class="panel-body">
             <div>
               <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-              <dx-select-box [items]="regsearch.temporarySearchVM.searchTypeItems" [value]="regsearch.temporarySearch.searchTypeValue">
+              <dx-select-box [items]="regSearch.temporarySearchVM.searchTypeItems" [value]="regSearch.temporarySearch.searchTypeValue">
               </dx-select-box>
             </div>
             <chem-draw-tool></chem-draw-tool>
-            <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.temporarySearch" [items]="regsearch.temporarySearchVM.columns"></dx-form>
+            <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.temporarySearch" [items]="regSearch.temporarySearchVM.columns"></dx-form>
           </div>
         </div>
       </div>
@@ -57,11 +57,11 @@
           <div class="panel-body">
             <div>
               <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-              <dx-select-box [items]="regsearch.registrySearchVM.searchTypeItems" [value]="regsearch.registrySearch.searchTypeValue">
+              <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearch.searchTypeValue">
               </dx-select-box>
             </div>
             <chem-draw-tool></chem-draw-tool>
-            <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.registrySearch" [items]="regsearch.registrySearchVM.columns"></dx-form>
+            <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.registrySearch" [items]="regSearch.registrySearchVM.columns"></dx-form>
           </div>
         </div>
       </div>
@@ -73,7 +73,7 @@
         </div>
         <div id="collapseTwo" class="panel-collapse collapse">
           <div class="panel-body">
-            <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.structureSearch" [items]="regsearch.structureSearchVM.columns"></dx-form>
+            <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearch" [items]="regSearch.structureSearchVM.columns"></dx-form>
           </div>
         </div>
       </div>
@@ -86,7 +86,7 @@
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
           <div class="panel-body">
-            <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.componentSearch" [items]="regsearch.componentSearchVM.columns"></dx-form>
+            <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearch" [items]="regSearch.componentSearchVM.columns"></dx-form>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@
         </div>
         <div id="collapseFour" class="panel-collapse collapse">
           <div class="panel-body">
-            <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regsearch.batchSearch" [items]="regsearch.batchSearchVM.columns"></dx-form>
+            <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearch" [items]="regSearch.batchSearchVM.columns"></dx-form>
           </div>
         </div>
       </div>

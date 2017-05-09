@@ -37,7 +37,6 @@ export class ChemDrawingTool implements OnInit {
   }
 
   ngOnInit() {
-    this.createDrawingTool();
   }
 
   createDrawingTool() {
@@ -97,6 +96,12 @@ export class ChemDrawingTool implements OnInit {
 
   getValue() {
     return this.drawingTool.getCDXML();
+  }
+
+  activate() {
+    if (!this.drawingTool) {
+      this.createDrawingTool();
+    }
   }
 
 };
