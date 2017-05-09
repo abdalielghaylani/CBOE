@@ -21,26 +21,60 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "records")]
         [SwaggerOperation("GetRecords")]
         [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(string))]
+        [SwaggerResponse(500, type: typeof(string))]
         public async Task<IHttpActionResult> GetRecords(int? skip = null, int? count = null, string sort = null)
         {
-            CheckAuthentication();
-            var tableName = "vw_mixture_regnumber";
-            var query = GetQuery(tableName, RecordColumns, sort, "modified", "regid");
-            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, new JObject(
-                new JProperty("temporary", false),
-                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
-                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
-                new JProperty("rows", ExtractData(query, null, skip, count))
-            ));
-            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+            return await CallGetMethod(() =>
+            {
+                var tableName = "vw_mixture_regnumber";
+                var query = GetQuery(tableName, RecordColumns, sort, "modified", "regid");
+                return new JObject(
+                    new JProperty("temporary", false),
+                    new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
+                    new JProperty("rows", ExtractData(query, null, skip, count))
+                );
+            });
         }
 
         [HttpGet]
         [Route(Consts.apiPrefix + "records/{id}")]
-        public dynamic GetRecord(int id)
+        [SwaggerOperation("GetRecord")]
+        [SwaggerResponse(200, type: typeof(string))]
+        [SwaggerResponse(401, type: typeof(string))]
+        [SwaggerResponse(500, type: typeof(string))]
+        public async Task<IHttpActionResult> GetRecord(int id)
         {
-            return null;
+            return await CallServiceMethod((service) =>
+            {
+                return service.RetrieveTemporaryRegistryRecord(id);
+            });
         }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "records")]
+        [SwaggerOperation("CreateRecord")]
+        [SwaggerResponse(201, type: typeof(string))]
+        public void CreateRecord(string record)
+        {
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "records/{id}")]
+        [SwaggerOperation("UpdateRecord")]
+        public void UpdateRecord(int id)
+        {
+        }
+
+        [HttpDelete]
+        [Route(Consts.apiPrefix + "records/{id}")]
+        [SwaggerOperation("DeleteRecord")]
+        [SwaggerResponse(200, type: typeof(string))]
+        public void DeleteRecord(int id)
+        {
+        }
+
         #endregion // Permanent Records
 
         #region Temporary Records

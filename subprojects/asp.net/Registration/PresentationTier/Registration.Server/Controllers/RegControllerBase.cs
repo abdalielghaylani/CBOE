@@ -19,6 +19,7 @@ using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Framework.COETableEditorService;
 using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Registration.Services;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -153,6 +154,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 CheckAuthentication();
                 var tableList = new JArray();
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, method());
+            }
+            catch (Exception ex)
+            {
+                responseMessage = Request.CreateErrorResponse(
+                    ex is AuthenticationException ?
+                    HttpStatusCode.Unauthorized :
+                    HttpStatusCode.InternalServerError, ex);
+            }
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        protected async Task<IHttpActionResult> CallServiceMethod(Func<COERegistrationServices, string> method)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                using (var service = new COERegistrationServices())
+                {
+                    service.Credentials.AuthenticationTicket = GetSessionToken();
+                    responseMessage = Request.CreateResponse(HttpStatusCode.OK, method(service));
+                }
             }
             catch (Exception ex)
             {
