@@ -14,38 +14,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class DataConversionController : RegControllerBase
     {
-        private JObject Convert(string fromType, string toType, string fromData)
-        {
-            // CacheableChemdrawControl may dispose automatically when timeout elapses.
-            // In other words, it does not need to be disposed of explicitly in this code.
-            // In order to support multiple versions of ChemDrawCtl, all calls to ChemDrawCtl are done dynamically.
-            var assemblyName = Assembly.GetCallingAssembly().GetName().Name;
-            dynamic cacheableChemDrawCtl = (object)CambridgeSoft.COE.Framework.Caching.CacheableChemdrawControl.GetCachedChemdrawControl(assemblyName);
-            dynamic chemDrawCtl =  cacheableChemDrawCtl.Control;
-            dynamic cdObjects = chemDrawCtl.Objects;
-            cdObjects.Clear();
-            chemDrawCtl.DataEncoded = true;
-            chemDrawCtl.set_Data(fromType, fromData);
-            var toData = new JObject(
-                new JProperty("data", chemDrawCtl.get_Data(toType))
-            );
-            return toData;
-        }
-
         [HttpPost]
         [Route(Consts.apiPrefix + "DataConversion/ToCdxml")]
         public JObject ToCdxml()
         {
-            var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
-            return Convert("chemical/x-cdx", "text/xml", fromData);
+            var data = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
+            return new JObject(new JProperty("data", ChemistryHelper.ConvertToCdxml(data)));
         }
 
         [HttpPost]
         [Route(Consts.apiPrefix + "DataConversion/FromCdxml")]
         public JObject FromCdxml()
         {
-            var fromData = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
-            return Convert("text/xml", "chemical/x-cdx", fromData);
+            var data = Request.Content.ReadAsAsync<JObject>().Result["data"].ToString();
+            return new JObject(new JProperty("data", ChemistryHelper.ConvertToCdx(data)));
         }
     }
 }

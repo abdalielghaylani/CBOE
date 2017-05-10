@@ -83,10 +83,6 @@ describe('Session Reducer', () => {
     expect(nextState).toEqual(INITIAL_STATE);
     nextState = sessionReducer(
       previousState,
-      RecordDetailActions.registerRecordErrorAction(error));
-    expect(nextState).toEqual(INITIAL_STATE);
-    nextState = sessionReducer(
-      previousState,
       RecordDetailActions.updateRecordErrorAction(error));
     expect(nextState).toEqual(INITIAL_STATE);
   });
@@ -109,10 +105,6 @@ describe('Session Reducer', () => {
     nextState = sessionReducer(
       previousState,
       RecordDetailActions.saveRecordErrorAction(error));
-    expect(nextState).toEqual(previousState);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.registerRecordErrorAction(error));
     expect(nextState).toEqual(previousState);
     nextState = sessionReducer(
       previousState,

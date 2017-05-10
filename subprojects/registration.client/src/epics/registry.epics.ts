@@ -8,7 +8,7 @@ import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
 import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
-import { IRecordDetail, IAppState } from '../store';
+import { IRecordDetail, IRegistry, IAppState } from '../store';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
@@ -38,11 +38,8 @@ export class RegistryEpics {
       this.handleOpenRecords,
       this.handleRetrieveRecord,
       this.handleSaveRecord,
-      this.handleSaveRecordSuccess,
       this.handleUpdateRecord,
       this.handleUpdateRecordSuccess,
-      this.handleRegisterRecord,
-      this.handleRegisterRecordSuccess,
       this.handleLoadStructure,
     )(action$, store);
   }
@@ -70,23 +67,14 @@ export class RegistryEpics {
   private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.RETRIEVE_RECORD)
       .mergeMap(({ payload }) => {
-        let records = payload.temporary ?
-          this.ngRedux.getState().registry.tempRecords :
-          this.ngRedux.getState().registry.records;
-        let data = payload.id < 0 ? undefined : records.data.rows.find(r => r[Object.keys(r)[0]] === payload.id);
-        let url = payload.id < 0 ?
-          `${WS_URL}/RetrieveNewRegistryRecord` :
-          payload.temporary ?
-            `${WS_URL}/RetrieveTemporaryRegistryRecord?id=${data.BATCHID}` :
-            `${WS_URL}/RetrieveRegistryRecord?regNum=${data.REGNUMBER}`;
-        return this.http.get(url)
+        return this.http.get(`${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records/${payload.id}`)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
               : RecordDetailActions.retrieveRecordSuccessAction({
                 temporary: payload.temporary,
                 id: payload.id,
-                data: result.text()
+                data: result.json().data
               } as IRecordDetail);
           })
           .catch(error => Observable.of(RecordDetailActions.retrieveRecordErrorAction(error)));
@@ -94,48 +82,33 @@ export class RegistryEpics {
   }
 
   private handleSaveRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
-    return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD)
+    return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD || type === RecordDetailActions.REGISTER_RECORD)
       .mergeMap(a => {
-        // Convert CDXML to encoded-CDX first
-        const structPath = 'ComponentList/Component/Compound/BaseFragment/Structure/Structure';
-        let data = registryUtils.getElementValue(a.payload.documentElement, structPath);
-        let url: string = `${apiUrlPrefix}DataConversion/FromCdxml`;
+        let registryData: IRegistry = this.ngRedux.getState().registry;
+        let currentRecord = registryData.currentRecord;
+        let id = currentRecord.id;
+        let registerAction = a.type === RecordDetailActions.REGISTER_RECORD;
+        let temporary = !registerAction && (id < 0 || currentRecord.temporary);
+        let data = registryUtils.serializeData(a.payload);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.post(url, { data }, options)
+        return (id < 0
+          ? this.http.post(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records`, { data }, options)
+          : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, { data }, options))
           .map(result => {
             if (result.url.indexOf('index.html') > 0) {
               return SessionActions.logoutUserAction();
             } else {
-              registryUtils.setElementValue(a.payload.documentElement, structPath, result.json().data);
-              return RecordDetailActions.saveRecordSuccessAction(a.payload);
-            }
-          })
-          .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
-      });
-  }
-
-  private handleSaveRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
-    return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD_SUCCESS)
-      .mergeMap(a => {
-        // Save the record into a temporary storage
-        // Create CreateTemporaryRegistryRecord
-        const params = {
-          token: this.ngRedux.getState().session.token,
-          method: 'CreateTemporaryRegistryRecord',
-          xml: registryUtils.serializeData(a.payload).encodeHtml(),
-          additional: ''
-        };
-        let data = WS_ENVELOPE.format(params);
-        let headers = new Headers({ 'Content-Type': 'application/soap+xml', charset: 'utf-8' });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(WS_URL, data, options)
-          .map(result => {
-            if (result.url.indexOf('index.html') > 0) {
-              return SessionActions.logoutUserAction();
-            } else {
-              notifySuccess('The record was saved in the temporary registry successfully!', 5000);
-              return createAction(UPDATE_LOCATION)(`records/temp`);
+              let responseData = result.json().data;
+              let actionType = registerAction ? 'registered' : 'saved';
+              let newId = registerAction ? responseData.RegNum : responseData.id;
+              newId = ` (${registerAction ? 'Reg Number' : 'ID'}: ${newId})`;
+              let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
+                + `${id < 0 ? newId : ''} successfully!`;
+              notifySuccess(message, 5000);
+              return id < 0
+                ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
+                : createAction(RegActions.IGNORE_ACTION);
             }
           })
           .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
@@ -158,44 +131,6 @@ export class RegistryEpics {
     return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_RECORD_SUCCESS)
       .mergeMap(({ payload }) => {
         return Observable.of({ type: RegActions.IGNORE_ACTION });
-      });
-  }
-
-  private handleRegisterRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
-    return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_RECORD)
-      .mergeMap(({ payload }) => {
-        // This should come from the user/configuration
-        const duplicateAction = 'N';
-        const params = {
-          token: this.ngRedux.getState().session.token,
-          method: 'CreateRegistryRecord',
-          xml: registryUtils.serializeData(payload).encodeHtml(),
-          additional: `<duplicateAction>${duplicateAction}</duplicateAction>`
-        };
-        let data = WS_ENVELOPE.format(params);
-        let headers = new Headers({ 'Content-Type': 'application/soap+xml', charset: 'utf-8' });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(WS_URL, data, options)
-          .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : RecordDetailActions.registerRecordSuccessAction(result.text());
-          })
-          .catch(error => Observable.of(RecordDetailActions.registerRecordErrorAction(error)));
-      });
-  }
-
-  private handleRegisterRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
-    return action$.filter(({ type }) => type === RecordDetailActions.REGISTER_RECORD_SUCCESS)
-      .mergeMap(({ payload }) => {
-        // <ReturnList><ActionDuplicateTaken>N</ActionDuplicateTaken><RegID>30</RegID><RegNum>AB-000012</RegNum><BatchNumber>1</BatchNumber>
-        // <BatchID>22</BatchID></ReturnList>
-        let response: Document = registryUtils.getDocument(registryUtils.getDocument(payload).documentElement.textContent);
-        let regNumber = registryUtils.getElementValue(response.documentElement, 'RegNum');
-        notify(regNumber ? `${regNumber} was created successfully` : 'Registration failed!', regNumber ? 'success' : 'error', 5000);
-        return regNumber ?
-          Observable.of({ type: UPDATE_LOCATION, payload: `records` }) :
-          Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 

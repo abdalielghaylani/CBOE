@@ -10,6 +10,8 @@ using PerkinElmer.COE.Registration.Server.Code;
 using Microsoft.Web.Http;
 using Swashbuckle.Swagger.Annotations;
 using System.Net;
+using System.Xml;
+using Newtonsoft.Json;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -41,14 +43,31 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "records/{id}")]
         [SwaggerOperation("GetRecord")]
-        [SwaggerResponse(200, type: typeof(string))]
-        [SwaggerResponse(401, type: typeof(string))]
-        [SwaggerResponse(500, type: typeof(string))]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(404, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(JObject))]
         public async Task<IHttpActionResult> GetRecord(int id)
         {
             return await CallServiceMethod((service) =>
             {
-                return service.RetrieveTemporaryRegistryRecord(id);
+                string record;
+                if (id < 0)
+                {
+                    record = service.RetrieveNewRegistryRecord();
+                }
+                else
+                {
+                    var args = new Dictionary<string, object>();
+                    args.Add(":id", id);
+                    var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
+                    if (string.IsNullOrEmpty(regNum))
+                        throw new IndexOutOfRangeException();
+                    record = service.RetrieveRegistryRecord(regNum);
+                }
+                var recordXml = new XmlDocument();
+                recordXml.LoadXml(record);
+                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml));
             });
         }
 
@@ -56,8 +75,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "records")]
         [SwaggerOperation("CreateRecord")]
         [SwaggerResponse(201, type: typeof(string))]
-        public void CreateRecord(string record)
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> CreateRecord(JObject record)
         {
+            return await CallServiceMethod((service) =>
+            {
+                var doc = new XmlDocument();
+                doc.LoadXml((string)record["data"]);
+                var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var resultString = service.CreateRegistryRecord(recordString, "N").Replace("ReturnList", "data");
+                doc.LoadXml(resultString);
+                var errorNode = doc.SelectSingleNode("//ErrorMessage");
+                if (errorNode != null)
+                    throw new RegistrationException(errorNode.InnerText);
+                return JObject.Parse(JsonConvert.SerializeXmlNode(doc));
+            });
         }
 
         [HttpPut]
@@ -101,20 +134,55 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         [HttpGet]
         [Route(Consts.apiPrefix + "temp-records/{id}")]
-        public dynamic GetTemp(int id)
+        [SwaggerOperation("GetTempRecord")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(404, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetTempRecord(int id)
         {
-            using (var service = new COERegistrationServices())
+            return await CallServiceMethod((service) =>
             {
-                service.Credentials.AuthenticationTicket = GetSessionToken();
-                return service.RetrieveTemporaryRegistryRecord(id);
-            }
+                var args = new Dictionary<string, object>();
+                args.Add(":id", id);
+                var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
+                if (count == 0)
+                    throw new IndexOutOfRangeException();
+                var record = service.RetrieveTemporaryRegistryRecord(id);
+                var recordXml = new XmlDocument();
+                recordXml.LoadXml(record);
+                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml));
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "temp-records")]
+        [SwaggerOperation("CreateTempRecord")]
+        [SwaggerResponse(201, type: typeof(string))]
+        public async Task<IHttpActionResult> CreateTempRecord(JObject record)
+        {
+            return await CallServiceMethod((service) =>
+            {
+                var doc = new XmlDocument();
+                doc.LoadXml((string)record["data"]);
+                var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var resultString = service.CreateTemporaryRegistryRecord(recordString);
+                return new JObject(new JProperty("data", new JObject(new JProperty("id", Convert.ToInt32(resultString)))));
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "temp-records/{id}")]
+        [SwaggerOperation("UpdateTempRecord")]
+        public void UpdateTempRecord(int id)
+        {
         }
 
         [HttpDelete]
         [Route(Consts.apiPrefix + "temp-records/{id}")]
-        [SwaggerOperation("DeleteTemp")]
+        [SwaggerOperation("DeleteTempRecord")]
         [SwaggerResponse(200, type: typeof(string))]
-        public async Task<IHttpActionResult> DeleteTemp(int id)
+        public async Task<IHttpActionResult> DeleteTempRecord(int id)
         {
             using (var service = new COERegistrationServices())
             {

@@ -35,7 +35,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @Input() temporary: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
-  @select(s => s.registry.structureData) structureData$: Observable<string>;
   public formGroup: CFormGroup;
   public editMode: boolean = false;
   private title: string;
@@ -78,19 +77,17 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.actions.clearRecord();
   }
 
-  loadData(data: IRecordDetail) {
-    if (this.temporary !== data.temporary || this.id !== data.id) {
+  loadData(recordDetail: IRecordDetail) {
+    if (this.temporary !== recordDetail.temporary || this.id !== recordDetail.id) {
       return;
     }
-    let output = registryUtils.getDocument(data.data);
-    this.recordString = output.documentElement.firstChild.textContent;
-    this.recordDoc = registryUtils.getDocument(this.recordString);
-    this.title = data.id < 0 ?
+    this.recordDoc = registryUtils.getDocument(recordDetail.data);
+    this.title = recordDetail.id < 0 ?
       'Register a New Compound' :
-      data.temporary ?
+      recordDetail.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    registryUtils.fixStructureData(this.recordDoc);
+    // registryUtils.fixStructureData(this.recordDoc);
     let x2jsTool = new X2JS.default({
       arrayAccessFormPaths: [
         'MultiCompoundRegistryRecord.ComponentList.Component',
@@ -108,7 +105,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     let recordJson: any = x2jsTool.dom2js(this.recordDoc);
     this.regRecord = recordJson.MultiCompoundRegistryRecord;
     let formGroupType = FormGroupType.SubmitMixture;
-    if (data.id >= 0 && !data.temporary) {
+    if (recordDetail.id >= 0 && !recordDetail.temporary) {
       // TODO: For mixture, this should be ReviewRegistryMixture
       formGroupType = FormGroupType.ViewMixture;
     }
@@ -120,9 +117,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
     }
-    this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
-      'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
-    this.loadSubscription = this.structureData$.subscribe((value: string) => this.loadCdxml(value));
+    let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
+    this.loadCdxml(structureData);
     this.changeDetector.markForCheck();
   }
 
@@ -187,16 +184,19 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
   };
 
+  private updateRecord() {
+    registryUtils.setElementValue(this.recordDoc.documentElement,
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
+  }
+
   save() {
+    this.updateRecord();
     if (this.id < 0) {
-      // Retrieve CDXML from CDD
-      registryUtils.setElementValue(this.recordDoc.documentElement,
-        'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
       this.actions.saveRecord(this.recordDoc);
     } else {
-      // notify('Saving is not supported yet!', 'warning');
-      // this.actions.updateRecord(this.recordDoc);
       this.setEditMode(false);
+      // TODO: API is not working yet.
+      // this.actions.saveRecord(this.recordDoc);
     }
   }
 
@@ -210,6 +210,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   register() {
+    this.updateRecord();
     this.actions.registerRecord(this.recordDoc);
   }
 

@@ -165,7 +165,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
-        protected async Task<IHttpActionResult> CallServiceMethod(Func<COERegistrationServices, string> method)
+        protected async Task<IHttpActionResult> CallServiceMethod(Func<COERegistrationServices, JObject> method)
         {
             HttpResponseMessage responseMessage;
             try
@@ -181,6 +181,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 responseMessage = Request.CreateErrorResponse(
                     ex is AuthenticationException ?
                     HttpStatusCode.Unauthorized :
+                    ex is RegistrationException ?
+                    HttpStatusCode.BadRequest :
+                    ex is IndexOutOfRangeException ?
+                    HttpStatusCode.NotFound :
                     HttpStatusCode.InternalServerError, ex);
             }
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));

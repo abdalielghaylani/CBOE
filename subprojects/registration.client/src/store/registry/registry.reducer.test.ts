@@ -80,25 +80,6 @@ describe('registry reducer', () => {
     expect(secondState.currentRecord.data).toEqual(data2);
   });
 
-  it('should clear the structure in the store on LOAD_STRUCTURE', () => {
-    let prevState = initState.update('structureData', () => '<CDXML></CDXML>');
-    const nextState = registryReducer(
-      prevState,
-      RecordDetailActions.loadStructureAction()
-    );
-    expect(nextState.structureData).toEqual(null);
-  });
-
-  it('should set structureData on LOAD_STRUCTURE_SUCCESS', () => {
-    const data = '<CDXML/>';
-    const payload = { data: data };
-    const nextState = registryReducer(
-      initState,
-      RecordDetailActions.loadStructureSuccessAction(payload)
-    );
-    expect(nextState.structureData).toEqual(data);
-  });
-
   it('should ignore error cases', () => {
     const nextState = registryReducer(
       initState,
