@@ -89,11 +89,12 @@ export class RegistryEpics {
         let currentRecord = registryData.currentRecord;
         let id = currentRecord.id;
         let registerAction = a.type === RecordDetailActions.REGISTER_RECORD;
+        let createRecordAction = id < 0 || registerAction;
         let temporary = !registerAction && (id < 0 || currentRecord.temporary);
         let data = registryUtils.serializeData(a.payload);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return (id < 0
+        return (createRecordAction
           ? this.http.post(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records`, { data }, options)
           : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, { data }, options))
           .map(result => {
@@ -105,9 +106,9 @@ export class RegistryEpics {
               let newId = registerAction ? responseData.regNumber : responseData.id;
               newId = ` (${registerAction ? 'Reg Number' : 'ID'}: ${newId})`;
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
-                + `${id < 0 ? newId : ''} successfully!`;
+                + `${createRecordAction ? newId : ''} successfully!`;
               notifySuccess(message, 5000);
-              return id < 0
+              return createRecordAction
                 ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
                 : createAction(RegActions.IGNORE_ACTION)();
             }
