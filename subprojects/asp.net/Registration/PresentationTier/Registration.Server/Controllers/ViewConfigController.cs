@@ -1,48 +1,47 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Linq;
+using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
+using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Framework.COETableEditorService;
-using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
-using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.Common;
 using PerkinElmer.COE.Registration.Server.Code;
-using Microsoft.Web.Http;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class ViewConfigController : RegControllerBase
     {
+        [HttpGet]
         [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
-        public JObject GetLookups()
+        [SwaggerOperation("GetLookups")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetLookups()
         {
-            CheckAuthentication();
-            return new JObject(
-                new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
-                new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
-                new JProperty("fragmentTypes", ExtractData("SELECT * FROM VW_FRAGMENTTYPE")),
-                new JProperty("identifierTypes", ExtractData("SELECT * FROM VW_IDENTIFIERTYPE")),
-                new JProperty("notebooks", ExtractData("SELECT * FROM VW_NOTEBOOK")),
-                new JProperty("pickList", ExtractData("SELECT * FROM VW_PICKLIST")),
-                new JProperty("pickListDomains", ExtractData("SELECT * FROM VW_PICKLISTDOMAIN")),
-                new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
-                new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
-                new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
-                new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
-                new JProperty("formGroups", GetFormGroups()),
-                new JProperty("customTables", GetCustomTables()),
-                new JProperty("systemSettings", GetSystemSettings())
-
-            );
+            return await CallMethod(() =>
+            {
+                return new JObject(
+                    new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
+                    new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
+                    new JProperty("fragmentTypes", ExtractData("SELECT * FROM VW_FRAGMENTTYPE")),
+                    new JProperty("identifierTypes", ExtractData("SELECT * FROM VW_IDENTIFIERTYPE")),
+                    new JProperty("notebooks", ExtractData("SELECT * FROM VW_NOTEBOOK")),
+                    new JProperty("pickList", ExtractData("SELECT * FROM VW_PICKLIST")),
+                    new JProperty("pickListDomains", ExtractData("SELECT * FROM VW_PICKLISTDOMAIN")),
+                    new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
+                    new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
+                    new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
+                    new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
+                    new JProperty("formGroups", GetFormGroups()),
+                    new JProperty("customTables", GetCustomTables()),
+                    new JProperty("systemSettings", GetSystemSettings())
+                );
+            });
         }
 
         private static JArray GetFormGroups()

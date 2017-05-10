@@ -195,8 +195,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       this.actions.saveRecord(this.recordDoc);
     } else {
       this.setEditMode(false);
-      // TODO: API is not working yet.
-      // this.actions.saveRecord(this.recordDoc);
+      this.actions.saveRecord(this.recordDoc);
     }
   }
 

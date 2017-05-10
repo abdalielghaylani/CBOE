@@ -6,15 +6,16 @@ import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
 import { Observable } from 'rxjs/Observable';
-import { notify, notifySuccess } from '../common';
-import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
-import { IRecordDetail, IRegistry, IAppState } from '../store';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
+import { notify, notifySuccess } from '../common';
+import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
+import { IRecordDetail, IRegistry, IAppState } from '../store';
+import { IResponseData } from '../components';
 
 const WS_URL = `/COERegistration/Webservices/COERegistrationServices.asmx`;
 const WS_ENVELOPE = `<soap12:Envelope
@@ -99,16 +100,16 @@ export class RegistryEpics {
             if (result.url.indexOf('index.html') > 0) {
               return SessionActions.logoutUserAction();
             } else {
-              let responseData = result.json().data;
+              let responseData = result.json() as IResponseData;
               let actionType = registerAction ? 'registered' : 'saved';
-              let newId = registerAction ? responseData.RegNum : responseData.id;
+              let newId = registerAction ? responseData.regNumber : responseData.id;
               newId = ` (${registerAction ? 'Reg Number' : 'ID'}: ${newId})`;
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${id < 0 ? newId : ''} successfully!`;
               notifySuccess(message, 5000);
               return id < 0
                 ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
-                : createAction(RegActions.IGNORE_ACTION);
+                : createAction(RegActions.IGNORE_ACTION)();
             }
           })
           .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));

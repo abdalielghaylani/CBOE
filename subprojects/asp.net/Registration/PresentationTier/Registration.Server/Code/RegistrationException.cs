@@ -7,7 +7,11 @@ namespace PerkinElmer.COE.Registration.Server.Code
 {
     public class RegistrationException : Exception
     {
-        public RegistrationException(String message) : base(message)
+        public RegistrationException(string message) : base(message)
+        {
+        }
+
+        public RegistrationException(string message, Exception innerException) : base(message, innerException)
         {
         }
     }

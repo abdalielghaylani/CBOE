@@ -808,3 +808,10 @@ export class CRecords implements IRecords {
     return this.data.rows;
   }
 }
+
+export interface IResponseData {
+  id?: number;
+  regNumber?: string;
+  message?: string;
+  data?: any;
+}

@@ -27,7 +27,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(500, type: typeof(string))]
         public async Task<IHttpActionResult> GetCustomTables()
         {
-            return await CallGetMethod(() =>
+            return await CallMethod(() =>
             {
                 var tableList = new JArray();
                 var tables = COETableEditorUtilities.getTables();
@@ -58,7 +58,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(500, type: typeof(string))]
         public async Task<IHttpActionResult> GetCustomTableRows(string tableName)
         {
-            return await CallGetMethod(() =>
+            return await CallMethod(() =>
             {
                 var config = GetTableConfig(tableName);
                 var rows = new JArray();
@@ -86,7 +86,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(500, type: typeof(string))]
         public async Task<IHttpActionResult> GetCustomTableRow(string tableName, int id)
         {
-            return await CallGetMethod(() =>
+            return await CallMethod(() =>
             {
                 var row = new JObject();
                 return row;

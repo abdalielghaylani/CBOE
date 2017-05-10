@@ -62,7 +62,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     ConvertStructuresToCdx(childElement as XmlElement);
             }
             var textData = element.InnerText;
-            if (!string.IsNullOrEmpty(textData) && textData.StartsWith("<CDXML "))
+            if (!string.IsNullOrEmpty(textData) && (textData.StartsWith("<?xml ") || textData.StartsWith("<CDXML ")))
             {
                 var converted = Convert(cdxmlMimeType, cdxMimeType, textData);
                 element.InnerText = converted.Replace("\r\n", " ");

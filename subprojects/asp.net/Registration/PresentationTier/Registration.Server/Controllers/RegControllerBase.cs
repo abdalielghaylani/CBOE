@@ -20,6 +20,8 @@ using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Framework.COETableEditorService;
 using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Registration.Services;
+using System.Security.AccessControl;
+using PerkinElmer.COE.Registration.Server.Models;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -37,6 +39,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     DalUtils.GetRegistrationDAL(ref regDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
                 return regDal;
             }
+        }
+
+        private HttpResponseMessage CreateErrorResponse(Exception ex)
+        {
+            return Request.CreateErrorResponse(
+                ex is AuthenticationException || ex is PrivilegeNotHeldException ?
+                HttpStatusCode.Unauthorized :
+                ex is RegistrationException ?
+                HttpStatusCode.BadRequest :
+                ex is IndexOutOfRangeException ?
+                HttpStatusCode.NotFound :
+                HttpStatusCode.InternalServerError, ex);
         }
 
         protected SafeDataReader GetReader(string sql, Dictionary<string, object> args = null)
@@ -143,29 +157,40 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             string sessionToken = GetSessionToken();
             if (string.IsNullOrEmpty(sessionToken) || !COEPrincipal.Login(sessionToken, true))
-                throw new AuthenticationException();
+                throw new AuthenticationException(string.IsNullOrEmpty(sessionToken) ? "Empty token" : "Invalid token: " + sessionToken);
         }
 
-        protected async Task<IHttpActionResult> CallGetMethod(Func<object> method)
+        protected void CheckAuthorizations(string[] permissions)
+        {
+            bool isAuthorized = false;
+            foreach (string permission in permissions)
+            {
+                isAuthorized = Csla.ApplicationContext.User.IsInRole(permission);
+                if (isAuthorized)
+                    break;
+            }
+            if (!isAuthorized)
+                throw new PrivilegeNotHeldException(string.Join(",", permissions));
+        }
+
+
+        protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null)
         {
             HttpResponseMessage responseMessage;
             try
             {
                 CheckAuthentication();
-                var tableList = new JArray();
+                if (permissions != null) CheckAuthorizations(permissions);
                 responseMessage = Request.CreateResponse(HttpStatusCode.OK, method());
             }
             catch (Exception ex)
             {
-                responseMessage = Request.CreateErrorResponse(
-                    ex is AuthenticationException ?
-                    HttpStatusCode.Unauthorized :
-                    HttpStatusCode.InternalServerError, ex);
+                responseMessage = CreateErrorResponse(ex);
             }
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
-        protected async Task<IHttpActionResult> CallServiceMethod(Func<COERegistrationServices, JObject> method)
+        protected async Task<IHttpActionResult> CallServiceMethod(Func<COERegistrationServices, object> method)
         {
             HttpResponseMessage responseMessage;
             try
@@ -178,14 +203,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
-                responseMessage = Request.CreateErrorResponse(
-                    ex is AuthenticationException ?
-                    HttpStatusCode.Unauthorized :
-                    ex is RegistrationException ?
-                    HttpStatusCode.BadRequest :
-                    ex is IndexOutOfRangeException ?
-                    HttpStatusCode.NotFound :
-                    HttpStatusCode.InternalServerError, ex);
+                responseMessage = CreateErrorResponse(ex);
             }
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
