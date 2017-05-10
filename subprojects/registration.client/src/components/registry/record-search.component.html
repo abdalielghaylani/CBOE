@@ -6,7 +6,8 @@
     <button type="button" class="btn btn-default border-2 status background-blue border-blue">
       <i class="fa-undo white" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Restore <span class="caret"></span></button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">Restore <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><button type="button" class="btn">Last Hitlist</button></li>
       <li><button type="button" class="btn">Last Query</button></li>
@@ -22,87 +23,71 @@
   <span *ngIf="temporary">Search Temporary Records</span>
   <span *ngIf="!temporary">Search Permanent Registry</span>
 </reg-page-header>
-
-<div class="panel with-nav-tabs panel-default">
-  <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
-    <div class="panel-group" id="accordion" *ngIf="temporary">
-      <div class="panel">
-        <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
-          <h4 class="panel-title">
-            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTemp">Temporary Information</span>
-          </h4>
-        </div>
-        <div id="collapseTemp" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <div>
-              <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-              <dx-select-box [items]="regSearch.temporarySearchVM.searchTypeItems" [value]="regSearch.temporarySearch.searchTypeValue">
-              </dx-select-box>
-            </div>
-            <chem-draw-tool></chem-draw-tool>
-            <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.temporarySearch" [items]="regSearch.temporarySearchVM.columns"></dx-form>
+<dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
+  <div class="panel-group" id="accordion" *ngIf="temporary">
+    <div class="panel">
+      <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
+        <h4 class="panel-title">
+          <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTemp">Temporary Information</span>
+        </h4>
+      </div>
+      <div id="collapseTemp" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div>
+            <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
+            <dx-select-box [items]="regSearch.temporarySearchVM.searchTypeItems" [value]="regSearch.temporarySearch.searchTypeValue">
+            </dx-select-box>
           </div>
+          <chem-draw-tool></chem-draw-tool>
+          <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.temporarySearch"
+            [items]="regSearch.temporarySearchVM.columns"></dx-form>
         </div>
       </div>
     </div>
-    <div class="panel-group" id="accordion" *ngIf="!temporary">
-      <div class="panel panel-default">
-        <div class="panel-heading" style='border-left: 4px solid #f38787;'>
-          <h4 class="panel-title">
-            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                              Registry Information</span>
-          </h4>
-        </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <div>
-              <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-              <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearch.searchTypeValue">
-              </dx-select-box>
-            </div>
-            <chem-draw-tool></chem-draw-tool>
-            <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.registrySearch" [items]="regSearch.registrySearchVM.columns"></dx-form>
-          </div>
-        </div>
+  </div>
+  <div class="panel-group" id="accordion" *ngIf="!temporary">
+    <div class="panel panel-default">
+      <div class="panel-heading" style='border-left: 4px solid tan;'>
+         <a class="list-header tan" data-toggle="collapse" href="#collapseOne">
+                                                              Registry Information</a>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" style='border-left: 4px solid #65c465;'>
-          <h4 class="panel-title">
-            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Structure Information</span>
-          </h4>
-        </div>
-        <div id="collapseTwo" class="panel-collapse collapse">
-          <div class="panel-body">
-            <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearch" [items]="regSearch.structureSearchVM.columns"></dx-form>
+      <div id="collapseOne" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <div>
+            <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
+            <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearch.searchTypeValue">
+            </dx-select-box>
           </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" style='border-left: 4px solid #98b3fa;'>
-          <h4 class="panel-title">
-            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                  Component Information </span>
-          </h4>
-        </div>
-        <div id="collapseThree" class="panel-collapse collapse">
-          <div class="panel-body">
-            <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearch" [items]="regSearch.componentSearchVM.columns"></dx-form>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" style='border-left: 4px solid #9900ff;'>
-          <h4 class="panel-title">
-            <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                          Batch Information </span>
-          </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse">
-          <div class="panel-body">
-            <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearch" [items]="regSearch.batchSearchVM.columns"></dx-form>
-          </div>
+          <chem-draw-tool></chem-draw-tool>
+          <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.registrySearch"
+            [items]="regSearch.registrySearchVM.columns"></dx-form>
+          <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearch"
+            [items]="regSearch.structureSearchVM.columns"></dx-form>
         </div>
       </div>
     </div>
-  </dx-scroll-view>
-</div>
+    <div class="panel panel-default">
+      <div class="panel-heading" style='border-left: 4px solid tan;'>
+         <a class="list-header tan" data-toggle="collapse" href="#collapseTwo">
+                                  Component Information </a>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearch"
+            [items]="regSearch.componentSearchVM.columns"></dx-form>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" style='border-left: 4px solid tan;'>
+         <a class="list-header tan" data-toggle="collapse" href="#collapseThree">
+                          Batch Information </a>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse in">
+        <div class="panel-body">
+          <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearch" [items]="regSearch.batchSearchVM.columns"></dx-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</dx-scroll-view>

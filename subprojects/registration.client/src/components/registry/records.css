@@ -28,9 +28,10 @@
 }
 
 .list-header {
-  color: #928b81;
-  font-size: 16px;
+  text-decoration: none;
   cursor: pointer;
+  margin: 8px;
+  font-size: 16px;
 }
 
 .query-list-item {
@@ -115,3 +116,18 @@
   background-color: #fafafa;
 }
 
+.panel-heading a.list-header::before {
+  content: '\F078';
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 15px;
+  font-size: 16px;
+}
+
+.panel-heading a.list-header.collapsed::before {
+  content: '\F054';
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 15px;
+  font-size: 16px;
+}
