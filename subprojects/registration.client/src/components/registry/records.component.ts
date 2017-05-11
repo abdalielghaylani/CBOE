@@ -29,6 +29,9 @@ declare var jQuery: any;
   selector: 'reg-records',
   template: require('./records.component.html'),
   styles: [require('./records.css')],
+  host: {
+    '(document:click)': 'handleEvent($event)',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecords implements OnInit, OnDestroy {
@@ -169,6 +172,20 @@ export class RegRecords implements OnInit, OnDestroy {
       };
     }
     return gridColumn;
+  }
+
+  handleEvent(event: any) {
+    if (event.srcElement.title === 'Full Screen') {
+      if (event.srcElement.className === 'fa fa-compress fa-stack-1x white') {
+        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
+        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
+        this.grid.instance.repaint();
+      } else {
+        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
+        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
+        this.grid.instance.repaint();
+      }
+    }
   }
 
   onResize(event: any) {

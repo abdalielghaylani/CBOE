@@ -11,8 +11,8 @@ import {
   template: `
   <span [id]="id" class="fa-stack fa-2x coolgray-20 hover-coolgray" 
   (onClick)="handleClick($event)" style="cursor: pointer" title="{{ title }}">
-  <i class="fa fa-square fa-stack-2x"></i>
-  <i class="fa fa-{{iconName}} fa-stack-1x white" aria-hidden="true" data-toggle="tooltip" data-placement="top"></i>
+  <i class="fa fa-square fa-stack-2x" title="{{ title }}"></i>
+  <i class="fa fa-{{iconName}} fa-stack-1x white" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="{{ title }}"></i>
   </span> 
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
