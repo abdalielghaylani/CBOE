@@ -80,7 +80,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 var args = new Dictionary<string, object>();
                 args.Add(":regNum", regNum);
-                var data = ExtractData("SELECT STRUCTUREID, COMPONENTID, STRUCT_NAME, STRUCT_COMMENTS, CMP_COMMENTS, MOLECULARFORMULA, FORMULAWEIGHT, NORMALIZEDSTRUCTURE FROM REGDB.VW_MIXTURE_STRUCTURE WHERE REGNUMBER=:regNum");
+                var data = ExtractData("SELECT STRUCTUREID, COMPONENTID, STRUCT_NAME, STRUCT_COMMENTS, CMP_COMMENTS, MOLECULARFORMULA, FORMULAWEIGHT, NORMALIZEDSTRUCTURE FROM REGDB.VW_MIXTURE_STRUCTURE WHERE REGNUMBER=:regNum", args);
                 if (data.Count() == 0)
                     throw new IndexOutOfRangeException();
                 return data;
