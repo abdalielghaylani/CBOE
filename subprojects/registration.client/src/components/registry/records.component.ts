@@ -191,12 +191,10 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onRowPrepared(e) {
-    if (e.rowType === 'data') {
-      if (this.records.data.rows.length < this.records.data.totalCount) {
-        if (e.rowIndex === this.records.data.rows.length - 1) {
-          this.updateContents();
-        }
-      }
+    if (!this.rowSelected && e.rowType === 'data'
+      && this.records.data.rows.length < this.records.data.totalCount
+      && e.rowIndex === this.records.data.rows.length - 1) {
+      this.updateContents();
     }
   }
 
@@ -290,6 +288,7 @@ export class RegRecords implements OnInit, OnDestroy {
       this.rowSelected = true;
       this.tempResultRows = this.records.data.rows;
       this.records.data.rows = this.selectedRows;
+      this.grid.instance.refresh();
     }
   }
 
@@ -299,6 +298,7 @@ export class RegRecords implements OnInit, OnDestroy {
       this.selectedRows = this.records.data.rows;
       this.records.data.rows = this.tempResultRows;
       this.tempResultRows = [];
+      this.grid.instance.refresh();
     }
   }
 
