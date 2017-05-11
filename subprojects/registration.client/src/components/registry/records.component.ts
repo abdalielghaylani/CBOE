@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener
 } from '@angular/core';
+import { Http } from '@angular/http';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -19,7 +20,10 @@ import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
 import { CRecords } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
-import { fetchLimit } from '../../configuration';
+import { fetchLimit, apiUrlPrefix } from '../../configuration';
+import 'rxjs/add/operator/toPromise';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'reg-records',
@@ -54,6 +58,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private http: Http,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
@@ -238,6 +243,18 @@ export class RegRecords implements OnInit, OnDestroy {
     e.cancel = true;
     let id = e.data[Object.keys(e.data)[0]];
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}/${id}`]);
+  }
+
+  onRowRemoving(e) {
+    // TODO: Should use redux
+    let deferred = jQuery.Deferred();
+    let id = e.data[Object.keys(e.data)[0]];
+    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
+    this.http.delete(url)
+      .toPromise()
+      .then(result => deferred.resolve(false))
+      .catch(error => deferred.resolve(true));
+    e.cancel = deferred.promise();
   }
 
   manageQueries() {
