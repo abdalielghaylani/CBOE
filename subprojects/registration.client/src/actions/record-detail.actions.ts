@@ -27,9 +27,6 @@ export class RecordDetailActions {
   static saveRecordAction = createAction(RecordDetailActions.SAVE_RECORD);
   static saveRecordSuccessAction = createAction(RecordDetailActions.SAVE_RECORD_SUCCESS);
   static saveRecordErrorAction = createAction(RecordDetailActions.SAVE_RECORD_ERROR);
-  static updateRecordAction = createAction(RecordDetailActions.UPDATE_RECORD);
-  static updateRecordSuccessAction = createAction(RecordDetailActions.UPDATE_RECORD_SUCCESS);
-  static updateRecordErrorAction = createAction(RecordDetailActions.UPDATE_RECORD_ERROR);
   static registerRecordAction = createAction(RecordDetailActions.REGISTER_RECORD);
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
   static loadStructureSuccessAction = createAction(RecordDetailActions.LOAD_STRUCTURE_SUCCESS);
@@ -55,10 +52,6 @@ export class RecordDetailActions {
 
   saveRecord(data: Document) {
     this.ngRedux.dispatch(RecordDetailActions.saveRecordAction(data));
-  }
-
-  updateRecord(data: Document) {
-    this.ngRedux.dispatch(RecordDetailActions.updateRecordAction(data));
   }
 
   registerRecord(data: Document) {

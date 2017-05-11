@@ -17,19 +17,6 @@ import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, Sessi
 import { IRecordDetail, IRegistry, IAppState } from '../store';
 import { IResponseData } from '../components';
 
-const WS_URL = `/COERegistration/Webservices/COERegistrationServices.asmx`;
-const WS_ENVELOPE = `<soap12:Envelope
-xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-<soap12:Header>
-  <COECredentials xmlns="CambridgeSoft.COE.Registration.Services.Web"><AuthenticationTicket>{token}</AuthenticationTicket></COECredentials>
-</soap12:Header>
-<soap12:Body>
-  <{method} xmlns="CambridgeSoft.COE.Registration.Services.Web"><xml>{xml}</xml>{additional}</{method}>
-</soap12:Body>
-</soap12:Envelope>`;
-
 @Injectable()
 export class RegistryEpics {
   constructor(private http: Http, private ngRedux: NgRedux<IAppState>) { }
@@ -39,8 +26,6 @@ export class RegistryEpics {
       this.handleOpenRecords,
       this.handleRetrieveRecord,
       this.handleSaveRecord,
-      this.handleUpdateRecord,
-      this.handleUpdateRecordSuccess,
       this.handleLoadStructure,
     )(action$, store);
   }
@@ -114,25 +99,6 @@ export class RegistryEpics {
             }
           })
           .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
-      });
-  }
-
-  private handleUpdateRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
-    return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_RECORD)
-      .mergeMap(({ payload }) => {
-        // Update the database with the data retrieved and modified
-        // Check if it is a temporary or permanent to find out the right end-point
-        let temporary: boolean = registryUtils.getElementValue(payload.documentElement, 'RegNumeer/RegNumber') ? false : true;
-        // Call UpdateRegistryRecord or UpdateTemporaryRegistryRecord
-        let url: string = temporary ? `${WS_URL}/UpdateTemporaryRegistryRecord` : `${WS_URL}/UpdateRegistryRecord`;
-        return Observable.of({ type: RegActions.IGNORE_ACTION });
-      });
-  }
-
-  private handleUpdateRecordSuccess: Epic = (action$: Observable<ReduxActions.Action<string>>) => {
-    return action$.filter(({ type }) => type === RecordDetailActions.UPDATE_RECORD_SUCCESS)
-      .mergeMap(({ payload }) => {
-        return Observable.of({ type: RegActions.IGNORE_ACTION });
       });
   }
 
