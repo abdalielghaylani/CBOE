@@ -19,6 +19,9 @@ using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Framework.COETableEditorService;
 using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Registration.Services;
+using System.Security.AccessControl;
+using PerkinElmer.COE.Registration.Server.Models;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -28,7 +31,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private const string sortAsc = " asc";
         private RegistrationOracleDAL regDal = null;
 
-        private RegistrationOracleDAL RegDal
+        private HttpResponseMessage CreateErrorResponse(Exception ex)
+        {
+            var message = ex is Csla.DataPortalException ? ((Csla.DataPortalException)ex).BusinessException.Message : ex.Message;
+            var statusCode = ex is AuthenticationException || ex is PrivilegeNotHeldException || ex is UnauthorizedAccessException ?
+                HttpStatusCode.Unauthorized :
+                ex is RegistrationException || ex is Csla.DataPortalException ?
+                HttpStatusCode.BadRequest :
+                ex is IndexOutOfRangeException ?
+                HttpStatusCode.NotFound :
+                HttpStatusCode.InternalServerError;
+            return string.IsNullOrEmpty(message) ? Request.CreateErrorResponse(statusCode, ex) : Request.CreateErrorResponse(statusCode, message, ex);
+        }
+
+        protected RegistrationOracleDAL RegDal
         {
             get
             {
@@ -142,24 +158,54 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             string sessionToken = GetSessionToken();
             if (string.IsNullOrEmpty(sessionToken) || !COEPrincipal.Login(sessionToken, true))
-                throw new AuthenticationException();
+                throw new AuthenticationException(string.IsNullOrEmpty(sessionToken) ? "Empty token" : "Invalid token: " + sessionToken);
         }
 
-        protected async Task<IHttpActionResult> CallGetMethod(Func<object> method)
+        protected void CheckAuthorizations(string[] permissions)
+        {
+            bool isAuthorized = false;
+            foreach (string permission in permissions)
+            {
+                isAuthorized = Csla.ApplicationContext.User.IsInRole(permission);
+                if (isAuthorized)
+                    break;
+            }
+            if (!isAuthorized)
+                throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
+        }
+
+
+        protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null)
         {
             HttpResponseMessage responseMessage;
             try
             {
                 CheckAuthentication();
-                var tableList = new JArray();
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, method());
+                if (permissions != null) CheckAuthorizations(permissions);
+                var statusCode = Request.Method == HttpMethod.Post ? HttpStatusCode.Created : HttpStatusCode.OK;
+                responseMessage = Request.CreateResponse(statusCode, method());
             }
             catch (Exception ex)
             {
-                responseMessage = Request.CreateErrorResponse(
-                    ex is AuthenticationException ?
-                    HttpStatusCode.Unauthorized :
-                    HttpStatusCode.InternalServerError, ex);
+                responseMessage = CreateErrorResponse(ex);
+            }
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        protected async Task<IHttpActionResult> CallServiceMethod(Func<COERegistrationServices, object> method)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                using (var service = new COERegistrationServices())
+                {
+                    service.Credentials.AuthenticationTicket = GetSessionToken();
+                    responseMessage = Request.CreateResponse(HttpStatusCode.OK, method(service));
+                }
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
             }
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }

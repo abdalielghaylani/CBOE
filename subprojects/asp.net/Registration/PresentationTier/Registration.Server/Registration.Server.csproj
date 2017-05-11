@@ -137,7 +137,9 @@
     </Compile>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\ChemistryHelper.cs" />
     <Compile Include="Code\Consts.cs" />
+    <Compile Include="Code\RegistrationException.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\RegControllerBase.cs" />
     <Compile Include="Controllers\DataConversionController.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ResponseData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

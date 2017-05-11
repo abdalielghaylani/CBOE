@@ -15,26 +15,18 @@ describe('registry reducer', () => {
     expect(Iterable.isIterable(initState)).toBe(true);
   });
 
-  it('should do nothing on OPEN_RECORDS_ERROR', () => {
+  it('should clear record rows on OPEN_RECORDS_ERROR(false)', () => {
     const nextState = registryReducer(
       initState,
-      RegistryActions.openRecordsErrorAction()
-    );
-    expect(nextState).toEqual(initState);
-  });
-
-  it('should clear record rows on OPEN_RECORDS(false)', () => {
-    const nextState = registryReducer(
-      initState,
-      RegistryActions.openRecordsAction(false)
+      RegistryActions.openRecordsErrorAction(false)
     );
     expect(nextState.records.data.rows).toEqual([]);
   });
 
-  it('should clear temp record rows on OPEN_RECORDS(true)', () => {
+  it('should clear temp record rows on OPEN_RECORDS_ERROR(true)', () => {
     const nextState = registryReducer(
       initState,
-      RegistryActions.openRecordsAction(true)
+      RegistryActions.openRecordsErrorAction(true)
     );
     expect(nextState.tempRecords.data.rows).toEqual([]);
   });
@@ -86,25 +78,6 @@ describe('registry reducer', () => {
     expect(secondState.currentRecord.temporary).toEqual(false);
     expect(secondState.currentRecord.id).toEqual(id2);
     expect(secondState.currentRecord.data).toEqual(data2);
-  });
-
-  it('should clear the structure in the store on LOAD_STRUCTURE', () => {
-    let prevState = initState.update('structureData', () => '<CDXML></CDXML>');
-    const nextState = registryReducer(
-      prevState,
-      RecordDetailActions.loadStructureAction()
-    );
-    expect(nextState.structureData).toEqual(null);
-  });
-
-  it('should set structureData on LOAD_STRUCTURE_SUCCESS', () => {
-    const data = '<CDXML/>';
-    const payload = { data: data };
-    const nextState = registryReducer(
-      initState,
-      RecordDetailActions.loadStructureSuccessAction(payload)
-    );
-    expect(nextState.structureData).toEqual(data);
   });
 
   it('should ignore error cases', () => {

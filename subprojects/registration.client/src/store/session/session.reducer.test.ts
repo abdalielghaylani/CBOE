@@ -81,14 +81,6 @@ describe('Session Reducer', () => {
       previousState,
       RecordDetailActions.saveRecordErrorAction(error));
     expect(nextState).toEqual(INITIAL_STATE);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.registerRecordErrorAction(error));
-    expect(nextState).toEqual(INITIAL_STATE);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.updateRecordErrorAction(error));
-    expect(nextState).toEqual(INITIAL_STATE);
   });
 
   it ('should do nothing on errors with non-404 error', () => {
@@ -109,23 +101,6 @@ describe('Session Reducer', () => {
     nextState = sessionReducer(
       previousState,
       RecordDetailActions.saveRecordErrorAction(error));
-    expect(nextState).toEqual(previousState);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.registerRecordErrorAction(error));
-    expect(nextState).toEqual(previousState);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.updateRecordErrorAction(error));
-    expect(nextState).toEqual(previousState);
-  });
-
-  it ('should do nothing on success cases', () => {
-    const response = { status: 200, body: 'OK '};
-    const previousState = initState;
-    let nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.updateRecordErrorAction(response));
     expect(nextState).toEqual(previousState);
   });
 });

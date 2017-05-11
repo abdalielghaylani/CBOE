@@ -18,15 +18,4 @@ describe('record detail action creators', () => {
     mockRedux = new MockRedux();
     actions = new RecordDetailActions(mockRedux);
   });
-
-  it('update should dispatch UPDATE action', () => {
-    const data = registryUtils.getDocument('<xmlData />');
-    const expectedAction = RecordDetailActions.updateRecordAction(data);
-
-    spyOn(mockRedux, 'dispatch');
-    actions.updateRecord(data);
-
-    expect(mockRedux.dispatch).toHaveBeenCalled();
-    expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
-  });
 });

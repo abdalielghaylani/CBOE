@@ -8,6 +8,7 @@ import {
   ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener
 } from '@angular/core';
+import { Http } from '@angular/http';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -19,12 +20,18 @@ import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
 import { CRecords } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
-import { fetchLimit } from '../../configuration';
+import { fetchLimit, apiUrlPrefix } from '../../configuration';
+import 'rxjs/add/operator/toPromise';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'reg-records',
   template: require('./records.component.html'),
   styles: [require('./records.css')],
+  host: {
+    '(document:click)': 'handleEvent($event)',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecords implements OnInit, OnDestroy {
@@ -54,6 +61,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private http: Http,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
@@ -166,16 +174,33 @@ export class RegRecords implements OnInit, OnDestroy {
     return gridColumn;
   }
 
+  handleEvent(event: any) {
+    if (event.srcElement.title === 'Full Screen') {
+      if (event.srcElement.className === 'fa fa-compress fa-stack-1x white') {
+        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
+        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
+        this.grid.instance.repaint();
+      } else {
+        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
+        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
+        this.grid.instance.repaint();
+      }
+    }
+  }
+
   onResize(event: any) {
+    this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
     this.grid.instance.repaint();
   }
 
-  onContentReady(e) {
-    e.component.columnOption('command:edit', {
-      visibleIndex: -1,
-      width: 80
-    });
+  onInitialized(e) {
+    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
+      e.component.columnOption('command:edit', {
+        visibleIndex: -1,
+        width: 80
+      });
+    }
   }
 
   updateContents() {
@@ -188,12 +213,10 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onRowPrepared(e) {
-    if (e.rowType === 'data') {
-      if (this.records.data.rows.length < this.records.data.totalCount) {
-        if (e.rowIndex === this.records.data.rows.length - 1) {
-          this.updateContents();
-        }
-      }
+    if (!this.rowSelected && e.rowType === 'data'
+      && this.records.data.rows.length < this.records.data.totalCount
+      && e.rowIndex === this.records.data.rows.length - 1) {
+      this.updateContents();
     }
   }
 
@@ -239,6 +262,18 @@ export class RegRecords implements OnInit, OnDestroy {
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}/${id}`]);
   }
 
+  onRowRemoving(e) {
+    // TODO: Should use redux
+    let deferred = jQuery.Deferred();
+    let id = e.data[Object.keys(e.data)[0]];
+    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
+    this.http.delete(url)
+      .toPromise()
+      .then(result => deferred.resolve(false))
+      .catch(error => deferred.resolve(true));
+    e.cancel = deferred.promise();
+  }
+
   manageQueries() {
     this.actions.openHitlists();
     this.currentIndex = 1;
@@ -253,7 +288,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.hitlistVM.saveQueryVM.clear();
     this.popupVisible = true;
   }
-  
+
   saveHitlist() {
     if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
       if (this.isMarkedQuery === true) {
@@ -283,10 +318,11 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   showMarked() {
-    if (this.selectedRows && !this.rowSelected) {
+    if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
       this.rowSelected = true;
       this.tempResultRows = this.records.data.rows;
       this.records.data.rows = this.selectedRows;
+      this.grid.instance.refresh();
     }
   }
 
@@ -296,6 +332,7 @@ export class RegRecords implements OnInit, OnDestroy {
       this.selectedRows = this.records.data.rows;
       this.records.data.rows = this.tempResultRows;
       this.tempResultRows = [];
+      this.grid.instance.refresh();
     }
   }
 

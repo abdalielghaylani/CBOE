@@ -1,6 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
+  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select } from '@angular-redux/store';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
@@ -8,45 +12,31 @@ import { ICustomTableData, IConfiguration } from '../../store';
 
 @Component({
   selector: 'reg-configuration',
-  template: `
-    <div class="viewcontainer">
-      <reg-page-header>{{ this.tableName() }}</reg-page-header>
-
-      <dx-data-grid [dataSource]=this.rows [paging]='{pageSize: 10}' 
-        [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
-        rowAlternationEnabled=true,
-        (onContentReady)='onContentReady($event)'
-        (onCellPrepared)='onCellPrepared($event)'
-        (onInitNewRow)='onInitNewRow($event)'
-        (onEditingStart)='onEditingStart($event)'
-        (onRowRemoving)='onRowRemoving($event)'>
-        <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
-        </dxo-editing>
-        <div *dxTemplate="let data of 'cellTemplate'">
-          <reg-structure-image [src]="data.value"></reg-structure-image>
-        </div>
-      </dx-data-grid>
-    </div>
-  `,
+  template: require('./configuration.component.html'),
   styles: [require('./configuration.component.css')],
+  host: {
+    '(document:click)': 'onDocumentClick($event)'
+  },  
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfiguration implements OnInit, OnDestroy {
+  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private tableId: string;
   private rows: any[] = [];
-  private sub: Subscription;
+  private tableIdSubscription: Subscription;
   private dataSubscription: Subscription;
+  private gridHeight: string;
 
   constructor(
     private route: ActivatedRoute,
     private changeDetector: ChangeDetectorRef,
-    private configurationActions: ConfigurationActions
+    private configurationActions: ConfigurationActions,
+    private element: ElementRef
   ) { }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.tableIdSubscription = this.route.params.subscribe(params => {
       let paramLabel = 'tableId';
       this.tableId = params[paramLabel];
       this.configurationActions.openTable(this.tableId);
@@ -55,8 +45,8 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.tableIdSubscription) {
+      this.tableIdSubscription.unsubscribe();
     }
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
@@ -69,8 +59,33 @@ export class RegConfiguration implements OnInit, OnDestroy {
       this.rows = customTableData.rows;
       this.changeDetector.markForCheck();
     }
+    this.gridHeight = this.getGridHeight();
   }
-  
+
+  private getGridHeight() {
+    return ((this.element.nativeElement.parentElement.clientHeight) - 100).toString();
+  }
+
+  onResize(event: any) {
+    this.gridHeight = this.getGridHeight();
+    this.grid.height = this.getGridHeight();
+    this.grid.instance.repaint();
+  }
+
+  onDocumentClick(event: any) {
+    if (event.srcElement.title === 'Full Screen') {
+      if (event.srcElement.className === 'fa fa-compress fa-stack-1x white') {
+        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
+        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
+        this.grid.instance.repaint();
+      } else {
+        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
+        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
+        this.grid.instance.repaint();
+      }
+    }
+  }
+
   onContentReady(e) {
     e.component.columnOption(0, 'visible', false);
     e.component.columnOption('STRUCTURE', {
