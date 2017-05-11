@@ -31,16 +31,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private const string sortAsc = " asc";
         private RegistrationOracleDAL regDal = null;
 
-        private RegistrationOracleDAL RegDal
-        {
-            get
-            {
-                if (regDal == null)
-                    DalUtils.GetRegistrationDAL(ref regDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
-                return regDal;
-            }
-        }
-
         private HttpResponseMessage CreateErrorResponse(Exception ex)
         {
             return Request.CreateErrorResponse(
@@ -51,6 +41,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 ex is IndexOutOfRangeException ?
                 HttpStatusCode.NotFound :
                 HttpStatusCode.InternalServerError, ex);
+        }
+
+        protected RegistrationOracleDAL RegDal
+        {
+            get
+            {
+                if (regDal == null)
+                    DalUtils.GetRegistrationDAL(ref regDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
+                return regDal;
+            }
         }
 
         protected SafeDataReader GetReader(string sql, Dictionary<string, object> args = null)
@@ -181,7 +181,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 CheckAuthentication();
                 if (permissions != null) CheckAuthorizations(permissions);
-                responseMessage = Request.CreateResponse(HttpStatusCode.OK, method());
+                var statusCode = Request.Method == HttpMethod.Post ? HttpStatusCode.Created : HttpStatusCode.OK;
+                responseMessage = Request.CreateResponse(statusCode, method());
             }
             catch (Exception ex)
             {
