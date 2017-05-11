@@ -1,35 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Newtonsoft.Json.Linq;
-using CambridgeSoft.COE.Registration.Services;
-using Swashbuckle.Swagger.Annotations;
-using PerkinElmer.COE.Registration.Server.Code;
+using System.Xml;
 using Microsoft.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Swashbuckle.Swagger.Annotations;
+using CambridgeSoft.COE.Registration.Services;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Registration.Access;
-using System.Net;
-using System.Xml;
+using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Models;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class ComponentController : RegControllerBase
     {
-        private RegistrationOracleDAL regDal = null;
-
-        private RegistrationOracleDAL RegDal
+        protected static RecordColumn[] ComponentRecordColumns
         {
             get
             {
-                if (regDal == null)
-                    DalUtils.GetRegistrationDAL(ref regDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
-                return regDal;
+                return new RecordColumn[]
+                {
+                    new RecordColumn{ definition = "STRUCTUREID", sortable = true },
+                    new RecordColumn{ definition = "COMPONENTID", sortable = true },
+                    new RecordColumn{ definition = "STRUCT_NAME", sortable = false },
+                    new RecordColumn{ definition = "STRUCT_COMMENTS", sortable = false },
+                    new RecordColumn{ definition = "CMP_COMMENTS", sortable = false },
+                    new RecordColumn{ definition = "MOLECULARFORMULA", sortable = false },
+                    new RecordColumn{ definition = "FORMULAWEIGHT", sortable = false },
+                    new RecordColumn{ definition = "NORMALIZEDSTRUCTURE", sortable = false }
+                };
             }
         }
+
         /// <summary>
         /// Returns the list of all components
         /// </summary>
@@ -61,16 +70,39 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
+        [Route(Consts.apiPrefix + "reg-components/{regNum}")]
+        [SwaggerOperation("GetComponentsByRegNum")]
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(404, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetComponentsByRegNum(string regNum)
+        {
+            return await CallMethod(() =>
+            {
+                var args = new Dictionary<string, object>();
+                args.Add(":regNum", regNum);
+                var data = ExtractData("SELECT STRUCTUREID, COMPONENTID, STRUCT_NAME, STRUCT_COMMENTS, CMP_COMMENTS, MOLECULARFORMULA, FORMULAWEIGHT, NORMALIZEDSTRUCTURE FROM REGDB.VW_MIXTURE_STRUCTURE WHERE REGNUMBER=:regNum");
+                if (data.Count() == 0)
+                    throw new IndexOutOfRangeException();
+                return data;
+            });
+        }
+
+        [HttpGet]
         [Route(Consts.apiPrefix + "components/{id}")]
         [SwaggerOperation("GetComponent")]
         [SwaggerResponse(200, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetComponent(string id, string regnumber)
-        {            
-            CheckAuthentication();
-            JArray data = new JArray();           
-            data = ExtractData(" SELECT STRUCTUREID, COMPONENTID, STRUCT_NAME, STRUCT_COMMENTS, CMP_COMMENTS, MOLECULARFORMULA, FORMULAWEIGHT, NORMALIZEDSTRUCTURE FROM REGDB.VW_MIXTURE_STRUCTURE WHERE REGNUMBER = '" + regnumber + "' AND COMPONENTID = '" + id + "'");
-            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, data);
-            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        [SwaggerResponse(404, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetComponent(string id)
+        {
+            return await CallMethod(() =>
+            {
+                var args = new Dictionary<string, object>();
+                args.Add(":id", id);
+                var data = ExtractData("SELECT STRUCTUREID, COMPONENTID, STRUCT_NAME, STRUCT_COMMENTS, CMP_COMMENTS, MOLECULARFORMULA, FORMULAWEIGHT, NORMALIZEDSTRUCTURE FROM REGDB.VW_MIXTURE_STRUCTURE WHERE COMPONENTID=:id");
+                if (data.Count() == 0)
+                    throw new IndexOutOfRangeException();
+                return data[0];
+            });
         }
 
         [HttpPost]
@@ -79,7 +111,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(201, type: typeof(JObject))]
         public async Task<IHttpActionResult> CreateComponent(JObject component)
         {
-            CheckAuthentication();            
+            CheckAuthentication();
             var id = -1;
             return Created<JObject>(string.Format("{0}components/{1}", Consts.apiPrefix, id), component);
         }
@@ -87,16 +119,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpPut]
         [Route(Consts.apiPrefix + "components/{id}")]
         [SwaggerOperation("UpdateComponent")]
-        [SwaggerResponse(200, type: typeof(string))]
-        public async Task<IHttpActionResult> UpdateComponent(JObject data)
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        public async Task<IHttpActionResult> UpdateComponent(JObject componentData)
         {
-            string _dalResponseXml = "";
-            CheckAuthentication();
-            var jData = Request.Content.ReadAsAsync<JObject>().Result;
-            RegistrationOracleDAL registrationoracleDAL = new RegistrationOracleDAL();
-            XmlDocument datatoXml = Newtonsoft.Json.JsonConvert.DeserializeXmlNode(data.ToString());
-            RegDal.UpdateRegistryRecord(datatoXml.InnerXml, CambridgeSoft.COE.Registration.DuplicateCheck.CompoundCheck, out _dalResponseXml);
-            return Ok(string.Format("The component #{0} was updated successfully!", _dalResponseXml));
+            return await CallMethod(() =>
+            {
+                XmlDocument datatoXml = Newtonsoft.Json.JsonConvert.DeserializeXmlNode(componentData.ToString(Newtonsoft.Json.Formatting.None));
+                string message;
+                RegDal.UpdateRegistryRecord(datatoXml.InnerXml, CambridgeSoft.COE.Registration.DuplicateCheck.CompoundCheck, out message);
+                return new ResponseData(null, null, message, null);
+            });
         }
 
         [HttpDelete]
@@ -104,13 +136,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerOperation("DeleteComponent")]
         [SwaggerResponse(200, type: typeof(string))]
         public async Task<IHttpActionResult> DeleteComponent(int id)
-        {            
+        {
             CheckAuthentication();
             RegistryRecord registryRecord = null;
             registryRecord.DeleteComponent(id);
             var responseMessage = Request.CreateResponse(HttpStatusCode.OK, string.Format("The component #{0} was deleted successfully!", id));
-            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));           
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
-        
+
     }
 }
