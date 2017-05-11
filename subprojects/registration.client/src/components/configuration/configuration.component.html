@@ -1,0 +1,41 @@
+<div class="viewcontainer" (window:resize)="onResize($event)">
+  <div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+    <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+      <i class="fa-undo white" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">Custom Tables <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a [routerLink]="['../VW_PROJECT']" class="coolgray text-relaxed margin-none"><i class="fa fa-file-code-o fa-lg  #A4AEB5"></i> Projects</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_PICKLIST']" class="coolgray text-relaxed margin-none"><i class="fa fa-bookmark fa-lg  #A4AEB5"></i> Picklist Values</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_PICKLISTDOMAIN']" class="coolgray text-relaxed margin-none"><i class="fa fa-external-link fa-lg  #A4AEB5"></i> Picklist Domains</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_NOTEBOOKS']" class="coolgray text-relaxed margin-none"><i class="fa fa-book fa-lg  #A4AEB5"></i> Notebooks</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_FRAGMENT']" class="coolgray text-relaxed margin-none"><i class="fa fa-cubes fa-lg #A4AEB5"></i> Fragments</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_FRAGMENTTYPE']" class="coolgray text-relaxed margin-none"><i class="fa fa-cube fa-lg #A4AEB5"></i> Fragment Types</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_SEQUENCE']" class="coolgray text-relaxed margin-none"><i class="fa fa-bolt fa-lg #A4AEB5"></i> Sequences</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_IDENTIFIERTYPE']" class="coolgray text-relaxed margin-none"><i class="fa fa-table fa-lg #A4AEB5"></i> Identifier Types</a></li>
+      <li role="separator" class="divider"></li>
+      <li><a [routerLink]="['../VW_SITES']" class="coolgray text-relaxed margin-none"><i class="fa fa-sitemap fa-lg #A4AEB5"></i> Sites</a></li>
+    </ul>
+  </div>
+  <reg-page-header>{{ this.tableName() }}</reg-page-header>
+  <dx-data-grid [dataSource]=this.rows [paging]='{pageSize: 10}'
+    [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
+    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" 
+    rowAlternationEnabled=true, (onContentReady)='onContentReady($event)'
+    (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
+    (onEditingStart)='onEditingStart($event)' (onRowRemoving)='onRowRemoving($event)'>
+    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
+    </dxo-editing>
+    <div *dxTemplate="let data of 'cellTemplate'">
+      <reg-structure-image [src]="data.value"></reg-structure-image>
+    </div>
+  </dx-data-grid>
+</div>
