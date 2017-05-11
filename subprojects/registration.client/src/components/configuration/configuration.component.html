@@ -32,8 +32,8 @@
     rowAlternationEnabled=true, (onContentReady)='onContentReady($event)'
     (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
     (onEditingStart)='onEditingStart($event)' (onRowRemoving)='onRowRemoving($event)'>
-    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
-    </dxo-editing>
+    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-scrolling mode="infinite"></dxo-scrolling>
     <div *dxTemplate="let data of 'cellTemplate'">
       <reg-structure-image [src]="data.value"></reg-structure-image>
     </div>
