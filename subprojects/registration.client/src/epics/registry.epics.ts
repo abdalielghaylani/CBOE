@@ -15,7 +15,7 @@ import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
 import { IRecordDetail, IRegistry, IAppState } from '../store';
-import { IResponseData } from '../components';
+import { IResponseData, IRecordSaveData } from '../components';
 
 @Injectable()
 export class RegistryEpics {
@@ -67,16 +67,13 @@ export class RegistryEpics {
       });
   }
 
-  private handleSaveRecord: Epic = (action$: Observable<ReduxActions.Action<Document>>) => {
-    return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD || type === RecordDetailActions.REGISTER_RECORD)
-      .mergeMap(a => {
-        let registryData: IRegistry = this.ngRedux.getState().registry;
-        let currentRecord = registryData.currentRecord;
-        let id = currentRecord.id;
-        let registerAction = a.type === RecordDetailActions.REGISTER_RECORD;
-        let createRecordAction = id < 0 || registerAction;
-        let temporary = !registerAction && (id < 0 || currentRecord.temporary);
-        let data = registryUtils.serializeData(a.payload);
+  private handleSaveRecord: Epic = (action$: Observable<ReduxActions.Action<IRecordSaveData>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.SAVE_RECORD)
+      .mergeMap(({ payload }) => {
+        let id = payload.id;
+        let createRecordAction = id < 0 || payload.saveToPermanent;
+        let temporary = !payload.saveToPermanent && (id < 0 || payload.temporary);
+        let data = registryUtils.serializeData(payload.recordDoc);
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return (createRecordAction
@@ -87,9 +84,9 @@ export class RegistryEpics {
               return SessionActions.logoutUserAction();
             } else {
               let responseData = result.json() as IResponseData;
-              let actionType = registerAction ? 'registered' : 'saved';
-              let newId = registerAction ? responseData.regNumber : responseData.id;
-              newId = ` (${registerAction ? 'Reg Number' : 'ID'}: ${newId})`;
+              let actionType = payload.saveToPermanent ? 'registered' : 'saved';
+              let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
+              newId = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${createRecordAction ? newId : ''} successfully!`;
               notifySuccess(message, 5000);

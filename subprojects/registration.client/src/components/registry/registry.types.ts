@@ -815,3 +815,10 @@ export interface IResponseData {
   message?: string;
   data?: any;
 }
+
+export interface IRecordSaveData {
+  temporary: boolean;
+  id: number;
+  recordDoc: Document;
+  saveToPermanent: boolean;
+}

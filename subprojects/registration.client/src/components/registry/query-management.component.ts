@@ -22,7 +22,7 @@ import * as regSearchTypes from './registry-search.types';
   styles: [require('./records.css')],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegQueryManagemnt implements OnInit, OnDestroy {
+export class RegQueryManagement implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Input() hitlistVM: any;
   @Input() parentHeight: string;

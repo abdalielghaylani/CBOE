@@ -192,10 +192,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   save() {
     this.updateRecord();
     if (this.id < 0) {
-      this.actions.saveRecord(this.recordDoc);
+      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
     } else {
       this.setEditMode(false);
-      this.actions.saveRecord(this.recordDoc);
+      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
     }
   }
 
@@ -210,7 +210,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   register() {
     this.updateRecord();
-    this.actions.registerRecord(this.recordDoc);
+    this.actions.saveRecord(this.temporary, this.id, this.recordDoc, true);
   }
 
   private setEditMode(editMode: boolean) {
