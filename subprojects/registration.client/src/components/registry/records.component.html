@@ -52,7 +52,7 @@
               <i class="fa fa-check" aria-hidden="true"></i>
             </div>
           </div>
-          <div *ngIf="!rowSelected" testid="snow-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+          <div *ngIf="selectedRows &amp;&amp; selectedRows.length > 0 &amp;&amp; !rowSelected" testid="snow-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="showMarked()">
               <i class="fa fa-check-square-o white" aria-hidden="true"></i>
             </button>

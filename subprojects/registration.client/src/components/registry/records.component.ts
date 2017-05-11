@@ -318,7 +318,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   showMarked() {
-    if (this.selectedRows && !this.rowSelected) {
+    if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
       this.rowSelected = true;
       this.tempResultRows = this.records.data.rows;
       this.records.data.rows = this.selectedRows;
