@@ -33,14 +33,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private HttpResponseMessage CreateErrorResponse(Exception ex)
         {
-            return Request.CreateErrorResponse(
-                ex is AuthenticationException || ex is PrivilegeNotHeldException ?
+            var message = ex is Csla.DataPortalException ? ((Csla.DataPortalException)ex).BusinessException.Message : ex.Message;
+            var statusCode = ex is AuthenticationException || ex is PrivilegeNotHeldException || ex is UnauthorizedAccessException ?
                 HttpStatusCode.Unauthorized :
-                ex is RegistrationException ?
+                ex is RegistrationException || ex is Csla.DataPortalException ?
                 HttpStatusCode.BadRequest :
                 ex is IndexOutOfRangeException ?
                 HttpStatusCode.NotFound :
-                HttpStatusCode.InternalServerError, ex);
+                HttpStatusCode.InternalServerError;
+            return string.IsNullOrEmpty(message) ? Request.CreateErrorResponse(statusCode, ex) : Request.CreateErrorResponse(statusCode, message, ex);
         }
 
         protected RegistrationOracleDAL RegDal

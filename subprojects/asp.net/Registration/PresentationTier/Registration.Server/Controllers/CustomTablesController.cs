@@ -13,6 +13,7 @@ using Microsoft.Web.Http;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Framework.COETableEditorService;
 using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Models;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -23,8 +24,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "custom-tables")]
         [SwaggerOperation("GetCustomTables")]
         [SwaggerResponse(200, type: typeof(JArray))]
-        [SwaggerResponse(401, type: typeof(string))]
-        [SwaggerResponse(500, type: typeof(string))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> GetCustomTables()
         {
             return await CallMethod(() =>
@@ -46,6 +47,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private static JObject GetTableConfig(string tableName)
         {
             // Returns the field configuration
+            // COETableEditorUtilities.getColumnList returns the column lists
+            // COETableEditorUtilities.GetAlias returns the column aliases (labels)
+            // COETableEditorUtilities.getLookupLocation returns the look-up information
+            // This should also return user authorization
+            // Refer to routines like COETableEditorUtilities.HasDeletePrivileges and COETableEditorUtilities.HasEditPrivileges
 
             return new JObject();
         }
@@ -54,8 +60,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "custom-tables/{tableName}")]
         [SwaggerOperation("GetCustomTableRows")]
         [SwaggerResponse(200, type: typeof(JArray))]
-        [SwaggerResponse(401, type: typeof(string))]
-        [SwaggerResponse(500, type: typeof(string))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> GetCustomTableRows(string tableName)
         {
             return await CallMethod(() =>
@@ -82,8 +88,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
         [SwaggerOperation("GetCustomTableRow")]
         [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(string))]
-        [SwaggerResponse(500, type: typeof(string))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> GetCustomTableRow(string tableName, int id)
         {
             return await CallMethod(() =>
@@ -94,27 +100,50 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
+        [SwaggerResponse(201, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(Exception))]
         [Route(Consts.apiPrefix + "custom-tables/{tableName}")]
-        public int Post(dynamic data)
+        public async Task<IHttpActionResult> Post(string tableName, JObject data)
         {
-            CheckAuthentication();
-            return 0;
+            return await CallMethod(() =>
+            {
+                var id = -1;
+                return new ResponseData(id, null, null, null);
+            });
         }
 
         [HttpPut]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
         [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
-        public int Put(dynamic data)
+        public async Task<IHttpActionResult> Put(string tablename, int id, JObject data)
         {
-            CheckAuthentication();
-            return 0;
+            return await CallMethod(() =>
+            {
+                return new ResponseData(id, null, null, null);
+            });
         }
 
         [HttpDelete]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
-        public int Delete(int id)
+        public async Task<IHttpActionResult> Delete(string tableName, int id)
         {
-            CheckAuthentication();
-            return 0;
+            return await CallMethod(() =>
+            {
+                if (!COETableEditorUtilities.HasDeletePrivileges(tableName))
+                    throw new UnauthorizedAccessException();
+                var tableEditorListBO = COETableEditorBOList.NewList();
+                tableEditorListBO.TableName = tableName;
+                // TODO: Should check if id is present.
+                // If not, throw error 404.
+                COETableEditorBO.Delete(id);
+                return new ResponseData(id, null, null, null);
+            });
         }
     }
 }
