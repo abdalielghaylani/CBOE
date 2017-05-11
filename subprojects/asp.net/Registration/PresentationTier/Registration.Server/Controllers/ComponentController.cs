@@ -82,7 +82,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 args.Add(":regNum", regNum);
                 var data = ExtractData("SELECT STRUCTUREID, COMPONENTID, STRUCT_NAME, STRUCT_COMMENTS, CMP_COMMENTS, MOLECULARFORMULA, FORMULAWEIGHT, NORMALIZEDSTRUCTURE FROM REGDB.VW_MIXTURE_STRUCTURE WHERE REGNUMBER=:regNum", args);
                 if (data.Count() == 0)
-                    throw new IndexOutOfRangeException();
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the registration number, {0}", regNum));
                 return data;
             });
         }
@@ -100,7 +100,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 args.Add(":id", id);
                 var data = ExtractData("SELECT STRUCTUREID, COMPONENTID, STRUCT_NAME, STRUCT_COMMENTS, CMP_COMMENTS, MOLECULARFORMULA, FORMULAWEIGHT, NORMALIZEDSTRUCTURE FROM REGDB.VW_MIXTURE_STRUCTURE WHERE COMPONENTID=:id");
                 if (data.Count() == 0)
-                    throw new IndexOutOfRangeException();
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the component ID, {0}", id));
                 return data[0];
             });
         }

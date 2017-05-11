@@ -171,7 +171,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     break;
             }
             if (!isAuthorized)
-                throw new PrivilegeNotHeldException(string.Join(",", permissions));
+                throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
         }
 
 

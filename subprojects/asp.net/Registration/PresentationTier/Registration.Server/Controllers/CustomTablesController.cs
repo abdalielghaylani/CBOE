@@ -136,7 +136,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 if (!COETableEditorUtilities.HasDeletePrivileges(tableName))
-                    throw new UnauthorizedAccessException();
+                    throw new UnauthorizedAccessException(string.Format("Not allowed to delete entries from {0}", tableName));
                 var tableEditorListBO = COETableEditorBOList.NewList();
                 tableEditorListBO.TableName = tableName;
                 // TODO: Should check if id is present.

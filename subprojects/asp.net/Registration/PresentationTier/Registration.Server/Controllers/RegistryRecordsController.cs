@@ -74,7 +74,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     args.Add(":id", id);
                     var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
                     if (string.IsNullOrEmpty(regNum))
-                        throw new IndexOutOfRangeException();
+                        throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
                     record = service.RetrieveRegistryRecord(regNum);
                 }
                 var recordXml = new XmlDocument();
@@ -222,7 +222,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     args.Add(":id", id);
                     var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
                     if (count == 0)
-                        throw new IndexOutOfRangeException();
+                        throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
                     record = service.RetrieveTemporaryRegistryRecord(id);
                 }
                 var recordXml = new XmlDocument();
