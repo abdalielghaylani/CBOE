@@ -12,12 +12,31 @@ using Microsoft.Web.Http;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Registration;
 using System.Net;
+using System.Xml;
+using Newtonsoft.Json;
+using CambridgeSoft.COE.Registration.Access;
+using System.Data.Common;
+using System.Data;
+using CambridgeSoft.COE.Framework.Common;
+using CambridgeSoft.COE.Framework.COESearchService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class BatchController : RegControllerBase
     {
+        private RegistrationOracleDAL regoraDal = null;
+
+        private RegistrationOracleDAL RegOraDal
+        {
+            get
+            {
+                if (regoraDal == null)
+                    DalUtils.GetRegistrationDAL(ref regoraDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
+                return regoraDal;
+            }
+        }
+
         /// <summary>
         /// Returns the list of all batches
         /// </summary>
@@ -27,10 +46,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Invalid request</response>
         /// <response code="0">Unexpected error</response>
         [HttpGet]
-        [Route(Consts.apiPrefix + "batches/{id}/records")]
-        [SwaggerOperation("GetBatchs")]
+        [Route(Consts.apiPrefix + "batches")]
+        [SwaggerOperation("GetAllBatches")]
         [SwaggerResponse(200, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetBatchs(int? id = null, int? skip = null, int? count = null, string sort = null)
+        public JArray GetAllBatches()
+        {
+            CheckAuthentication();
+            JArray data = new JArray();
+            return ExtractData("SELECT BATCHID, TEMPBATCHID, BATCHNUMBER, FULLREGNUMBER, DATECREATED, PERSONCREATED, PERSONREGISTERED, PERSONAPPROVED, DATELASTMODIFIED FROM REGDB.VW_BATCH");
+
+        }
+
+        /// <summary>
+        /// Returns the list of all batches by RegID
+        /// </summary>
+        /// <remarks>Returns the list of all batches corresponding to the specified parameters
+        /// </remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Invalid request</response>
+        /// <response code="0">Unexpected error</response>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "batches/{id}/records")]
+        [SwaggerOperation("GetBatches")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetBatches(int? id = null, int? skip = null, int? count = null, string sort = null)
         {
             CheckAuthentication();
             var tableName = "VW_BATCH";
@@ -67,36 +106,36 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             CheckAuthentication();
             JArray data = new JArray();
             return ExtractData("SELECT BATCHID, TEMPBATCHID, BATCHNUMBER, FULLREGNUMBER, DATECREATED, PERSONCREATED, PERSONREGISTERED, PERSONAPPROVED, DATELASTMODIFIED FROM REGDB.VW_BATCH WHERE BATCHID=" + id + "");
-
         }
 
         [HttpPost]
         [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("CreateBatch")]
         [SwaggerResponse(201, type: typeof(JObject))]
-        public void CreateBatch(JObject batch)
+        public void CreateBatch(JObject data)
         {
             CheckAuthentication();
-            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-            Batch batchNew = new Batch();
-            batchNew.ID = (int)hitlistData["id"];
-            batchNew.TempBatchID = (int)hitlistData["tempBatchID"];
-            batchNew.BatchNumber = (int)hitlistData["batchNumber"];
-            batchNew.FullRegNumber = (string)hitlistData["fullRegNumber"];
-            batchNew.DateCreated = (DateTime)hitlistData["dateCreated"];
-            batchNew.PersonCreated = (int)hitlistData["personCreated"];
-            batchNew.PersonRegistered = (int)hitlistData["personRegistered"];
-            batchNew.PersonApproved = (int)hitlistData["personApproved"];
-            batchNew.DateLastModified = (DateTime)hitlistData["dateLastModified"];
+            XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString());
+            RegOraDal.InsertRegistryRecordTemporary(datatoXml.InnerXml);
         }
 
         [HttpPut]
-        [Route(Consts.apiPrefix + "batches/{id}")]
+        [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("UpdateBatch")]
-        public void UpdateBatch(int id)
+        [SwaggerResponse(201, type: typeof(JObject))]
+        public void UpdateBatch(String regType, JObject data)
         {
             CheckAuthentication();
-            //return Ok(string.Format("The batch #{0} was updated successfully!", id));
+            string dalresponseXml = string.Empty;
+            XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString());
+            if (regType=="Temp")
+            {
+                RegOraDal.UpdateRegistryRecordTemporary(datatoXml.InnerXml, out dalresponseXml);
+            }
+            else if (regType == "Perm")
+            {
+                RegOraDal.UpdateRegistryRecord(datatoXml.InnerXml, CambridgeSoft.COE.Registration.DuplicateCheck.CompoundCheck, out dalresponseXml);
+            }
         }
 
         [HttpDelete]
