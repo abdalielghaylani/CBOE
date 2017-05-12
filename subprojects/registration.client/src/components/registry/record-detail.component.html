@@ -8,19 +8,13 @@
   </reg-page-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <div class="panel with-nav-tabs panel-default">
-        <div class="panel-heading">
-          <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1default" data-toggle="tab">Structure</a></li>
-            <li><a href="#tab2default" data-toggle="tab">Registry</a></li>
-            <li><a href="#tab3default" data-toggle="tab">Component</a></li>
-            <li><a href="#tab4default" data-toggle="tab">Batch</a></li>
-          </ul>
-        </div>
-        <div class="panel-body">
-          <div class="tab-content">
-            <div class="tab-pane fade in active" id="tab1default">
-              <h4>Structure Information</h4>
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading" style='border-left: 4px solid tan;'>
+            <a class="list-header tan" data-toggle="collapse" href="#structurePanel">Structure Information</a>
+          </div>
+          <div id="structurePanel" class="panel-collapse collapse in">
+            <div class="panel-body">
               <div style="width:100%;height:100%;" resize>
                 <div class='cdContainer'>
                   <div class='click_catch'>
@@ -29,14 +23,34 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane fade" id="tab2default">
-              <h4>Registry Information</h4>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style='border-left: 4px solid tan;'>
+            <a class="list-header tan" data-toggle="collapse" href="#registryPanel">Registry Information</a>
+          </div>
+          <div id="registryPanel" class="panel-collapse collapse in">
+            <div class="panel-body">
               <dx-form id="registryForm" [formData]="regRecordVM" [colCount]="2" [items]="regRecordVM.columns" [readOnly]="!editMode"></dx-form>
             </div>
-            <div class="tab-pane fade" id="tab3default">
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style='border-left: 4px solid tan;'>
+            <a class="list-header tan" data-toggle="collapse" href="#componentPanel">Component Information </a>
+          </div>
+          <div id="componentPanel" class="panel-collapse collapse in">
+            <div class="panel-body">
               <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [readOnly]="!editMode"></dx-form>
             </div>
-            <div class="tab-pane fade" id="tab4default">
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style='border-left: 4px solid tan;'>
+            <a class="list-header tan" data-toggle="collapse" href="#batchPanel">Batch Information </a>
+          </div>
+          <div id="batchPanel" class="panel-collapse collapse in">
+            <div class="panel-body">
               <dx-form id="batchForm" [formData]="regRecordVM.batchList[0]" [items]="regRecordVM.batchList[0].columns" [readOnly]="!editMode"></dx-form>
             </div>
           </div>
