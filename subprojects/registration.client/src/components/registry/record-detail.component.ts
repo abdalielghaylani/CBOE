@@ -26,8 +26,9 @@ declare var jQuery: any;
 
 @Component({
   selector: 'reg-record-detail',
-  styles: [require('./records.css')],
   template: require('./record-detail.component.html'),
+  styles: [require('./records.css')],
+  host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
@@ -41,6 +42,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private drawingTool;
   private creatingCDD: boolean = false;
   private cdxml: string;
+  private parentHeight: string;
   private recordString: string;
   private recordDoc: Document;
   private regRecord: CRegistryRecord = new CRegistryRecord();
@@ -65,6 +67,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.createDrawingTool();
     this.actions.retrieveRecord(this.temporary, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+    this.parentHeight = this.getParentHeight();
   }
 
   ngOnDestroy() {
@@ -75,6 +78,21 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       this.loadSubscription.unsubscribe();
     }
     this.actions.clearRecord();
+  }
+
+  private getParentHeight() {
+    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
+  }
+
+  private onResize(event: any) {
+    this.parentHeight = this.getParentHeight();
+  }
+
+  private onDocumentClick(event: any) {
+    if (event.srcElement.title === 'Full Screen') {
+      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+      this.parentHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
+    }
   }
 
   loadData(recordDetail: IRecordDetail) {

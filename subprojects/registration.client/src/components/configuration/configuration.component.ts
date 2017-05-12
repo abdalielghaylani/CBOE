@@ -14,9 +14,7 @@ import { ICustomTableData, IConfiguration } from '../../store';
   selector: 'reg-configuration',
   template: require('./configuration.component.html'),
   styles: [require('./configuration.component.css')],
-  host: {
-    '(document:click)': 'onDocumentClick($event)'
-  },  
+  host: { '(document:click)': 'onDocumentClick($event)' },  
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfiguration implements OnInit, OnDestroy {
@@ -32,7 +30,7 @@ export class RegConfiguration implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
-    private element: ElementRef
+    private elementRef: ElementRef
   ) { }
 
   ngOnInit() {
@@ -63,26 +61,21 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   private getGridHeight() {
-    return ((this.element.nativeElement.parentElement.clientHeight) - 100).toString();
+    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
   }
 
-  onResize(event: any) {
+  private onResize(event: any) {
     this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
     this.grid.instance.repaint();
   }
 
-  onDocumentClick(event: any) {
+  private onDocumentClick(event: any) {
     if (event.srcElement.title === 'Full Screen') {
-      if (event.srcElement.className === 'fa fa-compress fa-stack-1x white') {
-        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
-        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
-        this.grid.instance.repaint();
-      } else {
-        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
-        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
-        this.grid.instance.repaint();
-      }
+      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
+      this.grid.height = this.gridHeight;
+      this.grid.instance.repaint();
     }
   }
 
