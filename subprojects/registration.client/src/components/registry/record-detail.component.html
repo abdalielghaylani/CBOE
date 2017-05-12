@@ -10,7 +10,7 @@
     <form class="form-inline" role="form" ng-submit="search(query)">
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
-          <div class="panel-heading" style='border-left: 4px solid tan;'>
+          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#structurePanel">Structure Information</a>
           </div>
           <div id="structurePanel" class="panel-collapse collapse in">
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading" style='border-left: 4px solid tan;'>
+          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#registryPanel">Registry Information</a>
           </div>
           <div id="registryPanel" class="panel-collapse collapse in">
@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading" style='border-left: 4px solid tan;'>
+          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#componentPanel">Component Information </a>
           </div>
           <div id="componentPanel" class="panel-collapse collapse in">
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading" style='border-left: 4px solid tan;'>
+          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#batchPanel">Batch Information </a>
           </div>
           <div id="batchPanel" class="panel-collapse collapse in">
