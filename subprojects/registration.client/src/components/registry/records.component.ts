@@ -263,7 +263,10 @@ export class RegRecords implements OnInit, OnDestroy {
     let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
     this.http.delete(url)
       .toPromise()
-      .then(result => deferred.resolve(false))
+      .then(result => {
+        notifySuccess(`The record (ID: ${id}) was deleted successfully!`, 5000);
+        deferred.resolve(false);
+      })
       .catch(error => deferred.resolve(true));
     e.cancel = deferred.promise();
   }

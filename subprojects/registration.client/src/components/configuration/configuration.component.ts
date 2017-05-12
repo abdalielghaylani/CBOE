@@ -2,13 +2,18 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
+import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
+import { notify, notifyError, notifySuccess } from '../../common';
+import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration } from '../../store';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'reg-configuration',
@@ -28,6 +33,7 @@ export class RegConfiguration implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private http: Http,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
@@ -115,6 +121,28 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
+    // TODO: Should use redux
+    let deferred = jQuery.Deferred();
+    let id = e.data[Object.keys(e.data)[0]];
+    let url = `${apiUrlPrefix}custom-tables/${this.tableId}/${id}`;
+    this.http.delete(url)
+      .toPromise()
+      .then(result => {
+        notifySuccess(`The record (Table: ${this.tableId}, ID: ${id}) was deleted successfully!`, 5000);
+        deferred.resolve(false);
+      })
+      .catch(error => {
+        let message = `The record (Table: ${this.tableId}, ID: ${id}) was not deleted due to a problem`;
+        let reason;
+        if (error._body) {
+            let errorResult = JSON.parse(error._body);
+            reason = errorResult.Message;
+        }
+        message += (reason) ? ': ' + reason : '!';
+        notifyError(message, 5000);
+        deferred.resolve(true);
+      });
+    e.cancel = deferred.promise();
   }
 
   tableName() {
