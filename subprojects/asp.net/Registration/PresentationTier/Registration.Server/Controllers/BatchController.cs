@@ -54,7 +54,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             CheckAuthentication();
             JArray data = new JArray();
             return ExtractData("SELECT BATCHID, TEMPBATCHID, BATCHNUMBER, FULLREGNUMBER, DATECREATED, PERSONCREATED, PERSONREGISTERED, PERSONAPPROVED, DATELASTMODIFIED FROM REGDB.VW_BATCH");
-
         }
 
         /// <summary>
@@ -104,7 +103,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public JArray GetBatch(int id)
         {
             CheckAuthentication();
-            JArray data = new JArray();
             return ExtractData("SELECT BATCHID, TEMPBATCHID, BATCHNUMBER, FULLREGNUMBER, DATECREATED, PERSONCREATED, PERSONREGISTERED, PERSONAPPROVED, DATELASTMODIFIED FROM REGDB.VW_BATCH WHERE BATCHID=" + id + "");
         }
 
@@ -128,7 +126,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             CheckAuthentication();
             string dalresponseXml = string.Empty;
             XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString());
-            if (regType=="Temp")
+            if (regType == "Temp")
             {
                 RegOraDal.UpdateRegistryRecordTemporary(datatoXml.InnerXml, out dalresponseXml);
             }
