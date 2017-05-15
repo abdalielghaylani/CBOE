@@ -2,21 +2,24 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
+import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
+import { notify, notifyError, notifySuccess } from '../../common';
+import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration } from '../../store';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'reg-configuration',
   template: require('./configuration.component.html'),
   styles: [require('./configuration.component.css')],
-  host: {
-    '(document:click)': 'onDocumentClick($event)'
-  },  
+  host: { '(document:click)': 'onDocumentClick($event)' },  
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfiguration implements OnInit, OnDestroy {
@@ -30,9 +33,10 @@ export class RegConfiguration implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private http: Http,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
-    private element: ElementRef
+    private elementRef: ElementRef
   ) { }
 
   ngOnInit() {
@@ -63,26 +67,21 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   private getGridHeight() {
-    return ((this.element.nativeElement.parentElement.clientHeight) - 100).toString();
+    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
   }
 
-  onResize(event: any) {
+  private onResize(event: any) {
     this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
     this.grid.instance.repaint();
   }
 
-  onDocumentClick(event: any) {
+  private onDocumentClick(event: any) {
     if (event.srcElement.title === 'Full Screen') {
-      if (event.srcElement.className === 'fa fa-compress fa-stack-1x white') {
-        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
-        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
-        this.grid.instance.repaint();
-      } else {
-        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
-        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
-        this.grid.instance.repaint();
-      }
+      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
+      this.grid.height = this.gridHeight;
+      this.grid.instance.repaint();
     }
   }
 
@@ -122,6 +121,28 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
+    // TODO: Should use redux
+    let deferred = jQuery.Deferred();
+    let id = e.data[Object.keys(e.data)[0]];
+    let url = `${apiUrlPrefix}custom-tables/${this.tableId}/${id}`;
+    this.http.delete(url)
+      .toPromise()
+      .then(result => {
+        notifySuccess(`The record (Table: ${this.tableId}, ID: ${id}) was deleted successfully!`, 5000);
+        deferred.resolve(false);
+      })
+      .catch(error => {
+        let message = `The record (Table: ${this.tableId}, ID: ${id}) was not deleted due to a problem`;
+        let reason;
+        if (error._body) {
+            let errorResult = JSON.parse(error._body);
+            reason = errorResult.Message;
+        }
+        message += (reason) ? ': ' + reason : '!';
+        notifyError(message, 5000);
+        deferred.resolve(true);
+      });
+    e.cancel = deferred.promise();
   }
 
   tableName() {

@@ -218,16 +218,16 @@ export class CComponentVM {
     });
     this.columns = [{
       itemType: 'group',
-      caption: 'Component Information',
+      caption: undefined,
       items: []
     }];
     let coeForm = getCoeFormById(container.formGroup, SubFormType.CompoundCustomProperties);
     if (coeForm) {
       let groupItem = this.columns[0];
       buildPropertyList(this, groupItem.items, m.Compound.PropertyList, coeForm, container);
-      if (coeForm.title) {
-        groupItem.caption = coeForm.title as string;
-      }
+      // if (coeForm.title) {
+      //   groupItem.caption = coeForm.title as string;
+      // }
     }
   }
 }
@@ -347,7 +347,7 @@ export class CBatchVM {
     this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
     this.columns = [{
       itemType: 'group',
-      caption: 'Batch Information',
+      caption: undefined,
       colCount: 'auto',
       colCountByScreen: {
         lg: 3,
@@ -584,18 +584,18 @@ export class CRegistryRecordVM {
 function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
   let groupItem = {
     itemType: 'group',
-    caption: 'Fragment Information',
+    caption: undefined,
     items: []
   };
   let lookups = getLookups(container);
   let coeForm = getCoeFormById(container.formGroup, SubFormType.BatchComponentFragmentsForm);
   if (coeForm) {
-    if (coeForm.title) {
-      groupItem.caption = coeForm.title as string;
-    }
+    // if (coeForm.title) {
+    //   groupItem.caption = coeForm.title as string;
+    // }
     groupItem.items = [{
       dataField: 'batchComponentFragmentList',
-      label: { text: 'Fragments', visible: false },
+      label: { text: 'Fragments' },
       colSpan: 1,
       template: function (d, itemElement) {
         (jQuery('<div />')

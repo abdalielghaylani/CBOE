@@ -81,4 +81,9 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     this.onClose.emit(e);
   }
 
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
+    }
+  }
 };

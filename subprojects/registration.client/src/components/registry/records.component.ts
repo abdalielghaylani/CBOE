@@ -29,9 +29,7 @@ declare var jQuery: any;
   selector: 'reg-records',
   template: require('./records.component.html'),
   styles: [require('./records.css')],
-  host: {
-    '(document:click)': 'handleEvent($event)',
-  },
+  host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecords implements OnInit, OnDestroy {
@@ -65,7 +63,7 @@ export class RegRecords implements OnInit, OnDestroy {
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
-    private element: ElementRef,
+    private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef) {
     this.records = new CRecords(this.temporary, new CRecordsData(this.temporary));
     this.createCustomStore(this);
@@ -104,7 +102,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   getGridHeight() {
-    return ((this.element.nativeElement.parentElement.clientHeight) - 100).toString();
+    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
   }
 
   loadData() {
@@ -174,19 +172,15 @@ export class RegRecords implements OnInit, OnDestroy {
     return gridColumn;
   }
 
-  handleEvent(event: any) {
+  private onDocumentClick(event: any) {
     if (event.srcElement.title === 'Full Screen') {
-      if (event.srcElement.className === 'fa fa-compress fa-stack-1x white') {
-        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
-        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 10).toString();
-        this.grid.instance.repaint();
-      } else {
-        this.gridHeight = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
-        this.grid.height = (this.element.nativeElement.parentElement.clientHeight - 190).toString();
-        this.grid.instance.repaint();
-      }
+      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
+      this.grid.height = this.gridHeight;
+      this.grid.instance.repaint();
     }
   }
+  
 
   onResize(event: any) {
     this.gridHeight = this.getGridHeight();
@@ -269,7 +263,10 @@ export class RegRecords implements OnInit, OnDestroy {
     let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
     this.http.delete(url)
       .toPromise()
-      .then(result => deferred.resolve(false))
+      .then(result => {
+        notifySuccess(`The record (ID: ${id}) was deleted successfully!`, 5000);
+        deferred.resolve(false);
+      })
       .catch(error => deferred.resolve(true));
     e.cancel = deferred.promise();
   }
