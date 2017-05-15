@@ -1,47 +1,5 @@
 import { IAppState } from '../../store';
 import { FormGroupType, CFormGroup, CFormElement } from '../../common';
-export const REGISTRY_SEARCH_DESC_LIST = [{
-  dataField: 'RegNumber',
-  label: { text: 'Registry Number' },
-  dataType: 'string',
-}, {
-  dataField: 'STARTDATECREATED',
-  label: { text: 'Start Date Created' },
-  dataType: 'string',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'ENDDATECREATED',
-  label: { text: 'End Date Created' },
-  dataType: 'string',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'SeqNumber',
-  label: { text: 'Sequence Number' },
-  dataType: 'string',
-}, {
-  dataField: 'MolWeight',
-  label: { text: 'MW' },
-  dataType: 'string',
-}, {
-  dataField: 'Formula',
-  label: { text: 'MF' },
-  dataType: 'string',
-}, {
-  dataField: 'IdentifierValue',
-  label: { text: 'Value' },
-  dataType: 'string',
-}, {
-  dataField: 'REG_COMMENTS',
-  label: { text: 'Registry Comments' },
-  dataType: 'string',
-  editorType: 'dxTextArea',
-}, {
-  dataField: 'SDF_upload',
-  label: { text: 'SDF Search' },
-  dataType: 'string',
-  editorType: 'dxFileUploader',
-}
-];
 
 export class CRegSearch {
   ID?: Number; // 921
@@ -65,76 +23,97 @@ export class CRegSearch {
 
 export class CRegSearchVM {
   sdfFile?: File;
+  title?: String;
   columns: any[] = [];
   structureData: any;
   searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
-  constructor(m: CRegSearch, state: IAppState, propertyList?: CPropertyList) {
-    this.columns.push(REGISTRY_SEARCH_DESC_LIST);
-    if (REGISTRY_SEARCH_DESC_LIST) {
-      REGISTRY_SEARCH_DESC_LIST.forEach(p => {
-        this.columns.push(p);
-      });
+  constructor(m: CRegSearch, state: IAppState) {
+    let coeForm = getCoeFormById(state, 0);
+    if (coeForm) {
+      if (coeForm.title) {
+        this.title = coeForm.title;
+      }
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
     }
-    if (propertyList) {
-      propertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = getPropertyValue(p);
-          this.columns.push(getPropertyColumn(p));
+  }
+}
+
+function buildPropertyList(vm: any, formElement: any, state: IAppState) {
+  if (formElement) {
+    formElement.forEach(p => {
+      let propertyName = p._name;
+      if (propertyName) {
+        let column = getPropertyColumn(p, [], state);
+        if (column) {
+          vm.columns.push(column);
         }
-      });
-    }
-    this.columns.splice(0, 0, {
-      dataField: 'PersonCreated',
-      label: { text: 'Created By' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
-        valueExpr: 'PERSONID',
-        displayExpr: 'USERID'
-      }
-    });
-
-    this.columns.splice(4, 0, {
-      dataField: 'PREFIX',
-      label: { text: 'Prefix' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.sequences.filter(i => (i.TYPE === 'R' || i.TYPE === 'A')) : [],
-        valueExpr: 'SEQUENCEID',
-        displayExpr: 'PREFIX'
-      }
-    });
-
-    this.columns.splice(7, 0, {
-      dataField: 'REGISTRY_PROJECT',
-      label: { text: 'Registry Project Name' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.projects.filter(i => ((i.TYPE === 'R' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F'))) : [],
-        valueExpr: 'PROJECTID',
-        displayExpr: 'NAME'
-      }
-    });
-
-    this.columns.splice(10, 0, {
-      dataField: 'IDENTIFIERTYPE',
-      label: { text: 'Registry Identifier' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.identifierTypes.filter(i => ((i.TYPE === 'R' || i.TYPE === 'A') && i.ACTIVE === 'T')) : [],
-        displayExpr: 'NAME',
-        valueExpr: 'ID',
       }
     });
   }
+}
+
+function getPropertyColumn(p: any, formElements: CFormElement[], state: IAppState): any {
+  if (p && p.displayInfo.visible === 'false') {
+    return null;
+  }
+  let column: any = {
+    dataField: p._name,
+    dataType: p._type === 'DATE' ? 'date' : 'string'
+  };
+  if (p.label) {
+    column.label = { text: p.label };
+  }
+  if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList') {
+    column.dataType = 'number';
+    column.editorType = 'dxSelectBox';
+    column.editorOptions = getPicklist(p, state);
+  }
+  return column;
+}
+
+function getPicklist(p: any, state: IAppState) {
+  let lookups = getLookups(state);
+  let pickListDomains = lookups ? lookups.pickListDomains : [];
+  let placeholder = 'Select ' + (p.label ? p.label : '...');
+  let pickList = {
+    dataSource: [],
+    displayExpr: 'NAME',
+    valueExpr: 'ID',
+    placeholder: placeholder,
+    showClearButton: true
+  };
+  let filtered = pickListDomains.filter(
+    d => d.ID === Number(p.configInfo.fieldConfig.PickListDomain));
+  if (filtered.length === 1) {
+    let pickListDomain = filtered[0];
+    let extTable = pickListDomain.EXT_TABLE ? pickListDomain.EXT_TABLE.toUpperCase() : null;
+    // TODO: Should support external tables
+    if (extTable && extTable.indexOf('REGDB.') === 0) {
+      let lookup = extTable.replace('REGDB.', '');
+      // TODO: Should support all internal tables geneticall
+      if (lookup === 'VW_UNIT') {
+        pickList.dataSource = lookups ? lookups.units : [];
+      } else if (lookup === 'VW_PEOPLE') {
+        pickList.dataSource = lookups ? lookups.users : [];
+      } else if (lookup === 'VW_NOTEBOOKS') {
+        pickList.dataSource = lookups ? lookups.notebooks : [];
+      } else {
+        pickList.dataSource = [];
+      }
+      // TODO: Should apply filter and sort order
+      // EXT_SQL_FILTER: Where active='T'
+      // EXT_SQL_SORTORDER: ORDER BY SORTORDER ASC
+      pickList.displayExpr = pickListDomain.EXT_DISPLAY_COL;
+      pickList.valueExpr = pickListDomain.EXT_ID_COL;
+    }
+  }
+  return pickList;
+}
+
+function getCoeFormById(state: IAppState, coeFormId: number) {
+  let filtered = state.configuration.formGroups.SearchPermanent ?
+    state.configuration.formGroups.SearchPermanent.queryForms.queryForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
+  return filtered && filtered.length > 0 ? filtered[0] : null;
 }
 
 export const TEMP_SEARCH_DESC_LIST = [{
@@ -245,15 +224,7 @@ export class CTemporarySearchVM {
         this.columns.push(p);
       });
     }
-    if (propertyList) {
-      propertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = getPropertyValue(p);
-          this.columns.push(getPropertyColumn(p));
-        }
-      });
-    }
+
     this.columns.splice(4, 0, {
       dataField: 'PersonCreated',
       label: { text: 'Created By' },
@@ -408,49 +379,14 @@ export class CStructureSearch {
 export class CStructureSearchVM {
   structureComments?: String;
   columns: any[] = [];
-  constructor(m: CStructureSearch, state: IAppState, propertyList?: CPropertyList) {
-    this.columns.push(STRUCTURE_SEARCH_DESC_LIST);
-    if (STRUCTURE_SEARCH_DESC_LIST) {
-      STRUCTURE_SEARCH_DESC_LIST.forEach(p => {
-        this.columns.push(p);
-      });
-    }
-    if (propertyList) {
-      propertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = getPropertyValue(p);
-          this.columns.push(getPropertyColumn(p));
-        }
-      });
+  constructor(m: CStructureSearch, state: IAppState) {
+    let coeForm = getCoeFormById(state, 4);
+    if (coeForm) {
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
     }
   }
 }
 
-export const COMPONENT_SEARCH_DESC_LIST = [{
-  dataField: 'COMPONENTID',
-  label: { text: 'Component ID' },
-  dataType: 'string'
-}, {
-  dataField: 'IdentifierValue',
-  label: { text: 'Value' },
-  dataType: 'string'
-}, {
-  dataField: 'CHEM_NAME_AUTOGEN',
-  label: { text: 'Structure Name' },
-  dataType: 'string'
-}, {
-  dataField: 'CMP_COMMENTS',
-  label: { text: 'Component Comments' },
-  dataType: 'string',
-  editorType: 'dxTextArea'
-}, {
-  dataField: 'STRUCTURE_COMMENTS_TXT',
-  label: { text: 'Stereochemistry Comments' },
-  dataType: 'string',
-  editorType: 'dxTextArea'
-}
-];
 export class CComponentSearch {
   COMPONENTID: String;
   IDENTIFIERTYPE: String;
@@ -468,36 +404,15 @@ export class CComponentSearchVM {
   cmpComments: String;
   structureComments: String;
   columns: any[] = [];
-  constructor(m: CComponentSearch, state: IAppState, propertyList?: CPropertyList) {
-    this.columns.push(COMPONENT_SEARCH_DESC_LIST);
-    if (COMPONENT_SEARCH_DESC_LIST) {
-      COMPONENT_SEARCH_DESC_LIST.forEach(p => {
-        this.columns.push(p);
-      });
-    }
-    if (propertyList) {
-      propertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = getPropertyValue(p);
-          this.columns.push(getPropertyColumn(p));
-        }
-      });
-    }
-
-    this.columns.splice(2, 0, {
-      dataField: 'IDENTIFIERTYPE',
-      label: { text: 'Component Identifier' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.identifierTypes.filter(i => ((i.TYPE === 'C' || i.TYPE === 'A') && i.ACTIVE === 'T')) : [],
-        displayExpr: 'NAME',
-        valueExpr: 'ID',
+  title: String;
+  constructor(m: CComponentSearch, state: IAppState) {
+    let coeForm = getCoeFormById(state, 1);
+    if (coeForm) {
+      if (coeForm.title) {
+        this.title = coeForm.title;
       }
-    });
-
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
+    }
   }
 }
 
@@ -509,80 +424,6 @@ export class CComponentIdentifier {
 export class CComponentIdentifierList {
   Project: CComponentIdentifier[] = [];
 }
-
-export const BATCH_SEARCH_DESC_LIST = [{
-  dataField: 'BatchID',
-  label: { text: 'BatchID' },
-  dataType: 'string'
-}, {
-  dataField: 'FULLREGNUMBER',
-  label: { text: 'Full Registry Number' },
-  dataType: 'string',
-  editorType: 'dxTextArea'
-}, {
-  dataField: 'START_DATECREATED',
-  label: { text: 'Start Date Created' },
-  dataType: 'string',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'END_DATECREATED',
-  label: { text: 'End Date Created' },
-  dataType: 'string',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'START_CREATION_DATE',
-  label: { text: 'Start Synthesis Date' },
-  dataType: 'string',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'END_CREATION_DATE',
-  label: { text: 'End Synthesis Date' },
-  dataType: 'string',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'AMOUNT',
-  label: { text: 'Amount' },
-  dataType: 'string'
-}, {
-  dataField: 'APPEARANCE',
-  label: { text: 'Appearance' },
-  dataType: 'string'
-}, {
-  dataField: 'PURITY',
-  label: { text: 'Purity' },
-  dataType: 'string'
-}, {
-  dataField: 'PURITY_COMMENTS',
-  label: { text: 'Purity Comments' },
-  dataType: 'string'
-}, {
-  dataField: 'SAMPLEID',
-  label: { text: 'Sample ID' },
-  dataType: 'string'
-}, {
-  dataField: 'SOLUBILITY',
-  label: { text: 'Solubility' },
-  dataType: 'string'
-}, {
-  dataField: 'BATCH_COMMENT',
-  label: { text: 'Batch Comments' },
-  dataType: 'string',
-  editorType: 'dxTextArea'
-}, {
-  dataField: 'STORAGE_REQ_AND_WARNINGS',
-  label: { text: 'Storage Requirements Warnings' },
-  dataType: 'string',
-  editorType: 'dxTextArea'
-}, {
-  dataField: 'FORMULA_WEIGHT',
-  label: { text: 'Formula Weight' },
-  dataType: 'string'
-}, {
-  dataField: 'NotebookReference',
-  label: { text: 'Notebook Reference' },
-  dataType: 'string'
-}
-];
 
 export class CBatchSearch {
   BatchID: String;
@@ -634,86 +475,15 @@ export class CBatchSearchVM {
   noteBookReference?: Number;
   noteBookReferenceList?: CNoteBookReferenceList;
   columns: any[] = [];
-  constructor(m: CBatchSearch, state: IAppState, propertyList?: CPropertyList) {
-    this.columns.push(BATCH_SEARCH_DESC_LIST);
-    if (BATCH_SEARCH_DESC_LIST) {
-      BATCH_SEARCH_DESC_LIST.forEach(p => {
-        this.columns.push(p);
-      });
+  title: string;
+  constructor(m: CBatchSearch, state: IAppState) {
+    let coeForm = getCoeFormById(state, 2);
+    if (coeForm) {
+      if (coeForm.title) {
+        this.title = coeForm.title;
+      }
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
     }
-    if (propertyList) {
-      propertyList.Property.forEach(p => {
-        let propertyName = p._name;
-        if (propertyName) {
-          this[propertyName as string] = getPropertyValue(p);
-          this.columns.push(getPropertyColumn(p));
-        }
-      });
-    }
-
-    this.columns.splice(2, 0, {
-      dataField: 'IDENTIFIERTYPE',
-      label: { text: 'Component Identifier' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.identifierTypes.filter(i => ((i.TYPE === 'C' || i.TYPE === 'A') && i.ACTIVE === 'T')) : [],
-        displayExpr: 'NAME',
-        valueExpr: 'ID',
-      }
-    });
-
-    this.columns.splice(5, 0, {
-      dataField: 'BATCH_PROJECT',
-      label: { text: 'Batch Project Name' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.projects.filter(i => ((i.TYPE === 'B' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F'))) : [],
-        valueExpr: 'PROJECTID',
-        displayExpr: 'NAME'
-      }
-    });
-
-    this.columns.splice(7, 0, {
-      dataField: 'PERSONCREATED',
-      label: { text: 'Created By' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
-        valueExpr: 'PERSONID',
-        displayExpr: 'USERID'
-      }
-    });
-
-    this.columns.splice(8, 0, {
-      dataField: 'SCIENTIST_ID',
-      label: { text: 'Scientist' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
-        valueExpr: 'PERSONID',
-        displayExpr: 'USERID'
-      }
-    });
-
-    this.columns.splice(12, 0, {
-      dataField: 'AMOUNT_UNITS',
-      label: { text: 'Units' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.units : [],
-        valueExpr: 'ID',
-        displayExpr: 'UNIT'
-      }
-    });
-
   }
 }
 
@@ -735,7 +505,6 @@ export class CNoteBookReferenceList {
   Name: CNoteBookReference[] = [];
 }
 
-
 function getPropertyValue(p: CProperty): any {
   let value = undefined;
   let textValue = p.__text;
@@ -750,14 +519,6 @@ function getPropertyValue(p: CProperty): any {
       break;
   }
   return value;
-}
-
-function getPropertyColumn(p: CProperty): any {
-  let column: any = {
-    dataField: p._name.toLowerCase(),
-    dataType: p._type === 'DATE' ? 'date' : 'string'
-  };
-  return column;
 }
 
 export const HITLIST_GRID_COLUMNS = [{
@@ -906,6 +667,10 @@ export class CPreferenceVM {
       });
     }
   }
+}
+
+function getLookups(state: IAppState): any {
+  return state.session ? state.session.lookups : undefined;
 }
 
 export class CSearchFormVM {
