@@ -244,4 +244,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       f.instance.repaint();
     });
   }
+
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
+    }
+  }
 };

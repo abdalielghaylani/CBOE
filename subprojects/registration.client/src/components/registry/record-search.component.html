@@ -47,9 +47,8 @@
   </div>
   <div class="panel-group" id="accordion" *ngIf="!temporary">
     <div class="panel panel-default">
-      <div class="panel-heading" style='border-left: 4px solid tan;'>
-         <a class="list-header tan" data-toggle="collapse" href="#collapseOne">
-                                                              Registry Information</a>
+      <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+         <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Registry Information</a>
       </div>
       <div id="collapseOne" class="panel-collapse collapse in">
         <div class="panel-body">
@@ -67,9 +66,8 @@
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading" style='border-left: 4px solid tan;'>
-         <a class="list-header tan" data-toggle="collapse" href="#collapseTwo">
-                                  Component Information </a>
+      <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+         <a class="list-header tan" data-toggle="collapse" href="#collapseTwo">Component Information </a>
       </div>
       <div id="collapseTwo" class="panel-collapse collapse in">
         <div class="panel-body">
@@ -79,9 +77,8 @@
       </div>
     </div>
     <div class="panel panel-default">
-      <div class="panel-heading" style='border-left: 4px solid tan;'>
-         <a class="list-header tan" data-toggle="collapse" href="#collapseThree">
-                          Batch Information </a>
+      <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+         <a class="list-header tan" data-toggle="collapse" href="#collapseThree">Batch Information </a>
       </div>
       <div id="collapseThree" class="panel-collapse collapse in">
         <div class="panel-body">
