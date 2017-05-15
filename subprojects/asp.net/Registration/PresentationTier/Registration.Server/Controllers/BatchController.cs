@@ -52,12 +52,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </remarks>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid request</response>
-        /// <response code="0">Unexpected error</response>
         [HttpGet]
         [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("GetAllBatches")]
         [SwaggerResponse(200, type: typeof(JArray))]
-        [SwaggerResponse(404, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(JObject))]
         public async Task<IHttpActionResult> GetAllBatches()
         {
             return await CallMethod(() =>
@@ -76,8 +75,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <remarks>Returns the list of all batches corresponding to the specified parameters
         /// </remarks>
         /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid request</response>
-        /// <response code="0">Unexpected error</response>
         [HttpGet]
         [Route(Consts.apiPrefix + "batches/{id}/records")]
         [SwaggerOperation("GetBatches")]
@@ -106,7 +103,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </remarks>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid request</response>
-        /// <response code="0">Unexpected error</response>
         [HttpGet]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("GetBatch")]
