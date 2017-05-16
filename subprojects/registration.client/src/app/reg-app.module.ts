@@ -16,7 +16,7 @@ import {
   RegAboutPage,
   RegRecordSearchPage
 } from '../pages';
-import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagemnt } from '../components';
+import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -31,7 +31,8 @@ import {
   DxFormModule,
   DxPopupModule,
   DxLoadIndicatorModule,
-  DxLoadPanelModule
+  DxLoadPanelModule,
+  DxScrollViewModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -55,7 +56,8 @@ import {
     DxFormModule,
     DxPopupModule,
     DxLoadIndicatorModule,
-    DxLoadPanelModule
+    DxLoadPanelModule,
+    DxScrollViewModule
   ],
   declarations: [
     RegApp,
@@ -63,7 +65,7 @@ import {
     RegRecordSearchPage,
     RegRecordDetailPage,
     RegRecords,
-    RegQueryManagemnt,
+    RegQueryManagement,
     RegRecordSearch,
     RegRecordDetail,
     RegStructureImage,

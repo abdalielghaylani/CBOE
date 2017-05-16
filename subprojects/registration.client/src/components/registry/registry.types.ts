@@ -4,8 +4,8 @@ import {
   FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
   GroupSettingType, getSetting
 } from '../../common';
-import { fetchLimit } from '../../configuration';
-import { IRecordsData } from '../../store';
+import { IRecordsData, IRecords } from '../../store';
+
 
 export class FragmentData {
   FragmentID: number;
@@ -218,16 +218,16 @@ export class CComponentVM {
     });
     this.columns = [{
       itemType: 'group',
-      caption: 'Component Information',
+      caption: undefined,
       items: []
     }];
     let coeForm = getCoeFormById(container.formGroup, SubFormType.CompoundCustomProperties);
     if (coeForm) {
       let groupItem = this.columns[0];
       buildPropertyList(this, groupItem.items, m.Compound.PropertyList, coeForm, container);
-      if (coeForm.title) {
-        groupItem.caption = coeForm.title as string;
-      }
+      // if (coeForm.title) {
+      //   groupItem.caption = coeForm.title as string;
+      // }
     }
   }
 }
@@ -347,7 +347,7 @@ export class CBatchVM {
     this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
     this.columns = [{
       itemType: 'group',
-      caption: 'Batch Information',
+      caption: undefined,
       colCount: 'auto',
       colCountByScreen: {
         lg: 3,
@@ -584,18 +584,18 @@ export class CRegistryRecordVM {
 function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
   let groupItem = {
     itemType: 'group',
-    caption: 'Fragment Information',
+    caption: undefined,
     items: []
   };
   let lookups = getLookups(container);
   let coeForm = getCoeFormById(container.formGroup, SubFormType.BatchComponentFragmentsForm);
   if (coeForm) {
-    if (coeForm.title) {
-      groupItem.caption = coeForm.title as string;
-    }
+    // if (coeForm.title) {
+    //   groupItem.caption = coeForm.title as string;
+    // }
     groupItem.items = [{
       dataField: 'batchComponentFragmentList',
-      label: { text: 'Fragments', visible: false },
+      label: { text: 'Fragments' },
       colSpan: 1,
       template: function (d, itemElement) {
         (jQuery('<div />')
@@ -792,24 +792,33 @@ function buildPropertyList(vm: any, columns: any[], propertyList: CPropertyList,
   }
 }
 
-export class RecordsVM {
-  startPoint: number = 0;
-  fullDataLoaded: boolean = true;
-  totalRecordCount: number = 0;
-  currentRows?: any = [];
-  fetchLimit: number = fetchLimit;
-  totalFetched: number = 0;
-  sortCriteria: string = undefined;
-  setRecordData(d: IRecordsData, initial: boolean) {
-    this.totalRecordCount = d.totalCount;
-    if (initial) {
-      this.currentRows = d.rows;
+export class CRecords implements IRecords {
+  filterRow: { visible: boolean } = { visible: true };
+  constructor(public temporary: boolean, public data: IRecordsData, public gridColumns: any[] = []) {
+  }
+  setRecordData(d: IRecordsData) {
+    if (d.startIndex === 0) {
+      this.data = d;
     } else {
-      this.currentRows = this.currentRows.concat(d.rows);
+      this.data.totalCount = d.totalCount;
+      this.data.rows = this.data.rows.concat(d.rows);
     }
-    this.totalFetched = this.currentRows.length;
   }
   getFetchedRows() {
-    return this.currentRows;
+    return this.data.rows;
   }
+}
+
+export interface IResponseData {
+  id?: number;
+  regNumber?: string;
+  message?: string;
+  data?: any;
+}
+
+export interface IRecordSaveData {
+  temporary: boolean;
+  id: number;
+  recordDoc: Document;
+  saveToPermanent: boolean;
 }

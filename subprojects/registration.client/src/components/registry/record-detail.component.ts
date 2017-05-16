@@ -26,8 +26,9 @@ declare var jQuery: any;
 
 @Component({
   selector: 'reg-record-detail',
-  styles: [require('./records.css')],
   template: require('./record-detail.component.html'),
+  styles: [require('./records.css')],
+  host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
@@ -35,13 +36,13 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @Input() temporary: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
-  @select(s => s.registry.structureData) structureData$: Observable<string>;
   public formGroup: CFormGroup;
   public editMode: boolean = false;
   private title: string;
   private drawingTool;
   private creatingCDD: boolean = false;
   private cdxml: string;
+  private parentHeight: string;
   private recordString: string;
   private recordDoc: Document;
   private regRecord: CRegistryRecord = new CRegistryRecord();
@@ -66,6 +67,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.createDrawingTool();
     this.actions.retrieveRecord(this.temporary, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+    this.parentHeight = this.getParentHeight();
   }
 
   ngOnDestroy() {
@@ -78,19 +80,32 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.actions.clearRecord();
   }
 
-  loadData(data: IRecordDetail) {
-    if (this.temporary !== data.temporary || this.id !== data.id) {
+  private getParentHeight() {
+    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
+  }
+
+  private onResize(event: any) {
+    this.parentHeight = this.getParentHeight();
+  }
+
+  private onDocumentClick(event: any) {
+    if (event.srcElement.title === 'Full Screen') {
+      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+      this.parentHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
+    }
+  }
+
+  loadData(recordDetail: IRecordDetail) {
+    if (this.temporary !== recordDetail.temporary || this.id !== recordDetail.id) {
       return;
     }
-    let output = registryUtils.getDocument(data.data);
-    this.recordString = output.documentElement.firstChild.textContent;
-    this.recordDoc = registryUtils.getDocument(this.recordString);
-    this.title = data.id < 0 ?
+    this.recordDoc = registryUtils.getDocument(recordDetail.data);
+    this.title = recordDetail.id < 0 ?
       'Register a New Compound' :
-      data.temporary ?
+      recordDetail.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    registryUtils.fixStructureData(this.recordDoc);
+    // registryUtils.fixStructureData(this.recordDoc);
     let x2jsTool = new X2JS.default({
       arrayAccessFormPaths: [
         'MultiCompoundRegistryRecord.ComponentList.Component',
@@ -108,7 +123,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     let recordJson: any = x2jsTool.dom2js(this.recordDoc);
     this.regRecord = recordJson.MultiCompoundRegistryRecord;
     let formGroupType = FormGroupType.SubmitMixture;
-    if (data.id >= 0 && !data.temporary) {
+    if (recordDetail.id >= 0 && !recordDetail.temporary) {
       // TODO: For mixture, this should be ReviewRegistryMixture
       formGroupType = FormGroupType.ViewMixture;
     }
@@ -120,9 +135,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
     }
-    this.actions.loadStructure(registryUtils.getElementValue(this.recordDoc.documentElement,
-      'ComponentList/Component/Compound/BaseFragment/Structure/Structure'));
-    this.loadSubscription = this.structureData$.subscribe((value: string) => this.loadCdxml(value));
+    let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
+    this.loadCdxml(structureData);
     this.changeDetector.markForCheck();
   }
 
@@ -152,24 +167,24 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     let cdWidth = cddContainer.innerWidth() - 4;
     let attachmentElement = cddContainer[0];
     let cdHeight = attachmentElement.offsetHeight;
+    const self = this;
     jQuery(this.elementRef.nativeElement).find('.click_catch').height(cdHeight);
     let params = {
       element: attachmentElement,
       height: (cdHeight - 2),
       width: cdWidth,
       viewonly: false,
-      parent: this,
       callback: function (drawingTool) {
-        this.parent.drawingTool = drawingTool;
-        jQuery(this.parent.elementRef.nativeElement).find('.click_catch').addClass('hidden');
+        self.drawingTool = drawingTool;
+        jQuery(self.elementRef.nativeElement).find('.click_catch').addClass('hidden');
         if (drawingTool) {
           drawingTool.setViewOnly(false);
         }
-        this.parent.creatingCDD = false;
+        self.creatingCDD = false;
         drawingTool.fitToContainer();
-        if (this.parent.cdxml) {
-          drawingTool.loadCDXML(this.parent.cdxml);
-          this.parent.cdxml = null;
+        if (self.cdxml) {
+          drawingTool.loadCDXML(self.cdxml);
+          self.cdxml = null;
         }
       },
       licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
@@ -187,16 +202,18 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
   };
 
+  private updateRecord() {
+    registryUtils.setElementValue(this.recordDoc.documentElement,
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
+  }
+
   save() {
+    this.updateRecord();
     if (this.id < 0) {
-      // Retrieve CDXML from CDD
-      registryUtils.setElementValue(this.recordDoc.documentElement,
-        'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
-      this.actions.saveRecord(this.recordDoc);
+      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
     } else {
-      // notify('Saving is not supported yet!', 'warning');
-      // this.actions.updateRecord(this.recordDoc);
       this.setEditMode(false);
+      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
     }
   }
 
@@ -210,7 +227,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   register() {
-    this.actions.registerRecord(this.recordDoc);
+    this.updateRecord();
+    this.actions.saveRecord(this.temporary, this.id, this.recordDoc, true);
   }
 
   private setEditMode(editMode: boolean) {
@@ -225,5 +243,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       f.readOnly = !editMode;
       f.instance.repaint();
     });
+  }
+
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
+    }
   }
 };

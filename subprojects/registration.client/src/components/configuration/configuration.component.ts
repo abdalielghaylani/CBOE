@@ -1,52 +1,46 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
+  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
+} from '@angular/core';
+import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { select } from '@angular-redux/store';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
+import { notify, notifyError, notifySuccess } from '../../common';
+import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration } from '../../store';
+
+declare var jQuery: any;
 
 @Component({
   selector: 'reg-configuration',
-  template: `
-    <div class="viewcontainer">
-      <reg-page-header>{{ this.tableName() }}</reg-page-header>
-
-      <dx-data-grid [dataSource]=this.rows [paging]='{pageSize: 10}' 
-        [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-        [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
-        rowAlternationEnabled=true,
-        (onContentReady)='onContentReady($event)'
-        (onCellPrepared)='onCellPrepared($event)'
-        (onInitNewRow)='onInitNewRow($event)'
-        (onEditingStart)='onEditingStart($event)'
-        (onRowRemoving)='onRowRemoving($event)'>
-        <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true">
-        </dxo-editing>
-        <div *dxTemplate="let data of 'cellTemplate'">
-          <reg-structure-image [src]="data.value"></reg-structure-image>
-        </div>
-      </dx-data-grid>
-    </div>
-  `,
+  template: require('./configuration.component.html'),
   styles: [require('./configuration.component.css')],
+  host: { '(document:click)': 'onDocumentClick($event)' },  
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfiguration implements OnInit, OnDestroy {
+  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private tableId: string;
   private rows: any[] = [];
-  private sub: Subscription;
+  private tableIdSubscription: Subscription;
   private dataSubscription: Subscription;
+  private gridHeight: string;
 
   constructor(
     private route: ActivatedRoute,
+    private http: Http,
     private changeDetector: ChangeDetectorRef,
-    private configurationActions: ConfigurationActions
+    private configurationActions: ConfigurationActions,
+    private elementRef: ElementRef
   ) { }
 
   ngOnInit() {
-    this.sub = this.route.params.subscribe(params => {
+    this.tableIdSubscription = this.route.params.subscribe(params => {
       let paramLabel = 'tableId';
       this.tableId = params[paramLabel];
       this.configurationActions.openTable(this.tableId);
@@ -55,8 +49,8 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.sub) {
-      this.sub.unsubscribe();
+    if (this.tableIdSubscription) {
+      this.tableIdSubscription.unsubscribe();
     }
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
@@ -69,8 +63,28 @@ export class RegConfiguration implements OnInit, OnDestroy {
       this.rows = customTableData.rows;
       this.changeDetector.markForCheck();
     }
+    this.gridHeight = this.getGridHeight();
   }
-  
+
+  private getGridHeight() {
+    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
+  }
+
+  private onResize(event: any) {
+    this.gridHeight = this.getGridHeight();
+    this.grid.height = this.getGridHeight();
+    this.grid.instance.repaint();
+  }
+
+  private onDocumentClick(event: any) {
+    if (event.srcElement.title === 'Full Screen') {
+      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
+      this.grid.height = this.gridHeight;
+      this.grid.instance.repaint();
+    }
+  }
+
   onContentReady(e) {
     e.component.columnOption(0, 'visible', false);
     e.component.columnOption('STRUCTURE', {
@@ -107,6 +121,28 @@ export class RegConfiguration implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
+    // TODO: Should use redux
+    let deferred = jQuery.Deferred();
+    let id = e.data[Object.keys(e.data)[0]];
+    let url = `${apiUrlPrefix}custom-tables/${this.tableId}/${id}`;
+    this.http.delete(url)
+      .toPromise()
+      .then(result => {
+        notifySuccess(`The record (Table: ${this.tableId}, ID: ${id}) was deleted successfully!`, 5000);
+        deferred.resolve(false);
+      })
+      .catch(error => {
+        let message = `The record (Table: ${this.tableId}, ID: ${id}) was not deleted due to a problem`;
+        let reason;
+        if (error._body) {
+            let errorResult = JSON.parse(error._body);
+            reason = errorResult.Message;
+        }
+        message += (reason) ? ': ' + reason : '!';
+        notifyError(message, 5000);
+        deferred.resolve(true);
+      });
+    e.cancel = deferred.promise();
   }
 
   tableName() {

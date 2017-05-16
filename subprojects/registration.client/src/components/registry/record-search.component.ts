@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnInit, OnDestroy, AfterViewInit,
+  OnInit, OnDestroy, OnChanges,
   ElementRef, ChangeDetectorRef,
   ViewChildren, QueryList, ViewChild
 } from '@angular/core';
@@ -17,6 +17,7 @@ import { RegistrySearchActions, ConfigurationActions } from '../../actions';
 import { IAppState, ISearchRecords } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawingTool } from '../../common/tool';
+import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
 
 declare var jQuery: any;
 
@@ -26,37 +27,54 @@ declare var jQuery: any;
   template: require('./record-search.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecordSearch implements OnInit, OnDestroy {
+export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
+  private lookupsSubscription: Subscription;
   @Input() temporary: boolean;
+  @Input() parentHeight: string;
+  @Input() activated: boolean;
   @Output() onClose = new EventEmitter<any>();
   private title: string;
   private tabSelected: string = 'search';
-  private regsearch: regSearchTypes.CSearchFormVM;
+  private regSearch: regSearchTypes.CSearchFormVM;
   @ViewChild(ChemDrawingTool)
-  private drawingTool: ChemDrawingTool;
+  private chemDrawWeb: ChemDrawingTool;
+  public formGroup: CFormGroup;
+  @select(s => s.session.lookups) lookups$: Observable<any>;
 
   constructor(
     private router: Router,
     private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef,
-    private ngRedux: NgRedux<IAppState>,
+    public ngRedux: NgRedux<IAppState>,
     private actions: RegistrySearchActions) {
   }
 
   ngOnInit() {
     this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
-    this.regsearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
+    this.regSearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
   }
 
   ngOnDestroy() {
   }
 
+  loadData(lookups: any) {
+    let formGroupType = FormGroupType.SearchPermanent;
+    prepareFormGroupData(formGroupType, this.ngRedux);
+  }
+
+  ngOnChanges() {
+    if (this.activated && this.chemDrawWeb) {
+      this.chemDrawWeb.activate();
+    }
+  }
+
   search() {
-    this.regsearch.registrySearchVM.structureData = this.drawingTool.getValue();
+    this.regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();
   }
 
   clear() {
-    this.drawingTool.loadCdxml(null);
+    this.chemDrawWeb.loadCdxml(null);
   }
 
   retrieveAll() {
@@ -73,4 +91,9 @@ export class RegRecordSearch implements OnInit, OnDestroy {
     this.onClose.emit(e);
   }
 
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
+    }
+  }
 };

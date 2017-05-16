@@ -4,7 +4,8 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  ElementRef
+  ElementRef,
+  OnInit
 } from '@angular/core';
 import { basePath } from '../../configuration';
 import * as registryUtils from '../../components/registry/registry.utils';
@@ -25,7 +26,7 @@ import * as registryUtils from '../../components/registry/registry.utils';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChemDrawingTool {
+export class ChemDrawingTool implements OnInit {
   private drawingTool;
   private recordDoc: Document;
   private creatingCDD: boolean = false;
@@ -36,7 +37,6 @@ export class ChemDrawingTool {
   }
 
   ngOnInit() {
-    this.createDrawingTool();
   }
 
   createDrawingTool() {
@@ -50,24 +50,22 @@ export class ChemDrawingTool {
     let cdWidth = cddContainer.innerWidth() - 4;
     let attachmentElement = cddContainer[0];
     let cdHeight = attachmentElement.offsetHeight;
+    const self = this;
     jQuery(this.elementRef.nativeElement).find('.chem-draw').height(cdHeight);
     let params = {
       element: attachmentElement,
-      height: (cdHeight - 2),
-      width: cdWidth,
       viewonly: false,
-      parent: this,
       callback: function (drawingTool) {
-        this.parent.drawingTool = drawingTool;
-        jQuery(this.parent.elementRef.nativeElement).find('.chem-draw').addClass('hidden');
+        self.drawingTool = drawingTool;
+        jQuery(self.elementRef.nativeElement).find('.chem-draw').addClass('hidden');
         if (drawingTool) {
           drawingTool.setViewOnly(false);
         }
-        this.parent.creatingCDD = false;
+        self.creatingCDD = false;
         drawingTool.fitToContainer();
-        if (this.parent.cdxml) {
-          drawingTool.loadCDXML(this.parent.cdxml);
-          this.parent.cdxml = null;
+        if (self.cdxml) {
+          drawingTool.loadCDXML(self.cdxml);
+          self.cdxml = null;
         }
       },
       licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
@@ -98,6 +96,12 @@ export class ChemDrawingTool {
 
   getValue() {
     return this.drawingTool.getCDXML();
+  }
+
+  activate() {
+    if (!this.drawingTool) {
+      this.createDrawingTool();
+    }
   }
 
 };

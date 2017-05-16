@@ -6,57 +6,6 @@
     <reg-logo></reg-logo>
   </reg-navigator-header>
   <reg-navigator-items>
-    <li class="dropdown" reg-navigator-item *ngIf="(loggedIn$ | async) &amp;&amp; (routerLink$ | async).indexOf('configuration') > 0">
-      <a class="dropdown-toggle coolgray text-relaxed margin-none background-white" role="button" data-toggle="dropdown" href="#">
-        <span class="fa fa-gears fa-lg #A4AEB5"></span> Configuration <span class="caret"></span>
-      </a>
-      <ul id="g-account-menu" class="dropdown-menu" role="menu">
-        <li>
-          <a [routerLink]="['configuration/VW_PROJECT']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-file-code-o fa-lg  #A4AEB5"></i> Projects</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_PICKLIST']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-bookmark fa-lg  #A4AEB5"></i> Picklist Values</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_PICKLISTDOMAIN']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-external-link fa-lg  #A4AEB5"></i> Picklist Domains</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_NOTEBOOKS']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-book fa-lg  #A4AEB5"></i> Notebooks</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_FRAGMENT']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-cubes fa-lg #A4AEB5"></i> Fragments</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_FRAGMENTTYPE']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-cube fa-lg #A4AEB5"></i> Fragment Types</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_SEQUENCE']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-bolt fa-lg #A4AEB5"></i> Sequences</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_IDENTIFIERTYPE']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-table fa-lg #A4AEB5"></i> Identifier Types</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_SITES']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-sitemap fa-lg #A4AEB5"></i> Sites</a>
-        </li>
-      </ul>
-    </li>
     <!--li reg-navigator-item *ngIf="loggedIn$ | async">
       <a href="/api/browser" class="text-decoration-none" target="API Browser"><i class="fa fa-wrench fa-lg maroon"></i> API Browser</a>
     </li-->
