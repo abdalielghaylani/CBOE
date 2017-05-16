@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Framework.Common;
 
-
 namespace COESearchServiceTest
 {
     public partial class ClientConfiguration : Form
@@ -43,11 +42,5 @@ namespace COESearchServiceTest
             this.propertyGrid1.Dispose();
             this.Close();
         }
-
-      
-        
-
-
-
     }
 }
