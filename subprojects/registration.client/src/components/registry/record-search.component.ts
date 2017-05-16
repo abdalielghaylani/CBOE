@@ -17,6 +17,7 @@ import { RegistrySearchActions, ConfigurationActions } from '../../actions';
 import { IAppState, ISearchRecords } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawingTool } from '../../common/tool';
+import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
 
 declare var jQuery: any;
 
@@ -27,6 +28,7 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
+  private lookupsSubscription: Subscription;
   @Input() temporary: boolean;
   @Input() parentHeight: string;
   @Input() activated: boolean;
@@ -36,21 +38,29 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private regSearch: regSearchTypes.CSearchFormVM;
   @ViewChild(ChemDrawingTool)
   private chemDrawWeb: ChemDrawingTool;
+  public formGroup: CFormGroup;
+  @select(s => s.session.lookups) lookups$: Observable<any>;
 
   constructor(
     private router: Router,
     private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef,
-    private ngRedux: NgRedux<IAppState>,
+    public ngRedux: NgRedux<IAppState>,
     private actions: RegistrySearchActions) {
   }
 
   ngOnInit() {
     this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
     this.regSearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
   }
 
   ngOnDestroy() {
+  }
+
+  loadData(lookups: any) {
+    let formGroupType = FormGroupType.SearchPermanent;
+    prepareFormGroupData(formGroupType, this.ngRedux);
   }
 
   ngOnChanges() {
