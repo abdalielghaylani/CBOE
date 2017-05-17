@@ -33,17 +33,17 @@ export class CRegSearchVM {
       if (coeForm.title) {
         this.title = coeForm.title;
       }
-      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state, 0);
     }
   }
 }
 
-function buildPropertyList(vm: any, formElement: any, state: IAppState) {
+function buildPropertyList(vm: any, formElement: any, state: IAppState, coeFormId: Number) {
   if (formElement) {
     formElement.forEach(p => {
       let propertyName = p._name;
       if (propertyName) {
-        let column = getPropertyColumn(p, [], state);
+        let column = getPropertyColumn(p, coeFormId, state);
         if (column) {
           vm.columns.push(column);
         }
@@ -52,7 +52,7 @@ function buildPropertyList(vm: any, formElement: any, state: IAppState) {
   }
 }
 
-function getPropertyColumn(p: any, formElements: CFormElement[], state: IAppState): any {
+function getPropertyColumn(p: any, coeFormId: Number, state: IAppState): any {
   if (p && p.displayInfo.visible === 'false') {
     return null;
   }
@@ -66,14 +66,22 @@ function getPropertyColumn(p: any, formElements: CFormElement[], state: IAppStat
   if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList') {
     column.dataType = 'number';
     column.editorType = 'dxSelectBox';
-    column.editorOptions = getPicklist(p, state);
+    column.editorOptions = getPicklist(p, state, coeFormId);
+  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEListUpload') {
+    column.editorType = 'dxFileUploader';
+  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea') {
+    column.editorType = 'dxTextArea';
+  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker') {
+    column.editorType = 'dxDateBox';
+  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStructureQuery' ||
+    p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStateControl') {
+    return null;
   }
   return column;
 }
 
-function getPicklist(p: any, state: IAppState) {
+function getPicklist(p: any, state: IAppState, coeFormId: Number) {
   let lookups = getLookups(state);
-  let pickListDomains = lookups ? lookups.pickListDomains : [];
   let placeholder = 'Select ' + (p.label ? p.label : '...');
   let pickList = {
     dataSource: [],
@@ -82,29 +90,50 @@ function getPicklist(p: any, state: IAppState) {
     placeholder: placeholder,
     showClearButton: true
   };
-  let filtered = pickListDomains.filter(
-    d => d.ID === Number(p.configInfo.fieldConfig.PickListDomain));
-  if (filtered.length === 1) {
-    let pickListDomain = filtered[0];
-    let extTable = pickListDomain.EXT_TABLE ? pickListDomain.EXT_TABLE.toUpperCase() : null;
-    // TODO: Should support external tables
-    if (extTable && extTable.indexOf('REGDB.') === 0) {
-      let lookup = extTable.replace('REGDB.', '');
-      // TODO: Should support all internal tables geneticall
-      if (lookup === 'VW_UNIT') {
-        pickList.dataSource = lookups ? lookups.units : [];
-      } else if (lookup === 'VW_PEOPLE') {
-        pickList.dataSource = lookups ? lookups.users : [];
-      } else if (lookup === 'VW_NOTEBOOKS') {
-        pickList.dataSource = lookups ? lookups.notebooks : [];
-      } else {
-        pickList.dataSource = [];
+  if (p._name === 'PREFIX') {
+    pickList.dataSource = lookups ? lookups.sequences.filter(i => (i.TYPE === 'R' || i.TYPE === 'A')) : [];
+    pickList.valueExpr = 'SEQUENCEID';
+    pickList.displayExpr = 'PREFIX';
+  } else if (p._name === 'BATCH_PROJECT') {
+    pickList.dataSource = lookups ? lookups.projects.filter(i => (i.TYPE === 'B' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F')) : [];
+  } else if (p._name === 'REGISTRY_PROJECT') {
+    pickList.dataSource = lookups ? lookups.projects.filter(i => (i.TYPE === 'R' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F')) : [];
+  } else if (p._name === 'IDENTIFIERTYPE' && p.Id === 'IDENTIFIERTYPETextBox') {
+    if (coeFormId === 0) {
+      pickList.dataSource = lookups ? lookups.identifierTypes.filter(i => (i.TYPE === 'R' || i.TYPE === 'A') && i.ACTIVE === 'T') : [];
+    } else if (coeFormId === 4) {
+      pickList.dataSource = lookups ? lookups.identifierTypes.filter(i => (i.TYPE === 'S' || i.TYPE === 'A') && i.ACTIVE === 'T') : [];
+    } else if (coeFormId === 1) {
+      pickList.dataSource = lookups ? lookups.identifierTypes.filter(i => (i.TYPE === 'C' || i.TYPE === 'A') && i.ACTIVE === 'T') : [];
+    } else if (coeFormId === 2) {
+      pickList.dataSource = lookups ? lookups.identifierTypes.filter(i => (i.TYPE === 'B' || i.TYPE === 'A') && i.ACTIVE === 'T') : [];
+    }
+  } else if (p.configInfo.fieldConfig.PickListDomain) {
+    let pickListDomains = lookups ? lookups.pickListDomains : [];
+    let filtered = pickListDomains.filter(
+      d => d.ID === Number(p.configInfo.fieldConfig.PickListDomain));
+    if (filtered.length === 1) {
+      let pickListDomain = filtered[0];
+      let extTable = pickListDomain.EXT_TABLE ? pickListDomain.EXT_TABLE.toUpperCase() : null;
+      // TODO: Should support external tables
+      if (extTable && extTable.indexOf('REGDB.') === 0) {
+        let lookup = extTable.replace('REGDB.', '');
+        // TODO: Should support all internal tables geneticall
+        if (lookup === 'VW_UNIT') {
+          pickList.dataSource = lookups ? lookups.units : [];
+        } else if (lookup === 'VW_PEOPLE') {
+          pickList.dataSource = lookups ? lookups.users : [];
+        } else if (lookup === 'VW_NOTEBOOKS') {
+          pickList.dataSource = lookups ? lookups.notebooks : [];
+        } else {
+          pickList.dataSource = [];
+        }
+        // TODO: Should apply filter and sort order
+        // EXT_SQL_FILTER: Where active='T'
+        // EXT_SQL_SORTORDER: ORDER BY SORTORDER ASC
+        pickList.displayExpr = pickListDomain.EXT_DISPLAY_COL;
+        pickList.valueExpr = pickListDomain.EXT_ID_COL;
       }
-      // TODO: Should apply filter and sort order
-      // EXT_SQL_FILTER: Where active='T'
-      // EXT_SQL_SORTORDER: ORDER BY SORTORDER ASC
-      pickList.displayExpr = pickListDomain.EXT_DISPLAY_COL;
-      pickList.valueExpr = pickListDomain.EXT_ID_COL;
     }
   }
   return pickList;
@@ -382,7 +411,7 @@ export class CStructureSearchVM {
   constructor(m: CStructureSearch, state: IAppState) {
     let coeForm = getCoeFormById(state, 4);
     if (coeForm) {
-      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state, 4);
     }
   }
 }
@@ -411,7 +440,7 @@ export class CComponentSearchVM {
       if (coeForm.title) {
         this.title = coeForm.title;
       }
-      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state, 1);
     }
   }
 }
@@ -482,7 +511,7 @@ export class CBatchSearchVM {
       if (coeForm.title) {
         this.title = coeForm.title;
       }
-      buildPropertyList(this, coeForm.layoutInfo.formElement, state);
+      buildPropertyList(this, coeForm.layoutInfo.formElement, state, 2);
     }
   }
 }
