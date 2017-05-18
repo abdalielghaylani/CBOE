@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.AccessControl;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Csla.Data;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using CambridgeSoft.COE.Registration.Services.Types;
-using CambridgeSoft.COE.Registration.Access;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using CambridgeSoft.COE.Framework.COESecurityService;
-using CambridgeSoft.COE.Framework.COETableEditorService;
-using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Registration.Services;
-using System.Security.AccessControl;
-using PerkinElmer.COE.Registration.Server.Models;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -91,10 +84,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             fieldData = reader.GetString(i);
                             break;
                     }
+
                     row.Add(new JProperty(fieldName, fieldData));
                 }
+
                 data.Add(row);
             }
+
             return data;
         }
 
@@ -174,7 +170,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
         }
 
-
         protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null)
         {
             HttpResponseMessage responseMessage;
@@ -189,6 +184,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 responseMessage = CreateErrorResponse(ex);
             }
+
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
@@ -207,6 +203,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 responseMessage = CreateErrorResponse(ex);
             }
+
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
@@ -230,7 +227,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var url = HttpContext.Current.Request.Url;
             var port = url.Port != 80 ? (":" + url.Port) : String.Empty;
 
-            return String.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
+            return string.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
         }
 
         protected class RecordColumn

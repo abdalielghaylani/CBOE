@@ -1,25 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Xml;
+using Microsoft.Web.Http;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
-using CambridgeSoft.COE.Registration.Services;
 using PerkinElmer.COE.Registration.Server.Code;
-using Microsoft.Web.Http;
 using PerkinElmer.COE.Registration.Server.Models;
-using CambridgeSoft.COE.Registration;
-using System.Net;
-using System.Xml;
-using Newtonsoft.Json;
-using CambridgeSoft.COE.Registration.Access;
-using System.Data.Common;
-using System.Data;
-using CambridgeSoft.COE.Framework.Common;
-using CambridgeSoft.COE.Framework.COESearchService;
-using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -32,15 +24,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new RecordColumn[]
                 {
-                    new RecordColumn{ definition = "BATCHID", sortable = true },
-                    new RecordColumn{ definition = "TEMPBATCHID", sortable = true },
-                    new RecordColumn{ definition = "BATCHNUMBER",sortable = true },
-                    new RecordColumn{ definition = "FULLREGNUMBER", sortable = true },
-                    new RecordColumn{ definition = "DATECREATED", sortable = true },
-                    new RecordColumn{ definition = "PERSONCREATED", sortable = true },
-                    new RecordColumn{ definition = "PERSONREGISTERED", sortable = true },
-                    new RecordColumn{ definition = "PERSONAPPROVED", sortable = true },
-                    new RecordColumn{ definition = "DATELASTMODIFIED", sortable = true }
+                    new RecordColumn{definition = "BATCHID", sortable = true}, 
+                    new RecordColumn{definition = "TEMPBATCHID", sortable = true}, 
+                    new RecordColumn{definition = "BATCHNUMBER", sortable = true}, 
+                    new RecordColumn{definition = "FULLREGNUMBER", sortable = true}, 
+                    new RecordColumn{definition = "DATECREATED", sortable = true}, 
+                    new RecordColumn{definition = "PERSONCREATED", sortable = true}, 
+                    new RecordColumn{definition = "PERSONREGISTERED", sortable = true}, 
+                    new RecordColumn{definition = "PERSONAPPROVED", sortable = true}, 
+                    new RecordColumn{definition = "DATELASTMODIFIED", sortable = true}
                 };
             }
         }
@@ -94,15 +86,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("rows", ExtractData(query, args, skip, count))
             ));
+
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
+        /// <summary>
         /// Returns the list of all batches by BatchID
         /// </summary>
-        /// <remarks>Returns the list of all batches corresponding to the specified parameters
-        /// </remarks>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid request</response>
+        /// <param name="id">Batch ID</param>
+        /// <returns></returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("GetBatch")]
@@ -140,7 +132,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("UpdateBatch")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
-        public async Task<IHttpActionResult> UpdateBatch(String regType, JObject data)
+        public async Task<IHttpActionResult> UpdateBatch(string regType, JObject data)
         {
             return await CallMethod(() =>
             {
@@ -155,6 +147,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     RegDal.UpdateRegistryRecord(datatoXml.InnerXml, CambridgeSoft.COE.Registration.DuplicateCheck.CompoundCheck, out message);
                 }
+
                 return new ResponseData(null, null, message, null);
             });
         }

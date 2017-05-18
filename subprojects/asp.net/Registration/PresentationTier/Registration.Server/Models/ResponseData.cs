@@ -23,7 +23,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <param name="id">ID of the processed record</param>
         /// <param name="regNumber">Registry number associated with the processed record</param>
         /// <param name="message">Message to return</param>
-        /// <param name="message">Additional data to return</param>
+        /// <param name="data">Additional data to return</param>
         public ResponseData(int? id = null, string regNumber = null, string message = null, JObject data = null)
         {
             Id = id;
@@ -33,25 +33,25 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or Sets ID
+        /// Gets or sets ID
         /// </summary>
         [DataMember(Name = "id")]
         public int? Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets RegNumber
+        /// Gets or sets RegNumber
         /// </summary>
         [DataMember(Name = "regNumber")]
         public string RegNumber { get; set; }
 
         /// <summary>
-        /// Gets or Sets Message
+        /// Gets or sets Message
         /// </summary>
         [DataMember(Name = "message")]
         public string Message { get; set; }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// Gets or sets Data
         /// </summary>
         [DataMember(Name = "data")]
         public JObject Data { get; set; }

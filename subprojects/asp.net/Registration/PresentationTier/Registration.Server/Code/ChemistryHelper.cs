@@ -45,6 +45,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 if (childElement is XmlElement)
                     ConvertStructuresToCdxml(childElement as XmlElement);
             }
+
             var textData = element.InnerText;
             if (!string.IsNullOrEmpty(textData) && textData.StartsWith("VmpD"))
             {
@@ -61,6 +62,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 if (childElement is XmlElement)
                     ConvertStructuresToCdx(childElement as XmlElement);
             }
+
             var textData = element.InnerText;
             if (!string.IsNullOrEmpty(textData) && (textData.StartsWith("<?xml ") || textData.StartsWith("<CDXML ")))
             {

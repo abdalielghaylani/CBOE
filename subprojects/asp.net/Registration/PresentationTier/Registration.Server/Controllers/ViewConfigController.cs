@@ -56,6 +56,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("data", configRegRecord.FormGroup.ToString())
                 ));
             }
+
             return formGroups;
         }
 
@@ -71,6 +72,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 );
                 customTables.Add(table);
             }
+
             return customTables;
         }
 
@@ -99,12 +101,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     );
                     settings.Add(setting);
                 }
+
                 var groupSettings = new JObject(
                     new JProperty("name", g.Name),
                     new JProperty("title", g.Title),
                     new JProperty("description", g.Description),
                     new JProperty("settings", settings)
                 );
+
                 systemSettings.Add(groupSettings);
             }
             return systemSettings;

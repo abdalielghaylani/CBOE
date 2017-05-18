@@ -37,10 +37,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     var table = new JObject(
                         new JProperty("tableName", key),
-                        new JProperty("label", tables[key])
-                    );
+                        new JProperty("label", tables[key]));
+
                     tableList.Add(table);
                 }
+
                 return tableList;
             });
         }
@@ -78,10 +79,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
                     rows.Add(p);
                 }
-                return new JObject(
-                    new JProperty("config", config),
-                    new JProperty("rows", rows)
-                );
+
+                return new JObject(new JProperty("config", config), new JProperty("rows", rows));
             });
         }
 
@@ -153,6 +152,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
             }
+
             try
             {
                 tableEditorBO = tableEditorBO.Save();
@@ -164,6 +164,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 else
                     throw;
             }
+
             return tableEditorBO.ID;
         }
 

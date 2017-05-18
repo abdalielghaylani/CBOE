@@ -53,67 +53,67 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or Sets ID
+        /// Gets or sets ID
         /// </summary>
         [DataMember(Name = "ID", EmitDefaultValue = false)]
         public int? ID { get; set; }
 
         /// <summary>
-        /// Gets or Sets Compound
+        /// Gets or sets Compound
         /// </summary>
         [DataMember(Name = "Compound", EmitDefaultValue = false)]
         public CambridgeSoft.COE.Registration.Services.Types.Compound Compound { get; set; }
 
         /// <summary>
-        /// Gets or Sets ComponentIndex
+        /// Gets or sets ComponentIndex
         /// </summary>
         [DataMember(Name = "ComponentIndex", EmitDefaultValue = false)]
         public int? ComponentIndex { get; set; }
 
         /// <summary>
-        /// Gets or Sets Percentage
+        /// Gets or sets Percentage
         /// </summary>
         [DataMember(Name = "Percentage", EmitDefaultValue = false)]
         public double? Percentage { get; set; }
 
         /// <summary>
-        /// Gets or Sets StructureId
+        /// Gets or sets StructureId
         /// </summary>
         [DataMember(Name = "StructureId", EmitDefaultValue = false)]
         public int? StructureId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Struct_Name
+        /// Gets or sets Struct_Name
         /// </summary>
         [DataMember(Name = "Struct_Name", EmitDefaultValue = false)]
         public string Struct_Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Stuct_Comments
+        /// Gets or sets Stuct_Comments
         /// </summary>
         [DataMember(Name = "Stuct_Comments", EmitDefaultValue = false)]
         public string Stuct_Comments { get; set; }
 
         /// <summary>
-        /// Gets or Sets Cmp_Comments
+        /// Gets or sets Cmp_Comments
         /// </summary>
         [DataMember(Name = "Cmp_Comments", EmitDefaultValue = false)]
         public string Cmp_Comments { get; set; }
 
         /// <summary>
-        /// Gets or Sets MolecularFormula
+        /// Gets or sets MolecularFormula
         /// </summary>
         [DataMember(Name = "MolecularFormula", EmitDefaultValue = false)]
         public double? MolecularFormula { get; set; }
 
         /// <summary>
-        /// Gets or Sets FormulaWeight
+        /// Gets or sets FormulaWeight
         /// </summary>
         [DataMember(Name = "FormulaWeight", EmitDefaultValue = false)]
         public double? FormulaWeight { get; set; }
 
         /// <summary>
-        /// Gets or Sets NormalizedStructure
+        /// Gets or sets NormalizedStructure
         /// </summary>
         [DataMember(Name = "NormalizedStructure", EmitDefaultValue = false)]
         public string NormalizedStructure { get; set; }
@@ -216,7 +216,8 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public override int GetHashCode()
         {
             // credit: http://stackoverflow.com/a/263416/677735
-            unchecked // Overflow is fine, just wrap
+            // Overflow is fine, just wrap
+            unchecked 
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)

@@ -61,75 +61,89 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or Sets ID
+        /// Gets or sets ID
         /// </summary>
         [DataMember(Name = "ID", EmitDefaultValue = false)]
         public int? ID { get; set; }
+
         /// <summary>
-        /// Gets or Sets TempBatchID
+        /// Gets or sets TempBatchID
         /// </summary>
         [DataMember(Name = "TempBatchID", EmitDefaultValue = false)]
         public int? TempBatchID { get; set; }
+
         /// <summary>
-        /// Gets or Sets BatchNumber
+        /// Gets or sets BatchNumber
         /// </summary>
         [DataMember(Name = "BatchNumber", EmitDefaultValue = false)]
         public int? BatchNumber { get; set; }
+
         /// <summary>
-        /// Gets or Sets FullRegNumber
+        /// Gets or sets FullRegNumber
         /// </summary>
         [DataMember(Name = "FullRegNumber", EmitDefaultValue = false)]
         public string FullRegNumber { get; set; }
+
         /// <summary>
-        /// Gets or Sets DateCreated
+        /// Gets or sets DateCreated
         /// </summary>
         [DataMember(Name = "DateCreated", EmitDefaultValue = false)]
         public DateTime? DateCreated { get; set; }
+
         /// <summary>
-        /// Gets or Sets PersonCreated
+        /// Gets or sets PersonCreated
         /// </summary>
         [DataMember(Name = "PersonCreated", EmitDefaultValue = false)]
         public int? PersonCreated { get; set; }
+
         /// <summary>
-        /// Gets or Sets PersonRegistered
+        /// Gets or sets PersonRegistered
         /// </summary>
         [DataMember(Name = "PersonRegistered", EmitDefaultValue = false)]
         public int? PersonRegistered { get; set; }
+
         /// <summary>
-        /// Gets or Sets PersonApproved
+        /// Gets or sets PersonApproved
         /// </summary>
         [DataMember(Name = "PersonApproved", EmitDefaultValue = false)]
         public int? PersonApproved { get; set; }
+
         /// <summary>
-        /// Gets or Sets DateLastModified
+        /// Gets or sets DateLastModified
         /// </summary>
         [DataMember(Name = "DateLastModified", EmitDefaultValue = false)]
         public DateTime? DateLastModified { get; set; }
+
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or sets Status
         /// </summary>
         [DataMember(Name = "Status", EmitDefaultValue = false)]
         public RegistryStatus Status { get; set; }
+
         /// <summary>
-        /// Gets or Sets ProjectList
+        /// Gets or sets ProjectList
         /// </summary>
         [DataMember(Name = "ProjectList", EmitDefaultValue = false)]
         public ProjectList ProjectList { get; set; }
+
         /// <summary>
-        /// Gets or Sets PropertyList
+        /// Gets or sets PropertyList
         /// </summary>
         [DataMember(Name = "PropertyList", EmitDefaultValue = false)]
         public PropertyList PropertyList { get; set; }
+
         /// <summary>
-        /// Gets or Sets IdentifierList
+        /// Gets or sets IdentifierList
         /// </summary>
         [DataMember(Name = "IdentifierList", EmitDefaultValue = false)]
         public IdentifierList IdentifierList { get; set; }
+
         /// <summary>
-        /// Gets or Sets BatchComponentList
+        /// Gets or sets BatchComponentList
         /// </summary>
         [DataMember(Name = "BatchComponentList", EmitDefaultValue = false)]
         public BatchComponentList BatchComponentList { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>

@@ -7,11 +7,11 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Xml;
+using System.Threading.Tasks;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
 using PerkinElmer.COE.Registration.Server.Code;
-using System.Threading.Tasks;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -63,6 +63,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 message.AppendLine("Login failed!");
                 responseMessage = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message.ToString(), ex);
             }
+
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
@@ -91,7 +92,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 const string SSO_URL = "/COESingleSignOn/SingleSignOn.asmx/";
                 var ssoCookies = Request.Headers.GetCookies();
                 var tokenCookie = ssoCookies == null || ssoCookies.First() == null ? null : ssoCookies.First().Cookies.First(c => c.Name == Consts.ssoCookieName);
-                var token = tokenCookie == null ? null : tokenCookie.Value; 
+                var token = tokenCookie == null ? null : tokenCookie.Value;
                 if (!string.IsNullOrEmpty(token))
                 {
                     message.AppendLine(string.Format("Validating token, {0}...", token));
@@ -104,12 +105,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         response = validateResponse.ReadToEnd();
                     var xml = new XmlDocument();
                     xml.LoadXml(response);
-                    isValid = Boolean.Parse(xml.DocumentElement.FirstChild.InnerText.Trim());
+                    isValid = bool.Parse(xml.DocumentElement.FirstChild.InnerText.Trim());
                 }
+
                 message.AppendLine(string.Format("Valid: {0}", isValid));
-                var responseObject = new JObject(
-                    new JProperty("isValid", isValid)
-                );
+                var responseObject = new JObject(new JProperty("isValid", isValid));
+
                 if (isValid)
                 {
                     responseObject.Add(
@@ -121,6 +122,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         )
                     );
                 }
+
                 var responseJobject = Request.CreateResponse(HttpStatusCode.OK, responseObject);
                 return responseJobject;
             }

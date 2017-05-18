@@ -1,20 +1,15 @@
 using System;
 using System.Configuration;
-using System.Collections;
-using System.Data;
 using System.IO;
 using System.IO.Compression;
-using System.Reflection;
+using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
 using System.Web.Security;
-using System.Web.SessionState;
-using System.Web.UI;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
-using Resources;
-using System.Net.Http.Formatting;
 using PerkinElmer.COE.Registration.Server.Code;
+using Resources;
 
 namespace PerkinElmer.COE.Registration.Server
 {
@@ -39,7 +34,7 @@ namespace PerkinElmer.COE.Registration.Server
 
         protected void Application_End(object sender, EventArgs e)
         {
-            //  Code that runs on application shutdown
+            // Code that runs on application shutdown
         }
 
         protected void Application_Error(object sender, EventArgs e)
@@ -56,24 +51,20 @@ namespace PerkinElmer.COE.Registration.Server
 
                 //Unhandled exeptions must display a generic message and be logged.
                 Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.ExceptionPolicy.HandleException(
-                    serverEx, policyName
-                );
+                    serverEx, policyName);
 
                 //Log all unhandled exceptions!
 
                 error = serverEx.Message;
                 try
                 {
-                    System.Diagnostics.EventLog.WriteEntry(
-                        "COERegistrationWeb"
-                        , serverEx.ToString()
-                        , System.Diagnostics.EventLogEntryType.Error
-                    );
+                    System.Diagnostics.EventLog.WriteEntry("COERegistrationWeb", serverEx.ToString(),
+                        System.Diagnostics.EventLogEntryType.Error);
                 }
                 catch
                 {
-                    COELog _coeLog = COELog.GetSingleton("RegistartionWebApp");
-                    _coeLog.Log(serverEx.ToString());
+                    COELog coeLog = COELog.GetSingleton("RegistartionWebApp");
+                    coeLog.Log(serverEx.ToString());
                 }
 
                 //Redirect ends the response. Server transfer doesn't so it might not show some errors and Causes a Session being null on some pages.
