@@ -106,14 +106,14 @@ export class RegConfigSettings implements OnInit, OnDestroy {
 
   private createCustomStore(parent: RegConfigSettings): CustomStore {
     let tableName = 'settings';
-    let apiUrlBase = `${apiUrlPrefix}custom-tables/${tableName}`;
+    let apiUrlBase = `${apiUrlPrefix}${tableName}`;
     return new CustomStore({
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
-            let rows = result.json().rows;
+            let rows = result.json();
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {

@@ -113,7 +113,7 @@ export class RegConfigForms implements OnInit, OnDestroy {
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
-            let rows = result.json().rows;
+            let rows = result.json();
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
