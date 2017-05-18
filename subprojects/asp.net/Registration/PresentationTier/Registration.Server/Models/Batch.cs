@@ -3,17 +3,9 @@
  */
 
 using System;
-using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 using CambridgeSoft.COE.Registration;
 using CambridgeSoft.COE.Registration.Services.Types;
 
@@ -281,7 +273,8 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public override int GetHashCode()
         {
             // credit: http://stackoverflow.com/a/263416/677735
-            unchecked // Overflow is fine, just wrap
+            // Overflow is fine, just wrap
+            unchecked 
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)

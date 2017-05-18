@@ -3,17 +3,9 @@
  */
 
 using System;
-using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -117,7 +109,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [DataMember(Name = "NormalizedStructure", EmitDefaultValue = false)]
         public string NormalizedStructure { get; set; }
-
 
         /// <summary>
         /// Returns the string presentation of the object
