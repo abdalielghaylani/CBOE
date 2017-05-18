@@ -9,12 +9,8 @@ import { RegApp } from './reg-app';
 import { GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
-  RegRecordsPage,
-  RegRecordDetailPage,
-  RegConfigurationPage,
-  RegLoginPage,
-  RegAboutPage,
-  RegRecordSearchPage
+  RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
+  RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage
 } from '../pages';
 import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
@@ -69,7 +65,7 @@ import {
     RegRecordSearch,
     RegRecordDetail,
     RegStructureImage,
-    RegConfigurationPage,
+    RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
     RegConfiguration,
     RegLoginPage,
     RegAboutPage

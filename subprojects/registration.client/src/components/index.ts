@@ -20,7 +20,7 @@ import {
 } from './form';
 import { RegFooter } from './footer';
 import { RegSidebar } from './navigator/sidebar.component';
-import { RegPageHeader } from './page-header/page-header.component';
+import { RegPageHeader, RegSettingsPageHeader } from './page-header';
 
 export {
   RegAlert,
@@ -42,6 +42,6 @@ export {
   RegLabel,
   RegModal, RegModalContent,
   RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem,
-  RegSidebar, RegFooter, RegPageHeader,
+  RegSidebar, RegFooter, RegPageHeader, RegSettingsPageHeader,
   IResponseData, IRecordSaveData
 };

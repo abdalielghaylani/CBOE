@@ -4,7 +4,7 @@ import { RegContainer, RegConfiguration } from '../components';
 import { IConfiguration } from '../store/configuration';
 
 @Component({
-  selector: 'configuration-page',
+  selector: 'config-xml-forms-page',
   providers: [ ConfigurationActions ],
   template: `
     <reg-container testid="configuration">
@@ -13,6 +13,6 @@ import { IConfiguration } from '../store/configuration';
     </reg-container>
   `
 })
-export class RegConfigurationPage {
+export class RegConfigXmlFormsPage {
   constructor() {}
 }
