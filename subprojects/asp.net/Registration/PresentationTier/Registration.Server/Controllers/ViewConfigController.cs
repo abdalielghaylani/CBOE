@@ -111,6 +111,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 systemSettings.Add(groupSettings);
             }
+
             return systemSettings;
         }
     }

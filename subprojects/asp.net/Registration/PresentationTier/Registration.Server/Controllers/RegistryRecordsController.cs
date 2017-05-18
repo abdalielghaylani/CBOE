@@ -159,8 +159,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
                         });
                     }
+
                     throw new RegistrationException(errorMessage, ex);
                 }
+
                 return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
             }, new string[] { "EDIT_COMPOUND_REG" });
         }
@@ -225,6 +227,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
                     record = service.RetrieveTemporaryRegistryRecord(id);
                 }
+
                 var recordXml = new XmlDocument();
                 recordXml.LoadXml(record);
                 return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml));
@@ -291,8 +294,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
                         });
                     }
+
                     throw new RegistrationException(errorMessage, ex);
                 }
+
                 return new ResponseData(id: registryRecord.ID);
             }, new string[] { "EDIT_COMPOUND_TEMP" });
         }

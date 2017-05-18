@@ -284,7 +284,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return markedCount;
         }
 
-
         /// <summary>
         /// Returns a hitlist by its ID
         /// </summary>

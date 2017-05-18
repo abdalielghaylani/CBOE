@@ -119,6 +119,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             break;
                     }
                 }
+
                 return value;
             }
         }
@@ -138,6 +139,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     args.Add(":lowerLimit", lowerLimit);
                 }
             }
+
             using (var reader = GetReader(sql, args))
             {
                 return ExtractData(reader);
@@ -166,6 +168,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (isAuthorized)
                     break;
             }
+
             if (!isAuthorized)
                 throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
         }

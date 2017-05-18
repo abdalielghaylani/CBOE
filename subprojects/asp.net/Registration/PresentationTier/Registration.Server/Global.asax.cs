@@ -109,6 +109,7 @@ namespace PerkinElmer.COE.Registration.Server
                 // Log exception details (omitted for simplicity)
                 return;
             }
+
             if (null == authTicket) return;
 
             authTicket = FormsAuthentication.RenewTicketIfOld(authTicket);
@@ -183,8 +184,8 @@ namespace PerkinElmer.COE.Registration.Server
 
         protected void Session_End(object sender, EventArgs e)
         {
-            //CambridgeSoft.COE.Framework.GUIShell.GUIShellUtilities.DoLogout();
-            //this.DoLogout();
+            // CambridgeSoft.COE.Framework.GUIShell.GUIShellUtilities.DoLogout();
+            // this.DoLogout();
         }
 
         private void DoLogin()
@@ -192,7 +193,7 @@ namespace PerkinElmer.COE.Registration.Server
             string appName = string.Empty;
             bool isTicket = true;
             string userIdentifier = string.Empty;
-            //check to see if there is an entry for ticket in the url. if ther is then you need to go through a different root.
+            // check to see if there is an entry for ticket in the url. if ther is then you need to go through a different root.
 
             if (HttpContext.Current.Application["AppName"] != null)
             {
