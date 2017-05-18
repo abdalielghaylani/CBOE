@@ -12,7 +12,8 @@ import {
   RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
   RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage
 } from '../pages';
-import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement } from '../components';
+import { RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms } from '../components';
+import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -66,7 +67,7 @@ import {
     RegRecordDetail,
     RegStructureImage,
     RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
-    RegConfiguration,
+    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
     RegLoginPage,
     RegAboutPage
   ],
