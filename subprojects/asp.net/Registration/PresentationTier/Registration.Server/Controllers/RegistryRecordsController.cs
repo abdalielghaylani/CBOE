@@ -77,6 +77,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
                     record = service.RetrieveRegistryRecord(regNum);
                 }
+
                 var recordXml = new XmlDocument();
                 recordXml.LoadXml(record);
                 return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml));

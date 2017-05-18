@@ -228,7 +228,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             var url = HttpContext.Current.Request.Url;
-            var port = url.Port != 80 ? (":" + url.Port) : String.Empty;
+            var port = url.Port != 80 ? (":" + url.Port) : string.Empty;
 
             return string.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
         }
@@ -261,7 +261,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new RecordColumn{ definition = "name", sortable = true },
                     new RecordColumn{ definition = "created", sortable = true },
                     new RecordColumn{ definition = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label = "creator", sortable = true },
                     new RecordColumn{ definition = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false },
                     new RecordColumn{ definition = "regnumber", sortable = true },
                     new RecordColumn{ definition = "statusid", label = "status", sortable = true },
@@ -282,7 +282,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new RecordColumn{ definition = "molecularformula", label = "mf", sortable = true },
                     new RecordColumn{ definition = "datecreated", label = "created", sortable = true },
                     new RecordColumn{ definition = "datelastmodified", label = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label = "creator", sortable = true },
                     new RecordColumn{ definition = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false }
                 };
             }
@@ -290,14 +290,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected static string GetSelectTerms(RecordColumn[] columns)
         {
-            return String.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
+            return string.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
         }
 
         protected static string GetSortTerms(RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
         {
             // Default sorting order is descending order by modified date
             if (string.IsNullOrEmpty(sortTerms)) sortTerms = string.Empty;
-            sortTerms = String.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
+            sortTerms = string.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
                 .Select(t => CleanupSortTerm(columns, t)).Where(t => !string.IsNullOrEmpty(t)));
             if (string.IsNullOrEmpty(sortTerms)) sortTerms = defaultColumn + sortDesc;
             // Make the sorting unique

@@ -213,27 +213,27 @@ namespace PerkinElmer.COE.Registration.Server.Models
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
                 if (this.ID != null)
-                    hash = hash * 59 + this.ID.GetHashCode();
+                    hash = (hash * 59) + this.ID.GetHashCode();
                 if (this.Compound != null)
-                    hash = hash * 59 + this.Compound.GetHashCode();
+                    hash = (hash * 59) + this.Compound.GetHashCode();
                 if (this.ComponentIndex != null)
-                    hash = hash * 59 + this.ComponentIndex.GetHashCode();
+                    hash = (hash * 59) + this.ComponentIndex.GetHashCode();
                 if (this.Percentage != null)
-                    hash = hash * 59 + this.Percentage.GetHashCode();
+                    hash = (hash * 59) + this.Percentage.GetHashCode();
                 if (this.StructureId != null)
-                    hash = hash * 59 + this.StructureId.GetHashCode();
+                    hash = (hash * 59) + this.StructureId.GetHashCode();
                 if (this.Struct_Name != null)
-                    hash = hash * 59 + this.Struct_Name.GetHashCode();
+                    hash = (hash * 59) + this.Struct_Name.GetHashCode();
                 if (this.Stuct_Comments != null)
-                    hash = hash * 59 + this.Stuct_Comments.GetHashCode();
+                    hash = (hash * 59) + this.Stuct_Comments.GetHashCode();
                 if (this.Cmp_Comments != null)
-                    hash = hash * 59 + this.Cmp_Comments.GetHashCode();
+                    hash = (hash * 59) + this.Cmp_Comments.GetHashCode();
                 if (this.MolecularFormula != null)
-                    hash = hash * 59 + this.MolecularFormula.GetHashCode();
+                    hash = (hash * 59) + this.MolecularFormula.GetHashCode();
                 if (this.FormulaWeight != null)
-                    hash = hash * 59 + this.FormulaWeight.GetHashCode();
+                    hash = (hash * 59) + this.FormulaWeight.GetHashCode();
                 if (this.NormalizedStructure != null)
-                    hash = hash * 59 + this.NormalizedStructure.GetHashCode();
+                    hash = (hash * 59) + this.NormalizedStructure.GetHashCode();
                 return hash;
             }
         }

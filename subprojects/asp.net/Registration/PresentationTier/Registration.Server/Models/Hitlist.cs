@@ -28,7 +28,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
     /// <summary>
     /// The class for hitlist information
     /// </summary>
-    [DataContract()]
+    [DataContract]
     public partial class Hitlist : IEquatable<Hitlist>
     {
         /// <summary>
@@ -254,27 +254,27 @@ namespace PerkinElmer.COE.Registration.Server.Models
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
                 if (this.ID != null)
-                    hash = hash * 59 + this.ID.GetHashCode();
+                    hash = (hash * 59) + this.ID.GetHashCode();
                 if (this.HitlistID != null)
-                    hash = hash * 59 + this.HitlistID.GetHashCode();
+                    hash = (hash * 59) + this.HitlistID.GetHashCode();
                 if (this.HistlistType != null)
                     hash = hash * 59 + this.HistlistType.GetHashCode();
                 if (this.NumberOfHits != null)
-                    hash = hash * 59 + this.NumberOfHits.GetHashCode();
+                    hash = (hash * 59) + this.NumberOfHits.GetHashCode();
                 if (this.IsPublic != null)
-                    hash = hash * 59 + this.IsPublic.GetHashCode();
+                    hash = (hash * 59) + this.IsPublic.GetHashCode();
                 if (this.SearchCriteriaID != null)
-                    hash = hash * 59 + this.SearchCriteriaID.GetHashCode();
+                    hash = (hash * 59) + this.SearchCriteriaID.GetHashCode();
                 if (this.SearchCriteriaType != null)
-                    hash = hash * 59 + this.SearchCriteriaType.GetHashCode();
+                    hash = (hash * 59) + this.SearchCriteriaType.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                    hash = (hash * 59) + this.Name.GetHashCode();
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hash = (hash * 59) + this.Description.GetHashCode();
                 if (this.MarkedHitIDs != null)
-                    hash = hash * 59 + this.MarkedHitIDs.GetHashCode();
+                    hash = (hash * 59) + this.MarkedHitIDs.GetHashCode();
                 if (this.DateCreated != null)
-                    hash = hash * 59 + this.DateCreated.GetHashCode();
+                    hash = (hash * 59) + this.DateCreated.GetHashCode();
                 return hash;
             }
         }

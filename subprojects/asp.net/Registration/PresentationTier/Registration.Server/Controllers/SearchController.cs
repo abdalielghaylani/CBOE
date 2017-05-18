@@ -253,6 +253,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     data = GetHitlistRecordsInternal(id1);
                     break;
             }
+
             return data;
         }
 

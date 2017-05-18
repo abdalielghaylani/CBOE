@@ -274,38 +274,38 @@ namespace PerkinElmer.COE.Registration.Server.Models
         {
             // credit: http://stackoverflow.com/a/263416/677735
             // Overflow is fine, just wrap
-            unchecked 
+            unchecked
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
                 if (this.ID != null)
-                    hash = hash * 59 + this.ID.GetHashCode();
+                    hash = (hash * 59) + this.ID.GetHashCode();
                 if (this.TempBatchID != null)
-                    hash = hash * 59 + this.TempBatchID.GetHashCode();
+                    hash = (hash * 59) + this.TempBatchID.GetHashCode();
                 if (this.BatchNumber != null)
-                    hash = hash * 59 + this.BatchNumber.GetHashCode();
+                    hash = (hash * 59) + this.BatchNumber.GetHashCode();
                 if (this.FullRegNumber != null)
-                    hash = hash * 59 + this.FullRegNumber.GetHashCode();
+                    hash = (hash * 59) + this.FullRegNumber.GetHashCode();
                 if (this.DateCreated != null)
-                    hash = hash * 59 + this.DateCreated.GetHashCode();
+                    hash = (hash * 59) + this.DateCreated.GetHashCode();
                 if (this.PersonCreated != null)
-                    hash = hash * 59 + this.PersonCreated.GetHashCode();
+                    hash = (hash * 59) + this.PersonCreated.GetHashCode();
                 if (this.PersonRegistered != null)
-                    hash = hash * 59 + this.PersonRegistered.GetHashCode();
+                    hash = (hash * 59) + this.PersonRegistered.GetHashCode();
                 if (this.PersonApproved != null)
-                    hash = hash * 59 + this.PersonApproved.GetHashCode();
+                    hash = (hash * 59) + this.PersonApproved.GetHashCode();
                 if (this.DateLastModified != null)
-                    hash = hash * 59 + this.DateLastModified.GetHashCode();
+                    hash = (hash * 59) + this.DateLastModified.GetHashCode();
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                    hash = (hash * 59) + this.Status.GetHashCode();
                 if (this.ProjectList != null)
-                    hash = hash * 59 + this.ProjectList.GetHashCode();
+                    hash = (hash * 59) + this.ProjectList.GetHashCode();
                 if (this.PropertyList != null)
-                    hash = hash * 59 + this.PropertyList.GetHashCode();
+                    hash = (hash * 59) + this.PropertyList.GetHashCode();
                 if (this.IdentifierList != null)
-                    hash = hash * 59 + this.IdentifierList.GetHashCode();
+                    hash = (hash * 59) + this.IdentifierList.GetHashCode();
                 if (this.BatchComponentList != null)
-                    hash = hash * 59 + this.BatchComponentList.GetHashCode();
+                    hash = (hash * 59) + this.BatchComponentList.GetHashCode();
                 return hash;
             }
         }

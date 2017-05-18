@@ -14,7 +14,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
     /// <summary>
     /// The class for the response data object
     /// </summary>
-    [DataContract()]
+    [DataContract]
     public partial class ResponseData
     {
         /// <summary>
