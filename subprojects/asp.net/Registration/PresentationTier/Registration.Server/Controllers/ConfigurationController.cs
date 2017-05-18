@@ -19,7 +19,7 @@ using PerkinElmer.COE.Registration.Server.Models;
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
-    public class CustomTablesController : RegControllerBase
+    public class ConfigurationController : RegControllerBase
     {
         private static JObject GetTableConfig(string tableName)
         {
