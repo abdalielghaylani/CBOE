@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Web.Http;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Framework.COETableEditorService;
+using CambridgeSoft.COE.Framework.Controls.COETableManager;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 
@@ -107,19 +108,119 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var id = -1;
+                if (!COETableEditorUtilities.HasAddPrivileges(tableName))
+                    throw new UnauthorizedAccessException(string.Format("Not allowed to add entries from {0}", tableName));
+                var id = SaveColumnValues(tableName, data, true);
                 return new ResponseData(id, null, null, null);
             });
+        }
+
+        private static int SaveColumnValues(string tableName, JObject data, bool creating = true)
+        {
+            var tableEditorListBO = COETableEditorBOList.NewList();
+            tableEditorListBO.TableName = tableName;
+            var idField = COETableEditorUtilities.getIdFieldName(tableName);
+            var idFieldValue = creating ? null : data[idField];
+            var tableEditorBO = creating ? COETableEditorBO.New() : COETableEditorBO.Get((int)idFieldValue);
+            var columns = tableEditorBO.Columns;
+
+            foreach (var column in columns)
+                UpdateColumnValue(tableName, column, data);
+
+            tableEditorBO.Columns = columns;
+            foreach (var column in columns)
+            {
+                if (!COETableEditorUtilities.GetIsUniqueProperty(tableName, column.FieldName)) continue;
+                if (!tableEditorBO.IsUniqueCheck(tableName, column.FieldName, column.FieldValue.ToString(), idField, idFieldValue.ToString()))
+                    throw new RegistrationException(string.Format("{0} should be unique", column.FieldName));
+            }
+            // Validate if view [VW_PICKLISTDOMAIN] Note : Add more to the list if contains SQL filters for update
+            if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase))
+            {
+                foreach (var column in columns)
+                {
+                    var columnName = column.FieldName;
+                    if (columnName.Equals("EXT_TABLE", StringComparison.OrdinalIgnoreCase)
+                        || columnName.Equals("EXT_ID_COL", StringComparison.OrdinalIgnoreCase)
+                        || columnName.Equals("EXT_DISPLAY_COL", StringComparison.OrdinalIgnoreCase)
+                        || columnName.Equals("EXT_SQL_FILTER", StringComparison.OrdinalIgnoreCase)
+                        || columnName.Equals("EXT_SQL_SORTORDER", StringComparison.OrdinalIgnoreCase))
+                    {
+                        var columnValue = column.FieldValue.ToString();
+                        if (!string.IsNullOrEmpty(columnValue))
+                            COETableEditorBO.Get(tableName, columns);
+                        break;
+                    }
+                }
+            }
+            try
+            {
+                tableEditorBO = tableEditorBO.Save();
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("ORA-00001"))
+                    throw new RegistrationException("The value provided already exists");
+                else
+                    throw;
+            }
+            return tableEditorBO.ID;
+        }
+
+        private static void UpdateColumnValue(string tableName, Column column, JObject data)
+        {
+            var columnName = column.FieldName;
+            var columnValue = (string)data[columnName];
+            if (columnValue == null)
+            {
+                var defaultValue = COETableEditorUtilities.getDefaultValue(tableName, column.FieldName);
+                column.FieldValue = !string.IsNullOrEmpty(defaultValue) ? defaultValue : null;
+            }
+            else if (COETableEditorUtilities.getIsStructure(tableName, column.FieldName))
+            {
+                column.FieldValue = ChemistryHelper.ConvertToCdx(columnValue);
+            }
+            else if (column.FieldType == DbType.Double)
+            {
+                double value;
+                if (!double.TryParse(columnValue, out value))
+                    throw new RegistrationException(string.Format("{0} needs a valid number", columnName));
+                else
+                    column.FieldValue = value;
+            }
+            else if (column.FieldType == DbType.Boolean)
+            {
+                bool value;
+                if (!bool.TryParse(columnValue, out value))
+                    throw new RegistrationException(string.Format("{0} needs a valid boolean value", columnName));
+                else
+                    column.FieldValue = value;
+            }
+            else if (column.FieldType == DbType.DateTime)
+            {
+                DateTime value;
+                if (!DateTime.TryParse(columnValue, out value))
+                    throw new RegistrationException(string.Format("{0} needs a valid date-time value", columnName));
+                else
+                    column.FieldValue = value;
+            }
+            else
+            {
+                column.FieldValue = columnValue;
+            }
         }
 
         [HttpPut]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
-        public async Task<IHttpActionResult> Put(string tablename, int id, JObject data)
+        public async Task<IHttpActionResult> Put(string tableName, int id, JObject data)
         {
             return await CallMethod(() =>
             {
+                if (!COETableEditorUtilities.HasEditPrivileges(tableName))
+                    throw new UnauthorizedAccessException(string.Format("Not allowed to edit entries from {0}", tableName));
+                SaveColumnValues(tableName, data);
                 return new ResponseData(id, null, null, null);
             });
         }
