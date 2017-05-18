@@ -111,9 +111,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(201, type: typeof(JObject))]
         public async Task<IHttpActionResult> CreateComponent(JObject component)
         {
-            CheckAuthentication();
-            var id = -1;
-            return Created<JObject>(string.Format("{0}components/{1}", Consts.apiPrefix, id), component);
+            return await CallMethod(() =>
+            {
+                var id = -1;
+                return Created<JObject>(string.Format("{0}components/{1}", Consts.apiPrefix, id), component);
+            });
         }
 
         [HttpPut]
