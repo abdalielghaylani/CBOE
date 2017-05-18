@@ -21,30 +21,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class CustomTablesController : RegControllerBase
     {
-        [HttpGet]
-        [Route(Consts.apiPrefix + "custom-tables")]
-        [SwaggerOperation("GetCustomTables")]
-        [SwaggerResponse(200, type: typeof(JArray))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetCustomTables()
-        {
-            return await CallMethod(() =>
-            {
-                var tableList = new JArray();
-                var tables = COETableEditorUtilities.getTables();
-                foreach (var key in tables.Keys)
-                {
-                    var table = new JObject(
-                        new JProperty("tableName", key),
-                        new JProperty("label", tables[key])
-                    );
-                    tableList.Add(table);
-                }
-                return tableList;
-            });
-        }
-
         private static JObject GetTableConfig(string tableName)
         {
             // Returns the field configuration
@@ -57,68 +33,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return new JObject();
         }
 
-        [HttpGet]
-        [Route(Consts.apiPrefix + "custom-tables/{tableName}")]
-        [SwaggerOperation("GetCustomTableRows")]
-        [SwaggerResponse(200, type: typeof(JArray))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetCustomTableRows(string tableName)
+        private static int SaveColumnValues(string tableName, JObject data, bool creating)
         {
-            return await CallMethod(() =>
-            {
-                var config = GetTableConfig(tableName);
-                var rows = new JArray();
-                COETableEditorBOList.NewList().TableName = tableName;
-                var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
-                foreach (DataRow dr in dt.Rows)
-                {
-                    var p = new JObject();
-                    foreach (DataColumn dc in dt.Columns)
-                        p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
-                    rows.Add(p);
-                }
-                return new JObject(
-                    new JProperty("config", config),
-                    new JProperty("rows", rows)
-                );
-            });
-        }
-
-        [HttpGet]
-        [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
-        [SwaggerOperation("GetCustomTableRow")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetCustomTableRow(string tableName, int id)
-        {
-            return await CallMethod(() =>
-            {
-                var row = new JObject();
-                return row;
-            });
-        }
-
-        [HttpPost]
-        [SwaggerResponse(201, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [Route(Consts.apiPrefix + "custom-tables/{tableName}")]
-        public async Task<IHttpActionResult> Post(string tableName, JObject data)
-        {
-            return await CallMethod(() =>
-            {
-                if (!COETableEditorUtilities.HasAddPrivileges(tableName))
-                    throw new UnauthorizedAccessException(string.Format("Not allowed to add entries from {0}", tableName));
-                var id = SaveColumnValues(tableName, data, true);
-                return new ResponseData(id, null, null, null);
-            });
-        }
-
-        private static int SaveColumnValues(string tableName, JObject data, bool creating = true)
-        {
-            var tableEditorListBO = COETableEditorBOList.NewList();
-            tableEditorListBO.TableName = tableName;
+            COETableEditorBOList.NewList().TableName = tableName;
             var idField = COETableEditorUtilities.getIdFieldName(tableName);
             var idFieldValue = creating ? null : data[idField].ToString();
             var tableEditorBO = creating ? COETableEditorBO.New() : COETableEditorBO.Get(int.Parse(idFieldValue));
@@ -210,11 +127,114 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
-        [HttpPut]
-        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [HttpGet]
+        [Route(Consts.apiPrefix + "custom-tables")]
+        [SwaggerOperation("GetCustomTables")]
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetCustomTables()
+        {
+            return await CallMethod(() =>
+            {
+                var tableList = new JArray();
+                var tables = COETableEditorUtilities.getTables();
+                foreach (var key in tables.Keys)
+                {
+                    var table = new JObject(
+                        new JProperty("tableName", key),
+                        new JProperty("label", tables[key])
+                    );
+                    tableList.Add(table);
+                }
+                return tableList;
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "custom-tables/{tableName}")]
+        [SwaggerOperation("GetCustomTableRows")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetCustomTableRows(string tableName)
+        {
+            return await CallMethod(() =>
+            {
+                var config = GetTableConfig(tableName);
+                var rows = new JArray();
+                COETableEditorBOList.NewList().TableName = tableName;
+                var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var p = new JObject();
+                    foreach (DataColumn dc in dt.Columns)
+                        p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
+                    rows.Add(p);
+                }
+                return new JObject(
+                    new JProperty("config", config),
+                    new JProperty("rows", rows)
+                );
+            });
+        }
+
+        [HttpGet]
         [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
-        public async Task<IHttpActionResult> Put(string tableName, int id, JObject data)
+        [SwaggerOperation("GetCustomTableRow")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetCustomTableRow(string tableName, int id)
+        {
+            return await CallMethod(() =>
+            {
+                var rows = new JArray();
+                COETableEditorBOList.NewList().TableName = tableName;
+                var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
+                var idField = COETableEditorUtilities.getIdFieldName(tableName);
+                var selected = dt.Select(string.Format("{0}={1}", idField, id));
+                if (selected == null || selected.Count() == 0)
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the entry ID, {0}, in {1}", id, tableName));
+                var dr = dt.Rows[0];
+                var data = new JObject();
+                foreach (DataColumn dc in dt.Columns)
+                    data.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
+                return data;
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "custom-tables/{tableName}")]
+        [SwaggerOperation("CrateCustomTableRow")]
+        [SwaggerResponse(201, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> CrateCustomTableRow(string tableName, JObject data)
+        {
+            return await CallMethod(() =>
+            {
+                if (!COETableEditorUtilities.HasAddPrivileges(tableName))
+                    throw new UnauthorizedAccessException(string.Format("Not allowed to add entries to {0}", tableName));
+                var id = SaveColumnValues(tableName, data, true);
+                return new ResponseData(id, null, null, null);
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
+        [SwaggerOperation("UpdateCustomTableRow")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateCustomTableRow(string tableName, int id, JObject data)
         {
             return await CallMethod(() =>
             {
@@ -226,20 +246,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
+        [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
+        [SwaggerOperation("DeleteCustomTableRow")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        [Route(Consts.apiPrefix + "custom-tables/{tableName}/{id}")]
-        public async Task<IHttpActionResult> Delete(string tableName, int id)
+        public async Task<IHttpActionResult> DeleteCustomTableRow(string tableName, int id)
         {
             return await CallMethod(() =>
             {
                 if (!COETableEditorUtilities.HasDeletePrivileges(tableName))
                     throw new UnauthorizedAccessException(string.Format("Not allowed to delete entries from {0}", tableName));
-                var tableEditorListBO = COETableEditorBOList.NewList();
-                tableEditorListBO.TableName = tableName;
+                COETableEditorBOList.NewList().TableName = tableName;
                 // TODO: Should check if id is present.
                 // If not, throw error 404.
                 COETableEditorBO.Delete(id);
