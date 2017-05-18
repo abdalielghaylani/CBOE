@@ -120,8 +120,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var tableEditorListBO = COETableEditorBOList.NewList();
             tableEditorListBO.TableName = tableName;
             var idField = COETableEditorUtilities.getIdFieldName(tableName);
-            var idFieldValue = creating ? null : data[idField];
-            var tableEditorBO = creating ? COETableEditorBO.New() : COETableEditorBO.Get((int)idFieldValue);
+            var idFieldValue = creating ? null : data[idField].ToString();
+            var tableEditorBO = creating ? COETableEditorBO.New() : COETableEditorBO.Get(int.Parse(idFieldValue));
             var columns = tableEditorBO.Columns;
 
             foreach (var column in columns)
@@ -131,7 +131,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var column in columns)
             {
                 if (!COETableEditorUtilities.GetIsUniqueProperty(tableName, column.FieldName)) continue;
-                if (!tableEditorBO.IsUniqueCheck(tableName, column.FieldName, column.FieldValue.ToString(), idField, idFieldValue.ToString()))
+                if (!tableEditorBO.IsUniqueCheck(tableName, column.FieldName, column.FieldValue.ToString(), idField, idFieldValue))
                     throw new RegistrationException(string.Format("{0} should be unique", column.FieldName));
             }
             // Validate if view [VW_PICKLISTDOMAIN] Note : Add more to the list if contains SQL filters for update
@@ -220,7 +220,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 if (!COETableEditorUtilities.HasEditPrivileges(tableName))
                     throw new UnauthorizedAccessException(string.Format("Not allowed to edit entries from {0}", tableName));
-                SaveColumnValues(tableName, data);
+                SaveColumnValues(tableName, data, false);
                 return new ResponseData(id, null, null, null);
             });
         }
