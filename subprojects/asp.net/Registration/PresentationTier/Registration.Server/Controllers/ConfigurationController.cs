@@ -15,6 +15,9 @@ using CambridgeSoft.COE.Framework.COETableEditorService;
 using CambridgeSoft.COE.Framework.Controls.COETableManager;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.RegistrationAdmin.Services;
+using System.Collections.ObjectModel;
+using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -264,6 +267,102 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 // If not, throw error 404.
                 COETableEditorBO.Delete(id);
                 return new ResponseData(id, null, null, null);
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "addins")]
+        [SwaggerOperation("GetAddins")]
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetAddins()
+        {
+            return await CallMethod(() =>
+            {
+                var addinList = new JArray();
+                return addinList;
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "forms")]
+        [SwaggerOperation("GetForms")]
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetForms()
+        {
+            return await CallMethod(() =>
+            {
+                var formList = new JArray();
+                return formList;
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "properties")]
+        [SwaggerOperation("GetProperties")]
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetProperties()
+        {
+            return await CallMethod(() =>
+            {
+                var propertyArray = new JArray();
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                foreach (var propertyType in propertyTypes)
+                {
+                    configurationBO.SelectedPropertyList = propertyType;
+                    var propertyList = configurationBO.GetSelectedPropertyList;
+                    if (propertyList == null) continue;
+                    var properties = (IEnumerable<Property>)propertyList;
+                    foreach (var property in properties)
+                    {
+                        propertyArray.Add(new JObject(
+                            new JProperty("type", propertyType.ToString()),
+                            new JProperty("name", property.Name)
+                        ));
+                    }
+                }
+                return propertyArray;
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "settings")]
+        [SwaggerOperation("GetSettings")]
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetSettings()
+        {
+            return await CallMethod(() =>
+            {
+                var settingList = new JArray();
+                return settingList;
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "xml-forms")]
+        [SwaggerOperation("GetXmlForms")]
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetXmlForms()
+        {
+            return await CallMethod(() =>
+            {
+                var xmlFormList = new JArray();
+                return xmlFormList;
             });
         }
     }
