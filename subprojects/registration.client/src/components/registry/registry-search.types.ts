@@ -1,33 +1,15 @@
 import { IAppState } from '../../store';
 import { FormGroupType, CFormGroup, CFormElement } from '../../common';
 
-export class CRegSearch {
-  ID?: Number; // 921
-  PersonCreated?: String;
-  RegNumber?: String;
-  STARTDATECREATED?: String;
-  ENDDATECREATED?: String;
-  SeqNumber?: String;
-  PREFIX?: String;
-  REGISTRY_PROJECT?: String;
-  MolWeight?: String;
-  MF?: String;
-  IDENTIFIERTYPE?: String;
-  IdentifierValue?: String;
-  REG_COMMENTS?: String;
-  SDF_upload?: String;
-  PropertyList?: CPropertyList;
-  ProjectList?: CProjectList;
-  searchTypeValue?: String;
-}
-
 export class CRegSearchVM {
+  data: any = {};
   sdfFile?: File;
   title?: String;
   columns: any[] = [];
   structureData: any;
+  searchTypeValue?: String;
   searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
-  constructor(m: CRegSearch, state: IAppState) {
+  constructor(state: IAppState) {
     let coeForm = getCoeFormById(state, 0);
     if (coeForm) {
       if (coeForm.title) {
@@ -49,6 +31,9 @@ function buildPropertyList(vm: any, formElement: any, state: IAppState, coeFormI
         }
       }
     });
+    vm.columns.forEach(e => {
+      vm.data[e.dataField] = undefined;
+    });
   }
 }
 
@@ -58,7 +43,8 @@ function getPropertyColumn(p: any, coeFormId: Number, state: IAppState): any {
   }
   let column: any = {
     dataField: p._name,
-    dataType: p._type === 'DATE' ? 'date' : 'string'
+    dataType: p._type === 'DATE' ? 'date' : 'string',
+    validationRules: []
   };
   if (p.label) {
     column.label = { text: p.label };
@@ -76,6 +62,10 @@ function getPropertyColumn(p: any, coeFormId: Number, state: IAppState): any {
   } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStructureQuery' ||
     p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStateControl') {
     return null;
+  } else {
+    if (typeof (p.searchCriteriaItem.numericalCriteria) === 'object') {
+      column.validationRules.push({ type: 'numeric' });
+    }
   }
   return column;
 }
@@ -145,270 +135,10 @@ function getCoeFormById(state: IAppState, coeFormId: number) {
   return filtered && filtered.length > 0 ? filtered[0] : null;
 }
 
-export const TEMP_SEARCH_DESC_LIST = [{
-  dataField: 'TempBatchID',
-  label: { text: 'TempBatchID' },
-  dataType: 'string',
-}, {
-  dataField: 'STARTDATECREATED',
-  label: { text: 'Start Date Created' },
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'ENDDATECREATED',
-  label: { text: 'End Date Created' },
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'MolWeight',
-  label: { text: 'MW' },
-  dataType: 'string',
-}, {
-  dataField: 'Formula',
-  label: { text: 'MF' },
-  dataType: 'string',
-}, {
-  dataField: 'NotebookReference',
-  label: { text: 'Notebook Reference' },
-  dataType: 'string'
-}, {
-  dataField: 'START_CREATION_DATE',
-  label: { text: 'Start Synthesis Date' },
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'END_CREATION_DATE',
-  label: { text: 'End Synthesis Date' },
-  dataType: 'date',
-  editorType: 'dxDateBox',
-}, {
-  dataField: 'AMOUNT',
-  label: { text: 'Amount' },
-  dataType: 'string'
-}, {
-  dataField: 'APPEARANCE',
-  label: { text: 'Appearance' },
-  dataType: 'string'
-}, {
-  dataField: 'PURITY',
-  label: { text: 'Purity' },
-  dataType: 'string'
-}, {
-  dataField: 'PURITY_COMMENTS',
-  label: { text: 'Purity Comments' },
-  dataType: 'string'
-}, {
-  dataField: 'SAMPLEID',
-  label: { text: 'Sample ID' },
-  dataType: 'string'
-}, {
-  dataField: 'SOLUBILITY',
-  label: { text: 'Solubility' },
-  dataType: 'string'
-}, {
-  dataField: 'BATCH_COMMENT',
-  label: { text: 'Batch Comments' },
-  dataType: 'string',
-  editorType: 'dxTextArea'
-}, {
-  dataField: 'STORAGE_REQ_AND_WARNINGS',
-  label: { text: 'Storage Requirements Warnings' },
-  dataType: 'string',
-  editorType: 'dxTextArea'
-}
-];
-
-export class CTemporarySearch {
-  ID?: Number;
-  TempBatchID?: String;
-  STARTDATECREATED?: Date;
-  ENDDATECREATED?: Date;
-  MolWeight?: String;
-  MF?: String;
-  SCIENTIST_ID?: String;
-  PREFIX?: String;
-  REGISTRY_PROJECT?: String;
-  NotebookReference?: String;
-  START_CREATION_DATE?: Date;
-  END_CREATION_DATE?: Date;
-  AMOUNT?: String;
-  AMOUNT_UNITS?: String;
-  APPEARANCE: String;
-  PURITY: String;
-  PURITY_COMMENTS: String;
-  SAMPLEID: String;
-  SOLUBILITY: String;
-  BATCH_COMMENT: String;
-  STORAGE_REQ_AND_WARNINGS: String;
-  searchTypeValue?: String;
-}
-
-export class CTemporarySearchVM {
-  columns: any[] = [];
-  searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
-  constructor(m: CTemporarySearch, state: IAppState, propertyList?: CPropertyList) {
-    this.columns.push(TEMP_SEARCH_DESC_LIST);
-    if (TEMP_SEARCH_DESC_LIST) {
-      TEMP_SEARCH_DESC_LIST.forEach(p => {
-        this.columns.push(p);
-      });
-    }
-
-    this.columns.splice(4, 0, {
-      dataField: 'PersonCreated',
-      label: { text: 'Created By' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
-        valueExpr: 'PERSONID',
-        displayExpr: 'USERID'
-      }
-    });
-
-    this.columns.splice(7, 0, {
-      dataField: 'SCIENTIST_ID',
-      label: { text: 'Scientist' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ? state.session.lookups.users : [],
-        valueExpr: 'PERSONID',
-        displayExpr: 'USERID'
-      }
-    });
-
-    this.columns.splice(8, 0, {
-      dataField: 'PREFIX',
-      label: { text: 'Prefix' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.sequences.filter(i => (i.TYPE === 'R' || i.TYPE === 'A')) : [],
-        valueExpr: 'SEQUENCEID',
-        displayExpr: 'PREFIX'
-      }
-    });
-
-    this.columns.splice(9, 0, {
-      dataField: 'REGISTRY_PROJECT',
-      label: { text: 'Registry Project Name' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.projects.filter(i => ((i.TYPE === 'R' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F'))) : [],
-        valueExpr: 'PROJECTID',
-        displayExpr: 'NAME'
-      }
-    });
-
-    this.columns.splice(12, 0, {
-      dataField: 'AMOUNT_UNITS',
-      label: { text: 'Units' },
-      dataType: 'string',
-      editorType: 'dxSelectBox',
-      editorOptions: {
-        dataSource: state && state.session.lookups ?
-          state.session.lookups.units : [],
-        valueExpr: 'ID',
-        displayExpr: 'UNIT'
-      }
-    });
-  }
-}
-
-export class CRegIdentifierList {
-  Identifier: CRegIdentifier[] = [];
-}
-
-export class CRegIdentifier {
-  ID?: Number; // 381
-  Name?: string;
-}
-
-export class CPersonCreatedList {
-  Created: CPersonCreated[] = [];
-}
-
-export class CPersonCreated {
-  ID?: Number; // 381
-  Created?: string;
-}
-
-export class CPrefixList {
-  Prefix: CPrefix[] = [];
-}
-
-export class CPrefix {
-  KEY?: Number; // 381
-  VALUE?: string;
-}
-
-export class CProject {
-  ID?: Number; // 381
-  ProjectID?: CProjectID;
-}
-
-export class CProjectList {
-  Project: CProject[] = [];
-}
-
-export class CProjectID {
-  _Description?: String; // Hedione Process Optimization
-  _Name?: String; // Hedione Process Optimization
-  _Active?: String; // T
-  __text?: Number; // 2
-}
-
-
-export class CProperty {
-  _name: String; // REG_COMMENTS
-  _friendlyName: String; // REG_COMMENTS
-  _type: String; // TEXT
-  _precision?: Number; // 200
-  _sortOrder?: Number; // 0
-  validationRuleList?: CValidationRuleList;
-  __text?: String;
-}
-
-export class CPropertyList {
-  Property: CProperty[] = [];
-}
-
-export class CValidationRule {
-  _validationRuleName: String; // textLength
-  _errorMessage: String; // The property value can have between 0 and 200 characters
-  params?: CParamList;
-}
-
-export class CValidationRuleList {
-  validationRule: CValidationRule[] = [];
-}
-
-export class CParamList {
-  param?: CParam[] = [];
-}
-
-export class CParam {
-  _name: String; // min
-  _value: String; // 0
-}
-
-export const STRUCTURE_SEARCH_DESC_LIST = [{
-  dataField: 'StructureComments',
-  label: { text: 'Structure Comments' },
-  dataType: 'string',
-  editorType: 'dxTextArea',
-}];
-export class CStructureSearch {
-  StructureComments?: String;
-}
 export class CStructureSearchVM {
-  structureComments?: String;
+  data: any = {};
   columns: any[] = [];
-  constructor(m: CStructureSearch, state: IAppState) {
+  constructor(state: IAppState) {
     let coeForm = getCoeFormById(state, 4);
     if (coeForm) {
       buildPropertyList(this, coeForm.layoutInfo.formElement, state, 4);
@@ -416,25 +146,11 @@ export class CStructureSearchVM {
   }
 }
 
-export class CComponentSearch {
-  COMPONENTID: String;
-  IDENTIFIERTYPE: String;
-  IdentifierValue: String;
-  CHEM_NAME_AUTOGEN: String;
-  CMP_COMMENTS: String;
-  STRUCTURE_COMMENTS_TXT: String;
-}
 export class CComponentSearchVM {
-  componentID?: String;
-  identifierType?: Number;
-  IdentifierValue?: String;
-  componentidentifierList?: CComponentIdentifierList;
-  structureName: String;
-  cmpComments: String;
-  structureComments: String;
+  data: any = {};
   columns: any[] = [];
   title: String;
-  constructor(m: CComponentSearch, state: IAppState) {
+  constructor(state: IAppState) {
     let coeForm = getCoeFormById(state, 1);
     if (coeForm) {
       if (coeForm.title) {
@@ -445,67 +161,11 @@ export class CComponentSearchVM {
   }
 }
 
-export class CComponentIdentifier {
-  Key?: Number; // 381
-  Name?: String;
-}
-
-export class CComponentIdentifierList {
-  Project: CComponentIdentifier[] = [];
-}
-
-export class CBatchSearch {
-  BatchID: String;
-  FULLREGNUMBER: String;
-  START_DATECREATED: String;
-  END_DATECREATED: String;
-  BATCH_PROJECT: String;
-  PERSONCREATED: String;
-  SCIENTIST_ID: String;
-  START_CREATION_DATE: String;
-  END_CREATION_DATE: String;
-  AMOUNT: String;
-  AMOUNT_UNITS: String;
-  APPEARANCE: String;
-  PURITY: String;
-  PURITY_COMMENTS: String;
-  SAMPLEID: String;
-  SOLUBILITY: String;
-  BATCH_COMMENT: String;
-  STORAGE_REQ_AND_WARNINGS: String;
-  FORMULA_WEIGHT: String;
-  NotebookReference: String;
-}
-
 export class CBatchSearchVM {
-  batchID: String;
-  fullRegistryNumber: String;
-  startdateCreated?: Date;
-  enddateCreated?: Date;
-  batchProjectID?: Number;
-  projectList?: CProjectList;
-  personCreated?: Number;
-  createdByList?: CPersonCreatedList;
-  scientistID?: Number;
-  scientistList?: CPersonCreatedList;
-  startSynthesisDate?: Date;
-  endSynthesisDate?: Date;
-  amount?: String;
-  units?: Number;
-  unitList?: CUnitList;
-  appearance?: String;
-  purity?: String;
-  purityComments?: String;
-  sampleID?: String;
-  solubility?: String;
-  batchComments?: String;
-  storageRequirementsWarnings?: String;
-  formulaWeight?: String;
-  noteBookReference?: Number;
-  noteBookReferenceList?: CNoteBookReferenceList;
+  data: any = {};
   columns: any[] = [];
   title: string;
-  constructor(m: CBatchSearch, state: IAppState) {
+  constructor(state: IAppState) {
     let coeForm = getCoeFormById(state, 2);
     if (coeForm) {
       if (coeForm.title) {
@@ -516,38 +176,22 @@ export class CBatchSearchVM {
   }
 }
 
-export class CUnit {
-  ID?: Number; // 381
-  Name?: String;
+function getLookups(state: IAppState): any {
+  return state.session ? state.session.lookups : undefined;
 }
 
-export class CUnitList {
-  Name: CUnit[] = [];
-}
-
-export class CNoteBookReference {
-  ID?: Number; // 381
-  Value?: String;
-}
-
-export class CNoteBookReferenceList {
-  Name: CNoteBookReference[] = [];
-}
-
-function getPropertyValue(p: CProperty): any {
-  let value = undefined;
-  let textValue = p.__text;
-  if (textValue) {
-    textValue = textValue.trim();
+export class CSearchFormVM {
+  ID?: Number;
+  registrySearchVM?: CRegSearchVM;
+  structureSearchVM?: CStructureSearchVM;
+  componentSearchVM?: CComponentSearchVM;
+  batchSearchVM?: CBatchSearchVM;
+  constructor(state: IAppState) {
+    this.registrySearchVM = new CRegSearchVM(state);
+    this.structureSearchVM = new CStructureSearchVM(state);
+    this.componentSearchVM = new CComponentSearchVM(state);
+    this.batchSearchVM = new CBatchSearchVM(state);
   }
-  switch (p._type) {
-    case 'DATE':
-      if (textValue) {
-        value = new Date(textValue);
-      }
-      break;
-  }
-  return value;
 }
 
 export const HITLIST_GRID_COLUMNS = [{
@@ -665,67 +309,5 @@ export class CSaveQuery {
     this.data.Name = '';
     this.data.Description = '';
     this.data.IsPublic = false;
-  }
-}
-
-export const PREFERENCES_LIST = [{
-  dataField: 'HitsCount',
-  label: { text: 'Hits per page' },
-  dataType: 'Number',
-  editorType: 'dxTextBox',
-}, {
-  dataField: 'FilterChildData',
-  text: 'Filter child data by search',
-  dataType: 'boolean',
-  editorType: 'dxCheckBox',
-}, {
-  dataField: 'HighlightSubStructure',
-  text: 'Highlight sub-structures',
-  dataType: 'boolean',
-  editorType: 'dxCheckBox',
-}
-];
-
-export class CPreferenceVM {
-  columns: any[] = [];
-  constructor() {
-    this.columns.push(PREFERENCES_LIST);
-    if (PREFERENCES_LIST) {
-      PREFERENCES_LIST.forEach(p => {
-        this.columns.push(p);
-      });
-    }
-  }
-}
-
-function getLookups(state: IAppState): any {
-  return state.session ? state.session.lookups : undefined;
-}
-
-export class CSearchFormVM {
-  ID?: Number;
-  registrySearch?: CRegSearch;
-  structureSearch?: CStructureSearch;
-  componentSearch?: CComponentSearch;
-  temporarySearch?: CTemporarySearch;
-  batchSearch?: CBatchSearch;
-  registrySearchVM?: CRegSearchVM;
-  temporarySearchVM?: CTemporarySearchVM;
-  structureSearchVM?: CStructureSearchVM;
-  componentSearchVM?: CComponentSearchVM;
-  batchSearchVM?: CBatchSearchVM;
-  preferenceVM?: CPreferenceVM;
-  constructor(state: IAppState) {
-    this.registrySearch = new CRegSearch();
-    this.structureSearch = new CStructureSearch();
-    this.componentSearch = new CComponentSearch();
-    this.batchSearch = new CBatchSearch();
-    this.temporarySearch = new CTemporarySearch();
-    this.registrySearchVM = new CRegSearchVM(this.registrySearch, state);
-    this.temporarySearchVM = new CTemporarySearchVM(this.temporarySearch, state);
-    this.structureSearchVM = new CStructureSearchVM(this.structureSearch, state);
-    this.componentSearchVM = new CComponentSearchVM(this.componentSearch, state);
-    this.batchSearchVM = new CBatchSearchVM(this.batchSearch, state);
-    this.preferenceVM = new CPreferenceVM();
   }
 }

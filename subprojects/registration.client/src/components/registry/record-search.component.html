@@ -20,31 +20,9 @@
   <command-button testid="save-preference-button" (onClick)="savePreference()" iconName="floppy-o" title="Save"></command-button>
 </div>
 <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
-  <span *ngIf="temporary">Search Temporary Records</span>
   <span *ngIf="!temporary">Search Permanent Registry</span>
 </reg-page-header>
 <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
-  <div class="panel-group" id="accordion" *ngIf="temporary">
-    <div class="panel">
-      <div class="panel-heading" style="border-bottom:1px solid #f0f0f0">
-        <h4 class="panel-title">
-          <span class="list-header" data-toggle="collapse" data-parent="#accordion" href="#collapseTemp">Temporary Information</span>
-        </h4>
-      </div>
-      <div id="collapseTemp" class="panel-collapse collapse in">
-        <div class="panel-body">
-          <div>
-            <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-            <dx-select-box [items]="regSearch.temporarySearchVM.searchTypeItems" [value]="regSearch.temporarySearch.searchTypeValue">
-            </dx-select-box>
-          </div>
-          <chem-draw-tool></chem-draw-tool>
-          <dx-form id="temporarySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.temporarySearch"
-            [items]="regSearch.temporarySearchVM.columns"></dx-form>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="panel-group" id="accordion" *ngIf="!temporary">
     <div class="panel panel-default">
       <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
@@ -54,13 +32,13 @@
         <div class="panel-body">
           <div>
             <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-            <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearch.searchTypeValue">
+            <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearchVM.searchTypeValue">
             </dx-select-box>
           </div>
           <chem-draw-tool></chem-draw-tool>
-          <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.registrySearch"
+          <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.registrySearchVM.data"
             [items]="regSearch.registrySearchVM.columns"></dx-form>
-          <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearch"
+          <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearchVM.data"
             [items]="regSearch.structureSearchVM.columns"></dx-form>
         </div>
       </div>
@@ -71,7 +49,7 @@
       </div>
       <div id="collapseTwo" class="panel-collapse collapse in">
         <div class="panel-body">
-          <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearch"
+          <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearchVM.data"
             [items]="regSearch.componentSearchVM.columns"></dx-form>
         </div>
       </div>
@@ -82,7 +60,7 @@
       </div>
       <div id="collapseThree" class="panel-collapse collapse in">
         <div class="panel-body">
-          <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearch" [items]="regSearch.batchSearchVM.columns"></dx-form>
+          <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearchVM.data" [items]="regSearch.batchSearchVM.columns"></dx-form>
         </div>
       </div>
     </div>
