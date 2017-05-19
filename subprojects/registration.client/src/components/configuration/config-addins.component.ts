@@ -76,7 +76,6 @@ export class RegConfigAddins implements OnInit, OnDestroy {
   }
 
   onContentReady(e) {
-    e.component.columnOption(0, 'visible', false);
     e.component.columnOption('STRUCTURE', {
       width: 150,
       allowFiltering: false,
