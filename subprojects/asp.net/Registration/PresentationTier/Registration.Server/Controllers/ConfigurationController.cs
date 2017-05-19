@@ -13,11 +13,12 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Web.Http;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Framework.COETableEditorService;
+using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.Controls.COETableManager;
-using PerkinElmer.COE.Registration.Server.Code;
-using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Registration.Services.Types;
+using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Models;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -353,6 +354,28 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var settingList = new JArray();
+                var appConfigSettings = FrameworkUtils.GetAppConfigSettings("REGISTRATION", "Registration");
+                var groups = appConfigSettings.SettingsGroup;
+                foreach (var group in groups)
+                {
+                    var settings = group.Settings;
+                    foreach (var setting in settings)
+                    {
+                        bool isAdmin;
+                        if (bool.TryParse(setting.IsAdmin, out isAdmin) && isAdmin) continue;
+                        settingList.Add(new JObject(
+                            new JProperty("groupName", group.Name),
+                            new JProperty("name", setting.Name),
+                            new JProperty("value", setting.Value),
+                            new JProperty("description", setting.Description),
+                            new JProperty("picklistDatabaseName", setting.Description),
+                            new JProperty("isAdmin", setting.IsAdmin),
+                            new JProperty("allowedValues", setting.AllowedValues),
+                            new JProperty("processorClass", setting.ProcessorClass),
+                            new JProperty("isHidden", setting.IsHidden)
+                        ));
+                    }
+                }
                 return settingList;
             });
         }
