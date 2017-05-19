@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { RegAlert } from '../alert/alert.component';
 import { RegButton } from '../button/button.component';
 import { RegLogo, RegLoginLogo } from '../logo';
 import { RegContainer } from '../container/container.component';
-import { RegPageHeader } from '../page-header/page-header.component';
+import { RegPageHeader, RegSettingsPageHeader } from '../page-header';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [
     RegAlert,
@@ -16,7 +18,8 @@ import { RegPageHeader } from '../page-header/page-header.component';
     RegLogo,
     RegContainer,
     RegLoginLogo,
-    RegPageHeader
+    RegPageHeader,
+    RegSettingsPageHeader
   ],
   exports: [
     RegAlert,
@@ -24,7 +27,8 @@ import { RegPageHeader } from '../page-header/page-header.component';
     RegLogo,
     RegContainer,
     RegLoginLogo,
-    RegPageHeader
+    RegPageHeader,
+    RegSettingsPageHeader
   ]
 })
 export class RegUiModule { }

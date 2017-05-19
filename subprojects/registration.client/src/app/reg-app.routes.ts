@@ -3,7 +3,12 @@ import { Routes } from '@angular/router';
 import {
   RegRecordsPage,
   RegRecordDetailPage,
-  RegConfigurationPage,
+  RegConfigAddinsPage,
+  RegConfigFormsPage,
+  RegConfigPropertiesPage,
+  RegConfigSettingsPage,
+  RegConfigTablesPage,
+  RegConfigXmlFormsPage,
   RegLoginPage,
   RegRecordSearchPage
 } from '../pages';
@@ -34,8 +39,23 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/temp/:id',
   component: RegRecordDetailPage
 }, {
+  path: 'configuration/properties',
+  component: RegConfigPropertiesPage
+}, {
+  path: 'configuration/forms',
+  component: RegConfigFormsPage
+}, {
+  path: 'configuration/addins',
+  component: RegConfigAddinsPage
+}, {
+  path: 'configuration/xml-forms',
+  component: RegConfigXmlFormsPage
+}, {
+  path: 'configuration/settings',
+  component: RegConfigSettingsPage
+}, {
   path: 'configuration/:tableId',
-  component: RegConfigurationPage
+  component: RegConfigTablesPage
 }, {
   path: 'login',
   component: RegLoginPage

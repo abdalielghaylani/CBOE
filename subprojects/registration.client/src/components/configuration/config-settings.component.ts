@@ -17,24 +17,21 @@ import { ICustomTableData, IConfiguration } from '../../store';
 declare var jQuery: any;
 
 @Component({
-  selector: 'reg-configuration',
-  template: require('./configuration.component.html'),
-  styles: [require('./configuration.component.css')],
+  selector: 'reg-config-settings',
+  template: require('./config-settings.component.html'),
+  styles: [require('./config.component.css')],
   host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegConfiguration implements OnInit, OnDestroy {
+export class RegConfigSettings implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
-  private tableId: string;
   private rows: any[] = [];
-  private tableIdSubscription: Subscription;
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;
 
   constructor(
-    private route: ActivatedRoute,
     private http: Http,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
@@ -42,27 +39,17 @@ export class RegConfiguration implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.tableIdSubscription = this.route.params.subscribe(params => {
-      let paramLabel = 'tableId';
-      this.tableId = params[paramLabel];
-      this.configurationActions.openTable(this.tableId);
-    });
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
   }
 
   ngOnDestroy() {
-    if (this.tableIdSubscription) {
-      this.tableIdSubscription.unsubscribe();
-    }
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
   }
 
   loadData(customTables: any) {
-    if (customTables && customTables[this.tableId]) {
-      let customTableData: ICustomTableData = customTables[this.tableId];
-      this.rows = customTableData.rows;
+    if (customTables) {
       this.dataSource = this.createCustomStore(this);
       this.changeDetector.markForCheck();
     }
@@ -117,26 +104,16 @@ export class RegConfiguration implements OnInit, OnDestroy {
     }
   }
 
-  tableName() {
-    let tableName = this.tableId;
-    tableName = tableName.toLowerCase()
-      .replace('vw_', '').replace('domain', ' domain').replace('type', ' type');
-    if (!tableName.endsWith('s')) {
-      tableName += 's';
-    }
-    return tableName.split(' ').map(n => n.charAt(0).toUpperCase() + n.slice(1)).join(' ');
-  }
-
-  private createCustomStore(parent: RegConfiguration): CustomStore {
-    let tableName = parent.tableId;
-    let apiUrlBase = `${apiUrlPrefix}custom-tables/${tableName}`;
+  private createCustomStore(parent: RegConfigSettings): CustomStore {
+    let tableName = 'settings';
+    let apiUrlBase = `${apiUrlPrefix}${tableName}`;
     return new CustomStore({
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
-            let rows = result.json().rows;
+            let rows = result.json();
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {

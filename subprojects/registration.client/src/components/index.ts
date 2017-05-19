@@ -1,6 +1,6 @@
 import { RegAlert } from './alert';
 import { RegButton } from './button';
-import { RegConfiguration } from './configuration';
+import { RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms } from './configuration';
 import { RegContainer } from './container';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
@@ -20,12 +20,12 @@ import {
 } from './form';
 import { RegFooter } from './footer';
 import { RegSidebar } from './navigator/sidebar.component';
-import { RegPageHeader } from './page-header/page-header.component';
+import { RegPageHeader, RegSettingsPageHeader } from './page-header';
 
 export {
   RegAlert,
   RegButton,
-  RegConfiguration,
+  RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
   RegContainer,
   RegInput,
   RegInputLogin,
@@ -42,6 +42,6 @@ export {
   RegLabel,
   RegModal, RegModalContent,
   RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem,
-  RegSidebar, RegFooter, RegPageHeader,
+  RegSidebar, RegFooter, RegPageHeader, RegSettingsPageHeader,
   IResponseData, IRecordSaveData
 };

@@ -1,0 +1,14 @@
+<div class="viewcontainer" (window:resize)="onResize($event)">
+  <reg-settings-page-header>Edit Form XML</reg-settings-page-header>
+  <dx-data-grid [dataSource]="dataSource" [paging]='{pageSize: 10}'
+    [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
+    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" 
+    rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
+    (onCellPrepared)='onCellPrepared($event)'>
+    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-scrolling mode="infinite"></dxo-scrolling>
+    <div *dxTemplate="let data of 'cellTemplate'">
+      <reg-structure-image [src]="data.value"></reg-structure-image>
+    </div>
+  </dx-data-grid>
+</div>
