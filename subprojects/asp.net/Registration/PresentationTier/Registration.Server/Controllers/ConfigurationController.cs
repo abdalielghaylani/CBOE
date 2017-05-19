@@ -324,8 +324,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var properties = (IEnumerable<Property>)propertyList;
                     foreach (var property in properties)
                     {
+                        var typeLabel = propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
+                            propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
+                            propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
+                            propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
+                            propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
+                            propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra Properties";
                         propertyArray.Add(new JObject(
-                            new JProperty("type", propertyType.ToString()),
+                            new JProperty("typeName", propertyType.ToString()),
+                            new JProperty("typeLabel", typeLabel),
                             new JProperty("name", property.Name)
                         ));
                     }

@@ -98,7 +98,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// Returns the list of all batches by BatchID
         /// </summary>
         /// <param name="id">Batch ID</param>
-        /// <returns></returns>
+        /// <returns>The array of batch objects</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("GetBatch")]

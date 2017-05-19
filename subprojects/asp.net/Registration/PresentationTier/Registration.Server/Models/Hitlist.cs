@@ -46,6 +46,25 @@ namespace PerkinElmer.COE.Registration.Server.Models
         #endregion Operators
 
         /// <summary>
+        /// Constructs the hit-list object from a <see cref="COEHitListBO" /> object 
+        /// </summary>
+        /// <param name="hitlistBO">The <see cref="COEHitListBO" /> object</param>
+        public Hitlist(COEHitListBO hitlistBO)
+        {
+            ID = hitlistBO.ID;
+            HitlistID = hitlistBO.HitListID;
+            HistlistType = hitlistBO.HitListType;
+            NumberOfHits = hitlistBO.NumHits;
+            IsPublic = hitlistBO.IsPublic;
+            SearchCriteriaID = hitlistBO.SearchCriteriaID;
+            SearchCriteriaType = hitlistBO.SearchCriteriaType;
+            Name = hitlistBO.Name;
+            Description = hitlistBO.Description;
+            MarkedHitIDs = hitlistBO.MarkedHitListIDs;
+            DateCreated = hitlistBO.DateCreated;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Hitlist" /> class.
         /// </summary>
         /// <param name="id">ID</param>
@@ -58,6 +77,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <param name="name">Name of this hit-list object</param>
         /// <param name="description">Description of this hit-list object</param>
         /// <param name="markedHitIDs">IDs of all marked hits</param>
+        /// <param name="dateCreated">Date created</param>
         public Hitlist(int? id = null, int? hitlistID = null, HitListType hitlistType = HitListType.ALL, int? numberOfHits = null, bool? isPublic = null, int? searchCriteriaID = null, SearchCriteriaType searchCriteriaType = SearchCriteriaType.TEMP, string name = null, string description = null, List<int> markedHitIDs = null, SmartDate? dateCreated = null)
         {
             ID = id;

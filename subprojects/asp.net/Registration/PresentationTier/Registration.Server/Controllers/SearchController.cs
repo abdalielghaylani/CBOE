@@ -61,13 +61,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <summary>
         /// Returns all hit-lists.
         /// </summary>
-        /// <remarks>This call may be used to retrieve all hit-lists</remarks>
-        /// <response code="200">Success</response>
+        /// <response code="200">Successful</response>
         /// <returns>A list of hit-list objects</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists")]
         [SwaggerOperation("GetHitlists")]
-        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(200, type: typeof(List<Hitlist>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -75,7 +74,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var result = new JArray();
+                var result = new List<Hitlist>();
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
                 var formGroup = configRegRecord.FormGroup;
@@ -97,19 +96,29 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// Deletes a hit-list
         /// </summary>
         /// <remarks>Deletes a hit-list by its ID</remarks>
-        /// <param name="id">Id of the hit-list that needs to be deleted</param>
         /// <response code="200">Successful</response>
         /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
+        /// <param name="id">The ID of hit-list to delete</param>
+        /// <returns>The <see cref="ResponseData"/> object containing the ID of deleted hit-list</returns>
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         [HttpDelete]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("DeleteHitlist")]
-        public void DeleteHitlist(int id)
+        public async Task<IHttpActionResult> DeleteHitlist(int id)
         {
-            CheckAuthentication();
-            COEHitListBO.Delete(HitListType.TEMP, id);
-            COEHitListBO.Delete(HitListType.SAVED, id);
+            return await CallMethod(() =>
+            {
+                COEHitListBO.Delete(HitListType.TEMP, id);
+                COEHitListBO.Delete(HitListType.SAVED, id);
+                return new ResponseData(id: id);
+            });
         }
 
         /// <summary>
@@ -121,47 +130,57 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </remarks>
         /// <response code="200">Successful</response>
         /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
+        /// <param name="id">The ID of hit-list to update</param>
+        /// <returns>The <see cref="ResponseData"/> object containing the ID of updated hit-list</returns>
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         [HttpPut]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("UpdateHitlist")]
-        public void UpdateHitlist(int id)
+        public async Task<IHttpActionResult> UpdateHitlist(int id)
         {
-            CheckAuthentication();
-            var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-            var hitlistType = (HitListType)(int)hitlistData["HitlistType"];
-            var hitlistBO = COEHitListBO.Get(hitlistType, id);
-            if (hitlistBO == null) return;
-            bool saveHitlist = false;
-            if (hitlistType == HitListType.SAVED && hitlistBO.HitListID == 0)
+            return await CallMethod(() =>
             {
-                // Saving temporary hit-list
-                saveHitlist = true;
-                hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-            }
-
-            if (hitlistBO.HitListID > 0)
-            {
-                hitlistBO.Name = hitlistData["Name"].ToString();
-                hitlistBO.Description = hitlistData["Description"].ToString();
-                hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
-                if (hitlistBO.SearchCriteriaID > 0)
+                var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
+                var hitlistType = (HitListType)(int)hitlistData["HitlistType"];
+                var hitlistBO = COEHitListBO.Get(hitlistType, id);
+                if (hitlistBO == null)
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+                bool saveHitlist = false;
+                if (hitlistType == HitListType.SAVED && hitlistBO.HitListID == 0)
                 {
-                    var searchCriteria = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
-                    searchCriteria.Name = hitlistBO.Name;
-                    searchCriteria.Description = hitlistBO.Description;
-                    searchCriteria.IsPublic = hitlistBO.IsPublic;
-                    searchCriteria = saveHitlist ? searchCriteria.Save() : searchCriteria.Update();
-                    if (saveHitlist)
-                    {
-                        hitlistBO.SearchCriteriaID = searchCriteria.ID;
-                        hitlistBO.SearchCriteriaType = searchCriteria.SearchCriteriaType;
-                    }
+                    // Saving temporary hit-list
+                    saveHitlist = true;
+                    hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
                 }
-
-                hitlistBO = saveHitlist ? hitlistBO.Save() : hitlistBO.Update();
-            }
+                if (hitlistBO.HitListID > 0)
+                {
+                    hitlistBO.Name = hitlistData["Name"].ToString();
+                    hitlistBO.Description = hitlistData["Description"].ToString();
+                    hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
+                    if (hitlistBO.SearchCriteriaID > 0)
+                    {
+                        var searchCriteria = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+                        searchCriteria.Name = hitlistBO.Name;
+                        searchCriteria.Description = hitlistBO.Description;
+                        searchCriteria.IsPublic = hitlistBO.IsPublic;
+                        searchCriteria = saveHitlist ? searchCriteria.Save() : searchCriteria.Update();
+                        if (saveHitlist)
+                        {
+                            hitlistBO.SearchCriteriaID = searchCriteria.ID;
+                            hitlistBO.SearchCriteriaType = searchCriteria.SearchCriteriaType;
+                        }
+                    }
+                    hitlistBO = saveHitlist ? hitlistBO.Save() : hitlistBO.Update();
+                }
+                return new ResponseData(id: hitlistBO.ID);
+            });
         }
 
         /// <summary>
@@ -209,11 +228,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// Returns the list of registry records for a hit-list
         /// </summary>
         /// <remarks>Returns the list of registry records for a hit-list by its ID</remarks>
-        /// <param name="id">Id of the hit-list that needs to be fetched</param>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Bad request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
+        /// <param name="id">The hit-list ID</param>
+        /// <param name="skip">The number of items to skip</param>
+        /// <param name="count">The maximum number of items to return</param>
+        /// <param name="sort">The sorting information</param>
+        /// <returns>The promise to return a JSON object containing an array of registration records</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}/records")]
         [SwaggerOperation("GetHitlistRecords")]
@@ -289,6 +312,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Bad Request</response>
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
+        /// <returns>The count of marked hits</returns>
         [HttpPost]
         [Route(Consts.apiPrefix + "markedhits")]
         [SwaggerOperation("MarkedHitsSave")]
@@ -312,23 +336,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <summary>
         /// Returns a hit-list by its ID
         /// </summary>
-        /// <param name="id">Id of the hit-list that needs to be fetched</param>
         /// <response code="200">Successful</response>
         /// <response code="400">Bad Request</response>
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
+        /// <param name="id">The ID of the hit-list that needs to be fetched</param>
+        /// <returns>The matching hit-list</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("SearchHitlistsIdGet")]
         [SwaggerResponse(200, type: typeof(Hitlist))]
-        public virtual Hitlist SearchHitlistsIdGet(int? id)
+        public async Task<IHttpActionResult> SearchHitlistsIdGet(int id)
         {
-            string exampleJson = null;
-
-            var example = exampleJson != null
-            ? JsonConvert.DeserializeObject<Hitlist>(exampleJson)
-            : default(Hitlist);
-            return example;
+            return await CallMethod(() =>
+            {
+                var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
+                if (hitlistBO == null)
+                    hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
+                if (hitlistBO == null)
+                    throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+                return new Hitlist(hitlistBO);
+            });
         }
 
         [HttpPost]

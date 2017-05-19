@@ -18,17 +18,17 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Component" /> class.
         /// </summary>
-        /// <param name="id">ID.</param>
-        /// <param name="compound">Compound.</param>
-        /// <param name="componentIndex">ComponentIndex.</param>
-        /// <param name="percentage">Percentage.</param>
-        /// <param name="structureId">StructureID</param>
-        /// <param name="struct_Name">Struct_Name</param>
-        /// <param name="struct_Comments">Stuct_Comments</param>
-        /// <param name="cmp_Comments">Cmp_Comments</param>
-        /// <param name="molecularFormula">MolecularFormula</param>
-        /// <param name="formulaWeight">FormulaWeight</param>
-        /// <param name="normalizedStructure">NormalizedStructure</param>
+        /// <param name="id">ID</param>
+        /// <param name="compound">Compound</param>
+        /// <param name="componentIndex">Component index</param>
+        /// <param name="percentage">Percentage</param>
+        /// <param name="structureId">Structure ID</param>
+        /// <param name="struct_Name">Structure name</param>
+        /// <param name="struct_Comments">Structure comments</param>
+        /// <param name="cmp_Comments">Component comments</param>
+        /// <param name="molecularFormula">Molecular formula</param>
+        /// <param name="formulaWeight">Formula weight</param>
+        /// <param name="normalizedStructure">Normalized structure</param>
         public Component(int? id = default(int?), CambridgeSoft.COE.Registration.Services.Types.Compound compound = default(CambridgeSoft.COE.Registration.Services.Types.Compound), int? componentIndex = default(int?), double? percentage = default(double?), int? structureId = default(int?), string struct_Name = default(string), string struct_Comments = default(string), string cmp_Comments = default(string), double? molecularFormula = default(double?), double? formulaWeight = default(double?), string normalizedStructure = default(string))
         {
             ID = id;
@@ -75,37 +75,37 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public int? StructureId { get; set; }
 
         /// <summary>
-        /// Gets or sets Struct_Name
+        /// Gets or sets the structure name
         /// </summary>
         [DataMember(Name = "Struct_Name", EmitDefaultValue = false)]
         public string Struct_Name { get; set; }
 
         /// <summary>
-        /// Gets or sets Stuct_Comments
+        /// Gets or sets the structure comments
         /// </summary>
         [DataMember(Name = "Stuct_Comments", EmitDefaultValue = false)]
         public string Stuct_Comments { get; set; }
 
         /// <summary>
-        /// Gets or sets Cmp_Comments
+        /// Gets or sets the component comments
         /// </summary>
         [DataMember(Name = "Cmp_Comments", EmitDefaultValue = false)]
         public string Cmp_Comments { get; set; }
 
         /// <summary>
-        /// Gets or sets MolecularFormula
+        /// Gets or sets the molecular formula
         /// </summary>
         [DataMember(Name = "MolecularFormula", EmitDefaultValue = false)]
         public double? MolecularFormula { get; set; }
 
         /// <summary>
-        /// Gets or sets FormulaWeight
+        /// Gets or sets the formula weight
         /// </summary>
         [DataMember(Name = "FormulaWeight", EmitDefaultValue = false)]
         public double? FormulaWeight { get; set; }
 
         /// <summary>
-        /// Gets or sets NormalizedStructure
+        /// Gets or sets the normalized structure
         /// </summary>
         [DataMember(Name = "NormalizedStructure", EmitDefaultValue = false)]
         public string NormalizedStructure { get; set; }

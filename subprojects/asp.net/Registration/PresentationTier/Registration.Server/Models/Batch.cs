@@ -65,49 +65,49 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public int? TempBatchID { get; set; }
 
         /// <summary>
-        /// Gets or sets BatchNumber
+        /// Gets or sets the batch number
         /// </summary>
         [DataMember(Name = "BatchNumber", EmitDefaultValue = false)]
         public int? BatchNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets FullRegNumber
+        /// Gets or sets the full registration number
         /// </summary>
         [DataMember(Name = "FullRegNumber", EmitDefaultValue = false)]
         public string FullRegNumber { get; set; }
 
         /// <summary>
-        /// Gets or sets DateCreated
+        /// Gets or sets the creation date
         /// </summary>
         [DataMember(Name = "DateCreated", EmitDefaultValue = false)]
         public DateTime? DateCreated { get; set; }
 
         /// <summary>
-        /// Gets or sets PersonCreated
+        /// Gets or sets the creator
         /// </summary>
         [DataMember(Name = "PersonCreated", EmitDefaultValue = false)]
         public int? PersonCreated { get; set; }
 
         /// <summary>
-        /// Gets or sets PersonRegistered
+        /// Gets or sets the person who registered
         /// </summary>
         [DataMember(Name = "PersonRegistered", EmitDefaultValue = false)]
         public int? PersonRegistered { get; set; }
 
         /// <summary>
-        /// Gets or sets PersonApproved
+        /// Gets or sets the person who approved
         /// </summary>
         [DataMember(Name = "PersonApproved", EmitDefaultValue = false)]
         public int? PersonApproved { get; set; }
 
         /// <summary>
-        /// Gets or sets DateLastModified
+        /// Gets or sets the last modification date
         /// </summary>
         [DataMember(Name = "DateLastModified", EmitDefaultValue = false)]
         public DateTime? DateLastModified { get; set; }
 
         /// <summary>
-        /// Gets or sets Status
+        /// Gets or sets the status
         /// </summary>
         [DataMember(Name = "Status", EmitDefaultValue = false)]
         public RegistryStatus Status { get; set; }
