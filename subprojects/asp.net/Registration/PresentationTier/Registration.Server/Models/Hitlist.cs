@@ -26,7 +26,7 @@ using CambridgeSoft.COE.Framework.COEHitListService;
 namespace PerkinElmer.COE.Registration.Server.Models
 {
     /// <summary>
-    /// The class for hitlist information
+    /// The class for hit-list information
     /// </summary>
     [DataContract]
     public partial class Hitlist : IEquatable<Hitlist>
@@ -48,21 +48,21 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Hitlist" /> class.
         /// </summary>
-        /// <param name="id">ID.</param>
-        /// <param name="hitlistID">HitlistID.</param>
-        /// <param name="histlistType">HistlistType.</param>
-        /// <param name="numberOfHits">NumberOfHits.</param>
-        /// <param name="isPublic">IsPublic.</param>
-        /// <param name="searchCriteriaID">SearchCriteriaID.</param>
-        /// <param name="searchCriteriaType">SearchCriteriaType.</param>
-        /// <param name="name">Name of this hit-list object.</param>
-        /// <param name="description">Description of this hit-list object.</param>
-        /// <param name="markedHitIDs">IDs of all marked hits.</param>
-        public Hitlist(int? id = null, int? hitlistID = null, HitListType histlistType = HitListType.ALL, int? numberOfHits = null, bool? isPublic = null, int? searchCriteriaID = null, SearchCriteriaType searchCriteriaType = SearchCriteriaType.TEMP, string name = null, string description = null, List<int> markedHitIDs = null, SmartDate? dateCreated = null)
+        /// <param name="id">ID</param>
+        /// <param name="hitlistID">Hit-list ID</param>
+        /// <param name="hitlistType">Hit-list type</param>
+        /// <param name="numberOfHits">Number of hits</param>
+        /// <param name="isPublic">Is public</param>
+        /// <param name="searchCriteriaID">Search criteria ID</param>
+        /// <param name="searchCriteriaType">Search criteria type</param>
+        /// <param name="name">Name of this hit-list object</param>
+        /// <param name="description">Description of this hit-list object</param>
+        /// <param name="markedHitIDs">IDs of all marked hits</param>
+        public Hitlist(int? id = null, int? hitlistID = null, HitListType hitlistType = HitListType.ALL, int? numberOfHits = null, bool? isPublic = null, int? searchCriteriaID = null, SearchCriteriaType searchCriteriaType = SearchCriteriaType.TEMP, string name = null, string description = null, List<int> markedHitIDs = null, SmartDate? dateCreated = null)
         {
             ID = id;
             HitlistID = hitlistID;
-            HistlistType = histlistType;
+            HistlistType = hitlistType;
             NumberOfHits = numberOfHits;
             IsPublic = isPublic;
             SearchCriteriaID = searchCriteriaID;
@@ -80,37 +80,37 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public int? ID { get; set; }
 
         /// <summary>
-        /// Gets or sets HitlistID
+        /// Gets or sets the hit-list ID
         /// </summary>
         [DataMember(Name = "HitlistID")]
         public int? HitlistID { get; set; }
 
         /// <summary>
-        /// Gets or sets HistlistType
+        /// Gets or sets the hit-list type
         /// </summary>
         [DataMember(Name = "HistlistType")]
         public HitListType HistlistType { get; set; }
 
         /// <summary>
-        /// Gets or sets NumberOfHits
+        /// Gets or sets the number of hits
         /// </summary>
         [DataMember(Name = "NumberOfHits")]
         public int? NumberOfHits { get; set; }
 
         /// <summary>
-        /// Gets or sets IsPublic
+        /// Gets or sets the indictor that it is public
         /// </summary>
         [DataMember(Name = "IsPublic")]
         public bool? IsPublic { get; set; }
 
         /// <summary>
-        /// Gets or sets SearchCriteriaID
+        /// Gets or sets the search criteria ID
         /// </summary>
         [DataMember(Name = "SearchCriteriaID")]
         public int? SearchCriteriaID { get; set; }
 
         /// <summary>
-        /// Gets or sets SearchCriteriaType
+        /// Gets or sets the search criteria type
         /// </summary>
         [DataMember(Name = "SearchCriteriaType")]
         public SearchCriteriaType SearchCriteriaType { get; set; }

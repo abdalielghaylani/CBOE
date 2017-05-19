@@ -63,30 +63,34 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </summary>
         /// <remarks>This call may be used to retrieve all hit-lists</remarks>
         /// <response code="200">Success</response>
+        /// <returns>A list of hit-list objects</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists")]
         [SwaggerOperation("GetHitlists")]
-        [SwaggerResponse(200, type: typeof(List<Hitlist>))]
-        public List<Hitlist> GetHitlists()
+        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetHitlists()
         {
-            CheckAuthentication();
-            var result = new List<Hitlist>();
-            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
-            var formGroup = configRegRecord.FormGroup;
-            var tempHitLists = COEHitListBOList.GetRecentHitLists(databaseName, COEUser.Name, formGroup.Id, 10);
-            foreach (var h in tempHitLists)
+            return await CallMethod(() =>
             {
-                result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
-            }
-
-            var savedHitLists = COEHitListBOList.GetSavedHitListList(databaseName, COEUser.Name, formGroup.Id);
-            foreach (var h in savedHitLists)
-            {
-                result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
-            }
-
-            return result;
+                var result = new JArray();
+                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+                var formGroup = configRegRecord.FormGroup;
+                var tempHitLists = COEHitListBOList.GetRecentHitLists(databaseName, COEUser.Name, formGroup.Id, 10);
+                foreach (var h in tempHitLists)
+                {
+                    result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
+                }
+                var savedHitLists = COEHitListBOList.GetSavedHitListList(databaseName, COEUser.Name, formGroup.Id);
+                foreach (var h in savedHitLists)
+                {
+                    result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
+                }
+                return result;
+            });
         }
 
         /// <summary>
@@ -94,10 +98,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </summary>
         /// <remarks>Deletes a hit-list by its ID</remarks>
         /// <param name="id">Id of the hit-list that needs to be deleted</param>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid ID</response>
-        /// <response code="404">Not found</response>
-        /// <response code="500">Unexpected error</response>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpDelete]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("DeleteHitlist")]
@@ -115,10 +119,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// If the given hit-list is found only in the temporary list but the type is specified as saved,
         /// it is considered as a request to save the temporary hit-list as a saved hit-list.
         /// </remarks>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid ID</response>
-        /// <response code="404">Not found</response>
-        /// <response code="500">Unexpected error</response>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPut]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("UpdateHitlist")]
@@ -163,11 +167,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <summary>
         /// Create a hit-list
         /// </summary>
-        /// <remarks>Create a hit-list</remarks>
-        /// <response code="200">Successful operation</response>
+        /// <response code="200">Successful</response>
         /// <response code="400">Bad Request</response>
         /// <response code="401">Unauthorized</response>
-        /// <response code="500">Unexpected error</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <returns>A <see cref="ResponseData" /> object containing the ID of the created hit-list/></returns>
         [HttpPost]
         [Route(Consts.apiPrefix + "hitlists")]
         [SwaggerOperation("CreateHitlist")]
@@ -228,12 +232,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <summary>
         /// Returns a hit-list by its ID
         /// </summary>
-        /// <remarks>Returns a hit-list by its ID</remarks>
-        /// <param name="id">Id of the hit-list that needs to be fetched</param>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid ID</response>
-        /// <response code="404">Not found</response>
-        /// <response code="500">Unexpected error</response>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <param name="id1">The ID of the hit-list to use as the base</param>
+        /// <param name="op">The name of operation to apply</param>
+        /// <param name="id2">The ID of the hit-list to apply the operation</param>
+        /// <param name="skip">The number of records to skip</param>
+        /// <param name="count">The maximum number of records to return</param>
+        /// <param name="sort">The sorting information</param>
+        /// <returns>The list of hit-list objects</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id1}/{op}/{id2}/records")]
         [SwaggerOperation("GetAdvHitlistRecords")]
@@ -274,13 +283,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
-        /// Save a hitlist
+        /// Save a hit-list
         /// </summary>
-        /// <remarks>Save a hitlist</remarks>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid ID</response>
-        /// <response code="404">Hitlist not found</response>
-        /// <response code="0">Unexpected error</response>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpPost]
         [Route(Consts.apiPrefix + "markedhits")]
         [SwaggerOperation("MarkedHitsSave")]
@@ -302,14 +310,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
-        /// Returns a hitlist by its ID
+        /// Returns a hit-list by its ID
         /// </summary>
-        /// <remarks>Returns a hitlist by its ID</remarks>
-        /// <param name="id">Id of the hitlist that needs to be fetched</param>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid ID</response>
-        /// <response code="404">Hitlist not found</response>
-        /// <response code="0">Unexpected error</response>
+        /// <param name="id">Id of the hit-list that needs to be fetched</param>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("SearchHitlistsIdGet")]

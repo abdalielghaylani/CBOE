@@ -44,9 +44,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </summary>
         /// <remarks>Returns the list of all components corresponding to the specified parameters
         /// </remarks>
-        /// <response code="200">Successful operation</response>
-        /// <response code="400">Invalid request</response>
-        /// <response code="0">Unexpected error</response>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <param name="recordId">The record ID</param>
+        /// <param name="skip">The number of components to skip</param>
+        /// <param name="count">The maximum count of components to return</param>
+        /// <param name="sort">The sort information</param>
+        /// <returns>The list of components</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "components")]
         [SwaggerOperation("GetComponents")]
