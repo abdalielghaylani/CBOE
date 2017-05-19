@@ -27,14 +27,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new RecordColumn[]
                 {
-                    new RecordColumn{ definition = "STRUCTUREID", sortable = true },
-                    new RecordColumn{ definition = "COMPONENTID", sortable = true },
-                    new RecordColumn{ definition = "STRUCT_NAME", sortable = false },
-                    new RecordColumn{ definition = "STRUCT_COMMENTS", sortable = false },
-                    new RecordColumn{ definition = "CMP_COMMENTS", sortable = false },
-                    new RecordColumn{ definition = "MOLECULARFORMULA", sortable = false },
-                    new RecordColumn{ definition = "FORMULAWEIGHT", sortable = false },
-                    new RecordColumn{ definition = "NORMALIZEDSTRUCTURE", sortable = false }
+                    new RecordColumn{definition = "STRUCTUREID", sortable = true}, 
+                    new RecordColumn{definition = "COMPONENTID", sortable = true}, 
+                    new RecordColumn{definition = "STRUCT_NAME", sortable = false}, 
+                    new RecordColumn{definition = "STRUCT_COMMENTS", sortable = false}, 
+                    new RecordColumn{definition = "CMP_COMMENTS", sortable = false}, 
+                    new RecordColumn{definition = "MOLECULARFORMULA", sortable = false}, 
+                    new RecordColumn{definition = "FORMULAWEIGHT", sortable = false}, 
+                    new RecordColumn{definition = "NORMALIZEDSTRUCTURE", sortable = false}
                 };
             }
         }

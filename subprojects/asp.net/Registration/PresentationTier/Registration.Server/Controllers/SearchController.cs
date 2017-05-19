@@ -10,30 +10,20 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Swashbuckle.Swagger.Annotations;
-using PerkinElmer.COE.Registration.Server.Models;
-using CambridgeSoft.COE.Framework.COEHitListService;
-using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService;
-using CambridgeSoft.COE.Framework.GUIShell;
-using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework;
+using CambridgeSoft.COE.Framework.COEHitListService;
 using CambridgeSoft.COE.Framework.COESearchCriteriaService;
-using Newtonsoft.Json.Linq;
-using System.Data;
-using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
-using CambridgeSoft.COE.Framework.COESearchService;
-using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Framework.Common;
+using CambridgeSoft.COE.RegistrationAdmin.Services;
 using Microsoft.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Models;
+using Swashbuckle.Swagger.Annotations;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -63,11 +53,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
             }
+
             var savedHitLists = COEHitListBOList.GetSavedHitListList(dbName, COEUser.Name, formGroup.Id);
             foreach (var h in savedHitLists)
             {
                 result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
             }
+
             return result;
         }
 
@@ -118,6 +110,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 saveHitlist = true;
                 hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
             }
+
             if (hitlistBO.HitListID > 0)
             {
                 hitlistBO.Name = hitlistData["Name"].ToString();
@@ -136,6 +129,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         hitlistBO.SearchCriteriaType = searchCriteria.SearchCriteriaType;
                     }
                 }
+
                 hitlistBO = saveHitlist ? hitlistBO.Save() : hitlistBO.Update();
             }
         }
@@ -160,19 +154,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
             var formGroup = configRegRecord.FormGroup;
             var genericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
-            string Name = hitlistData["Name"].ToString();
-            bool IsPublic = Convert.ToBoolean(hitlistData["IsPublic"].ToString());
-            string Description = hitlistData["Description"].ToString();
-            string UserID = COEUser.Name;
-            int NumHits = Convert.ToInt32(hitlistData["NumHits"].ToString());
-            string DatabaseName = "REGDB";
-            int HitListID = Convert.ToInt32(hitlistData["HitListID"].ToString());
-            int DataViewID = formGroup.DataViewId;
-            HitListType HitlistType = (HitListType)(int)hitlistData["HitlistType"];
-            int SearchcriteriaId = Convert.ToInt32(hitlistData["SearchcriteriaId"].ToString()); ;
-            string SearchcriteriaType = hitlistData["SearchcriteriaType"].ToString();
-            id = objDAL.CreateNewTempHitList(Name, IsPublic, Description, UserID, NumHits, DatabaseName, HitListID, DataViewID, HitlistType, SearchcriteriaId, SearchcriteriaType);
-            return id;
+            string name = hitlistData["Name"].ToString();
+            bool isPublic = Convert.ToBoolean(hitlistData["IsPublic"].ToString());
+            string dscription = hitlistData["Description"].ToString();
+            string userID = COEUser.Name;
+            int numHits = Convert.ToInt32(hitlistData["NumHits"].ToString());
+            string databaseName = "REGDB";
+            int hitListID = Convert.ToInt32(hitlistData["HitListID"].ToString());
+            int dataViewID = formGroup.DataViewId;
+            HitListType hitlistType = (HitListType)(int)hitlistData["HitlistType"];
+            int searchcriteriaId = Convert.ToInt32(hitlistData["SearchcriteriaId"].ToString());
+            string searchcriteriaType = hitlistData["SearchcriteriaType"].ToString();
+            return objDAL.CreateNewTempHitList(name, isPublic, dscription, userID, numHits, databaseName, hitListID, dataViewID, hitlistType, searchcriteriaId, searchcriteriaType);
         }
 
         private JObject GetHitlistRecordsInternal(int id, int? skip = null, int? count = null, string sort = null)
@@ -241,25 +234,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 case 1: //intersect      
                    // resultHitListID = objDAL.IntersectHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
                    // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   //"vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   //"where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   // "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   // "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
                     break;
                 case 2: //subtract
                    // resultHitListID = objDAL.SubtractHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
                    // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   //"vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   //"where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   // "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   // "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
                     break;
                 case 3: //union
                    // resultHitListID = objDAL.SubtractHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
                    // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   //"vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   //"where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
+                   // "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
+                   // "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
                     break;
                 default: // Subtract from entire list
                     data = GetHitlistRecordsInternal(id1);
                     break;
             }
+
             return data;
         }
 
@@ -290,7 +284,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             int markedCount = genericBO.GetMarkedCount();
             return markedCount;
         }
-
 
         /// <summary>
         /// Returns a hitlist by its ID

@@ -1,20 +1,15 @@
 using System;
 using System.Configuration;
-using System.Collections;
-using System.Data;
 using System.IO;
 using System.IO.Compression;
-using System.Reflection;
+using System.Net.Http.Formatting;
 using System.Web;
 using System.Web.Http;
 using System.Web.Security;
-using System.Web.SessionState;
-using System.Web.UI;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
-using Resources;
-using System.Net.Http.Formatting;
 using PerkinElmer.COE.Registration.Server.Code;
+using Resources;
 
 namespace PerkinElmer.COE.Registration.Server
 {
@@ -39,44 +34,40 @@ namespace PerkinElmer.COE.Registration.Server
 
         protected void Application_End(object sender, EventArgs e)
         {
-            //  Code that runs on application shutdown
+            // Code that runs on application shutdown
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            //What was the error we encountered?
+            // What was the error we encountered?
             Exception serverEx = this.Server.GetLastError().GetBaseException();
-            //Coverity fix - CID 11866 - no need to check for null value of server exception, as the event will trigger only when any error occurs.
+            // Coverity fix - CID 11866 - no need to check for null value of server exception, as the event will trigger only when any error occurs.
             if (serverEx != null)
             {
                 string policyName = RegistrationWebApp.Constants.REG_OTHER_POLICY;
 
-                //Default error 'code'; not very user-friendly in reality
+                // Default error 'code'; not very user-friendly in reality
                 string error = CambridgeSoft.COE.Framework.GUIShell.GUIShellTypes.MessagesCode.Unknown.ToString();
 
-                //Unhandled exeptions must display a generic message and be logged.
+                // Unhandled exeptions must display a generic message and be logged.
                 Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.ExceptionPolicy.HandleException(
-                    serverEx, policyName
-                );
+                    serverEx, policyName);
 
-                //Log all unhandled exceptions!
+                // Log all unhandled exceptions!
 
                 error = serverEx.Message;
                 try
                 {
-                    System.Diagnostics.EventLog.WriteEntry(
-                        "COERegistrationWeb"
-                        , serverEx.ToString()
-                        , System.Diagnostics.EventLogEntryType.Error
-                    );
+                    System.Diagnostics.EventLog.WriteEntry("COERegistrationWeb", serverEx.ToString(),
+                        System.Diagnostics.EventLogEntryType.Error);
                 }
                 catch
                 {
-                    COELog _coeLog = COELog.GetSingleton("RegistartionWebApp");
-                    _coeLog.Log(serverEx.ToString());
+                    COELog coeLog = COELog.GetSingleton("RegistartionWebApp");
+                    coeLog.Log(serverEx.ToString());
                 }
 
-                //Redirect ends the response. Server transfer doesn't so it might not show some errors and Causes a Session being null on some pages.
+                // Redirect ends the response. Server transfer doesn't so it might not show some errors and Causes a Session being null on some pages.
                 Response.Redirect("~/Forms/Public/ContentArea/Messages.aspx?MessageCode=" + error);
             }
         }
@@ -87,11 +78,13 @@ namespace PerkinElmer.COE.Registration.Server
             {
                 return;
             }
+
             if (Request["ticket"] != null)
             {
                 CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider member = new CambridgeSoft.COE.Framework.COESecurityService.COEMembershipProvider();
                 member.Login(Request["ticket"].ToString(), true);
             }
+
             if (HttpContext.Current.Session != null)
             {
                 CambridgeSoft.COE.Framework.Common.WebUtils.SetCslaPrincipal();
@@ -116,6 +109,7 @@ namespace PerkinElmer.COE.Registration.Server
                 // Log exception details (omitted for simplicity)
                 return;
             }
+
             if (null == authTicket) return;
 
             authTicket = FormsAuthentication.RenewTicketIfOld(authTicket);
@@ -190,8 +184,8 @@ namespace PerkinElmer.COE.Registration.Server
 
         protected void Session_End(object sender, EventArgs e)
         {
-            //CambridgeSoft.COE.Framework.GUIShell.GUIShellUtilities.DoLogout();
-            //this.DoLogout();
+            // CambridgeSoft.COE.Framework.GUIShell.GUIShellUtilities.DoLogout();
+            // this.DoLogout();
         }
 
         private void DoLogin()
@@ -199,7 +193,7 @@ namespace PerkinElmer.COE.Registration.Server
             string appName = string.Empty;
             bool isTicket = true;
             string userIdentifier = string.Empty;
-            //check to see if there is an entry for ticket in the url. if ther is then you need to go through a different root.
+            // check to see if there is an entry for ticket in the url. if ther is then you need to go through a different root.
 
             if (HttpContext.Current.Application["AppName"] != null)
             {
@@ -213,8 +207,7 @@ namespace PerkinElmer.COE.Registration.Server
                 HttpContext.Current.Application["AppName"] = appName;
             }
 
-
-            if (RegUtilities.GetConfigSetting("MISC", "LogInSimulationMode") != String.Empty)
+            if (RegUtilities.GetConfigSetting("MISC", "LogInSimulationMode") != string.Empty)
             {
                 userIdentifier = RegUtilities.GetConfigSetting("MISC", "LogInSimulationMode");
                 isTicket = false;

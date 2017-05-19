@@ -1,16 +1,15 @@
-﻿using System.Web.Http;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
-using Newtonsoft.Json.Linq;
+﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Net.Http;
-using System.Net;
-using System.Net.Http.Headers;
-using System;
-using System.Web;
 using System.IO;
-using PerkinElmer.COE.Registration.Server.Code;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Reflection;
+using System.Web;
+using System.Web.Http;
+using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using Microsoft.Web.Http;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {

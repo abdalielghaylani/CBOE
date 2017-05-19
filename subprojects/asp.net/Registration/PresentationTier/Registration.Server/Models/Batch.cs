@@ -3,17 +3,9 @@
  */
 
 using System;
-using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 using CambridgeSoft.COE.Registration;
 using CambridgeSoft.COE.Registration.Services.Types;
 
@@ -61,75 +53,89 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or Sets ID
+        /// Gets or sets ID
         /// </summary>
         [DataMember(Name = "ID", EmitDefaultValue = false)]
         public int? ID { get; set; }
+
         /// <summary>
-        /// Gets or Sets TempBatchID
+        /// Gets or sets TempBatchID
         /// </summary>
         [DataMember(Name = "TempBatchID", EmitDefaultValue = false)]
         public int? TempBatchID { get; set; }
+
         /// <summary>
-        /// Gets or Sets BatchNumber
+        /// Gets or sets BatchNumber
         /// </summary>
         [DataMember(Name = "BatchNumber", EmitDefaultValue = false)]
         public int? BatchNumber { get; set; }
+
         /// <summary>
-        /// Gets or Sets FullRegNumber
+        /// Gets or sets FullRegNumber
         /// </summary>
         [DataMember(Name = "FullRegNumber", EmitDefaultValue = false)]
         public string FullRegNumber { get; set; }
+
         /// <summary>
-        /// Gets or Sets DateCreated
+        /// Gets or sets DateCreated
         /// </summary>
         [DataMember(Name = "DateCreated", EmitDefaultValue = false)]
         public DateTime? DateCreated { get; set; }
+
         /// <summary>
-        /// Gets or Sets PersonCreated
+        /// Gets or sets PersonCreated
         /// </summary>
         [DataMember(Name = "PersonCreated", EmitDefaultValue = false)]
         public int? PersonCreated { get; set; }
+
         /// <summary>
-        /// Gets or Sets PersonRegistered
+        /// Gets or sets PersonRegistered
         /// </summary>
         [DataMember(Name = "PersonRegistered", EmitDefaultValue = false)]
         public int? PersonRegistered { get; set; }
+
         /// <summary>
-        /// Gets or Sets PersonApproved
+        /// Gets or sets PersonApproved
         /// </summary>
         [DataMember(Name = "PersonApproved", EmitDefaultValue = false)]
         public int? PersonApproved { get; set; }
+
         /// <summary>
-        /// Gets or Sets DateLastModified
+        /// Gets or sets DateLastModified
         /// </summary>
         [DataMember(Name = "DateLastModified", EmitDefaultValue = false)]
         public DateTime? DateLastModified { get; set; }
+
         /// <summary>
-        /// Gets or Sets Status
+        /// Gets or sets Status
         /// </summary>
         [DataMember(Name = "Status", EmitDefaultValue = false)]
         public RegistryStatus Status { get; set; }
+
         /// <summary>
-        /// Gets or Sets ProjectList
+        /// Gets or sets ProjectList
         /// </summary>
         [DataMember(Name = "ProjectList", EmitDefaultValue = false)]
         public ProjectList ProjectList { get; set; }
+
         /// <summary>
-        /// Gets or Sets PropertyList
+        /// Gets or sets PropertyList
         /// </summary>
         [DataMember(Name = "PropertyList", EmitDefaultValue = false)]
         public PropertyList PropertyList { get; set; }
+
         /// <summary>
-        /// Gets or Sets IdentifierList
+        /// Gets or sets IdentifierList
         /// </summary>
         [DataMember(Name = "IdentifierList", EmitDefaultValue = false)]
         public IdentifierList IdentifierList { get; set; }
+
         /// <summary>
-        /// Gets or Sets BatchComponentList
+        /// Gets or sets BatchComponentList
         /// </summary>
         [DataMember(Name = "BatchComponentList", EmitDefaultValue = false)]
         public BatchComponentList BatchComponentList { get; set; }
+
         /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
@@ -267,38 +273,39 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public override int GetHashCode()
         {
             // credit: http://stackoverflow.com/a/263416/677735
-            unchecked // Overflow is fine, just wrap
+            // Overflow is fine, just wrap
+            unchecked
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
                 if (this.ID != null)
-                    hash = hash * 59 + this.ID.GetHashCode();
+                    hash = (hash * 59) + this.ID.GetHashCode();
                 if (this.TempBatchID != null)
-                    hash = hash * 59 + this.TempBatchID.GetHashCode();
+                    hash = (hash * 59) + this.TempBatchID.GetHashCode();
                 if (this.BatchNumber != null)
-                    hash = hash * 59 + this.BatchNumber.GetHashCode();
+                    hash = (hash * 59) + this.BatchNumber.GetHashCode();
                 if (this.FullRegNumber != null)
-                    hash = hash * 59 + this.FullRegNumber.GetHashCode();
+                    hash = (hash * 59) + this.FullRegNumber.GetHashCode();
                 if (this.DateCreated != null)
-                    hash = hash * 59 + this.DateCreated.GetHashCode();
+                    hash = (hash * 59) + this.DateCreated.GetHashCode();
                 if (this.PersonCreated != null)
-                    hash = hash * 59 + this.PersonCreated.GetHashCode();
+                    hash = (hash * 59) + this.PersonCreated.GetHashCode();
                 if (this.PersonRegistered != null)
-                    hash = hash * 59 + this.PersonRegistered.GetHashCode();
+                    hash = (hash * 59) + this.PersonRegistered.GetHashCode();
                 if (this.PersonApproved != null)
-                    hash = hash * 59 + this.PersonApproved.GetHashCode();
+                    hash = (hash * 59) + this.PersonApproved.GetHashCode();
                 if (this.DateLastModified != null)
-                    hash = hash * 59 + this.DateLastModified.GetHashCode();
+                    hash = (hash * 59) + this.DateLastModified.GetHashCode();
                 if (this.Status != null)
-                    hash = hash * 59 + this.Status.GetHashCode();
+                    hash = (hash * 59) + this.Status.GetHashCode();
                 if (this.ProjectList != null)
-                    hash = hash * 59 + this.ProjectList.GetHashCode();
+                    hash = (hash * 59) + this.ProjectList.GetHashCode();
                 if (this.PropertyList != null)
-                    hash = hash * 59 + this.PropertyList.GetHashCode();
+                    hash = (hash * 59) + this.PropertyList.GetHashCode();
                 if (this.IdentifierList != null)
-                    hash = hash * 59 + this.IdentifierList.GetHashCode();
+                    hash = (hash * 59) + this.IdentifierList.GetHashCode();
                 if (this.BatchComponentList != null)
-                    hash = hash * 59 + this.BatchComponentList.GetHashCode();
+                    hash = (hash * 59) + this.BatchComponentList.GetHashCode();
                 return hash;
             }
         }

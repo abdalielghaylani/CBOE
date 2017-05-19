@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.AccessControl;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Csla.Data;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using CambridgeSoft.COE.Registration.Services.Types;
-using CambridgeSoft.COE.Registration.Access;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using CambridgeSoft.COE.Framework.COESecurityService;
-using CambridgeSoft.COE.Framework.COETableEditorService;
-using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Registration.Services;
-using System.Security.AccessControl;
-using PerkinElmer.COE.Registration.Server.Models;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -91,10 +84,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             fieldData = reader.GetString(i);
                             break;
                     }
+
                     row.Add(new JProperty(fieldName, fieldData));
                 }
+
                 data.Add(row);
             }
+
             return data;
         }
 
@@ -123,6 +119,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             break;
                     }
                 }
+
                 return value;
             }
         }
@@ -142,6 +139,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     args.Add(":lowerLimit", lowerLimit);
                 }
             }
+
             using (var reader = GetReader(sql, args))
             {
                 return ExtractData(reader);
@@ -170,10 +168,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (isAuthorized)
                     break;
             }
+
             if (!isAuthorized)
                 throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
         }
-
 
         protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null)
         {
@@ -189,6 +187,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 responseMessage = CreateErrorResponse(ex);
             }
+
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
@@ -207,6 +206,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 responseMessage = CreateErrorResponse(ex);
             }
+
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
@@ -228,9 +228,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             var url = HttpContext.Current.Request.Url;
-            var port = url.Port != 80 ? (":" + url.Port) : String.Empty;
+            var port = url.Port != 80 ? (":" + url.Port) : string.Empty;
 
-            return String.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
+            return string.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
         }
 
         protected class RecordColumn
@@ -261,7 +261,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new RecordColumn{ definition = "name", sortable = true },
                     new RecordColumn{ definition = "created", sortable = true },
                     new RecordColumn{ definition = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label = "creator", sortable = true },
                     new RecordColumn{ definition = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false },
                     new RecordColumn{ definition = "regnumber", sortable = true },
                     new RecordColumn{ definition = "statusid", label = "status", sortable = true },
@@ -282,7 +282,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new RecordColumn{ definition = "molecularformula", label = "mf", sortable = true },
                     new RecordColumn{ definition = "datecreated", label = "created", sortable = true },
                     new RecordColumn{ definition = "datelastmodified", label = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
+                    new RecordColumn{ definition = "personcreated", label = "creator", sortable = true },
                     new RecordColumn{ definition = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false }
                 };
             }
@@ -290,14 +290,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected static string GetSelectTerms(RecordColumn[] columns)
         {
-            return String.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
+            return string.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
         }
 
         protected static string GetSortTerms(RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
         {
             // Default sorting order is descending order by modified date
             if (string.IsNullOrEmpty(sortTerms)) sortTerms = string.Empty;
-            sortTerms = String.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
+            sortTerms = string.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
                 .Select(t => CleanupSortTerm(columns, t)).Where(t => !string.IsNullOrEmpty(t)));
             if (string.IsNullOrEmpty(sortTerms)) sortTerms = defaultColumn + sortDesc;
             // Make the sorting unique

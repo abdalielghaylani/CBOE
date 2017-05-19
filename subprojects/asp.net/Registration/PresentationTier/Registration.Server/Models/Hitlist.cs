@@ -28,102 +28,102 @@ namespace PerkinElmer.COE.Registration.Server.Models
     /// <summary>
     /// The class for hitlist information
     /// </summary>
-    [DataContract()]
+    [DataContract]
     public partial class Hitlist : IEquatable<Hitlist>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Hitlist" /> class.
         /// </summary>
-        /// <param name="ID">ID.</param>
-        /// <param name="HitlistID">HitlistID.</param>
-        /// <param name="HistlistType">HistlistType.</param>
-        /// <param name="NumberOfHits">NumberOfHits.</param>
-        /// <param name="IsPublic">IsPublic.</param>
-        /// <param name="SearchCriteriaID">SearchCriteriaID.</param>
-        /// <param name="SearchCriteriaType">SearchCriteriaType.</param>
-        /// <param name="Name">Name of this hit-list object.</param>
-        /// <param name="Description">Description of this hit-list object.</param>
-        /// <param name="MarkedHitIDs">IDs of all marked hits.</param>
-        public Hitlist(int? ID = null, int? HitlistID = null, HitListType HistlistType = HitListType.ALL, int? NumberOfHits = null, bool? IsPublic = null, int? SearchCriteriaID = null, SearchCriteriaType SearchCriteriaType = SearchCriteriaType.TEMP, string Name = null, string Description = null, List<int> MarkedHitIDs = null, SmartDate? DateCreated = null)
+        /// <param name="id">ID.</param>
+        /// <param name="hitlistID">HitlistID.</param>
+        /// <param name="histlistType">HistlistType.</param>
+        /// <param name="numberOfHits">NumberOfHits.</param>
+        /// <param name="isPublic">IsPublic.</param>
+        /// <param name="searchCriteriaID">SearchCriteriaID.</param>
+        /// <param name="searchCriteriaType">SearchCriteriaType.</param>
+        /// <param name="name">Name of this hit-list object.</param>
+        /// <param name="description">Description of this hit-list object.</param>
+        /// <param name="markedHitIDs">IDs of all marked hits.</param>
+        public Hitlist(int? id = null, int? hitlistID = null, HitListType histlistType = HitListType.ALL, int? numberOfHits = null, bool? isPublic = null, int? searchCriteriaID = null, SearchCriteriaType searchCriteriaType = SearchCriteriaType.TEMP, string name = null, string description = null, List<int> markedHitIDs = null, SmartDate? dateCreated = null)
         {
-            this.ID = ID;
-            this.HitlistID = HitlistID;
-            this.HistlistType = HistlistType;
-            this.NumberOfHits = NumberOfHits;
-            this.IsPublic = IsPublic;
-            this.SearchCriteriaID = SearchCriteriaID;
-            this.SearchCriteriaType = SearchCriteriaType;
-            this.Name = Name;
-            this.Description = Description;
-            this.MarkedHitIDs = MarkedHitIDs;
-            this.DateCreated = (SmartDate)DateCreated;
+            this.ID = id;
+            this.HitlistID = hitlistID;
+            this.HistlistType = histlistType;
+            this.NumberOfHits = numberOfHits;
+            this.IsPublic = isPublic;
+            this.SearchCriteriaID = searchCriteriaID;
+            this.SearchCriteriaType = searchCriteriaType;
+            this.Name = name;
+            this.Description = description;
+            this.MarkedHitIDs = markedHitIDs;
+            this.DateCreated = (SmartDate)dateCreated;
         }
 
         /// <summary>
-        /// Gets or Sets ID
+        /// Gets or sets ID
         /// </summary>
         [DataMember(Name = "ID")]
         public int? ID { get; set; }
 
         /// <summary>
-        /// Gets or Sets HitlistID
+        /// Gets or sets HitlistID
         /// </summary>
         [DataMember(Name = "HitlistID")]
         public int? HitlistID { get; set; }
 
         /// <summary>
-        /// Gets or Sets HistlistType
+        /// Gets or sets HistlistType
         /// </summary>
         [DataMember(Name = "HistlistType")]
         public HitListType HistlistType { get; set; }
 
         /// <summary>
-        /// Gets or Sets NumberOfHits
+        /// Gets or sets NumberOfHits
         /// </summary>
         [DataMember(Name = "NumberOfHits")]
         public int? NumberOfHits { get; set; }
 
         /// <summary>
-        /// Gets or Sets IsPublic
+        /// Gets or sets IsPublic
         /// </summary>
         [DataMember(Name = "IsPublic")]
         public bool? IsPublic { get; set; }
 
         /// <summary>
-        /// Gets or Sets SearchCriteriaID
+        /// Gets or sets SearchCriteriaID
         /// </summary>
         [DataMember(Name = "SearchCriteriaID")]
         public int? SearchCriteriaID { get; set; }
 
         /// <summary>
-        /// Gets or Sets SearchCriteriaType
+        /// Gets or sets SearchCriteriaType
         /// </summary>
         [DataMember(Name = "SearchCriteriaType")]
         public SearchCriteriaType SearchCriteriaType { get; set; }
 
         /// <summary>
-        /// Name of this hit-list object
+        /// Gets or sets Name of this hit-list object
         /// </summary>
         /// <value>Name of this hit-list object</value>
         [DataMember(Name = "Name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Description of this hit-list object
+        /// Gets or sets Description of this hit-list object
         /// </summary>
         /// <value>Description of this hit-list object</value>
         [DataMember(Name = "Description")]
         public string Description { get; set; }
 
         /// <summary>
-        /// IDs of all marked hits
+        /// Gets or sets IDs of all marked hits
         /// </summary>
         /// <value>IDs of all marked hits</value>
         [DataMember(Name = "MarkedHitIDs")]
         public List<int> MarkedHitIDs { get; set; }
 
         /// <summary>
-        /// Gets or Sets DateCreated
+        /// Gets or sets DateCreated
         /// </summary>
         [DataMember(Name = "DateCreated")]
         public SmartDate DateCreated { get; set; }
@@ -180,7 +180,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <returns>Boolean</returns>
         public bool Equals(Hitlist other)
         {
-
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
@@ -249,32 +248,33 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public override int GetHashCode()
         {
             // credit: http://stackoverflow.com/a/263416/677735
-            unchecked // Overflow is fine, just wrap
+            // Overflow is fine, just wrap
+            unchecked
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
                 if (this.ID != null)
-                    hash = hash * 59 + this.ID.GetHashCode();
+                    hash = (hash * 59) + this.ID.GetHashCode();
                 if (this.HitlistID != null)
-                    hash = hash * 59 + this.HitlistID.GetHashCode();
+                    hash = (hash * 59) + this.HitlistID.GetHashCode();
                 if (this.HistlistType != null)
                     hash = hash * 59 + this.HistlistType.GetHashCode();
                 if (this.NumberOfHits != null)
-                    hash = hash * 59 + this.NumberOfHits.GetHashCode();
+                    hash = (hash * 59) + this.NumberOfHits.GetHashCode();
                 if (this.IsPublic != null)
-                    hash = hash * 59 + this.IsPublic.GetHashCode();
+                    hash = (hash * 59) + this.IsPublic.GetHashCode();
                 if (this.SearchCriteriaID != null)
-                    hash = hash * 59 + this.SearchCriteriaID.GetHashCode();
+                    hash = (hash * 59) + this.SearchCriteriaID.GetHashCode();
                 if (this.SearchCriteriaType != null)
-                    hash = hash * 59 + this.SearchCriteriaType.GetHashCode();
+                    hash = (hash * 59) + this.SearchCriteriaType.GetHashCode();
                 if (this.Name != null)
-                    hash = hash * 59 + this.Name.GetHashCode();
+                    hash = (hash * 59) + this.Name.GetHashCode();
                 if (this.Description != null)
-                    hash = hash * 59 + this.Description.GetHashCode();
+                    hash = (hash * 59) + this.Description.GetHashCode();
                 if (this.MarkedHitIDs != null)
-                    hash = hash * 59 + this.MarkedHitIDs.GetHashCode();
+                    hash = (hash * 59) + this.MarkedHitIDs.GetHashCode();
                 if (this.DateCreated != null)
-                    hash = hash * 59 + this.DateCreated.GetHashCode();
+                    hash = (hash * 59) + this.DateCreated.GetHashCode();
                 return hash;
             }
         }
