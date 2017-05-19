@@ -31,6 +31,20 @@ namespace PerkinElmer.COE.Registration.Server.Models
     [DataContract]
     public partial class Hitlist : IEquatable<Hitlist>
     {
+        #region Operators
+
+        public static bool operator ==(Hitlist left, Hitlist right)
+        {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Hitlist left, Hitlist right)
+        {
+            return !Equals(left, right);
+        }
+
+        #endregion Operators
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Hitlist" /> class.
         /// </summary>
@@ -46,17 +60,17 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <param name="markedHitIDs">IDs of all marked hits.</param>
         public Hitlist(int? id = null, int? hitlistID = null, HitListType histlistType = HitListType.ALL, int? numberOfHits = null, bool? isPublic = null, int? searchCriteriaID = null, SearchCriteriaType searchCriteriaType = SearchCriteriaType.TEMP, string name = null, string description = null, List<int> markedHitIDs = null, SmartDate? dateCreated = null)
         {
-            this.ID = id;
-            this.HitlistID = hitlistID;
-            this.HistlistType = histlistType;
-            this.NumberOfHits = numberOfHits;
-            this.IsPublic = isPublic;
-            this.SearchCriteriaID = searchCriteriaID;
-            this.SearchCriteriaType = searchCriteriaType;
-            this.Name = name;
-            this.Description = description;
-            this.MarkedHitIDs = markedHitIDs;
-            this.DateCreated = (SmartDate)dateCreated;
+            ID = id;
+            HitlistID = hitlistID;
+            HistlistType = histlistType;
+            NumberOfHits = numberOfHits;
+            IsPublic = isPublic;
+            SearchCriteriaID = searchCriteriaID;
+            SearchCriteriaType = searchCriteriaType;
+            Name = name;
+            Description = description;
+            MarkedHitIDs = markedHitIDs;
+            DateCreated = (SmartDate)dateCreated;
         }
 
         /// <summary>
@@ -174,71 +188,48 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Returns true if Hitlist instances are equal
+        /// Returns true if <see cref="Hitlist"/> instances are equal
         /// </summary>
-        /// <param name="other">Instance of Hitlist to be compared</param>
+        /// <param name="other">Instance of <see cref="Hitlist"/> to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(Hitlist other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
 
-            return
-                (
-                    this.ID == other.ID ||
-                    this.ID != null &&
-                    this.ID.Equals(other.ID)
-                ) &&
-                (
-                    this.HitlistID == other.HitlistID ||
-                    this.HitlistID != null &&
-                    this.HitlistID.Equals(other.HitlistID)
-                ) &&
-                (
-                    this.HistlistType == other.HistlistType ||
-                    this.HistlistType != null &&
-                    this.HistlistType.Equals(other.HistlistType)
-                ) &&
-                (
-                    this.NumberOfHits == other.NumberOfHits ||
-                    this.NumberOfHits != null &&
-                    this.NumberOfHits.Equals(other.NumberOfHits)
-                ) &&
-                (
-                    this.IsPublic == other.IsPublic ||
-                    this.IsPublic != null &&
-                    this.IsPublic.Equals(other.IsPublic)
-                ) &&
-                (
-                    this.SearchCriteriaID == other.SearchCriteriaID ||
-                    this.SearchCriteriaID != null &&
-                    this.SearchCriteriaID.Equals(other.SearchCriteriaID)
-                ) &&
-                (
-                    this.SearchCriteriaType == other.SearchCriteriaType ||
-                    this.SearchCriteriaType != null &&
-                    this.SearchCriteriaType.Equals(other.SearchCriteriaType)
-                ) &&
-                (
-                    this.Name == other.Name ||
-                    this.Name != null &&
-                    this.Name.Equals(other.Name)
-                ) &&
-                (
-                    this.Description == other.Description ||
-                    this.Description != null &&
-                    this.Description.Equals(other.Description)
-                ) &&
-                (
-                    this.MarkedHitIDs == other.MarkedHitIDs ||
-                    this.MarkedHitIDs != null &&
-                    this.MarkedHitIDs.SequenceEqual(other.MarkedHitIDs)
-                ) &&
-                 (
-                    this.DateCreated.Date == other.DateCreated.Date ||
-                    this.DateCreated.Date != null &&
-                    this.DateCreated.Equals(other.DateCreated.Date)
-                );
+            return (
+                ID == other.ID ||
+                (ID != null && ID.Equals(other.ID))
+            ) && (
+                HitlistID == other.HitlistID ||
+                (HitlistID != null && HitlistID.Equals(other.HitlistID))
+            ) && (
+                HistlistType == other.HistlistType ||
+                HistlistType.Equals(other.HistlistType)
+            ) && (
+                NumberOfHits == other.NumberOfHits ||
+                (NumberOfHits != null && NumberOfHits.Equals(other.NumberOfHits))
+            ) && (
+                IsPublic == other.IsPublic || (IsPublic != null && IsPublic.Equals(other.IsPublic))
+            ) && (
+                SearchCriteriaID == other.SearchCriteriaID ||
+                (SearchCriteriaID != null && SearchCriteriaID.Equals(other.SearchCriteriaID))
+            ) && (
+                SearchCriteriaType == other.SearchCriteriaType ||
+                SearchCriteriaType.Equals(other.SearchCriteriaType)
+            ) && (
+                Name == other.Name ||
+                (Name != null && Name.Equals(other.Name))
+            ) && (
+                Description == other.Description ||
+                (Description != null && Description.Equals(other.Description))
+            ) && (
+                MarkedHitIDs == other.MarkedHitIDs ||
+                (MarkedHitIDs != null && MarkedHitIDs.SequenceEqual(other.MarkedHitIDs))
+            ) && (
+                DateCreated.Date == other.DateCreated.Date ||
+                (DateCreated.Date != null && DateCreated.Equals(other.DateCreated.Date))
+            );
         }
 
         /// <summary>
@@ -253,45 +244,28 @@ namespace PerkinElmer.COE.Registration.Server.Models
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.ID != null)
-                    hash = (hash * 59) + this.ID.GetHashCode();
-                if (this.HitlistID != null)
-                    hash = (hash * 59) + this.HitlistID.GetHashCode();
-                if (this.HistlistType != null)
-                    hash = hash * 59 + this.HistlistType.GetHashCode();
-                if (this.NumberOfHits != null)
-                    hash = (hash * 59) + this.NumberOfHits.GetHashCode();
-                if (this.IsPublic != null)
-                    hash = (hash * 59) + this.IsPublic.GetHashCode();
-                if (this.SearchCriteriaID != null)
-                    hash = (hash * 59) + this.SearchCriteriaID.GetHashCode();
-                if (this.SearchCriteriaType != null)
-                    hash = (hash * 59) + this.SearchCriteriaType.GetHashCode();
-                if (this.Name != null)
-                    hash = (hash * 59) + this.Name.GetHashCode();
-                if (this.Description != null)
-                    hash = (hash * 59) + this.Description.GetHashCode();
-                if (this.MarkedHitIDs != null)
-                    hash = (hash * 59) + this.MarkedHitIDs.GetHashCode();
-                if (this.DateCreated != null)
-                    hash = (hash * 59) + this.DateCreated.GetHashCode();
+                if (ID != null)
+                    hash = (hash * 59) + ID.GetHashCode();
+                if (HitlistID != null)
+                    hash = (hash * 59) + HitlistID.GetHashCode();
+                hash = (hash * 59) + HistlistType.GetHashCode();
+                if (NumberOfHits != null)
+                    hash = (hash * 59) + NumberOfHits.GetHashCode();
+                if (IsPublic != null)
+                    hash = (hash * 59) + IsPublic.GetHashCode();
+                if (SearchCriteriaID != null)
+                    hash = (hash * 59) + SearchCriteriaID.GetHashCode();
+                hash = (hash * 59) + SearchCriteriaType.GetHashCode();
+                if (Name != null)
+                    hash = (hash * 59) + Name.GetHashCode();
+                if (Description != null)
+                    hash = (hash * 59) + Description.GetHashCode();
+                if (MarkedHitIDs != null)
+                    hash = (hash * 59) + MarkedHitIDs.GetHashCode();
+                if (DateCreated != null)
+                    hash = (hash * 59) + DateCreated.GetHashCode();
                 return hash;
             }
         }
-
-        #region Operators
-
-        public static bool operator ==(Hitlist left, Hitlist right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Hitlist left, Hitlist right)
-        {
-            return !Equals(left, right);
-        }
-
-        #endregion Operators
-
     }
 }

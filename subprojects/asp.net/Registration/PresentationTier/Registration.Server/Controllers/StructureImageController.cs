@@ -27,8 +27,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             queryParams.Add(":id", compoundId);
             var structureData = (string)ExtractData(string.Format("SELECT {0} data FROM {1} WHERE {2}=:id", f[0], f[1], f[2]), queryParams)[0]["DATA"];
             var args = new object[] { structureData, "image/png", (double)height, (double)width, resolution.ToString() };
-            return (string)typeof(COEChemDrawConverterUtils).GetMethod("GetStructureResource", BindingFlags.Static | BindingFlags.NonPublic, null,
-                new System.Type[] { typeof(string), typeof(string), typeof(double), typeof(double), typeof(string) }, null).Invoke(null, args);
+            return (string)typeof(COEChemDrawConverterUtils).GetMethod(
+                "GetStructureResource",
+                BindingFlags.Static | BindingFlags.NonPublic,
+                null,
+                new System.Type[] { typeof(string), typeof(string), typeof(double), typeof(double), typeof(string) },
+                null
+            ).Invoke(null, args);
         }
 
         [Route(Consts.apiPrefix + "StructureImage/{type}/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]

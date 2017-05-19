@@ -24,15 +24,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new RecordColumn[]
                 {
-                    new RecordColumn{definition = "BATCHID", sortable = true}, 
-                    new RecordColumn{definition = "TEMPBATCHID", sortable = true}, 
-                    new RecordColumn{definition = "BATCHNUMBER", sortable = true}, 
-                    new RecordColumn{definition = "FULLREGNUMBER", sortable = true}, 
-                    new RecordColumn{definition = "DATECREATED", sortable = true}, 
-                    new RecordColumn{definition = "PERSONCREATED", sortable = true}, 
-                    new RecordColumn{definition = "PERSONREGISTERED", sortable = true}, 
-                    new RecordColumn{definition = "PERSONAPPROVED", sortable = true}, 
-                    new RecordColumn{definition = "DATELASTMODIFIED", sortable = true}
+                    new RecordColumn { Definitions = "BATCHID", Sortable = true },
+                    new RecordColumn { Definitions = "TEMPBATCHID", Sortable = true }, 
+                    new RecordColumn { Definitions = "BATCHNUMBER", Sortable = true }, 
+                    new RecordColumn { Definitions = "FULLREGNUMBER", Sortable = true }, 
+                    new RecordColumn { Definitions = "DATECREATED", Sortable = true }, 
+                    new RecordColumn { Definitions = "PERSONCREATED", Sortable = true }, 
+                    new RecordColumn { Definitions = "PERSONREGISTERED", Sortable = true }, 
+                    new RecordColumn { Definitions = "PERSONAPPROVED", Sortable = true }, 
+                    new RecordColumn { Definitions = "DATELASTMODIFIED", Sortable = true }
                 };
             }
         }
@@ -44,6 +44,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </remarks>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Invalid request</response>
+        /// <returns>A promise to return an <see cref="IHttpActionResult"/> object</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("GetAllBatches")]
@@ -62,11 +63,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
-        /// Returns the list of all batches by RegID
+        /// Returns the list of all batches for the specified registration ID
         /// </summary>
-        /// <remarks>Returns the list of all batches corresponding to the specified parameters
-        /// </remarks>
         /// <response code="200">Successful operation</response>
+        /// <param name="id">The ID of the registration record</param>
+        /// <param name="skip">The number of items to skip</param>
+        /// <param name="count">The maximum number of items to return</param>
+        /// <param name="sort">The sorting information</param>
+        /// <returns>The promise to return an <see cref="IHttpActionResult"/> object</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "batches/{id}/records")]
         [SwaggerOperation("GetBatches")]

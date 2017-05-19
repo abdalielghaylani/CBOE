@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Dynamic;
 using System.Linq;
@@ -16,7 +17,6 @@ using CambridgeSoft.COE.Framework.Controls.COETableManager;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
-using System.Collections.ObjectModel;
 using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers

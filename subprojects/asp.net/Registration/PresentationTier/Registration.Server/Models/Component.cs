@@ -31,15 +31,15 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <param name="normalizedStructure">NormalizedStructure</param>
         public Component(int? id = default(int?), CambridgeSoft.COE.Registration.Services.Types.Compound compound = default(CambridgeSoft.COE.Registration.Services.Types.Compound), int? componentIndex = default(int?), double? percentage = default(double?), int? structureId = default(int?), string struct_Name = default(string), string struct_Comments = default(string), string cmp_Comments = default(string), double? molecularFormula = default(double?), double? formulaWeight = default(double?), string normalizedStructure = default(string))
         {
-            this.ID = id;
-            this.Compound = compound;
-            this.ComponentIndex = componentIndex;
-            this.Percentage = percentage;
-            this.StructureId = structureId;
-            this.Struct_Name = struct_Name;
-            this.Stuct_Comments = struct_Comments;
-            this.Cmp_Comments = cmp_Comments;
-            this.MolecularFormula = molecularFormula;
+            ID = id;
+            Compound = compound;
+            ComponentIndex = componentIndex;
+            Percentage = percentage;
+            StructureId = structureId;
+            Struct_Name = struct_Name;
+            Stuct_Comments = struct_Comments;
+            Cmp_Comments = cmp_Comments;
+            MolecularFormula = molecularFormula;
             this.FormulaWeight = formulaWeight;
             this.NormalizedStructure = normalizedStructure;
         }
@@ -164,40 +164,29 @@ namespace PerkinElmer.COE.Registration.Server.Models
             if (other == null)
                 return false;
 
-            return
-                (
-                    this.ID == other.ID || this.ID != null && this.ID.Equals(other.ID)
-                ) &&
-                (
-                    this.Compound == other.Compound || this.Compound != null && this.Compound.Equals(other.Compound)
-                ) &&
-                (
-                    this.ComponentIndex == other.ComponentIndex || this.ComponentIndex != null && this.ComponentIndex.Equals(other.ComponentIndex)
-                ) &&
-                (
-                    this.Percentage == other.Percentage || this.Percentage != null && this.Percentage.Equals(other.Percentage)
-                ) &&
-                (
-                    this.StructureId == other.StructureId || this.StructureId != null && this.StructureId.Equals(other.StructureId)
-                ) &&
-                (
-                    this.Struct_Name == other.Struct_Name || this.Struct_Name != null && this.Struct_Name.Equals(other.Struct_Name)
-                ) &&
-                (
-                    this.Stuct_Comments == other.Stuct_Comments || this.Stuct_Comments != null && this.Stuct_Comments.Equals(other.Stuct_Comments)
-                ) &&
-                (
-                    this.Cmp_Comments == other.Cmp_Comments || this.StructureId != null && this.StructureId.Equals(other.StructureId)
-                ) &&
-                (
-                    this.MolecularFormula == other.MolecularFormula || this.MolecularFormula != null && this.MolecularFormula.Equals(other.MolecularFormula)
-                ) &&
-                (
-                    this.FormulaWeight == other.FormulaWeight || this.FormulaWeight != null && this.FormulaWeight.Equals(other.FormulaWeight)
-                ) &&
-                (
-                    this.NormalizedStructure == other.NormalizedStructure || this.NormalizedStructure != null && this.NormalizedStructure.Equals(other.NormalizedStructure)
-                );
+            return (
+                ID == other.ID || (ID != null && ID.Equals(other.ID))
+            ) && (
+                Compound == other.Compound || (Compound != null && Compound.Equals(other.Compound))
+            ) && (
+                ComponentIndex == other.ComponentIndex || (ComponentIndex != null && ComponentIndex.Equals(other.ComponentIndex))
+            ) && (
+                Percentage == other.Percentage || (Percentage != null && Percentage.Equals(other.Percentage))
+            ) && (
+                StructureId == other.StructureId || (StructureId != null && StructureId.Equals(other.StructureId))
+            ) && (
+                Struct_Name == other.Struct_Name || (Struct_Name != null && Struct_Name.Equals(other.Struct_Name))
+            ) && (
+                Stuct_Comments == other.Stuct_Comments || (Stuct_Comments != null && Stuct_Comments.Equals(other.Stuct_Comments))
+            ) && (
+                Cmp_Comments == other.Cmp_Comments || (StructureId != null && StructureId.Equals(other.StructureId))
+            ) && (
+                MolecularFormula == other.MolecularFormula || (MolecularFormula != null && MolecularFormula.Equals(other.MolecularFormula))
+            ) && (
+                FormulaWeight == other.FormulaWeight || (FormulaWeight != null && FormulaWeight.Equals(other.FormulaWeight))
+            ) && (
+                NormalizedStructure == other.NormalizedStructure || (NormalizedStructure != null && NormalizedStructure.Equals(other.NormalizedStructure))
+            );
         }
 
         /// <summary> 
@@ -212,28 +201,28 @@ namespace PerkinElmer.COE.Registration.Server.Models
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.ID != null)
-                    hash = (hash * 59) + this.ID.GetHashCode();
-                if (this.Compound != null)
-                    hash = (hash * 59) + this.Compound.GetHashCode();
-                if (this.ComponentIndex != null)
-                    hash = (hash * 59) + this.ComponentIndex.GetHashCode();
-                if (this.Percentage != null)
-                    hash = (hash * 59) + this.Percentage.GetHashCode();
-                if (this.StructureId != null)
-                    hash = (hash * 59) + this.StructureId.GetHashCode();
-                if (this.Struct_Name != null)
-                    hash = (hash * 59) + this.Struct_Name.GetHashCode();
-                if (this.Stuct_Comments != null)
-                    hash = (hash * 59) + this.Stuct_Comments.GetHashCode();
-                if (this.Cmp_Comments != null)
-                    hash = (hash * 59) + this.Cmp_Comments.GetHashCode();
-                if (this.MolecularFormula != null)
-                    hash = (hash * 59) + this.MolecularFormula.GetHashCode();
-                if (this.FormulaWeight != null)
-                    hash = (hash * 59) + this.FormulaWeight.GetHashCode();
-                if (this.NormalizedStructure != null)
-                    hash = (hash * 59) + this.NormalizedStructure.GetHashCode();
+                if (ID != null)
+                    hash = (hash * 59) + ID.GetHashCode();
+                if (Compound != null)
+                    hash = (hash * 59) + Compound.GetHashCode();
+                if (ComponentIndex != null)
+                    hash = (hash * 59) + ComponentIndex.GetHashCode();
+                if (Percentage != null)
+                    hash = (hash * 59) + Percentage.GetHashCode();
+                if (StructureId != null)
+                    hash = (hash * 59) + StructureId.GetHashCode();
+                if (Struct_Name != null)
+                    hash = (hash * 59) + Struct_Name.GetHashCode();
+                if (Stuct_Comments != null)
+                    hash = (hash * 59) + Stuct_Comments.GetHashCode();
+                if (Cmp_Comments != null)
+                    hash = (hash * 59) + Cmp_Comments.GetHashCode();
+                if (MolecularFormula != null)
+                    hash = (hash * 59) + MolecularFormula.GetHashCode();
+                if (FormulaWeight != null)
+                    hash = (hash * 59) + FormulaWeight.GetHashCode();
+                if (NormalizedStructure != null)
+                    hash = (hash * 59) + NormalizedStructure.GetHashCode();
                 return hash;
             }
         }

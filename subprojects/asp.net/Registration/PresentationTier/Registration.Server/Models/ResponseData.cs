@@ -39,7 +39,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public int? Id { get; set; }
 
         /// <summary>
-        /// Gets or sets RegNumber
+        /// Gets or sets registration number
         /// </summary>
         [DataMember(Name = "regNumber")]
         public string RegNumber { get; set; }

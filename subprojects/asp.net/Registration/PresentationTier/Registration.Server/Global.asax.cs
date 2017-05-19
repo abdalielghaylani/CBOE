@@ -58,8 +58,7 @@ namespace PerkinElmer.COE.Registration.Server
                 error = serverEx.Message;
                 try
                 {
-                    System.Diagnostics.EventLog.WriteEntry("COERegistrationWeb", serverEx.ToString(),
-                        System.Diagnostics.EventLogEntryType.Error);
+                    System.Diagnostics.EventLog.WriteEntry("COERegistrationWeb", serverEx.ToString(), System.Diagnostics.EventLogEntryType.Error);
                 }
                 catch
                 {

@@ -20,36 +20,36 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Batch" /> class.
         /// </summary>
-        /// <param name="id">ID.</param>
-        /// <param name="tempBatchID">TempBatchID.</param>
-        /// <param name="batchNumber">BatchNumber.</param>
-        /// <param name="fullRegNumber">FullRegNumber.</param>
-        /// <param name="dateCreated">DateCreated.</param>
-        /// <param name="personCreated">PersonCreated.</param>
-        /// <param name="personRegistered">PersonRegistered.</param>
-        /// <param name="personApproved">PersonApproved.</param>
-        /// <param name="dateLastModified">DateLastModified.</param>
-        /// <param name="status">Status.</param>
-        /// <param name="projectList">ProjectList.</param>
-        /// <param name="propertyList">PropertyList.</param>
-        /// <param name="identifierList">IdentifierList.</param>
-        /// <param name="batchComponentList">BatchComponentList.</param>
+        /// <param name="id">ID</param>
+        /// <param name="tempBatchID">Temporary batch ID</param>
+        /// <param name="batchNumber">Batch number.</param>
+        /// <param name="fullRegNumber">Full registration  number</param>
+        /// <param name="dateCreated">Date created</param>
+        /// <param name="personCreated">Person created</param>
+        /// <param name="personRegistered">Person registered</param>
+        /// <param name="personApproved">Person approved</param>
+        /// <param name="dateLastModified">Date last modified</param>
+        /// <param name="status">Status</param>
+        /// <param name="projectList">Project list</param>
+        /// <param name="propertyList">Property list</param>
+        /// <param name="identifierList">Identifier list</param>
+        /// <param name="batchComponentList">Batch component list</param>
         public Batch(int? id = default(int?), int? tempBatchID = default(int?), int? batchNumber = default(int?), string fullRegNumber = default(string), DateTime? dateCreated = default(DateTime?), int? personCreated = default(int?), int? personRegistered = default(int?), int? personApproved = default(int?), DateTime? dateLastModified = default(DateTime?), RegistryStatus status = default(RegistryStatus), ProjectList projectList = default(ProjectList), PropertyList propertyList = default(PropertyList), IdentifierList identifierList = default(IdentifierList), BatchComponentList batchComponentList = default(BatchComponentList))
         {
-            this.ID = id;
-            this.TempBatchID = tempBatchID;
-            this.BatchNumber = batchNumber;
-            this.FullRegNumber = fullRegNumber;
-            this.DateCreated = dateCreated;
-            this.PersonCreated = personCreated;
-            this.PersonRegistered = personRegistered;
-            this.PersonApproved = personApproved;
-            this.DateLastModified = dateLastModified;
-            this.Status = status;
-            this.ProjectList = projectList;
-            this.PropertyList = propertyList;
-            this.IdentifierList = identifierList;
-            this.BatchComponentList = batchComponentList;
+            ID = id;
+            TempBatchID = tempBatchID;
+            BatchNumber = batchNumber;
+            FullRegNumber = fullRegNumber;
+            DateCreated = dateCreated;
+            PersonCreated = personCreated;
+            PersonRegistered = personRegistered;
+            PersonApproved = personApproved;
+            DateLastModified = dateLastModified;
+            Status = status;
+            ProjectList = projectList;
+            PropertyList = propertyList;
+            IdentifierList = identifierList;
+            BatchComponentList = batchComponentList;
         }
 
         /// <summary>
@@ -193,77 +193,35 @@ namespace PerkinElmer.COE.Registration.Server.Models
             if (other == null)
                 return false;
 
-            return
-                (
-                    this.ID == other.ID ||
-                    this.ID != null &&
-                    this.ID.Equals(other.ID)
-                ) &&
-                (
-                    this.TempBatchID == other.TempBatchID ||
-                    this.TempBatchID != null &&
-                    this.TempBatchID.Equals(other.TempBatchID)
-                ) &&
-                (
-                    this.BatchNumber == other.BatchNumber ||
-                    this.BatchNumber != null &&
-                    this.BatchNumber.Equals(other.BatchNumber)
-                ) &&
-                (
-                    this.FullRegNumber == other.FullRegNumber ||
-                    this.FullRegNumber != null &&
-                    this.FullRegNumber.Equals(other.FullRegNumber)
-                ) &&
-                (
-                    this.DateCreated == other.DateCreated ||
-                    this.DateCreated != null &&
-                    this.DateCreated.Equals(other.DateCreated)
-                ) &&
-                (
-                    this.PersonCreated == other.PersonCreated ||
-                    this.PersonCreated != null &&
-                    this.PersonCreated.Equals(other.PersonCreated)
-                ) &&
-                (
-                    this.PersonRegistered == other.PersonRegistered ||
-                    this.PersonRegistered != null &&
-                    this.PersonRegistered.Equals(other.PersonRegistered)
-                ) &&
-                (
-                    this.PersonApproved == other.PersonApproved ||
-                    this.PersonApproved != null &&
-                    this.PersonApproved.Equals(other.PersonApproved)
-                ) &&
-                (
-                    this.DateLastModified == other.DateLastModified ||
-                    this.DateLastModified != null &&
-                    this.DateLastModified.Equals(other.DateLastModified)
-                ) &&
-                (
-                    this.Status == other.Status ||
-                    this.Status != null &&
-                    this.Status.Equals(other.Status)
-                ) &&
-                (
-                    this.ProjectList == other.ProjectList ||
-                    this.ProjectList != null &&
-                    this.ProjectList.Equals(other.ProjectList)
-                ) &&
-                (
-                    this.PropertyList == other.PropertyList ||
-                    this.PropertyList != null &&
-                    this.PropertyList.Equals(other.PropertyList)
-                ) &&
-                (
-                    this.IdentifierList == other.IdentifierList ||
-                    this.IdentifierList != null &&
-                    this.IdentifierList.Equals(other.IdentifierList)
-                ) &&
-                (
-                    this.BatchComponentList == other.BatchComponentList ||
-                    this.BatchComponentList != null &&
-                    this.BatchComponentList.Equals(other.BatchComponentList)
-                );
+            return (
+                ID == other.ID || (ID != null && ID.Equals(other.ID))
+            ) && (
+                TempBatchID == other.TempBatchID || (TempBatchID != null && TempBatchID.Equals(other.TempBatchID))
+            ) && (
+                BatchNumber == other.BatchNumber || (BatchNumber != null && BatchNumber.Equals(other.BatchNumber))
+            ) && (
+                FullRegNumber == other.FullRegNumber || (FullRegNumber != null && FullRegNumber.Equals(other.FullRegNumber))
+            ) && (
+                DateCreated == other.DateCreated || (DateCreated != null && DateCreated.Equals(other.DateCreated))
+            ) && (
+                PersonCreated == other.PersonCreated || (PersonCreated != null && PersonCreated.Equals(other.PersonCreated))
+            ) && (
+                PersonRegistered == other.PersonRegistered || (PersonRegistered != null && PersonRegistered.Equals(other.PersonRegistered))
+            ) && (
+                PersonApproved == other.PersonApproved || (PersonApproved != null && PersonApproved.Equals(other.PersonApproved))
+            ) && (
+                DateLastModified == other.DateLastModified || (DateLastModified != null && DateLastModified.Equals(other.DateLastModified))
+            ) && (
+                Status == other.Status || Status.Equals(other.Status)
+            ) && (
+                ProjectList == other.ProjectList || (ProjectList != null && ProjectList.Equals(other.ProjectList))
+            ) && (
+                PropertyList == other.PropertyList || (PropertyList != null && PropertyList.Equals(other.PropertyList))
+            ) && (
+                IdentifierList == other.IdentifierList || (IdentifierList != null && IdentifierList.Equals(other.IdentifierList))
+            ) && (
+                BatchComponentList == other.BatchComponentList || (BatchComponentList != null && BatchComponentList.Equals(other.BatchComponentList))
+            );
         }
 
         /// <summary>
@@ -278,34 +236,33 @@ namespace PerkinElmer.COE.Registration.Server.Models
             {
                 int hash = 41;
                 // Suitable nullity checks etc, of course :)
-                if (this.ID != null)
-                    hash = (hash * 59) + this.ID.GetHashCode();
-                if (this.TempBatchID != null)
-                    hash = (hash * 59) + this.TempBatchID.GetHashCode();
-                if (this.BatchNumber != null)
-                    hash = (hash * 59) + this.BatchNumber.GetHashCode();
-                if (this.FullRegNumber != null)
-                    hash = (hash * 59) + this.FullRegNumber.GetHashCode();
-                if (this.DateCreated != null)
-                    hash = (hash * 59) + this.DateCreated.GetHashCode();
-                if (this.PersonCreated != null)
-                    hash = (hash * 59) + this.PersonCreated.GetHashCode();
-                if (this.PersonRegistered != null)
-                    hash = (hash * 59) + this.PersonRegistered.GetHashCode();
-                if (this.PersonApproved != null)
-                    hash = (hash * 59) + this.PersonApproved.GetHashCode();
-                if (this.DateLastModified != null)
-                    hash = (hash * 59) + this.DateLastModified.GetHashCode();
-                if (this.Status != null)
-                    hash = (hash * 59) + this.Status.GetHashCode();
-                if (this.ProjectList != null)
-                    hash = (hash * 59) + this.ProjectList.GetHashCode();
-                if (this.PropertyList != null)
-                    hash = (hash * 59) + this.PropertyList.GetHashCode();
-                if (this.IdentifierList != null)
-                    hash = (hash * 59) + this.IdentifierList.GetHashCode();
-                if (this.BatchComponentList != null)
-                    hash = (hash * 59) + this.BatchComponentList.GetHashCode();
+                if (ID != null)
+                    hash = (hash * 59) + ID.GetHashCode();
+                if (TempBatchID != null)
+                    hash = (hash * 59) + TempBatchID.GetHashCode();
+                if (BatchNumber != null)
+                    hash = (hash * 59) + BatchNumber.GetHashCode();
+                if (FullRegNumber != null)
+                    hash = (hash * 59) + FullRegNumber.GetHashCode();
+                if (DateCreated != null)
+                    hash = (hash * 59) + DateCreated.GetHashCode();
+                if (PersonCreated != null)
+                    hash = (hash * 59) + PersonCreated.GetHashCode();
+                if (PersonRegistered != null)
+                    hash = (hash * 59) + PersonRegistered.GetHashCode();
+                if (PersonApproved != null)
+                    hash = (hash * 59) + PersonApproved.GetHashCode();
+                if (DateLastModified != null)
+                    hash = (hash * 59) + DateLastModified.GetHashCode();
+                hash = (hash * 59) + Status.GetHashCode();
+                if (ProjectList != null)
+                    hash = (hash * 59) + ProjectList.GetHashCode();
+                if (PropertyList != null)
+                    hash = (hash * 59) + PropertyList.GetHashCode();
+                if (IdentifierList != null)
+                    hash = (hash * 59) + IdentifierList.GetHashCode();
+                if (BatchComponentList != null)
+                    hash = (hash * 59) + BatchComponentList.GetHashCode();
                 return hash;
             }
         }

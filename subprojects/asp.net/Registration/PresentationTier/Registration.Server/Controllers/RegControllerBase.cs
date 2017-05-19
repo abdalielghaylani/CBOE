@@ -235,18 +235,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected class RecordColumn
         {
-            public string definition;
-            public string label;
-            public bool sortable;
+            public string Definitions { get; set; }
+
+            public string Label { get; set; }
+
+            public bool Sortable { get; set; }
         }
 
         protected static string CleanupSortTerm(RecordColumn[] columns, string sortTerm)
         {
             var desc = sortTerm.EndsWith(sortDesc);
             var t = sortTerm.Replace(sortDesc, string.Empty).Replace(sortAsc, string.Empty).Trim();
-            var dc = columns.FirstOrDefault(c => c.definition.Equals(t));
-            if (dc == null) dc = columns.FirstOrDefault(c => c.label != null && c.label.Equals(t));
-            t = dc == null ? string.Empty : dc.definition;
+            var dc = columns.FirstOrDefault(c => c.Definitions.Equals(t));
+            if (dc == null) dc = columns.FirstOrDefault(c => c.Label != null && c.Label.Equals(t));
+            t = dc == null ? string.Empty : dc.Definitions;
             if (desc) t += sortDesc;
             return t;
         }
@@ -257,15 +259,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new RecordColumn[]
                 {
-                    new RecordColumn{ definition = "regid", label = "id", sortable = true },
-                    new RecordColumn{ definition = "name", sortable = true },
-                    new RecordColumn{ definition = "created", sortable = true },
-                    new RecordColumn{ definition = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label = "creator", sortable = true },
-                    new RecordColumn{ definition = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false },
-                    new RecordColumn{ definition = "regnumber", sortable = true },
-                    new RecordColumn{ definition = "statusid", label = "status", sortable = true },
-                    new RecordColumn{ definition = "approved", sortable = true }
+                    new RecordColumn { Definitions = "regid", Label = "id", Sortable = true },
+                    new RecordColumn { Definitions = "name", Sortable = true },
+                    new RecordColumn { Definitions = "created", Sortable = true },
+                    new RecordColumn { Definitions = "modified", Sortable = true },
+                    new RecordColumn { Definitions = "personcreated", Label = "creator", Sortable = true },
+                    new RecordColumn { Definitions = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false },
+                    new RecordColumn { Definitions = "regnumber", Sortable = true },
+                    new RecordColumn { Definitions = "statusid", Label = "status", Sortable = true },
+                    new RecordColumn { Definitions = "approved", Sortable = true }
                 };
             }
         }
@@ -276,21 +278,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new RecordColumn[]
                 {
-                    new RecordColumn{ definition = "tempcompoundid", label = "id", sortable = true },
-                    new RecordColumn{ definition = "tempbatchid", label = "batchid", sortable = true },
-                    new RecordColumn{ definition = "formulaweight", label = "mw", sortable = true },
-                    new RecordColumn{ definition = "molecularformula", label = "mf", sortable = true },
-                    new RecordColumn{ definition = "datecreated", label = "created", sortable = true },
-                    new RecordColumn{ definition = "datelastmodified", label = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label = "creator", sortable = true },
-                    new RecordColumn{ definition = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false }
+                    new RecordColumn { Definitions = "tempcompoundid", Label = "id", Sortable = true },
+                    new RecordColumn { Definitions = "tempbatchid", Label = "batchid", Sortable = true },
+                    new RecordColumn { Definitions = "formulaweight", Label = "mw", Sortable = true },
+                    new RecordColumn { Definitions = "molecularformula", Label = "mf", Sortable = true },
+                    new RecordColumn { Definitions = "datecreated", Label = "created", Sortable = true },
+                    new RecordColumn { Definitions = "datelastmodified", Label = "modified", Sortable = true },
+                    new RecordColumn { Definitions = "personcreated", Label = "creator", Sortable = true },
+                    new RecordColumn { Definitions = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false }
                 };
             }
         }
 
         protected static string GetSelectTerms(RecordColumn[] columns)
         {
-            return string.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
+            return string.Join(", ", columns.Select(c => c.Definitions + (c.Label != null ? " " + c.Label : string.Empty)));
         }
 
         protected static string GetSortTerms(RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)

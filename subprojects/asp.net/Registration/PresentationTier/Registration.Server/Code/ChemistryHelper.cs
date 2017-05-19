@@ -20,8 +20,8 @@ namespace PerkinElmer.COE.Registration.Server.Code
             var assemblyName = Assembly.GetCallingAssembly().GetName().Name;
             dynamic cacheableChemDrawCtl = (object)CambridgeSoft.COE.Framework.Caching.CacheableChemdrawControl.GetCachedChemdrawControl(assemblyName);
             dynamic chemDrawCtl = cacheableChemDrawCtl.Control;
-            dynamic cdObjects = chemDrawCtl.Objects;
-            cdObjects.Clear();
+            dynamic chemDrawObjects = chemDrawCtl.Objects;
+            chemDrawObjects.Clear();
             chemDrawCtl.DataEncoded = true;
             chemDrawCtl.set_Data(fromType, fromData);
             return chemDrawCtl.get_Data(toType);
