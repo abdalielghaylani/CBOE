@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Dynamic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Microsoft.Web.Http;
+using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Framework.COETableEditorService;
+using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Common;
+using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.Controls.COETableManager;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Registration.Services.Types;
@@ -129,6 +126,57 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 column.FieldValue = columnValue;
             }
+        }
+
+        private bool CheckCustomPropertyName(ConfigurationRegistryRecord configurationBO, int formId, string propertyId)
+        {
+            if (string.IsNullOrEmpty(propertyId)) return false;
+            var propertyName = propertyId.Replace("Property", string.Empty);
+            var batchFormIngoreFields = new string[] { "FORMULA_WEIGHT", "BATCH_FORMULA", "PERCENT_ACTIVE" };
+            if (formId == COEFormHelper.BATCHSUBFORMINDEX && batchFormIngoreFields.Contains(propertyName)) return false;
+            var propertyList = formId == COEFormHelper.MIXTURESUBFORMINDEX ? configurationBO.PropertyList :
+                formId == COEFormHelper.COMPOUNDSUBFORMINDEX ? configurationBO.CompoundPropertyList :
+                formId == COEFormHelper.STRUCTURESUBFORMINDEX ? configurationBO.StructurePropertyList :
+                formId == COEFormHelper.BATCHSUBFORMINDEX ? configurationBO.BatchPropertyList :
+                configurationBO.BatchComponentList;
+            var propertyListEnumerable = (IEnumerable<Property>)propertyList;
+            return propertyListEnumerable.FirstOrDefault(p => p.Name == propertyName) != null;
+        }
+
+        private JArray GetCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, List<FormGroup.FormElement> formElement)
+        {
+            var data = new JArray();
+            foreach (var element in formElement)
+            {
+                if (!CheckCustomPropertyName(configurationBO, formId, element.Id)) continue;
+                var name = element.Id.Replace("Property", string.Empty);
+                if (string.IsNullOrEmpty(element.DisplayInfo.Assembly))
+                {
+                    var prop = new JObject(
+                        new JProperty("name", name),
+                        new JProperty("controlType", element.DisplayInfo.Type),
+                        new JProperty("label", element.Label),
+                        new JProperty("cssClass", element.DisplayInfo.CSSClass),
+                        new JProperty("visible", element.DisplayInfo.Visible)
+                    );
+                    data.Add(prop);
+                }
+            }
+            return data;
+        }
+
+        private JArray GetCustomFormData(ConfigurationRegistryRecord configurationBO, FormGroup.Form form)
+        {
+            var data = new JArray();
+            if (form.LayoutInfo.Count > 0)
+                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.LayoutInfo)));
+            if (form.AddMode.Count > 0)
+                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.AddMode)));
+            if (form.EditMode.Count > 0)
+                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.EditMode)));
+            if (form.ViewMode.Count > 0)
+                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.ViewMode)));
+            return data;
         }
 
         [HttpGet]
@@ -298,8 +346,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 var formList = new JArray();
-                return formList;
+                var formBO = COEFormBO.Get(4010);
+                var detailsForms = formBO.COEFormGroup.DetailsForms;
+                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX))));
+                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX))));
+                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX))));
+                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX))));
+                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX))));
+                return formList.GroupBy(d => d["name"]).Select(g => g.First());
             });
         }
 
