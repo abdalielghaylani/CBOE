@@ -1,5 +1,6 @@
 import { IAppState } from '../../store';
 import { FormGroupType, CFormGroup, CFormElement } from '../../common';
+import * as X2JS from 'x2js';
 
 export class CRegSearchVM {
   data: any = {};
@@ -28,11 +29,9 @@ function buildPropertyList(vm: any, formElement: any, state: IAppState, coeFormI
         let column = getPropertyColumn(p, coeFormId, state);
         if (column) {
           vm.columns.push(column);
+          vm.data[column.dataField] = undefined;
         }
       }
-    });
-    vm.columns.forEach(e => {
-      vm.data[e.dataField] = undefined;
     });
   }
 }
@@ -44,7 +43,8 @@ function getPropertyColumn(p: any, coeFormId: Number, state: IAppState): any {
   let column: any = {
     dataField: p._name,
     dataType: p._type === 'DATE' ? 'date' : 'string',
-    validationRules: []
+    validationRules: [],
+    searchCriteriaItem: p.searchCriteriaItem
   };
   if (p.label) {
     column.label = { text: p.label };

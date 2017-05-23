@@ -18,6 +18,7 @@ import { IAppState, ISearchRecords } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawingTool } from '../../common/tool';
 import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
+import * as X2JS from 'x2js';
 
 declare var jQuery: any;
 
@@ -39,6 +40,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @ViewChild(ChemDrawingTool)
   private chemDrawWeb: ChemDrawingTool;
   public formGroup: CFormGroup;
+  private searchCriteriaXml: string;
   @select(s => s.session.lookups) lookups$: Observable<any>;
 
   constructor(
@@ -68,9 +70,33 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
       this.chemDrawWeb.activate();
     }
   }
-
   search() {
+    this.generateSearchCriteriaXML(this.regSearch);
     this.regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();
+  }
+
+  generateSearchCriteriaXML(c: regSearchTypes.CSearchFormVM) {
+    this.searchCriteriaXml = '';
+    this.searchCriteriaXml = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
+    this.getSearchCriteria(this.regSearch.registrySearchVM, this);
+    this.getSearchCriteria(this.regSearch.structureSearchVM, this);
+    this.getSearchCriteria(this.regSearch.componentSearchVM, this);
+    this.getSearchCriteria(this.regSearch.batchSearchVM, this);
+    this.searchCriteriaXml = this.searchCriteriaXml + '</searchCriteria>';
+  }
+
+  getSearchCriteria(c: any, vm: any) {
+    c.columns.forEach(e => {
+      let m = vm.regSearch.registrySearchVM;
+      if (m.data[e.dataField]) {
+        for (const prop in e.searchCriteriaItem) {
+          if (typeof e.searchCriteriaItem[prop] === 'object') {
+            e.searchCriteriaItem[prop].__text = m.data[e.dataField];
+          }
+        }
+      }
+      vm.searchCriteriaXml = vm.searchCriteriaXml + new X2JS.default().js2xml({ searchCriteriaItem: e.searchCriteriaItem });
+    });
   }
 
   clear() {
