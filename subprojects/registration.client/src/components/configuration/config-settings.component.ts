@@ -31,7 +31,7 @@ export class RegConfigSettings implements OnInit, OnDestroy {
   private gridHeight: string;
   private dataSource: CustomStore;
   private columns = [{
-    dataField: 'groupName',
+    dataField: 'groupLabel',
     dataType: 'string',
     caption: 'Group',
     groupIndex: 0,
@@ -171,11 +171,11 @@ export class RegConfigSettings implements OnInit, OnDestroy {
         parent.http.put(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
-            notifySuccess(`The setting ${data.name} in ${data.groupName} was updated successfully!`, 5000);
+            notifySuccess(`The setting ${data.name} in ${data.groupLabel} was updated successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The setting ${data.name} in ${data.groupName} was not updated due to a problem`;
+            let message = `The setting ${data.name} in ${data.groupLabel} was not updated due to a problem`;
             let errorResult, reason;
             if (error._body) {
               errorResult = JSON.parse(error._body);

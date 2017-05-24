@@ -17,9 +17,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public partial class SettingData
     {
         [JsonConstructor]
-        public SettingData(string groupName, string name, string controlType, string value, string description, string picklistDatabaseName, string allowedValues, string processorClass, bool? isHidden)
+        public SettingData(string groupName, string groupLabel, string name, string controlType, string value, string description, string picklistDatabaseName, string allowedValues, string processorClass, bool? isHidden)
         {
             GroupName = groupName;
+            groupLabel = groupLabel;
             Name = name;
             ControlType = controlType;
             Value = value;
@@ -32,6 +33,12 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public SettingData(SettingsGroup group, AppSetting setting)
         {
             GroupName = group.Name;
+            GroupLabel = GroupName.Equals("CBV") ? "Search" :
+                GroupName.Equals("DUPLICATE_CHECKING") ? "Duplicate Checking" :
+                GroupName.Equals("ENHANCED_DUPLICATE_SCAN") ? "Extended Duplicate Checking" :
+                GroupName.Equals("INVENTORY") ? "Inventory" :
+                GroupName.Equals("MISC") ? "Advanced" :
+                "Registration";
             Name = setting.Name;
             ControlType = setting.ControlType;
             Value = setting.Value;
@@ -50,6 +57,12 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "groupName")]
         public string GroupName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the setting group label
+        /// </summary>
+        [JsonProperty(PropertyName = "groupLabel")]
+        public string GroupLabel { get; set; }
 
         /// <summary>
         /// Gets or sets the setting name
