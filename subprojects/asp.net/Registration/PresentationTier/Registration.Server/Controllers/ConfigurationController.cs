@@ -244,15 +244,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> GetCustomTableRow(string tableName, int id)
         {
             return await CallMethod(() =>
-            {
-                var rows = new JArray();
+            {               
                 COETableEditorBOList.NewList().TableName = tableName;
                 var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
                 var idField = COETableEditorUtilities.getIdFieldName(tableName);
                 var selected = dt.Select(string.Format("{0}={1}", idField, id));
                 if (selected == null || selected.Count() == 0)
                     throw new IndexOutOfRangeException(string.Format("Cannot find the entry ID, {0}, in {1}", id, tableName));
-                var dr = dt.Rows[0];
+              
+                var dr = selected[0];
                 var data = new JObject();
                 foreach (DataColumn dc in dt.Columns)
                     data.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
