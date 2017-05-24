@@ -30,6 +30,36 @@ export class RegConfigSettings implements OnInit, OnDestroy {
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;
+  private columns = [{
+    dataField: 'groupName',
+    dataType: 'string',
+    caption: 'Group',
+    groupIndex: 0,
+    allowEditing: false
+  }, {
+    dataField: 'name',
+    dataType: 'string',
+    allowEditing: false
+  }, {
+    dataField: 'controlType',
+    dataType: 'string',
+    caption: 'Type',
+    width: '100px',
+    allowEditing: false
+  }, {
+    dataField: 'value',
+    dataType: 'string'
+  }, {
+    dataField: 'description',
+    dataType: 'string',
+    allowEditing: false
+  }, {
+    dataField: 'processorClass',
+    dataType: 'string',
+    caption: 'Processor',
+    width: '100px',
+    allowEditing: false
+  }];
 
   constructor(
     private http: Http,
@@ -138,58 +168,14 @@ export class RegConfigSettings implements OnInit, OnDestroy {
           }
         }
         let id = data[Object.getOwnPropertyNames(data)[0]];
-        parent.http.put(`${apiUrlBase}/${id}`, data)
+        parent.http.put(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
+            notifySuccess(`The setting ${data.name} in ${data.groupName} was updated successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not updated due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
-
-      insert: function (values) {
-        let deferred = jQuery.Deferred();
-        parent.http.post(`${apiUrlBase}`, values)
-          .toPromise()
-          .then(result => {
-            let id = result.json().id;
-            notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = `Creating A new record for ${tableName} was failed due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
-
-      remove: function (key) {
-        let deferred = jQuery.Deferred();
-        let id = key[Object.getOwnPropertyNames(key)[0]];
-        parent.http.delete(`${apiUrlBase}/${id}`)
-          .toPromise()
-          .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = `The record ${id} of ${tableName} was not deleted due to a problem`;
+            let message = `The setting ${data.name} in ${data.groupName} was not updated due to a problem`;
             let errorResult, reason;
             if (error._body) {
               errorResult = JSON.parse(error._body);
