@@ -16,6 +16,7 @@ using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using Newtonsoft.Json;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -262,12 +263,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         [HttpPost]
         [Route(Consts.apiPrefix + "custom-tables/{tableName}")]
-        [SwaggerOperation("CrateCustomTableRow")]
+        [SwaggerOperation("CreateCustomTableRow")]
         [SwaggerResponse(201, type: typeof(JObject))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CrateCustomTableRow(string tableName, JObject data)
+        public async Task<IHttpActionResult> CreateCustomTableRow(string tableName, JObject data)
         {
             return await CallMethod(() =>
             {
@@ -401,7 +402,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "settings")]
         [SwaggerOperation("GetSettings")]
-        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(200, type: typeof(List<SettingData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -409,8 +410,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var settingList = new JArray();
-                var appConfigSettings = FrameworkUtils.GetAppConfigSettings("REGISTRATION", "Registration");
+                var settingList = new List<SettingData>();
+                var currentApplicationName = RegUtilities.GetApplicationName();
+                var appConfigSettings = FrameworkUtils.GetAppConfigSettings(currentApplicationName, true);
                 var groups = appConfigSettings.SettingsGroup;
                 foreach (var group in groups)
                 {
@@ -419,20 +421,62 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         bool isAdmin;
                         if (bool.TryParse(setting.IsAdmin, out isAdmin) && isAdmin) continue;
-                        settingList.Add(new JObject(
-                            new JProperty("groupName", group.Name),
-                            new JProperty("name", setting.Name),
-                            new JProperty("value", setting.Value),
-                            new JProperty("description", setting.Description),
-                            new JProperty("picklistDatabaseName", setting.Description),
-                            new JProperty("isAdmin", setting.IsAdmin),
-                            new JProperty("allowedValues", setting.AllowedValues),
-                            new JProperty("processorClass", setting.ProcessorClass),
-                            new JProperty("isHidden", setting.IsHidden)
-                        ));
+                        settingList.Add(new SettingData(group, setting));
                     }
                 }
                 return settingList;
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "settings")]
+        [SwaggerOperation("UpdateSetting")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateSetting([FromBody] SettingData data)
+        {
+            return await CallMethod(() =>
+            {
+                var settingInfo = "The setting {0} in {1}";
+                var currentApplicationName = RegUtilities.GetApplicationName();
+                var appConfigSettings = FrameworkUtils.GetAppConfigSettings(currentApplicationName, true);
+                var groupName = (string)data.GroupName;
+                if (string.IsNullOrEmpty(groupName))
+                    throw new RegistrationException("The setting group must be specified");
+                var settingName = (string)data.Name;
+                if (string.IsNullOrEmpty(settingName))
+                    throw new RegistrationException("The setting name must be specified");
+                var settingValue = (string)data.Value;
+                if (settingValue == null)
+                    throw new RegistrationException("The setting value must be specified");
+                bool found = false, updated = false;
+                var groups = appConfigSettings.SettingsGroup;
+                foreach (var group in groups)
+                {
+                    if (!group.Name.Equals(groupName)) continue;
+                    var settings = group.Settings;
+                    foreach (var setting in settings)
+                    {
+                        bool isAdmin;
+                        if (bool.TryParse(setting.IsAdmin, out isAdmin) && isAdmin) continue;
+                        if (!setting.Name.Equals(settingName)) continue;
+                        found = true;
+                        if (!setting.Value.Equals(settingValue))
+                        {
+                            updated = true;
+                            setting.Value = settingValue;
+                        }
+                    }
+                }
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("{0} was not found", settingInfo));
+                if (!updated)
+                    throw new IndexOutOfRangeException("No change is required");
+                FrameworkUtils.SaveAppConfigSettings(currentApplicationName, appConfigSettings);
+                return new ResponseData(null, null, string.Format("{0} was updated successfully", settingInfo), null);
             });
         }
 
