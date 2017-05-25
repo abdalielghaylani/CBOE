@@ -70,18 +70,18 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
       this.chemDrawWeb.activate();
     }
   }
+
   search() {
     this.generateSearchCriteriaXML(this.regSearch);
-    this.regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();
   }
 
-  generateSearchCriteriaXML(c: regSearchTypes.CSearchFormVM) {
-    this.searchCriteriaXml = '';
+  generateSearchCriteriaXML(regSearch: regSearchTypes.CSearchFormVM) {
+    regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();    
     this.searchCriteriaXml = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
-    this.getSearchCriteria(this.regSearch.registrySearchVM, this);
-    this.getSearchCriteria(this.regSearch.structureSearchVM, this);
-    this.getSearchCriteria(this.regSearch.componentSearchVM, this);
-    this.getSearchCriteria(this.regSearch.batchSearchVM, this);
+    this.getSearchCriteria(regSearch.registrySearchVM, this);
+    this.getSearchCriteria(regSearch.structureSearchVM, this);
+    this.getSearchCriteria(regSearch.componentSearchVM, this);
+    this.getSearchCriteria(regSearch.batchSearchVM, this);
     this.searchCriteriaXml = this.searchCriteriaXml + '</searchCriteria>';
   }
 

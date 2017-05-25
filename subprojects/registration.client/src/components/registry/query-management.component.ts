@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { RegistrySearchActions } from '../../actions';
-import { IAppState, ISearchRecords } from '../../store';
+import { IAppState, IHitlistInfo, ISearchRecords } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 
@@ -29,7 +29,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   @Output() onClose = new EventEmitter<any>();
   private hitlistData$: Observable<ISearchRecords>;
   private records: any[];
-  private currentHitlist: any[any];
+  private currentHitlistInfo: IHitlistInfo;
   private selectedHitlist: any[any];
   private recordsSubscription: Subscription;
 
@@ -54,7 +54,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   loadData() {
     this.hitlistVM.advancedRestoreType = 0;
     this.records = this.ngRedux.getState().registrysearch.hitlist.rows;
-    this.currentHitlist = this.ngRedux.getState().registrysearch.hitlist.currentHitlistInfo;
+    this.currentHitlistInfo = this.ngRedux.getState().registrysearch.hitlist.currentHitlistInfo;
     this.changeDetector.markForCheck();
   }
 
@@ -115,7 +115,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     e.component.collapseAll(-1);
     e.component.expandRow(e.key);
     this.selectedHitlist = { 'HitlistID': e.data.ID, 'HitlistType': e.data.HistlistType };
-    if (this.currentHitlist) {
+    if (this.currentHitlistInfo) {
       this.hitlistVM.isCurrentHitlist = true;
     }
   }
@@ -124,17 +124,16 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   advancedRestorePopup(e) {
-    this.actions.retrieveHitlist(
-      {
-        type: 1,
-        data: {
-          HitlistID1: this.selectedHitlist.HitlistID,
-          HitlistID2: !this.currentHitlist.HitlistID ? 0 : this.currentHitlist.HitlistID,
-          RestoreType: this.hitlistVM.advancedRestoreType,
-          HitlistType1: this.selectedHitlist.HitlistType,
-          HitlistType2: !this.currentHitlist.HitlistType ? 0 : this.currentHitlist.HitlistType,
-        }
-      });
+    this.actions.retrieveHitlist({
+      type: 1,
+      data: {
+        HitlistID1: this.selectedHitlist.HitlistID,
+        HitlistID2: !this.currentHitlistInfo.id ? this.currentHitlistInfo.id : 0,
+        RestoreType: this.hitlistVM.advancedRestoreType,
+        HitlistType1: this.selectedHitlist.HitlistType,
+        HitlistType2: !this.currentHitlistInfo.type ? this.currentHitlistInfo.type : 0,
+      }
+    });
     this.router.navigate([`records/restore`]);
   }
 

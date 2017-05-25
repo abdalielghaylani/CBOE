@@ -1,7 +1,7 @@
 import { Iterable } from 'immutable';
 import { registrySearchReducer } from './registry-search.reducer';
 import { RegistrySearchActions } from '../../actions';
-import { IRegistrySearchRecord, ISearchRecords, INITIAL_STATE } from './registry-search.types';
+import { IRegistrySearchRecord, IHitlistInfo, ISearchRecords, INITIAL_STATE } from './registry-search.types';
 
 describe('registry search reducer', () => {
   let initState: IRegistrySearchRecord;
@@ -24,7 +24,7 @@ describe('registry search reducer', () => {
   });
 
   it('should update hitlist.currentHitlistInfo on RETRIEVE_HITLIST', () => {
-    const data = { id: 0, type: 0 };
+    const data: IHitlistInfo = { id: 0, type: 0 };
     const nextState = registrySearchReducer(
       initState,
       RegistrySearchActions.retrieveHitlistAction(data)

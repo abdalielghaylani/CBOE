@@ -1,8 +1,13 @@
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
 
+export interface IHitlistInfo {
+  id: number;
+  type: number;
+}
+
 export interface ISearchRecords {
   rows?: any[];
-  currentHitlistInfo?: any[any];
+  currentHitlistInfo?: IHitlistInfo;
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, ISearchRecords { }
@@ -15,7 +20,7 @@ export interface IRegistrySearchRecord extends TypedRecord<IRegistrySearchRecord
 
 const INITIAL_RECORDS = makeTypedFactory<ISearchRecords, IRecordsRecord>({
   rows: [],
-  currentHitlistInfo: []
+  currentHitlistInfo: { id: 0, type: 0 }
 })();
 
 export const RegistryFactory = makeTypedFactory<IRegistrySearch, IRegistrySearchRecord>({
