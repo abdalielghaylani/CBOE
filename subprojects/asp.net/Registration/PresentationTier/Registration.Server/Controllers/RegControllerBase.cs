@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Security.Authentication;
 using System.Threading.Tasks;
@@ -173,14 +174,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
         }
 
-        protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null)
+        protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null, [CallerMemberName] string memberName = "")
         {
             HttpResponseMessage responseMessage;
             try
             {
                 CheckAuthentication();
                 if (permissions != null) CheckAuthorizations(permissions);
-                var statusCode = Request.Method == HttpMethod.Post ? HttpStatusCode.Created : HttpStatusCode.OK;
+                var statusCode = Request.Method == HttpMethod.Post && memberName.StartsWith("Create") ? HttpStatusCode.Created : HttpStatusCode.OK;
                 responseMessage = Request.CreateResponse(statusCode, method());
             }
             catch (Exception ex)
