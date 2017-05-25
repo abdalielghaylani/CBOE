@@ -362,34 +362,31 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "addins/{name}")]
         [SwaggerOperation("DeleteAddin")]
-        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> DeleteAddin(string addinName)
+        public async Task<IHttpActionResult> DeleteAddin(string name)
         {
-            CheckAuthentication();
-            var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-
-            bool addinExist = false;
-            foreach (AddIn addin in configurationBO.AddInList)
+            return await CallMethod(() =>
             {
-                if (addin.FriendlyName == addinName)
+                if (string.IsNullOrEmpty(name))
+                    throw new RegistrationException("Invalid addin name");
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                bool found = false;
+                foreach (AddIn addin in configurationBO.AddInList)
                 {
-                    addinExist = true;
+                    if (!addin.FriendlyName.Equals(name)) continue;
+                    found = true;
                     configurationBO.AddInList.Remove(addin);
                     configurationBO.Save();
                     break;
                 }
-            }
-
-            HttpResponseMessage responseMessage = null;
-            if (addinExist == false)
-                responseMessage = Request.CreateResponse(System.Net.HttpStatusCode.NotFound, string.Format("The addin {0} not found!", addinName));
-
-            responseMessage = Request.CreateResponse(System.Net.HttpStatusCode.OK, string.Format("The addin {0} was deleted successfully!", addinName));
-            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", name));
+                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully", name));
+            });
         }
 
         [HttpGet]
@@ -525,7 +522,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             updated = true;
                             setting.Value = settingValue;
                         }
+                        break;
                     }
+                    if (found) break;
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("{0} was not found", settingInfo));
@@ -561,13 +560,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         [HttpPut]
         [Route(Consts.apiPrefix + "xml-forms")]
-        [SwaggerOperation("UpdateXmlForms")]
+        [SwaggerOperation("UpdateXmlForm")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> UpdateXmlForms(XmlFormData data)
+        public async Task<IHttpActionResult> UpdateXmlForm(XmlFormData data)
         {
             return await CallMethod(() =>
             {
@@ -582,6 +581,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     found = true;
                     configRegRecord.COEFormHelper.Load(formGroupType);
                     configRegRecord.COEFormHelper.SaveFormGroup(data.Data);
+                    break;
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-group, {0}, was not found", data.Name));
