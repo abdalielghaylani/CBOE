@@ -332,6 +332,42 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var addinList = new JArray();
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+
+                for (int i = 0; i < configurationBO.AddInList.Count; i++)
+                {
+                    string realName;   
+                    if (configurationBO.AddInList[i].IsNew)
+                    {
+                        realName = configurationBO.AddInList[i].ClassNameSpace + "." + configurationBO.AddInList[i].ClassName;
+                    }
+                    else
+                    {
+                        realName = configurationBO.AddInList[i].ClassName;
+                    }
+
+                    string friendlyName;
+                    if (configurationBO.AddInList[i].FriendlyName != string.Empty)
+                        friendlyName = configurationBO.AddInList[i].FriendlyName;
+                    else
+                        friendlyName = i.ToString();
+                 
+                    dynamic addin = new JObject();
+                    addin.Name = friendlyName;
+                    addin.AddIn = realName;
+                    addin.Assembly = configurationBO.AddInList[i].Assembly;
+                    addin.EventList = new JArray() as dynamic;
+
+                    for (int j = 0; j < configurationBO.AddInList[i].EventList.Count; j++)
+                    {
+                        string eVent = configurationBO.AddInList[i].EventList[j].EventName + " - Event Handler = " + configurationBO.AddInList[i].EventList[j].EventHandler;
+                        var eventItem = new JObject(new JProperty("Event Name", eVent));
+                        addin.EventList.Add(eventItem);
+                    }
+
+                    addinList.Add(addin);
+                }
+
                 return addinList;
             });
         }
