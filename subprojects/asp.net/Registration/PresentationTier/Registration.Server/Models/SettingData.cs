@@ -20,7 +20,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public SettingData(string groupName, string groupLabel, string name, string controlType, string value, string description, string picklistDatabaseName, string allowedValues, string processorClass, bool? isHidden)
         {
             GroupName = groupName;
-            groupLabel = groupLabel;
+            GroupLabel = groupLabel;
             Name = name;
             ControlType = controlType;
             Value = value;

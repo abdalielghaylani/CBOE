@@ -1,13 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
-using CambridgeSoft.COE.Framework;
-using CambridgeSoft.COE.Framework.Common;
-using Csla;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {

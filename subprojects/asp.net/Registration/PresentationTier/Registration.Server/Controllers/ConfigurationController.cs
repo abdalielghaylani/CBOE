@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Net.Http;
-using System.Web.Http;
 using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
-using CambridgeSoft.COE.Framework.COETableEditorService;
 using CambridgeSoft.COE.Framework.COEFormService;
+using CambridgeSoft.COE.Framework.COETableEditorService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.Controls.COETableManager;
-using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Registration.Services.Types;
+using CambridgeSoft.COE.RegistrationAdmin.Services;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
-using Newtonsoft.Json;
-using System.Xml;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -338,9 +336,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 int counter = 0;
                 foreach (AddIn addin in configurationBO.AddInList)
-                { 
+                {
                     dynamic addinObject = new JObject();
-                    addinObject.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName; 
+                    addinObject.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName;
                     addinObject.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
                     addinObject.Assembly = addin.Assembly;
                     addinObject.Enable = addin.IsEnable;
@@ -375,11 +373,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
             bool addinExist = false;
-            foreach(AddIn addin in configurationBO.AddInList)
+            foreach (AddIn addin in configurationBO.AddInList)
             {
                 if (addin.FriendlyName == addinName)
                 {
-                    addinExist = true;                  
+                    addinExist = true;
                     configurationBO.AddInList.Remove(addin);
                     configurationBO.Save();
                     break;
@@ -387,8 +385,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             HttpResponseMessage responseMessage = null;
-            if (addinExist == false)                     
-                 responseMessage = Request.CreateResponse(System.Net.HttpStatusCode.NotFound, string.Format("The addin {0} not found!", addinName));
+            if (addinExist == false)
+                responseMessage = Request.CreateResponse(System.Net.HttpStatusCode.NotFound, string.Format("The addin {0} not found!", addinName));
 
             responseMessage = Request.CreateResponse(System.Net.HttpStatusCode.OK, string.Format("The addin {0} was deleted successfully!", addinName));
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
