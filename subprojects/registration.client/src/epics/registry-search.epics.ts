@@ -103,7 +103,7 @@ export class RegistrySearchEpics {
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
-              : RegistrySearchActions.searchRecordsSuccessAction(payload.temporary, result.json());
+              : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
           })
           .catch(error => Observable.of(RegistrySearchActions.searchRecordsErrorAction(error)));
       });
