@@ -32,7 +32,7 @@ export class RegistrySearchActions {
     (id: number) => ({ id }));
   static deleteHitlistErrorAction = createAction(RegistrySearchActions.DELETE_HITLIST_ERROR);
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
-    (temporary: boolean, history: boolean, id: Number) => ({ temporary, history, id }));
+    (temporary: boolean, searchCriteria: string) => ({ temporary, searchCriteria }));
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
@@ -46,8 +46,8 @@ export class RegistrySearchActions {
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
-  searchRecords(temporary: boolean, history: boolean, id: Number) {
-    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsAction(temporary, history, id));
+  searchRecords(temporary: boolean, searchCriteria: string) {
+    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsAction(temporary, searchCriteria));
   }
 
   searchRecordsSuccess(temporary: boolean, rows: any[]) {

@@ -24,7 +24,8 @@ export class RegistrySearchEpics {
       this.handleOpenHitlists,
       this.handleDeleteHitlist,
       this.handleUpdateHitlist,
-      this.handleRetrieveHitlist
+      this.handleRetrieveHitlist,
+      this.handleSearchRecords
     )(action$, store);
   }
 
@@ -95,4 +96,16 @@ export class RegistrySearchEpics {
       });
   }
 
+  private handleSearchRecords: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, searchCriteria: string}>>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.SEARCH_RECORDS)
+      .mergeMap(({ payload }) => {
+        return this.http.post(`${apiUrlPrefix}search/records`, payload)
+          .map(result => {
+            return result.url.indexOf('index.html') > 0
+              ? SessionActions.logoutUserAction()
+              : RegistrySearchActions.searchRecordsSuccessAction(payload.temporary, result.json());
+          })
+          .catch(error => Observable.of(RegistrySearchActions.searchRecordsErrorAction(error)));
+      });
+  }
 }

@@ -40,7 +40,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @ViewChild(ChemDrawingTool)
   private chemDrawWeb: ChemDrawingTool;
   public formGroup: CFormGroup;
-  private searchCriteriaXml: string;
   @select(s => s.session.lookups) lookups$: Observable<any>;
 
   constructor(
@@ -72,22 +71,23 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   search() {
-    this.generateSearchCriteriaXML(this.regSearch);
+    this.actions.searchRecords(this.temporary, this.generateSearchCriteriaXML());
   }
 
-  generateSearchCriteriaXML(regSearch: regSearchTypes.CSearchFormVM) {
-    regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();    
-    this.searchCriteriaXml = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
-    this.getSearchCriteria(regSearch.registrySearchVM, this);
-    this.getSearchCriteria(regSearch.structureSearchVM, this);
-    this.getSearchCriteria(regSearch.componentSearchVM, this);
-    this.getSearchCriteria(regSearch.batchSearchVM, this);
-    this.searchCriteriaXml = this.searchCriteriaXml + '</searchCriteria>';
+  private generateSearchCriteriaXML(): string {
+    this.regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();
+    let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
+    searchCriteria += this.getSearchCriteria(this.regSearch.registrySearchVM);
+    searchCriteria += this.getSearchCriteria(this.regSearch.structureSearchVM);
+    searchCriteria += this.getSearchCriteria(this.regSearch.componentSearchVM);
+    searchCriteria += this.getSearchCriteria(this.regSearch.batchSearchVM);
+    return searchCriteria + '</searchCriteria>';
   }
 
-  getSearchCriteria(c: any, vm: any) {
+  private getSearchCriteria(c: { columns: any[] }): string {
+    let searchCriteria = '';
     c.columns.forEach(e => {
-      let m = vm.regSearch.registrySearchVM;
+      let m: { data } = this.regSearch.registrySearchVM;
       if (m.data[e.dataField]) {
         for (const prop in e.searchCriteriaItem) {
           if (typeof e.searchCriteriaItem[prop] === 'object') {
@@ -95,8 +95,9 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
           }
         }
       }
-      vm.searchCriteriaXml = vm.searchCriteriaXml + new X2JS.default().js2xml({ searchCriteriaItem: e.searchCriteriaItem });
+      searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: e.searchCriteriaItem });
     });
+    return searchCriteria;
   }
 
   clear() {

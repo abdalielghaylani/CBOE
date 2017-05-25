@@ -19,14 +19,15 @@ describe('registry action creators', () => {
   });
 
   it('search should dispatch SEARCH_RECORDS action', () => {
-    const data = { temporary: true, history: false, id: 0 };
+    const searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria"></searchCriteria>`;
+    const data = { temporary: true, searchCriteria };
     const expectedAction = {
       type: RegistrySearchActions.SEARCH_RECORDS,
       payload: data
     };
 
     spyOn(mockRedux, 'dispatch');
-    actions.searchRecords(true, false, 0);
+    actions.searchRecords(true, searchCriteria);
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);
