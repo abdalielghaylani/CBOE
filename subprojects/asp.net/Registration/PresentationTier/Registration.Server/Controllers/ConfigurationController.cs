@@ -17,6 +17,7 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using Newtonsoft.Json;
+using System.Xml;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -528,7 +529,35 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var xmlFormList = new JArray();
+                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                foreach (COEFormHelper.COEFormGroups formGroupType in Enum.GetValues(typeof(COEFormHelper.COEFormGroups)))
+                {
+                    configRegRecord.COEFormHelper.Load(formGroupType);
+                    xmlFormList.Add(new JObject(
+                        new JProperty("name", formGroupType.ToString()),
+                        new JProperty("data", configRegRecord.FormGroup.ToString())
+                    ));
+                }
                 return xmlFormList;
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "xml-forms")]
+        [SwaggerOperation("UpdateXmlForms")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateXmlForms(JObject data)
+        {
+            return await CallMethod(() =>
+            {
+                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString());
+                configRegRecord.COEFormHelper.SaveFormGroup(datatoXml.InnerXml);
+                return new ResponseData(null, null, "Selected FormGroup was saved successfuly", null);
             });
         }
     }
