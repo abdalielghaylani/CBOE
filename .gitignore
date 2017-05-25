@@ -31,10 +31,6 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
-subprojects/asp.net/Registration/ServiceTier/RegistrationAddins/StyleCop.Cache
-subprojects/asp.net/Framework/CambridgeSoft/ServiceTier/CambridgeSoft.COE.Framework/StyleCop.Cache
-subprojects/asp.net/Registration/PresentationTier/Registration.Core/StyleCop.Cache
-subprojects/asp.net/Registration/PresentationTier/Registration.Server/StyleCop.Cache
-subprojects/asp.net/Registration/PresentationTier/RegistrationWebApp/StyleCop.Cache
-subprojects/asp.net/Registration/ServiceTier/CambridgeSoft.COE.Registration.Services/StyleCop.Cache
-subprojects/asp.net/Registration/ServiceTier/CambridgeSoft.COE.RegistrationAdmin.Services/StyleCop.Cache
+
+### StyleCop ###
+StyleCop.Cache
