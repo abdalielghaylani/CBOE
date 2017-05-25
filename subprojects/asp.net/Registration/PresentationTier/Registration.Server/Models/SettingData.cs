@@ -12,7 +12,7 @@ using Newtonsoft.Json.Linq;
 namespace PerkinElmer.COE.Registration.Server.Models
 {
     /// <summary>
-    /// The class for the response data object
+    /// The class for the setting data object
     /// </summary>
     public partial class SettingData
     {
@@ -111,15 +111,5 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "isHidden")]
         public bool? IsHidden { get; set; }
-
-        /// <summary>
-        /// Returns the JSON string presentation of the object
-        /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
-        public string ToJson()
-        {
-            return JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-
     }
 }

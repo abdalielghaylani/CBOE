@@ -541,7 +541,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "xml-forms")]
         [SwaggerOperation("GetXmlForms")]
-        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(200, type: typeof(List<XmlFormData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -549,15 +549,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var xmlFormList = new JArray();
+                var xmlFormList = new List<XmlFormData>();
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                foreach (COEFormHelper.COEFormGroups formGroupType in Enum.GetValues(typeof(COEFormHelper.COEFormGroups)))
+                var formGroupTypes = Enum.GetValues(typeof(COEFormHelper.COEFormGroups));
+                foreach (COEFormHelper.COEFormGroups formGroupType in formGroupTypes)
                 {
                     configRegRecord.COEFormHelper.Load(formGroupType);
-                    xmlFormList.Add(new JObject(
-                        new JProperty("name", formGroupType.ToString()),
-                        new JProperty("data", configRegRecord.FormGroup.ToString())
-                    ));
+                    xmlFormList.Add(new XmlFormData(formGroupType.ToString(), configRegRecord.FormGroup.ToString()));
                 }
                 return xmlFormList;
             });
@@ -571,14 +569,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> UpdateXmlForms(JObject data)
+        public async Task<IHttpActionResult> UpdateXmlForms(XmlFormData data)
         {
             return await CallMethod(() =>
             {
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString());
-                configRegRecord.COEFormHelper.SaveFormGroup(datatoXml.InnerXml);
-                return new ResponseData(null, null, "Selected FormGroup was saved successfuly", null);
+                var formGroupTypes = Enum.GetValues(typeof(COEFormHelper.COEFormGroups));
+                if (string.IsNullOrEmpty(data.Name))
+                    throw new RegistrationException("Invalid form-group name");
+                bool found = false;
+                foreach (COEFormHelper.COEFormGroups formGroupType in formGroupTypes)
+                {
+                    if (!data.Name.Equals(formGroupType.ToString())) continue;
+                    found = true;
+                    configRegRecord.COEFormHelper.Load(formGroupType);
+                    configRegRecord.COEFormHelper.SaveFormGroup(data.Data);
+                }
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("The form-group, {0}, was not found", data.Name));
+                return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully", data.Name), null);
             });
         }
     }
