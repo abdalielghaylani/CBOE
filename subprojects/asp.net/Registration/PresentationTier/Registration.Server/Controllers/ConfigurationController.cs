@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Web.Http;
 using System.Threading.Tasks;
 using Microsoft.Web.Http;
@@ -246,14 +247,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> GetCustomTableRow(string tableName, int id)
         {
             return await CallMethod(() =>
-            {               
+            {
                 COETableEditorBOList.NewList().TableName = tableName;
                 var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
                 var idField = COETableEditorUtilities.getIdFieldName(tableName);
                 var selected = dt.Select(string.Format("{0}={1}", idField, id));
                 if (selected == null || selected.Count() == 0)
                     throw new IndexOutOfRangeException(string.Format("Cannot find the entry ID, {0}, in {1}", id, tableName));
-              
+
                 var dr = selected[0];
                 var data = new JObject();
                 foreach (DataColumn dc in dt.Columns)
@@ -335,42 +336,62 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var addinList = new JArray();
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
-                for (int i = 0; i < configurationBO.AddInList.Count; i++)
-                {
-                    string realName;   
-                    if (configurationBO.AddInList[i].IsNew)
-                    {
-                        realName = configurationBO.AddInList[i].ClassNameSpace + "." + configurationBO.AddInList[i].ClassName;
-                    }
-                    else
-                    {
-                        realName = configurationBO.AddInList[i].ClassName;
-                    }
+                int counter = 0;
+                foreach (AddIn addin in configurationBO.AddInList)
+                { 
+                    dynamic addinObject = new JObject();
+                    addinObject.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName; 
+                    addinObject.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
+                    addinObject.Assembly = addin.Assembly;
+                    addinObject.Enable = addin.IsEnable;
+                    addinObject.Required = addin.IsRequired;
+                    addinObject.Configuration = addin.AddInConfiguration;
 
-                    string friendlyName;
-                    if (configurationBO.AddInList[i].FriendlyName != string.Empty)
-                        friendlyName = configurationBO.AddInList[i].FriendlyName;
-                    else
-                        friendlyName = i.ToString();
-                 
-                    dynamic addin = new JObject();
-                    addin.Name = friendlyName;
-                    addin.AddIn = realName;
-                    addin.Assembly = configurationBO.AddInList[i].Assembly;
-                    addin.EventList = new JArray() as dynamic;
+                    addinObject.EventList = new JArray() as dynamic;
 
-                    for (int j = 0; j < configurationBO.AddInList[i].EventList.Count; j++)
+                    for (int j = 0; j < addin.EventList.Count; j++)
                     {
-                        string eVent = configurationBO.AddInList[i].EventList[j].EventName + " - Event Handler = " + configurationBO.AddInList[i].EventList[j].EventHandler;
+                        string eVent = addin.EventList[j].EventName + " - Event Handler = " + addin.EventList[j].EventHandler;
                         var eventItem = new JObject(new JProperty("Event Name", eVent));
-                        addin.EventList.Add(eventItem);
+                        addinObject.EventList.Add(eventItem);
                     }
-
-                    addinList.Add(addin);
+                    addinList.Add(addinObject);
                 }
-
                 return addinList;
             });
+        }
+
+        [HttpDelete]
+        [Route(Consts.apiPrefix + "addins/{name}")]
+        [SwaggerOperation("DeleteAddin")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteAddin(string addinName)
+        {
+            CheckAuthentication();
+            var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+
+            bool addinExist = false;
+            foreach(AddIn addin in configurationBO.AddInList)
+            {
+                if (addin.FriendlyName == addinName)
+                {
+                    addinExist = true;                  
+                    configurationBO.AddInList.Remove(addin);
+                    configurationBO.Save();
+                    break;
+                }
+            }
+
+            HttpResponseMessage responseMessage = null;
+            if (addinExist == false)                     
+                 responseMessage = Request.CreateResponse(System.Net.HttpStatusCode.NotFound, string.Format("The addin {0} not found!", addinName));
+
+            responseMessage = Request.CreateResponse(System.Net.HttpStatusCode.OK, string.Format("The addin {0} was deleted successfully!", addinName));
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         [HttpGet]
