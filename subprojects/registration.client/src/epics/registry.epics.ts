@@ -14,7 +14,7 @@ import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
-import { IRecordDetail, IRegistry, IAppState } from '../store';
+import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IAppState } from '../store';
 import { IResponseData, IRecordSaveData } from '../components';
 
 @Injectable()
@@ -30,10 +30,9 @@ export class RegistryEpics {
     )(action$, store);
   }
 
- private handleOpenRecords: Epic = (action$: Observable<IPayloadAction>) => {
+ private handleOpenRecords: Epic = (action$: Observable<ReduxActions.Action<IRegistryRetrievalQuery>>) => {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap(({ payload }) => {
-        let temporary: boolean = payload;
         let url = `${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records`;
         let params = '';
         if (payload.skip) { params += `?skip=${payload.skip}`; }

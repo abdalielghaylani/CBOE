@@ -50,7 +50,7 @@ describe('configuration.epics', () => {
         connection.mockError(error);
       });
 
-      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction(true)));
+      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction({ temporary: true })));
       registryEpics.handleRegistryActions(action$, null).subscribe(action =>
         expect(action).toEqual(RegistryActions.openRecordsErrorAction(error))
       );

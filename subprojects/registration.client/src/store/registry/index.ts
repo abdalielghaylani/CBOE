@@ -1,4 +1,4 @@
-import { IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry } from './registry.types';
+import { IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery } from './registry.types';
 import { IRegistrySearch, IHitlistInfo, ISearchRecords } from './registry-search.types';
 import { registryReducer } from './registry.reducer';
 import { RegistryFactory } from './registry.initial-state';
@@ -12,6 +12,7 @@ export {
   IHitlistInfo,
   ISearchRecords,
   IRegistry,
+  IRegistryRetrievalQuery,
   IRegistrySearch,
   registryReducer,
   registrySearchReducer,

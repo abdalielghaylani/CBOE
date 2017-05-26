@@ -49,3 +49,10 @@ export interface IRegistry {
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }
 
+export interface IRegistryRetrievalQuery {
+  temporary: boolean;
+  hitlistId?: number;
+  skip?: number;
+  take?: number;
+  sort?: string;
+}
