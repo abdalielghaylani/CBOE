@@ -140,6 +140,9 @@ export class RegRecords implements OnInit, OnDestroy {
       this.records.setRecordData(records.data);
     }
     this.createCustomStore(this);
+    if (this.currentIndex !== 0) {
+      this.currentIndex = 0;
+    }
     this.changeDetector.markForCheck();
   }
 

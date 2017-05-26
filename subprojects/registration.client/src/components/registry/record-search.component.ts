@@ -88,14 +88,15 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     let searchCriteria = '';
     c.columns.forEach(e => {
       let m: { data } = this.regSearch.registrySearchVM;
-      if (m.data[e.dataField]) {
+      let value = m.data[e.dataField];
+      if (value) {
         for (const prop in e.searchCriteriaItem) {
           if (typeof e.searchCriteriaItem[prop] === 'object') {
-            e.searchCriteriaItem[prop].__text = m.data[e.dataField];
+            e.searchCriteriaItem[prop].__text = value;
           }
         }
+        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: e.searchCriteriaItem });
       }
-      searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: e.searchCriteriaItem });
     });
     return searchCriteria;
   }
