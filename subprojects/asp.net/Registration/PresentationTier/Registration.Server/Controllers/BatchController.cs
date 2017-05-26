@@ -53,8 +53,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> GetAllBatches()
         {
             return await CallMethod(() =>
-           {
-               CheckAuthentication();
+           {             
                var data = ExtractData("SELECT BATCHID, TEMPBATCHID, BATCHNUMBER, FULLREGNUMBER, DATECREATED, PERSONCREATED, PERSONREGISTERED, PERSONAPPROVED, DATELASTMODIFIED FROM REGDB.VW_BATCH");
                if (data.Count() == 0)
                    throw new IndexOutOfRangeException(string.Format("Cannot find the Batches."));
@@ -139,8 +138,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> UpdateBatch(string regType, JObject data)
         {
             return await CallMethod(() =>
-            {
-                CheckAuthentication();
+            {              
                 string message = string.Empty;
                 XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString(Newtonsoft.Json.Formatting.None));
                 if (regType == "Temp")

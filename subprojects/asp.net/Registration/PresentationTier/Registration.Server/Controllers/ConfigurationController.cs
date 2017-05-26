@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Xml;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
@@ -323,7 +323,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "addins")]
         [SwaggerOperation("GetAddins")]
-        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(200, type: typeof(List<AddinData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -331,30 +331,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var addinList = new JArray();
+                var addinList = new List<AddinData>();
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
                 int counter = 0;
                 foreach (AddIn addin in configurationBO.AddInList)
                 {
-                    dynamic addinObject = new JObject();
-                    addinObject.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName;
-                    addinObject.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
-                    addinObject.Assembly = addin.Assembly;
-                    addinObject.Enable = addin.IsEnable;
-                    addinObject.Required = addin.IsRequired;
-                    addinObject.Configuration = addin.AddInConfiguration;
+                    AddinData addinData = new AddinData();
+                    addinData.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName;
+                    addinData.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
+                    addinData.ClassName = addin.ClassName;
+                    addinData.ClassNamespace = addin.ClassNameSpace;
+                    addinData.Assembly = addin.Assembly;
+                    addinData.Enable = addin.IsEnable;
+                    addinData.Required = addin.IsRequired;
+                    addinData.Configuration = addin.AddInConfiguration;
 
-                    addinObject.EventList = new JArray() as dynamic;
+                    addinData.Events = new List<EventData>();
+                    foreach (Event evt in addin.EventList)
+                        addinData.Events.Add(new EventData(evt.EventName, evt.EventHandler));
 
-                    for (int j = 0; j < addin.EventList.Count; j++)
-                    {
-                        string eVent = addin.EventList[j].EventName + " - Event Handler = " + addin.EventList[j].EventHandler;
-                        var eventItem = new JObject(new JProperty("Event Name", eVent));
-                        addinObject.EventList.Add(eventItem);
-                    }
-                    addinList.Add(addinObject);
+                    addinList.Add(addinData);
+                    counter++;
                 }
+
                 return addinList;
             });
         }
@@ -385,8 +385,120 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", name));
-                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully", name));
+                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully.", name));
             });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "addins")]
+        [SwaggerOperation("CreateAddin")]
+        [SwaggerResponse(201, type: typeof(AddinData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> CreateAddin(AddinData data)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrEmpty(data.Name))
+                    throw new RegistrationException("Invalid addin name");
+
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+
+                // check addin with friendly name already exist
+                foreach (AddIn addin in configurationBO.AddInList)
+                {
+                    if (addin.FriendlyName.Equals(data.Name))
+                    {
+                        throw new RegistrationException(string.Format("The addin {0} with same name already exists.", data.Name));
+                    }
+                }
+
+                // check addin configuration is valid
+                XmlDocument xml = new XmlDocument();
+                try
+                {
+                    xml.LoadXml(data.Configuration);
+                }
+                catch
+                {
+                    throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
+                }
+                if (xml.DocumentElement.FirstChild.Name == "AddInConfiguration")
+                    throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
+
+                // get all events
+                EventList eventList = EventList.NewEventList();
+                foreach (PerkinElmer.COE.Registration.Server.Models.EventData evtItem in data.Events)
+                {
+                    Event evt = Event.NewEvent(evtItem.EventName, evtItem.EventHandler, true);
+                    eventList.Add(evt);
+                }
+
+                AddIn addIn = AddIn.NewAddIn(data.Assembly, data.ClassName, data.Name, eventList,
+                            data.Configuration, data.ClassNamespace, true, false);
+
+                configurationBO.AddInList.Add(addIn);
+                configurationBO.Save();
+
+                return new ResponseData(message: string.Format("The addin, {0}, was saved successfully.", data.Name));
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "addins")]
+        [SwaggerOperation("UpdateAddin")]
+        [SwaggerResponse(200, type: typeof(AddinData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateAddin(AddinData data)
+        {
+            return await CallMethod(() =>
+           {
+               if (string.IsNullOrEmpty(data.Name))
+                   throw new RegistrationException("Invalid addin name");
+
+               var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+               bool found = false;
+               foreach (AddIn addin in configurationBO.AddInList)
+               {
+                   if (!addin.FriendlyName.Equals(data.Name)) continue;
+                   found = true;
+
+                   addin.Assembly = data.Assembly;
+                   addin.IsEnable = data.Enable;
+                   addin.AddInConfiguration = data.Configuration;
+
+                   // clear existing events, if any
+                   List<Event> markedEventsForDeletion = new List<Event>();
+                   if (addin.EventList.Count > 0)
+                   {
+                       foreach (Event evt in addin.EventList)
+                           markedEventsForDeletion.Add(evt);
+
+                       foreach (Event evt in markedEventsForDeletion)
+                           addin.EventList.Remove(evt);
+                   }
+
+                   // add new events
+                   foreach (EventData evtData in data.Events)
+                   {
+                       Event evt = Event.NewEvent(evtData.EventName, evtData.EventHandler, true);
+                       addin.EventList.Add(evt);
+                   }
+
+                   addin.ApplyEdit();
+                   configurationBO.Save();
+
+                   break;
+               }
+               if (!found)
+                   throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
+
+               return new ResponseData(message: string.Format("The addin, {0}, was updated successfully.", data.Name));
+           });
         }
 
         [HttpGet]
