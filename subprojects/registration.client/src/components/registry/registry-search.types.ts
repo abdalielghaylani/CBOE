@@ -7,7 +7,6 @@ export class CRegSearchVM {
   sdfFile?: File;
   title?: String;
   columns: any[] = [];
-  structureData: any;
   searchTypeValue?: String;
   searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
   constructor(state: IAppState) {
@@ -44,28 +43,37 @@ function getPropertyColumn(p: any, coeFormId: Number, state: IAppState): any {
     dataField: p._name,
     dataType: p._type === 'DATE' ? 'date' : 'string',
     validationRules: [],
+    coeType: p.displayInfo.type.replace('CambridgeSoft.COE.Framework.Controls.COEFormGenerator.', ''),
     searchCriteriaItem: p.searchCriteriaItem
   };
   if (p.label) {
     column.label = { text: p.label };
   }
-  if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList') {
-    column.dataType = 'number';
-    column.editorType = 'dxSelectBox';
-    column.editorOptions = getPicklist(p, state, coeFormId);
-  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEListUpload') {
-    column.editorType = 'dxFileUploader';
-  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea') {
-    column.editorType = 'dxTextArea';
-  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker') {
-    column.editorType = 'dxDateBox';
-  } else if (p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStructureQuery' ||
-    p.displayInfo.type === 'CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStateControl') {
-    return null;
-  } else {
-    if (typeof (p.searchCriteriaItem.numericalCriteria) === 'object') {
-      column.validationRules.push({ type: 'numeric' });
-    }
+  switch (column.coeType) {
+    case 'COEDropDownList':
+      column.dataType = 'number';
+      column.editorType = 'dxSelectBox';
+      column.editorOptions = getPicklist(p, state, coeFormId);
+      break;
+    case 'COEListUpload':
+      column.editorType = 'dxFileUploader';
+      break;
+    case 'COETextArea':
+      column.editorType = 'dxTextArea';
+      break;
+    case 'COEDatePicker':
+      column.editorType = 'dxDateBox';
+      break;
+    case 'COEStructureQuery':
+    case 'COEStateControl':
+      column.editorType = 'dxTextArea';
+      column.visible = false;
+      break;
+    default:
+      if (typeof (p.searchCriteriaItem.numericalCriteria) === 'object') {
+        column.validationRules.push({ type: 'numeric' });
+      }
+      break;
   }
   return column;
 }

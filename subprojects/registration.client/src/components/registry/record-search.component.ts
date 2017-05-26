@@ -29,24 +29,23 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
-  private lookupsSubscription: Subscription;
   @Input() temporary: boolean;
   @Input() parentHeight: string;
   @Input() activated: boolean;
   @Output() onClose = new EventEmitter<any>();
-  private title: string;
-  private tabSelected: string = 'search';
-  private regSearch: regSearchTypes.CSearchFormVM;
+  @select(s => s.session.lookups) lookups$: Observable<any>;
   @ViewChild(ChemDrawingTool)
   private chemDrawWeb: ChemDrawingTool;
-  public formGroup: CFormGroup;
-  @select(s => s.session.lookups) lookups$: Observable<any>;
+  private lookupsSubscription: Subscription;
+  private title: string;
+  private regSearch: regSearchTypes.CSearchFormVM;
+  private formGroup: CFormGroup;
 
   constructor(
     private router: Router,
     private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef,
-    public ngRedux: NgRedux<IAppState>,
+    private ngRedux: NgRedux<IAppState>,
     private actions: RegistrySearchActions) {
   }
 
@@ -75,7 +74,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private generateSearchCriteriaXML(): string {
-    this.regSearch.registrySearchVM.structureData = this.chemDrawWeb.getValue();
     let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
     searchCriteria += this.getSearchCriteria(this.regSearch.registrySearchVM);
     searchCriteria += this.getSearchCriteria(this.regSearch.structureSearchVM);
@@ -84,18 +82,17 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     return searchCriteria + '</searchCriteria>';
   }
 
-  private getSearchCriteria(c: { columns: any[] }): string {
+  private getSearchCriteria(tableData: { columns: any[], data: any }): string {
     let searchCriteria = '';
-    c.columns.forEach(e => {
-      let m: { data } = this.regSearch.registrySearchVM;
-      let value = m.data[e.dataField];
+    tableData.columns.forEach(column => {
+      let value = column.coeType === 'COEStructureQuery' ? this.chemDrawWeb.getValue() : tableData.data[column.dataField];
       if (value) {
-        for (const prop in e.searchCriteriaItem) {
-          if (typeof e.searchCriteriaItem[prop] === 'object') {
-            e.searchCriteriaItem[prop].__text = value;
+        for (const prop in column.searchCriteriaItem) {
+          if (typeof column.searchCriteriaItem[prop] === 'object') {
+            column.searchCriteriaItem[prop].__text = value;
           }
         }
-        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: e.searchCriteriaItem });
+        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: column.searchCriteriaItem });
       }
     });
     return searchCriteria;
