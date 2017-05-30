@@ -147,55 +147,55 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return propertyListEnumerable.FirstOrDefault(p => p.Name == propertyName) != null;
         }
 
-        private bool PutCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, List<FormGroup.FormElement> formElement, FormElementData formElementData)
+        private bool PutCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, FormGroup.Form form, FormElementData formElementData)
         {
             bool found = false;
-            foreach (var element in formElement)
+            if (form != null)
             {
-                if (!element.Name.Equals(formElementData.Name)) continue;
-                found = true;
-                element.DisplayInfo.Type = formElementData.ControlType;
-                element.Label = formElementData.Label;
-                element.DisplayInfo.CSSClass = formElementData.CssClass;
-                element.DisplayInfo.Visible = formElementData.Visible == null || formElementData.Visible.Value;
-                break;
+                var formElements = form.EditMode;
+                foreach (var element in formElements)
+                {
+                    if (!element.Name.Equals(formElementData.Name)) continue;
+                    found = true;
+                    element.DisplayInfo.Type = formElementData.ControlType;
+                    element.Label = formElementData.Label;
+                    element.DisplayInfo.CSSClass = formElementData.CssClass;
+                    element.DisplayInfo.Visible = formElementData.Visible == null || formElementData.Visible.Value;
+                    break;
+                }
             }
             return found;
         }
 
-        private JArray GetCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, List<FormGroup.FormElement> formElement)
+        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, List<FormGroup.FormElement> formElement)
         {
-            var data = new JArray();
+            var data = new List<FormElementData>();
             foreach (var element in formElement)
             {
                 if (!CheckCustomPropertyName(configurationBO, formId, element.Id)) continue;
                 var name = element.Id.Replace("Property", string.Empty);
                 if (string.IsNullOrEmpty(element.DisplayInfo.Assembly))
                 {
-                    var prop = new JObject(
-                        new JProperty("name", name),
-                        new JProperty("controlType", element.DisplayInfo.Type),
-                        new JProperty("label", element.Label),
-                        new JProperty("cssClass", element.DisplayInfo.CSSClass),
-                        new JProperty("visible", element.DisplayInfo.Visible)
-                    );
-                    data.Add(prop);
+                    data.Add(new FormElementData(element));
                 }
             }
             return data;
         }
 
-        private JArray GetCustomFormData(ConfigurationRegistryRecord configurationBO, FormGroup.Form form)
+        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, FormGroup.Form form)
         {
-            var data = new JArray();
-            if (form.LayoutInfo.Count > 0)
-                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.LayoutInfo)));
-            if (form.AddMode.Count > 0)
-                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.AddMode)));
-            if (form.EditMode.Count > 0)
-                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.EditMode)));
-            if (form.ViewMode.Count > 0)
-                data = new JArray(data.Union(GetCustomFormData(configurationBO, form.Id, form.ViewMode)));
+            var data = new List<FormElementData>();
+            if (form != null)
+            {
+                if (form.LayoutInfo.Count > 0)
+                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.LayoutInfo));
+                if (form.AddMode.Count > 0)
+                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.AddMode));
+                if (form.EditMode.Count > 0)
+                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.EditMode));
+                if (form.ViewMode.Count > 0)
+                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.ViewMode));
+            }
             return data;
         }
 
@@ -530,7 +530,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "forms")]
         [SwaggerOperation("GetForms")]
-        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(200, type: typeof(List<FormElementData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -539,15 +539,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                var formList = new JArray();
-                var formBO = COEFormBO.Get(4010);
-                var detailsForms = formBO.COEFormGroup.DetailsForms;
-                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX))));
-                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX))));
-                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX))));
-                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX))));
-                formList = new JArray(formList.Union(GetCustomFormData(configurationBO, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX))));
-                return formList.GroupBy(d => d["name"]).Select(g => g.First());
+                string[] customFromGroupsIds = RegAdminUtils.GetRegCustomFormGroupsIds();
+                var formList = new List<FormElementData>();
+                foreach (string formGroupId in customFromGroupsIds)
+                {
+                    var formBO = COEFormBO.Get(Convert.ToInt32(formGroupId));
+                    var detailsForms = formBO.COEFormGroup.DetailsForms;
+                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX)));
+                }
+                return formList.GroupBy(d => d.Name).Select(g => g.First());
             });
         }
 
@@ -573,44 +577,32 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var detailsForms = formBO.COEFormGroup.DetailsForms;
                     var listForms = formBO.COEFormGroup.ListForms;
                     var queryForms = formBO.COEFormGroup.QueryForms;
-                    if (formElementData.FormGroupName == "RegistryProperties")
-                    {
-                        var found1 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX).EditMode, formElementData);
-                        var found2 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(listForms, 0, COEFormHelper.MIXTURESEARCHFORM).EditMode, formElementData);
-                        var found3 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(queryForms, 0, COEFormHelper.MIXTURESEARCHFORM).EditMode, formElementData);
-                        formGroupUpdated = found1 || found2 || found3;
-                    }
-                    else if (formElementData.FormGroupName == "CompoundProperties")
-                    {
-                        var found1 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX).EditMode, formElementData);
-                        var found2 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(queryForms, 0, COEFormHelper.COMPOUNDSEARCHFORM).EditMode, formElementData);
-                        formGroupUpdated = found1 || found2;
-                    }
-                    else if (formElementData.FormGroupName == "BaseFragmentProperties")
-                    {
-                        var found1 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX).EditMode, formElementData);
-                        var found2 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(queryForms, 0, COEFormHelper.STRUCTURESEARCHFORM).EditMode, formElementData);
-                        formGroupUpdated = found1 || found2;
-                    }
-                    else if (formElementData.FormGroupName == "BatchProperties")
-                    {
-                        var found1 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX).EditMode, formElementData);
-                        var found2 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(queryForms, 0, COEFormHelper.BATCHSEARCHFORM).EditMode, formElementData);
-                        formGroupUpdated = found1 || found2;
-                    }
-                    else if (formElementData.FormGroupName == "BatchComponentProperties")
-                    {
-                        var found1 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX).EditMode, formElementData);
-                        var found2 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(queryForms, 0, COEFormHelper.BATCHCOMPONENTSEARCHFORM).EditMode, formElementData);
-                        formGroupUpdated = found1 || found2;
-                    }
-                    else
-                    {
-                        var found1 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(queryForms, 0, COEFormHelper.TEMPORARYBASEFORM).EditMode, formElementData);
-                        var found2 = PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(queryForms, 0, COEFormHelper.TEMPORARYCHILDFORM).EditMode, formElementData);
-                        formGroupUpdated = found1 || found2;
-                    }
-                    if (formGroupUpdated) formBO.Save();
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(listForms, 0, COEFormHelper.MIXTURESEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.MIXTURESEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.COMPOUNDSEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.STRUCTURESEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.BATCHSEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.BATCHCOMPONENTSEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.TEMPORARYBASEFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.TEMPORARYCHILDFORM), formElementData))
+                        formGroupUpdated = true;
                     found = found || formGroupUpdated;
                 }
                 if (!found)
