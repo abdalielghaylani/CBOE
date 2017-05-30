@@ -167,7 +167,6 @@ export class RegConfigSettings implements OnInit, OnDestroy {
             data[k] = newData[k];
           }
         }
-        let id = data[Object.getOwnPropertyNames(data)[0]];
         parent.http.put(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
