@@ -25,6 +25,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class ConfigurationController : RegControllerBase
     {
+        private static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
+        {
+            return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
+        }
+
         #region Custom tables
         private static JObject GetTableConfig(string tableName)
         {
@@ -167,34 +177,34 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return found;
         }
 
-        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, List<FormGroup.FormElement> formElement)
+        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, string group, FormGroup.Form form, List<FormGroup.FormElement> formElement)
         {
             var data = new List<FormElementData>();
             foreach (var element in formElement)
             {
-                if (!CheckCustomPropertyName(configurationBO, formId, element.Id)) continue;
+                if (!CheckCustomPropertyName(configurationBO, form.Id, element.Id)) continue;
                 var name = element.Id.Replace("Property", string.Empty);
                 if (string.IsNullOrEmpty(element.DisplayInfo.Assembly))
                 {
-                    data.Add(new FormElementData(element));
+                    data.Add(new FormElementData(group, element));
                 }
             }
             return data;
         }
 
-        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, FormGroup.Form form)
+        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, string group, FormGroup.Form form)
         {
             var data = new List<FormElementData>();
             if (form != null)
             {
                 if (form.LayoutInfo.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.LayoutInfo));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.LayoutInfo));
                 if (form.AddMode.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.AddMode));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.AddMode));
                 if (form.EditMode.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.EditMode));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.EditMode));
                 if (form.ViewMode.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, form.Id, form.ViewMode));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.ViewMode));
             }
             return data;
         }
@@ -545,11 +555,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     var formBO = COEFormBO.Get(Convert.ToInt32(formGroupId));
                     var detailsForms = formBO.COEFormGroup.DetailsForms;
-                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX)));
-                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX)));
-                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX)));
-                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX)));
-                    formList.AddRange(GetCustomFormData(configurationBO, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX)));
+                    var listForms = formBO.COEFormGroup.ListForms;
+                    var queryForms = formBO.COEFormGroup.QueryForms;
+                    var group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.PropertyList);
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX)));
+                    group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.Compound);
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX)));
+                    group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.Structure);
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX)));
+                    group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.Batch);
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX)));
+                    group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.BatchComponent);
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(queryForms, 0, COEFormHelper.BATCHCOMPONENTSEARCHFORM)));
                 }
                 return formList.GroupBy(d => d.Name).Select(g => g.First());
             });
@@ -635,17 +653,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var properties = (IEnumerable<Property>)propertyList;
                     foreach (var property in properties)
                     {
-                        var typeLabel = propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
-                            propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
-                            propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
-                            propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
-                            propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
-                            propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra Properties";
-
                         PropertyData propertyData = new PropertyData();
                         propertyData.Name = property.Name;
-                        propertyData.TypeName = propertyType.ToString();
-                        propertyData.TypeLabel = typeLabel;
+                        propertyData.GroupName = propertyType.ToString();
+                        propertyData.GroupLabel = GetPropertyTypeLabel(propertyType);
                         propertyData.PickListDisplayValue = string.IsNullOrEmpty(property.PickListDisplayValue) ? string.Empty : property.PickListDisplayValue;
                         propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId; 
                         propertyData.Value = property.Value;
@@ -714,7 +725,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
                 foreach (var propertyType in propertyTypes)
                 {
-                    if (!propertyType.ToString().Equals(data.TypeName)) continue;
+                    if (!propertyType.ToString().Equals(data.GroupName)) continue;
 
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
@@ -744,7 +755,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
-                        data.TypeName,
+                        data.GroupName,
                         data.Precision,
                         true,
                         data.SubType,

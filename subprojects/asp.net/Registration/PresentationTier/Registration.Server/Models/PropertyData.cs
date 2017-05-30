@@ -12,8 +12,8 @@ namespace PerkinElmer.COE.Registration.Server.Models
         [JsonConstructor]
         public PropertyData(
             string name,
-            string typeName,
-            string typeLabel,
+            string groupName,
+            string groupLabel,
             string pickListDisplayValue,
             string pickListDomainId,
             string value,
@@ -25,8 +25,8 @@ namespace PerkinElmer.COE.Registration.Server.Models
             List<ValidationRuleData> validationRules)
         {
             Name = name;
-            TypeName = typeName;
-            TypeLabel = typeLabel;
+            GroupName = groupName;
+            GroupLabel = groupLabel;
             PickListDisplayValue = pickListDisplayValue;
             PickListDomainId = pickListDomainId;
             value = Value;
@@ -47,14 +47,14 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Gets or sets the Type
         /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        public string TypeName { get; set; }
+        [JsonProperty(PropertyName = "groupName")]
+        public string GroupName { get; set; }
 
         /// <summary>
         /// Gets or sets the TypeLabel
         /// </summary>
-        [JsonProperty(PropertyName = "typeLabel")]
-        public string TypeLabel { get; set; }
+        [JsonProperty(PropertyName = "groupLabel")]
+        public string GroupLabel { get; set; }
 
         /// <summary>
         /// Gets or sets the PickListDisplayValue

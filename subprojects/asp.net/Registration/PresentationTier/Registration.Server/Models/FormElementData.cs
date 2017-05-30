@@ -9,8 +9,9 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public partial class FormElementData
     {
         [JsonConstructor]
-        public FormElementData(string name, string controlType, string label, string cssClass, bool? visible)
+        public FormElementData(string group, string name, string controlType, string label, string cssClass, bool? visible)
         {
+            Group = group;
             Name = name;
             ControlType = controlType;
             Label = label;
@@ -18,14 +19,21 @@ namespace PerkinElmer.COE.Registration.Server.Models
             Visible = visible;
         }
 
-        public FormElementData(FormGroup.FormElement formElement)
+        public FormElementData(string group, FormGroup.FormElement formElement)
         {
+            Group = group;
             Name = formElement.Id.Replace("Property", string.Empty);
             ControlType = formElement.DisplayInfo.Type;
             Label = formElement.Label;
             CssClass = formElement.DisplayInfo.CSSClass;
             Visible = formElement.DisplayInfo.Visible;
         }
+
+        /// <summary>
+        /// Gets or sets the group name
+        /// </summary>
+        [JsonProperty(PropertyName = "group")]
+        public string Group { get; set; }
 
         /// <summary>
         /// Gets or sets the name
