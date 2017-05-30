@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
@@ -144,6 +145,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 configurationBO.BatchComponentList;
             var propertyListEnumerable = (IEnumerable<Property>)propertyList;
             return propertyListEnumerable.FirstOrDefault(p => p.Name == propertyName) != null;
+        }
+
+        private void PutCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, List<FormGroup.FormElement> formElement, FormElementData formElementData)
+        {
+            foreach (var element in formElement)
+            {
+                element.Name = formElementData.Name;
+                element.DisplayInfo.Type = formElementData.ControlType;
+                element.Label = formElementData.Label;
+                element.DisplayInfo.CSSClass = formElementData.CssClass;
+                element.DisplayInfo.Visible = formElementData.Visible;
+            }
         }
 
         private JArray GetCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, List<FormGroup.FormElement> formElement)
@@ -462,49 +475,49 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> UpdateAddin(AddinData data)
         {
             return await CallMethod(() =>
-           {
-               if (string.IsNullOrEmpty(data.Name))
-                   throw new RegistrationException("Invalid addin name");
+            {
+                if (string.IsNullOrEmpty(data.Name))
+                    throw new RegistrationException("Invalid addin name");
 
-               var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-               bool found = false;
-               foreach (AddIn addin in configurationBO.AddInList)
-               {
-                   if (!addin.FriendlyName.Equals(data.Name)) continue;
-                   found = true;
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                bool found = false;
+                foreach (AddIn addin in configurationBO.AddInList)
+                {
+                    if (!addin.FriendlyName.Equals(data.Name)) continue;
+                    found = true;
 
-                   addin.Assembly = data.Assembly;
-                   addin.IsEnable = data.Enable;
-                   addin.AddInConfiguration = data.Configuration;
+                    addin.Assembly = data.Assembly;
+                    addin.IsEnable = data.Enable;
+                    addin.AddInConfiguration = data.Configuration;
 
-                   // clear existing events, if any
-                   List<Event> markedEventsForDeletion = new List<Event>();
-                   if (addin.EventList.Count > 0)
-                   {
-                       foreach (Event evt in addin.EventList)
-                           markedEventsForDeletion.Add(evt);
+                    // clear existing events, if any
+                    List<Event> markedEventsForDeletion = new List<Event>();
+                    if (addin.EventList.Count > 0)
+                    {
+                        foreach (Event evt in addin.EventList)
+                            markedEventsForDeletion.Add(evt);
 
-                       foreach (Event evt in markedEventsForDeletion)
-                           addin.EventList.Remove(evt);
-                   }
+                        foreach (Event evt in markedEventsForDeletion)
+                            addin.EventList.Remove(evt);
+                    }
 
-                   // add new events
-                   foreach (EventData evtData in data.Events)
-                   {
-                       Event evt = Event.NewEvent(evtData.EventName, evtData.EventHandler, true);
-                       addin.EventList.Add(evt);
-                   }
+                    // add new events
+                    foreach (EventData evtData in data.Events)
+                    {
+                        Event evt = Event.NewEvent(evtData.EventName, evtData.EventHandler, true);
+                        addin.EventList.Add(evt);
+                    }
 
-                   addin.ApplyEdit();
-                   configurationBO.Save();
+                    addin.ApplyEdit();
+                    configurationBO.Save();
 
-                   break;
-               }
-               if (!found)
-                   throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
+                    break;
+                }
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
 
-               return new ResponseData(message: string.Format("The addin, {0}, was updated successfully.", data.Name));
-           });
+                return new ResponseData(message: string.Format("The addin, {0}, was updated successfully.", data.Name));
+            });
         }
 
         #endregion
@@ -535,10 +548,79 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        [HttpPut]
+        [Route(Consts.apiPrefix + "forms")]
+        [SwaggerOperation("UpdateCustomForm")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateCustomForm(FormElementData formElementData)
+        {
+            return await CallMethod(() =>
+            {
+                bool found = false;
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                string[] customFromGroupsIds = RegAdminUtils.GetRegCustomFormGroupsIds();
+                foreach (string formGroupId in customFromGroupsIds)
+                {
+                    var formBO = COEFormBO.Get(Convert.ToInt32(formGroupId));
+                    var detailsForms = formBO.COEFormGroup.DetailsForms;
+                    var ListForms = formBO.COEFormGroup.ListForms;
+                    var QueryForms = formBO.COEFormGroup.QueryForms;
+                    if (formElementData.FormGroupName == "RegistryProperties")
+                    {
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX).EditMode, formElementData); }
+                        catch { }
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(ListForms, 0, COEFormHelper.MIXTURESEARCHFORM).EditMode, formElementData); }
+                        catch { }
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(QueryForms, 0, COEFormHelper.MIXTURESEARCHFORM).EditMode, formElementData); }
+                        catch { }
+                    }
+                    else if (formElementData.FormGroupName == "CompoundProperties")
+                    {
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX).EditMode, formElementData); }
+                        catch { }
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(QueryForms, 0, COEFormHelper.COMPOUNDSEARCHFORM).EditMode, formElementData); }
+                        catch { }
+                    }
+                    else if (formElementData.FormGroupName == "BaseFragmentProperties")
+                    {
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX).EditMode, formElementData); }
+                        catch { }
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(QueryForms, 0, COEFormHelper.STRUCTURESEARCHFORM).EditMode, formElementData); }
+                        catch { }
+                    }
+                    else if (formElementData.FormGroupName == "BatchProperties")
+                    {
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX).EditMode, formElementData); }
+                        catch { }
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(QueryForms, 0, COEFormHelper.BATCHSEARCHFORM).EditMode, formElementData); }
+                        catch { }
+                    }
+                    else if (formElementData.FormGroupName == "BatchComponentProperties")
+                    {
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX).EditMode, formElementData); }
+                        catch { }
+                        try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(QueryForms, 0, COEFormHelper.BATCHCOMPONENTSEARCHFORM).EditMode, formElementData); }
+                        catch { }
+                    }
+                    try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(QueryForms, 0, COEFormHelper.TEMPORARYBASEFORM).EditMode, formElementData); }
+                    catch { }
+                    try { PutCustomFormData(configurationBO, formBO.ID, formBO.GetForm(QueryForms, 0, COEFormHelper.TEMPORARYCHILDFORM).EditMode, formElementData); }
+                    catch { }
+                    formBO.Save();
+                    found = true;
+                }
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("The form-element, {0}, was not found", formElementData.Name));
+                return new ResponseData(null, null, string.Format("The form-elements was updated successfully"), null);
+            });
+        }
         #endregion
 
         #region Properties
-
         [HttpGet]
         [Route(Consts.apiPrefix + "properties")]
         [SwaggerOperation("GetProperties")]
