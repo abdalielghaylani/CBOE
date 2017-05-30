@@ -17,12 +17,14 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.RegistrationAdmin.Services.Common;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class ConfigurationController : RegControllerBase
     {
+        #region Custom tables
         private static JObject GetTableConfig(string tableName)
         {
             // Returns the field configuration
@@ -320,6 +322,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        #endregion
+
+        #region Addins
+
         [HttpGet]
         [Route(Consts.apiPrefix + "addins")]
         [SwaggerOperation("GetAddins")]
@@ -501,6 +507,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
            });
         }
 
+        #endregion
+
+        #region Forms
+
         [HttpGet]
         [Route(Consts.apiPrefix + "forms")]
         [SwaggerOperation("GetForms")]
@@ -525,10 +535,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        #endregion
+
+        #region Properties
+
         [HttpGet]
         [Route(Consts.apiPrefix + "properties")]
         [SwaggerOperation("GetProperties")]
-        [SwaggerResponse(200, type: typeof(JArray))]
+        [SwaggerResponse(200, type: typeof(List<PropertyData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -536,7 +550,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var propertyArray = new JArray();
+                var propertyArray = new List<PropertyData>();
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
                 foreach (var propertyType in propertyTypes)
@@ -553,17 +567,219 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
                             propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
                             propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra Properties";
-                        propertyArray.Add(new JObject(
-                            new JProperty("typeName", propertyType.ToString()),
-                            new JProperty("typeLabel", typeLabel),
-                            new JProperty("name", property.Name)
-                        ));
+
+                        PropertyData propertyData = new PropertyData();
+                        propertyData.Name = property.Name;
+                        propertyData.TypeName = propertyType.ToString();
+                        propertyData.TypeLabel = typeLabel;
+                        propertyData.PickListDisplayValue = string.IsNullOrEmpty(property.PickListDisplayValue) ? string.Empty : property.PickListDisplayValue;
+                        propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId; 
+                        propertyData.Value = property.Value;
+                        propertyData.DefaultValue = property.DefaultValue;
+                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision; 
+                        propertyData.SortOrder = property.SortOrder;
+                        propertyData.SubType = property.SubType;
+                        propertyData.FriendlyName = property.FriendlyName;
+                        propertyData.ValidationRules = new List<ValidationRuleData>();
+
+                        foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule rule in property.ValRuleList)
+                        {
+                            ValidationRuleData ruleData = new ValidationRuleData();                         
+                            ruleData.Name = rule.Name;
+                            ruleData.Min = rule.MIN;
+                            ruleData.Max = rule.MAX;
+                            ruleData.MaxLength = rule.MaxLength;
+                            ruleData.Error = rule.Error;
+                            ruleData.DefaultValue = rule.DefaultValue;
+                            ruleData.Parameters = new List<ParameterData>();
+
+                            foreach (CambridgeSoft.COE.Registration.Services.BLL.Parameter param in rule.Parameters)
+                                ruleData.Parameters.Add(new ParameterData(param.Name, param.Value));
+
+                            propertyData.ValidationRules.Add(ruleData);
+                        }
+
+                        propertyArray.Add(propertyData);                       
                     }
                 }
                 return propertyArray;
             });
         }
 
+        [HttpPost]
+        [Route(Consts.apiPrefix + "properties")]
+        [SwaggerOperation("CreateProperties")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> CreateProperties(PropertyData data)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrEmpty(data.Name))
+                    throw new RegistrationException("Invalid property name");
+
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+
+                bool duplicateExists = false;
+                if (configurationBO.PropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.PropertyColumnList.Contains(data.Name.ToUpper()))
+                    duplicateExists = true;
+                else if (configurationBO.BatchPropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.BatchPropertyColumnList.Contains(data.Name.ToUpper()))
+                    duplicateExists = true;
+                else if (configurationBO.BatchComponentList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.BatchComponentColumnList.Contains(data.Name.ToUpper()))
+                    duplicateExists = true;
+                else if (configurationBO.CompoundPropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.CompoundPropertyColumnList.Contains(data.Name.ToUpper()))
+                    duplicateExists = true;
+                else if (configurationBO.StructurePropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.StructurePropertyColumnList.Contains(data.Name.ToUpper()))
+                    duplicateExists = true;
+
+                if (duplicateExists)
+                    throw new RegistrationException(string.Format("The property '{0}' already exists.", data.Name));
+
+                var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                foreach (var propertyType in propertyTypes)
+                {
+                    if (!propertyType.ToString().Equals(data.TypeName)) continue;
+
+                    configurationBO.SelectedPropertyList = propertyType;
+                    var propertyList = configurationBO.GetSelectedPropertyList;
+                    if (propertyList == null) continue;
+                    var properties = (IEnumerable<Property>)propertyList;
+
+                    string prefix = string.Empty;
+                    switch (configurationBO.SelectedPropertyList)
+                    {
+                        case ConfigurationRegistryRecord.PropertyListType.PropertyList:
+                            prefix = RegAdminUtils.GetRegistryPrefix();
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Batch:
+                            prefix = RegAdminUtils.GetBatchPrefix();
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Compound:
+                            prefix = RegAdminUtils.GetComponentPrefix();
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
+                            prefix = RegAdminUtils.GetBatchComponentsPrefix();
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Structure:
+                            prefix = RegAdminUtils.GetStructurePrefix();
+                            break;
+                    }
+
+                    ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(prefix + data.Name.ToUpper(),
+                                  data.Name.ToUpper(), data.TypeName, data.Precision, true, data.SubType, data.PickListDomainId);
+                    configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
+
+                    break;
+                }
+
+                configurationBO.Save();
+
+                return new ResponseData(message: string.Format("The property, {0}, was saved successfully.", data.Name));
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "properties")]
+        [SwaggerOperation("UpdateProperties")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateProperties(PropertyData data)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrEmpty(data.Name.Trim()))
+                    throw new RegistrationException("Invalid property name");
+
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                ConfigurationProperty selectedProperty = (ConfigurationProperty)configurationBO.GetSelectedPropertyList[data.Name];
+                if (selectedProperty == null)
+                    throw new RegistrationException(string.Format("The property, {0}, was not found", data.Name));
+
+                selectedProperty.BeginEdit();
+
+                if (!selectedProperty.Precision.Equals(data.Precision))
+                {
+                    switch (selectedProperty.Type)
+                    {
+                        case "NUMBER":
+                            if (data.Precision.Contains(".") || data.Precision.Contains(","))
+                                selectedProperty.Precision = data.Precision;
+                            else
+                                selectedProperty.Precision = data.Precision + ".0";
+
+                            selectedProperty.Precision = RegAdminUtils.ConvertPrecision(selectedProperty.Precision, true);
+                            break;
+                        case "TEXT":
+                            selectedProperty.Precision = data.Precision;
+                            break;
+                    }
+                }
+
+                if (selectedProperty.PrecisionIsUpdate)
+                {
+                    ValidationRuleList valRulesToDelete = selectedProperty.ValRuleList.Clone();
+                    foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule valRule in valRulesToDelete)
+                        selectedProperty.ValRuleList.RemoveValidationRule(valRule.ID);
+                    ((ConfigurationProperty)selectedProperty).AddDefaultRule();
+                }
+
+                selectedProperty.ApplyEdit();
+                configurationBO.Save();
+
+                return new ResponseData(message: string.Format("The property, {0}, was updated successfully.", data.Name));
+            });
+        }
+
+        [HttpDelete]
+        [Route(Consts.apiPrefix + "properties/{name}")]
+        [SwaggerOperation("DeleteProperties")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteProperties(string name)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrEmpty(name))
+                    throw new RegistrationException("Invalid property name");
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+
+                var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                bool found = false;
+                foreach (var propertyType in propertyTypes)
+                {
+                    configurationBO.SelectedPropertyList = propertyType;
+                    var propertyList = configurationBO.GetSelectedPropertyList;
+                    if (propertyList == null) continue;
+                    var properties = (IEnumerable<Property>)propertyList;
+                    foreach (var property in properties)
+                    {
+                        if (!property.Name.Equals(name)) continue;
+
+                        found = true;
+                        int index = propertyList.GetPropertyIndex(name);
+                        propertyList.RemoveAt(index);
+                        configurationBO.Save();
+                        break;
+                    }
+                }
+
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("The property, {0}, was not found", name));
+                return new ResponseData(message: string.Format("The property, {0}, was deleted successfully.", name));
+            });
+        }
+
+        #endregion
+
+        #region Settings
         [HttpGet]
         [Route(Consts.apiPrefix + "settings")]
         [SwaggerOperation("GetSettings")]
@@ -647,6 +863,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        #endregion
+
+        #region XML forms
+
         [HttpGet]
         [Route(Consts.apiPrefix + "xml-forms")]
         [SwaggerOperation("GetXmlForms")]
@@ -700,5 +920,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully", data.Name), null);
             });
         }
+
+        #endregion
     }
 }
