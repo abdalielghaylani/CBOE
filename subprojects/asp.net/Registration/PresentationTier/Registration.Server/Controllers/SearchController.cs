@@ -50,6 +50,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             );
         }
 
+        private static COEHitListBO GetHitlistBO(int id)
+        {
+            var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
+            if (hitlistBO == null)
+                hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
+            if (hitlistBO == null)
+                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+            return hitlistBO;
+        }
+
         /// <summary>
         /// Returns all hit-lists.
         /// </summary>
@@ -158,15 +168,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
                     if (hitlistBO.SearchCriteriaID > 0)
                     {
-                        var searchCriteria = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
-                        searchCriteria.Name = hitlistBO.Name;
-                        searchCriteria.Description = hitlistBO.Description;
-                        searchCriteria.IsPublic = hitlistBO.IsPublic;
-                        searchCriteria = saveHitlist ? searchCriteria.Save() : searchCriteria.Update();
+                        var searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+                        searchCriteriaBO.Name = hitlistBO.Name;
+                        searchCriteriaBO.Description = hitlistBO.Description;
+                        searchCriteriaBO.IsPublic = hitlistBO.IsPublic;
+                        searchCriteriaBO = saveHitlist ? searchCriteriaBO.Save() : searchCriteriaBO.Update();
                         if (saveHitlist)
                         {
-                            hitlistBO.SearchCriteriaID = searchCriteria.ID;
-                            hitlistBO.SearchCriteriaType = searchCriteria.SearchCriteriaType;
+                            hitlistBO.SearchCriteriaID = searchCriteriaBO.ID;
+                            hitlistBO.SearchCriteriaType = searchCriteriaBO.SearchCriteriaType;
                         }
                     }
                     hitlistBO = saveHitlist ? hitlistBO.Save() : hitlistBO.Update();
@@ -241,6 +251,38 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 return GetHitlistRecordsInternal(id, skip, count, sort);
+            });
+        }
+
+        /// <summary>
+        /// Returns the list of registry records for a hit-list
+        /// </summary>
+        /// <remarks>Returns the list of registry records for a hit-list by its ID</remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Unexpected error</response>
+        /// <returns>The promise to return a JSON object containing an array of registration records</returns>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "hitlists/{id}/query")]
+        [SwaggerOperation("GetHitlistQuery")]
+        [SwaggerResponse(200, type: typeof(SimpleData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetHitlistQuery(int id)
+        {
+            return await CallMethod(() =>
+            {
+                var hitlistBO = GetHitlistBO(id);
+                if (hitlistBO.SearchCriteriaID == 0)
+                    throw new RegistrationException("The hit-list has no query associated with it");
+                COESearchCriteriaBO searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+                var formGroup = configRegRecord.FormGroup;
+                SearchCriteria searchCriteria = SearchFormGroupAdapter.GetSearchCriteria(formGroup.QueryForms[0]);
+                return new SimpleData(searchCriteria.ToString());
             });
         }
 
@@ -342,11 +384,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-                if (hitlistBO == null)
-                    hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
-                if (hitlistBO == null)
-                    throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+                var hitlistBO = GetHitlistBO(id);
                 return new Hitlist(hitlistBO);
             });
         }
@@ -372,8 +410,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     throw new RegistrationException("The search criteria is invalid", ex);
                 }
-                var hitlistInfo = coeSearch.GetHitList(searchCriteria, dataView);
-                return GetHitlistRecordsInternal(hitlistInfo.HitListID, skip, count, sort);
+                var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
+                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
+                hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
+                hitlistBO.Update();
+                return GetHitlistRecordsInternal(hitlistBO.HitListID, skip, count, sort);
             });
         }
 
