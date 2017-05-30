@@ -362,7 +362,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "addins/{name}")]
         [SwaggerOperation("DeleteAddin")]
-        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
