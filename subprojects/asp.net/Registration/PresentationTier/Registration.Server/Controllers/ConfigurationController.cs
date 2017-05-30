@@ -155,7 +155,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 element.DisplayInfo.Type = formElementData.ControlType;
                 element.Label = formElementData.Label;
                 element.DisplayInfo.CSSClass = formElementData.CssClass;
-                element.DisplayInfo.Visible = formElementData.Visible;
+                element.DisplayInfo.Visible = formElementData.Visible == null || formElementData.Visible.Value;
             }
         }
 
@@ -366,9 +366,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     addinData.Required = addin.IsRequired;
                     addinData.Configuration = addin.AddInConfiguration;
 
-                    addinData.Events = new List<EventData>();
+                    addinData.Events = new List<AddinEvent>();
                     foreach (Event evt in addin.EventList)
-                        addinData.Events.Add(new EventData(evt.EventName, evt.EventHandler));
+                        addinData.Events.Add(new AddinEvent(evt.EventName, evt.EventHandler));
 
                     addinList.Add(addinData);
                     counter++;
@@ -448,14 +448,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 // get all events
                 EventList eventList = EventList.NewEventList();
-                foreach (PerkinElmer.COE.Registration.Server.Models.EventData evtItem in data.Events)
+                foreach (PerkinElmer.COE.Registration.Server.Models.AddinEvent evtItem in data.Events)
                 {
                     Event evt = Event.NewEvent(evtItem.EventName, evtItem.EventHandler, true);
                     eventList.Add(evt);
                 }
 
-                AddIn addIn = AddIn.NewAddIn(data.Assembly, data.ClassName, data.Name, eventList,
-                            data.Configuration, data.ClassNamespace, true, false);
+                AddIn addIn = AddIn.NewAddIn(data.Assembly, data.ClassName, data.Name, eventList, data.Configuration, data.ClassNamespace, true, false);
 
                 configurationBO.AddInList.Add(addIn);
                 configurationBO.Save();
@@ -502,7 +501,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
 
                     // add new events
-                    foreach (EventData evtData in data.Events)
+                    foreach (AddinEvent evtData in data.Events)
                     {
                         Event evt = Event.NewEvent(evtData.EventName, evtData.EventHandler, true);
                         addin.EventList.Add(evt);
@@ -673,10 +672,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             ruleData.MaxLength = rule.MaxLength;
                             ruleData.Error = rule.Error;
                             ruleData.DefaultValue = rule.DefaultValue;
-                            ruleData.Parameters = new List<ParameterData>();
+                            ruleData.Parameters = new List<ValidationParameter>();
 
                             foreach (CambridgeSoft.COE.Registration.Services.BLL.Parameter param in rule.Parameters)
-                                ruleData.Parameters.Add(new ParameterData(param.Name, param.Value));
+                                ruleData.Parameters.Add(new ValidationParameter(param.Name, param.Value));
 
                             propertyData.ValidationRules.Add(ruleData);
                         }
@@ -749,8 +748,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             break;
                     }
 
-                    ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(prefix + data.Name.ToUpper(),
-                                  data.Name.ToUpper(), data.TypeName, data.Precision, true, data.SubType, data.PickListDomainId);
+                    ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(
+                        prefix + data.Name.ToUpper(),
+                        data.Name.ToUpper(),
+                        data.TypeName,
+                        data.Precision,
+                        true,
+                        data.SubType,
+                        data.PickListDomainId);
                     configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
 
                     break;

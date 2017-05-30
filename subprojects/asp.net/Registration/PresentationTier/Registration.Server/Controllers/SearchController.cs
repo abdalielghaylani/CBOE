@@ -26,6 +26,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     {
         private const string databaseName = "REGDB";
 
+        private static COEHitListBO GetHitlistBO(int id)
+        {
+            var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
+            if (hitlistBO == null)
+                hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
+            if (hitlistBO == null)
+                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+            return hitlistBO;
+        }
+
         private JObject GetHitlistRecordsInternal(int id, int? skip = null, int? count = null, string sort = null)
         {
             var hitlistType = HitListType.TEMP;
@@ -48,16 +58,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("rows", ExtractData(query, args, skip, count))
             );
-        }
-
-        private static COEHitListBO GetHitlistBO(int id)
-        {
-            var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-            if (hitlistBO == null)
-                hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
-            if (hitlistBO == null)
-                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
-            return hitlistBO;
         }
 
         /// <summary>
@@ -262,7 +262,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Bad request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
-        /// <returns>The promise to return a JSON object containing an array of registration records</returns>
+        /// <param name="id">The hit-list ID</param>
+        /// <returns>The object containing the search criteria as XML string</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}/query")]
         [SwaggerOperation("GetHitlistQuery")]

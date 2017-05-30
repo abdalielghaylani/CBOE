@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -10,7 +10,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         [JsonConstructor]
-        public AddinData(string name, string addIn, string assembly, string className, string classNameSpace, bool enable, bool required, string configuration, List<EventData> events)
+        public AddinData(string name, string addIn, string assembly, string className, string classNameSpace, bool enable, bool required, string configuration, List<AddinEvent> events)
         {
             Name = name;
             AddIn = addIn;
@@ -50,19 +50,19 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string ClassName { get; set; }
 
         /// <summary>
-        /// Gets or sets the ClassNamespace 
+        /// Gets or sets the class name-space 
         /// </summary>
         [JsonProperty(PropertyName = "classNamespace")]
         public string ClassNamespace { get; set; }
 
         /// <summary>
-        /// Gets or sets the Enable property
+        /// Gets or sets a value indicating whether it is enabled
         /// </summary>
         [JsonProperty(PropertyName = "enable")]
         public bool Enable { get; set; }
 
         /// <summary>
-        /// Gets or sets the Required property
+        /// Gets or sets a value indicating whether it is required
         /// </summary>
         [JsonProperty(PropertyName = "required")]
         public bool Required { get; set; }
@@ -77,32 +77,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// Gets or sets the Events 
         /// </summary>
         [JsonProperty(PropertyName = "events")]
-        public List<EventData> Events { get; set; }
-    }
-
-    public class EventData
-    {
-        public EventData()
-        {
-        }
-
-        [JsonConstructor]
-        public EventData(string eventName, string eventHandler)
-        {
-            EventName = eventName;
-            EventHandler = eventHandler;
-        }
-
-        /// <summary>
-        /// Gets or sets the EventName
-        /// </summary>
-        [JsonProperty(PropertyName = "eventName")]
-        public string EventName { get; set; }
-
-        /// <summary>
-        /// Gets or sets the EventHandler
-        /// </summary>
-        [JsonProperty(PropertyName = "eventHandler")]
-        public string EventHandler { get; set; }
+        public List<AddinEvent> Events { get; set; }
     }
 }

@@ -1,15 +1,4 @@
-using System;
-using System.Linq;
-using System.IO;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.ComponentModel.DataAnnotations;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 
 namespace PerkinElmer.COE.Registration.Server.Models
@@ -20,7 +9,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public partial class FormElementData
     {
         [JsonConstructor]
-        public FormElementData(string formGroupName, string name, string controlType, string label, string cssClass, bool visible)
+        public FormElementData(string formGroupName, string name, string controlType, string label, string cssClass, bool? visible)
         {
             FormGroupName = formGroupName;
             Name = name;
@@ -40,39 +29,39 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or sets the form-group name
         /// </summary>
-        [JsonProperty(PropertyName = "FormGroupName")]
+        [JsonProperty(PropertyName = "formGroupName")]
         public string FormGroupName { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Gets or sets the name
         /// </summary>
-        [JsonProperty(PropertyName = "Name")]
+        [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets ControlType
+        /// Gets or sets the control type
         /// </summary>
-        [JsonProperty(PropertyName = "ControlType")]
+        [JsonProperty(PropertyName = "controlType")]
         public string ControlType { get; set; }
 
         /// <summary>
-        /// Gets or Sets Label
+        /// Gets or sets the label
         /// </summary>
-        [JsonProperty(PropertyName = "Label")]
+        [JsonProperty(PropertyName = "label")]
         public string Label { get; set; }
 
         /// <summary>
-        /// Gets or Sets CssClass
+        /// Gets or sets the CSS class name
         /// </summary>
-        [JsonProperty(PropertyName = "CssClass")]
+        [JsonProperty(PropertyName = "cssClass")]
         public string CssClass { get; set; }
 
         /// <summary>
-        /// Gets or Sets Visible
+        /// Gets or sets the visible flag
         /// </summary>
-        [JsonProperty(PropertyName = "Visible")]
-        public bool Visible { get; set; }
+        [JsonProperty(PropertyName = "visible")]
+        public bool? Visible { get; set; }
     }
 }

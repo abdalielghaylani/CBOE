@@ -150,8 +150,10 @@
     <Compile Include="Controllers\StructureImageController.cs" />
     <Compile Include="Controllers\RegistryRecordsController.cs" />
     <Compile Include="Models\AddinData.cs" />
+    <Compile Include="Models\AddinEvent.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Batch.cs" />
+    <Compile Include="Models\FormElementData.cs" />
     <Compile Include="Models\Hitlist.cs" />
     <Compile Include="Code\QueryHelper.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
@@ -160,6 +162,8 @@
     </Compile>
     <Compile Include="Models\PropertyData.cs" />
     <Compile Include="Models\SimpleData.cs" />
+    <Compile Include="Models\ValidationParameter.cs" />
+    <Compile Include="Models\ValidationRuleData.cs" />
     <Compile Include="Models\XmlFormData.cs" />
     <Compile Include="Models\SettingData.cs" />
     <Compile Include="Models\ResponseData.cs" />

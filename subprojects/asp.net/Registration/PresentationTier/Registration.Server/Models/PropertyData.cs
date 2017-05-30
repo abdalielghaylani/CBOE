@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -10,8 +10,19 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         [JsonConstructor]
-        public PropertyData(string name, string typeName, string typeLabel, string pickListDisplayValue, string pickListDomainId, string value,
-            string defaultValue, string precision, int sortOrder, string subType, string friendlyName, List<ValidationRuleData> validationRules)
+        public PropertyData(
+            string name,
+            string typeName,
+            string typeLabel,
+            string pickListDisplayValue,
+            string pickListDomainId,
+            string value,
+            string defaultValue,
+            string precision,
+            int sortOrder,
+            string subType,
+            string friendlyName,
+            List<ValidationRuleData> validationRules)
         {
             Name = name;
             TypeName = typeName;
@@ -98,93 +109,5 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "validationRules")]
         public List<ValidationRuleData> ValidationRules { get; set; }
-    }
-
-    public class ValidationRuleData
-    {
-        public ValidationRuleData()
-        {
-        }
-
-        [JsonConstructor]
-        public ValidationRuleData(string name, string min, string max, int maxLength,
-            string error, string defaultValue, List<ParameterData> parameters)
-        {
-            Name = name;
-            Min = min;
-            Max = max;
-            MaxLength = maxLength;
-            Error = error;
-            DefaultValue = defaultValue;
-            Parameters = parameters;
-        }
-
-        /// <summary>
-        /// Gets or sets the Name
-        /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Min
-        /// </summary>
-        [JsonProperty(PropertyName = "min")]
-        public string Min { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Max
-        /// </summary>
-        [JsonProperty(PropertyName = "max")]
-        public string Max { get; set; }
-
-        /// <summary>
-        /// Gets or sets the MaxLength
-        /// </summary>
-        [JsonProperty(PropertyName = "maxLength")]
-        public int MaxLength { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Error
-        /// </summary>
-        [JsonProperty(PropertyName = "error")]
-        public string Error { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Default Value
-        /// </summary>
-        [JsonProperty(PropertyName = "defaultValue")]
-        public string DefaultValue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Parameters 
-        /// </summary>
-        [JsonProperty(PropertyName = "parameters")]
-        public List<ParameterData> Parameters { get; set; }
-    }
-
-    public class ParameterData
-    {
-        public ParameterData()
-        {
-        }
-
-        [JsonConstructor]
-        public ParameterData(string name, string value)
-        {
-            Name = name;
-            Value = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the Name
-        /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Value
-        /// </summary>
-        [JsonProperty(PropertyName = "value")]
-        public string Value { get; set; }
     }
 }
