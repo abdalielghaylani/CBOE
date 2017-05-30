@@ -282,6 +282,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
                 var formGroup = configRegRecord.FormGroup;
                 SearchCriteria searchCriteria = SearchFormGroupAdapter.GetSearchCriteria(formGroup.QueryForms[0]);
+                foreach (var item in searchCriteriaBO.SearchCriteria.Items)
+                {
+                    if (item is SearchCriteria.SearchCriteriaItem)
+                    {
+                        var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                        if (searchCriteriaItem.ID >= 0)
+                            SearchFormGroupAdapter.PopulateSearchCriteria(searchCriteria, searchCriteriaItem);
+                    }
+                }
                 return new SimpleData(searchCriteria.ToString());
             });
         }
