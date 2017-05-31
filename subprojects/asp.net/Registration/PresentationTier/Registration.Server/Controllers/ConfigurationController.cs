@@ -498,6 +498,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     if (!addin.FriendlyName.Equals(data.Name)) continue;
                     found = true;
+                    addin.BeginEdit();
 
                     addin.Assembly = data.Assembly;
                     addin.IsEnable = data.Enable;

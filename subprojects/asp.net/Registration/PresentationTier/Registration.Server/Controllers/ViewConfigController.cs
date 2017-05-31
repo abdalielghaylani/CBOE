@@ -39,9 +39,39 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
                     new JProperty("formGroups", GetFormGroups()),
                     new JProperty("customTables", GetCustomTables()),
-                    new JProperty("systemSettings", GetSystemSettings())
+                    new JProperty("systemSettings", GetSystemSettings()),
+                     new JProperty("addinAssemblies", GetAddinAssemblies())
                 );
             });
+        }
+
+        private static JArray GetAddinAssemblies()
+        {
+            var asemblies = new JArray();
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            foreach (AddInAssembly assembly in configRegRecord.GetAssemblyList.Assemblies)
+            {
+                dynamic assemblyObject = new JObject();
+                assemblyObject.name = assembly.Name;
+                assemblyObject.classes = new JArray();
+
+                foreach (AddInClass addinClass in assembly.ClassList)
+                {
+                    dynamic classObject = new JObject();
+                    classObject.name = addinClass.Name;
+                    classObject.eventHandlers = new JArray();
+
+                    foreach (string eventHandler in addinClass.EventHandlerList)
+                    {
+                        dynamic eventHandlerObject = new JObject();
+                        eventHandlerObject.name = eventHandler;
+                        classObject.eventHandlers.Add(eventHandlerObject);
+                    }
+                    assemblyObject.classes.Add(classObject);
+                }
+                asemblies.Add(assemblyObject);
+            }
+            return asemblies;
         }
 
         private static JArray GetFormGroups()
