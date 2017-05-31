@@ -5,9 +5,17 @@ export interface IHitlistInfo {
   type: number;
 }
 
+export interface IHitlistRetrieveInfo {
+  type: string;
+  temporary: boolean;
+  id: number;
+  refresh?: boolean;
+  data?: any;
+}
+
 export interface ISearchRecords {
   rows?: any[];
-  currentHitlistInfo?: IHitlistInfo;
+  currentHitlistId?: number;
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, ISearchRecords { }
@@ -20,7 +28,7 @@ export interface IRegistrySearchRecord extends TypedRecord<IRegistrySearchRecord
 
 const INITIAL_RECORDS = makeTypedFactory<ISearchRecords, IRecordsRecord>({
   rows: [],
-  currentHitlistInfo: { id: 0, type: 0 }
+  currentHitlistId: 0
 })();
 
 export const RegistryFactory = makeTypedFactory<IRegistrySearch, IRegistrySearchRecord>({

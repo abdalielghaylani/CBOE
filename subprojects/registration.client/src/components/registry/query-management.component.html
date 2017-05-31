@@ -29,7 +29,7 @@
   </div>
   <div *dxTemplate="let d of 'restoreCellTemplate'">
     <a class="fa fa-recycle grd-icon" aria-hidden="true" title='Restore Hitlist' data-dismiss="modal" (click)="restoreSelectedHitlist(d.data)"></a>&nbsp;
-    <a class="fa fa-bolt grd-icon" aria-hidden="true" title='Perform Query'></a>&nbsp;
+    <a class="fa fa-bolt grd-icon" aria-hidden="true" title='Perform Query' (click)="refreshSelectedHitlist(d.data)"></a>&nbsp;
     <a class="fa fa-eyedropper grd-icon" aria-hidden="true" title='Restore Query To Form'></a>&nbsp;
     <a class="fa fa fa-filter grd-icon" aria-hidden="true" title='Advanced' (click)="showRestore(d)"></a>
   </div>

@@ -36,12 +36,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitlistBO;
         }
 
+        private static QueryData GetHitlistQueryInternal(int id)
+        {
+            var hitlistBO = GetHitlistBO(id);
+            if (hitlistBO.SearchCriteriaID == 0)
+                throw new RegistrationException("The hit-list has no query associated with it");
+            COESearchCriteriaBO searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+            var formGroup = configRegRecord.FormGroup;
+            return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteriaBO.SearchCriteria.ToString());
+        }
+
         private JObject GetHitlistRecordsInternal(int id, int? skip = null, int? count = null, string sort = null)
         {
             var hitlistType = HitListType.TEMP;
             var hitlistBO = COEHitListBO.Get(hitlistType, id);
-            // This is an error condition.
-            // it might be better to throw an exception here.
             if (hitlistBO == null)
                 throw new RegistrationException("Cannot instantiate the hit-list object");
             if (hitlistBO.HitListID == 0) hitlistType = HitListType.SAVED;
@@ -58,6 +68,46 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
                 new JProperty("rows", ExtractData(query, args, skip, count))
             );
+        }
+
+        private JObject SearchRecordsInternal(QueryData queryData, int? skip, int? count, string sort)
+        {
+            var coeSearch = new COESearch();
+            var dataView = SearchFormGroupAdapter.GetDataView(int.Parse(ControlIdChangeUtility.PERMSEARCHGROUPID));
+            var searchCriteria = new SearchCriteria();
+            try
+            {
+                searchCriteria.GetFromXML(queryData.SearchCriteria);
+                SearchCriteria.SearchExpression itemToDelete = null;
+                foreach (var item in searchCriteria.Items)
+                {
+                    if (item is SearchCriteria.SearchCriteriaItem)
+                    {
+                        var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                        var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
+                        if (structureCriteria != null)
+                        {
+                            var query = structureCriteria.Query4000;
+                            if (!string.IsNullOrEmpty(query) && query.StartsWith("<"))
+                            {
+                                var cdxData = ChemistryHelper.ConvertToCdx(query, true);
+                                if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
+                                structureCriteria.Structure = cdxData;
+                            }
+                        }
+                    }
+                }
+                if (itemToDelete != null) searchCriteria.Items.Remove(itemToDelete);
+            }
+            catch (Exception ex)
+            {
+                throw new RegistrationException("The search criteria is invalid", ex);
+            }
+            var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
+            var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
+            hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
+            hitlistBO.Update();
+            return GetHitlistRecordsInternal(hitlistBO.HitListID, skip, count, sort);
         }
 
         /// <summary>
@@ -235,6 +285,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
         /// <param name="id">The hit-list ID</param>
+        /// <param name="refresh">The flag to refresh the query results by re-running the search query</param>
         /// <param name="skip">The number of items to skip</param>
         /// <param name="count">The maximum number of items to return</param>
         /// <param name="sort">The sorting information</param>
@@ -246,10 +297,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetHitlistRecords(int id, int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> GetHitlistRecords(int id, bool? refresh = null, int? skip = null, int? count = null, string sort = null)
         {
             return await CallMethod(() =>
             {
+                if (refresh != null && refresh.Value)
+                {
+                    var queryData = GetHitlistQueryInternal(id);
+                    return SearchRecordsInternal(queryData, skip, count, sort);
+                }
                 return GetHitlistRecordsInternal(id, skip, count, sort);
             });
         }
@@ -275,24 +331,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var hitlistBO = GetHitlistBO(id);
-                if (hitlistBO.SearchCriteriaID == 0)
-                    throw new RegistrationException("The hit-list has no query associated with it");
-                COESearchCriteriaBO searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
-                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
-                var formGroup = configRegRecord.FormGroup;
-                SearchCriteria searchCriteria = SearchFormGroupAdapter.GetSearchCriteria(formGroup.QueryForms[0]);
-                foreach (var item in searchCriteriaBO.SearchCriteria.Items)
-                {
-                    if (item is SearchCriteria.SearchCriteriaItem)
-                    {
-                        var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
-                        if (searchCriteriaItem.ID >= 0)
-                            SearchFormGroupAdapter.PopulateSearchCriteria(searchCriteria, searchCriteriaItem);
-                    }
-                }
-                return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteria.ToString());
+                return GetHitlistQueryInternal(id);
             });
         }
 
@@ -409,44 +448,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var coeSearch = new COESearch();
-                var dataView = SearchFormGroupAdapter.GetDataView(int.Parse(ControlIdChangeUtility.PERMSEARCHGROUPID));
-                var searchCriteria = new SearchCriteria();
-                try
-                {
-                    searchCriteria.GetFromXML(queryData.SearchCriteria);
-                    SearchCriteria.SearchExpression itemToDelete = null;
-                    foreach (var item in searchCriteria.Items)
-                    {
-                        if (item is SearchCriteria.SearchCriteriaItem)
-                        {
-                            var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
-                            var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
-                            if (structureCriteria != null)
-                            {
-                                var query = structureCriteria.Query4000;
-                                if (!string.IsNullOrEmpty(query) && query.StartsWith("<"))
-                                {
-                                    var cdxData = ChemistryHelper.ConvertToCdx(query, true);
-                                    if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
-                                    structureCriteria.Structure = cdxData;
-                                }
-                            }
-                        }
-                    }
-                    if (itemToDelete != null) searchCriteria.Items.Remove(itemToDelete);
-                }
-                catch (Exception ex)
-                {
-                    throw new RegistrationException("The search criteria is invalid", ex);
-                }
-                var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
-                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
-                hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
-                hitlistBO.Update();
-                return GetHitlistRecordsInternal(hitlistBO.HitListID, skip, count, sort);
+                return SearchRecordsInternal(queryData, skip, count, sort);
             });
         }
-
     }
 }

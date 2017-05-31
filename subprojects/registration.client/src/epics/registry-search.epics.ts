@@ -6,7 +6,7 @@ import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions,
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { IAppState } from '../store';
+import { IAppState, IHitlistRetrieveInfo } from '../store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -70,21 +70,18 @@ export class RegistrySearchEpics {
       });
   }
 
-  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
+  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<IHitlistRetrieveInfo>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.RETRIEVE_HITLIST)
       .mergeMap(({ payload }) => {
-        // restoreType 0 -: Restore hitlist
-        // restoreType 1 -: Restore by union/intersect/substract
-        if (payload.type === 0) {
-          return this.http.get(`${apiUrlPrefix}hitlists/` + payload.id + `/records`)
+        if (payload.type === 'Retrieve' || payload.type === 'Refresh') {
+          return this.http.get(`${apiUrlPrefix}hitlists/${payload.id}/records${payload.type === 'Refresh' ? '?refresh=true' : ''}`)
             .map(result => {
               return result.url.indexOf('index.html') > 0
                 ? SessionActions.logoutUserAction()
                 : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
-        }
-        if (payload.type === 1) {
+        } else if (payload.type === 'Advanced') {
           return this.http.post(`${apiUrlPrefix}restorehitlistsactions`, payload.data)
             .map(result => {
               return result.url.indexOf('index.html') > 0

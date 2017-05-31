@@ -1,7 +1,7 @@
 import { Iterable } from 'immutable';
 import { registrySearchReducer } from './registry-search.reducer';
 import { RegistrySearchActions } from '../../actions';
-import { IRegistrySearchRecord, IHitlistInfo, ISearchRecords, INITIAL_STATE } from './registry-search.types';
+import { IRegistrySearchRecord, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords, INITIAL_STATE } from './registry-search.types';
 
 describe('registry search reducer', () => {
   let initState: IRegistrySearchRecord;
@@ -23,12 +23,12 @@ describe('registry search reducer', () => {
     expect(nextState.hitlist.rows).toEqual(rows);
   });
 
-  it('should update hitlist.currentHitlistInfo on RETRIEVE_HITLIST', () => {
-    const data: IHitlistInfo = { id: 0, type: 0 };
+  it('should update hitlist.currentHitlistId on RETRIEVE_HITLIST', () => {
+    const data: IHitlistRetrieveInfo = { id: 0, type: 'Retrieve', temporary: false };
     const nextState = registrySearchReducer(
       initState,
       RegistrySearchActions.retrieveHitlistAction(data)
     );
-    expect(nextState.hitlist.currentHitlistInfo).toEqual(data);
+    expect(nextState.hitlist.currentHitlistId).toEqual(data.id);
   });
 });

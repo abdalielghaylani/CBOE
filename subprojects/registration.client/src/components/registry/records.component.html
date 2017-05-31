@@ -77,7 +77,7 @@
   </div>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=1">
-  <reg-search-query [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
+  <reg-search-query [temporary]="temporary" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
   <reg-record-search [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>

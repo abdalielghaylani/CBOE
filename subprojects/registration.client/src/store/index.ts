@@ -2,7 +2,7 @@ import { IAppState, rootReducer, deimmutify, reimmutify } from './store';
 import { ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory } from './configuration';
 import {
   IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, RegistryFactory,
-  IRegistrySearch, IHitlistInfo, ISearchRecords
+  IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords
 } from './registry';
 import { ISession } from './session';
 
@@ -13,7 +13,8 @@ const persistState = require('redux-localstorage');
 export {
   IAppState,
   ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory,
-  IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, RegistryFactory, IHitlistInfo, ISearchRecords,
+  IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, RegistryFactory,
+  IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords,
   ISession,
   rootReducer,
   reimmutify
