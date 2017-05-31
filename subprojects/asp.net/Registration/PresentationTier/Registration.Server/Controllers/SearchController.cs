@@ -267,7 +267,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}/query")]
         [SwaggerOperation("GetHitlistQuery")]
-        [SwaggerResponse(200, type: typeof(SimpleData))]
+        [SwaggerResponse(200, type: typeof(QueryData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -292,7 +292,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             SearchFormGroupAdapter.PopulateSearchCriteria(searchCriteria, searchCriteriaItem);
                     }
                 }
-                return new SimpleData(searchCriteria.ToString());
+                return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteria.ToString());
             });
         }
 
@@ -388,9 +388,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <returns>The matching hit-list</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
-        [SwaggerOperation("SearchHitlistsIdGet")]
+        [SwaggerOperation("GetHitlist")]
         [SwaggerResponse(200, type: typeof(Hitlist))]
-        public async Task<IHttpActionResult> SearchHitlistsIdGet(int id)
+        public async Task<IHttpActionResult> GetHitlist(int id)
         {
             return await CallMethod(() =>
             {
@@ -405,7 +405,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
         [SwaggerResponse(500, type: typeof(JObject))]
-        public async Task<IHttpActionResult> SearchRecords([FromBody] JObject criteria, int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> SearchRecords([FromBody] QueryData queryData, int? skip = null, int? count = null, string sort = null)
         {
             return await CallMethod(() =>
             {
@@ -414,7 +414,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var searchCriteria = new SearchCriteria();
                 try
                 {
-                    searchCriteria.GetFromXML((string)criteria["searchCriteria"]);
+                    searchCriteria.GetFromXML(queryData.SearchCriteria);
+                    SearchCriteria.SearchExpression itemToDelete = null;
+                    foreach (var item in searchCriteria.Items)
+                    {
+                        if (item is SearchCriteria.SearchCriteriaItem)
+                        {
+                            var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                            var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
+                            if (structureCriteria != null)
+                            {
+                                var query = structureCriteria.Query4000;
+                                if (!string.IsNullOrEmpty(query) && query.StartsWith("<"))
+                                {
+                                    var cdxData = ChemistryHelper.ConvertToCdx(query, true);
+                                    if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
+                                    structureCriteria.Structure = cdxData;
+                                }
+                            }
+                        }
+                    }
+                    if (itemToDelete != null) searchCriteria.Items.Remove(itemToDelete);
                 }
                 catch (Exception ex)
                 {

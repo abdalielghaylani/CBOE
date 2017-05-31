@@ -12,7 +12,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
         private const string cdxMimeType = "chemical/x-cdx";
         private const string cdxmlMimeType = "text/xml";
 
-        public static string Convert(string fromType, string toType, string fromData)
+        public static string Convert(string fromType, string toType, string fromData, bool returnEmptyWhenEmptyStructure = false)
         {
             // CacheableChemdrawControl may dispose automatically when timeout elapses.
             // In other words, it does not need to be disposed of explicitly in this code.
@@ -24,20 +24,21 @@ namespace PerkinElmer.COE.Registration.Server.Code
             chemDrawObjects.Clear();
             chemDrawCtl.DataEncoded = true;
             chemDrawCtl.set_Data(fromType, fromData);
+            if (returnEmptyWhenEmptyStructure && string.IsNullOrEmpty(chemDrawObjects.Formula)) return string.Empty;
             return chemDrawCtl.get_Data(toType);
         }
 
-        public static string ConvertToCdxml(string data)
+        public static string ConvertToCdxml(string data, bool returnEmptyWhenEmptyStructure = false)
         {
-            return Convert(cdxMimeType, cdxmlMimeType, data);
+            return Convert(cdxMimeType, cdxmlMimeType, data, returnEmptyWhenEmptyStructure);
         }
 
-        public static string ConvertToCdx(string data)
+        public static string ConvertToCdx(string data, bool returnEmptyWhenEmptyStructure = false)
         {
-            return Convert(cdxmlMimeType, cdxMimeType, data);
+            return Convert(cdxmlMimeType, cdxMimeType, data, returnEmptyWhenEmptyStructure);
         }
 
-        private static void ConvertStructuresToCdxml(XmlElement element)
+        private static void ConvertStructuresToCdxml(XmlElement element, bool returnEmptyWhenEmptyStructure = false)
         {
             if (element == null) return;
             foreach (var childElement in element.ChildNodes)
@@ -49,12 +50,12 @@ namespace PerkinElmer.COE.Registration.Server.Code
             var textData = element.InnerText;
             if (!string.IsNullOrEmpty(textData) && textData.StartsWith("VmpD"))
             {
-                var converted = Convert(cdxMimeType, cdxmlMimeType, textData);
+                var converted = Convert(cdxMimeType, cdxmlMimeType, textData, returnEmptyWhenEmptyStructure);
                 element.InnerText = converted.Replace("\r\n", " ");
             }
         }
 
-        private static void ConvertStructuresToCdx(XmlElement element)
+        private static void ConvertStructuresToCdx(XmlElement element, bool returnEmptyWhenEmptyStructure = false)
         {
             if (element == null) return;
             foreach (var childElement in element.ChildNodes)
@@ -66,20 +67,20 @@ namespace PerkinElmer.COE.Registration.Server.Code
             var textData = element.InnerText;
             if (!string.IsNullOrEmpty(textData) && (textData.StartsWith("<?xml ") || textData.StartsWith("<CDXML ")))
             {
-                var converted = Convert(cdxmlMimeType, cdxMimeType, textData);
+                var converted = Convert(cdxmlMimeType, cdxMimeType, textData, returnEmptyWhenEmptyStructure);
                 element.InnerText = converted.Replace("\r\n", " ");
             }
         }
 
-        public static XmlDocument ConvertStructuresToCdxml(XmlDocument doc)
+        public static XmlDocument ConvertStructuresToCdxml(XmlDocument doc, bool returnEmptyWhenEmptyStructure = false)
         {
-            ConvertStructuresToCdxml(doc.DocumentElement);
+            ConvertStructuresToCdxml(doc.DocumentElement, returnEmptyWhenEmptyStructure);
             return doc;
         }
 
-        public static XmlDocument ConvertStructuresToCdx(XmlDocument doc)
+        public static XmlDocument ConvertStructuresToCdx(XmlDocument doc, bool returnEmptyWhenEmptyStructure = false)
         {
-            ConvertStructuresToCdx(doc.DocumentElement);
+            ConvertStructuresToCdx(doc.DocumentElement, returnEmptyWhenEmptyStructure);
             return doc;
         }
     }

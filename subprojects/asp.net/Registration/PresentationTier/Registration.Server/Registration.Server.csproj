@@ -161,7 +161,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\PropertyData.cs" />
-    <Compile Include="Models\SimpleData.cs" />
+    <Compile Include="Models\QueryData.cs" />
     <Compile Include="Models\ValidationParameter.cs" />
     <Compile Include="Models\ValidationRuleData.cs" />
     <Compile Include="Models\XmlFormData.cs" />
