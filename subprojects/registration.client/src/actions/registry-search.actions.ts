@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IAppState } from '../store';
+import { IAppState, IHitlistRetrieveInfo } from '../store';
 
 @Injectable()
 export class RegistrySearchActions {
@@ -36,7 +36,8 @@ export class RegistrySearchActions {
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
-  static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST);
+  static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST,
+    (hitlistRetrieveInfo: IHitlistRetrieveInfo) => (hitlistRetrieveInfo));
   static retrieveHitlistSuccessAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_SUCCESS);
   static retrieveHitlistErrorAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_ERROR);
   static retrieveQueryFormAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM,
@@ -82,7 +83,7 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(data));
   };
 
-  retrieveHitlist(data) {
+  retrieveHitlist(data: IHitlistRetrieveInfo) {
     this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(data));
   };
 }
