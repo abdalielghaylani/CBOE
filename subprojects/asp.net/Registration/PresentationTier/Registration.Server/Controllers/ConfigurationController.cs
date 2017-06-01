@@ -1086,7 +1086,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
-        [Route(Consts.apiPrefix + "configuration-path")]
+        [Route(Consts.apiPrefix + "configuration-paths")]
         [SwaggerOperation("GetConfigurationPath")]
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(400, type: typeof(Exception))]
