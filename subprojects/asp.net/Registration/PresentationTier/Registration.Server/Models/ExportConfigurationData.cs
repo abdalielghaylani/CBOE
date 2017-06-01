@@ -13,11 +13,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public ExportConfigurationData(string exportDir, List<string> tableNames)
         {
             ExportDir = exportDir;
-            TableNames = new List<string>();
-            foreach(string tableName in tableNames)
-            {
-                TableNames.AddRange(tableName.Split(',').ToList());
-            }
+            TableNames = tableNames;
         }
 
         /// <summary>
