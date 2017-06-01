@@ -1028,7 +1028,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
             confSettingsXml.AppendChild(confSettingsXml.CreateElement("configurationSettings"));
             confSettingsXml.FirstChild.InnerXml = configRegRecord.GetConfigurationSettingsXml();
-            this.WriteFile(currentExportDir, Consts.CONFIGSETTINGSFILENAME, true, confSettingsXml.OuterXml);
+            WriteFile(currentExportDir, Consts.CONFIGSETTINGSFILENAME, true, confSettingsXml.OuterXml);
         }
 
         private void ExportCustomProperties(string currentExportDir)
@@ -1041,7 +1041,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             string formsDir = currentExportDir + "\\" + Consts.COEFORMSFOLDERNAME;
             Directory.CreateDirectory(formsDir);
-
             foreach (COEFormBO coeFormBO in COEFormBOList.GetCOEFormBOList(null, null, COEAppName.Get(), null, true))
             {
                 COEFormBO toExport = COEFormBO.Get(coeFormBO.ID);
@@ -1082,7 +1081,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             using (XmlTextWriter tw = new XmlTextWriter(dir + "\\" + fileName + ".xml", Encoding.UTF8))
             {
                 tw.Formatting = outputFormatted ? Formatting.Indented : Formatting.None;
-
                 document.LoadXml(content);
                 document.Save(tw);
             }
@@ -1149,7 +1147,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 Page page = new Page();
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 string AppRootInstallPath = page.Server.MapPath(string.Empty).Remove(page.Server.MapPath(string.Empty).IndexOf(FixedInstallPath) + FixedInstallPath.Length);
-                configurationBO.ImportCustomization(AppRootInstallPath, data.LocalImport, data.ForceImport);
+                configurationBO.ImportCustomization(AppRootInstallPath, data.ServerPath, data.ForceImport);
                 return new ResponseData(message: string.Format("The configuration was imported successfully."));
             });
         }

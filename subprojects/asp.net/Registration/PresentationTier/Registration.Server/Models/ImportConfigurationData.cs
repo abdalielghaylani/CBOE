@@ -8,17 +8,17 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public partial class ImportConfigurationData
     {
         [JsonConstructor]
-        public ImportConfigurationData(string localImport, bool forceImport)
+        public ImportConfigurationData(string serverPath, bool forceImport)
         {
-            LocalImport = localImport;
+            ServerPath = serverPath;
             ForceImport = forceImport;
         }
 
         /// <summary>
         /// Gets or Sets LocalImport
         /// </summary>
-        [JsonProperty(PropertyName = "localImport")]
-        public string LocalImport { get; set; }
+        [JsonProperty(PropertyName = "serverPath")]
+        public string ServerPath { get; set; }
 
         /// <summary>
         /// Gets or Sets ForceImport
