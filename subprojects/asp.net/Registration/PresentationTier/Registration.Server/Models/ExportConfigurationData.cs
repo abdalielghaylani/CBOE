@@ -10,9 +10,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public partial class ExportConfigurationData
     {
         [JsonConstructor]
-        public ExportConfigurationData(string exportDir, List<string> tableNames)
+        public ExportConfigurationData(string exportDir, bool selectNone, List<string> tableNames)
         {
             ExportDir = exportDir;
+            SelectNone = selectNone;
             TableNames = tableNames;
         }
 
@@ -21,6 +22,12 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "exportDir")]
         public string ExportDir { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SelectNone
+        /// </summary>
+        [JsonProperty(PropertyName = "selectNone")]
+        public bool SelectNone { get; set; }
 
         /// <summary>
         /// Gets or sets the TableNames 

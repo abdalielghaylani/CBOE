@@ -1128,7 +1128,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 ExportCustomProperties(data.ExportDir);
                 ExportForms(data.ExportDir);
                 ExportDataViews(data.ExportDir);
-                ExportTables(data.TableNames, data.ExportDir);
+                if (data.SelectNone != true)
+                    ExportTables(data.TableNames, data.ExportDir);
                 return new ResponseData(message: string.Format("The configuration was exported successfully."));
             });
         }
