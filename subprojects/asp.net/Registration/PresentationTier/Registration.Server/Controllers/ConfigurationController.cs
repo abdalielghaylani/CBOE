@@ -1052,7 +1052,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             string dataViewDir = currentExportDir + "\\" + Consts.COEDATAVIEWSFOLDERNAME;
             Directory.CreateDirectory(dataViewDir);
-
             foreach (COEDataViewBO coeDV in COEDataViewBOList.GetDataviewListForApplication(COEAppName.Get()))
             {
                 WriteFile(dataViewDir, coeDV.ID.ToString(), true, coeDV.COEDataView.ToString());
