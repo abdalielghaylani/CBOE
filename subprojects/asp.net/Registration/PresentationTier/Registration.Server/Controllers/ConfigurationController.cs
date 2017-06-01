@@ -6,6 +6,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
+using System.Web.UI;
+using System.IO;
+using System.Text;
+using System.Web;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
@@ -19,6 +23,7 @@ using CambridgeSoft.COE.RegistrationAdmin.Services;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.RegistrationAdmin.Services.Common;
+using CambridgeSoft.COE.Framework.COEDataViewService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -659,10 +664,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.GroupName = propertyType.ToString();
                         propertyData.GroupLabel = GetPropertyTypeLabel(propertyType);
                         propertyData.PickListDisplayValue = string.IsNullOrEmpty(property.PickListDisplayValue) ? string.Empty : property.PickListDisplayValue;
-                        propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId; 
+                        propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId;
                         propertyData.Value = property.Value;
                         propertyData.DefaultValue = property.DefaultValue;
-                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision; 
+                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision;
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
@@ -670,7 +675,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                         foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule rule in property.ValRuleList)
                         {
-                            ValidationRuleData ruleData = new ValidationRuleData();                         
+                            ValidationRuleData ruleData = new ValidationRuleData();
                             ruleData.Name = rule.Name;
                             ruleData.Min = rule.MIN;
                             ruleData.Max = rule.MAX;
@@ -685,7 +690,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             propertyData.ValidationRules.Add(ruleData);
                         }
 
-                        propertyArray.Add(propertyData);                       
+                        propertyArray.Add(propertyData);
                     }
                 }
                 return propertyArray;
@@ -1013,6 +1018,140 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        #endregion
+
+        #region Configuration
+
+        private void ExportConfigurationSettings(string currentExportDir)
+        {
+            XmlDocument confSettingsXml = new XmlDocument();
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            confSettingsXml.AppendChild(confSettingsXml.CreateElement("configurationSettings"));
+            confSettingsXml.FirstChild.InnerXml = configRegRecord.GetConfigurationSettingsXml();
+            this.WriteFile(currentExportDir, Consts.CONFIGSETTINGSFILENAME, true, confSettingsXml.OuterXml);
+        }
+
+        private void ExportCustomProperties(string currentExportDir)
+        {
+            var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            WriteFile(currentExportDir, Consts.COEOBJECTCONFIGFILENAME, true, configurationBO.ExportCustomizedProperties());
+        }
+
+        private void ExportForms(string currentExportDir)
+        {
+            string formsDir = currentExportDir + "\\" + Consts.COEFORMSFOLDERNAME;
+            Directory.CreateDirectory(formsDir);
+
+            foreach (COEFormBO coeFormBO in COEFormBOList.GetCOEFormBOList(null, null, COEAppName.Get(), null, true))
+            {
+                COEFormBO toExport = COEFormBO.Get(coeFormBO.ID);
+                WriteFile(formsDir, coeFormBO.ID.ToString(), true, toExport.COEFormGroup.ToString());
+            }
+        }
+
+        private void ExportDataViews(string currentExportDir)
+        {
+            string dataViewDir = currentExportDir + "\\" + Consts.COEDATAVIEWSFOLDERNAME;
+            Directory.CreateDirectory(dataViewDir);
+
+            foreach (COEDataViewBO coeDV in COEDataViewBOList.GetDataviewListForApplication(COEAppName.Get()))
+            {
+                WriteFile(dataViewDir, coeDV.ID.ToString(), true, coeDV.COEDataView.ToString());
+            }
+        }
+
+        private void ExportTables(List<string> tableNames, string currentExportDir)
+        {
+            string tablesDir = currentExportDir + "\\" + Consts.COETABLESFORLDERNAME;
+            var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            Directory.CreateDirectory(tablesDir);
+            int tableNamePrefix = 1;
+            foreach (string tableName in tableNames)
+            {
+                WriteFile(tablesDir, string.Format("{0:000}", tableNamePrefix++) + " - " + tableName, true, configurationBO.GetTable(tableName));
+            }
+        }
+
+        private void WriteFile(string dir, string fileName, bool outputFormatted, string content)
+        {
+            XmlDocument document = new XmlDocument();
+            if (fileName.Contains(".xml"))
+            {
+                fileName = fileName.Replace(".xml", "");
+            }
+            using (XmlTextWriter tw = new XmlTextWriter(dir + "\\" + fileName + ".xml", Encoding.UTF8))
+            {
+                tw.Formatting = outputFormatted ? Formatting.Indented : Formatting.None;
+
+                document.LoadXml(content);
+                document.Save(tw);
+            }
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "configuration-path")]
+        [SwaggerOperation("GetConfigurationPath")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetConfigurationPath()
+        {
+            return await CallMethod(() =>
+            {
+                string FixedInstallPath = "Registration";
+                Page page = new Page();
+                string AppRootInstallPath = page.Server.MapPath(string.Empty).Remove(page.Server.MapPath(string.Empty).IndexOf(FixedInstallPath) + FixedInstallPath.Length);
+                string AppDrive = HttpContext.Current.Server.MapPath(string.Empty).Remove(2);
+                string CurrentDate = DateTime.Now.ToString("yy-MM-dd HH_mm_ss");
+                var exportPath = AppDrive + Consts.EXPORTFILESPATH + CurrentDate;
+                var importPath = AppRootInstallPath + Consts.IMPORTFILESPATH;
+                return new JObject(
+                        new JProperty("ExportPath", exportPath),
+                        new JProperty("ImportPath", importPath));
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "configuration-export")]
+        [SwaggerOperation("ExportConfiguration")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> ExportConfiguration(ExportConfigurationData data)
+        {
+            return await CallMethod(() =>
+            {
+                Directory.CreateDirectory(data.ExportDir);
+                ExportConfigurationSettings(data.ExportDir);
+                ExportCustomProperties(data.ExportDir);
+                ExportForms(data.ExportDir);
+                ExportDataViews(data.ExportDir);
+                ExportTables(data.TableNames, data.ExportDir);
+                return new ResponseData(message: string.Format("The configuration was exported successfully."));
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "configuration-import")]
+        [SwaggerOperation("ImportConfiguration")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> ImportConfiguration(ImportConfigurationData data)
+        {
+            return await CallMethod(() =>
+            {
+                string FixedInstallPath = "Registration";
+                Page page = new Page();
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                string AppRootInstallPath = page.Server.MapPath(string.Empty).Remove(page.Server.MapPath(string.Empty).IndexOf(FixedInstallPath) + FixedInstallPath.Length);
+                configurationBO.ImportCustomization(AppRootInstallPath, data.LocalImport, data.ForceImport);
+                return new ResponseData(message: string.Format("The configuration was imported successfully."));
+            });
+        }
         #endregion
     }
 }
