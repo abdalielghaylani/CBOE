@@ -12,5 +12,19 @@ namespace PerkinElmer.COE.Registration.Server.Code
         public const string apiPrefix = "api/v{version:apiVersion}/";
 
         public const string ssoCookieName = "COESSO";
+
+        public const string COEFORMSFOLDERNAME = "COEForms";
+
+        public const string COEDATAVIEWSFOLDERNAME = "COEDataViews";
+
+        public const string COETABLESFORLDERNAME = "COETables";
+
+        public const string COEOBJECTCONFIGFILENAME = "COEObjectConfig.xml";
+
+        public const string CONFIGSETTINGSFILENAME = "ConfigurationSettings.xml";
+
+        public const string IMPORTFILESPATH = "\\Config\\default";
+
+        public const string EXPORTFILESPATH = "\\COERegistrationExportFiles\\";
     }
 }
