@@ -180,7 +180,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return found;
         }
 
-        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, string group, FormGroup.Form form, List<FormGroup.FormElement> formElement)
+        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, string group, FormGroup.Form form, List<FormGroup.FormElement> formElement, int groupIndex)
         {
             var data = new List<FormElementData>();
             foreach (var element in formElement)
@@ -189,25 +189,134 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var name = element.Id.Replace("Property", string.Empty);
                 if (string.IsNullOrEmpty(element.DisplayInfo.Assembly))
                 {
-                    data.Add(new FormElementData(group, element));
+                    FormElementData formElementData = new FormElementData(group, element);
+                    UpdateFormElementDetails(formElementData, element.Name, configurationBO, groupIndex);
+                    data.Add(formElementData);
                 }
             }
             return data;
         }
 
-        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, string group, FormGroup.Form form)
+        private void UpdateFormElementDetails(FormElementData formElementData, string propertyName, ConfigurationRegistryRecord configurationBO, int groupIndex)
+        {
+            string propertyType = string.Empty;
+            string propertySubType = string.Empty;
+
+            switch (groupIndex)
+            {
+                case COEFormHelper.MIXTURESUBFORMINDEX:
+                    foreach (Property prop in configurationBO.PropertyList)
+                    {
+                        if (prop.Name == propertyName)
+                        {
+                            propertyType = prop.Type;
+                            if (!string.IsNullOrEmpty(prop.SubType)) propertySubType = prop.SubType;
+                        }
+                    }
+                    break;
+
+                case COEFormHelper.COMPOUNDSUBFORMINDEX:
+
+                    foreach (Property prop in configurationBO.CompoundPropertyList)
+                    {
+                        if (prop.Name == propertyName)
+                        {
+                            propertyType = prop.Type;
+                            if (!string.IsNullOrEmpty(prop.SubType)) propertySubType = prop.SubType;
+                        }
+                    }
+                    break;
+
+                case COEFormHelper.STRUCTURESUBFORMINDEX:
+
+                    foreach (Property prop in configurationBO.StructurePropertyList)
+                    {
+                        if (prop.Name == propertyName)
+                        {
+                            propertyType = prop.Type;
+                            if (!string.IsNullOrEmpty(prop.SubType)) propertySubType = prop.SubType;
+                        }
+                    }
+                    break;
+
+                case COEFormHelper.BATCHSUBFORMINDEX:
+
+                    foreach (Property prop in configurationBO.BatchPropertyList)
+                    {
+                        if (prop.Name == propertyName)
+                        {
+                            propertyType = prop.Type;
+                            if (!string.IsNullOrEmpty(prop.SubType)) propertySubType = prop.SubType;
+                        }
+                    }
+                    break;
+
+                case COEFormHelper.BATCHCOMPONENTSUBFORMINDEX:
+                case COEFormHelper.BATCHCOMPONENTSEARCHFORM:
+                    foreach (Property prop in configurationBO.BatchComponentList)
+                    {
+                        if (prop.Name == propertyName)
+                        {
+                            propertyType = prop.Type;
+                            if (!string.IsNullOrEmpty(prop.SubType)) propertySubType = prop.SubType;
+                        }
+                    }
+                    break;
+            }
+
+            formElementData.Type = propertyType;
+            formElementData.ControlTypeOptions = new List<KeyValuePair<string, string>>();
+            formElementData.ControlEnabled = true;
+            switch (propertyType)
+            {
+                case "NUMBER":
+                case "TEXT":
+                    if (!string.IsNullOrEmpty(propertySubType))
+                    {
+                        if (propertySubType == "URL")
+                        {
+                            formElementData.ControlEnabled = false;
+                            formElementData.ControlTypeOptions.Add(new KeyValuePair<string, string>("URL", "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink"));
+                        }
+                    }
+                    else
+                    {
+                        if (propertyType == "NUMBER")
+                        {
+                            formElementData.ControlTypeOptions.Add(new KeyValuePair<string, string>("NumericTextBox", "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COENumericTextBox"));
+                        }
+
+                        formElementData.ControlTypeOptions.Add(new KeyValuePair<string, string>("TextBox", "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox"));
+                        formElementData.ControlTypeOptions.Add(new KeyValuePair<string, string>("TextArea", "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea"));
+
+                    } break;
+                case "BOOLEAN":
+                    formElementData.ControlTypeOptions.Add(new KeyValuePair<string, string>("CheckBox", "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COECheckBox"));
+                    break;
+                case "DATE":
+                    formElementData.ControlTypeOptions.Add(new KeyValuePair<string, string>("DatePicker", "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker"));
+                    break;
+                case "PICKLISTDOMAIN":
+                    formElementData.ControlTypeOptions.Add(new KeyValuePair<string, string>("unmodifiable", "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList"));
+                    formElementData.ControlEnabled = false;
+                    break;
+            }
+        }
+
+        private List<FormElementData> GetCustomFormData(ConfigurationRegistryRecord configurationBO, string group, FormGroup.Form form, int groupIndex)
         {
             var data = new List<FormElementData>();
+
             if (form != null)
             {
                 if (form.LayoutInfo.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.LayoutInfo));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.LayoutInfo, groupIndex));
                 if (form.AddMode.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.AddMode));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.AddMode, groupIndex));
                 if (form.EditMode.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.EditMode));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.EditMode, groupIndex));
                 if (form.ViewMode.Count > 0)
-                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.ViewMode));
+                    data.AddRange(GetCustomFormData(configurationBO, group, form, form.ViewMode, groupIndex));
             }
             return data;
         }
@@ -562,16 +671,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var listForms = formBO.COEFormGroup.ListForms;
                     var queryForms = formBO.COEFormGroup.QueryForms;
                     var group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.PropertyList);
-                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.MIXTURESUBFORMINDEX), COEFormHelper.MIXTURESUBFORMINDEX));
                     group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.Compound);
-                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.COMPOUNDSUBFORMINDEX), COEFormHelper.COMPOUNDSUBFORMINDEX));
                     group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.Structure);
-                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.STRUCTURESUBFORMINDEX), COEFormHelper.STRUCTURESUBFORMINDEX));
                     group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.Batch);
-                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX)));
-                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX)));
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHSUBFORMINDEX), COEFormHelper.BATCHSUBFORMINDEX));
                     group = GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType.BatchComponent);
-                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(queryForms, 0, COEFormHelper.BATCHCOMPONENTSEARCHFORM)));
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(detailsForms, 0, COEFormHelper.BATCHCOMPONENTSUBFORMINDEX), COEFormHelper.BATCHCOMPONENTSUBFORMINDEX));
+                    formList.AddRange(GetCustomFormData(configurationBO, group, formBO.TryGetForm(queryForms, 0, COEFormHelper.BATCHCOMPONENTSEARCHFORM), COEFormHelper.BATCHCOMPONENTSEARCHFORM));
+
                 }
                 return formList.GroupBy(d => d.Name).Select(g => g.First());
             });
