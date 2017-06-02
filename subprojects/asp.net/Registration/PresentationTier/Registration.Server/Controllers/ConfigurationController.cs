@@ -25,6 +25,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class ConfigurationController : RegControllerBase
     {
+        #region Util methods
         private static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
         {
             return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
@@ -34,6 +35,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
+
+        #endregion
 
         #region Custom tables
         private static JObject GetTableConfig(string tableName)
@@ -374,7 +377,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     addinData.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName;
                     addinData.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
                     addinData.ClassName = addin.ClassName;
-                    addinData.ClassNamespace = addin.ClassNameSpace;
+                    addinData.ClassNamespace = string.IsNullOrEmpty(addin.ClassNameSpace) ? string.Empty : addin.ClassNameSpace;
                     addinData.Assembly = addin.Assembly;
                     addinData.Enable = addin.IsEnable;
                     addinData.Required = addin.IsRequired;
@@ -659,10 +662,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.GroupName = propertyType.ToString();
                         propertyData.GroupLabel = GetPropertyTypeLabel(propertyType);
                         propertyData.PickListDisplayValue = string.IsNullOrEmpty(property.PickListDisplayValue) ? string.Empty : property.PickListDisplayValue;
-                        propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId; 
+                        propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId;
                         propertyData.Value = property.Value;
                         propertyData.DefaultValue = property.DefaultValue;
-                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision; 
+                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision;
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
@@ -670,7 +673,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                         foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule rule in property.ValRuleList)
                         {
-                            ValidationRuleData ruleData = new ValidationRuleData();                         
+                            ValidationRuleData ruleData = new ValidationRuleData();
                             ruleData.Name = rule.Name;
                             ruleData.Min = rule.MIN;
                             ruleData.Max = rule.MAX;
@@ -685,7 +688,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             propertyData.ValidationRules.Add(ruleData);
                         }
 
-                        propertyArray.Add(propertyData);                       
+                        propertyArray.Add(propertyData);
                     }
                 }
                 return propertyArray;

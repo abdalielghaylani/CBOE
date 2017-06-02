@@ -76,7 +76,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Gets or sets the Events 
         /// </summary>
-        [JsonProperty(PropertyName = "events")]
+        [JsonProperty(PropertyName = "events", NullValueHandling = NullValueHandling.Ignore)]
         public List<AddinEvent> Events { get; set; }
     }
 }
