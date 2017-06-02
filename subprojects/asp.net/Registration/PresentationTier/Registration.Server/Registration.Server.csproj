@@ -153,6 +153,7 @@
     <Compile Include="Models\AddinEvent.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Batch.cs" />
+    <Compile Include="Models\ExportConfigurationData.cs" />
     <Compile Include="Models\FormElementData.cs" />
     <Compile Include="Models\Hitlist.cs" />
     <Compile Include="Code\QueryHelper.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImportConfigurationData.cs" />
     <Compile Include="Models\PropertyData.cs" />
     <Compile Include="Models\QueryData.cs" />
     <Compile Include="Models\ValidationParameter.cs" />
