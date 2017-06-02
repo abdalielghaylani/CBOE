@@ -107,7 +107,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Gets or sets the Events 
         /// </summary>
-        [JsonProperty(PropertyName = "validationRules")]
+        [JsonProperty(PropertyName = "validationRules", NullValueHandling = NullValueHandling.Ignore)]
         public List<ValidationRuleData> ValidationRules { get; set; }
     }
 }

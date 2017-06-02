@@ -60,7 +60,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Gets or sets the Parameters 
         /// </summary>
-        [JsonProperty(PropertyName = "parameters")]
+        [JsonProperty(PropertyName = "parameters", NullValueHandling = NullValueHandling.Ignore)]
         public List<ValidationParameter> Parameters { get; set; }
     }
 }
