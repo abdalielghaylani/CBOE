@@ -12,6 +12,7 @@ import { Http } from '@angular/http';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
 import { RegistryActions, RegistrySearchActions } from '../../actions';
 import { IAppState, CRecordsData, IRecords, ISearchRecords } from '../../store';
@@ -183,7 +184,7 @@ export class RegRecords implements OnInit, OnDestroy {
       this.grid.instance.repaint();
     }
   }
-  
+
 
   onResize(event: any) {
     this.gridHeight = this.getGridHeight();
@@ -274,16 +275,16 @@ export class RegRecords implements OnInit, OnDestroy {
     e.cancel = deferred.promise();
   }
 
-  manageQueries() {
+  private manageQueries() {
     this.actions.openHitlists();
     this.currentIndex = 1;
   }
 
-  newQuery() {
+  private newQuery() {
     this.currentIndex = 2;
   }
 
-  saveQuery(isMarked: boolean) {
+  private saveQuery(isMarked: boolean) {
     this.isMarkedQuery = isMarked;
     this.hitlistVM.saveQueryVM.clear();
     this.popupVisible = true;
@@ -293,7 +294,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.registryActions.openRecords({ temporary: this.temporary });
   }
 
-  saveHitlist() {
+  private saveHitlist() {
     if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
       if (this.isMarkedQuery === true) {
         this.hitlistVM.saveQueryVM.clear();
@@ -307,21 +308,21 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  editQuery(id: Number) {
+  private editQuery(id: Number) {
     // TODO: It should show the search page and populate the contents with hitlist query.
     // this.router.navigate([`search/${id}`]);
     this.currentIndex = 2;
   }
 
-  cancelSaveQuery() {
+  private cancelSaveQuery() {
     this.popupVisible = false;
   }
 
-  headerClicked(e) {
+  private headerClicked(e) {
     this.currentIndex = 0;
   }
 
-  showMarked() {
+  private showMarked() {
     if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
       this.rowSelected = true;
       this.tempResultRows = this.records.data.rows;
@@ -330,7 +331,53 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  showSearchResults() {
+  private deleteRows(ids: number[], failed: number[], succeeded: number[]) {
+    if (ids.length === 0) {
+      // If id list is empty, change deleted rows and refresh grid.
+      // Remove from this.records.data.rows
+      // Remove from this.selectedRows
+      // Also display a message about success/failure.
+      this.records.data.rows = this.records.data.rows.filter(r => !succeeded.find(s => s === r.ID));
+      this.selectedRows = this.selectedRows.filter(r => !succeeded.find(s => s === r.ID));
+      if (failed.length === 0) {
+        notifySuccess(`All marked records were deleted successfully!`, 5000);
+      } else if (succeeded.length === 0) {
+        notifySuccess(`Deleting failed for all marked records!`, 5000);
+      } else {
+        notify(`Some records were failed to delete: ${failed.join(', ')}`, `warning`, 5000);
+      }
+      this.grid.instance.repaint();
+      return;
+    }
+    // Otherwise, shift ids
+    let id = ids.shift();
+    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
+    // Delete first id
+    this.http.delete(url)
+      .catch(error => {
+        failed.push(id);
+        this.deleteRows(ids, failed, succeeded);
+        return null;
+      })
+      .subscribe(r => {
+        if (r !== null) {
+          // Upon successful deletion, recursively call deleteRows
+          succeeded.push(id);
+          this.deleteRows(ids, failed, succeeded);
+        }
+      });
+  }
+
+  private deleteMarked() {
+    if (this.selectedRows && this.selectedRows.length > 0) {
+      let ids: number[] = this.selectedRows.map(r => r[Object.keys(r)[0]]);
+      let succeeded: number[] = [];
+      let failed: number[] = [];
+      this.deleteRows(ids, failed, succeeded);
+    }
+  }
+
+  private showSearchResults() {
     if (this.rowSelected) {
       this.rowSelected = false;
       this.selectedRows = this.records.data.rows;
@@ -340,7 +387,7 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  printRecords() {
+  private printRecords() {
     let printContents, popupWin;
     printContents = document.getElementById('grdRecords').innerHTML;
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
