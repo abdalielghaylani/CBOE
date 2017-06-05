@@ -13,6 +13,7 @@ import { ConfigurationActions } from '../../actions/configuration.actions';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration } from '../../store';
+import { CConfigTable } from './config.types';
 
 declare var jQuery: any;
 
@@ -32,6 +33,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;
+  private configTable: CConfigTable;
 
   constructor(
     private route: ActivatedRoute,
@@ -46,6 +48,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       let paramLabel = 'tableId';
       this.tableId = params[paramLabel];
       this.configurationActions.openTable(this.tableId);
+      this.configTable = new CConfigTable(this.tableId);
     });
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
   }
@@ -89,7 +92,6 @@ export class RegConfigTables implements OnInit, OnDestroy {
   }
 
   onContentReady(e) {
-    e.component.columnOption(0, 'visible', false);
     e.component.columnOption('STRUCTURE', {
       width: 150,
       allowFiltering: false,
@@ -97,6 +99,10 @@ export class RegConfigTables implements OnInit, OnDestroy {
       cellTemplate: 'cellTemplate'
     });
     e.component.columnOption('command:edit', {
+      visibleIndex: -1,
+      width: 80
+    });
+     e.component.columnOption('command', {
       visibleIndex: -1,
       width: 80
     });
@@ -152,7 +158,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
         return deferred.promise();
       },
 
-      update: function(key, values) {
+      update: function (key, values) {
         let deferred = jQuery.Deferred();
         let data = key;
         let newData = values;
@@ -225,5 +231,8 @@ export class RegConfigTables implements OnInit, OnDestroy {
         return deferred.promise();
       }
     });
+  }
+  editLookupValueChanged(e, d) {
+    d.setValue(e.value, d.column.dataField);
   }
 };

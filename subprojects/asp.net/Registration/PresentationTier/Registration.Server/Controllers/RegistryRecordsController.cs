@@ -375,23 +375,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 if (string.IsNullOrEmpty(data.Name))
-                    throw new RegistrationException("Invalid template name.");
+                    throw new RegistrationException("Invalid template name");
 
-                RegistryRecord currentRecord = RegistryRecord.NewRegistryRecord();
-                if (currentRecord == null)
-                    throw new RegistrationException("Error while initializing new registry record.");
+                // TODO: Get registry record, I think api should also accept registry record key to retrive registry record
+                RegistryRecord currentRecord = null;
 
-                // TODO: need to find out which user is associated with tempalte because the SaveTemplate method does not have a providion to supply user name
-                // TODO: how to input structure CDXML to template?
-
-                currentRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
+                if (currentRecord != null)
+                    currentRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
 
                 return new ResponseData(message: string.Format("The template, {0}, was saved successfully.", data.Name));
             });
         }
 
         [HttpDelete]
-        [Route(Consts.apiPrefix + "templates/{username}/{id}")]
+        [Route(Consts.apiPrefix + "templates//{username}/{id}")]
         [SwaggerOperation("DeleteTemplate")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -403,21 +400,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 if (string.IsNullOrEmpty(username))
-                    throw new RegistrationException("Invalid user name.");
+                    throw new RegistrationException("Invalid user name");
 
                 var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
                 COEGenericObjectStorageBO selected = null;
                 foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
                 {
-                    if (tempalateItem.ID != id)
-                        continue;
-
-                    selected = tempalateItem;
-                    break;
+                    if (tempalateItem.ID == id)
+                    {
+                        selected = tempalateItem;
+                        break;
+                    }
                 }
 
                 if (selected == null)
-                    throw new IndexOutOfRangeException(string.Format("The template, {0}, was not found.", id));
+                    throw new IndexOutOfRangeException(string.Format("The template, {0}, was not found", id));
 
                 COEGenericObjectStorageBO.Delete(id);
 
