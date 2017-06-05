@@ -1,14 +1,40 @@
 <div class="viewcontainer" (window:resize)="onResize($event)">
   <reg-settings-page-header>{{ this.tableName() }}</reg-settings-page-header>
-  <dx-data-grid [dataSource]="dataSource" [paging]='{pageSize: 10}'
-    [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" 
-    rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
+  <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
+    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
     (onCellPrepared)='onCellPrepared($event)'>
-    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
     <div *dxTemplate="let data of 'cellTemplate'">
       <reg-structure-image [src]="data.value"></reg-structure-image>
+    </div>
+    <div *dxTemplate="let data of 'editActiveTemplate'">
+      <dx-select-box [items]="[
+      {key:'T', name:'Yes'},
+      {key:'F', name:'No'}]" [value]="data.value" (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="name"
+        valueExpr="key">
+      </dx-select-box>
+    </div>
+    <div *dxTemplate="let data of 'activeTemplate'">
+      <div [ngSwitch]="data.value">
+        <div *ngSwitchCase="'T'">YES</div>
+        <div *ngSwitchCase="'F'">NO</div>
+      </div>
+    </div>
+    <div *dxTemplate="let data of 'projectTypeTemplate'">
+      <div [ngSwitch]="data.value">
+        <div *ngSwitchCase="'R'">Registry</div>
+        <div *ngSwitchCase="'B'">Batch</div>
+        <div *ngSwitchCase="'A'">All</div>
+      </div>
+    </div>
+    <div *dxTemplate="let data of 'cellTemplate'">
+      <reg-structure-image [src]="data.value"></reg-structure-image>
+    </div>
+    <div *dxTemplate="let data of 'editProjectTypeTemplate'">
+      <dx-select-box [items]="[{key:'A', name:'All'},{key:'R', name:'Registry'},{key:'B', name:'Batch'}]" [value]="data.value"
+        (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="name" valueExpr="key">
+      </dx-select-box>
     </div>
   </dx-data-grid>
 </div>
