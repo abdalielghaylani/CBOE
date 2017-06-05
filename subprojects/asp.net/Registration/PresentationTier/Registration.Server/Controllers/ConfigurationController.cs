@@ -44,16 +44,37 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #endregion
 
         #region Custom tables
-        private static JObject GetTableConfig(string tableName)
+        private JArray GetTableConfig(string tableName)
         {
             // Returns the field configuration
+            var config = new JArray();
             // COETableEditorUtilities.getColumnList returns the column lists
-            // COETableEditorUtilities.GetAlias returns the column aliases (labels)
-            // COETableEditorUtilities.getLookupLocation returns the look-up information
+            var columns = COETableEditorUtilities.getColumnList(tableName);
+            var idFieldName = COETableEditorUtilities.getIdFieldName(tableName);
+            foreach (var column in columns)
+            {
+                var fieldName = column.FieldName;
+                var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
+                if (label == null) label = fieldName;
+                var columnObj = new JObject(
+                    new JProperty("name", fieldName),
+                    new JProperty("label", label),
+                    new JProperty("type", column.FieldType.ToString())
+                );
+                if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("idField", true));
+                var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
+                if (!string.IsNullOrEmpty(lookupTableName))
+                {
+                    var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
+                    columnObj.Add("lookup", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName)));
+
+                }
+                config.Add(columnObj);
+            }
+            // TODO: Structure lookup needs additional information
             // This should also return user authorization
             // Refer to routines like COETableEditorUtilities.HasDeletePrivileges and COETableEditorUtilities.HasEditPrivileges
-
-            return new JObject();
+            return config;
         }
 
         private static int SaveColumnValues(string tableName, JObject data, bool creating)
