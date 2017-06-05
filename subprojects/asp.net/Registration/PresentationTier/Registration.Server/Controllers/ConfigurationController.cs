@@ -168,17 +168,91 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private bool PutCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, FormGroup.Form form, FormElementData formElementData)
         {
             bool found = false;
+            bool enabled = true;
+            string defaultTexMode = string.Empty;
             if (form != null)
             {
+                string controlStyle = RegAdminUtils.GetDefaultControlStyle(formElementData.ControlType, FormGroup.DisplayMode.Edit);
                 var formElements = form.EditMode;
                 foreach (var element in formElements)
                 {
+                    if (element.Name == "PERCENTAGE")
+                    {
+                        string abc = element.Name;
+                    }
+                    if (!element.Name.Equals(formElementData.Name)) continue;
+                    found = true;
+                    if (formElementData.ControlType.Contains("COETextArea"))
+                        defaultTexMode = "MultiLine";
+                    element.DisplayInfo.Type = formElementData.ControlType;
+                    element.Label = formElementData.Label;
+                    element.DisplayInfo.CSSClass = formElementData.CssClass;
+                    element.DisplayInfo.Visible = formElementData.Visible == null || formElementData.Visible.Value;
+                    if (element.DisplayInfo.Type == "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink")
+                    {
+                        if (element.BindingExpression.Contains("SearchCriteria"))
+                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
+                        else
+                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink";
+                    }
+
+                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"] != null && !string.IsNullOrEmpty(controlStyle))
+                        element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"].InnerText = controlStyle;
+                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"] != null)
+                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTexMode;
+                    break;
+                }
+
+                formElements = form.AddMode;
+                foreach (var element in formElements)
+                {
+                    if (element.Name == "PERCENTAGE")
+                    {
+                        string abc = element.Name;
+                    }
                     if (!element.Name.Equals(formElementData.Name)) continue;
                     found = true;
                     element.DisplayInfo.Type = formElementData.ControlType;
                     element.Label = formElementData.Label;
                     element.DisplayInfo.CSSClass = formElementData.CssClass;
                     element.DisplayInfo.Visible = formElementData.Visible == null || formElementData.Visible.Value;
+                    if (element.DisplayInfo.Type == "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink")
+                    {
+                        if (element.BindingExpression.Contains("SearchCriteria"))
+                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
+                        else
+                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink";
+                    }
+                    break;
+                }
+
+                formElements = form.ViewMode;
+                foreach (var element in formElements)
+                {
+                    if (element.Name == "PERCENTAGE")
+                    {
+                        string abc = element.Name;
+                    }
+                    if (!element.Name.Equals(formElementData.Name)) continue;
+                    found = true;
+                    element.DisplayInfo.Type = formElementData.ControlType;
+                    element.Label = formElementData.Label;
+                    element.DisplayInfo.CSSClass = formElementData.CssClass;
+                    element.DisplayInfo.Visible = formElementData.Visible == null || formElementData.Visible.Value;
+                    if (!element.DisplayInfo.Type.Contains("DropDownList") && !element.DisplayInfo.Type.Contains("DatePicker"))
+                    {
+                        if (!element.DisplayInfo.Type.Contains("NumericTextBox"))
+                            element.DisplayInfo.Type += "ReadOnly";
+                        else
+                        {
+                            if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:ReadOnly"] != null)
+                                element.ConfigInfo["COE:fieldConfig"]["COE:ReadOnly"].InnerText = bool.TrueString;
+                            else
+                                element.ConfigInfo.FirstChild.AppendChild(element.ConfigInfo.OwnerDocument.CreateElement("COE:ReadOnly", element.ConfigInfo.NamespaceURI)).InnerText = bool.TrueString;
+                        }
+                    }
+                    else
+                        enabled = false;
                     break;
                 }
             }
