@@ -13,6 +13,7 @@ import { ConfigurationActions } from '../../actions/configuration.actions';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration } from '../../store';
+import { CConfigForms } from './config.types';
 
 declare var jQuery: any;
 
@@ -30,6 +31,7 @@ export class RegConfigForms implements OnInit, OnDestroy {
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;
+  private configForms: CConfigForms;
 
   constructor(
     private http: Http,
@@ -54,6 +56,11 @@ export class RegConfigForms implements OnInit, OnDestroy {
       this.changeDetector.markForCheck();
     }
     this.gridHeight = this.getGridHeight();
+    this.configForms = new CConfigForms();
+  }
+
+  editLookupValueChanged(e, d) {
+    d.setValue(e.value, d.column.dataField);
   }
 
   private getGridHeight() {
@@ -76,13 +83,11 @@ export class RegConfigForms implements OnInit, OnDestroy {
   }
 
   onContentReady(e) {
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate: 'cellTemplate'
-    });
     e.component.columnOption('command:edit', {
+      visibleIndex: -1,
+      width: 80
+    });
+    e.component.columnOption('command', {
       visibleIndex: -1,
       width: 80
     });
@@ -98,7 +103,6 @@ export class RegConfigForms implements OnInit, OnDestroy {
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
       } else {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       }
     }
   }
@@ -128,7 +132,7 @@ export class RegConfigForms implements OnInit, OnDestroy {
         return deferred.promise();
       },
 
-      update: function(key, values) {
+      update: function (key, values) {
         let deferred = jQuery.Deferred();
         let data = key;
         let newData = values;
@@ -137,59 +141,14 @@ export class RegConfigForms implements OnInit, OnDestroy {
             data[k] = newData[k];
           }
         }
-        let id = data[Object.getOwnPropertyNames(data)[0]];
-        parent.http.put(`${apiUrlBase}/${id}`, data)
+        parent.http.put(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
+            notifySuccess(`The property ' ${data.label} ' of ${data.group} was updated successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not updated due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
-
-      insert: function (values) {
-        let deferred = jQuery.Deferred();
-        parent.http.post(`${apiUrlBase}`, values)
-          .toPromise()
-          .then(result => {
-            let id = result.json().id;
-            notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = `Creating A new record for ${tableName} was failed due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
-
-      remove: function (key) {
-        let deferred = jQuery.Deferred();
-        let id = key[Object.getOwnPropertyNames(key)[0]];
-        parent.http.delete(`${apiUrlBase}/${id}`)
-          .toPromise()
-          .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = `The record ${id} of ${tableName} was not deleted due to a problem`;
+            let message = `The property ' ${data.label} ' of ${data.group} was not updated due to a problem`;
             let errorResult, reason;
             if (error._body) {
               errorResult = JSON.parse(error._body);
