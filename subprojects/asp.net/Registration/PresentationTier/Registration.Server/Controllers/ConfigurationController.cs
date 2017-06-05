@@ -54,7 +54,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var column in columns)
             {
                 var fieldName = column.FieldName;
+                var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
+                var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
                 var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
+                if (!string.IsNullOrEmpty(lookupTableName)) fieldName = lookupColumns[1].FieldName;
                 if (label == null) label = fieldName;
                 var columnObj = new JObject(
                     new JProperty("name", fieldName),
@@ -62,12 +65,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("type", column.FieldType.ToString())
                 );
                 if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("idField", true));
-                var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
                 if (!string.IsNullOrEmpty(lookupTableName))
                 {
-                    var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
                     columnObj.Add("lookup", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName)));
-
                 }
                 config.Add(columnObj);
             }
@@ -438,20 +438,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetCustomTableRows(string tableName)
+        public async Task<IHttpActionResult> GetCustomTableRows(string tableName, bool? configOnly = false)
         {
             return await CallMethod(() =>
             {
                 var config = GetTableConfig(tableName);
                 var rows = new JArray();
-                COETableEditorBOList.NewList().TableName = tableName;
-                var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
-                foreach (DataRow dr in dt.Rows)
+                if (configOnly != null && !configOnly.Value)
                 {
-                    var p = new JObject();
-                    foreach (DataColumn dc in dt.Columns)
-                        p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
-                    rows.Add(p);
+                    COETableEditorBOList.NewList().TableName = tableName;
+                    var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        var p = new JObject();
+                        foreach (DataColumn dc in dt.Columns)
+                            p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
+                        rows.Add(p);
+                    }
                 }
                 return new JObject(
                     new JProperty("config", config),
