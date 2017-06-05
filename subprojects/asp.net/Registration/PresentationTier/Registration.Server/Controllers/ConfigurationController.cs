@@ -176,10 +176,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var formElements = form.EditMode;
                 foreach (var element in formElements)
                 {
-                    if (element.Name == "PERCENTAGE")
-                    {
-                        string abc = element.Name;
-                    }
                     if (!element.Name.Equals(formElementData.Name)) continue;
                     found = true;
                     if (formElementData.ControlType.Contains("COETextArea"))
@@ -206,10 +202,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 formElements = form.AddMode;
                 foreach (var element in formElements)
                 {
-                    if (element.Name == "PERCENTAGE")
-                    {
-                        string abc = element.Name;
-                    }
                     if (!element.Name.Equals(formElementData.Name)) continue;
                     found = true;
                     element.DisplayInfo.Type = formElementData.ControlType;
@@ -229,10 +221,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 formElements = form.ViewMode;
                 foreach (var element in formElements)
                 {
-                    if (element.Name == "PERCENTAGE")
-                    {
-                        string abc = element.Name;
-                    }
                     if (!element.Name.Equals(formElementData.Name)) continue;
                     found = true;
                     element.DisplayInfo.Type = formElementData.ControlType;
