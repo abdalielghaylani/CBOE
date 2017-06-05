@@ -1249,7 +1249,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             XmlDocument document = new XmlDocument();
             if (fileName.Contains(".xml"))
             {
-                fileName = fileName.Replace(".xml", "");
+                fileName = fileName.Replace(".xml", string.Empty);
             }
             using (XmlTextWriter tw = new XmlTextWriter(dir + "\\" + fileName + ".xml", Encoding.UTF8))
             {

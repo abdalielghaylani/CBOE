@@ -1,6 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -18,19 +17,19 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or Sets ExportDir
+        /// Gets or sets the export directory
         /// </summary>
         [JsonProperty(PropertyName = "exportDir")]
         public string ExportDir { get; set; }
 
         /// <summary>
-        /// Gets or Sets SelectNone
+        /// Gets or sets a value indicating whether to select none
         /// </summary>
         [JsonProperty(PropertyName = "selectNone")]
         public bool SelectNone { get; set; }
 
         /// <summary>
-        /// Gets or sets the TableNames 
+        /// Gets or sets the table names 
         /// </summary>
         [JsonProperty(PropertyName = "tableNames")]
         public List<string> TableNames { get; set; }
