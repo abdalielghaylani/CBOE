@@ -1,14 +1,22 @@
 <div class="viewcontainer" (window:resize)="onResize($event)">
   <reg-settings-page-header>Customize Forms</reg-settings-page-header>
-  <dx-data-grid [dataSource]="dataSource" [paging]='{pageSize: 10}'
-    [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" 
-    rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
+  <dx-data-grid [columns]="configForms.columns" [dataSource]="dataSource" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
+    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
     (onCellPrepared)='onCellPrepared($event)'>
-    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
+    <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
-    <div *dxTemplate="let data of 'cellTemplate'">
-      <reg-structure-image [src]="data.value"></reg-structure-image>
+    <div *dxTemplate="let data of 'controlTypeTemplate'">
+      {{ data.value.replace('CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COE','') }}
+    </div>
+    <div *dxTemplate="let data of 'editControlTypeTemplate'">
+      <dx-select-box [items]="data.data.controlTypeOptions" [value]="data.value"
+        (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="Key" valueExpr="Value" [disabled]='!data.data.controlEnabled'>
+      </dx-select-box>
+    </div>
+    <div *dxTemplate="let data of 'editCssClassTemplate'">
+      <dx-select-box [items]="configForms.cssClassItems" [(value)]="data.value" (onValueChanged)="editLookupValueChanged($event,data);">
+      </dx-select-box>
     </div>
   </dx-data-grid>
 </div>

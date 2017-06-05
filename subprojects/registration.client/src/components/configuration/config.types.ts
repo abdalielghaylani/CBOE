@@ -62,3 +62,36 @@ export class CConfigTable {
     }
   }
 }
+
+export const CONFIG_FORMS_COLUMNS = [
+  {
+    dataField: 'group',
+    allowFiltering: false,
+    allowSorting: false,
+    allowEditing: false,
+    groupIndex: 0
+  },
+  {
+    dataField: 'name',
+    allowEditing: false
+  },
+  {
+    dataField: 'controlType',
+    cellTemplate: 'controlTypeTemplate',
+    editCellTemplate: 'editControlTypeTemplate'
+  },
+  {
+    dataField: 'cssClass',
+    editCellTemplate: 'editCssClassTemplate'
+  },
+  { dataField: 'visible' }
+];
+
+export class CConfigForms {
+  columns: any;
+  cssClassItems = ['Std20x40', 'Std50x40', 'Std50x80', 'Std75x40', 'Std100x40', 'Std100x80'];
+  constructor() {
+    this.columns = CONFIG_FORMS_COLUMNS;
+  }
+}
+
