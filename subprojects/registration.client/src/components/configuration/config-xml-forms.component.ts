@@ -61,11 +61,12 @@ export class RegConfigXmlForms implements OnInit, OnDestroy {
     this.dataSource.update(this.popup.key, { name: this.popup.title, data: this.popup.data });
   }
 
-  copyToClipboard() {
-
-  }
-  pasteFromClipboard(event) {
-   
+  copyToClipboard(event) {
+    let $temp = $('<input>');
+    $('body').append($temp);
+    $temp.val(this.popup.data).select();
+    document.execCommand('copy');
+    $temp.remove();
   }
 
   private getGridHeight() {

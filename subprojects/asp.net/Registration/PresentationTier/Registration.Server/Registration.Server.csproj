@@ -164,6 +164,7 @@
     <Compile Include="Models\ImportConfigurationData.cs" />
     <Compile Include="Models\PropertyData.cs" />
     <Compile Include="Models\QueryData.cs" />
+    <Compile Include="Models\TemplateData.cs" />
     <Compile Include="Models\ValidationParameter.cs" />
     <Compile Include="Models\ValidationRuleData.cs" />
     <Compile Include="Models\XmlFormData.cs" />
