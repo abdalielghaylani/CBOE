@@ -15,13 +15,13 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or Sets LocalImport
+        /// Gets or sets the server path
         /// </summary>
         [JsonProperty(PropertyName = "serverPath")]
         public string ServerPath { get; set; }
 
         /// <summary>
-        /// Gets or Sets ForceImport
+        /// Gets or sets a value indicating whether to force importing
         /// </summary>
         [JsonProperty(PropertyName = "forceImport")]
         public bool ForceImport { get; set; }

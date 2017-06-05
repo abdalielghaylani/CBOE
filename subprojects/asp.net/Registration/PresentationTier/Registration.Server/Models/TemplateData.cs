@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using Newtonsoft.Json;
-using System;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -33,7 +32,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
-
         /// <summary>
         /// Gets or sets the DateCreated
         /// </summary>
@@ -47,7 +45,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets whether the template is public or not
+        /// Gets or sets a value indicating whether the template is public or not
         /// </summary>
         [JsonProperty(PropertyName = "isPublic")]
         public bool IsPublic { get; set; }
