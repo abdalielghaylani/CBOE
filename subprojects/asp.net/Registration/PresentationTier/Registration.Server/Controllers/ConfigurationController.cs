@@ -800,6 +800,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, COEFormHelper.TEMPORARYCHILDFORM), formElementData))
                         formGroupUpdated = true;
                     found = found || formGroupUpdated;
+                    formBO.Save();
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-element, {0}, was not found", formElementData.Name));
