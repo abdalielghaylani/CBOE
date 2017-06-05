@@ -388,7 +388,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route(Consts.apiPrefix + "templates//{username}/{id}")]
+        [Route(Consts.apiPrefix + "templates/{username}/{id}")]
         [SwaggerOperation("DeleteTemplate")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
