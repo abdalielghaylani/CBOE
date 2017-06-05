@@ -364,26 +364,24 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route(Consts.apiPrefix + "templates")]
+        [Route(Consts.apiPrefix + "templates/{regId}")]
         [SwaggerOperation("CreateTemplates")]
         [SwaggerResponse(201, type: typeof(TemplateData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CreateTemplates(TemplateData data)
+        public async Task<IHttpActionResult> CreateTemplates( int regId, TemplateData data)
         {
             return await CallMethod(() =>
             {
                 if (string.IsNullOrEmpty(data.Name))
                     throw new RegistrationException("Invalid template name.");
 
-                RegistryRecord currentRecord = RegistryRecord.NewRegistryRecord();
+                RegistryRecord currentRecord = RegistryRecord.GetRegistryRecord(regId);               
                 if (currentRecord == null)
-                    throw new RegistrationException("Error while initializing new registry record.");
+                    throw new RegistrationException(string.Format("The registration record not found for the given id: {0}.", regId));
 
-                // TODO: need to find out which user is associated with tempalte because the SaveTemplate method does not have a providion to supply user name
-                // TODO: how to input structure CDXML to template?
-
+                // TODO: need to find out which user is associated with template because the SaveTemplate method does not have a parameter to supply user name
                 currentRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
 
                 return new ResponseData(message: string.Format("The template, {0}, was saved successfully.", data.Name));
