@@ -168,7 +168,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private bool PutCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, FormGroup.Form form, FormElementData formElementData)
         {
             bool found = false;
-            bool enabled = true;
             string defaultTexMode = string.Empty;
             if (form != null)
             {
@@ -239,8 +238,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 element.ConfigInfo.FirstChild.AppendChild(element.ConfigInfo.OwnerDocument.CreateElement("COE:ReadOnly", element.ConfigInfo.NamespaceURI)).InnerText = bool.TrueString;
                         }
                     }
-                    else
-                        enabled = false;
                     break;
                 }
             }
