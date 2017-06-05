@@ -13,6 +13,7 @@ using CambridgeSoft.COE.Registration;
 using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -316,5 +317,110 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
         #endregion // Tempoary Records
+
+        #region Templates
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "templates/{username}")]
+        [SwaggerOperation("GetTemplates")]
+        [SwaggerResponse(200, type: typeof(List<TemplateData>))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetTemplates(string username)
+        {
+            return await CallMethod(() =>
+            {
+                var templateList = new List<TemplateData>();
+
+                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
+                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
+                {
+                    TemplateData template = new TemplateData();
+                    template.Id = tempalateItem.ID;
+                    template.Name = tempalateItem.Name;
+                    template.DateCreated = tempalateItem.DateCreated;
+                    template.Description = tempalateItem.Description;
+                    template.IsPublic = tempalateItem.IsPublic;
+                    template.Username = tempalateItem.UserName;
+                    templateList.Add(template);
+                }
+
+                var compoundFormListPublic = COEGenericObjectStorageBOList.GetList(username, true, 2, true);
+                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListPublic)
+                {
+                    TemplateData template = new TemplateData();
+                    template.Id = tempalateItem.ID;
+                    template.Name = tempalateItem.Name;
+                    template.DateCreated = tempalateItem.DateCreated;
+                    template.Description = tempalateItem.Description;
+                    template.IsPublic = tempalateItem.IsPublic;
+                    template.Username = tempalateItem.UserName;
+                    templateList.Add(template);
+                }
+
+                return templateList;
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "templates")]
+        [SwaggerOperation("CreateTemplates")]
+        [SwaggerResponse(201, type: typeof(TemplateData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> CreateTemplates(TemplateData data)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrEmpty(data.Name))
+                    throw new RegistrationException("Invalid template name");
+
+                // TODO: Get registry record, I think api should also accept registry record key to retrive registry record
+                RegistryRecord currentRecord = null;
+
+                if (currentRecord != null)
+                    currentRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
+
+                return new ResponseData(message: string.Format("The template, {0}, was saved successfully.", data.Name));
+            });
+        }
+
+        [HttpDelete]
+        [Route(Consts.apiPrefix + "templates//{username}/{id}")]
+        [SwaggerOperation("DeleteTemplate")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteTemplate(string username, int id)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrEmpty(username))
+                    throw new RegistrationException("Invalid user name");
+
+                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
+                COEGenericObjectStorageBO selected = null;
+                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
+                {
+                    if (tempalateItem.ID == id)
+                    {
+                        selected = tempalateItem;
+                        break;
+                    }
+                }
+
+                if (selected == null)
+                    throw new IndexOutOfRangeException(string.Format("The template, {0}, was not found", id));
+
+                COEGenericObjectStorageBO.Delete(id);
+
+                return new ResponseData(message: string.Format("The template, {0}, was deleted successfully.", id));
+            });
+        }
+        #endregion
     }
 }
