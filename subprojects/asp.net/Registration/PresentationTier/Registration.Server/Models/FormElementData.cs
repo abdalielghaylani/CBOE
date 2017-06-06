@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using CambridgeSoft.COE.Framework.Common.Messaging;
-using System.Collections.Generic;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -82,7 +82,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string CssClass { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating wther the item is visible
+        /// Gets or sets a value indicating whether the item is visible
         /// </summary>
         [JsonProperty(PropertyName = "visible")]
         public bool? Visible { get; set; }
