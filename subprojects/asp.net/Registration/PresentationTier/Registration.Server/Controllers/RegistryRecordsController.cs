@@ -437,11 +437,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 var doc = new XmlDocument();
                 doc.LoadXml(data.DataXML);
-                var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var resultString = service.CheckUniqueRegistryRecord(recordString, data.DuplicateCheckOption);
-                if (!string.IsNullOrEmpty(resultString))
-                    throw new RegistrationException(resultString);
-                return new ResponseData(null, null, resultString, null);
+                var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var result = service.CheckUniqueRegistryRecord(regRecordXml, data.DuplicateCheckOption);
+                if (!string.IsNullOrEmpty(result))
+                    throw new RegistrationException(result);
+                return new ResponseData(null, null, result, null);
             });
         }
         #endregion
