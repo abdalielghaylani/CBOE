@@ -1019,7 +1019,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException("Invalid property name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                ConfigurationProperty selectedProperty = (ConfigurationProperty)configurationBO.GetSelectedPropertyList[data.Name];
+                var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                ConfigurationProperty selectedProperty = null;
+                foreach (var propertyType in propertyTypes)
+                {
+                    configurationBO.SelectedPropertyList = propertyType;
+                    var propertyList = configurationBO.GetSelectedPropertyList;
+                    if (propertyList == null) continue;
+                    var properties = (IEnumerable<Property>)propertyList;
+                    foreach (var property in properties)
+                    {
+                        if (!property.Name.Equals(data.Name)) continue;
+                        selectedProperty = (ConfigurationProperty)property;
+                        break;
+                    }
+
+                    if (selectedProperty != null)
+                        break;
+                }
+
                 if (selectedProperty == null)
                     throw new RegistrationException(string.Format("The property, {0}, was not found", data.Name));
 
