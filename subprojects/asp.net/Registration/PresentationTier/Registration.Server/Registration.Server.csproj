@@ -151,7 +151,7 @@
     <Compile Include="Controllers\RegistryRecordsController.cs" />
     <Compile Include="Models\AddinData.cs" />
     <Compile Include="Models\AddinEvent.cs" />
-    <Compile Include="Models\CheckDuplicateData.cs" />
+    <Compile Include="Models\DuplicateResolutionData.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\ExportConfigurationData.cs" />

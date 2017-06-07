@@ -1,16 +1,17 @@
 ﻿using Newtonsoft.Json;
+
 namespace PerkinElmer.COE.Registration.Server.Models
 {
     /// <summary>
-    /// The class for the CheckDuplicate data object
+    /// The class for the DuplicateResolution data object
     /// </summary>
-    public class CheckDuplicateData
+    public class DuplicateResolutionData
     {
         [JsonConstructor]
-        public CheckDuplicateData(string dataXML, string duplicateCheck)
+        public DuplicateResolutionData(string dataXML, string duplicateCheck)
         {
             DataXML = dataXML;
-            DuplicateCheck = duplicateCheck;
+            DuplicateCheckOption = duplicateCheck;
         }
 
         /// <summary>
@@ -20,9 +21,9 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string DataXML { get; set; }
 
         /// <summary>
-        /// Gets or sets the duplicateCheck
+        /// Gets or sets the DuplicateCheckOption
         /// </summary>
         [JsonProperty(PropertyName = "duplicateCheck")]
-        public string DuplicateCheck { get; set; }
+        public string DuplicateCheckOption { get; set; }
     }
 }

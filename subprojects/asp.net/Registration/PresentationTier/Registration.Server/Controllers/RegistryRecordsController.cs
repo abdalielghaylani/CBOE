@@ -426,20 +426,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #region Check Duplicate
 
         [HttpPost]
-        [Route(Consts.apiPrefix + "checkDuplicate")]
-        [SwaggerOperation("CheckDuplicate")]
+        [Route(Consts.apiPrefix + "duplicateResolution")]
+        [SwaggerOperation("DuplicateResolution")]
         [SwaggerResponse(201, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> CheckDuplicate(CheckDuplicateData data)
+        public async Task<IHttpActionResult> DuplicateResolution(DuplicateResolutionData data)
         {
             return await CallServiceMethod((service) =>
             {
-                string duplicateCheck = data.DuplicateCheck;
                 var doc = new XmlDocument();
                 doc.LoadXml(data.DataXML);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var resultString = service.CheckUniqueRegistryRecord(recordString, duplicateCheck);
+                var resultString = service.CheckUniqueRegistryRecord(recordString, data.DuplicateCheckOption);
                 if (!string.IsNullOrEmpty(resultString))
                     throw new RegistrationException(resultString);
                 return new ResponseData(null, null, resultString, null);
