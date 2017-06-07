@@ -22,6 +22,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             string precision,
             int sortOrder,
             string subType,
+            bool editable,
             string friendlyName,
             List<ValidationRuleData> validationRules)
         {
@@ -37,6 +38,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             SortOrder = sortOrder;
             SubType = subType;
             FriendlyName = friendlyName;
+            Editable = editable;
             ValidationRules = validationRules;
         }
 
@@ -111,6 +113,12 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "friendlyName")]
         public string FriendlyName { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the property is editable
+        /// </summary>
+        [JsonProperty(PropertyName = "editable")]
+        public bool Editable { get; set; }
 
         /// <summary>
         /// Gets or sets the Events 
