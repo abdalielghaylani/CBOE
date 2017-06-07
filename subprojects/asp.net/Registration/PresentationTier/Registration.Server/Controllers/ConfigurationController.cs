@@ -988,12 +988,47 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
-                        data.GroupName,
+                        data.Type,
                         data.Precision,
                         true,
                         data.SubType,
                         data.PickListDomainId);
                     configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
+
+                    switch (configurationBO.SelectedPropertyList)
+                    {
+                        case ConfigurationRegistryRecord.PropertyListType.PropertyList:
+                            if (data.FriendlyName == string.Empty)
+                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Compound:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Batch:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+
+                        case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Structure:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                    }
 
                     break;
                 }
@@ -1108,6 +1143,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         found = true;
                         int index = propertyList.GetPropertyIndex(name);
                         propertyList.RemoveAt(index);
+
+                        switch (configurationBO.SelectedPropertyList)
+                        {
+                            case ConfigurationRegistryRecord.PropertyListType.PropertyList:
+                                configurationBO.PropertiesLabels[0].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Compound:
+                                configurationBO.PropertiesLabels[1].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Batch:
+                                configurationBO.PropertiesLabels[2].Remove(name);
+                                break;
+
+                            case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
+                                configurationBO.PropertiesLabels[3].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Structure:
+                                configurationBO.PropertiesLabels[4].Remove(name);
+                                break;
+                        }
+
                         configurationBO.Save();
                         break;
                     }
