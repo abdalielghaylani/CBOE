@@ -897,6 +897,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
+                        propertyData.Editable = (property.Type == "NUMBER" || property.Type == "TEXT") ? true : false;
                         propertyData.ValidationRules = new List<ValidationRuleData>();
 
                         foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule rule in property.ValRuleList)
