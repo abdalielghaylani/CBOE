@@ -77,7 +77,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return config;
         }
 
-        private static int SaveColumnValues(string tableName, JObject data, bool creating)
+        private int SaveColumnValues(string tableName, JObject data, bool creating)
         {
             COETableEditorBOList.NewList().TableName = tableName;
             var idField = COETableEditorUtilities.getIdFieldName(tableName);
@@ -128,7 +128,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return tableEditorBO.ID;
         }
 
-        private static void UpdateColumnValue(string tableName, Column column, JObject data)
+        private void UpdateColumnValue(string tableName, Column column, JObject data)
         {
             var columnName = column.FieldName;
             var columnValue = (string)data[columnName];
