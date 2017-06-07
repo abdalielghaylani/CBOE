@@ -77,7 +77,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return config;
         }
 
-        private static int SaveColumnValues(string tableName, JObject data, bool creating)
+        private int SaveColumnValues(string tableName, JObject data, bool creating)
         {
             COETableEditorBOList.NewList().TableName = tableName;
             var idField = COETableEditorUtilities.getIdFieldName(tableName);
@@ -128,7 +128,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return tableEditorBO.ID;
         }
 
-        private static void UpdateColumnValue(string tableName, Column column, JObject data)
+        private void UpdateColumnValue(string tableName, Column column, JObject data)
         {
             var columnName = column.FieldName;
             var columnValue = (string)data[columnName];
@@ -189,7 +189,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private bool PutCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, FormGroup.Form form, FormElementData formElementData)
         {
             bool found = false;
-            string defaultTexMode = string.Empty;
             if (form != null)
             {
                 string controlStyle = RegAdminUtils.GetDefaultControlStyle(formElementData.ControlType, FormGroup.DisplayMode.Edit);
@@ -198,8 +197,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     if (!element.Name.Equals(formElementData.Name)) continue;
                     found = true;
-                    if (formElementData.ControlType.Contains("COETextArea"))
-                        defaultTexMode = "MultiLine";
+
                     element.DisplayInfo.Type = formElementData.ControlType;
                     element.Label = formElementData.Label;
                     element.DisplayInfo.CSSClass = formElementData.CssClass;
@@ -208,14 +206,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         if (element.BindingExpression.Contains("SearchCriteria"))
                             element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
-                        else
-                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink";
                     }
 
                     if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"] != null && !string.IsNullOrEmpty(controlStyle))
                         element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"].InnerText = controlStyle;
+
+                    string defaultTextMode = formElementData.ControlType.Contains("COETextArea") ? "MultiLine" : string.Empty;
                     if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"] != null)
-                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTexMode;
+                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTextMode;
                     break;
                 }
 
@@ -232,8 +230,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         if (element.BindingExpression.Contains("SearchCriteria"))
                             element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
-                        else
-                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink";
                     }
                     break;
                 }
@@ -259,6 +255,37 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 element.ConfigInfo.FirstChild.AppendChild(element.ConfigInfo.OwnerDocument.CreateElement("COE:ReadOnly", element.ConfigInfo.NamespaceURI)).InnerText = bool.TrueString;
                         }
                     }
+                    break;
+                }
+
+                formElements = form.LayoutInfo;
+                foreach (var element in formElements)
+                {
+                    if (!element.Name.Equals(formElementData.Name)) continue;
+
+                    found = true;
+
+                    if (!string.IsNullOrEmpty(element.DisplayInfo.Assembly))
+                        break;
+
+                    element.Label = formElementData.Label;
+                    element.DisplayInfo.Type = formElementData.ControlType;
+                    element.DisplayInfo.Visible = formElementData.Visible.HasValue ? (bool)formElementData.Visible : false;
+                    element.DisplayInfo.CSSClass = formElementData.CssClass;
+
+                    if (formElementData.ControlType == "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink")
+                    {
+                        if (element.BindingExpression.Contains("SearchCriteria"))
+                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
+                    }
+
+                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"] != null && !string.IsNullOrEmpty(controlStyle))
+                        element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"].InnerText = controlStyle;
+
+                    string defaultTextMode = formElementData.ControlType.Contains("COETextArea") ? "MultiLine" : string.Empty;
+                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"] != null)
+                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTextMode;
+
                     break;
                 }
             }
@@ -861,6 +888,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.Name = property.Name;
                         propertyData.GroupName = propertyType.ToString();
                         propertyData.GroupLabel = GetPropertyTypeLabel(propertyType);
+                        propertyData.Type = property.Type;
                         propertyData.PickListDisplayValue = string.IsNullOrEmpty(property.PickListDisplayValue) ? string.Empty : property.PickListDisplayValue;
                         propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId;
                         propertyData.Value = property.Value;

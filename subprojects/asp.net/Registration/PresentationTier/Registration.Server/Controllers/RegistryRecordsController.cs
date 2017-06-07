@@ -370,7 +370,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CreateTemplates( int regId, TemplateData data)
+        public async Task<IHttpActionResult> CreateTemplates(int regId, TemplateData data)
         {
             return await CallMethod(() =>
             {
