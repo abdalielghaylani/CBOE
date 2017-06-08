@@ -423,5 +423,28 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
         #endregion
+
+        #region Check Duplicate
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "duplicateResolution")]
+        [SwaggerOperation("DuplicateResolution")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> DuplicateResolution(DuplicateResolutionData data)
+        {
+            return await CallServiceMethod((service) =>
+            {
+                var doc = new XmlDocument();
+                doc.LoadXml(data.DataXML);
+                var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var result = service.CheckUniqueRegistryRecord(regRecordXml, data.DuplicateCheckOption);
+                if (!string.IsNullOrEmpty(result))
+                    throw new RegistrationException(result);
+                return new ResponseData(null, null, result, null);
+            });
+        }
+        #endregion
     }
 }
