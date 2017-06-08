@@ -189,7 +189,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private bool PutCustomFormData(ConfigurationRegistryRecord configurationBO, int formId, FormGroup.Form form, FormElementData formElementData)
         {
             bool found = false;
-            string defaultTexMode = string.Empty;
             if (form != null)
             {
                 string controlStyle = RegAdminUtils.GetDefaultControlStyle(formElementData.ControlType, FormGroup.DisplayMode.Edit);
@@ -198,8 +197,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     if (!element.Name.Equals(formElementData.Name)) continue;
                     found = true;
-                    if (formElementData.ControlType.Contains("COETextArea"))
-                        defaultTexMode = "MultiLine";
+
                     element.DisplayInfo.Type = formElementData.ControlType;
                     element.Label = formElementData.Label;
                     element.DisplayInfo.CSSClass = formElementData.CssClass;
@@ -208,14 +206,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         if (element.BindingExpression.Contains("SearchCriteria"))
                             element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
-                        else
-                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink";
                     }
 
                     if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"] != null && !string.IsNullOrEmpty(controlStyle))
                         element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"].InnerText = controlStyle;
+
+                    string defaultTextMode = formElementData.ControlType.Contains("COETextArea") ? "MultiLine" : string.Empty;
                     if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"] != null)
-                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTexMode;
+                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTextMode;
                     break;
                 }
 
@@ -232,8 +230,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         if (element.BindingExpression.Contains("SearchCriteria"))
                             element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
-                        else
-                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink";
                     }
                     break;
                 }
@@ -259,6 +255,37 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 element.ConfigInfo.FirstChild.AppendChild(element.ConfigInfo.OwnerDocument.CreateElement("COE:ReadOnly", element.ConfigInfo.NamespaceURI)).InnerText = bool.TrueString;
                         }
                     }
+                    break;
+                }
+
+                formElements = form.LayoutInfo;
+                foreach (var element in formElements)
+                {
+                    if (!element.Name.Equals(formElementData.Name)) continue;
+
+                    found = true;
+
+                    if (!string.IsNullOrEmpty(element.DisplayInfo.Assembly))
+                        break;
+
+                    element.Label = formElementData.Label;
+                    element.DisplayInfo.Type = formElementData.ControlType;
+                    element.DisplayInfo.Visible = formElementData.Visible.HasValue ? (bool)formElementData.Visible : false;
+                    element.DisplayInfo.CSSClass = formElementData.CssClass;
+
+                    if (formElementData.ControlType == "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink")
+                    {
+                        if (element.BindingExpression.Contains("SearchCriteria"))
+                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
+                    }
+
+                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"] != null && !string.IsNullOrEmpty(controlStyle))
+                        element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"].InnerText = controlStyle;
+
+                    string defaultTextMode = formElementData.ControlType.Contains("COETextArea") ? "MultiLine" : string.Empty;
+                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"] != null)
+                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTextMode;
+
                     break;
                 }
             }
@@ -861,6 +888,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.Name = property.Name;
                         propertyData.GroupName = propertyType.ToString();
                         propertyData.GroupLabel = GetPropertyTypeLabel(propertyType);
+                        propertyData.Type = property.Type;
                         propertyData.PickListDisplayValue = string.IsNullOrEmpty(property.PickListDisplayValue) ? string.Empty : property.PickListDisplayValue;
                         propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId;
                         propertyData.Value = property.Value;
@@ -869,14 +897,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
+                        propertyData.Editable = (property.Type == "NUMBER" || property.Type == "TEXT") ? true : false;
                         propertyData.ValidationRules = new List<ValidationRuleData>();
 
                         foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule rule in property.ValRuleList)
                         {
                             ValidationRuleData ruleData = new ValidationRuleData();
                             ruleData.Name = rule.Name;
-                            ruleData.Min = rule.MIN;
-                            ruleData.Max = rule.MAX;
+                            ruleData.Min = string.IsNullOrEmpty(rule.MIN) ? string.Empty : rule.MIN;
+                            ruleData.Max = string.IsNullOrEmpty(rule.MAX) ? string.Empty : rule.MAX;
                             ruleData.MaxLength = rule.MaxLength;
                             ruleData.Error = rule.Error;
                             ruleData.DefaultValue = rule.DefaultValue;
@@ -927,6 +956,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException(string.Format("The property '{0}' already exists.", data.Name));
 
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                bool found = false;
                 foreach (var propertyType in propertyTypes)
                 {
                     if (!propertyType.ToString().Equals(data.GroupName)) continue;
@@ -935,6 +965,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
                     var properties = (IEnumerable<Property>)propertyList;
+                    found = true;
 
                     string prefix = string.Empty;
                     switch (configurationBO.SelectedPropertyList)
@@ -959,17 +990,55 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
-                        data.GroupName,
+                        data.Type,
                         data.Precision,
                         true,
                         data.SubType,
                         data.PickListDomainId);
                     configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
 
+                    switch (configurationBO.SelectedPropertyList)
+                    {
+                        case ConfigurationRegistryRecord.PropertyListType.PropertyList:
+                            if (data.FriendlyName == string.Empty)
+                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Compound:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Batch:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+
+                        case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Structure:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                    }
+
                     break;
                 }
 
-                configurationBO.Save();
+                if (found)
+                    configurationBO.Save();
+                else
+                    throw new RegistrationException(string.Format("The property '{0}' not saved.", data.Name));
 
                 return new ResponseData(message: string.Format("The property, {0}, was saved successfully.", data.Name));
             });
@@ -991,7 +1060,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException("Invalid property name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                ConfigurationProperty selectedProperty = (ConfigurationProperty)configurationBO.GetSelectedPropertyList[data.Name];
+                var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                ConfigurationProperty selectedProperty = null;
+                foreach (var propertyType in propertyTypes)
+                {
+                    configurationBO.SelectedPropertyList = propertyType;
+                    var propertyList = configurationBO.GetSelectedPropertyList;
+                    if (propertyList == null) continue;
+                    var properties = (IEnumerable<Property>)propertyList;
+                    foreach (var property in properties)
+                    {
+                        if (!property.Name.Equals(data.Name)) continue;
+                        selectedProperty = (ConfigurationProperty)property;
+                        break;
+                    }
+
+                    if (selectedProperty != null)
+                        break;
+                }
+
                 if (selectedProperty == null)
                     throw new RegistrationException(string.Format("The property, {0}, was not found", data.Name));
 
@@ -1061,6 +1148,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         found = true;
                         int index = propertyList.GetPropertyIndex(name);
                         propertyList.RemoveAt(index);
+
+                        switch (configurationBO.SelectedPropertyList)
+                        {
+                            case ConfigurationRegistryRecord.PropertyListType.PropertyList:
+                                configurationBO.PropertiesLabels[0].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Compound:
+                                configurationBO.PropertiesLabels[1].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Batch:
+                                configurationBO.PropertiesLabels[2].Remove(name);
+                                break;
+
+                            case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
+                                configurationBO.PropertiesLabels[3].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Structure:
+                                configurationBO.PropertiesLabels[4].Remove(name);
+                                break;
+                        }
+
                         configurationBO.Save();
                         break;
                     }
