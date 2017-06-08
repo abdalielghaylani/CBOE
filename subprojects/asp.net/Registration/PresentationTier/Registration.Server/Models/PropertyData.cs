@@ -14,7 +14,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
             string name,
             string groupName,
             string groupLabel,
-            string type,
             string pickListDisplayValue,
             string pickListDomainId,
             string value,
@@ -22,14 +21,12 @@ namespace PerkinElmer.COE.Registration.Server.Models
             string precision,
             int sortOrder,
             string subType,
-            bool editable,
             string friendlyName,
             List<ValidationRuleData> validationRules)
         {
             Name = name;
             GroupName = groupName;
             GroupLabel = groupLabel;
-            Type = type;
             PickListDisplayValue = pickListDisplayValue;
             PickListDomainId = pickListDomainId;
             value = Value;
@@ -38,7 +35,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
             SortOrder = sortOrder;
             SubType = subType;
             FriendlyName = friendlyName;
-            Editable = editable;
             ValidationRules = validationRules;
         }
 
@@ -49,22 +45,16 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the Group Name
+        /// Gets or sets the Type
         /// </summary>
         [JsonProperty(PropertyName = "groupName")]
         public string GroupName { get; set; }
 
         /// <summary>
-        /// Gets or sets the Group Label
+        /// Gets or sets the TypeLabel
         /// </summary>
         [JsonProperty(PropertyName = "groupLabel")]
         public string GroupLabel { get; set; }
-
-        /// <summary>
-        /// Gets or sets the Data Type
-        /// </summary>
-        [JsonProperty(PropertyName = "type")]
-        public string Type { get; set; }
 
         /// <summary>
         /// Gets or sets the PickListDisplayValue
@@ -113,12 +103,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "friendlyName")]
         public string FriendlyName { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the property is editable
-        /// </summary>
-        [JsonProperty(PropertyName = "editable")]
-        public bool Editable { get; set; }
 
         /// <summary>
         /// Gets or sets the Events 
