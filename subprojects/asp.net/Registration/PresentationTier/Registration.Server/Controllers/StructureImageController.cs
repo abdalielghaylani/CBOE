@@ -30,7 +30,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             queryParams.Add(":id", compoundId);
 
             string structureData = string.Empty;
-            if (type.Equals("template"))
+            if (type.Equals("template", System.StringComparison.OrdinalIgnoreCase))
                 structureData = GetStructureData(compoundId);
             else
                 structureData = (string)ExtractData(string.Format("SELECT {0} data FROM {1} WHERE {2}=:id", f[0], f[1], f[2]), queryParams)[0]["DATA"];
