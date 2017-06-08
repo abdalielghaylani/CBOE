@@ -41,42 +41,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
 
-        #endregion
-
-        #region Custom tables
-        private JArray GetTableConfig(string tableName)
-        {
-            // Returns the field configuration
-            var config = new JArray();
-            // COETableEditorUtilities.getColumnList returns the column lists
-            var columns = COETableEditorUtilities.getColumnList(tableName);
-            var idFieldName = COETableEditorUtilities.getIdFieldName(tableName);
-            foreach (var column in columns)
-            {
-                var fieldName = column.FieldName;
-                var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
-                var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
-                var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
-                if (!string.IsNullOrEmpty(lookupTableName)) fieldName = lookupColumns[1].FieldName;
-                if (label == null) label = fieldName;
-                var columnObj = new JObject(
-                    new JProperty("name", fieldName),
-                    new JProperty("label", label),
-                    new JProperty("type", column.FieldType.ToString())
-                );
-                if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("idField", true));
-                if (!string.IsNullOrEmpty(lookupTableName))
-                {
-                    columnObj.Add("lookup", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName)));
-                }
-                config.Add(columnObj);
-            }
-            // TODO: Structure lookup needs additional information
-            // This should also return user authorization
-            // Refer to routines like COETableEditorUtilities.HasDeletePrivileges and COETableEditorUtilities.HasEditPrivileges
-            return config;
-        }
-
         private static int SaveColumnValues(string tableName, JObject data, bool creating)
         {
             COETableEditorBOList.NewList().TableName = tableName;
@@ -169,6 +133,42 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 column.FieldValue = columnValue;
             }
+        }
+
+        #endregion
+
+        #region Custom tables
+        private JArray GetTableConfig(string tableName)
+        {
+            // Returns the field configuration
+            var config = new JArray();
+            // COETableEditorUtilities.getColumnList returns the column lists
+            var columns = COETableEditorUtilities.getColumnList(tableName);
+            var idFieldName = COETableEditorUtilities.getIdFieldName(tableName);
+            foreach (var column in columns)
+            {
+                var fieldName = column.FieldName;
+                var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
+                var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
+                var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
+                if (!string.IsNullOrEmpty(lookupTableName)) fieldName = lookupColumns[1].FieldName;
+                if (label == null) label = fieldName;
+                var columnObj = new JObject(
+                    new JProperty("name", fieldName),
+                    new JProperty("label", label),
+                    new JProperty("type", column.FieldType.ToString())
+                );
+                if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("idField", true));
+                if (!string.IsNullOrEmpty(lookupTableName))
+                {
+                    columnObj.Add("lookup", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName)));
+                }
+                config.Add(columnObj);
+            }
+            // TODO: Structure lookup needs additional information
+            // This should also return user authorization
+            // Refer to routines like COETableEditorUtilities.HasDeletePrivileges and COETableEditorUtilities.HasEditPrivileges
+            return config;
         }
 
         private bool CheckCustomPropertyName(ConfigurationRegistryRecord configurationBO, int formId, string propertyId)
