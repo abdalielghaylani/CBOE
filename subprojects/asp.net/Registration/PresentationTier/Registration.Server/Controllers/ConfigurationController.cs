@@ -956,6 +956,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException(string.Format("The property '{0}' already exists.", data.Name));
 
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                bool found = false;
                 foreach (var propertyType in propertyTypes)
                 {
                     if (!propertyType.ToString().Equals(data.GroupName)) continue;
@@ -964,6 +965,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
                     var properties = (IEnumerable<Property>)propertyList;
+                    found = true;
 
                     string prefix = string.Empty;
                     switch (configurationBO.SelectedPropertyList)
@@ -1033,7 +1035,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     break;
                 }
 
-                configurationBO.Save();
+                if (found)
+                    configurationBO.Save();
+                else
+                    throw new RegistrationException(string.Format("The property '{0}' not saved.", data.Name));
 
                 return new ResponseData(message: string.Format("The property, {0}, was saved successfully.", data.Name));
             });
