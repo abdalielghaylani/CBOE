@@ -527,6 +527,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         #region Check Duplicate
 
+        [HttpGet]
+        [Route(Consts.apiPrefix + "getDuplicateResolution")]
+        [SwaggerOperation("GetDuplicateResolution")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetDuplicateResolution()
+        {
+            return await CallServiceMethod((service) =>
+            {
+                var responseMessage = new JObject(
+                new JProperty("DuplicateCheck", DuplicateCheck.CompoundCheck.ToString(), DuplicateCheck.MixCheck.ToString(), DuplicateCheck.None.ToString(), DuplicateCheck.PreReg.ToString())
+                );
+                return new ResponseData(null, null, null, responseMessage);
+            });
+        }
+
         [HttpPost]
         [Route(Consts.apiPrefix + "duplicateResolution")]
         [SwaggerOperation("DuplicateResolution")]
@@ -544,6 +561,43 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 var result = service.CheckUniqueRegistryRecord(regRecordXml, data.DuplicateCheckOption);
+                if (!string.IsNullOrEmpty(result))
+                    throw new RegistrationException(result);
+                return new ResponseData(null, null, result, null);
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "getDuplicateAction")]
+        [SwaggerOperation("GetDuplicateAction")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetDuplicateAction()
+        {
+            return await CallServiceMethod((service) =>
+            {
+                var responseMessage = new JObject(
+                new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
+                );
+                return new ResponseData(null, null, null, responseMessage);
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "createDuplicateRecord")]
+        [SwaggerOperation("CreateDuplicateRecord")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> CreateDuplicateRecord(DuplicateResolutionData data)
+        {
+            return await CallServiceMethod((service) =>
+            {
+                var doc = new XmlDocument();
+                doc.LoadXml(data.Data);
+                var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var result = service.CreateRegRecordWithUserPreference(regRecordXml, data.DuplicateCheckOption);
                 if (!string.IsNullOrEmpty(result))
                     throw new RegistrationException(result);
                 return new ResponseData(null, null, result, null);
