@@ -14,6 +14,7 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
+using CambridgeSoft.COE.Framework.Common;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -363,26 +364,126 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        [HttpGet]
+        [Route(Consts.apiPrefix + "templates/templates/{username}/{id}")]
+        [SwaggerOperation("GetTemplate")]
+        [SwaggerResponse(200, type: typeof(TemplateData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetTemplate(string username, int id)
+        {
+            return await CallMethod(() =>
+            {
+                TemplateData template = null;
+                bool found = false;
+                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
+
+                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
+                {
+                    if (id != tempalateItem.ID) continue;
+
+                    template = new TemplateData();
+                    template.Id = tempalateItem.ID;
+                    template.Name = tempalateItem.Name;
+                    template.DateCreated = tempalateItem.DateCreated;
+                    template.Description = tempalateItem.Description;
+                    template.IsPublic = tempalateItem.IsPublic;
+                    template.Username = tempalateItem.UserName;
+
+                    found = true;
+                    break;
+                }
+
+                if (!found)
+                {
+                    var compoundFormListPublic = COEGenericObjectStorageBOList.GetList(username, true, 2, true);
+                    foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListPublic)
+                    {
+                        if (id != tempalateItem.ID) continue;
+
+                        template = new TemplateData();
+                        template.Id = tempalateItem.ID;
+                        template.Name = tempalateItem.Name;
+                        template.DateCreated = tempalateItem.DateCreated;
+                        template.Description = tempalateItem.Description;
+                        template.IsPublic = tempalateItem.IsPublic;
+                        template.Username = tempalateItem.UserName;
+
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                    throw new RegistrationException(string.Format("template with id '{0}' not found.", id));
+
+                COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(template.Id);
+                string coeGenericObjectXml = genericStorageBO.COEGenericObject;
+                // if xml is coming from a stored template - reset the default scientistID
+                string propertyPath = string.Format("MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='{0}']", "SCIENTIST_ID");
+                XmlDocument recordXml = new XmlDocument();
+                recordXml.LoadXml(coeGenericObjectXml);
+                XmlNode xNode = recordXml.SelectSingleNode(propertyPath);
+                if (xNode != null)
+                {
+                    if (xNode.InnerText == string.Empty)
+                    {
+                        xNode.InnerText = COEUser.ID.ToString();
+                    }
+                }
+
+                template.Data = ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml;
+                return template;
+            });
+        }
+
         [HttpPost]
-        [Route(Consts.apiPrefix + "templates/{regId}")]
+        [Route(Consts.apiPrefix + "templates")]
         [SwaggerOperation("CreateTemplates")]
         [SwaggerResponse(201, type: typeof(TemplateData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CreateTemplates(int regId, TemplateData data)
+        public async Task<IHttpActionResult> CreateTemplates(TemplateData data)
         {
             return await CallMethod(() =>
             {
                 if (string.IsNullOrEmpty(data.Name))
-                    throw new RegistrationException("Invalid template name.");
+                    throw new RegistrationException("Invalid template name");
 
-                RegistryRecord currentRecord = RegistryRecord.GetRegistryRecord(regId);               
-                if (currentRecord == null)
-                    throw new RegistrationException(string.Format("The registration record not found for the given id: {0}.", regId));
+                string errorMessage = null;
+                RegistryRecord registryRecord = null;
+                try
+                {
+                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
+                    string xml = data.Data;
+                    var doc = new XmlDocument();
+                    doc.LoadXml(xml);
+                    errorMessage = "Unable to process chemical structures.";
+                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
 
-                // TODO: need to find out which user is associated with template because the SaveTemplate method does not have a parameter to supply user name
-                currentRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
+                    registryRecord = RegistryRecord.NewRegistryRecord();
+                    errorMessage = "Unable to initialize the internal record.";
+                    registryRecord.InitializeFromXml(xml, true, false);
+
+                    errorMessage = "Unable to save the template.";
+                    if (registryRecord != null)
+                        registryRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
+                }
+                catch (Exception ex)
+                {
+                    if (registryRecord != null && ex is ValidationException)
+                    {
+                        List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
+                        brokenRuleDescriptionList.ForEach(rd =>
+                        {
+                            errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
+                        });
+                    }
+
+                    throw new RegistrationException(errorMessage, ex);
+                }
 
                 return new ResponseData(message: string.Format("The template, {0}, was saved successfully.", data.Name));
             });
