@@ -2,7 +2,7 @@ import { IAppState, rootReducer, deimmutify, reimmutify } from './store';
 import { ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory } from './configuration';
 import {
   IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, RegistryFactory,
-  IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords
+  HitlistType, SearchCriteriaType, IHitlistData, IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords
 } from './registry';
 import { ISession } from './session';
 
@@ -14,7 +14,7 @@ export {
   IAppState,
   ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory,
   IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, RegistryFactory,
-  IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords,
+  HitlistType, SearchCriteriaType, IHitlistData, IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords,
   ISession,
   rootReducer,
   reimmutify

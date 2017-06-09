@@ -118,7 +118,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists")]
         [SwaggerOperation("GetHitlists")]
-        [SwaggerResponse(200, type: typeof(List<Hitlist>))]
+        [SwaggerResponse(200, type: typeof(List<HitlistData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -126,19 +126,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var result = new List<Hitlist>();
+                var result = new List<HitlistData>();
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
                 var formGroup = configRegRecord.FormGroup;
                 var tempHitLists = COEHitListBOList.GetRecentHitLists(databaseName, COEUser.Name, formGroup.Id, 10);
                 foreach (var h in tempHitLists)
                 {
-                    result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
+                    result.Add(new HitlistData(h));
                 }
                 var savedHitLists = COEHitListBOList.GetSavedHitListList(databaseName, COEUser.Name, formGroup.Id);
                 foreach (var h in savedHitLists)
                 {
-                    result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
+                    result.Add(new HitlistData(h));
                 }
                 return result;
             });
@@ -195,12 +195,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpPut]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("UpdateHitlist")]
-        public async Task<IHttpActionResult> UpdateHitlist(int id)
+        public async Task<IHttpActionResult> UpdateHitlist(int id, [FromBody] HitlistData hitlistData)
         {
             return await CallMethod(() =>
             {
-                var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-                var hitlistType = (HitListType)(int)hitlistData["HitlistType"];
+                var hitlistType = hitlistData.HitlistType;
                 var hitlistBO = COEHitListBO.Get(hitlistType, id);
                 if (hitlistBO == null)
                     throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
@@ -213,9 +212,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (hitlistBO.HitListID > 0)
                 {
-                    hitlistBO.Name = hitlistData["Name"].ToString();
-                    hitlistBO.Description = hitlistData["Description"].ToString();
-                    hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
+                    hitlistBO.Name = hitlistData.Name;
+                    hitlistBO.Description = hitlistData.Description;
+                    hitlistBO.IsPublic = hitlistData.IsPublic.HasValue ? hitlistData.IsPublic.Value : false;
                     if (hitlistBO.SearchCriteriaID > 0)
                     {
                         var searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
@@ -428,13 +427,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("GetHitlist")]
-        [SwaggerResponse(200, type: typeof(Hitlist))]
+        [SwaggerResponse(200, type: typeof(HitlistData))]
         public async Task<IHttpActionResult> GetHitlist(int id)
         {
             return await CallMethod(() =>
             {
                 var hitlistBO = GetHitlistBO(id);
-                return new Hitlist(hitlistBO);
+                return new HitlistData(hitlistBO);
             });
         }
 

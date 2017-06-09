@@ -34,6 +34,6 @@
     <a class="fa fa fa-filter grd-icon" aria-hidden="true" title='Advanced' (click)="showRestore(d)"></a>
   </div>
   <div *dxTemplate="let d of 'saveCellTemplate'">
-    <a *ngIf="d.data.HistlistType === 0" class="fa fa fa-floppy-o grd-icon" aria-hidden="true" title='Add to saved hitlist' (click)="moveToSaveHitlist(d.data)"></a>&nbsp; {{d.value}}
+    <a *ngIf="d.data.hitlistType === 'TEMP'" class="fa fa fa-floppy-o grd-icon" aria-hidden="true" title='Add to saved hitlist' (click)="moveToSaveHitlist(d.data)"></a>&nbsp; {{d.value}}
   </div>
 </dx-data-grid>

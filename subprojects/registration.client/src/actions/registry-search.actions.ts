@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IAppState, IHitlistRetrieveInfo } from '../store';
+import { IAppState, IHitlistData, IHitlistRetrieveInfo } from '../store';
 
 @Injectable()
 export class RegistrySearchActions {
@@ -26,7 +26,8 @@ export class RegistrySearchActions {
   static openHitlistsAction = createAction(RegistrySearchActions.OPEN_HITLISTS);
   static openHitlistsSuccessAction = createAction(RegistrySearchActions.OPEN_HITLISTS_SUCCESS);
   static openHitlistsErrorAction = createAction(RegistrySearchActions.OPEN_HITLISTS_ERROR);
-  static updateHitlistAction = createAction(RegistrySearchActions.UPDATE_HITLIST);
+  static updateHitlistAction = createAction(RegistrySearchActions.UPDATE_HITLIST,
+    (hitlistData: IHitlistData) => (hitlistData));
   static updateHitlistErrorAction = createAction(RegistrySearchActions.UPDATE_HITLIST_ERROR);
   static deleteHitlistAction = createAction(RegistrySearchActions.DELETE_HITLIST,
     (id: number) => ({ id }));
@@ -79,7 +80,7 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistAction(id));
   }
 
-  updateHitlist(data) {
+  updateHitlist(data: IHitlistData) {
     this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(data));
   };
 
