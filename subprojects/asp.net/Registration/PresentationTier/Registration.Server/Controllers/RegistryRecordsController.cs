@@ -437,7 +437,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallServiceMethod((service) =>
             {
                 var doc = new XmlDocument();
-                doc.LoadXml(data.DataXML);
+                doc.LoadXml(data.Data);
+
+                // TODO: check data xml is valid and throw proper error message
+
                 var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 var result = service.CheckUniqueRegistryRecord(regRecordXml, data.DuplicateCheckOption);
                 if (!string.IsNullOrEmpty(result))
