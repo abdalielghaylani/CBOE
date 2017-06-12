@@ -171,14 +171,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route(Consts.apiPrefix + "records/{id}")]
+        [Route(Consts.apiPrefix + "records/{regNum}")]
         [SwaggerOperation("DeleteRecord")]
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
-        public void DeleteRecord(int id)
+        public async Task<IHttpActionResult> DeleteRecord(string regNum)
         {
-            // TODO: There is no service method to delete permanent records.
-            // This has to be implemented manually.
+            return await CallMethod(() =>
+            {
+                RegistryRecord.DeleteRegistryRecord(regNum);
+                return new ResponseData(message: string.Format("record with regNum : {0}, successfully deleted.", regNum));
+            });
         }
 
         #endregion // Permanent Records
