@@ -199,7 +199,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var regNum = GetRegNumber(id);
                 RegistryRecord.DeleteRegistryRecord(regNum);
                 return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully.", regNum));
-            }, new string[] { "DELETE_TEMP" });
+            });
         }
 
         #endregion // Permanent Records
