@@ -6,7 +6,7 @@ import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions,
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { IAppState, IHitlistRetrieveInfo } from '../store';
+import { IAppState, IHitlistData, IHitlistRetrieveInfo } from '../store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -58,10 +58,10 @@ export class RegistrySearchEpics {
       });
   }
 
-  handleUpdateHitlist = (action$: Observable<IPayloadAction>) => {
+  handleUpdateHitlist = (action$: Observable<ReduxActions.Action<IHitlistData>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.UPDATE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.put(`${apiUrlPrefix}hitlists/${payload.hitlistID}`, payload)
+        return this.http.put(`${apiUrlPrefix}hitlists/${payload.hitlistId}`, payload)
           .map(result => {
             notifySuccess('The selected hitlist was updated successfully!', 5000);
             return RegistrySearchActions.openHitlistsAction();

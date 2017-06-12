@@ -156,7 +156,7 @@
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\ExportConfigurationData.cs" />
     <Compile Include="Models\FormElementData.cs" />
-    <Compile Include="Models\Hitlist.cs" />
+    <Compile Include="Models\HitlistData.cs" />
     <Compile Include="Code\QueryHelper.cs" />
     <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Global.asax.cs">

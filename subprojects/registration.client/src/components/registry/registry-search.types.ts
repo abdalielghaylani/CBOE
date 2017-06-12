@@ -203,30 +203,31 @@ export class CSearchFormVM {
 }
 
 export const HITLIST_GRID_COLUMNS = [{
-  dataField: 'Name',
+  dataField: 'name',
   dataType: 'String',
   cellTemplate: 'saveCellTemplate'
 }, {
-  dataField: 'Description',
+  dataField: 'description',
   dataType: 'String'
 }, {
-  dataField: 'IsPublic',
+  dataField: 'isPublic',
   width: '60px'
 }, {
   caption: '# Hits',
-  dataField: 'NumberOfHits',
+  dataField: 'numberOfHits',
   dataType: Number,
   allowEditing: false,
   width: '60px'
 }, {
-  dataField: 'DateCreated._date',
+  dataField: 'dateCreated',
   caption: 'Date Created',
   dataType: 'date',
+  format: 'shortDateShortTime',
   allowEditing: false
 }, {
-  dataField: 'HistlistType',
+  dataField: 'hitlistType',
   caption: 'Queries',
-  lookup: { dataSource: [{ id: 0, name: 'Recent' }, { id: 1, name: 'Saved' }], valueExpr: 'id', displayExpr: 'name' },
+  lookup: { dataSource: [{ id: 'TEMP', name: 'Recent' }, { id: 'SAVED', name: 'Saved' }], valueExpr: 'id', displayExpr: 'name' },
   groupIndex: 0,
   allowEditing: false
 },

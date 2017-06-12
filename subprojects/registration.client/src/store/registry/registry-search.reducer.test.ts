@@ -1,7 +1,7 @@
 import { Iterable } from 'immutable';
 import { registrySearchReducer } from './registry-search.reducer';
 import { RegistrySearchActions } from '../../actions';
-import { IRegistrySearchRecord, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords, INITIAL_STATE } from './registry-search.types';
+import { IRegistrySearchRecord, HitlistType, IHitlistData, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords, INITIAL_STATE } from './registry-search.types';
 
 describe('registry search reducer', () => {
   let initState: IRegistrySearchRecord;
@@ -15,7 +15,9 @@ describe('registry search reducer', () => {
   });
 
   it('should update hitlist.rows on OPEN_HITLISTS_SUCCESS', () => {
-    const rows = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
+    const rows: IHitlistData[] = [
+      { hitlistType: HitlistType.TEMP, name: 'temp1', isPublic: false },
+      { hitlistType: HitlistType.TEMP, name: 'temp2', isPublic: false }];
     const nextState = registrySearchReducer(
       initState,
       RegistrySearchActions.openHitlistsSuccessAction(rows)

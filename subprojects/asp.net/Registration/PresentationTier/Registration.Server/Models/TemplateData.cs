@@ -22,25 +22,25 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or sets the id of Template
+        /// Gets or sets the ID
         /// </summary>
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of Template
+        /// Gets or sets the name
         /// </summary>
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the DateCreated
+        /// Gets or sets the creation date
         /// </summary>
         [JsonProperty(PropertyName = "dateCreated")]
         public DateTime DateCreated { get; set; }
 
         /// <summary>
-        /// Gets or sets the Description
+        /// Gets or sets the description
         /// </summary>
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
@@ -52,7 +52,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public bool IsPublic { get; set; }
 
         /// <summary>
-        /// Gets or sets the Username
+        /// Gets or sets the user name
         /// </summary>
         [JsonProperty(PropertyName = "username")]
         public string Username { get; set; }

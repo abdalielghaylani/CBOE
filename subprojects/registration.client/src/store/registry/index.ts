@@ -1,5 +1,5 @@
 import { IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery } from './registry.types';
-import { IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords } from './registry-search.types';
+import { HitlistType, SearchCriteriaType, IHitlistData, IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords } from './registry-search.types';
 import { registryReducer } from './registry.reducer';
 import { RegistryFactory } from './registry.initial-state';
 import { registrySearchReducer } from './registry-search.reducer';
@@ -14,6 +14,9 @@ export {
   ISearchRecords,
   IRegistry,
   IRegistryRetrievalQuery,
+  HitlistType,
+  SearchCriteriaType,
+  IHitlistData,
   IRegistrySearch,
   registryReducer,
   registrySearchReducer,

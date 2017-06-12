@@ -1,5 +1,31 @@
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
 
+export enum HitlistType {
+  TEMP,
+  SAVED,
+  MARKED,
+  ALL
+}
+
+export enum SearchCriteriaType {
+  TEMP,
+  SAVED
+}
+
+export interface IHitlistData {
+  id?: number;
+  hitlistId?: number;
+  hitlistType: HitlistType;
+  numberOfHits?: number;
+  isPublic: boolean;
+  searchCriteriaId?: number;
+  searchCriteriaType?: number;
+  name: string;
+  description?: string;
+  dateCreated?: Date;
+  markedHitIds?: number[];
+}
+
 export interface IHitlistInfo {
   id: number;
   type: number;
@@ -14,7 +40,7 @@ export interface IHitlistRetrieveInfo {
 }
 
 export interface ISearchRecords {
-  rows?: any[];
+  rows?: IHitlistData[];
   currentHitlistId?: number;
 }
 
