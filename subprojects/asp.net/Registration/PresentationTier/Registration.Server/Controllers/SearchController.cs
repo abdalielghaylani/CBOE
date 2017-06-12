@@ -186,6 +186,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
         /// <param name="id">The ID of hit-list to update</param>
+        /// <param name="hitlistData">The hit list data</param>
         /// <returns>The <see cref="ResponseData"/> object containing the ID of updated hit-list</returns>
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
