@@ -42,6 +42,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (hitlistBO.SearchCriteriaID == 0)
                 throw new RegistrationException("The hit-list has no query associated with it");
             COESearchCriteriaBO searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+            if (searchCriteriaBO.SearchCriteria == null)
+                throw new RegistrationException("No search criteria is associated with this hit-list");
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
             configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
             var formGroup = configRegRecord.FormGroup;

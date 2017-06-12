@@ -1,5 +1,6 @@
 import { RegistrySearchActions, IPayloadAction } from '../../actions';
 import { IRegistrySearchRecord, ISearchRecords, IHitlistRetrieveInfo, INITIAL_STATE } from './registry-search.types';
+import { notify, notifyError, notifySuccess } from '../../common';
 
 export function registrySearchReducer(
   state: IRegistrySearchRecord = INITIAL_STATE,
@@ -12,6 +13,9 @@ export function registrySearchReducer(
     case RegistrySearchActions.RETRIEVE_HITLIST:
       let a2 = action as ReduxActions.Action<IHitlistRetrieveInfo>;
       return state.updateIn(['hitlist', 'currentHitlistId'], () => a2.payload.id);
+    case RegistrySearchActions.RETRIEVE_HITLIST_ERROR:
+      notifyError(action.payload);
+      return state;
     default:
       return state;
   }
