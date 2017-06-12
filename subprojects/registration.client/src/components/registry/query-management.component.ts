@@ -31,7 +31,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   @Output() onClose = new EventEmitter<any>();
   private hitlistData$: Observable<ISearchRecords>;
   private records: any[];
-  private selectedHitlist: any[any];
+  private selectedHitlist: { id: number, type: number };
   private recordsSubscription: Subscription;
 
   constructor(
@@ -53,7 +53,6 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.hitlistVM.advancedRestoreType = 0;
     this.records = this.ngRedux.getState().registrysearch.hitlist.rows;
     this.changeDetector.markForCheck();
   }
@@ -113,15 +112,12 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     }
   }
 
-  showRestore(e) {
-      let data = <IHitlistData>e.data;
+  showAdvRestorePopup(e) {
+    let data = <IHitlistData>e.data;
     if (this.hitlistId && this.hitlistId > 0 && data.hitlistId !== this.hitlistId) {
       e.component.collapseAll(-1);
       e.component.expandRow(e.key);
-      this.selectedHitlist = { HitlistID: data.id, HitlistType: data.hitlistType };
-      if (this.hitlistId && this.hitlistId > 0) {
-        this.hitlistVM.isCurrentHitlist = true;
-      }
+      this.selectedHitlist = { id: data.id, type: data.hitlistType };
     }
   }
 
@@ -135,14 +131,12 @@ export class RegQueryManagement implements OnInit, OnDestroy {
       id: e.id,
       temporary: this.temporary,
       data: {
-        HitlistID1: this.selectedHitlist.HitlistID,
-        HitlistID2: !this.hitlistId ? this.hitlistId : 0,
-        RestoreType: this.hitlistVM.advancedRestoreType,
-        HitlistType1: this.selectedHitlist.HitlistType,
-        HitlistType2: !this.hitlistId ? this.hitlistId : 0,
+        id1: this.hitlistId,
+        id2: this.selectedHitlist.id,
+        op: this.hitlistVM.advancedRestoreType
       }
     });
-    this.router.navigate([`records/restore`]);
+    this.onClose.emit(e);
   }
 
   restoreSelectedHitlist(e: IHitlistData) {

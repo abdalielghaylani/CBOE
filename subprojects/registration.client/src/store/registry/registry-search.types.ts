@@ -36,7 +36,7 @@ export interface IHitlistRetrieveInfo {
   temporary: boolean;
   id: number;
   refresh?: boolean;
-  data?: any;
+  data?: { id1: number, id2: number, op: string };
 }
 
 export interface ISearchRecords {

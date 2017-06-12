@@ -241,30 +241,25 @@ export const HITLIST_GRID_COLUMNS = [{
 export class CQueryManagementVM {
   gridColumns?: any[];
   queriesList?: CQueries[];
-  advancedRestoreType?: number;
-  isCurrentHitlist?: boolean;
+  advancedRestoreType?: string;
   saveQueryVM?: CSaveQuery;
   constructor(state: IAppState) {
     this.queriesList = state.registrysearch.hitlist.rows;
     this.gridColumns = HITLIST_GRID_COLUMNS;
-    this.advancedRestoreType = 0;
-    this.isCurrentHitlist = false;
+    this.advancedRestoreType = 'intersect';
     this.saveQueryVM = new CSaveQuery();
   }
 
   getRestoreDataSource() {
     return [{
-      key: 2,
-      value: 'Subtract from current list',
-      disabled: !this.isCurrentHitlist
+      key: 'intersect',
+      value: 'Intersect with current list'
     }, {
-      key: 1,
-      value: 'Intersect with current list',
-      disabled: !this.isCurrentHitlist
+      key: 'union',
+      value: 'Union with current list'
     }, {
-      key: 3,
-      value: 'Union with current list',
-      disabled: !this.isCurrentHitlist
+      key: 'subtract',
+      value: 'Subtract from current list'
     }];
   }
 
