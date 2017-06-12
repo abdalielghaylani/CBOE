@@ -21,6 +21,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
+        private void CheckTempRecordId(int id)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":id", id);
+            var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
+            if (count == 0)
+                throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
+        }
+
         private string GetNodeText(XmlNode node)
         {
             return node.InnerText;
@@ -30,6 +39,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var node = doc.SelectSingleNode(path);
             return node == null ? null : GetNodeText(node);
+        }
+
+        private string GetRegNumber(int id)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":id", id);
+            var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
+            if (string.IsNullOrEmpty(regNum))
+                throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
+            return regNum;
         }
 
         #region Permanent Records
@@ -72,11 +91,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var args = new Dictionary<string, object>();
-                    args.Add(":id", id);
-                    var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
-                    if (string.IsNullOrEmpty(regNum))
-                        throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
+                    var regNum = GetRegNumber(id);
                     record = service.RetrieveRegistryRecord(regNum);
                 }
 
@@ -173,12 +188,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "records/{id}")]
         [SwaggerOperation("DeleteRecord")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public void DeleteRecord(int id)
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteRecord(int id)
         {
-            // TODO: There is no service method to delete permanent records.
-            // This has to be implemented manually.
+            return await CallMethod(() =>
+            {
+                var regNum = GetRegNumber(id);
+                RegistryRecord.DeleteRegistryRecord(regNum);
+                return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully.", regNum));
+            }, new string[] { "DELETE_TEMP" });
         }
 
         #endregion // Permanent Records
@@ -223,11 +244,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var args = new Dictionary<string, object>();
-                    args.Add(":id", id);
-                    var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
-                    if (count == 0)
-                        throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
+                    CheckTempRecordId(id);
                     record = service.RetrieveTemporaryRegistryRecord(id);
                 }
 
@@ -308,14 +325,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "temp-records/{id}")]
         [SwaggerOperation("DeleteTempRecord")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> DeleteTempRecord(int id)
         {
-            return await CallServiceMethod((service) =>
+            return await CallMethod(() =>
             {
-                return new JObject(new JProperty("data", service.DeleteTemporaryRegistryRecord(id)));
-            });
+                CheckTempRecordId(id);
+                RegistryRecord.DeleteRegistryRecord(id);
+                return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully.", id));
+            }, new string[] { "DELETE_TEMP" });
         }
         #endregion // Tempoary Records
 
