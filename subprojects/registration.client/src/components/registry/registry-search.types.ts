@@ -254,9 +254,6 @@ export class CQueryManagementVM {
 
   getRestoreDataSource() {
     return [{
-      key: 0,
-      value: 'Subtract from entire list'
-    }, {
       key: 2,
       value: 'Subtract from current list',
       disabled: !this.isCurrentHitlist

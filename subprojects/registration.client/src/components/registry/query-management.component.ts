@@ -25,12 +25,12 @@ import * as regSearchTypes from './registry-search.types';
 export class RegQueryManagement implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Input() temporary: boolean;
-  @Input() hitlistVM: any;
+  @Input() hitlistVM: regSearchTypes.CQueryManagementVM;
   @Input() parentHeight: string;
+  @Input() hitlistId: number;
   @Output() onClose = new EventEmitter<any>();
   private hitlistData$: Observable<ISearchRecords>;
   private records: any[];
-  private currentHitlistId: number;
   private selectedHitlist: any[any];
   private recordsSubscription: Subscription;
 
@@ -55,7 +55,6 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   loadData() {
     this.hitlistVM.advancedRestoreType = 0;
     this.records = this.ngRedux.getState().registrysearch.hitlist.rows;
-    this.currentHitlistId = this.ngRedux.getState().registrysearch.hitlist.currentHitlistId;
     this.changeDetector.markForCheck();
   }
 
@@ -95,7 +94,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
       isPublic: newData.isPublic ? newData.isPublic : oldData.isPublic,
       hitlistType: oldData.hitlistType,
       hitlistId: oldData.hitlistId
-    }); 
+    });
   }
 
   moveToSaveHitlist(e: IHitlistData) {
@@ -115,11 +114,14 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   showRestore(e) {
-    e.component.collapseAll(-1);
-    e.component.expandRow(e.key);
-    this.selectedHitlist = { 'HitlistID': e.data.id, 'HitlistType': e.data.hitlistType };
-    if (this.currentHitlistId && this.currentHitlistId > 0) {
-      this.hitlistVM.isCurrentHitlist = true;
+      let data = <IHitlistData>e.data;
+    if (this.hitlistId && this.hitlistId > 0 && data.hitlistId !== this.hitlistId) {
+      e.component.collapseAll(-1);
+      e.component.expandRow(e.key);
+      this.selectedHitlist = { HitlistID: data.id, HitlistType: data.hitlistType };
+      if (this.hitlistId && this.hitlistId > 0) {
+        this.hitlistVM.isCurrentHitlist = true;
+      }
     }
   }
 
@@ -127,17 +129,17 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     e.component.collapseAll(-1);
   }
 
-  advancedRestorePopup(e) {
+  advancedRestorePopup(e: IHitlistData) {
     this.actions.retrieveHitlist({
       type: 'Advanced',
-      id: e.ID,
+      id: e.id,
       temporary: this.temporary,
       data: {
         HitlistID1: this.selectedHitlist.HitlistID,
-        HitlistID2: !this.currentHitlistId ? this.currentHitlistId : 0,
+        HitlistID2: !this.hitlistId ? this.hitlistId : 0,
         RestoreType: this.hitlistVM.advancedRestoreType,
         HitlistType1: this.selectedHitlist.HitlistType,
-        HitlistType2: !this.currentHitlistId ? this.currentHitlistId : 0,
+        HitlistType2: !this.hitlistId ? this.hitlistId : 0,
       }
     });
     this.router.navigate([`records/restore`]);
@@ -150,7 +152,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
 
   refreshSelectedHitlist(e: IHitlistData) {
     this.actions.retrieveHitlist({ type: 'Refresh', temporary: this.temporary, id: e.id });
-    this.onClose.emit(e);    
+    this.onClose.emit(e);
   }
 
   cancel(e) {
