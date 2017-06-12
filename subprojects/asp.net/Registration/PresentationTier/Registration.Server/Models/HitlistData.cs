@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Csla;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using CambridgeSoft.COE.Framework;
-using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEHitListService;
-using System;
+using CambridgeSoft.COE.Framework.Common;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
