@@ -645,7 +645,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", name));
-                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully.", name));
+                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully!", name));
             });
         }
 
@@ -700,7 +700,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 configurationBO.AddInList.Add(addIn);
                 configurationBO.Save();
 
-                return new ResponseData(message: string.Format("The addin, {0}, was saved successfully.", data.Name));
+                return new ResponseData(message: string.Format("The addin, {0}, was saved successfully!", data.Name));
             });
         }
 
@@ -757,7 +757,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
 
-                return new ResponseData(message: string.Format("The addin, {0}, was updated successfully.", data.Name));
+                return new ResponseData(message: string.Format("The addin, {0}, was updated successfully!", data.Name));
             });
         }
 
@@ -856,7 +856,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-element, {0}, was not found", formElementData.Name));
-                return new ResponseData(null, null, string.Format("The form-elements was updated successfully"), null);
+                return new ResponseData(null, null, string.Format("The form-elements was updated successfully!"), null);
             });
         }
         #endregion
@@ -1040,7 +1040,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 else
                     throw new RegistrationException(string.Format("The property '{0}' not saved.", data.Name));
 
-                return new ResponseData(message: string.Format("The property, {0}, was saved successfully.", data.Name));
+                return new ResponseData(message: string.Format("The property, {0}, was saved successfully!", data.Name));
             });
         }
 
@@ -1113,7 +1113,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 selectedProperty.ApplyEdit();
                 configurationBO.Save();
 
-                return new ResponseData(message: string.Format("The property, {0}, was updated successfully.", data.Name));
+                return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
             });
         }
 
@@ -1176,7 +1176,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The property, {0}, was not found", name));
-                return new ResponseData(message: string.Format("The property, {0}, was deleted successfully.", name));
+                return new ResponseData(message: string.Format("The property, {0}, was deleted successfully!", name));
             });
         }
 
@@ -1262,7 +1262,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!updated)
                     throw new IndexOutOfRangeException("No change is required");
                 FrameworkUtils.SaveAppConfigSettings(currentApplicationName, appConfigSettings);
-                return new ResponseData(null, null, string.Format("{0} was updated successfully", settingInfo), null);
+                return new ResponseData(null, null, string.Format("{0} was updated successfully!", settingInfo), null);
             });
         }
 
@@ -1320,7 +1320,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-group, {0}, was not found", data.Name));
-                return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully", data.Name), null);
+                return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully!", data.Name), null);
             });
         }
 
@@ -1433,7 +1433,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 ExportDataViews(data.ExportDir);
                 if (data.SelectNone != true)
                     ExportTables(data.TableNames, data.ExportDir);
-                return new ResponseData(message: string.Format("The configuration was exported successfully."));
+                return new ResponseData(message: string.Format("The configuration was exported successfully!"));
             });
         }
 
@@ -1453,7 +1453,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 string AppRootInstallPath = page.Server.MapPath(string.Empty).Remove(page.Server.MapPath(string.Empty).IndexOf(FixedInstallPath) + FixedInstallPath.Length);
                 configurationBO.ImportCustomization(AppRootInstallPath, data.ServerPath, data.ForceImport);
-                return new ResponseData(message: string.Format("The configuration was imported successfully."));
+                return new ResponseData(message: string.Format("The configuration was imported successfully!"));
             });
         }
         #endregion

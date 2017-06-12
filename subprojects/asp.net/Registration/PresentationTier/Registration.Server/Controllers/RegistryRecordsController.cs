@@ -198,7 +198,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 var regNum = GetRegNumber(id);
                 RegistryRecord.DeleteRegistryRecord(regNum);
-                return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully.", regNum));
+                return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully!", regNum));
             });
         }
 
@@ -335,7 +335,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 CheckTempRecordId(id);
                 RegistryRecord.DeleteRegistryRecord(id);
-                return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully.", id));
+                return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully!", id));
             }, new string[] { "DELETE_TEMP" });
         }
         #endregion // Tempoary Records
@@ -506,7 +506,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException(errorMessage, ex);
                 }
 
-                return new ResponseData(message: string.Format("The template, {0}, was saved successfully.", data.Name));
+                return new ResponseData(message: string.Format("The template, {0}, was saved successfully!", data.Name));
             });
         }
 
@@ -541,7 +541,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 COEGenericObjectStorageBO.Delete(id);
 
-                return new ResponseData(message: string.Format("The template, {0}, was deleted successfully.", id));
+                return new ResponseData(message: string.Format("The template, {0}, was deleted successfully!", id));
             });
         }
         #endregion
