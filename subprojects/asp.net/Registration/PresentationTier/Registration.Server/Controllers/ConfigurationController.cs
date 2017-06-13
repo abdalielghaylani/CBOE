@@ -41,43 +41,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
 
-        #endregion
-
-        #region Custom tables
-        private JArray GetTableConfig(string tableName)
-        {
-            // Returns the field configuration
-            var config = new JArray();
-            // COETableEditorUtilities.getColumnList returns the column lists
-            var columns = COETableEditorUtilities.getColumnList(tableName);
-            var idFieldName = COETableEditorUtilities.getIdFieldName(tableName);
-            foreach (var column in columns)
-            {
-                var fieldName = column.FieldName;
-                var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
-                var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
-                var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
-                if (!string.IsNullOrEmpty(lookupTableName)) fieldName = lookupColumns[1].FieldName;
-                if (label == null) label = fieldName;
-                var columnObj = new JObject(
-                    new JProperty("name", fieldName),
-                    new JProperty("label", label),
-                    new JProperty("type", column.FieldType.ToString())
-                );
-                if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("idField", true));
-                if (!string.IsNullOrEmpty(lookupTableName))
-                {
-                    columnObj.Add("lookup", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName)));
-                }
-                config.Add(columnObj);
-            }
-            // TODO: Structure lookup needs additional information
-            // This should also return user authorization
-            // Refer to routines like COETableEditorUtilities.HasDeletePrivileges and COETableEditorUtilities.HasEditPrivileges
-            return config;
-        }
-
-        private int SaveColumnValues(string tableName, JObject data, bool creating)
+        private static int SaveColumnValues(string tableName, JObject data, bool creating)
         {
             COETableEditorBOList.NewList().TableName = tableName;
             var idField = COETableEditorUtilities.getIdFieldName(tableName);
@@ -128,7 +92,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return tableEditorBO.ID;
         }
 
-        private void UpdateColumnValue(string tableName, Column column, JObject data)
+        private static void UpdateColumnValue(string tableName, Column column, JObject data)
         {
             var columnName = column.FieldName;
             var columnValue = (string)data[columnName];
@@ -169,6 +133,42 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 column.FieldValue = columnValue;
             }
+        }
+
+        #endregion
+
+        #region Custom tables
+        private JArray GetTableConfig(string tableName)
+        {
+            // Returns the field configuration
+            var config = new JArray();
+            // COETableEditorUtilities.getColumnList returns the column lists
+            var columns = COETableEditorUtilities.getColumnList(tableName);
+            var idFieldName = COETableEditorUtilities.getIdFieldName(tableName);
+            foreach (var column in columns)
+            {
+                var fieldName = column.FieldName;
+                var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
+                var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
+                var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
+                if (!string.IsNullOrEmpty(lookupTableName)) fieldName = lookupColumns[1].FieldName;
+                if (label == null) label = fieldName;
+                var columnObj = new JObject(
+                    new JProperty("name", fieldName),
+                    new JProperty("label", label),
+                    new JProperty("type", column.FieldType.ToString())
+                );
+                if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("idField", true));
+                if (!string.IsNullOrEmpty(lookupTableName))
+                {
+                    columnObj.Add("lookup", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName)));
+                }
+                config.Add(columnObj);
+            }
+            // TODO: Structure lookup needs additional information
+            // This should also return user authorization
+            // Refer to routines like COETableEditorUtilities.HasDeletePrivileges and COETableEditorUtilities.HasEditPrivileges
+            return config;
         }
 
         private bool CheckCustomPropertyName(ConfigurationRegistryRecord configurationBO, int formId, string propertyId)
@@ -645,7 +645,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", name));
-                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully.", name));
+                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully!", name));
             });
         }
 
@@ -700,7 +700,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 configurationBO.AddInList.Add(addIn);
                 configurationBO.Save();
 
-                return new ResponseData(message: string.Format("The addin, {0}, was saved successfully.", data.Name));
+                return new ResponseData(message: string.Format("The addin, {0}, was saved successfully!", data.Name));
             });
         }
 
@@ -757,7 +757,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
 
-                return new ResponseData(message: string.Format("The addin, {0}, was updated successfully.", data.Name));
+                return new ResponseData(message: string.Format("The addin, {0}, was updated successfully!", data.Name));
             });
         }
 
@@ -856,7 +856,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-element, {0}, was not found", formElementData.Name));
-                return new ResponseData(null, null, string.Format("The form-elements was updated successfully"), null);
+                return new ResponseData(null, null, string.Format("The form-elements was updated successfully!"), null);
             });
         }
         #endregion
@@ -897,14 +897,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
+                        propertyData.Editable = (property.Type == "NUMBER" || property.Type == "TEXT") ? true : false;
                         propertyData.ValidationRules = new List<ValidationRuleData>();
 
                         foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule rule in property.ValRuleList)
                         {
                             ValidationRuleData ruleData = new ValidationRuleData();
                             ruleData.Name = rule.Name;
-                            ruleData.Min = rule.MIN;
-                            ruleData.Max = rule.MAX;
+                            ruleData.Min = string.IsNullOrEmpty(rule.MIN) ? string.Empty : rule.MIN;
+                            ruleData.Max = string.IsNullOrEmpty(rule.MAX) ? string.Empty : rule.MAX;
                             ruleData.MaxLength = rule.MaxLength;
                             ruleData.Error = rule.Error;
                             ruleData.DefaultValue = rule.DefaultValue;
@@ -955,6 +956,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException(string.Format("The property '{0}' already exists.", data.Name));
 
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                bool found = false;
                 foreach (var propertyType in propertyTypes)
                 {
                     if (!propertyType.ToString().Equals(data.GroupName)) continue;
@@ -963,6 +965,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
                     var properties = (IEnumerable<Property>)propertyList;
+                    found = true;
 
                     string prefix = string.Empty;
                     switch (configurationBO.SelectedPropertyList)
@@ -987,19 +990,57 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
-                        data.GroupName,
+                        data.Type,
                         data.Precision,
                         true,
                         data.SubType,
                         data.PickListDomainId);
                     configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
 
+                    switch (configurationBO.SelectedPropertyList)
+                    {
+                        case ConfigurationRegistryRecord.PropertyListType.PropertyList:
+                            if (data.FriendlyName == string.Empty)
+                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Compound:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Batch:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+
+                        case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                        case ConfigurationRegistryRecord.PropertyListType.Structure:
+                            if (data.GroupLabel == string.Empty)
+                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.Name);
+                            else
+                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                            break;
+                    }
+
                     break;
                 }
 
-                configurationBO.Save();
+                if (found)
+                    configurationBO.Save();
+                else
+                    throw new RegistrationException(string.Format("The property '{0}' not saved.", data.Name));
 
-                return new ResponseData(message: string.Format("The property, {0}, was saved successfully.", data.Name));
+                return new ResponseData(message: string.Format("The property, {0}, was saved successfully!", data.Name));
             });
         }
 
@@ -1019,7 +1060,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException("Invalid property name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                ConfigurationProperty selectedProperty = (ConfigurationProperty)configurationBO.GetSelectedPropertyList[data.Name];
+                var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                ConfigurationProperty selectedProperty = null;
+                foreach (var propertyType in propertyTypes)
+                {
+                    configurationBO.SelectedPropertyList = propertyType;
+                    var propertyList = configurationBO.GetSelectedPropertyList;
+                    if (propertyList == null) continue;
+                    var properties = (IEnumerable<Property>)propertyList;
+                    foreach (var property in properties)
+                    {
+                        if (!property.Name.Equals(data.Name)) continue;
+                        selectedProperty = (ConfigurationProperty)property;
+                        break;
+                    }
+
+                    if (selectedProperty != null)
+                        break;
+                }
+
                 if (selectedProperty == null)
                     throw new RegistrationException(string.Format("The property, {0}, was not found", data.Name));
 
@@ -1054,7 +1113,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 selectedProperty.ApplyEdit();
                 configurationBO.Save();
 
-                return new ResponseData(message: string.Format("The property, {0}, was updated successfully.", data.Name));
+                return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
             });
         }
 
@@ -1089,6 +1148,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         found = true;
                         int index = propertyList.GetPropertyIndex(name);
                         propertyList.RemoveAt(index);
+
+                        switch (configurationBO.SelectedPropertyList)
+                        {
+                            case ConfigurationRegistryRecord.PropertyListType.PropertyList:
+                                configurationBO.PropertiesLabels[0].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Compound:
+                                configurationBO.PropertiesLabels[1].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Batch:
+                                configurationBO.PropertiesLabels[2].Remove(name);
+                                break;
+
+                            case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
+                                configurationBO.PropertiesLabels[3].Remove(name);
+                                break;
+                            case ConfigurationRegistryRecord.PropertyListType.Structure:
+                                configurationBO.PropertiesLabels[4].Remove(name);
+                                break;
+                        }
+
                         configurationBO.Save();
                         break;
                     }
@@ -1096,7 +1176,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The property, {0}, was not found", name));
-                return new ResponseData(message: string.Format("The property, {0}, was deleted successfully.", name));
+                return new ResponseData(message: string.Format("The property, {0}, was deleted successfully!", name));
             });
         }
 
@@ -1182,7 +1262,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!updated)
                     throw new IndexOutOfRangeException("No change is required");
                 FrameworkUtils.SaveAppConfigSettings(currentApplicationName, appConfigSettings);
-                return new ResponseData(null, null, string.Format("{0} was updated successfully", settingInfo), null);
+                return new ResponseData(null, null, string.Format("{0} was updated successfully!", settingInfo), null);
             });
         }
 
@@ -1240,7 +1320,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-group, {0}, was not found", data.Name));
-                return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully", data.Name), null);
+                return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully!", data.Name), null);
             });
         }
 
@@ -1353,7 +1433,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 ExportDataViews(data.ExportDir);
                 if (data.SelectNone != true)
                     ExportTables(data.TableNames, data.ExportDir);
-                return new ResponseData(message: string.Format("The configuration was exported successfully."));
+                return new ResponseData(message: string.Format("The configuration was exported successfully!"));
             });
         }
 
@@ -1373,7 +1453,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 string AppRootInstallPath = page.Server.MapPath(string.Empty).Remove(page.Server.MapPath(string.Empty).IndexOf(FixedInstallPath) + FixedInstallPath.Length);
                 configurationBO.ImportCustomization(AppRootInstallPath, data.ServerPath, data.ForceImport);
-                return new ResponseData(message: string.Format("The configuration was imported successfully."));
+                return new ResponseData(message: string.Format("The configuration was imported successfully!"));
             });
         }
         #endregion

@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { RegistrySearchActions } from '../../actions';
-import { IAppState, IHitlistInfo, ISearchRecords } from '../../store';
+import { IAppState, HitlistType, IHitlistData, IHitlistInfo, ISearchRecords } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 
@@ -25,13 +25,13 @@ import * as regSearchTypes from './registry-search.types';
 export class RegQueryManagement implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Input() temporary: boolean;
-  @Input() hitlistVM: any;
+  @Input() hitlistVM: regSearchTypes.CQueryManagementVM;
   @Input() parentHeight: string;
+  @Input() hitlistId: number;
   @Output() onClose = new EventEmitter<any>();
   private hitlistData$: Observable<ISearchRecords>;
   private records: any[];
-  private currentHitlistId: number;
-  private selectedHitlist: any[any];
+  private selectedHitlist: { id: number, type: number };
   private recordsSubscription: Subscription;
 
   constructor(
@@ -53,14 +53,12 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.hitlistVM.advancedRestoreType = 0;
     this.records = this.ngRedux.getState().registrysearch.hitlist.rows;
-    this.currentHitlistId = this.ngRedux.getState().registrysearch.hitlist.currentHitlistId;
     this.changeDetector.markForCheck();
   }
 
   onRowRemoving(e) {
-    this.actions.deleteHitlist(e.data.ID);
+    this.actions.deleteHitlist(e.data.id);
     this.loadData();
   }
 
@@ -87,22 +85,24 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   onRowUpdating(e) {
+    let oldData = <IHitlistData>e.oldData;
+    let newData = <IHitlistData>e.newData;
     this.actions.updateHitlist({
-      Name: e.newData.Name ? e.newData.Name : e.oldData.Name,
-      Description: e.newData.Description ? e.newData.Description : e.oldData.Description,
-      IsPublic: (e.newData.IsPublic === undefined ? e.oldData.IsPublic : e.newData.IsPublic) === true ? 1 : 0,
-      HitlistType: e.oldData.HistlistType,
-      hitlistID: e.oldData.ID
+      name: newData.name ? newData.name : oldData.name,
+      description: newData.description ? newData.description : oldData.description,
+      isPublic: newData.isPublic ? newData.isPublic : oldData.isPublic,
+      hitlistType: oldData.hitlistType,
+      hitlistId: oldData.hitlistId
     });
   }
 
-  moveToSaveHitlist(e) {
+  moveToSaveHitlist(e: IHitlistData) {
     this.actions.updateHitlist({
-      Name: e.Name,
-      Description: e.Description,
-      IsPublic: e.IsPublic,
-      HitlistType: 1,
-      hitlistID: e.ID
+      name: e.name,
+      description: e.description,
+      isPublic: e.isPublic,
+      hitlistType: HitlistType.SAVED,
+      hitlistId: e.hitlistId
     });
   }
 
@@ -112,12 +112,12 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     }
   }
 
-  showRestore(e) {
-    e.component.collapseAll(-1);
-    e.component.expandRow(e.key);
-    this.selectedHitlist = { 'HitlistID': e.data.ID, 'HitlistType': e.data.HistlistType };
-    if (this.currentHitlistId && this.currentHitlistId > 0) {
-      this.hitlistVM.isCurrentHitlist = true;
+  showAdvRestorePopup(e) {
+    let data = <IHitlistData>e.data;
+    if (this.hitlistId && this.hitlistId > 0 && data.hitlistId !== this.hitlistId) {
+      e.component.collapseAll(-1);
+      e.component.expandRow(e.key);
+      this.selectedHitlist = { id: data.id, type: data.hitlistType };
     }
   }
 
@@ -125,30 +125,28 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     e.component.collapseAll(-1);
   }
 
-  advancedRestorePopup(e) {
+  advancedRestorePopup(e: IHitlistData) {
     this.actions.retrieveHitlist({
       type: 'Advanced',
-      id: e.ID,
+      id: e.id,
       temporary: this.temporary,
       data: {
-        HitlistID1: this.selectedHitlist.HitlistID,
-        HitlistID2: !this.currentHitlistId ? this.currentHitlistId : 0,
-        RestoreType: this.hitlistVM.advancedRestoreType,
-        HitlistType1: this.selectedHitlist.HitlistType,
-        HitlistType2: !this.currentHitlistId ? this.currentHitlistId : 0,
+        id1: this.hitlistId,
+        id2: this.selectedHitlist.id,
+        op: this.hitlistVM.advancedRestoreType
       }
     });
-    this.router.navigate([`records/restore`]);
-  }
-
-  restoreSelectedHitlist(e) {
-    this.actions.retrieveHitlist({ type: 'Retrieve', temporary: this.temporary, id: e.ID });
     this.onClose.emit(e);
   }
 
-  refreshSelectedHitlist(e) {
-    this.actions.retrieveHitlist({ type: 'Refresh', temporary: this.temporary, id: e.ID });
-    this.onClose.emit(e);    
+  restoreSelectedHitlist(e: IHitlistData) {
+    this.actions.retrieveHitlist({ type: 'Retrieve', temporary: this.temporary, id: e.id });
+    this.onClose.emit(e);
+  }
+
+  refreshSelectedHitlist(e: IHitlistData) {
+    this.actions.retrieveHitlist({ type: 'Refresh', temporary: this.temporary, id: e.id });
+    this.onClose.emit(e);
   }
 
   cancel(e) {

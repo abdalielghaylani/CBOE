@@ -5,7 +5,6 @@ using System.Web.Http;
 using System.Xml;
 using Csla.Validation;
 using Microsoft.Web.Http;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Framework.Common.Validation;
@@ -13,13 +12,21 @@ using CambridgeSoft.COE.Registration;
 using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
-using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
+        private void CheckTempRecordId(int id)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":id", id);
+            var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
+            if (count == 0)
+                throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
+        }
+
         private string GetNodeText(XmlNode node)
         {
             return node.InnerText;
@@ -29,6 +36,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var node = doc.SelectSingleNode(path);
             return node == null ? null : GetNodeText(node);
+        }
+
+        private string GetRegNumber(int id)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":id", id);
+            var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
+            if (string.IsNullOrEmpty(regNum))
+                throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
+            return regNum;
         }
 
         #region Permanent Records
@@ -71,11 +88,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var args = new Dictionary<string, object>();
-                    args.Add(":id", id);
-                    var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
-                    if (string.IsNullOrEmpty(regNum))
-                        throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
+                    var regNum = GetRegNumber(id);
                     record = service.RetrieveRegistryRecord(regNum);
                 }
 
@@ -172,12 +185,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "records/{id}")]
         [SwaggerOperation("DeleteRecord")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public void DeleteRecord(int id)
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteRecord(int id)
         {
-            // TODO: There is no service method to delete permanent records.
-            // This has to be implemented manually.
+            return await CallMethod(() =>
+            {
+                var regNum = GetRegNumber(id);
+                RegistryRecord.DeleteRegistryRecord(regNum);
+                return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully!", regNum));
+            });
         }
 
         #endregion // Permanent Records
@@ -222,11 +241,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var args = new Dictionary<string, object>();
-                    args.Add(":id", id);
-                    var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
-                    if (count == 0)
-                        throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
+                    CheckTempRecordId(id);
                     record = service.RetrieveTemporaryRegistryRecord(id);
                 }
 
@@ -307,119 +322,97 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "temp-records/{id}")]
         [SwaggerOperation("DeleteTempRecord")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> DeleteTempRecord(int id)
-        {
-            return await CallServiceMethod((service) =>
-            {
-                return new JObject(new JProperty("data", service.DeleteTemporaryRegistryRecord(id)));
-            });
-        }
-        #endregion // Tempoary Records
-
-        #region Templates
-
-        [HttpGet]
-        [Route(Consts.apiPrefix + "templates/{username}")]
-        [SwaggerOperation("GetTemplates")]
-        [SwaggerResponse(200, type: typeof(List<TemplateData>))]
-        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetTemplates(string username)
+        public async Task<IHttpActionResult> DeleteTempRecord(int id)
         {
             return await CallMethod(() =>
             {
-                var templateList = new List<TemplateData>();
+                CheckTempRecordId(id);
+                RegistryRecord.DeleteRegistryRecord(id);
+                return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully!", id));
+            }, new string[] { "DELETE_TEMP" });
+        }
+        #endregion // Tempoary Records
 
-                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
-                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
-                {
-                    TemplateData template = new TemplateData();
-                    template.Id = tempalateItem.ID;
-                    template.Name = tempalateItem.Name;
-                    template.DateCreated = tempalateItem.DateCreated;
-                    template.Description = tempalateItem.Description;
-                    template.IsPublic = tempalateItem.IsPublic;
-                    template.Username = tempalateItem.UserName;
-                    templateList.Add(template);
-                }
+        #region Check Duplicate
 
-                var compoundFormListPublic = COEGenericObjectStorageBOList.GetList(username, true, 2, true);
-                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListPublic)
-                {
-                    TemplateData template = new TemplateData();
-                    template.Id = tempalateItem.ID;
-                    template.Name = tempalateItem.Name;
-                    template.DateCreated = tempalateItem.DateCreated;
-                    template.Description = tempalateItem.Description;
-                    template.IsPublic = tempalateItem.IsPublic;
-                    template.Username = tempalateItem.UserName;
-                    templateList.Add(template);
-                }
-
-                return templateList;
+        [HttpGet]
+        [Route(Consts.apiPrefix + "getDuplicateResolution")]
+        [SwaggerOperation("GetDuplicateResolution")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetDuplicateResolution()
+        {
+            return await CallServiceMethod((service) =>
+            {
+                var responseMessage = new JObject(
+                new JProperty("DuplicateCheck", DuplicateCheck.CompoundCheck.ToString(), DuplicateCheck.MixCheck.ToString(), DuplicateCheck.None.ToString(), DuplicateCheck.PreReg.ToString())
+                );
+                return new ResponseData(null, null, null, responseMessage);
             });
         }
 
         [HttpPost]
-        [Route(Consts.apiPrefix + "templates/{regId}")]
-        [SwaggerOperation("CreateTemplates")]
-        [SwaggerResponse(201, type: typeof(TemplateData))]
-        [SwaggerResponse(400, type: typeof(Exception))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CreateTemplates(int regId, TemplateData data)
+        [Route(Consts.apiPrefix + "duplicateResolution")]
+        [SwaggerOperation("DuplicateResolution")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> DuplicateResolution(DuplicateResolutionData data)
         {
-            return await CallMethod(() =>
+            return await CallServiceMethod((service) =>
             {
-                if (string.IsNullOrEmpty(data.Name))
-                    throw new RegistrationException("Invalid template name.");
+                var doc = new XmlDocument();
+                doc.LoadXml(data.Data);
 
-                RegistryRecord currentRecord = RegistryRecord.GetRegistryRecord(regId);               
-                if (currentRecord == null)
-                    throw new RegistrationException(string.Format("The registration record not found for the given id: {0}.", regId));
+                // TODO: check data xml is valid and throw proper error message
 
-                // TODO: need to find out which user is associated with template because the SaveTemplate method does not have a parameter to supply user name
-                currentRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
-
-                return new ResponseData(message: string.Format("The template, {0}, was saved successfully.", data.Name));
+                var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var result = service.CheckUniqueRegistryRecord(regRecordXml, data.DuplicateCheckOption);
+                if (!string.IsNullOrEmpty(result))
+                    throw new RegistrationException(result);
+                return new ResponseData(null, null, result, null);
             });
         }
 
-        [HttpDelete]
-        [Route(Consts.apiPrefix + "templates/{username}/{id}")]
-        [SwaggerOperation("DeleteTemplate")]
-        [SwaggerResponse(200, type: typeof(ResponseData))]
-        [SwaggerResponse(400, type: typeof(Exception))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(404, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> DeleteTemplate(string username, int id)
+        [HttpGet]
+        [Route(Consts.apiPrefix + "getDuplicateAction")]
+        [SwaggerOperation("GetDuplicateAction")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetDuplicateAction()
         {
-            return await CallMethod(() =>
+            return await CallServiceMethod((service) =>
             {
-                if (string.IsNullOrEmpty(username))
-                    throw new RegistrationException("Invalid user name.");
+                var responseMessage = new JObject(
+                new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
+                );
+                return new ResponseData(null, null, null, responseMessage);
+            });
+        }
 
-                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
-                COEGenericObjectStorageBO selected = null;
-                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
-                {
-                    if (tempalateItem.ID != id)
-                        continue;
-
-                    selected = tempalateItem;
-                    break;
-                }
-
-                if (selected == null)
-                    throw new IndexOutOfRangeException(string.Format("The template, {0}, was not found.", id));
-
-                COEGenericObjectStorageBO.Delete(id);
-
-                return new ResponseData(message: string.Format("The template, {0}, was deleted successfully.", id));
+        [HttpPost]
+        [Route(Consts.apiPrefix + "createDuplicateRecord")]
+        [SwaggerOperation("CreateDuplicateRecord")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> CreateDuplicateRecord(DuplicateResolutionData data)
+        {
+            return await CallServiceMethod((service) =>
+            {
+                var doc = new XmlDocument();
+                doc.LoadXml(data.Data);
+                var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var result = service.CreateRegRecordWithUserPreference(regRecordXml, data.DuplicateCheckOption);
+                if (!string.IsNullOrEmpty(result))
+                    throw new RegistrationException(result);
+                return new ResponseData(null, null, result, null);
             });
         }
         #endregion

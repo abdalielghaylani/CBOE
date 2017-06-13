@@ -203,30 +203,31 @@ export class CSearchFormVM {
 }
 
 export const HITLIST_GRID_COLUMNS = [{
-  dataField: 'Name',
+  dataField: 'name',
   dataType: 'String',
   cellTemplate: 'saveCellTemplate'
 }, {
-  dataField: 'Description',
+  dataField: 'description',
   dataType: 'String'
 }, {
-  dataField: 'IsPublic',
+  dataField: 'isPublic',
   width: '60px'
 }, {
   caption: '# Hits',
-  dataField: 'NumberOfHits',
+  dataField: 'numberOfHits',
   dataType: Number,
   allowEditing: false,
   width: '60px'
 }, {
-  dataField: 'DateCreated._date',
+  dataField: 'dateCreated',
   caption: 'Date Created',
   dataType: 'date',
+  format: 'shortDateShortTime',
   allowEditing: false
 }, {
-  dataField: 'HistlistType',
+  dataField: 'hitlistType',
   caption: 'Queries',
-  lookup: { dataSource: [{ id: 0, name: 'Recent' }, { id: 1, name: 'Saved' }], valueExpr: 'id', displayExpr: 'name' },
+  lookup: { dataSource: [{ id: 'TEMP', name: 'Recent' }, { id: 'SAVED', name: 'Saved' }], valueExpr: 'id', displayExpr: 'name' },
   groupIndex: 0,
   allowEditing: false
 },
@@ -240,33 +241,25 @@ export const HITLIST_GRID_COLUMNS = [{
 export class CQueryManagementVM {
   gridColumns?: any[];
   queriesList?: CQueries[];
-  advancedRestoreType?: number;
-  isCurrentHitlist?: boolean;
+  advancedRestoreType?: string;
   saveQueryVM?: CSaveQuery;
   constructor(state: IAppState) {
     this.queriesList = state.registrysearch.hitlist.rows;
     this.gridColumns = HITLIST_GRID_COLUMNS;
-    this.advancedRestoreType = 0;
-    this.isCurrentHitlist = false;
+    this.advancedRestoreType = 'intersect';
     this.saveQueryVM = new CSaveQuery();
   }
 
   getRestoreDataSource() {
     return [{
-      key: 0,
-      value: 'Subtract from entire list'
+      key: 'intersect',
+      value: 'Intersect with current list'
     }, {
-      key: 2,
-      value: 'Subtract from current list',
-      disabled: !this.isCurrentHitlist
+      key: 'union',
+      value: 'Union with current list'
     }, {
-      key: 1,
-      value: 'Intersect with current list',
-      disabled: !this.isCurrentHitlist
-    }, {
-      key: 3,
-      value: 'Union with current list',
-      disabled: !this.isCurrentHitlist
+      key: 'subtract',
+      value: 'Subtract from current list'
     }];
   }
 

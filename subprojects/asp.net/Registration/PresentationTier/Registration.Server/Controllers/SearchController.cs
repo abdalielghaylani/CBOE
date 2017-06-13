@@ -42,6 +42,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (hitlistBO.SearchCriteriaID == 0)
                 throw new RegistrationException("The hit-list has no query associated with it");
             COESearchCriteriaBO searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+            if (searchCriteriaBO.SearchCriteria == null)
+                throw new RegistrationException("No search criteria is associated with this hit-list");
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
             configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
             var formGroup = configRegRecord.FormGroup;
@@ -118,7 +120,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists")]
         [SwaggerOperation("GetHitlists")]
-        [SwaggerResponse(200, type: typeof(List<Hitlist>))]
+        [SwaggerResponse(200, type: typeof(List<HitlistData>))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
@@ -126,19 +128,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var result = new List<Hitlist>();
+                var result = new List<HitlistData>();
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
                 var formGroup = configRegRecord.FormGroup;
                 var tempHitLists = COEHitListBOList.GetRecentHitLists(databaseName, COEUser.Name, formGroup.Id, 10);
                 foreach (var h in tempHitLists)
                 {
-                    result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
+                    result.Add(new HitlistData(h));
                 }
                 var savedHitLists = COEHitListBOList.GetSavedHitListList(databaseName, COEUser.Name, formGroup.Id);
                 foreach (var h in savedHitLists)
                 {
-                    result.Add(new Hitlist(h.ID, h.HitListID, h.HitListType, h.NumHits, h.IsPublic, h.SearchCriteriaID, h.SearchCriteriaType, h.Name, h.Description, h.MarkedHitListIDs, h.DateCreated));
+                    result.Add(new HitlistData(h));
                 }
                 return result;
             });
@@ -186,6 +188,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
         /// <param name="id">The ID of hit-list to update</param>
+        /// <param name="hitlistData">The hit list data</param>
         /// <returns>The <see cref="ResponseData"/> object containing the ID of updated hit-list</returns>
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -195,12 +198,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpPut]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("UpdateHitlist")]
-        public async Task<IHttpActionResult> UpdateHitlist(int id)
+        public async Task<IHttpActionResult> UpdateHitlist(int id, [FromBody] HitlistData hitlistData)
         {
             return await CallMethod(() =>
             {
-                var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-                var hitlistType = (HitListType)(int)hitlistData["HitlistType"];
+                var hitlistType = hitlistData.HitlistType;
                 var hitlistBO = COEHitListBO.Get(hitlistType, id);
                 if (hitlistBO == null)
                     throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
@@ -213,9 +215,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (hitlistBO.HitListID > 0)
                 {
-                    hitlistBO.Name = hitlistData["Name"].ToString();
-                    hitlistBO.Description = hitlistData["Description"].ToString();
-                    hitlistBO.IsPublic = (bool)hitlistData["IsPublic"];
+                    hitlistBO.Name = hitlistData.Name;
+                    hitlistBO.Description = hitlistData.Description;
+                    hitlistBO.IsPublic = hitlistData.IsPublic.HasValue ? hitlistData.IsPublic.Value : false;
                     if (hitlistBO.SearchCriteriaID > 0)
                     {
                         var searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
@@ -352,40 +354,41 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id1}/{op}/{id2}/records")]
         [SwaggerOperation("GetAdvHitlistRecords")]
-        public JObject GetAdvHitlistRecords(int id1, int op, int id2, int? skip = null, int? count = null, string sort = null)
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetAdvHitlistRecords(int id1, string op, int id2, int? skip = null, int? count = null, string sort = null)
         {
-            CheckAuthentication();
-            JObject data = new JObject();
-            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
-            var formGroup = configRegRecord.FormGroup;
-            int dataViewID = formGroup.Id;
-            switch (op)
+            return await CallMethod(() =>
             {
-                case 1: // intersect      
-                   // resultHitListID = objDAL.IntersectHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
-                   // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   // "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   // "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
-                    break;
-                case 2: // subtract
-                   // resultHitListID = objDAL.SubtractHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
-                   // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   // "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   // "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
-                    break;
-                case 3: // union
-                   // resultHitListID = objDAL.SubtractHitLists(id1, hitListID1Type, id2, hitListID2Type, dbName, dataViewID);
-                   // objJArray = ExtractData("select vw_mixture_regnumber.regid as id, vw_mixture_regnumber.name," +
-                   // "vw_mixture_regnumber.created, vw_mixture_regnumber.modified, vw_mixture_regnumber.personcreated as creator, 'record/' || vw_mixture_regnumber.regid || '?' || to_char(vw_mixture_regnumber.modified, 'YYYYMMDDHH24MISS') as structure, vw_mixture_regnumber.regnumber, vw_mixture_regnumber.statusid as status, vw_mixture_regnumber.approved FROM regdb.vw_mixture_regnumber,regdb.vw_batch vw_batch " +
-                   // "where vw_mixture_regnumber.mixtureid in (select id from coedb.coetemphitlist s where s.hitlistid=" + resultHitListID + ") and vw_batch.regid = vw_mixture_regnumber.regid");
-                    break;
-                default: // Subtract from entire list
-                    data = GetHitlistRecordsInternal(id1);
-                    break;
-            }
+                JObject data = new JObject();
+                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+                var formGroup = configRegRecord.FormGroup;
+                int dataViewId = formGroup.Id;
+                var hitlistBO1 = GetHitlistBO(id1);
+                if (hitlistBO1 == null)
+                    throw new RegistrationException(string.Format("The hit-list identified by ID {0} is invalid", id1));
+                var hitlistBO2 = GetHitlistBO(id2);
+                if (hitlistBO2 == null)
+                    throw new RegistrationException(string.Format("The hit-list identified by ID {0} is invalid", id2));
+                COEHitListBO newHitlist;
+                switch (op)
+                {
+                    case "intersect":
+                        newHitlist = COEHitListOperationManager.IntersectHitList(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
+                        break;
+                    case "subtract":
+                        newHitlist = COEHitListOperationManager.SubtractHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
+                        break;
+                    default: // union
+                        newHitlist = COEHitListOperationManager.SubtractHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
+                        break;
+                }
 
-            return data;
+                return GetHitlistRecordsInternal(newHitlist.HitListID);
+            });
         }
 
         /// <summary>
@@ -428,13 +431,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}")]
         [SwaggerOperation("GetHitlist")]
-        [SwaggerResponse(200, type: typeof(Hitlist))]
+        [SwaggerResponse(200, type: typeof(HitlistData))]
         public async Task<IHttpActionResult> GetHitlist(int id)
         {
             return await CallMethod(() =>
             {
                 var hitlistBO = GetHitlistBO(id);
-                return new Hitlist(hitlistBO);
+                return new HitlistData(hitlistBO);
             });
         }
 
