@@ -16,6 +16,7 @@ using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Registration.Services;
 using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.RegistrationAdmin.Services;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -311,6 +312,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         protected static string GetQuery(string tableName, RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
         {
             return string.Format("SELECT {0} FROM {1} ORDER BY {2}", GetSelectTerms(columns), tableName, GetSortTerms(columns, sortTerms, defaultColumn, uniqueColumn));
+        }
+
+        protected static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
+        {
+            return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
     }
 }

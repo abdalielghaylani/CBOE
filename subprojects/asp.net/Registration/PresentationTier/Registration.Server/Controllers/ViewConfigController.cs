@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Web.Http;
@@ -40,9 +41,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("formGroups", GetFormGroups()),
                     new JProperty("customTables", GetCustomTables()),
                     new JProperty("systemSettings", GetSystemSettings()),
-                     new JProperty("addinAssemblies", GetAddinAssemblies())
+                    new JProperty("addinAssemblies", GetAddinAssemblies()),
+                    new JProperty("propertyGroups", GetPropertyGroups())
                 );
             });
+        }
+
+        private static JArray GetPropertyGroups()
+        {
+            var propertyGroups = new JArray();
+            var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+            foreach (var propertyType in propertyTypes)
+            {
+                propertyGroups.Add(new JObject(
+               new JProperty("groupName", propertyType.ToString()),
+               new JProperty("groupLabel", GetPropertyTypeLabel(propertyType))
+           ));
+            }
+
+            return propertyGroups;
         }
 
         private static JArray GetAddinAssemblies()
