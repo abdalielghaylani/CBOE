@@ -5,7 +5,6 @@ using System.Web.Http;
 using System.Xml;
 using Csla.Validation;
 using Microsoft.Web.Http;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.Framework.Common.Validation;
@@ -13,14 +12,21 @@ using CambridgeSoft.COE.Registration;
 using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
-using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
-using CambridgeSoft.COE.Framework.Common;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
+        private void CheckTempRecordId(int id)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":id", id);
+            var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
+            if (count == 0)
+                throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
+        }
+
         private string GetNodeText(XmlNode node)
         {
             return node.InnerText;
@@ -30,6 +36,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var node = doc.SelectSingleNode(path);
             return node == null ? null : GetNodeText(node);
+        }
+
+        private string GetRegNumber(int id)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":id", id);
+            var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
+            if (string.IsNullOrEmpty(regNum))
+                throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
+            return regNum;
         }
 
         #region Permanent Records
@@ -72,11 +88,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var args = new Dictionary<string, object>();
-                    args.Add(":id", id);
-                    var regNum = (string)ExtractValue("SELECT regnumber FROM vw_mixture_regnumber WHERE regid=:id", args);
-                    if (string.IsNullOrEmpty(regNum))
-                        throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
+                    var regNum = GetRegNumber(id);
                     record = service.RetrieveRegistryRecord(regNum);
                 }
 
@@ -171,16 +183,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route(Consts.apiPrefix + "records/{regNum}")]
+        [Route(Consts.apiPrefix + "records/{id}")]
         [SwaggerOperation("DeleteRecord")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> DeleteRecord(string regNum)
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteRecord(int id)
         {
             return await CallMethod(() =>
             {
+                var regNum = GetRegNumber(id);
                 RegistryRecord.DeleteRegistryRecord(regNum);
-                return new ResponseData(message: string.Format("record with regNum : {0}, successfully deleted.", regNum));
+                return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully!", regNum));
             });
         }
 
@@ -226,11 +241,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var args = new Dictionary<string, object>();
-                    args.Add(":id", id);
-                    var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
-                    if (count == 0)
-                        throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
+                    CheckTempRecordId(id);
                     record = service.RetrieveTemporaryRegistryRecord(id);
                 }
 
@@ -311,222 +322,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [HttpDelete]
         [Route(Consts.apiPrefix + "temp-records/{id}")]
         [SwaggerOperation("DeleteTempRecord")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> DeleteTempRecord(int id)
-        {
-            return await CallServiceMethod((service) =>
-            {
-                return new JObject(new JProperty("data", service.DeleteTemporaryRegistryRecord(id)));
-            });
-        }
-        #endregion // Tempoary Records
-
-        #region Templates
-
-        [HttpGet]
-        [Route(Consts.apiPrefix + "templates/{username}")]
-        [SwaggerOperation("GetTemplates")]
-        [SwaggerResponse(200, type: typeof(List<TemplateData>))]
-        [SwaggerResponse(400, type: typeof(Exception))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetTemplates(string username)
-        {
-            return await CallMethod(() =>
-            {
-                var templateList = new List<TemplateData>();
-
-                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
-                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
-                {
-                    TemplateData template = new TemplateData();
-                    template.Id = tempalateItem.ID;
-                    template.Name = tempalateItem.Name;
-                    template.DateCreated = tempalateItem.DateCreated;
-                    template.Description = tempalateItem.Description;
-                    template.IsPublic = tempalateItem.IsPublic;
-                    template.Username = tempalateItem.UserName;
-                    templateList.Add(template);
-                }
-
-                var compoundFormListPublic = COEGenericObjectStorageBOList.GetList(username, true, 2, true);
-                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListPublic)
-                {
-                    TemplateData template = new TemplateData();
-                    template.Id = tempalateItem.ID;
-                    template.Name = tempalateItem.Name;
-                    template.DateCreated = tempalateItem.DateCreated;
-                    template.Description = tempalateItem.Description;
-                    template.IsPublic = tempalateItem.IsPublic;
-                    template.Username = tempalateItem.UserName;
-                    templateList.Add(template);
-                }
-
-                return templateList;
-            });
-        }
-
-        [HttpGet]
-        [Route(Consts.apiPrefix + "templates/templates/{username}/{id}")]
-        [SwaggerOperation("GetTemplate")]
-        [SwaggerResponse(200, type: typeof(TemplateData))]
-        [SwaggerResponse(400, type: typeof(Exception))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetTemplate(string username, int id)
-        {
-            return await CallMethod(() =>
-            {
-                TemplateData template = null;
-                bool found = false;
-                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
-
-                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
-                {
-                    if (id != tempalateItem.ID) continue;
-
-                    template = new TemplateData();
-                    template.Id = tempalateItem.ID;
-                    template.Name = tempalateItem.Name;
-                    template.DateCreated = tempalateItem.DateCreated;
-                    template.Description = tempalateItem.Description;
-                    template.IsPublic = tempalateItem.IsPublic;
-                    template.Username = tempalateItem.UserName;
-
-                    found = true;
-                    break;
-                }
-
-                if (!found)
-                {
-                    var compoundFormListPublic = COEGenericObjectStorageBOList.GetList(username, true, 2, true);
-                    foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListPublic)
-                    {
-                        if (id != tempalateItem.ID) continue;
-
-                        template = new TemplateData();
-                        template.Id = tempalateItem.ID;
-                        template.Name = tempalateItem.Name;
-                        template.DateCreated = tempalateItem.DateCreated;
-                        template.Description = tempalateItem.Description;
-                        template.IsPublic = tempalateItem.IsPublic;
-                        template.Username = tempalateItem.UserName;
-
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found)
-                    throw new RegistrationException(string.Format("template with id '{0}' not found.", id));
-
-                COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(template.Id);
-                string coeGenericObjectXml = genericStorageBO.COEGenericObject;
-                // if xml is coming from a stored template - reset the default scientistID
-                string propertyPath = string.Format("MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='{0}']", "SCIENTIST_ID");
-                XmlDocument recordXml = new XmlDocument();
-                recordXml.LoadXml(coeGenericObjectXml);
-                XmlNode xNode = recordXml.SelectSingleNode(propertyPath);
-                if (xNode != null)
-                {
-                    if (xNode.InnerText == string.Empty)
-                    {
-                        xNode.InnerText = COEUser.ID.ToString();
-                    }
-                }
-
-                template.Data = ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml;
-                return template;
-            });
-        }
-
-        [HttpPost]
-        [Route(Consts.apiPrefix + "templates")]
-        [SwaggerOperation("CreateTemplates")]
-        [SwaggerResponse(201, type: typeof(TemplateData))]
-        [SwaggerResponse(400, type: typeof(Exception))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CreateTemplates(TemplateData data)
-        {
-            return await CallMethod(() =>
-            {
-                if (string.IsNullOrEmpty(data.Name))
-                    throw new RegistrationException("Invalid template name");
-
-                string errorMessage = null;
-                RegistryRecord registryRecord = null;
-                try
-                {
-                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
-                    string xml = data.Data;
-                    var doc = new XmlDocument();
-                    doc.LoadXml(xml);
-                    errorMessage = "Unable to process chemical structures.";
-                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-
-                    registryRecord = RegistryRecord.NewRegistryRecord();
-                    errorMessage = "Unable to initialize the internal record.";
-                    registryRecord.InitializeFromXml(xml, true, false);
-
-                    errorMessage = "Unable to save the template.";
-                    if (registryRecord != null)
-                        registryRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
-                }
-                catch (Exception ex)
-                {
-                    if (registryRecord != null && ex is ValidationException)
-                    {
-                        List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
-                        brokenRuleDescriptionList.ForEach(rd =>
-                        {
-                            errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
-                        });
-                    }
-
-                    throw new RegistrationException(errorMessage, ex);
-                }
-
-                return new ResponseData(message: string.Format("The template, {0}, was saved successfully.", data.Name));
-            });
-        }
-
-        [HttpDelete]
-        [Route(Consts.apiPrefix + "templates/{username}/{id}")]
-        [SwaggerOperation("DeleteTemplate")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
-        [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> DeleteTemplate(string username, int id)
+        public async Task<IHttpActionResult> DeleteTempRecord(int id)
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(username))
-                    throw new RegistrationException("Invalid user name.");
-
-                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
-                COEGenericObjectStorageBO selected = null;
-                foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
-                {
-                    if (tempalateItem.ID != id)
-                        continue;
-
-                    selected = tempalateItem;
-                    break;
-                }
-
-                if (selected == null)
-                    throw new IndexOutOfRangeException(string.Format("The template, {0}, was not found.", id));
-
-                COEGenericObjectStorageBO.Delete(id);
-
-                return new ResponseData(message: string.Format("The template, {0}, was deleted successfully.", id));
-            });
+                CheckTempRecordId(id);
+                RegistryRecord.DeleteRegistryRecord(id);
+                return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully!", id));
+            }, new string[] { "DELETE_TEMP" });
         }
-        #endregion
+        #endregion // Tempoary Records
 
         #region Check Duplicate
 

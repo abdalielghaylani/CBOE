@@ -28,12 +28,12 @@
     </div>
   </div>
   <div *dxTemplate="let d of 'restoreCellTemplate'">
-    <a class="fa fa-recycle grd-icon" aria-hidden="true" title='Restore Hitlist' data-dismiss="modal" (click)="restoreSelectedHitlist(d.data)"></a>&nbsp;
-    <a class="fa fa-bolt grd-icon" aria-hidden="true" title='Perform Query' (click)="refreshSelectedHitlist(d.data)"></a>&nbsp;
-    <a class="fa fa-eyedropper grd-icon" aria-hidden="true" title='Restore Query To Form'></a>&nbsp;
-    <a class="fa fa fa-filter grd-icon" aria-hidden="true" title='Advanced' (click)="showRestore(d)"></a>
+    <a [ngClass]="(d.data.hitlistId !== hitlistId)?'fa fa fa-check grid-icon':'fa fa fa-check grid-icon-disabled'" aria-hidden="true" title='Restore Hitlist' data-dismiss="modal" (click)="restoreSelectedHitlist(d.data)"></a>&nbsp;
+    <a class="fa fa-refresh grid-icon" aria-hidden="true" title='Perform Query' (click)="refreshSelectedHitlist(d.data)"></a>&nbsp;
+    <a class="fa fa-table grid-icon" aria-hidden="true" title='Restore Query To Form'></a>&nbsp;
+    <a [ngClass]="(hitlistId &amp;&amp; hitlistId > 0 &amp;&amp; d.data.hitlistId !== hitlistId)?'fa fa fa-filter grid-icon':'fa fa fa-filter grid-icon-disabled'" aria-hidden="true" title='Advanced' (click)="showAdvRestorePopup(d)"></a>
   </div>
   <div *dxTemplate="let d of 'saveCellTemplate'">
-    <a *ngIf="d.data.hitlistType === 'TEMP'" class="fa fa fa-floppy-o grd-icon" aria-hidden="true" title='Add to saved hitlist' (click)="moveToSaveHitlist(d.data)"></a>&nbsp; {{d.value}}
+    <a *ngIf="d.data.hitlistType === 'TEMP'" class="fa fa fa-floppy-o grid-icon" aria-hidden="true" title='Add to saved hitlist' (click)="moveToSaveHitlist(d.data)"></a>&nbsp; {{d.value}}
   </div>
 </dx-data-grid>

@@ -82,7 +82,7 @@ export class RegistrySearchEpics {
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         } else if (payload.type === 'Advanced') {
-          return this.http.post(`${apiUrlPrefix}restorehitlistsactions`, payload.data)
+          return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.id1}/${payload.data.op}/${payload.data.id2}/records`)
             .map(result => {
               return result.url.indexOf('index.html') > 0
                 ? SessionActions.logoutUserAction()
