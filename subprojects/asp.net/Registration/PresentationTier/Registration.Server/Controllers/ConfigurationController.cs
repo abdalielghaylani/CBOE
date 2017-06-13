@@ -31,15 +31,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     public class ConfigurationController : RegControllerBase
     {
         #region Util methods
-        private static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
-        {
-            return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
-        }
 
         private static int SaveColumnValues(string tableName, JObject data, bool creating)
         {
@@ -967,7 +958,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
-                    if (propertyList == null) continue;                 
+                    if (propertyList == null) continue;
                     found = true;
 
                     string prefix = string.Empty;
