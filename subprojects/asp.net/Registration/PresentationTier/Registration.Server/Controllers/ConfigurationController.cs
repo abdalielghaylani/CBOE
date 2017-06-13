@@ -937,6 +937,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 if (string.IsNullOrEmpty(data.Name))
                     throw new RegistrationException("Invalid property name");
+                if (string.IsNullOrEmpty(data.GroupName))
+                    throw new RegistrationException("Invalid property group name");
+                if (string.IsNullOrEmpty(data.Type))
+                    throw new RegistrationException("Invalid property type");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
@@ -963,8 +967,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
-                    if (propertyList == null) continue;
-                    var properties = (IEnumerable<Property>)propertyList;
+                    if (propertyList == null) continue;                 
                     found = true;
 
                     string prefix = string.Empty;
@@ -991,9 +994,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
                         data.Type,
-                        data.Precision,
+                        string.IsNullOrEmpty(data.Precision) ? string.Empty : data.Precision,
                         true,
-                        data.SubType,
+                        string.IsNullOrEmpty(data.SubType) ? string.Empty : data.SubType,
                         data.PickListDomainId);
                     configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
 
