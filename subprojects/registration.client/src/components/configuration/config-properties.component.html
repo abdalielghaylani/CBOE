@@ -1,14 +1,27 @@
-<div class="viewcontainer" (window:resize)="onResize($event)">
-  <reg-settings-page-header>Manage Data Properties</reg-settings-page-header>
-  <dx-data-grid [dataSource]="dataSource" [paging]='{pageSize: 10}'
-    [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" 
-    rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
-    (onCellPrepared)='onCellPrepared($event)'>
+<div class="viewcontainer" (window:resize)="onResize($event)" *ngIf="(configProperties.window.viewIndex==='list')">
+  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
+    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
+    (onEditingStart)="onEditingStart($event)">
     <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
-    <dxo-scrolling mode="infinite"></dxo-scrolling>
-    <div *dxTemplate="let data of 'cellTemplate'">
-      <reg-structure-image [src]="data.value"></reg-structure-image>
-    </div>
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
+      <a class="fa fa-plus-square grd-icon" aria-hidden="true" title='Add new rule'></a>&nbsp;
+      <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grd-icon" aria-hidden="true" title='View/Update existing rule'></a>&nbsp; </div>
   </dx-data-grid>
+</div>
+<div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='add'||configProperties.window.viewIndex==='edit')">
+  <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='add'" (onClick)="addProperty($event)" iconName="plus" title="Add Property"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='edit'" (onClick)="saveProperty($event)" iconName="plus" title="Save Property"></command-button>
+  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  <dx-form minColWidth=300 (onFieldDataChanged)="onFieldDataChanged($event)" [colCount]="1" [formData]="configProperties.formData"
+    [items]="configProperties.formColumns"></dx-form>
+</div>
+<div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
+  <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
+  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
 </div>

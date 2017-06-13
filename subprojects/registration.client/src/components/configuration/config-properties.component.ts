@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
+import { select, NgRedux } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { IAppState, ICustomTableData, IConfiguration } from '../../store';
+import { CConfigProperties } from './config.types';
 
 declare var jQuery: any;
 
@@ -30,10 +31,12 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;
+  private configProperties: CConfigProperties;
 
   constructor(
     private http: Http,
     private changeDetector: ChangeDetectorRef,
+    private ngRedux: NgRedux<IAppState>,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
   ) { }
@@ -50,6 +53,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
 
   loadData(customTables: any) {
     if (customTables) {
+      this.configProperties = new CConfigProperties(this.ngRedux.getState());
       this.dataSource = this.createCustomStore(this);
       this.changeDetector.markForCheck();
     }
@@ -87,20 +91,44 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       width: 80
     });
   }
+  onInitNewRow(e) {
+    e.cancel = true;
+    this.configProperties.addEditProperty('add');
+  }
 
+  onEditingStart(e) {
+    e.cancel = true;
+    this.configProperties.addEditProperty('edit', e.data);
+  }
+
+  cancel() {
+    this.configProperties.window = { title: 'Manage Data Properties', viewIndex: 'list' };
+    this.configProperties.clearFormData();
+  }
+
+  addProperty(e) {
+    this.dataSource.insert(this.configProperties.formData);
+  }
+  saveProperty(e) {
+    this.dataSource.update(this.configProperties.formData, []);
+    this.cancel();
+  }
   onCellPrepared(e) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let isEditing = e.row.isEditing;
       let $links = e.cellElement.find('.dx-link');
       $links.text('');
-      if (isEditing) {
-        $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-      } else {
+      if (e.data.editable) {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+      } else {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       }
     }
+  }
+
+  onFieldDataChanged(e) {
+    this.configProperties.showHideDataFields(e.value, e.component._options.items, this.configProperties.formData, e.component, true);
   }
 
   private createCustomStore(parent: RegConfigProperties): CustomStore {
@@ -128,24 +156,16 @@ export class RegConfigProperties implements OnInit, OnDestroy {
         return deferred.promise();
       },
 
-      update: function(key, values) {
+      update: function (data) {
         let deferred = jQuery.Deferred();
-        let data = key;
-        let newData = values;
-        for (let k in newData) {
-          if (newData.hasOwnProperty(k)) {
-            data[k] = newData[k];
-          }
-        }
-        let id = data[Object.getOwnPropertyNames(data)[0]];
-        parent.http.put(`${apiUrlBase}/${id}`, data)
+        parent.http.put(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
+            notifySuccess(`The Property ${data.name} was updated successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not updated due to a problem`;
+            let message = `The Property ${data.name} was not updated due to a problem`;
             let errorResult, reason;
             if (error._body) {
               errorResult = JSON.parse(error._body);
@@ -157,17 +177,17 @@ export class RegConfigProperties implements OnInit, OnDestroy {
         return deferred.promise();
       },
 
-      insert: function (values) {
+      insert: function (data) {
         let deferred = jQuery.Deferred();
-        parent.http.post(`${apiUrlBase}`, values)
+        parent.http.post(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
             let id = result.json().id;
-            notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
+            notifySuccess(`The Property was created successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `Creating A new record for ${tableName} was failed due to a problem`;
+            let message = `Creating A new Property was failed due to a problem`;
             let errorResult, reason;
             if (error._body) {
               errorResult = JSON.parse(error._body);
