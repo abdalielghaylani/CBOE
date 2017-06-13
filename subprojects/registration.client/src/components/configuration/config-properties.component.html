@@ -9,14 +9,17 @@
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
     <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
-      <a class="fa fa-plus-square grd-icon" aria-hidden="true" title='Add new rule'></a>&nbsp;
-      <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grd-icon" aria-hidden="true" title='View/Update existing rule'></a>&nbsp; </div>
+      <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="showValidationRule()" title='Add new rule'></a>&nbsp;
+      <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grd-icon" (onClick)="showValidationRule()" aria-hidden="true"
+        title='View/Update existing rule'></a>&nbsp; </div>
   </dx-data-grid>
 </div>
 <div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='add'||configProperties.window.viewIndex==='edit')">
   <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
-  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='add'" (onClick)="addProperty($event)" iconName="plus" title="Add Property"></command-button>
-  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='edit'" (onClick)="saveProperty($event)" iconName="plus" title="Save Property"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='add'" (onClick)="addProperty($event)" iconName="plus"
+    title="Add Property"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='edit'" (onClick)="saveProperty($event)"
+    iconName="plus" title="Save Property"></command-button>
   <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
   <dx-form minColWidth=300 (onFieldDataChanged)="onFieldDataChanged($event)" [colCount]="1" [formData]="configProperties.formData"
     [items]="configProperties.formColumns"></dx-form>
@@ -24,4 +27,5 @@
 <div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
   <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
   <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  Property Name:{{configProperties.formData.name}} <br/>Property Type:{{configProperties.formData.Type}}
 </div>

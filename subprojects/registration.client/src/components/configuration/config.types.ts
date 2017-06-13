@@ -155,14 +155,41 @@ export const CONFIG_PROPERTIES_COLUMNS = [
     width: 100
   }];
 
+export const GROUPNAME = [{
+  groupName: 'Batch',
+  groupLabel: 'Batch'
+},
+{
+  groupName: 'BatchComponent',
+  groupLabel: 'Batch Component'
+},
+{
+  groupName: 'Compound',
+  groupLabel: 'Compound'
+},
+{
+  groupName: 'AddIns',
+  groupLabel: 'Add-in'
+},
+{
+  groupName: 'None',
+  groupLabel: 'Extra'
+},
+{
+  groupName: 'PropertyList',
+  groupLabel: 'Registry'
+},
+{
+  groupName: 'Structure',
+  groupLabel: 'Base Fragment'
+}
+];
+
 export const CONFIG_PROPERTIES_FORMS = [{
   dataField: 'groupName',
   label: { text: 'Group Name' },
-  editorOptions: {
-    items: ['Batch', 'Base Fragment', 'Batch Component', 'Compound', 'Registry']
-  },
   editorType: 'dxSelectBox',
-  visible: false,
+  disabled: true,
 }, {
   dataField: 'name',
   label: { text: 'Name' },
@@ -196,6 +223,7 @@ export const CONFIG_PROPERTIES_FORMS = [{
 export class CCONFIGPROPERTIESFORMSDATA {
   name: string;
   groupName: string;
+  groupLabel: string;
   friendlyName: string;
   type: string;
   precision: string;
@@ -212,6 +240,8 @@ export class CConfigProperties {
     this.columns = CONFIG_PROPERTIES_COLUMNS;
     this.formColumns = CONFIG_PROPERTIES_FORMS;
     this.formData = new CCONFIGPROPERTIESFORMSDATA();
+    this.formColumns[0].editorOptions = { dataSource: [], valueExpr: 'groupName', displayExpr: 'groupLabel' };
+    this.formColumns[0].editorOptions.dataSource = GROUPNAME;
     this.columns[5].lookup = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.columns[5].lookup.dataSource = getLookups(state).pickListDomains;
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
@@ -222,15 +252,15 @@ export class CConfigProperties {
   }
   addEditProperty(w: string, d?: any) {
     if (w === 'add') {
-      this.formColumns[0].visible = true;
+      this.formColumns[0].disabled = false;
       this.window = { title: 'Add New Property', viewIndex: w };
       this.formColumns[5].visible = false;
       this.formColumns[4].label.visible = false;
       this.formColumns[4].editorOptions.visible = false;
     }
     if (w === 'edit') {
-      this.formColumns[0].visible = false;
-      this.window = { title: 'Edit Data Properties (' + d.groupLabel + ':-' + d.name + ')', viewIndex: w };
+      this.formColumns[0].disabled = true;
+      this.window = { title: 'Edit Property', viewIndex: w };
       this.formData = d;
       this.showHideDataFields(d.type, this.formColumns, this.formData);
     }
