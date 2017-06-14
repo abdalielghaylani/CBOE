@@ -1,0 +1,13 @@
+<div class="viewcontainer" (window:resize)="onResize($event)">
+  <command-button testid="close-query-management-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <reg-page-header testid="templates-heading" id="templates-heading">
+    Submission Templates
+  </reg-page-header>
+  <dx-data-grid [dataSource]="dataSource" [columns]="columns" [paging]="{enabled: false}"
+    [searchPanel]="{ visible: true }" [filterRow]="{ visible: true }" [height]="gridHeight"
+    [grouping]="{ autoExpandAll: false }"
+    rowAlternationEnabled="true" (onContentReady)="onContentReady($event)"
+    (onCellPrepared)="onCellPrepared($event)">
+    <dxo-editing mode="form" [allowUpdating]="true"></dxo-editing>
+  </dx-data-grid>
+</div>

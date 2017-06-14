@@ -6,7 +6,7 @@ import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
 import { RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem } from './navigator';
 import { RegModal, RegModalContent } from './modal';
-import { RegRecords, RegRecordDetail, RegRecordSearch, RegQueryManagement } from './registry';
+import { RegRecords, RegRecordDetail, RegRecordSearch, RegQueryManagement, RegTemplates } from './registry';
 import { IResponseData, IRecordSaveData } from './registry';
 import { RegStructureImage } from './structure-image';
 import {
@@ -36,6 +36,7 @@ export {
   RegForm, RegFormError, RegFormGroup,
   RegRecords,
   RegQueryManagement,
+  RegTemplates,
   RegRecordSearch,
   RegRecordDetail,
   RegStructureImage,
