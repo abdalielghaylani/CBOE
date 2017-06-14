@@ -16,7 +16,7 @@ export class ConfigurationEpics {
     return action$.filter(({ type }) => type === ConfigurationActions.OPEN_TABLE)
       .mergeMap(({ payload }) => {
         let tableId: string = payload;
-        return this.http.get(`${apiUrlPrefix}custom-tables/` + tableId)
+        return this.http.get(`${apiUrlPrefix}custom-tables/${tableId}?configOnly=true`)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()
