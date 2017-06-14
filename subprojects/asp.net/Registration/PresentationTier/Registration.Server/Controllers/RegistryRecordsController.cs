@@ -112,7 +112,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 doc.LoadXml(inputData.Data);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 var chkDuplicate = string.Empty;
-                if (!string.IsNullOrEmpty(recordString) && !string.IsNullOrEmpty(inputData.DuplicateCheckOption) && inputData.DuplicateCheckOption != "N")
+                if (!string.IsNullOrEmpty(inputData.DuplicateCheckOption) && inputData.DuplicateCheckOption != "N")
                 {
                     chkDuplicate = service.CheckUniqueRegistryRecord(recordString, inputData.DuplicateCheckOption);
                 }
