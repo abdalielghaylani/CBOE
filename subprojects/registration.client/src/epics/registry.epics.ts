@@ -49,10 +49,16 @@ export class RegistryEpics {
       });
   }
 
-  private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
+  private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, template: boolean, id: number }>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.RETRIEVE_RECORD)
       .mergeMap(({ payload }) => {
-        return this.http.get(`${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records/${payload.id}`)
+        let url = apiUrlPrefix;
+        if (!payload.template) {
+          url += `${payload.temporary ? 'temp-' : ''}records/${payload.id}`;
+        } else {
+          url += `templates/${payload.id}`;
+        }
+        return this.http.get(url)
           .map(result => {
             return result.url.indexOf('index.html') > 0
               ? SessionActions.logoutUserAction()

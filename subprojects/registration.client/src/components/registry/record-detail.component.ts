@@ -34,6 +34,7 @@ declare var jQuery: any;
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
+  @Input() template: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   public formGroup: CFormGroup;
@@ -66,7 +67,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       return;
     }
     this.createDrawingTool();
-    this.actions.retrieveRecord(this.temporary, this.id);
+    this.actions.retrieveRecord(this.temporary, this.template, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
     this.parentHeight = this.getParentHeight();
   }

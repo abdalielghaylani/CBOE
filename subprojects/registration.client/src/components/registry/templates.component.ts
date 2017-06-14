@@ -3,7 +3,7 @@ import {
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { Http } from '@angular/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
@@ -45,10 +45,12 @@ export class RegTemplates implements OnInit, OnDestroy {
     dataField: 'name',
     dataType: 'string',
     width: '100px',
-    allowEditing: false
+    allowEditing: false,
+    cellTemplate: 'loadCellTemplate'
   }, {
     dataField: 'dateCreated',
-    dataType: 'date'
+    dataType: 'date',
+    format: 'ShortDateShortTime'
   }, {
     dataField: 'isPublic',
     dataType: 'boolean',
@@ -56,10 +58,12 @@ export class RegTemplates implements OnInit, OnDestroy {
   }, {
     dataField: 'data',
     dataType: 'string',
-    allowEditing: false
+    allowEditing: false,
+    cellTemplate: 'structureCellTemplate'
   }];
 
   constructor(
+    private router: Router,
     private http: Http,
     private changeDetector: ChangeDetectorRef,
     private elementRef: ElementRef
@@ -103,12 +107,6 @@ export class RegTemplates implements OnInit, OnDestroy {
   }
 
   onContentReady(e) {
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate: 'cellTemplate'
-    });
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80
@@ -159,5 +157,9 @@ export class RegTemplates implements OnInit, OnDestroy {
 
   private cancel(e) {
     this.onClose.emit(e);
+  }
+
+  private loadTemplate(templateId) {
+    this.router.navigate([`records/new/${templateId}`]);
   }
 };
