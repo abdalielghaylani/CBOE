@@ -9,7 +9,8 @@ import {
 import {
   notify, notifyError, notifySuccess,
   getFormGroup, getFormGroupData, convertToFormGroup, prepareFormGroupData,
-  copyObject, copyObjectAndSet
+  copyObject, copyObjectAndSet,
+  IColumnConfig, getViewColumns
 } from './utils';
 
 export { ToolModule };
@@ -23,5 +24,6 @@ export {
 export {
   notify, notifyError, notifySuccess,
   getFormGroup, getFormGroupData, convertToFormGroup, prepareFormGroupData,
-  copyObject, copyObjectAndSet
+  copyObject, copyObjectAndSet,
+  IColumnConfig, getViewColumns
 };

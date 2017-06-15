@@ -104,28 +104,43 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(201, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> CreateRecord(JObject recordData)
+        public async Task<IHttpActionResult> CreateRecord(DuplicateResolutionData inputData)
         {
             return await CallServiceMethod((service) =>
             {
                 var doc = new XmlDocument();
-                doc.LoadXml((string)recordData["data"]);
+                doc.LoadXml(inputData.Data);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var resultString = service.CreateRegistryRecord(recordString, "N");
-                doc.LoadXml(resultString);
-                var errorMessage = GetNodeText(doc, "//ErrorMessage");
-                if (!string.IsNullOrEmpty(errorMessage))
-                    throw new RegistrationException(errorMessage);
-                var id = Convert.ToInt32(GetNodeText(doc, "//RegID"));
-                var regNum = GetNodeText(doc, "//RegNum");
-                var data = new JObject(
-                    new JProperty("batchCount", Convert.ToInt32(GetNodeText(doc, "//BatchNumber"))),
-                    new JProperty("batchId", Convert.ToInt32(GetNodeText(doc, "//BatchID")))
-                );
-                var redBoxWarning = GetNodeText(doc, "//RedBoxWarning");
-                if (!string.IsNullOrEmpty(redBoxWarning))
-                    data.Add(new JProperty("redBoxWarning", redBoxWarning));
-                return new ResponseData(id, regNum, null, data);
+                var chkDuplicate = string.Empty;
+                if (!string.IsNullOrEmpty(inputData.DuplicateCheckOption) && inputData.DuplicateCheckOption != "N")
+                {
+                    chkDuplicate = service.CheckUniqueRegistryRecord(recordString, inputData.DuplicateCheckOption);
+                }
+                if (string.IsNullOrEmpty(chkDuplicate))
+                {
+                    var resultString = service.CreateRegistryRecord(recordString, "N");
+                    doc.LoadXml(resultString);
+                    var errorMessage = GetNodeText(doc, "//ErrorMessage");
+                    if (!string.IsNullOrEmpty(errorMessage))
+                        throw new RegistrationException(errorMessage);
+                    var id = Convert.ToInt32(GetNodeText(doc, "//RegID"));
+                    var regNum = GetNodeText(doc, "//RegNum");
+                    var data = new JObject(
+                        new JProperty("batchCount", Convert.ToInt32(GetNodeText(doc, "//BatchNumber"))),
+                        new JProperty("batchId", Convert.ToInt32(GetNodeText(doc, "//BatchID")))
+                    );
+                    var redBoxWarning = GetNodeText(doc, "//RedBoxWarning");
+                    if (!string.IsNullOrEmpty(redBoxWarning))
+                        data.Add(new JProperty("redBoxWarning", redBoxWarning));
+                    return new ResponseData(id, regNum, null, data);
+                }
+                else
+                {
+                    var responseMessage = new JObject(
+                    new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
+                    );
+                    return new ResponseData(null, null, null, responseMessage);
+                }
             });
         }
 
@@ -351,46 +366,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 var responseMessage = new JObject(
                 new JProperty("DuplicateCheck", DuplicateCheck.CompoundCheck.ToString(), DuplicateCheck.MixCheck.ToString(), DuplicateCheck.None.ToString(), DuplicateCheck.PreReg.ToString())
-                );
-                return new ResponseData(null, null, null, responseMessage);
-            });
-        }
-
-        [HttpPost]
-        [Route(Consts.apiPrefix + "duplicateResolution")]
-        [SwaggerOperation("DuplicateResolution")]
-        [SwaggerResponse(201, type: typeof(ResponseData))]
-        [SwaggerResponse(400, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> DuplicateResolution(DuplicateResolutionData data)
-        {
-            return await CallServiceMethod((service) =>
-            {
-                var doc = new XmlDocument();
-                doc.LoadXml(data.Data);
-
-                // TODO: check data xml is valid and throw proper error message
-
-                var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var result = service.CheckUniqueRegistryRecord(regRecordXml, data.DuplicateCheckOption);
-                if (!string.IsNullOrEmpty(result))
-                    throw new RegistrationException(result);
-                return new ResponseData(null, null, result, null);
-            });
-        }
-
-        [HttpGet]
-        [Route(Consts.apiPrefix + "getDuplicateAction")]
-        [SwaggerOperation("GetDuplicateAction")]
-        [SwaggerResponse(201, type: typeof(ResponseData))]
-        [SwaggerResponse(400, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetDuplicateAction()
-        {
-            return await CallServiceMethod((service) =>
-            {
-                var responseMessage = new JObject(
-                new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
                 );
                 return new ResponseData(null, null, null, responseMessage);
             });

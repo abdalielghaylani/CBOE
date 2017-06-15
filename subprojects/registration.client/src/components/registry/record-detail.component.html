@@ -1,4 +1,15 @@
-<div class="viewcontainer" (window:resize)="onResize($event)">
+<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="currentIndex!=0">
+  <div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+    <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+      <i class="fa-undo white" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false">Templates <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><button type="button" class="btn">Save as Template</button></li>
+      <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
+    </ul>
+  </div>
   <command-button *ngIf="id >= 0 &amp;&amp; !editMode" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
   <command-button *ngIf="editMode" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
   <command-button *ngIf="id < 0 || editMode" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title="Save"></command-button>
@@ -58,4 +69,7 @@
       </div>
     </form>
   </dx-scroll-view>
+</div>
+<div class="viewcontainer" [hidden]="currentIndex!=1">
+  <reg-templates (onClose)="showDetails($event)"></reg-templates>
 </div>

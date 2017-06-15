@@ -31,15 +31,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     public class ConfigurationController : RegControllerBase
     {
         #region Util methods
-        private static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
-        {
-            return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
-        }
 
         private static int SaveColumnValues(string tableName, JObject data, bool creating)
         {
@@ -937,6 +928,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 if (string.IsNullOrEmpty(data.Name))
                     throw new RegistrationException("Invalid property name");
+                if (string.IsNullOrEmpty(data.GroupName))
+                    throw new RegistrationException("Invalid property group name");
+                if (string.IsNullOrEmpty(data.Type))
+                    throw new RegistrationException("Invalid property type");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
@@ -964,7 +959,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
-                    var properties = (IEnumerable<Property>)propertyList;
                     found = true;
 
                     string prefix = string.Empty;
@@ -991,9 +985,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
                         data.Type,
-                        data.Precision,
+                        string.IsNullOrEmpty(data.Precision) ? string.Empty : data.Precision,
                         true,
-                        data.SubType,
+                        string.IsNullOrEmpty(data.SubType) ? string.Empty : data.SubType,
                         data.PickListDomainId);
                     configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
 

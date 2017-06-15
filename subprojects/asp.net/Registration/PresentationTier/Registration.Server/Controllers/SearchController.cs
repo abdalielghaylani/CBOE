@@ -77,6 +77,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var coeSearch = new COESearch();
             var dataView = SearchFormGroupAdapter.GetDataView(int.Parse(ControlIdChangeUtility.PERMSEARCHGROUPID));
             var searchCriteria = new SearchCriteria();
+            string structureName = string.Empty;
             try
             {
                 searchCriteria.GetFromXML(queryData.SearchCriteria);
@@ -92,7 +93,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             var query = structureCriteria.Query4000;
                             if (!string.IsNullOrEmpty(query) && query.StartsWith("<"))
                             {
-                                var cdxData = ChemistryHelper.ConvertToCdx(query, true);
+                                var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
                                 if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
                                 structureCriteria.Structure = cdxData;
                             }
@@ -108,6 +109,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
             var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
             hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
+            if (!string.IsNullOrEmpty(structureName))
+            {
+                var additionalCriteriaCount = searchCriteria.Items.Count - 1;
+                var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
+                var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
+                hitlistBO.Name = string.Format("{0}{1}", structureName, more);
+                hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
+            }
             hitlistBO.Update();
             return GetHitlistRecordsInternal(hitlistBO.HitListID, skip, count, sort);
         }
@@ -373,20 +382,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var hitlistBO2 = GetHitlistBO(id2);
                 if (hitlistBO2 == null)
                     throw new RegistrationException(string.Format("The hit-list identified by ID {0} is invalid", id2));
+                char symbol;
+                string join;
                 COEHitListBO newHitlist;
                 switch (op)
                 {
                     case "intersect":
+                        symbol = 'x';
+                        join = "intersecting with";
                         newHitlist = COEHitListOperationManager.IntersectHitList(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                     case "subtract":
+                        symbol = '-';
+                        join = "subtracted by";
                         newHitlist = COEHitListOperationManager.SubtractHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                     default: // union
-                        newHitlist = COEHitListOperationManager.SubtractHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
+                        join = "combining with";
+                        symbol = '+';
+                        newHitlist = COEHitListOperationManager.UnionHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                 }
-
+                newHitlist.Name = string.Format("({0}) {1} ({2})", hitlistBO1.Name, symbol, hitlistBO2.Name);
+                newHitlist.Description = string.Format("{0} {1} {2}", hitlistBO1.Description, join, hitlistBO2.Description);
+                newHitlist.Update();
                 return GetHitlistRecordsInternal(newHitlist.HitListID);
             });
         }

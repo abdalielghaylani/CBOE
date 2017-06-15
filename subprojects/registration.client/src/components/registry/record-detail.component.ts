@@ -34,6 +34,7 @@ declare var jQuery: any;
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
+  @Input() template: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   public formGroup: CFormGroup;
@@ -49,6 +50,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
+  private currentIndex: number = 0;
 
   constructor(
     public ngRedux: NgRedux<IAppState>,
@@ -65,7 +67,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       return;
     }
     this.createDrawingTool();
-    this.actions.retrieveRecord(this.temporary, this.id);
+    this.actions.retrieveRecord(this.temporary, this.template, this.id);
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
     this.parentHeight = this.getParentHeight();
   }
@@ -249,5 +251,15 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (e.srcElement.children.length > 0) {
       e.srcElement.children[0].click();
     }
+  }
+
+  private showTemplates(e) {
+    this.currentIndex = 1;
+    this.changeDetector.markForCheck();
+  }
+
+  private showDetails(e) {
+    this.currentIndex = 0;
+    this.changeDetector.markForCheck();
   }
 };

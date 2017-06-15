@@ -12,7 +12,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
         private const string cdxMimeType = "chemical/x-cdx";
         private const string cdxmlMimeType = "text/xml";
 
-        public static string Convert(string fromType, string toType, string fromData, bool returnEmptyWhenEmptyStructure = false)
+        public static string ConvertAndName(string fromType, string toType, string fromData, ref string name, bool returnEmptyWhenEmptyStructure = false)
         {
             // CacheableChemdrawControl may dispose automatically when timeout elapses.
             // In other words, it does not need to be disposed of explicitly in this code.
@@ -24,8 +24,16 @@ namespace PerkinElmer.COE.Registration.Server.Code
             chemDrawObjects.Clear();
             chemDrawCtl.DataEncoded = true;
             chemDrawCtl.set_Data(fromType, fromData);
+            if (name != null)
+                name = chemDrawCtl.get_Data("chemical/x-name");
             if (returnEmptyWhenEmptyStructure && string.IsNullOrEmpty(chemDrawObjects.Formula)) return string.Empty;
             return chemDrawCtl.get_Data(toType);
+        }
+
+        public static string Convert(string fromType, string toType, string fromData, bool returnEmptyWhenEmptyStructure = false)
+        {
+            string name = null;
+            return ConvertAndName(fromType, toType, fromData, ref name, returnEmptyWhenEmptyStructure);
         }
 
         public static string ConvertToCdxml(string data, bool returnEmptyWhenEmptyStructure = false)
@@ -33,9 +41,19 @@ namespace PerkinElmer.COE.Registration.Server.Code
             return Convert(cdxMimeType, cdxmlMimeType, data, returnEmptyWhenEmptyStructure);
         }
 
+        public static string ConvertToCdxmlAndName(string data, ref string name, bool returnEmptyWhenEmptyStructure = false)
+        {
+            return ConvertAndName(cdxMimeType, cdxmlMimeType, data, ref name, returnEmptyWhenEmptyStructure);
+        }
+
         public static string ConvertToCdx(string data, bool returnEmptyWhenEmptyStructure = false)
         {
             return Convert(cdxmlMimeType, cdxMimeType, data, returnEmptyWhenEmptyStructure);
+        }
+
+        public static string ConvertToCdxAndName(string data, ref string name, bool returnEmptyWhenEmptyStructure = false)
+        {
+            return ConvertAndName(cdxmlMimeType, cdxMimeType, data, ref name, returnEmptyWhenEmptyStructure);
         }
 
         private static void ConvertStructuresToCdxml(XmlElement element, bool returnEmptyWhenEmptyStructure = false)
