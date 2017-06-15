@@ -898,7 +898,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             ruleData.Min = string.IsNullOrEmpty(rule.MIN) ? string.Empty : rule.MIN;
                             ruleData.Max = string.IsNullOrEmpty(rule.MAX) ? string.Empty : rule.MAX;
                             ruleData.MaxLength = rule.MaxLength;
-                            ruleData.Error = rule.Error;
+                            ruleData.Error = string.IsNullOrEmpty(rule.Error) ? string.Empty : rule.Error;
                             ruleData.DefaultValue = rule.DefaultValue;
                             ruleData.Parameters = new List<ValidationParameter>();
 
