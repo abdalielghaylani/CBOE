@@ -17,3 +17,19 @@
   margin-right: 10px;
   vertical-align: middle;
 }
+
+.grd-icon {
+  font-size: 14px;
+  margin: 0 3px;
+  text-decoration: none;
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  border: 1x solid grey;
+  padding: 5px;
+  color: #009900;
+  cursor: pointer;
+}
+
+.grd-icon:hover {
+  background-color: #cccccc;
+}
