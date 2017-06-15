@@ -80,19 +80,13 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   onContentReady(e) {
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate: 'cellTemplate'
-    });
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80
     });
   }
+
   onInitNewRow(e) {
-    e.cancel = true;
     this.configProperties.addEditProperty('add');
   }
 
@@ -104,26 +98,33 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   cancel() {
     this.configProperties.window = { title: 'Manage Data Properties', viewIndex: 'list' };
     this.configProperties.clearFormData();
+    this.grid.instance.cancelEditData();
   }
 
-  showValidationRule() {
+  showValidationRule(d: any) {
     this.configProperties.window = { title: 'Validation Rule', viewIndex: 'validation' };
+    this.configProperties.formData = d.data;
   }
 
   addProperty(e) {
-    this.dataSource.insert(this.configProperties.formData);
+    this.dataSource.insert(this.configProperties.formData).then((result) => {
+      this.grid.instance.refresh();
+    });
     this.cancel();
   }
+
   saveProperty(e) {
-    this.dataSource.update(this.configProperties.formData, []);
+    this.dataSource.update(this.configProperties.formData, []).then((result) => {
+      this.grid.instance.refresh();
+    });
     this.cancel();
   }
-  onCellPrepared(e) {
+
+  onCellPrepared(e, t?: string) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
-      let isEditing = e.row.isEditing;
       let $links = e.cellElement.find('.dx-link');
       $links.text('');
-      if (e.data.editable) {
+      if (e.data.editable || t === 'validation') {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       } else {
@@ -182,9 +183,9 @@ export class RegConfigProperties implements OnInit, OnDestroy {
         return deferred.promise();
       },
 
-      insert: function (data) {
+      insert: function (values) {
         let deferred = jQuery.Deferred();
-        parent.http.post(`${apiUrlBase}`, data)
+        parent.http.post(`${apiUrlBase}`, values)
           .toPromise()
           .then(result => {
             let id = result.json().id;
@@ -192,7 +193,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `Creating A new Property was failed due to a problem`;
+            let message = `Creating a new Property was failed due to a problem`;
             let errorResult, reason;
             if (error._body) {
               errorResult = JSON.parse(error._body);

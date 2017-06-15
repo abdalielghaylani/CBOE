@@ -1,4 +1,4 @@
-<div class="viewcontainer" (window:resize)="onResize($event)" *ngIf="(configProperties.window.viewIndex==='list')">
+<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configProperties.window.viewIndex==='list')">
   <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
   <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
     (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
@@ -9,7 +9,7 @@
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
     <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
-      <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="showValidationRule()" title='Add new rule'></a>&nbsp;
+      <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Add new rule'></a>&nbsp;
       <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grd-icon" (onClick)="showValidationRule()" aria-hidden="true"
         title='View/Update existing rule'></a>&nbsp; </div>
   </dx-data-grid>
@@ -27,5 +27,14 @@
 <div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
   <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
   <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
-  Property Name:{{configProperties.formData.name}} <br/>Property Type:{{configProperties.formData.Type}}
+  <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formData" [items]="configProperties.formValidationColumns"></dx-form>
+  <dx-data-grid [columns]="configProperties.validationGridColumns" [dataSource]="configProperties.formData.validationRules"
+    [height]="500" rowAlternationEnabled="true" (onCellPrepared)="onCellPrepared($event,'validation')">
+    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+  </dx-data-grid>
+
 </div>

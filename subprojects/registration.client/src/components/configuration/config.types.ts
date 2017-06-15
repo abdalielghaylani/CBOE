@@ -121,6 +121,34 @@ export class CConfigForms {
 function getLookups(state: IAppState): any {
   return state.session ? state.session.lookups : undefined;
 }
+export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = [{
+  dataField: 'name',
+  label: { text: 'Property Name' },
+  dataType: 'string',
+  editorType: 'dxTextBox',
+  disabled: true,
+}, {
+  dataField: 'type',
+  label: { text: 'Property Type' },
+  dataType: 'string',
+  editorType: 'dxTextBox',
+  disabled: true,
+}, {
+  dataField: 'type',
+  label: { text: 'Type' },
+  dataType: 'string',
+  editorType: 'dxTextBox',
+  disabled: true,
+}];
+export const PROPERTIES_VALIDATION_GRID_COLUMNS = [{
+  dataField: 'name'
+},
+{ dataField: 'min' },
+{ dataField: 'max' },
+{ dataField: 'maxLength' },
+{ dataField: 'error' },
+{ dataField: 'defaultValue' },
+{ dataField: 'parameters' }];
 export const CONFIG_PROPERTIES_COLUMNS = [
   {
     dataField: 'groupLabel',
@@ -155,36 +183,6 @@ export const CONFIG_PROPERTIES_COLUMNS = [
     width: 100
   }];
 
-export const GROUPNAME = [{
-  groupName: 'Batch',
-  groupLabel: 'Batch'
-},
-{
-  groupName: 'BatchComponent',
-  groupLabel: 'Batch Component'
-},
-{
-  groupName: 'Compound',
-  groupLabel: 'Compound'
-},
-{
-  groupName: 'AddIns',
-  groupLabel: 'Add-in'
-},
-{
-  groupName: 'None',
-  groupLabel: 'Extra'
-},
-{
-  groupName: 'PropertyList',
-  groupLabel: 'Registry'
-},
-{
-  groupName: 'Structure',
-  groupLabel: 'Base Fragment'
-}
-];
-
 export const CONFIG_PROPERTIES_FORMS = [{
   dataField: 'groupName',
   label: { text: 'Group Name' },
@@ -195,6 +193,7 @@ export const CONFIG_PROPERTIES_FORMS = [{
   label: { text: 'Name' },
   dataType: 'string',
   editorType: 'dxTextBox',
+  disabled: true,
 }, {
   dataField: 'friendlyName',
   label: { text: 'Label' },
@@ -206,7 +205,8 @@ export const CONFIG_PROPERTIES_FORMS = [{
   editorOptions: {
     items: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL']
   },
-  editorType: 'dxSelectBox'
+  editorType: 'dxSelectBox',
+  disabled: true,
 }, {
   dataField: 'precision',
   label: { text: 'Length', visible: false },
@@ -220,39 +220,48 @@ export const CONFIG_PROPERTIES_FORMS = [{
   editorType: 'dxSelectBox'
 }];
 
-export class CCONFIGPROPERTIESFORMSDATA {
+export class CConfigPropertiesFormData {
   name: string;
   groupName: string;
   groupLabel: string;
   friendlyName: string;
   type: string;
   precision: string;
-  pickListDomainId: string;
+  validationRules: any[];
 };
-
+export class CPropertiesValidationFormData {
+  name: string;
+  type: string;
+}
 export class CConfigProperties {
   columns: any;
   formColumns: any;
-  formData: CCONFIGPROPERTIESFORMSDATA;
+  formData: CConfigPropertiesFormData;
   window: CWindow;
+  formValidationColumns: any;
+  validationGridColumns: any;
   constructor(state: IAppState) {
     this.window = { title: 'Manage Data Properties', viewIndex: 'list' };
     this.columns = CONFIG_PROPERTIES_COLUMNS;
+    this.formValidationColumns = CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS;
+    this.validationGridColumns = PROPERTIES_VALIDATION_GRID_COLUMNS;
     this.formColumns = CONFIG_PROPERTIES_FORMS;
-    this.formData = new CCONFIGPROPERTIESFORMSDATA();
+    this.formData = new CConfigPropertiesFormData();
     this.formColumns[0].editorOptions = { dataSource: [], valueExpr: 'groupName', displayExpr: 'groupLabel' };
-    this.formColumns[0].editorOptions.dataSource = GROUPNAME;
+    this.formColumns[0].editorOptions.dataSource = getLookups(state).propertyGroups;
     this.columns[5].lookup = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.columns[5].lookup.dataSource = getLookups(state).pickListDomains;
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.formColumns[5].editorOptions.dataSource = getLookups(state).pickListDomains;
   }
   clearFormData() {
-    this.formData = new CCONFIGPROPERTIESFORMSDATA();
+    this.formData = new CConfigPropertiesFormData();
   }
   addEditProperty(w: string, d?: any) {
     if (w === 'add') {
       this.formColumns[0].disabled = false;
+      this.formColumns[1].disabled = false;
+      this.formColumns[3].disabled = false;
       this.window = { title: 'Add New Property', viewIndex: w };
       this.formColumns[5].visible = false;
       this.formColumns[4].label.visible = false;
@@ -260,6 +269,8 @@ export class CConfigProperties {
     }
     if (w === 'edit') {
       this.formColumns[0].disabled = true;
+      this.formColumns[1].disabled = true;
+      this.formColumns[3].disabled = true;
       this.window = { title: 'Edit Property', viewIndex: w };
       this.formData = d;
       this.showHideDataFields(d.type, this.formColumns, this.formData);
@@ -271,7 +282,6 @@ export class CConfigProperties {
       vm[5].visible = true;
       vm[4].label.visible = false;
       vm[4].editorOptions.visible = false;
-      data[4] = undefined;
       if (refresh) { component._refresh(); }
     }
     if (type === 'TEXT' || type === 'NUMBER') {
@@ -283,7 +293,6 @@ export class CConfigProperties {
       vm[4].label.visible = true;
       vm[4].editorOptions.visible = true;
       vm[5].visible = false;
-      data[5] = undefined;
       if (refresh) { component._refresh(); }
     }
   }
