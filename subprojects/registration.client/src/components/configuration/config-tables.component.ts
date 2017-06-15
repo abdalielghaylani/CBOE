@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
+import { select, NgRedux } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { IAppState, ICustomTableData, IConfiguration } from '../../store';
 import { CConfigTable } from './config.types';
 
 declare var jQuery: any;
@@ -39,6 +39,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private http: Http,
     private changeDetector: ChangeDetectorRef,
+    private ngRedux: NgRedux<IAppState>,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
   ) { }
@@ -48,7 +49,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       let paramLabel = 'tableId';
       this.tableId = params[paramLabel];
       this.configurationActions.openTable(this.tableId);
-      this.configTable = new CConfigTable(this.tableId);
+      this.configTable = new CConfigTable(this.tableId, this.ngRedux.getState());
     });
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
   }
@@ -102,7 +103,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       visibleIndex: -1,
       width: 80
     });
-     e.component.columnOption('command', {
+    e.component.columnOption('command', {
       visibleIndex: -1,
       width: 80
     });
