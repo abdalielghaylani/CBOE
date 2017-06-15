@@ -136,6 +136,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
         op: this.hitlistVM.advancedRestoreType
       }
     });
+    this.grid.instance.collapseAll(-1);
     this.onClose.emit(e);
   }
 

@@ -29,9 +29,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private static COEHitListBO GetHitlistBO(int id)
         {
             var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-            if (hitlistBO == null)
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
                 hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
-            if (hitlistBO == null)
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
                 throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
             return hitlistBO;
         }
