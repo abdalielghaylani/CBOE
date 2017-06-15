@@ -141,8 +141,10 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   restoreSelectedHitlist(e: IHitlistData) {
-    this.actions.retrieveHitlist({ type: 'Retrieve', temporary: this.temporary, id: e.id });
-    this.onClose.emit(e);
+    if (this.hitlistId !== e.id) {
+      this.actions.retrieveHitlist({ type: 'Retrieve', temporary: this.temporary, id: e.id });
+      this.onClose.emit(e);
+    }
   }
 
   refreshSelectedHitlist(e: IHitlistData) {
