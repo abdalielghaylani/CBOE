@@ -8,7 +8,7 @@ import {
   ElementRef, ChangeDetectorRef,
   ViewChildren, QueryList
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, UrlSegment, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
@@ -48,6 +48,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private recordDoc: Document;
   private regRecord: CRegistryRecord = new CRegistryRecord();
   private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
+  private routeSubscription: Subscription;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
   private currentIndex: number = 0;
@@ -57,7 +58,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     private elementRef: ElementRef,
     private router: Router,
     private actions: RecordDetailActions,
-    private changeDetector: ChangeDetectorRef) {
+    private changeDetector: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -67,12 +69,26 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       return;
     }
     this.createDrawingTool();
-    this.actions.retrieveRecord(this.temporary, this.template, this.id);
-    this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
     this.parentHeight = this.getParentHeight();
+    let self = this;
+    this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
+  }
+
+  initialize(segments: UrlSegment[]) {
+    let newIndex = segments.findIndex(s => s.path === 'new');
+    if (newIndex >= 0 && newIndex < segments.length - 1) {
+      this.id = +segments[segments.length - 1].path;
+    }
+    this.actions.retrieveRecord(this.temporary, this.template, this.id);
+    if (!this.dataSubscription) {
+      this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+    }    
   }
 
   ngOnDestroy() {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
