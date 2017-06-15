@@ -205,7 +205,6 @@ export class CSearchFormVM {
 export const HITLIST_GRID_COLUMNS = [{
   dataField: 'name',
   dataType: 'String',
-  cellTemplate: 'saveCellTemplate',
   formItem: { colSpan: 2 }
 }, {
   dataField: 'description',
@@ -229,16 +228,15 @@ export const HITLIST_GRID_COLUMNS = [{
   allowEditing: false,
   formItem: { visible: false }
 }, {
-  dataField: 'hitlistType',
   caption: 'Queries',
-  lookup: { dataSource: [{ id: 'TEMP', name: 'Recent' }, { id: 'SAVED', name: 'Saved' }], valueExpr: 'id', displayExpr: 'name' },
   groupIndex: 0,
   allowEditing: false,
-  formItem: { visible: false }
+  formItem: { visible: false },
+  calculateCellValue: function(d) { return d.hitlistType === 'TEMP' ? 'Recent' : 'Saved'; }
 },
 {
   caption: 'Commands',
-  cellTemplate: 'restoreCellTemplate',
+  cellTemplate: 'commandCellTemplate',
   width: '200px',
   allowEditing: false,
   formItem: { visible: false }

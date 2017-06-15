@@ -91,11 +91,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         if (structureCriteria != null)
                         {
                             var query = structureCriteria.Query4000;
-                            if (!string.IsNullOrEmpty(query) && query.StartsWith("<"))
+                            if (!string.IsNullOrEmpty(query))
                             {
-                                var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
-                                if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
-                                structureCriteria.Structure = cdxData;
+                                if (query.StartsWith("<"))
+                                {
+                                    var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
+                                    if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
+                                    structureCriteria.Structure = cdxData;
+                                }
+                                else if (query.StartsWith("VmpD"))
+                                {
+                                    var cdxmlData = ChemistryHelper.ConvertToCdxmlAndName(query, ref structureName, true);
+                                    if (string.IsNullOrEmpty(cdxmlData)) itemToDelete = item;
+                                }
                             }
                         }
                     }
