@@ -248,7 +248,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             hitlistBO.SearchCriteriaType = searchCriteriaBO.SearchCriteriaType;
                         }
                     }
-                    hitlistBO = saveHitlist ? hitlistBO.Save() : hitlistBO.Update();
+                    if (saveHitlist)
+                    {
+                        var idToDelete = hitlistBO.ID;
+                        hitlistBO = hitlistBO.Save();
+                        COEHitListBO.Delete(HitListType.TEMP, idToDelete);
+                    }
+                    else
+                    {
+                        hitlistBO = hitlistBO.Update();
+                    }
                 }
                 return new ResponseData(id: hitlistBO.ID);
             });
