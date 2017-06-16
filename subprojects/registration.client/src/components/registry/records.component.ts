@@ -8,7 +8,6 @@ import {
   ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -23,6 +22,7 @@ import { CRecords } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import 'rxjs/add/operator/toPromise';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -60,7 +60,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private http: Http,
+    private http: HttpService,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,

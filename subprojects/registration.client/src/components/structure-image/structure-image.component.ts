@@ -5,9 +5,9 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { apiUrlPrefix } from '../../configuration';
+import { HttpService } from '../../services';
 
 @Component({
   selector: 'reg-structure-image',
@@ -29,7 +29,7 @@ export class RegStructureImage {
   private srcUrl$: Observable<string>;
   private modDate: string;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpService) { }
 
   ngOnInit() {
     if (this.src && this.src.indexOf('/') > 0) {

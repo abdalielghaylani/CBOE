@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, URLSearchParams, Headers, RequestOptions } from '@angular/http';
+import { URLSearchParams, Headers, RequestOptions } from '@angular/http';
 import { UPDATE_LOCATION } from '@angular-redux/router';
 import { NgRedux } from '@angular-redux/store';
 import { Action, MiddlewareAPI } from 'redux';
@@ -16,10 +16,11 @@ import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
 import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IAppState } from '../store';
 import { IResponseData, IRecordSaveData } from '../components';
+import { HttpService } from '../services';
 
 @Injectable()
 export class RegistryEpics {
-  constructor(private http: Http, private ngRedux: NgRedux<IAppState>) { }
+  constructor(private http: HttpService) { }
 
   handleRegistryActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
     return combineEpics(
@@ -41,9 +42,7 @@ export class RegistryEpics {
         url += params;
         return this.http.get(url)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+            return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
           })
           .catch(error => Observable.of(RegistryActions.openRecordsErrorAction(error)));
       });
@@ -60,13 +59,11 @@ export class RegistryEpics {
         }
         return this.http.get(url)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : RecordDetailActions.retrieveRecordSuccessAction({
-                temporary: payload.temporary,
-                id: payload.id,
-                data: result.json().data
-              } as IRecordDetail);
+            return RecordDetailActions.retrieveRecordSuccessAction({
+              temporary: payload.temporary,
+              id: payload.id,
+              data: result.json().data
+            } as IRecordDetail);
           })
           .catch(error => Observable.of(RecordDetailActions.retrieveRecordErrorAction(error)));
       });
@@ -85,20 +82,16 @@ export class RegistryEpics {
           ? this.http.post(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records`, { data }, options)
           : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, { data }, options))
           .map(result => {
-            if (result.url.indexOf('index.html') > 0) {
-              return SessionActions.logoutUserAction();
-            } else {
-              let responseData = result.json() as IResponseData;
-              let actionType = payload.saveToPermanent ? 'registered' : 'saved';
-              let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
-              newId = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
-              let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
-                + `${createRecordAction ? newId : ''} successfully!`;
-              notifySuccess(message, 5000);
-              return createRecordAction
-                ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
-                : createAction(RegActions.IGNORE_ACTION)();
-            }
+            let responseData = result.json() as IResponseData;
+            let actionType = payload.saveToPermanent ? 'registered' : 'saved';
+            let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
+            newId = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
+            let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
+              + `${createRecordAction ? newId : ''} successfully!`;
+            notifySuccess(message, 5000);
+            return createRecordAction
+              ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
+              : createAction(RegActions.IGNORE_ACTION)();
           })
           .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
       });
@@ -114,9 +107,7 @@ export class RegistryEpics {
         let data: string = payload;
         return this.http.post(url, { data }, options)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : RecordDetailActions.loadStructureSuccessAction(result.json());
+            return RecordDetailActions.loadStructureSuccessAction(result.json());
           })
           .catch(error => Observable.of(RecordDetailActions.loadStructureErrorAction(error)));
       });

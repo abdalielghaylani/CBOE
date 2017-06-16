@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
-import { Http } from '@angular/http';
 import { UPDATE_LOCATION } from '@angular-redux/router';
 import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions, IGridPullAction } from '../actions';
 import { Action, MiddlewareAPI } from 'redux';
@@ -14,10 +12,11 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
+import { HttpService } from '../services';
 
 @Injectable()
 export class RegistrySearchEpics {
-  constructor(private http: Http, private ngRedux: NgRedux<IAppState>) { }
+  constructor(private http: HttpService) { }
 
   handleRegistrySearchActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
     return combineEpics(
@@ -34,9 +33,7 @@ export class RegistrySearchEpics {
       .mergeMap(() => {
         return this.http.get(`${apiUrlPrefix}hitlists`)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : RegistrySearchActions.openHitlistsSuccessAction(result.json());
+            return RegistrySearchActions.openHitlistsSuccessAction(result.json());
           })
           .catch(error => Observable.of(RegistrySearchActions.openHitlistsErrorAction(error)));
       });
@@ -47,12 +44,8 @@ export class RegistrySearchEpics {
       .mergeMap(({ payload }) => {
         return this.http.delete(`${apiUrlPrefix}hitlists/${payload.id}`)
           .map(result => {
-            if (result.url.indexOf('index.html') > 0) {
-              SessionActions.logoutUserAction();
-            } else {
-              notifySuccess('The selected hitlist was deleted successfully!', 5000);
-              return RegistrySearchActions.openHitlistsAction();
-            }
+            notifySuccess('The selected hitlist was deleted successfully!', 5000);
+            return RegistrySearchActions.openHitlistsAction();
           })
           .catch(error => Observable.of(RegistrySearchActions.deleteHitlistErrorAction(error)));
       });
@@ -76,17 +69,13 @@ export class RegistrySearchEpics {
         if (payload.type === 'Retrieve' || payload.type === 'Refresh') {
           return this.http.get(`${apiUrlPrefix}hitlists/${payload.id}/records${payload.type === 'Refresh' ? '?refresh=true' : ''}`)
             .map(result => {
-              return result.url.indexOf('index.html') > 0
-                ? SessionActions.logoutUserAction()
-                : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+              return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         } else if (payload.type === 'Advanced') {
           return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.id1}/${payload.data.op}/${payload.data.id2}/records`)
             .map(result => {
-              return result.url.indexOf('index.html') > 0
-                ? SessionActions.logoutUserAction()
-                : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+              return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         }
@@ -98,9 +87,7 @@ export class RegistrySearchEpics {
       .mergeMap(({ payload }) => {
         return this.http.post(`${apiUrlPrefix}search/records`, payload)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+            return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
           })
           .catch(error => Observable.of(RegistrySearchActions.searchRecordsErrorAction(error)));
       });

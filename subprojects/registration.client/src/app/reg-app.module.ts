@@ -19,6 +19,9 @@ import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
+import { HttpService } from '../services';
+import { IAppState } from '../store';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -85,5 +88,12 @@ import {
   ]
     .concat(ACTION_PROVIDERS)
     .concat(EPIC_PROVIDERS)
+    .concat([{
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions, redux: NgRedux<IAppState>) => {
+        return new HttpService(backend, options, redux);
+      },
+      deps: [XHRBackend, RequestOptions, NgRedux]
+    }])
 })
 export class RegAppModule { }

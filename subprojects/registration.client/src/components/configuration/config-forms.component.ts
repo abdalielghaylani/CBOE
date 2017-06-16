@@ -2,7 +2,6 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -14,6 +13,7 @@ import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration } from '../../store';
 import { CConfigForms } from './config.types';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -34,7 +34,7 @@ export class RegConfigForms implements OnInit, OnDestroy {
   private configForms: CConfigForms;
 
   constructor(
-    private http: Http,
+    private http: HttpService,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef

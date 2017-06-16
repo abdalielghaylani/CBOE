@@ -2,7 +2,6 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgRedux, select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -12,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration, IAppState } from '../../store';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -64,7 +64,7 @@ export class RegTemplates implements OnInit, OnDestroy {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private router: Router,
-    private http: Http,
+    private http: HttpService,
     private changeDetector: ChangeDetectorRef,
     private elementRef: ElementRef
   ) { }

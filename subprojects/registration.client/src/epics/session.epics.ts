@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UPDATE_LOCATION } from '@angular-redux/router';
-import { Http } from '@angular/http';
 import { createAction } from 'redux-actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -10,10 +9,11 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import { IPayloadAction, SessionActions, RegActions } from '../actions';
 import { apiUrlPrefix } from '../configuration';
+import { HttpService } from '../services';
 
 @Injectable()
 export class SessionEpics {
-  constructor(private http: Http, private router: Router) { }
+  constructor(private http: HttpService, private router: Router) { }
 
   handleLoginUser = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
@@ -30,9 +30,7 @@ export class SessionEpics {
         this.router.navigate(['records/temp']);
         return this.http.get(`${apiUrlPrefix}ViewConfig/Lookups`)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : SessionActions.loadLookupsSuccessAction(result.json());
+            return SessionActions.loadLookupsSuccessAction(result.json());
           })
           .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
       });
