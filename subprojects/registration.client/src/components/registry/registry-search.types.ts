@@ -204,14 +204,15 @@ export class CSearchFormVM {
 
 export const HITLIST_GRID_COLUMNS = [{
   dataField: 'name',
-  dataType: 'String',
+  dataType: 'string',
   formItem: { colSpan: 2 }
 }, {
   dataField: 'description',
-  dataType: 'String',
+  dataType: 'string',
   formItem: { colSpan: 2 }
 }, {
   dataField: 'isPublic',
+  dataType: 'boolean',
   width: '60px'
 }, {
   caption: '# Hits',
