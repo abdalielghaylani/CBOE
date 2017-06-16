@@ -985,7 +985,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
                         data.Type,
-                        string.IsNullOrEmpty(data.Precision) ? string.Empty : data.Precision,
+                        string.IsNullOrEmpty(data.Precision) ? "1" : data.Precision,
                         true,
                         string.IsNullOrEmpty(data.SubType) ? string.Empty : data.SubType,
                         data.PickListDomainId);

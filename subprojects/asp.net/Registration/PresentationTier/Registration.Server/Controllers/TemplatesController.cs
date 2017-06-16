@@ -210,21 +210,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpDelete]
-        [Route(Consts.apiPrefix + "templates/{username}/{id}")]
+        [Route(Consts.apiPrefix + "templates/{id}")]
         [SwaggerOperation("DeleteTemplate")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> DeleteTemplate(string username, int id)
+        public async Task<IHttpActionResult> DeleteTemplate(int id)
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(username))
-                    throw new RegistrationException("Invalid user name.");
-
-                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(username, 2, true);
+                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(CurrentUserName, 2, true);
                 COEGenericObjectStorageBO selected = null;
                 foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
                 {
