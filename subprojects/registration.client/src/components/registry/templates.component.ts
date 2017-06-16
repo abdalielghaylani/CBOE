@@ -4,14 +4,14 @@ import {
 } from '@angular/core';
 import { Http } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
-import { select } from '@angular-redux/store';
+import { NgRedux, select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { ICustomTableData, IConfiguration, IAppState } from '../../store';
 
 declare var jQuery: any;
 
@@ -31,9 +31,8 @@ export class RegTemplates implements OnInit, OnDestroy {
   private gridHeight: string;
   private dataSource: CustomStore;
   private columns = [{
-    dataField: 'username',
     dataType: 'string',
-    caption: 'User',
+    caption: 'Type',
     groupIndex: 0,
     allowEditing: false
   }, {
@@ -63,6 +62,7 @@ export class RegTemplates implements OnInit, OnDestroy {
   }];
 
   constructor(
+    private ngRedux: NgRedux<IAppState>,
     private router: Router,
     private http: Http,
     private changeDetector: ChangeDetectorRef,
@@ -71,6 +71,9 @@ export class RegTemplates implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+    let userName = this.ngRedux.getState().session.user.fullName.toUpperCase();
+    let calculateCellValue = 'calculateCellValue';
+    this.columns[0][calculateCellValue] = function (d) { return d.username.toUpperCase() === userName ? 'My Templates' : 'Shared Templates'; };
   }
 
   ngOnDestroy() {
@@ -160,6 +163,7 @@ export class RegTemplates implements OnInit, OnDestroy {
   }
 
   private loadTemplate(templateId) {
+    this.onClose.emit();
     this.router.navigate([`records/new/${templateId}`]);
   }
 };

@@ -29,9 +29,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private static COEHitListBO GetHitlistBO(int id)
         {
             var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-            if (hitlistBO == null)
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
                 hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
-            if (hitlistBO == null)
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
                 throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
             return hitlistBO;
         }
@@ -91,11 +91,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         if (structureCriteria != null)
                         {
                             var query = structureCriteria.Query4000;
-                            if (!string.IsNullOrEmpty(query) && query.StartsWith("<"))
+                            if (!string.IsNullOrEmpty(query))
                             {
-                                var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
-                                if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
-                                structureCriteria.Structure = cdxData;
+                                if (query.StartsWith("<"))
+                                {
+                                    var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
+                                    if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
+                                    structureCriteria.Structure = cdxData;
+                                }
+                                else if (query.StartsWith("VmpD"))
+                                {
+                                    var cdxmlData = ChemistryHelper.ConvertToCdxmlAndName(query, ref structureName, true);
+                                    if (string.IsNullOrEmpty(cdxmlData)) itemToDelete = item;
+                                }
                             }
                         }
                     }
@@ -240,7 +248,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             hitlistBO.SearchCriteriaType = searchCriteriaBO.SearchCriteriaType;
                         }
                     }
-                    hitlistBO = saveHitlist ? hitlistBO.Save() : hitlistBO.Update();
+                    if (saveHitlist)
+                    {
+                        var idToDelete = hitlistBO.ID;
+                        hitlistBO = hitlistBO.Save();
+                        COEHitListBO.Delete(HitListType.TEMP, idToDelete);
+                    }
+                    else
+                    {
+                        hitlistBO = hitlistBO.Update();
+                    }
                 }
                 return new ResponseData(id: hitlistBO.ID);
             });
