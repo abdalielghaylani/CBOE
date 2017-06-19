@@ -994,32 +994,32 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     switch (configurationBO.SelectedPropertyList)
                     {
                         case ConfigurationRegistryRecord.PropertyListType.PropertyList:
-                            if (data.FriendlyName == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Compound:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Batch:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
 
                         case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Structure:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
