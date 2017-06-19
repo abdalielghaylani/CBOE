@@ -36,7 +36,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitlistBO;
         }
 
-        private static QueryData GetHitlistQueryInternal(int id)
+        private static QueryData GetHitlistQueryInternal(int id, bool? temp)
         {
             var hitlistBO = GetHitlistBO(id);
             if (hitlistBO.SearchCriteriaID == 0)
@@ -45,7 +45,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (searchCriteriaBO.SearchCriteria == null)
                 throw new RegistrationException("No search criteria is associated with this hit-list");
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+            var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+            configRegRecord.COEFormHelper.Load(formGroupType);
             var formGroup = configRegRecord.FormGroup;
             return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteriaBO.SearchCriteria.ToString());
         }
@@ -133,6 +134,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// Returns all hit-lists.
         /// </summary>
         /// <response code="200">Successful</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>A list of hit-list objects</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists")]
@@ -141,13 +143,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetHitlists()
+        public async Task<IHttpActionResult> GetHitlists(bool? temp = null)
         {
             return await CallMethod(() =>
             {
                 var result = new List<HitlistData>();
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+                configRegRecord.COEFormHelper.Load(formGroupType);
                 var formGroup = configRegRecord.FormGroup;
                 var tempHitLists = COEHitListBOList.GetRecentHitLists(databaseName, COEUser.Name, formGroup.Id, 10);
                 foreach (var h in tempHitLists)
@@ -270,6 +273,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Bad Request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Internal Server Error</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>A <see cref="ResponseData" /> object containing the ID of the created hit-list/></returns>
         [HttpPost]
         [Route(Consts.apiPrefix + "hitlists")]
@@ -278,14 +282,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CreateHitlist()
+        public async Task<IHttpActionResult> CreateHitlist(bool? temp = null)
         {
             return await CallMethod(() =>
             {
                 var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
                 CambridgeSoft.COE.Framework.COEHitListService.DAL objDAL = null;
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+                configRegRecord.COEFormHelper.Load(formGroupType);
                 var formGroup = configRegRecord.FormGroup;
                 var genericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
                 string name = hitlistData["Name"].ToString();
@@ -313,6 +318,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
         /// <param name="id">The hit-list ID</param>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <param name="refresh">The flag to refresh the query results by re-running the search query</param>
         /// <param name="skip">The number of items to skip</param>
         /// <param name="count">The maximum number of items to return</param>
@@ -325,13 +331,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetHitlistRecords(int id, bool? refresh = null, int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> GetHitlistRecords(int id, bool? temp = null, bool? refresh = null, int? skip = null, int? count = null, string sort = null)
         {
             return await CallMethod(() =>
             {
                 if (refresh != null && refresh.Value)
                 {
-                    var queryData = GetHitlistQueryInternal(id);
+                    var queryData = GetHitlistQueryInternal(id, temp);
                     return SearchRecordsInternal(queryData, skip, count, sort);
                 }
                 return GetHitlistRecordsInternal(id, skip, count, sort);
@@ -347,6 +353,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
         /// <param name="id">The hit-list ID</param>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The object containing the search criteria as XML string</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}/query")]
@@ -355,11 +362,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetHitlistQuery(int id)
+        public async Task<IHttpActionResult> GetHitlistQuery(int id, bool? temp = null)
         {
             return await CallMethod(() =>
             {
-                return GetHitlistQueryInternal(id);
+                return GetHitlistQueryInternal(id, temp);
             });
         }
 
@@ -373,6 +380,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="id1">The ID of the hit-list to use as the base</param>
         /// <param name="op">The name of operation to apply</param>
         /// <param name="id2">The ID of the hit-list to apply the operation</param>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <param name="skip">The number of records to skip</param>
         /// <param name="count">The maximum number of records to return</param>
         /// <param name="sort">The sorting information</param>
@@ -384,13 +392,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetAdvHitlistRecords(int id1, string op, int id2, int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> GetAdvHitlistRecords(int id1, string op, int id2, bool? temp = null, int? skip = null, int? count = null, string sort = null)
         {
             return await CallMethod(() =>
             {
                 JObject data = new JObject();
                 var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+                configRegRecord.COEFormHelper.Load(formGroupType);
                 var formGroup = configRegRecord.FormGroup;
                 int dataViewId = formGroup.Id;
                 var hitlistBO1 = GetHitlistBO(id1);
@@ -434,16 +443,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Bad Request</response>
         /// <response code="404">Not Found</response>
         /// <response code="500">Internal Server Error</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The count of marked hits</returns>
         [HttpPost]
         [Route(Consts.apiPrefix + "markedhits")]
         [SwaggerOperation("MarkedHitsSave")]
-        public int MarkedHitsSave()
+        public int MarkedHitsSave(bool? temp = null)
         {
             CheckAuthentication();
             var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            configRegRecord.COEFormHelper.Load(COEFormHelper.COEFormGroups.SearchPermanent);
+            var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+            configRegRecord.COEFormHelper.Load(formGroupType);
             var formGroup = configRegRecord.FormGroup;
             var genericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
             var hitlistBO = genericBO.MarkedHitList;
