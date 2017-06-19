@@ -22,6 +22,8 @@ namespace PerkinElmer.COE.Registration.Server
             // Use camel case for JSON data.
             // config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
+            log4net.Config.XmlConfigurator.Configure();
+
             // Web API routes
             var constraintResolver = new DefaultInlineConstraintResolver();
             constraintResolver.ConstraintMap.Add("apiVersion", typeof(ApiVersionRouteConstraint));
