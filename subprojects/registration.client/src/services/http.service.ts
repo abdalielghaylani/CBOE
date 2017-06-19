@@ -41,7 +41,7 @@ export class HttpService extends Http {
   }
 
   private checkRedirect(self: HttpService, res: Response) {
-      if (res.url.indexOf('index.html') > 0) {
+      if (res.url && res.url.indexOf('index.html') > 0) {
         self.ngRedux.dispatch(SessionActions.logoutUserAction());
         throw res;
       }
@@ -56,14 +56,16 @@ export class HttpService extends Http {
 
   private catchAuthError(self: HttpService) {
     // we have to pass HttpService's own instance here as `self`
-    return (res: Response) => {
+    return (err: Response, caught) => {
       // console.log(res);
-      this.checkRedirect(self, res);
-      if (res.status === 401 || res.status === 403) {
-        // if not authenticated
-        // console.log(res);
+      this.checkRedirect(self, err);
+      if (self.tokenPath) {
+        if (err.status === 401 || err.status === 403) {
+          // if not authenticated
+          // console.log(res);
+        }
       }
-      return Observable.of(res);
+      return caught;
     };
   }
 }

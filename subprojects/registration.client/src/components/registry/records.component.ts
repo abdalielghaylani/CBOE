@@ -117,7 +117,7 @@ export class RegRecords implements OnInit, OnDestroy {
     if (!this.recordsSubscription) {
       this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
     }
-    this.actions.openHitlists();
+    this.actions.openHitlists(this.temporary);
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
     if (this.hitlistSubscription) {
       this.hitlistSubscription = this.hitlistData$.subscribe(() => {
@@ -276,7 +276,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private manageQueries() {
-    this.actions.openHitlists();
+    this.actions.openHitlists(this.temporary);
     this.currentIndex = 1;
   }
 
