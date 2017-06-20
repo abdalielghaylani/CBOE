@@ -1,15 +1,13 @@
-﻿using log4net;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Web;
+using System.Text;
+using log4net;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
     /// <summary>
-    /// Reg server log class
+    /// Registration server loggomg utility class
     /// </summary>
     public static class Logger
     {
@@ -27,6 +25,32 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     method.Name;
                 return string.Format("{0}.{1}.{2}", moduleName, className, methodName);
             }
+        }
+
+        public static string FlattenException(Exception exception)
+        {
+            var stringBuilder = new StringBuilder();
+
+            while (exception != null)
+            {
+                stringBuilder.AppendLine(exception.Message);
+                stringBuilder.AppendLine(exception.StackTrace);
+
+                exception = exception.InnerException;
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        /// <summary>
+        /// log error
+        /// </summary>
+        /// <param name="exception">error</param>
+        /// <param name="callerMethodName">the name of the method of the caller</param>
+        public static void Error(Exception exception, string callerMethodName = null)
+        {
+            if (callerMethodName == null) callerMethodName = CallerMethodName;
+            LogManager.GetLogger("RegServer").Error(callerMethodName + " - " + FlattenException(exception));
         }
 
         /// <summary>
