@@ -10,6 +10,7 @@ using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using PerkinElmer.COE.Registration.Server.Code;
 using Resources;
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace PerkinElmer.COE.Registration.Server
 {
@@ -25,6 +26,8 @@ namespace PerkinElmer.COE.Registration.Server
             HttpContext.Current.Application[RegistrationWebApp.Constants.AppName] = GUIShellUtilities.GetApplicationName();
             HttpContext.Current.Application[RegistrationWebApp.Constants.AppPagesTitle] = GUIShellUtilities.GetDefaultPagesTitle();
             HttpContext.Current.Application.UnLock();
+            // Initialize log4net.
+            log4net.Config.XmlConfigurator.Configure();
         }
 
         private void AppDomainUnloading(object s, EventArgs e)

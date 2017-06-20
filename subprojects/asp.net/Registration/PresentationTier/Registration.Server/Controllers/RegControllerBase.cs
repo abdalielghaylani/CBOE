@@ -188,6 +188,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             catch (Exception ex)
             {
                 responseMessage = CreateErrorResponse(ex);
+                Logger.Error(ex);
             }
 
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
@@ -206,6 +207,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex);
                 responseMessage = CreateErrorResponse(ex);
             }
 
