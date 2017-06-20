@@ -133,22 +133,16 @@ export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = [{
   dataType: 'string',
   editorType: 'dxTextBox',
   disabled: true,
-}, {
-  dataField: 'type',
-  label: { text: 'Type' },
-  dataType: 'string',
-  editorType: 'dxTextBox',
-  disabled: true,
 }];
 export const PROPERTIES_VALIDATION_GRID_COLUMNS = [{
-  dataField: 'name'
+  dataField: 'name', width: 100
 },
-{ dataField: 'min' },
-{ dataField: 'max' },
-{ dataField: 'maxLength' },
+{ dataField: 'min', width: 80 },
+{ dataField: 'max', width: 80 },
+{ dataField: 'maxLength', width: 80 },
 { dataField: 'error' },
-{ dataField: 'defaultValue' },
-{ dataField: 'parameters' }];
+{ dataField: 'defaultValue', width: 80 },
+{ dataField: 'parameters', cellTemplate: 'parameterTemplate' }];
 export const CONFIG_PROPERTIES_COLUMNS = [
   {
     dataField: 'groupLabel',

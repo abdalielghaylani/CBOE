@@ -8,4 +8,5 @@ import { NgReduxRouter } from '@angular-redux/router';
 export class RegSettingsPageHeader {
   @Input() testid: string;
   @Input() id: string;
+  @Input() isMenu: boolean = true;
 };
