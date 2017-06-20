@@ -33,7 +33,6 @@ export interface IHitlistInfo {
 
 export interface IHitlistRetrieveInfo {
   type: string;
-  temporary: boolean;
   id: number;
   refresh?: boolean;
   data?: { id1: number, id2: number, op: string };

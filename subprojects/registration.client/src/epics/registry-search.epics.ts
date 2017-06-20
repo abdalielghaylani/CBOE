@@ -28,10 +28,10 @@ export class RegistrySearchEpics {
     )(action$, store);
   }
 
-  private handleOpenHitlists: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
+  private handleOpenHitlists: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.OPEN_HITLISTS)
-      .mergeMap(() => {
-        return this.http.get(`${apiUrlPrefix}hitlists`)
+      .mergeMap(({ payload }) => {
+        return this.http.get(`${apiUrlPrefix}hitlists${ payload.temporary ? '?temp=true' : ''}`)
           .map(result => {
             return RegistrySearchActions.openHitlistsSuccessAction(result.json());
           })
@@ -39,41 +39,41 @@ export class RegistrySearchEpics {
       });
   }
 
-  private handleDeleteHitlist: Epic = (action$: Observable<ReduxActions.Action<{ id: number }>>) => {
+  private handleDeleteHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.DELETE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.delete(`${apiUrlPrefix}hitlists/${payload.id}`)
+        return this.http.delete(`${apiUrlPrefix}hitlists/${payload.id}${ payload.temporary ? '?temp=true' : ''}`)
           .map(result => {
             notifySuccess('The selected hitlist was deleted successfully!', 5000);
-            return RegistrySearchActions.openHitlistsAction();
+            return RegistrySearchActions.openHitlistsAction(payload.temporary);
           })
           .catch(error => Observable.of(RegistrySearchActions.deleteHitlistErrorAction(error)));
       });
   }
 
-  handleUpdateHitlist = (action$: Observable<ReduxActions.Action<IHitlistData>>) => {
+  private handleUpdateHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: IHitlistData }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.UPDATE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.put(`${apiUrlPrefix}hitlists/${payload.hitlistId}`, payload)
+        return this.http.put(`${apiUrlPrefix}hitlists/${payload.data.hitlistId}${ payload.temporary ? '?temp=true' : ''}`, payload.data)
           .map(result => {
             notifySuccess('The selected hitlist was updated successfully!', 5000);
-            return RegistrySearchActions.openHitlistsAction();
+            return RegistrySearchActions.openHitlistsAction(payload.temporary);
           })
           .catch(error => Observable.of(RegistrySearchActions.updateHitlistErrorAction()));
       });
   }
 
-  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<IHitlistRetrieveInfo>>) => {
+  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: IHitlistRetrieveInfo }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.RETRIEVE_HITLIST)
       .mergeMap(({ payload }) => {
-        if (payload.type === 'Retrieve' || payload.type === 'Refresh') {
-          return this.http.get(`${apiUrlPrefix}hitlists/${payload.id}/records${payload.type === 'Refresh' ? '?refresh=true' : ''}`)
+        if (payload.data.type === 'Retrieve' || payload.data.type === 'Refresh') {
+          return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.id}/records${payload.data.type === 'Refresh' ? '?refresh=true' : ''}`)
             .map(result => {
               return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
-        } else if (payload.type === 'Advanced') {
-          return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.id1}/${payload.data.op}/${payload.data.id2}/records`)
+        } else if (payload.data.type === 'Advanced') {
+          return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.data.id1}/${payload.data.data.op}/${payload.data.data.id2}/records`)
             .map(result => {
               return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
             })

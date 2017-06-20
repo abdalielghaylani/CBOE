@@ -1,6 +1,6 @@
 import { fakeAsync, inject, TestBed, } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
-import { HttpModule, XHRBackend, ResponseOptions, Response } from '@angular/http';
+import { HttpModule, XHRBackend, RequestOptions, ResponseOptions, Response } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing/mock_backend';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
@@ -10,6 +10,8 @@ import { NgReduxRouter } from '@angular-redux/router';
 import { RegistryActions } from '../actions';
 import { RegistryEpics } from './registry.epics';
 import { configureTests } from '../tests.configure';
+import { HttpService } from '../services';
+import { IAppState } from '../store';
 
 describe('configuration.epics', () => {
   beforeEach(done => {
@@ -19,6 +21,13 @@ describe('configuration.epics', () => {
         providers: [
           NgReduxRouter,
           { provide: XHRBackend, useClass: MockBackend },
+          {
+            provide: HttpService,
+            useFactory: (backend: XHRBackend, options: RequestOptions, redux: NgRedux<IAppState>) => {
+              return new HttpService(backend, options, redux);
+            },
+            deps: [XHRBackend, RequestOptions, NgRedux]
+          },
           RegistryEpics
         ]
       });

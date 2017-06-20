@@ -58,7 +58,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
-    this.actions.deleteHitlist(e.data.id);
+    this.actions.deleteHitlist(this.temporary, e.data.id);
     this.loadData();
   }
 
@@ -87,7 +87,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   onRowUpdating(e) {
     let oldData = <IHitlistData>e.oldData;
     let newData = <IHitlistData>e.newData;
-    this.actions.updateHitlist({
+    this.actions.updateHitlist(this.temporary, {
       name: newData.name ? newData.name : oldData.name,
       description: newData.description ? newData.description : oldData.description,
       isPublic: newData.isPublic ? newData.isPublic : oldData.isPublic,
@@ -97,7 +97,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   moveToSaveHitlist(e: IHitlistData) {
-    this.actions.updateHitlist({
+    this.actions.updateHitlist(this.temporary, {
       name: e.name,
       description: e.description,
       isPublic: e.isPublic,
@@ -126,10 +126,9 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   advancedRestorePopup(e: IHitlistData) {
-    this.actions.retrieveHitlist({
+    this.actions.retrieveHitlist(this.temporary, {
       type: 'Advanced',
       id: e.id,
-      temporary: this.temporary,
       data: {
         id1: this.hitlistId,
         id2: this.selectedHitlist.id,
@@ -142,13 +141,13 @@ export class RegQueryManagement implements OnInit, OnDestroy {
 
   restoreSelectedHitlist(e: IHitlistData) {
     if (this.hitlistId !== e.id) {
-      this.actions.retrieveHitlist({ type: 'Retrieve', temporary: this.temporary, id: e.id });
+      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: e.id });
       this.onClose.emit(e);
     }
   }
 
   refreshSelectedHitlist(e: IHitlistData) {
-    this.actions.retrieveHitlist({ type: 'Refresh', temporary: this.temporary, id: e.id });
+    this.actions.retrieveHitlist(this.temporary, { type: 'Refresh', id: e.id });
     this.onClose.emit(e);
   }
 
