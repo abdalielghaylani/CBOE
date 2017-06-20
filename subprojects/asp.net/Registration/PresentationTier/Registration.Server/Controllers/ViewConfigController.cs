@@ -10,6 +10,7 @@ using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.Common;
 using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Framework.COESecurityService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -42,9 +43,32 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("customTables", GetCustomTables()),
                     new JProperty("systemSettings", GetSystemSettings()),
                     new JProperty("addinAssemblies", GetAddinAssemblies()),
-                    new JProperty("propertyGroups", GetPropertyGroups())
+                    new JProperty("propertyGroups", GetPropertyGroups()),
+                    new JProperty("homeMenuPrivileges", GetHomeMenuPrivileges())
                 );
             });
+        }
+
+        private JArray GetHomeMenuPrivileges()
+        {
+            var homeMenuPrivilages = new JArray();
+            COEHomeSettings homeData = CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetHomeData();
+            COEIdentity coeIdentity = UserIdentity;
+            string coeIdentifier = "Registration";
+
+            Group group = homeData.Groups.First<Group>(item => item.Name.Equals(coeIdentifier, StringComparison.OrdinalIgnoreCase));
+
+            foreach (LinkData linkData in group.LinksData)
+            {
+                bool hasPriv = coeIdentity.HasAppPrivilege(coeIdentifier.ToUpper(), linkData.PrivilegeRequired);
+
+                var jObject = new JObject(new JProperty("name", linkData.Name), new JProperty("label", linkData.DisplayText),
+                    new JProperty("privilegeName", linkData.PrivilegeRequired), new JProperty("visibility", hasPriv),
+                    new JProperty("toolTip", linkData.ToolTip));
+                homeMenuPrivilages.Add(jObject);
+            }
+
+            return homeMenuPrivilages;
         }
 
         private static JArray GetPropertyGroups()

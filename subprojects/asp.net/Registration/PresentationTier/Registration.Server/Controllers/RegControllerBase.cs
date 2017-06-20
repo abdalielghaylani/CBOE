@@ -4,19 +4,20 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using Csla.Data;
-using Newtonsoft.Json.Linq;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Registration.Services;
-using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
+using Csla.Data;
+using Newtonsoft.Json.Linq;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -46,6 +47,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (regDal == null)
                     DalUtils.GetRegistrationDAL(ref regDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
                 return regDal;
+            }
+        }
+
+        protected COEIdentity UserIdentity
+        {
+            get
+            {
+                var sessionToken = GetSessionToken();
+                var args = new object[] { sessionToken };
+                var identity = (COEIdentity)typeof(COEIdentity).GetMethod(
+                    "GetIdentity",
+                    BindingFlags.Static | BindingFlags.NonPublic,
+                    null,
+                    new System.Type[] { typeof(string) },
+                    null
+                ).Invoke(null, args);
+                return identity;
             }
         }
 
