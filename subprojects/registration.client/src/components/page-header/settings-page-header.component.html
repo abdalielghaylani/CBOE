@@ -1,4 +1,4 @@
-<div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+<div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px" *ngIf='isMenu'>
   <button type="button" class="btn btn-default border-2 status background-blue border-blue">
     <i class="fa-undo white" aria-hidden="true"></i>
   </button>
@@ -16,7 +16,7 @@
     <li><a [routerLink]="['/configuration/settings']" class="coolgray text-relaxed margin-none"><i class="fa fa-wrench fa-lg #A4AEB5"></i> System Settings</a></li>
   </ul>
 </div>
-<div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+<div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px" *ngIf='isMenu'>
   <button type="button" class="btn btn-default border-2 status background-blue border-blue">
     <i class="fa-undo white" aria-hidden="true"></i>
   </button>
@@ -42,4 +42,6 @@
     <li><a [routerLink]="['/configuration/VW_SITES']" class="coolgray text-relaxed margin-none"><i class="fa fa-sitemap fa-lg #A4AEB5"></i> Sites</a></li>
   </ul>
 </div>
-<reg-page-header><ng-content></ng-content></reg-page-header>
+<reg-page-header [attr.isMenu]="isMenu">
+  <ng-content></ng-content>
+</reg-page-header>
