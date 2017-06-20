@@ -65,7 +65,7 @@ export class HttpService extends Http {
           // console.log(res);
         }
       }
-      return caught;
+      throw err;
     };
   }
 }

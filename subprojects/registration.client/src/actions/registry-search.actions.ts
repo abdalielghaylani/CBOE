@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IAppState, IHitlistData, IHitlistRetrieveInfo } from '../store';
+import { IAppState, IHitlistData, IHitlistRetrieveInfo, IQueryData } from '../store';
 
 @Injectable()
 export class RegistrySearchActions {
@@ -34,7 +34,7 @@ export class RegistrySearchActions {
     (temporary: boolean, id: number) => ({ temporary, id }));
   static deleteHitlistErrorAction = createAction(RegistrySearchActions.DELETE_HITLIST_ERROR);
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
-    (temporary: boolean, searchCriteria: string) => ({ temporary, searchCriteria }));
+    (queryData: IQueryData) => (queryData));
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
@@ -49,8 +49,8 @@ export class RegistrySearchActions {
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
-  searchRecords(temporary: boolean, searchCriteria: string) {
-    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsAction(temporary, searchCriteria));
+  searchRecords(queryData: IQueryData) {
+    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsAction(queryData));
   }
 
   searchRecordsSuccess(temporary: boolean, rows: any[]) {
