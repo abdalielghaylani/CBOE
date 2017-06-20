@@ -21,23 +21,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class TemplatesController : RegControllerBase
     {
-        private string CurrentUserName
-        {
-            get
-            {
-                var sessionToken = GetSessionToken();
-                var args = new object[] { sessionToken };
-                var identity = (COEIdentity)typeof(COEIdentity).GetMethod(
-                    "GetIdentity",
-                    BindingFlags.Static | BindingFlags.NonPublic,
-                    null,
-                    new System.Type[] { typeof(string) },
-                    null
-                ).Invoke(null, args);
-                return identity.Name;
-            }
-        }
-
         #region Templates
 
         [HttpGet]
@@ -51,7 +34,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var userName = CurrentUserName;
+                var userName = UserIdentity.Name;
                 var templateList = new List<TemplateData>();
                 var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(userName, 2, true);
                 foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
@@ -94,7 +77,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var userName = CurrentUserName;
+                var userName = UserIdentity.Name;
                 TemplateData template = null;
                 bool found = false;
                 var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(userName, 2, true);
@@ -221,7 +204,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(CurrentUserName, 2, true);
+                var compoundFormListForCurrentUser = COEGenericObjectStorageBOList.GetList(UserIdentity.Name, 2, true);
                 COEGenericObjectStorageBO selected = null;
                 foreach (COEGenericObjectStorageBO tempalateItem in compoundFormListForCurrentUser)
                 {
