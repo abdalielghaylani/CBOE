@@ -10,6 +10,7 @@ using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.GUIShell;
 using PerkinElmer.COE.Registration.Server.Code;
 using Resources;
+
 [assembly: log4net.Config.XmlConfigurator(Watch = true)]
 
 namespace PerkinElmer.COE.Registration.Server
