@@ -6,14 +6,14 @@
     <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
       aria-expanded="false">Templates <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><button type="button" class="btn">Save as Template</button></li>
+      <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>
       <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
     </ul>
   </div>
   <command-button *ngIf="id >= 0 &amp;&amp; !editMode" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
   <command-button *ngIf="editMode" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
-  <command-button *ngIf="id < 0 || editMode" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title="Save"></command-button>
-  <command-button *ngIf="(temporary &amp;&amp; !editMode) || id < 0" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
+  <command-button *ngIf="isNewRecord() || editMode" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title="Save"></command-button>
+  <command-button *ngIf="(temporary &amp;&amp; !editMode) || isNewRecord()" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
   <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
   </reg-page-header>
@@ -69,6 +69,17 @@
       </div>
     </form>
   </dx-scroll-view>
+  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true"
+    [(visible)]="saveTemplatePopupVisible">
+    <div *dxTemplate="let data of 'content'">
+      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems"
+        [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'></dx-form>
+      <div style="margin-top: 15px">
+        <button class="mr1 btn btn-primary" (click)="saveTemplate()">Save</button>
+        <button class="mr1 btn btn-primary" (click)="cancelSaveTemplate()">Cancel</button>
+      </div>
+    </div>
+  </dx-popup>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=1">
   <reg-templates (onClose)="showDetails($event)"></reg-templates>
