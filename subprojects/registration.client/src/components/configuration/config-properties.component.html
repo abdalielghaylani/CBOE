@@ -26,15 +26,22 @@
 </div>
 <div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
   <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
-  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
   <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formData" [items]="configProperties.formValidationColumns"></dx-form>
   <dx-data-grid [columns]="configProperties.validationGridColumns" [dataSource]="configProperties.formData.validationRules"
-    [height]="500" rowAlternationEnabled="true" (onCellPrepared)="onCellPrepared($event,'validation')">
+    [height]="500" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)' (onCellPrepared)="onCellPrepared($event,'validation')">
     <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
     <dxo-sorting mode="single"></dxo-sorting>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <div *dxTemplate="let data of 'parameterTemplate'">
+      <dx-list [items]="data.data.parameters" [height]="400">
+        <dxi-item *ngFor="let item of data.data.parameters">
+          <div>{{item.name}} = {{item.value}}</div>
+        </dxi-item>
+      </dx-list>
+    </div>
   </dx-data-grid>
 
 </div>
