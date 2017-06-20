@@ -1,7 +1,7 @@
 import { IAppState } from '../../store';
 import { apiUrlPrefix } from '../../configuration';
 import {
-  FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
+  IShareableObject, FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
   GroupSettingType, getSetting
 } from '../../common';
 import { IRecordsData, IRecords } from '../../store';
@@ -821,4 +821,22 @@ export interface IRecordSaveData {
   id: number;
   recordDoc: Document;
   saveToPermanent: boolean;
+}
+
+export interface ITemplateData extends IShareableObject {
+  id?: number;
+  dateCreated?: Date;
+  username?: string;
+  data?: string;
+}
+
+export class CTemplateData implements ITemplateData {
+  constructor(
+    public name: string = '',
+    public description?: string,
+    public isPublic?: boolean,
+    public id?: number,
+    dateCreated?:
+    Date, username?: string,
+    date?: string) { }
 }

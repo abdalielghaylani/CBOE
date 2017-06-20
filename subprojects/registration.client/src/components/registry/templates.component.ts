@@ -43,21 +43,25 @@ export class RegTemplates implements OnInit, OnDestroy {
   }, {
     dataField: 'name',
     dataType: 'string',
-    width: '100px',
     allowEditing: false,
     cellTemplate: 'loadCellTemplate'
   }, {
     dataField: 'dateCreated',
     dataType: 'date',
-    format: 'ShortDateShortTime'
+    format: 'ShortDateShortTime',
+    sortIndex: 0,
+    sortOrder: 'desc'
   }, {
     dataField: 'isPublic',
+    caption: 'Public?',
     dataType: 'boolean',
+    width: 60,
     allowEditing: false
   }, {
     dataField: 'data',
     dataType: 'string',
     allowEditing: false,
+    allowFiltering: false,
     cellTemplate: 'structureCellTemplate'
   }];
 
@@ -145,6 +149,28 @@ export class RegTemplates implements OnInit, OnDestroy {
           })
           .catch(error => {
             let message = `The submission templates were not retrieved properly due to a problem`;
+            let errorResult, reason;
+            if (error._body) {
+              errorResult = JSON.parse(error._body);
+              reason = errorResult.Message;
+            }
+            message += (reason) ? ': ' + reason : '!';
+            deferred.reject(message);
+          });
+        return deferred.promise();
+      },
+
+      remove: function (key) {
+        let deferred = jQuery.Deferred();
+        let id = key[Object.getOwnPropertyNames(key)[0]];
+        parent.http.delete(`${apiUrlBase}/${id}`)
+          .toPromise()
+          .then(result => {
+            notifySuccess(`The template ${id} was deleted successfully!`, 5000);
+            deferred.resolve(result.json());
+          })
+          .catch(error => {
+            let message = `The template ${id} was not deleted due to a problem`;
             let errorResult, reason;
             if (error._body) {
               errorResult = JSON.parse(error._body);

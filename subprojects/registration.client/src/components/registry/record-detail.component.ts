@@ -17,10 +17,11 @@ import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, notify } from '../../common';
-import { CRegistryRecord, CRegistryRecordVM, FragmentData } from './registry.types';
+import { CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
-import { basePath } from '../../configuration';
-import { FormGroupType, IFormContainer, getFormGroupData } from '../../common';
+import { basePath, apiUrlPrefix } from '../../configuration';
+import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifySuccess } from '../../common';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -77,6 +78,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     public ngRedux: NgRedux<IAppState>,
     private elementRef: ElementRef,
     private router: Router,
+    private http: HttpService,
     private actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute) {
@@ -302,7 +304,26 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private saveTemplate(e) {
     let result: any = this.saveTemplateForm.validate();
     if (result.isValid) {
-      // TODO: save the template data
+      this.updateRecord();
+      let url = `${apiUrlPrefix}templates`;
+      let data: ITemplateData = new CTemplateData(this.saveTemplateData.name);
+      data.description = this.saveTemplateData.description;
+      data.isPublic = this.saveTemplateData.isPublic;
+      data.data = registryUtils.serializeData(this.recordDoc);
+      this.http.post(url, data).toPromise()
+        .then(res => {
+          notifySuccess(`The submission data was saved as template ${res.json().id} successfully!`, 5000);
+        })
+        .catch(error => {
+          let message = `The submission data was not saved properly due to a problem`;
+          let errorResult, reason;
+          if (error._body) {
+            errorResult = JSON.parse(error._body);
+            reason = errorResult.Message;
+          }
+          message += (reason) ? ': ' + reason : '!';
+          notifyError(message, 5000);
+        });
       this.saveTemplatePopupVisible = false;
     }
   }

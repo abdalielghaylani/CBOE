@@ -185,7 +185,6 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-
   onResize(event: any) {
     this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
