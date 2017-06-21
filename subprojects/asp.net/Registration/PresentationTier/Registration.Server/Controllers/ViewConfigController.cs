@@ -120,7 +120,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return homeMenuPrivilages;
         }
 
-        private JArray GetSystemSettings()
+        private List<SettingData> GetSystemSettings()
         {
             // [{ name, group, ... }, ... ]
             var systemSettings = new List<SettingData>();
@@ -135,37 +135,37 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     systemSettings.Add(new SettingData(g, s));
                 }
             }
-            return JArray.FromObject(systemSettings);
+            return systemSettings;
         }
 
         [HttpGet]
         [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
         [SwaggerOperation("GetLookups")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        [SwaggerResponse(500, type: typeof(JObject))]
+        [SwaggerResponse(200, type: typeof(LookupData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
         public async Task<IHttpActionResult> GetLookups()
         {
             return await CallMethod(() =>
             {
-                return new JObject(
-                    new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
-                    new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
-                    new JProperty("fragmentTypes", ExtractData("SELECT * FROM VW_FRAGMENTTYPE")),
-                    new JProperty("identifierTypes", ExtractData("SELECT * FROM VW_IDENTIFIERTYPE")),
-                    new JProperty("notebooks", ExtractData("SELECT * FROM VW_NOTEBOOK")),
-                    new JProperty("pickList", ExtractData("SELECT * FROM VW_PICKLIST")),
-                    new JProperty("pickListDomains", ExtractData("SELECT * FROM VW_PICKLISTDOMAIN")),
-                    new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
-                    new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
-                    new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
-                    new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
-                    new JProperty("formGroups", GetFormGroups()),
-                    new JProperty("customTables", GetCustomTables()),
-                    new JProperty("systemSettings", GetSystemSettings()),
-                    new JProperty("addinAssemblies", GetAddinAssemblies()),
-                    new JProperty("propertyGroups", GetPropertyGroups()),
-                    new JProperty("homeMenuPrivileges", GetHomeMenuPrivileges())
+                return new LookupData(
+                    ExtractData("SELECT * FROM VW_PEOPLE"),
+                    ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT"),
+                    ExtractData("SELECT * FROM VW_FRAGMENTTYPE"),
+                    ExtractData("SELECT * FROM VW_IDENTIFIERTYPE"),
+                    ExtractData("SELECT * FROM VW_NOTEBOOK"),
+                    ExtractData("SELECT * FROM VW_PICKLIST"),
+                    ExtractData("SELECT * FROM VW_PICKLISTDOMAIN"),
+                    ExtractData("SELECT * FROM VW_PROJECT"),
+                    ExtractData("SELECT * FROM VW_SEQUENCE"),
+                    ExtractData("SELECT * FROM VW_SITES"),
+                    ExtractData("SELECT * FROM VW_UNIT"),
+                    GetFormGroups(),
+                    GetCustomTables(),
+                    GetSystemSettings(),
+                    GetAddinAssemblies(),
+                    GetPropertyGroups(),
+                    GetHomeMenuPrivileges()
                 );
             });
         }
