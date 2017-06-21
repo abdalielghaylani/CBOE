@@ -17,60 +17,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class ViewConfigController : RegControllerBase
     {
-        [HttpGet]
-        [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
-        [SwaggerOperation("GetLookups")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        [SwaggerResponse(500, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetLookups()
-        {
-            return await CallMethod(() =>
-            {
-                return new JObject(
-                    new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
-                    new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
-                    new JProperty("fragmentTypes", ExtractData("SELECT * FROM VW_FRAGMENTTYPE")),
-                    new JProperty("identifierTypes", ExtractData("SELECT * FROM VW_IDENTIFIERTYPE")),
-                    new JProperty("notebooks", ExtractData("SELECT * FROM VW_NOTEBOOK")),
-                    new JProperty("pickList", ExtractData("SELECT * FROM VW_PICKLIST")),
-                    new JProperty("pickListDomains", ExtractData("SELECT * FROM VW_PICKLISTDOMAIN")),
-                    new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
-                    new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
-                    new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
-                    new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
-                    new JProperty("formGroups", GetFormGroups()),
-                    new JProperty("customTables", GetCustomTables()),
-                    new JProperty("systemSettings", GetSystemSettings()),
-                    new JProperty("addinAssemblies", GetAddinAssemblies()),
-                    new JProperty("propertyGroups", GetPropertyGroups()),
-                    new JProperty("homeMenuPrivileges", GetHomeMenuPrivileges())
-                );
-            });
-        }
-
-        private JArray GetHomeMenuPrivileges()
-        {
-            var homeMenuPrivilages = new JArray();
-            COEHomeSettings homeData = CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetHomeData();
-            COEIdentity coeIdentity = UserIdentity;
-            string coeIdentifier = "Registration";
-
-            Group group = homeData.Groups.First<Group>(item => item.Name.Equals(coeIdentifier, StringComparison.OrdinalIgnoreCase));
-
-            foreach (LinkData linkData in group.LinksData)
-            {
-                bool hasPriv = coeIdentity.HasAppPrivilege(coeIdentifier.ToUpper(), linkData.PrivilegeRequired);
-
-                var jObject = new JObject(new JProperty("name", linkData.Name), new JProperty("label", linkData.DisplayText),
-                    new JProperty("privilegeName", linkData.PrivilegeRequired), new JProperty("visibility", hasPriv),
-                    new JProperty("toolTip", linkData.ToolTip));
-                homeMenuPrivilages.Add(jObject);
-            }
-
-            return homeMenuPrivilages;
-        }
-
         private static JArray GetPropertyGroups()
         {
             var propertyGroups = new JArray();
@@ -79,11 +25,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var propertyType in propertyTypes)
             {
                 propertyGroups.Add(new JObject(
-               new JProperty("groupName", propertyType.ToString()),
-               new JProperty("groupLabel", GetPropertyTypeLabel(propertyType))
-           ));
+                    new JProperty("groupName", propertyType.ToString()),
+                    new JProperty("groupLabel", GetPropertyTypeLabel(propertyType))
+                ));
             }
-
             return propertyGroups;
         }
 
@@ -148,6 +93,31 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return customTables;
         }
 
+        private JArray GetHomeMenuPrivileges()
+        {
+            var homeMenuPrivilages = new JArray();
+            COEHomeSettings homeData = CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetHomeData();
+            COEIdentity coeIdentity = UserIdentity;
+            string coeIdentifier = "Registration";
+
+            Group group = homeData.Groups.First<Group>(item => item.Name.Equals(coeIdentifier, StringComparison.OrdinalIgnoreCase));
+
+            foreach (LinkData linkData in group.LinksData)
+            {
+                bool hasPriv = coeIdentity.HasAppPrivilege(coeIdentifier.ToUpper(), linkData.PrivilegeRequired);
+
+                var privilege = new JObject(
+                    new JProperty("name", linkData.Name),
+                    new JProperty("label", linkData.DisplayText),
+                    new JProperty("privilegeName", linkData.PrivilegeRequired),
+                    new JProperty("visibility", hasPriv),
+                    new JProperty("toolTip", linkData.ToolTip));
+                homeMenuPrivilages.Add(privilege);
+            }
+
+            return homeMenuPrivilages;
+        }
+
         private JArray GetSystemSettings()
         {
             // [{ group: .., settings: [ ] }, ... ]
@@ -185,6 +155,38 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             return systemSettings;
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
+        [SwaggerOperation("GetLookups")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetLookups()
+        {
+            return await CallMethod(() =>
+            {
+                return new JObject(
+                    new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
+                    new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
+                    new JProperty("fragmentTypes", ExtractData("SELECT * FROM VW_FRAGMENTTYPE")),
+                    new JProperty("identifierTypes", ExtractData("SELECT * FROM VW_IDENTIFIERTYPE")),
+                    new JProperty("notebooks", ExtractData("SELECT * FROM VW_NOTEBOOK")),
+                    new JProperty("pickList", ExtractData("SELECT * FROM VW_PICKLIST")),
+                    new JProperty("pickListDomains", ExtractData("SELECT * FROM VW_PICKLISTDOMAIN")),
+                    new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
+                    new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
+                    new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
+                    new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
+                    new JProperty("formGroups", GetFormGroups()),
+                    new JProperty("customTables", GetCustomTables()),
+                    new JProperty("systemSettings", GetSystemSettings()),
+                    new JProperty("addinAssemblies", GetAddinAssemblies()),
+                    new JProperty("propertyGroups", GetPropertyGroups()),
+                    new JProperty("homeMenuPrivileges", GetHomeMenuPrivileges())
+                );
+            });
         }
     }
 }

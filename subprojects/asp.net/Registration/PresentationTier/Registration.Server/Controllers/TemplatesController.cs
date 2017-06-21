@@ -118,7 +118,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new RegistrationException(string.Format("template with id '{0}' not found.", id));
 
-                COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(template.Id);
+                COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(template.Id.Value);
                 string coeGenericObjectXml = genericStorageBO.COEGenericObject;
                 // if xml is coming from a stored template - reset the default scientistID
                 string propertyPath = string.Format("MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='{0}']", "SCIENTIST_ID");
@@ -140,12 +140,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         [HttpPost]
         [Route(Consts.apiPrefix + "templates")]
-        [SwaggerOperation("CreateTemplates")]
+        [SwaggerOperation("CreateTemplate")]
         [SwaggerResponse(201, type: typeof(TemplateData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> CreateTemplates(TemplateData data)
+        public async Task<IHttpActionResult> CreateTemplate(TemplateData data)
         {
             return await CallMethod(() =>
             {
@@ -169,7 +169,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     errorMessage = "Unable to save the template.";
                     if (registryRecord != null)
-                        registryRecord.SaveTemplate(data.Name, data.Description, data.IsPublic, 2);
+                        registryRecord.SaveTemplate(data.Name, data.Description, data.IsPublic != null && data.IsPublic.Value, 2);
                 }
                 catch (Exception ex)
                 {

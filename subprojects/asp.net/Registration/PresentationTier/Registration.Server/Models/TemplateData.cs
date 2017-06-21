@@ -10,7 +10,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         [JsonConstructor]
-        public TemplateData(int id, string name, DateTime dateCreated, string description, bool isPublic, string username, string data)
+        public TemplateData(int? id, string name, DateTime dateCreated, string description, bool? isPublic, string username, string data)
         {
             Id = id;
             Name = name;
@@ -25,7 +25,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// Gets or sets the ID
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name
@@ -49,7 +49,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// Gets or sets a value indicating whether the template is public or not
         /// </summary>
         [JsonProperty(PropertyName = "isPublic")]
-        public bool IsPublic { get; set; }
+        public bool? IsPublic { get; set; }
 
         /// <summary>
         /// Gets or sets the user name
