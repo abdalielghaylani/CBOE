@@ -22,6 +22,7 @@ import { DxFormComponent } from 'devextreme-angular';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
+import { RegTemplates } from './templates.component';
 
 declare var jQuery: any;
 
@@ -33,6 +34,7 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
+  @ViewChild(RegTemplates) regTemplates: RegTemplates;
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
   @Input() template: boolean;
@@ -312,6 +314,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       data.data = registryUtils.serializeData(this.recordDoc);
       this.http.post(url, data).toPromise()
         .then(res => {
+          this.regTemplates.dataSource = undefined;
           notifySuccess(`The submission data was saved as template ${res.json().id} successfully!`, 5000);
         })
         .catch(error => {
@@ -334,6 +337,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   private showTemplates(e) {
     this.currentIndex = 1;
+    if (!this.regTemplates.dataSource) {
+      this.regTemplates.loadData();
+    }
     this.changeDetector.markForCheck();
   }
 

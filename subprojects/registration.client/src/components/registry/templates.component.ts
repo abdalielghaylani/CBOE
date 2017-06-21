@@ -25,11 +25,10 @@ declare var jQuery: any;
 export class RegTemplates implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Output() onClose = new EventEmitter<any>();
-  @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private rows: any[] = [];
   private dataSubscription: Subscription;
   private gridHeight: string;
-  private dataSource: CustomStore;
+  public dataSource: CustomStore;
   private columns = [{
     dataType: 'string',
     caption: 'Type',
@@ -74,7 +73,6 @@ export class RegTemplates implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
     let userName = this.ngRedux.getState().session.user.fullName.toUpperCase();
     let calculateCellValue = 'calculateCellValue';
     this.columns[0][calculateCellValue] = function (d) { return d.username.toUpperCase() === userName ? 'My Templates' : 'Shared Templates'; };
@@ -86,11 +84,9 @@ export class RegTemplates implements OnInit, OnDestroy {
     }
   }
 
-  loadData(customTables: any) {
-    if (customTables) {
-      this.dataSource = this.createCustomStore(this);
-      this.changeDetector.markForCheck();
-    }
+  public loadData() {
+    this.dataSource = this.createCustomStore(this);
+    this.changeDetector.markForCheck();
     this.gridHeight = this.getGridHeight();
   }
 
@@ -113,14 +109,14 @@ export class RegTemplates implements OnInit, OnDestroy {
     }
   }
 
-  onContentReady(e) {
+  private onContentReady(e) {
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80
     });
   }
 
-  onCellPrepared(e) {
+  private onCellPrepared(e) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let isEditing = e.row.isEditing;
       let $links = e.cellElement.find('.dx-link');
