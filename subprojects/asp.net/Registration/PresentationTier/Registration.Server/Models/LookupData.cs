@@ -121,7 +121,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// <summary>
         /// Gets or sets the form-group array
         /// </summary>
-        [JsonProperty(PropertyName = "fromGroups")]
+        [JsonProperty(PropertyName = "formGroups")]
         public JArray FormGroups { get; set; }
 
         /// <summary>
