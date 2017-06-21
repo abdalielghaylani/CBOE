@@ -1,4 +1,5 @@
 import {
+  CCustomTableData,
   IConfigurationRecord,
   IConfiguration,
 } from './configuration.types';

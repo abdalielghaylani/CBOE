@@ -3,18 +3,23 @@ import { Routes } from '@angular/router';
 import {
   RegRecordsPage,
   RegRecordDetailPage,
-  RegConfigurationPage,
-  RegAboutPage,
+  RegConfigAddinsPage,
+  RegConfigFormsPage,
+  RegConfigPropertiesPage,
+  RegConfigSettingsPage,
+  RegConfigTablesPage,
+  RegConfigXmlFormsPage,
+  RegLoginPage,
   RegRecordSearchPage
 } from '../pages';
 
 export const REG_APP_ROUTES: Routes = [{
   pathMatch: 'full',
   path: '',
-  redirectTo: '/records/temp'
+  redirectTo: '/login'
 }, {
   path: 'index.html',
-  redirectTo: '/records/temp'
+  redirectTo: '/login'
 }, {
   path: 'records/temp',
   component: RegRecordsPage
@@ -25,6 +30,9 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/restore',
   component: RegRecordsPage
 }, {
+  path: 'records/new/:templateId',
+  component: RegRecordDetailPage
+}, {
   path: 'records/new',
   component: RegRecordDetailPage
 }, {
@@ -34,21 +42,24 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/temp/:id',
   component: RegRecordDetailPage
 }, {
-  path: 'search',
-  component: RegRecordSearchPage
+  path: 'configuration/properties',
+  component: RegConfigPropertiesPage
 }, {
-  path: 'search',
-  component: RegRecordSearchPage
+  path: 'configuration/forms',
+  component: RegConfigFormsPage
 }, {
-  path: 'search/temp',
-  component: RegRecordSearchPage
+  path: 'configuration/addins',
+  component: RegConfigAddinsPage
 }, {
-  path: 'search/:id',
-  component: RegRecordSearchPage
+  path: 'configuration/xml-forms',
+  component: RegConfigXmlFormsPage
+}, {
+  path: 'configuration/settings',
+  component: RegConfigSettingsPage
 }, {
   path: 'configuration/:tableId',
-  component: RegConfigurationPage
+  component: RegConfigTablesPage
 }, {
-  path: 'about',
-  component: RegAboutPage
+  path: 'login',
+  component: RegLoginPage
 }];

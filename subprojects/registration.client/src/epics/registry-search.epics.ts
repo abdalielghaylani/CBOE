@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
-import { Http } from '@angular/http';
 import { UPDATE_LOCATION } from '@angular-redux/router';
 import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions, IGridPullAction } from '../actions';
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { IAppState } from '../store';
+import { IAppState, IHitlistData, IHitlistRetrieveInfo, IQueryData } from '../store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -14,85 +12,90 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
+import { HttpService } from '../services';
 
 @Injectable()
 export class RegistrySearchEpics {
-  constructor(private http: Http, private ngRedux: NgRedux<IAppState>) { }
+  constructor(private http: HttpService) { }
 
   handleRegistrySearchActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
     return combineEpics(
       this.handleOpenHitlists,
       this.handleDeleteHitlist,
       this.handleUpdateHitlist,
-      this.handleRetrieveHitlist
+      this.handleRetrieveHitlist,
+      this.handleSearchRecords
     )(action$, store);
   }
 
-  private handleOpenHitlists: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
+  private handleOpenHitlists: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.OPEN_HITLISTS)
-      .mergeMap(() => {
-        return this.http.get(`${apiUrlPrefix}hitlists`)
+      .mergeMap(({ payload }) => {
+        return this.http.get(`${apiUrlPrefix}hitlists${ payload.temporary ? '?temp=true' : ''}`)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : RegistrySearchActions.openHitlistsSuccessAction(result.json());
+            return RegistrySearchActions.openHitlistsSuccessAction(result.json());
           })
           .catch(error => Observable.of(RegistrySearchActions.openHitlistsErrorAction(error)));
       });
   }
 
-  private handleDeleteHitlist: Epic = (action$: Observable<ReduxActions.Action<{ id: number }>>) => {
+  private handleDeleteHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, id: number }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.DELETE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.delete(`${apiUrlPrefix}hitlists/${payload.id}`)
+        return this.http.delete(`${apiUrlPrefix}hitlists/${payload.id}${ payload.temporary ? '?temp=true' : ''}`)
           .map(result => {
-            if (result.url.indexOf('index.html') > 0) {
-              SessionActions.logoutUserAction();
-            } else {
-              notifySuccess('The selected hitlist was deleted successfully!', 5000);
-              return RegistrySearchActions.openHitlistsAction();
-            }
+            notifySuccess('The selected hitlist was deleted successfully!', 5000);
+            return RegistrySearchActions.openHitlistsAction(payload.temporary);
           })
           .catch(error => Observable.of(RegistrySearchActions.deleteHitlistErrorAction(error)));
       });
   }
 
-  handleUpdateHitlist = (action$: Observable<IPayloadAction>) => {
+  private handleUpdateHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: IHitlistData }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.UPDATE_HITLIST)
       .mergeMap(({ payload }) => {
-        return this.http.put(`${apiUrlPrefix}hitlists/${payload.hitlistID}`, payload)
+        return this.http.put(`${apiUrlPrefix}hitlists/${payload.data.hitlistId}${ payload.temporary ? '?temp=true' : ''}`, payload.data)
           .map(result => {
             notifySuccess('The selected hitlist was updated successfully!', 5000);
-            return RegistrySearchActions.openHitlistsAction();
+            return RegistrySearchActions.openHitlistsAction(payload.temporary);
           })
           .catch(error => Observable.of(RegistrySearchActions.updateHitlistErrorAction()));
       });
   }
 
-  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<any>>) => {
+  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: IHitlistRetrieveInfo }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.RETRIEVE_HITLIST)
       .mergeMap(({ payload }) => {
-        // restoreType 0 -: Restore hitlist
-        // restoreType 1 -: Restore by union/intersect/substract
-        if (payload.type === 0) {
-          return this.http.get(`${apiUrlPrefix}hitlists/` + payload.id + `/records`)
+        if (payload.data.type === 'Retrieve' || payload.data.type === 'Refresh') {
+          let params = payload.temporary ? '?temp=true' : '';
+          if (payload.data.type === 'Refresh') {
+            params += (params ? '&' : '?');
+            params += 'refresh=true';
+          }
+          return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.id}/records${params}`)
             .map(result => {
-              return result.url.indexOf('index.html') > 0
-                ? SessionActions.logoutUserAction()
-                : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+              return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
-        }
-        if (payload.type === 1) {
-          return this.http.post(`${apiUrlPrefix}restorehitlistsactions`, payload.data)
+        } else if (payload.data.type === 'Advanced') {
+          let params = payload.temporary ? '?temp=true' : '';
+          return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.data.id1}/${payload.data.data.op}/${payload.data.data.id2}/records${params}`)
             .map(result => {
-              return result.url.indexOf('index.html') > 0
-                ? SessionActions.logoutUserAction()
-                : RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+              return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
             })
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         }
       });
   }
 
+  private handleSearchRecords: Epic = (action$: Observable<ReduxActions.Action<IQueryData>>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.SEARCH_RECORDS)
+      .mergeMap(({ payload }) => {
+        return this.http.post(`${apiUrlPrefix}search/${payload.temporary ? 'temp-' : ''}records`, payload)
+          .map(result => {
+            return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+          })
+          .catch(error => Observable.of(RegistrySearchActions.searchRecordsErrorAction(error)));
+      });
+  }
 }

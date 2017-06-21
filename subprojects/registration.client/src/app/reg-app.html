@@ -1,61 +1,11 @@
-<reg-login-modal (onSubmit)="sessionActions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
+<reg-login-modal (onSubmit)="sessionActions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async"
+  *ngIf="loggedOut$ | async">
 </reg-login-modal>
 <reg-navigator testid="navigator" *ngIf="(loggedIn$ | async)" [cssClass]="this.fullScreenEnabled? 'navbar-fullScreen' :'navbar navbar-default navbar-fixed-top navbar-top'">
   <reg-navigator-header>
     <reg-logo></reg-logo>
   </reg-navigator-header>
   <reg-navigator-items>
-    <li class="dropdown" reg-navigator-item *ngIf="(loggedIn$ | async) &amp;&amp; (routerLink$ | async).indexOf('configuration') > 0">
-      <a class="dropdown-toggle coolgray text-relaxed margin-none background-white" role="button" data-toggle="dropdown" href="#">
-        <span class="fa fa-gears fa-lg #A4AEB5"></span> Configuration <span class="caret"></span>
-      </a>
-      <ul id="g-account-menu" class="dropdown-menu" role="menu">
-        <li>
-          <a [routerLink]="['configuration/VW_PROJECT']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-file-code-o fa-lg  #A4AEB5"></i> Projects</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_PICKLIST']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-bookmark fa-lg  #A4AEB5"></i> Picklist Values</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_PICKLISTDOMAIN']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-external-link fa-lg  #A4AEB5"></i> Picklist Domains</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_NOTEBOOKS']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-book fa-lg  #A4AEB5"></i> Notebooks</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_FRAGMENT']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-cubes fa-lg #A4AEB5"></i> Fragments</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_FRAGMENTTYPE']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-cube fa-lg #A4AEB5"></i> Fragment Types</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_SEQUENCE']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-bolt fa-lg #A4AEB5"></i> Sequences</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_IDENTIFIERTYPE']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-table fa-lg #A4AEB5"></i> Identifier Types</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li>
-          <a [routerLink]="['configuration/VW_SITES']" class="coolgray text-relaxed margin-none">
-            <i class="fa fa-sitemap fa-lg #A4AEB5"></i> Sites</a>
-        </li>
-      </ul>
-    </li>
     <!--li reg-navigator-item *ngIf="loggedIn$ | async">
       <a href="/api/browser" class="text-decoration-none" target="API Browser"><i class="fa fa-wrench fa-lg maroon"></i> API Browser</a>
     </li-->
@@ -71,23 +21,26 @@
 </reg-navigator>
 <reg-sidebar *ngIf="loggedIn$ | async" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
-    <circle-icon title="Review Temporary" color="green" iconName="table" routeLink="records/temp"></circle-icon>
+    <circle-icon title="Review Temporary" color="yellow" isSelected="{{ (routerLink$ | async).endsWith('/temp') }}" iconName="table"
+      routeLink="records/temp"></circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') ? 'selected' : '' }}">
-    <circle-icon title="Submit New Compound" color="teal" iconName="flask" routeLink="records/new">
+    <circle-icon title="Submit New Compound" color="purple" iconName="flask" isSelected="{{(routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') }}"
+      routeLink="records/new">
     </circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('records') ? 'selected' : '' || (routerLink$ | async).endsWith('search') ? 'selected' : '' }}">
-    <circle-icon title="Search Registry" color="blue" iconName="search" routeLink="records">
+    <circle-icon title="Search Registry" color="purple-neutral" iconName="search" isSelected="{{(routerLink$ | async).endsWith('records') || (routerLink$ | async).endsWith('search')}} "
+      routeLink="records">
     </circle-icon>
   </li>
   <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('configuration') > 0 ? 'selected' : '' }}">
-    <circle-icon title="Configuration" color="purple" iconName="gears" routeLink="configuration/VW_PROJECT">
+    <circle-icon title="Configuration" color="green-mid" iconName="gears" isSelected="{{((routerLink$ | async).indexOf('configuration') > 0)}}"
+      routeLink="configuration/VW_PROJECT">
     </circle-icon>
   </li>
 </reg-sidebar>
-<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" 
-  [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'" 
+<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'"
   [iconName]="this.fullScreenEnabled? 'compress' : 'expand'" [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
 </full-screen-icon>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">

@@ -1,0 +1,47 @@
+<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configProperties.window.viewIndex==='list')">
+  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
+    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
+    (onEditingStart)="onEditingStart($event)">
+    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
+      <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Add new rule'></a>&nbsp;
+      <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grd-icon" (onClick)="showValidationRule()" aria-hidden="true"
+        title='View/Update existing rule'></a>&nbsp; </div>
+  </dx-data-grid>
+</div>
+<div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='add'||configProperties.window.viewIndex==='edit')">
+  <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='add'" (onClick)="addProperty($event)" iconName="plus"
+    title="Add Property"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='edit'" (onClick)="saveProperty($event)"
+    iconName="plus" title="Save Property"></command-button>
+  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  <dx-form minColWidth=300 (onFieldDataChanged)="onFieldDataChanged($event)" [colCount]="1" [formData]="configProperties.formData"
+    [items]="configProperties.formColumns"></dx-form>
+</div>
+<div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
+  <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
+  <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
+  <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formData" [items]="configProperties.formValidationColumns"></dx-form>
+  <dx-data-grid [columns]="configProperties.validationGridColumns" [dataSource]="configProperties.formData.validationRules"
+    [height]="500" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)' (onCellPrepared)="onCellPrepared($event,'validation')">
+    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <div *dxTemplate="let data of 'parameterTemplate'">
+      <dx-list [items]="data.data.parameters" [height]="400">
+        <dxi-item *ngFor="let item of data.data.parameters">
+          <div>{{item.name}} = {{item.value}}</div>
+        </dxi-item>
+      </dx-list>
+    </div>
+  </dx-data-grid>
+
+</div>

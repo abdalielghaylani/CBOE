@@ -7,35 +7,42 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
 using System.Xml;
+using System.Threading.Tasks;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
+using Swashbuckle.Swagger.Annotations;
 using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
+    [AllowAnonymous]
     public class AuthController : RegControllerBase
     {
         [HttpPost]
         [Route(Consts.apiPrefix + "auth/login")]
-        public HttpResponseMessage Login([FromBody]JObject userData)
+        [SwaggerOperation("Login")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(string))]
+        public async Task<IHttpActionResult> Login([FromBody]JObject userData)
         {
-            var errorMessage = new StringBuilder();
+            HttpResponseMessage responseMessage;
+            var message = new StringBuilder();
             try
             {
-                errorMessage.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
+                message.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
                 var webClient = new WebClient();
                 var loginUrl = string.Format("/COESingleSignOn/SingleSignOn.asmx/GetAuthenticationTicket?userName={0}&password=", userData["username"]);
                 loginUrl = GetAbsoluteUrl(loginUrl, true);
                 string token;
-                errorMessage.AppendLine(string.Format("Opening {0}...", loginUrl));
-                using (var loginResponse = new StreamReader(webClient.OpenRead(loginUrl + userData["password"])))
+                message.AppendLine(string.Format("Opening {0}...", loginUrl));
+                using (var loginResponse = new StreamReader(await webClient.OpenReadTaskAsync(loginUrl + userData["password"])))
                     token = loginResponse.ReadToEnd();
                 var xml = new XmlDocument();
                 xml.LoadXml(token);
                 token = xml.DocumentElement.FirstChild.InnerText.Trim();
-                errorMessage.AppendLine(string.Format("Token: {0}", token));
-                var response = Request.CreateResponse(HttpStatusCode.OK, new JObject(
+                message.AppendLine(string.Format("Token: {0}", token));
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, new JObject(
                     new JProperty("data", new JObject(new JProperty("msg", "LOGIN SUCCESSFUL"))),
                     new JProperty("meta",
                         new JObject(
@@ -44,51 +51,66 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         )
                     )
                 ));
-                var ssoCookie = new CookieHeaderValue("COESSO", token);
+                var ssoCookie = new CookieHeaderValue(Consts.ssoCookieName, token);
                 ssoCookie.Path = "/";
                 var inactivityCookie = new CookieHeaderValue("DisableInactivity", "true");
                 inactivityCookie.Path = "/";
                 inactivityCookie.Expires = DateTime.Now.AddMinutes(25);
-                response.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie, inactivityCookie });
-                return response;
+                responseMessage.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie, inactivityCookie });
             }
             catch (Exception ex)
             {
-                errorMessage.AppendLine("Login failed!");
-                throw new InvalidOperationException(errorMessage.ToString(), ex);
+                message.AppendLine("Login failed!");
+                responseMessage = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, message.ToString(), ex);
             }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "auth/logout")]
+        [SwaggerOperation("Logout")]
+        [SwaggerResponse(200, type: typeof(string))]
+        public async Task<IHttpActionResult> Logout()
+        {
+            var ssoCookie = new CookieHeaderValue(Consts.ssoCookieName, string.Empty);
+            ssoCookie.Path = "/";
+            ssoCookie.Expires = DateTime.Now.AddMinutes(-25);
+            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, "Logged out successfully!");
+            responseMessage.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie });
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         [HttpGet]
         [Route(Consts.apiPrefix + "auth/validate/{userName}")]
         public HttpResponseMessage Validate(string userName)
         {
-            var errorMessage = new StringBuilder();
+            var message = new StringBuilder();
             try
             {
                 bool isValid = false;
                 const string SSO_URL = "/COESingleSignOn/SingleSignOn.asmx/";
                 var ssoCookies = Request.Headers.GetCookies();
-                var tokenCookie = ssoCookies == null || ssoCookies.First() == null ? null : ssoCookies.First().Cookies.First(c => c.Name == "COESSO");
-                var token = tokenCookie == null ? null : tokenCookie.Value; 
+                var tokenCookie = ssoCookies == null || ssoCookies.First() == null ? null : ssoCookies.First().Cookies.First(c => c.Name == Consts.ssoCookieName);
+                var token = tokenCookie == null ? null : tokenCookie.Value;
                 if (!string.IsNullOrEmpty(token))
                 {
-                    errorMessage.AppendLine(string.Format("Validating token, {0}...", token));
+                    message.AppendLine(string.Format("Validating token, {0}...", token));
                     var webClient = new WebClient();
                     var validateUrl = SSO_URL + "ValidateTicket?encryptedTicket=";
                     validateUrl = GetAbsoluteUrl(validateUrl, true);
                     string response;
-                    errorMessage.AppendLine(string.Format("Opening {0}...", validateUrl));
+                    message.AppendLine(string.Format("Opening {0}...", validateUrl));
                     using (var validateResponse = new StreamReader(webClient.OpenRead(validateUrl + token)))
                         response = validateResponse.ReadToEnd();
                     var xml = new XmlDocument();
                     xml.LoadXml(response);
-                    isValid = Boolean.Parse(xml.DocumentElement.FirstChild.InnerText.Trim());
+                    isValid = bool.Parse(xml.DocumentElement.FirstChild.InnerText.Trim());
                 }
-                errorMessage.AppendLine(string.Format("Valid: {0}", isValid));
-                var responseObject = new JObject(
-                    new JProperty("isValid", isValid)
-                );
+
+                message.AppendLine(string.Format("Valid: {0}", isValid));
+                var responseObject = new JObject(new JProperty("isValid", isValid));
+
                 if (isValid)
                 {
                     responseObject.Add(
@@ -100,35 +122,36 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         )
                     );
                 }
+
                 var responseJobject = Request.CreateResponse(HttpStatusCode.OK, responseObject);
                 return responseJobject;
             }
             catch (Exception ex)
             {
-                errorMessage.AppendLine("Validation failed!");
-                throw new InvalidOperationException(errorMessage.ToString(), ex);
+                message.AppendLine("Validation failed!");
+                throw new InvalidOperationException(message.ToString(), ex);
             }
         }
 
         [Route(Consts.apiPrefix + "auth/renew/{token}")]
         public HttpResponseMessage Renew(string token)
         {
-            var errorMessage = new StringBuilder();
+            var message = new StringBuilder();
             try
             {
                 var userData = Request.Content.ReadAsAsync<JObject>().Result;
-                errorMessage.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
+                message.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
                 var webClient = new WebClient();
                 var loginUrl = string.Format("/COESingleSignOn/SingleSignOn.asmx/GetAuthenticationTicket?userName={0}&password=", userData["username"]);
                 loginUrl = GetAbsoluteUrl(loginUrl, true);
                 string newToken;
-                errorMessage.AppendLine(string.Format("Opening {0}...", loginUrl));
+                message.AppendLine(string.Format("Opening {0}...", loginUrl));
                 using (var loginResponse = new StreamReader(webClient.OpenRead(loginUrl + userData["password"])))
                     newToken = loginResponse.ReadToEnd();
                 var xml = new XmlDocument();
                 xml.LoadXml(newToken);
                 newToken = xml.DocumentElement.FirstChild.InnerText.Trim();
-                errorMessage.AppendLine(string.Format("Token: {0}", newToken));
+                message.AppendLine(string.Format("Token: {0}", newToken));
                 var response = Request.CreateResponse(HttpStatusCode.OK, new JObject(
                     new JProperty("data", new JObject(new JProperty("msg", "LOGIN SUCCESSFUL"))),
                     new JProperty("meta",
@@ -138,7 +161,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         )
                     )
                 ));
-                var cookie = new CookieHeaderValue("COESSO", newToken);
+                var cookie = new CookieHeaderValue(Consts.ssoCookieName, newToken);
                 cookie.Expires = DateTime.Now.AddMinutes(60);
                 cookie.Domain = Request.RequestUri.Host;
                 cookie.Path = "/";
@@ -147,8 +170,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
-                errorMessage.AppendLine("Login failed!");
-                throw new InvalidOperationException(errorMessage.ToString(), ex);
+                message.AppendLine("Login failed!");
+                throw new InvalidOperationException(message.ToString(), ex);
             }
         }
     }

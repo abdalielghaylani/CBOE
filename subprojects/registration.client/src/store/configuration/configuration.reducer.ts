@@ -12,7 +12,7 @@ export function configurationReducer(
     case ConfigurationActions.OPEN_TABLE:
       let a1 = action as ReduxActions.Action<string>;
       let tableId = a1.payload;
-      return state.update('customTables', () => copyObjectAndSet(state.customTables, tableId, []));
+      return state.update('customTables', () => copyObjectAndSet(state.customTables, tableId, { rows: [] }));
 
     case ConfigurationActions.OPEN_TABLE_SUCCESS:
       let a2 = action as ReduxActions.Action<{ tableId, data }>;

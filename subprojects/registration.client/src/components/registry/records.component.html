@@ -1,4 +1,12 @@
-<div class="container-fluid border-light background-white pb2">
+<div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
+  <command-button testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
+  <div>
+    <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
+    <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
+    <command-button *ngIf="!!records.data.hitlistId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
+    <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
+    <command-button *ngIf="!records.data.hitlistId" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+  </div>
   <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
     <span *ngIf="records.temporary">Temporary</span> Registration Records
   </reg-page-header>
@@ -14,80 +22,69 @@
     </div>
   </dx-popup>
   <div>
-    <div class="row">
-      <h5 class="col-sm-6" style="font-size: 12px;font-weight: 600; color: #b3b3b3">
-        <label class="label label-success">&nbsp; {{recordsVM.totalRecordCount}}  &nbsp;</label> records matching your query</h5>
-      <span class="col-sm-6 pull-right" style="font-size: 12px;font-weight: 600; color: #b3b3b3; text-align:right" *ngIf="selectedRows.length!==0">
-        Marked hits count:&nbsp;<label class="label label-success">&nbsp;{{selectedRows.length}}&nbsp;</label></span>
-    </div>
     <dx-load-panel #loadPanel [position]="{ of: '#divDataGrid' }" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true"
       [shading]="false" [closeOnOutsideClick]="false">
     </dx-load-panel>
     <div id="divDataGrid">
-      <dx-data-grid height="600px" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.data.rows" [searchPanel]='records.filterRow'
-        [filterRow]=records.filterRow rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)"
-        (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
-        (onRowPrepared)='onRowPrepared($event)' (onEditingStart)='onEditingStart($event)' [hoverStateEnabled]="true" [selectedRowKeys]="[]">
+      <dx-data-grid [height]="gridHeight" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.data.rows" rowAlternationEnabled=true
+        (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onInitialized)='onInitialized($event)'
+        (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onRowPrepared)="onRowPrepared($event)"
+        (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true">
         <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
         <dxo-selection mode="multiple"></dxo-selection>
         <dxo-load-panel [enabled]="true"></dxo-load-panel>
         <dxo-scrolling mode="infinite"></dxo-scrolling>
         <dxo-remote-operations [sorting]="true"></dxo-remote-operations>
         <dxo-sorting mode="single"></dxo-sorting>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
         <div *dxTemplate="let data of 'toolbarContents'">
-          <div class="btn-group btn-group-sm">
-            <button class="btn btn-group btn-group-sm rose text-relaxed" data-original-title="New Query" (click)="newQuery()">
-          <i class="fa fa-list-alt"></i>New Query</button>
+          <div class="count green" [hidden]="records.data.totalCount==0">
+            <div class="count-type">Record matching</div>
+            <div class="count-type-amount border-green round border-2 padding-xs">
+              {{records.data.totalCount}}
+              <i class="fa fa-book" aria-hidden="true"></i>
+            </div>
           </div>
-          <div class="btn-group btn-group-sm">
-            <button class="btn btn-group btn-group-sm rose text-relaxed" (click)="saveQuery(false)" data-original-title="Save Query">
-          <i class="fa fa-floppy-o"></i>Save Query</button>
+          <div class="count orange" [hidden]="selectedRows.length==0">
+            <div class="count-type">Marked Hits</div>
+            <div class="count-type-amount border-orange round border-2 padding-xs">
+              {{selectedRows.length}}
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </div>
           </div>
-          <div class="btn-group btn-group-sm">
-            <button class="btn btn-group btn-group-sm rose text-relaxed" (click)="editQuery(1)" data-original-title="Save Query">
-          <i class="fa fa-pencil-square-o"></i>Edit Current Query</button>
+          <div *ngIf="selectedRows &amp;&amp; selectedRows.length > 0" testid="delete-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="deleteMarked()">
+              <i class="fa fa-trash white" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="deleteMarked()">Delete Marked</button>
           </div>
-          <div class="btn-group btn-group-sm">
-            <button class="btn btn-group btn-group-sm rose text-relaxed" data-original-title="Print" (click)="printRecords()">
-          <i class="fa fa-print"></i>Print</button>
+          <div *ngIf="selectedRows &amp;&amp; selectedRows.length > 0 &amp;&amp; !rowSelected" testid="show-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="showMarked()">
+              <i class="fa fa-check-square-o white" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="showMarked()">Show Marked</button>
           </div>
-          <div class="btn-group btn-group-sm" *ngIf="!rowSelected">
-            <button type="button" class="btn dropdown-toggle rose text-relaxed" data-original-title="Marked" (click)="showMarked()">
-          <i class="fa fa-filter"></i>Show Marked 
-          </button>
+          <div *ngIf="rowSelected" testid="show-all-records-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="showSearchResults()">
+              <i class="fa fa-undo white" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="showSearchResults()">Show All Records</button>
           </div>
-          <div class="btn-group btn-group-sm" *ngIf="selectedRows.length>0">
-            <button type="button" class="btn dropdown-toggle rose text-relaxed" data-original-title="Marked" (click)="saveQuery(true)">
-          <i class="fa fa-floppy-o"></i>Save Marked 
-          </button>
-          </div>
-          <div class="btn-group btn-group-sm" *ngIf="rowSelected">
-            <button type="button" class="btn dropdown-toggle rose text-relaxed" data-original-title="Marked" (click)="showSearchResults()">
-          <i class="fa fa-level-up"></i>Show Search Results 
-          </button>
-          </div>
-          <div class="btn-group btn-group-sm" *ngIf="!records.temporary">
-            <button class="btn btn-group btn-group-sm rose text-relaxed" (click)="manageQueries()" data-toggle="modal" data-target="#myModal2"
-              data-backdrop="false">
-          <i class="fa fa-bookmark"></i>Manage Queries</button>
+          <div *ngIf="selectedRows.length > 0" testid="saved-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="saveQuery(true)">
+              <i class="fa fa-floppy-o white" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="saveQuery(true)">Save Marked</button>
           </div>
         </div>
       </dx-data-grid>
     </div>
   </div>
-  <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="yellow text-relaxed pull-left">
-            Query Management
-          </h4>
-        </div>
-        <div class="modal-body">
-          <reg-search-query [hitlistVM]="hitlistVM"></reg-search-query>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
+<div class="viewcontainer" [hidden]="currentIndex!=1">
+  <reg-search-query [temporary]="temporary" [hitlistId]="records.data.hitlistId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
+</div>
+<div class="viewcontainer" [hidden]="currentIndex!=2">
+  <reg-record-search [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>

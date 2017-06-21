@@ -9,18 +9,19 @@ import { RegApp } from './reg-app';
 import { GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
-  RegRecordsPage,
-  RegRecordDetailPage,
-  RegConfigurationPage,
-  RegAboutPage,
-  RegRecordSearchPage
+  RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
+  RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage
 } from '../pages';
-import { RegConfiguration, RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagemnt } from '../components';
+import { RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms } from '../components';
+import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement, RegTemplates } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
+import { HttpService } from '../services';
+import { IAppState } from '../store';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -30,7 +31,10 @@ import {
   DxFormModule,
   DxPopupModule,
   DxLoadIndicatorModule,
-  DxLoadPanelModule
+  DxLoadPanelModule,
+  DxScrollViewModule,
+  DxTextAreaModule,
+  DxListModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -54,7 +58,10 @@ import {
     DxFormModule,
     DxPopupModule,
     DxLoadIndicatorModule,
-    DxLoadPanelModule
+    DxLoadPanelModule,
+    DxScrollViewModule,
+    DxTextAreaModule,
+    DxListModule
   ],
   declarations: [
     RegApp,
@@ -62,12 +69,14 @@ import {
     RegRecordSearchPage,
     RegRecordDetailPage,
     RegRecords,
-    RegQueryManagemnt,
+    RegQueryManagement,
+    RegTemplates,
     RegRecordSearch,
     RegRecordDetail,
     RegStructureImage,
-    RegConfigurationPage,
-    RegConfiguration,
+    RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
+    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
+    RegLoginPage,
     RegAboutPage
   ],
   bootstrap: [
@@ -81,5 +90,12 @@ import {
   ]
     .concat(ACTION_PROVIDERS)
     .concat(EPIC_PROVIDERS)
+    .concat([{
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions, redux: NgRedux<IAppState>) => {
+        return new HttpService(backend, options, redux);
+      },
+      deps: [XHRBackend, RequestOptions, NgRedux]
+    }])
 })
 export class RegAppModule { }

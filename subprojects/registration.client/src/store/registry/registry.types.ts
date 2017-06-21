@@ -35,7 +35,7 @@ export interface IRecords {
   temporary: boolean;
   data: IRecordsData;
   gridColumns: any[];
-  filterRow: any;
+  filterRow: { visible: boolean };
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, IRecords { }
@@ -49,3 +49,15 @@ export interface IRegistry {
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }
 
+export interface IRegistryRetrievalQuery {
+  temporary: boolean;
+  hitlistId?: number;
+  skip?: number;
+  take?: number;
+  sort?: string;
+}
+
+export interface IQueryData {
+  temporary: boolean;
+  searchCriteria: string;
+}

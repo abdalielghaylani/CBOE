@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IAppState } from '../store';
+import { IAppState, IHitlistData, IHitlistRetrieveInfo, IQueryData } from '../store';
 
 @Injectable()
 export class RegistrySearchActions {
@@ -23,20 +23,23 @@ export class RegistrySearchActions {
   static UPDATE_HITLIST_ERROR = 'UPDATE_HITLIST_ERROR';
   static SAVE_HITLISTS = 'SAVE_HITLISTS';
   static SAVE_HITLISTS_ERROR = 'SAVE_HITLISTS_ERROR';
-  static openHitlistsAction = createAction(RegistrySearchActions.OPEN_HITLISTS);
+  static openHitlistsAction = createAction(RegistrySearchActions.OPEN_HITLISTS,
+    (temporary: boolean) => ({ temporary }));
   static openHitlistsSuccessAction = createAction(RegistrySearchActions.OPEN_HITLISTS_SUCCESS);
   static openHitlistsErrorAction = createAction(RegistrySearchActions.OPEN_HITLISTS_ERROR);
-  static updateHitlistAction = createAction(RegistrySearchActions.UPDATE_HITLIST);
+  static updateHitlistAction = createAction(RegistrySearchActions.UPDATE_HITLIST,
+    (temporary: boolean, data: IHitlistData) => ({ temporary, data }));
   static updateHitlistErrorAction = createAction(RegistrySearchActions.UPDATE_HITLIST_ERROR);
   static deleteHitlistAction = createAction(RegistrySearchActions.DELETE_HITLIST,
-    (id: number) => ({ id }));
+    (temporary: boolean, id: number) => ({ temporary, id }));
   static deleteHitlistErrorAction = createAction(RegistrySearchActions.DELETE_HITLIST_ERROR);
   static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
-    (temporary: boolean, history: boolean, id: Number) => ({ temporary, history, id }));
+    (queryData: IQueryData) => (queryData));
   static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
-  static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST);
+  static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST,
+    (temporary: boolean, data: IHitlistRetrieveInfo) => ({ temporary, data }));
   static retrieveHitlistSuccessAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_SUCCESS);
   static retrieveHitlistErrorAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_ERROR);
   static retrieveQueryFormAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM,
@@ -46,8 +49,8 @@ export class RegistrySearchActions {
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
-  searchRecords(temporary: boolean, history: boolean, id: Number) {
-    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsAction(temporary, history, id));
+  searchRecords(queryData: IQueryData) {
+    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsAction(queryData));
   }
 
   searchRecordsSuccess(temporary: boolean, rows: any[]) {
@@ -70,19 +73,19 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryFormErrorAction());
   }
 
-  openHitlists() {
-    this.ngRedux.dispatch(RegistrySearchActions.openHitlistsAction());
+  openHitlists(temporary: boolean) {
+    this.ngRedux.dispatch(RegistrySearchActions.openHitlistsAction(temporary));
   }
 
-  deleteHitlist(id: number) {
-    this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistAction(id));
+  deleteHitlist(temporary: boolean, id: number) {
+    this.ngRedux.dispatch(RegistrySearchActions.deleteHitlistAction(temporary, id));
   }
 
-  updateHitlist(data) {
-    this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(data));
+  updateHitlist(temporary: boolean, data: IHitlistData) {
+    this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(temporary, data));
   };
 
-  retrieveHitlist(data) {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(data));
+  retrieveHitlist(temporary: boolean, data: IHitlistRetrieveInfo) {
+    this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(temporary, data));
   };
 }

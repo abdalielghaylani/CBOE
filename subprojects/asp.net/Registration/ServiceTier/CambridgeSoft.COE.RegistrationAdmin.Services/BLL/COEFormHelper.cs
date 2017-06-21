@@ -47,14 +47,14 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
         public const int BATCHSUBFORMINDEX = 1002;
         public const int BATCHCOMPONENTSUBFORMINDEX = 1003;
 
-        private const int TEMPORARYBASEFORM = 0;
-        private const int TEMPORARYCHILDFORM = 1;
+        public const int TEMPORARYBASEFORM = 0;
+        public const int TEMPORARYCHILDFORM = 1;
 
-        private const int MIXTURESEARCHFORM = 0;
-        private const int COMPOUNDSEARCHFORM = 1;
-        private const int BATCHSEARCHFORM = 2;
-        private const int BATCHCOMPONENTSEARCHFORM = 3;
-        private const int STRUCTURESEARCHFORM = 4;
+        public const int MIXTURESEARCHFORM = 0;
+        public const int COMPOUNDSEARCHFORM = 1;
+        public const int BATCHSEARCHFORM = 2;
+        public const int BATCHCOMPONENTSEARCHFORM = 3;
+        public const int STRUCTURESEARCHFORM = 4;
         private const string MIXTURETABLENAME = "VW_MIXTURE_REGNUMBER";
         private const string COMPOUNDTABLENAME = "VW_MIXTURE_STRUCTURE";
         private const string STRUCTURETABLENAME = "VW_MIXTURE_STRUCTURE";//TODO:what is the table name in dataview for Stucture 

@@ -63,6 +63,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNet.WebApi.Versioning, Version=2.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Versioning.2.0.3\lib\net45\Microsoft.AspNet.WebApi.Versioning.dll</HintPath>
       <Private>True</Private>
@@ -137,22 +141,42 @@
     </Compile>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Code\ChemistryHelper.cs" />
     <Compile Include="Code\Consts.cs" />
+    <Compile Include="Code\Logger.cs" />
+    <Compile Include="Code\RegistrationException.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\RegControllerBase.cs" />
     <Compile Include="Controllers\DataConversionController.cs" />
     <Compile Include="Controllers\BatchController.cs" />
     <Compile Include="Controllers\ComponentController.cs" />
+    <Compile Include="Controllers\TemplatesController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ViewConfigController.cs" />
     <Compile Include="Controllers\StructureImageController.cs" />
     <Compile Include="Controllers\RegistryRecordsController.cs" />
-    <Compile Include="Models\Hitlist.cs" />
+    <Compile Include="Models\AddinData.cs" />
+    <Compile Include="Models\AddinEvent.cs" />
+    <Compile Include="Models\DuplicateResolutionData.cs" />
+    <Compile Include="Models\Component.cs" />
+    <Compile Include="Models\Batch.cs" />
+    <Compile Include="Models\ExportConfigurationData.cs" />
+    <Compile Include="Models\FormElementData.cs" />
+    <Compile Include="Models\HitlistData.cs" />
     <Compile Include="Code\QueryHelper.cs" />
-    <Compile Include="Controllers\CustomTablesController.cs" />
+    <Compile Include="Controllers\ConfigurationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImportConfigurationData.cs" />
+    <Compile Include="Models\PropertyData.cs" />
+    <Compile Include="Models\QueryData.cs" />
+    <Compile Include="Models\TemplateData.cs" />
+    <Compile Include="Models\ValidationParameter.cs" />
+    <Compile Include="Models\ValidationRuleData.cs" />
+    <Compile Include="Models\XmlFormData.cs" />
+    <Compile Include="Models\SettingData.cs" />
+    <Compile Include="Models\ResponseData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

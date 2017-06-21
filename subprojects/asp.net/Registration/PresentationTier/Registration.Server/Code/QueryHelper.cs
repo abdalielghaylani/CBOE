@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Newtonsoft.Json.Linq;
 using System.Linq.Dynamic;
+using Newtonsoft.Json.Linq;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
@@ -16,6 +16,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 var take = Convert.ToInt32(options["take"]);
                 query = query.Skip(skip).Take(take);
             }
+
             return query;
         }
 
@@ -30,6 +31,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     columnName += " DESC";
                 query = query.OrderBy(columnName);
             }
+
             return query;
         }
 
@@ -40,6 +42,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 var filterTree = JArray.FromObject(options["filterOptions"]);
                 return ReadExpression(query, filterTree);
             }
+
             return query;
         }
 
@@ -55,6 +58,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                         continue;
                     source = ReadExpression(source, (JArray)array[i]);
                 }
+
                 return source;
             }
         }
@@ -64,8 +68,8 @@ namespace PerkinElmer.COE.Registration.Server.Code
             switch (clause)
             {
                 case "=":
-                    value = System.Text.RegularExpressions.Regex.IsMatch(value, @"^\d+$") ? value : String.Format("\"{0}\"", value);
-                    source = source.Where(String.Format("{0} == {1}", columnName, value));
+                    value = System.Text.RegularExpressions.Regex.IsMatch(value, @"^\d+$") ? value : string.Format("\"{0}\"", value);
+                    source = source.Where(string.Format("{0} == {1}", columnName, value));
                     break;
                 case "contains":
                     source = source.Where(columnName + ".Contains(@0)", value);
@@ -76,6 +80,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 default:
                     break;
             }
+
             return source;
         }
     }

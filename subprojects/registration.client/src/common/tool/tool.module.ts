@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
   CircleIcon,
+  CommandButton,
   PageWithTools,
   ToolPanel,
   FullScreenIcon,
@@ -18,6 +19,7 @@ import {
   ],
   declarations: [
     CircleIcon,
+    CommandButton,
     PageWithTools,
     ToolPanel,
     FullScreenIcon,
@@ -25,6 +27,7 @@ import {
   ],
   exports: [
     CircleIcon,
+    CommandButton,
     PageWithTools,
     ToolPanel,
     RouterModule,

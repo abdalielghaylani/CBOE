@@ -1,21 +1,23 @@
-﻿using CambridgeSoft.COE.Framework.COETableEditorService;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Dynamic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
-using System.Web.Http;
-using PerkinElmer.COE.Registration.Server.Code;
-using CambridgeSoft.COE.Registration.Services.Types;
-using CambridgeSoft.COE.Registration.Access;
-using Csla.Data;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
-using Newtonsoft.Json.Linq;
-using System.Web;
 using System.Net.Http.Headers;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Security.AccessControl;
+using System.Security.Authentication;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
 using CambridgeSoft.COE.Framework.COESecurityService;
+using CambridgeSoft.COE.Registration.Access;
+using CambridgeSoft.COE.Registration.Services;
+using CambridgeSoft.COE.RegistrationAdmin.Services;
+using Csla.Data;
+using Newtonsoft.Json.Linq;
+using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -25,13 +27,43 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private const string sortAsc = " asc";
         private RegistrationOracleDAL regDal = null;
 
-        private RegistrationOracleDAL RegDal
+        private HttpResponseMessage CreateErrorResponse(Exception ex)
+        {
+            var message = ex is Csla.DataPortalException ? ((Csla.DataPortalException)ex).BusinessException.Message : ex.Message;
+            var statusCode = ex is AuthenticationException || ex is PrivilegeNotHeldException || ex is UnauthorizedAccessException ?
+                HttpStatusCode.Unauthorized :
+                ex is RegistrationException || ex is Csla.DataPortalException ?
+                HttpStatusCode.BadRequest :
+                ex is IndexOutOfRangeException ?
+                HttpStatusCode.NotFound :
+                HttpStatusCode.InternalServerError;
+            return string.IsNullOrEmpty(message) ? Request.CreateErrorResponse(statusCode, ex) : Request.CreateErrorResponse(statusCode, message, ex);
+        }
+
+        protected RegistrationOracleDAL RegDal
         {
             get
             {
                 if (regDal == null)
                     DalUtils.GetRegistrationDAL(ref regDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
                 return regDal;
+            }
+        }
+
+        protected COEIdentity UserIdentity
+        {
+            get
+            {
+                var sessionToken = GetSessionToken();
+                var args = new object[] { sessionToken };
+                var identity = (COEIdentity)typeof(COEIdentity).GetMethod(
+                    "GetIdentity",
+                    BindingFlags.Static | BindingFlags.NonPublic,
+                    null,
+                    new System.Type[] { typeof(string) },
+                    null
+                ).Invoke(null, args);
+                return identity;
             }
         }
 
@@ -72,10 +104,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             fieldData = reader.GetString(i);
                             break;
                     }
+
                     row.Add(new JProperty(fieldName, fieldData));
                 }
+
                 data.Add(row);
             }
+
             return data;
         }
 
@@ -104,6 +139,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             break;
                     }
                 }
+
                 return value;
             }
         }
@@ -123,6 +159,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     args.Add(":lowerLimit", lowerLimit);
                 }
             }
+
             using (var reader = GetReader(sql, args))
             {
                 return ExtractData(reader);
@@ -131,15 +168,68 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected string GetSessionToken()
         {
-            CookieHeaderValue cookie = Request.Headers.GetCookies("COESSO").FirstOrDefault();
-            return cookie != null ? cookie["COESSO"].Value : string.Empty;
+            CookieHeaderValue cookie = Request.Headers.GetCookies(Consts.ssoCookieName).FirstOrDefault();
+            return cookie != null ? cookie[Consts.ssoCookieName].Value : string.Empty;
         }
 
         protected void CheckAuthentication()
         {
             string sessionToken = GetSessionToken();
             if (string.IsNullOrEmpty(sessionToken) || !COEPrincipal.Login(sessionToken, true))
-                throw new InvalidOperationException("Authentication failed");
+                throw new AuthenticationException(string.IsNullOrEmpty(sessionToken) ? "Empty token" : "Invalid token: " + sessionToken);
+        }
+
+        protected void CheckAuthorizations(string[] permissions)
+        {
+            bool isAuthorized = false;
+            foreach (string permission in permissions)
+            {
+                isAuthorized = Csla.ApplicationContext.User.IsInRole(permission);
+                if (isAuthorized)
+                    break;
+            }
+
+            if (!isAuthorized)
+                throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
+        }
+
+        protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null, [CallerMemberName] string memberName = "")
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                CheckAuthentication();
+                if (permissions != null) CheckAuthorizations(permissions);
+                var statusCode = Request.Method == HttpMethod.Post && memberName.StartsWith("Create") ? HttpStatusCode.Created : HttpStatusCode.OK;
+                responseMessage = Request.CreateResponse(statusCode, method());
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+                Logger.Error(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        protected async Task<IHttpActionResult> CallServiceMethod(Func<COERegistrationServices, object> method)
+        {
+            HttpResponseMessage responseMessage;
+            try
+            {
+                using (var service = new COERegistrationServices())
+                {
+                    service.Credentials.AuthenticationTicket = GetSessionToken();
+                    responseMessage = Request.CreateResponse(HttpStatusCode.OK, method(service));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                responseMessage = CreateErrorResponse(ex);
+            }
+
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         public static string GetAbsoluteUrl(string relativeUrl, bool globalScope = false)
@@ -160,25 +250,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             var url = HttpContext.Current.Request.Url;
-            var port = url.Port != 80 ? (":" + url.Port) : String.Empty;
+            var port = url.Port != 80 ? (":" + url.Port) : string.Empty;
 
-            return String.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
+            return string.Format("{0}://{1}{2}{3}", url.Scheme, url.Host, port, relativeUrl);
         }
 
         protected class RecordColumn
         {
-            public string definition;
-            public string label;
-            public bool sortable;
+            public string Definitions { get; set; }
+
+            public string Label { get; set; }
+
+            public bool Sortable { get; set; }
         }
 
         protected static string CleanupSortTerm(RecordColumn[] columns, string sortTerm)
         {
             var desc = sortTerm.EndsWith(sortDesc);
             var t = sortTerm.Replace(sortDesc, string.Empty).Replace(sortAsc, string.Empty).Trim();
-            var dc = columns.FirstOrDefault(c => c.definition.Equals(t));
-            if (dc == null) dc = columns.FirstOrDefault(c => c.label != null && c.label.Equals(t));
-            t = dc == null ? string.Empty : dc.definition;
+            var dc = columns.FirstOrDefault(c => c.Definitions.Equals(t));
+            if (dc == null) dc = columns.FirstOrDefault(c => c.Label != null && c.Label.Equals(t));
+            t = dc == null ? string.Empty : dc.Definitions;
             if (desc) t += sortDesc;
             return t;
         }
@@ -189,15 +281,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new RecordColumn[]
                 {
-                    new RecordColumn{ definition = "regid", label = "id", sortable = true },
-                    new RecordColumn{ definition = "name", sortable = true },
-                    new RecordColumn{ definition = "created", sortable = true },
-                    new RecordColumn{ definition = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
-                    new RecordColumn{ definition = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false },
-                    new RecordColumn{ definition = "regnumber", sortable = true },
-                    new RecordColumn{ definition = "statusid", label = "status", sortable = true },
-                    new RecordColumn{ definition = "approved", sortable = true }
+                    new RecordColumn { Definitions = "regid", Label = "id", Sortable = true },
+                    new RecordColumn { Definitions = "name", Sortable = true },
+                    new RecordColumn { Definitions = "created", Sortable = true },
+                    new RecordColumn { Definitions = "modified", Sortable = true },
+                    new RecordColumn { Definitions = "personcreated", Label = "creator", Sortable = true },
+                    new RecordColumn { Definitions = "'record/' || regid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false },
+                    new RecordColumn { Definitions = "regnumber", Sortable = true },
+                    new RecordColumn { Definitions = "statusid", Label = "status", Sortable = true },
+                    new RecordColumn { Definitions = "approved", Sortable = true }
                 };
             }
         }
@@ -208,28 +300,28 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new RecordColumn[]
                 {
-                    new RecordColumn{ definition = "tempcompoundid", label = "id", sortable = true },
-                    new RecordColumn{ definition = "tempbatchid", label = "batchid", sortable = true },
-                    new RecordColumn{ definition = "formulaweight", label = "mw", sortable = true },
-                    new RecordColumn{ definition = "molecularformula", label = "mf", sortable = true },
-                    new RecordColumn{ definition = "datecreated", label = "created", sortable = true },
-                    new RecordColumn{ definition = "datelastmodified", label = "modified", sortable = true },
-                    new RecordColumn{ definition = "personcreated", label ="creator", sortable = true },
-                    new RecordColumn{ definition = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", label = "structure", sortable = false }
+                    new RecordColumn { Definitions = "tempcompoundid", Label = "id", Sortable = true },
+                    new RecordColumn { Definitions = "tempbatchid", Label = "batchid", Sortable = true },
+                    new RecordColumn { Definitions = "formulaweight", Label = "mw", Sortable = true },
+                    new RecordColumn { Definitions = "molecularformula", Label = "mf", Sortable = true },
+                    new RecordColumn { Definitions = "datecreated", Label = "created", Sortable = true },
+                    new RecordColumn { Definitions = "datelastmodified", Label = "modified", Sortable = true },
+                    new RecordColumn { Definitions = "personcreated", Label = "creator", Sortable = true },
+                    new RecordColumn { Definitions = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false }
                 };
             }
         }
 
         protected static string GetSelectTerms(RecordColumn[] columns)
         {
-            return String.Join(", ", columns.Select(c => c.definition + (c.label != null ? " " + c.label : string.Empty)));
+            return string.Join(", ", columns.Select(c => c.Definitions + (c.Label != null ? " " + c.Label : string.Empty)));
         }
 
         protected static string GetSortTerms(RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
         {
             // Default sorting order is descending order by modified date
             if (string.IsNullOrEmpty(sortTerms)) sortTerms = string.Empty;
-            sortTerms = String.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
+            sortTerms = string.Join(", ", sortTerms.ToLower().Split(new char[] { ',' }).Select(t => t.Trim())
                 .Select(t => CleanupSortTerm(columns, t)).Where(t => !string.IsNullOrEmpty(t)));
             if (string.IsNullOrEmpty(sortTerms)) sortTerms = defaultColumn + sortDesc;
             // Make the sorting unique
@@ -240,6 +332,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         protected static string GetQuery(string tableName, RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
         {
             return string.Format("SELECT {0} FROM {1} ORDER BY {2}", GetSelectTerms(columns), tableName, GetSortTerms(columns, sortTerms, defaultColumn, uniqueColumn));
+        }
+
+        protected static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
+        {
+            return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
     }
 }

@@ -20,8 +20,6 @@ namespace COESearchServiceTest
         private void ExportResults_Load(object sender, EventArgs e)
         {
             this.ExportTextResults.Text = File.ReadAllText(_exportPath);
-        }
-       
-        
+        } 
     }
 }

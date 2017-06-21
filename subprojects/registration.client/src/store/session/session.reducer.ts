@@ -37,6 +37,7 @@ export function sessionReducer(
         isLoading: false,
       });
 
+    case SessionActions.CHECK_LOGIN:
     case SessionActions.LOGOUT_USER:
       return INITIAL_STATE;
 
@@ -47,7 +48,6 @@ export function sessionReducer(
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
     case RecordDetailActions.LOAD_STRUCTURE_ERROR:
     case RecordDetailActions.SAVE_RECORD_ERROR:
-    case RecordDetailActions.REGISTER_RECORD_ERROR:
     case RecordDetailActions.UPDATE_RECORD_ERROR:
       if (action.payload.status && action.payload.status === 404) {
         return INITIAL_STATE;

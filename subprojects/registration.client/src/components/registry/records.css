@@ -28,9 +28,10 @@
 }
 
 .list-header {
-  color: #928b81;
-  font-size: 16px;
+  text-decoration: none;
   cursor: pointer;
+  margin: 8px;
+  font-size: 16px;
 }
 
 .query-list-item {
@@ -49,7 +50,7 @@
   cursor: pointer;
 }
 
-.grd-icon {
+.grid-icon {
   font-size: 14px;
   margin: 0 3px;
   text-decoration: none;
@@ -57,11 +58,22 @@
   border-radius: 50%;
   border: 1x solid grey;
   padding: 5px;
-  color: #009900;
   cursor: pointer;
 }
 
-.grd-icon:hover {
+.grid-icon-disabled {
+  font-size: 14px;
+  margin: 0 3px;
+  text-decoration: none;
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  border: 1x solid grey;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+}
+
+.grid-icon:hover {
   background-color: #cccccc;
 }
 
@@ -115,3 +127,18 @@
   background-color: #fafafa;
 }
 
+.panel-heading a.list-header::before {
+  content: '\F078';
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 15px;
+  font-size: 16px;
+}
+
+.panel-heading a.list-header.collapsed::before {
+  content: '\F054';
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 15px;
+  font-size: 16px;
+}
