@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.IO;
 using System.Text;
 using System.Web;
+using System.Globalization;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
@@ -935,6 +936,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
+                bool reserved = data.Name.ToUpper().Equals("DATE") ? true : data.Name.ToUpper().Equals("NUMBER") ? true :
+                    data.Name.ToUpper().Equals("TEXT") ? true : data.Name.ToUpper().Equals("BOOLEAN") ? true :
+                    data.Name.ToUpper().Equals("PICKLISTDOMAIN") ? true : configurationBO.DatabaseReservedWords.Contains(data.Name.ToUpper()) ? true : false;
+                if (reserved)
+                    throw new RegistrationException(string.Format("Property name '{0}' is a reserved keyword.", data.Name));
+
                 bool duplicateExists = false;
                 if (configurationBO.PropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.PropertyColumnList.Contains(data.Name.ToUpper()))
                     duplicateExists = true;
@@ -973,6 +980,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         data.Precision = string.IsNullOrEmpty(data.Precision) ? "200" : data.Precision;
                         break;
                 }
+
+                // if comma is given as a decimal separator, replce it with .
+                data.Precision = data.Precision.Replace(",", ".");
+
+                // below code will make sure that the input is a valid decimal numbe
+                // example , if 10 is given as input, it will return 10.0
+                double precision;
+                if (!double.TryParse(data.Precision, NumberStyles.Number, CultureInfo.InvariantCulture, out precision))
+                    throw new RegistrationException("Property precision is not a valid input.");
+                data.Precision = precision.ToString();
 
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
                 bool found = false;
