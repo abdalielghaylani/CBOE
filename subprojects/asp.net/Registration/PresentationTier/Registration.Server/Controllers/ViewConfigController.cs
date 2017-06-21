@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -9,8 +10,9 @@ using CambridgeSoft.COE.Framework.COETableEditorService;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.Common;
-using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Framework.COESecurityService;
+using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Models;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -120,41 +122,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private JArray GetSystemSettings()
         {
-            // [{ group: .., settings: [ ] }, ... ]
-            var systemSettings = new JArray();
+            // [{ name, group, ... }, ... ]
+            var systemSettings = new List<SettingData>();
             var app = GUIShellUtilities.GetApplicationName();
             AppSettingsData appSet = FrameworkUtils.GetAppConfigSettings(app);
             foreach (var g in appSet.SettingsGroup)
             {
-                var settings = new JArray();
                 foreach (var s in g.Settings)
                 {
-                    var setting = new JObject(
-                        new JProperty("name", s.Name),
-                        new JProperty("value", s.Value),
-                        new JProperty("description", s.Description),
-                        new JProperty("allowedValues", s.AllowedValues),
-                        new JProperty("controlType", s.ControlType),
-                        new JProperty("isAdmin", s.IsAdmin),
-                        new JProperty("isHidden", s.IsHidden),
-                        new JProperty("picklistDatabaseName", s.PicklistDatabaseName),
-                        new JProperty("picklistType", s.PicklistType),
-                        new JProperty("processorClass", s.ProcessorClass)
-                    );
-                    settings.Add(setting);
+                    bool isAdmin;
+                    if (bool.TryParse(s.IsAdmin, out isAdmin) && isAdmin) continue;
+                    systemSettings.Add(new SettingData(g, s));
                 }
-
-                var groupSettings = new JObject(
-                    new JProperty("name", g.Name),
-                    new JProperty("title", g.Title),
-                    new JProperty("description", g.Description),
-                    new JProperty("settings", settings)
-                );
-
-                systemSettings.Add(groupSettings);
             }
-
-            return systemSettings;
+            return JArray.FromObject(systemSettings);
         }
 
         [HttpGet]

@@ -198,7 +198,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             HttpResponseMessage responseMessage;
             try
             {
-                CheckAuthentication();
+                try
+                {
+                    CheckAuthentication();
+                }
+                catch
+                {
+                    // Sometimes authentication fails due to multi-threading issue.
+                    // This is a hack to overcome the short-comings of the current Registration codebase
+                    // that does not handle multiple simultaneous calls well.
+                    CheckAuthentication();
+                }
                 if (permissions != null) CheckAuthorizations(permissions);
                 var statusCode = Request.Method == HttpMethod.Post && memberName.StartsWith("Create") ? HttpStatusCode.Created : HttpStatusCode.OK;
                 responseMessage = Request.CreateResponse(statusCode, method());

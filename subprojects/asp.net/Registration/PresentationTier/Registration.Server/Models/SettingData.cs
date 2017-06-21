@@ -14,7 +14,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
     /// <summary>
     /// The class for the setting data object
     /// </summary>
-    public partial class SettingData
+    public class SettingData
     {
         [JsonConstructor]
         public SettingData(string groupName, string groupLabel, string name, string controlType, string value, string description, string picklistDatabaseName, string allowedValues, string processorClass, bool? isHidden)
