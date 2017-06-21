@@ -7,7 +7,7 @@ using log4net;
 namespace PerkinElmer.COE.Registration.Server.Code
 {
     /// <summary>
-    /// Registration server loggomg utility class
+    /// Registration server logging utility class
     /// </summary>
     public static class Logger
     {

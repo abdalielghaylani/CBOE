@@ -1,5 +1,6 @@
 import { ToolModule } from './tool/tool.module';
 import {
+  INamedObject, IShareableObject, CShareableObject,
   FormGroupType, SubFormType,
   CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
   IFormContainer,
@@ -15,6 +16,7 @@ import {
 
 export { ToolModule };
 export {
+  INamedObject, IShareableObject, CShareableObject,
   FormGroupType, SubFormType,
   CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
   IFormContainer,

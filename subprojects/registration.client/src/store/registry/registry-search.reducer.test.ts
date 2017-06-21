@@ -24,13 +24,4 @@ describe('registry search reducer', () => {
     );
     expect(nextState.hitlist.rows).toEqual(rows);
   });
-
-  it('should update hitlist.currentHitlistId on RETRIEVE_HITLIST', () => {
-    const data: IHitlistRetrieveInfo = { id: 0, type: 'Retrieve' };
-    const nextState = registrySearchReducer(
-      initState,
-      RegistrySearchActions.retrieveHitlistAction(false, data)
-    );
-    expect(nextState.hitlist.currentHitlistId).toEqual(data.id);
-  });
 });

@@ -40,7 +40,6 @@ export interface IHitlistRetrieveInfo {
 
 export interface ISearchRecords {
   rows?: IHitlistData[];
-  currentHitlistId?: number;
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, ISearchRecords { }
@@ -52,8 +51,7 @@ export interface IRegistrySearch {
 export interface IRegistrySearchRecord extends TypedRecord<IRegistrySearchRecord>, IRegistrySearch { }
 
 const INITIAL_RECORDS = makeTypedFactory<ISearchRecords, IRecordsRecord>({
-  rows: [],
-  currentHitlistId: 0
+  rows: []
 })();
 
 export const RegistryFactory = makeTypedFactory<IRegistrySearch, IRegistrySearchRecord>({

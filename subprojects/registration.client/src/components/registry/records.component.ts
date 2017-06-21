@@ -185,7 +185,6 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-
   onResize(event: any) {
     this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
@@ -295,7 +294,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private saveHitlist() {
-    if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
+    if (this.hitlistVM.saveQueryVM.data.name && this.hitlistVM.saveQueryVM.data.description) {
       if (this.isMarkedQuery === true) {
         this.hitlistVM.saveQueryVM.clear();
         notifySuccess('Marked records saved successfully!', 5000);
@@ -303,6 +302,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.hitlistVM.saveQueryVM.clear();
         notifySuccess('Query saved successfully!', 5000);
       }
+      this.popupVisible = false;
     } else {
       notifyError('Name and Description is required!', 5000);
     }

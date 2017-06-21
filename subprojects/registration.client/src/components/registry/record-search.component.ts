@@ -70,7 +70,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   search() {
-    this.actions.searchRecords(this.temporary, this.generateSearchCriteriaXML());
+    this.actions.searchRecords({ temporary: this.temporary, searchCriteria: this.generateSearchCriteriaXML() });
   }
 
   private generateSearchCriteriaXML(): string {

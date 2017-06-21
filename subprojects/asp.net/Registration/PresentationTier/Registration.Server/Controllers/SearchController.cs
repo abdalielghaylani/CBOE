@@ -51,32 +51,52 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteriaBO.SearchCriteria.ToString());
         }
 
-        private JObject GetHitlistRecordsInternal(int id, int? skip = null, int? count = null, string sort = null)
+        private JObject GetHitlistRecordsInternal(int id, bool? temp, int? skip = null, int? count = null, string sort = null)
         {
             var hitlistType = HitListType.TEMP;
             var hitlistBO = COEHitListBO.Get(hitlistType, id);
             if (hitlistBO == null)
                 throw new RegistrationException("Cannot instantiate the hit-list object");
             if (hitlistBO.HitListID == 0) hitlistType = HitListType.SAVED;
-            var tableName = "vw_mixture_regnumber";
-            var whereClause = string.Format(" WHERE mixtureid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
-                hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
-            var query = GetQuery(tableName + whereClause, RecordColumns, sort, "modified", "regid");
-            var args = new Dictionary<string, object>();
-            args.Add(":hitlistId", id);
-            return new JObject(
-                new JProperty("temporary", false),
-                new JProperty("hitlistId", id),
-                new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
-                new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
-                new JProperty("rows", ExtractData(query, args, skip, count))
-            );
+            if (temp != null && temp.Value)
+            {
+                var tableName = "vw_temporarycompound";
+                var whereClause = string.Format(" WHERE tempcompoundid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
+                    hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
+                var query = GetQuery(tableName + whereClause, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
+                var args = new Dictionary<string, object>();
+                args.Add(":hitlistId", id);
+                return new JObject(
+                   new JProperty("temporary", true),
+                    new JProperty("hitlistId", id),
+                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
+                   new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                   new JProperty("rows", ExtractData(query, args, skip, count))
+               );
+            }
+            else
+            {
+                var tableName = "vw_mixture_regnumber";
+                var whereClause = string.Format(" WHERE mixtureid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
+                    hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
+                var query = GetQuery(tableName + whereClause, RecordColumns, sort, "modified", "regid");
+                var args = new Dictionary<string, object>();
+                args.Add(":hitlistId", id);
+                return new JObject(
+                    new JProperty("temporary", false),
+                    new JProperty("hitlistId", id),
+                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
+                    new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
+                    new JProperty("rows", ExtractData(query, args, skip, count))
+                );
+            }
         }
 
-        private JObject SearchRecordsInternal(QueryData queryData, int? skip, int? count, string sort)
+        private JObject SearchRecordsInternal(QueryData queryData, bool? temp, int? skip, int? count, string sort)
         {
             var coeSearch = new COESearch();
-            var dataView = SearchFormGroupAdapter.GetDataView(int.Parse(ControlIdChangeUtility.PERMSEARCHGROUPID));
+            var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
+            var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
             var searchCriteria = new SearchCriteria();
             string structureName = string.Empty;
             try
@@ -127,7 +147,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
             }
             hitlistBO.Update();
-            return GetHitlistRecordsInternal(hitlistBO.HitListID, skip, count, sort);
+            return GetHitlistRecordsInternal(hitlistBO.HitListID, temp, skip, count, sort);
         }
 
         /// <summary>
@@ -338,9 +358,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (refresh != null && refresh.Value)
                 {
                     var queryData = GetHitlistQueryInternal(id, temp);
-                    return SearchRecordsInternal(queryData, skip, count, sort);
+                    return SearchRecordsInternal(queryData, temp, skip, count, sort);
                 }
-                return GetHitlistRecordsInternal(id, skip, count, sort);
+                return GetHitlistRecordsInternal(id, temp, skip, count, sort);
             });
         }
 
@@ -432,7 +452,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 newHitlist.Name = string.Format("({0}) {1} ({2})", hitlistBO1.Name, symbol, hitlistBO2.Name);
                 newHitlist.Description = string.Format("{0} {1} {2}", hitlistBO1.Description, join, hitlistBO2.Description);
                 newHitlist.Update();
-                return GetHitlistRecordsInternal(newHitlist.HitListID);
+                return GetHitlistRecordsInternal(newHitlist.HitListID, temp);
             });
         }
 
@@ -498,7 +518,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                return SearchRecordsInternal(queryData, skip, count, sort);
+                return SearchRecordsInternal(queryData, null, skip, count, sort);
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "search/temp-records")]
+        [SwaggerOperation("SearchTempRecords")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(JObject))]
+        public async Task<IHttpActionResult> SearchTempRecords([FromBody] QueryData queryData, int? skip = null, int? count = null, string sort = null)
+        {
+            return await CallMethod(() =>
+            {
+                return SearchRecordsInternal(queryData, true, skip, count, sort);
             });
         }
     }

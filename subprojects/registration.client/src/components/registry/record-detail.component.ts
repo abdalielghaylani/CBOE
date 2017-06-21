@@ -6,7 +6,7 @@ import {
   ChangeDetectionStrategy,
   OnInit, OnDestroy, AfterViewInit,
   ElementRef, ChangeDetectorRef,
-  ViewChildren, QueryList
+  ViewChild, ViewChildren, QueryList
 } from '@angular/core';
 import { ActivatedRoute, UrlSegment, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -16,11 +16,13 @@ import * as X2JS from 'x2js';
 import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
-import { CFormGroup, prepareFormGroupData, notify } from '../../common';
-import { CRegistryRecord, CRegistryRecordVM, FragmentData } from './registry.types';
+import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, notify } from '../../common';
+import { CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
-import { basePath } from '../../configuration';
-import { FormGroupType, IFormContainer, getFormGroupData } from '../../common';
+import { basePath, apiUrlPrefix } from '../../configuration';
+import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifySuccess } from '../../common';
+import { HttpService } from '../../services';
+import { RegTemplates } from './templates.component';
 
 declare var jQuery: any;
 
@@ -32,6 +34,7 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
+  @ViewChild(RegTemplates) regTemplates: RegTemplates;
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
   @Input() template: boolean;
@@ -52,11 +55,32 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
   private currentIndex: number = 0;
+  private saveTemplateForm;
+  private saveTemplatePopupVisible: boolean = false;
+  private saveTemplateItems = [{
+    dataField: 'name',
+    label: { text: 'Template Name' },
+    dataType: 'string',
+    editorType: 'dxTextBox',
+    validationRules: [{ type: 'required', message: 'Name is required' }]
+  }, {
+    dataField: 'description',
+    label: { text: 'Template Description' },
+    dataType: 'string',
+    editorType: 'dxTextArea'
+  }, {
+    dataField: 'isPublic',
+    label: { text: 'Public Template' },
+    dataType: 'boolean',
+    editorType: 'dxCheckBox'
+  }];
+  private saveTemplateData: IShareableObject = new CShareableObject('', '', false);
 
   constructor(
     public ngRedux: NgRedux<IAppState>,
     private elementRef: ElementRef,
     private router: Router,
+    private http: HttpService,
     private actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute) {
@@ -118,7 +142,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       return;
     }
     this.recordDoc = registryUtils.getDocument(recordDetail.data);
-    this.title = recordDetail.id < 0 ?
+    this.title = this.isNewRecord() ?
       'Register a New Compound' :
       recordDetail.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
@@ -148,7 +172,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup;
-    this.editMode = this.id < 0 || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
+    this.editMode = this.isNewRecord() || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
     this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
@@ -227,7 +251,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   save() {
     this.updateRecord();
-    if (this.id < 0) {
+    if (this.isNewRecord()) {
       this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
     } else {
       this.setEditMode(false);
@@ -269,13 +293,66 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
   }
 
+  private showSaveTemplate(e) {
+    if (this.template) {
+      if (confirm('Do you want to overwrite the saved template?')) {
+        // TODO: overwrite the template data
+      }
+    } else {
+      this.saveTemplatePopupVisible = true;
+    }
+  }
+
+  private saveTemplate(e) {
+    let result: any = this.saveTemplateForm.validate();
+    if (result.isValid) {
+      this.updateRecord();
+      let url = `${apiUrlPrefix}templates`;
+      let data: ITemplateData = new CTemplateData(this.saveTemplateData.name);
+      data.description = this.saveTemplateData.description;
+      data.isPublic = this.saveTemplateData.isPublic;
+      data.data = registryUtils.serializeData(this.recordDoc);
+      this.http.post(url, data).toPromise()
+        .then(res => {
+          this.regTemplates.dataSource = undefined;
+          notifySuccess(`The submission data was saved as template ${res.json().id} successfully!`, 5000);
+        })
+        .catch(error => {
+          let message = `The submission data was not saved properly due to a problem`;
+          let errorResult, reason;
+          if (error._body) {
+            errorResult = JSON.parse(error._body);
+            reason = errorResult.Message;
+          }
+          message += (reason) ? ': ' + reason : '!';
+          notifyError(message, 5000);
+        });
+      this.saveTemplatePopupVisible = false;
+    }
+  }
+
+  private cancelSaveTemplate(e) {
+    this.saveTemplatePopupVisible = false;    
+  }
+
   private showTemplates(e) {
     this.currentIndex = 1;
+    if (!this.regTemplates.dataSource) {
+      this.regTemplates.loadData();
+    }
     this.changeDetector.markForCheck();
   }
 
   private showDetails(e) {
     this.currentIndex = 0;
     this.changeDetector.markForCheck();
+  }
+
+  private isNewRecord(): boolean {
+    return this.id < 0 || this.template;
+  }
+
+  private onSaveTemplateFormInit(e) {
+    this.saveTemplateForm = e.component;
   }
 };

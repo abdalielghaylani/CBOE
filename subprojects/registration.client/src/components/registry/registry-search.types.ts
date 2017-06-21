@@ -1,5 +1,5 @@
 import { IAppState } from '../../store';
-import { FormGroupType, CFormGroup, CFormElement } from '../../common';
+import { IShareableObject, CShareableObject, FormGroupType, CFormGroup, CFormElement } from '../../common';
 import * as X2JS from 'x2js';
 
 export class CRegSearchVM {
@@ -276,45 +276,28 @@ export class CQueries {
   Name?: String;
 }
 
-export const HITLIST_EDIT_DESC_LIST = [{
-  dataField: 'Name',
-  label: { text: 'Name' },
-  dataType: 'string',
-  editorType: 'dxTextBox',
-}, {
-  dataField: 'Description',
-  label: { text: 'Description' },
-  dataType: 'string',
-  editorType: 'dxTextArea',
-}, {
-  dataField: 'IsPublic',
-  label: { text: 'Is Public' },
-  dataType: 'boolean',
-  editorType: 'dxCheckBox',
-}
-];
-
-export class CSaveData {
-  Name?: string; // 921
-  Description?: String;
-  IsPublic?: boolean;
-}
-
 export class CSaveQuery {
-  editColumns: any[] = [];
-  data?: CSaveData;
+  editColumns: any[] = [{
+    dataField: 'name',
+    label: { text: 'Name' },
+    dataType: 'string',
+    editorType: 'dxTextBox',
+  }, {
+    dataField: 'description',
+    label: { text: 'Description' },
+    dataType: 'string',
+    editorType: 'dxTextArea',
+  }, {
+    dataField: 'isPublic',
+    label: { text: 'Is Public' },
+    dataType: 'boolean',
+    editorType: 'dxCheckBox',
+  }];
+  data?: IShareableObject;
   constructor() {
-    this.editColumns.push(HITLIST_EDIT_DESC_LIST);
-    if (HITLIST_EDIT_DESC_LIST) {
-      HITLIST_EDIT_DESC_LIST.forEach(p => {
-        this.editColumns.push(p);
-      });
-    }
-    this.data = new CSaveData();
+    this.clear();
   }
   clear() {
-    this.data.Name = '';
-    this.data.Description = '';
-    this.data.IsPublic = false;
+    this.data = new CShareableObject('', '', false);
   }
 }

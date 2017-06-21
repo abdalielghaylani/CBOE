@@ -1,6 +1,6 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
   <command-button testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
-  <div *ngIf="!temporary">
+  <div>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
     <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
     <command-button *ngIf="!!records.data.hitlistId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>

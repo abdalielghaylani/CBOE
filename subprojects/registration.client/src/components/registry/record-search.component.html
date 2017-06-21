@@ -14,10 +14,10 @@
   </ul>
 </div>
 <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
-  <span *ngIf="!temporary">Search Permanent Registry</span>
+  {{ 'Search ' + (temporary ? 'Temporary' : 'Permanent') + ' Registry' }}
 </reg-page-header>
 <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
-  <div class="panel-group" id="accordion" *ngIf="!temporary">
+  <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
         <a class="list-header tan" data-toggle="collapse" href="#collapseOne">{{regSearch.registrySearchVM.title}}</a>
