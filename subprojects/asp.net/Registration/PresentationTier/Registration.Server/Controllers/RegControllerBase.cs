@@ -311,13 +311,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return new RecordColumn[]
                 {
                     new RecordColumn { Definitions = "tempcompoundid", Label = "id", Sortable = true },
-                    new RecordColumn { Definitions = "tempbatchid", Label = "batchid", Sortable = true },
+                    new RecordColumn { Definitions = "c.tempbatchid", Label = "batchid", Sortable = true },
                     new RecordColumn { Definitions = "formulaweight", Label = "mw", Sortable = true },
                     new RecordColumn { Definitions = "molecularformula", Label = "mf", Sortable = true },
-                    new RecordColumn { Definitions = "datecreated", Label = "created", Sortable = true },
-                    new RecordColumn { Definitions = "datelastmodified", Label = "modified", Sortable = true },
-                    new RecordColumn { Definitions = "personcreated", Label = "creator", Sortable = true },
-                    new RecordColumn { Definitions = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false }
+                    new RecordColumn { Definitions = "c.datecreated", Label = "created", Sortable = true },
+                    new RecordColumn { Definitions = "c.datelastmodified", Label = "modified", Sortable = true },
+                    new RecordColumn { Definitions = "c.personcreated", Label = "creator", Sortable = true },
+                    new RecordColumn { Definitions = "'temprecord/' || tempcompoundid || '?' || to_char(c.datelastmodified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false },
+                    new RecordColumn { Definitions = "b.statusid", Label = "statusid", Sortable = false }
                 };
             }
         }
