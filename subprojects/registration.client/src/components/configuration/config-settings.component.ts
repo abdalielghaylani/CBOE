@@ -3,7 +3,7 @@ import {
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
+import { select, NgRedux } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { ICustomTableData, IConfiguration, IAppState } from '../../store';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;
@@ -63,6 +63,7 @@ export class RegConfigSettings implements OnInit, OnDestroy {
 
   constructor(
     private http: HttpService,
+    private ngRedux: NgRedux<IAppState>,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
@@ -143,6 +144,7 @@ export class RegConfigSettings implements OnInit, OnDestroy {
           .toPromise()
           .then(result => {
             let rows = result.json();
+            parent.ngRedux.getState().session.lookups.systemSettings = rows;
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {

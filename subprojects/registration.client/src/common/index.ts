@@ -3,9 +3,7 @@ import {
   INamedObject, IShareableObject, CShareableObject,
   FormGroupType, SubFormType,
   CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
-  IFormContainer,
-  GroupSettingType,
-  getGroupSettings, getSetting
+  IFormContainer
 } from './types';
 import {
   notify, notifyError, notifySuccess,
@@ -19,9 +17,7 @@ export {
   INamedObject, IShareableObject, CShareableObject,
   FormGroupType, SubFormType,
   CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
-  IFormContainer,
-  GroupSettingType,
-  getGroupSettings, getSetting
+  IFormContainer
 };
 export {
   notify, notifyError, notifySuccess,

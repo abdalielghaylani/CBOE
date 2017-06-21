@@ -132,7 +132,6 @@ export class RegTemplates implements OnInit, OnDestroy {
   }
 
   private createCustomStore(parent: RegTemplates): CustomStore {
-    let tableName = 'settings';
     let apiUrlBase = `${apiUrlPrefix}templates`;
     return new CustomStore({
       load: function (loadOptions) {
