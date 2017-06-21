@@ -622,7 +622,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(name))
+                if (string.IsNullOrWhiteSpace(name))
                     throw new RegistrationException("Invalid addin name");
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 bool found = false;
@@ -707,7 +707,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(data.Name))
+                if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid addin name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
@@ -926,11 +926,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(data.Name))
+                if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid property name");
-                if (string.IsNullOrEmpty(data.GroupName))
-                    throw new RegistrationException("Invalid property group name");
-                if (string.IsNullOrEmpty(data.Type))
+                if (string.IsNullOrWhiteSpace(data.FriendlyName))
+                    throw new RegistrationException("Invalid property FriendlyName");
+                if (string.IsNullOrWhiteSpace(data.Type))
                     throw new RegistrationException("Invalid property type");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
@@ -949,6 +949,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 if (duplicateExists)
                     throw new RegistrationException(string.Format("The property '{0}' already exists.", data.Name));
+
+                // set defaut values (These default values are hard coded in the UI in old Reg app)
+                switch (data.Type.ToUpper())
+                {
+                    case "INTEGER":
+                        data.Type = ConfigurationRegistryRecord.PropertyTypeEnum.Number.ToString().ToUpper();
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "9.0" : data.Precision;
+                        break;
+                    case "FLOAT":
+                        data.Type = ConfigurationRegistryRecord.PropertyTypeEnum.Number.ToString().ToUpper();
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "8.6" : data.Precision;
+                        break;
+                    case "URL":
+                        data.Type = ConfigurationRegistryRecord.PropertyTypeEnum.Text.ToString().ToUpper();
+                        data.SubType = "URL";
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "200" : data.Precision;
+                        break;
+                    case "NUMBER":
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "8.0" : data.Precision;
+                        break;
+                    case "TEXT":
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "200" : data.Precision;
+                        break;
+                }
 
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
                 bool found = false;
@@ -1050,7 +1074,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(data.Name.Trim()))
+                if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid property name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
