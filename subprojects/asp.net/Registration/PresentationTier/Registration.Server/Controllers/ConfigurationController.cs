@@ -1229,21 +1229,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var settingList = new List<SettingData>();
-                var currentApplicationName = RegUtilities.GetApplicationName();
-                var appConfigSettings = FrameworkUtils.GetAppConfigSettings(currentApplicationName, true);
-                var groups = appConfigSettings.SettingsGroup;
-                foreach (var group in groups)
-                {
-                    var settings = group.Settings;
-                    foreach (var setting in settings)
-                    {
-                        bool isAdmin;
-                        if (bool.TryParse(setting.IsAdmin, out isAdmin) && isAdmin) continue;
-                        settingList.Add(new SettingData(group, setting));
-                    }
-                }
-                return settingList;
+                return RegAppHelper.RetrieveSettings();
             });
         }
 

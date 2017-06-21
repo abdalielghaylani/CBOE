@@ -120,24 +120,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return homeMenuPrivilages;
         }
 
-        private List<SettingData> GetSystemSettings()
-        {
-            // [{ name, group, ... }, ... ]
-            var systemSettings = new List<SettingData>();
-            var app = GUIShellUtilities.GetApplicationName();
-            AppSettingsData appSet = FrameworkUtils.GetAppConfigSettings(app);
-            foreach (var g in appSet.SettingsGroup)
-            {
-                foreach (var s in g.Settings)
-                {
-                    bool isAdmin;
-                    if (bool.TryParse(s.IsAdmin, out isAdmin) && isAdmin) continue;
-                    systemSettings.Add(new SettingData(g, s));
-                }
-            }
-            return systemSettings;
-        }
-
         [HttpGet]
         [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
         [SwaggerOperation("GetLookups")]
@@ -162,7 +144,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     ExtractData("SELECT * FROM VW_UNIT"),
                     GetFormGroups(),
                     GetCustomTables(),
-                    GetSystemSettings(),
+                    RegAppHelper.RetrieveSettings(),
                     GetAddinAssemblies(),
                     GetPropertyGroups(),
                     GetHomeMenuPrivileges()
