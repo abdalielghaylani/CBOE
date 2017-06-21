@@ -296,3 +296,16 @@ export interface CWindow {
   title: string;
   viewIndex: string; // = 'list' || 'add' || 'edit' || 'validation';
 }
+
+export interface ISettingData {
+  groupName: string;
+  groupLabel: string;
+  name: string;
+  controlType: string;
+  value: string;
+  description: string;
+  pikclistDatabaseName: string;
+  allowedValues: string;
+  processorClass: string;
+  isHidden?: boolean;
+}

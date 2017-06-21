@@ -4,18 +4,17 @@ import {
   IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, IQueryData, RegistryFactory,
   HitlistType, SearchCriteriaType, IHitlistData, IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords
 } from './registry';
-import { ISession } from './session';
 
 import { dev } from '../configuration';
 const createLogger = require('redux-logger');
 const persistState = require('redux-localstorage');
 
+export * from './session';
 export {
   IAppState,
   ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory,
   IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, IQueryData, RegistryFactory,
   HitlistType, SearchCriteriaType, IHitlistData, IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords,
-  ISession,
   rootReducer,
   reimmutify
 };

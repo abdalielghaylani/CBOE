@@ -4,3 +4,4 @@ export * from './config-properties.component';
 export * from './config-settings.component';
 export * from './config-tables.component';
 export * from './config-xml-forms.component';
+export * from './config.types';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IAppState } from '../store';
+import { IAppState, ILookupData } from '../store';
 
 @Injectable()
 export class SessionActions {
@@ -17,7 +17,8 @@ export class SessionActions {
   static loginUserSuccessAction = createAction(SessionActions.LOGIN_USER_SUCCESS);
   static logoutUserAction = createAction(SessionActions.LOGOUT_USER);
   static loginUserErrorAction = createAction(SessionActions.LOGIN_USER_ERROR);
-  static loadLookupsSuccessAction = createAction(SessionActions.LOAD_LOOKUPS_SUCCESS);
+  static loadLookupsSuccessAction = createAction(SessionActions.LOAD_LOOKUPS_SUCCESS,
+    (payload: ILookupData) => (payload));
   static loadLookupsErrorAction = createAction(SessionActions.LOAD_LOOKUPS_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }

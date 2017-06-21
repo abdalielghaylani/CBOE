@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
 import { RegistryActions, RegistrySearchActions } from '../../actions';
-import { IAppState, CRecordsData, IRecords, ISearchRecords } from '../../store';
+import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
@@ -37,13 +37,13 @@ export class RegRecords implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Input() temporary: boolean;
   @Input() restore: boolean;
-  @select(s => s.session.lookups) lookups$: Observable<any>;
+  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   private records$: Observable<IRecords>;
   private lookupsSubscription: Subscription;
   private recordsSubscription: Subscription;
   private hitlistSubscription: Subscription;
-  private lookups: any;
+  private lookups: ILookupData;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
   private selectedRows: any[] = [];
@@ -87,7 +87,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   // Trigger data retrieval for the view to show.
-  retrieveContents(lookups: any) {
+  retrieveContents(lookups: ILookupData) {
     this.lookups = lookups;
     if (this.loggedIn$) {
       this.loadIndicatorVisible = true;
