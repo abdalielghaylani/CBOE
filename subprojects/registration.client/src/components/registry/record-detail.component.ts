@@ -121,7 +121,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (this.loadSubscription) {
       this.loadSubscription.unsubscribe();
     }
-    this.actions.clearRecord();
   }
 
   private getParentHeight() {
