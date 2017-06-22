@@ -144,6 +144,7 @@
     <Compile Include="Code\ChemistryHelper.cs" />
     <Compile Include="Code\Consts.cs" />
     <Compile Include="Code\Logger.cs" />
+    <Compile Include="Code\RegAppHelper.cs" />
     <Compile Include="Code\RegistrationException.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\RegControllerBase.cs" />
@@ -169,6 +170,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ImportConfigurationData.cs" />
+    <Compile Include="Models\LookupData.cs" />
     <Compile Include="Models\PropertyData.cs" />
     <Compile Include="Models\QueryData.cs" />
     <Compile Include="Models\TemplateData.cs" />
