@@ -334,6 +334,29 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }, new string[] { "EDIT_COMPOUND_TEMP" });
         }
 
+        [HttpPut]
+        [Route(Consts.apiPrefix + "temp-records/{id}/{status}")]
+        [SwaggerOperation("UpdateTempRecordStatus")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateTempRecordStatus(int id, int status)
+        {
+            return await CallMethod(() =>
+            {
+                RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(id);
+                int currentStatus = (int)registryRecord.Status;
+                if (status < 0 || status > (int)RegistryStatus.Registered || currentStatus == status || (status != currentStatus + 1 && status != currentStatus - 1))
+                    throw new RegistrationException("The specified status is invalid");
+                registryRecord.Status = (RegistryStatus)status;
+                if (registryRecord.Status == RegistryStatus.Locked || registryRecord.Status == RegistryStatus.Registered)
+                    registryRecord.SetLockStatus();
+                else
+                    registryRecord.SetApprovalStatus();
+                return new ResponseData(id: id, message: "The registry record status was updated successfully!");
+            });
+        }
+
         [HttpDelete]
         [Route(Consts.apiPrefix + "temp-records/{id}")]
         [SwaggerOperation("DeleteTempRecord")]
