@@ -227,8 +227,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var tableName = "vw_temporarycompound";
-                var query = GetQuery(tableName, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
+                var tableName = "vw_temporarycompound c inner join vw_temporarybatch b on c.tempbatchid = b.tempbatchid";
+                var query = GetQuery(tableName, TempRecordColumns, sort, "c.datelastmodified", "tempcompoundid");
                 return new JObject(
                     new JProperty("temporary", true),
                     new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),

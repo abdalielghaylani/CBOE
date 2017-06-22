@@ -296,3 +296,35 @@ export interface CWindow {
   title: string;
   viewIndex: string; // = 'list' || 'add' || 'edit' || 'validation';
 }
+
+export interface ISettingData {
+  groupName: string;
+  groupLabel: string;
+  name: string;
+  controlType: string;
+  value: string;
+  description: string;
+  pikclistDatabaseName: string;
+  allowedValues: string;
+  processorClass: string;
+  isHidden?: boolean;
+}
+
+export class CSystemSettings {
+  constructor(private systemSettings: ISettingData[]) {
+  }
+
+  private getSetting(groupLabel: string, settingName: string): ISettingData {
+    let settings = this.systemSettings.filter(s => s.groupLabel === groupLabel && s.name === settingName);
+    return settings && settings.length === 1 ? settings[0] : null;
+  }
+
+  private getRegSetting(settingName: string): ISettingData {
+    return this.getSetting('Registration', settingName);    
+  }
+
+  isApprovalsEnabled(): boolean {
+    let setting = this.getRegSetting('ApprovalsEnabled');
+    return setting && setting.value && setting.value.toLowerCase() === 'true';
+  }
+}

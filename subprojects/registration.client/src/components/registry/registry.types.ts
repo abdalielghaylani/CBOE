@@ -1,8 +1,7 @@
 import { IAppState } from '../../store';
 import { apiUrlPrefix } from '../../configuration';
 import {
-  IShareableObject, FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
-  GroupSettingType, getSetting
+  IShareableObject, FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer
 } from '../../common';
 import { IRecordsData, IRecords } from '../../store';
 
