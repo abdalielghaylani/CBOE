@@ -5,6 +5,13 @@ import {
 } from '../../common';
 import { IRecordsData, IRecords } from '../../store';
 
+export enum RegistryStatus {
+  NotSet,
+  Submitted,
+  Approved,
+  Registered,
+  Locked
+}
 
 export class FragmentData {
   FragmentID: number;

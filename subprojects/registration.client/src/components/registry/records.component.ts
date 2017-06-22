@@ -19,7 +19,7 @@ import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData } from '
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { CRecords } from './registry.types';
+import { CRecords, RegistryStatus } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import { CSystemSettings } from '../configuration';
@@ -421,5 +421,9 @@ export class RegRecords implements OnInit, OnDestroy {
     <body onload="window.print();window.close()">${printContents}</body>
       </html>`);
     popupWin.document.close();
+  }
+
+  private isApproved(data): boolean {
+    return data.value === RegistryStatus.Approved;
   }
 };

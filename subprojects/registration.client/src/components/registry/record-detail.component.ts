@@ -24,6 +24,7 @@ import { CSystemSettings } from '../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
+import { RegistryStatus } from './registry.types';
 
 declare var jQuery: any;
 
@@ -379,12 +380,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   private approveButtonEnabled(): boolean {
     let statusId = this.getStatusId();
-    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId !== 2;
+    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId !== RegistryStatus.Approved;
   }
 
   private cancelApprovalButtonEnabled(): boolean {
     let statusId = this.getStatusId();
-    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId === 2;
+    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId === RegistryStatus.Approved;
   }
 
   private cancelApproval() {
