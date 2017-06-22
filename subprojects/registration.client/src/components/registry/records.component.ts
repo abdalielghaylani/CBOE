@@ -349,7 +349,7 @@ export class RegRecords implements OnInit, OnDestroy {
       } else if (succeeded.length === 0) {
         notifySuccess(`Deleting failed for all marked records!`, 5000);
       } else {
-        notify(`Some records were failed to delete: ${failed.join(', ')}`, `warning`, 5000);
+        notify(`Deleting records failed: ${failed.join(', ')}`, `warning`, 5000);
       }
       this.grid.instance.repaint();
       return;
@@ -362,7 +362,7 @@ export class RegRecords implements OnInit, OnDestroy {
       .catch(error => {
         failed.push(id);
         this.deleteRows(ids, failed, succeeded);
-        return null;
+        throw error;
       })
       .subscribe(r => {
         if (r !== null) {
@@ -425,5 +425,63 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private isApproved(data): boolean {
     return data.value === RegistryStatus.Approved;
+  }
+
+  private getApprovalsEnabled(): boolean {
+    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled();
+  }
+
+  private approveMarkedEnabled(): boolean {
+    return this.temporary && this.selectedRows && this.selectedRows.length > 0 && this.getApprovalsEnabled();
+  }
+
+  private approveRows(ids: number[], failed: number[], succeeded: number[]) {
+    if (ids.length === 0) {
+      // If id list is empty, change deleted rows and refresh grid.
+      // Remove from this.records.data.rows
+      // Remove from this.selectedRows
+      // Also display a message about success/failure.
+      if (failed.length === 0) {
+        notifySuccess(`All marked records were approved successfully!`, 5000);
+      } else if (succeeded.length === 0) {
+        notifySuccess(`Approving failed for all marked records!`, 5000);
+      } else {
+        notify(`Approving for some records failed: ${failed.join(', ')}`, `warning`, 5000);
+      }
+      this.grid.instance.refresh();
+      return;
+    }
+    // Otherwise, shift ids
+    let id = ids.shift();
+    let row = this.records.data.rows.find(r => r.ID === id);
+    if (row && row.STATUSID === RegistryStatus.Submitted) {
+      let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}/${RegistryStatus.Approved}`;
+      // Approve first id
+      this.http.put(url, undefined)
+        .catch(error => {
+          failed.push(id);
+          this.approveRows(ids, failed, succeeded);
+          throw error;
+        })
+        .subscribe(r => {
+          if (r !== null) {
+            // Upon successful deletion, recursively call approveRows
+            row.STATUSID = RegistryStatus.Approved;
+            succeeded.push(id);
+            this.approveRows(ids, failed, succeeded);
+          }
+        });
+    } else {
+      this.approveRows(ids, failed, succeeded);
+    }
+  }
+
+  private approveMarked() {
+    if (this.selectedRows && this.selectedRows.length > 0) {
+      let ids: number[] = this.selectedRows.map(r => r[Object.keys(r)[0]]);
+      let succeeded: number[] = [];
+      let failed: number[] = [];
+      this.approveRows(ids, failed, succeeded);
+    }
   }
 };
