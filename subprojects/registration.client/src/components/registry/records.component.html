@@ -55,7 +55,7 @@
           </div>
           <div *ngIf="approveMarkedEnabled()" testid="approve-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="approveMarked()">
-              <i class="fa fa-trash white" aria-hidden="true"></i>
+              <i class="fa fa-thumbs-o-up white" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="approveMarked()">Approve Marked</button>
           </div>
@@ -89,7 +89,7 @@
         </div>
         <div *dxTemplate="let data of 'statusTemplate'">
           <div class="center">
-            <dx-check-box [value]="isApproved(data)" [readOnly]="true"></dx-check-box>
+            <i class="fa fa-lg fa-thumbs-{{isApproved(data) ? 'o-up green' : 'o-down red'}}"></i>
           </div>
         </div>
       </dx-data-grid>

@@ -14,8 +14,8 @@
   <command-button *ngIf="editMode" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
   <command-button *ngIf="saveButtonEnabled()" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title="Save"></command-button>
   <command-button *ngIf="registerButtonEnabled()" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
-  <command-button *ngIf="approveButtonEnabled()" testid="approve-temp-record-button" (onClick)="approve()" iconName="check" title="Approve"></command-button>
-  <command-button *ngIf="cancelApprovalButtonEnabled()" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="cancel" title="Cancel Approval"></command-button>
+  <command-button *ngIf="approveButtonEnabled()" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up" title="Approve"></command-button>
+  <command-button *ngIf="cancelApprovalButtonEnabled()" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
   <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
   </reg-page-header>
