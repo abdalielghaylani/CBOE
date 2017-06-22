@@ -78,6 +78,14 @@
             <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="saveQuery(true)">Save Marked</button>
           </div>
         </div>
+        <div *dxTemplate="let data of 'structureTemplate'">
+          <img src="{{structureImageApiPrefix + data.value}}" />{{apiUrlPrefix}}
+        </div>
+        <div *dxTemplate="let data of 'statusTemplate'">
+          <div class="center">
+            <dx-check-box [value]="data.value === 2" [readOnly]="true"></dx-check-box>
+          </div>
+        </div>
       </dx-data-grid>
     </div>
   </div>

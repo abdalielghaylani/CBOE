@@ -20,6 +20,7 @@ import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, n
 import { CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath, apiUrlPrefix } from '../../configuration';
+import { CSystemSettings } from '../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
@@ -296,7 +297,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private showSaveTemplate(e) {
     if (this.template) {
       if (confirm('Do you want to overwrite the saved template?')) {
-        // TODO: overwrite the template data
       }
     } else {
       this.saveTemplatePopupVisible = true;
@@ -354,5 +354,44 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   private onSaveTemplateFormInit(e) {
     this.saveTemplateForm = e.component;
+  }
+
+  private getStatusId(): number {
+    let statusIdText = this.recordDoc ? this.getElementValue(this.recordDoc.documentElement, 'StatusID') : null;
+    return statusIdText ? +statusIdText : null;
+  }
+
+  private getApprovalsEnabled(): boolean {
+    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled();
+  }
+
+  private editButtonEnabled(): boolean {
+    return !this.isNewRecord() && !this.editMode && !this.cancelApprovalButtonEnabled();
+  }
+
+  private saveButtonEnabled(): boolean {
+    return (this.isNewRecord() && !this.cancelApprovalButtonEnabled()) || this.editMode;
+  }
+
+  private registerButtonEnabled(): boolean {
+    return this.temporary && (!this.editMode || this.isNewRecord()) && (!this.getApprovalsEnabled() || this.cancelApprovalButtonEnabled());
+  }
+
+  private approveButtonEnabled(): boolean {
+    let statusId = this.getStatusId();
+    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId !== 2;
+  }
+
+  private cancelApprovalButtonEnabled(): boolean {
+    let statusId = this.getStatusId();
+    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId === 2;
+  }
+
+  private cancelApproval() {
+    // TODO: Call API to cancel approval of this record
+  }
+
+  private approve() {
+    // TODO: Call API to approve this record
   }
 };

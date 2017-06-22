@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/toPromise';
 import { RegistryActions, RegistrySearchActions } from '../../actions';
 import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -21,7 +22,7 @@ import * as regSearchTypes from './registry-search.types';
 import { CRecords } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
-import 'rxjs/add/operator/toPromise';
+import { CSystemSettings } from '../configuration';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;
@@ -57,6 +58,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private currentIndex: number = 0;
   private dataStore: CustomStore;
   private sortCriteria: string;
+  private structureImageApiPrefix: string = `${apiUrlPrefix}StructureImage/`;
 
   constructor(
     private router: Router,
@@ -172,6 +174,9 @@ export class RegRecords implements OnInit, OnDestroy {
         displayExpr: 'USERID',
         valueExpr: 'PERSONID'
       };
+    } else if (gridColumn.cellTemplate === 'statusTemplate') {
+      let systemSettings = new CSystemSettings(this.lookups.systemSettings);
+      gridColumn.visible = systemSettings.isApprovalsEnabled();
     }
     return gridColumn;
   }
