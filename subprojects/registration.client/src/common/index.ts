@@ -6,7 +6,7 @@ import {
   IFormContainer
 } from './types';
 import {
-  notify, notifyError, notifySuccess,
+  getExceptionMessage, notify, notifyError, notifyException, notifySuccess,
   getFormGroup, getFormGroupData, convertToFormGroup, prepareFormGroupData,
   copyObject, copyObjectAndSet,
   IColumnConfig, getViewColumns
@@ -20,7 +20,7 @@ export {
   IFormContainer
 };
 export {
-  notify, notifyError, notifySuccess,
+  getExceptionMessage, notify, notifyError, notifyException, notifySuccess,
   getFormGroup, getFormGroupData, convertToFormGroup, prepareFormGroupData,
   copyObject, copyObjectAndSet,
   IColumnConfig, getViewColumns

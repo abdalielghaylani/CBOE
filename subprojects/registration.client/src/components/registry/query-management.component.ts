@@ -11,10 +11,13 @@ import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { RegistrySearchActions } from '../../actions';
 import { IAppState, HitlistType, IHitlistData, IHitlistInfo, ISearchRecords } from '../../store';
-import { DxDataGridComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
+import { apiUrlPrefix } from '../../configuration';
+import { HttpService } from '../../services';
+import { notifyError, notifyException, notifySuccess } from '../../common';
 
 @Component({
   selector: 'reg-search-query',
@@ -36,6 +39,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
+    private http: HttpService,
     private ngRedux: NgRedux<IAppState>,
     private actions: RegistrySearchActions,
     private changeDetector: ChangeDetectorRef) {
@@ -112,7 +116,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     }
   }
 
-  showAdvRestorePopup(e) {
+  private showAdvRestorePopup(e) {
     let data = <IHitlistData>e.data;
     if (this.hitlistId && this.hitlistId > 0 && data.hitlistId !== this.hitlistId) {
       e.component.collapseAll(-1);
@@ -121,11 +125,11 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     }
   }
 
-  hideRestore(e) {
+  private hideRestore(e) {
     e.component.collapseAll(-1);
   }
 
-  advancedRestorePopup(e: IHitlistData) {
+  private advancedRestorePopup(e: IHitlistData) {
     this.actions.retrieveHitlist(this.temporary, {
       type: 'Advanced',
       id: e.id,
@@ -139,20 +143,30 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     this.onClose.emit(e);
   }
 
-  restoreSelectedHitlist(e: IHitlistData) {
+  private restoreSelectedHitlist(e: IHitlistData) {
     if (this.hitlistId !== e.id) {
       this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: e.id });
       this.onClose.emit(e);
     }
   }
 
-  refreshSelectedHitlist(e: IHitlistData) {
+  private refreshSelectedHitlist(e: IHitlistData) {
     this.actions.retrieveHitlist(this.temporary, { type: 'Refresh', id: e.id });
     this.onClose.emit(e);
   }
 
-  cancel(e) {
-    this.onClose.emit(e);
+  private restoreQueryToForm(e: IHitlistData) {
+    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${e.hitlistId}/query`;
+    this.http.get(url).toPromise()
+      .then(res => {
+        // this.changeDetector.markForCheck();
+      })
+      .catch(error => {
+        notifyException(`Restoring the selected query failed due to a problem`, error, 5000);
+      });
   }
 
+  private cancel(e) {
+    this.onClose.emit(e);
+  }
 };

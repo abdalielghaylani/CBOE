@@ -21,7 +21,7 @@ import { CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTempl
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { CSystemSettings } from '../configuration';
-import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifySuccess } from '../../common';
+import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus } from './registry.types';
@@ -318,14 +318,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
           notifySuccess(`The submission data was saved as template ${res.json().id} successfully!`, 5000);
         })
         .catch(error => {
-          let message = `The submission data was not saved properly due to a problem`;
-          let errorResult, reason;
-          if (error._body) {
-            errorResult = JSON.parse(error._body);
-            reason = errorResult.Message;
-          }
-          message += (reason) ? ': ' + reason : '!';
-          notifyError(message, 5000);
+          notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
         });
       this.saveTemplatePopupVisible = false;
     }
@@ -405,14 +398,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
         notifySuccess(`The current temporary record's approval was cancelled successfully!`, 5000);
       })
       .catch(error => {
-        let message = `The approval cancelling process failed due to a problem`;
-        let errorResult, reason;
-        if (error._body) {
-          errorResult = JSON.parse(error._body);
-          reason = errorResult.Message;
-        }
-        message += (reason) ? ': ' + reason : '!';
-        notifyError(message, 5000);
+        notifyException(`The approval cancelling process failed due to a problem`, error, 5000);
       });
     this.saveTemplatePopupVisible = false;
   }
@@ -427,14 +413,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
         notifySuccess(`The current temporary record was approved successfully!`, 5000);
       })
       .catch(error => {
-        let message = `The approval process failed due to a problem`;
-        let errorResult, reason;
-        if (error._body) {
-          errorResult = JSON.parse(error._body);
-          reason = errorResult.Message;
-        }
-        message += (reason) ? ': ' + reason : '!';
-        notifyError(message, 5000);
+        notifyException(`The approval process failed due to a problem`, error, 5000);
       });
     this.saveTemplatePopupVisible = false;
   }
@@ -447,14 +426,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
         this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
       })
       .catch(error => {
-        let message = `The record was not deleted due to a problem`;
-        let errorResult, reason;
-        if (error._body) {
-          errorResult = JSON.parse(error._body);
-          reason = errorResult.Message;
-        }
-        message += (reason) ? ': ' + reason : '!';
-        notifyError(message, 5000);
+        notifyException(`The record was not deleted due to a problem`, error, 5000);
       });
   }
 };
