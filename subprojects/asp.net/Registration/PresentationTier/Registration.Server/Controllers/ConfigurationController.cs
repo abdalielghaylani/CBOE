@@ -1150,13 +1150,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 else
                 {
                     // rules will be added or updated in seperate api call and there will not be a scenario like both precistion and rules will be updated at the same time
-                 
-                    foreach (ValidationRuleData ruleData in data.ValidationRules)
-                    {
-                        if (selectedProperty.ValRuleList.CheckDuplicated(ruleData.Name))
-                            throw new RegistrationException(string.Format("Validation rule of type {0} already exists.", ruleData.Name));
-                    }
-
                     // remove all existing validation rules, and create new rules using the new rule data
                     ValidationRuleList valRulesToDelete = selectedProperty.ValRuleList.Clone();
                     foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule valRule in valRulesToDelete)
@@ -1193,9 +1186,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         ParameterList paramList = ParameterList.NewParameterList();
                         foreach (ValidationParameter param in ruleData.Parameters)
                             paramList.Add(CambridgeSoft.COE.Registration.Services.BLL.Parameter.NewParameter(param.Name, param.Value, true));
-                        selectedProperty.ValRuleList.Add(RegServicesTypes.ValidationRule.NewValidationRule(ruleData.Name, ruleData.Error, paramList, false));
-                    }
 
+                        RegServicesTypes.ValidationRule validationRule = RegServicesTypes.ValidationRule.NewValidationRule(ruleData.Name, ruleData.Error, paramList, false);
+                        validationRule.MIN = ruleData.Min;
+                        validationRule.MAX = ruleData.Max;
+                        validationRule.MaxLength = ruleData.MaxLength;
+                        validationRule.DefaultValue = ruleData.DefaultValue;
+                        selectedProperty.ValRuleList.Add(validationRule);
+                    }
                 }
 
                 selectedProperty.ApplyEdit();
