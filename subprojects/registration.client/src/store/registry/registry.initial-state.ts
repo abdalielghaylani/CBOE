@@ -36,9 +36,7 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     allowEditing: false,
     allowFiltering: false,
     allowSorting: false,
-    cellTemplate: function (c, o) {
-      jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
-    },
+    cellTemplate: 'structureTemplate',
     caption: 'Structure',
     width: 160,
   }, {
@@ -94,11 +92,17 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     allowEditing: false,
     allowFiltering: false,
     allowSorting: false,
-    cellTemplate: function (c, o) {
-      jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.STRUCTURE}" />`).appendTo(c);
-    },
+    cellTemplate: 'structureTemplate',
     caption: 'Structure',
     width: 160,
+  }, {
+    dataField: 'STATUSID',
+    caption: 'Approved?',
+    width: 70,
+    allowEditing: false,
+    allowFiltering: false,
+    allowSorting: false,
+    cellTemplate: 'statusTemplate'
   }],
   filterRow: { visible: true }
 })();

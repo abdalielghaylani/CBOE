@@ -20,9 +20,11 @@ import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, n
 import { CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath, apiUrlPrefix } from '../../configuration';
+import { CSystemSettings } from '../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
+import { RegistryStatus } from './registry.types';
 
 declare var jQuery: any;
 
@@ -119,7 +121,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (this.loadSubscription) {
       this.loadSubscription.unsubscribe();
     }
-    this.actions.clearRecord();
   }
 
   private getParentHeight() {
@@ -296,7 +297,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private showSaveTemplate(e) {
     if (this.template) {
       if (confirm('Do you want to overwrite the saved template?')) {
-        // TODO: overwrite the template data
       }
     } else {
       this.saveTemplatePopupVisible = true;
@@ -354,5 +354,84 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   private onSaveTemplateFormInit(e) {
     this.saveTemplateForm = e.component;
+  }
+
+  private getStatusId(): number {
+    let statusIdText = this.recordDoc ? this.getElementValue(this.recordDoc.documentElement, 'StatusID') : null;
+    return statusIdText ? +statusIdText : null;
+  }
+
+  private setStatusId(statusId: number) {
+    registryUtils.setElementValue(this.recordDoc.documentElement, 'StatusID', statusId.toString());
+  }
+
+  private getApprovalsEnabled(): boolean {
+    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled();
+  }
+
+  private editButtonEnabled(): boolean {
+    return !this.isNewRecord() && !this.editMode && !this.cancelApprovalButtonEnabled();
+  }
+
+  private saveButtonEnabled(): boolean {
+    return (this.isNewRecord() && !this.cancelApprovalButtonEnabled()) || this.editMode;
+  }
+
+  private registerButtonEnabled(): boolean {
+    return this.temporary && (!this.editMode || this.isNewRecord()) && (!this.getApprovalsEnabled() || this.cancelApprovalButtonEnabled());
+  }
+
+  private approveButtonEnabled(): boolean {
+    let statusId = this.getStatusId();
+    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId !== RegistryStatus.Approved;
+  }
+
+  private cancelApprovalButtonEnabled(): boolean {
+    let statusId = this.getStatusId();
+    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId === RegistryStatus.Approved;
+  }
+
+  private cancelApproval() {
+    let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Submitted}`;
+    this.http.put(url, undefined).toPromise()
+      .then(res => {
+        this.regTemplates.dataSource = undefined;
+        this.setStatusId(RegistryStatus.Submitted);
+        this.changeDetector.markForCheck();
+        notifySuccess(`The current temporary record's approval was cancelled successfully!`, 5000);
+      })
+      .catch(error => {
+        let message = `The approval cancelling process failed due to a problem`;
+        let errorResult, reason;
+        if (error._body) {
+          errorResult = JSON.parse(error._body);
+          reason = errorResult.Message;
+        }
+        message += (reason) ? ': ' + reason : '!';
+        notifyError(message, 5000);
+      });
+    this.saveTemplatePopupVisible = false;
+  }
+
+  private approve() {
+    let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Approved}`;
+    this.http.put(url, undefined).toPromise()
+      .then(res => {
+        this.regTemplates.dataSource = undefined;
+        this.setStatusId(RegistryStatus.Approved);
+        this.changeDetector.markForCheck();
+        notifySuccess(`The current temporary record was approved successfully!`, 5000);
+      })
+      .catch(error => {
+        let message = `The approval process failed due to a problem`;
+        let errorResult, reason;
+        if (error._body) {
+          errorResult = JSON.parse(error._body);
+          reason = errorResult.Message;
+        }
+        message += (reason) ? ': ' + reason : '!';
+        notifyError(message, 5000);
+      });
+    this.saveTemplatePopupVisible = false;
   }
 };
