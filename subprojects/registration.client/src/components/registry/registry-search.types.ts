@@ -138,7 +138,7 @@ function getPicklist(p: any, state: IAppState, coeFormId: Number) {
 }
 
 function getCoeFormById(state: IAppState, coeFormId: number) {
-  let filtered = state.configuration.formGroups.SearchPermanent ?
+  let filtered = state.configuration && state.configuration.formGroups && state.configuration.formGroups.SearchPermanent ?
     state.configuration.formGroups.SearchPermanent.queryForms.queryForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
   return filtered && filtered.length > 0 ? filtered[0] : null;
 }
