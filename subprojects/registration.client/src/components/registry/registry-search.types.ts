@@ -2,6 +2,11 @@ import { IAppState } from '../../store';
 import { IShareableObject, CShareableObject, FormGroupType, CFormGroup, CFormElement } from '../../common';
 import * as X2JS from 'x2js';
 
+export interface ISearchCriteriaItem {
+  fieldid: string;
+  tableid: string;
+}
+
 export class CRegSearchVM {
   data: any = {};
   sdfFile?: File;
@@ -9,8 +14,8 @@ export class CRegSearchVM {
   columns: any[] = [];
   searchTypeValue?: String;
   searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 0);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 0);
     if (coeForm) {
       if (coeForm.title) {
         this.title = coeForm.title;
@@ -137,17 +142,18 @@ function getPicklist(p: any, state: IAppState, coeFormId: Number) {
   return pickList;
 }
 
-function getCoeFormById(state: IAppState, coeFormId: number) {
-  let filtered = state.configuration && state.configuration.formGroups && state.configuration.formGroups.SearchPermanent ?
-    state.configuration.formGroups.SearchPermanent.queryForms.queryForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
+function getCoeFormById(temporary: boolean, state: IAppState, coeFormId: number) {
+  let formGroupType = temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
+  let filtered = state.configuration && state.configuration.formGroups && state.configuration.formGroups[FormGroupType[formGroupType]] ?
+    state.configuration.formGroups[FormGroupType[formGroupType]].queryForms.queryForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
   return filtered && filtered.length > 0 ? filtered[0] : null;
 }
 
 export class CStructureSearchVM {
   data: any = {};
   columns: any[] = [];
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 4);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 4);
     if (coeForm) {
       buildPropertyList(this, coeForm.layoutInfo.formElement, state, 4);
     }
@@ -158,8 +164,8 @@ export class CComponentSearchVM {
   data: any = {};
   columns: any[] = [];
   title: String;
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 1);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 1);
     if (coeForm) {
       if (coeForm.title) {
         this.title = coeForm.title;
@@ -173,8 +179,8 @@ export class CBatchSearchVM {
   data: any = {};
   columns: any[] = [];
   title: string;
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 2);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 2);
     if (coeForm) {
       if (coeForm.title) {
         this.title = coeForm.title;
@@ -194,11 +200,11 @@ export class CSearchFormVM {
   structureSearchVM?: CStructureSearchVM;
   componentSearchVM?: CComponentSearchVM;
   batchSearchVM?: CBatchSearchVM;
-  constructor(state: IAppState) {
-    this.registrySearchVM = new CRegSearchVM(state);
-    this.structureSearchVM = new CStructureSearchVM(state);
-    this.componentSearchVM = new CComponentSearchVM(state);
-    this.batchSearchVM = new CBatchSearchVM(state);
+  constructor(temporary: boolean, state: IAppState) {
+    this.registrySearchVM = new CRegSearchVM(temporary, state);
+    this.structureSearchVM = new CStructureSearchVM(temporary, state);
+    this.componentSearchVM = new CComponentSearchVM(temporary, state);
+    this.batchSearchVM = new CBatchSearchVM(temporary, state);
   }
 }
 

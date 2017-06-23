@@ -14,7 +14,7 @@ import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 import { RegistrySearchActions, ConfigurationActions } from '../../actions';
-import { IAppState, ISearchRecords, INITIAL_STATE } from '../../store';
+import { IAppState, ISearchRecords, INITIAL_STATE, IQueryData } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawingTool } from '../../common/tool';
 import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
@@ -34,12 +34,13 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Input() activated: boolean;
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
+  @select(s => s.configuration.formGroups) formGroups$: Observable<any[]>;
   @ViewChild(ChemDrawingTool)
   private chemDrawWeb: ChemDrawingTool;
   private lookupsSubscription: Subscription;
+  private formGroupSubscription: Subscription;
   private title: string;
   private regSearch: regSearchTypes.CSearchFormVM;
-  private formGroup: CFormGroup;
 
   constructor(
     private router: Router,
@@ -51,41 +52,38 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
+    this.regSearch = new regSearchTypes.CSearchFormVM(this.temporary, INITIAL_STATE);
     let lookups = this.ngRedux.getState().session.lookups;
     if (lookups) {
       this.loadData(lookups);
     } else {
-      this.regSearch = new regSearchTypes.CSearchFormVM(INITIAL_STATE);
       this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
     }
   }
 
   ngOnDestroy() {
+    if (this.lookupsSubscription) {
+      this.lookupsSubscription.unsubscribe();
+    }
+    if (this.formGroupSubscription) {
+      this.formGroupSubscription.unsubscribe();
+    }
   }
 
   loadData(lookups: any) {
-    let formGroupType = FormGroupType.SearchPermanent;
+    let formGroupType = this.temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
     prepareFormGroupData(formGroupType, this.ngRedux);
-    this.regSearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
+    this.formGroupSubscription = this.formGroups$.subscribe(fgs => {
+      if (fgs[FormGroupType[formGroupType]]) {
+        this.regSearch = new regSearchTypes.CSearchFormVM(this.temporary, this.ngRedux.getState());
+      }
+    });
   }
 
   ngOnChanges() {
     if (this.activated && this.chemDrawWeb) {
       this.chemDrawWeb.activate();
     }
-  }
-
-  search() {
-    this.actions.searchRecords({ temporary: this.temporary, searchCriteria: this.generateSearchCriteriaXML() });
-  }
-
-  private generateSearchCriteriaXML(): string {
-    let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
-    searchCriteria += this.getSearchCriteria(this.regSearch.registrySearchVM);
-    searchCriteria += this.getSearchCriteria(this.regSearch.structureSearchVM);
-    searchCriteria += this.getSearchCriteria(this.regSearch.componentSearchVM);
-    searchCriteria += this.getSearchCriteria(this.regSearch.batchSearchVM);
-    return searchCriteria + '</searchCriteria>';
   }
 
   private getSearchCriteria(tableData: { columns: any[], data: any }): string {
@@ -104,21 +102,56 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     return searchCriteria;
   }
 
-  clear() {
+  private generateSearchCriteriaXML(): string {
+    let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
+    searchCriteria += this.getSearchCriteria(this.regSearch.registrySearchVM);
+    searchCriteria += this.getSearchCriteria(this.regSearch.structureSearchVM);
+    searchCriteria += this.getSearchCriteria(this.regSearch.componentSearchVM);
+    searchCriteria += this.getSearchCriteria(this.regSearch.batchSearchVM);
+    return searchCriteria + '</searchCriteria>';
+  }
+
+  private search() {
+    let queryData: IQueryData = {
+      temporary: this.temporary,
+      searchCriteria: this.generateSearchCriteriaXML() 
+    };
+    this.actions.searchRecords(queryData);
+  }
+
+  private setSearchCriteria(item: any) {
+    // TODO: Reverse getSearchCriteria call
+  }
+
+  private fillSearchCriteriaFromXML(xml: string) {
+    let x2jsTool = new X2JS.default({
+      arrayAccessFormPaths: [
+        'searchCriteria.searchCriteriaItem',
+      ]
+    });
+    let searchCriteria: any = x2jsTool.xml2js(xml);
+    // searchCriteria.searchCriteriaItem.forEach(i => this.setSearchCriteria(i));
+  }
+
+  public restore(queryData: IQueryData) {
+    this.fillSearchCriteriaFromXML(queryData.searchCriteria);
+  }
+
+  public clear() {
     this.chemDrawWeb.loadCdxml(null);
   }
 
-  retrieveAll() {
+  private retrieveAll() {
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
   }
 
-  savePreference(e) {
+  private savePreference(e) {
   }
 
-  restorePreference(e) {
+  private restorePreference(e) {
   }
 
-  cancel(e) {
+  private cancel(e) {
     this.onClose.emit(e);
   }
 

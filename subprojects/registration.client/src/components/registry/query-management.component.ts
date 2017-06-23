@@ -13,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { RegistrySearchActions } from '../../actions';
-import { IAppState, HitlistType, IHitlistData, IHitlistInfo, ISearchRecords } from '../../store';
+import { IAppState, HitlistType, IHitlistData, IHitlistInfo, ISearchRecords, IQueryData } from '../../store';
 import * as regSearchTypes from './registry-search.types';
 import { apiUrlPrefix } from '../../configuration';
 import { HttpService } from '../../services';
@@ -159,7 +159,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${e.hitlistId}/query`;
     this.http.get(url).toPromise()
       .then(res => {
-        // this.changeDetector.markForCheck();
+        let queryData = res.json() as IQueryData;
       })
       .catch(error => {
         notifyException(`Restoring the selected query failed due to a problem`, error, 5000);
