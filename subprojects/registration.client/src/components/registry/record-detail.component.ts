@@ -391,6 +391,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId === RegistryStatus.Approved;
   }
 
+  private deleteButtonEnabled(): boolean {
+    return this.temporary && this.editButtonEnabled();
+  }
+
   private cancelApproval() {
     let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Submitted}`;
     this.http.put(url, undefined).toPromise()
@@ -433,5 +437,24 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
         notifyError(message, 5000);
       });
     this.saveTemplatePopupVisible = false;
+  }
+
+  private delete() {
+    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
+    this.http.delete(url).toPromise()
+      .then(res => {
+        notifySuccess(`The record was deleted successfully!`, 5000);
+        this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+      })
+      .catch(error => {
+        let message = `The record was not deleted due to a problem`;
+        let errorResult, reason;
+        if (error._body) {
+          errorResult = JSON.parse(error._body);
+          reason = errorResult.Message;
+        }
+        message += (reason) ? ': ' + reason : '!';
+        notifyError(message, 5000);
+      });
   }
 };

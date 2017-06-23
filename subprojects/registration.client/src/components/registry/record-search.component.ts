@@ -14,7 +14,7 @@ import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as regSearchTypes from './registry-search.types';
 import { RegistrySearchActions, ConfigurationActions } from '../../actions';
-import { IAppState, ISearchRecords } from '../../store';
+import { IAppState, ISearchRecords, INITIAL_STATE } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawingTool } from '../../common/tool';
 import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
@@ -51,8 +51,13 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
-    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
-    this.regSearch = new regSearchTypes.CSearchFormVM(this.ngRedux.getState());
+    let lookups = this.ngRedux.getState().session.lookups;
+    if (lookups) {
+      this.loadData(lookups);
+    } else {
+      this.regSearch = new regSearchTypes.CSearchFormVM(INITIAL_STATE);
+      this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
+    }
   }
 
   ngOnDestroy() {
