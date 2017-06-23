@@ -1096,6 +1096,38 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid property name");
 
+                foreach (ValidationRuleData ruleData in data.ValidationRules)
+                {
+                    switch (ruleData.Name.ToUpper())
+                    {
+                        case "NUMERICRANGE":
+                        case "TEXTLENGTH":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count == 0))
+                                throw new RegistrationException("This Validation Rule type must have min and max parameters.");
+
+                            if (ruleData.Parameters.Count < 2)
+                                throw new RegistrationException("This Validation Rule type must have min and max parameters.");
+
+                            if (int.Parse(ruleData.Parameters[0].Value) > int.Parse(ruleData.Parameters[1].Value))
+                                throw new RegistrationException("Max parameter must be greater than min parameter.");
+                            break;
+                        case "WORDLISTENUMERATION":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count < 1))
+                                throw new RegistrationException("Please insert one parameter at least.");
+                            break;
+                        case "REQUIREDFIELD":
+                            // no validation
+                            break;
+                        case "CUSTOM":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count == 0))
+                                throw new RegistrationException("This Validation Rule type must have clientscript parameters.");
+
+                            if (string.IsNullOrWhiteSpace(ruleData.Parameters[0].Value))
+                                throw new RegistrationException("This Validation Rule type must have clientscript parameters.");
+                            break;
+                    }
+                }
+
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
                 ConfigurationProperty selectedProperty = null;
@@ -1137,7 +1169,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             selectedProperty.Precision = data.Precision;
                             break;
                     }
-                } 
+                }
 
                 if (selectedProperty.PrecisionIsUpdate)
                 {
