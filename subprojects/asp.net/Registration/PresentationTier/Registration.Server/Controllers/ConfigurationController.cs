@@ -983,6 +983,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         break;
                 }
 
+                // set default precision for other types like BOOLEAN, PICKLIST DOMAIN
+                data.Precision = string.IsNullOrWhiteSpace(data.Precision) ? "1" : data.Precision; 
+
                 // if comma is given as a decimal separator, replce it with .
                 data.Precision = data.Precision.Replace(",", ".");
 
