@@ -25,6 +25,8 @@ using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.RegistrationAdmin.Services.Common;
 using CambridgeSoft.COE.Framework.COEDataViewService;
+using CambridgeSoft.COE.Registration.Services.BLL;
+using RegServicesTypes = CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -1094,6 +1096,38 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid property name");
 
+                foreach (ValidationRuleData ruleData in data.ValidationRules)
+                {
+                    switch (ruleData.Name.ToUpper())
+                    {
+                        case "NUMERICRANGE":
+                        case "TEXTLENGTH":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count == 0))
+                                throw new RegistrationException("This Validation Rule type must have min and max parameters.");
+
+                            if (ruleData.Parameters.Count < 2)
+                                throw new RegistrationException("This Validation Rule type must have min and max parameters.");
+
+                            if (int.Parse(ruleData.Parameters[0].Value) > int.Parse(ruleData.Parameters[1].Value))
+                                throw new RegistrationException("Max parameter must be greater than min parameter.");
+                            break;
+                        case "WORDLISTENUMERATION":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count < 1))
+                                throw new RegistrationException("Please insert one parameter at least.");
+                            break;
+                        case "REQUIREDFIELD":
+                            // no validation
+                            break;
+                        case "CUSTOM":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count == 0))
+                                throw new RegistrationException("This Validation Rule type must have clientscript parameters.");
+
+                            if (string.IsNullOrWhiteSpace(ruleData.Parameters[0].Value))
+                                throw new RegistrationException("This Validation Rule type must have clientscript parameters.");
+                            break;
+                    }
+                }
+
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
                 ConfigurationProperty selectedProperty = null;
@@ -1139,10 +1173,59 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 if (selectedProperty.PrecisionIsUpdate)
                 {
+                    // when precision is updated all existing rules will be cleared and default rule is created
                     ValidationRuleList valRulesToDelete = selectedProperty.ValRuleList.Clone();
                     foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule valRule in valRulesToDelete)
                         selectedProperty.ValRuleList.RemoveValidationRule(valRule.ID);
                     ((ConfigurationProperty)selectedProperty).AddDefaultRule();
+                }
+                else
+                {
+                    // rules will be added or updated in seperate api call and there will not be a scenario like both precistion and rules will be updated at the same time
+                    // remove all existing validation rules, and create new rules using the new rule data
+                    ValidationRuleList valRulesToDelete = selectedProperty.ValRuleList.Clone();
+                    foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule valRule in valRulesToDelete)
+                        selectedProperty.ValRuleList.RemoveValidationRule(valRule.ID);
+
+                    foreach (ValidationRuleData ruleData in data.ValidationRules)
+                    {
+                        switch (ruleData.Name.ToUpper())
+                        {
+                            case "NUMERICRANGE":
+                            case "TEXTLENGTH":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                {
+                                    ruleData.Error = ruleData.Name.ToUpper() == "TEXTLENGTH" ?
+                                        ruleData.Error = "The property value can have between {0} and {1} characters." :
+                                        ruleData.Error = "This property can have at most {0} integer and {1} decimal digits.";
+                                }
+                                break;
+                            case "WORDLISTENUMERATION":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                    ruleData.Error = "The word is not valid.";
+                                break;
+                            case "REQUIREDFIELD":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                    ruleData.Error = "The property value is required.";
+                                selectedProperty.DefaultValue = ruleData.DefaultValue;
+                                break;
+                            case "CUSTOM":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                    ruleData.Error = "The Validation failed for this property.";
+                                break;
+                        }
+
+                        ParameterList paramList = ParameterList.NewParameterList();
+                        foreach (ValidationParameter param in ruleData.Parameters)
+                            paramList.Add(CambridgeSoft.COE.Registration.Services.BLL.Parameter.NewParameter(param.Name, param.Value, true));
+
+                        RegServicesTypes.ValidationRule validationRule = RegServicesTypes.ValidationRule.NewValidationRule(ruleData.Name, ruleData.Error, paramList, false);
+                        validationRule.MIN = ruleData.Min;
+                        validationRule.MAX = ruleData.Max;
+                        validationRule.MaxLength = ruleData.MaxLength;
+                        validationRule.DefaultValue = ruleData.DefaultValue;
+                        selectedProperty.ValRuleList.Add(validationRule);
+                    }
                 }
 
                 selectedProperty.ApplyEdit();

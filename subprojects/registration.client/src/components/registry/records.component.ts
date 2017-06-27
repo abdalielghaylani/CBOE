@@ -15,7 +15,7 @@ import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 import { RegistryActions, RegistrySearchActions } from '../../actions';
-import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData } from '../../store';
+import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
@@ -24,6 +24,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import { CSystemSettings } from '../configuration';
 import { HttpService } from '../../services';
+import { RegRecordSearch } from './record-search.component';
 
 declare var jQuery: any;
 
@@ -36,6 +37,7 @@ declare var jQuery: any;
 })
 export class RegRecords implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
+  @ViewChild(RegRecordSearch) searchForm: RegRecordSearch;
   @Input() temporary: boolean;
   @Input() restore: boolean;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
@@ -176,7 +178,7 @@ export class RegRecords implements OnInit, OnDestroy {
       };
     } else if (gridColumn.cellTemplate === 'statusTemplate') {
       let systemSettings = new CSystemSettings(this.lookups.systemSettings);
-      gridColumn.visible = systemSettings.isApprovalsEnabled();
+      gridColumn.visible = systemSettings.isApprovalsEnabled;
     }
     return gridColumn;
   }
@@ -327,6 +329,11 @@ export class RegRecords implements OnInit, OnDestroy {
     this.currentIndex = 0;
   }
 
+  private restoreClicked(queryData: IQueryData) {
+    this.currentIndex = 2;
+    this.searchForm.restore(queryData);
+  }
+
   private showMarked() {
     if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
       this.rowSelected = true;
@@ -427,12 +434,12 @@ export class RegRecords implements OnInit, OnDestroy {
     return data.value === RegistryStatus.Approved;
   }
 
-  private getApprovalsEnabled(): boolean {
-    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled();
+  private get approvalsEnabled(): boolean {
+    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
   }
 
-  private approveMarkedEnabled(): boolean {
-    return this.temporary && this.selectedRows && this.selectedRows.length > 0 && this.getApprovalsEnabled();
+  private get approveMarkedEnabled(): boolean {
+    return this.temporary && this.selectedRows && this.selectedRows.length > 0 && this.approvalsEnabled;
   }
 
   private approveRows(ids: number[], failed: number[], succeeded: number[]) {

@@ -60,10 +60,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (hitlistBO.HitListID == 0) hitlistType = HitListType.SAVED;
             if (temp != null && temp.Value)
             {
-                var tableName = "vw_temporarycompound";
-                var whereClause = string.Format(" WHERE tempcompoundid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
+                var tableName = "vw_temporarycompound c inner join vw_temporarybatch b on c.tempbatchid = b.tempbatchid";
+                var whereClause = string.Format(" WHERE c.tempcompoundid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
                     hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
-                var query = GetQuery(tableName + whereClause, TempRecordColumns, sort, "datelastmodified", "tempcompoundid");
+                var query = GetQuery(tableName + whereClause, TempRecordColumns, sort, "c.datelastmodified", "c.tempcompoundid");
                 var args = new Dictionary<string, object>();
                 args.Add(":hitlistId", id);
                 return new JObject(
