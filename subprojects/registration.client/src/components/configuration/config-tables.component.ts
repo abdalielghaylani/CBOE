@@ -186,7 +186,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = getExceptionMessage(`Creating A new record for ${tableName} was failed due to a problem`, error);
+            let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
