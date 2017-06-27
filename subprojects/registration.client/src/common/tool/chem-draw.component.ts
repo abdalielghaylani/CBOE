@@ -5,7 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ElementRef,
-  OnInit
+  OnInit, OnDestroy
 } from '@angular/core';
 import { basePath } from '../../configuration';
 import * as registryUtils from '../../components/registry/registry.utils';
@@ -26,7 +26,7 @@ import * as registryUtils from '../../components/registry/registry.utils';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChemDrawingTool implements OnInit {
+export class ChemDrawingTool implements OnInit, OnDestroy {
   private drawingTool;
   private recordDoc: Document;
   private creatingCDD: boolean = false;
@@ -37,6 +37,10 @@ export class ChemDrawingTool implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.removePreviousDrawingTool();    
   }
 
   createDrawingTool() {
