@@ -107,19 +107,21 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   addProperty(e) {
-    this.dataSource.insert(this.configProperties.formData).then((result) => {
-      this.grid.instance.refresh();
-    })
-      .fail((err) => notifyError(err.message)
+    this.dataSource.insert(this.configProperties.formData)
+      .done((result) => {
+        this.grid.instance.refresh();
+      })
+      .fail(err => { notifyError(err.message); }
       );
     this.cancel();
   }
 
   saveProperty(e) {
-    this.dataSource.update(this.configProperties.formData, []).then((result) => {
-      this.grid.instance.refresh();
-    })
-      .fail((err) => notifyError(err.message)
+    this.dataSource.update(this.configProperties.formData, [])
+      .done((result) => {
+        this.grid.instance.refresh();
+      })
+      .fail(err => { notifyError(err.message); }
       );
     this.cancel();
   }
