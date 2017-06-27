@@ -129,8 +129,9 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
           if (column.coeType === 'COEStructureQuery') {
             let structureCriteria: any = searchCriteria;
             if (structureCriteria.CSCartridgeStructureCriteria && structureCriteria.CSCartridgeStructureCriteria.__text) {
-              self.chemDrawWeb.loadCdxml(null);
-              self.chemDrawWeb.loadCdxml(structureCriteria.CSCartridgeStructureCriteria.__text);
+              setTimeout(() => {
+                self.chemDrawWeb.loadCdxml(structureCriteria.CSCartridgeStructureCriteria.__text);
+              }, 100);
             }
           } else if (searchCriteria.__text) {
             tabularData.data[column.dataField] = column.dataType === 'number' ? +searchCriteria.__text : searchCriteria.__text;
