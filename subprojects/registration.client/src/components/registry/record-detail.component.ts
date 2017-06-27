@@ -143,7 +143,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       return;
     }
     this.recordDoc = registryUtils.getDocument(recordDetail.data);
-    this.title = this.isNewRecord() ?
+    this.title = this.isNewRecord ?
       'Register a New Compound' :
       recordDetail.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
@@ -173,7 +173,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup;
-    this.editMode = this.isNewRecord() || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
+    this.editMode = this.isNewRecord || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
     this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
@@ -252,7 +252,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   save() {
     this.updateRecord();
-    if (this.isNewRecord()) {
+    if (this.isNewRecord) {
       this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
     } else {
       this.setEditMode(false);
@@ -341,7 +341,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.changeDetector.markForCheck();
   }
 
-  private isNewRecord(): boolean {
+  private get isNewRecord(): boolean {
     return this.id < 0 || this.template;
   }
 
@@ -349,43 +349,43 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.saveTemplateForm = e.component;
   }
 
-  private getStatusId(): number {
+  private get statusId(): number {
     let statusIdText = this.recordDoc ? this.getElementValue(this.recordDoc.documentElement, 'StatusID') : null;
     return statusIdText ? +statusIdText : null;
   }
 
-  private setStatusId(statusId: number) {
+  private set statusId(statusId: number) {
     registryUtils.setElementValue(this.recordDoc.documentElement, 'StatusID', statusId.toString());
   }
 
-  private getApprovalsEnabled(): boolean {
-    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled();
+  private get approvalsEnabled(): boolean {
+    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
   }
 
-  private editButtonEnabled(): boolean {
-    return !this.isNewRecord() && !this.editMode && !this.cancelApprovalButtonEnabled();
+  private get editButtonEnabled(): boolean {
+    return !this.isNewRecord && !this.editMode && !this.cancelApprovalButtonEnabled;
   }
 
-  private saveButtonEnabled(): boolean {
-    return (this.isNewRecord() && !this.cancelApprovalButtonEnabled()) || this.editMode;
+  private get saveButtonEnabled(): boolean {
+    return (this.isNewRecord && !this.cancelApprovalButtonEnabled) || this.editMode;
   }
 
-  private registerButtonEnabled(): boolean {
-    return this.temporary && (!this.editMode || this.isNewRecord()) && (!this.getApprovalsEnabled() || this.cancelApprovalButtonEnabled());
+  private get registerButtonEnabled(): boolean {
+    return this.temporary && (!this.editMode || this.isNewRecord) && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
   }
 
-  private approveButtonEnabled(): boolean {
-    let statusId = this.getStatusId();
-    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId !== RegistryStatus.Approved;
+  private get approveButtonEnabled(): boolean {
+    let statusId = this.statusId;
+    return !this.editMode && statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
   }
 
-  private cancelApprovalButtonEnabled(): boolean {
-    let statusId = this.getStatusId();
-    return !this.editMode && statusId && this.temporary && this.getApprovalsEnabled() && statusId === RegistryStatus.Approved;
+  private get cancelApprovalButtonEnabled(): boolean {
+    let statusId = this.statusId;
+    return !this.editMode && statusId && this.temporary && this.approvalsEnabled && statusId === RegistryStatus.Approved;
   }
 
-  private deleteButtonEnabled(): boolean {
-    return this.temporary && this.editButtonEnabled();
+  private get deleteButtonEnabled(): boolean {
+    return this.temporary && this.editButtonEnabled;
   }
 
   private cancelApproval() {
@@ -393,7 +393,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.http.put(url, undefined).toPromise()
       .then(res => {
         this.regTemplates.dataSource = undefined;
-        this.setStatusId(RegistryStatus.Submitted);
+        this.statusId = RegistryStatus.Submitted;
         this.changeDetector.markForCheck();
         notifySuccess(`The current temporary record's approval was cancelled successfully!`, 5000);
       })
@@ -408,7 +408,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.http.put(url, undefined).toPromise()
       .then(res => {
         this.regTemplates.dataSource = undefined;
-        this.setStatusId(RegistryStatus.Approved);
+        this.statusId = RegistryStatus.Approved;
         this.changeDetector.markForCheck();
         notifySuccess(`The current temporary record was approved successfully!`, 5000);
       })

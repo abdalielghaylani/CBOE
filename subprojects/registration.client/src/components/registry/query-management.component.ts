@@ -31,7 +31,8 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   @Input() hitlistVM: regSearchTypes.CQueryManagementVM;
   @Input() parentHeight: string;
   @Input() hitlistId: number;
-  @Output() onClose = new EventEmitter<any>();
+  @Output() onClose = new EventEmitter<IHitlistData>();
+  @Output() onRestore = new EventEmitter<IQueryData>();
   private hitlistData$: Observable<ISearchRecords>;
   private records: any[];
   private selectedHitlist: { id: number, type: number };
@@ -156,10 +157,11 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   private restoreQueryToForm(e: IHitlistData) {
-    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${e.hitlistId}/query`;
+    let url = `${apiUrlPrefix}hitlists/${e.hitlistId}/query${this.temporary ? '?temp=true' : ''}`;
     this.http.get(url).toPromise()
       .then(res => {
         let queryData = res.json() as IQueryData;
+        this.onRestore.emit(queryData);
       })
       .catch(error => {
         notifyException(`Restoring the selected query failed due to a problem`, error, 5000);

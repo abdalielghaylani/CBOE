@@ -323,7 +323,7 @@ export class CSystemSettings {
     return this.getSetting('Registration', settingName);    
   }
 
-  isApprovalsEnabled(): boolean {
+  public get isApprovalsEnabled(): boolean {
     let setting = this.getRegSetting('ApprovalsEnabled');
     return setting && setting.value && setting.value.toLowerCase() === 'true';
   }

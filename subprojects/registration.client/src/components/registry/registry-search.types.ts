@@ -2,12 +2,12 @@ import { IAppState } from '../../store';
 import { IShareableObject, CShareableObject, FormGroupType, CFormGroup, CFormElement } from '../../common';
 import * as X2JS from 'x2js';
 
-export interface ISearchCriteriaItem {
-  fieldid: string;
-  tableid: string;
+export interface ITabularData {
+  data: any;
+  columns: any[];
 }
 
-export class CRegSearchVM {
+export class CRegSearchVM implements ITabularData {
   data: any = {};
   sdfFile?: File;
   title?: String;
@@ -239,7 +239,7 @@ export const HITLIST_GRID_COLUMNS = [{
   groupIndex: 0,
   allowEditing: false,
   formItem: { visible: false },
-  calculateCellValue: function(d) { return d.hitlistType === 'TEMP' ? 'Recent' : 'Saved'; }
+  calculateCellValue: function (d) { return d.hitlistType === 'TEMP' ? 'Recent' : 'Saved'; }
 },
 {
   caption: 'Commands',
@@ -306,4 +306,23 @@ export class CSaveQuery {
   clear() {
     this.data = new CShareableObject('', '', false);
   }
+}
+
+export interface ISearchCriteriaBase {
+  _negate: string;
+  __text?: string;
+}
+
+export interface ISearchCriteriaItem {
+  _id: string;
+  _tableid: string;
+  _fieldid: string;
+  _modifier?: string;
+  _aggregateFunctionName?: string;
+  _searchLookupByID?: string;
+}
+
+export function getSearchCriteria(item: ISearchCriteriaItem): ISearchCriteriaBase {
+  let objectProp = Object.getOwnPropertyNames(item).find(n => typeof item[n] === 'object');
+  return item[objectProp] as ISearchCriteriaBase;
 }

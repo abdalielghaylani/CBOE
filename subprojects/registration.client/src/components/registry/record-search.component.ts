@@ -12,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
-import * as regSearchTypes from './registry-search.types';
+import * as searchTypes from './registry-search.types';
 import { RegistrySearchActions, ConfigurationActions } from '../../actions';
 import { IAppState, ISearchRecords, INITIAL_STATE, IQueryData } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -40,7 +40,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private lookupsSubscription: Subscription;
   private formGroupSubscription: Subscription;
   private title: string;
-  private regSearch: regSearchTypes.CSearchFormVM;
+  private regSearch: searchTypes.CSearchFormVM;
 
   constructor(
     private router: Router,
@@ -52,7 +52,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
-    this.regSearch = new regSearchTypes.CSearchFormVM(this.temporary, INITIAL_STATE);
+    this.regSearch = new searchTypes.CSearchFormVM(this.temporary, INITIAL_STATE);
     let lookups = this.ngRedux.getState().session.lookups;
     if (lookups) {
       this.loadData(lookups);
@@ -75,7 +75,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     prepareFormGroupData(formGroupType, this.ngRedux);
     this.formGroupSubscription = this.formGroups$.subscribe(fgs => {
       if (fgs[FormGroupType[formGroupType]]) {
-        this.regSearch = new regSearchTypes.CSearchFormVM(this.temporary, this.ngRedux.getState());
+        this.regSearch = new searchTypes.CSearchFormVM(this.temporary, this.ngRedux.getState());
       }
     });
   }
@@ -86,10 +86,10 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private getSearchCriteria(tableData: { columns: any[], data: any }): string {
+  private getSearchCriteria(tabularData: searchTypes.ITabularData): string {
     let searchCriteria = '';
-    tableData.columns.forEach(column => {
-      let value = column.coeType === 'COEStructureQuery' ? this.chemDrawWeb.getValue() : tableData.data[column.dataField];
+    tabularData.columns.forEach(column => {
+      let value = column.coeType === 'COEStructureQuery' ? this.chemDrawWeb.getValue() : tabularData.data[column.dataField];
       if (value) {
         for (const prop in column.searchCriteriaItem) {
           if (typeof column.searchCriteriaItem[prop] === 'object') {
@@ -119,22 +119,49 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     this.actions.searchRecords(queryData);
   }
 
-  private setSearchCriteria(item: any) {
-    // TODO: Reverse getSearchCriteria call
+  private setSearchCriteriaFor(tabularData: searchTypes.ITabularData, item: searchTypes.ISearchCriteriaItem) {
+    let self = this;
+    tabularData.columns.forEach(column => {
+      let columnSearchCriteriaItem = column.searchCriteriaItem as searchTypes.ISearchCriteriaItem;
+      if (columnSearchCriteriaItem._fieldid === item._fieldid && columnSearchCriteriaItem._tableid === item._tableid) {
+        let searchCriteria = searchTypes.getSearchCriteria(item);
+        if (searchCriteria) {
+          if (column.coeType === 'COEStructureQuery') {
+            let structureCriteria: any = searchCriteria;
+            if (structureCriteria.CSCartridgeStructureCriteria && structureCriteria.CSCartridgeStructureCriteria.__text) {
+              self.chemDrawWeb.loadCdxml(null);
+              self.chemDrawWeb.loadCdxml(structureCriteria.CSCartridgeStructureCriteria.__text);
+            }
+          } else if (searchCriteria.__text) {
+            tabularData.data[column.dataField] = column.dataType === 'number' ? +searchCriteria.__text : searchCriteria.__text;
+          }
+        }
+      }
+    });
   }
 
-  private fillSearchCriteriaFromXML(xml: string) {
+  private setSearchCriteria(item: searchTypes.ISearchCriteriaItem) {
+    this.setSearchCriteriaFor(this.regSearch.registrySearchVM, item);
+    this.setSearchCriteriaFor(this.regSearch.structureSearchVM, item);
+    this.setSearchCriteriaFor(this.regSearch.componentSearchVM, item);
+    this.setSearchCriteriaFor(this.regSearch.batchSearchVM, item);    
+  }
+
+  private fillSearchCriteriaFromXML(queryXml: string) {
     let x2jsTool = new X2JS.default({
       arrayAccessFormPaths: [
         'searchCriteria.searchCriteriaItem',
       ]
     });
-    let searchCriteria: any = x2jsTool.xml2js(xml);
-    // searchCriteria.searchCriteriaItem.forEach(i => this.setSearchCriteria(i));
+    let query: any = x2jsTool.xml2js(queryXml);
+    query.searchCriteria.searchCriteriaItem.forEach(i => {
+      this.setSearchCriteria(i);
+    });
   }
 
   public restore(queryData: IQueryData) {
     this.fillSearchCriteriaFromXML(queryData.searchCriteria);
+    this.changeDetector.markForCheck();
   }
 
   public clear() {
