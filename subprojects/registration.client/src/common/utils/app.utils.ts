@@ -8,7 +8,7 @@ export function getExceptionMessage(baseMessage: string, error): string {
     errorResult = JSON.parse(error._body);
     reason = errorResult.Message;
   }
-  return baseMessage + (reason) ? ': ' + reason : '!';
+  return baseMessage + ((reason) ? ': ' + reason : '!');
 }
 
 export function notify(message: string, type: string, duration: number = notificationDuration) {
