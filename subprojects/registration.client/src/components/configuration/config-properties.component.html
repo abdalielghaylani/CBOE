@@ -1,5 +1,5 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configProperties.window.viewIndex==='list')">
-  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  <reg-settings-page-header [isMenu]='true'>{{configProperties.window.title}}</reg-settings-page-header>
   <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
     (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
     (onEditingStart)="onEditingStart($event)">
@@ -20,7 +20,7 @@
     title="Add Property"></command-button>
   <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='edit'" (onClick)="saveProperty($event)"
     iconName="plus" title="Save Property"></command-button>
-  <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
+  <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
   <dx-form minColWidth=300 (onFieldDataChanged)="onFieldDataChanged($event)" [colCount]="1" [formData]="configProperties.formData"
     [items]="configProperties.formColumns"></dx-form>
 </div>

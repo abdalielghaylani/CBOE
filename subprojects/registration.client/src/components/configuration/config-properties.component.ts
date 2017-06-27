@@ -87,6 +87,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   onInitNewRow(e) {
+    e.cancel = true;
     this.configProperties.addEditProperty('add');
   }
 
@@ -185,7 +186,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = getExceptionMessage(`Creating a new Property failed due to a problem`, error);
+            let message = getExceptionMessage(`Creating a new property failed due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
