@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
+  Component, Input, Output, EventEmitter, ElementRef, ViewChildren,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +12,7 @@ import { ConfigurationActions } from '../../actions/configuration.actions';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { IAppState, ICustomTableData, IConfiguration } from '../../store';
-import { CConfigProperties } from './config.types';
+import { CConfigProperties, CPropertiesValidationFormDataModel } from './config.types';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;
@@ -25,7 +25,7 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfigProperties implements OnInit, OnDestroy {
-  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
+  @ViewChildren(DxDataGridComponent) grid;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private rows: any[] = [];
   private dataSubscription: Subscription;
@@ -67,7 +67,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   private onResize(event: any) {
     this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
+    this.grid._results[0].instance.repaint();
   }
 
   private onDocumentClick(event: any) {
@@ -75,7 +75,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
       this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
       this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
+      this.grid._results[0].instance.repaint();
     }
   }
 
@@ -86,8 +86,13 @@ export class RegConfigProperties implements OnInit, OnDestroy {
     });
   }
 
-  onInitNewRow(e) {
-    this.configProperties.addEditProperty('add');
+  onInitNewRow(e, parent?: boolean) {
+    if (parent) {
+      this.configProperties.addEditProperty('add');
+    } else {
+      e.component.cancelEditData();
+      e.component.refresh();
+    }
   }
 
   onEditingStart(e) {
@@ -98,7 +103,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   cancel() {
     this.configProperties.window = { title: 'Manage Data Properties', viewIndex: 'list' };
     this.configProperties.clearFormData();
-    this.grid.instance.cancelEditData();
+    this.grid._results[0].instance.cancelEditData();
   }
 
   showValidationRule(d: any) {
@@ -108,27 +113,51 @@ export class RegConfigProperties implements OnInit, OnDestroy {
 
   addProperty(e) {
     this.dataSource.insert(this.configProperties.formData).then((result) => {
-      this.grid.instance.refresh();
+      this.grid._results[0].instance.refresh();
     });
     this.cancel();
   }
 
   saveProperty(e) {
     this.dataSource.update(this.configProperties.formData, []).then((result) => {
-      this.grid.instance.refresh();
+      this.grid._results[0].instance.refresh();
     });
     this.cancel();
+  }
+  onValidationRowRemoved(e) {
+    this.dataSource.update(this.configProperties.formData, []);
+  }
+
+  saveValidationRule(e) {
+    if (this.configProperties.isValidRule()) {
+      let validationModel: CPropertiesValidationFormDataModel;
+      switch (this.configProperties.formDataValidation.name) {
+        case 'custom':
+          validationModel = this.configProperties.formDataValidation;
+          validationModel.parameters.push({ name: 'clientscript', value: this.configProperties.formDataValidation.clientScript });
+          this.configProperties.formData.validationRules.push(validationModel);
+          break;
+        default:
+          validationModel = this.configProperties.formDataValidation;
+          this.configProperties.formData.validationRules.push(validationModel);
+          break;
+
+      }
+      this.dataSource.update(this.configProperties.formData, []).then((result) => {
+        this.configProperties.clearFormDataValidations();
+        this.grid._results[1].instance.refresh();
+      });
+    }
   }
 
   onCellPrepared(e, t?: string) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let $links = e.cellElement.find('.dx-link');
       $links.text('');
-      if (e.data.editable || t === 'validation') {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-      } else {
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+      $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+      $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+      if (!(e.data.editable || t === 'validation')) {
+        $links.filter('.dx-link-edit')[0].style.visibility = 'hidden';
       }
     }
   }

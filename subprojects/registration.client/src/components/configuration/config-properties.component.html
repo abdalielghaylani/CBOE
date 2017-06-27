@@ -1,7 +1,7 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configProperties.window.viewIndex==='list')">
   <reg-settings-page-header>{{configProperties.window.title}}</reg-settings-page-header>
   <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
-    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
+    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event,true)'
     (onEditingStart)="onEditingStart($event)">
     <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
     <dxo-sorting mode="single"></dxo-sorting>
@@ -9,9 +9,9 @@
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
     <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
-      <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Add new rule'></a>&nbsp;
-      <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grd-icon" (onClick)="showValidationRule()" aria-hidden="true"
-        title='View/Update existing rule'></a>&nbsp; </div>
+      &nbsp;
+      <a class="fa fa-code grd-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Validation Rules'></a>&nbsp;
+    </div>
   </dx-data-grid>
 </div>
 <div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='add'||configProperties.window.viewIndex==='edit')">
@@ -27,21 +27,130 @@
 <div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
   <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
   <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
-  <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formData" [items]="configProperties.formValidationColumns"></dx-form>
-  <dx-data-grid [columns]="configProperties.validationGridColumns" [dataSource]="configProperties.formData.validationRules"
-    [height]="500" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)' (onCellPrepared)="onCellPrepared($event,'validation')">
-    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
-    <dxo-sorting mode="single"></dxo-sorting>
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
-    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
-    <dxo-scrolling mode="virtual"></dxo-scrolling>
-    <div *dxTemplate="let data of 'parameterTemplate'">
-      <dx-list [items]="data.data.parameters" [height]="400">
-        <dxi-item *ngFor="let item of data.data.parameters">
-          <div>{{item.name}} = {{item.value}}</div>
-        </dxi-item>
-      </dx-list>
+  <div class="dx-form-group-with-caption">
+    <span class="tan dx-form-group-caption">Property</span>
+    <div class="dx-form-group-content">
+      <dx-form minColWidth=300 [colCount]="2" [formData]="configProperties.formData" [items]="configProperties.formValidationColumns.property"></dx-form>
     </div>
-  </dx-data-grid>
+  </div>
+
+  <div class="dx-form-group-with-caption" style="margin-top:10px" [hidden]="!configProperties.addRuleVisible">
+    <command-button testid="validation-button-cancel" (onClick)="configProperties.clearFormDataValidations()" iconName="undo"
+      title="Cancel"></command-button>
+    <command-button testid="validation-button-save" (onClick)="saveValidationRule($event)" iconName="save" title="Save Rule"></command-button>
+    <span class="tan dx-form-group-caption">New Validation Rule</span>
+    <div class="dx-form-group-content">
+      <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formDataValidation" [items]="configProperties.formValidationColumns.editColumn"
+        (onFieldDataChanged)="configProperties.onValidationTypeChanged($event)"></dx-form>
+      <div style='margin-top: 20px;' *ngIf="configProperties.formDataValidation.name==='wordListEnumeration'">
+        <div class="panel panel-default">
+          <div class="tan panel-heading">
+            <h3 class="panel-title">
+              Add Parameters</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-6 col-md-6">
+                <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>validWord </b></span></div>
+                <div class="col-sm-8">
+                  <dx-text-box [(value)]='configProperties.formDataValidation.validWord'>
+                    <dx-validator>
+                      <dxi-validation-rule type="required" message="Word required"></dxi-validation-rule>
+                    </dx-validator>
+                  </dx-text-box>
+                </div>
+                <div class="col-sm-1">
+                  <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="configProperties.addParams('validWord',configProperties.formDataValidation.validWord)"
+                    title='Add Parameter'></a>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-6" style="border-left:1px solid #ddd;padding-left:5px">
+                <span class="dx-field-item-label-text">Parameters List:</span>
+                <dx-list [items]="configProperties.formDataValidation.parameters" [height]="100" [allowItemDeleting]="true" itemDeleteMode="toggle"
+                  (onItemDeleting)="configProperties.onParameterItemDeleted($event)">
+                  <dxi-item *ngFor="let item of configProperties.formDataValidation.parameters">
+                    <div>{{item.name}} = {{item.value}}</div>
+                  </dxi-item>
+                </dx-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style='margin-top: 20px;' *ngIf="configProperties.formDataValidation.name==='textLength'">
+        <div class="panel panel-default">
+          <div class="tan panel-heading">
+            <h3 class="panel-title">
+              Add Parameters</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-6 col-md-6 ">
+                <div class="row">
+                  <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>Min:</b></span></div>
+                  <div class="col-sm-8">
+                    <dx-number-box [(value)]='configProperties.formDataValidation.min' [showSpinButtons]="true">
+                      <dx-validator>
+                        <dxi-validation-rule type="required" message="Min Length is required"></dxi-validation-rule>
+                      </dx-validator>
+                    </dx-number-box>
+                  </div>
+                  <div class="col-sm-1">
+                    <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="configProperties.addParams('min',configProperties.formDataValidation.min)"
+                      title='Add Parameter'></a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>Max:</b></span></div>
+                  <div class="col-sm-8">
+                    <dx-number-box [(value)]='configProperties.formDataValidation.max' [showSpinButtons]="true">
+                      <dx-validator>
+                        <dxi-validation-rule type="required" message="Max Length is required"></dxi-validation-rule>
+                      </dx-validator>
+                    </dx-number-box>
+                  </div>
+                  <div class="col-sm-1">
+                    <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="configProperties.addParams('max',configProperties.formDataValidation.max)"
+                      title='Add Parameter'></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-6 col-md-6" style="border-left:1px solid #ddd;padding-left:5px">
+                <span class="dx-field-item-label-text">Parameters List:</span>
+                <dx-list [items]="configProperties.formDataValidation.parameters" [height]="100" [allowItemDeleting]="true" itemDeleteMode="toggle"
+                  (onItemDeleting)="configProperties.onParameterItemDeleted($event)">
+                  <dxi-item *ngFor="let item of configProperties.formDataValidation.parameters">
+                    <div>{{item.name}} = {{item.value}}</div>
+                  </dxi-item>
+                </dx-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dx-form-group-with-caption" style="margin-top:10px" [hidden]="configProperties.addRuleVisible">
+    <command-button testid="validation-button" (onClick)="configProperties.addValidationRule($event)" iconName="plus" title="Add Rule"></command-button>
+    <span class="tan dx-form-group-caption">Validation Rules List</span>
+    <div class="dx-form-group-content">
+      <dx-data-grid [columns]="configProperties.formValidationColumns.grdColumns" [dataSource]="configProperties.formData.validationRules"
+        [height]="gridHeight-150" rowAlternationEnabled="true" (onInitNewRow)='onInitNewRow($event,false)' (onContentReady)='onContentReady($event)'
+        (onCellPrepared)="onCellPrepared($event,'validation')" (onRowRemoved)='onValidationRowRemoved($event)'>
+        <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false"></dxo-editing>
+        <dxo-sorting mode="single"></dxo-sorting>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <div *dxTemplate="let data of 'parameterTemplate'">
+          <dx-list [items]="data.data.parameters" [height]="60" noDataText="">
+            <dxi-item *ngFor="let item of data.data.parameters">
+              <div>{{item.name}} = {{item.value}}</div>
+            </dxi-item>
+          </dx-list>
+        </div>
+      </dx-data-grid>
+    </div>
+  </div>
 
 </div>
