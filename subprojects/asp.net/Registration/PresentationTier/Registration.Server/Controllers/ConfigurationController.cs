@@ -991,8 +991,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 // below code will make sure that the input is a valid decimal numbe
                 // example , if 10 is given as input, it will return 10.0
-                double precision;
-                if (!double.TryParse(data.Precision, NumberStyles.Number, CultureInfo.InvariantCulture, out precision))
+                decimal precision;
+                if (!decimal.TryParse(data.Precision, NumberStyles.Number, CultureInfo.InvariantCulture, out precision))
                     throw new RegistrationException("Property precision is not a valid input.");
                 data.Precision = precision.ToString();
 
