@@ -134,6 +134,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       } else {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        $links.filter('.dx-link-edit').append(`<i class='dx-icon-edit' style='font-size:18px;color:silver'></i>`);
       }
     }
   }

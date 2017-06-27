@@ -9,8 +9,8 @@
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
     <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
-      <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Add new rule'></a>&nbsp;
-      <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grd-icon" (onClick)="showValidationRule()" aria-hidden="true"
+      <a class="fa fa-plus-square grid-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Add new rule'></a>&nbsp;
+      <a *ngIf="data.data.validationRules.length>0" class="fa fa-pencil-square-o grid-icon" (onClick)="showValidationRule()" aria-hidden="true"
         title='View/Update existing rule'></a>&nbsp; </div>
   </dx-data-grid>
 </div>
