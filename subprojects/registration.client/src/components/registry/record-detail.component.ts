@@ -430,4 +430,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
         notifyException(`The record was not deleted due to a problem`, error, 5000);
       });
   }
+
+  private get submissionTemplatesEnabled() {
+    return new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isSubmissionTemplateEnabled;
+  }
 };
