@@ -26,6 +26,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
             foreach (var propertyType in propertyTypes)
             {
+                if (propertyType.ToString().Equals("AddIns") || propertyType.ToString().Equals("None"))
+                    continue;
+
                 propertyGroups.Add(new JObject(
                     new JProperty("groupName", propertyType.ToString()),
                     new JProperty("groupLabel", GetPropertyTypeLabel(propertyType))
