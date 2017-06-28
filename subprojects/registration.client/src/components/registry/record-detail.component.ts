@@ -252,11 +252,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   save() {
     this.updateRecord();
+    let id = this.template ? -1 : this.id;
     if (this.isNewRecord) {
-      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
+      this.actions.saveRecord(this.temporary, id, this.recordDoc);
     } else {
       this.setEditMode(false);
-      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
+      this.actions.saveRecord(this.temporary, id, this.recordDoc);
     }
   }
 
