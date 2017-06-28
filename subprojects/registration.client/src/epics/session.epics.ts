@@ -27,9 +27,10 @@ export class SessionEpics {
   handleLoginUserSuccess = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
       .mergeMap(() => {
-        this.router.navigate(['records/temp']);
+       
         return this.http.get(`${apiUrlPrefix}ViewConfig/Lookups`)
           .map(result => {
+             this.router.navigate(['records/temp']);
             return SessionActions.loadLookupsSuccessAction(result.json());
           })
           .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
