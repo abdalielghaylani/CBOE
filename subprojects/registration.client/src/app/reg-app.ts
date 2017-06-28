@@ -4,10 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import { DevToolsExtension, NgRedux, select } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
-import { IAppState, ISession, rootReducer } from '../store';
+import { IAppState, ISession, rootReducer, ILookupData } from '../store';
 import { RegistryActions, SessionActions } from '../actions';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, RegistrySearchEpics } from '../epics';
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
+import { Subscription } from 'rxjs/Subscription';
 
 import {
   RegButton,
@@ -47,8 +48,11 @@ export class RegApp {
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   @select(s => !s.session.token) loggedOut$: Observable<boolean>;
   @select(s => s.router) routerLink$: Observable<string>;
+  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
 
   public fullScreenEnabled: boolean = false;
+  private lookupsSubscription: Subscription;
+  private lookups: ILookupData;
 
   constructor(
     private devTools: DevToolsExtension,
@@ -82,4 +86,23 @@ export class RegApp {
     ngReduxRouter.initialize();
   }
 
+  ngOnInit() {
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
+  }
+
+  setVisibility(privilage: string) {
+    if (this.lookups) {
+      let privilages = this.lookups.homeMenuPrivileges;
+      let privilageItems = privilages.filter(p => p.privilegeName === privilage);
+      if (privilageItems.length > 0) {
+        return privilageItems[0].visibility;
+      }
+    }
+    return false;
+  }
+
+  // Trigger data retrieval for the view to show.
+  retrieveContents(lookups: ILookupData) {
+    this.lookups = lookups;
+  }
 };

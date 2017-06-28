@@ -20,21 +20,21 @@
   </reg-navigator-items>
 </reg-navigator>
 <reg-sidebar *ngIf="loggedIn$ | async" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
-  <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
+  <li reg-sidebar-item *ngIf="setVisibility('SEARCH_TEMP')" class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
     <circle-icon title="Review Temporary" color="yellow" isSelected="{{ (routerLink$ | async).endsWith('/temp') }}" iconName="table"
       routeLink="records/temp"></circle-icon>
   </li>
-  <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') ? 'selected' : '' }}">
+  <li reg-sidebar-item *ngIf="setVisibility('ADD_COMPOUND_TEMP')" class="{{ (routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') ? 'selected' : '' }}">
     <circle-icon title="Submit New Compound" color="purple" iconName="flask" isSelected="{{(routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') }}"
       routeLink="records/new">
     </circle-icon>
   </li>
-  <li reg-sidebar-item class="{{ (routerLink$ | async).endsWith('records') ? 'selected' : '' || (routerLink$ | async).endsWith('search') ? 'selected' : '' }}">
+  <li reg-sidebar-item *ngIf="setVisibility('SEARCH_REG')" class="{{ (routerLink$ | async).endsWith('records') ? 'selected' : '' || (routerLink$ | async).endsWith('search') ? 'selected' : '' }}">
     <circle-icon title="Search Registry" color="purple-neutral" iconName="search" isSelected="{{(routerLink$ | async).endsWith('records') || (routerLink$ | async).endsWith('search')}} "
       routeLink="records">
     </circle-icon>
   </li>
-  <li reg-sidebar-item class="{{ (routerLink$ | async).indexOf('configuration') > 0 ? 'selected' : '' }}">
+  <li reg-sidebar-item *ngIf="setVisibility('CONFIG_REG')" class="{{ (routerLink$ | async).indexOf('configuration') > 0 ? 'selected' : '' }}">
     <circle-icon title="Configuration" color="green-mid" iconName="gears" isSelected="{{((routerLink$ | async).indexOf('configuration') > 0)}}"
       routeLink="configuration/VW_PROJECT">
     </circle-icon>
