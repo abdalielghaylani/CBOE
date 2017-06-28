@@ -324,7 +324,8 @@ export class CConfigProperties {
       }
     }
   }
-  isValidRule(): boolean {
+
+  get isValidRule(): boolean {
     if (!this.formDataValidation.name) {
       notify(`Type required!`, 'warning', 5000);
       return false;

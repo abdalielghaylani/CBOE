@@ -117,7 +117,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
     this.dataSource.insert(this.configProperties.formData).done(result => {
       this.grid._results[0].instance.refresh();
     }).fail(err => {
-      notifyError(err);
+      notifyError(err, 5000);
     });
     this.cancel();
   }
@@ -126,7 +126,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
     this.dataSource.update(this.configProperties.formData, []).done(result => {
       this.grid._results[0].instance.refresh();
     }).fail(err => {
-      notifyError(err);
+      notifyError(err, 5000);
     });
     this.cancel();
   }
@@ -135,7 +135,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   saveValidationRule(e) {
-    if (this.configProperties.isValidRule()) {
+    if (this.configProperties.isValidRule) {
       let validationModel: CPropertiesValidationFormDataModel;
       switch (this.configProperties.formDataValidation.name) {
         case 'custom':

@@ -17,7 +17,7 @@ import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail } from '../../store';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, notify } from '../../common';
-import { CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
+import { IResponseData, CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { CSystemSettings } from '../configuration';
@@ -316,7 +316,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       this.http.post(url, data).toPromise()
         .then(res => {
           this.regTemplates.dataSource = undefined;
-          notifySuccess(`The submission data was saved as template ${res.json().id} successfully!`, 5000);
+          notifySuccess((res.json() as IResponseData).message, 5000);
         })
         .catch(error => {
           notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
