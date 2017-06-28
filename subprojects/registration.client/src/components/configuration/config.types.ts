@@ -1,4 +1,5 @@
 import { IAppState } from '../../store';
+import { notify, notifyError, notifySuccess } from '../../common';
 export const PROJECTS_COLUMNS = [
   {
     dataField: 'PROJECTID',
@@ -121,28 +122,60 @@ export class CConfigForms {
 function getLookups(state: IAppState): any {
   return state.session ? state.session.lookups : undefined;
 }
-export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = [{
-  dataField: 'name',
-  label: { text: 'Property Name' },
-  dataType: 'string',
-  editorType: 'dxTextBox',
-  disabled: true,
-}, {
-  dataField: 'type',
-  label: { text: 'Property Type' },
-  dataType: 'string',
-  editorType: 'dxTextBox',
-  disabled: true,
-}];
-export const PROPERTIES_VALIDATION_GRID_COLUMNS = [{
-  dataField: 'name', width: 100
-},
-{ dataField: 'min', width: 80 },
-{ dataField: 'max', width: 80 },
-{ dataField: 'maxLength', width: 80 },
-{ dataField: 'error' },
-{ dataField: 'defaultValue', width: 80 },
-{ dataField: 'parameters', cellTemplate: 'parameterTemplate' }];
+export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = {
+  grdColumns: [{
+    dataField: 'name', width: 100
+  },
+  { dataField: 'min', width: 80 },
+  { dataField: 'max', width: 80 },
+  { dataField: 'maxLength', width: 80 },
+  { dataField: 'error' },
+  { dataField: 'defaultValue', width: 80 },
+  { dataField: 'parameters', cellTemplate: 'parameterTemplate' }],
+  property: [
+    {
+      dataField: 'name',
+      label: { text: 'Property Name' },
+      dataType: 'string',
+      editorType: 'dxTextBox',
+      disabled: true,
+    }, {
+      dataField: 'type',
+      label: { text: 'Property Type' },
+      dataType: 'string',
+      editorType: 'dxTextBox',
+      disabled: true,
+    }
+  ],
+  editColumn: [{
+    dataField: 'name',
+    label: { text: 'Type' },
+    dataType: 'string',
+    editorType: 'dxSelectBox',
+    editorOptions: {
+      items: ['requiredField', 'textLength', 'wordListEnumeration', 'custom', 'notEmptyStructure', 'notEmptyStructureAndNoText']
+    }, isRequired: true
+  }, {
+    dataField: 'error',
+    label: { text: 'Error' },
+    dataType: 'string',
+    editorType: 'dxTextBox'
+  }, {
+    dataField: 'defaultValue',
+    label: { text: 'Default Value TEXT' },
+    dataType: 'string',
+    editorType: 'dxTextBox',
+    visible: false,
+    isRequired: true
+  }, {
+    dataField: 'clientScript',
+    label: { text: 'Client Script' },
+    dataType: 'string',
+    editorType: 'dxTextArea',
+    visible: false,
+    isRequired: true
+  }]
+};
 export const CONFIG_PROPERTIES_COLUMNS = [
   {
     dataField: 'groupLabel',
@@ -223,30 +256,108 @@ export class CConfigPropertiesFormData {
   precision: string;
   validationRules: any[];
 };
+
 export class CPropertiesValidationFormData {
   name: string;
-  type: string;
+  min: number;
+  max: number;
+  maxLength: number;
+  error: string;
+  defaultValue: string;
+  parameters: any = [];
+  clientScript: string;
+  validWord: string;
 }
+
+export class CPropertiesValidationFormDataModel {
+  name: string;
+  min: number;
+  max: number;
+  maxLength: number;
+  error: string;
+  defaultValue: string;
+  parameters: any = [];
+}
+
 export class CConfigProperties {
   columns: any;
   formColumns: any;
   formData: CConfigPropertiesFormData;
+  formDataValidation: CPropertiesValidationFormData;
   window: CWindow;
+  addRuleVisible: boolean = false;
   formValidationColumns: any;
   validationGridColumns: any;
   constructor(state: IAppState) {
     this.window = { title: 'Manage Data Properties', viewIndex: 'list' };
     this.columns = CONFIG_PROPERTIES_COLUMNS;
     this.formValidationColumns = CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS;
-    this.validationGridColumns = PROPERTIES_VALIDATION_GRID_COLUMNS;
     this.formColumns = CONFIG_PROPERTIES_FORMS;
     this.formData = new CConfigPropertiesFormData();
+    this.formDataValidation = new CPropertiesValidationFormData();
     this.formColumns[0].editorOptions = { dataSource: [], valueExpr: 'groupName', displayExpr: 'groupLabel' };
     this.formColumns[0].editorOptions.dataSource = getLookups(state).propertyGroups;
     this.columns[5].lookup = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.columns[5].lookup.dataSource = getLookups(state).pickListDomains;
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.formColumns[5].editorOptions.dataSource = getLookups(state).pickListDomains;
+  }
+
+  addParams(n: string, v: string) {
+    if (isBlank(v)) {
+      notify(`Please enter the parameter value!`, 'warning', 5000);
+    } else {
+      if (n === 'min' || n === 'max') {
+        if (this.formDataValidation.parameters.find(myObj => myObj.name === 'min' && n === 'min') ||
+          (this.formDataValidation.parameters.find(myObj => myObj.name === 'max' && n === 'max'))) {
+          notifyError(`Parameter already added! Delete the existing to add new`, 5000);
+        } else {
+          this.formDataValidation.parameters.push({ name: n, value: v });
+        }
+      }
+      if (n === 'validWord') {
+        if (this.formDataValidation.parameters.find(myObj => myObj.validWord === v)) {
+          notifyError(`Parameter already added!`, 5000);
+        } else {
+          this.formDataValidation.parameters.push({ name: n, value: v });
+        }
+      }
+    }
+  }
+  isValidRule(): boolean {
+    if (!this.formDataValidation.name) {
+      notify(`Type required!`, 'warning', 5000);
+      return false;
+    }
+    if (this.formDataValidation.name === 'requiredField'
+      && (isBlank(this.formDataValidation.defaultValue))) {
+      notify(`Default value required!`, 'warning', 5000);
+      return false;
+    }
+    if (this.formDataValidation.name === 'textLength' && this.formDataValidation.parameters.length !== 2) {
+      notify(`Min, Max parameters required!`, 'warning', 5000);
+      return false;
+    }
+    if (this.formDataValidation.name === 'wordListEnumeration' && this.formDataValidation.parameters.length <= 0) {
+      notify(`Atleast one parameter required!`, 'warning', 5000);
+      return false;
+    }
+    if (this.formDataValidation.name === 'custom' && isBlank(this.formDataValidation.clientScript)) {
+      notify(`Client Script required!`, 'warning', 5000);
+      return false;
+    }
+    return true;
+  }
+
+  addValidationRule(e) {
+    this.addRuleVisible = true;
+  }
+  onParameterItemDeleted(e) {
+    this.formDataValidation.parameters.splice(e.itemIndex, 1);
+  }
+  clearFormDataValidations() {
+    this.formDataValidation = new CPropertiesValidationFormData();
+    this.addRuleVisible = false;
   }
   clearFormData() {
     this.formData = new CConfigPropertiesFormData();
@@ -255,6 +366,7 @@ export class CConfigProperties {
     if (w === 'add') {
       this.formColumns[0].disabled = false;
       this.formColumns[1].disabled = false;
+      this.formColumns[2].disabled = false;
       this.formColumns[3].disabled = false;
       this.window = { title: 'Add New Property', viewIndex: w };
       this.formColumns[5].visible = false;
@@ -264,10 +376,34 @@ export class CConfigProperties {
     if (w === 'edit') {
       this.formColumns[0].disabled = true;
       this.formColumns[1].disabled = true;
+      this.formColumns[2].disabled = true;
       this.formColumns[3].disabled = true;
       this.window = { title: 'Edit Property', viewIndex: w };
       this.formData = d;
       this.showHideDataFields(d.type, this.formColumns, this.formData);
+    }
+  }
+  onValidationTypeChanged(e) {
+    if (e.dataField === 'name') {
+      this.formValidationColumns.editColumn[2].visible = false;
+      this.formValidationColumns.editColumn[3].visible = false;
+      this.formDataValidation.parameters = [];
+      switch (e.value) {
+        case 'requiredField':
+          this.formValidationColumns.editColumn[2].visible = true;
+          e.component._refresh();
+          break;
+        case 'textLength':
+        case 'wordListEnumeration':
+        case 'notEmptyStructure':
+        case 'notEmptyStructureAndNoText':
+          e.component._refresh();
+          break;
+        case 'custom':
+          this.formValidationColumns.editColumn[3].visible = true;
+          e.component._refresh();
+          break;
+      }
     }
   }
 
@@ -289,6 +425,43 @@ export class CConfigProperties {
       vm[5].visible = false;
       if (refresh) { component._refresh(); }
     }
+  }
+}
+
+function isBlank(str) {
+  return (!str || /^\s*$/.test(str));
+}
+export const CONFIG_ADDIN_COLUMNS = {
+  grdColumn: [{
+    dataField: 'name',
+    caption: 'Current Addins',
+    width: 200
+  }, {
+    caption: 'AddIn,Assembly',
+    cellTemplate: 'addInTemplate'
+  }, {
+    dataField: 'events',
+    caption: 'Event List (Event Name = Event Handler)',
+    cellTemplate: 'eventTemplate'
+  }],
+  editColumn: [{
+    dataField: 'name',
+    label: { text: 'Friendly Name' },
+    editorType: 'dxList'
+  }]
+};
+
+export class CConfigAddIn {
+  columns: any;
+  editRow: any;
+  window: CWindow;
+  constructor() {
+    this.columns = CONFIG_ADDIN_COLUMNS;
+    this.window = { title: 'Manage Addins', viewIndex: 'list' };
+  }
+  addEditProperty(op, e) {
+    this.window = { title: 'Edit Addins', viewIndex: 'edit' };
+    this.editRow = e.data;
   }
 }
 
@@ -320,7 +493,7 @@ export class CSystemSettings {
   }
 
   private getRegSetting(settingName: string): ISettingData {
-    return this.getSetting('Registration', settingName);    
+    return this.getSetting('Registration', settingName);
   }
 
   public get isApprovalsEnabled(): boolean {
