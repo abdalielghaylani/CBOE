@@ -9,7 +9,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notify, notifyError, notifyException, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { IAppState, ICustomTableData, IConfiguration } from '../../store';
 import { CConfigProperties } from './config.types';
@@ -87,12 +87,15 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   onInitNewRow(e) {
+    e.cancel = true;
     this.configProperties.addEditProperty('add');
   }
 
   onEditingStart(e) {
     e.cancel = true;
-    this.configProperties.addEditProperty('edit', e.data);
+    if (e.data.editable) {
+      this.configProperties.addEditProperty('edit', e.data);
+    }
   }
 
   cancel() {
@@ -107,22 +110,20 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   addProperty(e) {
-    this.dataSource.insert(this.configProperties.formData)
-      .done((result) => {
-        this.grid.instance.refresh();
-      })
-      .fail(err => { notifyError(err.message); }
-      );
+    this.dataSource.insert(this.configProperties.formData).done(result => {
+      this.grid.instance.refresh();
+    }).fail(err => {
+      notifyError(err);
+    });
     this.cancel();
   }
 
   saveProperty(e) {
-    this.dataSource.update(this.configProperties.formData, [])
-      .done((result) => {
-        this.grid.instance.refresh();
-      })
-      .fail(err => { notifyError(err.message); }
-      );
+    this.dataSource.update(this.configProperties.formData, []).done(result => {
+      this.grid.instance.refresh();
+    }).fail(err => {
+      notifyError(err);
+    });
     this.cancel();
   }
 
@@ -135,6 +136,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       } else {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        $links.filter('.dx-link-edit').append(`<i class='dx-icon-edit' style='font-size:18px;color:silver;cursor:default'></i>`);
       }
     }
   }
@@ -187,7 +189,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = getExceptionMessage(`Creating a new Property was failed due to a problem`, error);
+            let message = getExceptionMessage(`Creating a new property failed due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
