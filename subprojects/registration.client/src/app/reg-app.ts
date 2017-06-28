@@ -93,9 +93,9 @@ export class RegApp {
   setVisibility(privilage: string) {
     if (this.lookups) {
       let privilages = this.lookups.homeMenuPrivileges;
-      let privilageItems = privilages.filter(p => p.privilegeName === privilage);
-      if (privilageItems.length > 0) {
-        return privilageItems[0].visibility;
+      let privilageItem = privilages.find(p => p.privilegeName === privilage);
+      if (privilageItem !== undefined) {
+        return privilageItem.visibility;
       }
     }
     return false;
