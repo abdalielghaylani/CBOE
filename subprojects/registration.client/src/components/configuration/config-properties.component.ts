@@ -141,7 +141,6 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           validationModel = this.configProperties.formDataValidation;
           this.configProperties.formData.validationRules.push(validationModel);
           break;
-
       }
       this.dataSource.update(this.configProperties.formData, []).then((result) => {
         this.configProperties.clearFormDataValidations();

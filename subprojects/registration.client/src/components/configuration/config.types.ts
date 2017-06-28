@@ -279,7 +279,6 @@ export class CPropertiesValidationFormDataModel {
   parameters: any = [];
 }
 
-
 export class CConfigProperties {
   columns: any;
   formColumns: any;
@@ -305,8 +304,8 @@ export class CConfigProperties {
   }
 
   addParams(n: string, v: string) {
-    if (v.toString().trim().length < 1) {
-      notifyError(`Please enter the parameter value!`, 5000);
+    if (isBlank(v)) {
+      notify(`Please enter the parameter value!`, 'warning', 5000);
     } else {
       if (n === 'min' || n === 'max') {
         if (this.formDataValidation.parameters.find(myObj => myObj.name === 'min' && n === 'min') ||
@@ -336,7 +335,7 @@ export class CConfigProperties {
       return false;
     }
     if (this.formDataValidation.name === 'textLength' && this.formDataValidation.parameters.length !== 2) {
-      notify(`Min,Max parameters required!`, 'warning', 5000);
+      notify(`Min, Max parameters required!`, 'warning', 5000);
       return false;
     }
     if (this.formDataValidation.name === 'wordListEnumeration' && this.formDataValidation.parameters.length <= 0) {
@@ -431,6 +430,39 @@ export class CConfigProperties {
 
 function isBlank(str) {
   return (!str || /^\s*$/.test(str));
+}
+export const CONFIG_ADDIN_COLUMNS = {
+  grdColumn: [{
+    dataField: 'name',
+    caption: 'Current Addins',
+    width: 200
+  }, {
+    caption: 'AddIn,Assembly',
+    cellTemplate: 'addInTemplate'
+  }, {
+    dataField: 'events',
+    caption: 'Event List (Event Name = Event Handler)',
+    cellTemplate: 'eventTemplate'
+  }],
+  editColumn: [{
+    dataField: 'name',
+    label: { text: 'Friendly Name' },
+    editorType: 'dxList'
+  }]
+};
+
+export class CConfigAddIn {
+  columns: any;
+  editRow: any;
+  window: CWindow;
+  constructor() {
+    this.columns = CONFIG_ADDIN_COLUMNS;
+    this.window = { title: 'Manage Addins', viewIndex: 'list' };
+  }
+  addEditProperty(op, e) {
+    this.window = { title: 'Edit Addins', viewIndex: 'edit' };
+    this.editRow = e.data;
+  }
 }
 
 export interface CWindow {
