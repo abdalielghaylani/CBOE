@@ -9,7 +9,7 @@ import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notify, notifyError, notifyException, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { IAppState, ICustomTableData, IConfiguration } from '../../store';
 import { CConfigProperties, CPropertiesValidationFormDataModel } from './config.types';
@@ -97,7 +97,9 @@ export class RegConfigProperties implements OnInit, OnDestroy {
 
   onEditingStart(e) {
     e.cancel = true;
-    this.configProperties.addEditProperty('edit', e.data);
+    if (e.data.editable) {
+      this.configProperties.addEditProperty('edit', e.data);
+    }
   }
 
   cancel() {
@@ -112,15 +114,19 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   addProperty(e) {
-    this.dataSource.insert(this.configProperties.formData).then((result) => {
+    this.dataSource.insert(this.configProperties.formData).done(result => {
       this.grid._results[0].instance.refresh();
+    }).fail(err => {
+      notifyError(err);
     });
     this.cancel();
   }
 
   saveProperty(e) {
-    this.dataSource.update(this.configProperties.formData, []).then((result) => {
+    this.dataSource.update(this.configProperties.formData, []).done(result => {
       this.grid._results[0].instance.refresh();
+    }).fail(err => {
+      notifyError(err);
     });
     this.cancel();
   }
@@ -141,6 +147,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           validationModel = this.configProperties.formDataValidation;
           this.configProperties.formData.validationRules.push(validationModel);
           break;
+
       }
       this.dataSource.update(this.configProperties.formData, []).then((result) => {
         this.configProperties.clearFormDataValidations();
@@ -153,14 +160,22 @@ export class RegConfigProperties implements OnInit, OnDestroy {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let $links = e.cellElement.find('.dx-link');
       $links.text('');
-      $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-      $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-      if (!(e.data.editable || t === 'validation')) {
-        $links.filter('.dx-link-edit')[0].style.visibility = 'hidden';
+      if (e.data.editable || t === 'validation') {
+        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+      } else {
+        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        $links.filter('.dx-link-edit').append(`<i class='dx-icon-edit' style='font-size:18px;color:silver;cursor:default'></i>`);
       }
     }
   }
 
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
+    }
+  }
+  
   onFieldDataChanged(e) {
     this.configProperties.showHideDataFields(e.value, e.component._options.items, this.configProperties.formData, e.component, true);
   }
@@ -209,7 +224,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = getExceptionMessage(`Creating a new Property was failed due to a problem`, error);
+            let message = getExceptionMessage(`Creating a new property failed due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
