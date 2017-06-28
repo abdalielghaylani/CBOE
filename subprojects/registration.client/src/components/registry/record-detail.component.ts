@@ -432,6 +432,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get submissionTemplatesEnabled() {
-    return new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isSubmissionTemplateEnabled;
+    return this.isNewRecord && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isSubmissionTemplateEnabled;
   }
 };
