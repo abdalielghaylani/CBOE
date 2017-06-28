@@ -360,7 +360,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get approvalsEnabled(): boolean {
-    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
+    return (this.isNewRecord || this.temporary) && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
   }
 
   private get editButtonEnabled(): boolean {
@@ -372,17 +372,17 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get registerButtonEnabled(): boolean {
-    return this.temporary && (!this.editMode || this.isNewRecord) && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
+    return (this.isNewRecord || (this.temporary && !this.editMode)) && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
   }
 
   private get approveButtonEnabled(): boolean {
     let statusId = this.statusId;
-    return !this.editMode && statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
   }
 
   private get cancelApprovalButtonEnabled(): boolean {
     let statusId = this.statusId;
-    return !this.editMode && statusId && this.temporary && this.approvalsEnabled && statusId === RegistryStatus.Approved;
+    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId === RegistryStatus.Approved;
   }
 
   private get deleteButtonEnabled(): boolean {
