@@ -42,14 +42,17 @@ export class RegTemplates implements OnInit, OnDestroy {
   }, {
     dataField: 'name',
     dataType: 'string',
-    allowEditing: false,
     cellTemplate: 'loadCellTemplate'
+  }, {
+    dataField: 'description',
+    dataType: 'string'
   }, {
     dataField: 'dateCreated',
     dataType: 'date',
     format: 'ShortDateShortTime',
     sortIndex: 0,
-    sortOrder: 'desc'
+    sortOrder: 'desc',
+    allowEditing: false
   }, {
     dataField: 'isPublic',
     caption: 'Public?',
