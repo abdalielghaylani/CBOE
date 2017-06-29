@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Security;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
@@ -386,7 +387,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                return GetHitlistQueryInternal(id, temp);
+                var queryData = GetHitlistQueryInternal(id, temp);
+                var searchCriteria = new SearchCriteria();
+                searchCriteria.GetFromXML(queryData.SearchCriteria);
+                foreach (var item in searchCriteria.Items)
+                {
+                    if (!(item is SearchCriteria.SearchCriteriaItem)) continue;
+                    var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                    var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
+                    if (structureCriteria == null) continue;
+                    var query = structureCriteria.Query4000;
+                    if (!string.IsNullOrEmpty(query) && query.StartsWith("VmpD"))
+                    {
+                        structureCriteria.Structure = SecurityElement.Escape(ChemistryHelper.ConvertToCdxml(query, true));
+                    }
+                }
+                queryData.SearchCriteria = searchCriteria.ToString();
+                return queryData;
             });
         }
 
