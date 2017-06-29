@@ -497,8 +497,16 @@ export class CSystemSettings {
     return this.getSetting('Registration', settingName);
   }
 
+  private isSettingTrue(settingName: string): boolean {
+    let setting = this.getRegSetting(settingName);
+    return setting && setting.value && setting.value.toLowerCase() === 'true';        
+  }
+
   public get isApprovalsEnabled(): boolean {
-    let setting = this.getRegSetting('ApprovalsEnabled');
-    return setting && setting.value && setting.value.toLowerCase() === 'true';
+    return this.isSettingTrue('ApprovalsEnabled');
+  }
+
+  public get isSubmissionTemplateEnabled(): boolean {
+    return this.isSettingTrue('EnableSubmissionTemplates');
   }
 }
