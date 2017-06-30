@@ -67,6 +67,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
+        protected Dictionary<string, List<string>> UserPrivileges
+        {
+            get
+            {
+                return typeof(COEIdentity).GetField("_appRolePrivileges", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(UserIdentity) as Dictionary<string, List<string>>;
+            }
+        }
+
         protected SafeDataReader GetReader(string sql, Dictionary<string, object> args = null)
         {
             if (args == null) args = new Dictionary<string, object>();

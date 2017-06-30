@@ -123,6 +123,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return homeMenuPrivilages;
         }
 
+        private JArray GetUserPrivileges()
+        {
+            var appUserPrivilages = new JArray();          
+            string coeIdentifier = "Registration";
+            Dictionary<string, List<string>> appUserPrivileges = UserPrivileges;
+            foreach (string privilege in appUserPrivileges[coeIdentifier.ToUpper()])
+            {
+                appUserPrivilages.Add(new JObject(new JProperty("name", privilege)));
+            }
+            return appUserPrivilages;
+        }
+
         [HttpGet]
         [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
         [SwaggerOperation("GetLookups")]
@@ -150,7 +162,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     RegAppHelper.RetrieveSettings(),
                     GetAddinAssemblies(),
                     GetPropertyGroups(),
-                    GetHomeMenuPrivileges()
+                    GetHomeMenuPrivileges(),
+                    GetUserPrivileges()
                 );
             });
         }

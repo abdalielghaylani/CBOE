@@ -31,7 +31,9 @@ namespace PerkinElmer.COE.Registration.Server.Models
             List<SettingData> systemSettings,
             JArray addinAssemblies,
             JArray propertyGroups,
-            JArray homeMenuPrivileges)
+            JArray homeMenuPrivileges,
+            JArray userPrivileges
+            )
         {
             Users = users;
             Fragments = fragments;
@@ -50,6 +52,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             AddinAssemblies = addinAssemblies;
             PropertyGroups = propertyGroups;
             HomeMenuPrivileges = homeMenuPrivileges;
+            UserPrivileges = userPrivileges;
         }
 
         /// <summary>
@@ -153,5 +156,11 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "homeMenuPrivileges")]
         public JArray HomeMenuPrivileges { get; set; }
+
+        /// <summary>
+        /// Gets or sets the userPrivileges array
+        /// </summary>
+        [JsonProperty(PropertyName = "userPrivileges")]
+        public JArray UserPrivileges { get; set; }
     }
 }
