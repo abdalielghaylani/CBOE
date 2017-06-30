@@ -1243,11 +1243,39 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
 
+                // update sort order
+                if (selectedProperty.SortOrder != data.SortOrder)
+                {
+                    bool moveUp = data.SortOrder > selectedProperty.SortOrder ? false : true;
+                    var selectedPropertyList = configurationBO.GetSelectedPropertyList;
+                    int sortOrder = moveUp ? selectedProperty.SortOrder - 1 : selectedProperty.SortOrder + 1;
+                    string affectedPropertyName = selectedPropertyList.ChangeOrder(sortOrder, moveUp, selectedProperty.Name);
+                    Dictionary<string, string> propertyLabels = GetPropertyLabelsByContainedPropertyName(configurationBO, selectedProperty.Name);
+                    if (propertyLabels != null)
+                    {
+                        propertyLabels.Add(selectedProperty.Name,
+                            selectedProperty.FriendlyName);
+                    }
+                }
+
                 selectedProperty.ApplyEdit();
                 configurationBO.Save();
 
                 return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
             });
+        }
+
+        private Dictionary<string, string> GetPropertyLabelsByContainedPropertyName(ConfigurationRegistryRecord configBO, string propertyName)
+        {
+            foreach (Dictionary<string, string> propertyLabels in configBO.PropertiesLabels)
+            {
+                if (propertyLabels.ContainsKey(propertyName))
+                {
+                    return propertyLabels;
+                }
+            }
+
+            return null;
         }
 
         [HttpDelete]
