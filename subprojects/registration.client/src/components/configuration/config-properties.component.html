@@ -8,6 +8,13 @@
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
     <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <div *dxTemplate="let data of 'sortOrderTemplate'">
+      &nbsp;
+      <a [ngClass]="(data.value>0)?'fa fa-level-up grid-icon':'fa fa-level-up grid-icon-disabled'" (click)="moveupordown(data,'up');"
+        aria-hidden="true" title='Level up'></a>&nbsp;
+      <a [ngClass]="(data.data.sortOrderMax)?'fa fa-level-down grid-icon':'fa fa-level-down grid-icon-disabled'" (click)="moveupordown(data,'down');"
+        aria-hidden="true" title='Level down'></a>&nbsp;
+    </div>
     <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
       &nbsp;
       <a class="fa fa-code grid-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Validation Rules'></a>&nbsp;
@@ -21,8 +28,12 @@
   <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='edit'" (onClick)="saveProperty($event)"
     iconName="plus" title="Save Property"></command-button>
   <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
-  <dx-form minColWidth=300 (onFieldDataChanged)="onFieldDataChanged($event)" [colCount]="1" [formData]="configProperties.formData"
-    [items]="configProperties.formColumns"></dx-form>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1">
+      <dx-form minColWidth=300 (onFieldDataChanged)="configProperties.showHideDataFields($event)" [colCount]="1" [formData]="configProperties.formData"
+        [items]="configProperties.formColumns"></dx-form>
+    </div>
+  </div>
 </div>
 <div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
   <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>

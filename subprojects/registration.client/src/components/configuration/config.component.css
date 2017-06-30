@@ -38,7 +38,7 @@
   border: 1x solid grey;
   padding: 5px;
   color: white;
-  cursor: pointer;
+  cursor: not-allowed;
 }
 
 .grid-icon:hover {
