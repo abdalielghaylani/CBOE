@@ -10,6 +10,7 @@ import { RegFooter } from './footer';
 import { RegSidebar } from './navigator/sidebar.component';
 import { RegPageHeader, RegSettingsPageHeader } from './page-header';
 
+export * from './common';
 export * from './configuration';
 export * from './registry';
 export {

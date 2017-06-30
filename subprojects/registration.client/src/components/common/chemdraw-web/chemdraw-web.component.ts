@@ -7,40 +7,26 @@ import {
   ElementRef,
   OnInit, OnDestroy
 } from '@angular/core';
-import { basePath } from '../../configuration';
-import * as registryUtils from '../../components/registry/registry.utils';
 
 @Component({
-  selector: 'chem-draw-tool',
-  styles: [`.cdContainer {
-            border:5px solid #f0f0f0;
-            height: 300px;
-            width: 100%;
-          }`],
-  template: `
-            <div class='cdContainer'>
-              <div class='chem-draw'>
-                <div class='toastMessagePresenter'></div>
-              </div>
-            </div>
-  `,
+  selector: 'chemdraw-web',
+  styles: [require('./chemdraw-web.css')],
+  template: require('./chemdraw-web.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChemDrawingTool implements OnInit, OnDestroy {
+export class ChemDrawWeb implements OnInit, OnDestroy {
   private drawingTool;
   private recordDoc: Document;
   private creatingCDD: boolean = false;
   private cdxml: string;
-  constructor(
-    private elementRef: ElementRef) {
-
+  constructor(private elementRef: ElementRef) {
   }
 
   ngOnInit() {
   }
 
   ngOnDestroy() {
-    this.removePreviousDrawingTool();    
+    this.removePreviousDrawingTool();
   }
 
   createDrawingTool() {
@@ -107,5 +93,4 @@ export class ChemDrawingTool implements OnInit, OnDestroy {
       this.createDrawingTool();
     }
   }
-
 };
