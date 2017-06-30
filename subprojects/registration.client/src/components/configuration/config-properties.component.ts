@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, NgRedux } from '@angular-redux/store';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -26,6 +26,7 @@ declare var jQuery: any;
 })
 export class RegConfigProperties implements OnInit, OnDestroy {
   @ViewChildren(DxDataGridComponent) grid;
+  @ViewChildren(DxFormComponent) forms;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private rows: any[] = [];
   private dataSubscription: Subscription;
@@ -112,30 +113,51 @@ export class RegConfigProperties implements OnInit, OnDestroy {
     this.configProperties.window = { title: 'Validation Rule', viewIndex: 'validation' };
     this.configProperties.formData = d.data;
   }
+  moveupordown(data, move) {
+    if ((move === 'up' && data.value > 0) || (move === 'down' && data.data.sortOrderMax)) {
+      let val = data.data;
+      if (move === 'up') {
+        val.sortOrder = val.sortOrder - 1;
+      } else {
+        val.sortOrder = val.sortOrder + 1;
+      }
+      this.dataSource.update(val, []).done(result => {
+        this.grid._results[0].instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
+    }
+  }
 
   addProperty(e) {
-    this.dataSource.insert(this.configProperties.formData).done(result => {
-      this.grid._results[0].instance.refresh();
-    }).fail(err => {
-      notifyError(err, 5000);
-    });
-    this.cancel();
+    let valid = this.forms._results[0].instance.validate();
+    if (this.configProperties.combuteValidation(valid.brokenRules)) {
+      this.dataSource.insert(this.configProperties.formData).done(result => {
+        this.grid._results[0].instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
+      this.cancel();
+    }
   }
 
   saveProperty(e) {
-    this.dataSource.update(this.configProperties.formData, []).done(result => {
-      this.grid._results[0].instance.refresh();
-    }).fail(err => {
-      notifyError(err, 5000);
-    });
-    this.cancel();
+    let valid = this.forms._results[0].instance.validate();
+    if (this.configProperties.combuteValidation(valid.brokenRules)) {
+      this.dataSource.update(this.configProperties.formData, []).done(result => {
+        this.grid._results[0].instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
+      this.cancel();
+    }
   }
   onValidationRowRemoved(e) {
     this.dataSource.update(this.configProperties.formData, []);
   }
 
   saveValidationRule(e) {
-    if (this.configProperties.isValidRule) {
+    if (this.configProperties.isValidRule()) {
       let validationModel: CPropertiesValidationFormDataModel;
       switch (this.configProperties.formDataValidation.name) {
         case 'custom':
@@ -175,10 +197,6 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       e.srcElement.children[0].click();
     }
   }
-  
-  onFieldDataChanged(e) {
-    this.configProperties.showHideDataFields(e.value, e.component._options.items, this.configProperties.formData, e.component, true);
-  }
 
   private createCustomStore(parent: RegConfigProperties): CustomStore {
     let tableName = 'properties';
@@ -190,6 +208,19 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           .toPromise()
           .then(result => {
             let rows = result.json();
+            let groupBy = function (xs, key) {
+              return xs.reduce(function (rv, x) {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+              }, {});
+            };
+            let groubedByTeam = groupBy(rows, 'groupLabel');
+            rows.forEach(element => {
+              element.sortOrderMax = true;
+              if (groubedByTeam[element.groupLabel].length === (element.sortOrder + 1)) {
+                element.sortOrderMax = false;
+              }
+            });
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
