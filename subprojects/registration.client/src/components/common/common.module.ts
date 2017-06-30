@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ChemDrawWeb } from './chemdraw-web/chemdraw-web.component';
+import { ChemDrawWeb } from './chemdraw-web';
 import { RegButton } from './button';
 import { RegForm, RegFormGroup, RegFormError, RegInput, RegInputLogin, RegLabel, RegInputGroup } from './form';
 import { RegModal, RegModalContent } from './modal';
 
-export * from './chemdraw-web/chemdraw-web.component';
+export * from './chemdraw-web';
 export * from './button';
 export * from './form';
 export * from './modal';

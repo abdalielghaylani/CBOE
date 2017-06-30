@@ -3,16 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'reg-button',
   styles: [require('./button.css')],
-  template: `
-    <button
-      [attr.data-testid]="testid"
-      [id]="qaid"
-      (click)="handleClick($event)"
-      type="{{type || 'button'}}"
-      class="btn btn-block {{className}}">
-      <ng-content></ng-content>
-    </button>
-  `
+  template: require('./button.component.html')
 })
 export class RegButton {
   @Input() className: string;
