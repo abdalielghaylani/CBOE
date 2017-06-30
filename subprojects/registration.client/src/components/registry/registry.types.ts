@@ -532,6 +532,14 @@ export class CRegistryRecordVM {
             },
             onCellPrepared: function (e) {
               onCellPrepared(e);
+            },
+            onContentReady: function (e) {
+              let grid = e.component;
+              if (grid.totalCount() === 0) {
+                grid.option('height', 100);
+              } else {
+                grid.option('height', 'auto');                
+              }
             }
           });
       },
@@ -658,6 +666,14 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
             },
             onCellPrepared: function (e) {
               onCellPrepared(e);
+            },
+            onContentReady: function (e) {
+              let grid = e.component;
+              if (grid.totalCount() === 0) {
+                grid.option('height', 100);
+              } else {
+                grid.option('height', 'auto');                
+              }
             }
           });
       }
