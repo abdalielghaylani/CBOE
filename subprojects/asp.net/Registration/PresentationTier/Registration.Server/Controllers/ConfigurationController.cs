@@ -887,7 +887,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId;
                         propertyData.Value = property.Value;
                         propertyData.DefaultValue = property.DefaultValue;
-                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision;
+
+                        // set precision to empty for display purpose
+                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision; 
+                        // set precision to empty for Boolean, Date, Picklist, url type. In DB, default precision for these types are 1
+                        switch (propertyData.Type.ToUpper())
+                        {
+                            case "BOOLEAN":
+                            case "DATE":
+                            case "PICKLISTDOMAIN":                    
+                            case "URL":
+                                propertyData.Precision = string.Empty;
+                                break;
+                        }                    
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
@@ -984,7 +996,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 // set default precision for other types like BOOLEAN, PICKLIST DOMAIN
-                data.Precision = string.IsNullOrWhiteSpace(data.Precision) ? "1" : data.Precision; 
+                data.Precision = string.IsNullOrWhiteSpace(data.Precision) ? "1" : data.Precision;
 
                 // if comma is given as a decimal separator, replce it with .
                 data.Precision = data.Precision.Replace(",", ".");
