@@ -20,7 +20,7 @@ import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
-import { HttpService } from '../services';
+import { HttpService, AuthGuard } from '../services';
 import { IAppState } from '../store';
 import {
   DxCheckBoxModule,
@@ -90,6 +90,7 @@ import {
     DevToolsExtension,
     FormBuilder,
     NgReduxRouter,
+    AuthGuard,
     appRoutingProviders
   ]
     .concat(ACTION_PROVIDERS)
