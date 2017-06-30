@@ -3,12 +3,12 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RegFormGroup} from './form-group';
-import {RegFormModule} from './form.module';
-import {RegAppModule} from '../../app/reg-app.module';
-import {configureTests} from '../../tests.configure';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { RegFormGroup } from './form-group';
+import { RegFormModule } from './form.module';
+import { RegAppModule } from '../../app/reg-app.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Form Group', () => {
   let fixture;

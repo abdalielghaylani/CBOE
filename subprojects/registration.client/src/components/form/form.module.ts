@@ -1,15 +1,13 @@
-import {NgModule}      from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
-import {
-  RegForm,
-  RegFormGroup,
-  RegFormError,
-  RegInput,
-  RegInputLogin,
-  RegLabel,
-  RegInputGroup
-} from './index';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegForm } from './form';
+import { RegFormGroup } from './form-group';
+import { RegFormError } from './form-error';
+import { RegInput } from './input';
+import { RegInputLogin } from './input-login';
+import { RegLabel } from './label';
+import { RegInputGroup } from './input-group';
 
 @NgModule({
   imports: [

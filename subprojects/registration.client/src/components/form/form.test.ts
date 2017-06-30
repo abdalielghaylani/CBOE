@@ -2,9 +2,9 @@ import {
   async,
   inject,
 } from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RegForm} from './form';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { RegForm } from './form';
 import {
   FormGroup,
   FormControl,
@@ -12,9 +12,9 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {TestBed} from '@angular/core/testing';
-import {RegFormModule} from './form.module';
-import {configureTests} from '../../tests.configure';
+import { TestBed } from '@angular/core/testing';
+import { RegFormModule } from './form.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Form', () => {
   let fixture;

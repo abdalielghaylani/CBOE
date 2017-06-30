@@ -4,10 +4,10 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import {RegButton} from './button.component';
-import {RegUiModule} from '../../components/ui/ui.module';
-import {RegFormModule} from '../../components/form/form.module';
-import {configureTests} from '../../tests.configure';
+import { RegButton } from './button.component';
+import { RegUiModule } from '../../components/ui/ui.module';
+import { RegFormModule } from '../../components/form/form.module';
+import { configureTests } from '../../tests.configure';
 
 let fixture;
 
