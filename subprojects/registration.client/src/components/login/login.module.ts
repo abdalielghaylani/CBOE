@@ -9,8 +9,7 @@ import {
   RegLoginModal
 } from '../index';
 import { RegUiModule } from '../ui/ui.module';
-import { RegCommonModule } from '../common/common.module';
-import { RegFormModule } from '../form/form.module';
+import { RegCommonModule } from '../common';
 
 @NgModule({
   imports: [
@@ -18,8 +17,7 @@ import { RegFormModule } from '../form/form.module';
     CommonModule,
     HttpModule,
     RegUiModule,
-    RegCommonModule,
-    RegFormModule
+    RegCommonModule
   ],
   declarations: [
     RegLoginModal,
