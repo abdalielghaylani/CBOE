@@ -4,7 +4,6 @@ import { RegContainer } from './container';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
 import { RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem } from './navigator';
-import { RegModal, RegModalContent } from './modal';
 import { RegStructureImage } from './structure-image';
 import { RegFooter } from './footer';
 import { RegSidebar } from './navigator/sidebar.component';
@@ -21,7 +20,6 @@ export {
   RegLoginModal,
   RegLoginForm,
   RegStructureImage,
-  RegModal, RegModalContent,
   RegNavigator, RegNavigatorHeader, RegNavigatorItems, RegNavigatorItem,
   RegSidebar, RegFooter, RegPageHeader, RegSettingsPageHeader
 };
