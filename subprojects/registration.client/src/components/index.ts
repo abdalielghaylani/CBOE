@@ -1,5 +1,4 @@
 import { RegAlert } from './alert';
-import { RegButton } from './button';
 import { RegContainer } from './container';
 import { RegLogo } from './logo';
 import { RegLoginModal, RegLoginForm } from './login';
@@ -14,7 +13,6 @@ export * from './configuration';
 export * from './registry';
 export {
   RegAlert,
-  RegButton,
   RegContainer,
   RegLogo,
   RegLoginModal,
