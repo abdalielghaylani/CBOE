@@ -6,7 +6,7 @@ import {
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RegFormGroup } from './form-group';
-import { RegCommonModule } from '../common.module';
+import { RegCommonComponentModule } from '../common-component.module';
 import { configureTests } from '../../../tests.configure';
 
 describe('Component: Form Group', () => {
@@ -15,7 +15,7 @@ describe('Component: Form Group', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegCommonModule],
+        imports: [RegCommonComponentModule],
         declarations: [RegFormGroupTestController],
       });
     };

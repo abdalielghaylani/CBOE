@@ -6,7 +6,7 @@ import {
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RegModal } from './modal.component';
-import { RegCommonModule } from '../common.module';
+import { RegCommonComponentModule } from '../common-component.module';
 import { configureTests } from '../../../tests.configure';
 
 describe('Component: Modal', () => {
@@ -16,7 +16,7 @@ describe('Component: Modal', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RegCommonModule,
+          RegCommonComponentModule
         ],
         declarations: [
           RegModalTestController

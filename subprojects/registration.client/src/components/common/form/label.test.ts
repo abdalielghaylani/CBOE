@@ -6,7 +6,7 @@ import {
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RegLabel } from './label';
-import { RegCommonModule } from '../common.module';
+import { RegCommonComponentModule } from '../common-component.module';
 import { configureTests } from '../../../tests.configure';
 
 describe('Component: Label', () => {
@@ -15,7 +15,7 @@ describe('Component: Label', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegCommonModule],
+        imports: [RegCommonComponentModule],
         declarations: [
           RegLabelTestController
         ],

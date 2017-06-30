@@ -13,7 +13,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TestBed } from '@angular/core/testing';
-import { RegCommonModule } from '../common.module';
+import { RegCommonComponentModule } from '../common-component.module';
 import { configureTests } from '../../../tests.configure';
 
 describe('Component: Form', () => {
@@ -25,7 +25,7 @@ describe('Component: Form', () => {
         imports: [
           FormsModule,
           ReactiveFormsModule,
-          RegCommonModule,
+          RegCommonComponentModule
         ],
         declarations: [
           RegFormTestController,

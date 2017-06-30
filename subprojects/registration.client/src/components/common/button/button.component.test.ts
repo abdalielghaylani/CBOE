@@ -5,7 +5,7 @@ import {
 } from '@angular/core/testing';
 
 import { RegButton } from './button.component';
-import { RegCommonModule } from '../common.module';
+import { RegCommonComponentModule } from '../common-component.module';
 import { configureTests } from '../../../tests.configure';
 
 let fixture;
@@ -15,7 +15,7 @@ describe('Component: Button', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RegCommonModule
+          RegCommonComponentModule
         ],
       });
     };

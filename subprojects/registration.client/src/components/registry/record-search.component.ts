@@ -16,7 +16,7 @@ import * as searchTypes from './registry-search.types';
 import { RegistrySearchActions, ConfigurationActions } from '../../actions';
 import { IAppState, ISearchRecords, INITIAL_STATE, IQueryData } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChemDrawWeb } from '../common/common.module';
+import { ChemDrawWeb } from '../common';
 import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
 import * as X2JS from 'x2js';
 

@@ -31,4 +31,4 @@ export * from './modal';
     RegModal, RegModalContent
   ]
 })
-export class RegCommonModule { }
+export class RegCommonComponentModule { }
