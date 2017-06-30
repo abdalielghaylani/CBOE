@@ -125,16 +125,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private JArray GetUserPrivileges()
         {
-            var homeMenuPrivilages = new JArray();         
-            COEIdentity coeIdentity = UserIdentity;
+            var appUserPrivilages = new JArray();          
             string coeIdentifier = "Registration";
-            List<string> privilateList = UserIdentity.GetAllPrivileges(coeIdentifier.ToUpper());
-            foreach (string privilege in privilateList)
-            {            
-                homeMenuPrivilages.Add(new JObject(new JProperty("name", privilege)));
+            Dictionary<string, List<string>> appUserPrivileges = UserPrivileges;
+            foreach (string privilege in appUserPrivileges[coeIdentifier.ToUpper()])
+            {
+                appUserPrivilages.Add(new JObject(new JProperty("name", privilege)));
             }
-
-            return homeMenuPrivilages;
+            return appUserPrivilages;
         }
 
         [HttpGet]

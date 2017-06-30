@@ -175,10 +175,6 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
             return _appRolePrivileges.ContainsKey(coeIdentifier) && _appRolePrivileges[coeIdentifier].Contains(privilegeName);
         }
 
-        public List<string> GetAllPrivileges(string coeIdentifier)
-        {
-            return _appRolePrivileges[coeIdentifier];            
-        }
 
         #endregion
 
