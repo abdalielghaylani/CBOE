@@ -875,7 +875,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
-                    var properties = (IEnumerable<Property>)propertyList;
+                    var properties = ((IEnumerable<Property>)propertyList).OrderBy(x => x.SortOrder);
+
                     foreach (var property in properties)
                     {
                         PropertyData propertyData = new PropertyData();
@@ -889,17 +890,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.DefaultValue = property.DefaultValue;
 
                         // set precision to empty for display purpose
-                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision; 
+                        propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision;
                         // set precision to empty for Boolean, Date, Picklist, url type. In DB, default precision for these types are 1
                         switch (propertyData.Type.ToUpper())
                         {
                             case "BOOLEAN":
                             case "DATE":
-                            case "PICKLISTDOMAIN":                    
+                            case "PICKLISTDOMAIN":
                             case "URL":
                                 propertyData.Precision = string.Empty;
                                 break;
-                        }                    
+                        }
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
@@ -1168,7 +1169,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 selectedProperty.BeginEdit();
 
-                if (!selectedProperty.Precision.Equals(data.Precision))
+                if ((!string.IsNullOrWhiteSpace(selectedProperty.Precision)) && (!selectedProperty.Precision.Equals(data.Precision)))
                 {
                     switch (selectedProperty.Type)
                     {
@@ -1243,23 +1244,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
 
+                selectedProperty.ApplyEdit();
+                configurationBO.Save();
+
                 // update sort order
                 if (selectedProperty.SortOrder != data.SortOrder)
                 {
-                    bool moveUp = data.SortOrder > selectedProperty.SortOrder ? false : true;
                     var selectedPropertyList = configurationBO.GetSelectedPropertyList;
+
+                    bool moveUp = selectedProperty.SortOrder > data.SortOrder ? true : false;
                     int sortOrder = moveUp ? selectedProperty.SortOrder - 1 : selectedProperty.SortOrder + 1;
                     string affectedPropertyName = selectedPropertyList.ChangeOrder(sortOrder, moveUp, selectedProperty.Name);
                     Dictionary<string, string> propertyLabels = GetPropertyLabelsByContainedPropertyName(configurationBO, selectedProperty.Name);
                     if (propertyLabels != null)
                     {
-                        propertyLabels.Add(selectedProperty.Name,
-                            selectedProperty.FriendlyName);
+                        propertyLabels.Add(selectedPropertyList[affectedPropertyName].Name,
+                            selectedPropertyList[affectedPropertyName].FriendlyName);
                     }
-                }
 
-                selectedProperty.ApplyEdit();
-                configurationBO.Save();
+                    configurationBO.Save();
+                }
 
                 return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
             });
