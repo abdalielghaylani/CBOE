@@ -16,7 +16,7 @@ import * as searchTypes from './registry-search.types';
 import { RegistrySearchActions, ConfigurationActions } from '../../actions';
 import { IAppState, ISearchRecords, INITIAL_STATE, IQueryData } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChemDrawingTool } from '../../common/tool';
+import { ChemDrawWeb } from '../common';
 import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
 import * as X2JS from 'x2js';
 
@@ -35,8 +35,8 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
   @select(s => s.configuration.formGroups) formGroups$: Observable<any[]>;
-  @ViewChild(ChemDrawingTool)
-  private chemDrawWeb: ChemDrawingTool;
+  @ViewChild(ChemDrawWeb)
+  private chemDrawWeb: ChemDrawWeb;
   private lookupsSubscription: Subscription;
   private formGroupSubscription: Subscription;
   private title: string;

@@ -875,7 +875,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
-                    var properties = (IEnumerable<Property>)propertyList;
+                    var properties = ((IEnumerable<Property>)propertyList).OrderBy(x => x.SortOrder);
+
                     foreach (var property in properties)
                     {
                         PropertyData propertyData = new PropertyData();
@@ -887,7 +888,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId;
                         propertyData.Value = property.Value;
                         propertyData.DefaultValue = property.DefaultValue;
+
+                        // set precision to empty for display purpose
                         propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision;
+                        // set precision to empty for Boolean, Date, Picklist, url type. In DB, default precision for these types are 1
+                        switch (propertyData.Type.ToUpper())
+                        {
+                            case "BOOLEAN":
+                            case "DATE":
+                            case "PICKLISTDOMAIN":
+                            case "URL":
+                                propertyData.Precision = string.Empty;
+                                break;
+                        }
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
@@ -984,7 +997,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 // set default precision for other types like BOOLEAN, PICKLIST DOMAIN
-                data.Precision = string.IsNullOrWhiteSpace(data.Precision) ? "1" : data.Precision; 
+                data.Precision = string.IsNullOrWhiteSpace(data.Precision) ? "1" : data.Precision;
 
                 // if comma is given as a decimal separator, replce it with .
                 data.Precision = data.Precision.Replace(",", ".");
@@ -1156,7 +1169,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 selectedProperty.BeginEdit();
 
-                if (!selectedProperty.Precision.Equals(data.Precision))
+                if ((!string.IsNullOrWhiteSpace(selectedProperty.Precision)) && (!selectedProperty.Precision.Equals(data.Precision)))
                 {
                     switch (selectedProperty.Type)
                     {
@@ -1234,8 +1247,39 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 selectedProperty.ApplyEdit();
                 configurationBO.Save();
 
+                // update sort order
+                if (selectedProperty.SortOrder != data.SortOrder)
+                {
+                    var selectedPropertyList = configurationBO.GetSelectedPropertyList;
+
+                    bool moveUp = selectedProperty.SortOrder > data.SortOrder ? true : false;
+                    int sortOrder = moveUp ? selectedProperty.SortOrder - 1 : selectedProperty.SortOrder + 1;
+                    string affectedPropertyName = selectedPropertyList.ChangeOrder(sortOrder, moveUp, selectedProperty.Name);
+                    Dictionary<string, string> propertyLabels = GetPropertyLabelsByContainedPropertyName(configurationBO, selectedProperty.Name);
+                    if (propertyLabels != null)
+                    {
+                        propertyLabels.Add(selectedPropertyList[affectedPropertyName].Name,
+                            selectedPropertyList[affectedPropertyName].FriendlyName);
+                    }
+
+                    configurationBO.Save();
+                }
+
                 return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
             });
+        }
+
+        private Dictionary<string, string> GetPropertyLabelsByContainedPropertyName(ConfigurationRegistryRecord configBO, string propertyName)
+        {
+            foreach (Dictionary<string, string> propertyLabels in configBO.PropertiesLabels)
+            {
+                if (propertyLabels.ContainsKey(propertyName))
+                {
+                    return propertyLabels;
+                }
+            }
+
+            return null;
         }
 
         [HttpDelete]

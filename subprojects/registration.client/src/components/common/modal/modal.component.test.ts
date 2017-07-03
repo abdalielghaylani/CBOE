@@ -3,11 +3,11 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RegModal} from './modal.component';
-import {RegModalModule} from './modal.module';
-import {configureTests} from '../../tests.configure';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { RegModal } from './modal.component';
+import { RegCommonComponentModule } from '../common-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Modal', () => {
   let fixture;
@@ -16,7 +16,7 @@ describe('Component: Modal', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RegModalModule,
+          RegCommonComponentModule
         ],
         declarations: [
           RegModalTestController
@@ -48,5 +48,5 @@ describe('Component: Modal', () => {
     <reg-modal></reg-modal>
   `
 })
-class RegModalTestController {}
+class RegModalTestController { }
 

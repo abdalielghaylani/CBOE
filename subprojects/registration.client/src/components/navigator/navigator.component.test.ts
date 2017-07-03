@@ -3,12 +3,11 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RegNavigator} from './navigator.component';
-import {RegFormModule} from '../form/form.module';
-import {RegNavigatorModule} from './navigator.module';
-import {configureTests} from '../../tests.configure';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { RegNavigator } from './navigator.component';
+import { RegNavigatorModule } from './navigator.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Navigator', () => {
   let fixture;

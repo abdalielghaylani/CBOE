@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RegAlert} from './alert.component';
-import {RegUiModule} from '../../components/ui/ui.module';
-import {configureTests} from '../../tests.configure';
+import { RegAlert } from './alert.component';
+import { RegUiModule } from '../../components/ui/ui.module';
+import { configureTests } from '../../tests.configure';
 
 describe('Component: Alert', () => {
   let fixture;
@@ -36,24 +36,19 @@ describe('Component: Alert', () => {
         fixture.componentInstance.qaid = 'alert-1';
         const compiled = fixture.debugElement.nativeElement;
         const allBgClasses = ['bg-blue', 'bg-yellow', 'bg-green', 'bg-red'];
-        const status_class = [
-          {
-            status: 'info',
-            class: 'alert-info',
-          },
-          {
-            status: 'warning',
-            class: 'alert-warning',
-          },
-          {
-            status: 'success',
-            class: 'alert-success',
-          },
-          {
-            status: 'error',
-            class: 'alert-danger',
-          },
-        ];
+        const status_class = [{
+          status: 'info',
+          class: 'alert-info',
+        }, {
+          status: 'warning',
+          class: 'alert-warning',
+        }, {
+          status: 'success',
+          class: 'alert-success',
+        }, {
+          status: 'error',
+          class: 'alert-danger',
+        }];
 
         status_class.map(item => {
           fixture.componentInstance.status = item.status;
@@ -69,7 +64,7 @@ describe('Component: Alert', () => {
         });
       });
     })
-  ));
+    ));
 
   it('should have class white if status is info or error',
     async(inject([], () => {

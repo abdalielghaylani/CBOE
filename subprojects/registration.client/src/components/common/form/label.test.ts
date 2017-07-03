@@ -3,12 +3,11 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RegLabel} from './label';
-import {RegFormModule} from './form.module';
-import {RegAppModule} from '../../app/reg-app.module';
-import {configureTests} from '../../tests.configure';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { RegLabel } from './label';
+import { RegCommonComponentModule } from '../common-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Label', () => {
   let fixture;
@@ -16,7 +15,7 @@ describe('Component: Label', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegFormModule],
+        imports: [RegCommonComponentModule],
         declarations: [
           RegLabelTestController
         ],
@@ -40,14 +39,14 @@ describe('Component: Label', () => {
     });
   })));
 
-    it('should set the id to qaid value', async(inject([], () => {
-      fixture.whenStable().then(() => {
-        fixture.autoDetectChanges();
-        let query = fixture.debugElement
-          .query(By.directive(RegLabel));
-        expect(query.nativeElement.querySelector('label')
-          .getAttribute('id')).toBe('test-1');
-      });
+  it('should set the id to qaid value', async(inject([], () => {
+    fixture.whenStable().then(() => {
+      fixture.autoDetectChanges();
+      let query = fixture.debugElement
+        .query(By.directive(RegLabel));
+      expect(query.nativeElement.querySelector('label')
+        .getAttribute('id')).toBe('test-1');
+    });
   })));
 });
 

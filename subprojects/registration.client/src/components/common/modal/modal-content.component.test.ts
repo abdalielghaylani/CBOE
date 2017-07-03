@@ -5,8 +5,8 @@ import {
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RegModalContent } from './modal-content.component';
-import { RegModalModule } from './modal.module';
-import { configureTests } from '../../tests.configure';
+import { RegCommonComponentModule } from '../common-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Modal Content', () => {
   let fixture;
@@ -15,7 +15,7 @@ describe('Component: Modal Content', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RegModalModule
+          RegCommonComponentModule
         ],
         declarations: [
           RegModalContentTestController

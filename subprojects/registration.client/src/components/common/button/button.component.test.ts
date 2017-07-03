@@ -4,10 +4,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import {RegButton} from './button.component';
-import {RegUiModule} from '../../components/ui/ui.module';
-import {RegFormModule} from '../../components/form/form.module';
-import {configureTests} from '../../tests.configure';
+import { RegButton } from './button.component';
+import { RegCommonComponentModule } from '../common-component.module';
+import { configureTests } from '../../../tests.configure';
 
 let fixture;
 
@@ -16,8 +15,7 @@ describe('Component: Button', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RegFormModule,
-          RegUiModule,
+          RegCommonComponentModule
         ],
       });
     };

@@ -189,7 +189,8 @@ export const CONFIG_PROPERTIES_COLUMNS = [
     caption: 'Label'
   }, {
     caption: 'Type', dataField: 'type',
-    lookup: { dataSource: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL'] }
+    lookup: { dataSource: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL'] },
+    width: 120
   },
   {
     caption: 'Length',
@@ -197,10 +198,12 @@ export const CONFIG_PROPERTIES_COLUMNS = [
     width: 80
   }, {
     dataField: 'pickListDomainId',
-    caption: 'PickList Domain'
+    caption: 'PickList Domain',
+    width: 120
   }, {
     dataField: 'sortOrder',
     caption: 'SortOrder',
+    cellTemplate: 'sortOrderTemplate',
     width: 80
   },
   {
@@ -214,17 +217,22 @@ export const CONFIG_PROPERTIES_FORMS = [{
   dataField: 'groupName',
   label: { text: 'Group Name' },
   editorType: 'dxSelectBox',
+  validationRules: [{ group: 'always', type: 'required', message: 'Group name required' }],
   disabled: true,
 }, {
   dataField: 'name',
   label: { text: 'Name' },
   dataType: 'string',
   editorType: 'dxTextBox',
+  validationRules: [{ group: 'always', type: 'required', message: 'Name required' },
+  { group: 'always', type: 'pattern', pattern: '^\S*$', message: 'Name consisting only of non-whitespaces' }
+  ],
   disabled: true,
 }, {
   dataField: 'friendlyName',
   label: { text: 'Label' },
   dataType: 'string',
+  validationRules: [{ group: 'always', type: 'required', message: 'Friendly name required' }],
   editorType: 'dxTextBox',
 }, {
   dataField: 'type',
@@ -233,18 +241,36 @@ export const CONFIG_PROPERTIES_FORMS = [{
     items: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL']
   },
   editorType: 'dxSelectBox',
+  validationRules: [{ group: 'always', type: 'required', message: 'Type required' }],
   disabled: true,
 }, {
   dataField: 'precision',
   label: { text: 'Length', visible: false },
   editorOptions: { showSpinButtons: true, showClearButton: true, visible: false },
+  validationRules: [{ group: 'length', type: 'required', message: 'Length required' },
+  { group: 'length', type: 'pattern', pattern: '^[0-9]+$', message: 'Length should be a positive number with out decimal' }],
+  validationGroup: 'precision',
   dataType: 'Number',
   editorType: 'dxNumberBox'
 }, {
   dataField: 'pickListDomainId',
   label: { text: 'PickList Domain' },
   visible: false,
+  validationRules: [{ group: 'picklist', type: 'required', message: 'PickList Domain required' }],
+  validationGroup: 'picklist',
   editorType: 'dxSelectBox'
+}, {
+  dataField: 'precision',
+  label: { text: 'Precision', visible: false },
+  editorOptions: { showClearButton: true, visible: false },
+  validationRules: [{
+    group: 'precision', type: 'required', message: 'Precision required'
+  },
+  { group: 'precision', type: 'pattern', pattern: '^[0-9]+\.[0-9]+$', message: 'Precision required ( Eg:5.2 )' },
+  ],
+  validationGroup: 'number',
+  dataType: 'Number',
+  editorType: 'dxNumberBox'
 }];
 
 export class CConfigPropertiesFormData {
@@ -325,7 +351,35 @@ export class CConfigProperties {
     }
   }
 
-  get isValidRule(): boolean {
+  combuteValidation(broken: any) {
+    if (!this.filterRule(broken, 'always')) {
+      return false;
+    }
+    switch (this.formData.type) {
+      case 'PICKLISTDOMAIN':
+        return this.filterRule(broken, 'picklist');
+      case 'TEXT':
+        return this.filterRule(broken, 'length');
+      case 'NUMBER':
+        return this.filterRule(broken, 'precision');
+      case 'BOOLEAN':
+      case 'DATE':
+      case 'FLOAT':
+      case 'INTEGER':
+      case 'URL':
+        return true;
+    }
+    return true;
+  }
+
+  filterRule(broken: any, param: string) {
+    let val = broken.filter(function (obj) {
+      return obj.group === param;
+    });
+    return val.length > 0 ? false : true;
+  }
+
+  isValidRule(): boolean {
     if (!this.formDataValidation.name) {
       notify(`Type required!`, 'warning', 5000);
       return false;
@@ -370,9 +424,6 @@ export class CConfigProperties {
       this.formColumns[2].disabled = false;
       this.formColumns[3].disabled = false;
       this.window = { title: 'Add New Property', viewIndex: w };
-      this.formColumns[5].visible = false;
-      this.formColumns[4].label.visible = false;
-      this.formColumns[4].editorOptions.visible = false;
     }
     if (w === 'edit') {
       this.formColumns[0].disabled = true;
@@ -381,7 +432,7 @@ export class CConfigProperties {
       this.formColumns[3].disabled = true;
       this.window = { title: 'Edit Property', viewIndex: w };
       this.formData = d;
-      this.showHideDataFields(d.type, this.formColumns, this.formData);
+      this.showHideDataFields({ dataField: 'type', value: this.formData.type });
     }
   }
   onValidationTypeChanged(e) {
@@ -408,23 +459,44 @@ export class CConfigProperties {
     }
   }
 
-  showHideDataFields(type: string, vm: any, data: any, component?: any, refresh?: boolean) {
-    if (type === 'PICKLISTDOMAIN') {
-      vm[5].visible = true;
-      vm[4].label.visible = false;
-      vm[4].editorOptions.visible = false;
-      if (refresh) { component._refresh(); }
-    }
-    if (type === 'TEXT' || type === 'NUMBER') {
-      if (type === 'TEXT') {
-        vm[4].label.text = 'Length';
-      } else {
-        vm[4].label.text = 'Precision';
+  showHideDataFields(e) {
+    if (e.dataField === 'type') {
+      this.formColumns[5].visible = false;
+      this.formColumns[4].label.visible = false;
+      this.formColumns[4].editorOptions.visible = false;
+      this.formColumns[6].label.visible = false;
+      this.formColumns[6].editorOptions.visible = false;
+      switch (e.value) {
+        case 'PICKLISTDOMAIN':
+          this.formColumns[5].visible = true;
+          this.formColumns[4].label.visible = false;
+          this.formColumns[4].editorOptions.visible = false;
+          if (e.component) { e.component._refresh(); }
+          break;
+        case 'TEXT':
+          this.formColumns[4].label.visible = true;
+          this.formColumns[4].editorOptions.visible = true;
+          this.formColumns[5].visible = false;
+          this.formColumns[6].label.visible = false;
+          this.formColumns[6].editorOptions.visible = false;
+          if (e.component) { e.component._refresh(); }
+          break;
+        case 'NUMBER':
+          this.formColumns[6].label.visible = true;
+          this.formColumns[6].editorOptions.visible = true;
+          this.formColumns[4].label.visible = false;
+          this.formColumns[4].editorOptions.visible = false;
+          this.formColumns[5].visible = false;
+          if (e.component) { e.component._refresh(); }
+          break;
+        case 'BOOLEAN':
+        case 'DATE':
+        case 'FLOAT':
+        case 'INTEGER':
+        case 'URL':
+          if (e.component) { e.component._refresh(); }
+          break;
       }
-      vm[4].label.visible = true;
-      vm[4].editorOptions.visible = true;
-      vm[5].visible = false;
-      if (refresh) { component._refresh(); }
     }
   }
 }
@@ -445,11 +517,57 @@ export const CONFIG_ADDIN_COLUMNS = {
     caption: 'Event List (Event Name = Event Handler)',
     cellTemplate: 'eventTemplate'
   }],
-  editColumn: [{
-    dataField: 'name',
-    label: { text: 'Friendly Name' },
-    editorType: 'dxList'
-  }]
+  editColumn: {
+    addInInfo: [{
+      dataField: 'name',
+      label: { text: 'Friendly Name' },
+      editorType: 'dxTextBox',
+      editorOptions: { disabled: true }
+    }, {
+      dataField: 'addinName',
+      label: { text: 'Name' },
+      editorType: 'dxTextBox',
+      editorOptions: { disabled: true }
+    },
+    {
+      dataField: 'assembly',
+      label: { text: 'Assembly' },
+      editorType: 'dxTextBox',
+      editorOptions: { disabled: true }
+    },
+    {
+      dataField: 'className',
+      label: { text: 'Class' },
+      editorType: 'dxTextBox',
+      editorOptions: { disabled: true }
+    },
+    {
+      dataField: 'enable',
+      colSpan: 2,
+      label: { text: 'Enabled' },
+      editorType: 'dxCheckBox',
+    },
+    {
+      dataField: 'required',
+      label: { text: 'Required' },
+      editorType: 'dxCheckBox',
+      editorOptions: { disabled: true }
+    }],
+    events: [{
+      dataField: 'eventName',
+      caption: 'Event',
+      width: 200
+    }, {
+      dataField: 'eventHandler',
+      caption: 'Handler',
+      width: 200
+    }],
+    config: [{
+      dataField: 'Configuration',
+      label: { text: 'Configuration ' },
+      editorType: 'dxTextArea'
+    }],
+  }
 };
 
 export class CConfigAddIn {
@@ -499,7 +617,7 @@ export class CSystemSettings {
 
   private isSettingTrue(settingName: string): boolean {
     let setting = this.getRegSetting(settingName);
-    return setting && setting.value && setting.value.toLowerCase() === 'true';        
+    return setting && setting.value && setting.value.toLowerCase() === 'true';
   }
 
   public get isApprovalsEnabled(): boolean {

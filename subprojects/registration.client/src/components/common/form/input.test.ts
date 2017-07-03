@@ -5,8 +5,8 @@ import {
 } from '@angular/core/testing';
 import { RegInput } from './input';
 import { FormControl } from '@angular/forms';
-import { RegFormModule } from './form.module';
-import { configureTests } from '../../tests.configure';
+import { RegCommonComponentModule } from '../common-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Form Input', () => {
   let fixture;
@@ -15,7 +15,7 @@ describe('Component: Form Input', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
-          RegFormModule,
+          RegCommonComponentModule,
         ],
       });
     };

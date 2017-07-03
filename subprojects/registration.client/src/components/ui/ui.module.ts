@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { RegAlert } from '../alert/alert.component';
-import { RegButton } from '../button/button.component';
 import { RegLogo, RegLoginLogo } from '../logo';
 import { RegContainer } from '../container/container.component';
 import { RegPageHeader, RegSettingsPageHeader } from '../page-header';
@@ -14,7 +13,6 @@ import { RegPageHeader, RegSettingsPageHeader } from '../page-header';
   ],
   declarations: [
     RegAlert,
-    RegButton,
     RegLogo,
     RegContainer,
     RegLoginLogo,
@@ -23,7 +21,6 @@ import { RegPageHeader, RegSettingsPageHeader } from '../page-header';
   ],
   exports: [
     RegAlert,
-    RegButton,
     RegLogo,
     RegContainer,
     RegLoginLogo,

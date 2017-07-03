@@ -22,6 +22,7 @@ import { ToolModule } from '../common';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { HttpService, AuthGuard } from '../services';
 import { IAppState } from '../store';
+import { RegCommonComponentModule } from '../components';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -46,6 +47,7 @@ import {
     BrowserModule,
     routing,
     CommonModule,
+    RegCommonComponentModule,
     RegLoginModule,
     RegUiModule,
     RegNavigatorModule,

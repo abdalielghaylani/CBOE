@@ -4,8 +4,8 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { RegFormError } from './form-error';
-import { RegFormModule } from './form.module';
-import { configureTests } from '../../tests.configure';
+import { RegCommonComponentModule } from '../common-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Form Error', () => {
   let fixture;
@@ -13,7 +13,7 @@ describe('Component: Form Error', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegFormModule],
+        imports: [RegCommonComponentModule],
       });
     };
 
