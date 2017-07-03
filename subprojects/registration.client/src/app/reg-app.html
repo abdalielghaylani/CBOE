@@ -16,7 +16,6 @@
         <span class="username black text-relaxed">{{ fullName$ | async }}</span>
       </a>
     </li>
-    <!--<li reg-navigator-item *ngIf="loggedIn$ | async" (click)="sessionActions.logoutUser()"><a><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>-->
     <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="sessionActions.logoutUser()"><a data-toggle="tooltip" title="Logout"><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>
   </reg-navigator-items>
 </reg-navigator>
