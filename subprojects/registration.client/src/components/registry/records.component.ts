@@ -233,7 +233,7 @@ export class RegRecords implements OnInit, OnDestroy {
         $links.filter('.dx-link-save').addClass('dx-icon-save');
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
       } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+        $links.filter('.dx-link-edit').addClass('fa fa-info-circle');
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       }
     }
