@@ -225,7 +225,7 @@ export const CONFIG_PROPERTIES_FORMS = [{
   dataType: 'string',
   editorType: 'dxTextBox',
   validationRules: [{ group: 'always', type: 'required', message: 'Name required' },
-  { group: 'always', type: 'pattern', pattern: '^\S*$', message: 'Name consisting only of non-whitespaces' }
+  { group: 'always', type: 'pattern', pattern: '^[a-zA-Z_@#][a-zA-Z0-9_\\$@#]{0,28}[a-zA-Z0-9_\\$@#]$', message: 'Invalid property name: use only alpha-numeric and underscore characters (no spaces, 30 characters max)' }
   ],
   disabled: true,
 }, {
