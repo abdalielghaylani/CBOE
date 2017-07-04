@@ -57,7 +57,7 @@ export class SessionEpics {
     if (privilageItem === undefined) {
       return false;
     }
-    return privilageItem.visibility ? true: false; 
+    return privilageItem.visibility ? true : false;
   }
 
   handleLogoutUser = (action$: Observable<IPayloadAction>) => {
