@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
+import { TestModule } from '../../test';
 import { RegLoginModal } from './login-modal';
 import { RegLoginModule } from './login.module';
-import { configureTests } from '../../tests.configure';
 
 describe('Component: Login Modal', () => {
   let fixture;
@@ -13,11 +13,14 @@ describe('Component: Login Modal', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegLoginModule],
+        imports: [
+          TestModule,
+          RegLoginModule
+        ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegLoginModal);
       fixture.detectChanges();
       done();

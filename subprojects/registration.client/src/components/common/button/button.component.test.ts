@@ -3,10 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-
-import { RegButton } from './button.component';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegButton } from './button.component';
 
 let fixture;
 
@@ -20,7 +19,7 @@ describe('Component: Button', () => {
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegButton);
       fixture.detectChanges();
       done();

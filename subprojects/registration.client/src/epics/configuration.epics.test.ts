@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import { ConfigurationActions } from '../actions';
 import { ConfigurationEpics } from './configuration.epics';
-import { configureTests } from '../tests.configure';
+import { TestModule } from '../test';
 import { HttpService } from '../services';
 import { IAppState } from '../store';
 
@@ -14,7 +14,7 @@ describe('configuration.epics', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [HttpModule, NgReduxModule],
+        imports: [TestModule, HttpModule, NgReduxModule],
         providers: [
           { provide: XHRBackend, useClass: MockBackend },
           {
@@ -28,7 +28,7 @@ describe('configuration.epics', () => {
         ]
       });
     };
-    configureTests(configure).then(done);
+    TestModule.configureTests(configure).then(done);
   });
 
   it('should open and retrieve table data', fakeAsync(

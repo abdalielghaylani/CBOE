@@ -5,9 +5,9 @@ import {
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RegLabel } from './label';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegLabel } from './label';
 
 describe('Component: Label', () => {
   let fixture;
@@ -15,14 +15,17 @@ describe('Component: Label', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegCommonComponentModule],
+        imports: [
+          TestModule,
+          RegCommonComponentModule
+        ],
         declarations: [
           RegLabelTestController
         ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegLabelTestController);
       fixture.detectChanges();
       done();

@@ -4,9 +4,9 @@ import {
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RegModalContent } from './modal-content.component';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegModalContent } from './modal-content.component';
 
 describe('Component: Modal Content', () => {
   let fixture;
@@ -15,6 +15,7 @@ describe('Component: Modal Content', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
+          TestModule,
           RegCommonComponentModule
         ],
         declarations: [
@@ -23,7 +24,7 @@ describe('Component: Modal Content', () => {
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegModalContentTestController);
       fixture.detectChanges();
       done();

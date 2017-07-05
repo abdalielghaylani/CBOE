@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import { RegAlert } from './alert.component';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegAlert } from './alert.component';
 
 describe('Component: Alert', () => {
   let fixture;
@@ -13,11 +13,14 @@ describe('Component: Alert', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegCommonComponentModule],
+        imports: [
+          TestModule,
+          RegCommonComponentModule
+        ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegAlert);
       fixture.detectChanges();
       done();

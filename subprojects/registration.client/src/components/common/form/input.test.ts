@@ -3,10 +3,10 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import { RegInput } from './input';
 import { FormControl } from '@angular/forms';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegInput } from './input';
 
 describe('Component: Form Input', () => {
   let fixture;
@@ -15,12 +15,13 @@ describe('Component: Form Input', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
+          TestModule,
           RegCommonComponentModule,
         ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegInput);
       fixture.detectChanges();
       done();
