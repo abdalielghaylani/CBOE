@@ -16,7 +16,6 @@ import {
 })
 export class ChemDrawWeb implements OnInit, OnDestroy {
   private drawingTool;
-  private recordDoc: Document;
   private creatingCDD: boolean = false;
   private cdxml: string;
   constructor(private elementRef: ElementRef) {
@@ -26,7 +25,6 @@ export class ChemDrawWeb implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.removePreviousDrawingTool();
   }
 
   createDrawingTool() {
@@ -34,23 +32,17 @@ export class ChemDrawWeb implements OnInit, OnDestroy {
       return;
     }
     this.creatingCDD = true;
-    this.removePreviousDrawingTool();
 
     let cddContainer = jQuery(this.elementRef.nativeElement).find('.cdContainer');
     let cdWidth = cddContainer.innerWidth() - 4;
     let attachmentElement = cddContainer[0];
     let cdHeight = attachmentElement.offsetHeight;
     const self = this;
-    jQuery(this.elementRef.nativeElement).find('.chem-draw').height(cdHeight);
     let params = {
       element: attachmentElement,
       viewonly: false,
       callback: function (drawingTool) {
         self.drawingTool = drawingTool;
-        jQuery(self.elementRef.nativeElement).find('.chem-draw').addClass('hidden');
-        if (drawingTool) {
-          drawingTool.setViewOnly(false);
-        }
         self.creatingCDD = false;
         drawingTool.fitToContainer();
         if (self.cdxml) {
@@ -63,14 +55,6 @@ export class ChemDrawWeb implements OnInit, OnDestroy {
     };
 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
-  };
-
-  removePreviousDrawingTool = function () {
-    if (this.drawingTool) {
-      let container = jQuery(this.elementRef.nativeElement).find('.cdContainer');
-      container.find('div')[2].remove();
-      this.drawingTool = undefined;
-    }
   };
 
   loadCdxml(cdxml: string) {

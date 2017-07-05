@@ -4,7 +4,7 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnInit, OnDestroy, AfterViewInit,
+  OnInit, OnDestroy, OnChanges, AfterViewInit,
   ElementRef, ChangeDetectorRef,
   ViewChild, ViewChildren, QueryList
 } from '@angular/core';
@@ -25,8 +25,7 @@ import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyExc
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus } from './registry.types';
-
-declare var jQuery: any;
+import { ChemDrawWeb } from '../common';
 
 @Component({
   selector: 'reg-record-detail',
@@ -37,6 +36,7 @@ declare var jQuery: any;
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @ViewChild(RegTemplates) regTemplates: RegTemplates;
+  @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
   @Input() template: boolean;
@@ -47,7 +47,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private title: string;
   private drawingTool;
   private creatingCDD: boolean = false;
-  private cdxml: string;
   private parentHeight: string;
   private recordString: string;
   private recordDoc: Document;
@@ -94,7 +93,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       this.router.navigate(['/']);
       return;
     }
-    this.createDrawingTool();
     this.parentHeight = this.getParentHeight();
     let self = this;
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
@@ -180,70 +178,14 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
     let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
-    this.loadCdxml(structureData);
+    this.chemDrawWeb.activate();
+    this.chemDrawWeb.loadCdxml(structureData);
     this.changeDetector.markForCheck();
-  }
-
-  loadCdxml(cdxml: string) {
-    if (this.drawingTool && !this.creatingCDD) {
-      this.drawingTool.clear();
-      if (cdxml) {
-        this.drawingTool.loadCDXML(cdxml);
-      }
-    } else {
-      this.cdxml = cdxml;
-    }
   }
 
   getElementValue(e: Element, path: string) {
     return registryUtils.getElementValue(e, path);
   }
-
-  createDrawingTool() {
-    if (this.drawingTool || this.creatingCDD) {
-      return;
-    }
-    this.creatingCDD = true;
-    this.removePreviousDrawingTool();
-
-    let cddContainer = jQuery(this.elementRef.nativeElement).find('.cdContainer');
-    let cdWidth = cddContainer.innerWidth() - 4;
-    let attachmentElement = cddContainer[0];
-    let cdHeight = attachmentElement.offsetHeight;
-    const self = this;
-    jQuery(this.elementRef.nativeElement).find('.click_catch').height(cdHeight);
-    let params = {
-      element: attachmentElement,
-      height: (cdHeight - 2),
-      width: cdWidth,
-      viewonly: false,
-      callback: function (drawingTool) {
-        self.drawingTool = drawingTool;
-        jQuery(self.elementRef.nativeElement).find('.click_catch').addClass('hidden');
-        if (drawingTool) {
-          drawingTool.setViewOnly(false);
-        }
-        self.creatingCDD = false;
-        drawingTool.fitToContainer();
-        if (self.cdxml) {
-          drawingTool.loadCDXML(self.cdxml);
-          self.cdxml = null;
-        }
-      },
-      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
-      config: { features: { disabled: ['ExtendedCopyPaste'] } }
-    };
-
-    (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
-  };
-
-  removePreviousDrawingTool = function () {
-    if (this.drawingTool) {
-      let container = jQuery(this.elementRef.nativeElement).find('.cdContainer');
-      container.find('div')[2].remove();
-      this.drawingTool = undefined;
-    }
-  };
 
   private updateRecord() {
     registryUtils.setElementValue(this.recordDoc.documentElement,
