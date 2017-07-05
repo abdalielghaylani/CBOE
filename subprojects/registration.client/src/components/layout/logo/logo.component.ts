@@ -13,5 +13,8 @@ import { Component } from '@angular/core';
       <div></div>`
 })
 export class RegLogo {
-  private LogoImage = require('./registration.svg');
+  public get LogoImage() {
+    return RegLogo.Image;
+  }
+  public static Image = require('./registration.svg');
 };

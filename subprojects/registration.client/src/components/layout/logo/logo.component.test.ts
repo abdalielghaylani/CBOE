@@ -27,7 +27,7 @@ describe('Component: Logo', () => {
   it('should set the image location',
     async(inject([], () => {
       fixture.whenStable().then(() => {
-        fixture.componentInstance.LogoImage = 'data:image/gif;base64,fake';
+        RegLogo.Image = 'data:image/gif;base64,fake';
         fixture.detectChanges();
         let compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector('img').getAttribute('src'))
