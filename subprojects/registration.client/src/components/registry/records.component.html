@@ -7,9 +7,9 @@
     <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
     <command-button *ngIf="!records.data.hitlistId" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
   </div>
-  <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+  <reg-header testid="configuration-heading" id="qa-configuration-heading">
     <span *ngIf="records.temporary">Temporary</span> Registration Records
-  </reg-page-header>
+  </reg-header>
   <dx-popup [width]="300" [height]="250" [showTitle]="true" title="Save Query" [dragEnabled]="false" [closeOnOutsideClick]="true"
     [(visible)]="popupVisible">
     <div *dxTemplate="let data of 'content'">

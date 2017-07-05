@@ -17,12 +17,12 @@ import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQue
 import { RegLoginModule } from '../components/login/login.module';
 import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
-import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { HttpService, AuthGuard } from '../services';
 import { IAppState } from '../store';
 import { RegCommonComponentModule } from '../components';
+import { RegLayoutComponentModule } from '../components';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -48,10 +48,10 @@ import {
     routing,
     CommonModule,
     RegCommonComponentModule,
+    RegLayoutComponentModule,
     RegLoginModule,
     RegUiModule,
     RegNavigatorModule,
-    RegFooterModule,
     ToolModule,
     NgReduxModule,
     DxCheckBoxModule,

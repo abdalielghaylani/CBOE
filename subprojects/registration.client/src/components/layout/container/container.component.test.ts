@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RegContainer} from './container.component';
-import {RegUiModule} from '../ui/ui.module';
-import {configureTests} from '../../tests.configure';
+import { RegContainer } from './container.component';
+import { RegLayoutComponentModule } from '../layout-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Container', () => {
   let fixture;
@@ -13,7 +13,7 @@ describe('Component: Container', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegUiModule],
+        imports: [RegLayoutComponentModule],
       });
     };
 
@@ -32,5 +32,5 @@ describe('Component: Container', () => {
           .toBe('regcontainer border-light background-white pb2');
       });
     })
-  ));
+    ));
 });

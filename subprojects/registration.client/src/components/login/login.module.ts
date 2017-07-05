@@ -8,7 +8,7 @@ import {
   RegLoginForm,
   RegLoginModal
 } from '../index';
-import { RegUiModule } from '../ui/ui.module';
+import { RegLayoutComponentModule } from '../layout';
 import { RegCommonComponentModule } from '../common';
 
 @NgModule({
@@ -16,8 +16,8 @@ import { RegCommonComponentModule } from '../common';
     ReactiveFormsModule,
     CommonModule,
     HttpModule,
-    RegUiModule,
-    RegCommonComponentModule
+    RegCommonComponentModule,
+    RegLayoutComponentModule
   ],
   declarations: [
     RegLoginModal,

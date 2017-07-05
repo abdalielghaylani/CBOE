@@ -4,8 +4,8 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { RegAlert } from './alert.component';
-import { RegUiModule } from '../../components/ui/ui.module';
-import { configureTests } from '../../tests.configure';
+import { RegCommonComponentModule } from '../common-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Alert', () => {
   let fixture;
@@ -13,7 +13,7 @@ describe('Component: Alert', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegUiModule],
+        imports: [RegCommonComponentModule],
       });
     };
 

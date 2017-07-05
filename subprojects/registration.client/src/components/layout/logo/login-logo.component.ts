@@ -12,5 +12,5 @@ import { Component } from '@angular/core';
       </a></div>`
 })
 export class RegLoginLogo {
-  private LogoImage = require('../../assets/pe.svg');
+  private LogoImage = require('./pe.svg');
 };

@@ -17,9 +17,9 @@
   <command-button *ngIf="registerButtonEnabled" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
   <command-button *ngIf="approveButtonEnabled" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up" title="Approve"></command-button>
   <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
-  <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+  <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
-  </reg-page-header>
+  </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
       <div class="panel-group" id="accordion">

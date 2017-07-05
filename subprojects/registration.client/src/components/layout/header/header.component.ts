@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'reg-page-header',
-  template: require('./page-header.component.html')
+  selector: 'reg-header',
+  template: require('./header.component.html')
 })
-export class RegPageHeader {
+export class RegHeader {
   @Input() testid: string;
   @Input() id: string;
 };

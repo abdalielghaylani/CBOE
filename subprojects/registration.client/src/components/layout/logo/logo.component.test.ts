@@ -4,8 +4,8 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { RegLogo } from './index';
-import { RegUiModule } from '../ui/ui.module';
-import { configureTests } from '../../tests.configure';
+import { RegLayoutComponentModule } from '../layout-component.module';
+import { configureTests } from '../../../tests.configure';
 
 describe('Component: Logo', () => {
   let fixture;
@@ -13,7 +13,7 @@ describe('Component: Logo', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegUiModule],
+        imports: [RegLayoutComponentModule],
       });
     };
 
