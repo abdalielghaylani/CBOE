@@ -12,10 +12,12 @@ import {
   RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
   RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage
 } from '../pages';
-import { RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms } from '../components';
+import {
+  RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
+  RegSettingsPageHeader
+} from '../components';
 import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement, RegTemplates } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
-import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { ToolModule } from '../common';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
@@ -50,7 +52,6 @@ import {
     RegCommonComponentModule,
     RegLayoutComponentModule,
     RegLoginModule,
-    RegUiModule,
     RegNavigatorModule,
     ToolModule,
     NgReduxModule,
@@ -81,7 +82,7 @@ import {
     RegRecordDetail,
     RegStructureImage,
     RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
-    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
+    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms, RegSettingsPageHeader,
     RegLoginPage,
     RegAboutPage
   ],
