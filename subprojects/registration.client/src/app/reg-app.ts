@@ -10,18 +10,6 @@ import { ConfigurationEpics, RegistryEpics, SessionEpics, RegistrySearchEpics } 
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
 import { Subscription } from 'rxjs/Subscription';
 
-import {
-  RegButton,
-  RegNavigator,
-  RegNavigatorHeader,
-  RegNavigatorItems,
-  RegNavigatorItem,
-  RegLogo,
-  RegLoginModal,
-  RegSidebar,
-  RegFooter
-} from '../components';
-
 import { dev } from '../configuration';
 import 'bootstrap/dist/js/bootstrap.min.js';
 

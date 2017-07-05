@@ -3,7 +3,7 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import { RegLoginModal } from './index';
+import { RegLoginModal } from './login-modal';
 import { RegLoginModule } from './login.module';
 import { configureTests } from '../../tests.configure';
 
