@@ -176,42 +176,6 @@ export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = {
     isRequired: true
   }]
 };
-export const CONFIG_PROPERTIES_COLUMNS = [
-  {
-    dataField: 'groupLabel',
-    caption: 'Properties -',
-    groupIndex: 0,
-    allowEditing: false
-  },
-  { dataField: 'name' },
-  {
-    dataField: 'friendlyName',
-    caption: 'Label'
-  }, {
-    caption: 'Type', dataField: 'type',
-    lookup: { dataSource: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL'] },
-    width: 120
-  },
-  {
-    caption: 'Length',
-    dataField: 'precision',
-    width: 80
-  }, {
-    dataField: 'pickListDomainId',
-    caption: 'PickList Domain',
-    width: 120
-  }, {
-    dataField: 'sortOrder',
-    caption: 'SortOrder',
-    cellTemplate: 'sortOrderTemplate',
-    width: 80
-  },
-  {
-    caption: 'Validation Rule',
-    cellTemplate: 'propertyValidationRuleTemplate',
-    allowEditing: false,
-    width: 100
-  }];
 
 export const CONFIG_PROPERTIES_FORMS = [{
   dataField: 'groupName',
@@ -324,15 +288,13 @@ export class CConfigProperties {
   validationGridColumns: any;
   constructor(state: IAppState) {
     this.window = { title: 'Manage Data Properties', viewIndex: 'list' };
-    this.columns = CONFIG_PROPERTIES_COLUMNS;
+    this.columns = this.buildPropertiesColumnConfig(state);
     this.formValidationColumns = CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS;
     this.formColumns = CONFIG_PROPERTIES_FORMS;
     this.formData = new CConfigPropertiesFormData();
     this.formDataValidation = new CPropertiesValidationFormData();
     this.formColumns[0].editorOptions = { dataSource: [], valueExpr: 'groupName', displayExpr: 'groupLabel' };
     this.formColumns[0].editorOptions.dataSource = getLookups(state).propertyGroups;
-    this.columns[5].lookup = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
-    this.columns[5].lookup.dataSource = getLookups(state).pickListDomains;
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.formColumns[5].editorOptions.dataSource = getLookups(state).pickListDomains;
   }
@@ -415,16 +377,20 @@ export class CConfigProperties {
   addValidationRule(e) {
     this.addRuleVisible = true;
   }
+
   onParameterItemDeleted(e) {
     this.formDataValidation.parameters.splice(e.itemIndex, 1);
   }
+
   clearFormDataValidations() {
     this.formDataValidation = new CPropertiesValidationFormData();
     this.addRuleVisible = false;
   }
+
   clearFormData() {
     this.formData = new CConfigPropertiesFormData();
   }
+
   addEditProperty(w: string, d?: any) {
     if (w === 'add') {
       this.formColumns[0].disabled = false;
@@ -443,6 +409,7 @@ export class CConfigProperties {
       this.showHideDataFields({ dataField: 'type', value: this.formData.type });
     }
   }
+
   onValidationTypeChanged(e) {
     if (e.dataField === 'name') {
       this.formValidationColumns.editColumn[2].visible = false;
@@ -506,6 +473,51 @@ export class CConfigProperties {
           break;
       }
     }
+  }
+
+  private buildPropertiesColumnConfig(state: IAppState): any[] {
+    return [{
+      dataField: 'groupLabel',
+      caption: 'Properties',
+      groupIndex: 0,
+      allowEditing: false
+    }, {
+      dataField: 'name',
+      allowSorting: false
+    }, {
+      dataField: 'friendlyName',
+      caption: 'Label',
+      allowSorting: false
+    }, {
+      caption: 'Type', dataField: 'type',
+      allowSorting: false,
+      lookup: { dataSource: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL'] },
+      width: 120
+    }, {
+      caption: 'Length',
+      dataField: 'precision',
+      allowSorting: false,
+      width: 80
+    }, {
+      dataField: 'pickListDomainId',
+      caption: 'PickList Domain',
+      allowSorting: false,
+      width: 120,
+      lookup: { dataSource: getLookups(state).pickListDomains, valueExpr: 'ID', displayExpr: 'DESCRIPTION' }
+    }, {
+      dataField: 'sortOrder',
+      caption: 'Sort Order',
+      allowFiltering: false,
+      allowSorting: false,
+      cellTemplate: 'sortOrderTemplate',
+      width: 80
+    }, {
+      caption: 'Validation Rule',
+      cellTemplate: 'propertyValidationRuleTemplate',
+      allowEditing: false,
+      allowSorting: false,
+      width: 100
+    }];
   }
 }
 

@@ -1,13 +1,12 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configProperties.window.viewIndex==='list')">
   <reg-settings-page-header [isMenu]='true'>{{configProperties.window.title}}</reg-settings-page-header>
-  <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
+  <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [paging]="{enabled: false}" [height]="gridHeight" rowAlternationEnabled="true"
     (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event,true)'
     (onEditingStart)="onEditingStart($event)">
     <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
     <dxo-sorting mode="single"></dxo-sorting>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
-    <dxo-scrolling mode="virtual"></dxo-scrolling>
     <div *dxTemplate="let data of 'sortOrderTemplate'">
       &nbsp;
       <a [ngClass]="(data.value>0)?'fa fa-level-up grid-icon':'fa fa-level-up grid-icon-disabled'" (click)="moveupordown(data,'up');"
