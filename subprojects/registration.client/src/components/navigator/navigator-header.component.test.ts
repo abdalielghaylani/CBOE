@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
+import { TestModule } from '../../test';
 import { RegNavigatorHeader } from './navigator-header.component';
 import { RegNavigatorModule } from './navigator.module';
-import { configureTests } from '../../tests.configure';
 
 describe('Component: Navigator Header', () => {
   let fixture;
@@ -13,11 +13,14 @@ describe('Component: Navigator Header', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegNavigatorModule],
+        imports: [
+          TestModule,
+          RegNavigatorModule
+        ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegNavigatorHeader);
       fixture.detectChanges();
       done();

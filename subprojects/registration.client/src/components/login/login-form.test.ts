@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {RegLoginForm} from './index';
-import {RegLoginModule} from './login.module';
-import {configureTests} from '../../tests.configure';
+import { TestModule } from '../../test';
+import { RegLoginForm } from './login-form';
+import { RegLoginModule } from './login.module';
 
 describe('Component: Login Form', () => {
   let fixture;
@@ -13,11 +13,14 @@ describe('Component: Login Form', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegLoginModule],
+        imports: [
+          TestModule,
+          RegLoginModule
+        ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegLoginForm);
       fixture.detectChanges();
       done();
@@ -70,7 +73,7 @@ describe('Component: Login Form', () => {
         expect(alert.innerText).toEqual('Username is required.');
       });
     })
-  ));
+    ));
 
   it('should display password warning for invalid password',
     async(inject([], () => {
@@ -83,7 +86,7 @@ describe('Component: Login Form', () => {
         expect(alert.innerText).toEqual('Password is required.');
       });
     })
-  ));
+    ));
 
   it('should emit an event when the login button is clicked',
     async(inject([], () => {

@@ -20,7 +20,7 @@ import {
     MockBackend,
     MockConnection
 } from '@angular/http/testing/mock_backend';
-import { configureTests } from '../tests.configure';
+import { TestModule } from '../test';
 import { HttpService } from '../services';
 import { IAppState } from '../store';
 
@@ -28,7 +28,7 @@ describe('SessionEpics', () => {
     beforeEach(done => {
         const configure = (testBed: TestBed) => {
             testBed.configureTestingModule({
-                imports: [HttpModule, NgReduxModule, RouterTestingModule],
+                imports: [TestModule, HttpModule, NgReduxModule, RouterTestingModule],
                 providers: [
                     { provide: XHRBackend, useClass: MockBackend },
                     {
@@ -42,7 +42,7 @@ describe('SessionEpics', () => {
                 ]
             });
         };
-        configureTests(configure).then(done);
+        TestModule.configureTests(configure).then(done);
     });
 
     it('should process a successful login', fakeAsync(

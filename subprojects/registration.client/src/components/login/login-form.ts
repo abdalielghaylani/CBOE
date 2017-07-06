@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { RegLogo } from '../layout';
 
 import {
   FormBuilder,
@@ -17,7 +18,7 @@ export class RegLoginForm {
   @Input() hasError: boolean;
   @Output() onSubmit: EventEmitter<Object> = new EventEmitter();
 
-  private RegistrationLogo = require('../../assets/registration.svg');
+  private RegistrationLogo = RegLogo.Image;
   private BannerImage = require('../../assets/pe_background_dd.png');
 
   // needed to be public to allow access from fixture tests

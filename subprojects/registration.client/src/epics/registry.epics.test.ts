@@ -9,7 +9,7 @@ import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store'
 import { NgReduxRouter } from '@angular-redux/router';
 import { RegistryActions } from '../actions';
 import { RegistryEpics } from './registry.epics';
-import { configureTests } from '../tests.configure';
+import { TestModule } from '../test';
 import { HttpService } from '../services';
 import { IAppState } from '../store';
 
@@ -17,7 +17,7 @@ describe('configuration.epics', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [HttpModule, RouterModule, NgReduxModule],
+        imports: [TestModule, HttpModule, RouterModule, NgReduxModule],
         providers: [
           NgReduxRouter,
           { provide: XHRBackend, useClass: MockBackend },
@@ -32,7 +32,7 @@ describe('configuration.epics', () => {
         ]
       });
     };
-    configureTests(configure).then(done);
+    TestModule.configureTests(configure).then(done);
   });
 
   it('should open and retrieve records', fakeAsync(

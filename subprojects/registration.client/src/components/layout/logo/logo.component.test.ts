@@ -3,9 +3,9 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
+import { TestModule } from '../../../test';
+import { RegLayoutComponentModule } from '../layout-component.module';
 import { RegLogo } from './index';
-import { RegUiModule } from '../ui/ui.module';
-import { configureTests } from '../../tests.configure';
 
 describe('Component: Logo', () => {
   let fixture;
@@ -13,11 +13,14 @@ describe('Component: Logo', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegUiModule],
+        imports: [
+          TestModule,
+          RegLayoutComponentModule
+        ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegLogo);
       fixture.detectChanges();
       done();
@@ -27,7 +30,7 @@ describe('Component: Logo', () => {
   it('should set the image location',
     async(inject([], () => {
       fixture.whenStable().then(() => {
-        fixture.componentInstance.LogoImage = 'data:image/gif;base64,fake';
+        RegLogo.Image = 'data:image/gif;base64,fake';
         fixture.detectChanges();
         let compiled = fixture.debugElement.nativeElement;
         expect(compiled.querySelector('img').getAttribute('src'))

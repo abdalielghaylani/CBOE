@@ -5,9 +5,9 @@ import {
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RegFormGroup } from './form-group';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegFormGroup } from './form-group';
 
 describe('Component: Form Group', () => {
   let fixture;
@@ -15,12 +15,15 @@ describe('Component: Form Group', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [RegCommonComponentModule],
+        imports: [
+          TestModule,
+          RegCommonComponentModule
+        ],
         declarations: [RegFormGroupTestController],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegFormGroupTestController);
       fixture.detectChanges();
       done();

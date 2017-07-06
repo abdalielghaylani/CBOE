@@ -723,6 +723,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     addin.Assembly = data.Assembly;
                     addin.IsEnable = data.Enable;
+
+                    addin.ApplyEdit();
+                    configurationBO.Save();
+
+                    addin.BeginEdit();
                     addin.AddInConfiguration = data.Configuration;
 
                     // clear existing events, if any

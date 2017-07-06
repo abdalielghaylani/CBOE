@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ChemDrawWeb } from './chemdraw-web';
+import { RegAlert } from './alert';
 import { RegButton } from './button';
 import { RegForm, RegFormGroup, RegFormError, RegInput, RegInputLogin, RegLabel, RegInputGroup } from './form';
 import { RegModal, RegModalContent } from './modal';
 
 export * from './chemdraw-web';
+export * from './alert';
 export * from './button';
 export * from './form';
 export * from './modal';
@@ -20,13 +22,13 @@ export * from './modal';
   ],
   declarations: [
     ChemDrawWeb,
-    RegButton,
+    RegAlert, RegButton,
     RegForm, RegFormGroup, RegFormError, RegInput, RegInputLogin, RegLabel, RegInputGroup,
     RegModal, RegModalContent
   ],
   exports: [
     ChemDrawWeb,
-    RegButton,
+    RegAlert, RegButton,
     RegForm, RegFormGroup, RegFormError, RegInput, RegInputLogin, RegLabel, RegInputGroup,
     RegModal, RegModalContent
   ]

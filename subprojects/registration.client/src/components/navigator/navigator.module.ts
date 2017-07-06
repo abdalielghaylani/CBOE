@@ -1,14 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  RegNavigator,
-  RegNavigatorHeader,
-  RegNavigatorItems,
-  RegNavigatorItem,
-  RegSidebar,
-  RegSidebarItem
-} from './index';
+import { RegNavigator } from './navigator.component';
+import { RegNavigatorHeader } from './navigator-header.component';
+import { RegNavigatorItems } from './navigator-items.component';
+import { RegNavigatorItem } from './navigator-item.directive';
+import { RegSidebar } from './sidebar.component';
+import { RegSidebarItem } from './sidebar-item.component';
 
 @NgModule({
   imports: [

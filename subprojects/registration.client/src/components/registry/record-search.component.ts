@@ -35,8 +35,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
   @select(s => s.configuration.formGroups) formGroups$: Observable<any[]>;
-  @ViewChild(ChemDrawWeb)
-  private chemDrawWeb: ChemDrawWeb;
+  @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
   private lookupsSubscription: Subscription;
   private formGroupSubscription: Subscription;
   private title: string;

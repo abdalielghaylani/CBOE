@@ -5,9 +5,9 @@ import {
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RegModal } from './modal.component';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegModal } from './modal.component';
 
 describe('Component: Modal', () => {
   let fixture;
@@ -16,6 +16,7 @@ describe('Component: Modal', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
+          TestModule,
           RegCommonComponentModule
         ],
         declarations: [
@@ -24,7 +25,7 @@ describe('Component: Modal', () => {
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegModalTestController);
       fixture.detectChanges();
       done();

@@ -4,7 +4,6 @@ import {
 } from '@angular/core/testing';
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RegForm } from './form';
 import {
   FormGroup,
   FormControl,
@@ -13,8 +12,9 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TestBed } from '@angular/core/testing';
+import { TestModule } from '../../../test';
 import { RegCommonComponentModule } from '../common-component.module';
-import { configureTests } from '../../../tests.configure';
+import { RegForm } from './form';
 
 describe('Component: Form', () => {
   let fixture;
@@ -23,6 +23,7 @@ describe('Component: Form', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
+          TestModule,
           FormsModule,
           ReactiveFormsModule,
           RegCommonComponentModule
@@ -33,7 +34,7 @@ describe('Component: Form', () => {
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegFormTestController);
       fixture.detectChanges();
       done();
