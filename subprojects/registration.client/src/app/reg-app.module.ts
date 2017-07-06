@@ -25,6 +25,7 @@ import { HttpService, AuthGuard } from '../services';
 import { IAppState } from '../store';
 import { RegCommonComponentModule } from '../components';
 import { RegLayoutComponentModule } from '../components';
+import { RegItemTemplatesModule } from '../components/registry/item-templates/';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -53,6 +54,7 @@ import {
     RegLayoutComponentModule,
     RegLoginModule,
     RegNavigatorModule,
+    RegItemTemplatesModule,
     ToolModule,
     NgReduxModule,
     DxCheckBoxModule,
@@ -84,7 +86,7 @@ import {
     RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
     RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms, RegSettingsPageHeader,
     RegLoginPage,
-    RegAboutPage
+    RegAboutPage,
   ],
   bootstrap: [
     RegApp
