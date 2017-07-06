@@ -45,7 +45,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   public formGroup: CFormGroup;
   public editMode: boolean = false;
   private title: string;
-  private drawingTool;
   private creatingCDD: boolean = false;
   private parentHeight: string;
   private recordString: string;
@@ -189,7 +188,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   private updateRecord() {
     registryUtils.setElementValue(this.recordDoc.documentElement,
-      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.chemDrawWeb.getValue());
   }
 
   save() {
