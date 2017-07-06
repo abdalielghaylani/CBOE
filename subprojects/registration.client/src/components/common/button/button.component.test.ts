@@ -14,6 +14,7 @@ describe('Component: Button', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
+          TestModule,
           RegCommonComponentModule
         ],
       });
