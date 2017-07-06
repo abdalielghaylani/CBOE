@@ -13,6 +13,7 @@ using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -167,5 +168,58 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 );
             });
         }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "ViewConfig/recordsView/{id}/{registryType}/{pageMode}")]
+        [SwaggerOperation("GetRecordsView")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetRecordsView(int id, string registryType, string pageMode)
+        {
+            return await CallMethod(() =>
+            { 
+                RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(id);
+
+                if (registryRecord == null)
+                    throw new RegistrationException(string.Format("registry record not found for id = {0}", id));
+
+                RegistryTypes currentRegistryType = (RegistryTypes)Enum.Parse(typeof(RegistryTypes), registryType, true);
+                PageState pageState = (PageState)Enum.Parse(typeof(PageState), pageMode, true);          
+
+                dynamic jsonObject = new JObject();
+
+                // add a {'buttonStatus'} node in the JSON 
+                jsonObject.buttonStatus = new JArray() as dynamic;
+
+                ControlState registerButtonState = ViewConfigHelper.GetRegisterButtonState(registryRecord, pageState, currentRegistryType);               
+                dynamic button = new JObject();
+                button.name = registerButtonState.Name;
+                button.visible = registerButtonState.Visible;
+                button.tooltip = registerButtonState.Tooltip;
+                jsonObject.buttonStatus.Add(button);
+
+                ControlState submitButtonState = ViewConfigHelper.GetSubmitButtonState(registryRecord, pageState, currentRegistryType);
+                button = new JObject();
+                button.name = submitButtonState.Name;
+                button.visible = submitButtonState.Visible;
+                button.tooltip = submitButtonState.Tooltip;
+                jsonObject.buttonStatus.Add(button);
+
+                // add a {'formGroupStatus'} node in the JSON 
+                jsonObject.formGroupStatus = new JArray() as dynamic;
+
+                List<ControlState> formStates = ViewConfigHelper.GetFormsState(registryRecord, pageState, currentRegistryType);
+                foreach (ControlState controlState in formStates)
+                {
+                    dynamic form = new JObject();
+                    form.name = controlState.Name;
+                    form.visible = controlState.Visible;
+                    jsonObject.formGroupStatus.Add(form);
+                }
+                return jsonObject; 
+            });
+        }
+
     }
 }

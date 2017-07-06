@@ -143,7 +143,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Code\ChemistryHelper.cs" />
     <Compile Include="Code\Consts.cs" />
+    <Compile Include="Code\Enums.cs" />
     <Compile Include="Code\Logger.cs" />
+    <Compile Include="Code\ViewConfigHelper.cs" />
     <Compile Include="Code\RegAppHelper.cs" />
     <Compile Include="Code\RegistrationException.cs" />
     <Compile Include="Controllers\AuthController.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Controllers\RegistryRecordsController.cs" />
     <Compile Include="Models\AddinData.cs" />
     <Compile Include="Models\AddinEvent.cs" />
+    <Compile Include="Models\ControlState.cs" />
     <Compile Include="Models\DuplicateResolutionData.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Batch.cs" />
