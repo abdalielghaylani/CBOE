@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrat
 @Component({
   selector: 'reg-form-view',
   template: require('./form-view.component.html'),
-  styles: [require('../item-templates.css')],
+  styles: [require('../registry-base.css')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegFormView implements OnChanges {

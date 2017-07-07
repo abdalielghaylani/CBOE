@@ -59,4 +59,4 @@ export * from './form-view';
     RegFormView
   ]
 })
-export class RegItemTemplatesModule { }
+export class RegBaseComponentModule { }

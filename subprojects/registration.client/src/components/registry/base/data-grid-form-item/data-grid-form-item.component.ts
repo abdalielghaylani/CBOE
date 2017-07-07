@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy } from '@angular/core';
-import { IFormItemTemplate } from '../item-templates.types';
+import { IFormItemTemplate } from '../registry-base.types';
 
 @Component({
   selector: 'reg-data-grid-form-item-template',
   template: require('./data-grid-form-item.component.html'),
-  styles: [require('../item-templates.css')],
+  styles: [require('../registry-base.css')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
