@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { IFormItemTemplate } from '../item-templates.types';
 
 @Component({
@@ -10,9 +10,10 @@ import { IFormItemTemplate } from '../item-templates.types';
 export class RegTagBoxFormItem implements IFormItemTemplate {
   @Input() editMode: boolean = false;
   @Input() data: any = {};
+  private value: any[];
 
-  private get value(): any[] {
-    return this.data.editorOptions.value ? this.data.editorOptions.value : [];
+  ngOnChanges() {
+    this.value = this.data.editorOptions.value ? this.data.editorOptions.value : [];
   }
 
   private onValueChanged(e, d) {
