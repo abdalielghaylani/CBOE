@@ -1,17 +1,18 @@
 import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
+  Component, Input, Output, EventEmitter, ElementRef, ViewChildren,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { select, NgRedux } from '@angular-redux/store';
+import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
+import { CConfigAddIn } from './config.types';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { IAppState, ICustomTableData, IConfiguration } from '../../store';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;
@@ -24,16 +25,19 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfigAddins implements OnInit, OnDestroy {
-  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
+  @ViewChildren(DxDataGridComponent) grid;
+  @ViewChildren(DxFormComponent) forms;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private rows: any[] = [];
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;
+  private configAddIn: CConfigAddIn;
 
   constructor(
     private http: HttpService,
     private changeDetector: ChangeDetectorRef,
+    private ngRedux: NgRedux<IAppState>,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
   ) { }
@@ -50,6 +54,7 @@ export class RegConfigAddins implements OnInit, OnDestroy {
 
   loadData(customTables: any) {
     if (customTables) {
+      this.configAddIn = new CConfigAddIn(this.ngRedux.getState());
       this.dataSource = this.createCustomStore(this);
       this.changeDetector.markForCheck();
     }
@@ -76,12 +81,6 @@ export class RegConfigAddins implements OnInit, OnDestroy {
   }
 
   onContentReady(e) {
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate: 'cellTemplate'
-    });
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80
@@ -100,6 +99,60 @@ export class RegConfigAddins implements OnInit, OnDestroy {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
       }
+    }
+  }
+
+  onEditingStart(e) {
+    e.cancel = true;
+    this.configAddIn.addEditProperty('edit', e);
+  }
+  onInitNewRow(e) {
+    this.configAddIn.addEditProperty('add', e);
+    e.component.cancelEditData();
+    e.component.refresh();
+  }
+  onFieldDataChanged(e) {
+    if (e.dataField === 'className' && e.value) {
+      this.configAddIn.editRow.events = [];
+      this.configAddIn.columns.editColumn.events[1].lookup = {};
+      this.configAddIn.currentEvents = this.configAddIn.addinAssemblies[0].classes.filter
+        (s => s.name === e.value);
+      this.configAddIn.columns.editColumn.events[1].lookup = {
+        dataSource: this.configAddIn.currentEvents[0].eventHandlers, valueExpr: 'name', displayExpr: 'name'
+      };
+      this.grid._results[1].instance.refresh();
+    }
+  }
+
+  save(e) {
+    switch (this.configAddIn.window.viewIndex) {
+      case 'edit':
+        this.dataSource.update(this.configAddIn.editRow, []).done(result => {
+          this.grid._results[0].instance.refresh();
+        }).fail(err => {
+          notifyError(err, 5000);
+        });
+        break;
+      case 'add':
+        if (this.forms._results[0].instance.validate().isValid) {
+          this.dataSource.insert(this.configAddIn.editRow).done(result => {
+            this.grid._results[0].instance.refresh();
+          }).fail(err => {
+            notifyError(err, 5000);
+          });
+        }
+        break;
+    }
+  }
+
+  cancel() {
+    this.configAddIn.window = { title: 'Manage Addins', viewIndex: 'list' };
+    this.grid._results[0].instance.cancelEditData();
+  }
+
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
     }
   }
 
@@ -122,7 +175,7 @@ export class RegConfigAddins implements OnInit, OnDestroy {
         return deferred.promise();
       },
 
-      update: function(key, values) {
+      update: function (key, values) {
         let deferred = jQuery.Deferred();
         let data = key;
         let newData = values;
@@ -132,7 +185,7 @@ export class RegConfigAddins implements OnInit, OnDestroy {
           }
         }
         let id = data[Object.getOwnPropertyNames(data)[0]];
-        parent.http.put(`${apiUrlBase}/${id}`, data)
+        parent.http.put(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
             notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
