@@ -594,7 +594,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     AddinData addinData = new AddinData();
                     addinData.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName;
                     addinData.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
-                    addinData.ClassName = addin.ClassName;
+                    addinData.ClassName = addin.ClassName.Substring(addin.ClassName.LastIndexOf(".") + 1) ;
                     addinData.ClassNamespace = string.IsNullOrEmpty(addin.ClassNameSpace) ? string.Empty : addin.ClassNameSpace;
                     addinData.Assembly = addin.Assembly;
                     addinData.Enable = addin.IsEnable;
