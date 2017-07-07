@@ -655,7 +655,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 if (string.IsNullOrEmpty(data.Name))
-                    throw new RegistrationException("Invalid addin name");
+                    throw new RegistrationException("Invalid name");
+
+                if (string.IsNullOrEmpty(data.Assembly))
+                    throw new RegistrationException("Invalid assembly name");
+
+                if (string.IsNullOrEmpty(data.ClassName))
+                    throw new RegistrationException("Invalid class name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
@@ -667,6 +673,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         throw new RegistrationException(string.Format("The addin {0} with same name already exists.", data.Name));
                     }
                 }
+
+                data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
 
                 // check addin configuration is valid
                 XmlDocument xml = new XmlDocument();
@@ -689,7 +697,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     eventList.Add(evt);
                 }
 
-                AddIn addIn = AddIn.NewAddIn(data.Assembly, data.ClassName, data.Name, eventList, data.Configuration, data.ClassNamespace, true, false);
+                string assembly = string.Empty;
+                string nameSpace = string.Empty;
+                if (data.Assembly.Equals("CambridgeSoft.COE.Registration.RegistrationAddins"))
+                {
+                    assembly = "CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc";
+                    nameSpace = "CambridgeSoft.COE.Registration.Services.RegistrationAddins";
+                }
+                else
+                {
+                    throw new RegistrationException(string.Format("The addin assembly '{0}' is not valid", data.AddIn));
+                }
+
+                AddIn addIn = AddIn.NewAddIn(assembly, data.ClassName, data.Name, eventList, data.Configuration, nameSpace, true, false);
 
                 configurationBO.AddInList.Add(addIn);
                 configurationBO.Save();
