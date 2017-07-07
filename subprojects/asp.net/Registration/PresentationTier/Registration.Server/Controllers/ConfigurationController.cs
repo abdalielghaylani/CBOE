@@ -593,7 +593,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     AddinData addinData = new AddinData();
                     addinData.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName;
-                    addinData.AddIn = configurationBO.GetAssemblyList.Assemblies[0].Name;
+                    addinData.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
                     addinData.ClassName = addin.ClassName;
                     addinData.ClassNamespace = string.IsNullOrEmpty(addin.ClassNameSpace) ? string.Empty : addin.ClassNameSpace;
                     addinData.Assembly = addin.Assembly;
@@ -657,8 +657,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (string.IsNullOrEmpty(data.Name))
                     throw new RegistrationException("Invalid name");
 
-                if (string.IsNullOrEmpty(data.AddIn))
-                    throw new RegistrationException("Invalid addin name");
+                if (string.IsNullOrEmpty(data.Assembly))
+                    throw new RegistrationException("Invalid assembly name");
 
                 if (string.IsNullOrEmpty(data.ClassName))
                     throw new RegistrationException("Invalid class name");
@@ -699,7 +699,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 string assembly = string.Empty;
                 string nameSpace = string.Empty;
-                if (data.AddIn.Equals("CambridgeSoft.COE.Registration.RegistrationAddins"))
+                if (data.Assembly.Equals("CambridgeSoft.COE.Registration.RegistrationAddins"))
                 {
                     assembly = "CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc";
                     nameSpace = "CambridgeSoft.COE.Registration.Services.RegistrationAddins";
