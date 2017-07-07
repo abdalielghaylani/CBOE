@@ -1,3 +1,3 @@
-<dx-tag-box [disabled]="disabled" [value]="value" [dataSource]="data.editorOptions.dataSource" [valueExpr]="data.editorOptions.valueExpr" [displayExpr]="data.editorOptions.displayExpr"
+<dx-tag-box [disabled]="!editMode" [value]="value" [dataSource]="data.editorOptions.dataSource" [valueExpr]="data.editorOptions.valueExpr" [displayExpr]="data.editorOptions.displayExpr"
   (onValueChanged)="onValueChanged($event, data)">
 </dx-tag-box>
