@@ -693,7 +693,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
                 }
-                if (xml.DocumentElement.FirstChild.Name == "AddInConfiguration")
+                if ((xml.DocumentElement.FirstChild != null) && (xml.DocumentElement.FirstChild.Name == "AddInConfiguration"))
                     throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
 
                 // get all events
@@ -777,7 +777,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         {
                             throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
                         }
-                        if (xml.DocumentElement.FirstChild.Name == "AddInConfiguration")
+                        if ((xml.DocumentElement.FirstChild != null) && (xml.DocumentElement.FirstChild.Name == "AddInConfiguration"))
                             throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
 
                     }
