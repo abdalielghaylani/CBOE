@@ -98,7 +98,7 @@ export const CONFIG_FORMS_COLUMNS = [
   {
     dataField: 'name',
     allowEditing: false
-  },{
+  }, {
     dataField: 'label',
     allowEditing: true
   },

@@ -128,7 +128,7 @@ export class RegConfigAddins implements OnInit, OnDestroy {
     switch (this.configAddIn.window.viewIndex) {
       case 'edit':
         this.dataSource.update(this.configAddIn.editRow, []).done(result => {
-          this.grid._results[0].instance.refresh();
+          this.cancel();
         }).fail(err => {
           notifyError(err, 5000);
         });
@@ -136,7 +136,7 @@ export class RegConfigAddins implements OnInit, OnDestroy {
       case 'add':
         if (this.forms._results[0].instance.validate().isValid) {
           this.dataSource.insert(this.configAddIn.editRow).done(result => {
-            this.grid._results[0].instance.refresh();
+            this.cancel();
           }).fail(err => {
             notifyError(err, 5000);
           });
@@ -146,8 +146,9 @@ export class RegConfigAddins implements OnInit, OnDestroy {
   }
 
   cancel() {
-    this.configAddIn.window = { title: 'Manage Addins', viewIndex: 'list' };
     this.grid._results[0].instance.cancelEditData();
+    this.grid._results[0].instance.refresh();
+    this.configAddIn.window = { title: 'Manage Addins', viewIndex: 'list' };
   }
 
   private togglePanel(e) {
