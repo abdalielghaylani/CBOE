@@ -98,6 +98,9 @@ export const CONFIG_FORMS_COLUMNS = [
   {
     dataField: 'name',
     allowEditing: false
+  },{
+    dataField: 'label',
+    allowEditing: true
   },
   {
     dataField: 'controlType',
@@ -538,6 +541,24 @@ export const CONFIG_ADDIN_COLUMNS = {
     cellTemplate: 'eventTemplate'
   }],
   editColumn: {
+    addIn: [{
+      dataField: 'name',
+      label: { text: 'Friendly Name' },
+      validationRules: [{ group: 'always', type: 'required', message: 'Friendly Name required' }],
+      editorType: 'dxTextBox'
+    },
+    {
+      dataField: 'assembly',
+      label: { text: 'Assembly' },
+      validationRules: [{ group: 'always', type: 'required', message: 'Name required' }],
+      editorType: 'dxSelectBox'
+    },
+    {
+      dataField: 'className',
+      label: { text: 'Class' },
+      validationRules: [{ group: 'always', type: 'required', message: 'Class name required' }],
+      editorType: 'dxSelectBox'
+    }],
     addInInfo: [{
       dataField: 'name',
       label: { text: 'Friendly Name' },
@@ -576,32 +597,79 @@ export const CONFIG_ADDIN_COLUMNS = {
     events: [{
       dataField: 'eventName',
       caption: 'Event',
+      editorType: 'dxSelectBox',
+      dataType: String,
       width: 200
     }, {
       dataField: 'eventHandler',
       caption: 'Handler',
+      editorType: 'dxSelectBox',
+      dataType: String,
       width: 200
     }],
     config: [{
       dataField: 'Configuration',
-      label: { text: 'Configuration ' },
-      editorType: 'dxTextArea'
+      label: { visible: false },
+      editorType: 'dxTextArea',
+      editorOptions: { height: 150 }
     }],
   }
 };
+
+export class CAddInModel {
+  addinName: string;
+  className: string;
+  Configuration: string;
+  events: any = [];
+}
 
 export class CConfigAddIn {
   columns: any;
   editRow: any;
   window: CWindow;
-  constructor() {
+  configView: string;
+  configVal: string;
+  addinAssemblies: any;
+  currentEvents: any;
+  constructor(state: IAppState) {
     this.columns = CONFIG_ADDIN_COLUMNS;
     this.window = { title: 'Manage Addins', viewIndex: 'list' };
+    this.addinAssemblies = getLookups(state).addinAssemblies;
+    this.columns.editColumn.addIn[1].editorOptions = { items: [this.addinAssemblies[0].name], value: this.addinAssemblies[0].name };
+    this.columns.editColumn.addIn[2].editorOptions = { dataSource: this.addinAssemblies[0].classes, valueExpr: 'name', displayExpr: 'name' };
   }
   addEditProperty(op, e) {
-    this.window = { title: 'Edit Addins', viewIndex: 'edit' };
-    this.editRow = e.data;
+    if (op === 'edit') {
+      this.window = { title: 'Edit Addins', viewIndex: 'edit' };
+      this.editRow = e.data;
+      this.configView = 'view';
+      this.configVal = this.editRow.Configuration;
+      this.currentEvents = this.addinAssemblies[0].classes.filter
+        (s => s.name === e.data.addinName.replace('CambridgeSoft.COE.Registration.Services.RegistrationAddins.', ''));
+      this.columns.editColumn.events[1].lookup = { dataSource: this.currentEvents[0].eventHandlers, valueExpr: 'name', displayExpr: 'name' };
+    }
+    if (op === 'add') {
+      this.editRow = new CAddInModel();
+      this.columns.editColumn.events[1].lookup = {};
+      this.window = { title: 'Add Addins', viewIndex: 'add' };
+      this.configView = 'edit';
+    }
+    this.columns.editColumn.events[0].lookup = {
+      dataSource: ['Loaded', 'Inserting', 'Inserted', 'Updating', 'Updated', 'Registering', 'UpdatingPerm', 'Saving', 'Saved', 'PropertyChanged']
+    };
   }
+  saveConfig() {
+    this.configView = 'view';
+  }
+  editConfig() {
+    this.configView = 'edit';
+    this.configVal = this.editRow.Configuration;
+  }
+  cancelEditConfig(config) {
+    this.configView = 'view';
+    this.editRow.Configuration = this.configVal;
+  }
+
 }
 
 export interface CWindow {

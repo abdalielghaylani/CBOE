@@ -28,7 +28,7 @@
     iconName="plus" title="Save Property"></command-button>
   <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
   <div class="row">
-    <div class="col-md-8 col-md-offset-1">
+    <div class="col-md-8">
       <dx-form minColWidth=300 (onFieldDataChanged)="configProperties.showHideDataFields($event)" [colCount]="1" [formData]="configProperties.formData"
         [items]="configProperties.formColumns"></dx-form>
     </div>
