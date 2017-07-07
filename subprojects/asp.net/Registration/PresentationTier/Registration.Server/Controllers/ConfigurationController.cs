@@ -599,7 +599,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     addinData.Assembly = addin.Assembly;
                     addinData.Enable = addin.IsEnable;
                     addinData.Required = addin.IsRequired;
-                    addinData.Configuration = addin.AddInConfiguration;
+
+                    // get innter text of <AddInConfiguration>
+                    if (!string.IsNullOrWhiteSpace(addin.AddInConfiguration))
+                    {
+                        XmlDocument addInXml = new XmlDocument();
+                        addInXml.LoadXml(addin.AddInConfiguration);
+                        addinData.Configuration = addInXml.DocumentElement.InnerXml;
+                    }
 
                     addinData.Events = new List<AddinEvent>();
                     foreach (Event evt in addin.EventList)
@@ -735,46 +742,73 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 bool found = false;
+
+                int index = -1;
                 foreach (AddIn addin in configurationBO.AddInList)
                 {
+                    index++;
                     if (!addin.FriendlyName.Equals(data.Name)) continue;
+
                     found = true;
                     addin.BeginEdit();
-
-                    addin.Assembly = data.Assembly;
                     addin.IsEnable = data.Enable;
-
                     addin.ApplyEdit();
                     configurationBO.Save();
+                    break;
+                }
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
+                else
+                {
+                    // Notes: updating configuration and events seperately because these fields are not updating with IsEnable field
+                    var addinSelected = configurationBO.AddInList[index];
 
-                    addin.BeginEdit();
-                    addin.AddInConfiguration = data.Configuration;
+                    if (!string.IsNullOrWhiteSpace(data.Configuration))
+                    {
+                        data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+
+                        // check addin configuration is valid
+                        XmlDocument xml = new XmlDocument();
+                        try
+                        {
+                            xml.LoadXml(data.Configuration);
+                        }
+                        catch
+                        {
+                            throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
+                        }
+                        if (xml.DocumentElement.FirstChild.Name == "AddInConfiguration")
+                            throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
+
+                    }
+                    else
+                    {
+                        data.Configuration = "<AddInConfiguration></AddInConfiguration>";
+                    }
+
+                    addinSelected.AddInConfiguration = data.Configuration;
 
                     // clear existing events, if any
                     List<Event> markedEventsForDeletion = new List<Event>();
-                    if (addin.EventList.Count > 0)
+                    if (addinSelected.EventList.Count > 0)
                     {
-                        foreach (Event evt in addin.EventList)
+                        foreach (Event evt in addinSelected.EventList)
                             markedEventsForDeletion.Add(evt);
 
                         foreach (Event evt in markedEventsForDeletion)
-                            addin.EventList.Remove(evt);
+                            addinSelected.EventList.Remove(evt);
                     }
 
                     // add new events
                     foreach (AddinEvent evtData in data.Events)
                     {
                         Event evt = Event.NewEvent(evtData.EventName, evtData.EventHandler, true);
-                        addin.EventList.Add(evt);
+                        addinSelected.EventList.Add(evt);
                     }
 
-                    addin.ApplyEdit();
+                    addinSelected.ApplyEdit();
                     configurationBO.Save();
-
-                    break;
                 }
-                if (!found)
-                    throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
 
                 return new ResponseData(message: string.Format("The addin, {0}, was updated successfully!", data.Name));
             });
