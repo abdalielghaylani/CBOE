@@ -1,76 +1,51 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { IFormItemTemplate } from '../item-templates.types';
 
 @Component({
   selector: 'reg-data-grid-form-item-template',
   template: require('./data-grid-form-item.component.html'),
   styles: [require('../item-templates.css')],
 })
-export class RegDataGridFormItem {
-  @Input() private disabled: boolean = false;
-  @Input() private name: string;
-  @Input() private data: any;
-
-  private get value(): any[] {
-    return this.data.editorOptions.value ? this.data.editorOptions.value : [];
-  }
+export class RegDataGridFormItem implements IFormItemTemplate {
+  @Input() editMode: boolean = false;
+  @Input() data: any = {};
 
   private onValueChanged(e, d) {
     d.component.option('formData.' + d.dataField, e.value);
   }
 
-  /*
-.dxDataGrid({
-            disabled: !container.editMode,
-            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-            columns: [{
-              dataField: 'fragmentTypeId',
-              caption: 'Type',
-              editorType: 'dxSelectBox',
-              lookup: {
-                dataSource: lookups ? lookups.fragmentTypes : [],
-                displayExpr: 'DESCRIPTION',
-                valueExpr: 'ID'
-              },
-              width: 60
-            }, {
-              dataField: 'equivalents',
-              caption: 'Equivalent',
-              width: 80
-            }, {
-              dataField: 'code',
-              caption: 'Code',
-              width: 50
-            }, {
-              dataField: 'structure',
-              caption: 'Structure',
-              allowEditing: false,
-              allowFiltering: false,
-              allowSorting: false,
-              width: 150,
-              cellTemplate: function (c, o) {
-                jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
-              }
-            }, {
-              dataField: 'description',
-              caption: 'Description',
-              allowEditing: false
-            }, {
-              dataField: 'molWeight',
-              caption: 'MW',
-              allowEditing: false
-            }, {
-              dataField: 'formula',
-              caption: 'MF',
-              allowEditing: false
-            }],
-            editing: {
-              mode: 'row',
-              allowUpdating: true,
-              allowDeleting: true,
-              allowAdding: true
-            }
-          });  
-   */
+  private get dataSource(): any[] {
+    return this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
+  }
+
+  private get columns(): any[] {
+    return this.data.editorOptions && this.data.editorOptions.columns ? this.data.editorOptions.columns : [];    
+  }
+
+  private get editingMode(): string {
+    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.mode
+      ? this.data.editorOptions.editing.mode
+      : 'row';
+  }
+
+  private get allowUpdating(): boolean {
+    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowUpdating
+      ? this.data.editorOptions.editing.allowUpdating
+      : false;
+  }
+
+  private get allowDeleting(): boolean {
+    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowDeleting
+      ? this.data.editorOptions.editing.allowDeleting
+      : false;
+  }
+
+  private get allowAdding(): boolean {
+    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowAdding
+      ? this.data.editorOptions.editing.allowAdding
+      : false;
+  }
+
   private onCellPrepared(e) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let isEditing = e.row.isEditing;

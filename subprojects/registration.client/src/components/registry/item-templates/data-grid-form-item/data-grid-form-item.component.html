@@ -1,2 +1,4 @@
-<dx-data-grid (onCellPrepared)="onCellPrepared" (onContentReady)="onContentReady">
+<dx-data-grid [disabled]="!editMode" [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
+  (onCellPrepared)="onCellPrepared($event)" (onContentReady)="onContentReady($event)">
+  <dxo-editing [mode]="editingMode" [allowUpdating]="allowUpdating" [allowDeleting]="allowDeleting" [allowAdding]="allowAdding"></dxo-editing>
 </dx-data-grid>

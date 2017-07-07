@@ -3,8 +3,7 @@
     <button type="button" class="btn btn-default border-2 status background-blue border-blue">
       <i class="fa-undo white" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">Templates <span class="caret"></span></button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Templates <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>
       <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
@@ -45,6 +44,9 @@
                 <div *dxTemplate="let data of 'tagBoxTemplate'">
                   <reg-tag-box-form-item-template [editMode]="editMode" [data]="data"></reg-tag-box-form-item-template>
                 </div>
+                <div *dxTemplate="let data of 'dataGridTemplate'">
+                  <reg-data-grid-form-item-template [editMode]="editMode" [data]="data"></reg-data-grid-form-item-template>
+                </div>
               </dx-form>
             </div>
           </div>
@@ -55,7 +57,14 @@
           </div>
           <div id="componentPanel" class="panel-collapse collapse in">
             <div class="panel-body">
-              <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [readOnly]="!editMode"></dx-form>
+              <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [readOnly]="!editMode">
+                <div *dxTemplate="let data of 'tagBoxTemplate'">
+                  <reg-tag-box-form-item-template [editMode]="editMode" [data]="data"></reg-tag-box-form-item-template>
+                </div>
+                <div *dxTemplate="let data of 'dataGridTemplate'">
+                  <reg-data-grid-form-item-template [editMode]="editMode" [data]="data"></reg-data-grid-form-item-template>
+                </div>
+              </dx-form>
             </div>
           </div>
         </div>
@@ -66,6 +75,12 @@
           <div id="batchPanel" class="panel-collapse collapse in">
             <div class="panel-body">
               <dx-form id="batchForm" [formData]="regRecordVM.batchList[0]" [items]="regRecordVM.batchList[0].columns" [readOnly]="!editMode">
+                <div *dxTemplate="let data of 'tagBoxTemplate'">
+                  <reg-tag-box-form-item-template [editMode]="editMode" [data]="data"></reg-tag-box-form-item-template>
+                </div>
+                <div *dxTemplate="let data of 'dataGridTemplate'">
+                  <reg-data-grid-form-item-template [editMode]="editMode" [data]="data"></reg-data-grid-form-item-template>
+                </div>
               </dx-form>
             </div>
           </div>
@@ -73,11 +88,16 @@
       </div>
     </form>
   </dx-scroll-view>
-  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true"
-    [(visible)]="saveTemplatePopupVisible">
+  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">
     <div *dxTemplate="let data of 'content'">
-      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems"
-        [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'></dx-form>
+      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
+        <div *dxTemplate="let data of 'tagBoxTemplate'">
+          <reg-tag-box-form-item-template [editMode]="editMode" [data]="data"></reg-tag-box-form-item-template>
+        </div>
+        <div *dxTemplate="let data of 'dataGridTemplate'">
+          <reg-data-grid-form-item-template [editMode]="editMode" [data]="data"></reg-data-grid-form-item-template>
+        </div>
+      </dx-form>
       <div style="margin-top: 15px">
         <button class="mr1 btn btn-primary" (click)="saveTemplate()">Save</button>
         <button class="mr1 btn btn-primary" (click)="cancelSaveTemplate()">Cancel</button>
