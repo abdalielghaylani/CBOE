@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { IFormItemTemplate } from '../item-templates.types';
 
 @Component({
   selector: 'reg-tag-box-form-item-template',
   template: require('./tag-box-form-item.component.html'),
   styles: [require('../item-templates.css')],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegTagBoxFormItem implements IFormItemTemplate {
   @Input() editMode: boolean = false;

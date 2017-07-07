@@ -1,49 +1,41 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { IFormItemTemplate } from '../item-templates.types';
 
 @Component({
   selector: 'reg-data-grid-form-item-template',
   template: require('./data-grid-form-item.component.html'),
   styles: [require('../item-templates.css')],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegDataGridFormItem implements IFormItemTemplate {
+export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   @Input() editMode: boolean = false;
   @Input() data: any = {};
+  private dataSource: any[];
+  private columns: any[];
+  private editingMode: string;
+  private allowUpdating: boolean;
+  private allowDeleting: boolean;
+  private allowAdding: boolean;
 
-  private onValueChanged(e, d) {
-    d.component.option('formData.' + d.dataField, e.value);
-  }
-
-  private get dataSource(): any[] {
-    return this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
-  }
-
-  private get columns(): any[] {
-    return this.data.editorOptions && this.data.editorOptions.columns ? this.data.editorOptions.columns : [];    
-  }
-
-  private get editingMode(): string {
-    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.mode
+  ngOnChanges() {
+    this.dataSource = this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
+    this.columns = this.data.editorOptions && this.data.editorOptions.columns ? this.data.editorOptions.columns : [];
+    this.editingMode = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.mode
       ? this.data.editorOptions.editing.mode
       : 'row';
-  }
-
-  private get allowUpdating(): boolean {
-    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowUpdating
+    this.allowUpdating = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowUpdating
       ? this.data.editorOptions.editing.allowUpdating
       : false;
-  }
-
-  private get allowDeleting(): boolean {
-    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowDeleting
+    this.allowDeleting = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowDeleting
       ? this.data.editorOptions.editing.allowDeleting
       : false;
-  }
-
-  private get allowAdding(): boolean {
-    return this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowAdding
+    this.allowAdding = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowAdding
       ? this.data.editorOptions.editing.allowAdding
       : false;
+  }
+  
+  private onValueChanged(e, d) {
+    d.component.option('formData.' + d.dataField, e.value);
   }
 
   private onCellPrepared(e) {
