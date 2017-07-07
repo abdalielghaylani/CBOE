@@ -1,1 +1,1 @@
-export * from './reg-identifiers.component';
+export * from './item-templates.module';

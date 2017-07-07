@@ -485,20 +485,13 @@ export class CRegistryRecordVM {
       dataField: 'projectList',
       label: { text: 'Projects' },
       colSpan: 2,
-      template: function (d, itemElement) {
-        (jQuery('<div>')
-          .appendTo(itemElement) as any)
-          .dxTagBox({
-            disabled: !container.editMode,
-            value: d.editorOptions.value ? d.editorOptions.value : [],
-            valueExpr: 'PROJECTID',
-            displayExpr: 'NAME',
-            dataSource: lookups ? lookups.projects : [],
-            onValueChanged: function (e) {
-              d.component.option('formData.' + d.dataField, e.value);
-            }
-          });
-      }
+      editorOptions: {
+        dataSource: lookups ? lookups.projects.filter(i => i.ACTIVE === 'T') : [],
+        displayExpr: 'NAME',
+        valueExpr: 'PROJECTID',
+        placeholder: 'Select Project'
+      },
+      template: 'tagBoxTemplate'
     });
     this.columns.push({
       dataField: 'identifierList',

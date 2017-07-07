@@ -301,7 +301,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get approvalsEnabled(): boolean {
-    return (this.isNewRecord || this.temporary) && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
+    return (this.isNewRecord || this.temporary) && new CSystemSettings(this.getLookup('systemSettings')).isApprovalsEnabled;
   }
 
   private get editButtonEnabled(): boolean {
@@ -373,6 +373,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get submissionTemplatesEnabled() {
-    return this.isNewRecord && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isSubmissionTemplateEnabled;
+    return this.isNewRecord && new CSystemSettings(this.getLookup('systemSettings')).isSubmissionTemplateEnabled;
+  }
+
+  private getLookup(name: string): any[] {
+    let lookups = this.ngRedux.getState().session.lookups;
+    return lookups ? lookups[name] : [];
   }
 };
