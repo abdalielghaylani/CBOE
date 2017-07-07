@@ -14,7 +14,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import * as X2JS from 'x2js';
 import { RecordDetailActions, ConfigurationActions } from '../../actions';
-import { IAppState, IRecordDetail } from '../../store';
+import { IAppState, IRecordDetail, ILookupData } from '../../store';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, notify } from '../../common';
 import { IResponseData, CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
@@ -26,6 +26,7 @@ import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus } from './registry.types';
 import { ChemDrawWeb } from '../common';
+import { hasDeleteRecordPrivilege } from './registry.utils';
 
 @Component({
   selector: 'reg-record-detail',
@@ -42,6 +43,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @Input() template: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
+  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   public formGroup: CFormGroup;
   public editMode: boolean = false;
   private title: string;
@@ -57,6 +59,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private currentIndex: number = 0;
   private saveTemplateForm;
   private saveTemplatePopupVisible: boolean = false;
+  private lookups: ILookupData;
+  private lookupsSubscription: Subscription;
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
@@ -95,6 +99,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.parentHeight = this.getParentHeight();
     let self = this;
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
+
   }
 
   initialize(segments: UrlSegment[]) {
@@ -105,7 +111,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.actions.retrieveRecord(this.temporary, this.template, this.id);
     if (!this.dataSubscription) {
       this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
-    }    
+    }
+  }
+
+  retrieveContents(lookups: ILookupData) {
+    this.lookups = lookups;
   }
 
   ngOnDestroy() {
@@ -267,7 +277,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private cancelSaveTemplate(e) {
-    this.saveTemplatePopupVisible = false;    
+    this.saveTemplatePopupVisible = false;
   }
 
   private showTemplates(e) {
@@ -327,7 +337,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get deleteButtonEnabled(): boolean {
-    return this.temporary && this.editButtonEnabled;
+    return this.temporary && hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
   }
 
   private cancelApproval() {
