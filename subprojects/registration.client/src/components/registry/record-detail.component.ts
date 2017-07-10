@@ -337,7 +337,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get deleteButtonEnabled(): boolean {
-    return this.temporary && hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
+    return !this.isNewRecord && hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
   }
 
   private cancelApproval() {
