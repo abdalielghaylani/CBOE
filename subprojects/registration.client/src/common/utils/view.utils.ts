@@ -27,13 +27,3 @@ export function getViewColumns(columnConfig: IColumnConfig[]): any[] {
   });
   return viewColumns;
 }
-
-export function isUserHasPrivilege(privilege: string, userPrivileges: any[]): boolean {
-  if (userPrivileges) {
-    let privilageItem = userPrivileges.find(p => p.name === privilege);
-    if (privilageItem !== undefined) {
-      return true;
-    }
-  }
-  return false;
-}
