@@ -3,8 +3,7 @@
     <button type="button" class="btn btn-default border-2 status background-blue border-blue">
       <i class="fa-undo white" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">Templates <span class="caret"></span></button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Templates <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>
       <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
@@ -25,6 +24,17 @@
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+            <a class="list-header tan" data-toggle="collapse" href="#registryPanel">Registry Information</a>
+          </div>
+          <div id="registryPanel" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <reg-form-view id="registryForm" [formData]="regRecordVM" [colCount]="2" [items]="regRecordVM.columns" [editMode]="editMode">
+              </reg-form-view>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#structurePanel">Structure Information</a>
           </div>
           <div id="structurePanel" class="panel-collapse collapse in">
@@ -37,25 +47,12 @@
         </div>
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-            <a class="list-header tan" data-toggle="collapse" href="#registryPanel">Registry Information</a>
-          </div>
-          <div id="registryPanel" class="panel-collapse collapse in">
-            <div class="panel-body">
-              <dx-form id="registryForm" [formData]="regRecordVM" [colCount]="2" [items]="regRecordVM.columns" [readOnly]="!editMode">
-                <div *dxTemplate="let data of 'tagBoxTemplate'">
-                  <reg-tag-box-form-item-template [disabled]="!editMode" [data]="data" [lookup]="getLookup('projects')"></reg-tag-box-form-item-template>
-                </div>
-              </dx-form>
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#componentPanel">Component Information </a>
           </div>
           <div id="componentPanel" class="panel-collapse collapse in">
             <div class="panel-body">
-              <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [readOnly]="!editMode"></dx-form>
+              <reg-form-view id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [editMode]="editMode">
+              </reg-form-view>
             </div>
           </div>
         </div>
@@ -65,19 +62,18 @@
           </div>
           <div id="batchPanel" class="panel-collapse collapse in">
             <div class="panel-body">
-              <dx-form id="batchForm" [formData]="regRecordVM.batchList[0]" [items]="regRecordVM.batchList[0].columns" [readOnly]="!editMode">
-              </dx-form>
+              <reg-form-view id="batchForm" [formData]="regRecordVM.batchList[0]" [items]="regRecordVM.batchList[0].columns" [editMode]="editMode">
+              </reg-form-view>
             </div>
           </div>
         </div>
       </div>
     </form>
   </dx-scroll-view>
-  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true"
-    [(visible)]="saveTemplatePopupVisible">
+  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">
     <div *dxTemplate="let data of 'content'">
-      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems"
-        [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'></dx-form>
+      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
+      </dx-form>
       <div style="margin-top: 15px">
         <button class="mr1 btn btn-primary" (click)="saveTemplate()">Save</button>
         <button class="mr1 btn btn-primary" (click)="cancelSaveTemplate()">Cancel</button>

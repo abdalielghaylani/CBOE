@@ -190,37 +190,29 @@ export class CComponentVM {
       dataField: 'identifierList',
       label: { text: 'Component Identifiers' },
       colSpan: 2,
-      template: function (d, itemElement) {
-        (jQuery('<div>')
-          .appendTo(itemElement) as any)
-          .dxDataGrid({
-            disabled: !container.editMode,
-            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-            columns: [{
-              dataField: 'id',
-              caption: 'Identifier',
-              editorType: 'dxSelectBox',
-              lookup: {
-                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
-                displayExpr: 'NAME',
-                valueExpr: 'ID',
-                placeholder: 'Select Identifier'
-              }
-            }, {
-              dataField: 'inputText',
-              caption: 'Value'
-            }],
-            editing: {
-              mode: 'row',
-              allowUpdating: true,
-              allowDeleting: true,
-              allowAdding: true
-            },
-            onCellPrepared: function (e) {
-              onCellPrepared(e);
-            }
-          });
+      editorOptions: {
+        columns: [{
+          dataField: 'id',
+          caption: 'Identifier',
+          editorType: 'dxSelectBox',
+          lookup: {
+            dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
+            displayExpr: 'NAME',
+            valueExpr: 'ID',
+            placeholder: 'Select Identifier'
+          }
+        }, {
+          dataField: 'inputText',
+          caption: 'Value'
+        }],
+        editing: {
+          mode: 'row',
+          allowUpdating: true,
+          allowDeleting: true,
+          allowAdding: true
+        }
       },
+      template: 'dataGridTemplate'
     });
     this.columns = [{
       itemType: 'group',
@@ -497,45 +489,29 @@ export class CRegistryRecordVM {
       dataField: 'identifierList',
       label: { text: 'Registry Identifiers' },
       colSpan: 2,
-      template: function (d, itemElement) {
-        (jQuery('<div>')
-          .appendTo(itemElement) as any)
-          .dxDataGrid({
-            disabled: !container.editMode,
-            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-            columns: [{
-              dataField: 'id',
-              caption: 'Identifier',
-              editorType: 'dxSelectBox',
-              lookup: {
-                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
-                displayExpr: 'NAME',
-                valueExpr: 'ID',
-                placeholder: 'Select Identifier'
-              }
-            }, {
-              dataField: 'inputText',
-              caption: 'Value'
-            }],
-            editing: {
-              mode: 'row',
-              allowUpdating: true,
-              allowDeleting: true,
-              allowAdding: true
-            },
-            onCellPrepared: function (e) {
-              onCellPrepared(e);
-            },
-            onContentReady: function (e) {
-              let grid = e.component;
-              if (grid.totalCount() === 0) {
-                grid.option('height', 100);
-              } else {
-                grid.option('height', 'auto');                
-              }
-            }
-          });
+      editorOptions: {
+        columns: [{
+          dataField: 'id',
+          caption: 'Identifier',
+          editorType: 'dxSelectBox',
+          lookup: {
+            dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
+            displayExpr: 'NAME',
+            valueExpr: 'ID',
+            placeholder: 'Select Identifier'
+          }
+        }, {
+          dataField: 'inputText',
+          caption: 'Value'
+        }],
+        editing: {
+          mode: 'row',
+          allowUpdating: true,
+          allowDeleting: true,
+          allowAdding: true
+        }
       },
+      template: 'dataGridTemplate'
     });
     let batchComponentFragmentList: CBatchComponentFragmentVM[] = [];
     buildPropertyList(this, this.columns, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.RegistryCustomProperties), container);
@@ -604,72 +580,56 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
       dataField: 'batchComponentFragmentList',
       label: { text: 'Fragments' },
       colSpan: 1,
-      template: function (d, itemElement) {
-        (jQuery('<div />')
-          .appendTo(itemElement) as any)
-          .dxDataGrid({
-            disabled: !container.editMode,
-            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-            columns: [{
-              dataField: 'fragmentTypeId',
-              caption: 'Type',
-              editorType: 'dxSelectBox',
-              lookup: {
-                dataSource: lookups ? lookups.fragmentTypes : [],
-                displayExpr: 'DESCRIPTION',
-                valueExpr: 'ID'
-              },
-              width: 60
-            }, {
-              dataField: 'equivalents',
-              caption: 'Equivalent',
-              width: 80
-            }, {
-              dataField: 'code',
-              caption: 'Code',
-              width: 50
-            }, {
-              dataField: 'structure',
-              caption: 'Structure',
-              allowEditing: false,
-              allowFiltering: false,
-              allowSorting: false,
-              width: 150,
-              cellTemplate: function (c, o) {
-                jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
-              }
-            }, {
-              dataField: 'description',
-              caption: 'Description',
-              allowEditing: false
-            }, {
-              dataField: 'molWeight',
-              caption: 'MW',
-              allowEditing: false
-            }, {
-              dataField: 'formula',
-              caption: 'MF',
-              allowEditing: false
-            }],
-            editing: {
-              mode: 'row',
-              allowUpdating: true,
-              allowDeleting: true,
-              allowAdding: true
-            },
-            onCellPrepared: function (e) {
-              onCellPrepared(e);
-            },
-            onContentReady: function (e) {
-              let grid = e.component;
-              if (grid.totalCount() === 0) {
-                grid.option('height', 100);
-              } else {
-                grid.option('height', 'auto');                
-              }
-            }
-          });
-      }
+      editorOptions: {
+        columns: [{
+          dataField: 'fragmentTypeId',
+          caption: 'Type',
+          editorType: 'dxSelectBox',
+          lookup: {
+            dataSource: lookups ? lookups.fragmentTypes : [],
+            displayExpr: 'DESCRIPTION',
+            valueExpr: 'ID'
+          },
+          width: 60
+        }, {
+          dataField: 'equivalents',
+          caption: 'Equivalent',
+          width: 80
+        }, {
+          dataField: 'code',
+          caption: 'Code',
+          width: 50
+        }, {
+          dataField: 'structure',
+          caption: 'Structure',
+          allowEditing: false,
+          allowFiltering: false,
+          allowSorting: false,
+          width: 150,
+          cellTemplate: function (c, o) {
+            jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
+          }
+        }, {
+          dataField: 'description',
+          caption: 'Description',
+          allowEditing: false
+        }, {
+          dataField: 'molWeight',
+          caption: 'MW',
+          allowEditing: false
+        }, {
+          dataField: 'formula',
+          caption: 'MF',
+          allowEditing: false
+        }],
+        editing: {
+          mode: 'row',
+          allowUpdating: true,
+          allowDeleting: true,
+          allowAdding: true
+        }
+      },
+      template: 'dataGridTemplate'
     }];
   }
   return groupItem;

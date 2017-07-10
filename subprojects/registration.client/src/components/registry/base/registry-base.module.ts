@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegDataGridFormItem } from './data-grid-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
+import { RegFormView } from './form-view';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -24,6 +25,7 @@ import {
 
 export * from './data-grid-form-item';
 export * from './tag-box-form-item';
+export * from './form-view';
 
 @NgModule({
   imports: [
@@ -48,11 +50,13 @@ export * from './tag-box-form-item';
   ],
   declarations: [
     RegDataGridFormItem,
-    RegTagBoxFormItem
+    RegTagBoxFormItem,
+    RegFormView
   ],
   exports: [
     RegDataGridFormItem,
-    RegTagBoxFormItem
+    RegTagBoxFormItem,
+    RegFormView
   ]
 })
-export class RegItemTemplatesModule { }
+export class RegBaseComponentModule { }
