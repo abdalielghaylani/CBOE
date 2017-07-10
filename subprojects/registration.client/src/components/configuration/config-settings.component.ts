@@ -145,6 +145,7 @@ export class RegConfigSettings implements OnInit, OnDestroy {
           .then(result => {
             let rows = result.json();
             parent.ngRedux.getState().session.lookups.systemSettings = rows;
+            rows = rows.filter(r => r.isAdmin === undefined || !r.isAdmin);
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {

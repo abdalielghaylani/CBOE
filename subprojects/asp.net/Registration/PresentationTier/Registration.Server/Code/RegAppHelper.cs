@@ -17,8 +17,6 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 var settings = group.Settings;
                 foreach (var setting in settings)
                 {
-                    bool isAdmin;
-                    if (bool.TryParse(setting.IsAdmin, out isAdmin) && isAdmin) continue;
                     settingList.Add(new SettingData(group, setting));
                 }
             }
