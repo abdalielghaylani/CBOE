@@ -26,6 +26,7 @@ export interface ILookupData {
   addinAssemblies?: any[];
   propertyGroups?: any[];
   homeMenuPrivileges?: any[];
+  userPrivileges?: any[];
 }
 
 export interface ISession {

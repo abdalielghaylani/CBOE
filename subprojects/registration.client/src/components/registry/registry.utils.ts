@@ -1,4 +1,5 @@
 import { DOMParser, DOMParserStatic, XMLSerializer } from 'xmldom';
+import { isUserHasPrivilege } from '../../common/utils/view.utils';
 
 export function getDocument(data: string): Document {
   return new DOMParser().parseFromString(data);
@@ -60,4 +61,9 @@ export function setElementValue(element: Element, path: string, value: string) {
   if (nextElement) {
     nextElement.textContent = value;
   }
+}
+
+export function hasDeleteRecordPrivilege(temporary: boolean, userPrivileges: any[]): boolean {
+  let privilege = temporary ? 'DELETE_TEMP' : 'DELETE_REG';
+  return isUserHasPrivilege(privilege, userPrivileges);
 }
