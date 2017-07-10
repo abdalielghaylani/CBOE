@@ -84,7 +84,7 @@ const prodConfig = {
   devtool: 'source-map',
 };
 
- const serverHost = 'http://localhost';
+const serverHost = 'http://localhost';
 // const serverHost = 'http://165.88.34.121';
 
 const proxySettings = {};
