@@ -136,7 +136,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    string regnum;
+                    string regNum;
                     int regID;
                     var duplicateId = new JArray();
                     XmlDocument xmldoc = new XmlDocument();
@@ -144,8 +144,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
                     foreach (XmlNode node in nodeList)
                     {
-                        regnum = node.InnerText;
-                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regnum);
+                        regNum = node.InnerText;
+                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regNum);
                         regID = registryRecord.ID;
                         duplicateId.Add(regID);
                     }
