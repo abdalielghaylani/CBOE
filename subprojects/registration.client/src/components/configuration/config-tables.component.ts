@@ -2,18 +2,18 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
+import { select, NgRedux } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { IAppState, ICustomTableData, IConfiguration } from '../../store';
 import { CConfigTable } from './config.types';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -37,8 +37,9 @@ export class RegConfigTables implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private http: Http,
+    private http: HttpService,
     private changeDetector: ChangeDetectorRef,
+    private ngRedux: NgRedux<IAppState>,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
   ) { }
@@ -48,7 +49,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       let paramLabel = 'tableId';
       this.tableId = params[paramLabel];
       this.configurationActions.openTable(this.tableId);
-      this.configTable = new CConfigTable(this.tableId);
+      this.configTable = new CConfigTable(this.tableId, this.ngRedux.getState());
     });
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
   }
@@ -102,7 +103,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       visibleIndex: -1,
       width: 80
     });
-     e.component.columnOption('command', {
+    e.component.columnOption('command', {
       visibleIndex: -1,
       width: 80
     });
@@ -146,13 +147,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
-            let message = `The records of ${tableName} were not retrieved properly due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -175,13 +170,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not updated due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -197,13 +186,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `Creating A new record for ${tableName} was failed due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -219,13 +202,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not deleted due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();

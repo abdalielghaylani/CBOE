@@ -1,5 +1,5 @@
 import { Iterable } from 'immutable';
-import { ISessionRecord } from './session.types';
+import { ISessionRecord, ILookupData } from './session.types';
 import { sessionReducer } from './session.reducer';
 import { INITIAL_STATE } from './session.initial-state';
 import { SessionActions, RecordDetailActions, RegistryActions } from '../../actions';
@@ -54,7 +54,7 @@ describe('Session Reducer', () => {
   });
 
   it('should update lookups on LOAD_LOOKUPS_SUCCESS', () => {
-    const data = { users: [{ id: 1, name: 'user one' }] };
+    const data: ILookupData = { users: [{ id: 1, name: 'user one' }] };
     const previousState = initState;
     const nextState = sessionReducer(
       previousState,

@@ -4,17 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Security.Authentication;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using Csla.Data;
-using Newtonsoft.Json.Linq;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Registration.Services;
+using CambridgeSoft.COE.RegistrationAdmin.Services;
+using Csla.Data;
+using Newtonsoft.Json.Linq;
 using PerkinElmer.COE.Registration.Server.Code;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
@@ -45,6 +47,31 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (regDal == null)
                     DalUtils.GetRegistrationDAL(ref regDal, CambridgeSoft.COE.Registration.Constants.SERVICENAME);
                 return regDal;
+            }
+        }
+
+        protected COEIdentity UserIdentity
+        {
+            get
+            {
+                var sessionToken = GetSessionToken();
+                var args = new object[] { sessionToken };
+                var identity = (COEIdentity)typeof(COEIdentity).GetMethod(
+                    "GetIdentity",
+                    BindingFlags.Static | BindingFlags.NonPublic,
+                    null,
+                    new System.Type[] { typeof(string) },
+                    null
+                ).Invoke(null, args);
+                return identity;
+            }
+        }
+
+        protected Dictionary<string, List<string>> UserPrivileges
+        {
+            get
+            {
+                return typeof(COEIdentity).GetField("_appRolePrivileges", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(UserIdentity) as Dictionary<string, List<string>>;
             }
         }
 
@@ -179,7 +206,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             HttpResponseMessage responseMessage;
             try
             {
-                CheckAuthentication();
+                try
+                {
+                    CheckAuthentication();
+                }
+                catch
+                {
+                    // Sometimes authentication fails due to multi-threading issue.
+                    // This is a hack to overcome the short-comings of the current Registration codebase
+                    // that does not handle multiple simultaneous calls well.
+                    CheckAuthentication();
+                }
                 if (permissions != null) CheckAuthorizations(permissions);
                 var statusCode = Request.Method == HttpMethod.Post && memberName.StartsWith("Create") ? HttpStatusCode.Created : HttpStatusCode.OK;
                 responseMessage = Request.CreateResponse(statusCode, method());
@@ -187,6 +224,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             catch (Exception ex)
             {
                 responseMessage = CreateErrorResponse(ex);
+                Logger.Error(ex);
             }
 
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
@@ -205,6 +243,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             catch (Exception ex)
             {
+                Logger.Error(ex);
                 responseMessage = CreateErrorResponse(ex);
             }
 
@@ -280,13 +319,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return new RecordColumn[]
                 {
                     new RecordColumn { Definitions = "tempcompoundid", Label = "id", Sortable = true },
-                    new RecordColumn { Definitions = "tempbatchid", Label = "batchid", Sortable = true },
+                    new RecordColumn { Definitions = "c.tempbatchid", Label = "batchid", Sortable = true },
                     new RecordColumn { Definitions = "formulaweight", Label = "mw", Sortable = true },
                     new RecordColumn { Definitions = "molecularformula", Label = "mf", Sortable = true },
-                    new RecordColumn { Definitions = "datecreated", Label = "created", Sortable = true },
-                    new RecordColumn { Definitions = "datelastmodified", Label = "modified", Sortable = true },
-                    new RecordColumn { Definitions = "personcreated", Label = "creator", Sortable = true },
-                    new RecordColumn { Definitions = "'temprecord/' || tempcompoundid || '?' || to_char(datelastmodified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false }
+                    new RecordColumn { Definitions = "c.datecreated", Label = "created", Sortable = true },
+                    new RecordColumn { Definitions = "c.datelastmodified", Label = "modified", Sortable = true },
+                    new RecordColumn { Definitions = "c.personcreated", Label = "creator", Sortable = true },
+                    new RecordColumn { Definitions = "'temprecord/' || tempcompoundid || '?' || to_char(c.datelastmodified, 'YYYYMMDDHH24MISS')", Label = "structure", Sortable = false },
+                    new RecordColumn { Definitions = "b.statusid", Label = "statusid", Sortable = false }
                 };
             }
         }
@@ -311,6 +351,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         protected static string GetQuery(string tableName, RecordColumn[] columns, string sortTerms, string defaultColumn, string uniqueColumn)
         {
             return string.Format("SELECT {0} FROM {1} ORDER BY {2}", GetSelectTerms(columns), tableName, GetSortTerms(columns, sortTerms, defaultColumn, uniqueColumn));
+        }
+
+        protected static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
+        {
+            return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
+                propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
     }
 }

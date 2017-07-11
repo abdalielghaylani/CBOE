@@ -1,18 +1,19 @@
 import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
+  Component, Input, Output, EventEmitter, ElementRef, ViewChildren,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { select, NgRedux } from '@angular-redux/store';
+import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notify, notifyError, notifyException, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { IAppState, ICustomTableData, IConfiguration } from '../../store';
+import { CConfigProperties, CPropertiesValidationFormDataModel } from './config.types';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -24,16 +25,19 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegConfigProperties implements OnInit, OnDestroy {
-  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
+  @ViewChildren(DxDataGridComponent) grid;
+  @ViewChildren(DxFormComponent) forms;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private rows: any[] = [];
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;
+  private configProperties: CConfigProperties;
 
   constructor(
-    private http: Http,
+    private http: HttpService,
     private changeDetector: ChangeDetectorRef,
+    private ngRedux: NgRedux<IAppState>,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
   ) { }
@@ -50,6 +54,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
 
   loadData(customTables: any) {
     if (customTables) {
+      this.configProperties = new CConfigProperties(this.ngRedux.getState());
       this.dataSource = this.createCustomStore(this);
       this.changeDetector.markForCheck();
     }
@@ -63,7 +68,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   private onResize(event: any) {
     this.gridHeight = this.getGridHeight();
     this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
+    this.grid._results[0].instance.repaint();
   }
 
   private onDocumentClick(event: any) {
@@ -71,35 +76,125 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
       this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
       this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
+      this.grid._results[0].instance.repaint();
     }
   }
 
   onContentReady(e) {
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate: 'cellTemplate'
-    });
     e.component.columnOption('command:edit', {
       visibleIndex: -1,
       width: 80
     });
   }
 
-  onCellPrepared(e) {
+  onInitNewRow(e, parent?: boolean) {
+    if (parent) {
+      this.configProperties.addEditProperty('add');
+    } else {
+      e.component.cancelEditData();
+      e.component.refresh();
+    }
+  }
+
+  onEditingStart(e) {
+    e.cancel = true;
+    if (e.data.editable) {
+      this.configProperties.addEditProperty('edit', e.data);
+    }
+  }
+
+  cancel() {
+    this.configProperties.window = { title: 'Manage Data Properties', viewIndex: 'list' };
+    this.configProperties.clearFormData();
+    this.grid._results[0].instance.cancelEditData();
+  }
+
+  showValidationRule(d: any) {
+    this.configProperties.window = { title: 'Validation Rule', viewIndex: 'validation' };
+    this.configProperties.formData = d.data;
+  }
+  moveupordown(data, move) {
+    if ((move === 'up' && data.value > 0) || (move === 'down' && data.data.sortOrderMax)) {
+      let val = data.data;
+      if (move === 'up') {
+        val.sortOrder = val.sortOrder - 1;
+      } else {
+        val.sortOrder = val.sortOrder + 1;
+      }
+      this.dataSource.update(val, []).done(result => {
+        this.grid._results[0].instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
+    }
+  }
+
+  addProperty(e) {
+    let valid = this.forms._results[0].instance.validate();
+    if (this.configProperties.combuteValidation(valid.brokenRules)) {
+      this.dataSource.insert(this.configProperties.formData).done(result => {
+        this.grid._results[0].instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
+      this.cancel();
+    }
+  }
+
+  saveProperty(e) {
+    let valid = this.forms._results[0].instance.validate();
+    if (this.configProperties.combuteValidation(valid.brokenRules)) {
+      this.dataSource.update(this.configProperties.formData, []).done(result => {
+        this.grid._results[0].instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
+      this.cancel();
+    }
+  }
+  onValidationRowRemoved(e) {
+    this.dataSource.update(this.configProperties.formData, []);
+  }
+
+  saveValidationRule(e) {
+    if (this.configProperties.isValidRule()) {
+      let validationModel: CPropertiesValidationFormDataModel;
+      switch (this.configProperties.formDataValidation.name) {
+        case 'custom':
+          validationModel = this.configProperties.formDataValidation;
+          validationModel.parameters.push({ name: 'clientscript', value: this.configProperties.formDataValidation.clientScript });
+          this.configProperties.formData.validationRules.push(validationModel);
+          break;
+        default:
+          validationModel = this.configProperties.formDataValidation;
+          this.configProperties.formData.validationRules.push(validationModel);
+          break;
+
+      }
+      this.dataSource.update(this.configProperties.formData, []).then((result) => {
+        this.configProperties.clearFormDataValidations();
+        this.grid._results[1].instance.refresh();
+      });
+    }
+  }
+
+  onCellPrepared(e, t?: string) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
-      let isEditing = e.row.isEditing;
       let $links = e.cellElement.find('.dx-link');
       $links.text('');
-      if (isEditing) {
-        $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-      } else {
+      if (e.data.editable || t === 'validation') {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+      } else {
+        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        $links.filter('.dx-link-edit').append(`<i class='dx-icon-edit' style='font-size:18px;color:silver;cursor:default'></i>`);
       }
+    }
+  }
+
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
     }
   }
 
@@ -113,45 +208,38 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           .toPromise()
           .then(result => {
             let rows = result.json();
+            let groupBy = function (xs, key) {
+              return xs.reduce(function (rv, x) {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+              }, {});
+            };
+            let groubedByTeam = groupBy(rows, 'groupLabel');
+            rows.forEach(element => {
+              element.sortOrderMax = true;
+              if (groubedByTeam[element.groupLabel].length === (element.sortOrder + 1)) {
+                element.sortOrderMax = false;
+              }
+            });
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
-            let message = `The records of ${tableName} were not retrieved properly due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
       },
 
-      update: function(key, values) {
+      update: function (data) {
         let deferred = jQuery.Deferred();
-        let data = key;
-        let newData = values;
-        for (let k in newData) {
-          if (newData.hasOwnProperty(k)) {
-            data[k] = newData[k];
-          }
-        }
-        let id = data[Object.getOwnPropertyNames(data)[0]];
-        parent.http.put(`${apiUrlBase}/${id}`, data)
+        parent.http.put(`${apiUrlBase}`, data)
           .toPromise()
           .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
+            notifySuccess(`The Property ${data.name} was updated successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not updated due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The Property ${data.name} was not updated due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -163,17 +251,11 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           .toPromise()
           .then(result => {
             let id = result.json().id;
-            notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
+            notifySuccess(`The Property was created successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `Creating A new record for ${tableName} was failed due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`Creating a new property failed due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -189,13 +271,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not deleted due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();

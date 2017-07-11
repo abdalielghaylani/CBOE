@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.IO;
 using System.Text;
 using System.Web;
+using System.Globalization;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
@@ -24,6 +25,8 @@ using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.RegistrationAdmin.Services.Common;
 using CambridgeSoft.COE.Framework.COEDataViewService;
+using CambridgeSoft.COE.Registration.Services.BLL;
+using RegServicesTypes = CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -31,15 +34,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     public class ConfigurationController : RegControllerBase
     {
         #region Util methods
-        private static string GetPropertyTypeLabel(ConfigurationRegistryRecord.PropertyListType propertyType)
-        {
-            return propertyType == ConfigurationRegistryRecord.PropertyListType.AddIns ? "Add-in" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Batch ? "Batch" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.BatchComponent ? "Batch Component" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
-                propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
-        }
 
         private static int SaveColumnValues(string tableName, JObject data, bool creating)
         {
@@ -600,12 +594,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     AddinData addinData = new AddinData();
                     addinData.Name = string.IsNullOrEmpty(addin.FriendlyName) ? counter.ToString() : addin.FriendlyName;
                     addinData.AddIn = addin.IsNew ? addin.ClassNameSpace + "." + addin.ClassName : addin.ClassName;
-                    addinData.ClassName = addin.ClassName;
+                    addinData.ClassName = addin.ClassName.Substring(addin.ClassName.LastIndexOf(".") + 1) ;
                     addinData.ClassNamespace = string.IsNullOrEmpty(addin.ClassNameSpace) ? string.Empty : addin.ClassNameSpace;
                     addinData.Assembly = addin.Assembly;
                     addinData.Enable = addin.IsEnable;
                     addinData.Required = addin.IsRequired;
-                    addinData.Configuration = addin.AddInConfiguration;
+
+                    // get innter text of <AddInConfiguration>
+                    if (!string.IsNullOrWhiteSpace(addin.AddInConfiguration))
+                    {
+                        XmlDocument addInXml = new XmlDocument();
+                        addInXml.LoadXml(addin.AddInConfiguration);
+                        addinData.Configuration = addInXml.DocumentElement.InnerXml;
+                    }
 
                     addinData.Events = new List<AddinEvent>();
                     foreach (Event evt in addin.EventList)
@@ -631,7 +632,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(name))
+                if (string.IsNullOrWhiteSpace(name))
                     throw new RegistrationException("Invalid addin name");
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 bool found = false;
@@ -645,7 +646,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", name));
-                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully.", name));
+                return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully!", name));
             });
         }
 
@@ -661,7 +662,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 if (string.IsNullOrEmpty(data.Name))
-                    throw new RegistrationException("Invalid addin name");
+                    throw new RegistrationException("Invalid name");
+
+                if (string.IsNullOrEmpty(data.Assembly))
+                    throw new RegistrationException("Invalid assembly name");
+
+                if (string.IsNullOrEmpty(data.ClassName))
+                    throw new RegistrationException("Invalid class name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
@@ -674,6 +681,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
 
+                data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+
                 // check addin configuration is valid
                 XmlDocument xml = new XmlDocument();
                 try
@@ -684,7 +693,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
                 }
-                if (xml.DocumentElement.FirstChild.Name == "AddInConfiguration")
+                if ((xml.DocumentElement.FirstChild != null) && (xml.DocumentElement.FirstChild.Name == "AddInConfiguration"))
                     throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
 
                 // get all events
@@ -695,12 +704,24 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     eventList.Add(evt);
                 }
 
-                AddIn addIn = AddIn.NewAddIn(data.Assembly, data.ClassName, data.Name, eventList, data.Configuration, data.ClassNamespace, true, false);
+                string assembly = string.Empty;
+                string nameSpace = string.Empty;
+                if (data.Assembly.Equals("CambridgeSoft.COE.Registration.RegistrationAddins"))
+                {
+                    assembly = "CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc";
+                    nameSpace = "CambridgeSoft.COE.Registration.Services.RegistrationAddins";
+                }
+                else
+                {
+                    throw new RegistrationException(string.Format("The addin assembly '{0}' is not valid", data.AddIn));
+                }
+
+                AddIn addIn = AddIn.NewAddIn(assembly, data.ClassName, data.Name, eventList, data.Configuration, nameSpace, true, false);
 
                 configurationBO.AddInList.Add(addIn);
                 configurationBO.Save();
 
-                return new ResponseData(message: string.Format("The addin, {0}, was saved successfully.", data.Name));
+                return new ResponseData(message: string.Format("The addin, {0}, was saved successfully!", data.Name));
             });
         }
 
@@ -716,48 +737,80 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(data.Name))
+                if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid addin name");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 bool found = false;
+
+                int index = -1;
                 foreach (AddIn addin in configurationBO.AddInList)
                 {
+                    index++;
                     if (!addin.FriendlyName.Equals(data.Name)) continue;
+
                     found = true;
                     addin.BeginEdit();
-
-                    addin.Assembly = data.Assembly;
                     addin.IsEnable = data.Enable;
-                    addin.AddInConfiguration = data.Configuration;
+                    addin.ApplyEdit();
+                    configurationBO.Save();
+                    break;
+                }
+                if (!found)
+                    throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
+                else
+                {
+                    // Notes: updating configuration and events seperately because these fields are not updating with IsEnable field
+                    var addinSelected = configurationBO.AddInList[index];
+
+                    if (!string.IsNullOrWhiteSpace(data.Configuration))
+                    {
+                        data.Configuration = string.Format("<AddInConfiguration>{0}</AddInConfiguration>", data.Configuration);
+
+                        // check addin configuration is valid
+                        XmlDocument xml = new XmlDocument();
+                        try
+                        {
+                            xml.LoadXml(data.Configuration);
+                        }
+                        catch
+                        {
+                            throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
+                        }
+                        if ((xml.DocumentElement.FirstChild != null) && (xml.DocumentElement.FirstChild.Name == "AddInConfiguration"))
+                            throw new RegistrationException(string.Format("The addin {0}'s configuration is not valid.", data.Name));
+
+                    }
+                    else
+                    {
+                        data.Configuration = "<AddInConfiguration></AddInConfiguration>";
+                    }
+
+                    addinSelected.AddInConfiguration = data.Configuration;
 
                     // clear existing events, if any
                     List<Event> markedEventsForDeletion = new List<Event>();
-                    if (addin.EventList.Count > 0)
+                    if (addinSelected.EventList.Count > 0)
                     {
-                        foreach (Event evt in addin.EventList)
+                        foreach (Event evt in addinSelected.EventList)
                             markedEventsForDeletion.Add(evt);
 
                         foreach (Event evt in markedEventsForDeletion)
-                            addin.EventList.Remove(evt);
+                            addinSelected.EventList.Remove(evt);
                     }
 
                     // add new events
                     foreach (AddinEvent evtData in data.Events)
                     {
                         Event evt = Event.NewEvent(evtData.EventName, evtData.EventHandler, true);
-                        addin.EventList.Add(evt);
+                        addinSelected.EventList.Add(evt);
                     }
 
-                    addin.ApplyEdit();
+                    addinSelected.ApplyEdit();
                     configurationBO.Save();
-
-                    break;
                 }
-                if (!found)
-                    throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", data.Name));
 
-                return new ResponseData(message: string.Format("The addin, {0}, was updated successfully.", data.Name));
+                return new ResponseData(message: string.Format("The addin, {0}, was updated successfully!", data.Name));
             });
         }
 
@@ -856,7 +909,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-element, {0}, was not found", formElementData.Name));
-                return new ResponseData(null, null, string.Format("The form-elements was updated successfully"), null);
+                return new ResponseData(null, null, string.Format("The form-elements was updated successfully!"), null);
             });
         }
         #endregion
@@ -881,7 +934,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
-                    var properties = (IEnumerable<Property>)propertyList;
+                    var properties = ((IEnumerable<Property>)propertyList).OrderBy(x => x.SortOrder);
+
                     foreach (var property in properties)
                     {
                         PropertyData propertyData = new PropertyData();
@@ -893,7 +947,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         propertyData.PickListDomainId = string.IsNullOrEmpty(property.PickListDomainId) ? string.Empty : property.PickListDomainId;
                         propertyData.Value = property.Value;
                         propertyData.DefaultValue = property.DefaultValue;
+
+                        // set precision to empty for display purpose
                         propertyData.Precision = string.IsNullOrEmpty(property.Precision) ? string.Empty : property.Precision;
+                        // set precision to empty for Boolean, Date, Picklist, url type. In DB, default precision for these types are 1
+                        switch (propertyData.Type.ToUpper())
+                        {
+                            case "BOOLEAN":
+                            case "DATE":
+                            case "PICKLISTDOMAIN":
+                            case "URL":
+                                propertyData.Precision = string.Empty;
+                                break;
+                        }
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
                         propertyData.FriendlyName = property.FriendlyName;
@@ -907,7 +973,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             ruleData.Min = string.IsNullOrEmpty(rule.MIN) ? string.Empty : rule.MIN;
                             ruleData.Max = string.IsNullOrEmpty(rule.MAX) ? string.Empty : rule.MAX;
                             ruleData.MaxLength = rule.MaxLength;
-                            ruleData.Error = rule.Error;
+                            ruleData.Error = string.IsNullOrEmpty(rule.Error) ? string.Empty : rule.Error;
                             ruleData.DefaultValue = rule.DefaultValue;
                             ruleData.Parameters = new List<ValidationParameter>();
 
@@ -935,10 +1001,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(data.Name))
+                if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid property name");
+                if (string.IsNullOrWhiteSpace(data.FriendlyName))
+                    throw new RegistrationException("Invalid property FriendlyName");
+                if (string.IsNullOrWhiteSpace(data.Type))
+                    throw new RegistrationException("Invalid property type");
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+
+                bool reserved = data.Name.ToUpper().Equals("DATE") ? true : data.Name.ToUpper().Equals("NUMBER") ? true :
+                    data.Name.ToUpper().Equals("TEXT") ? true : data.Name.ToUpper().Equals("BOOLEAN") ? true :
+                    data.Name.ToUpper().Equals("PICKLISTDOMAIN") ? true : configurationBO.DatabaseReservedWords.Contains(data.Name.ToUpper()) ? true : false;
+                if (reserved)
+                    throw new RegistrationException(string.Format("Property name '{0}' is a reserved keyword.", data.Name));
 
                 bool duplicateExists = false;
                 if (configurationBO.PropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.PropertyColumnList.Contains(data.Name.ToUpper()))
@@ -955,6 +1031,43 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (duplicateExists)
                     throw new RegistrationException(string.Format("The property '{0}' already exists.", data.Name));
 
+                // set defaut values (These default values are hard coded in the UI in old Reg app)
+                switch (data.Type.ToUpper())
+                {
+                    case "INTEGER":
+                        data.Type = ConfigurationRegistryRecord.PropertyTypeEnum.Number.ToString().ToUpper();
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "9.0" : data.Precision;
+                        break;
+                    case "FLOAT":
+                        data.Type = ConfigurationRegistryRecord.PropertyTypeEnum.Number.ToString().ToUpper();
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "8.6" : data.Precision;
+                        break;
+                    case "URL":
+                        data.Type = ConfigurationRegistryRecord.PropertyTypeEnum.Text.ToString().ToUpper();
+                        data.SubType = "URL";
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "200" : data.Precision;
+                        break;
+                    case "NUMBER":
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "8.0" : data.Precision;
+                        break;
+                    case "TEXT":
+                        data.Precision = string.IsNullOrEmpty(data.Precision) ? "200" : data.Precision;
+                        break;
+                }
+
+                // set default precision for other types like BOOLEAN, PICKLIST DOMAIN
+                data.Precision = string.IsNullOrWhiteSpace(data.Precision) ? "1" : data.Precision;
+
+                // if comma is given as a decimal separator, replce it with .
+                data.Precision = data.Precision.Replace(",", ".");
+
+                // below code will make sure that the input is a valid decimal numbe
+                // example , if 10 is given as input, it will return 10.0
+                decimal precision;
+                if (!decimal.TryParse(data.Precision, NumberStyles.Number, CultureInfo.InvariantCulture, out precision))
+                    throw new RegistrationException("Property precision is not a valid input.");
+                data.Precision = precision.ToString();
+
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
                 bool found = false;
                 foreach (var propertyType in propertyTypes)
@@ -964,7 +1077,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     configurationBO.SelectedPropertyList = propertyType;
                     var propertyList = configurationBO.GetSelectedPropertyList;
                     if (propertyList == null) continue;
-                    var properties = (IEnumerable<Property>)propertyList;
                     found = true;
 
                     string prefix = string.Empty;
@@ -991,41 +1103,41 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         prefix + data.Name.ToUpper(),
                         data.Name.ToUpper(),
                         data.Type,
-                        data.Precision,
+                        string.IsNullOrEmpty(data.Precision) ? "1" : data.Precision,
                         true,
-                        data.SubType,
+                        string.IsNullOrEmpty(data.SubType) ? string.Empty : data.SubType,
                         data.PickListDomainId);
                     configurationBO.GetSelectedPropertyList.AddProperty(confProperty);
 
                     switch (configurationBO.SelectedPropertyList)
                     {
                         case ConfigurationRegistryRecord.PropertyListType.PropertyList:
-                            if (data.FriendlyName == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Compound:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Batch:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
 
                         case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Structure:
-                            if (data.GroupLabel == string.Empty)
+                            if (string.IsNullOrEmpty(data.FriendlyName))
                                 configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.Name);
                             else
                                 configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
@@ -1040,7 +1152,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 else
                     throw new RegistrationException(string.Format("The property '{0}' not saved.", data.Name));
 
-                return new ResponseData(message: string.Format("The property, {0}, was saved successfully.", data.Name));
+                return new ResponseData(message: string.Format("The property, {0}, was saved successfully!", data.Name));
             });
         }
 
@@ -1056,8 +1168,40 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrEmpty(data.Name.Trim()))
+                if (string.IsNullOrWhiteSpace(data.Name))
                     throw new RegistrationException("Invalid property name");
+
+                foreach (ValidationRuleData ruleData in data.ValidationRules)
+                {
+                    switch (ruleData.Name.ToUpper())
+                    {
+                        case "NUMERICRANGE":
+                        case "TEXTLENGTH":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count == 0))
+                                throw new RegistrationException("This Validation Rule type must have min and max parameters.");
+
+                            if (ruleData.Parameters.Count < 2)
+                                throw new RegistrationException("This Validation Rule type must have min and max parameters.");
+
+                            if (int.Parse(ruleData.Parameters[0].Value) > int.Parse(ruleData.Parameters[1].Value))
+                                throw new RegistrationException("Max parameter must be greater than min parameter.");
+                            break;
+                        case "WORDLISTENUMERATION":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count < 1))
+                                throw new RegistrationException("Please insert one parameter at least.");
+                            break;
+                        case "REQUIREDFIELD":
+                            // no validation
+                            break;
+                        case "CUSTOM":
+                            if ((ruleData.Parameters == null) || (ruleData.Parameters.Count == 0))
+                                throw new RegistrationException("This Validation Rule type must have clientscript parameters.");
+
+                            if (string.IsNullOrWhiteSpace(ruleData.Parameters[0].Value))
+                                throw new RegistrationException("This Validation Rule type must have clientscript parameters.");
+                            break;
+                    }
+                }
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
@@ -1084,7 +1228,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 selectedProperty.BeginEdit();
 
-                if (!selectedProperty.Precision.Equals(data.Precision))
+                if ((!string.IsNullOrWhiteSpace(selectedProperty.Precision)) && (!selectedProperty.Precision.Equals(data.Precision)))
                 {
                     switch (selectedProperty.Type)
                     {
@@ -1104,17 +1248,97 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 if (selectedProperty.PrecisionIsUpdate)
                 {
+                    // when precision is updated all existing rules will be cleared and default rule is created
                     ValidationRuleList valRulesToDelete = selectedProperty.ValRuleList.Clone();
                     foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule valRule in valRulesToDelete)
                         selectedProperty.ValRuleList.RemoveValidationRule(valRule.ID);
                     ((ConfigurationProperty)selectedProperty).AddDefaultRule();
                 }
+                else
+                {
+                    // rules will be added or updated in seperate api call and there will not be a scenario like both precistion and rules will be updated at the same time
+                    // remove all existing validation rules, and create new rules using the new rule data
+                    ValidationRuleList valRulesToDelete = selectedProperty.ValRuleList.Clone();
+                    foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule valRule in valRulesToDelete)
+                        selectedProperty.ValRuleList.RemoveValidationRule(valRule.ID);
+
+                    foreach (ValidationRuleData ruleData in data.ValidationRules)
+                    {
+                        switch (ruleData.Name.ToUpper())
+                        {
+                            case "NUMERICRANGE":
+                            case "TEXTLENGTH":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                {
+                                    ruleData.Error = ruleData.Name.ToUpper() == "TEXTLENGTH" ?
+                                        ruleData.Error = "The property value can have between {0} and {1} characters." :
+                                        ruleData.Error = "This property can have at most {0} integer and {1} decimal digits.";
+                                }
+                                break;
+                            case "WORDLISTENUMERATION":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                    ruleData.Error = "The word is not valid.";
+                                break;
+                            case "REQUIREDFIELD":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                    ruleData.Error = "The property value is required.";
+                                selectedProperty.DefaultValue = ruleData.DefaultValue;
+                                break;
+                            case "CUSTOM":
+                                if (string.IsNullOrWhiteSpace(ruleData.Error))
+                                    ruleData.Error = "The Validation failed for this property.";
+                                break;
+                        }
+
+                        ParameterList paramList = ParameterList.NewParameterList();
+                        foreach (ValidationParameter param in ruleData.Parameters)
+                            paramList.Add(CambridgeSoft.COE.Registration.Services.BLL.Parameter.NewParameter(param.Name, param.Value, true));
+
+                        RegServicesTypes.ValidationRule validationRule = RegServicesTypes.ValidationRule.NewValidationRule(ruleData.Name, ruleData.Error, paramList, false);
+                        validationRule.MIN = ruleData.Min;
+                        validationRule.MAX = ruleData.Max;
+                        validationRule.MaxLength = ruleData.MaxLength;
+                        validationRule.DefaultValue = ruleData.DefaultValue;
+                        selectedProperty.ValRuleList.Add(validationRule);
+                    }
+                }
 
                 selectedProperty.ApplyEdit();
                 configurationBO.Save();
 
-                return new ResponseData(message: string.Format("The property, {0}, was updated successfully.", data.Name));
+                // update sort order
+                if (selectedProperty.SortOrder != data.SortOrder)
+                {
+                    var selectedPropertyList = configurationBO.GetSelectedPropertyList;
+
+                    bool moveUp = selectedProperty.SortOrder > data.SortOrder ? true : false;
+                    int sortOrder = moveUp ? selectedProperty.SortOrder - 1 : selectedProperty.SortOrder + 1;
+                    string affectedPropertyName = selectedPropertyList.ChangeOrder(sortOrder, moveUp, selectedProperty.Name);
+                    Dictionary<string, string> propertyLabels = GetPropertyLabelsByContainedPropertyName(configurationBO, selectedProperty.Name);
+                    if (propertyLabels != null)
+                    {
+                        propertyLabels.Add(selectedPropertyList[affectedPropertyName].Name,
+                            selectedPropertyList[affectedPropertyName].FriendlyName);
+                    }
+
+                    configurationBO.Save();
+                }
+
+                return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
             });
+        }
+
+        private Dictionary<string, string> GetPropertyLabelsByContainedPropertyName(ConfigurationRegistryRecord configBO, string propertyName)
+        {
+            foreach (Dictionary<string, string> propertyLabels in configBO.PropertiesLabels)
+            {
+                if (propertyLabels.ContainsKey(propertyName))
+                {
+                    return propertyLabels;
+                }
+            }
+
+            return null;
         }
 
         [HttpDelete]
@@ -1176,7 +1400,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The property, {0}, was not found", name));
-                return new ResponseData(message: string.Format("The property, {0}, was deleted successfully.", name));
+                return new ResponseData(message: string.Format("The property, {0}, was deleted successfully!", name));
             });
         }
 
@@ -1194,21 +1418,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var settingList = new List<SettingData>();
-                var currentApplicationName = RegUtilities.GetApplicationName();
-                var appConfigSettings = FrameworkUtils.GetAppConfigSettings(currentApplicationName, true);
-                var groups = appConfigSettings.SettingsGroup;
-                foreach (var group in groups)
-                {
-                    var settings = group.Settings;
-                    foreach (var setting in settings)
-                    {
-                        bool isAdmin;
-                        if (bool.TryParse(setting.IsAdmin, out isAdmin) && isAdmin) continue;
-                        settingList.Add(new SettingData(group, setting));
-                    }
-                }
-                return settingList;
+                return RegAppHelper.RetrieveSettings();
             });
         }
 
@@ -1262,7 +1472,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!updated)
                     throw new IndexOutOfRangeException("No change is required");
                 FrameworkUtils.SaveAppConfigSettings(currentApplicationName, appConfigSettings);
-                return new ResponseData(null, null, string.Format("{0} was updated successfully", settingInfo), null);
+                return new ResponseData(null, null, string.Format("{0} was updated successfully!", settingInfo), null);
             });
         }
 
@@ -1320,7 +1530,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-group, {0}, was not found", data.Name));
-                return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully", data.Name), null);
+                return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully!", data.Name), null);
             });
         }
 
@@ -1433,7 +1643,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 ExportDataViews(data.ExportDir);
                 if (data.SelectNone != true)
                     ExportTables(data.TableNames, data.ExportDir);
-                return new ResponseData(message: string.Format("The configuration was exported successfully."));
+                return new ResponseData(message: string.Format("The configuration was exported successfully!"));
             });
         }
 
@@ -1453,7 +1663,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 string AppRootInstallPath = page.Server.MapPath(string.Empty).Remove(page.Server.MapPath(string.Empty).IndexOf(FixedInstallPath) + FixedInstallPath.Length);
                 configurationBO.ImportCustomization(AppRootInstallPath, data.ServerPath, data.ForceImport);
-                return new ResponseData(message: string.Format("The configuration was imported successfully."));
+                return new ResponseData(message: string.Format("The configuration was imported successfully!"));
             });
         }
         #endregion

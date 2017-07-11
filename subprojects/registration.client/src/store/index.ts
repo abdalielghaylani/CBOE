@@ -1,21 +1,20 @@
 import { IAppState, rootReducer, deimmutify, reimmutify } from './store';
-import { ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory } from './configuration';
+import { ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory, INITIAL_STATE } from './configuration';
 import {
-  IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, RegistryFactory,
-  IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords
+  IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, IQueryData, RegistryFactory,
+  HitlistType, SearchCriteriaType, IHitlistData, IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords
 } from './registry';
-import { ISession } from './session';
 
 import { dev } from '../configuration';
 const createLogger = require('redux-logger');
 const persistState = require('redux-localstorage');
 
+export * from './session';
 export {
   IAppState,
-  ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory,
-  IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, RegistryFactory,
-  IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords,
-  ISession,
+  ICustomTableData, CCustomTableData, IConfiguration, ConfigurationFactory, INITIAL_STATE,
+  IRecordDetail, IRecordsData, CRecordsData, IRecords, IRegistry, IRegistryRetrievalQuery, IQueryData, RegistryFactory,
+  HitlistType, SearchCriteriaType, IHitlistData, IRegistrySearch, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords,
   rootReducer,
   reimmutify
 };

@@ -8,21 +8,25 @@ import {
   ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { select, NgRedux } from '@angular-redux/store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/toPromise';
 import { RegistryActions, RegistrySearchActions } from '../../actions';
-import { IAppState, CRecordsData, IRecords, ISearchRecords } from '../../store';
+import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { CRecords } from './registry.types';
+import { CRecords, RegistryStatus } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
-import 'rxjs/add/operator/toPromise';
+import { CSystemSettings } from '../configuration';
+import { HttpService } from '../../services';
+import { RegRecordSearch } from './record-search.component';
+import { hasDeleteRecordPrivilege } from './registry.utils';
+
 
 declare var jQuery: any;
 
@@ -35,15 +39,16 @@ declare var jQuery: any;
 })
 export class RegRecords implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
+  @ViewChild(RegRecordSearch) searchForm: RegRecordSearch;
   @Input() temporary: boolean;
   @Input() restore: boolean;
-  @select(s => s.session.lookups) lookups$: Observable<any>;
+  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   private records$: Observable<IRecords>;
   private lookupsSubscription: Subscription;
   private recordsSubscription: Subscription;
   private hitlistSubscription: Subscription;
-  private lookups: any;
+  private lookups: ILookupData;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
   private selectedRows: any[] = [];
@@ -57,10 +62,11 @@ export class RegRecords implements OnInit, OnDestroy {
   private currentIndex: number = 0;
   private dataStore: CustomStore;
   private sortCriteria: string;
+  private structureImageApiPrefix: string = `${apiUrlPrefix}StructureImage/`;
 
   constructor(
     private router: Router,
-    private http: Http,
+    private http: HttpService,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
@@ -87,7 +93,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   // Trigger data retrieval for the view to show.
-  retrieveContents(lookups: any) {
+  retrieveContents(lookups: ILookupData) {
     this.lookups = lookups;
     if (this.loggedIn$) {
       this.loadIndicatorVisible = true;
@@ -117,7 +123,7 @@ export class RegRecords implements OnInit, OnDestroy {
     if (!this.recordsSubscription) {
       this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
     }
-    this.actions.openHitlists();
+    this.actions.openHitlists(this.temporary);
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
     if (this.hitlistSubscription) {
       this.hitlistSubscription = this.hitlistData$.subscribe(() => {
@@ -172,6 +178,9 @@ export class RegRecords implements OnInit, OnDestroy {
         displayExpr: 'USERID',
         valueExpr: 'PERSONID'
       };
+    } else if (gridColumn.cellTemplate === 'statusTemplate') {
+      let systemSettings = new CSystemSettings(this.lookups.systemSettings);
+      gridColumn.visible = systemSettings.isApprovalsEnabled;
     }
     return gridColumn;
   }
@@ -184,7 +193,6 @@ export class RegRecords implements OnInit, OnDestroy {
       this.grid.instance.repaint();
     }
   }
-
 
   onResize(event: any) {
     this.gridHeight = this.getGridHeight();
@@ -227,8 +235,16 @@ export class RegRecords implements OnInit, OnDestroy {
         $links.filter('.dx-link-save').addClass('dx-icon-save');
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
       } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        // For Edit
+        let $editIcon = $links.filter('.dx-link-edit');
+        $editIcon.addClass('fa fa-info-circle');
+        $editIcon.attr({ 'data-toggle': 'tootip', 'title': 'Detail view' });
+        // For Delete icon
+        if (hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)) {
+          let $deleteIcon = $links.filter('.dx-link-delete');
+          $deleteIcon.addClass('dx-icon-trash');
+          $deleteIcon.attr({ 'data-toggle': 'tootip', 'title': 'Delete' });
+        }
       }
     }
   }
@@ -276,7 +292,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private manageQueries() {
-    this.actions.openHitlists();
+    this.actions.openHitlists(this.temporary);
     this.currentIndex = 1;
   }
 
@@ -295,7 +311,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private saveHitlist() {
-    if (this.hitlistVM.saveQueryVM.data.Name && this.hitlistVM.saveQueryVM.data.Description) {
+    if (this.hitlistVM.saveQueryVM.data.name && this.hitlistVM.saveQueryVM.data.description) {
       if (this.isMarkedQuery === true) {
         this.hitlistVM.saveQueryVM.clear();
         notifySuccess('Marked records saved successfully!', 5000);
@@ -303,6 +319,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.hitlistVM.saveQueryVM.clear();
         notifySuccess('Query saved successfully!', 5000);
       }
+      this.popupVisible = false;
     } else {
       notifyError('Name and Description is required!', 5000);
     }
@@ -320,6 +337,11 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private headerClicked(e) {
     this.currentIndex = 0;
+  }
+
+  private restoreClicked(queryData: IQueryData) {
+    this.currentIndex = 2;
+    this.searchForm.restore(queryData);
   }
 
   private showMarked() {
@@ -344,7 +366,7 @@ export class RegRecords implements OnInit, OnDestroy {
       } else if (succeeded.length === 0) {
         notifySuccess(`Deleting failed for all marked records!`, 5000);
       } else {
-        notify(`Some records were failed to delete: ${failed.join(', ')}`, `warning`, 5000);
+        notify(`Deleting records failed: ${failed.join(', ')}`, `warning`, 5000);
       }
       this.grid.instance.repaint();
       return;
@@ -357,7 +379,7 @@ export class RegRecords implements OnInit, OnDestroy {
       .catch(error => {
         failed.push(id);
         this.deleteRows(ids, failed, succeeded);
-        return null;
+        throw error;
       })
       .subscribe(r => {
         if (r !== null) {
@@ -416,5 +438,67 @@ export class RegRecords implements OnInit, OnDestroy {
     <body onload="window.print();window.close()">${printContents}</body>
       </html>`);
     popupWin.document.close();
+  }
+
+  private isApproved(data): boolean {
+    return data.value === RegistryStatus.Approved;
+  }
+
+  private get approvalsEnabled(): boolean {
+    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
+  }
+
+  private get approveMarkedEnabled(): boolean {
+    return this.temporary && this.selectedRows && this.selectedRows.length > 0 && this.approvalsEnabled;
+  }
+
+  private approveRows(ids: number[], failed: number[], succeeded: number[]) {
+    if (ids.length === 0) {
+      // If id list is empty, change deleted rows and refresh grid.
+      // Remove from this.records.data.rows
+      // Remove from this.selectedRows
+      // Also display a message about success/failure.
+      if (failed.length === 0) {
+        notifySuccess(`All marked records were approved successfully!`, 5000);
+      } else if (succeeded.length === 0) {
+        notifySuccess(`Approving failed for all marked records!`, 5000);
+      } else {
+        notify(`Approving for some records failed: ${failed.join(', ')}`, `warning`, 5000);
+      }
+      this.grid.instance.refresh();
+      return;
+    }
+    // Otherwise, shift ids
+    let id = ids.shift();
+    let row = this.records.data.rows.find(r => r.ID === id);
+    if (row && row.STATUSID === RegistryStatus.Submitted) {
+      let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}/${RegistryStatus.Approved}`;
+      // Approve first id
+      this.http.put(url, undefined)
+        .catch(error => {
+          failed.push(id);
+          this.approveRows(ids, failed, succeeded);
+          throw error;
+        })
+        .subscribe(r => {
+          if (r !== null) {
+            // Upon successful deletion, recursively call approveRows
+            row.STATUSID = RegistryStatus.Approved;
+            succeeded.push(id);
+            this.approveRows(ids, failed, succeeded);
+          }
+        });
+    } else {
+      this.approveRows(ids, failed, succeeded);
+    }
+  }
+
+  private approveMarked() {
+    if (this.selectedRows && this.selectedRows.length > 0) {
+      let ids: number[] = this.selectedRows.map(r => r[Object.keys(r)[0]]);
+      let succeeded: number[] = [];
+      let failed: number[] = [];
+      this.approveRows(ids, failed, succeeded);
+    }
   }
 };

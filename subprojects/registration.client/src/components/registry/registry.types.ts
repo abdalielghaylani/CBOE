@@ -1,11 +1,17 @@
 import { IAppState } from '../../store';
 import { apiUrlPrefix } from '../../configuration';
 import {
-  FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer,
-  GroupSettingType, getSetting
+  IShareableObject, FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer
 } from '../../common';
 import { IRecordsData, IRecords } from '../../store';
 
+export enum RegistryStatus {
+  NotSet,
+  Submitted,
+  Approved,
+  Registered,
+  Locked
+}
 
 export class FragmentData {
   FragmentID: number;
@@ -184,37 +190,29 @@ export class CComponentVM {
       dataField: 'identifierList',
       label: { text: 'Component Identifiers' },
       colSpan: 2,
-      template: function (d, itemElement) {
-        (jQuery('<div>')
-          .appendTo(itemElement) as any)
-          .dxDataGrid({
-            disabled: !container.editMode,
-            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-            columns: [{
-              dataField: 'id',
-              caption: 'Identifier',
-              editorType: 'dxSelectBox',
-              lookup: {
-                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
-                displayExpr: 'NAME',
-                valueExpr: 'ID',
-                placeholder: 'Select Identifier'
-              }
-            }, {
-              dataField: 'inputText',
-              caption: 'Value'
-            }],
-            editing: {
-              mode: 'row',
-              allowUpdating: true,
-              allowDeleting: true,
-              allowAdding: true
-            },
-            onCellPrepared: function (e) {
-              onCellPrepared(e);
-            }
-          });
+      editorOptions: {
+        columns: [{
+          dataField: 'id',
+          caption: 'Identifier',
+          editorType: 'dxSelectBox',
+          lookup: {
+            dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
+            displayExpr: 'NAME',
+            valueExpr: 'ID',
+            placeholder: 'Select Identifier'
+          }
+        }, {
+          dataField: 'inputText',
+          caption: 'Value'
+        }],
+        editing: {
+          mode: 'row',
+          allowUpdating: true,
+          allowDeleting: true,
+          allowAdding: true
+        }
       },
+      template: 'dataGridTemplate'
     });
     this.columns = [{
       itemType: 'group',
@@ -479,56 +477,41 @@ export class CRegistryRecordVM {
       dataField: 'projectList',
       label: { text: 'Projects' },
       colSpan: 2,
-      template: function (d, itemElement) {
-        (jQuery('<div>')
-          .appendTo(itemElement) as any)
-          .dxTagBox({
-            disabled: !container.editMode,
-            value: d.editorOptions.value ? d.editorOptions.value : [],
-            valueExpr: 'PROJECTID',
-            displayExpr: 'NAME',
-            dataSource: lookups ? lookups.projects : [],
-            onValueChanged: function (e) {
-              d.component.option('formData.' + d.dataField, e.value);
-            }
-          });
-      }
+      editorOptions: {
+        dataSource: lookups ? lookups.projects.filter(i => i.ACTIVE === 'T') : [],
+        displayExpr: 'NAME',
+        valueExpr: 'PROJECTID',
+        placeholder: 'Select Project'
+      },
+      template: 'tagBoxTemplate'
     });
     this.columns.push({
       dataField: 'identifierList',
       label: { text: 'Registry Identifiers' },
       colSpan: 2,
-      template: function (d, itemElement) {
-        (jQuery('<div>')
-          .appendTo(itemElement) as any)
-          .dxDataGrid({
-            disabled: !container.editMode,
-            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-            columns: [{
-              dataField: 'id',
-              caption: 'Identifier',
-              editorType: 'dxSelectBox',
-              lookup: {
-                dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
-                displayExpr: 'NAME',
-                valueExpr: 'ID',
-                placeholder: 'Select Identifier'
-              }
-            }, {
-              dataField: 'inputText',
-              caption: 'Value'
-            }],
-            editing: {
-              mode: 'row',
-              allowUpdating: true,
-              allowDeleting: true,
-              allowAdding: true
-            },
-            onCellPrepared: function (e) {
-              onCellPrepared(e);
-            }
-          });
+      editorOptions: {
+        columns: [{
+          dataField: 'id',
+          caption: 'Identifier',
+          editorType: 'dxSelectBox',
+          lookup: {
+            dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
+            displayExpr: 'NAME',
+            valueExpr: 'ID',
+            placeholder: 'Select Identifier'
+          }
+        }, {
+          dataField: 'inputText',
+          caption: 'Value'
+        }],
+        editing: {
+          mode: 'row',
+          allowUpdating: true,
+          allowDeleting: true,
+          allowAdding: true
+        }
       },
+      template: 'dataGridTemplate'
     });
     let batchComponentFragmentList: CBatchComponentFragmentVM[] = [];
     buildPropertyList(this, this.columns, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.RegistryCustomProperties), container);
@@ -597,64 +580,56 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
       dataField: 'batchComponentFragmentList',
       label: { text: 'Fragments' },
       colSpan: 1,
-      template: function (d, itemElement) {
-        (jQuery('<div />')
-          .appendTo(itemElement) as any)
-          .dxDataGrid({
-            disabled: !container.editMode,
-            dataSource: d.editorOptions.value ? d.editorOptions.value : [],
-            columns: [{
-              dataField: 'fragmentTypeId',
-              caption: 'Type',
-              editorType: 'dxSelectBox',
-              lookup: {
-                dataSource: lookups ? lookups.fragmentTypes : [],
-                displayExpr: 'DESCRIPTION',
-                valueExpr: 'ID'
-              },
-              width: 60
-            }, {
-              dataField: 'equivalents',
-              caption: 'Equivalent',
-              width: 80
-            }, {
-              dataField: 'code',
-              caption: 'Code',
-              width: 50
-            }, {
-              dataField: 'structure',
-              caption: 'Structure',
-              allowEditing: false,
-              allowFiltering: false,
-              allowSorting: false,
-              width: 150,
-              cellTemplate: function (c, o) {
-                jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
-              }
-            }, {
-              dataField: 'description',
-              caption: 'Description',
-              allowEditing: false
-            }, {
-              dataField: 'molWeight',
-              caption: 'MW',
-              allowEditing: false
-            }, {
-              dataField: 'formula',
-              caption: 'MF',
-              allowEditing: false
-            }],
-            editing: {
-              mode: 'row',
-              allowUpdating: true,
-              allowDeleting: true,
-              allowAdding: true
-            },
-            onCellPrepared: function (e) {
-              onCellPrepared(e);
-            }
-          });
-      }
+      editorOptions: {
+        columns: [{
+          dataField: 'fragmentTypeId',
+          caption: 'Type',
+          editorType: 'dxSelectBox',
+          lookup: {
+            dataSource: lookups ? lookups.fragmentTypes : [],
+            displayExpr: 'DESCRIPTION',
+            valueExpr: 'ID'
+          },
+          width: 60
+        }, {
+          dataField: 'equivalents',
+          caption: 'Equivalent',
+          width: 80
+        }, {
+          dataField: 'code',
+          caption: 'Code',
+          width: 50
+        }, {
+          dataField: 'structure',
+          caption: 'Structure',
+          allowEditing: false,
+          allowFiltering: false,
+          allowSorting: false,
+          width: 150,
+          cellTemplate: function (c, o) {
+            jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
+          }
+        }, {
+          dataField: 'description',
+          caption: 'Description',
+          allowEditing: false
+        }, {
+          dataField: 'molWeight',
+          caption: 'MW',
+          allowEditing: false
+        }, {
+          dataField: 'formula',
+          caption: 'MF',
+          allowEditing: false
+        }],
+        editing: {
+          mode: 'row',
+          allowUpdating: true,
+          allowDeleting: true,
+          allowAdding: true
+        }
+      },
+      template: 'dataGridTemplate'
     }];
   }
   return groupItem;
@@ -821,4 +796,22 @@ export interface IRecordSaveData {
   id: number;
   recordDoc: Document;
   saveToPermanent: boolean;
+}
+
+export interface ITemplateData extends IShareableObject {
+  id?: number;
+  dateCreated?: Date;
+  username?: string;
+  data?: string;
+}
+
+export class CTemplateData implements ITemplateData {
+  constructor(
+    public name: string = '',
+    public description?: string,
+    public isPublic?: boolean,
+    public id?: number,
+    dateCreated?:
+    Date, username?: string,
+    date?: string) { }
 }

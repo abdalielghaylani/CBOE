@@ -6,10 +6,12 @@ import {
 import {
     HttpModule,
     XHRBackend,
+    RequestOptions,
     ResponseOptions,
     Response
 } from '@angular/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import { SessionActions } from '../actions/session.actions';
@@ -18,20 +20,29 @@ import {
     MockBackend,
     MockConnection
 } from '@angular/http/testing/mock_backend';
-import { configureTests } from '../tests.configure';
+import { TestModule } from '../test';
+import { HttpService } from '../services';
+import { IAppState } from '../store';
 
 describe('SessionEpics', () => {
     beforeEach(done => {
         const configure = (testBed: TestBed) => {
             testBed.configureTestingModule({
-                imports: [HttpModule, RouterTestingModule],
+                imports: [TestModule, HttpModule, NgReduxModule, RouterTestingModule],
                 providers: [
                     { provide: XHRBackend, useClass: MockBackend },
+                    {
+                        provide: HttpService,
+                        useFactory: (backend: XHRBackend, options: RequestOptions, redux: NgRedux<IAppState>) => {
+                        return new HttpService(backend, options, redux);
+                        },
+                        deps: [XHRBackend, RequestOptions, NgRedux]
+                    },
                     SessionEpics
                 ]
             });
         };
-        configureTests(configure).then(done);
+        TestModule.configureTests(configure).then(done);
     });
 
     it('should process a successful login', fakeAsync(

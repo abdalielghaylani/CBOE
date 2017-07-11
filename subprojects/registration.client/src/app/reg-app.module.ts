@@ -12,13 +12,20 @@ import {
   RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
   RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage
 } from '../pages';
-import { RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms } from '../components';
-import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement } from '../components';
+import {
+  RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
+  RegSettingsPageHeader
+} from '../components';
+import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement, RegTemplates } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
-import { RegUiModule } from '../components/ui/ui.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
-import { RegFooterModule } from '../components/footer/footer.module';
 import { ToolModule } from '../common';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
+import { HttpService, AuthGuard } from '../services';
+import { IAppState } from '../store';
+import { RegCommonComponentModule } from '../components';
+import { RegLayoutComponentModule } from '../components';
+import { RegBaseComponentModule } from '../components/registry/base/';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -31,6 +38,9 @@ import {
   DxLoadPanelModule,
   DxScrollViewModule,
   DxTextAreaModule,
+  DxListModule,
+  DxTextBoxModule,
+  DxValidatorModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -40,10 +50,11 @@ import {
     BrowserModule,
     routing,
     CommonModule,
+    RegCommonComponentModule,
+    RegLayoutComponentModule,
     RegLoginModule,
-    RegUiModule,
     RegNavigatorModule,
-    RegFooterModule,
+    RegBaseComponentModule,
     ToolModule,
     NgReduxModule,
     DxCheckBoxModule,
@@ -56,7 +67,10 @@ import {
     DxLoadIndicatorModule,
     DxLoadPanelModule,
     DxScrollViewModule,
-    DxTextAreaModule
+    DxTextAreaModule,
+    DxListModule,
+    DxTextBoxModule,
+    DxValidatorModule
   ],
   declarations: [
     RegApp,
@@ -65,13 +79,14 @@ import {
     RegRecordDetailPage,
     RegRecords,
     RegQueryManagement,
+    RegTemplates,
     RegRecordSearch,
     RegRecordDetail,
     RegStructureImage,
     RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
-    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
+    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms, RegSettingsPageHeader,
     RegLoginPage,
-    RegAboutPage
+    RegAboutPage,
   ],
   bootstrap: [
     RegApp
@@ -80,9 +95,17 @@ import {
     DevToolsExtension,
     FormBuilder,
     NgReduxRouter,
+    AuthGuard,
     appRoutingProviders
   ]
     .concat(ACTION_PROVIDERS)
     .concat(EPIC_PROVIDERS)
+    .concat([{
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions, redux: NgRedux<IAppState>) => {
+        return new HttpService(backend, options, redux);
+      },
+      deps: [XHRBackend, RequestOptions, NgRedux]
+    }])
 })
 export class RegAppModule { }

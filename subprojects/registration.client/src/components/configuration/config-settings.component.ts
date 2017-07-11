@@ -2,17 +2,17 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
+import { select, NgRedux } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { ICustomTableData, IConfiguration, IAppState } from '../../store';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -62,7 +62,8 @@ export class RegConfigSettings implements OnInit, OnDestroy {
   }];
 
   constructor(
-    private http: Http,
+    private http: HttpService,
+    private ngRedux: NgRedux<IAppState>,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
@@ -143,16 +144,12 @@ export class RegConfigSettings implements OnInit, OnDestroy {
           .toPromise()
           .then(result => {
             let rows = result.json();
+            parent.ngRedux.getState().session.lookups.systemSettings = rows;
+            rows = rows.filter(r => r.isAdmin === undefined || !r.isAdmin);
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
-            let message = `The records of ${tableName} were not retrieved properly due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -174,13 +171,7 @@ export class RegConfigSettings implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The setting ${data.name} in ${data.groupLabel} was not updated due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The setting ${data.name} in ${data.groupLabel} was not updated due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();

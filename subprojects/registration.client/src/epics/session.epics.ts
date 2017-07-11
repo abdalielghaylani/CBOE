@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { UPDATE_LOCATION } from '@angular-redux/router';
-import { Http } from '@angular/http';
 import { createAction } from 'redux-actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -10,10 +9,12 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import { IPayloadAction, SessionActions, RegActions } from '../actions';
 import { apiUrlPrefix } from '../configuration';
+import { HttpService } from '../services';
+import { ILookupData } from '../store';
 
 @Injectable()
 export class SessionEpics {
-  constructor(private http: Http, private router: Router) { }
+  constructor(private http: HttpService, private router: Router) { }
 
   handleLoginUser = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
@@ -27,15 +28,36 @@ export class SessionEpics {
   handleLoginUserSuccess = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
       .mergeMap(() => {
-        this.router.navigate(['records/temp']);
         return this.http.get(`${apiUrlPrefix}ViewConfig/Lookups`)
           .map(result => {
-            return result.url.indexOf('index.html') > 0
-              ? SessionActions.logoutUserAction()
-              : SessionActions.loadLookupsSuccessAction(result.json());
+            this.navigateToHomePage(result.json());
+            return SessionActions.loadLookupsSuccessAction(result.json());
           })
           .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
       });
+  }
+
+  navigateToHomePage(lookupData: ILookupData) {
+    let homeMenuPrivileges = lookupData.homeMenuPrivileges;
+    if (this.getPrivilege(homeMenuPrivileges, 'SEARCH_TEMP')) {
+      this.router.navigate(['records/temp']);
+    } else if (this.getPrivilege(homeMenuPrivileges, 'SEARCH_REG')) {
+      this.router.navigate(['records']);
+    } else if (this.getPrivilege(homeMenuPrivileges, 'ADD_COMPOUND_TEMP')) {
+      this.router.navigate(['records/new']);
+    } else if (this.getPrivilege(homeMenuPrivileges, 'CONFIG_REG')) {
+      this.router.navigate(['configuration/VW_PROJECT']);
+    } else if (this.getPrivilege(homeMenuPrivileges, 'CONFIG_REG')) {
+      // TODO: show unauthorized page
+    }
+  }
+
+  getPrivilege(homeMenuPrivileges, privilage) {
+    let privilageItem = homeMenuPrivileges.find(p => p.privilegeName === privilage);
+    if (privilageItem === undefined) {
+      return false;
+    }
+    return privilageItem.visibility ? true : false;
   }
 
   handleLogoutUser = (action$: Observable<IPayloadAction>) => {
@@ -52,15 +74,15 @@ export class SessionEpics {
       .mergeMap(({ payload }) => {
         return !payload ? Observable.of(RegActions.ignoreAction()) :
           this.http.get(`${apiUrlPrefix}auth/validate/${payload}`)
-          // .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
-          // .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
-          .map(result => {
-            let validationData = result.json();
-            return validationData.isValid ?
-              SessionActions.loginUserSuccessAction(validationData.meta) :
-              RegActions.ignoreAction();
-          })
-          .catch(error => Observable.of(RegActions.ignoreAction()));
+            // .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
+            // .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+            .map(result => {
+              let validationData = result.json();
+              return validationData.isValid ?
+                SessionActions.loginUserSuccessAction(validationData.meta) :
+                RegActions.ignoreAction();
+            })
+            .catch(error => Observable.of(RegActions.ignoreAction()));
       });
   }
 }

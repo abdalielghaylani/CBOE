@@ -56,3 +56,8 @@ export interface IRegistryRetrievalQuery {
   take?: number;
   sort?: string;
 }
+
+export interface IQueryData {
+  temporary: boolean;
+  searchCriteria: string;
+}

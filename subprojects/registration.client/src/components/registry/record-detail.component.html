@@ -1,14 +1,38 @@
-<div class="viewcontainer" (window:resize)="onResize($event)">
-  <command-button *ngIf="id >= 0 &amp;&amp; !editMode" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
-  <command-button *ngIf="editMode" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
-  <command-button *ngIf="id < 0 || editMode" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title="Save"></command-button>
-  <command-button *ngIf="(temporary &amp;&amp; !editMode) || id < 0" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
-  <reg-page-header testid="configuration-heading" id="qa-configuration-heading">
+<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="currentIndex!=0">
+  <div *ngIf="submissionTemplatesEnabled" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+    <button type="button" class="btn btn-default border-2 status background-blue border-blue">
+      <i class="fa-undo white" aria-hidden="true"></i>
+    </button>
+    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Templates <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>
+      <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
+    </ul>
+  </div>
+  <command-button *ngIf="deleteButtonEnabled" testid="delete-record-details-button" (onClick)="delete()" iconName="trash" title="Delete"></command-button>
+  <command-button *ngIf="editButtonEnabled" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
+  <command-button *ngIf="editMode &amp;&amp; !isNewRecord" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
+  <command-button *ngIf="saveButtonEnabled" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title="Save"></command-button>
+  <command-button *ngIf="registerButtonEnabled" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
+  <command-button *ngIf="approveButtonEnabled" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up" title="Approve"></command-button>
+  <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
+  <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
-  </reg-page-header>
+  </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
       <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+            <a class="list-header tan" data-toggle="collapse" href="#registryPanel">Registry Information</a>
+          </div>
+          <div id="registryPanel" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <reg-form-view id="registryForm" [formData]="regRecordVM" [colCount]="2" [items]="regRecordVM.columns" [editMode]="editMode">
+              </reg-form-view>
+            </div>
+          </div>
+        </div>
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#structurePanel">Structure Information</a>
@@ -16,22 +40,8 @@
           <div id="structurePanel" class="panel-collapse collapse in">
             <div class="panel-body">
               <div style="width:100%;height:100%;" resize>
-                <div class='cdContainer'>
-                  <div class='click_catch'>
-                    <div class='toastMessagePresenter'></div>
-                  </div>
-                </div>
+                <chemdraw-web></chemdraw-web>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="panel panel-default">
-          <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-            <a class="list-header tan" data-toggle="collapse" href="#registryPanel">Registry Information</a>
-          </div>
-          <div id="registryPanel" class="panel-collapse collapse in">
-            <div class="panel-body">
-              <dx-form id="registryForm" [formData]="regRecordVM" [colCount]="2" [items]="regRecordVM.columns" [readOnly]="!editMode"></dx-form>
             </div>
           </div>
         </div>
@@ -41,7 +51,8 @@
           </div>
           <div id="componentPanel" class="panel-collapse collapse in">
             <div class="panel-body">
-              <dx-form id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [readOnly]="!editMode"></dx-form>
+              <reg-form-view id="componentForm" [formData]="regRecordVM.componentList[0]" [items]="regRecordVM.componentList[0].columns" [editMode]="editMode">
+              </reg-form-view>
             </div>
           </div>
         </div>
@@ -51,11 +62,25 @@
           </div>
           <div id="batchPanel" class="panel-collapse collapse in">
             <div class="panel-body">
-              <dx-form id="batchForm" [formData]="regRecordVM.batchList[0]" [items]="regRecordVM.batchList[0].columns" [readOnly]="!editMode"></dx-form>
+              <reg-form-view id="batchForm" [formData]="regRecordVM.batchList[0]" [items]="regRecordVM.batchList[0].columns" [editMode]="editMode">
+              </reg-form-view>
             </div>
           </div>
         </div>
       </div>
     </form>
   </dx-scroll-view>
+  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">
+    <div *dxTemplate="let data of 'content'">
+      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
+      </dx-form>
+      <div style="margin-top: 15px">
+        <button class="mr1 btn btn-primary" (click)="saveTemplate()">Save</button>
+        <button class="mr1 btn btn-primary" (click)="cancelSaveTemplate()">Cancel</button>
+      </div>
+    </div>
+  </dx-popup>
+</div>
+<div class="viewcontainer" [hidden]="currentIndex!=1">
+  <reg-templates (onClose)="showDetails($event)"></reg-templates>
 </div>

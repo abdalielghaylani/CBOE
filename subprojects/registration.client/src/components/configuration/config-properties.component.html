@@ -1,14 +1,183 @@
-<div class="viewcontainer" (window:resize)="onResize($event)">
-  <reg-settings-page-header>Manage Data Properties</reg-settings-page-header>
-  <dx-data-grid [dataSource]="dataSource" [paging]='{pageSize: 10}'
-    [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" 
-    rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
-    (onCellPrepared)='onCellPrepared($event)'>
+<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configProperties.window.viewIndex==='list')">
+  <reg-settings-page-header [isMenu]='true'>{{configProperties.window.title}}</reg-settings-page-header>
+  <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [paging]="{enabled: false}" [height]="gridHeight" rowAlternationEnabled="true"
+    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event,true)'
+    (onEditingStart)="onEditingStart($event)">
     <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
-    <dxo-scrolling mode="infinite"></dxo-scrolling>
-    <div *dxTemplate="let data of 'cellTemplate'">
-      <reg-structure-image [src]="data.value"></reg-structure-image>
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+    <div *dxTemplate="let data of 'sortOrderTemplate'">
+      &nbsp;
+      <a [ngClass]="(data.value>0)?'fa fa-level-up grid-icon':'fa fa-level-up grid-icon-disabled'" (click)="moveupordown(data,'up');"
+        aria-hidden="true" title='Level up'></a>&nbsp;
+      <a [ngClass]="(data.data.sortOrderMax)?'fa fa-level-down grid-icon':'fa fa-level-down grid-icon-disabled'" (click)="moveupordown(data,'down');"
+        aria-hidden="true" title='Level down'></a>&nbsp;
+    </div>
+    <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
+      &nbsp;
+      <a class="fa fa-code grid-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Validation Rules'></a>&nbsp;
     </div>
   </dx-data-grid>
+</div>
+<div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='add'||configProperties.window.viewIndex==='edit')">
+  <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='add'" (onClick)="addProperty($event)" iconName="plus"
+    title="Add Property"></command-button>
+  <command-button testid="close-button" *ngIf="configProperties.window.viewIndex==='edit'" (onClick)="saveProperty($event)"
+    iconName="plus" title="Save Property"></command-button>
+  <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
+  <div class="row">
+    <div class="col-md-8">
+      <dx-form minColWidth=300 (onFieldDataChanged)="configProperties.showHideDataFields($event)" [colCount]="1" [formData]="configProperties.formData"
+        [items]="configProperties.formColumns"></dx-form>
+    </div>
+  </div>
+</div>
+<div class="viewcontainer" *ngIf="(configProperties.window.viewIndex==='validation')">
+  <command-button testid="close-button" (onClick)="cancel()" iconName="close" title="Close"></command-button>
+  <reg-settings-page-header [isMenu]='false'>{{configProperties.window.title}}</reg-settings-page-header>
+  <dx-scroll-view id="scrollview" [height]="gridHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+          <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Property</a>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <dx-form minColWidth=300 [colCount]="2" [formData]="configProperties.formData" [items]="configProperties.formValidationColumns.property"></dx-form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-group" id="accordion" [hidden]="!configProperties.addRuleVisible">
+      <div class="panel panel-default">
+        <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+          <command-button testid="validation-button-cancel" (onClick)="configProperties.clearFormDataValidations()" iconName="undo"
+            title="Cancel"></command-button>
+          <command-button testid="validation-button-save" (onClick)="saveValidationRule($event)" iconName="save" title="Save Rule"></command-button>
+          <a class="list-header tan" data-toggle="collapse" href="#collapseOne">New Validation Rule</a>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formDataValidation" [items]="configProperties.formValidationColumns.editColumn"
+              (onFieldDataChanged)="configProperties.onValidationTypeChanged($event)"></dx-form>
+            <div style='margin-top: 20px;' *ngIf="configProperties.formDataValidation.name==='wordListEnumeration'">
+              <div class="panel panel-default">
+                <div class="tan panel-heading">
+                  <h3 class="panel-title">
+                    Add Parameters</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-xs-6 col-md-6">
+                      <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>validWord </b></span></div>
+                      <div class="col-sm-8">
+                        <dx-text-box [(value)]='configProperties.formDataValidation.validWord'>
+                          <dx-validator>
+                            <dxi-validation-rule type="required" message="Word required"></dxi-validation-rule>
+                          </dx-validator>
+                        </dx-text-box>
+                      </div>
+                      <div class="col-sm-1">
+                        <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="configProperties.addParams('validWord',configProperties.formDataValidation.validWord)"
+                          title='Add Parameter'></a>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6" style="border-left:1px solid #ddd;padding-left:5px">
+                      <span class="dx-field-item-label-text">Parameters List:</span>
+                      <dx-list [items]="configProperties.formDataValidation.parameters" [height]="100" [allowItemDeleting]="true" itemDeleteMode="toggle"
+                        (onItemDeleting)="configProperties.onParameterItemDeleted($event)">
+                        <dxi-item *ngFor="let item of configProperties.formDataValidation.parameters">
+                          <div>{{item.name}} = {{item.value}}</div>
+                        </dxi-item>
+                      </dx-list>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style='margin-top: 20px;' *ngIf="configProperties.formDataValidation.name==='textLength'">
+              <div class="panel panel-default">
+                <div class="tan panel-heading">
+                  <h3 class="panel-title">
+                    Add Parameters</h3>
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-xs-6 col-md-6 ">
+                      <div class="row">
+                        <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>Min:</b></span></div>
+                        <div class="col-sm-8">
+                          <dx-number-box [(value)]='configProperties.formDataValidation.min' [showSpinButtons]="true">
+                            <dx-validator>
+                              <dxi-validation-rule type="required" message="Min Length is required"></dxi-validation-rule>
+                            </dx-validator>
+                          </dx-number-box>
+                        </div>
+                        <div class="col-sm-1">
+                          <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="configProperties.addParams('min',configProperties.formDataValidation.min)"
+                            title='Add Parameter'></a>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>Max:</b></span></div>
+                        <div class="col-sm-8">
+                          <dx-number-box [(value)]='configProperties.formDataValidation.max' [showSpinButtons]="true">
+                            <dx-validator>
+                              <dxi-validation-rule type="required" message="Max Length is required"></dxi-validation-rule>
+                            </dx-validator>
+                          </dx-number-box>
+                        </div>
+                        <div class="col-sm-1">
+                          <a class="fa fa-plus-square grd-icon" aria-hidden="true" (click)="configProperties.addParams('max',configProperties.formDataValidation.max)"
+                            title='Add Parameter'></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-6 col-md-6" style="border-left:1px solid #ddd;padding-left:5px">
+                      <span class="dx-field-item-label-text">Parameters List:</span>
+                      <dx-list [items]="configProperties.formDataValidation.parameters" [height]="100" [allowItemDeleting]="true" itemDeleteMode="toggle"
+                        (onItemDeleting)="configProperties.onParameterItemDeleted($event)">
+                        <dxi-item *ngFor="let item of configProperties.formDataValidation.parameters">
+                          <div>{{item.name}} = {{item.value}}</div>
+                        </dxi-item>
+                      </dx-list>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-group" id="accordion" [hidden]="configProperties.addRuleVisible">
+      <div class="panel panel-default">
+        <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+          <command-button testid="validation-button" (onClick)="configProperties.addValidationRule($event)" iconName="plus" title="Add Rule"></command-button>
+          <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Validation Rules List</a>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <dx-data-grid [columns]="configProperties.formValidationColumns.grdColumns" [dataSource]="configProperties.formData.validationRules"
+              [height]="gridHeight-200" rowAlternationEnabled="true" (onInitNewRow)='onInitNewRow($event,false)' (onContentReady)='onContentReady($event)'
+              (onCellPrepared)="onCellPrepared($event,'validation')" (onRowRemoved)='onValidationRowRemoved($event)'>
+              <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false"></dxo-editing>
+              <dxo-sorting mode="single"></dxo-sorting>
+              <dxo-filter-row [visible]="true"></dxo-filter-row>
+              <dxo-scrolling mode="virtual"></dxo-scrolling>
+              <div *dxTemplate="let data of 'parameterTemplate'">
+                <dx-list [items]="data.data.parameters" [height]="60" noDataText="">
+                  <dxi-item *ngFor="let item of data.data.parameters">
+                    <div>{{item.name}} = {{item.value}}</div>
+                  </dxi-item>
+                </dx-list>
+              </div>
+            </dx-data-grid>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dx-scroll-view>
 </div>
