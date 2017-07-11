@@ -152,6 +152,13 @@ export class RegConfigTables implements OnInit, OnDestroy {
       case 'VW_SEQUENCE':
         retValue = privileges.hasSequenceTablePrivilege(action, this.lookups.userPrivileges);
         break;
+      case 'VW_PICKLIST':
+      case 'VW_PICKLISTDOMAIN':
+      case 'VW_FRAGMENTTYPE':
+      case 'VW_IDENTIFIERTYPE':
+      case 'VW_SITES':
+        retValue = true;
+        break;
     }
     return retValue;
   }
