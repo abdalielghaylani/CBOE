@@ -136,15 +136,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    string regNum;
                     var duplicateId = new JArray();
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.LoadXml(chkDuplicate);
                     XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
                     foreach (XmlNode node in nodeList)
                     {
-                        regNum = node.InnerText;
-                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
                         duplicateId.Add(registryRecord.ID);
                     }
                     var responseMessage = new JObject(
@@ -219,15 +217,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    string regNum;
                     var duplicateId = new JArray();
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.LoadXml(chkDuplicate);
                     XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
                     foreach (XmlNode node in nodeList)
                     {
-                        regNum = node.InnerText;
-                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
                         duplicateId.Add(registryRecord.ID);
                     }
                     var responseMessage = new JObject(
