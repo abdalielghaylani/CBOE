@@ -136,8 +136,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
+                    string regnum;
+                    int regID;
+                    var duplicateId = new JArray();
+                    XmlDocument xmldoc = new XmlDocument();
+                    xmldoc.LoadXml(chkDuplicate);
+                    XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+                    foreach (XmlNode node in nodeList)
+                    {
+                        regnum = node.InnerText;
+                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regnum);
+                        regID = registryRecord.ID;
+                        duplicateId.Add(regID);
+                    }
                     var responseMessage = new JObject(
-                    new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
+                        new JProperty("RecordID", duplicateId),
+                        new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
                     );
                     return new ResponseData(null, null, null, responseMessage);
                 }
