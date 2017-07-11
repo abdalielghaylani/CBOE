@@ -26,7 +26,7 @@ import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus } from './registry.types';
 import { ChemDrawWeb } from '../common';
-import { hasDeleteRecordPrivilege } from './registry.utils';
+import privileges from '../../common/utils/privilege.utils';
 
 @Component({
   selector: 'reg-record-detail',
@@ -315,7 +315,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get editButtonEnabled(): boolean {
-    return !this.isNewRecord && !this.editMode && !this.cancelApprovalButtonEnabled;
+    return !this.isNewRecord && privileges.hasEditRecordPrivilege(this.temporary, this.lookups.userPrivileges)
+      && !this.editMode && !this.cancelApprovalButtonEnabled;
   }
 
   private get saveButtonEnabled(): boolean {
@@ -337,7 +338,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get deleteButtonEnabled(): boolean {
-    return !this.isNewRecord && hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
+    return !this.isNewRecord && privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
   }
 
   private cancelApproval() {
