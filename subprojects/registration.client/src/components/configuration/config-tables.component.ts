@@ -11,9 +11,10 @@ import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { IAppState, ICustomTableData, IConfiguration } from '../../store';
+import { IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../store';
 import { CConfigTable } from './config.types';
 import { HttpService } from '../../services';
+import privileges from '../../common/utils/privilege.utils';
 
 declare var jQuery: any;
 
@@ -27,6 +28,9 @@ declare var jQuery: any;
 export class RegConfigTables implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
+  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
+  private lookupsSubscription: Subscription;
+  private lookups: ILookupData;
   private tableId: string;
   private rows: any[] = [];
   private tableIdSubscription: Subscription;
@@ -52,6 +56,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       this.configTable = new CConfigTable(this.tableId, this.ngRedux.getState());
     });
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveLookUpData(d); } });
   }
 
   ngOnDestroy() {
@@ -71,6 +76,10 @@ export class RegConfigTables implements OnInit, OnDestroy {
       this.changeDetector.markForCheck();
     }
     this.gridHeight = this.getGridHeight();
+  }
+
+  private retrieveLookUpData(lookups: ILookupData) {
+    this.lookups = lookups;
   }
 
   private getGridHeight() {
@@ -118,10 +127,40 @@ export class RegConfigTables implements OnInit, OnDestroy {
         $links.filter('.dx-link-save').addClass('dx-icon-save');
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
       } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        if (this.hasPrivilege('EDIT')) {
+          $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+        }
+        if (this.hasPrivilege('DELETE')) {
+          $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        }
       }
     }
+  }
+
+  private hasPrivilege(action: string): boolean {
+    let retValue: boolean = false;
+    switch (this.tableId) {
+      case 'VW_PROJECT':
+        retValue = privileges.hasProjectsTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_NOTEBOOKS':
+        retValue = privileges.hasNotebookTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_FRAGMENT':
+        retValue = privileges.hasSaltTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_SEQUENCE':
+        retValue = privileges.hasSequenceTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_PICKLIST':
+      case 'VW_PICKLISTDOMAIN':
+      case 'VW_FRAGMENTTYPE':
+      case 'VW_IDENTIFIERTYPE':
+      case 'VW_SITES':
+        retValue = true;
+        break;
+    }
+    return retValue;
   }
 
   tableName() {
