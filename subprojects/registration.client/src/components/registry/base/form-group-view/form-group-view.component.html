@@ -1,0 +1,11 @@
+<div class="panel-group" [id]="id">  
+  <div class="panel panel-default" *ngFor="let group of groups">
+    <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+      <a class="list-header tan" data-toggle="collapse" href="#registryPanel">{{group[0].title}}</a>
+    </div>
+    <div id="registryPanel" class="panel-collapse collapse in">
+      <div class="panel-body">
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RegDataGridFormItem } from './data-grid-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';
+import { RegFormGroupView } from './form-group-view';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -22,10 +23,12 @@ import {
   DxTextBoxModule,
   DxValidatorModule
 } from 'devextreme-angular';
+import { RegCommonModule } from '../../../common';
 
 export * from './data-grid-form-item';
 export * from './tag-box-form-item';
 export * from './form-view';
+export * from './form-group-view';
 
 @NgModule({
   imports: [
@@ -46,14 +49,16 @@ export * from './form-view';
     DxTextAreaModule,
     DxListModule,
     DxTextBoxModule,
-    DxValidatorModule
+    DxValidatorModule,
+    RegCommonModule
   ],
   declarations: [
     RegDataGridFormItem,
     RegTagBoxFormItem,
-    RegFormView
+    RegFormView, RegFormGroupView
   ],
   exports: [
+    RegCommonModule,
     RegDataGridFormItem,
     RegTagBoxFormItem,
     RegFormView

@@ -19,7 +19,6 @@ import {
 import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement, RegTemplates } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
-import { ToolModule } from '../common';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { HttpService, AuthGuard } from '../services';
 import { IAppState } from '../store';
@@ -55,7 +54,6 @@ import {
     RegLoginModule,
     RegNavigatorModule,
     RegBaseComponentModule,
-    ToolModule,
     NgReduxModule,
     DxCheckBoxModule,
     DxRadioGroupModule,

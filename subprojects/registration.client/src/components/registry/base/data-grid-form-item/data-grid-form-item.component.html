@@ -2,7 +2,7 @@
   (onContentReady)="onContentReady($event)">
   <dxo-editing [mode]="editingMode"></dxo-editing>
   <div *dxTemplate="let d of 'commandHeaderCellTemplate'">
-    <a *ngIf="allowAdding" class="fa fa-lg fa-plus grid-icon" aria-hidden="true" title='Add a row' (click)="addRow(d)"></a>
+    <a *ngIf="allowAdding" class="fa fa-lg fa-plus-square-o grid-icon" aria-hidden="true" title='Add a row' (click)="addRow(d)"></a>
   </div>
   <div *dxTemplate="let d of 'commandCellTemplate'">
     <a *ngIf="allowUpdating &amp;&amp; !d.row.isEditing" class="fa fa-lg fa-edit grid-icon" aria-hidden="true" title='Edit' (click)="edit(d)"></a>&nbsp;
