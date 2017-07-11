@@ -161,52 +161,82 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerOperation("UpdateRecord")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> UpdateRecord(int id, JObject recordData)
+        public async Task<IHttpActionResult> UpdateRecord(int id, DuplicateResolutionData inputData)
         {
-            return await CallMethod(() =>
+            return await CallServiceMethod((service) =>
             {
-                string errorMessage = null;
-                RegistryRecord registryRecord = null;
-                try
+                var doc = new XmlDocument();
+                doc.LoadXml(inputData.Data);
+                var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var chkDuplicate = string.Empty;
+                if (!string.IsNullOrEmpty(inputData.DuplicateCheckOption) && inputData.DuplicateCheckOption != "N")
                 {
-                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
-                    var xml = (string)recordData["data"];
-                    var doc = new XmlDocument();
-                    doc.LoadXml(xml);
-                    errorMessage = "Unable to process chemical structures.";
-                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                    errorMessage = "Unable to determine the registry number.";
-                    const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
-                    XmlNode regNode = doc.SelectSingleNode(regNumXPath);
-                    string regNum = regNode.InnerText.Trim();
-                    errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
-                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
-                    if (registryRecord == null) throw new Exception();
-                    errorMessage = "Record is locked and cannot be updated.";
-                    if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
-                    errorMessage = "Unable to update the internal record.";
-                    registryRecord.UpdateFromXml(xml);
-                    errorMessage = "Cannot set batch prefix.";
-                    registryRecord.BatchPrefixDefaultOverride(true);
-                    errorMessage = "Unable to save the record.";
-                    registryRecord.Save(DuplicateCheck.CompoundCheck);
+                    chkDuplicate = service.CheckUniqueRegistryRecord(recordString, inputData.DuplicateCheckOption);
                 }
-                catch (Exception ex)
+                if (string.IsNullOrEmpty(chkDuplicate))
                 {
-                    if (registryRecord != null && ex is ValidationException)
+                    string errorMessage = null;
+                    RegistryRecord registryRecord = null;
+                    try
                     {
-                        List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
-                        brokenRuleDescriptionList.ForEach(rd =>
+                        errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
+                        var xml = string.Empty;
+                        var xmlDoc = new XmlDocument();
+                        xmlDoc.LoadXml(inputData.Data);
+                        errorMessage = "Unable to process chemical structures.";
+                        xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                        errorMessage = "Unable to determine the registry number.";
+                        const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
+                        XmlNode regNode = doc.SelectSingleNode(regNumXPath);
+                        string regNum = regNode.InnerText.Trim();
+                        errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
+                        registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                        if (registryRecord == null) throw new Exception();
+                        errorMessage = "Record is locked and cannot be updated.";
+                        if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
+                        errorMessage = "Unable to update the internal record.";
+                        registryRecord.UpdateFromXml(xml);
+                        errorMessage = "Cannot set batch prefix.";
+                        registryRecord.BatchPrefixDefaultOverride(true);
+                        errorMessage = "Unable to save the record.";
+                        registryRecord.Save(DuplicateCheck.CompoundCheck);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (registryRecord != null && ex is ValidationException)
                         {
-                            errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
-                        });
+                            List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
+                            brokenRuleDescriptionList.ForEach(rd =>
+                            {
+                                errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
+                            });
+                        }
+
+                        throw new RegistrationException(errorMessage, ex);
                     }
 
-                    throw new RegistrationException(errorMessage, ex);
+                    return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
                 }
-
-                return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
-            }, new string[] { "EDIT_COMPOUND_REG" });
+                else
+                {
+                    string regNum;
+                    var duplicateId = new JArray();
+                    XmlDocument xmldoc = new XmlDocument();
+                    xmldoc.LoadXml(chkDuplicate);
+                    XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+                    foreach (XmlNode node in nodeList)
+                    {
+                        regNum = node.InnerText;
+                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                        duplicateId.Add(registryRecord.ID);
+                    }
+                    var responseMessage = new JObject(
+                        new JProperty("DuplicateRecords", duplicateId),
+                        new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
+                    );
+                    return new ResponseData(null, null, null, responseMessage);
+                }
+            });
         }
 
         [HttpDelete]
