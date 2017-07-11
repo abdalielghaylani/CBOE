@@ -150,7 +150,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         duplicateId.Add(regID);
                     }
                     var responseMessage = new JObject(
-                        new JProperty("RecordID", duplicateId),
+                        new JProperty("DuplicateRecords", duplicateId),
                         new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
                     );
                     return new ResponseData(null, null, null, responseMessage);
