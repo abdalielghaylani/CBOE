@@ -687,6 +687,7 @@ export interface ISettingData {
   pikclistDatabaseName: string;
   allowedValues: string;
   processorClass: string;
+  isAdmin?: boolean;
   isHidden?: boolean;
 }
 
@@ -714,5 +715,69 @@ export class CSystemSettings {
 
   public get isSubmissionTemplateEnabled(): boolean {
     return this.isSettingTrue('EnableSubmissionTemplates');
+  }
+
+  public get reviewRegisterSearchFormGroupId(): number {
+    return +this.getSetting('Search', 'ReviewRegisterSearchFormGroupId');
+  }
+
+  public get viewRegistrySearchFormGroupId(): number {
+    return +this.getSetting('Search', 'ViewRegistrySearchFormGroupId');
+  }
+
+  public get sendToRegistrationFormGroupId(): number {
+    return +this.getSetting('Search', 'SendToRegistrationFormGroupId');
+  }
+
+  public get elnReviewRegisterSearchFormGroupId(): number {
+    return +this.getSetting('Search', 'ELNReviewRegisterSearchFormGroupId');
+  }
+
+  public get elnViewRegistrySearchFormGroupId(): number {
+    return +this.getSetting('Search', 'ELNViewRegistrySearchFormGroupId');
+  }
+
+  public get deleteLogFormGroupId(): number {
+    return +this.getSetting('Search', 'DeleteLogFormGroupId');
+  }
+
+  public get reviewRegisterRegistryFormGroupId(): number {
+    return +this.getSetting('Search', 'ReviewRegisterRegistryFormGroupId');
+  }
+
+  public get viewRegistryFormGroupId(): number {
+    return +this.getSetting('Search', 'ViewRegistryFormGroupId');
+  }
+
+  public get componentDuplicatesFormGroupId(): number {
+    return +this.getSetting('Search', 'ComponentDuplicatesFormGroupId');
+  }
+
+  public get registryDuplicatesFormGroupId(): number {
+    return +this.getSetting('Search', 'RegistryDuplicatesFormGroupId');
+  }
+
+  public get dataLoaderFormGroupId(): number {
+    return +this.getSetting('Search', 'DataLoaderFormGroupId');
+  }
+
+  public get searchComponentsToAddFormGroupId(): number {
+    return +this.getSetting('Search', 'SearchComponentsToAddFormGroupId');
+  }
+
+  public get searchComponentsToAddRRFormGroupId(): number {
+    return +this.getSetting('Search', 'SearchComponentsToAddRRFormGroupId');
+  }
+  
+  public get searchComponentsToAddVMFormGroupId(): number {
+    return +this.getSetting('Search', 'SearchComponentsToAddVMFormGroupId');
+  }
+
+  public get searchDuplicatesComponentsFormGroupId(): number {
+    return +this.getSetting('Search', 'SearchDuplicatesComponentsFormGroupId');
+  }
+
+  public get markedHitsMax(): number {
+    return +this.getSetting('Search', 'MarkedHitsMax');
   }
 }
