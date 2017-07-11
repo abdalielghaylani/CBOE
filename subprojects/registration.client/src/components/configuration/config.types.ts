@@ -741,6 +741,10 @@ export class CSystemSettings {
     return +this.getSetting('Search', 'DeleteLogFormGroupId');
   }
 
+  public get submitRegistryFormGroupId(): number {
+    return +this.getSetting('Search', 'SubmitRegistryFormGroupId');
+  }
+
   public get reviewRegisterRegistryFormGroupId(): number {
     return +this.getSetting('Search', 'ReviewRegisterRegistryFormGroupId');
   }

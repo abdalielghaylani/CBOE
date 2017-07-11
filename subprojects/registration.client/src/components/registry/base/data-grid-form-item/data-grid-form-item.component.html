@@ -1,4 +1,13 @@
 <dx-data-grid [disabled]="!editMode" [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
-  (onCellPrepared)="onCellPrepared($event)" (onContentReady)="onContentReady($event)">
-  <dxo-editing [mode]="editingMode" [allowUpdating]="allowUpdating" [allowDeleting]="allowDeleting" [allowAdding]="allowAdding"></dxo-editing>
+  (onContentReady)="onContentReady($event)">
+  <dxo-editing [mode]="editingMode"></dxo-editing>
+  <div *dxTemplate="let d of 'commandHeaderCellTemplate'">
+    <a *ngIf="allowAdding" class="fa fa-lg fa-plus grid-icon" aria-hidden="true" title='Add a row' (click)="addRow(d)"></a>
+  </div>
+  <div *dxTemplate="let d of 'commandCellTemplate'">
+    <a *ngIf="allowUpdating &amp;&amp; !d.row.isEditing" class="fa fa-lg fa-edit grid-icon" aria-hidden="true" title='Edit' (click)="edit(d)"></a>&nbsp;
+    <a *ngIf="allowDeleting &amp;&amp; !d.row.isEditing" class="fa fa-lg fa-trash-o grid-icon" aria-hidden="true" title='Delete' (click)="delete(d)"></a>
+    <a *ngIf="d.row.isEditing" class="fa fa-lg fa-save grid-icon" aria-hidden="true" title='Save' (click)="save(d)"></a>&nbsp;
+    <a *ngIf="d.row.isEditing" class="fa fa-lg fa-undo grid-icon" aria-hidden="true" title='Cancel' (click)="cancel(d)"></a>
+  </div>
 </dx-data-grid>
