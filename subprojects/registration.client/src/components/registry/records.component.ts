@@ -25,8 +25,7 @@ import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import { CSystemSettings } from '../configuration';
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
-import { hasDeleteRecordPrivilege } from './registry.utils';
-
+import privileges from '../../common/utils/privilege.utils';
 
 declare var jQuery: any;
 
@@ -240,7 +239,7 @@ export class RegRecords implements OnInit, OnDestroy {
         $editIcon.addClass('fa fa-info-circle');
         $editIcon.attr({ 'data-toggle': 'tootip', 'title': 'Detail view' });
         // For Delete icon
-        if (hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)) {
+        if (privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)) {
           let $deleteIcon = $links.filter('.dx-link-delete');
           $deleteIcon.addClass('dx-icon-trash');
           $deleteIcon.attr({ 'data-toggle': 'tootip', 'title': 'Delete' });
