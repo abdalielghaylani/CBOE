@@ -137,7 +137,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 else
                 {
                     string regNum;
-                    int regID;
                     var duplicateId = new JArray();
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.LoadXml(chkDuplicate);
@@ -146,8 +145,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         regNum = node.InnerText;
                         RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regNum);
-                        regID = registryRecord.ID;
-                        duplicateId.Add(regID);
+                        duplicateId.Add(registryRecord.ID);
                     }
                     var responseMessage = new JObject(
                         new JProperty("DuplicateRecords", duplicateId),
