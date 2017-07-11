@@ -3,12 +3,11 @@ import {
   inject,
   TestBed,
 } from '@angular/core/testing';
-import {Component} from '@angular/core';
-import {By} from '@angular/platform-browser';
-import {RegNavigator} from './navigator.component';
-import {RegFormModule} from '../form/form.module';
-import {RegNavigatorModule} from './navigator.module';
-import {configureTests} from '../../tests.configure';
+import { Component } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { TestModule } from '../../test';
+import { RegNavigator } from './navigator.component';
+import { RegNavigatorModule } from './navigator.module';
 
 describe('Component: Navigator', () => {
   let fixture;
@@ -17,6 +16,7 @@ describe('Component: Navigator', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         imports: [
+          TestModule,
           RegNavigatorModule,
         ],
         declarations: [
@@ -25,7 +25,7 @@ describe('Component: Navigator', () => {
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(RegNavigatorTestController);
       fixture.detectChanges();
       done();

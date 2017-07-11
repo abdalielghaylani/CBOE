@@ -8,22 +8,22 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public class DuplicateResolutionData
     {
         [JsonConstructor]
-        public DuplicateResolutionData(string dataXML, string duplicateCheck)
+        public DuplicateResolutionData(string data, string duplicateCheck)
         {
-            DataXML = dataXML;
+            Data = data;
             DuplicateCheckOption = duplicateCheck;
         }
 
         /// <summary>
-        /// Gets or sets the dataXML
+        /// Gets or sets the data XML in xml format
         /// </summary>
-        [JsonProperty(PropertyName = "dataXML")]
-        public string DataXML { get; set; }
+        [JsonProperty(PropertyName = "data")]
+        public string Data { get; set; }
 
         /// <summary>
         /// Gets or sets the DuplicateCheckOption
         /// </summary>
-        [JsonProperty(PropertyName = "duplicateCheck")]
+        [JsonProperty(PropertyName = "duplicateCheckOption")]
         public string DuplicateCheckOption { get; set; }
     }
 }

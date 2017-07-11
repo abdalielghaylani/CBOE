@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Web.Http;
@@ -8,41 +10,32 @@ using CambridgeSoft.COE.Framework.COETableEditorService;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.Common;
+using CambridgeSoft.COE.Framework.COESecurityService;
 using PerkinElmer.COE.Registration.Server.Code;
+using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class ViewConfigController : RegControllerBase
     {
-        [HttpGet]
-        [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
-        [SwaggerOperation("GetLookups")]
-        [SwaggerResponse(200, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        [SwaggerResponse(500, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetLookups()
+        private static JArray GetPropertyGroups()
         {
-            return await CallMethod(() =>
+            var propertyGroups = new JArray();
+            var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+            foreach (var propertyType in propertyTypes)
             {
-                return new JObject(
-                    new JProperty("users", ExtractData("SELECT * FROM VW_PEOPLE")),
-                    new JProperty("fragments", ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT")),
-                    new JProperty("fragmentTypes", ExtractData("SELECT * FROM VW_FRAGMENTTYPE")),
-                    new JProperty("identifierTypes", ExtractData("SELECT * FROM VW_IDENTIFIERTYPE")),
-                    new JProperty("notebooks", ExtractData("SELECT * FROM VW_NOTEBOOK")),
-                    new JProperty("pickList", ExtractData("SELECT * FROM VW_PICKLIST")),
-                    new JProperty("pickListDomains", ExtractData("SELECT * FROM VW_PICKLISTDOMAIN")),
-                    new JProperty("projects", ExtractData("SELECT * FROM VW_PROJECT")),
-                    new JProperty("sequences", ExtractData("SELECT * FROM VW_SEQUENCE")),
-                    new JProperty("sites", ExtractData("SELECT * FROM VW_SITES")),
-                    new JProperty("units", ExtractData("SELECT * FROM VW_UNIT")),
-                    new JProperty("formGroups", GetFormGroups()),
-                    new JProperty("customTables", GetCustomTables()),
-                    new JProperty("systemSettings", GetSystemSettings()),
-                     new JProperty("addinAssemblies", GetAddinAssemblies())
-                );
-            });
+                if (propertyType.ToString().Equals("AddIns") || propertyType.ToString().Equals("None"))
+                    continue;
+
+                propertyGroups.Add(new JObject(
+                    new JProperty("groupName", propertyType.ToString()),
+                    new JProperty("groupLabel", GetPropertyTypeLabel(propertyType))
+                ));
+            }
+            return propertyGroups;
         }
 
         private static JArray GetAddinAssemblies()
@@ -106,43 +99,127 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return customTables;
         }
 
-        private JArray GetSystemSettings()
+        private JArray GetHomeMenuPrivileges()
         {
-            // [{ group: .., settings: [ ] }, ... ]
-            var systemSettings = new JArray();
-            var app = GUIShellUtilities.GetApplicationName();
-            AppSettingsData appSet = FrameworkUtils.GetAppConfigSettings(app);
-            foreach (var g in appSet.SettingsGroup)
+            var homeMenuPrivilages = new JArray();
+            COEHomeSettings homeData = CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetHomeData();
+            COEIdentity coeIdentity = UserIdentity;
+            string coeIdentifier = "Registration";
+
+            Group group = homeData.Groups.First<Group>(item => item.Name.Equals(coeIdentifier, StringComparison.OrdinalIgnoreCase));
+
+            foreach (LinkData linkData in group.LinksData)
             {
-                var settings = new JArray();
-                foreach (var s in g.Settings)
-                {
-                    var setting = new JObject(
-                        new JProperty("name", s.Name),
-                        new JProperty("value", s.Value),
-                        new JProperty("description", s.Description),
-                        new JProperty("allowedValues", s.AllowedValues),
-                        new JProperty("controlType", s.ControlType),
-                        new JProperty("isAdmin", s.IsAdmin),
-                        new JProperty("isHidden", s.IsHidden),
-                        new JProperty("picklistDatabaseName", s.PicklistDatabaseName),
-                        new JProperty("picklistType", s.PicklistType),
-                        new JProperty("processorClass", s.ProcessorClass)
-                    );
-                    settings.Add(setting);
-                }
+                bool hasPriv = coeIdentity.HasAppPrivilege(coeIdentifier.ToUpper(), linkData.PrivilegeRequired);
 
-                var groupSettings = new JObject(
-                    new JProperty("name", g.Name),
-                    new JProperty("title", g.Title),
-                    new JProperty("description", g.Description),
-                    new JProperty("settings", settings)
-                );
-
-                systemSettings.Add(groupSettings);
+                var privilege = new JObject(
+                    new JProperty("name", linkData.Name),
+                    new JProperty("label", linkData.DisplayText),
+                    new JProperty("privilegeName", linkData.PrivilegeRequired),
+                    new JProperty("visibility", hasPriv),
+                    new JProperty("toolTip", linkData.ToolTip));
+                homeMenuPrivilages.Add(privilege);
             }
 
-            return systemSettings;
+            return homeMenuPrivilages;
         }
+
+        private JArray GetUserPrivileges()
+        {
+            var appUserPrivilages = new JArray();          
+            string coeIdentifier = "Registration";
+            Dictionary<string, List<string>> appUserPrivileges = UserPrivileges;
+            foreach (string privilege in appUserPrivileges[coeIdentifier.ToUpper()])
+            {
+                appUserPrivilages.Add(new JObject(new JProperty("name", privilege)));
+            }
+            return appUserPrivilages;
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
+        [SwaggerOperation("GetLookups")]
+        [SwaggerResponse(200, type: typeof(LookupData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetLookups()
+        {
+            return await CallMethod(() =>
+            {
+                return new LookupData(
+                    ExtractData("SELECT * FROM VW_PEOPLE"),
+                    ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT"),
+                    ExtractData("SELECT * FROM VW_FRAGMENTTYPE"),
+                    ExtractData("SELECT * FROM VW_IDENTIFIERTYPE"),
+                    ExtractData("SELECT * FROM VW_NOTEBOOK"),
+                    ExtractData("SELECT * FROM VW_PICKLIST"),
+                    ExtractData("SELECT * FROM VW_PICKLISTDOMAIN"),
+                    ExtractData("SELECT * FROM VW_PROJECT"),
+                    ExtractData("SELECT * FROM VW_SEQUENCE"),
+                    ExtractData("SELECT * FROM VW_SITES"),
+                    ExtractData("SELECT * FROM VW_UNIT"),
+                    GetFormGroups(),
+                    GetCustomTables(),
+                    RegAppHelper.RetrieveSettings(),
+                    GetAddinAssemblies(),
+                    GetPropertyGroups(),
+                    GetHomeMenuPrivileges(),
+                    GetUserPrivileges()
+                );
+            });
+        }
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "ViewConfig/recordsView/{id}/{registryType}/{pageMode}")]
+        [SwaggerOperation("GetRecordsView")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetRecordsView(int id, string registryType, string pageMode)
+        {
+            return await CallMethod(() =>
+            { 
+                RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(id);
+
+                if (registryRecord == null)
+                    throw new RegistrationException(string.Format("registry record not found for id = {0}", id));
+
+                RegistryTypes currentRegistryType = (RegistryTypes)Enum.Parse(typeof(RegistryTypes), registryType, true);
+                PageState pageState = (PageState)Enum.Parse(typeof(PageState), pageMode, true);          
+
+                dynamic jsonObject = new JObject();
+
+                // add a {'buttonStatus'} node in the JSON 
+                jsonObject.buttonStatus = new JArray() as dynamic;
+
+                ControlState registerButtonState = ViewConfigHelper.GetRegisterButtonState(registryRecord, pageState, currentRegistryType);               
+                dynamic button = new JObject();
+                button.name = registerButtonState.Name;
+                button.visible = registerButtonState.Visible;
+                button.tooltip = registerButtonState.Tooltip;
+                jsonObject.buttonStatus.Add(button);
+
+                ControlState submitButtonState = ViewConfigHelper.GetSubmitButtonState(registryRecord, pageState, currentRegistryType);
+                button = new JObject();
+                button.name = submitButtonState.Name;
+                button.visible = submitButtonState.Visible;
+                button.tooltip = submitButtonState.Tooltip;
+                jsonObject.buttonStatus.Add(button);
+
+                // add a {'formGroupStatus'} node in the JSON 
+                jsonObject.formGroupStatus = new JArray() as dynamic;
+
+                List<ControlState> formStates = ViewConfigHelper.GetFormsState(registryRecord, pageState, currentRegistryType);
+                foreach (ControlState controlState in formStates)
+                {
+                    dynamic form = new JObject();
+                    form.name = controlState.Name;
+                    form.visible = controlState.Visible;
+                    jsonObject.formGroupStatus.Add(form);
+                }
+                return jsonObject; 
+            });
+        }
+
     }
 }

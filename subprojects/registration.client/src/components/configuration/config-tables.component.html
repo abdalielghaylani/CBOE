@@ -3,7 +3,7 @@
   <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
     [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
     (onCellPrepared)='onCellPrepared($event)'>
-    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="configTable.isDeleteEnabled" [allowAdding]="hasPrivilege('ADD')"></dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
     <div *dxTemplate="let data of 'cellTemplate'">
       <reg-structure-image [src]="data.value"></reg-structure-image>
@@ -32,8 +32,13 @@
       <reg-structure-image [src]="data.value"></reg-structure-image>
     </div>
     <div *dxTemplate="let data of 'editProjectTypeTemplate'">
-      <dx-select-box [items]="[{key:'A', name:'All'},{key:'R', name:'Registry'},{key:'B', name:'Batch'}]" [value]="data.value"
+      <dx-select-box [items]="configTable.projectType" [value]="data.value"
         (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="name" valueExpr="key">
+      </dx-select-box>
+    </div>
+    <div *dxTemplate="let data of 'editPickListDomainTemplate'">
+      <dx-select-box [items]="configTable.pickListDomains" [value]="data.value"
+        (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="DESCRIPTION" valueExpr="ID">
       </dx-select-box>
     </div>
   </dx-data-grid>

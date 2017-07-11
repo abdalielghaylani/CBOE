@@ -14,10 +14,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
     /// <summary>
     /// The class for the setting data object
     /// </summary>
-    public partial class SettingData
+    public class SettingData
     {
         [JsonConstructor]
-        public SettingData(string groupName, string groupLabel, string name, string controlType, string value, string description, string picklistDatabaseName, string allowedValues, string processorClass, bool? isHidden)
+        public SettingData(string groupName, string groupLabel, string name, string controlType, string value, string description, string picklistDatabaseName, string allowedValues, string processorClass, bool? isAdmin, bool? isHidden)
         {
             GroupName = groupName;
             GroupLabel = groupLabel;
@@ -27,6 +27,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             Description = description;
             PicklistDatabaseName = picklistDatabaseName;
             AllowedValues = allowedValues;
+            IsAdmin = isAdmin;
             IsHidden = isHidden;
         }
 
@@ -46,6 +47,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
             PicklistDatabaseName = setting.PicklistDatabaseName;
             AllowedValues = setting.AllowedValues;
             ProcessorClass = setting.ProcessorClass;
+            var isAdminValue = setting.IsAdmin;
+            bool isAdmin;
+            if (!string.IsNullOrEmpty(isAdminValue) && bool.TryParse(isAdminValue, out isAdmin))
+                IsAdmin = isAdmin;
             var isHiddenValue = setting.IsHidden;
             bool isHidden;
             if (!string.IsNullOrEmpty(isHiddenValue) && bool.TryParse(isHiddenValue, out isHidden))
@@ -105,6 +110,12 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "processorClass")]
         public string ProcessorClass { get; set; }
+
+        /// <summary>
+        /// Gets or sets the hidden flag
+        /// </summary>
+        [JsonProperty(PropertyName = "isAdmin")]
+        public bool? IsAdmin { get; set; }
 
         /// <summary>
         /// Gets or sets the hidden flag

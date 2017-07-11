@@ -1,0 +1,8 @@
+<dx-form id="id" [formData]="formData" [colCount]="colCount" [items]="items" [readOnly]="!editMode">
+  <div *dxTemplate="let data of 'tagBoxTemplate'">
+    <reg-tag-box-form-item-template [editMode]="editMode" [data]="data"></reg-tag-box-form-item-template>
+  </div>
+  <div *dxTemplate="let data of 'dataGridTemplate'">
+    <reg-data-grid-form-item-template [editMode]="editMode" [data]="data"></reg-data-grid-form-item-template>
+  </div>
+</dx-form>

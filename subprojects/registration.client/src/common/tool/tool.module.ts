@@ -2,14 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {
-  CircleIcon,
-  CommandButton,
-  PageWithTools,
-  ToolPanel,
-  FullScreenIcon,
-  ChemDrawingTool
-} from './index';
+import { CircleIcon } from './circle-icon.component';
+import { CommandButton } from './command-button.component';
+import { PageWithTools } from './page-with-tools.component';
+import { ToolPanel } from './tool-panel.component';
+import { FullScreenIcon } from './full-screen.component';
 
 @NgModule({
   imports: [
@@ -22,8 +19,7 @@ import {
     CommandButton,
     PageWithTools,
     ToolPanel,
-    FullScreenIcon,
-    ChemDrawingTool
+    FullScreenIcon
   ],
   exports: [
     CircleIcon,
@@ -31,8 +27,7 @@ import {
     PageWithTools,
     ToolPanel,
     RouterModule,
-    FullScreenIcon,
-    ChemDrawingTool
+    FullScreenIcon
   ]
 })
-export class ToolModule { }
+export class RegToolModule { }

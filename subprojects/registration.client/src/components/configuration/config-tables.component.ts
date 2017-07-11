@@ -2,18 +2,19 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
+import { select, NgRedux } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration } from '../../store';
+import { IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../store';
 import { CConfigTable } from './config.types';
+import { HttpService } from '../../services';
+import privileges from '../../common/utils/privilege.utils';
 
 declare var jQuery: any;
 
@@ -27,6 +28,9 @@ declare var jQuery: any;
 export class RegConfigTables implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
+  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
+  private lookupsSubscription: Subscription;
+  private lookups: ILookupData;
   private tableId: string;
   private rows: any[] = [];
   private tableIdSubscription: Subscription;
@@ -37,8 +41,9 @@ export class RegConfigTables implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private http: Http,
+    private http: HttpService,
     private changeDetector: ChangeDetectorRef,
+    private ngRedux: NgRedux<IAppState>,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
   ) { }
@@ -48,9 +53,10 @@ export class RegConfigTables implements OnInit, OnDestroy {
       let paramLabel = 'tableId';
       this.tableId = params[paramLabel];
       this.configurationActions.openTable(this.tableId);
-      this.configTable = new CConfigTable(this.tableId);
+      this.configTable = new CConfigTable(this.tableId, this.ngRedux.getState());
     });
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveLookUpData(d); } });
   }
 
   ngOnDestroy() {
@@ -70,6 +76,10 @@ export class RegConfigTables implements OnInit, OnDestroy {
       this.changeDetector.markForCheck();
     }
     this.gridHeight = this.getGridHeight();
+  }
+
+  private retrieveLookUpData(lookups: ILookupData) {
+    this.lookups = lookups;
   }
 
   private getGridHeight() {
@@ -102,7 +112,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       visibleIndex: -1,
       width: 80
     });
-     e.component.columnOption('command', {
+    e.component.columnOption('command', {
       visibleIndex: -1,
       width: 80
     });
@@ -117,10 +127,40 @@ export class RegConfigTables implements OnInit, OnDestroy {
         $links.filter('.dx-link-save').addClass('dx-icon-save');
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
       } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        if (this.hasPrivilege('EDIT')) {
+          $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+        }
+        if (this.hasPrivilege('DELETE')) {
+          $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        }
       }
     }
+  }
+
+  private hasPrivilege(action: string): boolean {
+    let retValue: boolean = false;
+    switch (this.tableId) {
+      case 'VW_PROJECT':
+        retValue = privileges.hasProjectsTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_NOTEBOOKS':
+        retValue = privileges.hasNotebookTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_FRAGMENT':
+        retValue = privileges.hasSaltTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_SEQUENCE':
+        retValue = privileges.hasSequenceTablePrivilege(action, this.lookups.userPrivileges);
+        break;
+      case 'VW_PICKLIST':
+      case 'VW_PICKLISTDOMAIN':
+      case 'VW_FRAGMENTTYPE':
+      case 'VW_IDENTIFIERTYPE':
+      case 'VW_SITES':
+        retValue = true;
+        break;
+    }
+    return retValue;
   }
 
   tableName() {
@@ -146,13 +186,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
-            let message = `The records of ${tableName} were not retrieved properly due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -175,13 +209,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not updated due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -197,13 +225,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `Creating A new record for ${tableName} was failed due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -219,13 +241,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The record ${id} of ${tableName} was not deleted due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();

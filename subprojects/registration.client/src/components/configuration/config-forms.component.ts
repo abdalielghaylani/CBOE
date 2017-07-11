@@ -2,7 +2,6 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { Http } from '@angular/http';
 import { ActivatedRoute } from '@angular/router';
 import { select } from '@angular-redux/store';
 import { DxDataGridComponent } from 'devextreme-angular';
@@ -10,10 +9,11 @@ import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { ConfigurationActions } from '../../actions/configuration.actions';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { ICustomTableData, IConfiguration } from '../../store';
 import { CConfigForms } from './config.types';
+import { HttpService } from '../../services';
 
 declare var jQuery: any;
 
@@ -34,7 +34,7 @@ export class RegConfigForms implements OnInit, OnDestroy {
   private configForms: CConfigForms;
 
   constructor(
-    private http: Http,
+    private http: HttpService,
     private changeDetector: ChangeDetectorRef,
     private configurationActions: ConfigurationActions,
     private elementRef: ElementRef
@@ -120,13 +120,7 @@ export class RegConfigForms implements OnInit, OnDestroy {
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
-            let message = `The records of ${tableName} were not retrieved properly due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
@@ -148,13 +142,7 @@ export class RegConfigForms implements OnInit, OnDestroy {
             deferred.resolve(result.json());
           })
           .catch(error => {
-            let message = `The property ' ${data.label} ' of ${data.group} was not updated due to a problem`;
-            let errorResult, reason;
-            if (error._body) {
-              errorResult = JSON.parse(error._body);
-              reason = errorResult.Message;
-            }
-            message += (reason) ? ': ' + reason : '!';
+            let message = getExceptionMessage(`The property ' ${data.label} ' of ${data.group} was not updated due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();

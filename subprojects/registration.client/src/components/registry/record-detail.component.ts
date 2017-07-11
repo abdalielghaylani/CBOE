@@ -4,25 +4,29 @@ import {
   Output,
   EventEmitter,
   ChangeDetectionStrategy,
-  OnInit, OnDestroy, AfterViewInit,
+  OnInit, OnDestroy, OnChanges, AfterViewInit,
   ElementRef, ChangeDetectorRef,
-  ViewChildren, QueryList
+  ViewChild, ViewChildren, QueryList
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, UrlSegment, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import * as X2JS from 'x2js';
 import { RecordDetailActions, ConfigurationActions } from '../../actions';
-import { IAppState, IRecordDetail } from '../../store';
+import { IAppState, IRecordDetail, ILookupData } from '../../store';
 import * as registryUtils from './registry.utils';
-import { CFormGroup, prepareFormGroupData, notify } from '../../common';
-import { CRegistryRecord, CRegistryRecordVM, FragmentData } from './registry.types';
+import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, notify } from '../../common';
+import { IResponseData, CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
-import { basePath } from '../../configuration';
-import { FormGroupType, IFormContainer, getFormGroupData } from '../../common';
-
-declare var jQuery: any;
+import { basePath, apiUrlPrefix } from '../../configuration';
+import { CSystemSettings } from '../configuration';
+import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
+import { HttpService } from '../../services';
+import { RegTemplates } from './templates.component';
+import { RegistryStatus } from './registry.types';
+import { ChemDrawWeb } from '../common';
+import privileges from '../../common/utils/privilege.utils';
 
 @Component({
   selector: 'reg-record-detail',
@@ -32,30 +36,58 @@ declare var jQuery: any;
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
+  @ViewChild(RegTemplates) regTemplates: RegTemplates;
+  @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
+  @Input() template: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
+  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   public formGroup: CFormGroup;
   public editMode: boolean = false;
   private title: string;
-  private drawingTool;
   private creatingCDD: boolean = false;
-  private cdxml: string;
   private parentHeight: string;
   private recordString: string;
   private recordDoc: Document;
   private regRecord: CRegistryRecord = new CRegistryRecord();
   private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
+  private routeSubscription: Subscription;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
+  private currentIndex: number = 0;
+  private saveTemplateForm;
+  private saveTemplatePopupVisible: boolean = false;
+  private lookups: ILookupData;
+  private lookupsSubscription: Subscription;
+  private saveTemplateItems = [{
+    dataField: 'name',
+    label: { text: 'Template Name' },
+    dataType: 'string',
+    editorType: 'dxTextBox',
+    validationRules: [{ type: 'required', message: 'Name is required' }]
+  }, {
+    dataField: 'description',
+    label: { text: 'Template Description' },
+    dataType: 'string',
+    editorType: 'dxTextArea'
+  }, {
+    dataField: 'isPublic',
+    label: { text: 'Public Template' },
+    dataType: 'boolean',
+    editorType: 'dxCheckBox'
+  }];
+  private saveTemplateData: IShareableObject = new CShareableObject('', '', false);
 
   constructor(
     public ngRedux: NgRedux<IAppState>,
     private elementRef: ElementRef,
     private router: Router,
+    private http: HttpService,
     private actions: RecordDetailActions,
-    private changeDetector: ChangeDetectorRef) {
+    private changeDetector: ChangeDetectorRef,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -64,20 +96,38 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       this.router.navigate(['/']);
       return;
     }
-    this.createDrawingTool();
-    this.actions.retrieveRecord(this.temporary, this.id);
-    this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
     this.parentHeight = this.getParentHeight();
+    let self = this;
+    this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
+
+  }
+
+  initialize(segments: UrlSegment[]) {
+    let newIndex = segments.findIndex(s => s.path === 'new');
+    if (newIndex >= 0 && newIndex < segments.length - 1) {
+      this.id = +segments[segments.length - 1].path;
+    }
+    this.actions.retrieveRecord(this.temporary, this.template, this.id);
+    if (!this.dataSubscription) {
+      this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+    }
+  }
+
+  retrieveContents(lookups: ILookupData) {
+    this.lookups = lookups;
   }
 
   ngOnDestroy() {
+    if (this.routeSubscription) {
+      this.routeSubscription.unsubscribe();
+    }
     if (this.dataSubscription) {
       this.dataSubscription.unsubscribe();
     }
     if (this.loadSubscription) {
       this.loadSubscription.unsubscribe();
     }
-    this.actions.clearRecord();
   }
 
   private getParentHeight() {
@@ -100,7 +150,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       return;
     }
     this.recordDoc = registryUtils.getDocument(recordDetail.data);
-    this.title = recordDetail.id < 0 ?
+    this.title = this.isNewRecord ?
       'Register a New Compound' :
       recordDetail.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
@@ -130,90 +180,35 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup;
-    this.editMode = this.id < 0 || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
+    this.editMode = this.isNewRecord || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
     this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
     }
     let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
-    this.loadCdxml(structureData);
+    this.chemDrawWeb.activate();
+    this.chemDrawWeb.loadCdxml(structureData);
     this.changeDetector.markForCheck();
-  }
-
-  loadCdxml(cdxml: string) {
-    if (this.drawingTool && !this.creatingCDD) {
-      this.drawingTool.clear();
-      if (cdxml) {
-        this.drawingTool.loadCDXML(cdxml);
-      }
-    } else {
-      this.cdxml = cdxml;
-    }
   }
 
   getElementValue(e: Element, path: string) {
     return registryUtils.getElementValue(e, path);
   }
 
-  createDrawingTool() {
-    if (this.drawingTool || this.creatingCDD) {
-      return;
-    }
-    this.creatingCDD = true;
-    this.removePreviousDrawingTool();
-
-    let cddContainer = jQuery(this.elementRef.nativeElement).find('.cdContainer');
-    let cdWidth = cddContainer.innerWidth() - 4;
-    let attachmentElement = cddContainer[0];
-    let cdHeight = attachmentElement.offsetHeight;
-    const self = this;
-    jQuery(this.elementRef.nativeElement).find('.click_catch').height(cdHeight);
-    let params = {
-      element: attachmentElement,
-      height: (cdHeight - 2),
-      width: cdWidth,
-      viewonly: false,
-      callback: function (drawingTool) {
-        self.drawingTool = drawingTool;
-        jQuery(self.elementRef.nativeElement).find('.click_catch').addClass('hidden');
-        if (drawingTool) {
-          drawingTool.setViewOnly(false);
-        }
-        self.creatingCDD = false;
-        drawingTool.fitToContainer();
-        if (self.cdxml) {
-          drawingTool.loadCDXML(self.cdxml);
-          self.cdxml = null;
-        }
-      },
-      licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
-      config: { features: { disabled: ['ExtendedCopyPaste'] } }
-    };
-
-    (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
-  };
-
-  removePreviousDrawingTool = function () {
-    if (this.drawingTool) {
-      let container = jQuery(this.elementRef.nativeElement).find('.cdContainer');
-      container.find('div')[2].remove();
-      this.drawingTool = undefined;
-    }
-  };
-
   private updateRecord() {
     registryUtils.setElementValue(this.recordDoc.documentElement,
-      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.drawingTool.getCDXML());
+      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.chemDrawWeb.getValue());
   }
 
   save() {
     this.updateRecord();
-    if (this.id < 0) {
-      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
+    let id = this.template ? -1 : this.id;
+    if (this.isNewRecord) {
+      this.actions.saveRecord(this.temporary, id, this.recordDoc);
     } else {
       this.setEditMode(false);
-      this.actions.saveRecord(this.temporary, this.id, this.recordDoc);
+      this.actions.saveRecord(this.temporary, id, this.recordDoc);
     }
   }
 
@@ -249,5 +244,151 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (e.srcElement.children.length > 0) {
       e.srcElement.children[0].click();
     }
+  }
+
+  private showSaveTemplate(e) {
+    if (this.template) {
+      if (confirm('Do you want to overwrite the saved template?')) {
+      }
+    } else {
+      this.saveTemplatePopupVisible = true;
+    }
+  }
+
+  private saveTemplate(e) {
+    let result: any = this.saveTemplateForm.validate();
+    if (result.isValid) {
+      this.updateRecord();
+      let url = `${apiUrlPrefix}templates`;
+      let data: ITemplateData = new CTemplateData(this.saveTemplateData.name);
+      data.description = this.saveTemplateData.description;
+      data.isPublic = this.saveTemplateData.isPublic;
+      data.data = registryUtils.serializeData(this.recordDoc);
+      this.http.post(url, data).toPromise()
+        .then(res => {
+          this.regTemplates.dataSource = undefined;
+          notifySuccess((res.json() as IResponseData).message, 5000);
+        })
+        .catch(error => {
+          notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
+        });
+      this.saveTemplatePopupVisible = false;
+    }
+  }
+
+  private cancelSaveTemplate(e) {
+    this.saveTemplatePopupVisible = false;
+  }
+
+  private showTemplates(e) {
+    this.currentIndex = 1;
+    if (!this.regTemplates.dataSource) {
+      this.regTemplates.loadData();
+    }
+    this.changeDetector.markForCheck();
+  }
+
+  private showDetails(e) {
+    this.currentIndex = 0;
+    this.changeDetector.markForCheck();
+  }
+
+  private get isNewRecord(): boolean {
+    return this.id < 0 || this.template;
+  }
+
+  private onSaveTemplateFormInit(e) {
+    this.saveTemplateForm = e.component;
+  }
+
+  private get statusId(): number {
+    let statusIdText = this.recordDoc ? this.getElementValue(this.recordDoc.documentElement, 'StatusID') : null;
+    return statusIdText ? +statusIdText : null;
+  }
+
+  private set statusId(statusId: number) {
+    registryUtils.setElementValue(this.recordDoc.documentElement, 'StatusID', statusId.toString());
+  }
+
+  private get approvalsEnabled(): boolean {
+    return (this.isNewRecord || this.temporary) && new CSystemSettings(this.getLookup('systemSettings')).isApprovalsEnabled;
+  }
+
+  private get editButtonEnabled(): boolean {
+    return !this.isNewRecord && privileges.hasEditRecordPrivilege(this.temporary, this.lookups.userPrivileges)
+      && !this.editMode && !this.cancelApprovalButtonEnabled;
+  }
+
+  private get saveButtonEnabled(): boolean {
+    return (this.isNewRecord && !this.cancelApprovalButtonEnabled) || this.editMode;
+  }
+
+  private get registerButtonEnabled(): boolean {
+    return (this.isNewRecord || (this.temporary && !this.editMode)) && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
+  }
+
+  private get approveButtonEnabled(): boolean {
+    let statusId = this.statusId;
+    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+  }
+
+  private get cancelApprovalButtonEnabled(): boolean {
+    let statusId = this.statusId;
+    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId === RegistryStatus.Approved;
+  }
+
+  private get deleteButtonEnabled(): boolean {
+    return !this.isNewRecord && privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
+  }
+
+  private cancelApproval() {
+    let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Submitted}`;
+    this.http.put(url, undefined).toPromise()
+      .then(res => {
+        this.regTemplates.dataSource = undefined;
+        this.statusId = RegistryStatus.Submitted;
+        this.changeDetector.markForCheck();
+        notifySuccess(`The current temporary record's approval was cancelled successfully!`, 5000);
+      })
+      .catch(error => {
+        notifyException(`The approval cancelling process failed due to a problem`, error, 5000);
+      });
+    this.saveTemplatePopupVisible = false;
+  }
+
+  private approve() {
+    let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Approved}`;
+    this.http.put(url, undefined).toPromise()
+      .then(res => {
+        this.regTemplates.dataSource = undefined;
+        this.statusId = RegistryStatus.Approved;
+        this.changeDetector.markForCheck();
+        notifySuccess(`The current temporary record was approved successfully!`, 5000);
+      })
+      .catch(error => {
+        notifyException(`The approval process failed due to a problem`, error, 5000);
+      });
+    this.saveTemplatePopupVisible = false;
+  }
+
+  private delete() {
+    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
+    this.http.delete(url).toPromise()
+      .then(res => {
+        notifySuccess(`The record was deleted successfully!`, 5000);
+        this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+      })
+      .catch(error => {
+        notifyException(`The record was not deleted due to a problem`, error, 5000);
+      });
+  }
+
+  private get submissionTemplatesEnabled() {
+    return this.isNewRecord && new CSystemSettings(this.getLookup('systemSettings')).isSubmissionTemplateEnabled;
+  }
+
+  private getLookup(name: string): any[] {
+    let lookups = this.ngRedux.getState().session.lookups;
+    return lookups ? lookups[name] : [];
   }
 };

@@ -20,7 +20,7 @@ export class RecordDetailActions {
   static LOAD_STRUCTURE_ERROR = 'LOAD_STRUCTURE_ERROR';
   static clearRecordAction = createAction(RecordDetailActions.CLEAR_RECORD);
   static retrieveRecordAction = createAction(RecordDetailActions.RETRIEVE_RECORD,
-    (temporary: boolean, id: number) => ({ temporary, id }));
+    (temporary: boolean, template: boolean, id: number) => ({ temporary, template, id }));
   static retrieveRecordSuccessAction = createAction(RecordDetailActions.RETRIEVE_RECORD_SUCCESS);
   static retrieveRecordErrorAction = createAction(RecordDetailActions.RETRIEVE_RECORD_ERROR);
   static saveRecordAction = createAction(RecordDetailActions.SAVE_RECORD,
@@ -37,8 +37,8 @@ export class RecordDetailActions {
     this.ngRedux.dispatch(RecordDetailActions.clearRecordAction());
   }
 
-  retrieveRecord(temporary: boolean, id: number) {
-    this.ngRedux.dispatch(RecordDetailActions.retrieveRecordAction(temporary, id));
+  retrieveRecord(temporary: boolean, template: boolean, id: number) {
+    this.ngRedux.dispatch(RecordDetailActions.retrieveRecordAction(temporary, template, id));
   }
 
   retrieveRecordSuccess(data: IRecordDetail) {

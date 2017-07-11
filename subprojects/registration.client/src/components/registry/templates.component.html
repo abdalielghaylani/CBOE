@@ -1,0 +1,19 @@
+<div class="viewcontainer" (window:resize)="onResize($event)">
+  <command-button testid="close-query-management-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <reg-header testid="templates-heading" id="templates-heading">
+    Submission Templates
+  </reg-header>
+  <dx-data-grid [dataSource]="dataSource" [columns]="columns" [paging]="{enabled: false}"
+    [searchPanel]="{ visible: true }" [filterRow]="{ visible: true }" [height]="gridHeight"
+    [grouping]="{ autoExpandAll: true }"
+    rowAlternationEnabled="true" (onContentReady)="onContentReady($event)"
+    (onCellPrepared)="onCellPrepared($event)">
+    <dxo-editing mode="form" [allowDeleting]="true"></dxo-editing>
+    <div *dxTemplate="let data of 'structureCellTemplate'">
+      <reg-structure-image [src]="data.value"></reg-structure-image>
+    </div>
+    <div *dxTemplate="let d of 'loadCellTemplate'">
+      <a class="fa fa fa-check grid-icon" aria-hidden="true" title='Load this submission template' (click)="loadTemplate(d.data.id)"></a>&nbsp; {{d.value}}
+    </div>
+  </dx-data-grid>
+</div>

@@ -2,7 +2,7 @@
   <reg-settings-page-header>System Settings</reg-settings-page-header>
   <dx-data-grid [dataSource]="dataSource" [columns]="columns" [paging]="{enabled: false}"
     [searchPanel]="{ visible: true }" [filterRow]="{ visible: true }" [height]="gridHeight"
-    [grouping]="{ autoExpandAll: false }"
+    [grouping]="{ autoExpandAll: true }"
     rowAlternationEnabled="true" (onContentReady)="onContentReady($event)"
     (onCellPrepared)="onCellPrepared($event)">
     <dxo-editing mode="form" [allowUpdating]="true"></dxo-editing>

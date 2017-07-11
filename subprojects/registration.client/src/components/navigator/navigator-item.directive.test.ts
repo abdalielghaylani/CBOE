@@ -1,9 +1,9 @@
 import { Input, Component, Directive, EventEmitter, Output } from '@angular/core';
 import { async, inject, TestBed } from '@angular/core/testing';
+import { TestModule } from '../../test';
 import { RegNavigatorItems } from './navigator-items.component';
 import { RegNavigatorItem } from './navigator-item.directive';
 import { RegNavigatorModule } from './navigator.module';
-import { configureTests } from '../../tests.configure';
 
 @Component({
   selector: 'container',
@@ -24,11 +24,14 @@ describe('Directive: Navigator Item', () => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
         declarations: [Container],
-        imports: [RegNavigatorModule],
+        imports: [
+          TestModule,
+          RegNavigatorModule
+        ],
       });
     };
 
-    configureTests(configure).then(testBed => {
+    TestModule.configureTests(configure).then(testBed => {
       fixture = testBed.createComponent(Container);
       fixture.detectChanges();
       done();

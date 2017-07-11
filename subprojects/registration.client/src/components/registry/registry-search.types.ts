@@ -1,16 +1,21 @@
 import { IAppState } from '../../store';
-import { FormGroupType, CFormGroup, CFormElement } from '../../common';
+import { IShareableObject, CShareableObject, FormGroupType, CFormGroup, CFormElement } from '../../common';
 import * as X2JS from 'x2js';
 
-export class CRegSearchVM {
+export interface ITabularData {
+  data: any;
+  columns: any[];
+}
+
+export class CRegSearchVM implements ITabularData {
   data: any = {};
   sdfFile?: File;
   title?: String;
   columns: any[] = [];
   searchTypeValue?: String;
   searchTypeItems: any[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 0);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 0);
     if (coeForm) {
       if (coeForm.title) {
         this.title = coeForm.title;
@@ -137,17 +142,18 @@ function getPicklist(p: any, state: IAppState, coeFormId: Number) {
   return pickList;
 }
 
-function getCoeFormById(state: IAppState, coeFormId: number) {
-  let filtered = state.configuration.formGroups.SearchPermanent ?
-    state.configuration.formGroups.SearchPermanent.queryForms.queryForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
+function getCoeFormById(temporary: boolean, state: IAppState, coeFormId: number) {
+  let formGroupType = temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
+  let filtered = state.configuration && state.configuration.formGroups && state.configuration.formGroups[FormGroupType[formGroupType]] ?
+    state.configuration.formGroups[FormGroupType[formGroupType]].queryForms.queryForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
   return filtered && filtered.length > 0 ? filtered[0] : null;
 }
 
 export class CStructureSearchVM {
   data: any = {};
   columns: any[] = [];
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 4);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 4);
     if (coeForm) {
       buildPropertyList(this, coeForm.layoutInfo.formElement, state, 4);
     }
@@ -158,8 +164,8 @@ export class CComponentSearchVM {
   data: any = {};
   columns: any[] = [];
   title: String;
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 1);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 1);
     if (coeForm) {
       if (coeForm.title) {
         this.title = coeForm.title;
@@ -173,8 +179,8 @@ export class CBatchSearchVM {
   data: any = {};
   columns: any[] = [];
   title: string;
-  constructor(state: IAppState) {
-    let coeForm = getCoeFormById(state, 2);
+  constructor(temporary: boolean, state: IAppState) {
+    let coeForm = getCoeFormById(temporary, state, 2);
     if (coeForm) {
       if (coeForm.title) {
         this.title = coeForm.title;
@@ -194,79 +200,78 @@ export class CSearchFormVM {
   structureSearchVM?: CStructureSearchVM;
   componentSearchVM?: CComponentSearchVM;
   batchSearchVM?: CBatchSearchVM;
-  constructor(state: IAppState) {
-    this.registrySearchVM = new CRegSearchVM(state);
-    this.structureSearchVM = new CStructureSearchVM(state);
-    this.componentSearchVM = new CComponentSearchVM(state);
-    this.batchSearchVM = new CBatchSearchVM(state);
+  constructor(temporary: boolean, state: IAppState) {
+    this.registrySearchVM = new CRegSearchVM(temporary, state);
+    this.structureSearchVM = new CStructureSearchVM(temporary, state);
+    this.componentSearchVM = new CComponentSearchVM(temporary, state);
+    this.batchSearchVM = new CBatchSearchVM(temporary, state);
   }
 }
 
 export const HITLIST_GRID_COLUMNS = [{
-  dataField: 'Name',
-  dataType: 'String',
-  cellTemplate: 'saveCellTemplate'
+  dataField: 'name',
+  dataType: 'string',
+  formItem: { colSpan: 2 }
 }, {
-  dataField: 'Description',
-  dataType: 'String'
+  dataField: 'description',
+  dataType: 'string',
+  formItem: { colSpan: 2 }
 }, {
-  dataField: 'IsPublic',
+  dataField: 'isPublic',
+  dataType: 'boolean',
   width: '60px'
 }, {
   caption: '# Hits',
-  dataField: 'NumberOfHits',
+  dataField: 'numberOfHits',
   dataType: Number,
   allowEditing: false,
-  width: '60px'
+  width: '60px',
+  formItem: { visible: false }
 }, {
-  dataField: 'DateCreated._date',
+  dataField: 'dateCreated',
   caption: 'Date Created',
   dataType: 'date',
-  allowEditing: false
+  format: 'shortDateShortTime',
+  allowEditing: false,
+  formItem: { visible: false }
 }, {
-  dataField: 'HistlistType',
   caption: 'Queries',
-  lookup: { dataSource: [{ id: 0, name: 'Recent' }, { id: 1, name: 'Saved' }], valueExpr: 'id', displayExpr: 'name' },
   groupIndex: 0,
-  allowEditing: false
+  allowEditing: false,
+  formItem: { visible: false },
+  calculateCellValue: function (d) { return d.hitlistType === 'TEMP' ? 'Recent' : 'Saved'; }
 },
 {
-  caption: 'Restore',
-  cellTemplate: 'restoreCellTemplate',
-  width: '200px'
+  caption: 'Commands',
+  cellTemplate: 'commandCellTemplate',
+  width: '200px',
+  allowEditing: false,
+  formItem: { visible: false }
 }
 ];
 
 export class CQueryManagementVM {
   gridColumns?: any[];
   queriesList?: CQueries[];
-  advancedRestoreType?: number;
-  isCurrentHitlist?: boolean;
+  advancedRestoreType?: string;
   saveQueryVM?: CSaveQuery;
   constructor(state: IAppState) {
     this.queriesList = state.registrysearch.hitlist.rows;
     this.gridColumns = HITLIST_GRID_COLUMNS;
-    this.advancedRestoreType = 0;
-    this.isCurrentHitlist = false;
+    this.advancedRestoreType = 'intersect';
     this.saveQueryVM = new CSaveQuery();
   }
 
   getRestoreDataSource() {
     return [{
-      key: 0,
-      value: 'Subtract from entire list'
+      key: 'intersect',
+      value: 'Intersect with current list'
     }, {
-      key: 2,
-      value: 'Subtract from current list',
-      disabled: !this.isCurrentHitlist
+      key: 'union',
+      value: 'Union with current list'
     }, {
-      key: 1,
-      value: 'Intersect with current list',
-      disabled: !this.isCurrentHitlist
-    }, {
-      key: 3,
-      value: 'Union with current list',
-      disabled: !this.isCurrentHitlist
+      key: 'subtract',
+      value: 'Subtract from current list'
     }];
   }
 
@@ -277,45 +282,47 @@ export class CQueries {
   Name?: String;
 }
 
-export const HITLIST_EDIT_DESC_LIST = [{
-  dataField: 'Name',
-  label: { text: 'Name' },
-  dataType: 'string',
-  editorType: 'dxTextBox',
-}, {
-  dataField: 'Description',
-  label: { text: 'Description' },
-  dataType: 'string',
-  editorType: 'dxTextArea',
-}, {
-  dataField: 'IsPublic',
-  label: { text: 'Is Public' },
-  dataType: 'boolean',
-  editorType: 'dxCheckBox',
-}
-];
-
-export class CSaveData {
-  Name?: string; // 921
-  Description?: String;
-  IsPublic?: boolean;
-}
-
 export class CSaveQuery {
-  editColumns: any[] = [];
-  data?: CSaveData;
+  editColumns: any[] = [{
+    dataField: 'name',
+    label: { text: 'Name' },
+    dataType: 'string',
+    editorType: 'dxTextBox',
+  }, {
+    dataField: 'description',
+    label: { text: 'Description' },
+    dataType: 'string',
+    editorType: 'dxTextArea',
+  }, {
+    dataField: 'isPublic',
+    label: { text: 'Is Public' },
+    dataType: 'boolean',
+    editorType: 'dxCheckBox',
+  }];
+  data?: IShareableObject;
   constructor() {
-    this.editColumns.push(HITLIST_EDIT_DESC_LIST);
-    if (HITLIST_EDIT_DESC_LIST) {
-      HITLIST_EDIT_DESC_LIST.forEach(p => {
-        this.editColumns.push(p);
-      });
-    }
-    this.data = new CSaveData();
+    this.clear();
   }
   clear() {
-    this.data.Name = '';
-    this.data.Description = '';
-    this.data.IsPublic = false;
+    this.data = new CShareableObject('', '', false);
   }
+}
+
+export interface ISearchCriteriaBase {
+  _negate: string;
+  __text?: string;
+}
+
+export interface ISearchCriteriaItem {
+  _id: string;
+  _tableid: string;
+  _fieldid: string;
+  _modifier?: string;
+  _aggregateFunctionName?: string;
+  _searchLookupByID?: string;
+}
+
+export function getSearchCriteria(item: ISearchCriteriaItem): ISearchCriteriaBase {
+  let objectProp = Object.getOwnPropertyNames(item).find(n => typeof item[n] === 'object');
+  return item[objectProp] as ISearchCriteriaBase;
 }
