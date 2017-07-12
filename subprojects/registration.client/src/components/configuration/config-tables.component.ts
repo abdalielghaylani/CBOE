@@ -147,6 +147,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
         retValue = privileges.hasNotebookTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_FRAGMENT':
+      case 'VW_FRAGMENTTYPE':
         retValue = privileges.hasSaltTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_SEQUENCE':
@@ -154,10 +155,13 @@ export class RegConfigTables implements OnInit, OnDestroy {
         break;
       case 'VW_PICKLIST':
       case 'VW_PICKLISTDOMAIN':
-      case 'VW_FRAGMENTTYPE':
+        retValue = privileges.hasPicklistTablePrivilege(action, this.lookups.userPrivileges);
+        break;
       case 'VW_IDENTIFIERTYPE':
+        retValue = privileges.hasIdentifierTablePrivilege(action, this.lookups.userPrivileges);
+        break;
       case 'VW_SITES':
-        retValue = true;
+        retValue = privileges.hasSitesTablePrivilege(action, this.lookups.userPrivileges);
         break;
     }
     return retValue;
