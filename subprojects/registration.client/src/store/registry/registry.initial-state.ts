@@ -30,6 +30,10 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'CREATOR',
     caption: 'Created By',
     lookup: 'users',
+    calculateSortValue: function(data) {
+      let value = this.calculateCellValue(data);
+      return this.lookup.calculateCellValue(value);
+    }
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',
@@ -85,6 +89,10 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'CREATOR',
     caption: 'Created By',
     lookup: 'users',
+    calculateSortValue: function(data) {
+      let value = this.calculateCellValue(data);
+      return this.lookup.calculateCellValue(value);
+    }
   }, {
     dataField: 'STRUCTURE',
     dataType: 'string',
