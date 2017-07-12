@@ -3,7 +3,7 @@
   <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
     [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
     (onCellPrepared)='onCellPrepared($event)'>
-    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="configTable.isDeleteEnabled" [allowAdding]="true"></dxo-editing>
+    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="configTable.isDeleteEnabled" [allowAdding]="hasPrivilege('ADD')"></dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
     <div *dxTemplate="let data of 'cellTemplate'">
       <reg-structure-image [src]="data.value"></reg-structure-image>

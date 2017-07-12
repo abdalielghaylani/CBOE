@@ -44,7 +44,7 @@
           <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Property</a>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
-          <div class="panel-body">
+          <div class="p2">
             <dx-form minColWidth=300 [colCount]="2" [formData]="configProperties.formData" [items]="configProperties.formValidationColumns.property"></dx-form>
           </div>
         </div>
@@ -59,7 +59,7 @@
           <a class="list-header tan" data-toggle="collapse" href="#collapseOne">New Validation Rule</a>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
-          <div class="panel-body">
+          <div class="p2">
             <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formDataValidation" [items]="configProperties.formValidationColumns.editColumn"
               (onFieldDataChanged)="configProperties.onValidationTypeChanged($event)"></dx-form>
             <div style='margin-top: 20px;' *ngIf="configProperties.formDataValidation.name==='wordListEnumeration'">
@@ -68,7 +68,7 @@
                   <h3 class="panel-title">
                     Add Parameters</h3>
                 </div>
-                <div class="panel-body">
+                <div class="p2">
                   <div class="row">
                     <div class="col-xs-6 col-md-6">
                       <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>validWord </b></span></div>
@@ -103,7 +103,7 @@
                   <h3 class="panel-title">
                     Add Parameters</h3>
                 </div>
-                <div class="panel-body">
+                <div class="p2">
                   <div class="row">
                     <div class="col-xs-6 col-md-6 ">
                       <div class="row">
@@ -159,7 +159,7 @@
           <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Validation Rules List</a>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
-          <div class="panel-body">
+          <div class="p2">
             <dx-data-grid [columns]="configProperties.formValidationColumns.grdColumns" [dataSource]="configProperties.formData.validationRules"
               [height]="gridHeight-200" rowAlternationEnabled="true" (onInitNewRow)='onInitNewRow($event,false)' (onContentReady)='onContentReady($event)'
               (onCellPrepared)="onCellPrepared($event,'validation')" (onRowRemoved)='onValidationRowRemoved($event)'>

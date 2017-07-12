@@ -20,6 +20,13 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   ngOnChanges() {
     this.dataSource = this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
     this.columns = this.data.editorOptions && this.data.editorOptions.columns ? this.data.editorOptions.columns : [];
+    if (this.columns.length > 0) {
+      this.columns.unshift({
+        cellTemplate: 'commandCellTemplate',
+        headerCellTemplate: 'commandHeaderCellTemplate',
+        width: 80
+      });
+    }
     this.editingMode = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.mode
       ? this.data.editorOptions.editing.mode
       : 'row';
@@ -38,27 +45,36 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
     d.component.option('formData.' + d.dataField, e.value);
   }
 
-  private onCellPrepared(e) {
-    if (e.rowType === 'data' && e.column.command === 'edit') {
-      let isEditing = e.row.isEditing;
-      let $links = e.cellElement.find('.dx-link');
-      $links.text('');
-      if (isEditing) {
-        $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-      } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-      }
-    }
-  }
-
   private onContentReady(e) {
     let grid = e.component;
     if (grid.totalCount() === 0) {
-      grid.option('height', 100);
+      grid.option('height', 60);
     } else {
       grid.option('height', 'auto');                
     }
+  }
+
+  private addRow(e) {
+    e.component.addRow();
+  }
+
+  private edit(e) {
+    if (this.allowUpdating) {
+      e.component.editRow(e.row.rowIndex);
+    }
+  }
+
+  private delete(e) {
+    if (this.allowDeleting) {
+      e.component.deleteRow(e.row.rowIndex);
+    }
+  }
+
+  private save(e) {
+    e.component.saveEditData();
+  }
+
+  private cancel(e) {
+    e.component.cancelEditData();
   }
 };

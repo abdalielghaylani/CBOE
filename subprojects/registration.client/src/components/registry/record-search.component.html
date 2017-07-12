@@ -23,7 +23,7 @@
         <a class="list-header tan" data-toggle="collapse" href="#collapseOne">{{regSearch.registrySearchVM.title}}</a>
       </div>
       <div id="collapseOne" class="panel-collapse collapse in">
-        <div class="panel-body">
+        <div class="p2">
           <div>
             <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
             <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearchVM.searchTypeValue">
@@ -40,7 +40,7 @@
         <a class="list-header tan" data-toggle="collapse" href="#collapseTwo">{{regSearch.componentSearchVM.title}} </a>
       </div>
       <div id="collapseTwo" class="panel-collapse collapse in">
-        <div class="panel-body">
+        <div class="p2">
           <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearchVM.data"
             [items]="regSearch.componentSearchVM.columns"></dx-form>
           <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearchVM.data"
@@ -53,7 +53,7 @@
         <a class="list-header tan" data-toggle="collapse" href="#collapseThree">{{regSearch.batchSearchVM.title}} </a>
       </div>
       <div id="collapseThree" class="panel-collapse collapse in">
-        <div class="panel-body">
+        <div class="p2">
           <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearchVM.data" [items]="regSearch.batchSearchVM.columns"></dx-form>
         </div>
       </div>
