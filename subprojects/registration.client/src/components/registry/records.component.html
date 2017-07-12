@@ -59,7 +59,7 @@
             </button>
             <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="approveMarked()">Approve Marked</button>
           </div>
-          <div *ngIf="selectedRows &amp;&amp; selectedRows.length > 0" testid="delete-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+          <div *ngIf="deleteMarkedEnabled" testid="delete-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="deleteMarked()">
               <i class="fa fa-trash white" aria-hidden="true"></i>
             </button>
