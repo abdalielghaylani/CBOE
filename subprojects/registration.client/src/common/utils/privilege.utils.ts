@@ -43,11 +43,22 @@ export default {
     return this.isUserHasPrivilege(privilege, userPrivileges);
   },
 
+  // Fragments and Fragment Types table privilges depends on SALT_TABLE or SOLVATES_TABLE privilges
   hasSaltTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_SALT_TABLE'
       : action === 'EDIT' ? 'EDIT_SALT_TABLE'
         : action === 'DELETE' ? 'DELETE_SALT_TABLE'
           : '';
+
+    if (this.isUserHasPrivilege(privilege, userPrivileges)) {
+      return true;
+    }
+
+    privilege = action === 'ADD' ? 'ADD_SOLVATES_TABLE'
+      : action === 'EDIT' ? 'EDIT_SOLVATES_TABLE'
+        : action === 'DELETE' ? 'DELETE_SOLVATES_TABLE'
+          : '';
+
     return this.isUserHasPrivilege(privilege, userPrivileges);
   },
 
