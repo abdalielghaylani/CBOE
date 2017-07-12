@@ -15,8 +15,14 @@ export default {
   },
 
   hasEditRecordPrivilege(temporary: boolean, userPrivileges: any[]): boolean {
+    // if  user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
+    if (this.isUserHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
+      return true;
+    }
+    // TODO: based on logged in user return EDIT privilege
     let privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
     return this.isUserHasPrivilege(privilege, userPrivileges);
+    // TODO: need to check EDIT_SCOPE_SUPERVISOR  privilge 
   },
 
   hasProjectsTablePrivilege(action: string, userPrivileges: any[]): boolean {
