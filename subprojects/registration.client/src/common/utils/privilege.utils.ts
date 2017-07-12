@@ -49,5 +49,29 @@ export default {
         : action === 'DELETE' ? 'DELETE_SALT_TABLE'
           : '';
     return this.isUserHasPrivilege(privilege, userPrivileges);
+  },
+
+  hasSitesTablePrivilege(action: string, userPrivileges: any[]): boolean {
+    let privilege = action === 'ADD' ? 'ADD_SITES_TABLE'
+      : action === 'EDIT' ? 'EDIT_SITES_TABLE'
+        : action === 'DELETE' ? 'DELETE_SITES_TABLE'
+          : '';
+    return this.isUserHasPrivilege(privilege, userPrivileges);
+  },
+
+  hasIdentifierTablePrivilege(action: string, userPrivileges: any[]): boolean {
+    let privilege = action === 'ADD' ? 'ADD_IDENTIFIER_TYPE_TABLE'
+      : action === 'EDIT' ? 'EDIT_IDENTIFIER_TYPE_TABLE'
+        : action === 'DELETE' ? 'DELETE_IDENTIFIER_TYPE_TABLE'
+          : '';
+    return this.isUserHasPrivilege(privilege, userPrivileges);
+  },
+
+  hasPicklistTablePrivilege(action: string, userPrivileges: any[]): boolean {
+    let privilege = action === 'ADD' ? 'ADD_PICKLIST_TABLE'
+      : action === 'EDIT' ? 'EDIT_PICKLIST_TABLE'
+        : action === 'DELETE' ? 'DELETE_PICKLIST_TABLE'
+          : '';
+    return this.isUserHasPrivilege(privilege, userPrivileges);
   }
 };
