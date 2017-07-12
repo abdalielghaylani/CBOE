@@ -31,7 +31,7 @@ export class RegistryEpics {
     )(action$, store);
   }
 
- private handleOpenRecords: Epic = (action$: Observable<ReduxActions.Action<IRegistryRetrievalQuery>>) => {
+  private handleOpenRecords: Epic = (action$: Observable<ReduxActions.Action<IRegistryRetrievalQuery>>) => {
     return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
       .mergeMap(({ payload }) => {
         let url = `${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records`;
@@ -75,23 +75,29 @@ export class RegistryEpics {
         let id = payload.id;
         let createRecordAction = id < 0 || payload.saveToPermanent;
         let temporary = !payload.saveToPermanent && (id < 0 || payload.temporary);
-        let data = registryUtils.serializeData(payload.recordDoc);
+        let record = registryUtils.serializeData(payload.recordDoc);
+        let data = payload.checkDuplicate ? { data: record, duplicateCheckOption: 'Compound' } : { data: record };
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return (createRecordAction
-          ? this.http.post(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records`, { data }, options)
-          : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, { data }, options))
+          ? this.http.post(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records`, data, options)
+          : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, data, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
-            let actionType = payload.saveToPermanent ? 'registered' : 'saved';
-            let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
-            newId = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
-            let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
-              + `${createRecordAction ? newId : ''} successfully!`;
-            notifySuccess(message, 5000);
-            return createRecordAction
-              ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
-              : createAction(RegActions.IGNORE_ACTION)();
+            if (responseData.data.DuplicateActions) {
+              notifySuccess('The component you are trying to register already exists. Review the list of conflicts and choose a duplicate action. ', 5000);
+              
+             } else {
+              let actionType = payload.saveToPermanent ? 'registered' : 'saved';
+              let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
+              newId = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
+              let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
+                + `${createRecordAction ? newId : ''} successfully!`;
+              notifySuccess(message, 5000);
+              return createRecordAction
+                ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
+                : createAction(RegActions.IGNORE_ACTION)();
+            }
           })
           .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
       });

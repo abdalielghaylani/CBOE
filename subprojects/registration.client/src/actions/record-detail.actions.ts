@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
 import { IRecordDetail, IAppState } from '../store';
+import { IRecordSaveData } from '../components/registry/registry.types';
 
 @Injectable()
 export class RecordDetailActions {
@@ -23,8 +24,7 @@ export class RecordDetailActions {
     (temporary: boolean, template: boolean, id: number) => ({ temporary, template, id }));
   static retrieveRecordSuccessAction = createAction(RecordDetailActions.RETRIEVE_RECORD_SUCCESS);
   static retrieveRecordErrorAction = createAction(RecordDetailActions.RETRIEVE_RECORD_ERROR);
-  static saveRecordAction = createAction(RecordDetailActions.SAVE_RECORD,
-    (temporary: boolean, id: number, recordDoc: Document, saveToPermanent: boolean) => ({ temporary, id, recordDoc, saveToPermanent }));
+  static saveRecordAction = createAction(RecordDetailActions.SAVE_RECORD, (saveData: IRecordSaveData) => ( saveData ));
   static saveRecordSuccessAction = createAction(RecordDetailActions.SAVE_RECORD_SUCCESS);
   static saveRecordErrorAction = createAction(RecordDetailActions.SAVE_RECORD_ERROR);
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
@@ -49,8 +49,8 @@ export class RecordDetailActions {
     this.ngRedux.dispatch(RecordDetailActions.retrieveRecordErrorAction());
   }
 
-  saveRecord(temporary: boolean, id: number, recordDoc: Document, saveToPermanent: boolean = false) {
-    this.ngRedux.dispatch(RecordDetailActions.saveRecordAction(temporary, id, recordDoc, saveToPermanent));
+  saveRecord(saveData: IRecordSaveData) {
+    this.ngRedux.dispatch(RecordDetailActions.saveRecordAction(saveData));
   }
 
   loadStructure(data: string) {
