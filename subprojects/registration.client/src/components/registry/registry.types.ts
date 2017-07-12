@@ -796,6 +796,7 @@ export interface IRecordSaveData {
   id: number;
   recordDoc: Document;
   saveToPermanent: boolean;
+  checkDuplicate: boolean;
 }
 
 export interface ITemplateData extends IShareableObject {
@@ -812,6 +813,6 @@ export class CTemplateData implements ITemplateData {
     public isPublic?: boolean,
     public id?: number,
     dateCreated?:
-    Date, username?: string,
+      Date, username?: string,
     date?: string) { }
 }

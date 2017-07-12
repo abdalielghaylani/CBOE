@@ -205,10 +205,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.updateRecord();
     let id = this.template ? -1 : this.id;
     if (this.isNewRecord) {
-      this.actions.saveRecord(this.temporary, id, this.recordDoc);
+      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
     } else {
       this.setEditMode(false);
-      this.actions.saveRecord(this.temporary, id, this.recordDoc);
+      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
     }
   }
 
@@ -223,7 +223,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
 
   register() {
     this.updateRecord();
-    this.actions.saveRecord(this.temporary, this.id, this.recordDoc, true);
+    let duplicateEnabled = this.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
+    this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
   }
 
   private setEditMode(editMode: boolean) {
