@@ -84,10 +84,10 @@ export class RegistryEpics {
           : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, data, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
-            if (responseData.data.DuplicateActions) {
+            if ((responseData.data) && (responseData.data.DuplicateActions)) {
               notifySuccess('The component you are trying to register already exists. Review the list of conflicts and choose a duplicate action. ', 5000);
-              
-             } else {
+
+            } else {
               let actionType = payload.saveToPermanent ? 'registered' : 'saved';
               let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
               newId = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
