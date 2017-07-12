@@ -415,23 +415,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         #region Check Duplicate
 
-        [HttpGet]
-        [Route(Consts.apiPrefix + "getDuplicateResolution")]
-        [SwaggerOperation("GetDuplicateResolution")]
-        [SwaggerResponse(201, type: typeof(ResponseData))]
-        [SwaggerResponse(400, type: typeof(JObject))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetDuplicateResolution()
-        {
-            return await CallServiceMethod((service) =>
-            {
-                var responseMessage = new JObject(
-                new JProperty("DuplicateCheck", DuplicateCheck.CompoundCheck.ToString(), DuplicateCheck.MixCheck.ToString(), DuplicateCheck.None.ToString(), DuplicateCheck.PreReg.ToString())
-                );
-                return new ResponseData(null, null, null, responseMessage);
-            });
-        }
-
         [HttpPost]
         [Route(Consts.apiPrefix + "createDuplicateRecord")]
         [SwaggerOperation("CreateDuplicateRecord")]
