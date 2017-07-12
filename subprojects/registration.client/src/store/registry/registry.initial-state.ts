@@ -51,8 +51,7 @@ const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     dataField: 'APPROVED',
     dataType: 'string',
     caption: 'Approved',
-  }],
-  filterRow: { visible: true }
+  }]
 })();
 
 const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
@@ -103,8 +102,7 @@ const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
     allowFiltering: false,
     allowSorting: false,
     cellTemplate: 'statusTemplate'
-  }],
-  filterRow: { visible: true }
+  }]
 })();
 
 export const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDetailRecord>({
