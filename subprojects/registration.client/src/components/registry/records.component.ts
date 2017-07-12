@@ -451,6 +451,14 @@ export class RegRecords implements OnInit, OnDestroy {
     return this.temporary && this.selectedRows && this.selectedRows.length > 0 && this.approvalsEnabled;
   }
 
+  // set delete marked button visibility
+  private get deleteMarkedEnabled(): boolean {
+    if (this.selectedRows && this.selectedRows.length > 0) {
+      return privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges);
+    }
+    return false;
+  }
+
   private approveRows(ids: number[], failed: number[], succeeded: number[]) {
     if (ids.length === 0) {
       // If id list is empty, change deleted rows and refresh grid.
