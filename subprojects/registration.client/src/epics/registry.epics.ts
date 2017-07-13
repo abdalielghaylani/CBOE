@@ -62,7 +62,9 @@ export class RegistryEpics {
             return RecordDetailActions.retrieveRecordSuccessAction({
               temporary: payload.temporary,
               id: payload.id,
-              data: result.json().data
+              data: result.json().data,
+              isLoggedInUserOwner: result.json().isLoggedInUserOwner,
+              isLoggedInUserSuperVisor: result.json().isLoggedInUserSuperVisor
             } as IRecordDetail);
           })
           .catch(error => Observable.of(RecordDetailActions.retrieveRecordErrorAction(error)));

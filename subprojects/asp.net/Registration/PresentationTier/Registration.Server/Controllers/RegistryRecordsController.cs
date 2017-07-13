@@ -12,6 +12,7 @@ using CambridgeSoft.COE.Registration;
 using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Framework.COESecurityService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -93,8 +94,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 var recordXml = new XmlDocument();
-                recordXml.LoadXml(record);
-                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml));
+                recordXml.LoadXml(record);               
+
+                const string personCreatedIdPath = "/MultiCompoundRegistryRecord/PersonCreated";
+                XmlNode regNode = recordXml.SelectSingleNode(personCreatedIdPath);
+                int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
+
+                bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
+                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
+
+                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
+                    new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
+                    new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor));
             });
         }
 
@@ -300,7 +311,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 var recordXml = new XmlDocument();
                 recordXml.LoadXml(record);
-                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml));
+
+                const string personCreatedIdPath = "/MultiCompoundRegistryRecord/PersonCreated";
+                XmlNode regNode = recordXml.SelectSingleNode(personCreatedIdPath);
+                int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
+
+                bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
+                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
+
+                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
+                    new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
+                    new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor));
             });
         }
 
