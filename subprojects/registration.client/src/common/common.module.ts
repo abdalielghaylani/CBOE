@@ -6,7 +6,7 @@ import { RegToolModule } from './tool/tool.module';
 import {
   INamedObject, IShareableObject, CShareableObject,
   FormGroupType, SubFormType,
-  CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
+  IDisplayInfo, IFormElement, ILayoutInfo, ICoeFormMode, ICoeForm, ICoeForms, IForm, IQueryForms, IDetailsForms, IListForms, IFormGroup,
   IFormContainer
 } from './types';
 import {
@@ -20,7 +20,7 @@ export { RegToolModule };
 export {
   INamedObject, IShareableObject, CShareableObject,
   FormGroupType, SubFormType,
-  CDisplayInfo, CFormElement, CLayoutInfo, CCoeFormMode, CCoeForm, CCoeForms, CForm, CQueryForms, CDetailsForms, CListForms, CFormGroup,
+  IDisplayInfo, IFormElement, ILayoutInfo, ICoeFormMode, ICoeForm, ICoeForms, IForm, IQueryForms, IDetailsForms, IListForms, IFormGroup,
   IFormContainer
 };
 export {

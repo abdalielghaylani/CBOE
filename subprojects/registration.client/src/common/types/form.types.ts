@@ -34,13 +34,13 @@ export enum SubFormType {
   BatchComponentCustomProperties = 1003
 }
 
-export class CDisplayInfo {
+export interface IDisplayInfo {
   cssClass?: string;
   type?: string;
   visible?: string;
 }
 
-export class CFormElement {
+export interface IFormElement {
   _name?: string;
   label?: string;
   showHelp?: string;
@@ -50,69 +50,67 @@ export class CFormElement {
   helpText?: string;
   defaultValue?: string;
   Id?: string;
-  displayInfo?: CDisplayInfo;
+  displayInfo?: IDisplayInfo;
   // TODO: ...
 }
 
-export class CLayoutInfo {
-  formElement?: CFormElement[] = [];
+export interface ILayoutInfo {
+  formElement?: IFormElement[];
 }
 
-export class CCoeFormMode {
-  formElement: CFormElement[] = [];
+export interface ICoeFormMode {
+  formElement: IFormElement[];
 }
 
-export class CCoeForm {
+export interface ICoeForm {
   _id?: string;
   _dataSourceId?: string;
   title?: string;
   titleCssClass?: string;
   validationRuleList?: any;
-  layoutInfo?: CLayoutInfo;
-  formDisplay: any;
-  addMode?: CCoeFormMode;
-  editMode?: CCoeFormMode;
-  viewMode?: CCoeFormMode;
+  layoutInfo?: ILayoutInfo;
+  formDisplay: IDisplayInfo;
+  addMode?: ICoeFormMode;
+  editMode?: ICoeFormMode;
+  viewMode?: ICoeFormMode;
   clientScript?: any;
 }
 
-export class CCoeForms {
+export interface ICoeForms {
   _id?: Number;
   _defaultDisplayMode?: string;
-  coeForm: CCoeForm[] = [];
+  coeForm: ICoeForm[];
 }
 
-export class CForm {
+export interface IForm {
   _id?: Number;
   _dataSourceId?: string;
-  coeForms?: CCoeForms;
+  coeForms?: ICoeForms;
 }
 
-export class CQueryForms {
+export interface IQueryForms {
   _defaultForm?: Number;
-  queryForm: CForm[] = [];
+  queryForm: IForm[];
 }
 
-export class CDetailsForms {
+export interface IDetailsForms {
   _defaultForm?: Number;
-  detailsForm: CForm[] = [];
+  detailsForm: IForm[];
 }
 
-export class CListForms {
+export interface IListForms {
   _defaultForm?: Number;
-  listForm: CForm[] = [];
+  listForm: IForm[];
 }
 
-export class CFormGroup {
-  constructor(
-    public queryForms?: CQueryForms,
-    public detailsForms?: CDetailsForms,
-    public listForms?: CListForms
-  ) { }
+export interface IFormGroup {
+  queryForms?: IQueryForms;
+  detailsForms?: IDetailsForms;
+  listForms?: IListForms;
 }
 
 export interface IFormContainer {
   ngRedux: NgRedux<IAppState>;
-  formGroup: CFormGroup;
+  formGroup: IFormGroup;
   editMode: boolean;
 }

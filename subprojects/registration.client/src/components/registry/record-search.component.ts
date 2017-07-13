@@ -17,7 +17,7 @@ import { RegistrySearchActions, ConfigurationActions } from '../../actions';
 import { IAppState, ISearchRecords, INITIAL_STATE, IQueryData } from '../../store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawWeb } from '../common';
-import { FormGroupType, CFormGroup, prepareFormGroupData, notify } from '../../common';
+import { FormGroupType, prepareFormGroupData, notify } from '../../common';
 import * as X2JS from 'x2js';
 
 declare var jQuery: any;

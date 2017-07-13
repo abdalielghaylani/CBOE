@@ -1,7 +1,7 @@
 import { IAppState } from '../../store';
 import { apiUrlPrefix } from '../../configuration';
 import {
-  IShareableObject, FormGroupType, SubFormType, CFormGroup, CCoeForm, CFormElement, IFormContainer
+  IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
 import { IRecordsData, IRecords } from '../../store';
 
@@ -650,7 +650,7 @@ function onCellPrepared(e) {
   }
 }
 
-function getPicklist(domainId: number, formElement: CFormElement, container: IFormContainer) {
+function getPicklist(domainId: number, formElement: IFormElement, container: IFormContainer) {
   let lookups = getLookups(container);
   let pickListDomains = lookups ? lookups.pickListDomains : [];
   let placeholder = 'Select ' + (formElement ? formElement.label : '...');
@@ -688,7 +688,7 @@ function getPicklist(domainId: number, formElement: CFormElement, container: IFo
   return pickList;
 }
 
-function getPropertyColumn(p: CProperty, formElements: CFormElement[], container: IFormContainer): any {
+function getPropertyColumn(p: CProperty, formElements: IFormElement[], container: IFormContainer): any {
   let filtered = formElements.filter(fe => fe._name === p._name);
   let formElement = filtered && filtered.length > 0 ? filtered[0] : null;
   if (formElement && formElement.displayInfo.visible === 'false') {
@@ -742,7 +742,7 @@ function getPropertyValue(p: CProperty): any {
   return value;
 }
 
-function getCoeFormById(formGroup: CFormGroup, coeFormId: number) {
+function getCoeFormById(formGroup: IFormGroup, coeFormId: number) {
   let filtered = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
   return filtered && filtered.length > 0 ? filtered[0] : null;
 }
@@ -751,7 +751,7 @@ function getCoeFormById(formGroup: CFormGroup, coeFormId: number) {
  * Adds the custom properties to the given view-model object, and
  * adds the property column description into the given column array. 
  */
-function buildPropertyList(vm: any, columns: any[], propertyList: CPropertyList, coeForm: CCoeForm, container: IFormContainer) {
+function buildPropertyList(vm: any, columns: any[], propertyList: CPropertyList, coeForm: ICoeForm, container: IFormContainer) {
   if (propertyList) {
     let formElements = coeForm ? coeForm.editMode.formElement : [];
     propertyList.Property.forEach(p => {

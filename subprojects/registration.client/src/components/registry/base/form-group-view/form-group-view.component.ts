@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { CFormGroup, CForm, CCoeForm } from '../../../../common';
+import { IFormGroup, IForm, ICoeForm } from '../../../../common';
 import { CViewGroup } from '../registry-base.types';
 
 @Component({
@@ -13,7 +13,7 @@ export class RegFormGroupView implements OnChanges {
   @Input() id: string;
   @Input() editMode: boolean = false;
   @Input() data: any;
-  @Input() formGroupData: CFormGroup;
+  @Input() formGroupData: IFormGroup;
   private viewGroups: CViewGroup[] = [];
 
   constructor() {
@@ -23,12 +23,14 @@ export class RegFormGroupView implements OnChanges {
     if (this.formGroupData && this.formGroupData.detailsForms && this.formGroupData.detailsForms.detailsForm.length > 0) {
       let coeForms = this.formGroupData.detailsForms.detailsForm[0].coeForms.coeForm;
       coeForms.forEach(f => {
-        if (this.viewGroups.length === 0) {
-          this.viewGroups.push(new CViewGroup([]));
-        }
-        let viewGroup = this.viewGroups[this.viewGroups.length - 1];
-        if (!viewGroup.append(f)) {
-          this.viewGroups.push(new CViewGroup([ f ]));
+        if (f.formDisplay.visible === 'true') {
+          if (this.viewGroups.length === 0) {
+            this.viewGroups.push(new CViewGroup([]));
+          }
+          let viewGroup = this.viewGroups[this.viewGroups.length - 1];
+          if (!viewGroup.append(f)) {
+            this.viewGroups.push(new CViewGroup([ f ]));
+          }
         }
       });
     }

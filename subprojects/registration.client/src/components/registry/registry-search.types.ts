@@ -1,5 +1,5 @@
 import { IAppState } from '../../store';
-import { IShareableObject, CShareableObject, FormGroupType, CFormGroup, CFormElement } from '../../common';
+import { IShareableObject, CShareableObject, FormGroupType, IFormGroup, IFormElement } from '../../common';
 import * as X2JS from 'x2js';
 
 export interface ITabularData {

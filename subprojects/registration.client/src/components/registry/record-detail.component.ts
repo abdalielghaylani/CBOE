@@ -16,7 +16,7 @@ import * as X2JS from 'x2js';
 import { RecordDetailActions, ConfigurationActions } from '../../actions';
 import { IAppState, IRecordDetail, ILookupData } from '../../store';
 import * as registryUtils from './registry.utils';
-import { IShareableObject, CShareableObject, CFormGroup, prepareFormGroupData, notify } from '../../common';
+import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, notify } from '../../common';
 import { IResponseData, CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath, apiUrlPrefix } from '../../configuration';
@@ -45,7 +45,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
-  public formGroup: CFormGroup;
+  public formGroup: IFormGroup;
   public editMode: boolean = false;
   private title: string;
   private creatingCDD: boolean = false;
@@ -184,7 +184,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
-    this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as CFormGroup;
+    this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.editMode = this.isNewRecord || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
     this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {

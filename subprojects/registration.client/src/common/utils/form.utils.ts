@@ -3,19 +3,19 @@ import { DOMParser, DOMParserStatic, XMLSerializer } from 'xmldom';
 import * as X2JS from 'x2js';
 import { ConfigurationActions } from '../../actions';
 import { IAppState } from '../../store';
-import { FormGroupType, CFormGroup } from '../types/form.types';
+import { FormGroupType, IFormGroup } from '../types/form.types';
 
 export function getFormGroupData(state: IAppState, type: FormGroupType): string {
   let groups = (state.session.lookups.formGroups as Array<{ name, data }>).filter(fg => fg.name === FormGroupType[type]);
   return groups && groups.length > 0 ? groups[0].data : null;
 }
 
-export function getFormGroup(state: IAppState, type: FormGroupType): CFormGroup {
+export function getFormGroup(state: IAppState, type: FormGroupType): IFormGroup {
   let data = getFormGroupData(state, type);
   return data ? convertToFormGroup(data) : null;
 }
 
-export function convertToFormGroup(data: string): CFormGroup {
+export function convertToFormGroup(data: string): IFormGroup {
   let doc = new DOMParser().parseFromString(data);
   let x2jsTool = new X2JS.default({
     arrayAccessFormPaths: [
@@ -39,7 +39,7 @@ export function convertToFormGroup(data: string): CFormGroup {
       'formGroup.listForms.listForm.coeForms.coeForm.viewMode.formElement'
     ]
   });
-  return (x2jsTool.dom2js(doc) as any).formGroup as CFormGroup;
+  return (x2jsTool.dom2js(doc) as any).formGroup as IFormGroup;
 }
 
 export function prepareFormGroupData(formGroupType: FormGroupType, ngRedux: NgRedux<IAppState>) {
