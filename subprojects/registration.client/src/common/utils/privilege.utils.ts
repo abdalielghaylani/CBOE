@@ -16,20 +16,29 @@ export default {
 
   hasEditRecordPrivilege(temporary: boolean, isLoggedInUserOwner: boolean,
     isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
+
+    let privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
+    let hasBaseEditPrivilege = this.isUserHasPrivilege(privilege, userPrivileges);
+
+    // base privilege EDIT_COMPOUND_TEMP or EDIT_COMPOUND_REG is required for editing a compound
+    if (!hasBaseEditPrivilege) {
+      return false;
+    }
+
+    // if logged in user is owner of the record, he can edit his record
+    if (isLoggedInUserOwner) {
+      return true;
+    }
+
     // if the user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
     if (this.isUserHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
       return true;
     }
-    // if the logged in user is owner of the record, he will have EDIT privilege on record
-    if (isLoggedInUserOwner) {
-      let privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
-      return this.isUserHasPrivilege(privilege, userPrivileges);
-    }
+
     // if the logged in user is a supervisor of the registry record owner
     // and EDIT_SCOPE_SUPERVISOR privilege, supervisor can edit record
     if (isLoggedInUserSuperVisor) {
-      let privilege = 'EDIT_SCOPE_SUPERVISOR';
-      return this.isUserHasPrivilege(privilege, userPrivileges);
+      return this.isUserHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
     }
   },
 
