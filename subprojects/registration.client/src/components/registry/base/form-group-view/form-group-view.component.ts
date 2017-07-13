@@ -1,33 +1,37 @@
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { CFormGroup, CForm, CCoeForm } from '../../../../common';
+import { CViewGroup } from '../registry-base.types';
 
 @Component({
   selector: 'reg-form-group-view',
   template: require('./form-group-view.component.html'),
   styles: [require('../registry-base.css')],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegFormGroupView implements OnChanges {
   @Input() id: string;
   @Input() editMode: boolean = false;
-  @Input() formData: any;
-  @Input() formGroup: CFormGroup;
-  private groups: CCoeForm[][] = [];
+  @Input() data: any;
+  @Input() formGroupData: CFormGroup;
+  private viewGroups: CViewGroup[] = [];
 
   constructor() {
-    if (this.formGroup && this.formGroup.detailsForms && this.formGroup.detailsForms.detailsForm.length > 0) {
-      let coeForms = this.formGroup.detailsForms.detailsForm[0].coeForms.coeForm;
-      coeForms.forEach(f => {
-        if (f.title) {
-          this.groups.push([ f ]);
-        } else if (this.groups.length > 0) {
-          this.groups[this.groups.length - 1].push(f);
-        }
-      });
-    }
   }
 
   ngOnChanges() {
+    if (this.formGroupData && this.formGroupData.detailsForms && this.formGroupData.detailsForms.detailsForm.length > 0) {
+      let coeForms = this.formGroupData.detailsForms.detailsForm[0].coeForms.coeForm;
+      coeForms.forEach(f => {
+        if (this.viewGroups.length === 0) {
+          this.viewGroups.push(new CViewGroup([]));
+        }
+        let viewGroup = this.viewGroups[this.viewGroups.length - 1];
+        if (!viewGroup.append(f)) {
+          this.viewGroups.push(new CViewGroup([ f ]));
+        }
+      });
+    }
   }
 
   private togglePanel(e) {

@@ -5,7 +5,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   OnInit, OnDestroy, OnChanges, AfterViewInit,
-  ElementRef, ChangeDetectorRef,
+  ElementRef, ChangeDetectorRef, ViewEncapsulation,
   ViewChild, ViewChildren, QueryList
 } from '@angular/core';
 import { ActivatedRoute, UrlSegment, Params, Router } from '@angular/router';
@@ -33,6 +33,7 @@ import privileges from '../../common/utils/privilege.utils';
   template: require('./record-detail.component.html'),
   styles: [require('./records.css')],
   host: { '(document:click)': 'onDocumentClick($event)' },
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {

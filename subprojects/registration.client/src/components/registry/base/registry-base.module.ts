@@ -6,6 +6,7 @@ import { RegDataGridFormItem } from './data-grid-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
+import { RegFormGroupItemView } from './form-group-item-view';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -55,13 +56,13 @@ export * from './form-group-view';
   declarations: [
     RegDataGridFormItem,
     RegTagBoxFormItem,
-    RegFormView, RegFormGroupView
+    RegFormView, RegFormGroupView, RegFormGroupItemView
   ],
   exports: [
     RegCommonModule,
     RegDataGridFormItem,
     RegTagBoxFormItem,
-    RegFormView
+    RegFormView, RegFormGroupView, RegFormGroupItemView
   ]
 })
 export class RegBaseComponentModule { }

@@ -1,10 +1,11 @@
-<div class="panel-group" [id]="id">  
-  <div class="panel panel-default" *ngFor="let group of groups">
+<div class="panel-group" [id]="id">
+  <div class="panel panel-default" *ngFor="let viewGroup of viewGroups">
     <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-      <a class="list-header tan" data-toggle="collapse" href="#registryPanel">{{group[0].title}}</a>
+      <a class="list-header tan" data-toggle="collapse" href="#{{viewGroup.id}}">{{viewGroup.title}}</a>
     </div>
-    <div id="registryPanel" class="panel-collapse collapse in">
+    <div [id]="viewGroup.id" class="panel-collapse collapse in">
       <div class="p2">
+        <reg-form-group-item-view [viewGroup]="viewGroup"></reg-form-group-item-view>
       </div>
     </div>
   </div>

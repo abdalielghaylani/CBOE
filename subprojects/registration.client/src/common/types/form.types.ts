@@ -35,21 +35,21 @@ export enum SubFormType {
 }
 
 export class CDisplayInfo {
-  cssClass?: String;
-  type?: String;
-  visible?: String;
+  cssClass?: string;
+  type?: string;
+  visible?: string;
 }
 
 export class CFormElement {
-  _name?: String;
-  label?: String;
-  showHelp?: String;
-  isFileUpload?: String;
+  _name?: string;
+  label?: string;
+  showHelp?: string;
+  isFileUpload?: string;
   pageCommunicationProvider?: any;
   fileUploadBindingExpression?: any;
-  helpText?: String;
-  defaultValue?: String;
-  Id?: String;
+  helpText?: string;
+  defaultValue?: string;
+  Id?: string;
   displayInfo?: CDisplayInfo;
   // TODO: ...
 }
@@ -63,10 +63,10 @@ export class CCoeFormMode {
 }
 
 export class CCoeForm {
-  _id?: String;
-  _dataSourceId?: String;
-  title?: String;
-  titleCssClass?: String;
+  _id?: string;
+  _dataSourceId?: string;
+  title?: string;
+  titleCssClass?: string;
   validationRuleList?: any;
   layoutInfo?: CLayoutInfo;
   formDisplay: any;
@@ -78,13 +78,13 @@ export class CCoeForm {
 
 export class CCoeForms {
   _id?: Number;
-  _defaultDisplayMode?: String;
+  _defaultDisplayMode?: string;
   coeForm: CCoeForm[] = [];
 }
 
 export class CForm {
   _id?: Number;
-  _dataSourceId?: String;
+  _dataSourceId?: string;
   coeForms?: CCoeForms;
 }
 
