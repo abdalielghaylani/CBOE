@@ -4,6 +4,8 @@ export interface IRecordDetail {
   temporary: boolean;
   id: number;
   data: string;
+  isLoggedInUserOwner: boolean;
+  isLoggedInUserSuperVisor: boolean;
 }
 
 export interface IRecordDetailRecord extends TypedRecord<IRecordDetailRecord>, IRecordDetail { }

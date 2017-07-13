@@ -79,6 +79,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     editorType: 'dxCheckBox'
   }];
   private saveTemplateData: IShareableObject = new CShareableObject('', '', false);
+  private isLoggedInUserOwner: boolean = false;
+  private isLoggedInUserSuperVisor: boolean = false;
 
   constructor(
     public ngRedux: NgRedux<IAppState>,
@@ -150,6 +152,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       return;
     }
     this.recordDoc = registryUtils.getDocument(recordDetail.data);
+    this.isLoggedInUserOwner = recordDetail.isLoggedInUserOwner;
+    this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
     this.title = this.isNewRecord ?
       'Register a New Compound' :
       recordDetail.temporary ?
@@ -316,7 +320,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get editButtonEnabled(): boolean {
-    return !this.isNewRecord && privileges.hasEditRecordPrivilege(this.temporary, this.lookups.userPrivileges)
+    return !this.isNewRecord
+      && privileges.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges)
       && !this.editMode && !this.cancelApprovalButtonEnabled;
   }
 

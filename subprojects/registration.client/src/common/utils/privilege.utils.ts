@@ -14,15 +14,23 @@ export default {
     return this.isUserHasPrivilege(privilege, userPrivileges);
   },
 
-  hasEditRecordPrivilege(temporary: boolean, userPrivileges: any[]): boolean {
-    // if  user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
+  hasEditRecordPrivilege(temporary: boolean, isLoggedInUserOwner: boolean,
+    isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
+    // if the user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
     if (this.isUserHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
       return true;
     }
-    // TODO: based on logged in user return EDIT privilege
-    let privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-    // TODO: need to check EDIT_SCOPE_SUPERVISOR  privilge 
+    // if the logged in user is owner of the record, he will have EDIT privilege on record
+    if (isLoggedInUserOwner) {
+      let privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
+      return this.isUserHasPrivilege(privilege, userPrivileges);
+    }
+    // if the logged in user is a supervisor of the registry record owner
+    // and EDIT_SCOPE_SUPERVISOR privilege, supervisor can edit record
+    if (isLoggedInUserSuperVisor) {
+      let privilege = 'EDIT_SCOPE_SUPERVISOR';
+      return this.isUserHasPrivilege(privilege, userPrivileges);
+    }
   },
 
   hasProjectsTablePrivilege(action: string, userPrivileges: any[]): boolean {
