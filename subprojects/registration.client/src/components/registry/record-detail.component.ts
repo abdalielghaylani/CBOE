@@ -384,6 +384,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       && this.editButtonEnabled && !this.duplicateResolution.enabled;
   }
 
+  private get submissionTemplatesEnabled(): boolean {
+    return this.isNewRecord
+      && privileges.hasSubmissionTemplatePrivilege(this.lookups.userPrivileges)
+      && new CSystemSettings(this.getLookup('systemSettings')).isSubmissionTemplateEnabled;
+  }
+
   private cancelApproval() {
     let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Submitted}`;
     this.http.put(url, undefined).toPromise()
@@ -424,10 +430,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       .catch(error => {
         notifyException(`The record was not deleted due to a problem`, error, 5000);
       });
-  }
-
-  private get submissionTemplatesEnabled() {
-    return this.isNewRecord && new CSystemSettings(this.getLookup('systemSettings')).isSubmissionTemplateEnabled;
   }
 
   private getLookup(name: string): any[] {
