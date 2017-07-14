@@ -112,7 +112,7 @@ export default {
           : '';
     return this.isUserHasPrivilege(privilege, userPrivileges);
   },
- 
+
   /**
    * Checks whether salt table privilege
    * Fragments and Fragment Types table privileges depends on SALT_TABLE or SOLVATES_TABLE privileges
@@ -160,5 +160,16 @@ export default {
         : action === 'DELETE' ? 'DELETE_PICKLIST_TABLE'
           : '';
     return this.isUserHasPrivilege(privilege, userPrivileges);
-  }
+  },
+
+  /**
+   * Checks submission template privilege
+   * Note: Visibility of submission template button also depends on 
+   * 'Enable Submission template' in System settings
+   * @param {any[]} userPrivileges list of user privileges for the logged in user
+   * @returns {boolean} True if register record privilege
+   */
+  hasSubmissionTemplatePrivilege(userPrivileges: any[]): boolean {
+    return this.isUserHasPrivilege('LOAD_SAVE_RECORD', userPrivileges);
+  },
 };
