@@ -78,7 +78,7 @@ export class RegistryEpics {
         let createRecordAction = id < 0 || payload.saveToPermanent;
         let temporary = !payload.saveToPermanent && (id < 0 || payload.temporary);
         let record = registryUtils.serializeData(payload.recordDoc);
-        let data = payload.checkDuplicate ? { data: record, duplicateCheckOption: 'Compound' } : { data: record };
+        let data = payload.checkDuplicate ? { data: record, duplicateCheckOption: 'C' } : { data: record };
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return (createRecordAction
@@ -87,8 +87,9 @@ export class RegistryEpics {
           .map(result => {
             let responseData = result.json() as IResponseData;
             if ((responseData.data) && (responseData.data.DuplicateActions)) {
-              notifySuccess('The component you are trying to register already exists. Review the list of conflicts and choose a duplicate action. ', 5000);
-
+              return createRecordAction
+                ? createAction(UPDATE_LOCATION)(`records/duplicate/${responseData.data.DuplicateRecords}`)
+                : createAction(RegActions.IGNORE_ACTION)();
             } else {
               let actionType = payload.saveToPermanent ? 'registered' : 'saved';
               let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
