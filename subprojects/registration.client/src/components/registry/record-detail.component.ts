@@ -104,8 +104,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.parentHeight = this.getParentHeight();
     let self = this;
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
-    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
-
+    if (!this.lookupsSubscription) {
+      this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
+    }
   }
 
   initialize(segments: UrlSegment[]) {
@@ -156,6 +157,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
     if (this.loadSubscription) {
       this.loadSubscription.unsubscribe();
+    }
+    if (this.lookupsSubscription) {
+      this.lookupsSubscription.unsubscribe();
     }
   }
 
