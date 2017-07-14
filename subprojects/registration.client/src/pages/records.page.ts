@@ -3,9 +3,8 @@ import { AsyncPipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { select } from '@angular-redux/store';
-import { RegistryActions } from '../actions';
 import { RegContainer, RegRecords } from '../components';
-import { IRegistry } from '../store';
+import { RegistryActions, IRegistry } from '../redux';
 
 @Component({
   selector: 'records-page',

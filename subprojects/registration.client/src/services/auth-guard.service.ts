@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild } from '@angular/router';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { ILookupData } from '../store';
+import { ILookupData, SessionActions, IAppState } from '../redux';
 import { NgRedux, select } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
-import { SessionActions } from '../actions';
 import { HttpService } from '../services';
-import { IAppState } from '../store';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {

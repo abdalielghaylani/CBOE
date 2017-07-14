@@ -4,8 +4,7 @@ import { NgRedux } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { SessionActions } from '../actions';
-import { IAppState } from '../store';
+import { SessionActions, IAppState } from '../redux';
 import { notify, notifyError, notifySuccess } from '../common';
 
 @Injectable()

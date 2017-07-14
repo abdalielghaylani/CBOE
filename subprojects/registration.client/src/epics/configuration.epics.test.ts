@@ -4,11 +4,10 @@ import { MockBackend, MockConnection } from '@angular/http/testing/mock_backend'
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
-import { ConfigurationActions } from '../actions';
 import { ConfigurationEpics } from './configuration.epics';
 import { TestModule } from '../test';
 import { HttpService } from '../services';
-import { IAppState } from '../store';
+import { ConfigurationActions, IAppState } from '../redux';
 
 describe('configuration.epics', () => {
   beforeEach(done => {

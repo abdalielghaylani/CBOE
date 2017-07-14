@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { select } from '@angular-redux/store';
-import { RegistrySearchActions } from '../actions';
+import { RegistrySearchActions } from '../redux';
 import { RegContainer, RegRecords } from '../components';
 
 @Component({

@@ -4,10 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { DevToolsExtension, NgRedux, select } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
-import { IAppState, ISession, rootReducer, ILookupData } from '../store';
-import { RegistryActions, SessionActions } from '../actions';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, RegistrySearchEpics } from '../epics';
-import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../store';
+import { IAppState, ISession, rootReducer, ILookupData, RegistryActions, SessionActions } from '../redux';
+import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../redux';
 import { Subscription } from 'rxjs/Subscription';
 
 import { dev } from '../configuration';

@@ -13,8 +13,8 @@ import 'rxjs/add/operator/catch';
 import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
-import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
-import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState } from '../store';
+import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../redux';
+import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState } from '../redux';
 import { IResponseData } from '../components';
 import { HttpService } from '../services';
 

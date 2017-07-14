@@ -1,6 +1,6 @@
 import { RegistrySearchActions, IPayloadAction } from '../../actions';
 import { IRegistrySearchRecord, ISearchRecords, IHitlistRetrieveInfo, INITIAL_SEARCH_STATE } from './registry-search.types';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { notify, notifyError, notifySuccess } from '../../../common';
 
 export function registrySearchReducer(
   state: IRegistrySearchRecord = INITIAL_SEARCH_STATE,

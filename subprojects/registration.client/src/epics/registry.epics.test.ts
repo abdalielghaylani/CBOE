@@ -7,11 +7,10 @@ import 'rxjs/add/observable/throw';
 import { ActionsObservable } from 'redux-observable';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';
-import { RegistryActions } from '../actions';
 import { RegistryEpics } from './registry.epics';
 import { TestModule } from '../test';
 import { HttpService } from '../services';
-import { IAppState } from '../store';
+import { RegistryActions, IAppState } from '../redux';
 
 describe('configuration.epics', () => {
   beforeEach(done => {

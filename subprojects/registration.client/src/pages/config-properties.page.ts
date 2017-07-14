@@ -1,7 +1,6 @@
 import { Component, Inject, ApplicationRef } from '@angular/core';
-import { ConfigurationActions } from '../actions';
+import { ConfigurationActions, IConfiguration } from '../redux';
 import { RegContainer, RegConfigTables } from '../components';
-import { IConfiguration } from '../store/configuration';
 
 @Component({
   selector: 'config-properties-page',

@@ -1,5 +1,5 @@
 import { TypedRecord } from 'typed-immutable-record';
-import { ISettingData } from '../../components';
+import { ISettingData } from '../../../components';
 
 export interface IUser {
   fullName: string;

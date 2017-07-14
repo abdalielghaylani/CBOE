@@ -1,5 +1,5 @@
 import { rootReducer, deimmutify, reimmutify } from './store';
-import { dev } from '../configuration';
+import { dev } from '../../configuration';
 const createLogger = require('redux-logger');
 const persistState = require('redux-localstorage');
 

@@ -8,10 +8,9 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { ConfigurationActions } from '../../actions/configuration.actions';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration, IAppState } from '../../store';
+import { ConfigurationActions, ICustomTableData, IConfiguration, IAppState } from '../../redux';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;

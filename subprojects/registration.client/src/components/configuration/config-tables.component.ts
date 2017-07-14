@@ -8,11 +8,10 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { ConfigurationActions } from '../../actions/configuration.actions';
+import { CConfigTable } from './config.types';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../store';
-import { CConfigTable } from './config.types';
+import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
 import privileges from '../../common/utils/privilege.utils';
 

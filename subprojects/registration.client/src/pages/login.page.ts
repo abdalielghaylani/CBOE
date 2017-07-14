@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SessionActions } from '../actions';
+import { SessionActions } from '../redux';
 import { RegContainer } from '../components';
 
 @Component({

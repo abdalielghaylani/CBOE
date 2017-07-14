@@ -7,10 +7,9 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
-import { IPayloadAction, SessionActions, RegActions } from '../actions';
 import { apiUrlPrefix } from '../configuration';
 import { HttpService } from '../services';
-import { ILookupData } from '../store';
+import { IPayloadAction, SessionActions, RegActions, ILookupData } from '../redux';
 
 @Injectable()
 export class SessionEpics {

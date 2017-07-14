@@ -12,12 +12,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { RegistrySearchActions } from '../../actions';
-import { IAppState, HitlistType, IHitlistData, IHitlistInfo, ISearchRecords, IQueryData } from '../../store';
 import * as regSearchTypes from './registry-search.types';
+import { notifyError, notifyException, notifySuccess } from '../../common';
+import { RegistrySearchActions, IAppState, HitlistType, IHitlistData, IHitlistInfo, ISearchRecords, IQueryData } from '../../redux';
 import { apiUrlPrefix } from '../../configuration';
 import { HttpService } from '../../services';
-import { notifyError, notifyException, notifySuccess } from '../../common';
 
 @Component({
   selector: 'reg-search-query',

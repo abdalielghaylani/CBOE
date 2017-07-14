@@ -1,4 +1,4 @@
-import { IAppState } from '../../store';
+import { IAppState } from '../../redux';
 import { notify, notifyError, notifySuccess } from '../../common';
 export const PROJECTS_COLUMNS = [
   {
