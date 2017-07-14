@@ -819,6 +819,6 @@ export class CTemplateData implements ITemplateData {
 
 export interface IDuplicateResolution {
   enabled: boolean;
-  duplicateRecords: any;
+  duplicateRecords: number[];
   index: number;
 }
