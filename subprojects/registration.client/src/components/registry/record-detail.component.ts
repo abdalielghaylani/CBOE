@@ -19,13 +19,13 @@ import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, n
 import { IResponseData, CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import { basePath, apiUrlPrefix } from '../../configuration';
-import { CSystemSettings } from '../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus, IDuplicateResolution } from './registry.types';
 import { ChemDrawWeb } from '../common';
 import { PrivilegeUtils } from '../../common';
+import { CSystemSettings } from '../../redux';
 
 @Component({
   selector: 'reg-record-detail',

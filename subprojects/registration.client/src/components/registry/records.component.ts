@@ -20,12 +20,11 @@ import * as regSearchTypes from './registry-search.types';
 import { CRecords, RegistryStatus } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
-import { CSystemSettings } from '../configuration';
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
 import { RegistryActions, RegistrySearchActions } from '../../redux';
-import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData } from '../../redux';
+import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings } from '../../redux';
 
 declare var jQuery: any;
 
