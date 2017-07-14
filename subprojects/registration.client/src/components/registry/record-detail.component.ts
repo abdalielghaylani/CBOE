@@ -24,7 +24,7 @@ import { CSystemSettings } from '../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
-import { RegistryStatus } from './registry.types';
+import { RegistryStatus, IDuplicateResolution } from './registry.types';
 import { ChemDrawWeb } from '../common';
 import privileges from '../../common/utils/privilege.utils';
 
@@ -62,6 +62,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private saveTemplatePopupVisible: boolean = false;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
+  private duplicateResolution: IDuplicateResolution = { enabled: false, duplicateRecords: [], index: 0 };
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
@@ -83,6 +84,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private isLoggedInUserOwner: boolean = false;
   private isLoggedInUserSuperVisor: boolean = false;
 
+
   constructor(
     public ngRedux: NgRedux<IAppState>,
     private elementRef: ElementRef,
@@ -102,15 +104,40 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.parentHeight = this.getParentHeight();
     let self = this;
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
-    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
-
+    if (!this.lookupsSubscription) {
+      this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
+    }
   }
 
   initialize(segments: UrlSegment[]) {
     let newIndex = segments.findIndex(s => s.path === 'new');
-    if (newIndex >= 0 && newIndex < segments.length - 1) {
-      this.id = +segments[segments.length - 1].path;
+    let duplicateIndex = segments.findIndex(s => s.path === 'duplicate');
+    if (duplicateIndex > 0 && segments.length === 3) {
+      this.duplicateResolution.enabled = true;
+      this.duplicateResolution.duplicateRecords = segments[segments.length - 1].path.split(',').map(Number);
+      this.viewDuplicateRecords();
+    } else {
+      if (newIndex >= 0 && newIndex < segments.length - 1) {
+        this.id = +segments[segments.length - 1].path;
+      }
+      this.actions.retrieveRecord(this.temporary, this.template, this.id);
+      if (!this.dataSubscription) {
+        this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+      }
     }
+  }
+  navigateToDuplicateEntry(e) {
+    if (e === 'next' && this.duplicateResolution.index < this.duplicateResolution.duplicateRecords.length - 1) {
+      this.duplicateResolution.index = this.duplicateResolution.index + 1;
+      this.viewDuplicateRecords();
+    } else if (e === 'previous' && this.duplicateResolution.index > 0) {
+      this.duplicateResolution.index = this.duplicateResolution.index - 1;
+      this.viewDuplicateRecords();
+    }
+  }
+
+  viewDuplicateRecords() {
+    this.id = this.duplicateResolution.duplicateRecords[this.duplicateResolution.index];
     this.actions.retrieveRecord(this.temporary, this.template, this.id);
     if (!this.dataSubscription) {
       this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
@@ -131,6 +158,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (this.loadSubscription) {
       this.loadSubscription.unsubscribe();
     }
+    if (this.lookupsSubscription) {
+      this.lookupsSubscription.unsubscribe();
+    }
   }
 
   private getParentHeight() {
@@ -148,7 +178,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
   }
 
-  loadData(recordDetail: IRecordDetail) {
+  loadData(recordDetail: IRecordDetail, duplicateResolution: boolean = false) {
     if (this.temporary !== recordDetail.temporary || this.id !== recordDetail.id) {
       return;
     }
@@ -157,9 +187,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
     this.title = this.isNewRecord ?
       'Register a New Compound' :
-      recordDetail.temporary ?
-        'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
-        'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
+      duplicateResolution ? 'Duplicate Registry Record :' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber') :
+        recordDetail.temporary ?
+          'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
+          'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
     // registryUtils.fixStructureData(this.recordDoc);
     let x2jsTool = new X2JS.default({
       arrayAccessFormPaths: [
@@ -323,32 +354,34 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private get editButtonEnabled(): boolean {
     return !this.isNewRecord
       && privileges.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges)
-      && !this.editMode && !this.cancelApprovalButtonEnabled;
+      && !this.editMode && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled;
   }
 
   private get saveButtonEnabled(): boolean {
-    return (this.isNewRecord && !this.cancelApprovalButtonEnabled) || this.editMode;
+    return (this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled) || this.editMode;
   }
 
   private get registerButtonEnabled(): boolean {
     if (!privileges.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges)) {
       return false;
     }
-    return (this.isNewRecord || (this.temporary && !this.editMode)) && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
+    return (this.isNewRecord || (this.temporary && !this.editMode && !this.duplicateResolution.enabled))
+      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
   }
 
   private get approveButtonEnabled(): boolean {
     let statusId = this.statusId;
-    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved && !this.duplicateResolution.enabled;
   }
 
   private get cancelApprovalButtonEnabled(): boolean {
     let statusId = this.statusId;
-    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId === RegistryStatus.Approved;
+    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId === RegistryStatus.Approved && !this.duplicateResolution.enabled;
   }
 
   private get deleteButtonEnabled(): boolean {
-    return !this.isNewRecord && privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
+    return !this.isNewRecord && privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)
+      && this.editButtonEnabled && !this.duplicateResolution.enabled;
   }
 
   private cancelApproval() {
