@@ -1,5 +1,5 @@
-export default {
-  isUserHasPrivilege(privilege: string, userPrivileges: any[]): boolean {
+export class PrivilegeUtils {
+  private static userHasPrivilege(privilege: string, userPrivileges: any[]): boolean {
     if (userPrivileges) {
       let privilegeItem = userPrivileges.find(p => p.name === privilege);
       if (privilegeItem !== undefined) {
@@ -7,7 +7,7 @@ export default {
       }
     }
     return false;
-  },
+  }
 
   /**
    * Checks whether delete record privilege
@@ -16,10 +16,10 @@ export default {
    * @param {any[]} userPrivileges list of user privileges for the logged in user
    * @returns {boolean} True if the delete privilege
    */
-  hasDeleteRecordPrivilege(temporary: boolean, userPrivileges: any[]): boolean {
+  static hasDeleteRecordPrivilege(temporary: boolean, userPrivileges: any[]): boolean {
     let privilege = temporary ? 'DELETE_TEMP' : 'DELETE_REG';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
   /**
    * Checks whether register record privilege
@@ -30,16 +30,16 @@ export default {
    * @param {any[]} userPrivileges list of user privileges for the logged in user
    * @returns {boolean} True if register record privilege
    */
-  hasRegisterRecordPrivilege(newRecord: boolean, isLoggedInUserOwner: boolean,
+  static hasRegisterRecordPrivilege(newRecord: boolean, isLoggedInUserOwner: boolean,
     isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
 
     // REGISTER_DIRECT privilege available, user can directly register new record
-    if (newRecord && this.isUserHasPrivilege('REGISTER_DIRECT', userPrivileges)) {
+    if (newRecord && this.userHasPrivilege('REGISTER_DIRECT', userPrivileges)) {
       return true;
     }
 
     // REGISTER_TEMP privilege is required to register an already submitted record
-    let hasBaseRegisterPrivilege = this.isUserHasPrivilege('REGISTER_TEMP', userPrivileges);
+    let hasBaseRegisterPrivilege = this.userHasPrivilege('REGISTER_TEMP', userPrivileges);
     if (!hasBaseRegisterPrivilege) {
       return false;
     }
@@ -50,22 +50,22 @@ export default {
     }
 
     // if the user has EDIT_SCOPE_ALL, he will be able to register records created by other users
-    if (this.isUserHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
+    if (this.userHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
       return true;
     }
 
     // if the logged in user is a supervisor of the registry record owner
     // and EDIT_SCOPE_SUPERVISOR privilege, supervisor can register record
     if (isLoggedInUserSuperVisor) {
-      return this.isUserHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
+      return this.userHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
     }
-  },
+  }
 
-  hasEditRecordPrivilege(temporary: boolean, isLoggedInUserOwner: boolean,
+  static hasEditRecordPrivilege(temporary: boolean, isLoggedInUserOwner: boolean,
     isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
 
     let privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
-    let hasBaseEditPrivilege = this.isUserHasPrivilege(privilege, userPrivileges);
+    let hasBaseEditPrivilege = this.userHasPrivilege(privilege, userPrivileges);
 
     // base privilege EDIT_COMPOUND_TEMP or EDIT_COMPOUND_REG is required for editing a compound
     if (!hasBaseEditPrivilege) {
@@ -78,40 +78,40 @@ export default {
     }
 
     // if the user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
-    if (this.isUserHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
+    if (this.userHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
       return true;
     }
 
     // if the logged in user is a supervisor of the registry record owner
     // and EDIT_SCOPE_SUPERVISOR privilege, supervisor can edit record
     if (isLoggedInUserSuperVisor) {
-      return this.isUserHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
+      return this.userHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
     }
-  },
+  }
 
-  hasProjectsTablePrivilege(action: string, userPrivileges: any[]): boolean {
+  static hasProjectsTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_PROJECTS_TABLE'
       : action === 'EDIT' ? 'EDIT_PROJECTS_TABLE'
         : action === 'DELETE' ? 'DELETE_PROJECTS_TABLE'
           : '';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
-  hasNotebookTablePrivilege(action: string, userPrivileges: any[]): boolean {
+  static hasNotebookTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_NOTEBOOKS_TABLE'
       : action === 'EDIT' ? 'EDIT_NOTEBOOKS_TABLE'
         : action === 'DELETE' ? 'DELETE_NOTEBOOKS_TABLE'
           : '';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
-  hasSequenceTablePrivilege(action: string, userPrivileges: any[]): boolean {
+  static hasSequenceTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_SEQUENCES_TABLE'
       : action === 'EDIT' ? 'EDIT_SEQUENCES_TABLE'
         : action === 'DELETE' ? 'DELETE_SEQUENCES_TABLE'
           : '';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
   /**
    * Checks whether salt table privilege
@@ -120,13 +120,13 @@ export default {
    * @param {any[]} userPrivileges 
    * @returns {boolean} 
    */
-  hasSaltTablePrivilege(action: string, userPrivileges: any[]): boolean {
+  static hasSaltTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_SALT_TABLE'
       : action === 'EDIT' ? 'EDIT_SALT_TABLE'
         : action === 'DELETE' ? 'DELETE_SALT_TABLE'
           : '';
 
-    if (this.isUserHasPrivilege(privilege, userPrivileges)) {
+    if (this.userHasPrivilege(privilege, userPrivileges)) {
       return true;
     }
 
@@ -135,32 +135,32 @@ export default {
         : action === 'DELETE' ? 'DELETE_SOLVATES_TABLE'
           : '';
 
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
-  hasSitesTablePrivilege(action: string, userPrivileges: any[]): boolean {
+  static hasSitesTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_SITES_TABLE'
       : action === 'EDIT' ? 'EDIT_SITES_TABLE'
         : action === 'DELETE' ? 'DELETE_SITES_TABLE'
           : '';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
-  hasIdentifierTablePrivilege(action: string, userPrivileges: any[]): boolean {
+  static hasIdentifierTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_IDENTIFIER_TYPE_TABLE'
       : action === 'EDIT' ? 'EDIT_IDENTIFIER_TYPE_TABLE'
         : action === 'DELETE' ? 'DELETE_IDENTIFIER_TYPE_TABLE'
           : '';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
-  hasPicklistTablePrivilege(action: string, userPrivileges: any[]): boolean {
+  static hasPicklistTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_PICKLIST_TABLE'
       : action === 'EDIT' ? 'EDIT_PICKLIST_TABLE'
         : action === 'DELETE' ? 'DELETE_PICKLIST_TABLE'
           : '';
-    return this.isUserHasPrivilege(privilege, userPrivileges);
-  },
+    return this.userHasPrivilege(privilege, userPrivileges);
+  }
 
   /**
    * Checks submission template privilege
@@ -169,7 +169,7 @@ export default {
    * @param {any[]} userPrivileges list of user privileges for the logged in user
    * @returns {boolean} True if register record privilege
    */
-  hasSubmissionTemplatePrivilege(userPrivileges: any[]): boolean {
-    return this.isUserHasPrivilege('LOAD_SAVE_RECORD', userPrivileges);
-  },
-};
+  static hasSubmissionTemplatePrivilege(userPrivileges: any[]): boolean {
+    return this.userHasPrivilege('LOAD_SAVE_RECORD', userPrivileges);
+  }
+}

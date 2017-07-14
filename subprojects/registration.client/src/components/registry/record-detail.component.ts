@@ -25,7 +25,7 @@ import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus, IDuplicateResolution } from './registry.types';
 import { ChemDrawWeb } from '../common';
-import privileges from '../../common/utils/privilege.utils';
+import { PrivilegeUtils } from '../../common';
 
 @Component({
   selector: 'reg-record-detail',
@@ -118,26 +118,29 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private update(forceUpdate: boolean = true) {
+    if (!this.lookups && this.lookups.userPrivileges) {
+      return;
+    }
     this.editMode = this.displayMode !== 'view';
+    let userPrivileges = this.lookups.userPrivileges;
     let ss = new CSystemSettings(this.getLookup('systemSettings'));
     let statusId = this.statusId;
-    let canEdit = this.isNewRecord || (!!this.lookups
-      && privileges.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges));
+    let canEdit = this.isNewRecord ||
+      PrivilegeUtils.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
     this.approvalsEnabled = (this.isNewRecord || this.temporary) && ss.isApprovalsEnabled;
     this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled && this.approvalsEnabled
       && !this.editMode && !!statusId && this.temporary && statusId === RegistryStatus.Approved;
     this.editButtonEnabled = !this.duplicateResolution.enabled && !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
     this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled) || this.editMode;
-    let canRegister = !!this.lookups
-      && privileges.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges);
+    let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
     this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !this.editMode && !this.duplicateResolution.enabled))
       && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
     this.approveButtonEnabled = !this.duplicateResolution.enabled
       && !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
-    this.deleteButtonEnabled = !this.duplicateResolution.enabled && !!this.lookups
-      && !this.isNewRecord && privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
-    this.submissionTemplatesEnabled = this.isNewRecord && !!this.lookups
-      && privileges.hasSubmissionTemplatePrivilege(this.lookups.userPrivileges) && ss.isSubmissionTemplateEnabled;
+    this.deleteButtonEnabled = !this.duplicateResolution.enabled
+      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, userPrivileges) && this.editButtonEnabled;
+    this.submissionTemplatesEnabled = this.isNewRecord
+      && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     if (forceUpdate) {
       this.changeDetector.markForCheck();
     }
