@@ -42,20 +42,20 @@ export interface ISearchRecords {
   rows?: IHitlistData[];
 }
 
-export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, ISearchRecords { }
+export interface ISearchRecordsRecord extends TypedRecord<ISearchRecordsRecord>, ISearchRecords { }
 
 export interface IRegistrySearch {
-  hitlist?: IRecordsRecord;
+  hitlist?: ISearchRecordsRecord;
 }
 
 export interface IRegistrySearchRecord extends TypedRecord<IRegistrySearchRecord>, IRegistrySearch { }
 
-const INITIAL_RECORDS = makeTypedFactory<ISearchRecords, IRecordsRecord>({
+const INITIAL_RECORDS = makeTypedFactory<ISearchRecords, ISearchRecordsRecord>({
   rows: []
 })();
 
-export const RegistryFactory = makeTypedFactory<IRegistrySearch, IRegistrySearchRecord>({
+export const SearchFactory = makeTypedFactory<IRegistrySearch, IRegistrySearchRecord>({
   hitlist: INITIAL_RECORDS
 });
 
-export const INITIAL_STATE = RegistryFactory();
+export const INITIAL_SEARCH_STATE = SearchFactory();

@@ -14,8 +14,8 @@ import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../actions';
-import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IAppState } from '../store';
-import { IResponseData, IRecordSaveData } from '../components';
+import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState } from '../store';
+import { IResponseData } from '../components';
 import { HttpService } from '../services';
 
 @Injectable()

@@ -10,4 +10,4 @@ export const ConfigurationFactory = makeTypedFactory<IConfiguration, IConfigurat
   formGroups: {}
 });
 
-export const INITIAL_STATE = ConfigurationFactory();
+export const INITIAL_CONFIG_STATE = ConfigurationFactory();

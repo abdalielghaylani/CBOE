@@ -21,4 +21,4 @@ export const SessionFactory = makeTypedFactory<ISession, ISessionRecord>({
   lookups: null,
 });
 
-export const INITIAL_STATE = SessionFactory();
+export const INITIAL_SESSION_STATE = SessionFactory();

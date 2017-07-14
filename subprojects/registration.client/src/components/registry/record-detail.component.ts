@@ -218,7 +218,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (this.temporary !== recordDetail.temporary || this.id !== recordDetail.id) {
       return;
     }
-    console.log('loadData');
     this.recordDoc = registryUtils.getDocument(recordDetail.data);
     this.isLoggedInUserOwner = recordDetail.isLoggedInUserOwner;
     this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
@@ -260,8 +259,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
     let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
-    this.chemDrawWeb.activate();
-    this.chemDrawWeb.loadCdxml(structureData);
+    if (this.chemDrawWeb) {
+      this.chemDrawWeb.activate();
+      this.chemDrawWeb.loadCdxml(structureData);
+    }
     this.update();
   }
 
@@ -270,8 +271,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private updateRecord() {
-    registryUtils.setElementValue(this.recordDoc.documentElement,
-      'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.chemDrawWeb.getValue());
+    if (this.chemDrawWeb) {
+      registryUtils.setElementValue(this.recordDoc.documentElement,
+        'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.chemDrawWeb.getValue());
+    }
   }
 
   save() {

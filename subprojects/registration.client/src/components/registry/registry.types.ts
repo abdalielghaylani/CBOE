@@ -791,14 +791,6 @@ export interface IResponseData {
   data?: any;
 }
 
-export interface IRecordSaveData {
-  temporary: boolean;
-  id: number;
-  recordDoc: Document;
-  saveToPermanent: boolean;
-  checkDuplicate: boolean;
-}
-
 export interface ITemplateData extends IShareableObject {
   id?: number;
   dateCreated?: Date;

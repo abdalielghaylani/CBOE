@@ -1,9 +1,9 @@
 import { RegistryActions, RecordDetailActions, IPayloadAction } from '../../actions';
-import { INITIAL_STATE, INITIAL_RECORD_DETAIL } from './registry.initial-state';
+import { INITIAL_REGISTRY_STATE, INITIAL_RECORD_DETAIL } from './registry.initial-state';
 import { IRegistryRecord, IRecordDetail, IRecords, CRecordsData } from './registry.types';
 
 export function registryReducer(
-  state: IRegistryRecord = INITIAL_STATE,
+  state: IRegistryRecord = INITIAL_REGISTRY_STATE,
   action: IPayloadAction
 ): IRegistryRecord {
 

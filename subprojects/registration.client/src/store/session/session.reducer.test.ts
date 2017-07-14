@@ -1,7 +1,7 @@
 import { Iterable } from 'immutable';
 import { ISessionRecord, ILookupData } from './session.types';
 import { sessionReducer } from './session.reducer';
-import { INITIAL_STATE } from './session.initial-state';
+import { INITIAL_SESSION_STATE } from './session.initial-state';
 import { SessionActions, RecordDetailActions, RegistryActions } from '../../actions';
 
 describe('Session Reducer', () => {
@@ -68,19 +68,19 @@ describe('Session Reducer', () => {
     let nextState = sessionReducer(
       previousState,
       RegistryActions.openRecordsErrorAction(error));
-    expect(nextState).toEqual(INITIAL_STATE);
+    expect(nextState).toEqual(INITIAL_SESSION_STATE);
     nextState = sessionReducer(
       previousState,
       RecordDetailActions.retrieveRecordErrorAction(error));
-    expect(nextState).toEqual(INITIAL_STATE);
+    expect(nextState).toEqual(INITIAL_SESSION_STATE);
     nextState = sessionReducer(
       previousState,
       RecordDetailActions.loadStructureErrorAction(error));
-    expect(nextState).toEqual(INITIAL_STATE);
+    expect(nextState).toEqual(INITIAL_SESSION_STATE);
     nextState = sessionReducer(
       previousState,
       RecordDetailActions.saveRecordErrorAction(error));
-    expect(nextState).toEqual(INITIAL_STATE);
+    expect(nextState).toEqual(INITIAL_SESSION_STATE);
   });
 
   it ('should do nothing on errors with non-404 error', () => {

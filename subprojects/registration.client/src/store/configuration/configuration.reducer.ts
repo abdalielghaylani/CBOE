@@ -1,10 +1,10 @@
 import { ConfigurationActions } from '../../actions';
-import { INITIAL_STATE } from './configuration.initial-state';
+import { INITIAL_CONFIG_STATE } from './configuration.initial-state';
 import { IConfigurationRecord } from './configuration.types';
 import { FormGroupType, copyObjectAndSet, convertToFormGroup } from '../../common';
 
 export function configurationReducer(
-  state: IConfigurationRecord = INITIAL_STATE,
+  state: IConfigurationRecord = INITIAL_CONFIG_STATE,
   action: ReduxActions.Action<any>
 ): IConfigurationRecord {
 

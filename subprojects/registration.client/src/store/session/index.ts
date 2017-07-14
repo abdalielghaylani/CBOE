@@ -1,8 +1,3 @@
-import { sessionReducer } from './session.reducer';
-import { SessionFactory } from './session.initial-state';
-
+export * from './session.initial-state';
+export * from './session.reducer';
 export * from './session.types';
-export {
-  sessionReducer,
-  SessionFactory,
-}

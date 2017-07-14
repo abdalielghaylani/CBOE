@@ -128,4 +128,4 @@ export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({
   structureData: null,
 });
 
-export const INITIAL_STATE = RegistryFactory();
+export const INITIAL_REGISTRY_STATE = RegistryFactory();
