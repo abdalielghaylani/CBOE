@@ -47,9 +47,18 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   public formGroup: IFormGroup;
   public editMode: boolean = false;
+  private displayMode: string;
   private title: string;
   private creatingCDD: boolean = false;
   private parentHeight: string;
+  private approvalsEnabled: boolean = false;
+  private editButtonEnabled: boolean = false;
+  private saveButtonEnabled: boolean = false;
+  private registerButtonEnabled: boolean = false;
+  private approveButtonEnabled: boolean = false;
+  private cancelApprovalButtonEnabled: boolean = false;
+  private deleteButtonEnabled: boolean = false;
+  private submissionTemplatesEnabled: boolean = false;
   private recordString: string;
   private recordDoc: Document;
   private regRecord: CRegistryRecord = new CRegistryRecord();
@@ -109,6 +118,32 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
   }
 
+  private update(forceUpdate: boolean = true) {
+    this.editMode = this.displayMode !== 'view';
+    let ss = new CSystemSettings(this.getLookup('systemSettings'));
+    let statusId = this.statusId;
+    let canEdit = this.isNewRecord || (!!this.lookups
+      && privileges.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges));
+    this.approvalsEnabled = (this.isNewRecord || this.temporary) && ss.isApprovalsEnabled;
+    this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled && this.approvalsEnabled
+      && !this.editMode && !!statusId && this.temporary && statusId === RegistryStatus.Approved;
+    this.editButtonEnabled = !this.duplicateResolution.enabled && !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
+    this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled) || this.editMode;
+    let canRegister = !!this.lookups
+      && privileges.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges);
+    this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !this.editMode && !this.duplicateResolution.enabled))
+      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
+    this.approveButtonEnabled = !this.duplicateResolution.enabled
+      && !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+    this.deleteButtonEnabled = !this.duplicateResolution.enabled && !!this.lookups
+      && !this.isNewRecord && privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges) && this.editButtonEnabled;
+    this.submissionTemplatesEnabled = this.isNewRecord && !!this.lookups
+      && privileges.hasSubmissionTemplatePrivilege(this.lookups.userPrivileges) && ss.isSubmissionTemplateEnabled;
+    if (forceUpdate) {
+      this.changeDetector.markForCheck();
+    }
+  }
+
   initialize(segments: UrlSegment[]) {
     let newIndex = segments.findIndex(s => s.path === 'new');
     let duplicateIndex = segments.findIndex(s => s.path === 'duplicate');
@@ -126,6 +161,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       }
     }
   }
+
   navigateToDuplicateEntry(e) {
     if (e === 'next' && this.duplicateResolution.index < this.duplicateResolution.duplicateRecords.length - 1) {
       this.duplicateResolution.index = this.duplicateResolution.index + 1;
@@ -182,6 +218,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (this.temporary !== recordDetail.temporary || this.id !== recordDetail.id) {
       return;
     }
+    console.log('loadData');
     this.recordDoc = registryUtils.getDocument(recordDetail.data);
     this.isLoggedInUserOwner = recordDetail.isLoggedInUserOwner;
     this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
@@ -216,7 +253,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
-    this.editMode = this.isNewRecord || this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit';
+    this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
     this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
@@ -225,7 +262,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
     this.chemDrawWeb.activate();
     this.chemDrawWeb.loadCdxml(structureData);
-    this.changeDetector.markForCheck();
+    this.update();
   }
 
   getElementValue(e: Element, path: string) {
@@ -243,18 +280,17 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (this.isNewRecord) {
       this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
     } else {
-      this.setEditMode(false);
+      this.setDisplayMode('view');
       this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
     }
   }
 
   cancel() {
-    this.setEditMode(false);
+    this.setDisplayMode('view');
   }
 
   edit() {
-    // notify('Editing is experimental', 'warning');
-    this.setEditMode(true);
+    this.setDisplayMode('edit');
   }
 
   register() {
@@ -263,16 +299,16 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
   }
 
-  private setEditMode(editMode: boolean) {
-    this.editMode = editMode;
-    this.changeDetector.markForCheck();
+  private setDisplayMode(mode: string) {
+    this.displayMode = mode;
+    this.update();
     this.forms.forEach(f => {
       f.items.forEach(i => {
         if (i.template) {
-          i.disabled = !editMode;
+          i.disabled = !this.editMode;
         }
       });
-      f.readOnly = !editMode;
+      f.readOnly = !this.editMode;
       f.instance.repaint();
     });
   }
@@ -322,12 +358,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     if (!this.regTemplates.dataSource) {
       this.regTemplates.loadData();
     }
-    this.changeDetector.markForCheck();
+    this.update();
   }
 
   private showDetails(e) {
     this.currentIndex = 0;
-    this.changeDetector.markForCheck();
+    this.update();
   }
 
   private get isNewRecord(): boolean {
@@ -347,56 +383,13 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     registryUtils.setElementValue(this.recordDoc.documentElement, 'StatusID', statusId.toString());
   }
 
-  private get approvalsEnabled(): boolean {
-    return (this.isNewRecord || this.temporary) && new CSystemSettings(this.getLookup('systemSettings')).isApprovalsEnabled;
-  }
-
-  private get editButtonEnabled(): boolean {
-    return !this.isNewRecord
-      && privileges.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges)
-      && !this.editMode && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled;
-  }
-
-  private get saveButtonEnabled(): boolean {
-    return (this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled) || this.editMode;
-  }
-
-  private get registerButtonEnabled(): boolean {
-    if (!privileges.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges)) {
-      return false;
-    }
-    return (this.isNewRecord || (this.temporary && !this.editMode && !this.duplicateResolution.enabled))
-      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
-  }
-
-  private get approveButtonEnabled(): boolean {
-    let statusId = this.statusId;
-    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved && !this.duplicateResolution.enabled;
-  }
-
-  private get cancelApprovalButtonEnabled(): boolean {
-    let statusId = this.statusId;
-    return !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId === RegistryStatus.Approved && !this.duplicateResolution.enabled;
-  }
-
-  private get deleteButtonEnabled(): boolean {
-    return !this.isNewRecord && privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)
-      && this.editButtonEnabled && !this.duplicateResolution.enabled;
-  }
-
-  private get submissionTemplatesEnabled(): boolean {
-    return this.isNewRecord
-      && privileges.hasSubmissionTemplatePrivilege(this.lookups.userPrivileges)
-      && new CSystemSettings(this.getLookup('systemSettings')).isSubmissionTemplateEnabled;
-  }
-
   private cancelApproval() {
     let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Submitted}`;
     this.http.put(url, undefined).toPromise()
       .then(res => {
         this.regTemplates.dataSource = undefined;
         this.statusId = RegistryStatus.Submitted;
-        this.changeDetector.markForCheck();
+        this.update();
         notifySuccess(`The current temporary record's approval was cancelled successfully!`, 5000);
       })
       .catch(error => {
@@ -411,7 +404,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       .then(res => {
         this.regTemplates.dataSource = undefined;
         this.statusId = RegistryStatus.Approved;
-        this.changeDetector.markForCheck();
+        this.update();
         notifySuccess(`The current temporary record was approved successfully!`, 5000);
       })
       .catch(error => {
