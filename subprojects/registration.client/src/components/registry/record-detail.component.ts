@@ -331,6 +331,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private get registerButtonEnabled(): boolean {
+    if (!privileges.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, this.lookups.userPrivileges)) {
+      return false;
+    }
     return (this.isNewRecord || (this.temporary && !this.editMode)) && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
   }
 
