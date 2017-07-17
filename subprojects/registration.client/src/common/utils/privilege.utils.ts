@@ -172,4 +172,24 @@ export default {
   hasSubmissionTemplatePrivilege(userPrivileges: any[]): boolean {
     return this.isUserHasPrivilege('LOAD_SAVE_RECORD', userPrivileges);
   },
+
+  hasManagePropertiesPrivilege(userPrivileges: any[]): boolean {
+    return this.isUserHasPrivilege('MANAGE_PROPERTIES', userPrivileges);
+  },
+
+  hasCustomizeFormsPrivilege(userPrivileges: any[]): boolean {
+    return this.isUserHasPrivilege('CUSTOMIZE_FORMS', userPrivileges);
+  },
+
+  hasManageAddinsPrivilege(userPrivileges: any[]): boolean {
+    return this.isUserHasPrivilege('MANAGE_ADDINS', userPrivileges);
+  },
+
+  hasEditFormXmlPrivilege(userPrivileges: any[]): boolean {
+    return this.isUserHasPrivilege('EDIT_FORM_XML', userPrivileges);
+  },
+
+  hasManageSystemSettingsPrivilege(userPrivileges: any[]): boolean {
+    return this.isUserHasPrivilege('MANAGE_SYSTEM_SETTINGS', userPrivileges);
+  }
 };
