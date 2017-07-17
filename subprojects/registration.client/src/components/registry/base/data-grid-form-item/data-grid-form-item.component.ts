@@ -11,14 +11,18 @@ import { IFormItemTemplate } from '../registry-base.types';
 export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   @Input() editMode: boolean = false;
   @Input() data: any = {};
-  private dataSource: any[];
-  private columns: any[];
-  private editingMode: string;
-  private allowUpdating: boolean;
-  private allowDeleting: boolean;
-  private allowAdding: boolean;
+  protected dataSource: any[];
+  protected columns: any[];
+  protected editingMode: string;
+  protected allowUpdating: boolean;
+  protected allowDeleting: boolean;
+  protected allowAdding: boolean;
 
   ngOnChanges() {
+    this.update();
+  }
+
+  protected update() {
     this.dataSource = this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
     this.columns = this.data.editorOptions && this.data.editorOptions.columns ? this.data.editorOptions.columns : [];
     if (this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
@@ -42,11 +46,11 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
       : false;
   }
   
-  private onValueChanged(e, d) {
+  protected onValueChanged(e, d) {
     d.component.option('formData.' + d.dataField, e.value);
   }
 
-  private onContentReady(e) {
+  protected onContentReady(e) {
     let grid = e.component;
     if (grid.totalCount() === 0) {
       grid.option('height', 60);
@@ -55,27 +59,27 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
     }
   }
 
-  private addRow(e) {
+  protected addRow(e) {
     e.component.addRow();
   }
 
-  private edit(e) {
+  protected edit(e) {
     if (this.allowUpdating) {
       e.component.editRow(e.row.rowIndex);
     }
   }
 
-  private delete(e) {
+  protected delete(e) {
     if (this.allowDeleting) {
       e.component.deleteRow(e.row.rowIndex);
     }
   }
 
-  private save(e) {
+  protected save(e) {
     e.component.saveEditData();
   }
 
-  private cancel(e) {
+  protected cancel(e) {
     e.component.cancelEditData();
   }
 };

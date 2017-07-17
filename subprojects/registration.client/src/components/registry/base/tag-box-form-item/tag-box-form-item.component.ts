@@ -27,7 +27,7 @@ export class RegTagBoxFormItem implements IFormItemTemplate {
     this.valueExpr = this.data.editorOptions.valueExpr;
   }
 
-  private onValueChanged(e, d) {
+  protected onValueChanged(e, d) {
     d.component.option('formData.' + d.dataField, e.value);
   }
 };

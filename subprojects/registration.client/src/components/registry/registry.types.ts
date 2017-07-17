@@ -573,56 +573,7 @@ function buildBatchCompoundFragmentGroup(container: IFormContainer): any {
       dataField: 'batchComponentFragmentList',
       label: { text: 'Fragments' },
       colSpan: 1,
-      editorOptions: {
-        columns: [{
-          dataField: 'fragmentTypeId',
-          caption: 'Type',
-          editorType: 'dxSelectBox',
-          lookup: {
-            dataSource: lookups ? lookups.fragmentTypes : [],
-            displayExpr: 'DESCRIPTION',
-            valueExpr: 'ID'
-          },
-          width: 60
-        }, {
-          dataField: 'equivalents',
-          caption: 'Equivalent',
-          width: 80
-        }, {
-          dataField: 'code',
-          caption: 'Code',
-          width: 50
-        }, {
-          dataField: 'structure',
-          caption: 'Structure',
-          allowEditing: false,
-          allowFiltering: false,
-          allowSorting: false,
-          width: 150,
-          cellTemplate: function (c, o) {
-            jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
-          }
-        }, {
-          dataField: 'description',
-          caption: 'Description',
-          allowEditing: false
-        }, {
-          dataField: 'molWeight',
-          caption: 'MW',
-          allowEditing: false
-        }, {
-          dataField: 'formula',
-          caption: 'MF',
-          allowEditing: false
-        }],
-        editing: {
-          mode: 'row',
-          allowUpdating: true,
-          allowDeleting: true,
-          allowAdding: true
-        }
-      },
-      template: 'dataGridTemplate'
+      template: 'fragmentsTemplate'
     }];
   }
   return groupItem;

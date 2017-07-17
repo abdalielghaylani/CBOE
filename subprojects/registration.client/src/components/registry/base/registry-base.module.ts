@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegDataGridFormItem } from './data-grid-form-item';
+import { RegFragmentsFormItem } from './fragments-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';
@@ -58,11 +59,11 @@ export * from './form-group-view';
     RegCommonModule
   ],
   declarations: [
-    RegDataGridFormItem, RegProjectsFormItem, RegTagBoxFormItem,
+    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView
   ],
   exports: [
-    RegDataGridFormItem, RegProjectsFormItem, RegTagBoxFormItem,
+    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView,
     RegCommonModule
   ]
