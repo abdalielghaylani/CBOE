@@ -476,13 +476,7 @@ export class CRegistryRecordVM {
       dataField: 'projectList',
       label: { text: 'Projects' },
       colSpan: 2,
-      editorOptions: {
-        dataSource: lookups ? lookups.projects.filter(i => i.ACTIVE === 'T') : [],
-        displayExpr: 'NAME',
-        valueExpr: 'PROJECTID',
-        placeholder: 'Select Project'
-      },
-      template: 'tagBoxTemplate'
+      template: 'projectsTemplate'
     });
     this.columns.push({
       dataField: 'identifierList',
