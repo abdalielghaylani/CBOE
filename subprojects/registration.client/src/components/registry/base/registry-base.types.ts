@@ -40,8 +40,16 @@ export class CViewGroup implements IViewGroup {
     }
   }
 
+  private getEditorType(fe: IFormElement): string {
+    return fe.displayInfo.type.indexOf('COEDatePicker') > 0 ? 'dxDateBox' : 'dxTextBox';
+  }
+
+  private getDataField(fe: IFormElement): string {
+    return fe._name.replace(/\s/g, '');
+  }
+
   private getCellTemplate(fe: IFormElement): string {
-    return undefined;
+    return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate' : undefined;
   }
 
   public append(f: ICoeForm): boolean {
@@ -60,11 +68,11 @@ export class CViewGroup implements IViewGroup {
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
           if (fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name) {
-            let item = {};
+            let item: any = {};
             this.setItemValue(item, 'label', { text: fe.label });
-            this.setItemValue(item, 'dataType', 'string');
-            this.setItemValue(item, 'dataField', fe._name);
-            this.setItemValue(item, 'cellTemplate', this.getCellTemplate(fe));
+            this.setItemValue(item, 'editorType', this.getEditorType(fe));
+            this.setItemValue(item, 'dataField', this.getDataField(fe));
+            this.setItemValue(item, 'template', this.getCellTemplate(fe));
             items.push(item);
           }
         });

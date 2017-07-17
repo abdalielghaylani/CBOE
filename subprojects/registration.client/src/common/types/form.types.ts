@@ -51,7 +51,7 @@ export interface IFormElement {
   defaultValue?: string;
   Id?: string;
   displayInfo?: IDisplayInfo;
-  bindingInformation?: string;
+  bindingExpression?: string;
   // TODO: ...
 }
 

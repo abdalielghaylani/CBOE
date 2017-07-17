@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegDataGridFormItem } from './data-grid-form-item';
+import { RegProjectsFormItem } from './projects-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
@@ -11,6 +12,7 @@ import {
   DxCheckBoxModule,
   DxRadioGroupModule,
   DxDataGridModule,
+  DxDateBoxModule,
   DxSelectBoxModule,
   DxNumberBoxModule,
   DxFormModule,
@@ -27,6 +29,7 @@ import {
 import { RegCommonModule } from '../../../common';
 
 export * from './data-grid-form-item';
+export * from './projects-form-item';
 export * from './tag-box-form-item';
 export * from './form-view';
 export * from './form-group-view';
@@ -39,6 +42,7 @@ export * from './form-group-view';
     DxCheckBoxModule,
     DxRadioGroupModule,
     DxDataGridModule,
+    DxDateBoxModule,
     DxSelectBoxModule,
     DxNumberBoxModule,
     DxFormModule,
@@ -54,15 +58,13 @@ export * from './form-group-view';
     RegCommonModule
   ],
   declarations: [
-    RegDataGridFormItem,
-    RegTagBoxFormItem,
+    RegDataGridFormItem, RegProjectsFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView
   ],
   exports: [
-    RegCommonModule,
-    RegDataGridFormItem,
-    RegTagBoxFormItem,
-    RegFormView, RegFormGroupView, RegFormGroupItemView
+    RegDataGridFormItem, RegProjectsFormItem, RegTagBoxFormItem,
+    RegFormView, RegFormGroupView, RegFormGroupItemView,
+    RegCommonModule
   ]
 })
 export class RegBaseComponentModule { }
