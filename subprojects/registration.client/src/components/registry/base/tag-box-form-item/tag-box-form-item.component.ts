@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IFormItemTemplate } from '../registry-base.types';
 
 @Component({
   selector: 'reg-tag-box-form-item-template',
   template: require('./tag-box-form-item.component.html'),
   styles: [require('../registry-base.css')],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegTagBoxFormItem implements IFormItemTemplate {

@@ -1,6 +1,6 @@
-import { IAppState } from '../../store';
-import { IShareableObject, CShareableObject, FormGroupType, IFormGroup, IFormElement } from '../../common';
 import * as X2JS from 'x2js';
+import { IShareableObject, CShareableObject, FormGroupType, IFormGroup, IFormElement } from '../../common';
+import { IAppState } from '../../redux';
 
 export interface ITabularData {
   data: any;

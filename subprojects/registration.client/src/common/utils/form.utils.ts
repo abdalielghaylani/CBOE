@@ -1,8 +1,7 @@
 import { NgRedux } from '@angular-redux/store';
 import { DOMParser, DOMParserStatic, XMLSerializer } from 'xmldom';
 import * as X2JS from 'x2js';
-import { ConfigurationActions } from '../../actions';
-import { IAppState } from '../../store';
+import { ConfigurationActions, IAppState } from '../../redux';
 import { FormGroupType, IFormGroup } from '../types/form.types';
 
 export function getFormGroupData(state: IAppState, type: FormGroupType): string {

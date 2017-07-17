@@ -1,13 +1,13 @@
 import { Iterable } from 'immutable';
 import { registrySearchReducer } from './registry-search.reducer';
 import { RegistrySearchActions } from '../../actions';
-import { IRegistrySearchRecord, HitlistType, IHitlistData, IHitlistInfo, IHitlistRetrieveInfo, ISearchRecords, INITIAL_STATE } from './registry-search.types';
+import { IRegistrySearchRecord, HitlistType, IHitlistData, IHitlistRetrieveInfo, ISearchRecords, INITIAL_SEARCH_STATE } from './registry-search.types';
 
 describe('registry search reducer', () => {
   let initState: IRegistrySearchRecord;
 
   beforeEach(() => {
-    initState = INITIAL_STATE;
+    initState = INITIAL_SEARCH_STATE;
   });
 
   it('should have an immutable initial state', () => {

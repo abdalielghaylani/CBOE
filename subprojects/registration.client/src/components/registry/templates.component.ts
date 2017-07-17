@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration, IAppState } from '../../store';
+import { ICustomTableData, IConfiguration, IAppState } from '../../redux';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;

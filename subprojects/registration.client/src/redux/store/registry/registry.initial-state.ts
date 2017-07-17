@@ -5,7 +5,7 @@ import {
   IRegistry, IRegistryRecord,
 } from './registry.types';
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
-import { apiUrlPrefix } from '../../configuration';
+import { apiUrlPrefix } from '../../../configuration';
 
 const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
   temporary: false,
@@ -128,4 +128,4 @@ export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({
   structureData: null,
 });
 
-export const INITIAL_STATE = RegistryFactory();
+export const INITIAL_REGISTRY_STATE = RegistryFactory();

@@ -14,18 +14,17 @@ import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
-import { RegistryActions, RegistrySearchActions } from '../../actions';
-import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData } from '../../store';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
 import { CRecords, RegistryStatus } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
-import { CSystemSettings } from '../configuration';
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
-import privileges from '../../common/utils/privilege.utils';
+import { PrivilegeUtils } from '../../common';
+import { RegistryActions, RegistrySearchActions } from '../../redux';
+import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings } from '../../redux';
 
 declare var jQuery: any;
 
@@ -239,7 +238,7 @@ export class RegRecords implements OnInit, OnDestroy {
         $editIcon.addClass('fa fa-info-circle');
         $editIcon.attr({ 'data-toggle': 'tootip', 'title': 'Detail view' });
         // For Delete icon
-        if (privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)) {
+        if (PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)) {
           let $deleteIcon = $links.filter('.dx-link-delete');
           $deleteIcon.addClass('dx-icon-trash');
           $deleteIcon.attr({ 'data-toggle': 'tootip', 'title': 'Delete' });
@@ -454,7 +453,7 @@ export class RegRecords implements OnInit, OnDestroy {
   // set delete marked button visibility
   private get deleteMarkedEnabled(): boolean {
     if (this.selectedRows && this.selectedRows.length > 0) {
-      return privileges.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges);
+      return PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges);
     }
     return false;
   }

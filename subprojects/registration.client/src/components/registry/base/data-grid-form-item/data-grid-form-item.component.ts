@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IFormItemTemplate } from '../registry-base.types';
 
 @Component({
   selector: 'reg-data-grid-form-item-template',
   template: require('./data-grid-form-item.component.html'),
   styles: [require('../registry-base.css')],
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
@@ -20,7 +21,7 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   ngOnChanges() {
     this.dataSource = this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
     this.columns = this.data.editorOptions && this.data.editorOptions.columns ? this.data.editorOptions.columns : [];
-    if (this.columns.length > 0) {
+    if (this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
       this.columns.unshift({
         cellTemplate: 'commandCellTemplate',
         headerCellTemplate: 'commandHeaderCellTemplate',

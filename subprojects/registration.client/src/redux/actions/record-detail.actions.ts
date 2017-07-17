@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IRecordDetail, IAppState } from '../store';
-import { IRecordSaveData } from '../components/registry/registry.types';
+import { IRecordDetail, IRecordSaveData, IAppState } from '../store';
 
 @Injectable()
 export class RecordDetailActions {

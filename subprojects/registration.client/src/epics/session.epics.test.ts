@@ -14,7 +14,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
-import { SessionActions } from '../actions/session.actions';
 import { SessionEpics } from './session.epics';
 import {
     MockBackend,
@@ -22,7 +21,7 @@ import {
 } from '@angular/http/testing/mock_backend';
 import { TestModule } from '../test';
 import { HttpService } from '../services';
-import { IAppState } from '../store';
+import { SessionActions, IAppState } from '../redux';
 
 describe('SessionEpics', () => {
     beforeEach(done => {
