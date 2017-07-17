@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { NgReduxRouter } from '@angular-redux/router';
-import { ILookupData } from '../../store';
-import privileges from '../../common/utils/privilege.utils';
+import { ILookupData } from '../../redux';
+import { PrivilegeUtils } from '../../common';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
@@ -36,22 +36,22 @@ export class RegSettingsPageHeader {
   }
 
   private get manageDataPropertiesMenuEnabled(): boolean {
-    return privileges.hasManagePropertiesPrivilege(this.lookups.userPrivileges);
+    return PrivilegeUtils.hasManagePropertiesPrivilege(this.lookups.userPrivileges);
   }
 
   private get customizeFormsMenuEnabled(): boolean {
-    return privileges.hasCustomizeFormsPrivilege(this.lookups.userPrivileges);
+    return PrivilegeUtils.hasCustomizeFormsPrivilege(this.lookups.userPrivileges);
   }
 
   private get manageAddinsMenuEnabled(): boolean {
-    return privileges.hasManageAddinsPrivilege(this.lookups.userPrivileges);
+    return PrivilegeUtils.hasManageAddinsPrivilege(this.lookups.userPrivileges);
   }
 
   private get editFormXmlMenuEnabled(): boolean {
-    return privileges.hasEditFormXmlPrivilege(this.lookups.userPrivileges);
+    return PrivilegeUtils.hasEditFormXmlPrivilege(this.lookups.userPrivileges);
   }
 
   private get systemSettingsMenuEnabled(): boolean {
-    return privileges.hasManageSystemSettingsPrivilege(this.lookups.userPrivileges);
+    return PrivilegeUtils.hasManageSystemSettingsPrivilege(this.lookups.userPrivileges);
   }
 };
