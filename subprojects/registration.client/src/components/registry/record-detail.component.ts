@@ -265,7 +265,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
     if (this.chemDrawWeb) {
       this.chemDrawWeb.activate();
-      this.chemDrawWeb.loadCdxml(structureData);
+      this.chemDrawWeb.setValue(structureData);
     }
     this.update();
   }

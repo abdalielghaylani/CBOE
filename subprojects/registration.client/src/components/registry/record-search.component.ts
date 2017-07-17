@@ -128,7 +128,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
             let structureCriteria: any = searchCriteria;
             if (structureCriteria.CSCartridgeStructureCriteria && structureCriteria.CSCartridgeStructureCriteria.__text) {
               setTimeout(() => {
-                self.chemDrawWeb.loadCdxml(structureCriteria.CSCartridgeStructureCriteria.__text);
+                self.chemDrawWeb.setValue(structureCriteria.CSCartridgeStructureCriteria.__text);
               }, 100);
             }
           } else if (searchCriteria.__text) {
@@ -164,7 +164,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   public clear() {
-    this.chemDrawWeb.loadCdxml(null);
+    this.chemDrawWeb.setValue(null);
   }
 
   private retrieveAll() {
