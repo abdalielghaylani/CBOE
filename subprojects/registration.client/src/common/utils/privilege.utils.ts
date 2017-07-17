@@ -172,4 +172,24 @@ export class PrivilegeUtils {
   static hasSubmissionTemplatePrivilege(userPrivileges: any[]): boolean {
     return this.userHasPrivilege('LOAD_SAVE_RECORD', userPrivileges);
   }
+
+  static hasManagePropertiesPrivilege(userPrivileges: any[]): boolean {
+    return this.userHasPrivilege('MANAGE_PROPERTIES', userPrivileges);
+  }
+
+  static hasCustomizeFormsPrivilege(userPrivileges: any[]): boolean {
+    return this.userHasPrivilege('CUSTOMIZE_FORMS', userPrivileges);
+  }
+
+  static hasManageAddinsPrivilege(userPrivileges: any[]): boolean {
+    return this.userHasPrivilege('MANAGE_ADDINS', userPrivileges);
+  }
+
+  static hasEditFormXmlPrivilege(userPrivileges: any[]): boolean {
+    return this.userHasPrivilege('EDIT_FORM_XML', userPrivileges);
+  }
+
+  static hasManageSystemSettingsPrivilege(userPrivileges: any[]): boolean {
+    return this.userHasPrivilege('MANAGE_SYSTEM_SETTINGS', userPrivileges);
+  }
 }
