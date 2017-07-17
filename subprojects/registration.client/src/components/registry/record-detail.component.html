@@ -10,6 +10,7 @@
       <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
     </ul>
   </div>
+  <command-button *ngIf="clearButtonEnabled" testid="clear-record-details-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
   <command-button *ngIf="deleteButtonEnabled" testid="delete-record-details-button" (onClick)="delete()" iconName="trash" title="Delete"></command-button>
   <command-button *ngIf="editButtonEnabled" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
   <command-button *ngIf="editMode &amp;&amp; !isNewRecord" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo"
@@ -53,6 +54,7 @@
   </div>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
+      <!--<reg-form-group-view [formGroupData]="formGroup" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>-->
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">

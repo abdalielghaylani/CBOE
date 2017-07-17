@@ -57,6 +57,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   private approveButtonEnabled: boolean = false;
   private cancelApprovalButtonEnabled: boolean = false;
   private deleteButtonEnabled: boolean = false;
+  private clearButtonEnabled: boolean = false;
   private submissionTemplatesEnabled: boolean = false;
   private recordString: string;
   private recordDoc: Document;
@@ -139,6 +140,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       && !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
     this.deleteButtonEnabled = !this.duplicateResolution.enabled
       && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, userPrivileges) && this.editButtonEnabled;
+    this.clearButtonEnabled = this.isNewRecord;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     if (forceUpdate) {
@@ -428,6 +430,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       .catch(error => {
         notifyException(`The record was not deleted due to a problem`, error, 5000);
       });
+  }
+
+  private clear() {
+    // TODO: Bind an empty data object to the form-group view
+    // CBOE-5060: 'Clear' button is missing in submit new compound page
   }
 
   private getLookup(name: string): any[] {
