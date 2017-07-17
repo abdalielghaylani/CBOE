@@ -118,7 +118,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
   }
 
   private update(forceUpdate: boolean = true) {
-    if (!this.lookups && this.lookups.userPrivileges) {
+    if (!this.lookups || !this.lookups.userPrivileges) {
       return;
     }
     this.editMode = this.displayMode !== 'view';
