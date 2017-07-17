@@ -11,12 +11,23 @@ import { CViewGroup } from '../registry-base.types';
 export class RegFormGroupItemView implements OnChanges {
   @Input() id: string;
   @Input() editMode: boolean = false;
+  @Input() displayMode: string;
   @Input() data: any;
   @Input() viewGroup: CViewGroup;
+  private items: any[] = [];
+  private formData: any = {};
+  private colCount: number = 2;
 
   constructor() {
   }
 
   ngOnChanges() {
+    this.buildItems();
+  }
+
+  private buildItems() {
+    if (this.viewGroup) {
+      this.items = this.viewGroup.getItems(this.displayMode);
+    }
   }
 };

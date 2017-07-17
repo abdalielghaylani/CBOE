@@ -6,7 +6,7 @@ import { NgReduxRouter } from '@angular-redux/router';
 import { routing, appRoutingProviders } from './reg-app.routing';
 import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { RegApp } from './reg-app';
-import { GridActions, SessionActions, ACTION_PROVIDERS } from '../actions';
+import { GridActions, SessionActions, ACTION_PROVIDERS, IAppState } from '../redux';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
   RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
@@ -21,7 +21,6 @@ import { RegLoginModule } from '../components/login/login.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { HttpService, AuthGuard } from '../services';
-import { IAppState } from '../store';
 import { RegCommonComponentModule } from '../components';
 import { RegLayoutComponentModule } from '../components';
 import { RegBaseComponentModule } from '../components/registry/base/';

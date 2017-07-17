@@ -1,5 +1,5 @@
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../store';
+import { IAppState } from '../../redux';
 
 export enum FormGroupType {
   SubmitMixture,
@@ -51,6 +51,7 @@ export interface IFormElement {
   defaultValue?: string;
   Id?: string;
   displayInfo?: IDisplayInfo;
+  bindingInformation?: string;
   // TODO: ...
 }
 

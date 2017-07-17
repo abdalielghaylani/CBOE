@@ -12,6 +12,7 @@ import { CViewGroup } from '../registry-base.types';
 export class RegFormGroupView implements OnChanges {
   @Input() id: string;
   @Input() editMode: boolean = false;
+  @Input() displayMode: string = 'add';
   @Input() data: any;
   @Input() formGroupData: IFormGroup;
   private viewGroups: CViewGroup[] = [];
@@ -20,6 +21,7 @@ export class RegFormGroupView implements OnChanges {
   }
 
   ngOnChanges() {
+    this.viewGroups = [];
     if (this.formGroupData && this.formGroupData.detailsForms && this.formGroupData.detailsForms.detailsForm.length > 0) {
       let coeForms = this.formGroupData.detailsForms.detailsForm[0].coeForms.coeForm;
       coeForms.forEach(f => {

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { IPayloadAction, ConfigurationActions, SessionActions, IGridPullAction } from '../actions';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -7,6 +6,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import { apiUrlPrefix } from '../configuration';
 import { HttpService } from '../services';
+import { IPayloadAction, ConfigurationActions, SessionActions, IGridPullAction } from '../redux';
 
 @Injectable()
 export class ConfigurationEpics {

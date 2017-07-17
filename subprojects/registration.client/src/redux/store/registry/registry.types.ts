@@ -62,3 +62,11 @@ export interface IQueryData {
   temporary: boolean;
   searchCriteria: string;
 }
+
+export interface IRecordSaveData {
+  temporary: boolean;
+  id: number;
+  recordDoc: Document;
+  saveToPermanent: boolean;
+  checkDuplicate: boolean;
+}

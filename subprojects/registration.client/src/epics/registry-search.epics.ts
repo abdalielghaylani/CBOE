@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { UPDATE_LOCATION } from '@angular-redux/router';
-import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions, IGridPullAction } from '../actions';
 import { Action, MiddlewareAPI } from 'redux';
 import { createAction } from 'redux-actions';
 import { Epic, ActionsObservable, combineEpics } from 'redux-observable';
-import { IAppState, IHitlistData, IHitlistRetrieveInfo, IQueryData } from '../store';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/mergeMap';
@@ -13,6 +11,8 @@ import 'rxjs/add/operator/catch';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { HttpService } from '../services';
+import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions, IGridPullAction } from '../redux';
+import { IAppState, IHitlistData, IHitlistRetrieveInfo, IQueryData } from '../redux';
 
 @Injectable()
 export class RegistrySearchEpics {

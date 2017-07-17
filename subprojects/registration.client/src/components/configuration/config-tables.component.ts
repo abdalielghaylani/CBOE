@@ -8,13 +8,12 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { ConfigurationActions } from '../../actions/configuration.actions';
+import { CConfigTable } from './config.types';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../store';
-import { CConfigTable } from './config.types';
+import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
-import privileges from '../../common/utils/privilege.utils';
+import { PrivilegeUtils } from '../../common';
 
 declare var jQuery: any;
 
@@ -141,27 +140,27 @@ export class RegConfigTables implements OnInit, OnDestroy {
     let retValue: boolean = false;
     switch (this.tableId) {
       case 'VW_PROJECT':
-        retValue = privileges.hasProjectsTablePrivilege(action, this.lookups.userPrivileges);
+        retValue = PrivilegeUtils.hasProjectsTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_NOTEBOOKS':
-        retValue = privileges.hasNotebookTablePrivilege(action, this.lookups.userPrivileges);
+        retValue = PrivilegeUtils.hasNotebookTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_FRAGMENT':
       case 'VW_FRAGMENTTYPE':
-        retValue = privileges.hasSaltTablePrivilege(action, this.lookups.userPrivileges);
+        retValue = PrivilegeUtils.hasSaltTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_SEQUENCE':
-        retValue = privileges.hasSequenceTablePrivilege(action, this.lookups.userPrivileges);
+        retValue = PrivilegeUtils.hasSequenceTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_PICKLIST':
       case 'VW_PICKLISTDOMAIN':
-        retValue = privileges.hasPicklistTablePrivilege(action, this.lookups.userPrivileges);
+        retValue = PrivilegeUtils.hasPicklistTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_IDENTIFIERTYPE':
-        retValue = privileges.hasIdentifierTablePrivilege(action, this.lookups.userPrivileges);
+        retValue = PrivilegeUtils.hasIdentifierTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_SITES':
-        retValue = privileges.hasSitesTablePrivilege(action, this.lookups.userPrivileges);
+        retValue = PrivilegeUtils.hasSitesTablePrivilege(action, this.lookups.userPrivileges);
         break;
     }
     return retValue;

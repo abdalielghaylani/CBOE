@@ -1,7 +1,6 @@
 import { Component, Inject, ApplicationRef } from '@angular/core';
-import { ConfigurationActions } from '../actions';
 import { RegContainer, RegConfigTables } from '../components';
-import { IConfiguration } from '../store/configuration';
+import { ConfigurationActions, IConfiguration } from '../redux';
 
 @Component({
   selector: 'config-addins-page',

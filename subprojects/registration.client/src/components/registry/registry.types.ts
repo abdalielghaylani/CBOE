@@ -1,9 +1,8 @@
-import { IAppState } from '../../store';
 import { apiUrlPrefix } from '../../configuration';
 import {
   IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
-import { IRecordsData, IRecords } from '../../store';
+import { IAppState, IRecordsData, IRecords } from '../../redux';
 
 export enum RegistryStatus {
   NotSet,
@@ -789,14 +788,6 @@ export interface IResponseData {
   regNumber?: string;
   message?: string;
   data?: any;
-}
-
-export interface IRecordSaveData {
-  temporary: boolean;
-  id: number;
-  recordDoc: Document;
-  saveToPermanent: boolean;
-  checkDuplicate: boolean;
 }
 
 export interface ITemplateData extends IShareableObject {
