@@ -691,6 +691,9 @@ function getPropertyColumn(p: CProperty, formElements: IFormElement[], container
     dataField: p._name,
     dataType: p._type === 'DATE' ? 'date' : 'string'
   };
+  if (column.dataType === 'date') {
+    column.editorType = 'dxDateBox';
+  }
   let label: any = {};
   if (formElement) {
     label.text = formElement.label;
