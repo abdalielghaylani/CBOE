@@ -46,7 +46,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   public formGroup: IFormGroup;
   public editMode: boolean = false;
-  private displayMode: string;
+  private displayMode: string = 'view';
   private title: string;
   private creatingCDD: boolean = false;
   private parentHeight: string;
@@ -268,7 +268,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
     if (this.chemDrawWeb) {
-      this.chemDrawWeb.activate();
       this.chemDrawWeb.setValue(structureData);
     }
     this.update();

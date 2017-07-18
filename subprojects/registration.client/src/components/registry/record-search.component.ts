@@ -79,9 +79,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges() {
-    if (this.activated && this.chemDrawWeb) {
-      this.chemDrawWeb.activate();
-    }
   }
 
   private getSearchCriteria(tabularData: searchTypes.ITabularData): string {

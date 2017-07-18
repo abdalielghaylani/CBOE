@@ -4,7 +4,7 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   ElementRef,
-  OnInit, OnDestroy
+  OnInit, OnDestroy, AfterViewInit
 } from '@angular/core';
 
 @Component({
@@ -13,8 +13,10 @@ import {
   template: require('./chemdraw-web.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges {
-  @Input() protected editMode: boolean = true;
+export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit {
+  @Input() protected id: string;
+  @Input() protected editMode: boolean = false;
+  @Input() protected activated: boolean = false;
   protected drawingTool: any;
   protected creatingCDD: boolean = false;
   protected value: string;
@@ -31,30 +33,35 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges {
     this.update();
   }
 
+  ngAfterViewInit() {
+    this.activate();
+  }
+
   protected update() {
     if (this.drawingTool) {
       this.drawingTool.setViewOnly(!this.editMode);
+      this.drawingTool.fitToContainer();
+    } else {
+      this.activate();
     }
   }
 
   protected createDrawingTool() {
-    if (this.drawingTool || this.creatingCDD) {
+    let cddContainer = jQuery(this.elementRef.nativeElement).find(`#${this.id}`);
+    let attachmentElement = cddContainer[0];
+    if (this.drawingTool || this.creatingCDD || !attachmentElement) {
       return;
     }
     this.creatingCDD = true;
-
-    let cddContainer = jQuery(this.elementRef.nativeElement).find('.cdContainer');
-    let cdWidth = cddContainer.innerWidth() - 4;
-    let attachmentElement = cddContainer[0];
-    let cdHeight = attachmentElement.offsetHeight;
     const self = this;
     let params = {
       element: attachmentElement,
-      viewonly: !this.editMode,
+      viewonly: false,
       callback: function (drawingTool) {
         self.drawingTool = drawingTool;
         self.creatingCDD = false;
         drawingTool.fitToContainer();
+        drawingTool.setViewOnly(!self.editMode);
         if (self.value) {
           drawingTool.loadCDXML(self.value);
           self.value = null;
@@ -83,7 +90,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges {
   }
 
   public activate() {
-    if (!this.drawingTool) {
+    if (this.activated && !this.drawingTool && this.id) {
       this.createDrawingTool();
     }
   }
