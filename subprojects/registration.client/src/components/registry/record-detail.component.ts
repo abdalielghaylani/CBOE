@@ -138,8 +138,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
     this.approveButtonEnabled = !this.duplicateResolution.enabled
       && !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+
     this.deleteButtonEnabled = !this.duplicateResolution.enabled
-      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, userPrivileges) && this.editButtonEnabled;
+      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges) 
+      && this.editButtonEnabled;
+      
     this.clearButtonEnabled = this.isNewRecord;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
