@@ -5,7 +5,7 @@ import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
 
 @Component({
-  selector: 'reg-project-form-item-template',
+  selector: 'reg-projects-form-item-template',
   template: require('../tag-box-form-item/tag-box-form-item.component.html'),
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,7 +1,6 @@
 import {
   Component,
-  Input,
-  Output,
+  Input, Output, OnChanges,
   EventEmitter,
   ChangeDetectionStrategy,
   ElementRef,
@@ -14,11 +13,12 @@ import {
   template: require('./chemdraw-web.component.html'),
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChemDrawWeb implements OnInit, OnDestroy {
-  private drawingTool;
-  private creatingCDD: boolean = false;
-  private cdxml: string;
-  constructor(private elementRef: ElementRef) {
+export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges {
+  @Input() protected editMode: boolean = true;
+  protected drawingTool: any;
+  protected creatingCDD: boolean = false;
+  protected value: string;
+  constructor(protected elementRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -27,7 +27,17 @@ export class ChemDrawWeb implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
 
-  createDrawingTool() {
+  ngOnChanges() {
+    this.update();
+  }
+
+  protected update() {
+    if (this.drawingTool) {
+      this.drawingTool.setViewOnly(!this.editMode);
+    }
+  }
+
+  protected createDrawingTool() {
     if (this.drawingTool || this.creatingCDD) {
       return;
     }
@@ -40,14 +50,14 @@ export class ChemDrawWeb implements OnInit, OnDestroy {
     const self = this;
     let params = {
       element: attachmentElement,
-      viewonly: false,
+      viewonly: !this.editMode,
       callback: function (drawingTool) {
         self.drawingTool = drawingTool;
         self.creatingCDD = false;
         drawingTool.fitToContainer();
-        if (self.cdxml) {
-          drawingTool.loadCDXML(self.cdxml);
-          self.cdxml = null;
+        if (self.value) {
+          drawingTool.loadCDXML(self.value);
+          self.value = null;
         }
       },
       licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
@@ -57,22 +67,22 @@ export class ChemDrawWeb implements OnInit, OnDestroy {
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
   };
 
-  loadCdxml(cdxml: string) {
+  public setValue(value: string) {
     if (this.drawingTool && !this.creatingCDD) {
       this.drawingTool.clear();
-      if (cdxml) {
-        this.drawingTool.loadCDXML(cdxml);
+      if (value) {
+        this.drawingTool.loadCDXML(value);
       }
     } else {
-      this.cdxml = cdxml;
+      this.value = value;
     }
   }
 
-  getValue() {
-    return this.drawingTool.getCDXML();
+  public getValue() {
+    return this.drawingTool ? this.drawingTool.getCDXML() : this.value;
   }
 
-  activate() {
+  public activate() {
     if (!this.drawingTool) {
       this.createDrawingTool();
     }

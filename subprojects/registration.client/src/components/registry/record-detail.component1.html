@@ -10,7 +10,6 @@
       <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
     </ul>
   </div>
-  <command-button *ngIf="clearButtonEnabled" testid="clear-record-details-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
   <command-button *ngIf="deleteButtonEnabled" testid="delete-record-details-button" (onClick)="delete()" iconName="trash" title="Delete"></command-button>
   <command-button *ngIf="editButtonEnabled" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
   <command-button *ngIf="editMode &amp;&amp; !isNewRecord" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo"
@@ -22,10 +21,10 @@
     title="Approve"></command-button>
   <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()"
     iconName="thumbs-o-down" title="Cancel Approval"></command-button>
-  <command-button *ngIf="duplicateResolution.enabled" testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel"></command-button>
+  <command-button *ngIf="duplicateResolution.enabled" testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel" (onClick)="cancelDuplicateResolution()"></command-button>
   <command-button *ngIf="duplicateResolution.enabled" testid="use-structure-record-button" iconName="code-fork" title="Use Structure"></command-button>
   <command-button *ngIf="duplicateResolution.enabled" testid="use-component-record-button" iconName="calendar-plus-o" title="Use Component"></command-button>
-  <command-button *ngIf="duplicateResolution.enabled" testid="create-duplicate-record-button" iconName="clone" title="Duplicate"></command-button>
+  <command-button *ngIf="duplicateResolution.enabled" testid="create-duplicate-record-button" iconName="clone" title="Duplicate" (onClick)="createdDuplicateRecord()"></command-button>
   <command-button *ngIf="duplicateResolution.enabled" testid="add-batch-record-button" iconName="object-ungroup" title="Add Batch"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
@@ -54,7 +53,6 @@
   </div>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <!--<reg-form-group-view [formGroupData]="formGroup" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>-->
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
@@ -74,7 +72,7 @@
           <div id="structurePanel" class="panel-collapse collapse in">
             <div class="p2">
               <div style="width:100%;height:100%;" resize>
-                <chemdraw-web [editMode]="editMode"></chemdraw-web>
+                <chemdraw-web></chemdraw-web>
               </div>
             </div>
           </div>
