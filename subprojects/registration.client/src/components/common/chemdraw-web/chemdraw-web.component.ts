@@ -3,7 +3,7 @@ import {
   Input, Output, OnChanges,
   EventEmitter,
   ChangeDetectionStrategy,
-  ElementRef,
+  ElementRef, ViewEncapsulation,
   OnInit, OnDestroy, AfterViewInit
 } from '@angular/core';
 
@@ -11,12 +11,13 @@ import {
   selector: 'chemdraw-web',
   styles: [require('./chemdraw-web.css')],
   template: require('./chemdraw-web.component.html'),
+  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit {
-  @Input() protected id: string;
-  @Input() protected editMode: boolean = false;
-  @Input() protected activated: boolean = false;
+  @Input() editMode: boolean = false;
+  @Input() id: string;
+  @Input() activated: boolean = false;
   protected drawingTool: any;
   protected creatingCDD: boolean = false;
   protected value: string;
@@ -47,7 +48,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   }
 
   protected createDrawingTool() {
-    let cddContainer = jQuery(this.elementRef.nativeElement).find(`#${this.id}`);
+    let cddContainer = jQuery(this.elementRef.nativeElement).find('div');
     let attachmentElement = cddContainer[0];
     if (this.drawingTool || this.creatingCDD || !attachmentElement) {
       return;

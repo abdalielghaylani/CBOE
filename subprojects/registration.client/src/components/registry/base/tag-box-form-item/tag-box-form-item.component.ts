@@ -8,7 +8,8 @@ import { IFormItemTemplate } from '../registry-base.types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegTagBoxFormItem implements IFormItemTemplate {
+export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
+  @Input() activated: boolean;
   @Input() editMode: boolean = false;
   @Input() data: any = {};
   protected value: any[];

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RegDataGridFormItem } from './data-grid-form-item';
 import { RegFragmentsFormItem } from './fragments-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
+import { RegStructureFormItem } from './structure-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
@@ -28,9 +29,11 @@ import {
   DxValidatorModule
 } from 'devextreme-angular';
 import { RegCommonModule } from '../../../common';
+import { RegCommonComponentModule } from '../../common';
 
 export * from './data-grid-form-item';
 export * from './projects-form-item';
+export * from './structure-form-item';
 export * from './tag-box-form-item';
 export * from './form-view';
 export * from './form-group-view';
@@ -56,16 +59,17 @@ export * from './form-group-view';
     DxListModule,
     DxTextBoxModule,
     DxValidatorModule,
-    RegCommonModule
+    RegCommonModule,
+    RegCommonComponentModule
   ],
   declarations: [
-    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegTagBoxFormItem,
+    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView
   ],
   exports: [
-    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegTagBoxFormItem,
+    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView,
-    RegCommonModule
+    RegCommonModule, RegCommonComponentModule
   ]
 })
 export class RegBaseComponentModule { }

@@ -54,8 +54,8 @@
   </div>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <!--<reg-form-group-view [formGroupData]="formGroup" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>-->
-      <div class="panel-group" id="accordion">
+      <reg-form-group-view [formGroupData]="formGroup" [activated]="currentIndex===0" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>
+      <!--<div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
             <a class="list-header tan" data-toggle="collapse" href="#registryPanel">Registry Information</a>
@@ -102,7 +102,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </form>
   </dx-scroll-view>
   <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true"
@@ -118,6 +118,6 @@
     </div>
   </dx-popup>
 </div>
-<div class="viewcontainer" [hidden]="currentIndex!=1">
+<div class="viewcontainer" [hidden]="currentIndex!==1">
   <reg-templates (onClose)="showDetails($event)"></reg-templates>
 </div>

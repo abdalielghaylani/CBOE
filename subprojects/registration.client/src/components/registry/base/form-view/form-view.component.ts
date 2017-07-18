@@ -9,7 +9,8 @@ import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrat
 })
 export class RegFormView implements OnChanges {
   @Input() id: string;
-  @Input() editMode: boolean = false;
+  @Input() activated: boolean;
+  @Input() editMode: boolean;
   @Input() formData: any;
   @Input() colCount: number;
   @Input() items: any[];

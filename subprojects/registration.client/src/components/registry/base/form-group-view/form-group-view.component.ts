@@ -11,7 +11,8 @@ import { CViewGroup } from '../registry-base.types';
 })
 export class RegFormGroupView implements OnChanges {
   @Input() id: string;
-  @Input() editMode: boolean = false;
+  @Input() activated: boolean;
+  @Input() editMode: boolean;
   @Input() displayMode: string = 'add';
   @Input() data: any;
   @Input() formGroupData: IFormGroup;
