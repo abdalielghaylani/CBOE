@@ -12,6 +12,9 @@ export class RecordDetailActions {
   static SAVE_RECORD = 'SAVE_RECORD';
   static SAVE_RECORD_SUCCESS = 'SAVE_RECORD_SUCCESS';
   static SAVE_RECORD_ERROR = 'SAVE_RECORD_ERROR';
+  static CREATE_DUPLICATE_RECORD = 'CREATE_DUPLICATE_RECORD';
+  static CREATE_DUPLICATE_RECORD_SUCCESS = 'CREATE_DUPLICATE_RECORD_SUCCESS';
+  static CREATE_DUPLICATE_RECORD_ERROR = 'CREATE_DUPLICATE_RECORD_ERROR';
   static UPDATE_RECORD = 'UPDATE_RECORD';
   static UPDATE_RECORD_SUCCESS = 'UPDATE_RECORD_SUCCESS';
   static UPDATE_RECORD_ERROR = 'UPDATE_RECORD_ERROR';
@@ -23,9 +26,13 @@ export class RecordDetailActions {
     (temporary: boolean, template: boolean, id: number) => ({ temporary, template, id }));
   static retrieveRecordSuccessAction = createAction(RecordDetailActions.RETRIEVE_RECORD_SUCCESS);
   static retrieveRecordErrorAction = createAction(RecordDetailActions.RETRIEVE_RECORD_ERROR);
-  static saveRecordAction = createAction(RecordDetailActions.SAVE_RECORD, (saveData: IRecordSaveData) => ( saveData ));
+  static saveRecordAction = createAction(RecordDetailActions.SAVE_RECORD, (saveData: IRecordSaveData) => (saveData));
   static saveRecordSuccessAction = createAction(RecordDetailActions.SAVE_RECORD_SUCCESS);
   static saveRecordErrorAction = createAction(RecordDetailActions.SAVE_RECORD_ERROR);
+  static duplicateRecordAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD,
+    (data: IRecordDetail, duplicateCheckOption: string) => ({ data, duplicateCheckOption }));
+  static duplicateRecordSuccessAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_SUCCESS);
+  static duplicateRecordErrorAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_ERROR);
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
   static loadStructureSuccessAction = createAction(RecordDetailActions.LOAD_STRUCTURE_SUCCESS);
   static loadStructureErrorAction = createAction(RecordDetailActions.LOAD_STRUCTURE_ERROR);
@@ -46,6 +53,10 @@ export class RecordDetailActions {
 
   retrieveRecordError() {
     this.ngRedux.dispatch(RecordDetailActions.retrieveRecordErrorAction());
+  }
+
+  createDuplicate(data: IRecordDetail, duplicateCheckOption: string) {
+    this.ngRedux.dispatch(RecordDetailActions.duplicateRecordAction(data, duplicateCheckOption));
   }
 
   saveRecord(saveData: IRecordSaveData) {
