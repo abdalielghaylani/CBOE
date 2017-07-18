@@ -135,6 +135,26 @@ export class PrivilegeUtils {
     return this.userHasPrivilege(privilege, userPrivileges);
   }
 
+  static hasApprovalPrivilege(isLoggedInUserOwner: boolean,
+    isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
+    // Note: Approval privilge also depends on 'Approval Enabled = true in system settings
+    // if logged in user is owner of the record, he can approve his record
+    if (isLoggedInUserOwner) {
+      return true;
+    }
+
+    // if the user has EDIT_SCOPE_ALL, he will be able to approve records created by other users
+    if (this.userHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
+      return true;
+    }
+
+    // if the logged in user is a supervisor of the registry record owner
+    // and EDIT_SCOPE_SUPERVISOR privilege, supervisor can approve record
+    if (isLoggedInUserSuperVisor) {
+      return this.userHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
+    }
+  }
+
   static hasNotebookTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_NOTEBOOKS_TABLE'
       : action === 'EDIT' ? 'EDIT_NOTEBOOKS_TABLE'

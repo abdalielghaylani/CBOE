@@ -128,7 +128,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     let statusId = this.statusId;
     let canEdit = this.isNewRecord ||
       PrivilegeUtils.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
-    this.approvalsEnabled = (this.isNewRecord || this.temporary) && ss.isApprovalsEnabled;
+
+    this.approvalsEnabled = (this.isNewRecord || this.temporary)
+      && ss.isApprovalsEnabled
+      && PrivilegeUtils.hasApprovalPrivilege(this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
+
     this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled && this.approvalsEnabled
       && !this.editMode && !!statusId && this.temporary && statusId === RegistryStatus.Approved;
     this.editButtonEnabled = !this.duplicateResolution.enabled && !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
@@ -140,9 +144,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
       && !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
 
     this.deleteButtonEnabled = !this.duplicateResolution.enabled
-      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges) 
+      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges)
       && this.editButtonEnabled;
-      
+
     this.clearButtonEnabled = this.isNewRecord;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
