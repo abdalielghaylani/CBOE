@@ -67,6 +67,7 @@ function getPropertyColumn(p: any, coeFormId: Number, state: IAppState): any {
       column.editorType = 'dxTextArea';
       break;
     case 'COEDatePicker':
+    case 'COEDatePickerReadOnly':
       column.editorType = 'dxDateBox';
       break;
     case 'COEStructureQuery':
