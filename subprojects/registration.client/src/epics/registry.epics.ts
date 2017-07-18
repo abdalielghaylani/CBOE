@@ -27,6 +27,7 @@ export class RegistryEpics {
       this.handleOpenRecords,
       this.handleRetrieveRecord,
       this.handleSaveRecord,
+      this.createDuplicateRecord,
       this.handleLoadStructure,
     )(action$, store);
   }
@@ -103,6 +104,26 @@ export class RegistryEpics {
             }
           })
           .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
+      });
+  }
+
+  private createDuplicateRecord: Epic = (action$: Observable<ReduxActions.Action<{ data: IRecordDetail, duplicateCheckOption: string }>>) => {
+    return action$.filter(({ type }) => type === RecordDetailActions.CREATE_DUPLICATE_RECORD)
+      .mergeMap(({ payload }) => {
+        let data = { data: payload.data.data, duplicateCheckOption: payload.duplicateCheckOption };
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return (
+          this.http.post(`${apiUrlPrefix}/createDuplicateRecord`, data, options))
+          .map(result => {
+            let responseData = result.json() as IResponseData;
+            let newId = responseData.regNumber;
+            let message = `The record was registered in the registry`
+              + `${newId} successfully!`;
+            notifySuccess(message, 5000);
+            return createAction(UPDATE_LOCATION)(`records`);
+          })
+          .catch(error => Observable.of(RecordDetailActions.duplicateRecordErrorAction(error)));
       });
   }
 

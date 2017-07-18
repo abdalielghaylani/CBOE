@@ -22,10 +22,10 @@
     title="Approve"></command-button>
   <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()"
     iconName="thumbs-o-down" title="Cancel Approval"></command-button>
-  <command-button *ngIf="duplicateResolution.enabled" testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel"></command-button>
+  <command-button *ngIf="duplicateResolution.enabled" testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel" (onClick)="cancelDuplicateResolution()"></command-button>
   <command-button *ngIf="duplicateResolution.enabled" testid="use-structure-record-button" iconName="code-fork" title="Use Structure"></command-button>
   <command-button *ngIf="duplicateResolution.enabled" testid="use-component-record-button" iconName="calendar-plus-o" title="Use Component"></command-button>
-  <command-button *ngIf="duplicateResolution.enabled" testid="create-duplicate-record-button" iconName="clone" title="Duplicate"></command-button>
+  <command-button *ngIf="duplicateResolution.enabled" testid="create-duplicate-record-button" iconName="clone" title="Duplicate" (onClick)="createDuplicateRecord()"></command-button>
   <command-button *ngIf="duplicateResolution.enabled" testid="add-batch-record-button" iconName="object-ungroup" title="Add Batch"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}

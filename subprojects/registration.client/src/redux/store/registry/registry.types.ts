@@ -46,6 +46,7 @@ export interface IRegistry {
   tempRecords: IRecordsRecord;
   currentRecord: IRecordDetail;
   structureData: string;
+  previousRecordDetail: IRecordDetail;
 }
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }

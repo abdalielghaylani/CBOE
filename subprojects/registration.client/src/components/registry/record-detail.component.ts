@@ -292,8 +292,18 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
   }
 
+  createDuplicateRecord() {
+    this.actions.createDuplicate(
+      this.ngRedux.getState().registry.previousRecordDetail,
+      'Duplicate');
+  }
+
   cancel() {
     this.setDisplayMode('view');
+  }
+
+  cancelDuplicateResolution() {
+    this.router.navigate(['records/new']);
   }
 
   edit() {
