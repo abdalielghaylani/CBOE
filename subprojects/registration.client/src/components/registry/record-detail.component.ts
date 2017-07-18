@@ -35,7 +35,7 @@ import { CSystemSettings } from '../../redux';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
+export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnChanges {
   @ViewChild(RegTemplates) regTemplates: RegTemplates;
   @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
@@ -118,11 +118,15 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy {
     }
   }
 
+  ngOnChanges() {
+    this.update(false);
+  }
+
   private update(forceUpdate: boolean = true) {
+    this.editMode = this.displayMode !== 'view';
     if (!this.lookups || !this.lookups.userPrivileges) {
       return;
     }
-    this.editMode = this.displayMode !== 'view';
     let userPrivileges = this.lookups.userPrivileges;
     let ss = new CSystemSettings(this.getLookup('systemSettings'));
     let statusId = this.statusId;
