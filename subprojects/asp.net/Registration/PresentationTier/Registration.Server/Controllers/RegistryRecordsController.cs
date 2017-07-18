@@ -450,9 +450,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 doc.LoadXml(data.Data);
                 var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 var result = service.CreateRegRecordWithUserPreference(regRecordXml, data.DuplicateCheckOption);
-                if (!string.IsNullOrEmpty(result))
-                    throw new RegistrationException(result);
-                return new ResponseData(null, null, result, null);
+              
+                doc.LoadXml(result);
+                var errorMessage = GetNodeText(doc, "//ErrorMessage");
+                if (!string.IsNullOrEmpty(errorMessage))
+                    throw new RegistrationException(errorMessage);
+
+                var id = Convert.ToInt32(GetNodeText(doc, "//RegID"));
+                var regNum = GetNodeText(doc, "//RegNum"); 
+                return new ResponseData(id, regNum, null, null);
             });
         }
         #endregion
