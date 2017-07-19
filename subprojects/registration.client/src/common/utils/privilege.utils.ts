@@ -16,9 +16,47 @@ export class PrivilegeUtils {
    * @param {any[]} userPrivileges list of user privileges for the logged in user
    * @returns {boolean} True if the delete privilege
    */
-  static hasDeleteRecordPrivilege(temporary: boolean, userPrivileges: any[]): boolean {
+  static hasDeletePrivilege(temporary: boolean, userPrivileges: any[]): boolean {
     let privilege = temporary ? 'DELETE_TEMP' : 'DELETE_REG';
+    if (!this.userHasPrivilege(privilege, userPrivileges)) {
+      return false;
+    }
+
+    privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
     return this.userHasPrivilege(privilege, userPrivileges);
+  }
+
+  static hasDeleteRecordPrivilege(temporary: boolean, isLoggedInUserOwner: boolean,
+    isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
+
+    let privilege = temporary ? 'DELETE_TEMP' : 'DELETE_REG';
+    if (!this.userHasPrivilege(privilege, userPrivileges)) {
+      return false;
+    }
+
+    privilege = temporary ? 'EDIT_COMPOUND_TEMP' : 'EDIT_COMPOUND_REG';
+    let hasBaseEditPrivilege = this.userHasPrivilege(privilege, userPrivileges);
+
+    // base privilege EDIT_COMPOUND_TEMP or EDIT_COMPOUND_REG is required for editing a compound
+    if (!hasBaseEditPrivilege) {
+      return false;
+    }
+
+    // if logged in user is owner of the record, he can edit his record
+    if (isLoggedInUserOwner) {
+      return true;
+    }
+
+    // if the user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
+    if (this.userHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
+      return true;
+    }
+
+    // if the logged in user is a supervisor of the registry record owner
+    // and EDIT_SCOPE_SUPERVISOR privilege, supervisor can edit record
+    if (isLoggedInUserSuperVisor) {
+      return this.userHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
+    }
   }
 
   /**
@@ -38,7 +76,12 @@ export class PrivilegeUtils {
       return true;
     }
 
-    // REGISTER_TEMP privilege is required to register an already submitted record
+    // EDIT_COMPOUND_TEMP privilege is required to register an already submitted record
+    if (!this.userHasPrivilege('EDIT_COMPOUND_TEMP', userPrivileges)) {
+      return false;
+    }
+
+    // REGISTER_TEMP privilege also required to register an already submitted record
     let hasBaseRegisterPrivilege = this.userHasPrivilege('REGISTER_TEMP', userPrivileges);
     if (!hasBaseRegisterPrivilege) {
       return false;
@@ -95,6 +138,16 @@ export class PrivilegeUtils {
         : action === 'DELETE' ? 'DELETE_PROJECTS_TABLE'
           : '';
     return this.userHasPrivilege(privilege, userPrivileges);
+  }
+
+  static hasApprovalPrivilege(userPrivileges: any[]): boolean {
+    // privilege  SET_APPROVED_FLAG is required to approve records 
+    return this.userHasPrivilege('SET_APPROVED_FLAG', userPrivileges);
+  }
+
+  static hasCancelApprovalPrivilege(userPrivileges: any[]): boolean {
+    //  privilege TOGGLE_APPROVED_FLAG is required to cancel the approved record 
+    return this.userHasPrivilege('TOGGLE_APPROVED_FLAG', userPrivileges);
   }
 
   static hasNotebookTablePrivilege(action: string, userPrivileges: any[]): boolean {

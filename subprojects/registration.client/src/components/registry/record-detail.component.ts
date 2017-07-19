@@ -132,9 +132,19 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     let statusId = this.statusId;
     let canEdit = this.isNewRecord ||
       PrivilegeUtils.hasEditRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
-    this.approvalsEnabled = (this.isNewRecord || this.temporary) && ss.isApprovalsEnabled;
-    this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled && this.approvalsEnabled
-      && !this.editMode && !!statusId && this.temporary && statusId === RegistryStatus.Approved;
+
+    this.approvalsEnabled = (this.isNewRecord || this.temporary)
+      && ss.isApprovalsEnabled
+      && PrivilegeUtils.hasApprovalPrivilege(userPrivileges);
+
+    this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled
+      && this.approvalsEnabled
+      && !this.editMode
+      && !!statusId
+      && this.temporary
+      && statusId === RegistryStatus.Approved
+      && PrivilegeUtils.hasCancelApprovalPrivilege(userPrivileges);
+
     this.editButtonEnabled = !this.duplicateResolution.enabled && !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
     this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled) || this.editMode;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
@@ -142,8 +152,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
     this.approveButtonEnabled = !this.duplicateResolution.enabled
       && !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+
     this.deleteButtonEnabled = !this.duplicateResolution.enabled
-      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, userPrivileges) && this.editButtonEnabled;
+      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges)
+      && this.editButtonEnabled;
+
     this.clearButtonEnabled = this.isNewRecord;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;

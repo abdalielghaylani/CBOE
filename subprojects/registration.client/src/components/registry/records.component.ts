@@ -238,7 +238,7 @@ export class RegRecords implements OnInit, OnDestroy {
         $editIcon.addClass('fa fa-info-circle');
         $editIcon.attr({ 'data-toggle': 'tootip', 'title': 'Detail view' });
         // For Delete icon
-        if (PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges)) {
+        if (PrivilegeUtils.hasDeletePrivilege(this.temporary, this.lookups.userPrivileges)) {
           let $deleteIcon = $links.filter('.dx-link-delete');
           $deleteIcon.addClass('dx-icon-trash');
           $deleteIcon.attr({ 'data-toggle': 'tootip', 'title': 'Delete' });
@@ -453,7 +453,7 @@ export class RegRecords implements OnInit, OnDestroy {
   // set delete marked button visibility
   private get deleteMarkedEnabled(): boolean {
     if (this.selectedRows && this.selectedRows.length > 0) {
-      return PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.lookups.userPrivileges);
+      return PrivilegeUtils.hasDeletePrivilege(this.temporary, this.lookups.userPrivileges);
     }
     return false;
   }
