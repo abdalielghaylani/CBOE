@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { CViewGroup } from '../registry-base.types';
+import { IViewControl, CViewGroup } from '../registry-base.types';
 
 @Component({
   selector: 'reg-form-group-item-view',
@@ -8,13 +8,13 @@ import { CViewGroup } from '../registry-base.types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegFormGroupItemView implements OnChanges {
+export class RegFormGroupItemView implements IViewControl, OnChanges {
   @Input() id: string;
   @Input() activated: boolean;
   @Input() editMode: boolean;
   @Input() displayMode: string;
-  @Input() data: any;
-  @Input() viewGroup: CViewGroup;
+  @Input() viewModel: any;
+  @Input() viewConfig: CViewGroup;
   private items: any[] = [];
   private formData: any = {};
   private colCount: number = 5;
@@ -27,8 +27,8 @@ export class RegFormGroupItemView implements OnChanges {
   }
 
   private update() {
-    if (this.viewGroup) {
-      this.items = this.viewGroup.getItems(this.displayMode);
+    if (this.viewConfig) {
+      this.items = this.viewConfig.getItems(this.displayMode);
     }
   }
 };

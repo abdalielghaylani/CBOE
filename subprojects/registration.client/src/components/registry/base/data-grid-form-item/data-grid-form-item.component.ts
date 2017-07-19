@@ -11,7 +11,8 @@ import { IFormItemTemplate } from '../registry-base.types';
 export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   @Input() activated: boolean;
   @Input() editMode: boolean;
-  @Input() data: any = {};
+  @Input() viewModel: any = {};
+  @Input() viewConfig: any;
   protected dataSource: any[];
   protected columns: any[];
   protected editingMode: string;
@@ -24,8 +25,9 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   }
 
   protected update() {
-    this.dataSource = this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
-    this.columns = this.data.editorOptions && this.data.editorOptions.columns ? this.data.editorOptions.columns : [];
+    let options = this.viewModel.editorOptions;
+    this.dataSource = options && options.value ? options.value : [];
+    this.columns = options && options.columns ? options.columns : [];
     if (this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
       this.columns.unshift({
         cellTemplate: 'commandCellTemplate',
@@ -33,20 +35,20 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
         width: 80
       });
     }
-    this.editingMode = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.mode
-      ? this.data.editorOptions.editing.mode
+    this.editingMode = options && options.editing && options.editing.mode
+      ? options.editing.mode
       : 'row';
-    this.allowUpdating = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowUpdating
-      ? this.data.editorOptions.editing.allowUpdating
+    this.allowUpdating = options && options.editing && options.editing.allowUpdating
+      ? options.editing.allowUpdating
       : false;
-    this.allowDeleting = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowDeleting
-      ? this.data.editorOptions.editing.allowDeleting
+    this.allowDeleting = options && options.editing && options.editing.allowDeleting
+      ? options.editing.allowDeleting
       : false;
-    this.allowAdding = this.data.editorOptions && this.data.editorOptions.editing && this.data.editorOptions.editing.allowAdding
-      ? this.data.editorOptions.editing.allowAdding
+    this.allowAdding = options && options.editing && options.editing.allowAdding
+      ? options.editing.allowAdding
       : false;
   }
-  
+
   protected onValueChanged(e, d) {
     d.component.option('formData.' + d.dataField, e.value);
   }
@@ -56,7 +58,7 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
     if (grid.totalCount() === 0) {
       grid.option('height', 60);
     } else {
-      grid.option('height', 'auto');                
+      grid.option('height', 'auto');
     }
   }
 

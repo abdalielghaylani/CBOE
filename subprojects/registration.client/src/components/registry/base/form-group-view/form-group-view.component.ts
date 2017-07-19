@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IFormGroup, IForm, ICoeForm } from '../../../../common';
-import { CViewGroup } from '../registry-base.types';
+import { IViewControl, CViewGroup } from '../registry-base.types';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
 
@@ -11,13 +11,13 @@ import { IAppState } from '../../../../redux';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegFormGroupView implements OnChanges {
+export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() id: string;
   @Input() activated: boolean;
   @Input() editMode: boolean;
   @Input() displayMode: string = 'add';
-  @Input() data: any;
-  @Input() formGroupData: IFormGroup;
+  @Input() viewModel: any;
+  @Input() viewConfig: IFormGroup;
   private viewGroups: CViewGroup[] = [];
 
   constructor(private ngRedux: NgRedux<IAppState>) {
@@ -26,11 +26,12 @@ export class RegFormGroupView implements OnChanges {
   ngOnChanges() {
     let viewGroups: CViewGroup[] = [];
     let lookups = this.ngRedux.getState().session.lookups;
+    let config = this.viewConfig;
     if (lookups && lookups.disabledControls) {
-      if (this.formGroupData && this.formGroupData.detailsForms && this.formGroupData.detailsForms.detailsForm.length > 0) {
+      if (config && config.detailsForms && config.detailsForms.detailsForm.length > 0) {
         let pageId: string = this.displayMode === 'add' ? 'SUBMITMIXTURE' : this.displayMode === 'view' ? 'VIEWMIXTURE' : 'REVIEWREGISTERMIXTURE';
         let disabledControls = lookups.disabledControls.filter(dc => dc.pageId === pageId);
-        let coeForms = this.formGroupData.detailsForms.detailsForm[0].coeForms.coeForm;
+        let coeForms = config.detailsForms.detailsForm[0].coeForms.coeForm;
         coeForms.forEach(f => {
           if (f.formDisplay.visible === 'true') {
             if (viewGroups.length === 0) {
@@ -38,7 +39,7 @@ export class RegFormGroupView implements OnChanges {
             }
             let viewGroup = viewGroups[viewGroups.length - 1];
             if (!viewGroup.append(f)) {
-              viewGroups.push(new CViewGroup([ f ], disabledControls));
+              viewGroups.push(new CViewGroup([f], disabledControls));
             }
           }
           this.viewGroups = [];

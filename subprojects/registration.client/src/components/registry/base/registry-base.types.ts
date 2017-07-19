@@ -1,9 +1,13 @@
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
-export interface IFormItemTemplate {
+export interface IViewControl {
   activated: boolean;
   editMode: boolean;
-  data: any;
+  viewModel: any;
+  viewConfig: any;
+}
+
+export interface IFormItemTemplate extends IViewControl {
 }
 
 export interface IViewGroup {
