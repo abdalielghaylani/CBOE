@@ -170,8 +170,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     let duplicateIndex = segments.findIndex(s => s.path === 'duplicate');
     if (duplicateIndex > 0 && segments.length === 3) {
       this.duplicateResolution.enabled = true;
-      this.duplicateResolution.duplicateRecords = segments[segments.length - 1].path.split(',').map(Number);
-      this.viewDuplicateRecords();
+      // TODO: 
+      // this.duplicateResolution.duplicateRecords = segments[segments.length - 1].path.split(',').map(Number);
+      // this.viewDuplicateRecords();
     } else {
       if (newIndex >= 0 && newIndex < segments.length - 1) {
         this.id = +segments[segments.length - 1].path;
