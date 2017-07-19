@@ -54,7 +54,7 @@
   </div>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <!--<reg-form-group-view [formGroupData]="formGroup" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>-->
+      <!--<reg-form-group-view [formGroupData]="formGroup" [activated]="currentIndex===0" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>-->
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
@@ -74,7 +74,7 @@
           <div id="structurePanel" class="panel-collapse collapse in">
             <div class="p2">
               <div style="width:100%;height:100%;" resize>
-                <chemdraw-web [editMode]="editMode"></chemdraw-web>
+                <chemdraw-web id="cdw-detail" [activated]="true" [editMode]="editMode"></chemdraw-web>
               </div>
             </div>
           </div>
@@ -118,6 +118,6 @@
     </div>
   </dx-popup>
 </div>
-<div class="viewcontainer" [hidden]="currentIndex!=1">
+<div class="viewcontainer" [hidden]="currentIndex!==1">
   <reg-templates (onClose)="showDetails($event)"></reg-templates>
 </div>

@@ -9,7 +9,8 @@ import { IFormItemTemplate } from '../registry-base.types';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
-  @Input() editMode: boolean = false;
+  @Input() activated: boolean;
+  @Input() editMode: boolean;
   @Input() data: any = {};
   protected dataSource: any[];
   protected columns: any[];

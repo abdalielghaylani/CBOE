@@ -10,13 +10,14 @@ import { CViewGroup } from '../registry-base.types';
 })
 export class RegFormGroupItemView implements OnChanges {
   @Input() id: string;
-  @Input() editMode: boolean = false;
+  @Input() activated: boolean;
+  @Input() editMode: boolean;
   @Input() displayMode: string;
   @Input() data: any;
   @Input() viewGroup: CViewGroup;
   private items: any[] = [];
   private formData: any = {};
-  private colCount: number = 2;
+  private colCount: number = 5;
 
   constructor() {
   }

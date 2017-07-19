@@ -1,6 +1,7 @@
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
 export interface IFormItemTemplate {
+  activated: boolean;
   editMode: boolean;
   data: any;
 }
@@ -49,7 +50,10 @@ export class CViewGroup implements IViewGroup {
   }
 
   private getCellTemplate(fe: IFormElement): string {
-    return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate' : undefined;
+    return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate'
+      : fe.displayInfo.type.endsWith('COEChemDraw') ? 'structureTemplate'
+      // : fe.displayInfo.type.endsWith('COEChemDrawEmbedReadOnly') ? 'structureTemplate'
+      : undefined;
   }
 
   public append(f: ICoeForm): boolean {
@@ -69,10 +73,21 @@ export class CViewGroup implements IViewGroup {
         formElementContainer.formElement.forEach(fe => {
           if (fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name) {
             let item: any = {};
-            this.setItemValue(item, 'label', { text: fe.label });
+            if (fe.label) {
+              this.setItemValue(item, 'label', { text: fe.label });
+            }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
-            this.setItemValue(item, 'template', this.getCellTemplate(fe));
+            let template = this.getCellTemplate(fe);
+            if (template) {
+              this.setItemValue(item, 'template', template);
+              if (template === 'structureTemplate') {
+                item.colSpan = 5;
+              }
+            }
+            // if (item.template) {
+            //   console.log(JSON.stringify(item));
+            // }
             items.push(item);
           }
         });

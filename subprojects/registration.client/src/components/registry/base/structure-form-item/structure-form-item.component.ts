@@ -6,25 +6,20 @@ import { IAppState } from '../../../../redux';
 import { ChemDrawWeb } from '../../../common';
 
 @Component({
-  selector: 'reg-projects-form-item-template',
-  template: require('../structure-form-item.component.html'),
+  selector: 'reg-structure-form-item-template',
+  template: require('./structure-form-item.component.html'),
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegStructureFormItem extends ChemDrawWeb {
-  protected dataSource: any[];
-  protected valueExpr: string;
-  protected displayExpr: string;
+export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTemplate {
+  @Input() data: any = {};
 
   constructor(private ngRedux: NgRedux<IAppState>, elementRef: ElementRef) {
     super(elementRef);
   }
 
   protected update() {
-    // let lookups = this.ngRedux.getState().session.lookups;
-    // this.dataSource = lookups ? lookups.projects.filter(i => i.ACTIVE === 'T') : [];
-    // this.value = this.data.editorOptions.value ? this.data.editorOptions.value : [];
-    // this.displayExpr = 'NAME';
-    // this.valueExpr = 'PROJECTID';
+    this.setValue(this.value = this.data.editorOptions.value ? this.data.editorOptions.value : null);
+    super.update();
   }
 };
