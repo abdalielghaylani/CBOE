@@ -76,7 +76,12 @@ export class PrivilegeUtils {
       return true;
     }
 
-    // REGISTER_TEMP privilege is required to register an already submitted record
+    // EDIT_COMPOUND_TEMP privilege is required to register an already submitted record
+    if (!this.userHasPrivilege('EDIT_COMPOUND_TEMP', userPrivileges)) {
+      return false;
+    }
+
+    // REGISTER_TEMP privilege also required to register an already submitted record
     let hasBaseRegisterPrivilege = this.userHasPrivilege('REGISTER_TEMP', userPrivileges);
     if (!hasBaseRegisterPrivilege) {
       return false;
@@ -135,24 +140,14 @@ export class PrivilegeUtils {
     return this.userHasPrivilege(privilege, userPrivileges);
   }
 
-  static hasApprovalPrivilege(isLoggedInUserOwner: boolean,
-    isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
-    // Note: Approval privilge also depends on 'Approval Enabled = true in system settings
-    // if logged in user is owner of the record, he can approve his record
-    if (isLoggedInUserOwner) {
-      return true;
-    }
+  static hasApprovalPrivilege(userPrivileges: any[]): boolean {
+    // privilege  SET_APPROVED_FLAG is required to approve records 
+    return this.userHasPrivilege('SET_APPROVED_FLAG', userPrivileges);
+  }
 
-    // if the user has EDIT_SCOPE_ALL, he will be able to approve records created by other users
-    if (this.userHasPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
-      return true;
-    }
-
-    // if the logged in user is a supervisor of the registry record owner
-    // and EDIT_SCOPE_SUPERVISOR privilege, supervisor can approve record
-    if (isLoggedInUserSuperVisor) {
-      return this.userHasPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges);
-    }
+  static hasCancelApprovalPrivilege(userPrivileges: any[]): boolean {
+    //  privilege TOGGLE_APPROVED_FLAG is required to cancel the approved record 
+    return this.userHasPrivilege('TOGGLE_APPROVED_FLAG', userPrivileges);
   }
 
   static hasNotebookTablePrivilege(action: string, userPrivileges: any[]): boolean {

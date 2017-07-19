@@ -135,10 +135,16 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
 
     this.approvalsEnabled = (this.isNewRecord || this.temporary)
       && ss.isApprovalsEnabled
-      && PrivilegeUtils.hasApprovalPrivilege(this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
+      && PrivilegeUtils.hasApprovalPrivilege(userPrivileges);
 
-    this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled && this.approvalsEnabled
-      && !this.editMode && !!statusId && this.temporary && statusId === RegistryStatus.Approved;
+    this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled
+      && this.approvalsEnabled
+      && !this.editMode
+      && !!statusId
+      && this.temporary
+      && statusId === RegistryStatus.Approved
+      && PrivilegeUtils.hasCancelApprovalPrivilege(userPrivileges);
+
     this.editButtonEnabled = !this.duplicateResolution.enabled && !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
     this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled) || this.editMode;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
