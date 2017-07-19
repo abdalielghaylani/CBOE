@@ -147,17 +147,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var duplicateId = new JArray();
+                    var duplicateRecords = new JArray();
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.LoadXml(chkDuplicate);
                     XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
                     foreach (XmlNode node in nodeList)
                     {
                         RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
-                        duplicateId.Add(registryRecord.ID);
+                        var duplicateRecord = new JObject(new JProperty("id", registryRecord.ID), new JProperty("regNum", registryRecord.RegNum));
+                        duplicateRecords.Add(duplicateRecord);
                     }
                     var responseMessage = new JObject(
-                        new JProperty("DuplicateRecords", duplicateId),
+                        new JProperty("DuplicateRecords", duplicateRecords),
                         new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
                     );
                     return new ResponseData(null, null, null, responseMessage);
@@ -228,17 +229,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var duplicateId = new JArray();
+                    var duplicateRecords = new JArray();
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.LoadXml(chkDuplicate);
                     XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
                     foreach (XmlNode node in nodeList)
                     {
                         RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
-                        duplicateId.Add(registryRecord.ID);
+                        var duplicateRecord = new JObject(new JProperty("id", registryRecord.ID), new JProperty("regNum", registryRecord.RegNum));
+                        duplicateRecords.Add(duplicateRecord);
                     }
                     var responseMessage = new JObject(
-                        new JProperty("DuplicateRecords", duplicateId),
+                        new JProperty("DuplicateRecords", duplicateRecords),
                         new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
                     );
                     return new ResponseData(null, null, null, responseMessage);
