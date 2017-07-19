@@ -40,6 +40,7 @@ export interface ILookupData {
   propertyGroups?: any[];
   homeMenuPrivileges?: any[];
   userPrivileges?: any[];
+  disabledControls?: any[];
 }
 
 export interface ISession {

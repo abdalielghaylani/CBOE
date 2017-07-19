@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IFormGroup, IForm, ICoeForm } from '../../../../common';
 import { CViewGroup } from '../registry-base.types';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState } from '../../../../redux';
 
 @Component({
   selector: 'reg-form-group-view',
@@ -18,24 +20,35 @@ export class RegFormGroupView implements OnChanges {
   @Input() formGroupData: IFormGroup;
   private viewGroups: CViewGroup[] = [];
 
-  constructor() {
+  constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
   ngOnChanges() {
-    this.viewGroups = [];
-    if (this.formGroupData && this.formGroupData.detailsForms && this.formGroupData.detailsForms.detailsForm.length > 0) {
-      let coeForms = this.formGroupData.detailsForms.detailsForm[0].coeForms.coeForm;
-      coeForms.forEach(f => {
-        if (f.formDisplay.visible === 'true') {
-          if (this.viewGroups.length === 0) {
-            this.viewGroups.push(new CViewGroup([]));
+    let viewGroups: CViewGroup[] = [];
+    let lookups = this.ngRedux.getState().session.lookups;
+    if (lookups && lookups.disabledControls) {
+      if (this.formGroupData && this.formGroupData.detailsForms && this.formGroupData.detailsForms.detailsForm.length > 0) {
+        let pageId: string = this.displayMode === 'add' ? 'SUBMITMIXTURE' : this.displayMode === 'view' ? 'VIEWMIXTURE' : 'REVIEWREGISTERMIXTURE';
+        let disabledControls = lookups.disabledControls.filter(dc => dc.pageId === pageId);
+        let coeForms = this.formGroupData.detailsForms.detailsForm[0].coeForms.coeForm;
+        coeForms.forEach(f => {
+          if (f.formDisplay.visible === 'true') {
+            if (viewGroups.length === 0) {
+              viewGroups.push(new CViewGroup([], disabledControls));
+            }
+            let viewGroup = viewGroups[viewGroups.length - 1];
+            if (!viewGroup.append(f)) {
+              viewGroups.push(new CViewGroup([ f ], disabledControls));
+            }
           }
-          let viewGroup = this.viewGroups[this.viewGroups.length - 1];
-          if (!viewGroup.append(f)) {
-            this.viewGroups.push(new CViewGroup([ f ]));
-          }
-        }
-      });
+          this.viewGroups = [];
+          viewGroups.forEach(vg => {
+            if (vg.getItems(this.displayMode).length > 0) {
+              this.viewGroups.push(vg);
+            }
+          });
+        });
+      }
     }
   }
 

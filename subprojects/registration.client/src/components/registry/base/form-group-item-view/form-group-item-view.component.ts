@@ -23,10 +23,10 @@ export class RegFormGroupItemView implements OnChanges {
   }
 
   ngOnChanges() {
-    this.buildItems();
+    this.update();
   }
 
-  private buildItems() {
+  private update() {
     if (this.viewGroup) {
       this.items = this.viewGroup.getItems(this.displayMode);
     }

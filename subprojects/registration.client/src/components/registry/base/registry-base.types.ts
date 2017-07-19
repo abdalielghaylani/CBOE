@@ -14,7 +14,7 @@ export interface IViewGroup {
 export class CViewGroup implements IViewGroup {
   public id: string;
   public title: string;
-  constructor(public data: ICoeForm[]) {
+  constructor(public data: ICoeForm[], private disabledControls: any[]) {
     this.update();
   }
 
@@ -71,7 +71,7 @@ export class CViewGroup implements IViewGroup {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
-          if (fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name) {
+          if (!this.disabledControls.find(dc => dc.id && dc.id === fe.Id) && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name) {
             let item: any = {};
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
