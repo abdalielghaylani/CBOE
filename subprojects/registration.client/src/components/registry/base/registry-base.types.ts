@@ -57,6 +57,7 @@ export class CViewGroup implements IViewGroup {
     return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate'
       : fe.displayInfo.type.endsWith('COEChemDraw') ? 'structureTemplate'
       // : fe.displayInfo.type.endsWith('COEChemDrawEmbedReadOnly') ? 'structureTemplate'
+      : fe.displayInfo.type.endsWith('COEFragments') ? 'fragmentsTemplate'
       : undefined;
   }
 
@@ -85,7 +86,7 @@ export class CViewGroup implements IViewGroup {
             let template = this.getCellTemplate(fe);
             if (template) {
               this.setItemValue(item, 'template', template);
-              if (template === 'structureTemplate') {
+              if (template === 'structureTemplate' || template === 'fragmentsTemplate') {
                 item.colSpan = 5;
               }
             }
