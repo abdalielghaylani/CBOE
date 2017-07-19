@@ -61,6 +61,15 @@ export class CViewGroup implements IViewGroup {
       : undefined;
   }
 
+  private checkDropDown(fe: IFormElement, item: any) {
+    if (fe.displayInfo.type.endsWith('COEDropDownList')) {
+      let pickListDomain: string = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
+      if (pickListDomain && String(Math.floor(Number(pickListDomain))) === pickListDomain) {
+        item.editorType = 'dxSelectBox';
+      }
+    }
+  }
+
   public append(f: ICoeForm): boolean {
     let canAppend = this.canAppend(f);
     if (canAppend) {
@@ -90,6 +99,7 @@ export class CViewGroup implements IViewGroup {
                 item.colSpan = 5;
               }
             }
+            this.checkDropDown(fe, item);
             // if (item.template) {
             //   console.log(JSON.stringify(item));
             // }
