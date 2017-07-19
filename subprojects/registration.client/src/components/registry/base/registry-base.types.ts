@@ -52,7 +52,7 @@ export class CViewGroup implements IViewGroup {
   private getCellTemplate(fe: IFormElement): string {
     return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate'
       : fe.displayInfo.type.endsWith('COEChemDraw') ? 'structureTemplate'
-      : fe.displayInfo.type.endsWith('COEChemDrawEmbedReadOnly') ? 'structureTemplate'
+      // : fe.displayInfo.type.endsWith('COEChemDrawEmbedReadOnly') ? 'structureTemplate'
       : undefined;
   }
 
@@ -85,9 +85,9 @@ export class CViewGroup implements IViewGroup {
                 item.colSpan = 5;
               }
             }
-            if (item.template) {
-              console.log(JSON.stringify(item));
-            }
+            // if (item.template) {
+            //   console.log(JSON.stringify(item));
+            // }
             items.push(item);
           }
         });
