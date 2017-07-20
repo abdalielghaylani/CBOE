@@ -87,7 +87,7 @@ export class RegistryEpics {
           : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, data, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
-            if ((responseData.data) && (responseData.data.DuplicateActions)) {
+            if ((responseData.data) && (responseData.data.DuplicateRecords)) {
               return createRecordAction
                 ? createAction(UPDATE_LOCATION)(`records/duplicate/${responseData.data.DuplicateRecords}`)
                 : createAction(RegActions.IGNORE_ACTION)();
