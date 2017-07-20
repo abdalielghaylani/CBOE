@@ -64,6 +64,7 @@ export interface IFormElement {
   displayInfo?: IDisplayInfo;
   bindingExpression?: string;
   configInfo?: IConfigInfo;
+  dataSource?: string;
   // TODO: ...
 }
 

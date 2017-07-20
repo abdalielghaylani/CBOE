@@ -15,6 +15,11 @@ export interface IViewGroup {
   data: ICoeForm[];
 }
 
+class CEntryInfo {
+  dataSource: string;
+  bindingExpression: string;
+}
+
 export class CViewGroup implements IViewGroup {
   public id: string;
   public title: string;
@@ -50,7 +55,7 @@ export class CViewGroup implements IViewGroup {
   }
 
   private getDataField(fe: IFormElement): string {
-    return fe._name.replace(/\s/g, '');
+    return fe.Id ? fe.Id : fe._name.replace(/\s/g, '');
   }
 
   private getCellTemplate(fe: IFormElement): string {
@@ -70,6 +75,62 @@ export class CViewGroup implements IViewGroup {
     }
   }
 
+  private getEntryInfo(displayMode: string, id: string): CEntryInfo {
+    let entryInfo = new CEntryInfo();
+    this.data.forEach(f => {
+      let formElementContainer = this.getFormElementContainer(f, displayMode);
+      if (formElementContainer && formElementContainer.formElement) {
+        formElementContainer.formElement.forEach(fe => {
+          if ((fe.Id && fe.Id === id) || (!fe.Id && fe._name.replace(/\s/g, '') === id)) {
+            entryInfo.dataSource = f._dataSourceId;
+            entryInfo.bindingExpression = fe.bindingExpression;
+          }
+        });
+      }
+    });
+    return entryInfo;
+  }
+
+  private parseEntryValue(bindingExpression: string, viewModel: any) {
+    let value = viewModel[bindingExpression];
+    if (value) {
+      if (bindingExpression === 'ProjectList') {
+        let projectList = [];
+        value.Project.forEach(p => projectList.push(+p.ProjectID));
+        value = projectList;
+      }
+    }
+    return value;
+  }
+
+  private getRegistryEntryValue(bindingExpression: string, viewModel: IRegistryRecord) {
+    let value = this.parseEntryValue(bindingExpression, viewModel);
+    return value ? value : undefined;
+  }
+
+  private getComponentEntryValue(bindingExpression: string, viewModel: IComponentList) {
+    let value = this.parseEntryValue(bindingExpression, viewModel);
+    return value ? value : undefined;
+  }
+
+  private getBatchEntryValue(bindingExpression: string, viewModel: IBatchList) {
+    let value = this.parseEntryValue(bindingExpression, viewModel);
+    return value ? value : undefined;
+  }
+
+  private getEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord): any {
+    let entryInfo = this.getEntryInfo(displayMode, id);
+    let dataSource = entryInfo.dataSource.toLowerCase();
+    return dataSource.indexOf('component') > 0 ? this.getComponentEntryValue(entryInfo.bindingExpression, viewModel.ComponentList)
+      : dataSource.indexOf('batch') > 0 ? this.getBatchEntryValue(entryInfo.bindingExpression, viewModel.BatchList)
+      : this.getRegistryEntryValue(entryInfo.bindingExpression, viewModel);
+  }
+
+  private setEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord) {
+    let entryInfo = this.getEntryInfo(displayMode, id);
+    // Locate data source in registry record, and find the entry based on binding expression    
+  }
+
   public append(f: ICoeForm): boolean {
     let canAppend = this.canAppend(f);
     if (canAppend) {
@@ -85,10 +146,14 @@ export class CViewGroup implements IViewGroup {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
-          if (!this.disabledControls.find(dc => dc.id && dc.id === fe.Id) && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name) {
+          if (!this.disabledControls.find(dc => dc.id && dc.id === fe.Id)
+            && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name
+            && !fe.displayInfo.type.endsWith('COELabel')) {
             let item: any = {};
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
+            } else {
+              this.setItemValue(item, 'label', { text: fe._name });              
             }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
@@ -109,6 +174,17 @@ export class CViewGroup implements IViewGroup {
       }
     });
     return items;
+  }
+  
+  public getFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord): any {
+    let formData: any = {};
+    idList.forEach(id => {
+      formData[id] = this.getEntryValue(displayMode, id, viewModel);
+    });
+    return formData;
+  }
+
+  public readFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord, formData: any) {
   }
 }
 
