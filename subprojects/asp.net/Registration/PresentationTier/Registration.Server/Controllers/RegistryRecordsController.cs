@@ -147,21 +147,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var duplicateRecords = new JArray();
-                    XmlDocument xmldoc = new XmlDocument();
-                    xmldoc.LoadXml(chkDuplicate);
-                    XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
-                    foreach (XmlNode node in nodeList)
-                    {
-                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
-                        var duplicateRecord = new JObject(new JProperty("id", registryRecord.ID), new JProperty("regNum", registryRecord.RegNum));
-                        duplicateRecords.Add(duplicateRecord);
-                    }
-                    var responseMessage = new JObject(
-                        new JProperty("DuplicateRecords", duplicateRecords),
-                        new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
-                    );
-                    return new ResponseData(null, null, null, responseMessage);
+                    return new ResponseData(null, null, null, GetDuplicateRecords(chkDuplicate));
                 }
             });
         }
@@ -228,24 +214,32 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
                 }
                 else
-                {
-                    var duplicateRecords = new JArray();
-                    XmlDocument xmldoc = new XmlDocument();
-                    xmldoc.LoadXml(chkDuplicate);
-                    XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
-                    foreach (XmlNode node in nodeList)
-                    {
-                        RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
-                        var duplicateRecord = new JObject(new JProperty("id", registryRecord.ID), new JProperty("regNum", registryRecord.RegNum));
-                        duplicateRecords.Add(duplicateRecord);
-                    }
-                    var responseMessage = new JObject(
-                        new JProperty("DuplicateRecords", duplicateRecords),
-                        new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
-                    );
-                    return new ResponseData(null, null, null, responseMessage);
+                {                   
+                    return new ResponseData(null, null, null, GetDuplicateRecords(chkDuplicate));
                 }
             });
+        }
+
+        private JObject GetDuplicateRecords(string chkDuplicate)
+        {
+            List<string> duplicateRegIds = new List<string>();
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.LoadXml(chkDuplicate);
+            XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+            foreach (XmlNode node in nodeList)
+            {
+                RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
+                duplicateRegIds.Add(registryRecord.ID.ToString());
+            }
+
+            var tableName = string.Format("vw_mixture_regnumber WHERE regid IN ({0})", string.Join(",", duplicateRegIds));
+            var query = GetQuery(tableName, RecordColumns, null, "modified", "regid");
+
+            var responseMessage = new JObject(
+                new JProperty("DuplicateRecords", ExtractData(query, null, null, null)),
+                new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
+            );
+            return responseMessage;
         }
 
         [HttpDelete]
