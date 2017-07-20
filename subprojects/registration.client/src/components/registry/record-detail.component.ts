@@ -16,9 +16,10 @@ import * as X2JS from 'x2js';
 import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, notify } from '../../common';
-import { IResponseData, CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
+import { IResponseData, CRegistryRecordVM, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
+import { IRegistryRecord, CRegistryRecord, CFragment } from './base';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
@@ -63,7 +64,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private submissionTemplatesEnabled: boolean = false;
   private recordString: string;
   private recordDoc: Document;
-  private regRecord: CRegistryRecord = new CRegistryRecord();
+  private regRecord: IRegistryRecord = new CRegistryRecord();
   private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
   private routeSubscription: Subscription;
   private dataSubscription: Subscription;
@@ -257,7 +258,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
     this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
-      this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new FragmentData()] };
+      this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
     }
     let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
       'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
