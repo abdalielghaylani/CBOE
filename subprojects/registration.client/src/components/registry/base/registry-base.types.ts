@@ -91,39 +91,38 @@ export class CViewGroup implements IViewGroup {
     return entryInfo;
   }
 
+  private fixBindingExpression(expression: string): string {
+    return expression.replace('.Sequence.ID', '.SequenceID')
+      .replace('.Structure.Value', '.Structure.Structure.__text')
+      .replace('.Structure.Formula', '.Structure.Structure._formula')
+      .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
+  }
+
   private parseEntryValue(bindingExpression: string, viewModel: any) {
-    let value = viewModel[bindingExpression];
-    if (value) {
+    bindingExpression = this.fixBindingExpression(bindingExpression);
+    let objectNames = bindingExpression.split('.');
+    let nextObject = viewModel;
+    objectNames.forEach(n => {
+      if (nextObject) {
+        nextObject = nextObject[n];
+      }
+    });
+    if (nextObject) {
       if (bindingExpression === 'ProjectList') {
         let projectList = [];
-        value.Project.forEach(p => projectList.push(+p.ProjectID));
-        value = projectList;
+        nextObject.Project.forEach(p => projectList.push(+p.ProjectID));
+        nextObject = projectList;
       }
     }
-    return value;
-  }
-
-  private getRegistryEntryValue(bindingExpression: string, viewModel: IRegistryRecord) {
-    let value = this.parseEntryValue(bindingExpression, viewModel);
-    return value ? value : undefined;
-  }
-
-  private getComponentEntryValue(bindingExpression: string, viewModel: IComponentList) {
-    let value = this.parseEntryValue(bindingExpression, viewModel);
-    return value ? value : undefined;
-  }
-
-  private getBatchEntryValue(bindingExpression: string, viewModel: IBatchList) {
-    let value = this.parseEntryValue(bindingExpression, viewModel);
-    return value ? value : undefined;
+    return nextObject;
   }
 
   private getEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord): any {
     let entryInfo = this.getEntryInfo(displayMode, id);
     let dataSource = entryInfo.dataSource.toLowerCase();
-    return dataSource.indexOf('component') > 0 ? this.getComponentEntryValue(entryInfo.bindingExpression, viewModel.ComponentList)
-      : dataSource.indexOf('batch') > 0 ? this.getBatchEntryValue(entryInfo.bindingExpression, viewModel.BatchList)
-      : this.getRegistryEntryValue(entryInfo.bindingExpression, viewModel);
+    return dataSource.indexOf('component') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.ComponentList.Component[0])
+      : dataSource.indexOf('batch') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.BatchList.Batch[0])
+      : this.parseEntryValue(entryInfo.bindingExpression, viewModel);
   }
 
   private setEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord) {
