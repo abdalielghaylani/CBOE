@@ -130,9 +130,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var appUserPrivilages = new JArray();          
             string coeIdentifier = "Registration";
             Dictionary<string, List<string>> appUserPrivileges = UserPrivileges;
-            foreach (string privilege in appUserPrivileges[coeIdentifier.ToUpper()])
+            if (appUserPrivileges.ContainsKey(coeIdentifier.ToUpper()))
             {
-                appUserPrivilages.Add(new JObject(new JProperty("name", privilege)));
+                foreach (string privilege in appUserPrivileges[coeIdentifier.ToUpper()])
+                {
+                    appUserPrivilages.Add(new JObject(new JProperty("name", privilege)));
+                }
             }
             return appUserPrivilages;
         }
