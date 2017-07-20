@@ -1,6 +1,6 @@
-import {NgModule}      from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgReduxModule } from '@angular-redux/store';
 import {
   DxCheckBoxModule,
@@ -23,7 +23,8 @@ import {
   RegRecordDetail,
   RegRecordSearch,
   RegRecords,
-  RegTemplates
+  RegTemplates,
+  RegDuplicateRecord
 } from './index';
 
 @NgModule({
@@ -51,14 +52,16 @@ import {
     RegRecordDetail,
     RegRecordSearch,
     RegRecords,
-    RegTemplates
+    RegTemplates,
+    RegDuplicateRecord
   ],
   exports: [
     RegQueryManagement,
     RegRecordDetail,
     RegRecordSearch,
     RegRecords,
-    RegTemplates
+    RegTemplates,
+    RegDuplicateRecord
   ]
 })
 export class RegistryModule { }

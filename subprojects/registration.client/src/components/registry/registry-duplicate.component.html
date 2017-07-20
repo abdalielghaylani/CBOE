@@ -1,0 +1,33 @@
+<div class="viewcontainer" (window:resize)="onResize($event)">
+  <command-button testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel" (onClick)="cancelDuplicateResolution()"></command-button>
+  <command-button testid="use-structure-record-button" iconName="code-fork" title="Use Structure"></command-button>
+  <command-button testid="use-component-record-button" iconName="calendar-plus-o" title="Use Component"></command-button>
+  <command-button testid="create-duplicate-record-button" iconName="clone" title="Duplicate" (onClick)="createDuplicateRecord()"></command-button>
+  <command-button testid="add-batch-record-button" iconName="object-ungroup" title="Add Batch"></command-button>
+  <reg-header testid="templates-heading" id="templates-heading">
+    Duplicate Resolution
+  </reg-header>
+  <div class="text-center alert alert-info alert-dismissible fade in" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <p><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;The component you are trying to register already exists. Review
+      the list of conflicts and choose a duplicate action.</p>
+  </div>
+  <dx-data-grid [columns]="columns" [dataSource]="datasource" [paging]="{enabled: false}" [height]="gridHeight" rowAlternationEnabled="true"
+    (onToolbarPreparing)="onToolbarPreparing($event)">
+    <dxo-editing [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+    <div *dxTemplate="let data of 'toolbarContents'">
+      <div class="count tan pull-left">
+        <div class="count-type">Resolving Component</div>
+        <div class="count-type-amount border-tan round border-2 padding-xs">
+          {{ datasource ? datasource.length : '' }}
+          <i class="fa fa-book" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div *dxTemplate="let data of 'cellTemplate'">
+      <reg-structure-image [src]="data.value"></reg-structure-image>
+    </div>
+  </dx-data-grid>

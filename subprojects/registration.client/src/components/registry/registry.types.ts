@@ -755,9 +755,3 @@ export class CTemplateData implements ITemplateData {
       Date, username?: string,
     date?: string) { }
 }
-
-export interface IDuplicateResolution {
-  enabled: boolean;
-  duplicateRecords: number[];
-  index: number;
-}

@@ -15,6 +15,7 @@ export class RecordDetailActions {
   static CREATE_DUPLICATE_RECORD = 'CREATE_DUPLICATE_RECORD';
   static CREATE_DUPLICATE_RECORD_SUCCESS = 'CREATE_DUPLICATE_RECORD_SUCCESS';
   static CREATE_DUPLICATE_RECORD_ERROR = 'CREATE_DUPLICATE_RECORD_ERROR';
+  static LOAD_DUPLICATE_RECORD_SUCCESS = 'LOAD_DUPLICATE_RECORD_SUCCESS';
   static UPDATE_RECORD = 'UPDATE_RECORD';
   static UPDATE_RECORD_SUCCESS = 'UPDATE_RECORD_SUCCESS';
   static UPDATE_RECORD_ERROR = 'UPDATE_RECORD_ERROR';
@@ -31,7 +32,9 @@ export class RecordDetailActions {
   static saveRecordErrorAction = createAction(RecordDetailActions.SAVE_RECORD_ERROR);
   static duplicateRecordAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD,
     (data: IRecordDetail, duplicateCheckOption: string) => ({ data, duplicateCheckOption }));
-  static duplicateRecordSuccessAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_SUCCESS);
+  static duplicateRecordSuccessAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_SUCCESS,
+    (payload: any) => (payload));
+  static loadDuplicateRecordSuccessAction = createAction(RecordDetailActions.LOAD_DUPLICATE_RECORD_SUCCESS);
   static duplicateRecordErrorAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_ERROR);
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
   static loadStructureSuccessAction = createAction(RecordDetailActions.LOAD_STRUCTURE_SUCCESS);

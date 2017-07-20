@@ -47,6 +47,7 @@ export interface IRegistry {
   currentRecord: IRecordDetail;
   structureData: string;
   previousRecordDetail: IRecordDetail;
+  duplicateRecords: any[] | any;
 }
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }
@@ -71,3 +72,4 @@ export interface IRecordSaveData {
   saveToPermanent: boolean;
   checkDuplicate: boolean;
 }
+
