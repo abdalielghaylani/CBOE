@@ -11,7 +11,8 @@ import {
   RegConfigTablesPage,
   RegConfigXmlFormsPage,
   RegLoginPage,
-  RegRecordSearchPage
+  RegRecordSearchPage,
+  UnAuthorizedPage
 } from '../pages';
 
 export const REG_APP_ROUTES: Routes = [{
@@ -78,4 +79,9 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'login',
   component: RegLoginPage
-}];
+},
+{
+  path: 'unauthorized',
+  component: UnAuthorizedPage
+}
+];

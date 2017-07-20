@@ -32,7 +32,7 @@ export class SessionEpics {
             this.navigateToHomePage(result.json());
             return SessionActions.loadLookupsSuccessAction(result.json());
           })
-          .catch(error => Observable.of(SessionActions.loadLookupsErrorAction()));
+         .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
       });
   }
 
@@ -46,8 +46,8 @@ export class SessionEpics {
       this.router.navigate(['records/new']);
     } else if (this.getPrivilege(homeMenuPrivileges, 'CONFIG_REG')) {
       this.router.navigate(['configuration/VW_PROJECT']);
-    } else if (this.getPrivilege(homeMenuPrivileges, 'CONFIG_REG')) {
-      // TODO: show unauthorized page
+    } else {
+      this.router.navigate(['unauthorized']);
     }
   }
 
