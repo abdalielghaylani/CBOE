@@ -71,5 +71,6 @@ export interface IRecordSaveData {
   recordDoc: Document;
   saveToPermanent: boolean;
   checkDuplicate: boolean;
+  redirectToRecordsView?: boolean;
 }
 
