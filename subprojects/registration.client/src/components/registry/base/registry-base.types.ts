@@ -1,9 +1,13 @@
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
-export interface IFormItemTemplate {
+export interface IViewControl {
   activated: boolean;
   editMode: boolean;
-  data: any;
+  viewModel: any;
+  viewConfig: any;
+}
+
+export interface IFormItemTemplate extends IViewControl {
 }
 
 export interface IViewGroup {
@@ -14,7 +18,7 @@ export interface IViewGroup {
 export class CViewGroup implements IViewGroup {
   public id: string;
   public title: string;
-  constructor(public data: ICoeForm[]) {
+  constructor(public data: ICoeForm[], private disabledControls: any[]) {
     this.update();
   }
 
@@ -53,7 +57,17 @@ export class CViewGroup implements IViewGroup {
     return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate'
       : fe.displayInfo.type.endsWith('COEChemDraw') ? 'structureTemplate'
       // : fe.displayInfo.type.endsWith('COEChemDrawEmbedReadOnly') ? 'structureTemplate'
+      : fe.displayInfo.type.endsWith('COEFragments') ? 'fragmentsTemplate'
       : undefined;
+  }
+
+  private checkDropDown(fe: IFormElement, item: any) {
+    if (fe.displayInfo.type.endsWith('COEDropDownList')) {
+      let pickListDomain: string = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
+      if (pickListDomain && String(Math.floor(Number(pickListDomain))) === pickListDomain) {
+        item.editorType = 'dxSelectBox';
+      }
+    }
   }
 
   public append(f: ICoeForm): boolean {
@@ -71,7 +85,7 @@ export class CViewGroup implements IViewGroup {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
-          if (fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name) {
+          if (!this.disabledControls.find(dc => dc.id && dc.id === fe.Id) && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name) {
             let item: any = {};
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
@@ -81,10 +95,11 @@ export class CViewGroup implements IViewGroup {
             let template = this.getCellTemplate(fe);
             if (template) {
               this.setItemValue(item, 'template', template);
-              if (template === 'structureTemplate') {
+              if (template === 'structureTemplate' || template === 'fragmentsTemplate') {
                 item.colSpan = 5;
               }
             }
+            this.checkDropDown(fe, item);
             // if (item.template) {
             //   console.log(JSON.stringify(item));
             // }

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
+import { IViewControl } from '../registry-base.types';
 import { RegDataGridFormItem } from '../data-grid-form-item';
 import { NgRedux } from '@angular-redux/store';
 import { apiUrlPrefix } from '../../../../configuration';
@@ -22,7 +22,8 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
 
   protected update() {
     let lookups = this.ngRedux.getState().session.lookups;
-    this.dataSource = this.data.editorOptions && this.data.editorOptions.value ? this.data.editorOptions.value : [];
+    let options = this.viewModel.editorOptions;
+    this.dataSource = options && options.value ? options.value : [];
     this.columns = lookups ? [{
         dataField: 'fragmentTypeId',
         caption: 'Type',

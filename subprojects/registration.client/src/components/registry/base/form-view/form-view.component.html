@@ -1,14 +1,14 @@
-<dx-form id="id" [formData]="formData" [colCount]="colCount" [items]="items" [readOnly]="!editMode" labelLocation="top">
+<dx-form id="id" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="!editMode" labelLocation="top">
   <div *dxTemplate="let data of 'projectsTemplate'">
-    <reg-projects-form-item-template [activated]="activated" [editMode]="editMode" [data]="data"></reg-projects-form-item-template>
+    <reg-projects-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-projects-form-item-template>
   </div>
   <div *dxTemplate="let data of 'fragmentsTemplate'">
-    <reg-fragments-form-item-template [activated]="activated" [editMode]="editMode" [data]="data"></reg-fragments-form-item-template>
+    <reg-fragments-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-fragments-form-item-template>
   </div>
   <div *dxTemplate="let data of 'dataGridTemplate'">
-    <reg-data-grid-form-item-template [activated]="activated" [editMode]="editMode" [data]="data"></reg-data-grid-form-item-template>
+    <reg-data-grid-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-data-grid-form-item-template>
   </div>
   <div *dxTemplate="let data of 'structureTemplate'">
-    <reg-structure-form-item-template [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [data]="data"></reg-structure-form-item-template>
+    <reg-structure-form-item-template [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-form-item-template>
   </div>
 </dx-form>

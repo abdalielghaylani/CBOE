@@ -69,7 +69,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
         }
       },
       licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
-      config: { features: { disabled: ['ExtendedCopyPaste'] } }
+      config: { features: { enable: ['ExtendedCopyPaste'] } }
     };
 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);

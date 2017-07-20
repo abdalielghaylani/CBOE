@@ -40,6 +40,17 @@ export interface IDisplayInfo {
   visible?: string;
 }
 
+export interface IFieldConfig {
+  CSSLabelClass?: string;
+  CSSClass?: string;
+  dropDownItemsSelect?: string;
+  PickListDomain?: string;
+}
+
+export interface IConfigInfo {
+  fieldConfig: IFieldConfig;
+}
+
 export interface IFormElement {
   _name?: string;
   label?: string;
@@ -52,6 +63,7 @@ export interface IFormElement {
   Id?: string;
   displayInfo?: IDisplayInfo;
   bindingExpression?: string;
+  configInfo?: IConfigInfo;
   // TODO: ...
 }
 

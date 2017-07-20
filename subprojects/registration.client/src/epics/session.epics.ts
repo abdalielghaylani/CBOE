@@ -27,7 +27,7 @@ export class SessionEpics {
   handleLoginUserSuccess = (action$: Observable<IPayloadAction>) => {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER_SUCCESS)
       .mergeMap(() => {
-        return this.http.get(`${apiUrlPrefix}ViewConfig/Lookups`)
+        return this.http.get(`${apiUrlPrefix}ViewConfig/Lookups?${new Date().getTime()}`)
           .map(result => {
             this.navigateToHomePage(result.json());
             return SessionActions.loadLookupsSuccessAction(result.json());

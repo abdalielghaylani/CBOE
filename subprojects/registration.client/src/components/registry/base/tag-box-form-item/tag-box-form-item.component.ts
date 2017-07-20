@@ -11,7 +11,8 @@ import { IFormItemTemplate } from '../registry-base.types';
 export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
   @Input() activated: boolean;
   @Input() editMode: boolean = false;
-  @Input() data: any = {};
+  @Input() viewModel: any = {};
+  @Input() viewConfig: any;
   protected value: any[];
   protected dataSource: any[];
   protected valueExpr: string;
@@ -22,10 +23,13 @@ export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
   }
 
   protected update() {
-    this.value = this.data.editorOptions.value ? this.data.editorOptions.value : [];
-    this.dataSource = this.data.editorOptions.dataSource;
-    this.displayExpr = this.data.editorOptions.displayExpr;
-    this.valueExpr = this.data.editorOptions.valueExpr;
+    let options = this.viewModel.editorOptions;
+    if (options) {
+      this.value = options.value ? options.value : [];
+      this.dataSource = options.dataSource;
+      this.displayExpr = options.displayExpr;
+      this.valueExpr = options.valueExpr;
+    }
   }
 
   protected onValueChanged(e, d) {
