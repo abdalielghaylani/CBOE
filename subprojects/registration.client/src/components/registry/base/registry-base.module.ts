@@ -6,6 +6,7 @@ import { RegDataGridFormItem } from './data-grid-form-item';
 import { RegFragmentsFormItem } from './fragments-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
 import { RegStructureFormItem } from './structure-form-item';
+import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
@@ -64,11 +65,11 @@ export * from './registry-base.types';
     RegCommonComponentModule
   ],
   declarations: [
-    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegTagBoxFormItem,
+    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView
   ],
   exports: [
-    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegTagBoxFormItem,
+    RegDataGridFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView,
     RegCommonModule, RegCommonComponentModule
   ]

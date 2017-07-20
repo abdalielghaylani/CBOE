@@ -3,3 +3,7 @@
   height: 300px;
   width: auto;
 }
+
+.chemdraw-image {
+  max-height: 100px;
+}

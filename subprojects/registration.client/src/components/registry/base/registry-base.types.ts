@@ -60,10 +60,18 @@ export class CViewGroup implements IViewGroup {
 
   private getCellTemplate(fe: IFormElement): string {
     return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate'
-      : fe.displayInfo.type.endsWith('COEChemDraw') ? 'structureTemplate'
-      // : fe.displayInfo.type.endsWith('COEChemDrawEmbedReadOnly') ? 'structureTemplate'
       : fe.displayInfo.type.endsWith('COEFragments') ? 'fragmentsTemplate'
       : undefined;
+  }
+
+  private checkStructure(fe: IFormElement, item: any) {
+    let type = fe.displayInfo.type;
+    let structureField = type.endsWith('COEChemDraw');
+    let readOnly = type.endsWith('COEChemDrawEmbedReadOnly');
+    if (structureField || readOnly) {
+      item.template = readOnly ? 'structureImageTemplate' : 'structureTemplate';
+      item.colSpan = readOnly ? 1 : 5;
+    }
   }
 
   private checkDropDown(fe: IFormElement, item: any) {
@@ -104,7 +112,14 @@ export class CViewGroup implements IViewGroup {
     let nextObject = viewModel;
     objectNames.forEach(n => {
       if (nextObject) {
-        nextObject = nextObject[n];
+        let m = n.match(/PropertyList\[@Name='(.*)'/);
+        if (m && m.length > 1) {
+          let propertyList = nextObject.PropertyList as IPropertyList;
+          let p = propertyList.Property.filter(p => p._name === m[1]);
+          nextObject = p ? p[0].__text : undefined;
+        } else {
+          nextObject = nextObject[n];
+        }
       }
     });
     if (nextObject) {
@@ -146,8 +161,9 @@ export class CViewGroup implements IViewGroup {
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
           if (!this.disabledControls.find(dc => dc.id && dc.id === fe.Id)
-            && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name
-            && !fe.displayInfo.type.endsWith('COELabel')) {
+            && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name && fe.configInfo
+            && !fe.displayInfo.type.endsWith('COELabel')
+            && !fe.displayInfo.type.endsWith('COEChemDrawToolbar')) {
             let item: any = {};
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
@@ -164,6 +180,7 @@ export class CViewGroup implements IViewGroup {
               }
             }
             this.checkDropDown(fe, item);
+            this.checkStructure(fe, item);
             // if (item.template) {
             //   console.log(JSON.stringify(item));
             // }

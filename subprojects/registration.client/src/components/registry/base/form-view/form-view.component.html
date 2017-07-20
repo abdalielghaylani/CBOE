@@ -11,4 +11,7 @@
   <div *dxTemplate="let data of 'structureTemplate'">
     <reg-structure-form-item-template [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-form-item-template>
   </div>
+  <div *dxTemplate="let data of 'structureImageTemplate'">
+    <reg-structure-image-form-item-template [id]="data.dataField + '_image'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-image-form-item-template>
+  </div>
 </dx-form>
