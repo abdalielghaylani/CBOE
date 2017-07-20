@@ -23,7 +23,7 @@ import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
-import { RegistryStatus, IDuplicateResolution } from './registry.types';
+import { RegistryStatus } from './registry.types';
 import { ChemDrawWeb } from '../common';
 import { PrivilegeUtils } from '../../common';
 import { CSystemSettings } from '../../redux';
@@ -44,6 +44,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   @Input() template: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
+  @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   public formGroup: IFormGroup;
   public editMode: boolean = false;
@@ -72,7 +73,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private saveTemplatePopupVisible: boolean = false;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
-  private duplicateResolution: IDuplicateResolution = { enabled: false, duplicateRecords: [], index: 0 };
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
@@ -138,24 +138,22 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       && ss.isApprovalsEnabled
       && PrivilegeUtils.hasApprovalPrivilege(userPrivileges);
 
-    this.cancelApprovalButtonEnabled = !this.duplicateResolution.enabled
-      && this.approvalsEnabled
+    this.cancelApprovalButtonEnabled = this.approvalsEnabled
       && !this.editMode
       && !!statusId
       && this.temporary
       && statusId === RegistryStatus.Approved
       && PrivilegeUtils.hasCancelApprovalPrivilege(userPrivileges);
 
-    this.editButtonEnabled = !this.duplicateResolution.enabled && !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
-    this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.duplicateResolution.enabled) || this.editMode;
+    this.editButtonEnabled = !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
+    this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled) || this.editMode;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
-    this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !this.editMode && !this.duplicateResolution.enabled))
+    this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !this.editMode))
       && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
-    this.approveButtonEnabled = !this.duplicateResolution.enabled
-      && !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+    this.approveButtonEnabled = !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
 
-    this.deleteButtonEnabled = !this.duplicateResolution.enabled
-      && !this.isNewRecord && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges)
+    this.deleteButtonEnabled = !this.isNewRecord
+      && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges)
       && this.editButtonEnabled;
 
     this.clearButtonEnabled = this.isNewRecord;
@@ -168,43 +166,25 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
 
   initialize(segments: UrlSegment[]) {
     let newIndex = segments.findIndex(s => s.path === 'new');
-    let duplicateIndex = segments.findIndex(s => s.path === 'duplicate');
-    if (duplicateIndex > 0 && segments.length === 3) {
-      this.duplicateResolution.enabled = true;
-      // TODO: 
-      // this.duplicateResolution.duplicateRecords = segments[segments.length - 1].path.split(',').map(Number);
-      // this.viewDuplicateRecords();
-    } else {
-      if (newIndex >= 0 && newIndex < segments.length - 1) {
-        this.id = +segments[segments.length - 1].path;
-      }
-      this.actions.retrieveRecord(this.temporary, this.template, this.id);
-      if (!this.dataSubscription) {
-        this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
-      }
+    if (newIndex >= 0 && newIndex < segments.length - 1) {
+      this.id = +segments[segments.length - 1].path;
     }
-  }
-
-  navigateToDuplicateEntry(e) {
-    if (e === 'next' && this.duplicateResolution.index < this.duplicateResolution.duplicateRecords.length - 1) {
-      this.duplicateResolution.index = this.duplicateResolution.index + 1;
-      this.viewDuplicateRecords();
-    } else if (e === 'previous' && this.duplicateResolution.index > 0) {
-      this.duplicateResolution.index = this.duplicateResolution.index - 1;
-      this.viewDuplicateRecords();
-    }
-  }
-
-  viewDuplicateRecords() {
-    this.id = this.duplicateResolution.duplicateRecords[this.duplicateResolution.index];
     this.actions.retrieveRecord(this.temporary, this.template, this.id);
     if (!this.dataSubscription) {
       this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
+      this.dataSubscription = this.duplicateRecord$.subscribe((value) => this.duplicateData(value));
     }
   }
 
   retrieveContents(lookups: ILookupData) {
     this.lookups = lookups;
+  }
+
+  duplicateData(e) {
+    if (e) {
+      this.currentIndex = 2;
+      this.changeDetector.markForCheck();
+    }
   }
 
   ngOnDestroy() {
@@ -246,10 +226,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
     this.title = this.isNewRecord ?
       'Register a New Compound' :
-      duplicateResolution ? 'Duplicate Registry Record :' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber') :
-        recordDetail.temporary ?
-          'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
-          'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
+      recordDetail.temporary ?
+        'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
+        'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
     // registryUtils.fixStructureData(this.recordDoc);
     let x2jsTool = new X2JS.default({
       arrayAccessFormPaths: [
@@ -320,8 +299,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     this.setDisplayMode('view');
   }
 
-  cancelDuplicateResolution() {
-    this.router.navigate(['records/new']);
+  cancelDuplicateResolution(e) {
+    this.currentIndex = 0;
   }
 
   edit() {

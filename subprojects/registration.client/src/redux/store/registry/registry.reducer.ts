@@ -25,6 +25,9 @@ export function registryReducer(
     case RecordDetailActions.CLEAR_RECORD:
       return state.update('currentRecord', () => INITIAL_RECORD_DETAIL);
 
+    case RecordDetailActions.LOAD_DUPLICATE_RECORD_SUCCESS:
+      return state.update('duplicateRecords', () => action.payload);
+
     case RecordDetailActions.SAVE_RECORD:
       let a4 = action as ReduxActions.Action<any>;
       let data = {
