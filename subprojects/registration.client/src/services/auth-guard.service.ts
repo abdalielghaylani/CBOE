@@ -29,19 +29,18 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return true;
   }
 
-  getPrivilege(privilage: string) {
+  getPrivilege(privilege: string) {
     if (this.lookups) {
-      let privilages = this.lookups.homeMenuPrivileges;
-      let privilageItem = privilages.find(p => p.privilegeName === privilage);
-      if (privilageItem === undefined) {
+      let privileges = this.lookups.homeMenuPrivileges;
+      let privilegeItem = privileges.find(p => p.privilegeName === privilege);
+      if (privilegeItem === undefined) {
         return false;
       }
 
-      if (privilageItem.visibility) {
+      if (privilegeItem.visibility) {
         return true;
       } else {
-        // redirect to login page, if no previlege to access route
-        this.ngRedux.dispatch(SessionActions.logoutUserAction());
+        this.router.navigate(['unauthorized']);
         return false;
       }
     }
