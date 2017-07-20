@@ -122,13 +122,6 @@ export class CViewGroup implements IViewGroup {
         }
       }
     });
-    if (nextObject) {
-      if (bindingExpression === 'ProjectList') {
-        let projectList = [];
-        nextObject.Project.forEach(p => projectList.push(+p.ProjectID));
-        nextObject = projectList;
-      }
-    }
     return nextObject;
   }
 
