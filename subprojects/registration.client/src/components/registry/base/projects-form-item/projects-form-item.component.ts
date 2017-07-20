@@ -21,8 +21,9 @@ export class RegProjectsFormItem extends RegTagBoxFormItem {
 
   protected update() {
     let lookups = this.ngRedux.getState().session.lookups;
+    let options = this.viewModel.editorOptions;
     this.dataSource = lookups ? lookups.projects.filter(i => i.ACTIVE === 'T') : [];
-    this.value = this.data.editorOptions.value ? this.data.editorOptions.value : [];
+    this.value = options && options.value ? options.value : [];
     this.displayExpr = 'NAME';
     this.valueExpr = 'PROJECTID';
   }

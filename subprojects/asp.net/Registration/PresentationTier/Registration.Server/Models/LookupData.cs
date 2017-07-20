@@ -32,8 +32,9 @@ namespace PerkinElmer.COE.Registration.Server.Models
             JArray addinAssemblies,
             JArray propertyGroups,
             JArray homeMenuPrivileges,
-            JArray userPrivileges
-            )
+            JArray userPrivileges,
+            JArray disabledControls
+        )
         {
             Users = users;
             Fragments = fragments;
@@ -53,6 +54,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             PropertyGroups = propertyGroups;
             HomeMenuPrivileges = homeMenuPrivileges;
             UserPrivileges = userPrivileges;
+            DisabledControls = disabledControls;
         }
 
         /// <summary>
@@ -158,9 +160,15 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public JArray HomeMenuPrivileges { get; set; }
 
         /// <summary>
-        /// Gets or sets the userPrivileges array
+        /// Gets or sets the user privilege array
         /// </summary>
         [JsonProperty(PropertyName = "userPrivileges")]
         public JArray UserPrivileges { get; set; }
+
+        /// <summary>
+        /// Gets or sets the disabled control array
+        /// </summary>
+        [JsonProperty(PropertyName = "disabledControls")]
+        public JArray DisabledControls { get; set; }
     }
 }

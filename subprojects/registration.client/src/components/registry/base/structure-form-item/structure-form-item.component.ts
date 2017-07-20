@@ -12,14 +12,16 @@ import { ChemDrawWeb } from '../../../common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTemplate {
-  @Input() data: any = {};
+  @Input() viewModel: any = {};
+  @Input() viewConfig;
 
   constructor(private ngRedux: NgRedux<IAppState>, elementRef: ElementRef) {
     super(elementRef);
   }
 
   protected update() {
-    this.setValue(this.value = this.data.editorOptions.value ? this.data.editorOptions.value : null);
+    let options = this.viewModel.editorOptions;
+    this.setValue(options && options.value ? options.value : null);
     super.update();
   }
 };

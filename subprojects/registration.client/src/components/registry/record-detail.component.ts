@@ -18,6 +18,7 @@ import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, notify } from '../../common';
 import { IResponseData, CRegistryRecord, CRegistryRecordVM, FragmentData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
+import DxForm from 'devextreme/ui/form';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
@@ -67,7 +68,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
   private currentIndex: number = 0;
-  private saveTemplateForm;
+  private saveTemplateForm: DxForm;
   private saveTemplatePopupVisible: boolean = false;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
@@ -405,7 +406,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private onSaveTemplateFormInit(e) {
-    this.saveTemplateForm = e.component;
+    this.saveTemplateForm = e.component as DxForm;
   }
 
   private get statusId(): number {

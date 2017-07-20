@@ -14,6 +14,7 @@ using CambridgeSoft.COE.Framework.COESecurityService;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Registration.Services.Types;
+using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -136,6 +137,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return appUserPrivilages;
         }
 
+        private JArray GetDisabledControls()
+        {
+            var disabledControlArray = new JArray();
+            var appName = COEAppName.Get().ToUpper();
+            var disabledControls = COEPageControlSettings.GetControlListToDisableForCurrentUser(appName);
+            foreach (var disabledControl in disabledControls)
+            {
+                var pageId = disabledControl.PageID.Replace("_ASPX", string.Empty);
+                pageId = pageId.Substring(pageId.LastIndexOf('_') + 1);
+                disabledControlArray.Add(new JObject(
+                    new JProperty("id", disabledControl.ID),
+                    new JProperty("action", disabledControl.Action),
+                    new JProperty("formId", disabledControl.COEFormID),
+                    new JProperty("parentControlId", disabledControl.ParentControlId),
+                    new JProperty("placeHolderId", disabledControl.PlaceHolderID),
+                    new JProperty("pageId", pageId)
+                ));
+            }
+            return disabledControlArray;
+        }
+
         [HttpGet]
         [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
         [SwaggerOperation("GetLookups")]
@@ -164,7 +186,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     GetAddinAssemblies(),
                     GetPropertyGroups(),
                     GetHomeMenuPrivileges(),
-                    GetUserPrivileges()
+                    GetUserPrivileges(),
+                    GetDisabledControls()
                 );
             });
         }
