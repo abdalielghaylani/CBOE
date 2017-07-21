@@ -31,7 +31,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
       if (config && config.detailsForms && config.detailsForms.detailsForm.length > 0) {
         let pageId: string = this.displayMode === 'add' ? 'SUBMITMIXTURE' : this.displayMode === 'view' ? 'VIEWMIXTURE' : 'REVIEWREGISTERMIXTURE';
         let disabledControls = lookups.disabledControls.filter(dc => dc.pageId === pageId);
-        let coeForms = config.detailsForms.detailsForm[0].coeForms.coeForm;
+        let coeForms = this.sortForms(config.detailsForms.detailsForm[0].coeForms.coeForm);
         coeForms.forEach(f => {
           if (f.formDisplay.visible === 'true') {
             if (viewGroups.length === 0) {
@@ -51,6 +51,26 @@ export class RegFormGroupView implements IViewControl, OnChanges {
         });
       }
     }
+  }
+
+  private sortForms(forms: ICoeForm[]): ICoeForm[] {
+    // The form aray sometimes is not sorted property.
+    // Registry should go first.
+    // For now, doc-manager and inventory integration forms are removed.
+    let sorted: ICoeForm[] = [];
+    forms.forEach(f => {
+      let dataSource = f._dataSourceId.toLowerCase();
+      if (dataSource.startsWith('mixture')) {
+        sorted.push(f);
+      }
+    });
+    forms.forEach(f => {
+      let dataSource = f._dataSourceId.toLowerCase();
+      if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
+        sorted.push(f);
+      }
+    });    
+    return sorted;
   }
 
   private togglePanel(e) {
