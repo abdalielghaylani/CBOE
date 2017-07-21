@@ -36,17 +36,9 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
       let filtered = lookups.pickListDomains.filter(d => d.ID === pickListDomain);
       if (filtered) {
         let pickListDomainInfo = filtered[0];
-        let table = pickListDomainInfo.EXT_TABLE.toLowerCase();
-        this.dataSource = table.endsWith('unit') ? lookups.units
-          : table.endsWith('people') ? lookups.users
-          : table.endsWith('notebooks') ? lookups.notebooks
-          // : table.endsWith('prefix') ? lookups.prefixes
-          : table.endsWith('sequence') ? lookups.sequences : [];
+        this.dataSource = pickListDomainInfo.data;
         this.valueExpr = pickListDomainInfo.EXT_ID_COL;
         this.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
-        // EXT_SQL_FILTER(pin): "Where active='T'"
-        // LOCKED(pin): "T"
-        // EXT_SQL_SORTORDER(pin): "ORDER BY SORTORDER ASC"        
       }
     }
   }

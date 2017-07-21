@@ -363,27 +363,10 @@ function getPicklist(domainId: number, formElement: IFormElement, container: IFo
   };
   let filtered = pickListDomains.filter(d => d.ID === domainId);
   if (filtered.length === 1) {
-    let pickListDomain = filtered[0];
-    let extTable = pickListDomain.EXT_TABLE ? pickListDomain.EXT_TABLE.toUpperCase() : null;
-    // TODO: Should support external tables
-    if (extTable && extTable.indexOf('REGDB.') === 0) {
-      let lookup = extTable.replace('REGDB.', '');
-      // TODO: Should support all internal tables genetically
-      if (lookup === 'VW_UNIT') {
-        pickList.dataSource = lookups ? lookups.units : [];
-      } else if (lookup === 'VW_PEOPLE') {
-        pickList.dataSource = lookups ? lookups.users : [];
-      } else if (lookup === 'VW_NOTEBOOKS') {
-        pickList.dataSource = lookups ? lookups.notebooks : [];
-      } else {
-        pickList.dataSource = [];
-      }
-      // TODO: Should apply filter and sort order
-      // EXT_SQL_FILTER: Where active='T'
-      // EXT_SQL_SORTORDER: ORDER BY SORTORDER ASC
-      pickList.displayExpr = pickListDomain.EXT_DISPLAY_COL;
-      pickList.valueExpr = pickListDomain.EXT_ID_COL;
-    }
+    let pickListDomainInfo = filtered[0];
+    pickList.dataSource = pickListDomainInfo.data;
+    pickList.valueExpr = pickListDomainInfo.EXT_ID_COL;
+    pickList.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
   }
   return pickList;
 }

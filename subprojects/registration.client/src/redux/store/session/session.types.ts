@@ -26,13 +26,10 @@ export interface ILookupData {
   fragments?: any[];
   fragmentTypes?: any[];
   identifierTypes?: any[];
-  notebooks?: any[];
   pickList?: any[];
   pickListDomains?: any[];
   projects?: any[];
-  sequences?: any[];
   sites?: any[];
-  units?: any[];
   formGroups?: any[];
   customTables?: any[];
   systemSettings?: ISettingData[];

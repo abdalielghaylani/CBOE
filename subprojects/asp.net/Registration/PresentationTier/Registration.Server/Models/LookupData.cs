@@ -19,13 +19,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
             JArray fragments,
             JArray fragmentTypes,
             JArray identifierTypes,
-            JArray notebooks,
             JArray pickList,
             JArray pickListDomains,
             JArray projects,
-            JArray sequences,
             JArray sites,
-            JArray units,
             JArray formGroups,
             JArray customTables,
             List<SettingData> systemSettings,
@@ -40,13 +37,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
             Fragments = fragments;
             FragmentTypes = fragmentTypes;
             IdentifierTypes = identifierTypes;
-            Notebooks = notebooks;
             PickList = pickList;
             PickListDomains = pickListDomains;
             Projects = projects;
-            Sequences = sequences;
             Sites = sites;
-            Units = units;
             FormGroups = formGroups;
             CustomTables = customTables;
             SystemSettings = systemSettings;
@@ -82,12 +76,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public JArray IdentifierTypes { get; set; }
 
         /// <summary>
-        /// Gets or sets the notebook array
-        /// </summary>
-        [JsonProperty(PropertyName = "notebooks")]
-        public JArray Notebooks { get; set; }
-
-        /// <summary>
         /// Gets or sets the pick-list
         /// </summary>
         [JsonProperty(PropertyName = "pickList")]
@@ -104,12 +92,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "projects")]
         public JArray Projects { get; set; }
-
-        /// <summary>
-        /// Gets or sets the sequence array
-        /// </summary>
-        [JsonProperty(PropertyName = "sequences")]
-        public JArray Sequences { get; set; }
 
         /// <summary>
         /// Gets or sets the site array

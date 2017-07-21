@@ -54,7 +54,7 @@ describe('Session Reducer', () => {
   });
 
   it('should update lookups on LOAD_LOOKUPS_SUCCESS', () => {
-    const data: ILookupData = { users: [{ id: 1, name: 'user one' }] };
+    const data: ILookupData = { sites: [{ id: 1, name: 'site one' }] };
     const previousState = initState;
     const nextState = sessionReducer(
       previousState,

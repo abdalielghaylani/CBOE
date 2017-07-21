@@ -174,6 +174,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
+        protected JArray ExtractPickListDomain()
+        {
+            var pickListDomains = ExtractData("SELECT * FROM VW_PICKLISTDOMAIN");
+            foreach (var pickListDomain in pickListDomains)
+            {
+                var sql = string.Format("SELECT {0}, {1} FROM {2} {3} {4}",
+                    pickListDomain["EXT_ID_COL"],
+                    pickListDomain["EXT_DISPLAY_COL"],
+                    pickListDomain["EXT_TABLE"],
+                    pickListDomain["EXT_FILTER"],
+                    pickListDomain["EXT_SQL_SORT_ORDER"]);
+                pickListDomain["data"] = ExtractData(sql);
+            }
+            return pickListDomains;
+        }
+
         protected string GetSessionToken()
         {
             CookieHeaderValue cookie = Request.Headers.GetCookies(Consts.ssoCookieName).FirstOrDefault();

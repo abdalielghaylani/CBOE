@@ -94,11 +94,7 @@ function getPicklist(p: any, state: IAppState, coeFormId: Number) {
     placeholder: placeholder,
     showClearButton: true
   };
-  if (p._name === 'PREFIX') {
-    pickList.dataSource = lookups ? lookups.sequences.filter(i => (i.TYPE === 'R' || i.TYPE === 'A')) : [];
-    pickList.valueExpr = 'SEQUENCEID';
-    pickList.displayExpr = 'PREFIX';
-  } else if (p._name === 'BATCH_PROJECT') {
+  if (p._name === 'BATCH_PROJECT') {
     pickList.dataSource = lookups ? lookups.projects.filter(i => (i.TYPE === 'B' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F')) : [];
   } else if (p._name === 'REGISTRY_PROJECT') {
     pickList.dataSource = lookups ? lookups.projects.filter(i => (i.TYPE === 'R' || i.TYPE === 'A') && (i.ACTIVE === 'T' || i.ACTIVE === 'F')) : [];
@@ -113,30 +109,17 @@ function getPicklist(p: any, state: IAppState, coeFormId: Number) {
       pickList.dataSource = lookups ? lookups.identifierTypes.filter(i => (i.TYPE === 'B' || i.TYPE === 'A') && i.ACTIVE === 'T') : [];
     }
   } else if (p.configInfo.fieldConfig.PickListDomain) {
-    let pickListDomains = lookups ? lookups.pickListDomains : [];
-    let filtered = pickListDomains.filter(
-      d => d.ID === Number(p.configInfo.fieldConfig.PickListDomain));
-    if (filtered.length === 1) {
-      let pickListDomain = filtered[0];
-      let extTable = pickListDomain.EXT_TABLE ? pickListDomain.EXT_TABLE.toUpperCase() : null;
-      // TODO: Should support external tables
-      if (extTable && extTable.indexOf('REGDB.') === 0) {
-        let lookup = extTable.replace('REGDB.', '');
-        // TODO: Should support all internal tables genetically
-        if (lookup === 'VW_UNIT') {
-          pickList.dataSource = lookups ? lookups.units : [];
-        } else if (lookup === 'VW_PEOPLE') {
-          pickList.dataSource = lookups ? lookups.users : [];
-        } else if (lookup === 'VW_NOTEBOOKS') {
-          pickList.dataSource = lookups ? lookups.notebooks : [];
-        } else {
-          pickList.dataSource = [];
-        }
-        // TODO: Should apply filter and sort order
-        // EXT_SQL_FILTER: Where active='T'
-        // EXT_SQL_SORTORDER: ORDER BY SORTORDER ASC
-        pickList.displayExpr = pickListDomain.EXT_DISPLAY_COL;
-        pickList.valueExpr = pickListDomain.EXT_ID_COL;
+    let pickListDomain = p.configInfo.fieldConfig.PickListDomain;
+    if (pickListDomain.__text) {
+      pickListDomain = pickListDomain.__text;
+    }
+    if (String(Math.floor(Number(pickListDomain))) === pickListDomain) {
+      let filtered = lookups.pickListDomains.filter(d => d.ID === +pickListDomain);
+      if (filtered.length === 1) {
+        let pickListDomainInfo = filtered[0];
+        pickList.dataSource = pickListDomainInfo.data;
+        pickList.valueExpr = pickListDomainInfo.EXT_ID_COL;
+        pickList.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
       }
     }
   }
