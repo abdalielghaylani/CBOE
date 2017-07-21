@@ -146,6 +146,20 @@ export class CViewGroup implements IViewGroup {
     // Locate data source in registry record, and find the entry based on binding expression    
   }
 
+  private isIdText(fe: IFormElement): boolean {
+    let bindingExpression = fe.bindingExpression.toLowerCase();
+    return !fe.label && (bindingExpression === 'id' || bindingExpression.endsWith('regnum')) && fe.displayInfo.type.endsWith('COETextBoxReadOnly');
+  }
+
+  private isVisible(fe: IFormElement): boolean {
+    return !this.disabledControls.find(dc => dc.id && dc.id === fe.Id)
+      && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name && fe.configInfo
+      && !fe.displayInfo.type.endsWith('COELabel')
+      && !fe.displayInfo.type.endsWith('RegStatusControl')
+      && !fe.displayInfo.type.endsWith('COEChemDrawToolbar')
+      && !this.isIdText(fe);
+  }
+
   public append(f: ICoeForm): boolean {
     let canAppend = this.canAppend(f);
     if (canAppend) {
@@ -161,10 +175,7 @@ export class CViewGroup implements IViewGroup {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
-          if (!this.disabledControls.find(dc => dc.id && dc.id === fe.Id)
-            && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name && fe.configInfo
-            && !fe.displayInfo.type.endsWith('COELabel')
-            && !fe.displayInfo.type.endsWith('COEChemDrawToolbar')) {
+          if (this.isVisible(fe)) {
             let item: any = {};
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
