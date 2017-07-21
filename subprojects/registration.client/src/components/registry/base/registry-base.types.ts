@@ -179,6 +179,13 @@ export class CViewGroup implements IViewGroup {
     return fixed;
   }
 
+  private removeDuplicate(items: any[], item) {
+    let duplicateIndex = items.findIndex(i => i.dataField === item.dataField);
+    if (duplicateIndex > 0) {
+      items.splice(duplicateIndex, 1);
+    }
+  }
+
   public append(f: ICoeForm): boolean {
     let canAppend = this.canAppend(f);
     if (canAppend) {
@@ -215,6 +222,7 @@ export class CViewGroup implements IViewGroup {
             // if (item.template) {
             //   console.log(JSON.stringify(item));
             // }
+            this.removeDuplicate(items, item);
             items.push(item);
           }
         });
