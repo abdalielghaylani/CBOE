@@ -25,6 +25,9 @@ export function registryReducer(
     case RecordDetailActions.CLEAR_RECORD:
       return state.update('currentRecord', () => INITIAL_RECORD_DETAIL);
 
+    case RecordDetailActions.CLEAR_DUPLICATE_RECORD:
+      return state.update('duplicateRecords', () => null);
+
     case RecordDetailActions.LOAD_DUPLICATE_RECORD_SUCCESS:
       return state.update('duplicateRecords', () => action.payload);
 
