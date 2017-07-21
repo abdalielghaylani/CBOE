@@ -75,6 +75,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
   private newButtonEnabled: boolean = false;
+  private canRedirectToTempListView = true;
+
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
@@ -160,7 +162,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       && this.editButtonEnabled;
 
     this.clearButtonEnabled = this.isNewRecord;
-    this.newButtonEnabled = !this.editMode;
+    this.newButtonEnabled = !this.canRedirectToTempListView && !this.editMode;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     if (forceUpdate) {
@@ -288,12 +290,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     let id = this.template ? -1 : this.id;
     if (this.isNewRecord) {
       // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
-      let canRedirectToTempRecordsView = PrivilegeUtils.hasSearchTempPrivilege(this.lookups.userPrivileges);
+      this.canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.lookups.userPrivileges);
       this.actions.saveRecord({
         temporary: this.temporary, id: id, recordDoc: this.recordDoc,
-        saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempRecordsView
+        saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: this.canRedirectToTempListView
       });
-      if (!canRedirectToTempRecordsView) {
+      if (!this.canRedirectToTempListView) {
         this.setDisplayMode('view');
         this.saveButtonEnabled = false;
         this.clearButtonEnabled = false;
