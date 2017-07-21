@@ -129,6 +129,7 @@ const baseConfig = {
       loaders.html,
       loaders.rawcss,
       loaders.css,
+      loaders.gif,
       loaders.png,
       loaders.svg,
       loaders.eot,

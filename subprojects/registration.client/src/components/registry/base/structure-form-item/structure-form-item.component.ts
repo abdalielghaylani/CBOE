@@ -8,6 +8,7 @@ import { ChemDrawWeb } from '../../../common';
 @Component({
   selector: 'reg-structure-form-item-template',
   template: require('./structure-form-item.component.html'),
+  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

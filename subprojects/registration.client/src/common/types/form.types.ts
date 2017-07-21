@@ -44,7 +44,7 @@ export interface IFieldConfig {
   CSSLabelClass?: string;
   CSSClass?: string;
   dropDownItemsSelect?: string;
-  PickListDomain?: string;
+  PickListDomain?: any;
 }
 
 export interface IConfigInfo {
@@ -64,6 +64,7 @@ export interface IFormElement {
   displayInfo?: IDisplayInfo;
   bindingExpression?: string;
   configInfo?: IConfigInfo;
+  dataSource?: string;
   // TODO: ...
 }
 

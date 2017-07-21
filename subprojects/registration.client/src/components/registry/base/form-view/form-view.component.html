@@ -8,7 +8,13 @@
   <div *dxTemplate="let data of 'dataGridTemplate'">
     <reg-data-grid-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-data-grid-form-item-template>
   </div>
+  <div *dxTemplate="let data of 'dropDownTemplate'">
+    <reg-drop-down-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-drop-down-form-item-template>
+  </div>
   <div *dxTemplate="let data of 'structureTemplate'">
     <reg-structure-form-item-template [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-form-item-template>
+  </div>
+  <div *dxTemplate="let data of 'structureImageTemplate'">
+    <reg-structure-image-form-item-template [id]="data.dataField + '_image'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-image-form-item-template>
   </div>
 </dx-form>

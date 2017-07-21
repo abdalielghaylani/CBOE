@@ -3,6 +3,7 @@ import {
   IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
 import { IAppState, IRecordsData, IRecords } from '../../redux';
+import { IIdentifier, IFragment, IComponent, IBatchComponentFragment, IBatch, IRegistryRecord, IProperty, IPropertyList } from './base';
 
 export enum RegistryStatus {
   NotSet,
@@ -12,151 +13,13 @@ export enum RegistryStatus {
   Locked
 }
 
-export class FragmentData {
-  FragmentID: number;
-  Code: string;
-  FragmentType: string;
-  Description: string;
-  Structure: string;
-  DateCreated: Date;
-  DateLastModified: Date;
-}
-
-export class CParam {
-  _name: String; // min
-  _value: String; // 0
-}
-
-export class CParamList {
-  param?: CParam[] = [];
-}
-
-export class CValidationRule {
-  _validationRuleName: String; // textLength
-  _errorMessage: String; // The property value can have between 0 and 200 characters
-  params?: CParamList;
-}
-
-export class CValidationRuleList {
-  validationRule: CValidationRule[] = [];
-}
-
-export class CProperty {
-  _name: String; // REG_COMMENTS
-  _friendlyName: String; // REG_COMMENTS
-  _type: String; // TEXT
-  _precision?: Number; // 200
-  _sortOrder?: Number; // 0
-  _pickListDomainID?: Number;
-  _pickListDisplayValue?: String;
-  validationRuleList?: CValidationRuleList;
-  __text?: String;
-}
-
-export class CPropertyList {
-  Property: CProperty[] = [];
-}
-
-export class CRegNumber {
-  RegID?: Number; // 1826
-  SequenceNumber?: Number; // 877
-  RegNumber?: String; // RN-000877
-  SequenceID?: Number; // 4
-}
-
-export class CIdentifierID {
-  _Description?: String;
-  _Name?: String;
-  _Active?: String; // T
-  __text?: String; // 4
-}
-
-export class CIdentifier {
-  ID?: Number; // 2621
-  IdentifierID?: CIdentifierID;
-  InputText?: String; // Dehydrohedione (DHH)
-}
-
 export class CIdentifierVM {
   id?: Number;
-  inputText?: String;
-  constructor(m: CIdentifier) {
+  inputText?: string;
+  constructor(m: IIdentifier) {
     this.id = m.IdentifierID ? +m.IdentifierID.__text : undefined;
     this.inputText = m.InputText;
   }
-}
-
-export class CIdentifierList {
-  Identifier: CIdentifier[] = [];
-}
-
-export class CProjectID {
-  _Description?: String; // Hedione Process Optimization
-  _Name?: String; // Hedione Process Optimization
-  _Active?: String; // T
-  __text?: Number; // 2
-}
-
-export class CProject {
-  ID?: Number; // 381
-  ProjectID?: CProjectID;
-}
-
-export class CProjectList {
-  Project: CProject[] = [];
-}
-
-export class CChemicalStructure {
-  _molWeight?: Number; // 224.2961
-  _formula?: String; // C13H20O3
-  __text?: String; // VmpD...
-}
-
-export class CStructureData {
-  StructureID?: Number; // 1821
-  StructureFormat?: String;
-  Structure?: CChemicalStructure;
-  NormalizedStructure?: String; // VmpD...
-  UseNormalization?: String; // F
-  DrawingType?: Number; // 0
-  CanPropogateStructureEdits?: String; // True
-  PropertyList?: CPropertyList;
-  IdentifierList?: CIdentifierList;
-}
-
-export class CBaseFragment {
-  Structure: CStructureData;
-}
-
-export class CFragment {
-  FragmentID?: Number;
-  ComponentFragmentID?: Number;
-  Code?: String;
-}
-
-export class CFragmentList {
-  Fragment: CFragment[] = [new CFragment()];
-}
-
-export class CCompound {
-  CompoundID?: Number; // 901
-  DateCreated?: String; // 2017-01-15 08:21:51 pm
-  PersonCreated?: Number; // 61
-  PersonApproved?: Number; // 61
-  PersonRegistered?: Number; // 61
-  DateLastModified?: String; // 2017-01-15 08:38:18 pm
-  Tag?: String; // P1
-  PropertyList?: CPropertyList;
-  RegNumber?: CRegNumber;
-  CanPropogateComponentEdits?: String; // True
-  FragmentList: CFragmentList = new CFragmentList();
-  IdentifierList?: CIdentifierList;
-}
-
-export class CComponent {
-  ID?: Number;
-  ComponentIndex?: Number; // -901
-  Compound: CCompound = new CCompound();
 }
 
 export class CComponentVM {
@@ -167,20 +30,20 @@ export class CComponentVM {
   dateLastModified?: Date;
   personCreated?: Number;
   personApproved?: Number;
-  regNumber?: String;
+  regNumber?: string;
   identifierList?: CIdentifierVM[];
-  fragmentList?: CFragment[];
+  fragmentList?: IFragment[];
   batchComponentFragmentList?: CBatchComponentFragmentVM[] = [];
   columns: any[] = [];
-  constructor(m: CComponent, container: IFormContainer) {
+  constructor(m: IComponent, container: IFormContainer) {
     let lookups = getLookups(container);
-    this.id = m.ID;
-    this.componentIndex = m.ComponentIndex;
-    this.compoundId = m.Compound.CompoundID;
+    this.id = +m.ID;
+    this.componentIndex = +m.ComponentIndex;
+    this.compoundId = +m.Compound.CompoundID;
     this.dateCreated = m.Compound.DateCreated ? new Date(m.Compound.DateCreated) : undefined;
     this.dateLastModified = m.Compound.DateLastModified ? new Date(m.Compound.DateLastModified) : undefined;
-    this.personCreated = m.Compound.PersonCreated;
-    this.personApproved = m.Compound.PersonApproved;
+    this.personCreated = +m.Compound.PersonCreated;
+    this.personApproved = +m.Compound.PersonApproved;
     this.regNumber = m.Compound.RegNumber ? m.Compound.RegNumber.RegNumber : undefined;
     this.identifierList = m.Compound.IdentifierList ? m.Compound.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
     this.fragmentList = m.Compound.FragmentList.Fragment;
@@ -229,18 +92,6 @@ export class CComponentVM {
   }
 }
 
-export class CComponentList {
-  Component: CComponent[] = [new CComponent()];
-}
-
-export class CBatchComponentFragment {
-  ID?: Number;
-  FragmentID?: Number;
-  ComponentFragmentID?: Number;
-  Equivalents?: Number;
-  OrderIndex?: Number;
-}
-
 export class CBatchComponentFragmentVM {
   batch: CBatchVM;
   component: CComponentVM;
@@ -255,7 +106,7 @@ export class CBatchComponentFragmentVM {
   formula?: String;
   columns?: any[] = [];
   constructor(
-    m: CBatchComponentFragment,
+    m: IBatchComponentFragment,
     batch: CBatchVM,
     components: CComponentVM[],
     container: IFormContainer) {
@@ -276,47 +127,6 @@ export class CBatchComponentFragmentVM {
   }
 }
 
-export class CBatchComponentFragmentList {
-  BatchComponentFragment: CBatchComponentFragment[] = [];
-}
-
-export class CBatchComponent {
-  ID?: Number; // 1721
-  BatchID?: Number; // 1741
-  CompoundID?: Number; // 901
-  MixtureComponentID?: Number; // 901
-  ComponentIndex?: Number; // -901
-  ComponentRegNum?: String; // C000885
-  PropertyList?: CPropertyList;
-  BatchComponentFragmentList?: CBatchComponentFragmentList;
-}
-
-export class CBatchComponentList {
-  BatchComponent: CBatchComponent[] = [];
-}
-
-export class CPerson {
-  _displayName?: String; // PMORIEUX
-  __text?: String; // 61
-}
-
-export class CBatch {
-  BatchID?: Number; // 1741
-  BatchNumber?: Number; // 1
-  FullRegNumber?: String; // RN-000877-001
-  DateCreated?: String; // 2017-01-15
-  PersonCreated?: CPerson;
-  PersonApproved?: CPerson;
-  PersonRegistered?: CPerson;
-  DateLastModified?: String; // 2017-01-15
-  StatusID?: Number; // 3
-  IsBatchEditable?: String; // True
-  ProjectList?: CProjectList;
-  IdentifierList?: CIdentifierList;
-  PropertyList?: CPropertyList;
-  BatchComponentList?: CBatchComponentList;
-}
-
 export class CBatchVM {
   id?: Number;
   batchNumber?: Number;
@@ -331,16 +141,16 @@ export class CBatchVM {
   projectList?: number[] = [];
   batchComponentFragmentList?: CBatchComponentFragmentVM[] = [];
   columns?: any[] = [];
-  constructor(m: CBatch, container: IFormContainer) {
-    this.id = m.BatchID;
-    this.batchNumber = m.BatchNumber;
+  constructor(m: IBatch, container: IFormContainer) {
+    this.id = +m.BatchID;
+    this.batchNumber = +m.BatchNumber;
     this.fullRegNumber = m.FullRegNumber;
     this.dateCreated = m.DateCreated ? new Date(m.DateCreated) : undefined;
     this.dateLastModified = m.DateLastModified ? new Date(m.DateLastModified) : undefined;
     this.personCreated = m.PersonCreated ? +m.PersonCreated.__text : undefined;
     this.personApproved = m.PersonApproved ? +m.PersonApproved.__text : undefined;
     this.personRegistered = m.PersonRegistered ? +m.PersonRegistered.__text : undefined;
-    this.statusId = m.StatusID;
+    this.statusId = +m.StatusID;
     this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
     this.columns = [{
       itemType: 'group',
@@ -381,60 +191,6 @@ export class CBatchVM {
   }
 }
 
-export class CBatchList {
-  Batch: CBatch[] = [];
-}
-
-export class CEvent {
-  _eventName?: String; // Inserting
-  _eventHandler?: String; // OnInsertHandler
-}
-
-export class CAddIn {
-  _assembly?: String; // CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc
-  _class?: String; // CambridgeSoft.COE.Registration.Services.RegistrationAddins.NormalizedStructureAddIn
-  _friendlyName?: String; // Structure Normalization
-  _required?: String; // no
-  _enabled?: String; // no
-  Event?: CEvent[];
-  AddInConfiguration?: any;
-  // <AddInConfiguration>
-  //   <ScriptFile>C:\Program Files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\Registration\PythonScripts\parentscript.py</ScriptFile>
-  //   <!--Commented <PythonWebServiceURL> to bypass soap
-  // <PythonWebServiceURL>http://localhost/PyEngine/Service.asmx</PythonWebServiceURL> -->
-  //   <StructuresIdsToAvoid>-2|-3|</StructuresIdsToAvoid>
-  // </AddInConfiguration>
-}
-
-export class CAddInList {
-  AddIn: CAddIn[] = [];
-}
-
-export class CRegistryRecord {
-  _SameBatchesIdentity?: String; // True
-  _ActiveRLS?: String; // Off
-  _IsEditable?: String; // True
-  _IsRegistryDeleteable?: String; // True
-  ID?: Number; // 921
-  DateCreated?: String; // 2017-01-15 08:21:50 PM
-  DateLastModified?: String; //  2017-01-15 08:38:18 PM
-  PersonCreated?: Number; // 61
-  PersonApproved?: Number; //
-  StructureAggregation?: String; // VmpD...
-  StatusID?: Number; // 3
-  PropertyList?: CPropertyList;
-  RegNumber?: CRegNumber;
-  IdentifierList?: CIdentifierList;
-  ProjectList?: CProjectList;
-  ComponentList: CComponentList = new CComponentList();
-  BatchList: CBatchList = new CBatchList();
-  AddIns?: CAddInList;
-  constructor() {
-    this.ComponentList.Component.push(new CComponent());
-    this.BatchList.Batch.push(new CBatch());
-  }
-}
-
 export class CRegistryRecordVM {
   sameBatchesIdentity?: Boolean;
   activeRLS?: String;
@@ -453,19 +209,19 @@ export class CRegistryRecordVM {
   componentList?: CComponentVM[] = [];
   batchList: CBatchVM[] = [];
   columns: any[] = [];
-  constructor(m: CRegistryRecord, container: IFormContainer) {
+  constructor(m: IRegistryRecord, container: IFormContainer) {
     let lookups = getLookups(container);
     this.sameBatchesIdentity = m._SameBatchesIdentity ? m._SameBatchesIdentity === 'True' : undefined;
     this.activeRLS = m._ActiveRLS;
     this.isEditable = m._IsEditable ? m._IsEditable === 'True' : undefined;
     this.isRegistryDeleteable = m._IsRegistryDeleteable ? m._IsRegistryDeleteable === 'True' : undefined;
-    this.id = m.ID;
+    this.id = +m.ID;
     this.dateCreated = m.DateCreated ? new Date(m.DateCreated) : undefined;
     this.dateLastModified = m.DateLastModified ? new Date(m.DateLastModified) : undefined;
-    this.personCreated = m.PersonCreated;
-    this.personApproved = m.PersonApproved;
+    this.personCreated = +m.PersonCreated;
+    this.personApproved = +m.PersonApproved;
     this.structureAggregation = m.StructureAggregation;
-    this.statusId = m.StatusID;
+    this.statusId = +m.StatusID;
     this.regNumber = m.RegNumber ? m.RegNumber.RegNumber : undefined;
     this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
     if (m.ProjectList) {
@@ -529,7 +285,7 @@ export class CRegistryRecordVM {
                 batchComponentFragmentList.push(
                   new CBatchComponentFragmentVM(
                     bcf,
-                    this.batchList.find(bvm => bvm.id === b.BatchID),
+                    this.batchList.find(bvm => bvm.id === +b.BatchID),
                     this.componentList, container)
                 )
               );
@@ -632,7 +388,7 @@ function getPicklist(domainId: number, formElement: IFormElement, container: IFo
   return pickList;
 }
 
-function getPropertyColumn(p: CProperty, formElements: IFormElement[], container: IFormContainer): any {
+function getPropertyColumn(p: IProperty, formElements: IFormElement[], container: IFormContainer): any {
   let filtered = formElements.filter(fe => fe._name === p._name);
   let formElement = filtered && filtered.length > 0 ? filtered[0] : null;
   if (formElement && formElement.displayInfo.visible === 'false') {
@@ -667,7 +423,7 @@ function getLookups(container: IFormContainer): any {
   return state.session ? state.session.lookups : undefined;
 }
 
-function getPropertyValue(p: CProperty): any {
+function getPropertyValue(p: IProperty): any {
   let value = undefined;
   let textValue = p.__text;
   if (textValue) {
@@ -698,7 +454,7 @@ function getCoeFormById(formGroup: IFormGroup, coeFormId: number) {
  * Adds the custom properties to the given view-model object, and
  * adds the property column description into the given column array. 
  */
-function buildPropertyList(vm: any, columns: any[], propertyList: CPropertyList, coeForm: ICoeForm, container: IFormContainer) {
+function buildPropertyList(vm: any, columns: any[], propertyList: IPropertyList, coeForm: ICoeForm, container: IFormContainer) {
   if (propertyList) {
     let formElements = coeForm ? coeForm.editMode.formElement : [];
     propertyList.Property.forEach(p => {
