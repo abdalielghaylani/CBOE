@@ -2,7 +2,7 @@ import { apiUrlPrefix } from '../../configuration';
 import {
   IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
-import { IAppState, IRecordsData, IRecords } from '../../redux';
+import { IAppState, IRecordsData, IRecords, ILookupData } from '../../redux';
 import { IIdentifier, IFragment, IComponent, IBatchComponentFragment, IBatch, IRegistryRecord, IProperty, IPropertyList } from './base';
 
 export enum RegistryStatus {
@@ -368,7 +368,7 @@ function getPicklist(domainId: number, formElement: IFormElement, container: IFo
     // TODO: Should support external tables
     if (extTable && extTable.indexOf('REGDB.') === 0) {
       let lookup = extTable.replace('REGDB.', '');
-      // TODO: Should support all internal tables geneticall
+      // TODO: Should support all internal tables genetically
       if (lookup === 'VW_UNIT') {
         pickList.dataSource = lookups ? lookups.units : [];
       } else if (lookup === 'VW_PEOPLE') {
@@ -418,7 +418,7 @@ function getPropertyColumn(p: IProperty, formElements: IFormElement[], container
   return column;
 }
 
-function getLookups(container: IFormContainer): any {
+function getLookups(container: IFormContainer): ILookupData {
   let state: IAppState = container.ngRedux.getState();
   return state.session ? state.session.lookups : undefined;
 }

@@ -1,6 +1,6 @@
 import * as X2JS from 'x2js';
 import { IShareableObject, CShareableObject, FormGroupType, IFormGroup, IFormElement } from '../../common';
-import { IAppState } from '../../redux';
+import { IAppState, ILookupData } from '../../redux';
 
 export interface ITabularData {
   data: any;
@@ -122,7 +122,7 @@ function getPicklist(p: any, state: IAppState, coeFormId: Number) {
       // TODO: Should support external tables
       if (extTable && extTable.indexOf('REGDB.') === 0) {
         let lookup = extTable.replace('REGDB.', '');
-        // TODO: Should support all internal tables geneticall
+        // TODO: Should support all internal tables genetically
         if (lookup === 'VW_UNIT') {
           pickList.dataSource = lookups ? lookups.units : [];
         } else if (lookup === 'VW_PEOPLE') {
@@ -191,7 +191,7 @@ export class CBatchSearchVM {
   }
 }
 
-function getLookups(state: IAppState): any {
+function getLookups(state: IAppState): ILookupData {
   return state.session ? state.session.lookups : undefined;
 }
 
