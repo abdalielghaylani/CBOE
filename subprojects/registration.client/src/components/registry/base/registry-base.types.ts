@@ -37,7 +37,7 @@ export class CViewGroup implements IViewGroup {
   }
 
   private canAppend(f: ICoeForm): boolean {
-    return this.data.length === 0 || !f.title || this.title === f.title;
+    return this.data.length === 0 || !f.title || this.title === f.title || f.title === 'Fragment Information';
   }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
@@ -70,7 +70,9 @@ export class CViewGroup implements IViewGroup {
     let readOnly = type.endsWith('COEChemDrawEmbedReadOnly');
     if (structureField || readOnly) {
       item.template = readOnly ? 'structureImageTemplate' : 'structureTemplate';
-      item.colSpan = readOnly ? 1 : 5;
+    }
+    if (structureField) {
+      item.colSpan = 5;
     }
   }
 
@@ -160,6 +162,23 @@ export class CViewGroup implements IViewGroup {
       && !this.isIdText(fe);
   }
 
+  private fixColSpans(items: any[]): any[] {
+    let fixed: any[] = [];
+    let colSpans = 0;
+    let maxSpans = 5;
+    items.forEach(i => {
+      let remaining = maxSpans - (colSpans % maxSpans);
+      let itemSpan = i.colSpan ? i.colSpan : 1;
+      if (itemSpan > remaining) {
+        fixed.push({ itemType: 'empty', colSpan: remaining });
+        colSpans += remaining;
+      }
+      colSpans += itemSpan;
+      fixed.push(i);
+    });
+    return fixed;
+  }
+
   public append(f: ICoeForm): boolean {
     let canAppend = this.canAppend(f);
     if (canAppend) {
@@ -180,7 +199,7 @@ export class CViewGroup implements IViewGroup {
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
             } else {
-              this.setItemValue(item, 'label', { visible: false });              
+              this.setItemValue(item, 'label', { visible: false });
             }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
@@ -201,9 +220,9 @@ export class CViewGroup implements IViewGroup {
         });
       }
     });
-    return items;
+    return this.fixColSpans(items);
   }
-  
+
   public getFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord): any {
     let formData: any = {};
     idList.forEach(id => {
@@ -495,7 +514,7 @@ export class CRegistryRecord {
   constructor() {
     this.ComponentList.Component.push(new CComponent());
     this.BatchList.Batch.push(new CBatch());
-  }  
+  }
 }
 
 export interface IRegistryRecord extends CRegistryRecord {

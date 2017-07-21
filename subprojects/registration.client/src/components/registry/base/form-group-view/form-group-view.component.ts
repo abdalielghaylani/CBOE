@@ -24,6 +24,10 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   }
 
   ngOnChanges() {
+    this.update();
+  }
+
+  protected update() {
     let viewGroups: CViewGroup[] = [];
     let lookups = this.ngRedux.getState().session.lookups;
     let config = this.viewConfig;
@@ -59,13 +63,13 @@ export class RegFormGroupView implements IViewControl, OnChanges {
     // For now, doc-manager and inventory integration forms are removed.
     let sorted: ICoeForm[] = [];
     forms.forEach(f => {
-      let dataSource = f._dataSourceId.toLowerCase();
+      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
       if (dataSource.startsWith('mixture')) {
         sorted.push(f);
       }
     });
     forms.forEach(f => {
-      let dataSource = f._dataSourceId.toLowerCase();
+      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
       if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
         sorted.push(f);
       }
