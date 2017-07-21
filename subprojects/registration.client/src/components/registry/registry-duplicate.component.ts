@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ICustomTableData, IConfiguration, IAppState } from '../../redux';
+import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;
@@ -28,6 +28,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private duplicateData$: Observable<any[]>;
   private recordsSubscription: Subscription;
   private datasource: any[];
+  private loadingVisible: boolean = false;
   @Output() onClose = new EventEmitter<any>();
   private columns = [{
     dataField: 'REGNUMBER',
@@ -59,12 +60,16 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   }, {
     dataField: 'APPROVED',
     caption: 'Approved'
+  }, {
+    cellTemplate: 'resolutionOptionTemplate'
   }];
+  private buttonVisibility = { duplicate: false, addBatch: false, useComponent: false, useStructure: false };
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private router: Router,
     private http: HttpService,
+    private actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef,
     private elementRef: ElementRef
   ) { }
@@ -82,8 +87,14 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
 
   loadData(e) {
     if (e) {
+      let settings = this.ngRedux.getState().session.lookups.systemSettings;
+      this.buttonVisibility.addBatch = settings.filter(s => s.name === 'EnableAddBatchButton')[0].value === 'True' ? true : false;
+      this.buttonVisibility.duplicate = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
+      this.buttonVisibility.useComponent = settings.filter(s => s.name === 'EnableUseComponentButton')[0].value === 'True' ? true : false;
+      this.buttonVisibility.useStructure = settings.filter(s => s.name === 'EnableUseStructureButton')[0].value === 'True' ? true : false;
       this.datasource = e;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
+      this.actions.clearDuplicateRecord();
       this.changeDetector.markForCheck();
     }
   }
@@ -123,7 +134,15 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     }
   }
 
+  createDuplicateRecord() {
+    this.loadingVisible = true;
+    this.actions.createDuplicate(
+      this.ngRedux.getState().registry.previousRecordDetail,
+      'Duplicate');
+  }
+
   cancelDuplicateResolution(e) {
+    this.loadingVisible = false;
     this.onClose.emit(e);
   }
 

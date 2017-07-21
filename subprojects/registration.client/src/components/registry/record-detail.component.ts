@@ -74,7 +74,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private saveTemplatePopupVisible: boolean = false;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
-  private newButtonEnabled: boolean = false;
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
@@ -95,6 +94,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private saveTemplateData: IShareableObject = new CShareableObject('', '', false);
   private isLoggedInUserOwner: boolean = false;
   private isLoggedInUserSuperVisor: boolean = false;
+  private loadingVisible: boolean = false;
 
 
   constructor(
@@ -159,7 +159,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       && this.editButtonEnabled;
 
     this.clearButtonEnabled = this.isNewRecord;
-    this.newButtonEnabled = !this.editMode;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     if (forceUpdate) {
@@ -185,6 +184,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
 
   duplicateData(e) {
     if (e) {
+      this.loadingVisible = false;
       this.currentIndex = 2;
       this.changeDetector.markForCheck();
     }
@@ -291,22 +291,11 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
         temporary: this.temporary, id: id, recordDoc: this.recordDoc,
         saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempRecordsView
       });
-      if (!canRedirectToTempRecordsView) {
-        this.setDisplayMode('view');
-        this.saveButtonEnabled = false;
-        this.clearButtonEnabled = false;
-        this.newButtonEnabled = true;
-      }
+      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
     } else {
       this.setDisplayMode('view');
       this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
     }
-  }
-
-  createDuplicateRecord() {
-    this.actions.createDuplicate(
-      this.ngRedux.getState().registry.previousRecordDetail,
-      'Duplicate');
   }
 
   cancel() {
@@ -314,6 +303,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   cancelDuplicateResolution(e) {
+    this.actions.clearDuplicateRecord();
     this.currentIndex = 0;
   }
 
@@ -321,13 +311,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     this.setDisplayMode('edit');
   }
 
-  newRecord() {
-    this.router.navigate([`records/new?${new Date().getTime()}`]);
-  }
-
   register() {
     this.updateRecord();
     let duplicateEnabled = this.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
+    this.loadingVisible = true;
     this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
   }
 

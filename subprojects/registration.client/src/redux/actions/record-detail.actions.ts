@@ -15,6 +15,7 @@ export class RecordDetailActions {
   static CREATE_DUPLICATE_RECORD = 'CREATE_DUPLICATE_RECORD';
   static CREATE_DUPLICATE_RECORD_SUCCESS = 'CREATE_DUPLICATE_RECORD_SUCCESS';
   static CREATE_DUPLICATE_RECORD_ERROR = 'CREATE_DUPLICATE_RECORD_ERROR';
+  static CLEAR_DUPLICATE_RECORD = 'CLEAR_DUPLICATE_RECORD';
   static LOAD_DUPLICATE_RECORD_SUCCESS = 'LOAD_DUPLICATE_RECORD_SUCCESS';
   static UPDATE_RECORD = 'UPDATE_RECORD';
   static UPDATE_RECORD_SUCCESS = 'UPDATE_RECORD_SUCCESS';
@@ -23,6 +24,7 @@ export class RecordDetailActions {
   static LOAD_STRUCTURE_SUCCESS = 'LOAD_STRUCTURE_SUCCESS';
   static LOAD_STRUCTURE_ERROR = 'LOAD_STRUCTURE_ERROR';
   static clearRecordAction = createAction(RecordDetailActions.CLEAR_RECORD);
+  static clearDuplicateRecordAction = createAction(RecordDetailActions.CLEAR_DUPLICATE_RECORD);
   static retrieveRecordAction = createAction(RecordDetailActions.RETRIEVE_RECORD,
     (temporary: boolean, template: boolean, id: number) => ({ temporary, template, id }));
   static retrieveRecordSuccessAction = createAction(RecordDetailActions.RETRIEVE_RECORD_SUCCESS);
@@ -44,6 +46,10 @@ export class RecordDetailActions {
 
   clearRecord() {
     this.ngRedux.dispatch(RecordDetailActions.clearRecordAction());
+  }
+
+  clearDuplicateRecord() {
+    this.ngRedux.dispatch(RecordDetailActions.clearDuplicateRecordAction());
   }
 
   retrieveRecord(temporary: boolean, template: boolean, id: number) {

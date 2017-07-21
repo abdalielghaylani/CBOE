@@ -1,4 +1,4 @@
-<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="currentIndex!=0">
+<div id="record-detail-view" class="viewcontainer" (window:resize)="onResize($event)" [hidden]="currentIndex!=0">
   <div *ngIf="submissionTemplatesEnabled" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
     <button type="button" class="btn btn-default border-2 status background-blue border-blue">
       <i class="fa-undo white" aria-hidden="true"></i>
@@ -84,6 +84,9 @@
       </div>
     </div>
   </dx-popup>
+  <dx-load-panel [position]="{ of: '#record-detail-view' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true"
+    [shading]="true" [closeOnOutsideClick]="false">
+  </dx-load-panel>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!==1">
   <reg-templates (onClose)="showDetails($event)"></reg-templates>
