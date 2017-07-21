@@ -145,6 +145,11 @@ export class PrivilegeUtils {
     return this.userHasPrivilege('SET_APPROVED_FLAG', userPrivileges);
   }
 
+  static hasSearchTempPrivilege(userPrivileges: any[]): boolean {
+    // privilege  SEARCH_TEMP is required to view temporary records
+    return this.userHasPrivilege('SEARCH_TEMP', userPrivileges);
+  }
+
   static hasCancelApprovalPrivilege(userPrivileges: any[]): boolean {
     //  privilege TOGGLE_APPROVED_FLAG is required to cancel the approved record 
     return this.userHasPrivilege('TOGGLE_APPROVED_FLAG', userPrivileges);

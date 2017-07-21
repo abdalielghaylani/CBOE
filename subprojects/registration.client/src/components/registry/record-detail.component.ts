@@ -283,7 +283,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     this.updateRecord();
     let id = this.template ? -1 : this.id;
     if (this.isNewRecord) {
-      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
+      // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
+      let canRedirectToTempRecordsView = PrivilegeUtils.hasSearchTempPrivilege(this.lookups.userPrivileges);
+      this.actions.saveRecord({
+        temporary: this.temporary, id: id, recordDoc: this.recordDoc,
+        saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempRecordsView
+      });
     } else {
       this.setDisplayMode('view');
       this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });

@@ -96,9 +96,13 @@ export class RegistryEpics {
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${createRecordAction ? newId : ''} successfully!`;
               notifySuccess(message, 5000);
-              return createRecordAction
-                ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
-                : createAction(RegActions.IGNORE_ACTION)();
+              if (payload.redirectToRecordsView === undefined || payload.redirectToRecordsView) {
+                return createRecordAction
+                  ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
+                  : createAction(RegActions.IGNORE_ACTION)();
+              } else {
+                return createAction(UPDATE_LOCATION)(`records/new?${new Date().getTime()}`);
+              }
             }
           })
           .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
