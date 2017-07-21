@@ -76,9 +76,17 @@ export class CViewGroup implements IViewGroup {
 
   private checkDropDown(fe: IFormElement, item: any) {
     if (fe.displayInfo.type.endsWith('COEDropDownList')) {
-      let pickListDomain: string = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
-      if (pickListDomain && String(Math.floor(Number(pickListDomain))) === pickListDomain) {
-        item.editorType = 'dxSelectBox';
+      let pickListDomain = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
+      if (pickListDomain) {
+        if (pickListDomain.__text) {
+          pickListDomain = pickListDomain.__text;
+        }
+        if (String(Math.floor(Number(pickListDomain))) === pickListDomain) {
+          item.template = 'dropDownTemplate';
+          item.editorOptions = {
+            pickListDomain: +pickListDomain
+          };
+        }
       }
     }
   }
