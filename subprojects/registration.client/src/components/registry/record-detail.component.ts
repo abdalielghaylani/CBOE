@@ -74,6 +74,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private saveTemplatePopupVisible: boolean = false;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
+  private newButtonEnabled: boolean = false;
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
@@ -158,6 +159,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       && this.editButtonEnabled;
 
     this.clearButtonEnabled = this.isNewRecord;
+    this.newButtonEnabled = !this.editMode;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     if (forceUpdate) {
@@ -289,6 +291,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
         temporary: this.temporary, id: id, recordDoc: this.recordDoc,
         saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempRecordsView
       });
+      if (!canRedirectToTempRecordsView) {
+        this.setDisplayMode('view');
+        this.saveButtonEnabled = false;
+        this.clearButtonEnabled = false;
+        this.newButtonEnabled = true;
+      }
     } else {
       this.setDisplayMode('view');
       this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
@@ -311,6 +319,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
 
   edit() {
     this.setDisplayMode('edit');
+  }
+
+  newRecord() {
+    this.router.navigate([`records/new?${new Date().getTime()}`]);
   }
 
   register() {

@@ -92,16 +92,16 @@ export class RegistryEpics {
             } else {
               let actionType = payload.saveToPermanent ? 'registered' : 'saved';
               let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
-              newId = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
+              let regNum = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
-                + `${createRecordAction ? newId : ''} successfully!`;
+                + `${createRecordAction ? regNum : ''} successfully!`;
               notifySuccess(message, 5000);
               if (payload.redirectToRecordsView === undefined || payload.redirectToRecordsView) {
                 return createRecordAction
                   ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
                   : createAction(RegActions.IGNORE_ACTION)();
               } else {
-                return createAction(UPDATE_LOCATION)(`records/new?${new Date().getTime()}`);
+                return createAction(RegActions.IGNORE_ACTION)();
               }
             }
           })

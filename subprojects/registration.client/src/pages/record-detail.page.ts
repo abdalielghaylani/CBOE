@@ -23,12 +23,12 @@ export class RegRecordDetailPage {
   private temporary: boolean;
   private template: boolean;
   private id: number;
-  
+
   constructor(private router: Router, private actions: RecordDetailActions) {
     let urlSegments = router.url.split('/');
     this.temporary = !!urlSegments.find(s => s === 'temp');
     let id = urlSegments[urlSegments.length - 1];
     this.template = !!urlSegments.find(s => s === 'new') && id !== 'new';
-    this.id = id === 'new' ? -1 : +id;
+    this.id = id.startsWith('new') ? -1 : +id;
   }
 }
