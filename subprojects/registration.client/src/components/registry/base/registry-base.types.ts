@@ -169,7 +169,7 @@ export class CViewGroup implements IViewGroup {
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
             } else {
-              this.setItemValue(item, 'label', { text: fe._name });              
+              this.setItemValue(item, 'label', { visible: false });              
             }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
