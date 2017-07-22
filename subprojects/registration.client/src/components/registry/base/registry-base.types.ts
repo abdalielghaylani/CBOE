@@ -58,12 +58,6 @@ export class CViewGroup implements IViewGroup {
     return fe.Id ? fe.Id : fe._name.replace(/\s/g, '');
   }
 
-  private getCellTemplate(fe: IFormElement): string {
-    return fe.bindingExpression === 'ProjectList' ? 'projectsTemplate'
-      : fe.displayInfo.type.endsWith('COEFragments') ? 'fragmentsTemplate'
-      : undefined;
-  }
-
   private checkStructure(fe: IFormElement, item: any) {
     let type = fe.displayInfo.type;
     let structureField = type.endsWith('COEChemDraw');
@@ -90,6 +84,26 @@ export class CViewGroup implements IViewGroup {
           };
         }
       }
+    }
+  }
+
+  private checkIdentifierList(fe: IFormElement, item: any) {
+    if (fe.displayInfo.type.endsWith('COEWebGridUltra') && fe.bindingExpression.indexOf('IdentifierList') >= 0) {
+      item.template = 'idListTemplate';
+      item.editorOptions = {
+        idListType: fe.Id.startsWith('S') ? 'S' : fe.Id.startsWith('C') ? 'C' : 'R',
+        dataField: item.dataField
+      };
+      item.colSpan = 2;
+    }
+  }
+
+  private checkOthers(fe: IFormElement, item: any) {
+    if (fe.bindingExpression.endsWith('ProjectList')) {
+      item.template = 'projectsTemplate';
+    } else if (fe.displayInfo.type.endsWith('COEFragments')) {
+      item.template = 'fragmentsTemplate';
+      item.colSpan = 5;
     }
   }
 
@@ -210,15 +224,10 @@ export class CViewGroup implements IViewGroup {
             }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
-            let template = this.getCellTemplate(fe);
-            if (template) {
-              this.setItemValue(item, 'template', template);
-              if (template === 'structureTemplate' || template === 'fragmentsTemplate') {
-                item.colSpan = 5;
-              }
-            }
             this.checkDropDown(fe, item);
             this.checkStructure(fe, item);
+            this.checkIdentifierList(fe, item);
+            this.checkOthers(fe, item);
             // if (item.template) {
             //   console.log(JSON.stringify(item));
             // }
@@ -299,7 +308,7 @@ export interface IIdentifierID {
 }
 
 export interface IIdentifier {
-  ID?: string; // 2621
+  OrderIndex?: string; // 2621
   IdentifierID?: IIdentifierID;
   InputText?: string; // Dehydrohedione (DHH)
 }

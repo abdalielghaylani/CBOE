@@ -49,10 +49,6 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
       : false;
   }
 
-  protected onValueChanged(e, d) {
-    d.component.option('formData.' + d.dataField, e.value);
-  }
-
   protected onContentReady(e) {
     let grid = e.component;
     if (grid.totalCount() === 0) {
@@ -60,6 +56,15 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
     } else {
       grid.option('height', 'auto');
     }
+  }
+
+  protected onRowInserted(e, d) {
+  }
+
+  protected onRowUpdated(e, d) {
+  }
+
+  protected onRowRemoved(e, d) {
   }
 
   protected addRow(e) {

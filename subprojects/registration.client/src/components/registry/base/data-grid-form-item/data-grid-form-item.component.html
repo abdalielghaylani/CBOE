@@ -1,5 +1,6 @@
 <dx-data-grid [disabled]="!editMode" [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
-  (onContentReady)="onContentReady($event)">
+  (onContentReady)="onContentReady($event)"
+  (onRowInserted)="onRowInserted($event, viewModel)" (onRowUpdated)="onRowUpdated($event, viewModel)" (onRowRemoved)="onRowRemoved($event, viewModel)">
   <dxo-editing [mode]="editingMode"></dxo-editing>
   <div *dxTemplate="let d of 'commandHeaderCellTemplate'">
     <a *ngIf="allowAdding" class="fa fa-lg fa-plus-square-o grid-icon" aria-hidden="true" title='Add a row' (click)="addRow(d)"></a>

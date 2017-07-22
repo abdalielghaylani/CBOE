@@ -12,10 +12,6 @@ import { IAppState } from '../../../../redux';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegFragmentsFormItem extends RegDataGridFormItem {
-  protected dataSource: any[];
-  protected valueExpr: string;
-  protected displayExpr: string;
-
   constructor(private ngRedux: NgRedux<IAppState>) {
     super();
   }

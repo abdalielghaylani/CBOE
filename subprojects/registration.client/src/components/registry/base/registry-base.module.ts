@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { RegDataGridFormItem } from './data-grid-form-item';
 import { RegDropDownFormItem } from './drop-down-form-item';
 import { RegFragmentsFormItem } from './fragments-form-item';
+import { RegIdListFormItem } from './id-list-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
 import { RegStructureFormItem } from './structure-form-item';
 import { RegStructureImageFormItem } from './structure-image-form-item';
@@ -35,6 +36,8 @@ import { RegCommonComponentModule } from '../../common';
 
 export * from './data-grid-form-item';
 export * from './drop-down-form-item';
+export * from './fragments-form-item'
+export * from './id-list-form-item';
 export * from './projects-form-item';
 export * from './structure-form-item';
 export * from './structure-image-form-item';
@@ -68,12 +71,12 @@ export * from './registry-base.types';
     RegCommonComponentModule
   ],
   declarations: [
-    RegDataGridFormItem, RegDropDownFormItem,
+    RegDataGridFormItem, RegDropDownFormItem, RegIdListFormItem,
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView
   ],
   exports: [
-    RegDataGridFormItem, RegDropDownFormItem,
+    RegDataGridFormItem, RegDropDownFormItem, RegIdListFormItem,
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
     RegFormView, RegFormGroupView, RegFormGroupItemView,
     RegCommonModule, RegCommonComponentModule

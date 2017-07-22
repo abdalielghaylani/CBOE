@@ -3,7 +3,10 @@ import {
   IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
 import { IAppState, IRecordsData, IRecords, ILookupData } from '../../redux';
-import { IIdentifier, IFragment, IComponent, IBatchComponentFragment, IBatch, IRegistryRecord, IProperty, IPropertyList } from './base';
+import {
+  IIdentifier, IIdentifierList, IProjectList, IFragment, IComponent,
+  IBatchComponentFragment, IBatch, IRegistryRecord, IProperty, IPropertyList
+} from './base';
 
 export enum RegistryStatus {
   NotSet,
@@ -31,7 +34,7 @@ export class CComponentVM {
   personCreated?: Number;
   personApproved?: Number;
   regNumber?: string;
-  identifierList?: CIdentifierVM[];
+  identifierList?: IIdentifierList;
   fragmentList?: IFragment[];
   batchComponentFragmentList?: CBatchComponentFragmentVM[] = [];
   columns: any[] = [];
@@ -45,7 +48,7 @@ export class CComponentVM {
     this.personCreated = +m.Compound.PersonCreated;
     this.personApproved = +m.Compound.PersonApproved;
     this.regNumber = m.Compound.RegNumber ? m.Compound.RegNumber.RegNumber : undefined;
-    this.identifierList = m.Compound.IdentifierList ? m.Compound.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
+    this.identifierList = m.Compound.IdentifierList;
     this.fragmentList = m.Compound.FragmentList.Fragment;
     // TODO: The built-in property view should also come from configuration
     this.columns.push({
@@ -53,28 +56,10 @@ export class CComponentVM {
       label: { text: 'Component Identifiers' },
       colSpan: 2,
       editorOptions: {
-        columns: [{
-          dataField: 'id',
-          caption: 'Identifier',
-          editorType: 'dxSelectBox',
-          lookup: {
-            dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'C' && i.ACTIVE === 'T') : [],
-            displayExpr: 'NAME',
-            valueExpr: 'ID',
-            placeholder: 'Select Identifier'
-          }
-        }, {
-          dataField: 'inputText',
-          caption: 'Value'
-        }],
-        editing: {
-          mode: 'row',
-          allowUpdating: true,
-          allowDeleting: true,
-          allowAdding: true
-        }
+        idListType: 'C',
+        dataField: 'identifierList'
       },
-      template: 'dataGridTemplate'
+      template: 'idListTemplate'
     });
     this.columns = [{
       itemType: 'group',
@@ -204,8 +189,8 @@ export class CRegistryRecordVM {
   structureAggregation?: String;
   statusId?: Number;
   regNumber?: String;
-  identifierList?: CIdentifierVM[] = [];
-  projectList?: number[] = [];
+  identifierList?: IIdentifierList;
+  projectList?: IProjectList;
   componentList?: CComponentVM[] = [];
   batchList: CBatchVM[] = [];
   columns: any[] = [];
@@ -223,11 +208,8 @@ export class CRegistryRecordVM {
     this.structureAggregation = m.StructureAggregation;
     this.statusId = +m.StatusID;
     this.regNumber = m.RegNumber ? m.RegNumber.RegNumber : undefined;
-    this.identifierList = m.IdentifierList ? m.IdentifierList.Identifier.map(i => new CIdentifierVM(i)) : undefined;
-    if (m.ProjectList) {
-      this.projectList = [];
-      m.ProjectList.Project.forEach(p => this.projectList.push(+p.ProjectID));
-    }
+    this.identifierList = m.IdentifierList;
+    this.projectList = m.ProjectList;
     this.columns.push({
       dataField: 'projectList',
       label: { text: 'Projects' },
@@ -239,28 +221,10 @@ export class CRegistryRecordVM {
       label: { text: 'Registry Identifiers' },
       colSpan: 2,
       editorOptions: {
-        columns: [{
-          dataField: 'id',
-          caption: 'Identifier',
-          editorType: 'dxSelectBox',
-          lookup: {
-            dataSource: lookups ? lookups.identifierTypes.filter(i => i.TYPE === 'R' && i.ACTIVE === 'T') : [],
-            displayExpr: 'NAME',
-            valueExpr: 'ID',
-            placeholder: 'Select Identifier'
-          }
-        }, {
-          dataField: 'inputText',
-          caption: 'Value'
-        }],
-        editing: {
-          mode: 'row',
-          allowUpdating: true,
-          allowDeleting: true,
-          allowAdding: true
-        }
+        idListType: 'R',
+        dataField: 'identifierList'
       },
-      template: 'dataGridTemplate'
+      template: 'idListTemplate'
     });
     let batchComponentFragmentList: CBatchComponentFragmentVM[] = [];
     buildPropertyList(this, this.columns, m.PropertyList, getCoeFormById(container.formGroup, SubFormType.RegistryCustomProperties), container);
