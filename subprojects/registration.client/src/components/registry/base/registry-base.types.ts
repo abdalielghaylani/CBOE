@@ -91,7 +91,7 @@ export class CViewGroup implements IViewGroup {
     if (fe.displayInfo.type.endsWith('COEWebGridUltra') && fe.bindingExpression.indexOf('IdentifierList') >= 0) {
       item.template = 'idListTemplate';
       item.editorOptions = {
-        idListType: fe.Id.startsWith('S') ? 'S' : fe.Id.startsWith('C') ? 'C' : 'R',
+        idListType: fe.Id.startsWith('S') ? 'S' : fe.Id.startsWith('C') ? 'C' : fe.Id.startsWith('B') ? 'B' : 'R',
         dataField: item.dataField
       };
       item.colSpan = 2;
