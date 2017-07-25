@@ -19,7 +19,7 @@ import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, n
 import { IResponseData, CRegistryRecordVM, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
-import { IRegistryRecord, CRegistryRecord, CFragment } from './base';
+import { IRegistryRecord, CRegistryRecord, CFragment, CViewGroup } from './base';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
@@ -46,10 +46,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   public formGroup: IFormGroup;
+  public viewGroups: CViewGroup[];
   public editMode: boolean = false;
   private displayMode: string = 'view';
   private title: string;
-  private creatingCDD: boolean = false;
   private parentHeight: string;
   private approvalsEnabled: boolean = false;
   private editButtonEnabled: boolean = false;
@@ -60,8 +60,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private deleteButtonEnabled: boolean = false;
   private clearButtonEnabled: boolean = false;
   private submissionTemplatesEnabled: boolean = false;
-  private recordString: string;
   private recordDoc: Document;
+  private recordJson: any;
   private regRecord: IRegistryRecord = new CRegistryRecord();
   private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
   private routeSubscription: Subscription;
@@ -127,6 +127,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private update(forceUpdate: boolean = true) {
+    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
     this.editMode = this.displayMode !== 'view';
     if (!this.lookups || !this.lookups.userPrivileges) {
       return;
@@ -240,6 +241,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private onValueUpdated(e) {
+    // console.log(`form value changed`);
   }
 
   loadData(recordDetail: IRecordDetail, duplicateResolution: boolean = false) {
@@ -255,8 +257,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
     // registryUtils.fixStructureData(this.recordDoc);
-    let recordJson: any = this.x2jsTool.dom2js(this.recordDoc);
-    this.regRecord = recordJson.MultiCompoundRegistryRecord;
+    this.recordJson = this.x2jsTool.dom2js(this.recordDoc);
+    this.regRecord = this.recordJson.MultiCompoundRegistryRecord;
     let formGroupType = FormGroupType.SubmitMixture;
     if (recordDetail.id >= 0 && !recordDetail.temporary) {
       // TODO: For mixture, this should be ReviewRegistryMixture
@@ -277,11 +279,23 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     return registryUtils.getElementValue(e, path);
   }
 
-  private updateRecord() {
+  private getUpdatedRecord() {
+    let x2jsTool = this.x2jsTool;
+    this.viewGroups.forEach(vg => {
+      let items = vg.getItems(this.displayMode);
+      let validItems = items.filter(i => !i.itemType || i.itemType !== 'empty').map(i => i.dataField);
+      vg.serializeFormData(this.displayMode, validItems, this.regRecord);
+    });
+    return x2jsTool.js2dom(this.recordJson);
   }
 
   save() {
-    this.updateRecord();
+    let recordDoc = this.getUpdatedRecord();
+    if (!recordDoc) {
+      notifyError('Invalid content!', 5000);
+      return;
+    }
+    this.recordDoc = recordDoc;
     let id = this.template ? -1 : this.id;
     if (this.isNewRecord) {
       // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
@@ -320,7 +334,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   register() {
-    this.updateRecord();
+    let recordDoc = this.getUpdatedRecord();
+    if (!recordDoc) {
+      notifyError('Invalid content!', 5000);
+      return;
+    }
+    this.recordDoc = recordDoc;
     let duplicateEnabled = this.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
     this.loadingVisible = true;
     this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
@@ -358,7 +377,12 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private saveTemplate(e) {
     let result: any = this.saveTemplateForm.validate();
     if (result.isValid) {
-      this.updateRecord();
+      let recordDoc = this.getUpdatedRecord();
+      if (!recordDoc) {
+        notifyError('Invalid content!', 5000);
+        return;
+      }
+      this.recordDoc = recordDoc;
       let url = `${apiUrlPrefix}templates`;
       let data: ITemplateData = new CTemplateData(this.saveTemplateData.name);
       data.description = this.saveTemplateData.description;

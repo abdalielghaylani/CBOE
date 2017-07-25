@@ -17,31 +17,10 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() editMode: boolean;
   @Input() displayMode: string = 'add';
   @Input() viewModel: IRegistryRecord;
-  @Input() viewConfig: IFormGroup;
+  @Input() viewConfig: CViewGroup[];
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
-  private viewGroups: CViewGroup[] = [];
 
   constructor(private ngRedux: NgRedux<IAppState>) {
-  }
-
-  private sortForms(forms: ICoeForm[]): ICoeForm[] {
-    // The form aray sometimes is not sorted property.
-    // Registry should go first.
-    // For now, doc-manager and inventory integration forms are removed.
-    let sorted: ICoeForm[] = [];
-    forms.forEach(f => {
-      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
-      if (dataSource.startsWith('mixture')) {
-        sorted.push(f);
-      }
-    });
-    forms.forEach(f => {
-      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
-      if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
-        sorted.push(f);
-      }
-    });    
-    return sorted;
   }
 
   private togglePanel(e) {
@@ -55,33 +34,6 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   }
 
   protected update() {
-    let viewGroups: CViewGroup[] = [];
-    let lookups = this.ngRedux.getState().session.lookups;
-    let config = this.viewConfig;
-    if (lookups && lookups.disabledControls) {
-      if (config && config.detailsForms && config.detailsForms.detailsForm.length > 0) {
-        let pageId: string = this.displayMode === 'add' ? 'SUBMITMIXTURE' : this.displayMode === 'view' ? 'VIEWMIXTURE' : 'REVIEWREGISTERMIXTURE';
-        let disabledControls = lookups.disabledControls.filter(dc => dc.pageId === pageId);
-        let coeForms = this.sortForms(config.detailsForms.detailsForm[0].coeForms.coeForm);
-        coeForms.forEach(f => {
-          if (f.formDisplay.visible === 'true') {
-            if (viewGroups.length === 0) {
-              viewGroups.push(new CViewGroup([], disabledControls));
-            }
-            let viewGroup = viewGroups[viewGroups.length - 1];
-            if (!viewGroup.append(f)) {
-              viewGroups.push(new CViewGroup([f], disabledControls));
-            }
-          }
-          this.viewGroups = [];
-          viewGroups.forEach(vg => {
-            if (vg.getItems(this.displayMode).length > 0) {
-              this.viewGroups.push(vg);
-            }
-          });
-        });
-      }
-    }
   }
 
   protected onValueUpdated(e) {

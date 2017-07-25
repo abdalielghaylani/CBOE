@@ -159,9 +159,58 @@ export class CViewGroup implements IViewGroup {
       : this.parseEntryValue(entryInfo.bindingExpression, viewModel);
   }
 
-  private setEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord) {
+  private serializeValue(object: any, property: string) {
+    let textObject = object[property];
+    if (textObject && typeof textObject === 'object') {
+      object[property] = object[property].toString();
+    }
+  }
+
+  private parseAndSetEntryValue(bindingExpression: string, viewModel: any,  value, serialize: boolean = false) {
+    bindingExpression = this.fixBindingExpression(bindingExpression);
+    let objectNames = bindingExpression.split('.');
+    let nextObject = viewModel;
+    objectNames.forEach(n => {
+      if (nextObject) {
+        let m = n.match(/PropertyList\[@Name='(.*)'/);
+        if (m && m.length > 1) {
+          let propertyList = nextObject.PropertyList as IPropertyList;
+          let p = propertyList.Property.filter(p => p._name === m[1]);
+          if (p) {
+            if (serialize) {
+              this.serializeValue(p[0], '__text');
+            } else {
+              p[0].__text = value;
+            }
+          } else {
+            propertyList.Property.push({ _name: m[1], __text: value });
+          }
+          nextObject = p ? p[0].__text : undefined;
+        } else {
+          if (n === objectNames[objectNames.length - 1]) {
+            if (serialize) {
+              this.serializeValue(nextObject, n);
+            } else {
+              nextObject[n] = value;
+            }
+          } else {
+            if (!nextObject[n]) {
+              nextObject[n] = {};
+            } else {
+              nextObject = nextObject[n];
+            }
+          }
+        }
+      }
+    });
+  }
+
+  private setEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord, entryValue, serialize: boolean = false) {
     let entryInfo = this.getEntryInfo(displayMode, id);
-    // Locate data source in registry record, and find the entry based on binding expression    
+    let dataSource = entryInfo.dataSource.toLowerCase();
+    dataSource.indexOf('component') >= 0 ? this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel.ComponentList.Component[0], entryValue, serialize)
+      : dataSource.indexOf('batch') >= 0 ? this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel.BatchList.Batch[0], entryValue, serialize)
+      : this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel, entryValue, serialize);
   }
 
   private isIdText(fe: IFormElement): boolean {
@@ -202,6 +251,54 @@ export class CViewGroup implements IViewGroup {
     }
   }
 
+  private static sortForms(forms: ICoeForm[]): ICoeForm[] {
+    // The form aray sometimes is not sorted property.
+    // Registry should go first.
+    // For now, doc-manager and inventory integration forms are removed.
+    let sorted: ICoeForm[] = [];
+    forms.forEach(f => {
+      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
+      if (dataSource.startsWith('mixture')) {
+        sorted.push(f);
+      }
+    });
+    forms.forEach(f => {
+      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
+      if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
+        sorted.push(f);
+      }
+    });    
+    return sorted;
+  }
+
+  public static getViewGroups(config: IFormGroup, displayMode: string, disabledControls: any[]): CViewGroup[] {
+    let viewGroups: CViewGroup[] = [];
+    let viewGroupsFiltered: CViewGroup[] = [];
+    if (config && config.detailsForms && config.detailsForms.detailsForm.length > 0) {
+      let pageId: string = displayMode === 'add' ? 'SUBMITMIXTURE' : displayMode === 'view' ? 'VIEWMIXTURE' : 'REVIEWREGISTERMIXTURE';
+      let disabledControlsFiltered = disabledControls.filter(dc => dc.pageId === pageId);
+      let coeForms = this.sortForms(config.detailsForms.detailsForm[0].coeForms.coeForm);
+      coeForms.forEach(f => {
+        if (f.formDisplay.visible === 'true') {
+          if (viewGroups.length === 0) {
+            viewGroups.push(new CViewGroup([], disabledControlsFiltered));
+          }
+          let viewGroup = viewGroups[viewGroups.length - 1];
+          if (!viewGroup.append(f)) {
+            viewGroups.push(new CViewGroup([f], disabledControlsFiltered));
+          }
+        }
+        viewGroupsFiltered = [];
+        viewGroups.forEach(vg => {
+          if (vg.getItems(displayMode).length > 0) {
+            viewGroupsFiltered.push(vg);
+          }
+        });
+      });
+    }
+    return viewGroupsFiltered;
+  }
+
   public append(f: ICoeForm): boolean {
     let canAppend = this.canAppend(f);
     if (canAppend) {
@@ -230,9 +327,6 @@ export class CViewGroup implements IViewGroup {
             this.checkStructure(fe, item);
             this.checkIdentifierList(fe, item);
             this.checkOthers(fe, item);
-            // if (item.template) {
-            //   console.log(JSON.stringify(item));
-            // }
             this.removeDuplicate(items, item);
             items.push(item);
           }
@@ -251,6 +345,15 @@ export class CViewGroup implements IViewGroup {
   }
 
   public readFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord, formData: any) {
+    idList.forEach(id => {
+      this.setEntryValue(displayMode, id, viewModel, formData[id]);
+    });
+  }
+
+  public serializeFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord) {
+    idList.forEach(id => {
+      this.setEntryValue(displayMode, id, viewModel, null, true);
+    });
   }
 }
 
@@ -281,8 +384,8 @@ export interface IValidationRuleList extends CValidationRuleList {
 
 export interface IProperty {
   _name: string; // REG_COMMENTS
-  _friendlyName: string; // REG_COMMENTS
-  _type: string; // TEXT
+  _friendlyName?: string; // REG_COMMENTS
+  _type?: string; // TEXT
   _precision?: string; // 200
   _sortOrder?: string; // 0
   _pickListDomainID?: string; // number

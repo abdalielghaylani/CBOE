@@ -1,5 +1,5 @@
 <div class="panel-group" [id]="id">
-  <div class="panel panel-default" *ngFor="let viewGroup of viewGroups">
+  <div class="panel panel-default" *ngFor="let viewGroup of viewConfig">
     <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
       <a class="list-header tan" data-toggle="collapse" href="#{{viewGroup.id}}">{{viewGroup.title}}</a>
     </div>

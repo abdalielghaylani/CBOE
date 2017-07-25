@@ -40,7 +40,8 @@ export class RegFormGroupItemView implements IViewControl, OnChanges {
   }
 
   private writeVM() {
-
+    let validItems = this.items.filter(i => !i.itemType || i.itemType !== 'empty');
+    this.viewConfig.readFormData(this.displayMode, validItems.map(i => i.dataField), this.viewModel, this.formData);
   }
 
   protected onValueUpdated(e) {

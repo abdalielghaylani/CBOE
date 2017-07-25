@@ -99,7 +99,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
     }
   }
 
-  public getValue() {
+  public getValue(): string {
     return this.cdd ? this.cdd.getCDXML() : this.value;
   }
 
@@ -107,5 +107,9 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
     if (this.activated && !this.cdd && this.id) {
       this.createCdd();
     }
+  }
+
+  public toString(): string {
+    return this.getValue();
   }
 };
