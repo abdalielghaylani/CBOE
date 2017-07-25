@@ -4,7 +4,7 @@
     [searchPanel]="{ visible: true }" [filterRow]="{ visible: true }" [height]="gridHeight"
     [grouping]="{ autoExpandAll: true }"
     rowAlternationEnabled="true" (onContentReady)="onContentReady($event)"
-    (onCellPrepared)="onCellPrepared($event)">
+    (onCellPrepared)="onCellPrepared($event)" (onRowCollapsing)="onRowCollapsing($event)">
     <dxo-editing mode="form" [allowUpdating]="true"></dxo-editing>
   </dx-data-grid>
 </div>

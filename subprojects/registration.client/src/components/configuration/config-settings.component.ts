@@ -133,6 +133,10 @@ export class RegConfigSettings implements OnInit, OnDestroy {
     }
   }
 
+  onRowCollapsing(e) {
+    e.component.cancelEditData();
+  }
+
   private createCustomStore(parent: RegConfigSettings): CustomStore {
     let tableName = 'settings';
     let apiUrlBase = `${apiUrlPrefix}${tableName}`;
