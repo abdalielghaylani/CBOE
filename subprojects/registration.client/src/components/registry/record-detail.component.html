@@ -23,7 +23,7 @@
   </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <reg-form-group-view [viewConfig]="formGroup" [viewModel]="regRecord" [activated]="currentIndex===0" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>
+      <reg-form-group-view (valueUpdated)="onValueUpdated($event)" [viewConfig]="formGroup" [viewModel]="regRecord" [activated]="currentIndex===0" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>
       <!--<div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">

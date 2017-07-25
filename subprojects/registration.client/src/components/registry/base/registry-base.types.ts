@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
 export interface IViewControl {
@@ -5,6 +6,7 @@ export interface IViewControl {
   editMode: boolean;
   viewModel: any;
   viewConfig: any;
+  valueUpdated: EventEmitter<any>;
 }
 
 export interface IFormItemTemplate extends IViewControl {

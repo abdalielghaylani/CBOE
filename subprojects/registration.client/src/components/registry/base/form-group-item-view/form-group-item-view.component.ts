@@ -15,6 +15,7 @@ export class RegFormGroupItemView implements IViewControl, OnChanges {
   @Input() displayMode: string;
   @Input() viewModel: IRegistryRecord;
   @Input() viewConfig: CViewGroup;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
   private items: any[] = [];
   private formData: any = {};
   private colCount: number = 5;
@@ -40,5 +41,10 @@ export class RegFormGroupItemView implements IViewControl, OnChanges {
 
   private writeVM() {
 
+  }
+
+  protected onValueUpdated(e) {
+    this.writeVM();
+    this.valueUpdated.emit(this);
   }
 };

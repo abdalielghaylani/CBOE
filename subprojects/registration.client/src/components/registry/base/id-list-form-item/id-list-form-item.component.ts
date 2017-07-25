@@ -66,14 +66,20 @@ export class RegIdListFormItem extends RegDataGridFormItem {
   }
 
   protected onRowInserted(e, d) {
-    d.component.option(`formData.${this.viewModel.editorOptions.dataField}`, this.serializeValue());
+    this.onValueChanged(d.component);
   }
 
   protected onRowUpdated(e, d) {
-    d.component.option(`formData.${this.viewModel.editorOptions.dataField}`, this.serializeValue());
+    this.onValueChanged(d.component);
   }
 
   protected onRowRemoved(e, d) {
-    d.component.option(`formData.${this.viewModel.editorOptions.dataField}`, this.serializeValue());
+    this.onValueChanged(d.component);
+  }
+
+  protected onValueChanged(component) {
+    let value = this.serializeValue();
+    component.option(`formData.${this.viewModel.editorOptions.dataField}`, value);
+    this.onValueUpdated(this);    
   }
 };

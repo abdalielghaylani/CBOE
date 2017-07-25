@@ -15,6 +15,7 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
   @Input() editMode: boolean;
   @Input() viewModel: any = {};
   @Input() viewConfig: any;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
   protected dataSource: any[];
   protected value: Number;
   protected valueExpr: string;
@@ -44,6 +45,14 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
   }
 
   protected onValueChanged(e, d) {
-    d.component.option('formData.' + d.dataField, e.value);
+    if (e.previousValue !== e.value) {
+      let value = e.value;
+      d.component.option('formData.' + d.dataField, e.value);
+      this.onValueUpdated(this);
+    }
+  }
+
+  protected onValueUpdated(e) {
+    this.valueUpdated.emit(e);
   }
 };

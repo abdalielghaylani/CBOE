@@ -25,7 +25,6 @@ import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyExc
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus } from './registry.types';
-import { ChemDrawWeb } from '../common';
 import { PrivilegeUtils } from '../../common';
 import { CSystemSettings } from '../../redux';
 
@@ -39,7 +38,6 @@ import { CSystemSettings } from '../../redux';
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnChanges {
   @ViewChild(RegTemplates) regTemplates: RegTemplates;
-  @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
   @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
   @Input() temporary: boolean;
   @Input() template: boolean;
@@ -213,6 +211,23 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
   }
 
+  private get x2jsTool() {
+    return new X2JS.default({
+      arrayAccessFormPaths: [
+        'MultiCompoundRegistryRecord.ComponentList.Component',
+        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.PropertyList.Property',
+        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.FragmentList.Fragment',
+        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.IdentifierList.Identifier',
+        'MultiCompoundRegistryRecord.BatchList.Batch',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
+        'MultiCompoundRegistryRecord.IdentifierList.Identifier',
+        'MultiCompoundRegistryRecord.ProjectList.Project',
+        'MultiCompoundRegistryRecord.PropertyList.Property',
+      ]
+    });    
+  }
+
   private onResize(event: any) {
     this.parentHeight = this.getParentHeight();
   }
@@ -222,6 +237,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
       this.parentHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
     }
+  }
+
+  private onValueUpdated(e) {
   }
 
   loadData(recordDetail: IRecordDetail, duplicateResolution: boolean = false) {
@@ -237,21 +255,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
     // registryUtils.fixStructureData(this.recordDoc);
-    let x2jsTool = new X2JS.default({
-      arrayAccessFormPaths: [
-        'MultiCompoundRegistryRecord.ComponentList.Component',
-        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.PropertyList.Property',
-        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.FragmentList.Fragment',
-        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.IdentifierList.Identifier',
-        'MultiCompoundRegistryRecord.BatchList.Batch',
-        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
-        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
-        'MultiCompoundRegistryRecord.IdentifierList.Identifier',
-        'MultiCompoundRegistryRecord.ProjectList.Project',
-        'MultiCompoundRegistryRecord.PropertyList.Property',
-      ]
-    });
-    let recordJson: any = x2jsTool.dom2js(this.recordDoc);
+    let recordJson: any = this.x2jsTool.dom2js(this.recordDoc);
     this.regRecord = recordJson.MultiCompoundRegistryRecord;
     let formGroupType = FormGroupType.SubmitMixture;
     if (recordDetail.id >= 0 && !recordDetail.temporary) {
@@ -266,11 +270,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
     }
-    let structureData = registryUtils.getElementValue(this.recordDoc.documentElement,
-      'ComponentList/Component/Compound/BaseFragment/Structure/Structure');
-    if (this.chemDrawWeb) {
-      this.chemDrawWeb.setValue(structureData);
-    }
     this.update();
   }
 
@@ -279,10 +278,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private updateRecord() {
-    if (this.chemDrawWeb) {
-      registryUtils.setElementValue(this.recordDoc.documentElement,
-        'ComponentList/Component/Compound/BaseFragment/Structure/Structure', this.chemDrawWeb.getValue());
-    }
   }
 
   save() {

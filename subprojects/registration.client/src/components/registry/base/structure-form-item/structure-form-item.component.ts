@@ -15,6 +15,7 @@ import { ChemDrawWeb } from '../../../common';
 export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTemplate {
   @Input() viewModel: any = {};
   @Input() viewConfig;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private ngRedux: NgRedux<IAppState>, elementRef: ElementRef) {
     super(elementRef);
@@ -24,5 +25,11 @@ export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTempla
     let options = this.viewModel.editorOptions;
     this.setValue(options && options.value ? options.value : null);
     super.update();
+  }
+
+  protected onContentChanged(e) {
+    if (this.cdd && !this.cdd.isSaved()) {
+      this.valueUpdated.emit(this);
+    }
   }
 };

@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IViewControl } from '../registry-base.types';
+import { RegStructureFormItem } from '../structure-form-item';
+import { copyObject } from '../../../../common';
 
 @Component({
   selector: 'reg-form-view',
@@ -15,7 +17,26 @@ export class RegFormView implements IViewControl, OnChanges {
   @Input() viewModel: any;
   @Input() viewConfig: any[];
   @Input() colCount: number;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
+  private viewModelCopy: any;
+  private structureFormItem: RegStructureFormItem;
 
   ngOnChanges() {
+    this.viewModelCopy = copyObject(this.viewModel);
+  }
+
+  protected onFieldDataChanged(e) {
+    if (this.viewModelCopy[e.dataField] !== e.value) {
+      this.viewModelCopy[e.dataField] = e.value;
+      this.onValueUpdated(this);
+    }
+  }
+
+  protected onStructureValueUpdated(structureFormItem: RegStructureFormItem) {
+    this.onValueUpdated(this);
+  }
+
+  protected onValueUpdated(e) {
+    this.valueUpdated.emit(e);
   }
 };

@@ -1,2 +1,2 @@
-<dx-select-box [dataSource]="dataSource" [value]="value" [valueExpr]="valueExpr" [displayExpr]="displayExpr" [readOnly]="!editMode">
+<dx-select-box (onValueChanged)="onValueChanged($event, viewModel)" [dataSource]="dataSource" [value]="value" [valueExpr]="valueExpr" [displayExpr]="displayExpr" [readOnly]="!editMode">
 </dx-select-box>

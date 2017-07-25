@@ -13,6 +13,7 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   @Input() editMode: boolean;
   @Input() viewModel: any = {};
   @Input() viewConfig: any;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   protected dataSource: any[];
   protected columns: any[];
   protected editingMode: string;
@@ -89,5 +90,9 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
 
   protected cancel(e) {
     e.component.cancelEditData();
+  }
+
+  protected onValueUpdated(e) {
+    this.valueUpdated.emit(e);
   }
 };

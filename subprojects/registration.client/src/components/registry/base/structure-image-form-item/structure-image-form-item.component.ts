@@ -18,6 +18,7 @@ export class RegStructureImageFormItem implements IFormItemTemplate, OnChanges {
   @Input() editMode: boolean;
   @Input() viewModel: any;
   @Input() viewConfig: any;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
   private image = require('../assets/spinner.gif');
 
   constructor(private ngRedux: NgRedux<IAppState>, private http: Http, private changeDetector: ChangeDetectorRef) {

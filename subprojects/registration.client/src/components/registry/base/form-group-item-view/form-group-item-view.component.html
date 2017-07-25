@@ -1,2 +1,2 @@
-<reg-form-view [id]="id" [viewModel]="formData" [viewConfig]="items" [activated]="activated" [editMode]="editMode" [colCount]="colCount">
+<reg-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="activated" [editMode]="editMode" [colCount]="colCount">
 </reg-form-view>

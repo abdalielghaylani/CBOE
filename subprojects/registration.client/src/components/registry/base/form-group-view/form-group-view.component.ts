@@ -18,9 +18,36 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() displayMode: string = 'add';
   @Input() viewModel: IRegistryRecord;
   @Input() viewConfig: IFormGroup;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
   private viewGroups: CViewGroup[] = [];
 
   constructor(private ngRedux: NgRedux<IAppState>) {
+  }
+
+  private sortForms(forms: ICoeForm[]): ICoeForm[] {
+    // The form aray sometimes is not sorted property.
+    // Registry should go first.
+    // For now, doc-manager and inventory integration forms are removed.
+    let sorted: ICoeForm[] = [];
+    forms.forEach(f => {
+      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
+      if (dataSource.startsWith('mixture')) {
+        sorted.push(f);
+      }
+    });
+    forms.forEach(f => {
+      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
+      if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
+        sorted.push(f);
+      }
+    });    
+    return sorted;
+  }
+
+  private togglePanel(e) {
+    if (e.srcElement.children.length > 0) {
+      e.srcElement.children[0].click();
+    }
   }
 
   ngOnChanges() {
@@ -57,29 +84,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
     }
   }
 
-  private sortForms(forms: ICoeForm[]): ICoeForm[] {
-    // The form aray sometimes is not sorted property.
-    // Registry should go first.
-    // For now, doc-manager and inventory integration forms are removed.
-    let sorted: ICoeForm[] = [];
-    forms.forEach(f => {
-      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
-      if (dataSource.startsWith('mixture')) {
-        sorted.push(f);
-      }
-    });
-    forms.forEach(f => {
-      let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
-      if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
-        sorted.push(f);
-      }
-    });    
-    return sorted;
-  }
-
-  private togglePanel(e) {
-    if (e.srcElement.children.length > 0) {
-      e.srcElement.children[0].click();
-    }
+  protected onValueUpdated(e) {
+    this.valueUpdated.emit(this);
   }
 };

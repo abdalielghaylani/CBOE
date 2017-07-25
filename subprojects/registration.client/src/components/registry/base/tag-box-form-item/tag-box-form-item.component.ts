@@ -13,6 +13,7 @@ export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
   @Input() editMode: boolean = false;
   @Input() viewModel: any = {};
   @Input() viewConfig: any;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
   protected value: any[];
   protected dataSource: any[];
   protected valueExpr: string;
@@ -33,6 +34,12 @@ export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
   }
 
   protected onValueChanged(e, d) {
-    d.component.option('formData.' + d.dataField, e.value);
+    let value = e.value;
+    d.component.option('formData.' + d.dataField, value);
+    this.onValueUpdated(this);
+  }
+
+  protected onValueUpdated(e) {
+    this.valueUpdated.emit(this);
   }
 };

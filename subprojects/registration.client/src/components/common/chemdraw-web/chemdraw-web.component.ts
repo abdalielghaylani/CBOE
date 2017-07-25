@@ -18,8 +18,9 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   @Input() editMode: boolean = false;
   @Input() id: string;
   @Input() activated: boolean = false;
-  protected drawingTool: any;
-  protected creatingCDD: boolean = false;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+  protected cdd: any;
+  protected creatingCdd: boolean = false;
   protected value: string;
   constructor(protected elementRef: ElementRef) {
   }
@@ -39,34 +40,46 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   }
 
   protected update() {
-    if (this.drawingTool) {
-      this.drawingTool.setViewOnly(!this.editMode);
-      this.drawingTool.fitToContainer();
+    if (this.cdd) {
+      this.cdd.setViewOnly(!this.editMode);
+      this.cdd.fitToContainer();
     } else {
       this.activate();
     }
   }
 
-  protected createDrawingTool() {
+  protected onContentChanged(e) {
+    this.valueUpdated.emit(this);
+  }
+
+  protected onCddInit(cdd) {
+    this.cdd = cdd;
+    this.creatingCdd = false;
+    cdd.fitToContainer();
+    cdd.setViewOnly(!this.editMode);
+    if (this.value) {
+      cdd.loadCDXML(this.value);
+      this.value = null;
+    }
+    cdd.markAsSaved();
+    cdd.setContentChangedHandler(e => {
+      this.onContentChanged(e);
+    });
+  }
+
+  protected createCdd() {
     let cddContainer = jQuery(this.elementRef.nativeElement).find('div');
     let attachmentElement = cddContainer[0];
-    if (this.drawingTool || this.creatingCDD || !attachmentElement) {
+    if (this.cdd || this.creatingCdd || !attachmentElement) {
       return;
     }
-    this.creatingCDD = true;
+    this.creatingCdd = true;
     const self = this;
     let params = {
       element: attachmentElement,
       viewonly: false,
-      callback: function (drawingTool) {
-        self.drawingTool = drawingTool;
-        self.creatingCDD = false;
-        drawingTool.fitToContainer();
-        drawingTool.setViewOnly(!self.editMode);
-        if (self.value) {
-          drawingTool.loadCDXML(self.value);
-          self.value = null;
-        }
+      callback: function (cdd) {
+        self.onCddInit(cdd);
       },
       licenseUrl: 'https://chemdrawdirect.perkinelmer.cloud/js/license.xml',
       config: { features: { enable: ['ExtendedCopyPaste'] } }
@@ -76,10 +89,10 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   };
 
   public setValue(value: string) {
-    if (this.drawingTool && !this.creatingCDD) {
-      this.drawingTool.clear();
+    if (this.cdd && !this.creatingCdd) {
+      this.cdd.clear();
       if (value) {
-        this.drawingTool.loadCDXML(value);
+        this.cdd.loadCDXML(value);
       }
     } else {
       this.value = value;
@@ -87,12 +100,12 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   }
 
   public getValue() {
-    return this.drawingTool ? this.drawingTool.getCDXML() : this.value;
+    return this.cdd ? this.cdd.getCDXML() : this.value;
   }
 
   public activate() {
-    if (this.activated && !this.drawingTool && this.id) {
-      this.createDrawingTool();
+    if (this.activated && !this.cdd && this.id) {
+      this.createCdd();
     }
   }
 };

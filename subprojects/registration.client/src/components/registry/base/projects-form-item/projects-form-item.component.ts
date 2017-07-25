@@ -29,6 +29,10 @@ export class RegProjectsFormItem extends RegTagBoxFormItem {
   }
 
   protected onValueChanged(e, d) {
-    d.component.option('formData.' + d.dataField, { Project: e.value.map(v => { return { ProjectID: v.toString() }; }) });
+    if (e.previousValue !== e.value) {
+      let value = { Project: e.value.map(v => { return { ProjectID: v.toString() }; }) };
+      d.component.option('formData.' + d.dataField, value);
+      this.onValueUpdated(this);
+    }
   }
 };
