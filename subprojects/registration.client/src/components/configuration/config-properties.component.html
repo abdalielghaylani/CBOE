@@ -3,7 +3,7 @@
   <dx-data-grid [columns]="configProperties.columns" [dataSource]="dataSource" [paging]="{enabled: false}" [height]="gridHeight" rowAlternationEnabled="true"
     (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event,true)'
     (onEditingStart)="onEditingStart($event)">
-    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
+    <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true" [texts]="{addRow:'Add a property'}"></dxo-editing>
     <dxo-sorting mode="single"></dxo-sorting>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
