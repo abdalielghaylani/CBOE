@@ -161,7 +161,7 @@ export class CViewGroup implements IViewGroup {
 
   private serializeValue(object: any, property: string) {
     let textObject = object[property];
-    if (textObject && typeof textObject === 'object') {
+    if (textObject && typeof textObject === 'object' && textObject.viewModel) {
       object[property] = object[property].toString();
     }
   }
