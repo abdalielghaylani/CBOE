@@ -176,16 +176,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected JArray ExtractPickListDomain()
         {
+            var args = new Dictionary<string, object>();
+            args.Add(":loggedInUser", null);
             var pickListDomains = ExtractData("SELECT * FROM VW_PICKLISTDOMAIN");
             foreach (var pickListDomain in pickListDomains)
             {
+                var where = pickListDomain["EXT_SQL_FILTER"];
+                if (where != null)
+                {
+                    where = where.ToString().Replace("&&loggedInUser", ":loggedInUser");
+                }
                 var sql = string.Format("SELECT {0}, {1} FROM {2} {3} {4}",
                     pickListDomain["EXT_ID_COL"],
                     pickListDomain["EXT_DISPLAY_COL"],
                     pickListDomain["EXT_TABLE"],
-                    pickListDomain["EXT_FILTER"],
-                    pickListDomain["EXT_SQL_SORT_ORDER"]);
-                pickListDomain["data"] = ExtractData(sql);
+                    where,
+                    pickListDomain["EXT_SQL_SORTORDER"]);
+                pickListDomain["data"] = ExtractData(sql, args);
             }
             return pickListDomains;
         }
