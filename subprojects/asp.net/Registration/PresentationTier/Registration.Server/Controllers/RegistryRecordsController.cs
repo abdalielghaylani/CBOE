@@ -263,8 +263,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
+                    registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                     registryRecord = registryRecord.Save(duplicateCheck);
-
+                    ValidateUpdatedRecord(registryRecord);
                     if (string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
                     {
                         return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
@@ -284,6 +285,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         {
                             errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
                         });
+                    }
+                    if (ex is RegistrationException)
+                    {
+                        if (errorMessage.EndsWith(".")) errorMessage.Substring(0, errorMessage.Length - 1);
+                        errorMessage += " - " + ex.Message;
                     }
                     throw new RegistrationException(errorMessage, ex);
                 }
@@ -461,7 +467,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
                         });
                     }
-
+                    if (ex is RegistrationException)
+                    {
+                        if (errorMessage.EndsWith(".")) errorMessage.Substring(0, errorMessage.Length - 1);
+                        errorMessage += " - " + ex.Message;
+                    }
                     throw new RegistrationException(errorMessage, ex);
                 }
 

@@ -181,7 +181,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
                         });
                     }
-
+                    if (ex is RegistrationException)
+                    {
+                        if (errorMessage.EndsWith(".")) errorMessage.Substring(0, errorMessage.Length - 1);
+                        errorMessage += " - " + ex.Message;
+                    }
                     throw new RegistrationException(errorMessage, ex);
                 }
 
