@@ -94,7 +94,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 var recordXml = new XmlDocument();
-                recordXml.LoadXml(record);               
+                recordXml.LoadXml(record);
 
                 const string personCreatedIdPath = "/MultiCompoundRegistryRecord/PersonCreated";
                 XmlNode regNode = recordXml.SelectSingleNode(personCreatedIdPath);
@@ -117,39 +117,101 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(401, type: typeof(JObject))]
         public async Task<IHttpActionResult> CreateRecord(DuplicateResolutionData inputData)
         {
-            return await CallServiceMethod((service) =>
+            return await CallMethod(() =>
             {
                 var doc = new XmlDocument();
                 doc.LoadXml(inputData.Data);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var chkDuplicate = string.Empty;
-                if (!string.IsNullOrEmpty(inputData.DuplicateCheckOption) && inputData.DuplicateCheckOption != "N")
+                if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
+                    inputData.DuplicateCheckOption = "N";
+
+                RegistryRecord regRecord = RegistryRecord.NewRegistryRecord();
+                regRecord.InitializeFromXml(recordString, true, true);
+                regRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(inputData.DuplicateCheckOption);
+                regRecord = regRecord.Register(duplicateCheck);
+
+                if (string.IsNullOrWhiteSpace(regRecord.FoundDuplicates))
                 {
-                    chkDuplicate = service.CheckUniqueRegistryRecord(recordString, inputData.DuplicateCheckOption);
-                }
-                if (string.IsNullOrEmpty(chkDuplicate))
-                {
-                    var resultString = service.CreateRegistryRecord(recordString, "N");
-                    doc.LoadXml(resultString);
-                    var errorMessage = GetNodeText(doc, "//ErrorMessage");
-                    if (!string.IsNullOrEmpty(errorMessage))
-                        throw new RegistrationException(errorMessage);
-                    var id = Convert.ToInt32(GetNodeText(doc, "//RegID"));
-                    var regNum = GetNodeText(doc, "//RegNum");
                     var data = new JObject(
-                        new JProperty("batchCount", Convert.ToInt32(GetNodeText(doc, "//BatchNumber"))),
-                        new JProperty("batchId", Convert.ToInt32(GetNodeText(doc, "//BatchID")))
-                    );
-                    var redBoxWarning = GetNodeText(doc, "//RedBoxWarning");
-                    if (!string.IsNullOrEmpty(redBoxWarning))
-                        data.Add(new JProperty("redBoxWarning", redBoxWarning));
-                    return new ResponseData(id, regNum, null, data);
+                         new JProperty("batchCount", regRecord.BatchList.Count),
+                         new JProperty("batchId", regRecord.BatchList[0].ID)
+                     );
+
+                    if (!string.IsNullOrEmpty(regRecord.RedBoxWarning))
+                        data.Add(new JProperty("redBoxWarning", regRecord.RedBoxWarning));
+
+                    return new ResponseData(regRecord.ID, regRecord.RegNum, null, data);
                 }
                 else
                 {
-                    return new ResponseData(null, null, null, GetDuplicateRecords(chkDuplicate));
+                    // duplicate records found, return list of duplicate records
+                    return new ResponseData(null, null, null, GetDuplicateRecords(regRecord.FoundDuplicates));
                 }
             });
+        }
+
+        /// <summary>
+        /// Strips a UTF8 or UTF16 byte-order mark from the incoming string.
+        /// </summary>
+        /// <param name="stringToClean">the string to strip any leading byte-order mark from</param>
+        /// <returns>the argument string with any UTF8 or UTF16 preamble removed</returns>
+        private string RemoveContentBeforeProlog(string stringToClean)
+        {
+            if (string.IsNullOrEmpty(stringToClean))
+                return stringToClean;
+
+            // enable fall-through for case where no BOM is found
+            string bomFree = stringToClean;
+
+            // eliminate any BOM as well as any other unexpected characters
+            // forces explicit encoding declaration for xml strings, otherwise assumes UTF-8
+            int index = stringToClean.IndexOf("<");
+            if (index > 0)
+                bomFree = stringToClean.Substring(index, stringToClean.Length - index);
+
+            return bomFree;
+        }
+
+        /// <summary>
+        /// Translates incoming string-based definitions for RegistryRecord.DuplicateCheck
+        /// enumeration members;
+        /// </summary>
+        /// <param name="duplicateCheck"> The duplicate check option</param>
+        /// <returns>A matched enumeration member of RegistryRecord.DuplicateCheck</returns>
+        private DuplicateCheck TranslateDuplicateCheckingInstruction(string duplicateCheck)
+        {
+            DuplicateCheck checkingMechanism = DuplicateCheck.None;
+            string msg =
+                "Invalid duplicate checking mechanism requested. Please use 'C'(ompound), 'M'(ixture), or 'N'(one)";
+            switch (duplicateCheck.ToUpper())
+            {
+                case "COMPOUND":
+                case "COMPOUNDCHECK":
+                case "C":
+                    {
+                        checkingMechanism = DuplicateCheck.CompoundCheck;
+                        break;
+                    }
+                case "MIXTURE":
+                case "MIXCHECK":
+                case "M":
+                    {
+                        checkingMechanism = DuplicateCheck.MixCheck;
+                        break;
+                    }
+                case "NONE":
+                case "N":
+                    {
+                        checkingMechanism = DuplicateCheck.None;
+                        break;
+                    }
+                default:
+                    {
+                        throw new InvalidCastException(msg);
+                    }
+            }
+            return checkingMechanism;
         }
 
         [HttpPut]
@@ -164,64 +226,66 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var doc = new XmlDocument();
                 doc.LoadXml(inputData.Data);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var chkDuplicate = string.Empty;
-                if (!string.IsNullOrEmpty(inputData.DuplicateCheckOption) && inputData.DuplicateCheckOption != "N")
+                if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
+                    inputData.DuplicateCheckOption = "N";
+
+                DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(inputData.DuplicateCheckOption);
+                string errorMessage = null;
+                RegistryRecord registryRecord = null;
+                try
                 {
-                    chkDuplicate = service.CheckUniqueRegistryRecord(recordString, inputData.DuplicateCheckOption);
-                }
-                if (string.IsNullOrEmpty(chkDuplicate))
-                {
-                    string errorMessage = null;
-                    RegistryRecord registryRecord = null;
-                    try
+                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
+                    var xml = string.Empty;
+                    var xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(inputData.Data);
+                    errorMessage = "Unable to process chemical structures.";
+                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                    errorMessage = "Unable to determine the registry number.";
+                    const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
+                    XmlNode regNode = doc.SelectSingleNode(regNumXPath);
+                    string regNum = regNode.InnerText.Trim();
+                    errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
+                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                    if (registryRecord == null) throw new Exception();
+                    errorMessage = "Record is locked and cannot be updated.";
+                    if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
+                    errorMessage = "Unable to update the internal record.";
+                    registryRecord.UpdateFromXml(xml);
+                    errorMessage = "Cannot set batch prefix.";
+                    registryRecord.BatchPrefixDefaultOverride(true);
+                    errorMessage = "Unable to save the record.";
+                    registryRecord = registryRecord.Save(duplicateCheck);
+
+                    if (string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
                     {
-                        errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
-                        var xml = string.Empty;
-                        var xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(inputData.Data);
-                        errorMessage = "Unable to process chemical structures.";
-                        xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                        errorMessage = "Unable to determine the registry number.";
-                        const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
-                        XmlNode regNode = doc.SelectSingleNode(regNumXPath);
-                        string regNum = regNode.InnerText.Trim();
-                        errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
-                        registryRecord = RegistryRecord.GetRegistryRecord(regNum);
-                        if (registryRecord == null) throw new Exception();
-                        errorMessage = "Record is locked and cannot be updated.";
-                        if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
-                        errorMessage = "Unable to update the internal record.";
-                        registryRecord.UpdateFromXml(xml);
-                        errorMessage = "Cannot set batch prefix.";
-                        registryRecord.BatchPrefixDefaultOverride(true);
-                        errorMessage = "Unable to save the record.";
-                        registryRecord.Save(DuplicateCheck.CompoundCheck);
+                        return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        if (registryRecord != null && ex is ValidationException)
+                        // duplicate records found, return list of duplicate records
+                        return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord.FoundDuplicates));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    if (registryRecord != null && ex is ValidationException)
+                    {
+                        List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
+                        brokenRuleDescriptionList.ForEach(rd =>
                         {
-                            List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
-                            brokenRuleDescriptionList.ForEach(rd =>
-                            {
-                                errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
-                            });
-                        }
-
-                        throw new RegistrationException(errorMessage, ex);
+                            errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
+                        });
                     }
-
-                    return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
-                }
-                else
-                {                   
-                    return new ResponseData(null, null, null, GetDuplicateRecords(chkDuplicate));
+                    throw new RegistrationException(errorMessage, ex);
                 }
             });
         }
 
         private JObject GetDuplicateRecords(string chkDuplicate)
         {
+            if (!string.IsNullOrWhiteSpace(chkDuplicate))
+                return null;
+
             List<string> duplicateRegIds = new List<string>();
             XmlDocument xmldoc = new XmlDocument();
             xmldoc.LoadXml(chkDuplicate);
@@ -446,14 +510,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 doc.LoadXml(data.Data);
                 var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 var result = service.CreateRegRecordWithUserPreference(regRecordXml, data.DuplicateCheckOption);
-              
+
                 doc.LoadXml(result);
                 var errorMessage = GetNodeText(doc, "//ErrorMessage");
                 if (!string.IsNullOrEmpty(errorMessage))
                     throw new RegistrationException(errorMessage);
 
                 var id = Convert.ToInt32(GetNodeText(doc, "//RegID"));
-                var regNum = GetNodeText(doc, "//RegNum"); 
+                var regNum = GetNodeText(doc, "//RegNum");
                 return new ResponseData(id, regNum, null, null);
             });
         }
