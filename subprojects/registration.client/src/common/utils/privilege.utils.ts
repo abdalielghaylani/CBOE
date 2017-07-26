@@ -72,8 +72,8 @@ export class PrivilegeUtils {
     isLoggedInUserSuperVisor: boolean, userPrivileges: any[]): boolean {
 
     // REGISTER_DIRECT privilege available, user can directly register new record
-    if (newRecord && this.userHasPrivilege('REGISTER_DIRECT', userPrivileges)) {
-      return true;
+    if (newRecord) {
+      return this.userHasPrivilege('REGISTER_DIRECT', userPrivileges);
     }
 
     // EDIT_COMPOUND_TEMP privilege is required to register an already submitted record
@@ -87,7 +87,7 @@ export class PrivilegeUtils {
       return false;
     }
 
-    // if logged in user is owner of the record, he can register his record
+    // if logged in user is owner of the record, he can register his already submitted record
     if (isLoggedInUserOwner) {
       return true;
     }
