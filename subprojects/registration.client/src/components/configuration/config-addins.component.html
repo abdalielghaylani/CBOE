@@ -44,9 +44,9 @@
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-          <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Event Subscription</a>
+          <a class="list-header tan" data-toggle="collapse" href="#collapseTwo">Event Subscription</a>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
+        <div id="collapseTwo" class="panel-collapse collapse in">
           <div class="p2">
             <dx-data-grid *ngIf="configAddIn.window.viewIndex==='add'" [dataSource]="configAddIn.editRow.events" [columns]="configAddIn.columns.editColumn.events"
               [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
@@ -67,7 +67,7 @@
     <div class="panel-group" id="accordion">
       <div class="panel panel-default">
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-          <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Configuration</a>
+          <a class="list-header tan" data-toggle="collapse" href="#collapseThree">Configuration</a>
           <command-button [hidden]="configAddIn.configView==='view'" testid="config-cancel-button" (click)="configAddIn.cancelEditConfig()"
             iconName="close" title="Cancel Edit"></command-button>
           <command-button [hidden]="configAddIn.configView==='edit'" testid="config-edit-button" (click)="configAddIn.editConfig()"
@@ -75,7 +75,7 @@
           <command-button [hidden]="configAddIn.configView==='view'" testid="config-save-button" (click)="configAddIn.saveConfig()"
             iconName="save" title="Save Config"></command-button>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
+        <div id="collapseThree" class="panel-collapse collapse in">
           <div class="p2">
             <code *ngIf="configAddIn.configView==='view'"> {{configAddIn.editRow.Configuration}}</code>
             <dx-form minColWidth=300 *ngIf="configAddIn.configView==='edit'" [colCount]="1" [formData]="configAddIn.editRow" [items]="configAddIn.columns.editColumn.config"></dx-form>
