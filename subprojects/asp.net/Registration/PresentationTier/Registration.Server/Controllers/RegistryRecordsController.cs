@@ -49,6 +49,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return regNum;
         }
 
+        private void ValidateUpdatedRecord(RegistryRecord registryRecord)
+        {
+            if (registryRecord.ID == 0 || !string.IsNullOrEmpty(registryRecord.RedBoxWarning))
+            {
+                var message = !string.IsNullOrEmpty(registryRecord.RedBoxWarning) ? registryRecord.RedBoxWarning : "An unexpected error happened while saving the registry record!";
+                throw new RegistrationException(message);
+            }
+        }
+
         #region Permanent Records
         [HttpGet]
         [Route(Consts.apiPrefix + "records")]
@@ -392,14 +401,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(401, type: typeof(JObject))]
         public async Task<IHttpActionResult> CreateTempRecord(JObject recordData)
         {
-            return await CallServiceMethod((service) =>
+            return await CallMethod(() =>
             {
                 var doc = new XmlDocument();
                 doc.LoadXml((string)recordData["data"]);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var resultString = service.CreateTemporaryRegistryRecord(recordString);
-                return new ResponseData(Convert.ToInt32(resultString));
-            });
+                RegistryRecord registryRecord = RegistryRecord.NewRegistryRecord();
+                registryRecord.InitializeFromXml(recordString, true, false);
+                registryRecord.BatchPrefixDefaultOverride(true);
+                registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                RegistryRecord savedRegistryRecord = registryRecord.Save();
+                ValidateUpdatedRecord(savedRegistryRecord);
+                return new ResponseData(savedRegistryRecord.ID);
+            }, new string[] { "ADD_COMPOUND_TEMP" });
         }
 
         [HttpPut]
@@ -433,7 +447,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
+                    registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                     registryRecord = registryRecord.Save();
+                    ValidateUpdatedRecord(registryRecord);
                 }
                 catch (Exception ex)
                 {
