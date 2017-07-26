@@ -6,7 +6,7 @@ import {
   INITIAL_USER_STATE,
   UserFactory,
 } from './session.initial-state';
-import { notifyError } from '../../../common';
+import { notifyError, notifyException } from '../../../common';
 
 export function sessionReducer(
   state: ISessionRecord = INITIAL_SESSION_STATE,
@@ -52,7 +52,7 @@ export function sessionReducer(
       if (action.payload.status && action.payload.status === 404) {
         return INITIAL_SESSION_STATE;
       }
-      notifyError(action.payload);
+      notifyException('The operation failed unexpectedly', action.payload, 5000);
       return state;
 
     default:
