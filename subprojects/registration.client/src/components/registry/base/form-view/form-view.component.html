@@ -1,4 +1,7 @@
 <dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="!editMode" labelLocation="top">
+  <div *dxTemplate="let data of 'dateTemplate'">
+    <reg-date-form-item-template [editMode]="editMode" [viewModel]="data"></reg-date-form-item-template>
+  </div>
   <div *dxTemplate="let data of 'projectsTemplate'">
     <reg-projects-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-projects-form-item-template>
   </div>

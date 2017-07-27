@@ -3,10 +3,14 @@ import dxNotify from 'devextreme/ui/notify';
 const notificationDuration = 2000;
 
 export function getExceptionMessage(baseMessage: string, error): string {
-  let errorResult, reason;
+  let errorResult;
+  let reason: string;
   if (error._body) {
     errorResult = JSON.parse(error._body);
     reason = errorResult.Message;
+    if (reason.endsWith('!')) {
+      reason = reason.substring(0, reason.length - 1);
+    }
   }
   return baseMessage + ((reason) ? ': ' + reason : '!');
 }

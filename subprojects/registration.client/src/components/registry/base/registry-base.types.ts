@@ -60,20 +60,10 @@ export class CViewGroup implements IViewGroup {
     return fe.Id ? fe.Id : fe._name.replace(/\s/g, '');
   }
 
-  private checkStructure(fe: IFormElement, item: any) {
+  private checkEditorType(fe: IFormElement, item: any) {
     let type = fe.displayInfo.type;
-    let structureField = type.endsWith('COEChemDraw');
-    let readOnly = type.endsWith('COEChemDrawEmbedReadOnly');
-    if (structureField || readOnly) {
-      item.template = readOnly ? 'structureImageTemplate' : 'structureTemplate';
-    }
-    if (structureField) {
-      item.colSpan = 5;
-    }
-  }
-
-  private checkDropDown(fe: IFormElement, item: any) {
-    if (fe.displayInfo.type.endsWith('COEDropDownList')) {
+    let readOnly = type.endsWith('ReadOnly');
+    if (type.endsWith('COEDropDownList')) {
       let pickListDomain = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
       if (pickListDomain) {
         if (pickListDomain.__text) {
@@ -86,27 +76,33 @@ export class CViewGroup implements IViewGroup {
           };
         }
       }
-    }
-  }
-
-  private checkIdentifierList(fe: IFormElement, item: any) {
-    if (fe.displayInfo.type.endsWith('COEWebGridUltra') && fe.bindingExpression.indexOf('IdentifierList') >= 0) {
+    } else if (type.endsWith('COEWebGridUltra') && fe.bindingExpression.indexOf('IdentifierList') >= 0) {
       item.template = 'idListTemplate';
       item.editorOptions = {
         idListType: fe.Id.startsWith('S') ? 'S' : fe.Id.startsWith('C') ? 'C' : fe.Id.startsWith('B') ? 'B' : 'R',
         dataField: item.dataField
       };
       item.colSpan = 2;
-    }
-  }
-
-  private checkOthers(fe: IFormElement, item: any) {
-    if (fe.bindingExpression.endsWith('ProjectList')) {
+    } else if (type.indexOf('COEChemDraw') > 0) {
+      item.template = readOnly ? 'structureImageTemplate' : 'structureTemplate';
+      if (!readOnly) {
+        item.colSpan = 5;
+      }
+    } else if (type.indexOf('COEDatePicker') > 0) {
+      item.template = 'dateTemplate';
+    } else if (fe.bindingExpression.endsWith('ProjectList')) {
       item.template = 'projectsTemplate';
     } else if (fe.displayInfo.type.endsWith('COEFragments')) {
       item.template = 'fragmentsTemplate';
       item.colSpan = 5;
     }
+    if (!item.template) {
+      item.editorType = 'dxTextBox';
+    }
+    // if (!item.editorOptions) {
+    //   item.editorOptions = {};
+    // }
+    // item.editorOptions.readOnly = readOnly;
   }
 
   private getEntryInfo(displayMode: string, id: string): CEntryInfo {
@@ -156,7 +152,7 @@ export class CViewGroup implements IViewGroup {
     let dataSource = entryInfo.dataSource.toLowerCase();
     return dataSource.indexOf('component') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.ComponentList.Component[0])
       : dataSource.indexOf('batch') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.BatchList.Batch[0])
-      : this.parseEntryValue(entryInfo.bindingExpression, viewModel);
+        : this.parseEntryValue(entryInfo.bindingExpression, viewModel);
   }
 
   private serializeValue(object: any, property: string) {
@@ -166,7 +162,7 @@ export class CViewGroup implements IViewGroup {
     }
   }
 
-  private parseAndSetEntryValue(bindingExpression: string, viewModel: any,  value, serialize: boolean = false) {
+  private parseAndSetEntryValue(bindingExpression: string, viewModel: any, value, serialize: boolean = false) {
     bindingExpression = this.fixBindingExpression(bindingExpression);
     let objectNames = bindingExpression.split('.');
     let nextObject = viewModel;
@@ -210,7 +206,7 @@ export class CViewGroup implements IViewGroup {
     let dataSource = entryInfo.dataSource.toLowerCase();
     dataSource.indexOf('component') >= 0 ? this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel.ComponentList.Component[0], entryValue, serialize)
       : dataSource.indexOf('batch') >= 0 ? this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel.BatchList.Batch[0], entryValue, serialize)
-      : this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel, entryValue, serialize);
+        : this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel, entryValue, serialize);
   }
 
   private isIdText(fe: IFormElement): boolean {
@@ -267,7 +263,7 @@ export class CViewGroup implements IViewGroup {
       if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
         sorted.push(f);
       }
-    });    
+    });
     return sorted;
   }
 
@@ -323,10 +319,7 @@ export class CViewGroup implements IViewGroup {
             }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
-            this.checkDropDown(fe, item);
-            this.checkStructure(fe, item);
-            this.checkIdentifierList(fe, item);
-            this.checkOthers(fe, item);
+            this.checkEditorType(fe, item);
             this.removeDuplicate(items, item);
             items.push(item);
           }

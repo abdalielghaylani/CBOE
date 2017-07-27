@@ -4,22 +4,19 @@ import { IAppState } from '../../../../redux';
 import { IFormItemTemplate } from '../registry-base.types';
 
 @Component({
-  selector: 'reg-drop-down-form-item-template',
-  template: require('./drop-down-form-item.component.html'),
+  selector: 'reg-date-form-item-template',
+  template: require('./date-form-item.component.html'),
   styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
+export class RegDateFormItem implements IFormItemTemplate, OnChanges {
   @Input() activated: boolean;
   @Input() editMode: boolean;
   @Input() viewModel: any = {};
   @Input() viewConfig: any;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
-  protected dataSource: any[];
-  protected value: number;
-  protected valueExpr: string;
-  protected displayExpr: string;
+  protected value: Date;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
@@ -28,26 +25,25 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
     this.update();
   }
 
+  protected deserializeValue(value: string): Date {
+    return new Date(value);
+  }
+
+  protected serializeValue(value: Date): string  {
+    value.setHours(12);
+    let formatted = value.toISOString().substring(0, 19).replace('T', ' ');
+    return formatted;
+  }
+
   protected update() {
     let options = this.viewModel.editorOptions;
-    this.value = options && options.value ? +options.value : undefined;
-    let pickListDomain = options.pickListDomain as number;
-    let lookups = this.ngRedux.getState().session.lookups;
-    if (lookups) {
-      let filtered = lookups.pickListDomains.filter(d => d.ID === pickListDomain);
-      if (filtered) {
-        let pickListDomainInfo = filtered[0];
-        this.dataSource = pickListDomainInfo.data;
-        this.valueExpr = pickListDomainInfo.EXT_ID_COL;
-        this.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
-      }
-    }
+    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
   }
 
   protected onValueChanged(e, d) {
     if (e.previousValue !== e.value) {
-      let value = e.value;
-      d.component.option('formData.' + d.dataField, e.value);
+      let value = this.serializeValue(e.value);
+      d.component.option('formData.' + d.dataField, value);
       this.onValueUpdated(this);
     }
   }
