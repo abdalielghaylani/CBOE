@@ -1,4 +1,4 @@
-import { ConfigurationActions } from '../../actions';
+import { ConfigurationActions, SessionActions } from '../../actions';
 import { INITIAL_CONFIG_STATE } from './configuration.initial-state';
 import { IConfigurationRecord } from './configuration.types';
 import { FormGroupType, copyObjectAndSet, convertToFormGroup } from '../../../common';
@@ -21,6 +21,9 @@ export function configurationReducer(
     case ConfigurationActions.LOAD_FORMGROUP:
       let a3 = action as ReduxActions.Action<{ type: FormGroupType, data: string }>;
       return state.update('formGroups', () => copyObjectAndSet(state.formGroups, FormGroupType[a3.payload.type], convertToFormGroup(a3.payload.data)));
+
+    case SessionActions.LOGOUT_USER:
+      return INITIAL_CONFIG_STATE;
 
     default:
       return state;
