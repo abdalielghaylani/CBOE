@@ -178,15 +178,25 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   onCellPrepared(e, t?: string) {
+    
+    let disableEditCause = 'This type of property is not editable because it would '
+      + 'affect existing data. You can either delete or hide this property and '
+      + 'create a new property with the desired changes. In order to delete the '
+      + 'property, you must first delete any data values previously stored in it.';
+
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let $links = e.cellElement.find('.dx-link');
       $links.text('');
       if (e.data.editable || t === 'validation') {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+        $links.filter('.dx-link-edit').attr({'data-toggle': 'tooltip', 'title' : 'Edit'});
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        $links.filter('.dx-link-delete').attr({'data-toggle': 'tooltip', 'title' : 'Delete'});
       } else {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        $links.filter('.dx-link-delete').attr({'data-toggle': 'tooltip', 'title' : 'Delete'});
         $links.filter('.dx-link-edit').append(`<i class='dx-icon-edit' style='font-size:18px;color:silver;cursor:default'></i>`);
+        $links.filter('.dx-link-edit').attr({'data-toggle': 'tooltip', 'title' : disableEditCause});
       }
     }
   }
