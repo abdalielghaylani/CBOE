@@ -68,9 +68,9 @@
       <div class="panel panel-default">
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
           <a class="list-header tan" data-toggle="collapse" href="#collapseThree">Configuration</a>
-          <command-button [hidden]="configAddIn.configView==='view'" testid="config-cancel-button" (click)="configAddIn.cancelEditConfig()"
+          <command-button style="float: right; margin-right: 23px;" [hidden]="configAddIn.configView==='view'" testid="config-cancel-button" (click)="configAddIn.cancelEditConfig()"
             iconName="close" title="Cancel Edit"></command-button>
-          <command-button [hidden]="configAddIn.configView==='edit'" testid="config-edit-button" (click)="configAddIn.editConfig()"
+          <command-button style="float: right; margin-right: 23px;" [hidden]="configAddIn.configView==='edit'" testid="config-edit-button" (click)="configAddIn.editConfig()"
             iconName="edit" title="Edit Config"></command-button>
           <command-button [hidden]="configAddIn.configView==='view'" testid="config-save-button" (click)="configAddIn.saveConfig()"
             iconName="save" title="Save Config"></command-button>
