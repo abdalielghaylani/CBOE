@@ -23,6 +23,9 @@ export class RegIdListFormItem extends RegDataGridFormItem {
 
   serializeValue(value: any): IIdentifierList {
     return value && value.length > 0 ? { Identifier: value.map(v => {
+      if (!v.id) {
+        return { IdentifierID: {}, InputText: undefined };
+      }
       let idColumn = this.columns.filter(c => c.dataField === 'id')[0];
       let name = idColumn.lookup.dataSource.filter(i => i.ID === +v.id)[0].NAME;
       return {
