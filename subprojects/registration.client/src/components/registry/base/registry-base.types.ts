@@ -101,10 +101,10 @@ export class CViewGroup implements IViewGroup {
     if (!item.template) {
       item.editorType = 'dxTextBox';
     }
-    // if (!item.editorOptions) {
-    //   item.editorOptions = {};
-    // }
-    // item.editorOptions.readOnly = readOnly;
+    if (!item.editorOptions) {
+      item.editorOptions = {};
+    }
+    item.editorOptions.readOnly = readOnly;
   }
 
   private getEntryInfo(displayMode: string, id: string): CEntryInfo {

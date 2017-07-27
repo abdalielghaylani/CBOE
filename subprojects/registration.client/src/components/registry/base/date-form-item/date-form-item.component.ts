@@ -17,6 +17,7 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
   @Input() viewConfig: any;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
   protected value: Date;
+  protected readOnly: boolean;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
@@ -31,7 +32,7 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
 
   serializeValue(value: Date): string  {
     // Change to 9:00 AM GMT
-    value = new Date(value.getTime() + (9 * 60 - value.getTimezoneOffset()) * 60000);
+    value.setUTCHours(9);
     let formatted = value.toISOString().substring(0, 19).replace('T', ' ') + ' AM';
     return formatted;
   }
@@ -39,6 +40,7 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
   protected update() {
     let options = this.viewModel.editorOptions;
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
+    this.readOnly = !this.editMode || options.readOnly;
   }
 
   protected onValueChanged(e, d) {
