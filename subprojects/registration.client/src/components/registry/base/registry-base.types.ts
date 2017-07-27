@@ -10,6 +10,8 @@ export interface IViewControl {
 }
 
 export interface IFormItemTemplate extends IViewControl {
+  deserializeValue(value: any): any;
+  serializeValue(value: any): any;
 }
 
 export interface IViewGroup {

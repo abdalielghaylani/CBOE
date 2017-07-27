@@ -28,6 +28,14 @@ export class RegStructureImageFormItem implements IFormItemTemplate, OnChanges {
     this.update();
   }
 
+  deserializeValue(value: any): any {
+    return value;
+  }
+
+  serializeValue(value: any): any  {
+    return value;
+  }
+
   protected update() {
     let value = this.viewModel.editorOptions.value;
     if (!value) {

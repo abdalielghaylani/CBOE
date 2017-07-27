@@ -25,6 +25,14 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
     this.update();
   }
 
+  deserializeValue(value: any): any {
+    return value;
+  }
+
+  serializeValue(value: any): any  {
+    return value;
+  }
+  
   protected update() {
     let options = this.viewModel.editorOptions;
     this.dataSource = options && options.value ? options.value : [];

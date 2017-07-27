@@ -15,14 +15,13 @@ export class RegIdListFormItem extends RegDataGridFormItem {
     super();
   }
 
-  private deserializeValue(value: IIdentifierList) {
+  deserializeValue(value: IIdentifierList): any {
     return value.Identifier ? value.Identifier.map(i => {
       return { id: +i.IdentifierID.__text, inputText: i.InputText };
     }) : [];
   }
 
-  private serializeValue(): IIdentifierList {
-    let value = this.dataSource;
+  serializeValue(value: any): IIdentifierList {
     return value && value.length > 0 ? { Identifier: value.map(v => {
       let idColumn = this.columns.filter(c => c.dataField === 'id')[0];
       let name = idColumn.lookup.dataSource.filter(i => i.ID === +v.id)[0].NAME;
@@ -80,7 +79,7 @@ export class RegIdListFormItem extends RegDataGridFormItem {
   }
 
   protected onValueChanged(component) {
-    let value = this.serializeValue();
+    let value = this.serializeValue(this.dataSource);
     component.option(`formData.${this.viewModel.editorOptions.dataField}`, value);
     this.onValueUpdated(this);    
   }

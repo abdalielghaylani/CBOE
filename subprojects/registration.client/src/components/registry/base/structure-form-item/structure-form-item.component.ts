@@ -21,9 +21,20 @@ export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTempla
     super(elementRef);
   }
 
+  deserializeValue(value: any): any {
+    if (typeof value === 'object' && value.viewConfig) {
+      value = value.toString();
+    }
+    return value;
+  }
+
+  serializeValue(value: any): any  {
+    return value;
+  }
+
   protected update() {
     let options = this.viewModel.editorOptions;
-    this.setValue(options && options.value ? options.value : null);
+    this.setValue(options && options.value ? this.deserializeValue(options.value) : null);
     super.update();
   }
 

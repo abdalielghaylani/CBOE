@@ -28,9 +28,17 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
     this.update();
   }
 
+  deserializeValue(value: string): number {
+    return +value;
+  }
+
+  serializeValue(value: number): string  {
+    return value.toString();
+  }
+
   protected update() {
     let options = this.viewModel.editorOptions;
-    this.value = options && options.value ? +options.value : undefined;
+    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
     let pickListDomain = options.pickListDomain as number;
     let lookups = this.ngRedux.getState().session.lookups;
     if (lookups) {
@@ -47,7 +55,7 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
   protected onValueChanged(e, d) {
     if (e.previousValue !== e.value) {
       let value = e.value;
-      d.component.option('formData.' + d.dataField, e.value);
+      d.component.option('formData.' + d.dataField, this.serializeValue(e.value));
       this.onValueUpdated(this);
     }
   }

@@ -23,10 +23,18 @@ export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
     this.update();
   }
 
+  deserializeValue(value: any): any {
+    return value;
+  }
+
+  serializeValue(value: any): any  {
+    return value;
+  }
+
   protected update() {
     let options = this.viewModel.editorOptions;
     if (options) {
-      this.value = options.value ? options.value : [];
+      this.value = options.value ? this.deserializeValue(options.value) : [];
       this.dataSource = options.dataSource;
       this.displayExpr = options.displayExpr;
       this.valueExpr = options.valueExpr;
@@ -34,7 +42,7 @@ export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
   }
 
   protected onValueChanged(e, d) {
-    let value = e.value;
+    let value = this.serializeValue(e.value);
     d.component.option('formData.' + d.dataField, value);
     this.onValueUpdated(this);
   }

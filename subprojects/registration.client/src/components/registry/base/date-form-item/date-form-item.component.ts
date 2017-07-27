@@ -25,11 +25,11 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
     this.update();
   }
 
-  protected deserializeValue(value: string): Date {
+  deserializeValue(value: string): Date {
     return new Date(value);
   }
 
-  protected serializeValue(value: Date): string  {
+  serializeValue(value: Date): string  {
     // Change to 9:00 AM GMT
     value = new Date(value.getTime() + (9 * 60 - value.getTimezoneOffset()) * 60000);
     let formatted = value.toISOString().substring(0, 19).replace('T', ' ') + ' AM';
