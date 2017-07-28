@@ -109,14 +109,14 @@ export class RegistryEpics {
       });
   }
 
-  private createDuplicateRecord: Epic = (action$: Observable<ReduxActions.Action<{ data: IRecordDetail, duplicateCheckOption: string }>>) => {
+  private createDuplicateRecord: Epic = (action$: Observable<ReduxActions.Action<{ data: IRecordDetail, duplicateAction: string, regNo: string }>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.CREATE_DUPLICATE_RECORD)
       .mergeMap(({ payload }) => {
-        let data = { data: payload.data.data, duplicateCheckOption: payload.duplicateCheckOption };
+        let data = { data: payload.data.data, duplicateAction: payload.duplicateAction, regNo: payload.regNo };
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return (
-          this.http.post(`${apiUrlPrefix}/createDuplicateRecord`, data, options))
+          this.http.post(`${apiUrlPrefix}/records/duplicate`, data, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
             let newId = responseData.regNumber;

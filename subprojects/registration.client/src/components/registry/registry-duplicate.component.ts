@@ -138,7 +138,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     this.loadingVisible = true;
     this.actions.createDuplicate(
       this.ngRedux.getState().registry.previousRecordDetail,
-      'Duplicate');
+      'Duplicate', '');
   }
 
   cancelDuplicateResolution(e) {
