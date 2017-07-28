@@ -161,6 +161,7 @@
     <Compile Include="Models\AddinData.cs" />
     <Compile Include="Models\AddinEvent.cs" />
     <Compile Include="Models\ControlState.cs" />
+    <Compile Include="Models\DuplicateActionData.cs" />
     <Compile Include="Models\DuplicateResolutionData.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Batch.cs" />

@@ -13,6 +13,7 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Framework.COESecurityService;
+using RegistrationWebApp.Forms.ComponentDuplicates.ContentArea;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -128,17 +129,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var doc = new XmlDocument();
-                doc.LoadXml(inputData.Data);
-                var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
                     inputData.DuplicateCheckOption = "N";
 
-                RegistryRecord regRecord = RegistryRecord.NewRegistryRecord();
-                regRecord.InitializeFromXml(recordString, true, true);
-                regRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
-                DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(inputData.DuplicateCheckOption);
-                regRecord = regRecord.Register(duplicateCheck);
+                RegistryRecord regRecord = RegisterRecord(inputData.Data, inputData.DuplicateCheckOption);
 
                 if (string.IsNullOrWhiteSpace(regRecord.FoundDuplicates))
                 {
@@ -158,6 +152,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     return new ResponseData(null, null, null, GetDuplicateRecords(regRecord.FoundDuplicates));
                 }
             });
+        }
+
+        private RegistryRecord RegisterRecord(string data, string duplicateCheckOption)
+        {
+            var doc = new XmlDocument();
+            doc.LoadXml(data);
+            var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+
+            RegistryRecord regRecord = RegistryRecord.NewRegistryRecord();
+            regRecord.InitializeFromXml(recordString, true, true);
+            regRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+            DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(duplicateCheckOption);
+            regRecord = regRecord.Register(duplicateCheck);
+            return regRecord;
         }
 
         /// <summary>
@@ -296,14 +304,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
-        private JObject GetDuplicateRecords(string chkDuplicate)
+        private JObject GetDuplicateRecords(string duplicateXml)
         {
-            if (!string.IsNullOrWhiteSpace(chkDuplicate))
+            if (string.IsNullOrWhiteSpace(duplicateXml))
                 return null;
 
             List<string> duplicateRegIds = new List<string>();
             XmlDocument xmldoc = new XmlDocument();
-            xmldoc.LoadXml(chkDuplicate);
+            xmldoc.LoadXml(duplicateXml);
             XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
             foreach (XmlNode node in nodeList)
             {
@@ -520,31 +528,80 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
         #endregion // Tempoary Records
 
-        #region Check Duplicate
+        #region Duplicate Resolution
 
         [HttpPost]
-        [Route(Consts.apiPrefix + "createDuplicateRecord")]
+        [Route(Consts.apiPrefix + "records/duplicate")]
         [SwaggerOperation("CreateDuplicateRecord")]
         [SwaggerResponse(201, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> CreateDuplicateRecord(DuplicateResolutionData data)
+        public async Task<IHttpActionResult> CreateDuplicateRecord(DuplicateActionData inputData)
         {
-            return await CallServiceMethod((service) =>
+            return await CallMethod(() =>
             {
-                var doc = new XmlDocument();
-                doc.LoadXml(data.Data);
-                var regRecordXml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
-                var result = service.CreateRegRecordWithUserPreference(regRecordXml, data.DuplicateCheckOption);
+                if (string.IsNullOrWhiteSpace(inputData.RegNo))
+                    throw new RegistrationException("Invalid registration number");
 
-                doc.LoadXml(result);
-                var errorMessage = GetNodeText(doc, "//ErrorMessage");
-                if (!string.IsNullOrEmpty(errorMessage))
-                    throw new RegistrationException(errorMessage);
+                if (string.IsNullOrWhiteSpace(inputData.DuplicateAction))
+                    throw new RegistrationException("Invalid duplicate action name");
+                
+                List<string> validDuplicateActions = new List<string>(new string[] { "AddBatch", "Duplicate", "UseComponent", "UseStructure" });
+                if (!validDuplicateActions.Contains(inputData.DuplicateAction))
+                {
+                    throw new RegistrationException("Invalid duplicate action name");
+                }
+             
+                // get duplicates for the given input record data
+                RegistryRecord registryRecord = RegisterRecord(inputData.Data, "C");
 
-                var id = Convert.ToInt32(GetNodeText(doc, "//RegID"));
-                var regNum = GetNodeText(doc, "//RegNum");
-                return new ResponseData(id, regNum, null, null);
+                if (!string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
+                {
+                    // duplicate records found
+                    XmlDocument xmldoc = new XmlDocument();
+                    xmldoc.LoadXml(registryRecord.FoundDuplicates);
+                    XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+                    int selectedDuplicateRecord = 0;
+                    foreach (XmlNode node in nodeList)
+                    {
+                        if (node.InnerText.Equals(inputData.RegNo))
+                        {
+                            break;
+                        }
+                        selectedDuplicateRecord++;
+                    }
+
+                    DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, registryRecord.FoundDuplicates, false);
+
+                    // Note: HasUnsolvedComponents check also initializes duplicatesResolver.Duplicates list
+                    if (!duplicatesResolver.HasUnsolvedComponents)
+                    {
+                        throw new RegistrationException("No un-resolved components found in the duplicate records");
+                    }
+
+                    duplicatesResolver.Duplicates.CurrentIndex = selectedDuplicateRecord;                
+
+                    switch (inputData.DuplicateAction)
+                    {
+                        case "AddBatch":
+                            registryRecord = duplicatesResolver.AddBatch();
+                            break;
+                        case "Duplicate":
+                            registryRecord = duplicatesResolver.CreateDuplicate();
+                            break;
+                        case "UseComponent":
+                            registryRecord = duplicatesResolver.CreateCompoundForm();
+                            break;
+                        case "UseStructure":
+                            registryRecord = duplicatesResolver.UseStructure();
+                            break;
+                        default:
+                            throw new RegistrationException("Invalid duplicate action");                           
+                    }
+
+                    return new ResponseData(registryRecord.ID, registryRecord.RegNum, null, null);
+                }
+                return new ResponseData(message: "Registration of record failed due to a problem.");
             });
         }
         #endregion
