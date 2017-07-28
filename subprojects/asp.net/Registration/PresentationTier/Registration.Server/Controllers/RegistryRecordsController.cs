@@ -160,12 +160,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             doc.LoadXml(data);
             var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
 
-            RegistryRecord regRecord = RegistryRecord.NewRegistryRecord();
-            regRecord.InitializeFromXml(recordString, true, true);
-            regRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
-            DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(duplicateCheckOption);
-            regRecord = regRecord.Register(duplicateCheck);
-            return regRecord;
+            const string regIdXPath = "/MultiCompoundRegistryRecord/ID";
+            XmlNode regNode = doc.SelectSingleNode(regIdXPath);
+
+            int regId = 0;
+            int.TryParse(regNode.InnerText.Trim(), out regId);
+            RegistryRecord registryRecord;
+            if (regId > 0)
+            {
+                registryRecord = RegistryRecord.GetRegistryRecord(regId);
+                registryRecord.InitializeFromXml(recordString, false, false);
+            }
+            else
+            {
+                registryRecord = RegistryRecord.NewRegistryRecord();
+                registryRecord.InitializeFromXml(recordString, true, false);
+            }           
+            registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+            DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(duplicateCheckOption);          
+            return registryRecord.Register(duplicateCheck);           
         }
 
         /// <summary>
