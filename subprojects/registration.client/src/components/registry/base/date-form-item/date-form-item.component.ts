@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrat
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
 import { IFormItemTemplate } from '../registry-base.types';
+import * as moment from 'moment-es6';
 
 @Component({
   selector: 'reg-date-form-item-template',
@@ -27,7 +28,8 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
   }
 
   deserializeValue(value: string): Date {
-    return new Date(value);
+    let dateValue = moment.default(value, 'YYYY-MM-DD hh:mm:ss A');
+    return dateValue.toDate();
   }
 
   serializeValue(value: Date): string  {
