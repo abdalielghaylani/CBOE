@@ -1,0 +1,5 @@
+<span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
+<dx-select-box (onValueChanged)="onValueChanged($event, viewModel)" [items]="['Substructure', 'Full Structure', 'Exact', 'Similarity']"
+  [value]="value" [readOnly]="!editMode">
+</dx-select-box>
+<div [id]="id" class="cd-container"></div>

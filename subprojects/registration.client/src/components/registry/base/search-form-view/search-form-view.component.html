@@ -1,0 +1,9 @@
+<dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig"
+  [readOnly]="!editMode" labelLocation="top">
+  <div *dxTemplate="let data of 'dropDownTemplate'">
+    <reg-drop-down-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-drop-down-form-item-template>
+  </div>
+  <div *dxTemplate="let data of 'structureTemplate'">
+    <reg-structure-form-query-item-template (valueUpdated)="onStructureValueUpdated($event)" [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-form-query-item-template>
+  </div>
+</dx-form>

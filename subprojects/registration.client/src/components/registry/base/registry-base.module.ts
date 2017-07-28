@@ -9,11 +9,15 @@ import { RegFragmentsFormItem } from './fragments-form-item';
 import { RegIdListFormItem } from './id-list-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
 import { RegStructureFormItem } from './structure-form-item';
+import { RegStructureQueryFormItem } from './structure-form-query-item';
 import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
 import { RegFormGroupItemView } from './form-group-item-view';
+import { RegSearchFormGroupView } from './search-form-group-view';
+import { RegSearchFormGroupItemView } from './search-form-group-item-view';
+import { RegSearchFormView } from './search-form-view';
 import {
   DxCheckBoxModule,
   DxRadioGroupModule,
@@ -74,13 +78,13 @@ export * from './registry-base.types';
   ],
   declarations: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
-    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
-    RegFormView, RegFormGroupView, RegFormGroupItemView
+    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
+    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView
   ],
   exports: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
-    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
-    RegFormView, RegFormGroupView, RegFormGroupItemView,
+    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
+    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegCommonModule, RegCommonComponentModule
   ]
 })

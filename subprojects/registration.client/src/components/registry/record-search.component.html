@@ -17,46 +17,7 @@
   {{ 'Search ' + (temporary ? 'Temporary' : 'Permanent') + ' Registry' }}
 </reg-header>
 <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
-  <div class="panel-group" id="accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-        <a class="list-header tan" data-toggle="collapse" href="#collapseOne">{{regSearch.registrySearchVM.title}}</a>
-      </div>
-      <div id="collapseOne" class="panel-collapse collapse in">
-        <div class="p2">
-          <div>
-            <span style="color: #333;font-weight: 700;font-size:12px">Search Type:</span>
-            <dx-select-box [items]="regSearch.registrySearchVM.searchTypeItems" [value]="regSearch.registrySearchVM.searchTypeValue">
-            </dx-select-box>
-          </div>
-          <chemdraw-web id="cdw-search" [activated]="activated" [editMode]="true"></chemdraw-web>
-          <dx-form id="registrySearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.registrySearchVM.data"
-            [items]="regSearch.registrySearchVM.columns"></dx-form>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-        <a class="list-header tan" data-toggle="collapse" href="#collapseTwo">{{regSearch.componentSearchVM.title}} </a>
-      </div>
-      <div id="collapseTwo" class="panel-collapse collapse in">
-        <div class="p2">
-          <dx-form id="componentSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.componentSearchVM.data"
-            [items]="regSearch.componentSearchVM.columns"></dx-form>
-          <dx-form id="structureSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.structureSearchVM.data"
-            [items]="regSearch.structureSearchVM.columns"></dx-form>
-        </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-        <a class="list-header tan" data-toggle="collapse" href="#collapseThree">{{regSearch.batchSearchVM.title}} </a>
-      </div>
-      <div id="collapseThree" class="panel-collapse collapse in">
-        <div class="p2">
-          <dx-form id="batchSearchForm" labelLocation="top" minColWidth=300 [colCount]="3" [formData]="regSearch.batchSearchVM.data" [items]="regSearch.batchSearchVM.columns"></dx-form>
-        </div>
-      </div>
-    </div>
-  </div>
+  <form class="form-inline" role="form" ng-submit="search(query)">
+    <reg-search-form-group-view [viewModel]="regSearchViewModel" [viewConfig]="formGroup" [editMode]="true" [activated]="true" (valueUpdated)="onValueUpdated($event)" ></reg-search-form-group-view>
+  </form>
 </dx-scroll-view>

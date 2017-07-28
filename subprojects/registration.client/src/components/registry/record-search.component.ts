@@ -16,7 +16,7 @@ import * as searchTypes from './registry-search.types';
 import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawWeb } from '../common';
-import { FormGroupType, prepareFormGroupData, notify } from '../../common';
+import { FormGroupType, prepareFormGroupData, IFormGroup, notify } from '../../common';
 import * as X2JS from 'x2js';
 
 declare var jQuery: any;
@@ -33,12 +33,12 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Input() activated: boolean;
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
-  @select(s => s.configuration.formGroups) formGroups$: Observable<any[]>;
   @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
   private lookupsSubscription: Subscription;
-  private formGroupSubscription: Subscription;
+  public formGroup: IFormGroup;
   private title: string;
   private regSearch: searchTypes.CSearchFormVM;
+  private regSearchViewModel: any = {};
 
   constructor(
     private router: Router,
@@ -63,19 +63,13 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     if (this.lookupsSubscription) {
       this.lookupsSubscription.unsubscribe();
     }
-    if (this.formGroupSubscription) {
-      this.formGroupSubscription.unsubscribe();
-    }
   }
 
   loadData(lookups: any) {
     let formGroupType = this.temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
     prepareFormGroupData(formGroupType, this.ngRedux);
-    this.formGroupSubscription = this.formGroups$.subscribe(fgs => {
-      if (fgs[FormGroupType[formGroupType]]) {
-        this.regSearch = new searchTypes.CSearchFormVM(this.temporary, this.ngRedux.getState());
-      }
-    });
+    let state = this.ngRedux.getState();
+    this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
   }
 
   ngOnChanges() {
@@ -99,17 +93,18 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
 
   private generateSearchCriteriaXML(): string {
     let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
-    searchCriteria += this.getSearchCriteria(this.regSearch.registrySearchVM);
-    searchCriteria += this.getSearchCriteria(this.regSearch.structureSearchVM);
-    searchCriteria += this.getSearchCriteria(this.regSearch.componentSearchVM);
-    searchCriteria += this.getSearchCriteria(this.regSearch.batchSearchVM);
+    for (let key in this.regSearchViewModel) {
+      if (this.regSearchViewModel[key]) {
+        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: this.regSearchViewModel[key] });
+      }
+    }
     return searchCriteria + '</searchCriteria>';
   }
 
   private search() {
     let queryData: IQueryData = {
       temporary: this.temporary,
-      searchCriteria: this.generateSearchCriteriaXML() 
+      searchCriteria: this.generateSearchCriteriaXML()
     };
     this.actions.searchRecords(queryData);
   }
@@ -140,7 +135,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     this.setSearchCriteriaFor(this.regSearch.registrySearchVM, item);
     this.setSearchCriteriaFor(this.regSearch.structureSearchVM, item);
     this.setSearchCriteriaFor(this.regSearch.componentSearchVM, item);
-    this.setSearchCriteriaFor(this.regSearch.batchSearchVM, item);    
+    this.setSearchCriteriaFor(this.regSearch.batchSearchVM, item);
   }
 
   private fillSearchCriteriaFromXML(queryXml: string) {
@@ -183,4 +178,9 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
       e.srcElement.children[0].click();
     }
   }
+
+  private onValueUpdated(e) {
+    // console.log(`form value changed`);
+  }
+
 };

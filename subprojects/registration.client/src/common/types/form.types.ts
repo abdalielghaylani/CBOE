@@ -65,6 +65,7 @@ export interface IFormElement {
   bindingExpression?: string;
   configInfo?: IConfigInfo;
   dataSource?: string;
+  searchCriteriaItem?: any;
   // TODO: ...
 }
 
