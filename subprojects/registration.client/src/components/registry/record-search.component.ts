@@ -39,6 +39,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private title: string;
   private regSearch: searchTypes.CSearchFormVM;
   private regSearchViewModel: any = {};
+  private cddActivated: boolean;
 
   constructor(
     private router: Router,
@@ -73,6 +74,12 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges() {
+    this.update();
+  }
+
+  protected update() {
+    // Don't keep changing cdd configuration
+    this.cddActivated = this.cddActivated || this.activated;
   }
 
   private getSearchCriteria(tabularData: searchTypes.ITabularData): string {

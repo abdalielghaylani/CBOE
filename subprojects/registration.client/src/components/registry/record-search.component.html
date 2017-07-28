@@ -18,6 +18,6 @@
 </reg-header>
 <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
   <form class="form-inline" role="form" ng-submit="search(query)">
-    <reg-search-form-group-view [viewModel]="regSearchViewModel" [viewConfig]="formGroup" [editMode]="true" [activated]="activated" (valueUpdated)="onValueUpdated($event)" ></reg-search-form-group-view>
+    <reg-search-form-group-view [viewModel]="regSearchViewModel" [viewConfig]="formGroup" [editMode]="true" [activated]="cddActivated" (valueUpdated)="onValueUpdated($event)" ></reg-search-form-group-view>
   </form>
 </dx-scroll-view>
