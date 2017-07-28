@@ -33,7 +33,7 @@ export class RecordDetailActions {
   static saveRecordSuccessAction = createAction(RecordDetailActions.SAVE_RECORD_SUCCESS);
   static saveRecordErrorAction = createAction(RecordDetailActions.SAVE_RECORD_ERROR);
   static duplicateRecordAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD,
-    (data: IRecordDetail, duplicateCheckOption: string) => ({ data, duplicateCheckOption }));
+    (data: IRecordDetail, duplicateAction: string, regNo: string) => ({ data, duplicateAction, regNo }));
   static duplicateRecordSuccessAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_SUCCESS,
     (payload: any) => (payload));
   static loadDuplicateRecordSuccessAction = createAction(RecordDetailActions.LOAD_DUPLICATE_RECORD_SUCCESS);
@@ -64,8 +64,8 @@ export class RecordDetailActions {
     this.ngRedux.dispatch(RecordDetailActions.retrieveRecordErrorAction());
   }
 
-  createDuplicate(data: IRecordDetail, duplicateCheckOption: string) {
-    this.ngRedux.dispatch(RecordDetailActions.duplicateRecordAction(data, duplicateCheckOption));
+  createDuplicate(data: IRecordDetail, duplicateAction: string, regNo: string) {
+    this.ngRedux.dispatch(RecordDetailActions.duplicateRecordAction(data, duplicateAction, regNo ));
   }
 
   saveRecord(saveData: IRecordSaveData) {
