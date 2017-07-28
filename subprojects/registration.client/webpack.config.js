@@ -86,6 +86,8 @@ const prodConfig = {
 
 const serverHost = 'http://localhost';
 // const serverHost = 'http://165.88.34.121';
+// const serverHost = 'http://165.88.210.101'; // QA system
+// const serverHost = 'http://10.230.22.149'; // Demo system
 
 const proxySettings = {};
 proxySettings[basePath + 'api'] = {
