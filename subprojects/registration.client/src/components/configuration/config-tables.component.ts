@@ -124,16 +124,20 @@ export class RegConfigTables implements OnInit, OnDestroy {
       $links.text('');
       if (isEditing) {
         $links.filter('.dx-link-save').addClass('dx-icon-save');
+        $links.filter('.dx-link-save').attr({'data-toggle': 'tooltip', 'title': 'Save'});
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
+        $links.filter('.dx-link-cancel').attr({'data-toggle': 'tooltip', 'title': 'Cancel'});
       } else {
         if (this.hasPrivilege('EDIT')) {
           $links.filter('.dx-link-edit').addClass('dx-icon-edit');
+          $links.filter('.dx-link-edit').attr({'data-toggle': 'tooltip', 'title': 'Edit'});
         }
         if (this.hasPrivilege('DELETE')) {
           $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+          $links.filter('.dx-link-delete').attr({'data-toggle': 'tooltip', 'title': 'Delete'});
         }
       }
-    }
+    }    
   }
 
   private hasPrivilege(action: string): boolean {
