@@ -35,7 +35,8 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
   serializeValue(value: Date): string  {
     // Change to 9:00 AM GMT
     value.setUTCHours(9);
-    let formatted = value.toISOString().substring(0, 19).replace('T', ' ') + ' AM';
+    // Format UTC date/time without time-zone information
+    let formatted = moment.default(value).utcOffset(0).format('YYYY-MM-DD hh:mm:ss A');
     return formatted;
   }
 
