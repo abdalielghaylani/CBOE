@@ -19,6 +19,7 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
   protected value: Date;
   protected readOnly: boolean;
+  protected type: string = 'date';
 
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
@@ -28,13 +29,16 @@ export class RegDateFormItem implements IFormItemTemplate, OnChanges {
   }
 
   deserializeValue(value: string): Date {
-    let dateValue = moment.default(value, 'YYYY-MM-DD hh:mm:ss A');
+    // Consider the date coming from server as UTC time
+    let dateValue = moment.default(`${value} +0000`, 'YYYY-MM-DD hh:mm:ss A Z');
     return dateValue.toDate();
   }
 
   serializeValue(value: Date): string  {
-    // Change to 9:00 AM GMT
-    value.setUTCHours(9);
+    if (this.type === 'date') {
+      // Change to midday GMT
+      value.setUTCHours(12);
+    }
     // Format UTC date/time without time-zone information
     let formatted = moment.default(value).utcOffset(0).format('YYYY-MM-DD hh:mm:ss A');
     return formatted;
