@@ -69,12 +69,8 @@ export interface IFormElement {
   // TODO: ...
 }
 
-export interface ILayoutInfo {
-  formElement?: IFormElement[];
-}
-
 export interface ICoeFormMode {
-  formElement: IFormElement[];
+  formElement?: IFormElement[];
 }
 
 export interface ICoeForm {
@@ -83,7 +79,7 @@ export interface ICoeForm {
   title?: string;
   titleCssClass?: string;
   validationRuleList?: any;
-  layoutInfo?: ILayoutInfo;
+  layoutInfo?: ICoeFormMode;
   formDisplay: IDisplayInfo;
   addMode?: ICoeFormMode;
   editMode?: ICoeFormMode;

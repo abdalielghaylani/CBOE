@@ -45,7 +45,7 @@ export class CViewGroup implements IViewGroup {
   }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
-    return mode === 'add' ? f.addMode : mode === 'edit' ? f.editMode : f.viewMode;
+    return mode === 'add' ? f.addMode : mode === 'edit' ? f.editMode : mode === 'view' ? f.viewMode : f.layoutInfo;
   }
 
   private setItemValue(item: any, property: string, value: any) {
@@ -85,6 +85,9 @@ export class CViewGroup implements IViewGroup {
         dataField: item.dataField
       };
       item.colSpan = 2;
+    } else if (type.endsWith('COEStructureQuery')) {
+      item.template = 'structureQueryTemplate';
+      item.colSpan = 5;
     } else if (type.indexOf('COEChemDraw') > 0) {
       item.template = readOnly ? 'structureImageTemplate' : 'structureTemplate';
       if (!readOnly) {
@@ -151,6 +154,9 @@ export class CViewGroup implements IViewGroup {
 
   private getEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord): any {
     let entryInfo = this.getEntryInfo(displayMode, id);
+    if (!entryInfo.dataSource) {
+      return undefined;
+    }
     let dataSource = entryInfo.dataSource.toLowerCase();
     return dataSource.indexOf('component') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.ComponentList.Component[0])
       : dataSource.indexOf('batch') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.BatchList.Batch[0])
@@ -249,6 +255,28 @@ export class CViewGroup implements IViewGroup {
     }
   }
 
+  private static getForm(config: IFormGroup, displayMode: string): IForm {
+    let form: IForm = undefined;
+    if (config) {
+      if (displayMode === 'query') {
+        if (config.queryForms && config.queryForms.queryForm && config.queryForms.queryForm.length > 0) {
+          form = config.queryForms.queryForm[0];
+        }
+      } else if (config.detailsForms && config.detailsForms.detailsForm && config.detailsForms.detailsForm.length > 0) {
+        form = config.detailsForms.detailsForm[0];
+      }
+    }
+    return form;
+  }
+
+  private static getFilteredDisabledControls(displayMode: string, disabledControls: any[]): any[] {
+    let pageId: string = displayMode === 'add' ? 'SUBMITMIXTURE'
+      : displayMode === 'view' ? 'VIEWMIXTURE'
+        : displayMode == 'edit' ? 'REVIEWREGISTERMIXTURE'
+          : undefined;
+    return pageId ? disabledControls.filter(dc => dc.pageId === pageId) : [];
+  }
+
   private static sortForms(forms: ICoeForm[]): ICoeForm[] {
     // The form aray sometimes is not sorted property.
     // Registry should go first.
@@ -272,10 +300,10 @@ export class CViewGroup implements IViewGroup {
   public static getViewGroups(config: IFormGroup, displayMode: string, disabledControls: any[]): CViewGroup[] {
     let viewGroups: CViewGroup[] = [];
     let viewGroupsFiltered: CViewGroup[] = [];
-    if (config && config.detailsForms && config.detailsForms.detailsForm.length > 0) {
-      let pageId: string = displayMode === 'add' ? 'SUBMITMIXTURE' : displayMode === 'view' ? 'VIEWMIXTURE' : 'REVIEWREGISTERMIXTURE';
-      let disabledControlsFiltered = disabledControls.filter(dc => dc.pageId === pageId);
-      let coeForms = this.sortForms(config.detailsForms.detailsForm[0].coeForms.coeForm);
+    let form: IForm = this.getForm(config, displayMode);
+    if (form) {
+      let disabledControlsFiltered = this.getFilteredDisabledControls(displayMode, disabledControls);
+      let coeForms = this.sortForms(form.coeForms.coeForm);
       coeForms.forEach(f => {
         if (f.formDisplay.visible === 'true') {
           if (viewGroups.length === 0) {

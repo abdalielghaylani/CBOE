@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IViewControl } from '../registry-base.types';
-import { RegStructureQueryFormItem } from '../structure-form-query-item';
+import { RegStructureQueryFormItem } from '../structure-query-form-item';
 import { copyObject } from '../../../../common';
 
 @Component({

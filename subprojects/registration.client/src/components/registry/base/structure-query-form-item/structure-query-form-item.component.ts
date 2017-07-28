@@ -6,8 +6,8 @@ import { RegStructureFormItem } from '../structure-form-item';
 import { IAppState } from '../../../../redux';
 
 @Component({
-  selector: 'reg-structure-form-query-item-template',
-  template: require('./structure-form-query-item.component.html'),
+  selector: 'reg-structure-query-form-item-template',
+  template: require('./structure-query-form-item.component.html'),
   styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

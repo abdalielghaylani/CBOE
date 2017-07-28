@@ -45,6 +45,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
+  private lookups: ILookupData;
   public formGroup: IFormGroup;
   public viewGroups: CViewGroup[];
   public editMode: boolean = false;
@@ -70,7 +71,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private currentIndex: number = 0;
   private saveTemplateForm: DxForm;
   private saveTemplatePopupVisible: boolean = false;
-  private lookups: ILookupData;
   private lookupsSubscription: Subscription;
   private newButtonEnabled: boolean = false;
   private canRedirectToTempListView = true;
@@ -115,7 +115,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       return;
     }
     this.parentHeight = this.getParentHeight();
-    let self = this;
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
     if (!this.lookupsSubscription) {
       this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });

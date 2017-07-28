@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { IViewControl, CViewGroup, ITabularData } from '../registry-search-base.types';
+import { IViewControl } from '../registry-base.types';
+import { CViewGroup, ITabularData } from '../registry-search-base.types';
 import { IFormGroup, IForm, ICoeForm } from '../../../../common';
 import { IAppState } from '../../../../redux';
 
@@ -82,6 +83,6 @@ export class RegSearchFormGroupView implements IViewControl, OnChanges {
   }
 
   protected onValueUpdated(e) {
-    this.valueUpdated.emit(e);
+    this.valueUpdated.emit(this);
   }
 };

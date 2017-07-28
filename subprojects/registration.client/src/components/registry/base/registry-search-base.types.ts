@@ -2,14 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { IViewGroup } from './registry-base.types';
 import { ILookupData } from '../../../redux';
 import { ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
-
-export interface IViewControl {
-  activated: boolean;
-  editMode: boolean;
-  viewModel: any;
-  viewConfig: any;
-  valueUpdated: EventEmitter<any>;
-}
+import { IPropertyList } from './registry-base.types';
 
 export interface ITabularData {
   data: any;
@@ -20,47 +13,6 @@ class CEntryInfo {
   dataSource: string;
   bindingExpression: string;
   searchCriteriaItem: any;
-}
-
-export interface IProperty {
-  _name: string; // REG_COMMENTS
-  _friendlyName?: string; // REG_COMMENTS
-  _type?: string; // TEXT
-  _precision?: string; // 200
-  _sortOrder?: string; // 0
-  _pickListDomainID?: string; // number
-  _pickListDisplayValue?: string;
-  validationRuleList?: IValidationRuleList;
-  __text?: string;
-}
-
-export class CValidationRuleList {
-  validationRule: IValidationRule[] = [];
-}
-
-export interface IValidationRule {
-  _validationRuleName: string; // textLength
-  _errorMessage: string; // The property value can have between 0 and 200 characters
-  params?: IParamList;
-}
-
-export interface IParam {
-  _name: string; // min
-  _value: string; // 0
-}
-
-export class CParamList {
-  param?: IParam[];
-}
-
-export interface IParamList extends CParamList {
-}
-
-export interface IValidationRuleList extends CValidationRuleList {
-}
-
-export interface IPropertyList {
-  Property: IProperty[];
 }
 
 export class CViewGroup implements IViewGroup {
@@ -84,6 +36,10 @@ export class CViewGroup implements IViewGroup {
     return this.data.length === 0 || !f.title || this.title === f.title || f.title === 'Fragment Information';
   }
 
+  private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
+    return mode === 'add' ? f.addMode : mode === 'edit' ? f.editMode : mode === 'view' ? f.viewMode : f.layoutInfo;
+  }
+
   private setItemValue(item: any, property: string, value: any) {
     if (value) {
       item[property] = value;
@@ -98,17 +54,10 @@ export class CViewGroup implements IViewGroup {
     return fe.Id ? fe.Id : fe._name.replace(/\s/g, '');
   }
 
-  private checkStructure(fe: IFormElement, item: any) {
+  private checkEditorType(fe: IFormElement, item: any) {
     let type = fe.displayInfo.type;
-    let structureField = type.endsWith('COEStructureQuery');
-    if (structureField) {
-      item.template = 'structureTemplate';
-      item.colSpan = 5;
-    }
-  }
-
-  private checkDropDown(fe: IFormElement, item: any) {
-    if (fe.displayInfo.type.endsWith('COEDropDownList')) {
+    let readOnly = type.endsWith('ReadOnly');
+    if (type.endsWith('COEDropDownList')) {
       let pickListDomain = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
       if (pickListDomain) {
         if (pickListDomain.__text) {
@@ -121,8 +70,38 @@ export class CViewGroup implements IViewGroup {
           };
         }
       }
+    } else if (type.endsWith('COEWebGridUltra') && fe.bindingExpression.indexOf('IdentifierList') >= 0) {
+      item.template = 'idListTemplate';
+      item.editorOptions = {
+        idListType: fe.Id.startsWith('S') ? 'S' : fe.Id.startsWith('C') ? 'C' : fe.Id.startsWith('B') ? 'B' : 'R',
+        dataField: item.dataField
+      };
+      item.colSpan = 2;
+    } else if (type.endsWith('COEStructureQuery')) {
+      item.template = 'structureQueryTemplate';
+      item.colSpan = 5;
+    }else if (type.indexOf('COEChemDraw') > 0) {
+      item.template = readOnly ? 'structureImageTemplate' : 'structureTemplate';
+      if (!readOnly) {
+        item.colSpan = 5;
+      }
+    } else if (type.indexOf('COEDatePicker') > 0) {
+      item.template = 'dateTemplate';
+    } else if (fe.bindingExpression.endsWith('ProjectList')) {
+      item.template = 'projectsTemplate';
+    } else if (fe.displayInfo.type.endsWith('COEFragments')) {
+      item.template = 'fragmentsTemplate';
+      item.colSpan = 5;
     }
+    if (!item.template) {
+      item.editorType = 'dxTextBox';
+    }
+    if (!item.editorOptions) {
+      item.editorOptions = {};
+    }
+    item.editorOptions.readOnly = readOnly;
   }
+  
   private checkOtherDropdown(fe: IFormElement, item: any, lookups: ILookupData) {
     if (fe.displayInfo.type.endsWith('COEDropDownList') &&
       (fe.Id.indexOf('PROJECTDropDownListPerm') >= 0 || fe.Id.indexOf('IDENTIFIERTYPETextBox') >= 0)) {
@@ -274,12 +253,12 @@ export class CViewGroup implements IViewGroup {
     return canAppend;
   }
 
-
-  public getItems(lookups: ILookupData): any[] {
+  public getItems(displayMode: string): any[] {
     let items = [];
     this.data.forEach(f => {
-      if (f.layoutInfo && f.layoutInfo.formElement) {
-        f.layoutInfo.formElement.forEach(fe => {
+      let formElementContainer = this.getFormElementContainer(f, displayMode);
+      if (formElementContainer && formElementContainer.formElement) {
+        formElementContainer.formElement.forEach(fe => {
           if (this.isVisible(fe)) {
             let item: any = {};
             this.setItemValue(item, 'searchCriteriaItem', fe.searchCriteriaItem);
@@ -290,9 +269,8 @@ export class CViewGroup implements IViewGroup {
             }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
-            this.checkDropDown(fe, item);
-            this.checkStructure(fe, item);
-            this.checkOtherDropdown(fe, item, lookups);
+            this.checkEditorType(fe, item);
+            // this.checkOtherDropdown(fe, item, lookups);
             this.removeDuplicate(items, item);
             items.push(item);
           }

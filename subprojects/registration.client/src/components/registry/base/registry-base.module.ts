@@ -9,7 +9,7 @@ import { RegFragmentsFormItem } from './fragments-form-item';
 import { RegIdListFormItem } from './id-list-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
 import { RegStructureFormItem } from './structure-form-item';
-import { RegStructureQueryFormItem } from './structure-form-query-item';
+import { RegStructureQueryFormItem } from './structure-query-form-item';
 import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegFormView } from './form-view';

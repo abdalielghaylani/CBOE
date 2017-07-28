@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
-import { IViewControl, CViewGroup } from '../registry-search-base.types';
+import { IViewControl } from '../registry-base.types';
+import { CViewGroup } from '../registry-search-base.types';
 
 @Component({
   selector: 'reg-search-form-group-item-view',
@@ -31,7 +32,7 @@ export class RegSearchFormGroupItemView implements IViewControl, OnChanges {
 
   private update() {
     if (this.viewConfig) {
-      this.items = this.viewConfig.getItems(this.ngRedux.getState().session.lookups);
+      this.items = this.viewConfig.getItems('query');
       this.readVM();
     }
   }

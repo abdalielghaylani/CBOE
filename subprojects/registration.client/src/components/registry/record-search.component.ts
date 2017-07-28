@@ -13,7 +13,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as searchTypes from './registry-search.types';
-import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData } from '../../redux';
+import { CViewGroup, IRegistryRecord, CRegistryRecord } from './base';
+import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData, ILookupData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawWeb } from '../common';
 import { FormGroupType, prepareFormGroupData, IFormGroup, notify } from '../../common';
@@ -34,10 +35,14 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
   @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
+  private lookups: ILookupData;
   private lookupsSubscription: Subscription;
   public formGroup: IFormGroup;
+  public viewGroups: CViewGroup[];
   private title: string;
-  private regSearch: searchTypes.CSearchFormVM;
+  private displayMode: string = 'query';
+  // private regSearch: searchTypes.CSearchFormVM;
+  private regRecord: IRegistryRecord = new CRegistryRecord();
   private regSearchViewModel: any = {};
   private cddActivated: boolean;
 
@@ -51,13 +56,8 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     this.title = this.temporary ? 'Search Temporary Records' : 'Search Permanent Registry';
-    this.regSearch = new searchTypes.CSearchFormVM(this.temporary, this.ngRedux.getState());
-    let lookups = this.ngRedux.getState().session.lookups;
-    if (lookups) {
-      this.loadData(lookups);
-    } else {
-      this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
-    }
+    // this.regSearch = new searchTypes.CSearchFormVM(this.temporary, this.ngRedux.getState());
+    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
   }
 
   ngOnDestroy() {
@@ -66,20 +66,26 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  loadData(lookups: any) {
+  loadData(lookups: ILookupData) {
+    this.lookups = lookups;
     let formGroupType = this.temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
-  }
-
-  ngOnChanges() {
     this.update();
   }
 
-  protected update() {
+  ngOnChanges() {
+    this.update(false);
+  }
+
+  private update(forceUpdate: boolean = true) {
     // Don't keep changing cdd configuration
     this.cddActivated = this.cddActivated || this.activated;
+    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
+    if (forceUpdate) {
+      this.changeDetector.markForCheck();
+    }
   }
 
   private getSearchCriteria(tabularData: searchTypes.ITabularData): string {
