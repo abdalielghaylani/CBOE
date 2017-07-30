@@ -22,7 +22,7 @@ export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTempla
   }
 
   deserializeValue(value: any): any {
-    if (typeof value === 'object' && value.viewConfig) {
+    if (typeof value === 'object' && value.viewModel) {
       value = value.toString();
     }
     return value;

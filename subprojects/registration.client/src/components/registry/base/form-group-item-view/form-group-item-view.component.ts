@@ -51,7 +51,7 @@ export class RegFormGroupItemView implements IViewControl, OnChanges {
     return formData;
   }
 
-  private readFormData(idList: string[]) {
+  private updateViewModelFromFormData(idList: string[]) {
     idList.forEach(id => {
       this.viewModel.setEntryValue(this.viewConfig, this.displayMode, id, this.formData[id]);
     });
@@ -71,7 +71,7 @@ export class RegFormGroupItemView implements IViewControl, OnChanges {
 
   protected writeVM() {
     let validItems = this.items.filter(i => !i.itemType || i.itemType !== 'empty');
-    this.readFormData(validItems.map(i => i.dataField));
+    this.updateViewModelFromFormData(validItems.map(i => i.dataField));
   }
 
   protected onValueUpdated(e) {

@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as searchTypes from './registry-search.types';
-import { CViewGroup, ISearchCriteriaItem, getSearchCriteriaValue } from './base';
+import { CViewGroup, ISearchCriteriaItem } from './base';
 import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData, ILookupData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawWeb } from '../common';
@@ -70,6 +70,8 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
+    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
+    this.setSearchItems();
     this.update();
   }
 
@@ -78,20 +80,13 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private setSearchItems() {
-  }
-
-  private viewGroupsChanged(viewGroups: CViewGroup[]) {
-    let changed = viewGroups.length !== this.viewGroups.length;
-    if (!changed) {
-      let index = 0;
-      viewGroups.forEach(vg => {
-        if (vg.id !== this.viewGroups[index].id) {
-          changed = true;
-        }
-        ++index;
+    this.searchItems = [];
+    this.viewGroups.forEach(vg => {
+      let items = vg.getSearchItems();
+      items.forEach(i => {
+        this.searchItems.push(i);
       });
-    }
-    return changed;
+    });
   }
 
   private update(forceUpdate: boolean = true) {
@@ -99,11 +94,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     if (!this.cddActivated && this.activated) {
       this.cddActivated = true;
     }
-    let viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
-    if (this.viewGroupsChanged(viewGroups)) {
-      this.viewGroups = viewGroups;
-    }
-    this.setSearchItems();
     if (forceUpdate) {
       this.changeDetector.markForCheck();
     }
@@ -219,6 +209,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private onValueUpdated(e) {
-    // console.log(`form value changed`);
+    console.log(this.searchItems);
   }
 };

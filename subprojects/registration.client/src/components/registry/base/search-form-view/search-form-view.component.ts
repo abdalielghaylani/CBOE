@@ -16,14 +16,14 @@ export class RegSearchFormView extends RegFormView {
 
   protected onFieldDataChanged(e) {
     if (this.viewModelCopy[e.dataField] !== e.value) {
-      // this.viewModelCopy[e.dataField] = e.value;
+      this.viewModelCopy[e.dataField] = e.value;
       this.onValueUpdated(this);
     }
   }
 
   protected onStructureValueUpdated(structureFormItem: RegStructureFormItem) {
-    // let dataField = structureFormItem.viewModel.dataField;
-    // this.viewModel[dataField] = structureFormItem;
+    let dataField = structureFormItem.viewModel.dataField;
+    this.viewModel[dataField] = structureFormItem;
     this.onValueUpdated(this);
   }
 

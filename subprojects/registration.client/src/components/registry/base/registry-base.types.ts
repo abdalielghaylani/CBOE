@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { ISearchCriteriaItem, getSearchCriteriaValue } from './registry-search-base.types';
+import { ISearchCriteriaItem } from './registry-search-base.types';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
 export interface IViewControl {
@@ -130,33 +130,6 @@ export class CViewGroup implements IViewGroup {
       .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
   }
 
-  private getQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem): string {
-    let value;
-    let searchCriteriaValue: any = getSearchCriteriaValue(searchCriteriaItem);
-    if (searchCriteriaValue && searchCriteriaValue.CSCartridgeStructureCriteria && searchCriteriaValue.CSCartridgeStructureCriteria.__text) {
-      value = searchCriteriaValue.CSCartridgeStructureCriteria.__text;
-    } else if (searchCriteriaValue.__text) {
-      value = searchCriteriaValue.__text;
-    }
-    return value;
-  }
-
-  private setQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem, serialize: boolean) {
-    this.data.forEach(f => {
-      let formElementContainer = this.getFormElementContainer(f, 'query');
-      if (formElementContainer && formElementContainer.formElement) {
-        formElementContainer.formElement.forEach(fe => {
-          if (fe.searchCriteriaItem) {
-            let si = fe.searchCriteriaItem;
-            if (si._id === searchCriteriaItem._id) {
-
-            }
-          }
-        });
-      }
-    });
-  }
-
   private isIdText(fe: IFormElement): boolean {
     let bindingExpression = fe.bindingExpression.toLowerCase();
     return !fe.label && (bindingExpression === 'id' || bindingExpression.endsWith('regnum')) && fe.displayInfo.type.endsWith('COETextBoxReadOnly');
@@ -218,7 +191,7 @@ export class CViewGroup implements IViewGroup {
   }
 
   private static sortForms(forms: ICoeForm[]): ICoeForm[] {
-    // The form aray sometimes is not sorted property.
+    // The form array sometimes is not sorted property.
     // Registry should go first.
     // For now, doc-manager and inventory integration forms are removed.
     let sorted: ICoeForm[] = [];
@@ -235,6 +208,20 @@ export class CViewGroup implements IViewGroup {
       }
     });
     return sorted;
+  }
+
+  public static viewGroupsChanged(source: CViewGroup[], target: CViewGroup[]): boolean {
+    let changed = source.length !== target.length;
+    if (!changed) {
+      let index = 0;
+      source.forEach(vg => {
+        if (vg.id !== target[index].id) {
+          changed = true;
+        }
+        ++index;
+      });
+    }
+    return changed;
   }
 
   public static getViewGroups(config: IFormGroup, displayMode: string, disabledControls: any[]): CViewGroup[] {

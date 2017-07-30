@@ -17,7 +17,7 @@ export interface ISearchCriteriaItem {
   _searchLookupByID?: string;
 }
 
-export function getSearchCriteriaValue(item: ISearchCriteriaItem): ISearchCriteriaValue {
+export function getSearchCriteriaItemObj(item: ISearchCriteriaItem): ISearchCriteriaValue {
   let objectProp = Object.getOwnPropertyNames(item).find(n => typeof item[n] === 'object');
   return item[objectProp] as ISearchCriteriaValue;
 }
