@@ -99,22 +99,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  // private getSearchCriteria(tabularData: searchTypes.ITabularData): string {
-  //   let searchCriteria = '';
-  //   tabularData.columns.forEach(column => {
-  //     let value = column.coeType === 'COEStructureQuery' ? this.chemDrawWeb.getValue() : tabularData.data[column.dataField];
-  //     if (value) {
-  //       for (const prop in column.searchCriteriaItem) {
-  //         if (typeof column.searchCriteriaItem[prop] === 'object') {
-  //           column.searchCriteriaItem[prop].__text = value;
-  //         }
-  //       }
-  //       searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: column.searchCriteriaItem });
-  //     }
-  //   });
-  //   return searchCriteria;
-  // }
-
   private generateSearchCriteriaXML(): string {
     let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
     // for (let key in this.searchCriteria) {
@@ -133,48 +117,22 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     this.actions.searchRecords(queryData);
   }
 
-  // private setSearchCriteriaFor(tabularData: searchTypes.ITabularData, item: ISearchCriteriaItem) {
-  //   let self = this;
-  //   tabularData.columns.forEach(column => {
-  //     let columnSearchCriteriaItem = column.searchCriteriaItem as ISearchCriteriaItem;
-  //     if (columnSearchCriteriaItem._fieldid === item._fieldid && columnSearchCriteriaItem._tableid === item._tableid) {
-  //       let searchCriteriaValue = getSearchCriteriaValue(item);
-  //       if (searchCriteriaValue) {
-  //         if (column.coeType === 'COEStructureQuery') {
-  //           let structureCriteriaValue: any = searchCriteriaValue;
-  //           if (structureCriteriaValue.CSCartridgeStructureCriteria && structureCriteriaValue.CSCartridgeStructureCriteria.__text) {
-  //             setTimeout(() => {
-  //               self.chemDrawWeb.setValue(structureCriteriaValue.CSCartridgeStructureCriteria.__text);
-  //             }, 100);
-  //           }
-  //         } else if (searchCriteriaValue.__text) {
-  //           tabularData.data[column.dataField] = column.dataType === 'number' ? +searchCriteriaValue.__text : searchCriteriaValue.__text;
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-
-  private setSearchCriteria(item: ISearchCriteriaItem) {
-    // this.setSearchCriteriaFor(this.regSearch.registrySearchVM, item);
-    // this.setSearchCriteriaFor(this.regSearch.structureSearchVM, item);
-    // this.setSearchCriteriaFor(this.regSearch.componentSearchVM, item);
-    // this.setSearchCriteriaFor(this.regSearch.batchSearchVM, item);
+  private get x2jsTool() {
+    return new X2JS.default({
+      arrayAccessFormPaths: [
+        'searchCriteria.searchCriteriaItem',
+      ]
+    });
   }
 
   private fillSearchCriteriaFromXML(queryXml: string) {
     // This is to compensate bug in the server implementation.
     // Sometimes the XML contents are not properly encoded.
     queryXml = queryXml.replace('<=', '&lt;-').replace('< ', '&lt; ');
-    let x2jsTool = new X2JS.default({
-      arrayAccessFormPaths: [
-        'searchCriteria.searchCriteriaItem',
-      ]
-    });
-    let query: any = x2jsTool.xml2js(queryXml);
+    let query: any = this.x2jsTool.xml2js(queryXml);
     if (query && query.setSearchCriteria) {
       query.searchCriteria.searchCriteriaItem.forEach(i => {
-        this.setSearchCriteria(i);
+        // this.setSearchCriteria(i);
       });
     }
   }
@@ -209,6 +167,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private onValueUpdated(e) {
-    console.log(this.searchItems);
+    // console.log(this.searchItems);
   }
 };

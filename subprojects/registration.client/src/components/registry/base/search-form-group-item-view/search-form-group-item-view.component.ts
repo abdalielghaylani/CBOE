@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { ISearchCriteriaItem, getSearchCriteriaItemObj } from '../registry-search-base.types';
+import { ISearchCriteriaItem, getSearchCriteriaItemObj } from '../registry-base.types';
 import { RegFormGroupItemView } from '../form-group-item-view';
 
 @Component({

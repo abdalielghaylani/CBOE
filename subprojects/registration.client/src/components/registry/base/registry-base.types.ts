@@ -1,5 +1,5 @@
 import { EventEmitter } from '@angular/core';
-import { ISearchCriteriaItem } from './registry-search-base.types';
+import { ISearchCriteriaItem } from './registry-base.types';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
 export interface IViewControl {
@@ -705,4 +705,23 @@ export class CRegistryRecord {
 }
 
 export interface IRegistryRecord extends CRegistryRecord {
+}
+
+export interface ISearchCriteriaValue {
+  _negate: string;
+  __text?: string;
+}
+
+export interface ISearchCriteriaItem {
+  _id: string;
+  _tableid: string;
+  _fieldid: string;
+  _modifier?: string;
+  _aggregateFunctionName?: string;
+  _searchLookupByID?: string;
+}
+
+export function getSearchCriteriaItemObj(item: ISearchCriteriaItem): ISearchCriteriaValue {
+  let objectProp = Object.getOwnPropertyNames(item).find(n => typeof item[n] === 'object');
+  return item[objectProp] as ISearchCriteriaValue;
 }
