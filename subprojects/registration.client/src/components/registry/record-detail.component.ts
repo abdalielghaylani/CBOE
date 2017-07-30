@@ -124,7 +124,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private update(forceUpdate: boolean = true) {
-    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
     this.editMode = this.displayMode !== 'view';
     if (!this.lookups || !this.lookups.userPrivileges) {
       return;
@@ -267,6 +266,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
     }
+    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
     this.update();
   }
 
