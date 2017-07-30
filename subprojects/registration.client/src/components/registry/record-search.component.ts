@@ -150,15 +150,20 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private fillSearchCriteriaFromXML(queryXml: string) {
+    // This is to compensate bug in the server implementation.
+    // Sometimes the XML contents are not properly encoded.
+    queryXml = queryXml.replace('<=', '&lt;-').replace('< ', '&lt; ');
     let x2jsTool = new X2JS.default({
       arrayAccessFormPaths: [
         'searchCriteria.searchCriteriaItem',
       ]
     });
     let query: any = x2jsTool.xml2js(queryXml);
-    query.searchCriteria.searchCriteriaItem.forEach(i => {
-      this.setSearchCriteria(i);
-    });
+    if (query && query.setSearchCriteria) {
+      query.searchCriteria.searchCriteriaItem.forEach(i => {
+        this.setSearchCriteria(i);
+      });
+    }
   }
 
   public restore(queryData: IQueryData) {
