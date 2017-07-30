@@ -16,7 +16,7 @@ import * as X2JS from 'x2js';
 import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, notify } from '../../common';
-import { IResponseData, CRegistryRecordVM, ITemplateData, CTemplateData } from './registry.types';
+import { IResponseData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
 import { IRegistryRecord, CRegistryRecord, CFragment, CViewGroup } from './base';

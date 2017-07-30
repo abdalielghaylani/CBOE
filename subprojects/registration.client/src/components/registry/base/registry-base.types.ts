@@ -130,32 +130,6 @@ export class CViewGroup implements IViewGroup {
       .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
   }
 
-  private parseEntryValue(bindingExpression: string, viewModel: any) {
-    bindingExpression = this.fixBindingExpression(bindingExpression);
-    let objectNames = bindingExpression.split('.');
-    let nextObject = viewModel;
-    objectNames.forEach(n => {
-      if (nextObject) {
-        let m = n.match(/PropertyList\[@Name='(.*)'/);
-        if (m && m.length > 1) {
-          let propertyList = nextObject.PropertyList as IPropertyList;
-          let p = propertyList.Property.filter(p => p._name === m[1]);
-          nextObject = p ? p[0].__text : undefined;
-        } else {
-          nextObject = nextObject[n];
-        }
-      }
-    });
-    return nextObject;
-  }
-
-  private getDataSource(dataSource: string, viewModel: IRegistryRecord): any {
-    dataSource = dataSource.toLowerCase();
-    return dataSource.indexOf('component') >= 0 ? viewModel.ComponentList.Component[0]
-      : dataSource.indexOf('batch') >= 0 ? viewModel.BatchList.Batch[0]
-        : viewModel;
-  }
-
   private getQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem): string {
     let value;
     let searchCriteriaValue: any = getSearchCriteriaValue(searchCriteriaItem);
@@ -165,66 +139,6 @@ export class CViewGroup implements IViewGroup {
       value = searchCriteriaValue.__text;
     }
     return value;
-  }
-
-  private getEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord): any {
-    let entryInfo = this.getEntryInfo(displayMode, id);
-    return displayMode === 'query'
-      ? this.getQueryEntryValue(entryInfo.searchCriteriaItem)
-      : this.parseEntryValue(entryInfo.bindingExpression, this.getDataSource(entryInfo.dataSource, viewModel));
-  }
-
-  private serializeValue(object: any, property: string) {
-    let textObject = object[property];
-    if (textObject && typeof textObject === 'object' && textObject.viewModel) {
-      object[property] = object[property].toString();
-    }
-  }
-
-  /**
-   * Parses the binding expression, and sets the bound object value
-   * For non-query form-group data only
-   * @param bindingExpression The path expression of the bound object
-   * @param viewModel The view-model object that contains the object to set the value
-   * @param value The value to set
-   * @param serialize The indicator whether or not the value must be rendered into string value
-   */
-  private parseAndSetEntryValue(bindingExpression: string, viewModel: any, value, serialize: boolean = false) {
-    bindingExpression = this.fixBindingExpression(bindingExpression);
-    let objectNames = bindingExpression.split('.');
-    let nextObject = viewModel;
-    objectNames.forEach(n => {
-      if (nextObject) {
-        let m = n.match(/PropertyList\[@Name='(.*)'/);
-        if (m && m.length > 1) {
-          let propertyList = nextObject.PropertyList as IPropertyList;
-          let p = propertyList.Property.filter(p => p._name === m[1]);
-          if (p) {
-            if (serialize) {
-              this.serializeValue(p[0], '__text');
-            } else {
-              p[0].__text = value;
-            }
-          } else {
-            propertyList.Property.push({ _name: m[1], __text: value });
-          }
-          nextObject = p ? p[0].__text : undefined;
-        } else {
-          if (n === objectNames[objectNames.length - 1]) {
-            if (serialize) {
-              this.serializeValue(nextObject, n);
-            } else {
-              nextObject[n] = value;
-            }
-          } else {
-            if (!nextObject[n]) {
-              nextObject[n] = {};
-            }
-            nextObject = nextObject[n];
-          }
-        }
-      }
-    });
   }
 
   private setQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem, serialize: boolean) {
@@ -241,16 +155,6 @@ export class CViewGroup implements IViewGroup {
         });
       }
     });
-  }
-
-  private setEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord, entryValue, serialize: boolean = false) {
-    let entryInfo = this.getEntryInfo(displayMode, id);
-    if (displayMode === 'query') {
-      this.setQueryEntryValue(entryInfo.searchCriteriaItem, serialize);
-    } else {
-      let dataSource = this.getDataSource(entryInfo.dataSource, viewModel);
-      this.parseAndSetEntryValue(entryInfo.bindingExpression, dataSource, entryValue, serialize);
-    }
   }
 
   private isIdText(fe: IFormElement): boolean {
@@ -733,13 +637,6 @@ export class CRegistryRecord {
     }
   }
 
-  public getDataSource(dataSource: string): any {
-    dataSource = dataSource.toLowerCase();
-    return dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
-      : dataSource.indexOf('batch') >= 0 ? this.BatchList.Batch[0]
-        : this;
-  }
-  
   public static createFromPlainObj(obj: IRegistryRecord): CRegistryRecord {
     let created = new CRegistryRecord();
     for (let k in obj) {
@@ -781,6 +678,13 @@ export class CRegistryRecord {
       }
     });
     return foundObject;
+  }
+
+  public getDataSource(dataSource: string): any {
+    dataSource = dataSource.toLowerCase();
+    return dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
+      : dataSource.indexOf('batch') >= 0 ? this.BatchList.Batch[0]
+        : this;
   }
 
   public setEntryValue(viewConfig: CViewGroup, displayMode: string, id: string, entryValue, serialize: boolean = false) {
