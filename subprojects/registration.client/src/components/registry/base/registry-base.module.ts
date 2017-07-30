@@ -51,6 +51,7 @@ export * from './tag-box-form-item';
 export * from './form-view';
 export * from './form-group-view';
 export * from './registry-base.types';
+export * from './registry-search-base.types';
 
 @NgModule({
   imports: [

@@ -1,4 +1,5 @@
 import { EventEmitter } from '@angular/core';
+import { ISearchCriteriaItem, getSearchCriteriaValue } from './registry-search-base.types';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
 export interface IViewControl {
@@ -22,6 +23,7 @@ export interface IViewGroup {
 class CEntryInfo {
   dataSource: string;
   bindingExpression: string;
+  searchCriteriaItem?: ISearchCriteriaItem;
 }
 
 export class CViewGroup implements IViewGroup {
@@ -78,6 +80,12 @@ export class CViewGroup implements IViewGroup {
           };
         }
       }
+      if (!item.template && fe.configInfo && fe.configInfo.fieldConfig.dropDownItemsSelect) {
+        item.template = 'dropDownTemplate';
+        item.editorOptions = {
+          dropDownItemsSelect: fe.configInfo.fieldConfig.dropDownItemsSelect
+        };
+      }
     } else if (type.endsWith('COEWebGridUltra') && fe.bindingExpression.indexOf('IdentifierList') >= 0) {
       item.template = 'idListTemplate';
       item.editorOptions = {
@@ -116,9 +124,12 @@ export class CViewGroup implements IViewGroup {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
-          if ((fe.Id && fe.Id === id) || (!fe.Id && fe._name.replace(/\s/g, '') === id)) {
+          if (this.getDataField(fe) === id) {
             entryInfo.dataSource = f._dataSourceId;
             entryInfo.bindingExpression = fe.bindingExpression;
+            if (fe.searchCriteriaItem) {
+              entryInfo.searchCriteriaItem = fe.searchCriteriaItem;
+            }
           }
         });
       }
@@ -152,15 +163,29 @@ export class CViewGroup implements IViewGroup {
     return nextObject;
   }
 
+  private getDataSource(dataSource: string, viewModel: IRegistryRecord): any {
+    dataSource = dataSource.toLowerCase();
+    let data = dataSource.indexOf('component') >= 0 ? viewModel.ComponentList.Component[0]
+      : dataSource.indexOf('batch') >= 0 ? viewModel.BatchList.Batch[0]
+        : viewModel;
+  }
+
+  private getQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem): string {
+    let value;
+    let searchCriteriaValue: any = getSearchCriteriaValue(searchCriteriaItem);
+    if (searchCriteriaValue && searchCriteriaValue.CSCartridgeStructureCriteria && searchCriteriaValue.CSCartridgeStructureCriteria.__text) {
+      value = searchCriteriaValue.CSCartridgeStructureCriteria.__text;
+    } else if (searchCriteriaValue.__text) {
+      value = searchCriteriaValue.__text;
+    }
+    return value;
+  }
+
   private getEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord): any {
     let entryInfo = this.getEntryInfo(displayMode, id);
-    if (!entryInfo.dataSource) {
-      return undefined;
-    }
-    let dataSource = entryInfo.dataSource.toLowerCase();
-    return dataSource.indexOf('component') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.ComponentList.Component[0])
-      : dataSource.indexOf('batch') >= 0 ? this.parseEntryValue(entryInfo.bindingExpression, viewModel.BatchList.Batch[0])
-        : this.parseEntryValue(entryInfo.bindingExpression, viewModel);
+    return displayMode === 'query'
+      ? this.getQueryEntryValue(entryInfo.searchCriteriaItem)
+      : this.parseEntryValue(entryInfo.bindingExpression, this.getDataSource(entryInfo.dataSource, viewModel));
   }
 
   private serializeValue(object: any, property: string) {
@@ -170,6 +195,14 @@ export class CViewGroup implements IViewGroup {
     }
   }
 
+  /**
+   * Parses the binding expression, and sets the bound object value
+   * For non-query form-group data only
+   * @param bindingExpression The path expression of the bound object
+   * @param viewModel The view-model object that contains the object to set the value
+   * @param value The value to set
+   * @param serialize The indicator whether or not the value must be rendered into string value
+   */
   private parseAndSetEntryValue(bindingExpression: string, viewModel: any, value, serialize: boolean = false) {
     bindingExpression = this.fixBindingExpression(bindingExpression);
     let objectNames = bindingExpression.split('.');
@@ -211,10 +244,12 @@ export class CViewGroup implements IViewGroup {
 
   private setEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord, entryValue, serialize: boolean = false) {
     let entryInfo = this.getEntryInfo(displayMode, id);
-    let dataSource = entryInfo.dataSource.toLowerCase();
-    dataSource.indexOf('component') >= 0 ? this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel.ComponentList.Component[0], entryValue, serialize)
-      : dataSource.indexOf('batch') >= 0 ? this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel.BatchList.Batch[0], entryValue, serialize)
-        : this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel, entryValue, serialize);
+    if (displayMode === 'query') {
+      this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel, entryInfo.searchCriteriaItem, serialize);
+    } else {
+      let dataSource = this.getDataSource(entryInfo.dataSource, viewModel);
+      this.parseAndSetEntryValue(entryInfo.bindingExpression, dataSource, entryValue, serialize);
+    }
   }
 
   private isIdText(fe: IFormElement): boolean {
@@ -272,7 +307,7 @@ export class CViewGroup implements IViewGroup {
   private static getFilteredDisabledControls(displayMode: string, disabledControls: any[]): any[] {
     let pageId: string = displayMode === 'add' ? 'SUBMITMIXTURE'
       : displayMode === 'view' ? 'VIEWMIXTURE'
-        : displayMode == 'edit' ? 'REVIEWREGISTERMIXTURE'
+        : displayMode === 'edit' ? 'REVIEWREGISTERMIXTURE'
           : undefined;
     return pageId ? disabledControls.filter(dc => dc.pageId === pageId) : [];
   }

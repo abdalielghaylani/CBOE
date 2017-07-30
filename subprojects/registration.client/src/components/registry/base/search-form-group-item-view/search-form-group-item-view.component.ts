@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
-import { IViewControl } from '../registry-base.types';
-import { CViewGroup } from '../registry-search-base.types';
+import { CViewGroup, IViewControl } from '../registry-base.types';
 
 @Component({
   selector: 'reg-search-form-group-item-view',

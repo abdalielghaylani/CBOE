@@ -39,16 +39,20 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
   protected update() {
     let options = this.viewModel.editorOptions;
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
-    let pickListDomain = options.pickListDomain as number;
-    let lookups = this.ngRedux.getState().session.lookups;
-    if (lookups) {
-      let filtered = lookups.pickListDomains.filter(d => d.ID === pickListDomain);
-      if (filtered) {
-        let pickListDomainInfo = filtered[0];
-        this.dataSource = pickListDomainInfo.data;
-        this.valueExpr = pickListDomainInfo.EXT_ID_COL;
-        this.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
+    if (options.pickListDomain) {
+      let pickListDomain = options.pickListDomain as number;
+      let lookups = this.ngRedux.getState().session.lookups;
+      if (lookups) {
+        let filtered = lookups.pickListDomains.filter(d => d.ID === pickListDomain);
+        if (filtered) {
+          let pickListDomainInfo = filtered[0];
+          this.dataSource = pickListDomainInfo.data;
+          this.valueExpr = pickListDomainInfo.EXT_ID_COL;
+          this.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
+        }
       }
+    } else if (options.dropDownItemsSelect) {
+      // TODO: Parse the select statement and use proper data for drop-down
     }
   }
 

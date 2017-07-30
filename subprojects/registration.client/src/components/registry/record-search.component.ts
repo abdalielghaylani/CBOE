@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as searchTypes from './registry-search.types';
-import { CViewGroup, IRegistryRecord, CRegistryRecord } from './base';
+import { CViewGroup, ISearchCriteriaItem, getSearchCriteriaValue } from './base';
 import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData, ILookupData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawWeb } from '../common';
@@ -35,15 +35,13 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
   @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
+  public formGroup: IFormGroup;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
-  public formGroup: IFormGroup;
-  public viewGroups: CViewGroup[];
+  private viewGroups: CViewGroup[];
   private title: string;
   private displayMode: string = 'query';
-  // private regSearch: searchTypes.CSearchFormVM;
-  private regRecord: IRegistryRecord = new CRegistryRecord();
-  private regSearchViewModel: any = {};
+  private searchCriteria: any = {};
   private cddActivated: boolean;
 
   constructor(
@@ -88,27 +86,27 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private getSearchCriteria(tabularData: searchTypes.ITabularData): string {
-    let searchCriteria = '';
-    tabularData.columns.forEach(column => {
-      let value = column.coeType === 'COEStructureQuery' ? this.chemDrawWeb.getValue() : tabularData.data[column.dataField];
-      if (value) {
-        for (const prop in column.searchCriteriaItem) {
-          if (typeof column.searchCriteriaItem[prop] === 'object') {
-            column.searchCriteriaItem[prop].__text = value;
-          }
-        }
-        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: column.searchCriteriaItem });
-      }
-    });
-    return searchCriteria;
-  }
+  // private getSearchCriteria(tabularData: searchTypes.ITabularData): string {
+  //   let searchCriteria = '';
+  //   tabularData.columns.forEach(column => {
+  //     let value = column.coeType === 'COEStructureQuery' ? this.chemDrawWeb.getValue() : tabularData.data[column.dataField];
+  //     if (value) {
+  //       for (const prop in column.searchCriteriaItem) {
+  //         if (typeof column.searchCriteriaItem[prop] === 'object') {
+  //           column.searchCriteriaItem[prop].__text = value;
+  //         }
+  //       }
+  //       searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: column.searchCriteriaItem });
+  //     }
+  //   });
+  //   return searchCriteria;
+  // }
 
   private generateSearchCriteriaXML(): string {
     let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
-    for (let key in this.regSearchViewModel) {
-      if (this.regSearchViewModel[key]) {
-        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: this.regSearchViewModel[key] });
+    for (let key in this.searchCriteria) {
+      if (this.searchCriteria[key]) {
+        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: this.searchCriteria[key] });
       }
     }
     return searchCriteria + '</searchCriteria>';
@@ -122,33 +120,33 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     this.actions.searchRecords(queryData);
   }
 
-  private setSearchCriteriaFor(tabularData: searchTypes.ITabularData, item: searchTypes.ISearchCriteriaItem) {
-    let self = this;
-    tabularData.columns.forEach(column => {
-      let columnSearchCriteriaItem = column.searchCriteriaItem as searchTypes.ISearchCriteriaItem;
-      if (columnSearchCriteriaItem._fieldid === item._fieldid && columnSearchCriteriaItem._tableid === item._tableid) {
-        let searchCriteria = searchTypes.getSearchCriteria(item);
-        if (searchCriteria) {
-          if (column.coeType === 'COEStructureQuery') {
-            let structureCriteria: any = searchCriteria;
-            if (structureCriteria.CSCartridgeStructureCriteria && structureCriteria.CSCartridgeStructureCriteria.__text) {
-              setTimeout(() => {
-                self.chemDrawWeb.setValue(structureCriteria.CSCartridgeStructureCriteria.__text);
-              }, 100);
-            }
-          } else if (searchCriteria.__text) {
-            tabularData.data[column.dataField] = column.dataType === 'number' ? +searchCriteria.__text : searchCriteria.__text;
-          }
-        }
-      }
-    });
-  }
+  // private setSearchCriteriaFor(tabularData: searchTypes.ITabularData, item: ISearchCriteriaItem) {
+  //   let self = this;
+  //   tabularData.columns.forEach(column => {
+  //     let columnSearchCriteriaItem = column.searchCriteriaItem as ISearchCriteriaItem;
+  //     if (columnSearchCriteriaItem._fieldid === item._fieldid && columnSearchCriteriaItem._tableid === item._tableid) {
+  //       let searchCriteriaValue = getSearchCriteriaValue(item);
+  //       if (searchCriteriaValue) {
+  //         if (column.coeType === 'COEStructureQuery') {
+  //           let structureCriteriaValue: any = searchCriteriaValue;
+  //           if (structureCriteriaValue.CSCartridgeStructureCriteria && structureCriteriaValue.CSCartridgeStructureCriteria.__text) {
+  //             setTimeout(() => {
+  //               self.chemDrawWeb.setValue(structureCriteriaValue.CSCartridgeStructureCriteria.__text);
+  //             }, 100);
+  //           }
+  //         } else if (searchCriteriaValue.__text) {
+  //           tabularData.data[column.dataField] = column.dataType === 'number' ? +searchCriteriaValue.__text : searchCriteriaValue.__text;
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
 
-  private setSearchCriteria(item: searchTypes.ISearchCriteriaItem) {
-    this.setSearchCriteriaFor(this.regSearch.registrySearchVM, item);
-    this.setSearchCriteriaFor(this.regSearch.structureSearchVM, item);
-    this.setSearchCriteriaFor(this.regSearch.componentSearchVM, item);
-    this.setSearchCriteriaFor(this.regSearch.batchSearchVM, item);
+  private setSearchCriteria(item: ISearchCriteriaItem) {
+    // this.setSearchCriteriaFor(this.regSearch.registrySearchVM, item);
+    // this.setSearchCriteriaFor(this.regSearch.structureSearchVM, item);
+    // this.setSearchCriteriaFor(this.regSearch.componentSearchVM, item);
+    // this.setSearchCriteriaFor(this.regSearch.batchSearchVM, item);
   }
 
   private fillSearchCriteriaFromXML(queryXml: string) {

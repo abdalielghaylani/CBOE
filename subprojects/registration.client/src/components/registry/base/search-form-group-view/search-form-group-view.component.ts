@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { IViewControl } from '../registry-base.types';
-import { CViewGroup, ITabularData } from '../registry-search-base.types';
+import { CViewGroup, IViewControl } from '../registry-base.types';
 import { IFormGroup, IForm, ICoeForm } from '../../../../common';
 import { IAppState } from '../../../../redux';
 
