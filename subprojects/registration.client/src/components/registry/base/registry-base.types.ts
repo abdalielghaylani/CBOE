@@ -165,7 +165,7 @@ export class CViewGroup implements IViewGroup {
 
   private getDataSource(dataSource: string, viewModel: IRegistryRecord): any {
     dataSource = dataSource.toLowerCase();
-    let data = dataSource.indexOf('component') >= 0 ? viewModel.ComponentList.Component[0]
+    return dataSource.indexOf('component') >= 0 ? viewModel.ComponentList.Component[0]
       : dataSource.indexOf('batch') >= 0 ? viewModel.BatchList.Batch[0]
         : viewModel;
   }
