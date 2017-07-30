@@ -17,11 +17,11 @@ export class RegFormView implements IViewControl, OnChanges {
   @Input() viewModel: any;
   @Input() viewConfig: any[];
   @Input() colCount: number;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
-  private viewModelCopy: any;
-  private structureFormItem: RegStructureFormItem;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+  protected viewModelCopy: any;
 
   ngOnChanges() {
+    // Keep a copy of view-model to check there is any change
     this.viewModelCopy = copyObject(this.viewModel);
   }
 

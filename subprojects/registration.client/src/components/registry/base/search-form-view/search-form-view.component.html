@@ -1,9 +1,20 @@
-<dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig"
-  [readOnly]="!editMode" labelLocation="top">
+<dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="!editMode" labelLocation="top">
+  <div *dxTemplate="let data of 'dateTemplate'">
+    <reg-date-form-item-template [editMode]="editMode" [viewModel]="data"></reg-date-form-item-template>
+  </div>
+  <div *dxTemplate="let data of 'projectsTemplate'">
+    <reg-projects-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-projects-form-item-template>
+  </div>
+  <div *dxTemplate="let data of 'fragmentsTemplate'">
+    <reg-fragments-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-fragments-form-item-template>
+  </div>
+  <div *dxTemplate="let data of 'idListTemplate'">
+    <reg-id-list-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-id-list-form-item-template>
+  </div>
   <div *dxTemplate="let data of 'dropDownTemplate'">
     <reg-drop-down-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-drop-down-form-item-template>
   </div>
-  <div *dxTemplate="let data of 'structureTemplate'">
+  <div *dxTemplate="let data of 'structureQueryTemplate'">
     <reg-structure-query-form-item-template (valueUpdated)="onStructureValueUpdated($event)" [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-query-form-item-template>
   </div>
 </dx-form>

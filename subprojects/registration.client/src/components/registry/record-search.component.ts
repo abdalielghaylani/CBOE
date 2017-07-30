@@ -38,11 +38,11 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   public formGroup: IFormGroup;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
-  private viewGroups: CViewGroup[];
+  private searchItems: ISearchCriteriaItem[] = [];
+  private viewGroups: CViewGroup[] = [];
   private title: string;
   private displayMode: string = 'query';
-  private searchCriteria: any = {};
-  private cddActivated: boolean;
+  private cddActivated: boolean = false;
 
   constructor(
     private router: Router,
@@ -77,10 +77,33 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     this.update(false);
   }
 
+  private setSearchItems() {
+  }
+
+  private viewGroupsChanged(viewGroups: CViewGroup[]) {
+    let changed = viewGroups.length !== this.viewGroups.length;
+    if (!changed) {
+      let index = 0;
+      viewGroups.forEach(vg => {
+        if (vg.id !== this.viewGroups[index].id) {
+          changed = true;
+        }
+        ++index;
+      });
+    }
+    return changed;
+  }
+
   private update(forceUpdate: boolean = true) {
     // Don't keep changing cdd configuration
-    this.cddActivated = this.cddActivated || this.activated;
-    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
+    if (!this.cddActivated && this.activated) {
+      this.cddActivated = true;
+    }
+    let viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
+    if (this.viewGroupsChanged(viewGroups)) {
+      this.viewGroups = viewGroups;
+    }
+    this.setSearchItems();
     if (forceUpdate) {
       this.changeDetector.markForCheck();
     }
@@ -104,11 +127,11 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
 
   private generateSearchCriteriaXML(): string {
     let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
-    for (let key in this.searchCriteria) {
-      if (this.searchCriteria[key]) {
-        searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: this.searchCriteria[key] });
-      }
-    }
+    // for (let key in this.searchCriteria) {
+    //   if (this.searchCriteria[key]) {
+    //     searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: this.searchCriteria[key] });
+    //   }
+    // }
     return searchCriteria + '</searchCriteria>';
   }
 
@@ -198,5 +221,4 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private onValueUpdated(e) {
     // console.log(`form value changed`);
   }
-
 };

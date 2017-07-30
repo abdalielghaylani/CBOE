@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IViewControl } from '../registry-base.types';
-import { RegStructureQueryFormItem } from '../structure-query-form-item';
-import { copyObject } from '../../../../common';
+import { RegFormView } from '../form-view';
+import { RegStructureFormItem } from '../structure-form-item';
 
 @Component({
   selector: 'reg-search-form-view',
@@ -10,31 +9,21 @@ import { copyObject } from '../../../../common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegSearchFormView implements IViewControl, OnChanges {
-  @Input() id: string;
-  @Input() activated: boolean;
-  @Input() editMode: boolean;
-  @Input() viewModel: any;
-  @Input() viewConfig: any[];
-  @Input() colCount: number;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
-  private viewModelCopy: any;
-  private structureFormItem: RegStructureQueryFormItem;
-
-  ngOnChanges() {
-    this.viewModelCopy = copyObject(this.viewModel);
+export class RegSearchFormView extends RegFormView {
+  constructor() {
+    super();
   }
 
   protected onFieldDataChanged(e) {
     if (this.viewModelCopy[e.dataField] !== e.value) {
-      this.viewModelCopy[e.dataField] = e.value;
+      // this.viewModelCopy[e.dataField] = e.value;
       this.onValueUpdated(this);
     }
   }
 
-  protected onStructureValueUpdated(structureFormItem: RegStructureQueryFormItem) {
-    let dataField = structureFormItem.viewModel.dataField;
-    this.viewModel[dataField] = structureFormItem;
+  protected onStructureValueUpdated(structureFormItem: RegStructureFormItem) {
+    // let dataField = structureFormItem.viewModel.dataField;
+    // this.viewModel[dataField] = structureFormItem;
     this.onValueUpdated(this);
   }
 

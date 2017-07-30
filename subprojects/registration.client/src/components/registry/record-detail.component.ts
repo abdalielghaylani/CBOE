@@ -62,9 +62,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private clearButtonEnabled: boolean = false;
   private submissionTemplatesEnabled: boolean = false;
   private recordDoc: Document;
-  private recordJson: any;
-  private regRecord: IRegistryRecord = new CRegistryRecord();
-  private regRecordVM: CRegistryRecordVM = new CRegistryRecordVM(this.regRecord, this);
+  private regRecord: CRegistryRecord = new CRegistryRecord();
   private routeSubscription: Subscription;
   private dataSubscription: Subscription;
   private loadSubscription: Subscription;
@@ -240,7 +238,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private onValueUpdated(e) {
-    // console.log(`form value changed`);
+    // console.log(this.regRecord);
   }
 
   loadData(recordDetail: IRecordDetail, duplicateResolution: boolean = false) {
@@ -255,9 +253,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       recordDetail.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    // registryUtils.fixStructureData(this.recordDoc);
-    this.recordJson = this.x2jsTool.dom2js(this.recordDoc);
-    this.regRecord = this.recordJson.MultiCompoundRegistryRecord;
+    let recordJson: any = this.x2jsTool.dom2js(this.recordDoc);
+    this.regRecord = CRegistryRecord.createFromPlainObj(recordJson.MultiCompoundRegistryRecord);
     let formGroupType = FormGroupType.SubmitMixture;
     if (recordDetail.id >= 0 && !recordDetail.temporary) {
       // TODO: For mixture, this should be ReviewRegistryMixture
@@ -267,7 +264,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
-    this.regRecordVM = new CRegistryRecordVM(this.regRecord, this);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
     }
@@ -283,9 +279,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     this.viewGroups.forEach(vg => {
       let items = vg.getItems(this.displayMode);
       let validItems = items.filter(i => !i.itemType || i.itemType !== 'empty').map(i => i.dataField);
-      vg.serializeFormData(this.displayMode, validItems, this.regRecord);
+      this.regRecord.serializeFormData(this.viewGroups, this.displayMode, validItems);
     });
-    return x2jsTool.js2dom(this.recordJson);
+    return x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });
   }
 
   save() {

@@ -20,10 +20,15 @@ export interface IViewGroup {
   data: ICoeForm[];
 }
 
-class CEntryInfo {
+export class CEntryInfo {
   dataSource: string;
   bindingExpression: string;
   searchCriteriaItem?: ISearchCriteriaItem;
+}
+
+export class CBoundObject {
+  obj: any;
+  property?: string;
 }
 
 export class CViewGroup implements IViewGroup {
@@ -116,25 +121,6 @@ export class CViewGroup implements IViewGroup {
       item.editorOptions = {};
     }
     item.editorOptions.readOnly = readOnly;
-  }
-
-  private getEntryInfo(displayMode: string, id: string): CEntryInfo {
-    let entryInfo = new CEntryInfo();
-    this.data.forEach(f => {
-      let formElementContainer = this.getFormElementContainer(f, displayMode);
-      if (formElementContainer && formElementContainer.formElement) {
-        formElementContainer.formElement.forEach(fe => {
-          if (this.getDataField(fe) === id) {
-            entryInfo.dataSource = f._dataSourceId;
-            entryInfo.bindingExpression = fe.bindingExpression;
-            if (fe.searchCriteriaItem) {
-              entryInfo.searchCriteriaItem = fe.searchCriteriaItem;
-            }
-          }
-        });
-      }
-    });
-    return entryInfo;
   }
 
   private fixBindingExpression(expression: string): string {
@@ -233,11 +219,26 @@ export class CViewGroup implements IViewGroup {
           } else {
             if (!nextObject[n]) {
               nextObject[n] = {};
-            } else {
-              nextObject = nextObject[n];
             }
+            nextObject = nextObject[n];
           }
         }
+      }
+    });
+  }
+
+  private setQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem, serialize: boolean) {
+    this.data.forEach(f => {
+      let formElementContainer = this.getFormElementContainer(f, 'query');
+      if (formElementContainer && formElementContainer.formElement) {
+        formElementContainer.formElement.forEach(fe => {
+          if (fe.searchCriteriaItem) {
+            let si = fe.searchCriteriaItem;
+            if (si._id === searchCriteriaItem._id) {
+
+            }
+          }
+        });
       }
     });
   }
@@ -245,7 +246,7 @@ export class CViewGroup implements IViewGroup {
   private setEntryValue(displayMode: string, id: string, viewModel: IRegistryRecord, entryValue, serialize: boolean = false) {
     let entryInfo = this.getEntryInfo(displayMode, id);
     if (displayMode === 'query') {
-      this.parseAndSetEntryValue(entryInfo.bindingExpression, viewModel, entryInfo.searchCriteriaItem, serialize);
+      this.setQueryEntryValue(entryInfo.searchCriteriaItem, serialize);
     } else {
       let dataSource = this.getDataSource(entryInfo.dataSource, viewModel);
       this.parseAndSetEntryValue(entryInfo.bindingExpression, dataSource, entryValue, serialize);
@@ -360,6 +361,25 @@ export class CViewGroup implements IViewGroup {
     return viewGroupsFiltered;
   }
 
+  public getEntryInfo(displayMode: string, id: string): CEntryInfo {
+    let entryInfo = new CEntryInfo();
+    this.data.forEach(f => {
+      let formElementContainer = this.getFormElementContainer(f, displayMode);
+      if (formElementContainer && formElementContainer.formElement) {
+        formElementContainer.formElement.forEach(fe => {
+          if (this.getDataField(fe) === id) {
+            entryInfo.dataSource = f._dataSourceId;
+            entryInfo.bindingExpression = fe.bindingExpression;
+            if (fe.searchCriteriaItem) {
+              entryInfo.searchCriteriaItem = fe.searchCriteriaItem;
+            }
+          }
+        });
+      }
+    });
+    return entryInfo;
+  }
+
   public append(f: ICoeForm): boolean {
     let canAppend = this.canAppend(f);
     if (canAppend) {
@@ -394,24 +414,19 @@ export class CViewGroup implements IViewGroup {
     return this.fixColSpans(items);
   }
 
-  public getFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord): any {
-    let formData: any = {};
-    idList.forEach(id => {
-      formData[id] = this.getEntryValue(displayMode, id, viewModel);
+  public getSearchItems(): ISearchCriteriaItem[] {
+    let items: ISearchCriteriaItem[] = [];
+    this.data.forEach(f => {
+      let formElementContainer = this.getFormElementContainer(f, 'query');
+      if (formElementContainer && formElementContainer.formElement) {
+        formElementContainer.formElement.forEach(fe => {
+          if (this.isVisible(fe) && fe.searchCriteriaItem) {
+            items.push(fe.searchCriteriaItem);
+          }
+        });
+      }
     });
-    return formData;
-  }
-
-  public readFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord, formData: any) {
-    idList.forEach(id => {
-      this.setEntryValue(displayMode, id, viewModel, formData[id]);
-    });
-  }
-
-  public serializeFormData(displayMode: string, idList: string[], viewModel: IRegistryRecord) {
-    idList.forEach(id => {
-      this.setEntryValue(displayMode, id, viewModel, null, true);
-    });
+    return items;
   }
 }
 
@@ -694,6 +709,107 @@ export class CRegistryRecord {
   constructor() {
     this.ComponentList.Component.push(new CComponent());
     this.BatchList.Batch.push(new CBatch());
+  }
+
+  private static getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
+    return mode === 'add' ? f.addMode : mode === 'edit' ? f.editMode : f.viewMode;
+  }
+
+  private static getDataField(fe: IFormElement): string {
+    return fe.Id ? fe.Id : fe._name.replace(/\s/g, '');
+  }
+
+  private static fixBindingExpression(expression: string): string {
+    return expression.replace('.Sequence.ID', '.SequenceID')
+      .replace('.Structure.Value', '.Structure.Structure.__text')
+      .replace('.Structure.Formula', '.Structure.Structure._formula')
+      .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
+  }
+
+  private static serializeValue(object: any, property: string) {
+    let textObject = object[property];
+    if (textObject && typeof textObject === 'object' && textObject.viewModel) {
+      object[property] = object[property].toString();
+    }
+  }
+
+  public getDataSource(dataSource: string): any {
+    dataSource = dataSource.toLowerCase();
+    return dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
+      : dataSource.indexOf('batch') >= 0 ? this.BatchList.Batch[0]
+        : this;
+  }
+  
+  public static createFromPlainObj(obj: IRegistryRecord): CRegistryRecord {
+    let created = new CRegistryRecord();
+    for (let k in obj) {
+      if (obj.hasOwnProperty(k)) {
+        created[k] = obj[k];
+      }
+    }
+    return created;
+  }
+
+  public static findBoundObject(viewModel: any, bindingExpression: string, createMissing: boolean = false): CBoundObject {
+    let foundObject = new CBoundObject();
+    bindingExpression = this.fixBindingExpression(bindingExpression);
+    let objectNames = bindingExpression.split('.');
+    let nextObject = viewModel;
+    objectNames.forEach(n => {
+      if (nextObject) {
+        let m = n.match(/PropertyList\[@Name='(.*)'/);
+        if (m && m.length > 1) {
+          let propertyList = nextObject.PropertyList as IPropertyList;
+          let p = propertyList.Property.filter(p => p._name === m[1]);
+          if (createMissing && p.length === 0) {
+            propertyList.Property.push({ _name: m[1] });
+            p = propertyList.Property.filter(p => p._name === m[1]);
+          }
+          if (p.length > 0) {
+            foundObject.obj = p[0];
+            foundObject.property = '__text';
+          }
+        } else if (n === objectNames[objectNames.length - 1]) {
+          foundObject.obj = nextObject;
+          foundObject.property = n;
+        } else {
+          if (createMissing && !nextObject[n]) {
+            nextObject[n] = {};
+          }
+          nextObject = nextObject[n];
+        }
+      }
+    });
+    return foundObject;
+  }
+
+  public setEntryValue(viewConfig: CViewGroup, displayMode: string, id: string, entryValue, serialize: boolean = false) {
+    let entryInfo = viewConfig.getEntryInfo(displayMode, id);
+    if (entryInfo.dataSource && entryInfo.bindingExpression) {
+      let dataSource = this.getDataSource(entryInfo.dataSource);
+      let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
+      if (foundObject.property) {
+        if (serialize) {
+          CRegistryRecord.serializeValue(foundObject.obj, foundObject.property);
+        } else {
+          foundObject.obj[foundObject.property] = entryValue;
+        }
+      }
+    }
+  }
+
+  /**
+  * Flattens all data into string
+  * @param displayMode The current display-mode
+  * @param idList The list of ID's to update
+  * @param viewModel The view-model to flatten
+  */
+  public serializeFormData(viewConfig: CViewGroup[], displayMode: string, idList: string[]) {
+    viewConfig.forEach(vg => {
+      idList.forEach(id => {
+        this.setEntryValue(vg, displayMode, id, null, true);
+      });
+    });
   }
 }
 
