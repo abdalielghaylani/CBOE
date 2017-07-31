@@ -100,6 +100,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return customTables;
         }
 
+        private static JArray GetDisabledControls(string appName)
+        {
+            var disabledControlArray = new JArray();
+            var disabledControls = COEPageControlSettings.GetControlListToDisableForCurrentUser(appName);
+            foreach (var disabledControl in disabledControls)
+            {
+                var pageId = disabledControl.PageID.Replace("_ASPX", string.Empty);
+                pageId = pageId.Substring(pageId.LastIndexOf('_') + 1);
+                disabledControlArray.Add(new JObject(
+                    new JProperty("id", disabledControl.ID),
+                    new JProperty("action", disabledControl.Action),
+                    new JProperty("formId", disabledControl.COEFormID),
+                    new JProperty("parentControlId", disabledControl.ParentControlId),
+                    new JProperty("placeHolderId", disabledControl.PlaceHolderID),
+                    new JProperty("pageId", pageId)
+                ));
+            }
+            return disabledControlArray;
+        }
+
         private JArray GetHomeMenuPrivileges()
         {
             var homeMenuPrivilages = new JArray();
@@ -127,7 +147,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private JArray GetUserPrivileges()
         {
-            var appUserPrivilages = new JArray();          
+            var appUserPrivilages = new JArray();
             string coeIdentifier = "Registration";
             Dictionary<string, List<string>> appUserPrivileges = UserPrivileges;
             if (appUserPrivileges.ContainsKey(coeIdentifier.ToUpper()))
@@ -142,22 +162,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private JArray GetDisabledControls()
         {
-            var disabledControlArray = new JArray();
             var appName = COEAppName.Get().ToUpper();
-            var disabledControls = COEPageControlSettings.GetControlListToDisableForCurrentUser(appName);
-            foreach (var disabledControl in disabledControls)
-            {
-                var pageId = disabledControl.PageID.Replace("_ASPX", string.Empty);
-                pageId = pageId.Substring(pageId.LastIndexOf('_') + 1);
-                disabledControlArray.Add(new JObject(
-                    new JProperty("id", disabledControl.ID),
-                    new JProperty("action", disabledControl.Action),
-                    new JProperty("formId", disabledControl.COEFormID),
-                    new JProperty("parentControlId", disabledControl.ParentControlId),
-                    new JProperty("placeHolderId", disabledControl.PlaceHolderID),
-                    new JProperty("pageId", pageId)
-                ));
-            }
+            var disabledControlArray = GetDisabledControls(appName);
+            disabledControlArray.Merge(GetDisabledControls("CHEMBIOVIZ"));
             return disabledControlArray;
         }
 
@@ -201,21 +208,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> GetRecordsView(int id, string registryType, string pageMode)
         {
             return await CallMethod(() =>
-            { 
+            {
                 RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(id);
 
                 if (registryRecord == null)
                     throw new RegistrationException(string.Format("registry record not found for id = {0}", id));
 
                 RegistryTypes currentRegistryType = (RegistryTypes)Enum.Parse(typeof(RegistryTypes), registryType, true);
-                PageState pageState = (PageState)Enum.Parse(typeof(PageState), pageMode, true);          
+                PageState pageState = (PageState)Enum.Parse(typeof(PageState), pageMode, true);
 
                 dynamic jsonObject = new JObject();
 
                 // add a {'buttonStatus'} node in the JSON 
                 jsonObject.buttonStatus = new JArray() as dynamic;
 
-                ControlState registerButtonState = ViewConfigHelper.GetRegisterButtonState(registryRecord, pageState, currentRegistryType);               
+                ControlState registerButtonState = ViewConfigHelper.GetRegisterButtonState(registryRecord, pageState, currentRegistryType);
                 dynamic button = new JObject();
                 button.name = registerButtonState.Name;
                 button.visible = registerButtonState.Visible;
@@ -240,7 +247,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     form.visible = controlState.Visible;
                     jsonObject.formGroupStatus.Add(form);
                 }
-                return jsonObject; 
+                return jsonObject;
             });
         }
 
