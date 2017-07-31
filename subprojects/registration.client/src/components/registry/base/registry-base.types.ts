@@ -314,7 +314,7 @@ export class CViewGroup implements IViewGroup {
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
           if (this.isVisible(fe) && fe.searchCriteriaItem) {
-            items.push(fe.searchCriteriaItem);
+            items.push(JSON.parse(JSON.stringify(fe.searchCriteriaItem)));
           }
         });
       }
@@ -724,7 +724,7 @@ export interface ISearchCriteriaItem {
 }
 
 export class CSearchCriteria {
-  constructor(private searchCriteriaItem?: ISearchCriteriaItem[]) {
+  constructor(private searchCriteriaItem: ISearchCriteriaItem[] = []) {
   }
 
   private static get x2jsTool() {
@@ -760,16 +760,31 @@ export class CSearchCriteria {
     }
   }
 
-  public setSearchItems(items: ISearchCriteriaItem[]) {
-    this.searchCriteriaItem = items;
+  public static getConfiguredItems(viewConfig: CViewGroup[]): ISearchCriteriaItem[] {
+    let searchItems: ISearchCriteriaItem[] = [];
+    viewConfig.forEach(vg => {
+      let items = vg.getSearchItems();
+      items.forEach(i => {
+        searchItems.push(i);
+      });
+    });
+    return searchItems;
   }
 
-  public deserialize(xml: string) {
+  public static deserialize(viewConfig: CViewGroup[], xml: string): CSearchCriteria {
     // This is to compensate bug in the server implementation.
     // Sometimes the XML contents are not properly encoded.
     xml = xml.replace('<=', '&lt;-').replace('< ', '&lt; ');
-    let query: any = CSearchCriteria.x2jsTool.xml2js(xml);
-    this.searchCriteriaItem = query && query.searchCriteria ? query.searchCriteria.searchCriteriaItem : [];
+    let query: any = this.x2jsTool.xml2js(xml);
+    let queryItems: ISearchCriteriaItem[] = query && query.searchCriteria ? query.searchCriteria.searchCriteriaItem : [];
+    let searchItems = this.getConfiguredItems(viewConfig);
+    queryItems.forEach(qi => {
+      let i = searchItems.findIndex(si => si._id === qi._id);
+      if (i >= 0) {
+        searchItems[i] = qi;
+      }
+    });
+    return new CSearchCriteria(searchItems);
   }
 
   public serialize(): string {

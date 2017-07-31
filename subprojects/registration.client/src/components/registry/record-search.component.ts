@@ -12,11 +12,9 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
-import * as searchTypes from './registry-search.types';
 import { CViewGroup, CSearchCriteria, ISearchCriteriaItem } from './base';
 import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData, ILookupData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ChemDrawWeb } from '../common';
 import { FormGroupType, prepareFormGroupData, IFormGroup, notify } from '../../common';
 import * as X2JS from 'x2js';
 
@@ -34,7 +32,6 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Input() activated: boolean;
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
-  @ViewChild(ChemDrawWeb) private chemDrawWeb: ChemDrawWeb;
   public formGroup: IFormGroup;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
@@ -71,14 +68,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
-    let searchItems = [];
-    this.viewGroups.forEach(vg => {
-      let items = vg.getSearchItems();
-      items.forEach(i => {
-        searchItems.push(i);
-      });
-    });
-    this.searchCriteria.setSearchItems(searchItems);
+    this.searchCriteria = new CSearchCriteria(CSearchCriteria.getConfiguredItems(this.viewGroups));
     this.update();
   }
 
@@ -113,12 +103,13 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   public restore(queryData: IQueryData) {
-    this.searchCriteria.deserialize(queryData.searchCriteria);
+    this.searchCriteria = CSearchCriteria.deserialize(this.viewGroups, queryData.searchCriteria);
     this.changeDetector.markForCheck();
   }
 
   public clear() {
-    this.chemDrawWeb.setValue(null);
+    this.searchCriteria = new CSearchCriteria(CSearchCriteria.getConfiguredItems(this.viewGroups));
+    this.changeDetector.markForCheck();
   }
 
   private retrieveAll() {
