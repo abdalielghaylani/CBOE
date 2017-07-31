@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { CSearchCriteria, ISearchCriteriaItem, getSearchCriteriaItemObj } from '../registry-base.types';
+import { CSearchCriteria, ISearchCriteriaItem } from '../registry-base.types';
 import { RegFormGroupItemView } from '../form-group-item-view';
 
 @Component({
@@ -21,6 +21,6 @@ export class RegSearchFormGroupItemView extends RegFormGroupItemView {
 
   protected writeVM() {
     let validItems = this.items.filter(i => !i.itemType || i.itemType !== 'empty');
-    (this.viewModel as CSearchCriteria).updateFromQueryFormData(this.formData, this.viewConfig, this.displayMode, validItems);
+    (this.viewModel as CSearchCriteria).updateFromQueryFormData(this.formData, this.viewConfig, this.displayMode, validItems.map(i => i.dataField));
   }
 };

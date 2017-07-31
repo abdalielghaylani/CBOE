@@ -722,11 +722,6 @@ export interface ISearchCriteriaItem {
   _searchLookupByID?: string;
 }
 
-export function getSearchCriteriaItemObj(item: ISearchCriteriaItem): ISearchCriteriaValue {
-  let objectProp = Object.getOwnPropertyNames(item).find(n => typeof item[n] === 'object');
-  return item[objectProp] as ISearchCriteriaValue;
-}
-
 export class CSearchCriteria {
   constructor(private searchCriteriaItem?: ISearchCriteriaItem[]) {
   }
@@ -739,9 +734,14 @@ export class CSearchCriteria {
     });
   }
 
+  private getSearchCriteriaItemObj(item: ISearchCriteriaItem): ISearchCriteriaValue {
+    let objectProp = Object.getOwnPropertyNames(item).find(n => typeof item[n] === 'object');
+    return item[objectProp] as ISearchCriteriaValue;
+  }
+
   private getQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem): string {
     let value;
-    let searchCriteriaItemObj: any = getSearchCriteriaItemObj(searchCriteriaItem);
+    let searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(searchCriteriaItem);
     if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
       value = searchCriteriaItemObj.CSCartridgeStructureCriteria.__text;
     } else if (searchCriteriaItemObj.__text) {
@@ -751,7 +751,7 @@ export class CSearchCriteria {
   }
 
   private setQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem, entryValue, serialize: boolean = false) {
-    let searchCriteriaItemObj: any = getSearchCriteriaItemObj(searchCriteriaItem);
+    let searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(searchCriteriaItem);
     if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
       searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue;
     } else {
@@ -772,18 +772,31 @@ export class CSearchCriteria {
   }
 
   public serialize(): string {
-    return CSearchCriteria.x2jsTool.js2xml({ searchCriteria: this });
+    let items: ISearchCriteriaItem[] = [];
+    this.searchCriteriaItem.forEach(i => {
+      let value: any = this.getQueryEntryValue(i);
+      if (value) {
+        if (typeof value === 'object' && value.viewModel) {
+          this.setQueryEntryValue(i, value.toString());
+        }
+        items.push(i);
+      }
+    });
+    return CSearchCriteria.x2jsTool.js2xml({ searchCriteria: new CSearchCriteria(items) })
+      .replace('<searchCriteria>', `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`);
   }
 
   public getQueryFormData(viewConfig: CViewGroup, displayMode: string, idList: string[]): any {
     let formData: any = {};
     idList.forEach(id => {
       let entryInfo = viewConfig.getEntryInfo(displayMode, id);
-      this.searchCriteriaItem.forEach(i => {
-        if (entryInfo.searchCriteriaItem._id === i._id) {
-          formData[id] = this.getQueryEntryValue(i);
-        }
-      });
+      if (entryInfo.searchCriteriaItem) {      
+        this.searchCriteriaItem.forEach(i => {
+          if (entryInfo.searchCriteriaItem._id === i._id) {
+            formData[id] = this.getQueryEntryValue(i);
+          }
+        });
+      }
     });
     return formData;
   }
@@ -791,11 +804,13 @@ export class CSearchCriteria {
   public updateFromQueryFormData(formData: any, viewConfig: CViewGroup, displayMode: string, idList: string[]) {
     idList.forEach(id => {
       let entryInfo = viewConfig.getEntryInfo(displayMode, id);
-      this.searchCriteriaItem.forEach(i => {
-        if (entryInfo.searchCriteriaItem._id === i._id) {
-          this.setQueryEntryValue(i, formData[id]);
-        }
-      });
+      if (entryInfo.searchCriteriaItem) {
+        this.searchCriteriaItem.forEach(i => {
+          if (entryInfo.searchCriteriaItem._id === i._id) {
+            this.setQueryEntryValue(i, formData[id]);
+          }
+        });
+      }
     });
   }
 }
