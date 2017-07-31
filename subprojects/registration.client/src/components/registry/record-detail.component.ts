@@ -460,15 +460,17 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private delete() {
-    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
-    this.http.delete(url).toPromise()
-      .then(res => {
-        notifySuccess(`The record was deleted successfully!`, 5000);
-        this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
-      })
-      .catch(error => {
-        notifyException(`The record was not deleted due to a problem`, error, 5000);
-      });
+    if (confirm('Are you sure you want to delete this Registry Record?')) {
+        let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
+        this.http.delete(url).toPromise()
+          .then(res => {
+            notifySuccess(`The record was deleted successfully!`, 5000);
+            this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+          })
+          .catch(error => {
+            notifyException(`The record was not deleted due to a problem`, error, 5000);
+          });
+    }
   }
 
   private clear() {
