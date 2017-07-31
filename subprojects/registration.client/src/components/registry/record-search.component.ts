@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxFormComponent } from 'devextreme-angular';
 import * as searchTypes from './registry-search.types';
-import { CViewGroup, ISearchCriteriaItem } from './base';
+import { CViewGroup, CSearchCriteria, ISearchCriteriaItem } from './base';
 import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData, ILookupData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ChemDrawWeb } from '../common';
@@ -38,7 +38,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   public formGroup: IFormGroup;
   private lookups: ILookupData;
   private lookupsSubscription: Subscription;
-  private searchItems: ISearchCriteriaItem[] = [];
+  private searchCriteria: CSearchCriteria = new CSearchCriteria();
   private viewGroups: CViewGroup[] = [];
   private title: string;
   private displayMode: string = 'query';
@@ -71,22 +71,19 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
-    this.setSearchItems();
+    let searchItems = [];
+    this.viewGroups.forEach(vg => {
+      let items = vg.getSearchItems();
+      items.forEach(i => {
+        searchItems.push(i);
+      });
+    });
+    this.searchCriteria.setSearchItems(searchItems);
     this.update();
   }
 
   ngOnChanges() {
     this.update(false);
-  }
-
-  private setSearchItems() {
-    this.searchItems = [];
-    this.viewGroups.forEach(vg => {
-      let items = vg.getSearchItems();
-      items.forEach(i => {
-        this.searchItems.push(i);
-      });
-    });
   }
 
   private update(forceUpdate: boolean = true) {
@@ -99,20 +96,10 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private generateSearchCriteriaXML(): string {
-    let searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`;
-    // for (let key in this.searchCriteria) {
-    //   if (this.searchCriteria[key]) {
-    //     searchCriteria += new X2JS.default().js2xml({ searchCriteriaItem: this.searchCriteria[key] });
-    //   }
-    // }
-    return searchCriteria + '</searchCriteria>';
-  }
-
   private search() {
     let queryData: IQueryData = {
       temporary: this.temporary,
-      searchCriteria: this.generateSearchCriteriaXML()
+      searchCriteria: this.searchCriteria.serialize()
     };
     this.actions.searchRecords(queryData);
   }
@@ -125,20 +112,8 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     });
   }
 
-  private fillSearchCriteriaFromXML(queryXml: string) {
-    // This is to compensate bug in the server implementation.
-    // Sometimes the XML contents are not properly encoded.
-    queryXml = queryXml.replace('<=', '&lt;-').replace('< ', '&lt; ');
-    let query: any = this.x2jsTool.xml2js(queryXml);
-    if (query && query.setSearchCriteria) {
-      query.searchCriteria.searchCriteriaItem.forEach(i => {
-        // this.setSearchCriteria(i);
-      });
-    }
-  }
-
   public restore(queryData: IQueryData) {
-    this.fillSearchCriteriaFromXML(queryData.searchCriteria);
+    this.searchCriteria.deserialize(queryData.searchCriteria);
     this.changeDetector.markForCheck();
   }
 

@@ -1,4 +1,5 @@
 import { EventEmitter } from '@angular/core';
+import * as X2JS from 'x2js';
 import { ISearchCriteriaItem } from './registry-base.types';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
@@ -724,4 +725,77 @@ export interface ISearchCriteriaItem {
 export function getSearchCriteriaItemObj(item: ISearchCriteriaItem): ISearchCriteriaValue {
   let objectProp = Object.getOwnPropertyNames(item).find(n => typeof item[n] === 'object');
   return item[objectProp] as ISearchCriteriaValue;
+}
+
+export class CSearchCriteria {
+  constructor(private searchCriteriaItem?: ISearchCriteriaItem[]) {
+  }
+
+  private static get x2jsTool() {
+    return new X2JS.default({
+      arrayAccessFormPaths: [
+        'searchCriteria.searchCriteriaItem',
+      ]
+    });
+  }
+
+  private getQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem): string {
+    let value;
+    let searchCriteriaItemObj: any = getSearchCriteriaItemObj(searchCriteriaItem);
+    if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
+      value = searchCriteriaItemObj.CSCartridgeStructureCriteria.__text;
+    } else if (searchCriteriaItemObj.__text) {
+      value = searchCriteriaItemObj.__text;
+    }
+    return value;
+  }
+
+  private setQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem, entryValue, serialize: boolean = false) {
+    let searchCriteriaItemObj: any = getSearchCriteriaItemObj(searchCriteriaItem);
+    if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
+      searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue;
+    } else {
+      searchCriteriaItemObj.__text = entryValue;
+    }
+  }
+
+  public setSearchItems(items: ISearchCriteriaItem[]) {
+    this.searchCriteriaItem = items;
+  }
+
+  public deserialize(xml: string) {
+    // This is to compensate bug in the server implementation.
+    // Sometimes the XML contents are not properly encoded.
+    xml = xml.replace('<=', '&lt;-').replace('< ', '&lt; ');
+    let query: any = CSearchCriteria.x2jsTool.xml2js(xml);
+    this.searchCriteriaItem = query && query.searchCriteria ? query.searchCriteria.searchCriteriaItem : [];
+  }
+
+  public serialize(): string {
+    return CSearchCriteria.x2jsTool.js2xml({ searchCriteria: this });
+  }
+
+  public getQueryFormData(viewConfig: CViewGroup, displayMode: string, idList: string[]): any {
+    let formData: any = {};
+    idList.forEach(id => {
+      let entryInfo = viewConfig.getEntryInfo(displayMode, id);
+      this.searchCriteriaItem.forEach(i => {
+        if (entryInfo.searchCriteriaItem._id === i._id) {
+          formData[id] = this.getQueryEntryValue(i);
+        }
+      });
+    });
+    return formData;
+  }
+
+  public updateFromQueryFormData(formData: any, viewConfig: CViewGroup, displayMode: string, idList: string[]) {
+    idList.forEach(id => {
+      let entryInfo = viewConfig.getEntryInfo(displayMode, id);
+      this.searchCriteriaItem.forEach(i => {
+        if (entryInfo.searchCriteriaItem._id === i._id) {
+          this.setQueryEntryValue(i, formData[id]);
+        }
+      });
+    });
+  }
 }
