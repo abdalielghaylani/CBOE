@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Web.Http;
@@ -196,7 +197,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     GetUserPrivileges(),
                     GetDisabledControls()
                 );
-            });
+            }, cacheControl: new CacheControlHeaderValue { NoCache = true });
         }
 
         [HttpGet]

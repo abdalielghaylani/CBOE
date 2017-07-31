@@ -224,7 +224,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
         }
 
-        protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null, [CallerMemberName] string memberName = "")
+        protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null, [CallerMemberName] string memberName = "", CacheControlHeaderValue cacheControl = null)
         {
             HttpResponseMessage responseMessage;
             try
@@ -243,6 +243,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (permissions != null) CheckAuthorizations(permissions);
                 var statusCode = Request.Method == HttpMethod.Post && memberName.StartsWith("Create") ? HttpStatusCode.Created : HttpStatusCode.OK;
                 responseMessage = Request.CreateResponse(statusCode, method());
+                if (cacheControl != null)
+                    responseMessage.Headers.CacheControl = cacheControl;
+
             }
             catch (Exception ex)
             {
