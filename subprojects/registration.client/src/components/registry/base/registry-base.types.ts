@@ -187,7 +187,8 @@ export class CViewGroup implements IViewGroup {
     let pageId: string = displayMode === 'add' ? 'SUBMITMIXTURE'
       : displayMode === 'view' ? 'VIEWMIXTURE'
         : displayMode === 'edit' ? 'REVIEWREGISTERMIXTURE'
-          : undefined;
+          : displayMode === 'query' ? 'CHEMBIOVIZSEARCH'
+            : undefined;
     return pageId ? disabledControls.filter(dc => dc.pageId === pageId) : [];
   }
 
