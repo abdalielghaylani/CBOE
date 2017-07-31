@@ -12,6 +12,7 @@ import { RegStructureFormItem } from './structure-form-item';
 import { RegStructureQueryFormItem } from './structure-query-form-item';
 import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
+import { RegTextFormItem } from './text-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
 import { RegFormGroupItemView } from './form-group-item-view';
@@ -48,6 +49,7 @@ export * from './projects-form-item';
 export * from './structure-form-item';
 export * from './structure-image-form-item';
 export * from './tag-box-form-item';
+export * from './text-form-item';
 export * from './form-view';
 export * from './form-group-view';
 export * from './registry-base.types';
@@ -78,12 +80,14 @@ export * from './registry-base.types';
   ],
   declarations: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
-    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
+    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
+    RegTagBoxFormItem, RegTextFormItem,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView
   ],
   exports: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
-    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem, RegTagBoxFormItem,
+    RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
+    RegTagBoxFormItem, RegTextFormItem,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegCommonModule, RegCommonComponentModule
   ]

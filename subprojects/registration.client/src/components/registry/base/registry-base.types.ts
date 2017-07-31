@@ -116,7 +116,7 @@ export class CViewGroup implements IViewGroup {
       item.colSpan = 5;
     }
     if (!item.template) {
-      item.editorType = 'dxTextBox';
+      item.template = 'textTemplate';
     }
     if (!item.editorOptions) {
       item.editorOptions = {};
