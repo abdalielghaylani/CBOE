@@ -19,7 +19,12 @@ export class SessionEpics {
     return action$.filter(({ type }) => type === SessionActions.LOGIN_USER)
       .mergeMap(({ payload }) => {
         return this.http.post(`${apiUrlPrefix}auth/login`, payload)
-          .map(result => SessionActions.loginUserSuccessAction(result.json().meta))
+          .map(result => {
+            if (result.json().meta.token === 'INVALID_USER') {
+              return SessionActions.loginUserErrorAction();
+            }
+            return SessionActions.loginUserSuccessAction(result.json().meta);
+          })
           .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
       });
   }
@@ -32,7 +37,7 @@ export class SessionEpics {
             this.navigateToHomePage(result.json());
             return SessionActions.loadLookupsSuccessAction(result.json());
           })
-         .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
+          .catch(error => Observable.of(SessionActions.loginUserErrorAction()));
       });
   }
 
