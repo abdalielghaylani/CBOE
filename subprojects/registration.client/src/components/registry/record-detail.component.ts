@@ -19,7 +19,7 @@ import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, n
 import { IResponseData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
-import { IRegistryRecord, CRegistryRecord, CFragment, CViewGroup } from './base';
+import { IRegistryRecord, CRegistryRecord, CFragment, CViewGroup, RegFormGroupView } from './base';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
@@ -38,7 +38,7 @@ import { CSystemSettings } from '../../redux';
 })
 export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnChanges {
   @ViewChild(RegTemplates) regTemplates: RegTemplates;
-  @ViewChildren(DxFormComponent) forms: QueryList<DxFormComponent>;
+  @ViewChild(RegFormGroupView) formGroupView: RegFormGroupView;
   @Input() temporary: boolean;
   @Input() template: boolean;
   @Input() id: number;
@@ -281,13 +281,19 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       let validItems = items.filter(i => !i.itemType || i.itemType !== 'empty').map(i => i.dataField);
       this.regRecord.serializeFormData(this.viewGroups, this.displayMode, validItems);
     });
-    return x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });
+    let recordDoc = x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });
+    if (!recordDoc) {
+      notifyError('Invalid content!', 5000);
+    }
+    return recordDoc;
   }
 
   save() {
+    if (!this.formGroupView.validate()) {
+      return;
+    }
     let recordDoc = this.getUpdatedRecord();
     if (!recordDoc) {
-      notifyError('Invalid content!', 5000);
       return;
     }
     this.recordDoc = recordDoc;
@@ -331,7 +337,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   register() {
     let recordDoc = this.getUpdatedRecord();
     if (!recordDoc) {
-      notifyError('Invalid content!', 5000);
       return;
     }
     this.recordDoc = recordDoc;
@@ -343,15 +348,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private setDisplayMode(mode: string) {
     this.displayMode = mode;
     this.update();
-    this.forms.forEach(f => {
-      f.items.forEach(i => {
-        if (i.template) {
-          i.disabled = !this.editMode;
-        }
-      });
-      f.readOnly = !this.editMode;
-      f.instance.repaint();
-    });
   }
 
   private togglePanel(e) {
@@ -374,7 +370,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     if (result.isValid) {
       let recordDoc = this.getUpdatedRecord();
       if (!recordDoc) {
-        notifyError('Invalid content!', 5000);
         return;
       }
       this.recordDoc = recordDoc;

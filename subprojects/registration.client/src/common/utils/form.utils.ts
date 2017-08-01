@@ -14,29 +14,33 @@ export function getFormGroup(state: IAppState, type: FormGroupType): IFormGroup 
   return data ? convertToFormGroup(data) : null;
 }
 
+function getValidationArrayPaths(basePath: string): string[] {
+  return [
+    `${basePath}`,
+    `${basePath}.validationRuleList.validationRule`,
+    `${basePath}.validationRuleList.validationRule.params.param`
+  ];
+}
+
+function getCoeFormArrayPaths(basePath: string): string[] {
+  return getValidationArrayPaths(`${basePath}`)
+    .concat(getValidationArrayPaths(`${basePath}.layoutInfor.formElement`))
+    .concat(getValidationArrayPaths(`${basePath}.addMode.formElement`))
+    .concat(getValidationArrayPaths(`${basePath}.editMode.formElement`))
+    .concat(getValidationArrayPaths(`${basePath}.viewMode.formElement`));
+}
+
+function getFormArrayPaths(basePath: string): string[] {
+  return [ `${basePath}` ].concat(getCoeFormArrayPaths(`${basePath}.coeForms.coeForm`));
+}
+
 export function convertToFormGroup(data: string): IFormGroup {
   let doc = new DOMParser().parseFromString(data);
+  let arrayPaths = getFormArrayPaths('formGroup.queryForms.queryForm')
+    .concat(getFormArrayPaths('formGroup.detailsForms.detailsForm'))
+    .concat(getFormArrayPaths('formGroup.listForms.listForm'));
   let x2jsTool = new X2JS.default({
-    arrayAccessFormPaths: [
-      'formGroup.queryForms.queryForm',
-      'formGroup.queryForms.queryForm.coeForms.coeForm',
-      'formGroup.queryForms.queryForm.coeForms.coeForm.layoutInfor.formElement',
-      'formGroup.queryForms.queryForm.coeForms.coeForm.addMode.formElement',
-      'formGroup.queryForms.queryForm.coeForms.coeForm.editMode.formElement',
-      'formGroup.queryForms.queryForm.coeForms.coeForm.viewMode.formElement',
-      'formGroup.detailsForms.detailsForm',
-      'formGroup.detailsForms.detailsForm.coeForms.coeForm',
-      'formGroup.detailsForms.detailsForm.coeForms.coeForm.layoutInfor.formElement',
-      'formGroup.detailsForms.detailsForm.coeForms.coeForm.addMode.formElement',
-      'formGroup.detailsForms.detailsForm.coeForms.coeForm.editMode.formElement',
-      'formGroup.detailsForms.detailsForm.coeForms.coeForm.viewMode.formElement',
-      'formGroup.listForms.listForm',
-      'formGroup.listForms.listForm.coeForms.coeForm',
-      'formGroup.listForms.listForm.coeForms.coeForm.layoutInfor.formElement',
-      'formGroup.listForms.listForm.coeForms.coeForm.addMode.formElement',
-      'formGroup.listForms.listForm.coeForms.coeForm.editMode.formElement',
-      'formGroup.listForms.listForm.coeForms.coeForm.viewMode.formElement'
-    ]
+    arrayAccessFormPaths: arrayPaths
   });
   return (x2jsTool.dom2js(doc) as any).formGroup as IFormGroup;
 }

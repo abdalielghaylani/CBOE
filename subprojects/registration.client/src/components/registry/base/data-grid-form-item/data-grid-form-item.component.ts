@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
+import { RegBaseFormItem } from '../base-form-item';
 
 @Component({
   selector: 'reg-data-grid-form-item-template',
@@ -8,12 +8,7 @@ import { IFormItemTemplate } from '../registry-base.types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
-  @Input() activated: boolean;
-  @Input() editMode: boolean;
-  @Input() viewModel: any = {};
-  @Input() viewConfig: any;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+export class RegDataGridFormItem extends RegBaseFormItem {
   protected dataSource: any[];
   protected columns: any[];
   protected editingMode: string;
@@ -21,18 +16,6 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
   protected allowDeleting: boolean;
   protected allowAdding: boolean;
 
-  ngOnChanges() {
-    this.update();
-  }
-
-  deserializeValue(value: any): any {
-    return value;
-  }
-
-  serializeValue(value: any): any  {
-    return value;
-  }
-  
   protected update() {
     let options = this.viewModel.editorOptions;
     this.dataSource = options && options.value ? options.value : [];

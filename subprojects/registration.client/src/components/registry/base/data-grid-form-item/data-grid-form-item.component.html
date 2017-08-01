@@ -13,3 +13,8 @@
     <a *ngIf="d.row.isEditing" class="fa fa-lg fa-undo grid-icon" aria-hidden="true" title='Cancel' (click)="cancel(d)"></a>
   </div>
 </dx-data-grid>
+<dx-text-box class="display-none">
+  <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, viewModel)">
+    <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
+  </dx-validator>
+</dx-text-box>

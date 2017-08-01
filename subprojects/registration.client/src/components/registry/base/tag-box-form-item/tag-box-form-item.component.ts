@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
+import { RegBaseFormItem } from '../base-form-item';
 
 @Component({
   selector: 'reg-tag-box-form-item-template',
@@ -8,28 +8,11 @@ import { IFormItemTemplate } from '../registry-base.types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
-  @Input() activated: boolean;
-  @Input() editMode: boolean = false;
-  @Input() viewModel: any = {};
-  @Input() viewConfig: any;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
+export class RegTagBoxFormItem extends RegBaseFormItem {
   protected value: any[];
   protected dataSource: any[];
   protected valueExpr: string;
   protected displayExpr: string;
-
-  ngOnChanges() {
-    this.update();
-  }
-
-  deserializeValue(value: any): any {
-    return value;
-  }
-
-  serializeValue(value: any): any  {
-    return value;
-  }
 
   protected update() {
     let options = this.viewModel.editorOptions;
@@ -39,15 +22,5 @@ export class RegTagBoxFormItem implements IFormItemTemplate, OnChanges {
       this.displayExpr = options.displayExpr;
       this.valueExpr = options.valueExpr;
     }
-  }
-
-  protected onValueChanged(e, d) {
-    let value = this.serializeValue(e.value);
-    d.component.option('formData.' + d.dataField, value);
-    this.onValueUpdated(this);
-  }
-
-  protected onValueUpdated(e) {
-    this.valueUpdated.emit(this);
   }
 };

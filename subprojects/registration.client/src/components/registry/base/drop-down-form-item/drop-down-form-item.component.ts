@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
-import { IFormItemTemplate } from '../registry-base.types';
+import { RegBaseFormItem } from '../base-form-item';
 
 @Component({
   selector: 'reg-drop-down-form-item-template',
@@ -10,29 +10,21 @@ import { IFormItemTemplate } from '../registry-base.types';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
-  @Input() activated: boolean;
-  @Input() editMode: boolean;
-  @Input() viewModel: any = {};
-  @Input() viewConfig: any;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
+export class RegDropDownFormItem extends RegBaseFormItem {
   protected dataSource: any[];
   protected value: number;
   protected valueExpr: string;
   protected displayExpr: string;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
-  }
-
-  ngOnChanges() {
-    this.update();
+    super();
   }
 
   deserializeValue(value: string): number {
     return +value;
   }
 
-  serializeValue(value: number): string  {
+  serializeValue(value: number): string {
     return value.toString();
   }
 
@@ -62,9 +54,5 @@ export class RegDropDownFormItem implements IFormItemTemplate, OnChanges {
       d.component.option('formData.' + d.dataField, this.serializeValue(e.value));
       this.onValueUpdated(this);
     }
-  }
-
-  protected onValueUpdated(e) {
-    this.valueUpdated.emit(e);
   }
 };

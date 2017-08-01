@@ -124,6 +124,15 @@ export class CViewGroup implements IViewGroup {
     item.editorOptions.readOnly = readOnly;
   }
 
+  private checkValidationRules(fe: IFormElement, item: any) {
+    if (fe.validationRuleList) {
+      if (!item.editorOptions) {
+        item.editorOptions = {};
+      }
+      item.editorOptions.customRules = fe.validationRuleList;
+    }
+  }
+
   private fixBindingExpression(expression: string): string {
     return expression.replace('.Sequence.ID', '.SequenceID')
       .replace('.Structure.Value', '.Structure.Structure.__text')
@@ -298,6 +307,7 @@ export class CViewGroup implements IViewGroup {
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
             this.checkEditorType(fe, item);
+            this.checkValidationRules(fe, item);
             this.removeDuplicate(items, item);
             items.push(item);
           }
@@ -806,7 +816,7 @@ export class CSearchCriteria {
     let formData: any = {};
     idList.forEach(id => {
       let entryInfo = viewConfig.getEntryInfo(displayMode, id);
-      if (entryInfo.searchCriteriaItem) {      
+      if (entryInfo.searchCriteriaItem) {
         this.searchCriteriaItem.forEach(i => {
           if (entryInfo.searchCriteriaItem._id === i._id) {
             formData[id] = this.getQueryEntryValue(i);

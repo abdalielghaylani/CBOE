@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
+import validationEngine from 'devextreme/ui/validation_engine';
 import { IViewControl, CViewGroup, IRegistryRecord } from '../registry-base.types';
 import { IFormGroup, IForm, ICoeForm } from '../../../../common';
 import { IAppState } from '../../../../redux';
@@ -38,5 +39,10 @@ export class RegFormGroupView implements IViewControl, OnChanges {
 
   protected onValueUpdated(e) {
     this.valueUpdated.emit(this);
+  }
+
+  validate(): boolean {
+    let result = validationEngine.validateGroup('vg');
+    return !result || result.isValid;
   }
 };

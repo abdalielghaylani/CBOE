@@ -66,6 +66,7 @@ export interface IFormElement {
   configInfo?: IConfigInfo;
   dataSource?: string;
   searchCriteriaItem?: any;
+  validationRuleList?: any[];
   // TODO: ...
 }
 
@@ -78,7 +79,7 @@ export interface ICoeForm {
   _dataSourceId?: string;
   title?: string;
   titleCssClass?: string;
-  validationRuleList?: any;
+  validationRuleList?: any[];
   layoutInfo?: ICoeFormMode;
   formDisplay: IDisplayInfo;
   addMode?: ICoeFormMode;

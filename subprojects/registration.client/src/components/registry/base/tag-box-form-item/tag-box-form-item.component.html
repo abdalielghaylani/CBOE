@@ -1,3 +1,6 @@
 <dx-tag-box [disabled]="!editMode" [value]="value" [dataSource]="dataSource" [valueExpr]="valueExpr" [displayExpr]="displayExpr"
   (onValueChanged)="onValueChanged($event, viewModel)">
+  <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, viewModel)">
+    <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
+  </dx-validator>
 </dx-tag-box>

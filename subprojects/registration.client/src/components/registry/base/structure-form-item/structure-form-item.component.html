@@ -1,1 +1,6 @@
 <div [id]="id" class="cd-container"></div>
+<dx-text-box class="display-none">
+  <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, viewModel)">
+    <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
+  </dx-validator>
+</dx-text-box>

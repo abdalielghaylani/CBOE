@@ -43,4 +43,12 @@ export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTempla
       this.valueUpdated.emit(this);
     }
   }
+
+  protected onValidatorInitialized(e, d) {
+    e.component.customRules = d.editorOptions.customRules;
+  }
+
+  protected validate(options) {
+    return true;
+  }
 };
