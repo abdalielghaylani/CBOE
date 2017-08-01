@@ -1,5 +1,6 @@
 <dx-data-grid [disabled]="!editMode" [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
   (onContentReady)="onContentReady($event)"
+  (onRowInserting)="onRowInserting($event, viewModel)" (onRowUpdating)="onRowUpdating($event, viewModel)" (onRowRemoving)="onRowRemoving($event, viewModel)"
   (onRowInserted)="onRowInserted($event, viewModel)" (onRowUpdated)="onRowUpdated($event, viewModel)" (onRowRemoved)="onRowRemoved($event, viewModel)">
   <dxo-editing [mode]="editingMode"></dxo-editing>
   <div *dxTemplate="let d of 'commandHeaderCellTemplate'">

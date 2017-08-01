@@ -67,6 +67,15 @@ export class RegDataGridFormItem implements IFormItemTemplate, OnChanges {
     }
   }
 
+  protected onRowInserting(e, d) {
+  }
+
+  protected onRowUpdating(e, d) {
+  }
+
+  protected onRowRemoving(e, d) {
+  }
+
   protected onRowInserted(e, d) {
   }
 

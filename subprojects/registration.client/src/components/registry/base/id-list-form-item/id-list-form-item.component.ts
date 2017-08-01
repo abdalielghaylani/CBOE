@@ -49,7 +49,10 @@ export class RegIdListFormItem extends RegDataGridFormItem {
         displayExpr: 'NAME',
         valueExpr: 'ID',
         placeholder: 'Select Identifier'
-      }
+      },
+      validationRules: [
+        { type: 'required', message: 'A valid identifier type is required.' }
+      ]
     }, {
       dataField: 'inputText',
       caption: 'Value'
