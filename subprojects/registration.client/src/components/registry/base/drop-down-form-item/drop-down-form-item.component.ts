@@ -12,20 +12,12 @@ import { RegBaseFormItem } from '../base-form-item';
 })
 export class RegDropDownFormItem extends RegBaseFormItem {
   protected dataSource: any[];
-  protected value: number;
+  protected value: any;
   protected valueExpr: string;
   protected displayExpr: string;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
     super();
-  }
-
-  deserializeValue(value: string): number {
-    return +value;
-  }
-
-  serializeValue(value: number): string {
-    return value.toString();
   }
 
   protected update() {
@@ -45,6 +37,13 @@ export class RegDropDownFormItem extends RegBaseFormItem {
       }
     } else if (options.dropDownItemsSelect) {
       // TODO: Parse the select statement and use proper data for drop-down
+    } else if (options.dataSource) {
+      this.dataSource = options.dataSource;
+      this.valueExpr = options.valueExpr;
+      this.displayExpr = options.displayExpr;
+      if (!this.value) {
+        this.value = '';
+      }
     }
   }
 

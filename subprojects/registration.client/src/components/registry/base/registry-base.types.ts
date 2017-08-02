@@ -92,6 +92,13 @@ export class CViewGroup implements IViewGroup {
           dropDownItemsSelect: fe.configInfo.fieldConfig.dropDownItemsSelect
         };
       }
+    } else if (type.indexOf('COEStateControl') > 0) {
+      item.template = 'dropDownTemplate';
+      item.editorOptions = {
+        dataSource: (fe.configInfo.fieldConfig as any).States.State,
+        valueExpr: '_value',
+        displayExpr: '_text'
+      };
     } else if (type.endsWith('COEWebGridUltra') && fe.bindingExpression.indexOf('IdentifierList') >= 0) {
       item.template = 'idListTemplate';
       item.editorOptions = {
