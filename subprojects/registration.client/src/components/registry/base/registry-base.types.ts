@@ -854,9 +854,69 @@ export class CSearchCriteria {
 }
 
 export class CValidator {
-  private static getParamNumber(params: IParam[], name: string, defaultValue: number): number {
+  private static getParamNumber(params: IParam[], name: string, defaultValue: number = undefined): number {
     let filtered = params.filter(p => p._name === name);
     return filtered.length > 0 ? +filtered[0]._value : defaultValue;
+  }
+
+  private static validateRequiredField(rule: IValidationRule, e) {
+    if (!e.value) {
+      e.rule.isValid = false;
+    }
+  }
+
+  private static validateTextLength(rule: IValidationRule, e) {
+    if (e.value) {
+      let min = this.getParamNumber(rule.params.param, 'min', 0);
+      let max = this.getParamNumber(rule.params.param, 'max');
+      if (max) {
+        let length = e.value.length;
+        e.rule.isValid = length >= min && length <= max;
+      }
+    }
+  }
+
+  private static validateFloat(rule: IValidationRule, e) {
+    if (e.value) {
+      let floatingValue = Number.parseFloat(e.value);
+      if (floatingValue === Number.NaN) {
+        e.rule.isValid = false;
+      } else {
+        let integerPart = this.getParamNumber(rule.params.param, 'integerPart');
+        let decimalPart = this.getParamNumber(rule.params.param, 'decimalPart');
+        let valueIntegerPart = Math.ceil(Math.log10(floatingValue));
+        if (integerPart && valueIntegerPart > integerPart) {
+          e.rule.isValid = false;
+        }
+        if (decimalPart) {
+          let v: string = e.value.toLowerCase();
+          let i = v.indexOf('e');
+          if (i > 0) {
+            v = v.substring(0, i);
+          }
+          v = v.replace(/[+-.]/g, '');
+          while (v.startsWith('0')) {
+            v = v.substring(1);
+          }
+          e.rule.isValid = (v.length - valueIntegerPart) <= decimalPart;
+        }
+      }
+    }
+  }
+
+  private static validateNumericRange(rule: IValidationRule, e) {
+    if (e.value) {
+      let min = this.getParamNumber(rule.params.param, 'min');
+      let max = this.getParamNumber(rule.params.param, 'max');
+      if (min && max) {
+        let floatingValue = Number.parseFloat(e.value);
+        if (floatingValue === Number.NaN) {
+          e.rule.isValid = false;
+        } else {
+          e.rule.isValue = (!min || floatingValue >= min) && (!max || floatingValue <= max);
+        }
+      }
+    }
   }
 
   public static validate(e) {
@@ -865,18 +925,21 @@ export class CValidator {
     let ruleList: IValidationRuleList = peer.viewModel.editorOptions.customRules;
     if (ruleList && ruleList.validationRule) {
       ruleList.validationRule.forEach(r => {
-        if (r._validationRuleName === 'requiredField' && !e.value) {
-          e.rule.isValid = false;
-        } else if (r._validationRuleName === 'textLength' && e.value) {
-          let min = this.getParamNumber(r.params.param, 'min', 0);
-          let max = this.getParamNumber(r.params.param, 'max', -1);
-          let length = e.value.length;
-          if (length < min || (max > 0 && length > max)) {
-            e.rule.isValid = false;
+        if (e.rule.isValid) {
+          if (r._validationRuleName === 'requiredField') {
+            this.validateRequiredField(r, e);
+          } else if (r._validationRuleName === 'textLength') {
+            this.validateTextLength(r, e);
+          } else if (r._validationRuleName === 'float') {
+            this.validateFloat(r, e);
+          } else if (r._validationRuleName === 'numericRange') {
+            this.validateNumericRange(r, e);
+          } else {
+            // console.log(r);
           }
-        }
-        if (!e.rule.isValid) {
-          e.rule.message = r._errorMessage;
+          if (!e.rule.isValid) {
+            e.rule.message = r._errorMessage;
+          }
         }
       });
     }
