@@ -118,6 +118,9 @@ export class CViewGroup implements IViewGroup {
       item.template = 'dateTemplate';
     } else if (fe.bindingExpression.endsWith('ProjectList')) {
       item.template = 'projectsTemplate';
+      item.editorOptions = {
+        projectType: fe.Id.startsWith('B') ? 'B' : 'R'
+      };
     } else if (fe.displayInfo.type.endsWith('COEFragments')) {
       item.template = 'fragmentsTemplate';
       item.colSpan = 5;
