@@ -14,7 +14,7 @@
   </div>
 </dx-data-grid>
 <dx-text-box class="display-none">
-  <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, viewModel)">
+  <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
     <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
   </dx-validator>
 </dx-text-box>

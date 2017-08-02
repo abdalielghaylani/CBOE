@@ -45,7 +45,7 @@ export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTempla
   }
 
   protected onValidatorInitialized(e, d) {
-    e.component.customRules = d.editorOptions.customRules;
+    e.component.peer = d;
   }
 
   protected validate(options) {

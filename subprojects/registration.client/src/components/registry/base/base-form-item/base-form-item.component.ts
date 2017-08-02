@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
+import { IFormItemTemplate, IValidationRuleList } from '../registry-base.types';
 
 @Component({
   selector: 'reg-text-form-item-template',
@@ -54,10 +54,37 @@ export class RegBaseFormItem implements IFormItemTemplate, OnChanges {
   }
 
   protected onValidatorInitialized(e, d) {
-    e.component.customRules = d.editorOptions.customRules;
+    e.component.peer = d;
   }
 
-  protected validate(options) {
-    return true;
+  protected validate(e) {
+    e.rule.isValid = true;
+    let peer: IFormItemTemplate = e.validator.peer;
+    let ruleList: IValidationRuleList = peer.viewModel.editorOptions.customRules;
+    if (ruleList && ruleList.validationRule) {
+      ruleList.validationRule.forEach(r => {
+        if (r._validationRuleName === 'requiredField' && !e.value) {
+          e.rule.isValid = false;
+          e.rule.message = r._errorMessage;
+        } else if (r._validationRuleName === 'textLength' && e.value) {
+          let min = 0;
+          let max = -1;
+          let filtered = r.params.param.filter(p => p._name === 'min');
+          if (filtered.length > 0) {
+            min = +filtered[0]._value;
+          }
+          filtered = r.params.param.filter(p => p._name === 'max');
+          if (filtered.length > 0) {
+            max = +filtered[0]._value;
+          }
+          let length = e.value.length;
+          if (length < min || (max > 0 && length > max)) {
+            e.rule.isValid = false;
+            e.rule.message = r._errorMessage;
+          }
+        }
+      });
+    }
+    return e.rule.isValid;
   }
 };
