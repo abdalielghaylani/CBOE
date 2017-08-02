@@ -13,7 +13,8 @@ import { RegistryActions, IRegistry } from '../redux';
     <reg-container testid="records">
       <reg-records
         [temporary]="temporary"
-        [restore]="restore">
+        [restore]="restore"
+        [hitListId]="hitListId">
       </reg-records>
     </reg-container>
   `
@@ -21,9 +22,15 @@ import { RegistryActions, IRegistry } from '../redux';
 export class RegRecordsPage {
   private temporary: boolean;
   private restore: boolean;
+  private hitListId: number = 0;
 
   constructor(private router: Router, private actions: RegistryActions) {
     this.temporary = (router.url.match(/.*\/temp.*/g) || []).length > 0;
     this.restore = (router.url.match(/.*\/restore.*/g) || []).length > 0;
+
+    if (this.restore) {
+      let urlSegments = router.url.split('/');
+      this.hitListId = Number(urlSegments[urlSegments.length - 1]);
+    }
   }
 }

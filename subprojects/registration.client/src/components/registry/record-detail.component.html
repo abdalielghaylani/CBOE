@@ -18,6 +18,7 @@
   <command-button *ngIf="approveButtonEnabled" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up" title="Approve"></command-button>
   <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
   <command-button *ngIf="newButtonEnabled" testid="new-record-details-button" (onClick)="newRecord()" iconName="plus" title="New"></command-button>
+  <command-button *ngIf="backButtonEnabled" testid="back-button" (onClick)="back()" iconName="arrow-circle-left" title="Back"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
   </reg-header>
