@@ -24,7 +24,7 @@ function getValidationArrayPaths(basePath: string): string[] {
 
 function getCoeFormArrayPaths(basePath: string): string[] {
   return getValidationArrayPaths(`${basePath}`)
-    .concat(getValidationArrayPaths(`${basePath}.layoutInfor.formElement`))
+    .concat(getValidationArrayPaths(`${basePath}.layoutInfo.formElement`))
     .concat(getValidationArrayPaths(`${basePath}.addMode.formElement`))
     .concat(getValidationArrayPaths(`${basePath}.editMode.formElement`))
     .concat(getValidationArrayPaths(`${basePath}.viewMode.formElement`));

@@ -125,11 +125,23 @@ export class CViewGroup implements IViewGroup {
   }
 
   private checkValidationRules(fe: IFormElement, item: any) {
-    if (fe.validationRuleList) {
+    let ruleList: IValidationRuleList = fe.validationRuleList;
+    if (ruleList && ruleList.validationRule) {
       if (!item.editorOptions) {
         item.editorOptions = {};
       }
-      item.editorOptions.customRules = fe.validationRuleList;
+      let required = false;
+      ruleList.validationRule.forEach(r => {
+        if (r._validationRuleName === 'requiredField') {
+          required = true;
+        }
+      });
+      if (required) {
+        item.validationRules = [{
+          type: 'required'
+        }];
+      }
+      item.editorOptions.customRules = ruleList;
     }
   }
 
