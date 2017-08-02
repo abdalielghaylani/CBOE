@@ -40,6 +40,7 @@ export class RegRecords implements OnInit, OnDestroy {
   @ViewChild(RegRecordSearch) searchForm: RegRecordSearch;
   @Input() temporary: boolean;
   @Input() restore: boolean;
+  @Input() hitListId: number;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   private records$: Observable<IRecords>;
@@ -68,7 +69,7 @@ export class RegRecords implements OnInit, OnDestroy {
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
-    private elementRef: ElementRef,
+    private elementRef: ElementRef,   
     private changeDetector: ChangeDetectorRef) {
     this.records = new CRecords(this.temporary, new CRecordsData(this.temporary));
     this.createCustomStore(this);
@@ -104,6 +105,13 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   restoreHitlist() {
+    if ((this.restore) && (this.hitListId > 0)) {
+      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: this.hitListId });
+      this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
+      if (!this.recordsSubscription) {
+        this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
+      }
+    }
   }
 
   getGridHeight() {
