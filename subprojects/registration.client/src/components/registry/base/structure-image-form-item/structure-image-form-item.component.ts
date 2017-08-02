@@ -1,10 +1,6 @@
 import { Component, EventEmitter, Input, Output, ChangeDetectorRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { Http, ResponseContentType, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
-import { IFormItemTemplate } from '../registry-base.types';
-import { RegTagBoxFormItem } from '../tag-box-form-item';
-import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../../redux';
-import { ChemDrawWeb } from '../../../common';
+import { RegBaseFormItem } from '../base-form-item';
 
 @Component({
   selector: 'reg-structure-image-form-item-template',
@@ -13,30 +9,17 @@ import { ChemDrawWeb } from '../../../common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegStructureImageFormItem implements IFormItemTemplate, OnChanges {
-  @Input() activated: boolean;
-  @Input() editMode: boolean;
-  @Input() viewModel: any;
-  @Input() viewConfig: any;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
-  private image = require('../assets/spinner.gif');
+export class RegStructureImageFormItem extends RegBaseFormItem {
+  private image;
+  private spinnerImage = require('../assets/spinner.gif');
+  private noStructureImage = require('../assets/no-structure.png');
 
-  constructor(private ngRedux: NgRedux<IAppState>, private http: Http, private changeDetector: ChangeDetectorRef) {
-  }
-
-  ngOnChanges() {
-    this.update();
-  }
-
-  deserializeValue(value: any): any {
-    return value;
-  }
-
-  serializeValue(value: any): any  {
-    return value;
+  constructor(private http: Http, private changeDetector: ChangeDetectorRef) {
+    super();
   }
 
   protected update() {
+    this.image = this.noStructureImage;
     let value = this.viewModel.editorOptions.value;
     if (!value) {
       return;
@@ -54,6 +37,8 @@ export class RegStructureImageFormItem implements IFormItemTemplate, OnChanges {
     });
     let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.ArrayBuffer });
     let self = this;
+    this.image = this.spinnerImage;
+    self.changeDetector.markForCheck();
     this.http.post('https://chemdrawdirect.perkinelmer.com/1.5.0/rest/generateImage', data, options)
       .toPromise()
       .then(result => {
@@ -61,6 +46,8 @@ export class RegStructureImageFormItem implements IFormItemTemplate, OnChanges {
         self.changeDetector.markForCheck();
       })
       .catch(error => {
+        this.image = this.noStructureImage;
+        self.changeDetector.markForCheck();
       });
   }
 };
