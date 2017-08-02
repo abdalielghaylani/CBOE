@@ -12,7 +12,6 @@ import { RegBaseFormItem } from '../base-form-item';
 })
 export class RegDropDownFormItem extends RegBaseFormItem {
   protected dataSource: any[];
-  protected value: any;
   protected valueExpr: string;
   protected displayExpr: string;
 
