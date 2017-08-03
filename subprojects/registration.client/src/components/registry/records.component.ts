@@ -278,14 +278,14 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onEditingStart(e) {
     e.cancel = true;
-    let id = e.data[Object.keys(e.data)[0]];
+    let id = e.data.BATCHID;
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}/${id}`]);
   }
 
   onRowRemoving(e) {
     // TODO: Should use redux
     let deferred = jQuery.Deferred();
-    let id = e.data[Object.keys(e.data)[0]];
+    let id = e.data.BATCHID;
     let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
     this.http.delete(url)
       .toPromise()
@@ -365,8 +365,8 @@ export class RegRecords implements OnInit, OnDestroy {
       // Remove from this.records.data.rows
       // Remove from this.selectedRows
       // Also display a message about success/failure.
-      this.records.data.rows = this.records.data.rows.filter(r => !succeeded.find(s => s === r.ID));
-      this.selectedRows = this.selectedRows.filter(r => !succeeded.find(s => s === r.ID));
+      this.records.data.rows = this.records.data.rows.filter(r => !succeeded.find(s => s === r.BATCHID));
+      this.selectedRows = this.selectedRows.filter(r => !succeeded.find(s => s === r.BATCHID));
       if (failed.length === 0) {
         notifySuccess(`All marked records were deleted successfully!`, 5000);
       } else if (succeeded.length === 0) {
@@ -398,7 +398,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private deleteMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
-      let ids: number[] = this.selectedRows.map(r => r[Object.keys(r)[0]]);
+      let ids: number[] = this.selectedRows.map(r => r.BATCHID);
       let succeeded: number[] = [];
       let failed: number[] = [];
       this.deleteRows(ids, failed, succeeded);
@@ -484,7 +484,7 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     // Otherwise, shift ids
     let id = ids.shift();
-    let row = this.records.data.rows.find(r => r.ID === id);
+    let row = this.records.data.rows.find(r => r.BATCHID === id);
     if (row && row.STATUSID === RegistryStatus.Submitted) {
       let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}/${RegistryStatus.Approved}`;
       // Approve first id
@@ -509,7 +509,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private approveMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
-      let ids: number[] = this.selectedRows.map(r => r[Object.keys(r)[0]]);
+      let ids: number[] = this.selectedRows.map(r => r.BATCHID);
       let succeeded: number[] = [];
       let failed: number[] = [];
       this.approveRows(ids, failed, succeeded);
