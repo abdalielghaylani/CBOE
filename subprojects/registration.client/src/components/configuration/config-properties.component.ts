@@ -184,6 +184,9 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       + 'create a new property with the desired changes. In order to delete the '
       + 'property, you must first delete any data values previously stored in it.';
 
+    let disableEditIcon = '<i class="dx-icon-edit" rel="tooltip" title="' 
+      + disableEditCause + '" style="font-size:18px;color:silver;cursor:pointer"></i>';
+
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let $links = e.cellElement.find('.dx-link');
       $links.text('');
@@ -195,8 +198,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       } else {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
         $links.filter('.dx-link-delete').attr({'data-toggle': 'tooltip', 'title' : 'Delete'});
-        $links.filter('.dx-link-edit').append(`<i class='dx-icon-edit' style='font-size:18px;color:silver;cursor:default'></i>`);
-        $links.filter('.dx-link-edit').attr({'data-toggle': 'tooltip', 'title' : disableEditCause});
+        $links.filter('.dx-link-edit').append(disableEditIcon);
       }
     }
   }
