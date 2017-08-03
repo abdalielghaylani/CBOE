@@ -7,3 +7,7 @@
 .chemdraw-image {
   max-height: 100px;
 }
+
+.pressed-button {
+  background-color: #ededed;
+}

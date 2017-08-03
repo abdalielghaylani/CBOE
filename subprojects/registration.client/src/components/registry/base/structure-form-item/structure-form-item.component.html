@@ -1,4 +1,14 @@
-<div [id]="id" class="cd-container"></div>
+<dx-box direction="row" width="100%">
+  <dxi-item class="rect" [ratio]="1">
+    <div [id]="id" class="cd-container cdweb"></div>
+  </dxi-item>
+  <dxi-item class="rect" [ratio]="0" [baseSize]="32">
+    <dx-button [ngClass]="{ 'pressed-button': mode === 0 }" [id]="id+'-mode-0'" [icon]="drawStructureImage" hint="Draw Structure" (onClick)="changeMode($event)"></dx-button>
+    <dx-button [ngClass]="{ 'pressed-button': mode === 1 }" [id]="id+'-mode-1'" [icon]="noStructureImage" hint="No Structure" (onClick)="changeMode($event)"></dx-button>
+    <dx-button [ngClass]="{ 'pressed-button': mode === 2 }" [id]="id+'-mode-2'" [icon]="unknownStructureImage" hint="Unknown Structure" (onClick)="changeMode($event)"></dx-button>
+    <dx-button [ngClass]="{ 'pressed-button': mode === 3 }" [id]="id+'-mode-3'" [icon]="nonChemicalImage" hint="Non-Chemical Content" (onClick)="changeMode($event)"></dx-button>
+  </dxi-item>
+</dx-box>
 <dx-text-box class="display-none">
   <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
     <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>

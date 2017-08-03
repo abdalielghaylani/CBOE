@@ -68,7 +68,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   }
 
   protected createCdd() {
-    let cddContainer = jQuery(this.elementRef.nativeElement).find('div');
+    let cddContainer = jQuery(this.elementRef.nativeElement).find('div.cdweb');
     let attachmentElement = cddContainer[0];
     if (this.cdd || this.creatingCdd || !attachmentElement) {
       return;

@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IFormItemTemplate } from '../registry-base.types';
-import { RegTagBoxFormItem } from '../tag-box-form-item';
-import { NgRedux } from '@angular-redux/store';
-import { RegStructureFormItem } from '../structure-form-item';
-import { IAppState } from '../../../../redux';
+import { RegStructureBaseFormItem } from '../structure-base-form-item';
 
 @Component({
   selector: 'reg-structure-query-form-item-template',
@@ -12,8 +9,8 @@ import { IAppState } from '../../../../redux';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegStructureQueryFormItem extends RegStructureFormItem {
-  constructor(ngRedux: NgRedux<IAppState>, elementRef: ElementRef) {
-    super(ngRedux, elementRef);
+export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
+  constructor(elementRef: ElementRef) {
+    super(elementRef);
   }
 };

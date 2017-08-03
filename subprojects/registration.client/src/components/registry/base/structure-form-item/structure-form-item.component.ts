@@ -1,8 +1,5 @@
-import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
-import { RegTagBoxFormItem } from '../tag-box-form-item';
-import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../../redux';
+import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { RegStructureBaseFormItem } from '../structure-base-form-item';
 import { ChemDrawWeb } from '../../../common';
 
 @Component({
@@ -12,43 +9,37 @@ import { ChemDrawWeb } from '../../../common';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegStructureFormItem extends ChemDrawWeb implements IFormItemTemplate {
-  @Input() viewModel: any = {};
-  @Input() viewConfig;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+export class RegStructureFormItem extends RegStructureBaseFormItem {
+  protected mode: number = 0;
+  private drawStructureImage = require('../assets/draw-structure.png');
+  private noStructureImage = require('../assets/no-structure.png');
+  private unknownStructureImage = require('../assets/unknown-structure.png');
+  private nonChemicalImage = require('../assets/non-chemical-content.png');
+  private titleCdxml = `<CDXML><fonttable><font id="3" charset="iso-8859-1" name="Arial"/>
+</fonttable><page><t LineHeight="auto"><s font="3" size="18" color="0">{{title}}</s></t></page></CDXML>`;
 
-  constructor(private ngRedux: NgRedux<IAppState>, elementRef: ElementRef) {
+  constructor(elementRef: ElementRef) {
     super(elementRef);
-  }
-
-  deserializeValue(value: any): any {
-    if (typeof value === 'object' && value.viewModel) {
-      value = value.toString();
-    }
-    return value;
-  }
-
-  serializeValue(value: any): any  {
-    return value;
-  }
-
-  protected update() {
-    let options = this.viewModel.editorOptions;
-    this.setValue(options && options.value ? this.deserializeValue(options.value) : null);
-    super.update();
-  }
-
-  protected onContentChanged(e) {
-    if (this.cdd && !this.cdd.isSaved()) {
-      this.valueUpdated.emit(this);
-    }
-  }
-
-  protected onValidatorInitialized(e, d) {
-    e.component.peer = d;
   }
 
   protected validate(options) {
     return true;
+  }
+
+  private changeMode(e) {
+    let mode = +e.element[0].id.slice(-1);
+    if (mode !== this.mode) {
+      this.mode = mode;
+      this.cdd.setViewOnly(this.mode !== 0);
+      let title = this.mode === 1 ? 'No Structure'
+        : this.mode === 2 ? 'Unknown Structure'
+        : this.mode === 3 ? 'Non-Chemical Content'
+        : undefined;
+      if (title) {
+        this.cdd.loadCDXML(this.titleCdxml.replace('{{title}}', title));
+      } else {
+        this.cdd.clear();
+      }
+    }
   }
 };

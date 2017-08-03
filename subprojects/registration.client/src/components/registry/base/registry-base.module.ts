@@ -20,6 +20,8 @@ import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
 import {
+  DxBoxModule,
+  DxButtonModule,
   DxCheckBoxModule,
   DxRadioGroupModule,
   DxDataGridModule,
@@ -59,6 +61,8 @@ export * from './registry-base.types';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
+    DxBoxModule,
+    DxButtonModule,
     DxCheckBoxModule,
     DxRadioGroupModule,
     DxDataGridModule,
