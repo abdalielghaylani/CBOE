@@ -16,10 +16,10 @@ export class RegStructureImageFormItem extends RegBaseFormItem {
 
   constructor(private http: Http, private changeDetector: ChangeDetectorRef) {
     super();
+    this.image = this.noStructureImage;
   }
 
   protected update() {
-    this.image = this.noStructureImage;
     let value = this.viewModel.editorOptions.value;
     if (!value) {
       return;
