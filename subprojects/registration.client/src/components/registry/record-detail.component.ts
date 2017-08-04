@@ -350,7 +350,9 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     }
     this.recordDoc = recordDoc;
     let duplicateEnabled = this.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
-    // this.loadingVisible = true;
+    if (duplicateEnabled) {
+      this.loadingVisible = true;
+    }
     this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
   }
 

@@ -8,10 +8,13 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { IFormGroup, prepareFormGroupData, FormGroupType, getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
+import { RecordDetailActions, IAppState, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
+import { CRegistryRecord, CViewGroup, CFragment } from './base';
+import * as registryUtils from './registry.utils';
+import * as X2JS from 'x2js';
 
 declare var jQuery: any;
 
@@ -19,18 +22,22 @@ declare var jQuery: any;
   selector: 'reg-duplicate-record',
   template: require('./registry-duplicate.component.html'),
   styles: [require('./records.css')],
-  host: { '(document:click)': 'onDocumentClick($event)' },
+  // host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegDuplicateRecord implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
-  private gridHeight: string;
+  private gridHeight: number;
   private duplicateData$: Observable<any[]>;
   private recordsSubscription: Subscription;
   private datasource: any[];
   private loadingVisible: boolean = false;
+  @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
   private columns = [{
+    cellTemplate: 'commandCellTemplate',
+    width: 80
+  }, {
     dataField: 'REGNUMBER',
     caption: 'Reg Number'
   }, {
@@ -40,10 +47,12 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     dataField: 'CREATED',
     dataType: 'date',
     caption: 'Created',
+    width: 80
   }, {
     dataField: 'MODIFIED',
     dataType: 'date',
     caption: 'Modified',
+    width: 80
   }, {
     dataField: 'CREATOR',
     caption: 'Created By'
@@ -56,15 +65,20 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     allowSorting: false,
   }, {
     dataField: 'STATUS',
-    caption: 'Status'
+    caption: 'Status',
+    width: 70,
   }, {
     dataField: 'APPROVED',
-    caption: 'Approved'
+    caption: 'Approved',
+    width: 80
   }, {
-    cellTemplate: 'resolutionOptionTemplate'
+    dataField: 'REGNUMBER',
+    caption: 'Resolution options',
+    cellTemplate: 'resolutionOptionTemplate',
+    allowFiltering: false,
   }];
-  private buttonVisibility = { duplicate: false, addBatch: false, useComponent: false, useStructure: false };
-
+  private buttonVisibility = { duplicate: true, addBatch: true, useComponent: true, useStructure: true };
+  private editRowIndex: number = -1;
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private router: Router,
@@ -77,6 +91,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   ngOnInit() {
     this.duplicateData$ = this.ngRedux.select(['registry', 'duplicateRecords']);
     this.recordsSubscription = this.duplicateData$.subscribe((value: number[]) => this.loadData(value));
+    // this.datasource = this.getDataSource(this.ngRedux.getState().session.lookups.users);
+    // this.columns = this.columns.map(s => this.updateGridColumn(s));
   }
 
   ngOnDestroy() {
@@ -85,14 +101,35 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     }
   }
 
+  edit(e) {
+    this.editRowIndex = e.rowIndex;
+  }
+
+  cancel(e) {
+    this.editRowIndex = -1;
+  }
+
+  isEditRowVisible(e, view) {
+    if (view === 'data') {
+      if (this.editRowIndex === e) {
+        return true;
+      } else { return false; }
+    } else if (view === 'edit') {
+      if (this.editRowIndex === e) {
+        return false;
+      } else { return true; }
+    }
+
+  }
   loadData(e) {
     if (e) {
+      this.gridHeight = this.parentHeight - 80;
       let settings = this.ngRedux.getState().session.lookups.systemSettings;
       this.buttonVisibility.addBatch = settings.filter(s => s.name === 'EnableAddBatchButton')[0].value === 'True' ? true : false;
       this.buttonVisibility.duplicate = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
       this.buttonVisibility.useComponent = settings.filter(s => s.name === 'EnableUseComponentButton')[0].value === 'True' ? true : false;
       this.buttonVisibility.useStructure = settings.filter(s => s.name === 'EnableUseStructureButton')[0].value === 'True' ? true : false;
-      this.datasource = e;
+      this.datasource = this.getDataSource(this.ngRedux.getState().session.lookups.users, e);
       this.columns = this.columns.map(s => this.updateGridColumn(s));
       this.actions.clearDuplicateRecord();
       this.changeDetector.markForCheck();
@@ -119,31 +156,27 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
   }
 
-  private onResize(event: any) {
-    this.gridHeight = this.getGridHeight();
-    this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
+  dismissAlert() {
+    this.gridHeight = this.parentHeight - 20;
   }
 
-  private onDocumentClick(event: any) {
-    if (event.srcElement.title === 'Full Screen') {
-      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
-      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
-      this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
-    }
-  }
-
-  createDuplicateRecord() {
+  createDuplicateRecord(action: string, regNum: string) {
     this.loadingVisible = true;
     this.actions.createDuplicate(
       this.ngRedux.getState().registry.previousRecordDetail,
-      'Duplicate', '');
+      action, regNum);
   }
 
   cancelDuplicateResolution(e) {
     this.loadingVisible = false;
     this.onClose.emit(e);
+  }
+
+  private getDataSource(users, data) {
+    for (let val of data) {
+      val.CREATOR = users.filter(i => i.PERSONID === val.CREATOR)[0].USERID;
+    }
+    return data;
   }
 
 };

@@ -1,17 +1,15 @@
 <div id="duplicate-record-view">
   <command-button testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel" (onClick)="cancelDuplicateResolution()"></command-button>
-  <command-button *ngIf="buttonVisibility.duplicate" testid="create-duplicate-record-button" iconName="clone" title="Duplicate" (onClick)="createDuplicateRecord()"></command-button>
   <reg-header testid="templates-heading" id="templates-heading">
     Duplicate Resolution
   </reg-header>
   <div class="text-center alert alert-info alert-dismissible fade in" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" (click)="dismissAlert()">×</span></button>
     <p><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;The component you are trying to register already exists. Review
       the list of conflicts and choose a duplicate action.</p>
   </div>
-  <dx-data-grid [columns]="columns" [masterDetail]="{ enabled: false, template: 'detail' }" [dataSource]="datasource" [paging]="{enabled: false}"
-    [height]="gridHeight" rowAlternationEnabled="true" (onToolbarPreparing)="onToolbarPreparing($event)">
-    <dxo-editing [allowUpdating]="false" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
+  <dx-data-grid [columns]="columns" [dataSource]="datasource" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)"
+    rowTemplate="detail">
     <dxo-sorting mode="single"></dxo-sorting>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
@@ -25,17 +23,50 @@
         </div>
       </div>
     </div>
-    <div *dxTemplate="let data of 'detail'">
-      <!--<reg-form-group-view [viewConfig]="formGroup" [activated]="currentIndex===0" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view> -->
-    </div>
-    <div *dxTemplate="let data of 'cellTemplate'">
-      <reg-structure-image [src]="data.value"></reg-structure-image>
-    </div>
-    <div *dxTemplate="let data of 'resolutionOptionTemplate'">
-      <a  *ngIf="buttonVisibility.addBatch" class="fa fa-object-ungroup grid-icon" aria-hidden="true" title='Add Batch'></a>&nbsp;
-      <a  *ngIf="buttonVisibility.useComponent" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" title='Use Component'></a>&nbsp;
-      <a  *ngIf="buttonVisibility.useStructure" class="fa fa-code-fork grid-icon" aria-hidden="true" title='Use Structure'></a>&nbsp;
-    </div>
+    <tbody *dxTemplate="let data of 'detail'">
+      <tr [ngClass]="data.rowIndex%2===0 ? 'dx-row dx-data-row dx-column-lines': 'dx-row dx-data-row dx-row-alt dx-column-lines'"
+        [hidden]="isEditRowVisible(data.rowIndex,'data')">
+        <td><a class="fa fa-question-circle grid-icon" aria-hidden="true" title='Show detail view' (click)="edit(data)"></a>&nbsp;</td>
+        <td>{{data.data.REGNUMBER}}</td>
+        <td>{{data.data.NAME}}</td>
+        <td>{{data.data.CREATED | date: 'MM/dd/yyyy'}}</td>
+        <td>{{data.data.MODIFIED | date: 'MM/dd/yyyy'}}</td>
+        <td>{{data.data.CREATOR}}
+        </td>
+        <td>
+          <reg-structure-image [src]="data.data.STRUCTURE"></reg-structure-image>
+        </td>
+        <td>{{data.data.STATUS}}</td>
+        <td>{{data.data.APPROVED}}</td>
+        <td>
+          <a *ngIf="buttonVisibility.duplicate" class="fa fa-clone grid-icon" aria-hidden="true" title="Duplicate" (click)="createDuplicateRecord('Duplicate',data.value)"></a>&nbsp;
+          <a *ngIf="buttonVisibility.addBatch" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch',data.value)"
+            title='Add Batch'></a>&nbsp;
+          <a *ngIf="buttonVisibility.useComponent" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseComponent',data.value)"
+            title='Use Component'></a>&nbsp;
+          <a *ngIf="buttonVisibility.useStructure" class="fa fa-code-fork grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseStructure',data.value)"
+            title='Use Structure'></a>&nbsp;
+        </td>
+      </tr>
+      <tr class="dx-row dx-data-row dx-column-lines" style="background-color: #f1f2f4;" *ngIf="!isEditRowVisible(data.rowIndex,'edit')">
+        <td colspan="10">
+          <div class="row">
+            <h4 class="name item-name brown-neutral col-sm-6">Registry Record:{{data.data.REGNUMBER}}</h4>
+            <div class="pull-right">
+              <a *ngIf="buttonVisibility.duplicate" class="fa fa-clone grid-icon" aria-hidden="true" title="Duplicate" (click)="createDuplicateRecord('Duplicate',data.value)"></a>&nbsp;
+              <a *ngIf="buttonVisibility.addBatch" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch',data.value)"
+                title='Add Batch'></a>&nbsp;
+              <a *ngIf="buttonVisibility.useComponent" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseComponent',data.value)"
+                title='Use Component'></a>&nbsp;
+              <a *ngIf="buttonVisibility.useStructure" class="fa fa-code-fork grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseStructure',data.value)"
+                title='Use Structure'></a>&nbsp;
+              <a class="fa fa-times grid-icon" aria-hidden="true" title='Close' (click)="cancel()"></a>&nbsp;&nbsp;&nbsp;
+            </div>
+          </div>
+          <reg-duplicate-record-detail-view [id]="data.data.ID" [parentHeight]="parentHeight"></reg-duplicate-record-detail-view>
+        </td>
+      </tr>
+    </tbody>
   </dx-data-grid>
   <dx-load-panel [position]="{ of: '#duplicate-record-view' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true"
     [shading]="true" [closeOnOutsideClick]="false">

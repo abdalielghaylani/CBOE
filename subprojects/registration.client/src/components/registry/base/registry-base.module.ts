@@ -19,6 +19,7 @@ import { RegFormGroupItemView } from './form-group-item-view';
 import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
+import { RegDuplicateRecordDetailView } from './duplicate-records-detail-view';
 import {
   DxBoxModule,
   DxButtonModule,
@@ -86,13 +87,13 @@ export * from './registry-base.types';
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
     RegTagBoxFormItem, RegTextFormItem,
-    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView
+    RegFormView, RegDuplicateRecordDetailView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView
   ],
   exports: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
     RegTagBoxFormItem, RegTextFormItem,
-    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
+    RegFormView, RegDuplicateRecordDetailView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegCommonModule, RegCommonComponentModule
   ]
 })

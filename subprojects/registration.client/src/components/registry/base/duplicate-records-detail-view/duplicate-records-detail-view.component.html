@@ -1,0 +1,9 @@
+<dx-scroll-view [id]="detailScrollView_ + 'id'" id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true"
+  showScrollbar="true">
+  <span class="form-inline">
+    <reg-form-group-view [id]="'formGroupView_' + id" [viewConfig]="viewGroups" [viewModel]="regRecord" [activated]="true" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>
+  </span>
+</dx-scroll-view>
+  <dx-load-panel [position]="position" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="false"
+    [shading]="false" [closeOnOutsideClick]="false">
+  </dx-load-panel>

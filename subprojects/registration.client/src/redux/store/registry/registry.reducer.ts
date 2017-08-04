@@ -33,14 +33,7 @@ export function registryReducer(
 
     case RecordDetailActions.SAVE_RECORD:
       let a4 = action as ReduxActions.Action<any>;
-      let data = {
-        temporary: a4.payload.temporary,
-        id: a4.payload.id,
-        data: a4.payload.recordDoc.toString(),
-        isLoggedInUserOwner: false,
-        isLoggedInUserSuperVisor: false
-      };
-      return state.update('previousRecordDetail', () => data);
+      return state.update('previousRecordDetail', () => a4.payload);
 
     case RecordDetailActions.RETRIEVE_RECORD_SUCCESS:
       let a3 = action as ReduxActions.Action<IRecordDetail>;
