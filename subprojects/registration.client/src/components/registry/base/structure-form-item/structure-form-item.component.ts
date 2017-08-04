@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import * as dxDialog from 'devextreme/ui/dialog';
 import { RegStructureBaseFormItem } from '../structure-base-form-item';
+import { DrawingType } from '../registry-base.types';
 import { ChemDrawWeb } from '../../../common';
 
 @Component({
@@ -10,7 +12,7 @@ import { ChemDrawWeb } from '../../../common';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegStructureFormItem extends RegStructureBaseFormItem {
-  protected mode: number = 0;
+  protected mode: DrawingType = DrawingType.Chemical;
   private drawStructureImage = require('../assets/draw-structure.png');
   private noStructureImage = require('../assets/no-structure.png');
   private unknownStructureImage = require('../assets/unknown-structure.png');
@@ -18,7 +20,7 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
   private titleCdxml = `<CDXML><fonttable><font id="3" charset="iso-8859-1" name="Arial"/>
 </fonttable><page><t LineHeight="auto"><s font="3" size="18" color="0">{{title}}</s></t></page></CDXML>`;
 
-  constructor(elementRef: ElementRef) {
+  constructor(private changeDetector: ChangeDetectorRef, elementRef: ElementRef) {
     super(elementRef);
   }
 
@@ -26,19 +28,35 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
     return true;
   }
 
-  private changeMode(e) {
+  private updateMode(mode: DrawingType) {
+    this.mode = mode;
+    this.cdd.setViewOnly(this.mode !== DrawingType.Chemical);
+    let title = this.mode === DrawingType.NoStructure ? 'No Structure'
+      : this.mode === DrawingType.Unknown ? 'Unknown Structure'
+      : this.mode === DrawingType.NonChemicalContent ? 'Non-Chemical Content'
+      : undefined;
+    if (title) {
+      this.cdd.loadCDXML(this.titleCdxml.replace('{{title}}', title));
+    } else {
+      this.cdd.clear();
+    }
+    this.changeDetector.markForCheck();
+  }
+
+  private onClick(e) {
     let mode = +e.element[0].id.slice(-1);
     if (mode !== this.mode) {
-      this.mode = mode;
-      this.cdd.setViewOnly(this.mode !== 0);
-      let title = this.mode === 1 ? 'No Structure'
-        : this.mode === 2 ? 'Unknown Structure'
-        : this.mode === 3 ? 'Non-Chemical Content'
-        : undefined;
-      if (title) {
-        this.cdd.loadCDXML(this.titleCdxml.replace('{{title}}', title));
+      if (mode !== DrawingType.Chemical && this.mode === DrawingType.Chemical && !this.cdd.isBlankStructure()) {
+        let dialogResult = dxDialog.confirm(
+          `Alert: Are you sure you want to continue?  You will lose the currently drawn structure.`,
+          'Confirm Clearing Structure');
+        dialogResult.done(r => {
+          if (r) {
+            this.updateMode(mode);
+          }
+        });
       } else {
-        this.cdd.clear();
+        this.updateMode(mode);
       }
     }
   }
