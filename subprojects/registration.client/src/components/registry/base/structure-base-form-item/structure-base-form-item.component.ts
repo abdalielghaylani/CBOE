@@ -37,6 +37,9 @@ export class RegStructureBaseFormItem extends ChemDrawWeb implements IFormItemTe
 
   protected onContentChanged(e) {
     if (this.cdd && !this.cdd.isSaved()) {
+      if (this.viewModel) {
+        this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+      }
       this.valueUpdated.emit(this);
     }
   }
