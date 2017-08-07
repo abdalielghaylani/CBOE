@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import * as dxDialog from 'devextreme/ui/dialog';
 import { RegStructureBaseFormItem } from '../structure-base-form-item';
-import { DrawingType } from '../registry-base.types';
+import { IStructureData, DrawingType } from '../registry-base.types';
 import { ChemDrawWeb } from '../../../common';
 
 @Component({
@@ -13,6 +13,7 @@ import { ChemDrawWeb } from '../../../common';
 })
 export class RegStructureFormItem extends RegStructureBaseFormItem {
   protected mode: DrawingType = DrawingType.Chemical;
+  private structureData: IStructureData;
   private drawStructureImage = require('../assets/draw-structure.png');
   private noStructureImage = require('../assets/no-structure.png');
   private unknownStructureImage = require('../assets/unknown-structure.png');
@@ -24,23 +25,63 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
     super(elementRef);
   }
 
+  private extractMode(node: any): DrawingType {
+    let modeStr = typeof node === 'object' ? node.__text : node;
+    return modeStr ? +modeStr : DrawingType.Chemical;
+  }
+
+  deserializeValue(value: any): any {
+    this.structureData = undefined;
+    if (value.Structure) {
+      this.structureData = value;
+      value = this.structureData.Structure.__text;
+      if (typeof value === 'object' && value.viewModel) {
+        value = value.toString();
+      }
+    }
+    this.updateMode(this.extractMode(this.structureData.DrawingType), false);
+    return value;
+  }
+
+  serializeValue(value: any): any  {
+    if (this.structureData) {
+      this.structureData.Structure.__text = value;
+      let drawingTypeNodeType = typeof this.structureData.DrawingType;
+      if (drawingTypeNodeType === 'string') {
+        this.structureData.DrawingType = (+this.mode).toString();
+      } else if (drawingTypeNodeType === 'object') {
+        this.structureData.DrawingType.__text = (+this.mode).toString();
+      }
+      value = this.structureData;
+    }
+    return value;
+  }
+
   protected validate(options) {
     return true;
   }
 
-  private updateMode(mode: DrawingType) {
+  private updateMode(mode: DrawingType, forceRefresh: boolean = true) {
     this.mode = mode;
-    this.cdd.setViewOnly(this.mode !== DrawingType.Chemical);
-    let title = this.mode === DrawingType.NoStructure ? 'No Structure'
-      : this.mode === DrawingType.Unknown ? 'Unknown Structure'
-      : this.mode === DrawingType.NonChemicalContent ? 'Non-Chemical Content'
-      : undefined;
-    if (title) {
-      this.cdd.loadCDXML(this.titleCdxml.replace('{{title}}', title));
-    } else {
+    this.editMode = this.mode === DrawingType.Chemical;
+    if (this.cdd) {
+      this.cdd.setViewOnly(!this.editMode);
+      let title = this.mode === DrawingType.NoStructure ? 'No Structure'
+        : this.mode === DrawingType.Unknown ? 'Unknown Structure'
+        : this.mode === DrawingType.NonChemicalContent ? 'Non-Chemical Content'
+        : undefined;
       this.cdd.clear();
+      this.cdd.markAsSaved();
+      if (title) {
+        this.cdd.loadCDXML(this.titleCdxml.replace('{{title}}', title));
+        // Force sending the update evant to the container
+        this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+        this.valueUpdated.emit(this);
+      }
     }
-    this.changeDetector.markForCheck();
+    if (forceRefresh) {
+      this.changeDetector.markForCheck();
+    }
   }
 
   private onClick(e) {
