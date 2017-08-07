@@ -45,5 +45,5 @@
   <reg-templates (onClose)="showDetails($event)"></reg-templates>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-duplicate-record (onClose)="cancelDuplicateResolution($event)"></reg-duplicate-record>
+  <reg-duplicate-record  [parentHeight]="parentHeight" (onClose)="cancelDuplicateResolution($event)"></reg-duplicate-record>
 </div>

@@ -109,10 +109,10 @@ export class RegistryEpics {
       });
   }
 
-  private createDuplicateRecord: Epic = (action$: Observable<ReduxActions.Action<{ data: IRecordDetail, duplicateAction: string, regNo: string }>>) => {
+  private createDuplicateRecord: Epic = (action$: Observable<ReduxActions.Action<{ data: IRecordSaveData, duplicateAction: string, regNo: string }>>) => {
     return action$.filter(({ type }) => type === RecordDetailActions.CREATE_DUPLICATE_RECORD)
       .mergeMap(({ payload }) => {
-        let data = { data: payload.data.data, duplicateAction: payload.duplicateAction, regNo: payload.regNo };
+        let data = { data: registryUtils.serializeData(payload.data.recordDoc), duplicateAction: payload.duplicateAction, regNo: payload.regNo };
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return (
