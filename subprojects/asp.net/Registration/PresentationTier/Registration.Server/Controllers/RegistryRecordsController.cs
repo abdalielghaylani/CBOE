@@ -78,7 +78,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
                     new JProperty("rows", ExtractData(query, null, skip, count))
                 );
-            });
+            }, new string[] { "SEARCH_REG" });
         }
 
         [HttpGet]
@@ -356,7 +356,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var regNum = GetRegNumber(id);
                 RegistryRecord.DeleteRegistryRecord(regNum);
                 return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully!", regNum));
-            });
+            }, new string[] { "DELETE_REG", "EDIT_COMPOUND_REG" });
         }
 
         #endregion // Permanent Records
@@ -380,7 +380,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
                     new JProperty("rows", ExtractData(query, null, skip, count))
                 );
-            });
+            }, new string[] { "SEARCH_TEMP" });
         }
 
         [HttpGet]
@@ -537,7 +537,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 CheckTempRecordId(id);
                 RegistryRecord.DeleteRegistryRecord(id);
                 return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully!", id));
-            }, new string[] { "DELETE_TEMP" });
+            }, new string[] { "DELETE_TEMP", "EDIT_COMPOUND_TEMP" });
         }
         #endregion // Tempoary Records
 

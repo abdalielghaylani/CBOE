@@ -60,7 +60,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 return templateList;
-            });
+            }, new string[] { "LOAD_SAVE_RECORD" });
         }
 
         [HttpGet]
@@ -135,7 +135,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 template.Data = ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml;
                 return template;
-            });
+            }, new string[] { "LOAD_SAVE_RECORD" });
         }
 
         [HttpPost]

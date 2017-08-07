@@ -449,7 +449,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     tableList.Add(table);
                 }
                 return tableList;
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         [HttpGet]
@@ -481,7 +481,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("config", config),
                     new JProperty("rows", rows)
                 );
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         [HttpGet]
@@ -508,7 +508,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 foreach (DataColumn dc in dt.Columns)
                     data.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
                 return data;
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         [HttpPost]
@@ -526,7 +526,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new UnauthorizedAccessException(string.Format("Not allowed to add entries to {0}", tableName));
                 var id = SaveColumnValues(tableName, data, true);
                 return new ResponseData(id, null, null, null);
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         [HttpPut]
@@ -545,7 +545,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new UnauthorizedAccessException(string.Format("Not allowed to edit entries from {0}", tableName));
                 SaveColumnValues(tableName, data, false);
                 return new ResponseData(id, null, null, null);
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         [HttpDelete]
@@ -567,7 +567,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 // If not, throw error 404.
                 COETableEditorBO.Delete(id);
                 return new ResponseData(id, null, null, null);
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         #endregion
@@ -617,7 +617,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 return addinList;
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_ADDINS" });
         }
 
         [HttpDelete]
@@ -647,7 +647,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The addin, {0}, was not found", name));
                 return new ResponseData(message: string.Format("The addin, {0}, was deleted successfully!", name));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_ADDINS" });
         }
 
         [HttpPost]
@@ -722,7 +722,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 configurationBO.Save();
 
                 return new ResponseData(message: string.Format("The addin, {0}, was saved successfully!", data.Name));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_ADDINS" });
         }
 
         [HttpPut]
@@ -811,7 +811,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 return new ResponseData(message: string.Format("The addin, {0}, was updated successfully!", data.Name));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_ADDINS" });
         }
 
         #endregion
@@ -852,7 +852,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 }
                 return formList.GroupBy(d => d.Name).Select(g => g.First());
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "CUSTOMIZE_FORMS" });
         }
 
         [HttpPut]
@@ -910,7 +910,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-element, {0}, was not found", formElementData.Name));
                 return new ResponseData(null, null, string.Format("The form-elements was updated successfully!"), null);
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "CUSTOMIZE_FORMS" });
         }
         #endregion
 
@@ -987,7 +987,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
                 return propertyArray;
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_PROPERTIES" });
         }
 
         [HttpPost]
@@ -1153,7 +1153,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException(string.Format("The property '{0}' not saved.", data.Name));
 
                 return new ResponseData(message: string.Format("The property, {0}, was saved successfully!", data.Name));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_PROPERTIES" });
         }
 
         [HttpPut]
@@ -1325,7 +1325,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
 
                 return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_PROPERTIES" });
         }
 
         private Dictionary<string, string> GetPropertyLabelsByContainedPropertyName(ConfigurationRegistryRecord configBO, string propertyName)
@@ -1401,7 +1401,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The property, {0}, was not found", name));
                 return new ResponseData(message: string.Format("The property, {0}, was deleted successfully!", name));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_PROPERTIES" });
         }
 
         #endregion
@@ -1419,7 +1419,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 return RegAppHelper.RetrieveSettings();
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_SYSTEM_SETTINGS" });
         }
 
         [HttpPut]
@@ -1473,7 +1473,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new IndexOutOfRangeException("No change is required");
                 FrameworkUtils.SaveAppConfigSettings(currentApplicationName, appConfigSettings);
                 return new ResponseData(null, null, string.Format("{0} was updated successfully!", settingInfo), null);
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "MANAGE_SYSTEM_SETTINGS" });
         }
 
         #endregion
@@ -1500,7 +1500,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     xmlFormList.Add(new XmlFormData(formGroupType.ToString(), configRegRecord.FormGroup.ToString()));
                 }
                 return xmlFormList;
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "EDIT_FORM_XML" });
         }
 
         [HttpPut]
@@ -1531,7 +1531,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("The form-group, {0}, was not found", data.Name));
                 return new ResponseData(null, null, string.Format("The form-group, {0}, was updated successfully!", data.Name), null);
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG, "EDIT_FORM_XML" });
         }
 
         #endregion
@@ -1622,7 +1622,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return new JObject(
                         new JProperty("ExportPath", exportPath),
                         new JProperty("ImportPath", importPath));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         [HttpPost]
@@ -1644,7 +1644,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (data.SelectNone != true)
                     ExportTables(data.TableNames, data.ExportDir);
                 return new ResponseData(message: string.Format("The configuration was exported successfully!"));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
 
         [HttpPost]
@@ -1664,7 +1664,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 string AppRootInstallPath = page.Server.MapPath(string.Empty).Remove(page.Server.MapPath(string.Empty).IndexOf(FixedInstallPath) + FixedInstallPath.Length);
                 configurationBO.ImportCustomization(AppRootInstallPath, data.ServerPath, data.ForceImport);
                 return new ResponseData(message: string.Format("The configuration was imported successfully!"));
-            });
+            }, new string[] { Consts.PRIVILEGE_CONFIG_REG });
         }
         #endregion
     }
