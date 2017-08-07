@@ -719,9 +719,10 @@ export class CRegistryRecord {
 
   public getDataSource(dataSource: string): any {
     dataSource = dataSource.toLowerCase();
-    return dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
-      : dataSource.indexOf('batch') >= 0 ? this.BatchList.Batch[0]
-        : this;
+    return dataSource.indexOf('fragmentscsla') >= 0 ? this.BatchList.Batch[0].BatchComponentList.BatchComponent[0]
+      : dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
+        : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.BatchList.Batch[0]
+          : this;
   }
 
   public setEntryValue(viewConfig: CViewGroup, displayMode: string, id: string, entryValue, serialize: boolean = false) {
