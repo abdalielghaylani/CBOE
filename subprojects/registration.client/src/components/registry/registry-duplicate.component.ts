@@ -91,8 +91,6 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   ngOnInit() {
     this.duplicateData$ = this.ngRedux.select(['registry', 'duplicateRecords']);
     this.recordsSubscription = this.duplicateData$.subscribe((value: number[]) => this.loadData(value));
-    // this.datasource = this.getDataSource(this.ngRedux.getState().session.lookups.users);
-    // this.columns = this.columns.map(s => this.updateGridColumn(s));
   }
 
   ngOnDestroy() {
