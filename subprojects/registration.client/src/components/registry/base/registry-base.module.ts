@@ -20,6 +20,7 @@ import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
 import { RegDuplicateRecordDetailView } from './duplicate-records-detail-view';
+import { CStructureImageService } from './structure-image.service';
 import {
   DxBoxModule,
   DxButtonModule,
@@ -56,6 +57,7 @@ export * from './text-form-item';
 export * from './form-view';
 export * from './form-group-view';
 export * from './registry-base.types';
+export * from './structure-image.service';
 
 @NgModule({
   imports: [
@@ -95,6 +97,9 @@ export * from './registry-base.types';
     RegTagBoxFormItem, RegTextFormItem,
     RegFormView, RegDuplicateRecordDetailView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegCommonModule, RegCommonComponentModule
+  ],
+  providers: [
+    CStructureImageService
   ]
 })
 export class RegBaseComponentModule { }
