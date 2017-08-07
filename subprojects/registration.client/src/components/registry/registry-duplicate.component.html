@@ -39,12 +39,12 @@
         <td>{{data.data.STATUS}}</td>
         <td>{{data.data.APPROVED}}</td>
         <td>
-          <a *ngIf="buttonVisibility.duplicate" class="fa fa-clone grid-icon" aria-hidden="true" title="Duplicate" (click)="createDuplicateRecord('Duplicate',data.value)"></a>&nbsp;
-          <a *ngIf="buttonVisibility.addBatch" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch',data.value)"
+          <a *ngIf="buttonVisibility.duplicate" class="fa fa-clone grid-icon" aria-hidden="true" title="Duplicate" (click)="createDuplicateRecord('Duplicate',data.data.REGNUMBER)"></a>&nbsp;
+          <a *ngIf="buttonVisibility.addBatch" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch',data.data.REGNUMBER)"
             title='Add Batch'></a>&nbsp;
-          <a *ngIf="buttonVisibility.useComponent" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseComponent',data.value)"
+          <a *ngIf="buttonVisibility.useComponent" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseComponent',data.data.REGNUMBER)"
             title='Use Component'></a>&nbsp;
-          <a *ngIf="buttonVisibility.useStructure" class="fa fa-code-fork grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseStructure',data.value)"
+          <a *ngIf="buttonVisibility.useStructure" class="fa fa-code-fork grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseStructure',data.data.REGNUMBER)"
             title='Use Structure'></a>&nbsp;
         </td>
       </tr>
