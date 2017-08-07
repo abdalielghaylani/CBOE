@@ -67,7 +67,15 @@ export class RegConfigTables implements OnInit, OnDestroy {
     }
   }
 
+  refreshDataGrid() {
+    if (this.grid.instance) {
+      this.grid.instance.refresh();
+      this.grid.instance.clearFilter();
+    }
+  }
+
   loadData(customTables: any) {
+    this.refreshDataGrid();
     if (customTables && customTables[this.tableId]) {
       let customTableData: ICustomTableData = customTables[this.tableId];
       this.rows = customTableData.rows;

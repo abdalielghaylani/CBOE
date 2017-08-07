@@ -3,6 +3,13 @@ import * as X2JS from 'x2js';
 import { ISearchCriteriaItem } from './registry-base.types';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../common';
 
+export enum DrawingType {
+  Chemical = 0,
+  Unknown = 1,
+  NoStructure = 2,
+  NonChemicalContent = 3
+}
+
 export interface IViewControl {
   activated: boolean;
   editMode: boolean;
@@ -870,7 +877,7 @@ export class CValidator {
   }
 
   private static validateRequiredField(rule: IValidationRule, e) {
-    if (!e.value) {
+    if (!e.value || (e.value.length && e.value.length === 0)) {
       e.rule.isValid = false;
     }
   }

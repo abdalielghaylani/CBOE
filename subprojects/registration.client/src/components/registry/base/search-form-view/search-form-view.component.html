@@ -15,7 +15,7 @@
     <reg-drop-down-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-drop-down-form-item-template>
   </div>
   <div *dxTemplate="let data of 'structureQueryTemplate'">
-    <reg-structure-query-form-item-template (valueUpdated)="onStructureValueUpdated($event)" [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-query-form-item-template>
+    <reg-structure-query-form-item-template [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-query-form-item-template>
   </div>
   <div *dxTemplate="let data of 'textTemplate'">
     <reg-text-form-item-template [editMode]="editMode" [viewModel]="data"></reg-text-form-item-template>

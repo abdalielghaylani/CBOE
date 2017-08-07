@@ -32,12 +32,6 @@ export class RegFormView implements IViewControl, OnChanges {
     }
   }
 
-  protected onStructureValueUpdated(structureFormItem: RegStructureFormItem) {
-    let dataField = structureFormItem.viewModel.dataField;
-    this.viewModel[dataField] = structureFormItem;
-    this.onValueUpdated(this);
-  }
-
   protected onValueUpdated(e) {
     this.valueUpdated.emit(e);
   }

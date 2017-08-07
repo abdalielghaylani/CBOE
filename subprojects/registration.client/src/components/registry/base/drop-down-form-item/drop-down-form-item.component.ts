@@ -14,14 +14,22 @@ export class RegDropDownFormItem extends RegBaseFormItem {
   protected dataSource: any[];
   protected valueExpr: string;
   protected displayExpr: string;
+  protected useNumericValue: boolean = false;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
     super();
   }
 
+  deserializeValue(value: any): any {
+    return this.useNumericValue ? +value : value;
+  }
+
+  serializeValue(value: any): any {
+    return this.useNumericValue ? value.toString() : value;
+  }
+
   protected update() {
     let options = this.viewModel.editorOptions;
-    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
     if (options.pickListDomain) {
       let pickListDomain = options.pickListDomain as number;
       let lookups = this.ngRedux.getState().session.lookups;
@@ -44,6 +52,10 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         this.value = '';
       }
     }
+    if (this.dataSource && this.dataSource.length > 0) {
+      this.useNumericValue = typeof this.dataSource.slice(-1)[0][this.valueExpr] === 'number';
+    }
+    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
   }
 
   protected onValueChanged(e, d) {
