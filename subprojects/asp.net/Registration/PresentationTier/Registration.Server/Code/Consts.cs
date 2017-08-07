@@ -27,6 +27,6 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public const string EXPORTFILESPATH = "\\COERegistrationExportFiles\\";
 
-        public const string PRIVILEGE_CONFIG_REG = "CONFIG_REG";
+        public const string PrivilegeConfigReg = "CONFIG_REG";
     }
 }
