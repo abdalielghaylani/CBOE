@@ -88,11 +88,13 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       }, {
         dataField: 'molWeight',
         caption: 'MW',
-        allowEditing: false
+        allowEditing: false,
+        width: 80
       }, {
         dataField: 'formula',
         caption: 'MF',
-        allowEditing: false
+        allowEditing: false,
+        width: 120
       }] : [];
     if (this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
       this.columns.unshift({

@@ -33,7 +33,7 @@
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
   width: 100%;
   min-height: 600px;
-  min-width: 800px;
+  min-width: 960px;
 }
 
 .background-white {
