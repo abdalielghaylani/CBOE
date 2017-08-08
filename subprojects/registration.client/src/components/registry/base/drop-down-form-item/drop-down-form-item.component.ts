@@ -57,12 +57,4 @@ export class RegDropDownFormItem extends RegBaseFormItem {
     }
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
   }
-
-  protected onValueChanged(e, d) {
-    if (e.previousValue !== e.value) {
-      let value = e.value;
-      d.component.option('formData.' + d.dataField, this.serializeValue(e.value));
-      this.onValueUpdated(this);
-    }
-  }
 };

@@ -162,13 +162,6 @@ export class CViewGroup implements IViewGroup {
     }
   }
 
-  private fixBindingExpression(expression: string): string {
-    return expression.replace('.Sequence.ID', '.SequenceID')
-      .replace('.Structure.Value', '.Structure.Structure.__text')
-      .replace('.Structure.Formula', '.Structure.Structure._formula')
-      .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
-  }
-
   private isIdText(fe: IFormElement): boolean {
     let bindingExpression = fe.bindingExpression.toLowerCase();
     return !fe.label && (bindingExpression === 'id' || bindingExpression.endsWith('regnum')) && fe.displayInfo.type.endsWith('COETextBoxReadOnly');
@@ -461,7 +454,7 @@ export class IStructureData {
   Structure?: IChemicalStructure;
   NormalizedStructure?: string; // VmpD...
   UseNormalization?: string; // F
-  DrawingType?: string; // 0
+  DrawingType?: any; // 0
   CanPropogateStructureEdits?: string; // True
   PropertyList?: IPropertyList;
   IdentifierList?: IIdentifierList;
@@ -653,15 +646,31 @@ export class CRegistryRecord {
 
   private static fixBindingExpression(expression: string): string {
     return expression.replace('.Sequence.ID', '.SequenceID')
-      .replace('.Structure.Value', '.Structure.Structure.__text')
+      .replace('.Structure.Value', '.Structure')
       .replace('.Structure.Formula', '.Structure.Structure._formula')
       .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
   }
 
+  /**
+   * Flattens the specified property of the specified object into a string value
+   * @param object The object to use
+   * @param property The name of the property to serialize
+   */
   private static serializeValue(object: any, property: string) {
-    let textObject = object[property];
-    if (textObject && typeof textObject === 'object' && textObject.viewModel) {
-      object[property] = object[property].toString();
+    let valueObject = object[property];
+    if (valueObject && typeof valueObject === 'object') {
+      // If the value is object, convert it to a string value.
+      if (valueObject.viewModel) {
+        // If this is a form-item, use toString to convert.
+        object[property] = object[property].toString();
+      } else if (valueObject.Structure) {
+        // If this is an IStructureData object, use its serializeValue method.
+        let structureData: IStructureData = valueObject;
+        let structureFormItem: any = structureData.Structure.__text;
+        if (typeof structureFormItem === 'object' && structureFormItem.viewModel) {
+          object[property] = structureFormItem.serializeValue(structureFormItem.toString());
+        }
+      }
     }
   }
 
@@ -710,9 +719,10 @@ export class CRegistryRecord {
 
   public getDataSource(dataSource: string): any {
     dataSource = dataSource.toLowerCase();
-    return dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
-      : dataSource.indexOf('batch') >= 0 ? this.BatchList.Batch[0]
-        : this;
+    return dataSource.indexOf('fragmentscsla') >= 0 ? this.BatchList.Batch[0].BatchComponentList.BatchComponent[0]
+      : dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
+        : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.BatchList.Batch[0]
+          : this;
   }
 
   public setEntryValue(viewConfig: CViewGroup, displayMode: string, id: string, entryValue, serialize: boolean = false) {
