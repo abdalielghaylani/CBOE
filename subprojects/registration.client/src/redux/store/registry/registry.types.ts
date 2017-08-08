@@ -22,7 +22,7 @@ export class CRecordsData implements IRecordsData {
   temporary: boolean = false;
   startIndex: number = 0;
   totalCount: number = 0;
-  histlistId?: number = 0;
+  hitlistId?: number = 0;
   rows: any[] | Function = [];
   constructor(temporary: boolean, rows: any[] = undefined) {
     this.temporary = temporary;
