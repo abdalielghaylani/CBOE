@@ -13,6 +13,7 @@ import { RegStructureQueryFormItem } from './structure-query-form-item';
 import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegTextFormItem } from './text-form-item';
+import { RegDropDownColumnItem } from './drop-down-column-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
 import { RegFormGroupItemView } from './form-group-item-view';
@@ -25,6 +26,7 @@ import {
   DxBoxModule,
   DxButtonModule,
   DxCheckBoxModule,
+  DxDropDownBoxModule,
   DxRadioGroupModule,
   DxDataGridModule,
   DxDateBoxModule,
@@ -67,6 +69,7 @@ export * from './structure-image.service';
     DxBoxModule,
     DxButtonModule,
     DxCheckBoxModule,
+    DxDropDownBoxModule,
     DxRadioGroupModule,
     DxDataGridModule,
     DxDateBoxModule,
@@ -89,12 +92,14 @@ export * from './structure-image.service';
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
     RegTagBoxFormItem, RegTextFormItem,
+    RegDropDownColumnItem,
     RegFormView, RegDuplicateRecordDetailView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView
   ],
   exports: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
     RegTagBoxFormItem, RegTextFormItem,
+    RegDropDownColumnItem,
     RegFormView, RegDuplicateRecordDetailView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegCommonModule, RegCommonComponentModule
   ],

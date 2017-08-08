@@ -1,0 +1,6 @@
+<dx-drop-down-box [(value)]="value" valueExpr="valueExpr" displayExpr="displayExpr" placeholder="Select..." [showClearButton]="false" [dataSource]="dataSource">
+  <div *dxTemplate="let data of 'content'">
+    <dx-data-grid [dataSource]="dataSource" [selection]="{ mode: 'single' }" [hoverStateEnabled]="true" [paging]="{ enabled: true, pageSize: 10 }" [filterRow]="{ visible: true }" [scrolling]="{ mode: 'infinite' }" [height]="265">
+    </dx-data-grid>
+  </div>
+</dx-drop-down-box>

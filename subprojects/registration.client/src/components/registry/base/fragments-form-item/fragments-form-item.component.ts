@@ -54,48 +54,54 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
     let options = this.viewModel.editorOptions;
     this.dataSource = options && options.value ? this.deserializeValue(options.value) : [];
     this.columns = lookups ? [{
-        dataField: 'fragmentTypeId',
-        caption: 'Type',
-        editorType: 'dxSelectBox',
-        lookup: {
-          dataSource: lookups.fragmentTypes,
-          displayExpr: 'DESCRIPTION',
-          valueExpr: 'ID'
-        },
-        width: 60
-      }, {
-        dataField: 'equivalents',
-        caption: 'Equivalent',
-        width: 80
-      }, {
-        dataField: 'code',
-        caption: 'Code',
-        width: 50
-      }, {
-        dataField: 'structure',
-        caption: 'Structure',
-        allowEditing: false,
-        allowFiltering: false,
-        allowSorting: false,
-        width: 150,
-        cellTemplate: function (c, o) {
-          jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" class="fragment-image block mx-auto" />`).appendTo(c);
-        }
-      }, {
-        dataField: 'description',
-        caption: 'Description',
-        allowEditing: false
-      }, {
-        dataField: 'molWeight',
-        caption: 'MW',
-        allowEditing: false,
-        width: 80
-      }, {
-        dataField: 'formula',
-        caption: 'MF',
-        allowEditing: false,
-        width: 120
-      }] : [];
+      dataField: 'fragmentTypeId',
+      caption: 'Type',
+      lookup: {
+        dataSource: lookups.fragmentTypes,
+        displayExpr: 'DESCRIPTION',
+        valueExpr: 'ID'
+      },
+      width: 60
+    }, {
+      dataField: 'equivalents',
+      caption: 'Equivalent',
+      width: 80
+    }, {
+      dataField: 'code',
+      caption: 'Code',
+      editCellTemplate: 'dropDownTemplate',
+      editorOptions: {
+        dataSource: lookups.fragments,
+        displayExpr: 'CODE',
+        valueExpr: 'CODE',
+        dropDownWidth: 600
+      },
+      width: 50
+    }, {
+      dataField: 'structure',
+      caption: 'Structure',
+      allowEditing: false,
+      allowFiltering: false,
+      allowSorting: false,
+      width: 150,
+      cellTemplate: function (c, o) {
+        jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" class="fragment-image block mx-auto" />`).appendTo(c);
+      }
+    }, {
+      dataField: 'description',
+      caption: 'Description',
+      allowEditing: false
+    }, {
+      dataField: 'molWeight',
+      caption: 'MW',
+      allowEditing: false,
+      width: 80
+    }, {
+      dataField: 'formula',
+      caption: 'MF',
+      allowEditing: false,
+      width: 120
+    }] : [];
     this.checkCommandColumn();
     this.editingMode = 'row';
     this.allowUpdating = true;
