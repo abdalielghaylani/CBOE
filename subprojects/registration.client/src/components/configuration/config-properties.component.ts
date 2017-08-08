@@ -13,7 +13,6 @@ import { getExceptionMessage, notify, notifyError, notifyException, notifySucces
 import { apiUrlPrefix } from '../../configuration';
 import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration } from '../../redux';
 import { HttpService } from '../../services';
-import { alert } from 'devextreme/ui/dialog';
 
 declare var jQuery: any;
 
@@ -166,15 +165,13 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           this.configProperties.formData.validationRules.push(validationModel);
           break;
         default:
-          for (let i = 0; i < this.configProperties.formData.validationRules.length; i++) {
-            if (this.configProperties.formData.validationRules[i].name
-              === this.configProperties.formDataValidation.name) {
-              alert('The Validation Rule that you are trying to add already exists', 'Error');
-              return;
-            }
+          if (this.configProperties.formData.validationRules.filter(validationRule =>
+            validationRule.name === this.configProperties.formDataValidation.name).length > 0) {
+            notifyError('The Validation Rule that you are trying to add already exists', 5000);
+          } else {
+            validationModel = this.configProperties.formDataValidation;
+            this.configProperties.formData.validationRules.push(validationModel);
           }
-          validationModel = this.configProperties.formDataValidation;
-          this.configProperties.formData.validationRules.push(validationModel);
           break;
 
       }
