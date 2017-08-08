@@ -223,6 +223,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
         'MultiCompoundRegistryRecord.BatchList.Batch',
         'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
         'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
+        'MultiCompoundRegistryRecord.BatchList.Batch.IdentifierList.Identifier',
         'MultiCompoundRegistryRecord.IdentifierList.Identifier',
         'MultiCompoundRegistryRecord.ProjectList.Project',
         'MultiCompoundRegistryRecord.PropertyList.Property',
