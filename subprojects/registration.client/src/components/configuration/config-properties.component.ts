@@ -13,6 +13,7 @@ import { getExceptionMessage, notify, notifyError, notifyException, notifySucces
 import { apiUrlPrefix } from '../../configuration';
 import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration } from '../../redux';
 import { HttpService } from '../../services';
+import { alert } from 'devextreme/ui/dialog';
 
 declare var jQuery: any;
 
@@ -165,6 +166,13 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           this.configProperties.formData.validationRules.push(validationModel);
           break;
         default:
+          for (let i = 0; i < this.configProperties.formData.validationRules.length; i++) {
+            if (this.configProperties.formData.validationRules[i].name
+              === this.configProperties.formDataValidation.name) {
+              alert('The Validation Rule that you are trying to add already exists', 'Error');
+              return;
+            }
+          }
           validationModel = this.configProperties.formDataValidation;
           this.configProperties.formData.validationRules.push(validationModel);
           break;
@@ -178,13 +186,13 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   onCellPrepared(e, t?: string) {
-    
+
     let disableEditCause = 'This type of property is not editable because it would '
       + 'affect existing data. You can either delete or hide this property and '
       + 'create a new property with the desired changes. In order to delete the '
       + 'property, you must first delete any data values previously stored in it.';
 
-    let disableEditIcon = '<i class="dx-icon-edit" rel="tooltip" title="' 
+    let disableEditIcon = '<i class="dx-icon-edit" rel="tooltip" title="'
       + disableEditCause + '" style="font-size:18px;color:silver;cursor:pointer"></i>';
 
     if (e.rowType === 'data' && e.column.command === 'edit') {
@@ -192,12 +200,12 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       $links.text('');
       if (e.data.editable || t === 'validation') {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-edit').attr({'data-toggle': 'tooltip', 'title' : 'Edit'});
+        $links.filter('.dx-link-edit').attr({ 'data-toggle': 'tooltip', 'title': 'Edit' });
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-        $links.filter('.dx-link-delete').attr({'data-toggle': 'tooltip', 'title' : 'Delete'});
+        $links.filter('.dx-link-delete').attr({ 'data-toggle': 'tooltip', 'title': 'Delete' });
       } else {
         $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-        $links.filter('.dx-link-delete').attr({'data-toggle': 'tooltip', 'title' : 'Delete'});
+        $links.filter('.dx-link-delete').attr({ 'data-toggle': 'tooltip', 'title': 'Delete' });
         $links.filter('.dx-link-edit').append(disableEditIcon);
       }
     }
