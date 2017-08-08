@@ -57,15 +57,7 @@ export class RegIdListFormItem extends RegDataGridFormItem {
       dataField: 'inputText',
       caption: 'Value'
     }] : [];
-    if (this.editMode && this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
-      this.columns.unshift({
-        cellTemplate: 'commandCellTemplate',
-        headerCellTemplate: 'commandHeaderCellTemplate',
-        width: 80
-      });
-    } else if (!this.editMode && this.columns.length > 0 && this.columns[0].headerCellTemplate) {
-      this.columns.splice(0, 1);
-    }
+    this.checkCommandColumn();
     this.editingMode = 'row';
     this.allowUpdating = true;
     this.allowDeleting = true;

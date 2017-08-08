@@ -96,13 +96,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
         allowEditing: false,
         width: 120
       }] : [];
-    if (this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
-      this.columns.unshift({
-        cellTemplate: 'commandCellTemplate',
-        headerCellTemplate: 'commandHeaderCellTemplate',
-        width: 80
-      });
-    }
+    this.checkCommandColumn();
     this.editingMode = 'row';
     this.allowUpdating = true;
     this.allowDeleting = true;
