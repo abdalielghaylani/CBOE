@@ -553,9 +553,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                if (string.IsNullOrWhiteSpace(inputData.RegNo))
-                    throw new RegistrationException("Invalid registration number");
-
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateAction))
                     throw new RegistrationException("Invalid duplicate action name");
                 
@@ -563,6 +560,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!validDuplicateActions.Contains(inputData.DuplicateAction))
                 {
                     throw new RegistrationException("Invalid duplicate action name");
+                }
+
+                // for `Duplicate' option, the given record is registered as  duplicate
+                // for other options, the api expects a selected duplicate records reg number
+                if (!inputData.DuplicateAction.Equals("Duplicate"))
+                {
+                    if (string.IsNullOrWhiteSpace(inputData.RegNo))
+                        throw new RegistrationException("Invalid registration number");
                 }
              
                 // get duplicates for the given input record data
@@ -574,14 +579,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     XmlDocument xmldoc = new XmlDocument();
                     xmldoc.LoadXml(registryRecord.FoundDuplicates);
                     XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+
                     int selectedDuplicateRecord = 0;
-                    foreach (XmlNode node in nodeList)
+                    // get selected dulicate records's index
+                    if (!inputData.DuplicateAction.Equals("Duplicate"))
                     {
-                        if (node.InnerText.Equals(inputData.RegNo))
+                        foreach (XmlNode node in nodeList)
                         {
-                            break;
+                            if (node.InnerText.Equals(inputData.RegNo))
+                            {
+                                break;
+                            }
+                            selectedDuplicateRecord++;
                         }
-                        selectedDuplicateRecord++;
                     }
 
                     DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, registryRecord.FoundDuplicates, false);
