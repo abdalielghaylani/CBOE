@@ -295,6 +295,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
 
   save() {
     if (!this.formGroupView.validate()) {
+      notifyError('One or more entries failed to validate!', 5000);
       return;
     }
     let recordDoc = this.getUpdatedRecord();
