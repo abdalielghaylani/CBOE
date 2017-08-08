@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IViewControl } from '../registry-base.types';
+import { IBatchComponentFragmentList } from '../registry-base.types';
 import { RegDataGridFormItem } from '../data-grid-form-item';
 import { NgRedux } from '@angular-redux/store';
 import { apiUrlPrefix } from '../../../../configuration';
@@ -12,14 +12,47 @@ import { IAppState } from '../../../../redux';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegFragmentsFormItem extends RegDataGridFormItem {
+  private fragmentList: IBatchComponentFragmentList;
+
   constructor(private ngRedux: NgRedux<IAppState>) {
     super();
+  }
+
+  deserializeValue(value: IBatchComponentFragmentList): any {
+    this.fragmentList = value;
+    let fragments = value.BatchComponentFragment;
+    return fragments.map(f => {
+      let fragmentEntry: any = {
+        id: f.ID,
+        compoundFragmentID: f.ComponentFragmentID,
+        equivalents: f.Equivalents
+      };
+      // ID, CompoundFragmentID, FragmentID, Equivalents
+      let lookups = this.ngRedux.getState().session.lookups;
+      if (lookups) {
+        let filtered = lookups.fragments.filter(f2 => +f2.FRAGMENTID === +f.FragmentID);
+        if (filtered.length > 0) {
+          let fragment = filtered[0];
+          fragmentEntry.fragmentTypeId = fragment.FRAGMENTTYPEID;
+          fragmentEntry.code = fragment.CODE;
+          fragmentEntry.description = fragment.DESCRIPTION;
+          fragmentEntry.molWeight = fragment.MOLWEIGHT;
+          fragmentEntry.formula = fragment.FORMULA;
+          fragmentEntry.structure = fragment.STRUCTURE.replace('?', '/50/100?');
+        }
+      }
+      return fragmentEntry;
+    });
+  }
+
+  serializeValue(value: any): IBatchComponentFragmentList {
+    return this.fragmentList;
   }
 
   protected update() {
     let lookups = this.ngRedux.getState().session.lookups;
     let options = this.viewModel.editorOptions;
-    this.dataSource = options && options.value ? options.value : [];
+    this.dataSource = options && options.value ? this.deserializeValue(options.value) : [];
     this.columns = lookups ? [{
         dataField: 'fragmentTypeId',
         caption: 'Type',
@@ -46,7 +79,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
         allowSorting: false,
         width: 150,
         cellTemplate: function (c, o) {
-          jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" />`).appendTo(c);
+          jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" class="fragment-image block mx-auto" />`).appendTo(c);
         }
       }, {
         dataField: 'description',
@@ -55,11 +88,13 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       }, {
         dataField: 'molWeight',
         caption: 'MW',
-        allowEditing: false
+        allowEditing: false,
+        width: 80
       }, {
         dataField: 'formula',
         caption: 'MF',
-        allowEditing: false
+        allowEditing: false,
+        width: 120
       }] : [];
     if (this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
       this.columns.unshift({

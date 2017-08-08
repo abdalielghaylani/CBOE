@@ -162,7 +162,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
-    this.backButtonEnabled = state.registry.records.data.hitlistId > 0;
+    let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
+    this.backButtonEnabled = hitListId > 0;
     if (forceUpdate) {
       this.changeDetector.markForCheck();
     }
@@ -340,9 +341,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
 
   back() {
     let state = this.ngRedux.getState();
-    let hitListId = state.registry.records.data.hitlistId;
+    let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
     this.router.navigate([`records/restore/${hitListId}`]);
   }
+
   register() {
     let recordDoc = this.getUpdatedRecord();
     if (!recordDoc) {
