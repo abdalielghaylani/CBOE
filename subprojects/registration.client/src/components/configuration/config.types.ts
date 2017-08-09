@@ -1,90 +1,93 @@
-import { IAppState } from '../../redux';
+import { IAppState, ICustomTableData } from '../../redux';
 import { notify, notifyError, notifySuccess } from '../../common';
-export const PROJECTS_COLUMNS = [
-  {
-    dataField: 'PROJECTID',
-    visible: false
-  },
-  {
-    dataField: 'NAME',
-    caption: 'Name'
-  },
-  {
-    dataField: 'DESCRIPTION',
-    caption: 'Description'
-  },
-  {
-    dataField: 'ACTIVE',
-    caption: 'Is Active?',
-    cellTemplate: 'activeTemplate',
-    editCellTemplate: 'editActiveTemplate'
-  },
-  {
-    dataField: 'TYPE',
-    caption: 'Type',
-    cellTemplate: 'projectTypeTemplate',
-    editCellTemplate: 'editProjectTypeTemplate'
-  }
-];
-export const PICKLIST_COLUMNS = [
-  {
-    dataField: 'ID',
-    visible: false
-  },
-  {
-    dataField: 'DESCRIPTION',
-    caption: 'Description',
-    editCellTemplate: 'editPickListDomainTemplate'
-  },
-  {
-    dataField: 'PICKLISTVALUE',
-    caption: 'Picklist value'
-  },
-  {
-    dataField: 'ACTIVE',
-    caption: 'Is Active?',
-    cellTemplate: 'activeTemplate',
-    editCellTemplate: 'editActiveTemplate'
-  },
-  {
-    dataField: 'SORTORDER',
-    caption: 'Sort Order',
-    dataType: 'number'
-  }];
-
-export const PICKLISTDOMAIN_COLUMNS = [{ dataField: 'DESCRIPTION', caption: 'Description' },
-{ dataField: 'EXT_TABLE', caption: 'External Table' },
-{ dataField: 'EXT_ID_COL', caption: 'External Column Id' },
-{ dataField: 'EXT_DISPLAY_COL', caption: 'External Column Display' },
-{ dataField: 'EXT_SQL_FILTER', caption: 'Additional SQL Filter' },
-{ dataField: 'EXT_SQL_SORTORDER', caption: 'Additional SQL SortOrder' },
-{
-  dataField: 'LOCKED', caption: 'Is Locked?',
-  cellTemplate: 'activeTemplate',
-  allowEditing: false
-}];
 
 export class CConfigTable {
   columns: any[];
   pickListDomains: any[];
   projectType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'B', name: 'Batch' }];
-  isDeleteEnabled: boolean = true;
-  constructor(tableId: string, state: IAppState) {
+  activeType = [{ key: 'T', name: 'Yes' }, { key: 'F', name: 'No' }];
+  constructor(tableId: string, customTableData: ICustomTableData, state: IAppState) {
+    if (customTableData.config) {
+      this.columns = customTableData.config;
+      this.setOtherConfig(tableId);
+      this.setValidationRule(tableId);
+    }
+  }
+
+  setValidationRule(tableId: string) {
     switch (tableId) {
       case 'VW_PROJECT':
-        this.columns = PROJECTS_COLUMNS;
+        this.columns.forEach(col => {
+          if (col.dataField !== 'PROJECTID') {
+            col.validationRules =
+              [{ type: 'required', message: col.caption + ' required' }];
+          }
+        });
         break;
       case 'VW_PICKLIST':
-        this.columns = PICKLIST_COLUMNS;
-        this.isDeleteEnabled = false;
+        this.setRequiredValidations([{ dataField: 'PICKLISTVALUE', caption: 'PICKLISTVALUE' },
+        { dataField: 'ACTIVE', caption: 'Is Active' }]);
         break;
       case 'VW_PICKLISTDOMAIN':
-        this.columns = PICKLISTDOMAIN_COLUMNS;
-        this.isDeleteEnabled = false;
+        this.setRequiredValidations([{ dataField: 'DESCRIPTION', caption: 'DESCRIPTION' }]);
+        break;
+      case 'VW_NOTEBOOKS':
+        this.setRequiredValidations([{ dataField: 'NAME', caption: 'Name' },
+        { dataField: 'ACTIVE', caption: 'Is Active' },
+        { dataField: 'USER_CODE', caption: 'User Code' }]);
+        break;
+      case 'VW_FRAGMENT':
+        this.setRequiredValidations([{ dataField: 'STRUCTURE', caption: 'STRUCTURE' },
+        { dataField: 'DESCRIPTION', caption: 'Fragment Type' },
+        { dataField: 'CODE', caption: 'Code' },
+        { dataField: 'MOLWEIGHT', caption: 'MW' },
+        { dataField: 'FORMULA', caption: 'Formula' }]);
+        break;
+      case 'VW_FRAGMENTTYPE':
+        this.setRequiredValidations([{ dataField: 'DESCRIPTION', caption: 'Description' }]);
         break;
     }
-    this.pickListDomains = getLookups(state).pickListDomains;
   }
+
+  setRequiredValidations(items: { dataField: string, caption: string }[]) {
+    items.forEach(col => {
+      this.columns.filter(i => i.dataField === col.dataField)[0].validationRules = [{ type: 'required', message: col.caption + ' required' }];
+    });
+  }
+
+
+  setOtherConfig(tableId: string) {
+    switch (tableId) {
+      case 'VW_PROJECT':
+        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
+        this.setColumnConfig('TYPE', 'lookup', { dataSource: this.projectType, displayExpr: 'name', valueExpr: 'key' });
+        break;
+      case 'VW_PICKLIST':
+        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
+        this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
+        break;
+      case 'VW_PICKLISTDOMAIN':
+        this.setColumnConfig('LOCKED', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
+        this.setColumnConfig('EXT_TABLE', 'allowEditing', false);
+        this.setColumnConfig('EXT_ID_COL', 'allowEditing', false);
+        this.setColumnConfig('EXT_DISPLAY_COL', 'allowEditing', false);
+        this.setColumnConfig('EXT_SQL_FILTER', 'allowEditing', false);
+        break;
+      case 'VW_NOTEBOOKS':
+        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
+        this.setColumnConfig('USER_CODE', 'cellTemplate', 'viewTemplate');
+        break;
+      case 'VW_FRAGMENT':
+        this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
+        break;
+
+    }
+  }
+
+  setColumnConfig(field: string, property: string, value: any) {
+    this.columns.filter(i => i.dataField === field)[0][property] = value;
+  }
+
 }
 
 export const CONFIG_FORMS_COLUMNS = [

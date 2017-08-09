@@ -147,14 +147,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!string.IsNullOrEmpty(lookupTableName)) fieldName = lookupColumns[1].FieldName;
                 if (label == null) label = fieldName;
                 var columnObj = new JObject(
-                    new JProperty("name", fieldName),
-                    new JProperty("label", label),
-                    new JProperty("type", column.FieldType.ToString())
+                    new JProperty("dataField", fieldName),
+                    new JProperty("caption", label),
+                    new JProperty("dataType", column.FieldType.ToString())
                 );
-                if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("idField", true));
+                if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("visible", false));
                 if (!string.IsNullOrEmpty(lookupTableName))
                 {
-                    columnObj.Add("lookup", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName)));
+                    columnObj.Add("lookup", new JObject(
+                    new JProperty("dataSource", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName))),
+                    new JProperty("valueExpr", lookupColumns[0].FieldName),
+                    new JProperty("displayExpr", lookupColumns[1].FieldName)));
                 }
                 config.Add(columnObj);
             }
