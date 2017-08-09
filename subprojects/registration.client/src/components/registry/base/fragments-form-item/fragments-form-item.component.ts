@@ -118,11 +118,19 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
           caption: 'MF'
         }]
       },
-      width: 60
+      width: 60,
+      validationRules: [
+        { type: 'required', message: 'A valid code is required.' }
+      ]
     }, {
       dataField: 'equivalents',
       caption: 'Equivalent',
-      width: 80
+      width: 80,
+      validationRules: [
+        { type: 'required', message: 'A valid equivalent value is required.' },
+        { type: 'numeric', message: 'The equivalent value must be numeric.'},
+        { type: 'range', min: 0 + Number.EPSILON, message: 'The equivalent value must be greater than 0.' }
+      ]
     }, {
       dataField: 'fragmentTypeId',
       caption: 'Type',

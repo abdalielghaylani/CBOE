@@ -357,24 +357,24 @@ export class CConfigProperties {
 
   isValidRule(): boolean {
     if (!this.formDataValidation.name) {
-      notify(`Type required!`, 'warning', 5000);
+      notify(`Type is required!`, 'warning', 5000);
       return false;
     }
     if (this.formDataValidation.name === 'requiredField'
       && (isBlank(this.formDataValidation.defaultValue))) {
-      notify(`Default value required!`, 'warning', 5000);
+      notify(`Default value is required!`, 'warning', 5000);
       return false;
     }
     if (this.formDataValidation.name === 'textLength' && this.formDataValidation.parameters.length !== 2) {
-      notify(`Min, Max parameters required!`, 'warning', 5000);
+      notify(`Min, Max parameters are required!`, 'warning', 5000);
       return false;
     }
     if (this.formDataValidation.name === 'wordListEnumeration' && this.formDataValidation.parameters.length <= 0) {
-      notify(`Atleast one parameter required!`, 'warning', 5000);
+      notify(`At least one parameter is required!`, 'warning', 5000);
       return false;
     }
     if (this.formDataValidation.name === 'custom' && isBlank(this.formDataValidation.clientScript)) {
-      notify(`Client Script required!`, 'warning', 5000);
+      notify(`Client script is required!`, 'warning', 5000);
       return false;
     }
     if (this.formData.validationRules.filter(validationRule =>
