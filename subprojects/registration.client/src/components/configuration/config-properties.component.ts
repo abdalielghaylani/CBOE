@@ -13,7 +13,6 @@ import { getExceptionMessage, notify, notifyError, notifyException, notifySucces
 import { apiUrlPrefix } from '../../configuration';
 import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration } from '../../redux';
 import { HttpService } from '../../services';
-import { alert } from 'devextreme/ui/dialog';
 
 declare var jQuery: any;
 
@@ -158,30 +157,28 @@ export class RegConfigProperties implements OnInit, OnDestroy {
 
   saveValidationRule(e) {
     if (this.configProperties.isValidRule()) {
-      let validationModel: CPropertiesValidationFormDataModel;
-      switch (this.configProperties.formDataValidation.name) {
-        case 'custom':
-          validationModel = this.configProperties.formDataValidation;
-          validationModel.parameters.push({ name: 'clientscript', value: this.configProperties.formDataValidation.clientScript });
-          this.configProperties.formData.validationRules.push(validationModel);
-          break;
-        default:
-          for (let i = 0; i < this.configProperties.formData.validationRules.length; i++) {
-            if (this.configProperties.formData.validationRules[i].name
-              === this.configProperties.formDataValidation.name) {
-              alert('The Validation Rule that you are trying to add already exists', 'Error');
-              return;
-            }
-          }
-          validationModel = this.configProperties.formDataValidation;
-          this.configProperties.formData.validationRules.push(validationModel);
-          break;
+      if (this.configProperties.formData.validationRules.filter(validationRule =>
+            validationRule.name === this.configProperties.formDataValidation.name).length > 0) {
+            notifyError('The Validation Rule that you are trying to add already exists', 5000);
+          } else {
+            let validationModel: CPropertiesValidationFormDataModel;
+            switch (this.configProperties.formDataValidation.name) {
+              case 'custom':
+                validationModel = this.configProperties.formDataValidation;
+                validationModel.parameters.push({ name: 'clientscript', value: this.configProperties.formDataValidation.clientScript });
+                this.configProperties.formData.validationRules.push(validationModel);
+                break;
+              default:
+                validationModel = this.configProperties.formDataValidation;
+                this.configProperties.formData.validationRules.push(validationModel);
+                break;
 
-      }
-      this.dataSource.update(this.configProperties.formData, []).then((result) => {
-        this.configProperties.clearFormDataValidations();
-        this.grid._results[1].instance.refresh();
-      });
+            }
+            this.dataSource.update(this.configProperties.formData, []).then((result) => {
+              this.configProperties.clearFormDataValidations();
+              this.grid._results[1].instance.refresh();
+            });
+          }
     }
   }
 

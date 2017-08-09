@@ -645,7 +645,11 @@ export class CRegistryRecord {
   }
 
   private static fixBindingExpression(expression: string): string {
+    if (expression.endsWith('.RegNumber.RegNum')) {
+      expression = expression.replace('.RegNumber.RegNum', '.RegNumber.RegNumber');
+    }
     return expression.replace('.Sequence.ID', '.SequenceID')
+      .replace('.Structure.ID', '.Structure.StructureID')
       .replace('.Structure.Value', '.Structure')
       .replace('.Structure.Formula', '.Structure.Structure._formula')
       .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
@@ -689,7 +693,9 @@ export class CRegistryRecord {
     bindingExpression = this.fixBindingExpression(bindingExpression);
     let objectNames = bindingExpression.split('.');
     let nextObject = viewModel;
+    let index = 0;
     objectNames.forEach(n => {
+      ++index;
       if (nextObject) {
         let m = n.match(/PropertyList\[@Name='(.*)'/);
         if (m && m.length > 1) {
@@ -703,7 +709,7 @@ export class CRegistryRecord {
             foundObject.obj = p[0];
             foundObject.property = '__text';
           }
-        } else if (n === objectNames[objectNames.length - 1]) {
+        } else if (index === objectNames.length) {
           foundObject.obj = nextObject;
           foundObject.property = n;
         } else {

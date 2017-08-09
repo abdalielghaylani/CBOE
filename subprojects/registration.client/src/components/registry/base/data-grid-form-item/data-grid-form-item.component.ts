@@ -16,17 +16,23 @@ export class RegDataGridFormItem extends RegBaseFormItem {
   protected allowDeleting: boolean;
   protected allowAdding: boolean;
 
-  protected update() {
-    let options = this.viewModel.editorOptions;
-    this.dataSource = options && options.value ? options.value : [];
-    this.columns = options && options.columns ? options.columns : [];
-    if (this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
+  protected checkCommandColumn() {
+    if (this.editMode && this.columns.length > 0 && !this.columns[0].headerCellTemplate) {
       this.columns.unshift({
         cellTemplate: 'commandCellTemplate',
         headerCellTemplate: 'commandHeaderCellTemplate',
         width: 80
       });
+    } else if (!this.editMode && this.columns.length > 0 && this.columns[0].headerCellTemplate) {
+      this.columns.splice(0, 1);
     }
+  }
+
+  protected update() {
+    let options = this.viewModel.editorOptions;
+    this.dataSource = options && options.value ? options.value : [];
+    this.columns = options && options.columns ? options.columns : [];
+    this.checkCommandColumn();
     this.editingMode = options && options.editing && options.editing.mode
       ? options.editing.mode
       : 'row';
