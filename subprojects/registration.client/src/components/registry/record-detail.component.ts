@@ -426,6 +426,10 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     return this.id < 0 || this.template;
   }
 
+  private get saveButtonTitle(): string {
+    return this.isNewRecord ? 'Submit' : 'Save';
+  }
+
   private onSaveTemplateFormInit(e) {
     this.saveTemplateForm = e.component as DxForm;
   }
