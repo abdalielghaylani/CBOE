@@ -8,38 +8,8 @@
     <div *dxTemplate="let data of 'cellTemplate'">
       <reg-structure-image [src]="data.value"></reg-structure-image>
     </div>
-    <div *dxTemplate="let data of 'editActiveTemplate'">
-      <dx-select-box [items]="[
-      {key:'T', name:'Yes'},
-      {key:'F', name:'No'}]" [value]="data.value" (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="name"
-        valueExpr="key">
-      </dx-select-box>
-    </div>
-    <div *dxTemplate="let data of 'activeTemplate'">
-      <div [ngSwitch]="data.value">
-        <div *ngSwitchCase="'T'">YES</div>
-        <div *ngSwitchCase="'F'">NO</div>
-      </div>
-    </div>
-    <div *dxTemplate="let data of 'projectTypeTemplate'">
-      <div [ngSwitch]="data.value">
-        <div *ngSwitchCase="'R'">Registry</div>
-        <div *ngSwitchCase="'B'">Batch</div>
-        <div *ngSwitchCase="'A'">All</div>
-      </div>
-    </div>
-    <div *dxTemplate="let data of 'cellTemplate'">
-      <reg-structure-image [src]="data.value"></reg-structure-image>
-    </div>
-    <div *dxTemplate="let data of 'editProjectTypeTemplate'">
-      <dx-select-box [items]="configTable.projectType" [value]="data.value"
-        (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="name" valueExpr="key">
-      </dx-select-box>
-    </div>
-    <div *dxTemplate="let data of 'editPickListDomainTemplate'">
-      <dx-select-box [items]="configTable.pickListDomains" [value]="data.value"
-        (onValueChanged)="editLookupValueChanged($event,data);" displayExpr="DESCRIPTION" valueExpr="ID">
-      </dx-select-box>
+    <div *dxTemplate="let data of 'viewTemplate'">
+      {{data.value}}
     </div>
   </dx-data-grid>
 </div>
