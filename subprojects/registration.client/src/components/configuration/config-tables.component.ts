@@ -52,7 +52,6 @@ export class RegConfigTables implements OnInit, OnDestroy {
       let paramLabel = 'tableId';
       this.tableId = params[paramLabel];
       this.configurationActions.openTable(this.tableId);
-      this.configTable = new CConfigTable(this.tableId, this.ngRedux.getState());
     });
     this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveLookUpData(d); } });
@@ -79,6 +78,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
     if (customTables && customTables[this.tableId]) {
       let customTableData: ICustomTableData = customTables[this.tableId];
       this.rows = customTableData.rows;
+      this.configTable = new CConfigTable(this.tableId, customTableData, this.ngRedux.getState());
       this.dataSource = this.createCustomStore(this);
       this.changeDetector.markForCheck();
     }
@@ -132,20 +132,20 @@ export class RegConfigTables implements OnInit, OnDestroy {
       $links.text('');
       if (isEditing) {
         $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-save').attr({'data-toggle': 'tooltip', 'title': 'Save'});
+        $links.filter('.dx-link-save').attr({ 'data-toggle': 'tooltip', 'title': 'Save' });
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-        $links.filter('.dx-link-cancel').attr({'data-toggle': 'tooltip', 'title': 'Cancel'});
+        $links.filter('.dx-link-cancel').attr({ 'data-toggle': 'tooltip', 'title': 'Cancel' });
       } else {
         if (this.hasPrivilege('EDIT')) {
           $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-          $links.filter('.dx-link-edit').attr({'data-toggle': 'tooltip', 'title': 'Edit'});
+          $links.filter('.dx-link-edit').attr({ 'data-toggle': 'tooltip', 'title': 'Edit' });
         }
         if (this.hasPrivilege('DELETE')) {
           $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-          $links.filter('.dx-link-delete').attr({'data-toggle': 'tooltip', 'title': 'Delete'});
+          $links.filter('.dx-link-delete').attr({ 'data-toggle': 'tooltip', 'title': 'Delete' });
         }
       }
-    }    
+    }
   }
 
   private hasPrivilege(action: string): boolean {
@@ -263,7 +263,5 @@ export class RegConfigTables implements OnInit, OnDestroy {
       }
     });
   }
-  editLookupValueChanged(e, d) {
-    d.setValue(e.value, d.column.dataField);
-  }
+  
 };
