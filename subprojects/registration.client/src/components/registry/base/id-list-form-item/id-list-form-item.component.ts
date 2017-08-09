@@ -63,22 +63,4 @@ export class RegIdListFormItem extends RegDataGridFormItem {
     this.allowDeleting = true;
     this.allowAdding = true;
   }
-
-  protected onRowInserted(e, d) {
-    this.onValueChanged(d.component);
-  }
-
-  protected onRowUpdated(e, d) {
-    this.onValueChanged(d.component);
-  }
-
-  protected onRowRemoved(e, d) {
-    this.onValueChanged(d.component);
-  }
-
-  protected onValueChanged(component) {
-    let value = this.serializeValue(this.dataSource);
-    component.option(`formData.${this.viewModel.editorOptions.dataField}`, value);
-    this.onValueUpdated(this);    
-  }
 };

@@ -51,7 +51,7 @@ export class RegDataGridFormItem extends RegBaseFormItem {
 
   protected onContentReady(e) {
     let grid = e.component;
-    if (grid.totalCount() === 0) {
+    if (grid.getRowElement(0) == null) {
       grid.option('height', 60);
     } else {
       grid.option('height', 'auto');
@@ -68,12 +68,15 @@ export class RegDataGridFormItem extends RegBaseFormItem {
   }
 
   protected onRowInserted(e, d) {
+    this.onGridChanged(d.component);
   }
 
   protected onRowUpdated(e, d) {
+    this.onGridChanged(d.component);
   }
 
   protected onRowRemoved(e, d) {
+    this.onGridChanged(d.component);
   }
 
   protected addRow(e) {
@@ -100,8 +103,10 @@ export class RegDataGridFormItem extends RegBaseFormItem {
     e.component.cancelEditData();
   }
 
-  protected onValueUpdated(e) {
-    this.valueUpdated.emit(e);
+  protected onGridChanged(component) {
+    let value = this.serializeValue(this.dataSource);
+    component.option('formData.' + this.viewModel.dataField, value);
+    this.valueUpdated.emit(this);
   }
 
   protected onDropDownValueUpdated(e, d) {

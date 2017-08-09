@@ -33,6 +33,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
         let filtered = lookups.fragments.filter(f2 => +f2.FRAGMENTID === +f.FragmentID);
         if (filtered.length > 0) {
           let fragment = filtered[0];
+          fragmentEntry.fragmentId = fragment.FRAGMENTID.toString();
           fragmentEntry.fragmentTypeId = fragment.FRAGMENTTYPEID;
           fragmentEntry.code = fragment.CODE;
           fragmentEntry.description = fragment.DESCRIPTION;
@@ -46,6 +47,23 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
   }
 
   serializeValue(value: any): IBatchComponentFragmentList {
+    let orderIndex = 0;
+    this.fragmentList = { 
+      BatchComponentFragment: this.grid.dataSource.map(r => {
+        ++orderIndex;
+        let fragment: any = {
+          Equivalents: r.equivalents,
+          FragmentID: r.fragmentId,
+          ID: r.id,
+          ComponentFragmentID: r.compoundFragmentID,
+          OrderIndex: orderIndex.toString()
+        };
+        if (r.id !== undefined) {
+          fragment._insert = 'yes';
+        }
+        return fragment;
+      })
+    };
     return this.fragmentList;
   }
 
@@ -139,6 +157,14 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       caption: 'MF',
       allowEditing: false,
       width: 120
+    }, {
+      dataField: 'id',
+      dataType: 'string',
+      visible: false
+    }, {
+      dataField: 'fragmentId',
+      dataType: 'string',
+      visible: false
     }] : [];
     this.checkCommandColumn();
     this.editingMode = 'row';
@@ -155,6 +181,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       if (filtered.length > 0) {
         let fragment = filtered[0];
         this.grid.instance.cellValue(d.rowIndex, 'fragmentTypeId', fragment.FRAGMENTTYPEID);
+        this.grid.instance.cellValue(d.rowIndex, 'fragmentId', fragment.FRAGMENTID);
         this.grid.instance.cellValue(d.rowIndex, 'description', fragment.DESCRIPTION);
         this.grid.instance.cellValue(d.rowIndex, 'molWeight', fragment.MOLWEIGHT);
         this.grid.instance.cellValue(d.rowIndex, 'formula', fragment.FORMULA);
