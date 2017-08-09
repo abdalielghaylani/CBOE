@@ -12,7 +12,7 @@ import { RegBaseFormItem } from '../base-form-item';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegDropDownColumnItem implements OnChanges, AfterViewInit {
-  @ViewChild(DxDropDownBoxComponent) ddb: DxDropDownBoxComponent
+  @ViewChild(DxDropDownBoxComponent) ddb: DxDropDownBoxComponent;
   @Input() viewModel: any;
   viewConfig: any;
   value: any;
