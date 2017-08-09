@@ -1,4 +1,4 @@
-<dx-data-grid [disabled]="!editMode" [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
+<dx-data-grid [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
   (onContentReady)="onContentReady($event)"
   (onRowInserting)="onRowInserting($event, viewModel)" (onRowUpdating)="onRowUpdating($event, viewModel)" (onRowRemoving)="onRowRemoving($event, viewModel)"
   (onRowInserted)="onRowInserted($event, viewModel)" (onRowUpdated)="onRowUpdated($event, viewModel)" (onRowRemoved)="onRowRemoved($event, viewModel)">
@@ -11,6 +11,9 @@
     <a *ngIf="allowDeleting &amp;&amp; !d.row.isEditing" class="fa fa-lg fa-trash-o grid-icon" aria-hidden="true" title='Delete' (click)="delete(d)"></a>
     <a *ngIf="d.row.isEditing" class="fa fa-lg fa-save grid-icon" aria-hidden="true" title='Save' (click)="save(d)"></a>&nbsp;
     <a *ngIf="d.row.isEditing" class="fa fa-lg fa-undo grid-icon" aria-hidden="true" title='Cancel' (click)="cancel(d)"></a>
+  </div>
+  <div *dxTemplate="let d of 'dropDownTemplate'">
+    <reg-drop-down-column-item-template [viewModel]="d"></reg-drop-down-column-item-template>
   </div>
 </dx-data-grid>
 <dx-text-box class="display-none">
