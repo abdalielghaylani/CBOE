@@ -1,5 +1,6 @@
 <div id="duplicate-record-view">
   <command-button testid="cancel-duplicate-record-button" iconName="window-close" title="Cancel" (onClick)="cancelDuplicateResolution()"></command-button>
+  <command-button *ngIf="buttonVisibility.duplicate" testid="create-duplicate-record-button" iconName="clone" title="Duplicate" (onClick)="createDuplicateRecord('Duplicate',0)"></command-button>
   <reg-header testid="templates-heading" id="templates-heading">
     Duplicate Resolution
   </reg-header>
@@ -39,7 +40,6 @@
         <td>{{data.data.STATUS}}</td>
         <td>{{data.data.APPROVED}}</td>
         <td>
-          <a *ngIf="buttonVisibility.duplicate" class="fa fa-clone grid-icon" aria-hidden="true" title="Duplicate" (click)="createDuplicateRecord('Duplicate',data.data.REGNUMBER)"></a>&nbsp;
           <a *ngIf="buttonVisibility.addBatch" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch',data.data.REGNUMBER)"
             title='Add Batch'></a>&nbsp;
           <a *ngIf="buttonVisibility.useComponent" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseComponent',data.data.REGNUMBER)"
