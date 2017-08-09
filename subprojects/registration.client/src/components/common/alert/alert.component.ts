@@ -12,7 +12,7 @@ import { Component, Input } from '@angular/core';
         'alert-warning': status === 'warning',
         'alert-success': status === 'success',
         'alert-danger': status === 'error',
-        'white': status === info || status === error
+        'white': status === 'info' || status === 'error'
       }">
       <ng-content></ng-content>
     </div>
