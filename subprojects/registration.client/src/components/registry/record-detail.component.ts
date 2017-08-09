@@ -344,7 +344,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   back() {
     let state = this.ngRedux.getState();
     let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
-    this.router.navigate([`records/restore/${hitListId}`]);
+    let path = this.temporary ? 'records/temp' : 'records';
+    this.router.navigate([`${path}/restore/${hitListId}`]);
   }
 
   register() {
