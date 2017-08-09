@@ -13,7 +13,7 @@
     <a *ngIf="d.row.isEditing" class="fa fa-lg fa-undo grid-icon" aria-hidden="true" title='Cancel' (click)="cancel(d)"></a>
   </div>
   <div *dxTemplate="let d of 'dropDownTemplate'">
-    <reg-drop-down-column-item-template [viewModel]="d"></reg-drop-down-column-item-template>
+    <reg-drop-down-column-item-template [viewModel]="d" (valueUpdated)="onDropDownValueUpdated($event, d)"></reg-drop-down-column-item-template>
   </div>
 </dx-data-grid>
 <dx-text-box class="display-none">

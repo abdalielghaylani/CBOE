@@ -146,4 +146,20 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
     this.allowDeleting = true;
     this.allowAdding = true;
   }
+
+  protected onDropDownValueUpdated(e, d) {
+    this.grid.instance.cellValue(d.rowIndex, d.column.dataField, e);
+    let lookups = this.ngRedux.getState().session.lookups;
+    if (lookups) {
+      let filtered = lookups.fragments.filter(f => f.CODE === e);
+      if (filtered.length > 0) {
+        let fragment = filtered[0];
+        this.grid.instance.cellValue(d.rowIndex, 'fragmentTypeId', fragment.FRAGMENTTYPEID);
+        this.grid.instance.cellValue(d.rowIndex, 'description', fragment.DESCRIPTION);
+        this.grid.instance.cellValue(d.rowIndex, 'molWeight', fragment.MOLWEIGHT);
+        this.grid.instance.cellValue(d.rowIndex, 'formula', fragment.FORMULA);
+        this.grid.instance.cellValue(d.rowIndex, 'structure', fragment.STRUCTURE.replace('?', '/50/100?'));
+      }
+    }
+  }
 };

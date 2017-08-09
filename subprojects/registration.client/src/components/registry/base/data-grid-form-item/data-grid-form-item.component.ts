@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation, ViewChild } from '@angular/core';
+import { DxDataGridComponent } from 'devextreme-angular';
 import { RegBaseFormItem } from '../base-form-item';
 
 @Component({
@@ -9,6 +10,7 @@ import { RegBaseFormItem } from '../base-form-item';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegDataGridFormItem extends RegBaseFormItem {
+  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   protected dataSource: any[];
   protected columns: any[];
   protected editingMode: string;
@@ -100,5 +102,9 @@ export class RegDataGridFormItem extends RegBaseFormItem {
 
   protected onValueUpdated(e) {
     this.valueUpdated.emit(e);
+  }
+
+  protected onDropDownValueUpdated(e, d) {
+    this.grid.instance.cellValue(d.rowIndex, d.column.dataField, e);
   }
 };

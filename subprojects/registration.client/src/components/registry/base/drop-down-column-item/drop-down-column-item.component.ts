@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, AfterViewInit, ChangeDetectionStrategy, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, AfterViewInit, ChangeDetectionStrategy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DxDropDownBoxComponent } from 'devextreme-angular';
 import { RegBaseColumnItem } from '../base-column-item';
 
@@ -11,11 +11,17 @@ import { RegBaseColumnItem } from '../base-column-item';
 })
 export class RegDropDownColumnItem extends RegBaseColumnItem implements AfterViewInit {
   @ViewChild(DxDropDownBoxComponent) ddb: DxDropDownBoxComponent;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   protected dataSource: any[];
   protected valueExpr: string;
   protected displayExpr: string;
   protected columns: any[];
+  protected showClearButton: boolean = false;
   protected useNumericValue: boolean = false;
+
+  serializeValue(value: any): any {
+    return this.useNumericValue ? value.toString() : value;
+  }
 
   deserializeValue(value: any): any {
     return this.useNumericValue ? +value : value;
@@ -44,7 +50,15 @@ export class RegDropDownColumnItem extends RegBaseColumnItem implements AfterVie
       this.valueExpr = options.valueExpr;
       this.displayExpr = options.displayExpr;
       this.columns = options.columns;
+      this.showClearButton = !!options.showClearButton;
       this.value = this.deserializeValue(this.viewModel.value);
     }
+  }
+
+  protected onGridRowClick(e) {
+    let value = e.values[e.columns.findIndex(c => c.dataField === this.valueExpr)];
+    this.value = this.serializeValue(value);
+    this.valueUpdated.emit(this.value);
+    this.ddb.instance.close();
   }
 };
