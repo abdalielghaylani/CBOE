@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrat
 import { IFormItemTemplate, CValidator } from '../registry-base.types';
 
 @Component({
-  selector: 'reg-text-form-item-template',
+  selector: 'reg-base-form-item-template',
   template: ``,
   styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
@@ -16,9 +16,6 @@ export class RegBaseFormItem implements IFormItemTemplate, OnChanges {
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   protected readOnly: boolean;
   protected value: any;
-
-  constructor() {
-  }
 
   ngOnChanges() {
     this.update();

@@ -4,7 +4,11 @@
   width: auto;
 }
 
-.fragment-image {
+.small-structure-column {
+  max-height: 30px;
+}
+
+.structure-column {
   max-height: 50px;
 }
 

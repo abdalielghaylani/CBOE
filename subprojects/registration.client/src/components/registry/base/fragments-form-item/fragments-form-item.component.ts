@@ -54,19 +54,6 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
     let options = this.viewModel.editorOptions;
     this.dataSource = options && options.value ? this.deserializeValue(options.value) : [];
     this.columns = lookups ? [{
-      dataField: 'fragmentTypeId',
-      caption: 'Type',
-      lookup: {
-        dataSource: lookups.fragmentTypes,
-        displayExpr: 'DESCRIPTION',
-        valueExpr: 'ID'
-      },
-      width: 60
-    }, {
-      dataField: 'equivalents',
-      caption: 'Equivalent',
-      width: 80
-    }, {
       dataField: 'code',
       caption: 'Code',
       editCellTemplate: 'dropDownTemplate',
@@ -74,9 +61,60 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
         dataSource: lookups.fragments,
         displayExpr: 'CODE',
         valueExpr: 'CODE',
-        dropDownWidth: 600
+        dropDownWidth: 600,
+        columns: [{
+          dataField: 'FRAGMENTID',
+          caption: 'ID',
+          width: 60,
+          visible: false
+        }, {
+          dataField: 'CODE',
+          caption: 'Code'
+        }, {
+          dataField: 'FRAGMENTTYPEID',
+          caption: 'Type',
+          width: 60,
+          lookup: {
+            dataSource: lookups.fragmentTypes,
+            displayExpr: 'DESCRIPTION',
+            valueExpr: 'ID'
+          }
+        }, {
+          dataField: 'STRUCTURE',
+          caption: 'Structure',
+          allowFiltering: false,
+          allowSorting: false,
+          width: 100,
+          cellTemplate: 'structureTemplate',
+          editorOptions: {
+            smallImage: true
+          }
+        }, {
+          dataField: 'DESCRIPTION',
+          caption: 'Description'
+        }, {
+          dataField: 'MOLWEIGHT',
+          caption: 'MW'
+        }, {
+          dataField: 'FORMULA',
+          caption: 'MF'
+        }]
       },
-      width: 50
+      width: 60
+    }, {
+      dataField: 'equivalents',
+      caption: 'Equivalent',
+      width: 80
+    }, {
+      dataField: 'fragmentTypeId',
+      caption: 'Type',
+      allowEditing: false,
+      lookup: {
+        dataSource: lookups.fragmentTypes,
+        displayExpr: 'DESCRIPTION',
+        valueExpr: 'ID'
+      },
+      width: 60
     }, {
       dataField: 'structure',
       caption: 'Structure',
@@ -85,7 +123,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       allowSorting: false,
       width: 150,
       cellTemplate: function (c, o) {
-        jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" class="fragment-image block mx-auto" />`).appendTo(c);
+        jQuery(`<img src="${apiUrlPrefix}StructureImage/${o.data.structure}" class="structure-column block mx-auto" />`).appendTo(c);
       }
     }, {
       dataField: 'description',
