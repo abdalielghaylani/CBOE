@@ -374,6 +374,12 @@ export class CConfigProperties {
       notify(`Client Script required!`, 'warning', 5000);
       return false;
     }
+    let currentValidationRuleName = this.formDataValidation.name;
+    if (this.formData.validationRules.filter(validationRule =>
+        validationRule.name === currentValidationRuleName).length > 0) {
+      notifyError('The Validation Rule that you are trying to add already exists', 5000);
+      return false;
+    }
     return true;
   }
 
