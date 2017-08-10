@@ -1,15 +1,20 @@
 <div class="viewcontainer" (window:resize)="onResize($event)">
   <reg-settings-page-header>{{ this.tableName() }}</reg-settings-page-header>
-  <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
-    (onCellPrepared)='onCellPrepared($event)'>
+  <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
+    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)'>
     <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="configTable.isDeleteEnabled" [allowAdding]="hasPrivilege('ADD')"></dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
     <div *dxTemplate="let data of 'cellTemplate'">
       <reg-structure-image [src]="data.value"></reg-structure-image>
     </div>
     <div *dxTemplate="let data of 'viewTemplate'">
       {{data.value}}
+    </div>
+    <div *dxTemplate="let data of 'disabledTemplate'">
+      <dx-text-box [(value)]="data.value" *ngIf="data.row.inserted" (onValueChanged)="onValueChanged($event,data)"></dx-text-box>
+      {{ data.row.inserted ? '' : data.value}}
     </div>
   </dx-data-grid>
 </div>
