@@ -952,6 +952,12 @@ export class CValidator {
     }
   }
 
+  private static validateWordList(rule: IValidationRule, e) {
+    if (e.value) {
+      e.rule.isValid = rule.params.param.find(p => p._name === 'validWord' && p._value === e.value) != null;
+    }
+  }
+
   public static validate(e) {
     e.rule.isValid = true;
     let peer: IFormItemTemplate = e.validator.peer;
@@ -967,6 +973,8 @@ export class CValidator {
             this.validateFloat(r, e);
           } else if (r._validationRuleName === 'numericRange') {
             this.validateNumericRange(r, e);
+          } else if (r._validationRuleName === 'wordListEnumeration') {
+            this.validateWordList(r, e);
           } else {
             // console.log(r);
           }
