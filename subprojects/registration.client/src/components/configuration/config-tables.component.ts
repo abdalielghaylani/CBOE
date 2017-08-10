@@ -188,6 +188,13 @@ export class RegConfigTables implements OnInit, OnDestroy {
     return tableName.split(' ').map(n => n.charAt(0).toUpperCase() + n.slice(1)).join(' ');
   }
 
+  customizeConfigData(tableName: string, data: any) {
+    if (tableName === `VW_PICKLIST`) {
+      data.PICKLISTDOMAIN = data.DESCRIPTION;
+    }
+    return data;
+  }
+
   private createCustomStore(parent: RegConfigTables): CustomStore {
     let tableName = parent.tableId;
     let apiUrlBase = `${apiUrlPrefix}custom-tables/${tableName}`;
@@ -216,6 +223,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
             data[k] = newData[k];
           }
         }
+        data = parent.customizeConfigData(tableName, data);
         let id = data[Object.getOwnPropertyNames(data)[0]];
         parent.http.put(`${apiUrlBase}/${id}`, data)
           .toPromise()
@@ -232,6 +240,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
 
       insert: function (values) {
         let deferred = jQuery.Deferred();
+        values = parent.customizeConfigData(tableName, values);
         parent.http.post(`${apiUrlBase}`, values)
           .toPromise()
           .then(result => {
@@ -263,5 +272,8 @@ export class RegConfigTables implements OnInit, OnDestroy {
       }
     });
   }
-  
+  onValueChanged(e, d) {
+    let y = e;
+    d.setValue(e.value, d.column.dataField);
+  }
 };

@@ -5,6 +5,9 @@ export class CConfigTable {
   columns: any[];
   pickListDomains: any[];
   projectType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'B', name: 'Batch' }];
+  identifierType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' },
+  { key: 'B', name: 'Batch' }, { key: 'C', name: 'Compound' }, { key: 'S', name: 'Base Fragment' }];
+  sequenceType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'C', name: 'Compound' }];
   activeType = [{ key: 'T', name: 'Yes' }, { key: 'F', name: 'No' }];
   constructor(tableId: string, customTableData: ICustomTableData, state: IAppState) {
     if (customTableData.config) {
@@ -46,6 +49,20 @@ export class CConfigTable {
       case 'VW_FRAGMENTTYPE':
         this.setRequiredValidations([{ dataField: 'DESCRIPTION', caption: 'Description' }]);
         break;
+      case 'VW_IDENTIFIERTYPE':
+        this.setRequiredValidations([{ dataField: 'NAME', caption: 'Name' },
+        { dataField: 'ACTIVE', caption: 'Active' },
+        { dataField: 'TYPE', caption: 'Type' }]);
+        break;
+      case 'VW_IDENTIFIERTYPE':
+        this.setRequiredValidations([{ dataField: 'SITECODE', caption: 'Sites Id' }]);
+        break;
+      case 'VW_SEQUENCE':
+        this.setRequiredValidations([{ dataField: 'REGNUMBERLENGTH', caption: 'Registration number padded length' },
+        { dataField: 'NEXTINSEQUENCE', caption: 'Next in sequence' }, { dataField: 'BATCHNUMLENGTH', caption: 'Batch number padded length' },
+        { dataField: 'EXAMPLE', caption: 'EXAMPLE' }, { dataField: 'ACTIVE', caption: 'Is Active' },
+        { dataField: 'TYPE', caption: 'Type' }]);
+        break;
     }
   }
 
@@ -68,10 +85,11 @@ export class CConfigTable {
         break;
       case 'VW_PICKLISTDOMAIN':
         this.setColumnConfig('LOCKED', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
-        this.setColumnConfig('EXT_TABLE', 'allowEditing', false);
-        this.setColumnConfig('EXT_ID_COL', 'allowEditing', false);
-        this.setColumnConfig('EXT_DISPLAY_COL', 'allowEditing', false);
-        this.setColumnConfig('EXT_SQL_FILTER', 'allowEditing', false);
+        this.setColumnConfig('LOCKED', 'allowEditing', false);
+        this.setColumnConfig('EXT_TABLE', 'editCellTemplate', 'disabledTemplate');
+        this.setColumnConfig('EXT_ID_COL', 'editCellTemplate', 'disabledTemplate');
+        this.setColumnConfig('EXT_DISPLAY_COL', 'editCellTemplate', 'disabledTemplate');
+        this.setColumnConfig('EXT_SQL_FILTER', 'editCellTemplate', 'disabledTemplate');
         break;
       case 'VW_NOTEBOOKS':
         this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
@@ -80,8 +98,37 @@ export class CConfigTable {
       case 'VW_FRAGMENT':
         this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
         break;
+      case 'VW_IDENTIFIERTYPE':
+        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
+        this.setColumnConfig('TYPE', 'lookup', { dataSource: this.identifierType, displayExpr: 'name', valueExpr: 'key' });
+        break;
+      case 'VW_SEQUENCE':
+        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
+        this.setColumnConfig('TYPE', 'lookup', { dataSource: this.sequenceType, displayExpr: 'name', valueExpr: 'key' });
+        this.setColumnConfig('REGNUMBERLENGTH', 'lookup', this.getPaddedLength('R'));
+        this.setColumnConfig('BATCHNUMLENGTH', 'lookup', this.getPaddedLength('B'));
+        break;
 
     }
+  }
+
+  getPaddedLength(type: string) {
+    let data = {
+      dataSource: [],
+      displayExpr: 'name', valueExpr: 'key'
+    };
+    if (type === 'R') {
+      for (let i = 4; i <= 9; i++) {
+        data.dataSource.push({ key: i, name: i + ' digits' });
+      }
+    }
+    if (type === 'B') {
+      data.dataSource.push({ key: -1, name: 'No padding' });
+      for (let i = 2; i <= 6; i++) {
+        data.dataSource.push({ key: i, name: i + ' digits' });
+      }
+    }
+    return data;
   }
 
   setColumnConfig(field: string, property: string, value: any) {
@@ -378,7 +425,7 @@ export class CConfigProperties {
       return false;
     }
     if (this.formData.validationRules.filter(validationRule =>
-        validationRule.name === this.formDataValidation.name).length > 0) {
+      validationRule.name === this.formDataValidation.name).length > 0) {
       notify(`The Validation Rule that you are trying to add already exists!`, 'warning', 5000);
       return false;
     }
