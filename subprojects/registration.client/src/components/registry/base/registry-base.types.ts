@@ -445,6 +445,7 @@ export interface IProjectList extends CProjectList {
 export interface IChemicalStructure {
   _molWeight?: string; // 224.2961
   _formula?: string; // C13H20O3
+  _update?: string; // yes
   __text?: string; // VmpD...
 }
 
