@@ -900,7 +900,7 @@ export class CValidator {
   }
 
   private static validateTextLength(rule: IValidationRule, e) {
-    if (e.value) {
+    if (e.value && typeof e.value === 'string') {
       let min = this.getParamNumber(rule.params.param, 'min', 0);
       let max = this.getParamNumber(rule.params.param, 'max');
       if (max) {
@@ -980,7 +980,11 @@ export class CValidator {
             // console.log(r);
           }
           if (!e.rule.isValid) {
-            e.rule.message = r._errorMessage;
+            if (r._errorMessage) {
+              e.rule.message = r._errorMessage;
+            } else {
+              e.rule.message = 'Invalid entry!';
+            }
           }
         }
       });
