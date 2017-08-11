@@ -155,6 +155,10 @@ export class RegConfigTables implements OnInit, OnDestroy {
         retValue = PrivilegeUtils.hasProjectsTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_NOTEBOOKS':
+        // deletion is not allowed for Notebooks as it will corrupt existing data
+        if (action === 'DELETE') {
+          return false;
+        }
         retValue = PrivilegeUtils.hasNotebookTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_FRAGMENT':
@@ -166,9 +170,17 @@ export class RegConfigTables implements OnInit, OnDestroy {
         break;
       case 'VW_PICKLIST':
       case 'VW_PICKLISTDOMAIN':
+        // deletion is not allowed for Picklist Values, Picklist Domains as it will corrupt existing data
+        if (action === 'DELETE') {
+          return false;
+        }
         retValue = PrivilegeUtils.hasPicklistTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_IDENTIFIERTYPE':
+        // deletion is not allowed for Identifier Types as it will corrupt existing data
+        if (action === 'DELETE') {
+          return false;
+        }
         retValue = PrivilegeUtils.hasIdentifierTablePrivilege(action, this.lookups.userPrivileges);
         break;
       case 'VW_SITES':

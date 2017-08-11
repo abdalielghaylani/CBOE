@@ -2,7 +2,7 @@
   <reg-settings-page-header>{{ this.tableName() }}</reg-settings-page-header>
   <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
     (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)'>
-    <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="configTable.isDeleteEnabled" [allowAdding]="hasPrivilege('ADD')"></dxo-editing>
+    <dxo-editing mode="row" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')" [allowAdding]="hasPrivilege('ADD')"></dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
