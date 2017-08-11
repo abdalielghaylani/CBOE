@@ -31,15 +31,14 @@ export class RegDropDownFormItem extends RegBaseFormItem {
   protected update() {
     let options = this.viewModel.editorOptions;
     if (options.pickListDomain) {
-      let pickListDomain = options.pickListDomain as number;
+      let pickListDomainIndex = options.pickListDomain as number;
       let lookups = this.ngRedux.getState().session.lookups;
       if (lookups) {
-        let filtered = lookups.pickListDomains.filter(d => d.ID === pickListDomain);
-        if (filtered) {
-          let pickListDomainInfo = filtered[0];
-          this.dataSource = pickListDomainInfo.data;
-          this.valueExpr = pickListDomainInfo.EXT_ID_COL;
-          this.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
+        let pickListDomain = lookups.pickListDomains.find(d => d.ID === pickListDomainIndex);
+        if (pickListDomain != null) {
+          this.dataSource = pickListDomain.data;
+          this.valueExpr = pickListDomain.EXT_ID_COL;
+          this.displayExpr = pickListDomain.EXT_DISPLAY_COL;
         }
       }
     } else if (options.dropDownItemsSelect) {

@@ -68,7 +68,10 @@ export class CConfigTable {
 
   setRequiredValidations(items: { dataField: string, caption: string }[]) {
     items.forEach(col => {
-      this.columns.filter(i => i.dataField === col.dataField)[0].validationRules = [{ type: 'required', message: col.caption + ' required' }];
+      let column = this.columns.find(i => i.dataField === col.dataField);
+      if (column != null) {
+        column.validationRules = [{ type: 'required', message: `${col.caption} is a required field` }];
+      }
     });
   }
 
@@ -133,9 +136,9 @@ export class CConfigTable {
   }
 
   setColumnConfig(field: string, property: string, value: any) {
-    let filtered = this.columns.filter(i => i.dataField === field);
-    if (filtered.length > 0) {
-      filtered[0][property] = value;
+    let column = this.columns.find(i => i.dataField === field);
+    if (column != null) {
+      column[property] = value;
     }
   }
 

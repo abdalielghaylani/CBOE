@@ -889,8 +889,8 @@ export class CSearchCriteria {
 
 export class CValidator {
   private static getParamNumber(params: IParam[], name: string, defaultValue: number = undefined): number {
-    let filtered = params.filter(p => p._name === name);
-    return filtered.length > 0 ? +filtered[0]._value : defaultValue;
+    let param = params.find(p => p._name === name);
+    return param != null ? +param._value : defaultValue;
   }
 
   private static validateRequiredField(rule: IValidationRule, e) {

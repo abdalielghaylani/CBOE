@@ -67,20 +67,18 @@ function getPicklist(domainId: number, formElement: IFormElement, container: IFo
     placeholder: placeholder,
     showClearButton: true
   };
-  let filtered = pickListDomains.filter(d => d.ID === domainId);
-  if (filtered.length === 1) {
-    let pickListDomainInfo = filtered[0];
-    pickList.dataSource = pickListDomainInfo.data;
-    pickList.valueExpr = pickListDomainInfo.EXT_ID_COL;
-    pickList.displayExpr = pickListDomainInfo.EXT_DISPLAY_COL;
+  let pickListDomain = pickListDomains.find(d => d.ID === domainId);
+  if (pickListDomain != null) {
+    pickList.dataSource = pickListDomain.data;
+    pickList.valueExpr = pickListDomain.EXT_ID_COL;
+    pickList.displayExpr = pickListDomain.EXT_DISPLAY_COL;
   }
   return pickList;
 }
 
 function getPropertyColumn(p: IProperty, formElements: IFormElement[], container: IFormContainer): any {
-  let filtered = formElements.filter(fe => fe._name === p._name);
-  let formElement = filtered && filtered.length > 0 ? filtered[0] : null;
-  if (formElement && formElement.displayInfo.visible === 'false') {
+  let formElement = formElements.find(fe => fe._name === p._name);
+  if (formElement != null && formElement.displayInfo.visible === 'false') {
     return null;
   }
   let column: any = {
@@ -91,7 +89,7 @@ function getPropertyColumn(p: IProperty, formElements: IFormElement[], container
     column.editorType = 'dxDateBox';
   }
   let label: any = {};
-  if (formElement) {
+  if (formElement != null) {
     label.text = formElement.label;
     column.label = label;
   }
@@ -135,8 +133,8 @@ function getPropertyValue(p: IProperty): any {
 }
 
 function getCoeFormById(formGroup: IFormGroup, coeFormId: number) {
-  let filtered = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.filter(f => +f._id === coeFormId) : undefined;
-  return filtered && filtered.length > 0 ? filtered[0] : null;
+  let coeForm = formGroup ? formGroup.detailsForms.detailsForm[0].coeForms.coeForm.find(f => +f._id === coeFormId) : undefined;
+  return coeForm != null ? coeForm : null;
 }
 
 /**

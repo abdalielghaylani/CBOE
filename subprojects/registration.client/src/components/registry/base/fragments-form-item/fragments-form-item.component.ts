@@ -30,9 +30,8 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       // ID, CompoundFragmentID, FragmentID, Equivalents
       let lookups = this.ngRedux.getState().session.lookups;
       if (lookups) {
-        let filtered = lookups.fragments.filter(f2 => +f2.FRAGMENTID === +f.FragmentID);
-        if (filtered.length > 0) {
-          let fragment = filtered[0];
+        let fragment = lookups.fragments.find(f2 => +f2.FRAGMENTID === +f.FragmentID);
+        if (fragment != null) {
           fragmentEntry.fragmentId = fragment.FRAGMENTID.toString();
           fragmentEntry.fragmentTypeId = fragment.FRAGMENTTYPEID;
           fragmentEntry.code = fragment.CODE;
@@ -185,9 +184,8 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
     this.grid.instance.cellValue(d.rowIndex, d.column.dataField, e);
     let lookups = this.ngRedux.getState().session.lookups;
     if (lookups) {
-      let filtered = lookups.fragments.filter(f => f.CODE === e);
-      if (filtered.length > 0) {
-        let fragment = filtered[0];
+      let fragment = lookups.fragments.find(f => f.CODE === e);
+      if (fragment != null) {
         this.grid.instance.cellValue(d.rowIndex, 'fragmentTypeId', fragment.FRAGMENTTYPEID);
         this.grid.instance.cellValue(d.rowIndex, 'fragmentId', fragment.FRAGMENTID);
         this.grid.instance.cellValue(d.rowIndex, 'description', fragment.DESCRIPTION);
