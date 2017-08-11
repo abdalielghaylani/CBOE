@@ -133,7 +133,10 @@ export class CConfigTable {
   }
 
   setColumnConfig(field: string, property: string, value: any) {
-    this.columns.filter(i => i.dataField === field)[0][property] = value;
+    let filtered = this.columns.filter(i => i.dataField === field);
+    if (filtered.length > 0) {
+      filtered[0][property] = value;
+    }
   }
 
 }
