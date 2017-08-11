@@ -54,7 +54,7 @@ export class CConfigTable {
         { dataField: 'ACTIVE', caption: 'Active' },
         { dataField: 'TYPE', caption: 'Type' }]);
         break;
-      case 'VW_IDENTIFIERTYPE':
+      case 'VW_SITES':
         this.setRequiredValidations([{ dataField: 'SITECODE', caption: 'Sites Id' }]);
         break;
       case 'VW_SEQUENCE':
@@ -97,6 +97,7 @@ export class CConfigTable {
         break;
       case 'VW_FRAGMENT':
         this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
+        this.setColumnConfig('FRAGMENTID', 'allowEditing', false);
         break;
       case 'VW_IDENTIFIERTYPE':
         this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
