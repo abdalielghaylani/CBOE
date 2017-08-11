@@ -49,8 +49,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var column in columns)
             {
                 if (!COETableEditorUtilities.GetIsUniqueProperty(tableName, column.FieldName)) continue;
-                if (!tableEditorBO.IsUniqueCheck(tableName, column.FieldName, column.FieldValue.ToString(), idField, idFieldValue))
-                    throw new RegistrationException(string.Format("{0} should be unique", column.FieldName));
+
+                if (column.FieldValue != null)
+                {
+                    if (!tableEditorBO.IsUniqueCheck(tableName, column.FieldName, column.FieldValue.ToString(), idField, idFieldValue))
+                        throw new RegistrationException(string.Format("{0} should be unique", column.FieldName));
+                }
             }
             // Validate if view [VW_PICKLISTDOMAIN] Note : Add more to the list if contains SQL filters for update
             if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase))
@@ -63,9 +67,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         || columnName.Equals("EXT_DISPLAY_COL", StringComparison.OrdinalIgnoreCase)
                         || columnName.Equals("EXT_SQL_FILTER", StringComparison.OrdinalIgnoreCase)
                         || columnName.Equals("EXT_SQL_SORTORDER", StringComparison.OrdinalIgnoreCase))
-                    {
-                        var columnValue = column.FieldValue.ToString();
-                        if (!string.IsNullOrEmpty(columnValue))
+                    {                      
+                        if ((column.FieldValue != null) && (!string.IsNullOrEmpty(column.FieldValue.ToString())))
                             COETableEditorBO.Get(tableName, columns);
                         break;
                     }
