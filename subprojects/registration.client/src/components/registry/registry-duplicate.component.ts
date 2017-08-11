@@ -76,6 +76,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     caption: 'Resolution options',
     cellTemplate: 'resolutionOptionTemplate',
     allowFiltering: false,
+    allowSorting: false
   }];
   private buttonVisibility = { duplicate: true, addBatch: true, useComponent: true, useStructure: true };
   private editRowIndex: number = -1;

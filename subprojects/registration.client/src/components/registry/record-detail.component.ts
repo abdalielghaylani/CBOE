@@ -246,6 +246,14 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     // console.log(this.regRecord);
   }
 
+  private prepareRegistryRecord() {
+    let recordJson: any = this.x2jsTool.dom2js(this.recordDoc);
+    this.regRecord = CRegistryRecord.createFromPlainObj(recordJson.MultiCompoundRegistryRecord);
+    if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
+      this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
+    }    
+  }
+
   loadData(recordDetail: IRecordDetail, duplicateResolution: boolean = false) {
     if (this.temporary !== recordDetail.temporary || this.id !== recordDetail.id) {
       return;
@@ -258,8 +266,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       recordDetail.temporary ?
         'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
         'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    let recordJson: any = this.x2jsTool.dom2js(this.recordDoc);
-    this.regRecord = CRegistryRecord.createFromPlainObj(recordJson.MultiCompoundRegistryRecord);
+    this.prepareRegistryRecord();
     let formGroupType = FormGroupType.SubmitMixture;
     if (recordDetail.id >= 0 && !recordDetail.temporary) {
       // TODO: For mixture, this should be ReviewRegistryMixture
@@ -269,9 +276,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
-    if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
-      this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
-    }
     this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
     this.update();
   }
@@ -325,6 +329,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   cancel() {
+    this.prepareRegistryRecord();
     this.setDisplayMode('view');
   }
 
