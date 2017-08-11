@@ -22,7 +22,7 @@ export class RegStructureImageFormItem extends RegBaseFormItem {
 
   protected update() {
     let value = this.viewModel.editorOptions.value;
-    if (value && value.Structure) {
+    if (value && value.Structure != null) {
       value = value.Structure.__text;
     }
     if (!value) {
