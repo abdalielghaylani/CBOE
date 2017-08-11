@@ -445,6 +445,7 @@ export interface IProjectList extends CProjectList {
 export interface IChemicalStructure {
   _molWeight?: string; // 224.2961
   _formula?: string; // C13H20O3
+  _update?: string; // yes
   __text?: string; // VmpD...
 }
 
@@ -899,7 +900,7 @@ export class CValidator {
   }
 
   private static validateTextLength(rule: IValidationRule, e) {
-    if (e.value) {
+    if (e.value && typeof e.value === 'string') {
       let min = this.getParamNumber(rule.params.param, 'min', 0);
       let max = this.getParamNumber(rule.params.param, 'max');
       if (max) {
@@ -952,6 +953,12 @@ export class CValidator {
     }
   }
 
+  private static validateWordList(rule: IValidationRule, e) {
+    if (e.value) {
+      e.rule.isValid = rule.params.param.find(p => p._name === 'validWord' && p._value === e.value) != null;
+    }
+  }
+
   public static validate(e) {
     e.rule.isValid = true;
     let peer: IFormItemTemplate = e.validator.peer;
@@ -967,11 +974,17 @@ export class CValidator {
             this.validateFloat(r, e);
           } else if (r._validationRuleName === 'numericRange') {
             this.validateNumericRange(r, e);
+          } else if (r._validationRuleName === 'wordListEnumeration') {
+            this.validateWordList(r, e);
           } else {
             // console.log(r);
           }
           if (!e.rule.isValid) {
-            e.rule.message = r._errorMessage;
+            if (r._errorMessage) {
+              e.rule.message = r._errorMessage;
+            } else {
+              e.rule.message = 'Invalid entry!';
+            }
           }
         }
       });
