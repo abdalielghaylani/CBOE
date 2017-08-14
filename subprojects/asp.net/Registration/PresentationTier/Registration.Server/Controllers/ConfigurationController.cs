@@ -94,8 +94,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var columnValue = (string)data[columnName];
             if (columnValue == null)
             {
-                var defaultValue = COETableEditorUtilities.getDefaultValue(tableName, column.FieldName);
-                column.FieldValue = !string.IsNullOrEmpty(defaultValue) ? defaultValue : null;
+               var defaultValue = COETableEditorUtilities.getDefaultValue(tableName, column.FieldName);            
+               column.FieldValue = defaultValue;
             }
             else if (COETableEditorUtilities.getIsStructure(tableName, column.FieldName))
             {
