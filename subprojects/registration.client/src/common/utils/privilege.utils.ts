@@ -250,4 +250,32 @@ export class PrivilegeUtils {
   static hasManageSystemSettingsPrivilege(userPrivileges: any[]): boolean {
     return this.userHasPrivilege('MANAGE_SYSTEM_SETTINGS', userPrivileges);
   }
+
+  static hasSystemBehaviourAccessPrivilege(userPrivileges: any[]): boolean {
+
+    if (this.userHasPrivilege('MANAGE_PROPERTIES', userPrivileges)) {
+      return true;
+    }
+    if (this.userHasPrivilege('CUSTOMIZE_FORMS', userPrivileges)) {
+      return true;
+    }
+
+    if (this.userHasPrivilege('MANAGE_ADDINS', userPrivileges)) {
+      return true;
+    }
+
+    if (this.userHasPrivilege('EDIT_FORM_XML', userPrivileges)) {
+      return true;
+    }
+
+    if (this.userHasPrivilege('MANAGE_SYSTEM_SETTINGS', userPrivileges)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  static hasCustomTablePrivilege(userPrivileges: any[]): boolean {
+    return this.userHasPrivilege('MANAGE_TABLES', userPrivileges);
+  }
 }

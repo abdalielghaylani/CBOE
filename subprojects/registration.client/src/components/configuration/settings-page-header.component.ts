@@ -54,4 +54,12 @@ export class RegSettingsPageHeader {
   private get systemSettingsMenuEnabled(): boolean {
     return PrivilegeUtils.hasManageSystemSettingsPrivilege(this.lookups.userPrivileges);
   }
+
+  private get systemBehaviorButtonEnabled(): boolean {
+    return PrivilegeUtils.hasSystemBehaviourAccessPrivilege(this.lookups.userPrivileges);
+  }
+
+  private get customTableButtonEnabled(): boolean {
+    return PrivilegeUtils.hasCustomTablePrivilege(this.lookups.userPrivileges);
+  }
 };
