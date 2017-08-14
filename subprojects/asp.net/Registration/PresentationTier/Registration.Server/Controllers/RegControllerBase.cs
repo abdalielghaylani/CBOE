@@ -186,6 +186,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     where = where.ToString().Replace("&&loggedInUser", ":loggedInUser");
                 }
+                string extIdColumn = pickListDomain["EXT_ID_COL"].ToString();
+                string extDisplayColumn = pickListDomain["EXT_DISPLAY_COL"].ToString();
+                string extTable = pickListDomain["EXT_TABLE"].ToString();
+
+                if (string.IsNullOrEmpty(extTable)) continue;
+                if (string.IsNullOrEmpty(extIdColumn) && string.IsNullOrEmpty(extDisplayColumn)) continue;
+
                 var sql = string.Format("SELECT {0}, {1} FROM {2} {3} {4}",
                     pickListDomain["EXT_ID_COL"],
                     pickListDomain["EXT_DISPLAY_COL"],
@@ -193,6 +200,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     where,
                     pickListDomain["EXT_SQL_SORTORDER"]);
                 pickListDomain["data"] = ExtractData(sql, args);
+
             }
             return pickListDomains;
         }
