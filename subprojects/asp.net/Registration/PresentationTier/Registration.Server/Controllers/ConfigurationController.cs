@@ -1015,22 +1015,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
 
-                bool reserved = data.Name.ToUpper().Equals("DATE") ? true : data.Name.ToUpper().Equals("NUMBER") ? true :
-                    data.Name.ToUpper().Equals("TEXT") ? true : data.Name.ToUpper().Equals("BOOLEAN") ? true :
-                    data.Name.ToUpper().Equals("PICKLISTDOMAIN") ? true : configurationBO.DatabaseReservedWords.Contains(data.Name.ToUpper()) ? true : false;
+                string propertyName = data.Name.ToUpper();
+                bool reserved = propertyName.Equals("DATE") ? true : propertyName.Equals("NUMBER") ? true :
+                    propertyName.Equals("TEXT") ? true : propertyName.Equals("BOOLEAN") ? true :
+                    propertyName.Equals("PICKLISTDOMAIN") ? true : configurationBO.DatabaseReservedWords.Contains(propertyName) ? true : false;
                 if (reserved)
                     throw new RegistrationException(string.Format("Property name '{0}' is a reserved keyword.", data.Name));
 
                 bool duplicateExists = false;
-                if (configurationBO.PropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.PropertyColumnList.Contains(data.Name.ToUpper()))
+                if (configurationBO.PropertyList.CheckExistingNames(propertyName, true) || configurationBO.PropertyColumnList.Contains(propertyName))
                     duplicateExists = true;
-                else if (configurationBO.BatchPropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.BatchPropertyColumnList.Contains(data.Name.ToUpper()))
+                else if (configurationBO.BatchPropertyList.CheckExistingNames(propertyName, true) || configurationBO.BatchPropertyColumnList.Contains(propertyName))
                     duplicateExists = true;
-                else if (configurationBO.BatchComponentList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.BatchComponentColumnList.Contains(data.Name.ToUpper()))
+                else if (configurationBO.BatchComponentList.CheckExistingNames(propertyName, true) || configurationBO.BatchComponentColumnList.Contains(propertyName))
                     duplicateExists = true;
-                else if (configurationBO.CompoundPropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.CompoundPropertyColumnList.Contains(data.Name.ToUpper()))
+                else if (configurationBO.CompoundPropertyList.CheckExistingNames(propertyName, true) || configurationBO.CompoundPropertyColumnList.Contains(propertyName))
                     duplicateExists = true;
-                else if (configurationBO.StructurePropertyList.CheckExistingNames(data.Name.ToUpper(), true) || configurationBO.StructurePropertyColumnList.Contains(data.Name.ToUpper()))
+                else if (configurationBO.StructurePropertyList.CheckExistingNames(propertyName, true) || configurationBO.StructurePropertyColumnList.Contains(propertyName))
                     duplicateExists = true;
 
                 if (duplicateExists)
@@ -1105,8 +1106,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
 
                     ConfigurationProperty confProperty = ConfigurationProperty.NewConfigurationProperty(
-                        prefix + data.Name.ToUpper(),
-                        data.Name.ToUpper(),
+                        prefix + propertyName,
+                        propertyName,
                         data.Type,
                         string.IsNullOrEmpty(data.Precision) ? "1" : data.Precision,
                         true,
@@ -1118,34 +1119,34 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         case ConfigurationRegistryRecord.PropertyListType.PropertyList:
                             if (string.IsNullOrEmpty(data.FriendlyName))
-                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.Name);
+                                configurationBO.PropertiesLabels[0].Add(prefix + propertyName, data.Name);
                             else
-                                configurationBO.PropertiesLabels[0].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                                configurationBO.PropertiesLabels[0].Add(prefix + propertyName, data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Compound:
                             if (string.IsNullOrEmpty(data.FriendlyName))
-                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.Name);
+                                configurationBO.PropertiesLabels[1].Add(prefix + propertyName, data.Name);
                             else
-                                configurationBO.PropertiesLabels[1].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                                configurationBO.PropertiesLabels[1].Add(prefix + propertyName, data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Batch:
                             if (string.IsNullOrEmpty(data.FriendlyName))
-                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.Name);
+                                configurationBO.PropertiesLabels[2].Add(prefix + propertyName, data.Name);
                             else
-                                configurationBO.PropertiesLabels[2].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                                configurationBO.PropertiesLabels[2].Add(prefix + propertyName, data.FriendlyName);
                             break;
 
                         case ConfigurationRegistryRecord.PropertyListType.BatchComponent:
                             if (string.IsNullOrEmpty(data.FriendlyName))
-                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.Name);
+                                configurationBO.PropertiesLabels[3].Add(prefix + propertyName, data.Name);
                             else
-                                configurationBO.PropertiesLabels[3].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                                configurationBO.PropertiesLabels[3].Add(prefix + propertyName, data.FriendlyName);
                             break;
                         case ConfigurationRegistryRecord.PropertyListType.Structure:
                             if (string.IsNullOrEmpty(data.FriendlyName))
-                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.Name);
+                                configurationBO.PropertiesLabels[4].Add(prefix + propertyName, data.Name);
                             else
-                                configurationBO.PropertiesLabels[4].Add(prefix + data.Name.ToUpper(), data.FriendlyName);
+                                configurationBO.PropertiesLabels[4].Add(prefix + propertyName, data.FriendlyName);
                             break;
                     }
 
