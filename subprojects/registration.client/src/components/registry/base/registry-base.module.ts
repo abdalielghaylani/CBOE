@@ -22,6 +22,7 @@ import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
 import { RegDuplicateRecordDetailView } from './duplicate-records-detail-view';
+import { RegRecordDetailBase } from './record-detail-base';
 import { CStructureImageService } from './structure-image.service';
 import {
   DxBoxModule,
@@ -96,14 +97,16 @@ export * from './structure-image.service';
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
     RegTagBoxFormItem, RegTextFormItem,
     RegDropDownColumnItem, RegStructureColumnItem,
-    RegFormView, RegDuplicateRecordDetailView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView
+    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
+    RegDuplicateRecordDetailView, RegRecordDetailBase
   ],
   exports: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
     RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureImageFormItem,
     RegTagBoxFormItem, RegTextFormItem,
     RegDropDownColumnItem, RegStructureColumnItem,
-    RegFormView, RegDuplicateRecordDetailView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
+    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
+    RegDuplicateRecordDetailView, RegRecordDetailBase,
     RegCommonModule, RegCommonComponentModule
   ],
   providers: [
