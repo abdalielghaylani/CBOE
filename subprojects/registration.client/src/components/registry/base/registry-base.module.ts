@@ -21,7 +21,6 @@ import { RegFormGroupItemView } from './form-group-item-view';
 import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
-import { RegDuplicateRecordDetailView } from './duplicate-records-detail-view';
 import { RegRecordDetailBase } from './record-detail-base';
 import { CStructureImageService } from './structure-image.service';
 import {
@@ -98,7 +97,7 @@ export * from './structure-image.service';
     RegTagBoxFormItem, RegTextFormItem,
     RegDropDownColumnItem, RegStructureColumnItem,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegDuplicateRecordDetailView, RegRecordDetailBase
+    RegRecordDetailBase
   ],
   exports: [
     RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegIdListFormItem,
@@ -106,7 +105,7 @@ export * from './structure-image.service';
     RegTagBoxFormItem, RegTextFormItem,
     RegDropDownColumnItem, RegStructureColumnItem,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegDuplicateRecordDetailView, RegRecordDetailBase,
+    RegRecordDetailBase,
     RegCommonModule, RegCommonComponentModule
   ],
   providers: [

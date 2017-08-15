@@ -30,7 +30,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   protected dataSubscription: Subscription;
   protected viewId: string;
   protected position: string;
-  protected loadingVisible: boolean;
+  protected loadingVisible: boolean = true;
   protected recordDoc: Document;
   protected regRecord: CRegistryRecord = new CRegistryRecord();
   protected formGroup: IFormGroup;
@@ -63,7 +63,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       let viewId = `formGroupView_${this.id}`.replace('-', '_');
       if (viewId !== this.viewId) {
         this.viewId = viewId;
-        this.position = `{ of: '${this.viewId}' }`;
+        this.position = `{ of: '#${this.viewId}' }`;
         this.actions.retrieveRecord(this.temporary, this.template, this.id);
         if (!this.dataSubscription) {
           this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));

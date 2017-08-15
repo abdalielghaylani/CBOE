@@ -53,7 +53,7 @@
               <a class="fa fa-times grid-icon" aria-hidden="true" title='Close' (click)="cancel()"></a>&nbsp;&nbsp;&nbsp;
             </div>
           </div>
-          <reg-duplicate-record-detail-view [id]="data.data.ID" [parentHeight]="parentHeight"></reg-duplicate-record-detail-view>
+          <reg-record-detail-base [id]="data.data.ID" [template]="false" [temporary]="false" [editMode]="false" displayMode="view" [activated]="true"></reg-record-detail-base>
         </td>
       </tr>
     </tbody>
