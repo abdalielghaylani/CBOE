@@ -32,6 +32,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private recordsSubscription: Subscription;
   private datasource: any[];
   private loadingVisible: boolean = false;
+  private currentRecord: { ID: number, REGNUMBER: string };
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
   private columns = [{
@@ -101,6 +102,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   }
 
   edit(e) {
+    this.currentRecord = { ID: e.data.ID, REGNUMBER: e.data.REGNUMBER };
     this.editRowIndex = e.rowIndex;
   }
 
