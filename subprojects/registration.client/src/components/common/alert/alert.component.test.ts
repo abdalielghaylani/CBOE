@@ -69,7 +69,7 @@ describe('Component: Alert', () => {
     })
     ));
 
-  it('should have class white if status is info or error',
+  it('should have class red if status is info or error',
     async(inject([], () => {
       fixture.whenStable().then(() => {
         fixture.componentInstance.qaid = 'alert-1';
@@ -81,11 +81,11 @@ describe('Component: Alert', () => {
           fixture.detectChanges();
           if (whiteTextStatuses.indexOf(status) >= 0) {
             expect(compiled.querySelector('#alert-1')
-              .getAttribute('class').split(' ')).toContain('white');
+              .getAttribute('class').split(' ')).toContain('red');
           } else {
             expect(compiled.querySelector('#alert-1')
               .getAttribute('class').split(' '))
-              .not.toContain('white');
+              .not.toContain('red');
           }
         });
       });
