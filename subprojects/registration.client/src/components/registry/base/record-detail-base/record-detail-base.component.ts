@@ -93,6 +93,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       return;
     }
     this.clearDataSubscription();
+    this.actions.clearRecord();
     this.recordDoc = registryUtils.getDocument(data.data);
     this.prepareRegistryRecord();
     let formGroupType = FormGroupType.SubmitMixture;
