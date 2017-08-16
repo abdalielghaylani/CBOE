@@ -111,12 +111,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private update(forceUpdate: boolean = true) {
-    console.log('update detail 1: ' + forceUpdate);
     let lookups = this.ngRedux.getState().session.lookups;
     if (!lookups || !lookups.userPrivileges || !this.recordDetailView || this.displayMode == null) {
       return;
     }
-    console.log('update detail 2: ' + this.displayMode);
     let editMode = this.displayMode !== 'view';
     let userPrivileges = lookups.userPrivileges;
     let ss = new CSystemSettings(this.getLookup('systemSettings'));

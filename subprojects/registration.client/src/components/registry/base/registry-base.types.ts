@@ -910,9 +910,16 @@ export class CValidator {
     }
   }
 
+  private static filterFloat(value): number {
+    if (/^(\-|\+)?([0-9]+(\.[0-9]+)?)$/.test(value)) {
+      return Number(value);
+    }
+    return NaN;
+  }
+
   private static validateFloat(rule: IValidationRule, e) {
     if (e.value) {
-      let floatingValue = Number.parseFloat(e.value);
+      let floatingValue = this.filterFloat(e.value);
       if (floatingValue === Number.NaN) {
         e.rule.isValid = false;
       } else {
