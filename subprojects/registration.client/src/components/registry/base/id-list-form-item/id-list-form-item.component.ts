@@ -17,7 +17,11 @@ export class RegIdListFormItem extends RegDataGridFormItem {
 
   deserializeValue(value: IIdentifierList): any {
     return value.Identifier ? value.Identifier.map(i => {
-      return { id: +i.IdentifierID.__text, inputText: i.InputText };
+      let converted: any = { id: +i.IdentifierID.__text, inputText: i.InputText };
+      if (i.ID != null) {
+        converted.persistId = i.ID;
+      }
+      return converted;
     }) : [];
   }
 
@@ -26,12 +30,16 @@ export class RegIdListFormItem extends RegDataGridFormItem {
       if (!v.id) {
         return { IdentifierID: {}, InputText: undefined };
       }
-      let idColumn = this.columns.filter(c => c.dataField === 'id')[0];
-      let name = idColumn.lookup.dataSource.filter(i => i.ID === +v.id)[0].NAME;
-      return {
+      let idColumn = this.columns.find(c => c.dataField === 'id');
+      let name = idColumn.lookup.dataSource.find(i => i.ID === +v.id).NAME;
+      let converted: any = {
         IdentifierID: { __text: v.id, _Active: 'T', _Name: name, _Description: name },
         InputText: v.inputText
       };
+      if (v.persistId != null) {
+        converted.ID = v.persistId;
+      }
+      return converted;
     })} : undefined;
     return serialized;
   }

@@ -419,6 +419,7 @@ export interface IIdentifierID {
 
 export interface IIdentifier {
   OrderIndex?: string; // 2621
+  ID?: string;
   IdentifierID?: IIdentifierID;
   InputText?: string; // Dehydrohedione (DHH)
 }
