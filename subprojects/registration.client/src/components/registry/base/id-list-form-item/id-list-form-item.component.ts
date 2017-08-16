@@ -22,7 +22,7 @@ export class RegIdListFormItem extends RegDataGridFormItem {
   }
 
   serializeValue(value: any): IIdentifierList {
-    return value && value.length > 0 ? { Identifier: value.map(v => {
+    let serialized = value && value.length > 0 ? { Identifier: value.map(v => {
       if (!v.id) {
         return { IdentifierID: {}, InputText: undefined };
       }
@@ -33,6 +33,7 @@ export class RegIdListFormItem extends RegDataGridFormItem {
         InputText: v.inputText
       };
     })} : undefined;
+    return serialized;
   }
 
   protected update() {

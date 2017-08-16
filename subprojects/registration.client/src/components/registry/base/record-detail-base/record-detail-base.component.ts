@@ -145,7 +145,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   protected updateEditMode() {
-    this.editMode = this.displayMode !== 'view';
+    this.editMode = this.displayMode != null && this.displayMode !== 'view';
   }
 
   public getUpdatedRecord(): Document {
