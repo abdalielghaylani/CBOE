@@ -12,7 +12,7 @@
   <command-button *ngIf="clearButtonEnabled" testid="clear-record-details-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
   <command-button *ngIf="deleteButtonEnabled" testid="delete-record-details-button" (onClick)="delete()" iconName="trash" title="Delete"></command-button>
   <command-button *ngIf="editButtonEnabled" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
-  <command-button *ngIf="editMode &amp;&amp; !isNewRecord" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
+  <command-button *ngIf="cancelButtonEnabled" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
   <command-button *ngIf="saveButtonEnabled" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title={{saveButtonTitle}}></command-button>
   <command-button *ngIf="registerButtonEnabled" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
   <command-button *ngIf="approveButtonEnabled" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up" title="Approve"></command-button>
@@ -24,7 +24,7 @@
   </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <reg-form-group-view (valueUpdated)="onValueUpdated($event)" [viewConfig]="viewGroups" [viewModel]="regRecord" [activated]="true" [editMode]="editMode" [displayMode]="displayMode"></reg-form-group-view>
+      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
     </form>
   </dx-scroll-view>
   <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">

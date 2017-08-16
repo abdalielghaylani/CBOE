@@ -1,14 +1,15 @@
 import {
   Component, EventEmitter, Input, Output,
   OnChanges, OnInit, OnDestroy,
-  ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation
+  ChangeDetectorRef, ChangeDetectionStrategy, ViewChild, ViewEncapsulation
 } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
-import { IFormGroup, prepareFormGroupData, FormGroupType } from '../../../../common';
+import { IFormGroup, prepareFormGroupData, FormGroupType, PrivilegeUtils, notifyError } from '../../../../common';
 import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../../../redux';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { CRegistryRecord, CViewGroup, CFragment } from '../../base';
+import { RegFormGroupView } from '../form-group-view';
 import * as registryUtils from '../../registry.utils';
 import * as X2JS from 'x2js';
 
@@ -20,13 +21,15 @@ import * as X2JS from 'x2js';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
+  @ViewChild(RegFormGroupView) formGroupView: RegFormGroupView;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() contentReady: EventEmitter<any> = new EventEmitter<any>();
   @Input() temporary: boolean;
   @Input() template: boolean;
   @Input() id: number;
   @Input() activated: boolean;
-  @Input() editMode: boolean;
   @Input() displayMode: string;
+  public editMode: boolean;
   protected dataSubscription: Subscription;
   protected viewId: string;
   protected position: string;
@@ -44,14 +47,26 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   ) {
   }
 
+  private get isNewRecord(): boolean {
+    return this.id < 0 || this.template;
+  }
+
+  private getElementValue(e: Element, path: string) {
+    return registryUtils.getElementValue(e, path);
+  }
+
+  private clearDataSubscription() {
+    if (this.dataSubscription != null) {
+      this.dataSubscription.unsubscribe();
+      this.dataSubscription = undefined;
+    }
+  }
+
   ngOnInit() {
-    this.update();
   }
 
   ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
+    this.clearDataSubscription();
   }
 
   ngOnChanges() {
@@ -59,12 +74,12 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   protected update() {
+    this.updateEditMode();
     if (this.id != null) {
       let viewId = `formGroupView_${this.id}`.replace('-', '_');
       if (viewId !== this.viewId) {
         this.viewId = viewId;
         this.position = `{ of: '#${this.viewId}' }`;
-        this.actions.retrieveRecord(this.temporary, this.template, this.id);
         if (!this.dataSubscription) {
           this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));
         }
@@ -73,17 +88,28 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   protected loadRecordData(data: IRecordDetail) {
-    if (!data.data || data.id !== this.id) {
+    if (!data.data || data.id !== this.id || (!this.isNewRecord && data.temporary !== this.temporary)) {
+      this.actions.retrieveRecord(this.temporary, this.template, this.id);
       return;
     }
+    this.clearDataSubscription();
     this.recordDoc = registryUtils.getDocument(data.data);
     this.prepareRegistryRecord();
-    prepareFormGroupData(FormGroupType.ViewMixture, this.ngRedux);
+    let formGroupType = FormGroupType.SubmitMixture;
+    if (this.id >= 0 && !this.temporary && !this.template) {
+      // TODO: For mixture, this should be ReviewRegistryMixture
+      formGroupType = FormGroupType.ViewMixture;
+    }
+    prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
-    this.formGroup = state.configuration.formGroups[FormGroupType[FormGroupType.ViewMixture]] as IFormGroup;
-    this.viewGroups = state.session.lookups ?
-      CViewGroup.getViewGroups(this.formGroup, 'view', this.ngRedux.getState().session.lookups.disabledControls) : [];
+    this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
+    if (this.displayMode == null) {
+      this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
+    }
+    let lookups = state.session.lookups;
+    this.viewGroups = lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, lookups.disabledControls) : [];
     this.loadingVisible = false;
+    this.contentReady.emit({ component: this, data: data });
     this.changeDetector.markForCheck();
   }
 
@@ -107,6 +133,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   protected onValueUpdated(e) {
+    // console.log(this.regRecord);
     this.valueUpdated.emit(e);
   }
 
@@ -116,11 +143,91 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  protected prepareRegistryRecord() {
+  protected updateEditMode() {
+    this.editMode = this.displayMode !== 'view';
+  }
+
+  public getUpdatedRecord(): Document {
+    let x2jsTool = this.x2jsTool;
+    this.viewGroups.forEach(vg => {
+      let items = vg.getItems(this.displayMode);
+      let validItems = items.filter(i => !i.itemType || i.itemType !== 'empty').map(i => i.dataField);
+      this.regRecord.serializeFormData(this.viewGroups, this.displayMode, validItems);
+    });
+    let recordDoc = x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });
+    if (!recordDoc) {
+      notifyError('Invalid content!', 5000);
+    }
+    return recordDoc;
+  }
+
+  public save(): boolean {
+    if (!this.formGroupView.validate()) {
+      notifyError('One or more entries failed to validate!', 5000);
+      return false;
+    }
+    let recordDoc = this.getUpdatedRecord();
+    if (!recordDoc) {
+      return false;
+    }
+    this.recordDoc = recordDoc;
+    let id = this.template ? -1 : this.id;
+    if (this.isNewRecord) {
+      // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
+      let canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
+      this.actions.saveRecord({
+        temporary: this.temporary, id: id, recordDoc: this.recordDoc,
+        saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempListView
+      });
+      if (!canRedirectToTempListView) {
+        this.displayMode = 'view';
+        this.changeDetector.markForCheck();
+      }
+    } else {
+      this.displayMode = 'view';
+      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
+      this.changeDetector.markForCheck();
+    }
+    return true;
+  }
+
+  public register() {
+    let recordDoc = this.getUpdatedRecord();
+    if (!recordDoc) {
+      return;
+    }
+    this.recordDoc = recordDoc;
+    let duplicateEnabled = this.ngRedux.getState().session.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
+    if (duplicateEnabled) {
+      this.loadingVisible = true;
+    }
+    this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
+  }
+
+  public prepareRegistryRecord() {
     let recordJson: any = this.x2jsTool.dom2js(this.recordDoc);
     this.regRecord = CRegistryRecord.createFromPlainObj(recordJson.MultiCompoundRegistryRecord);
     if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
       this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
     }
   }
-};
+
+  public get statusId(): number {
+    let statusIdText = this.recordDoc ? this.getElementValue(this.recordDoc.documentElement, 'StatusID') : null;
+    return statusIdText ? +statusIdText : null;
+  }
+
+  public set statusId(statusId: number) {
+    registryUtils.setElementValue(this.recordDoc.documentElement, 'StatusID', statusId.toString());
+  }
+
+  public get recordId(): string {
+    return this.temporary
+      ? this.getElementValue(this.recordDoc.documentElement, 'ID')
+      : this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
+  }
+
+  public clear() {
+    this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));
+  }
+}

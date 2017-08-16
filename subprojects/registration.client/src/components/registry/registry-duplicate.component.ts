@@ -13,10 +13,6 @@ import { apiUrlPrefix } from '../../configuration';
 import { RecordDetailActions, IAppState, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
 import { CRegistryRecord, CViewGroup, CFragment } from './base';
-import * as registryUtils from './registry.utils';
-import * as X2JS from 'x2js';
-
-declare var jQuery: any;
 
 @Component({
   selector: 'reg-duplicate-record',
@@ -120,8 +116,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
         return false;
       } else { return true; }
     }
-
   }
+
   loadData(e) {
     if (e) {
       this.gridHeight = this.parentHeight - 80;
@@ -136,6 +132,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
       this.changeDetector.markForCheck();
     }
   }
+
   updateGridColumn(gridColumn) {
     if (gridColumn.dataField === 'CREATOR') {
       gridColumn.lookup = {
@@ -153,6 +150,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
       template: 'toolbarContents'
     });
   }
+
   private getGridHeight() {
     return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
   }
@@ -179,5 +177,4 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     }
     return data;
   }
-
 };

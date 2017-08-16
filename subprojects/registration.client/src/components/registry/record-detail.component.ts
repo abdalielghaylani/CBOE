@@ -19,7 +19,7 @@ import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, n
 import { IResponseData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
-import { IRegistryRecord, CRegistryRecord, CFragment, CViewGroup, RegFormGroupView } from './base';
+import { IRegistryRecord, CRegistryRecord, CFragment, CViewGroup, RegRecordDetailBase } from './base';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
@@ -36,42 +36,33 @@ import { CSystemSettings } from '../../redux';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnChanges {
+export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   @ViewChild(RegTemplates) regTemplates: RegTemplates;
-  @ViewChild(RegFormGroupView) formGroupView: RegFormGroupView;
+  @ViewChild(RegRecordDetailBase) recordDetailView: RegRecordDetailBase;
   @Input() temporary: boolean;
   @Input() template: boolean;
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
-  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
-  private lookups: ILookupData;
-  public formGroup: IFormGroup;
-  public viewGroups: CViewGroup[];
-  public editMode: boolean = false;
-  private displayMode: string = 'view';
+  private displayMode: string;
   private title: string;
   private parentHeight: string;
   private approvalsEnabled: boolean = false;
   private editButtonEnabled: boolean = false;
   private saveButtonEnabled: boolean = false;
+  private cancelButtonEnabled: boolean = false;
   private registerButtonEnabled: boolean = false;
   private approveButtonEnabled: boolean = false;
   private cancelApprovalButtonEnabled: boolean = false;
   private deleteButtonEnabled: boolean = false;
   private clearButtonEnabled: boolean = false;
   private submissionTemplatesEnabled: boolean = false;
-  private recordDoc: Document;
-  private regRecord: CRegistryRecord = new CRegistryRecord();
   private routeSubscription: Subscription;
-  private dataSubscription: Subscription;
-  private loadSubscription: Subscription;
+  private duplicateSubscription: Subscription;
   private currentIndex: number = 0;
   private saveTemplateForm: DxForm;
   private saveTemplatePopupVisible: boolean = false;
-  private lookupsSubscription: Subscription;
   private newButtonEnabled: boolean = false;
-  private canRedirectToTempListView = true;
   private backButtonEnabled: boolean = false;
 
   private saveTemplateItems = [{
@@ -94,8 +85,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private saveTemplateData: IShareableObject = new CShareableObject('', '', false);
   private isLoggedInUserOwner: boolean = false;
   private isLoggedInUserSuperVisor: boolean = false;
-  private loadingVisible: boolean = false;
-
 
   constructor(
     public ngRedux: NgRedux<IAppState>,
@@ -115,9 +104,6 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     }
     this.parentHeight = this.getParentHeight();
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
-    if (!this.lookupsSubscription) {
-      this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
-    }
   }
 
   ngOnChanges() {
@@ -125,11 +111,14 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private update(forceUpdate: boolean = true) {
-    this.editMode = this.displayMode !== 'view';
-    if (!this.lookups || !this.lookups.userPrivileges) {
+    console.log('update detail 1: ' + forceUpdate);
+    let lookups = this.ngRedux.getState().session.lookups;
+    if (!lookups || !lookups.userPrivileges || !this.recordDetailView || this.displayMode == null) {
       return;
     }
-    let userPrivileges = this.lookups.userPrivileges;
+    console.log('update detail 2: ' + this.displayMode);
+    let editMode = this.displayMode !== 'view';
+    let userPrivileges = lookups.userPrivileges;
     let ss = new CSystemSettings(this.getLookup('systemSettings'));
     let statusId = this.statusId;
     let canEdit = this.isNewRecord ||
@@ -140,25 +129,27 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
       && PrivilegeUtils.hasApprovalPrivilege(userPrivileges);
 
     this.cancelApprovalButtonEnabled = this.approvalsEnabled
-      && !this.editMode
+      && !editMode
       && !!statusId
       && this.temporary
       && statusId === RegistryStatus.Approved
       && PrivilegeUtils.hasCancelApprovalPrivilege(userPrivileges);
 
-    this.editButtonEnabled = !this.isNewRecord && !this.cancelApprovalButtonEnabled && !this.editMode && canEdit;
-    this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled) || this.editMode;
+    this.editButtonEnabled = !this.isNewRecord && !this.cancelApprovalButtonEnabled && !editMode && canEdit;
+    this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled) || editMode;
+    this.cancelButtonEnabled = editMode && !this.isNewRecord;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
-    this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !this.editMode))
+    this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !editMode))
       && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
-    this.approveButtonEnabled = !this.editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+    this.approveButtonEnabled = !editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
 
     this.deleteButtonEnabled = !this.isNewRecord
       && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges)
       && this.editButtonEnabled;
 
+    let canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
     this.clearButtonEnabled = this.isNewRecord;
-    this.newButtonEnabled = !this.canRedirectToTempListView && !this.editMode;
+    this.newButtonEnabled = !canRedirectToTempListView && !editMode;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
@@ -174,20 +165,13 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     if (newIndex >= 0 && newIndex < segments.length - 1) {
       this.id = +segments[segments.length - 1].path;
     }
-    this.actions.retrieveRecord(this.temporary, this.template, this.id);
-    if (!this.dataSubscription) {
-      this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadData(value));
-      this.dataSubscription = this.duplicateRecord$.subscribe((value) => this.duplicateData(value));
+    if (!this.duplicateSubscription) {
+      this.duplicateSubscription = this.duplicateRecord$.subscribe((value) => this.duplicateData(value));
     }
-  }
-
-  retrieveContents(lookups: ILookupData) {
-    this.lookups = lookups;
   }
 
   duplicateData(e) {
     if (e) {
-      this.loadingVisible = false;
       this.currentIndex = 2;
       this.changeDetector.markForCheck();
     }
@@ -197,38 +181,13 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     if (this.routeSubscription) {
       this.routeSubscription.unsubscribe();
     }
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
-    if (this.loadSubscription) {
-      this.loadSubscription.unsubscribe();
-    }
-    if (this.lookupsSubscription) {
-      this.lookupsSubscription.unsubscribe();
+    if (this.duplicateSubscription) {
+      this.duplicateSubscription.unsubscribe();
     }
   }
 
   private getParentHeight() {
     return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
-  }
-
-  private get x2jsTool() {
-    return new X2JS.default({
-      arrayAccessFormPaths: [
-        'MultiCompoundRegistryRecord.ComponentList.Component',
-        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.PropertyList.Property',
-        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.FragmentList.Fragment',
-        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.IdentifierList.Identifier',
-        'MultiCompoundRegistryRecord.ComponentList.Component.Compound.BaseFragment.Structure.IdentifierList.Identifier',
-        'MultiCompoundRegistryRecord.BatchList.Batch',
-        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
-        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
-        'MultiCompoundRegistryRecord.BatchList.Batch.IdentifierList.Identifier',
-        'MultiCompoundRegistryRecord.IdentifierList.Identifier',
-        'MultiCompoundRegistryRecord.ProjectList.Project',
-        'MultiCompoundRegistryRecord.PropertyList.Property',
-      ]
-    });
   }
 
   private onResize(event: any) {
@@ -242,95 +201,29 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
     }
   }
 
-  private onValueUpdated(e) {
-    // console.log(this.regRecord);
-  }
-
-  private prepareRegistryRecord() {
-    let recordJson: any = this.x2jsTool.dom2js(this.recordDoc);
-    this.regRecord = CRegistryRecord.createFromPlainObj(recordJson.MultiCompoundRegistryRecord);
-    if (!this.regRecord.ComponentList.Component[0].Compound.FragmentList) {
-      this.regRecord.ComponentList.Component[0].Compound.FragmentList = { Fragment: [new CFragment()] };
-    }    
-  }
-
-  loadData(recordDetail: IRecordDetail, duplicateResolution: boolean = false) {
-    if (this.temporary !== recordDetail.temporary || this.id !== recordDetail.id) {
-      return;
-    }
-    this.recordDoc = registryUtils.getDocument(recordDetail.data);
-    this.isLoggedInUserOwner = recordDetail.isLoggedInUserOwner;
-    this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
-    this.title = this.isNewRecord ?
-      'Register a New Compound' :
-      recordDetail.temporary ?
-        'Edit a Temporary Record: ' + this.getElementValue(this.recordDoc.documentElement, 'ID') :
-        'Edit a Registry Record: ' + this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
-    this.prepareRegistryRecord();
-    let formGroupType = FormGroupType.SubmitMixture;
-    if (recordDetail.id >= 0 && !recordDetail.temporary) {
-      // TODO: For mixture, this should be ReviewRegistryMixture
-      formGroupType = FormGroupType.ViewMixture;
-    }
-    prepareFormGroupData(formGroupType, this.ngRedux);
-    let state = this.ngRedux.getState();
-    this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
-    this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
-    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
-    this.update();
-  }
-
   getElementValue(e: Element, path: string) {
     return registryUtils.getElementValue(e, path);
   }
 
-  private getUpdatedRecord() {
-    let x2jsTool = this.x2jsTool;
-    this.viewGroups.forEach(vg => {
-      let items = vg.getItems(this.displayMode);
-      let validItems = items.filter(i => !i.itemType || i.itemType !== 'empty').map(i => i.dataField);
-      this.regRecord.serializeFormData(this.viewGroups, this.displayMode, validItems);
-    });
-    let recordDoc = x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });
-    if (!recordDoc) {
-      notifyError('Invalid content!', 5000);
-    }
-    return recordDoc;
-  }
-
   save() {
-    if (!this.formGroupView.validate()) {
-      notifyError('One or more entries failed to validate!', 5000);
-      return;
-    }
-    let recordDoc = this.getUpdatedRecord();
-    if (!recordDoc) {
-      return;
-    }
-    this.recordDoc = recordDoc;
-    let id = this.template ? -1 : this.id;
-    if (this.isNewRecord) {
-      // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
-      this.canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.lookups.userPrivileges);
-      this.actions.saveRecord({
-        temporary: this.temporary, id: id, recordDoc: this.recordDoc,
-        saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: this.canRedirectToTempListView
-      });
-      if (!this.canRedirectToTempListView) {
-        this.setDisplayMode('view');
+    if (this.recordDetailView.save()) {
+      this.displayMode = 'view';
+      if (this.isNewRecord) {
+        if (this.recordDetailView.displayMode !== 'view') {
+          return;
+        }
         this.saveButtonEnabled = false;
         this.clearButtonEnabled = false;
         this.newButtonEnabled = true;
       }
-    } else {
-      this.setDisplayMode('view');
-      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
+      this.update();
     }
   }
 
   cancel() {
-    this.prepareRegistryRecord();
-    this.setDisplayMode('view');
+    this.recordDetailView.prepareRegistryRecord();
+    this.displayMode = 'view';
+    this.update();
   }
 
   cancelDuplicateResolution(e) {
@@ -339,7 +232,8 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   edit() {
-    this.setDisplayMode('edit');
+    this.displayMode = 'edit';
+    this.update();
   }
 
   newRecord() {
@@ -354,21 +248,7 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   register() {
-    let recordDoc = this.getUpdatedRecord();
-    if (!recordDoc) {
-      return;
-    }
-    this.recordDoc = recordDoc;
-    let duplicateEnabled = this.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
-    if (duplicateEnabled) {
-      this.loadingVisible = true;
-    }
-    this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
-  }
-
-  private setDisplayMode(mode: string) {
-    this.displayMode = mode;
-    this.update();
+    this.recordDetailView.register();
   }
 
   private togglePanel(e) {
@@ -389,16 +269,15 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   private saveTemplate(e) {
     let result: any = this.saveTemplateForm.validate();
     if (result.isValid) {
-      let recordDoc = this.getUpdatedRecord();
+      let recordDoc = this.recordDetailView.getUpdatedRecord();
       if (!recordDoc) {
         return;
       }
-      this.recordDoc = recordDoc;
       let url = `${apiUrlPrefix}templates`;
       let data: ITemplateData = new CTemplateData(this.saveTemplateData.name);
       data.description = this.saveTemplateData.description;
       data.isPublic = this.saveTemplateData.isPublic;
-      data.data = registryUtils.serializeData(this.recordDoc);
+      data.data = registryUtils.serializeData(recordDoc);
       this.http.post(url, data).toPromise()
         .then(res => {
           this.regTemplates.dataSource = undefined;
@@ -441,12 +320,13 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private get statusId(): number {
-    let statusIdText = this.recordDoc ? this.getElementValue(this.recordDoc.documentElement, 'StatusID') : null;
-    return statusIdText ? +statusIdText : null;
+    return this.recordDetailView != null ? this.recordDetailView.statusId : null;
   }
 
   private set statusId(statusId: number) {
-    registryUtils.setElementValue(this.recordDoc.documentElement, 'StatusID', statusId.toString());
+    if (this.recordDetailView != null) {
+      this.recordDetailView.statusId = statusId;
+    }
   }
 
   private cancelApproval() {
@@ -494,12 +374,26 @@ export class RegRecordDetail implements IFormContainer, OnInit, OnDestroy, OnCha
   }
 
   private clear() {
-    // TODO: Bind an empty data object to the form-group view
-    // CBOE-5060: 'Clear' button is missing in submit new compound page
+    this.recordDetailView.clear();
   }
 
   private getLookup(name: string): any[] {
     let lookups = this.ngRedux.getState().session.lookups;
     return lookups ? lookups[name] : [];
+  }
+
+  private onDetailContentReady(e) {
+    let recordDetail: IRecordDetail = e.data;
+    this.isLoggedInUserOwner = recordDetail.isLoggedInUserOwner;
+    this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
+    let recordDetailBase: RegRecordDetailBase = e.component;
+    this.displayMode = recordDetailBase.displayMode;
+    let recordId = recordDetailBase.recordId;
+    this.title = this.isNewRecord ?
+      'Register a New Compound' :
+      this.temporary ?
+        'Edit a Temporary Record: ' + recordId :
+        'Edit a Registry Record: ' + recordId;
+    this.update();
   }
 };

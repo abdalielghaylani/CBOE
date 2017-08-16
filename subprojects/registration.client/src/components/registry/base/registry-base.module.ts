@@ -63,6 +63,7 @@ export * from './form-view';
 export * from './form-group-view';
 export * from './registry-base.types';
 export * from './structure-image.service';
+export * from './record-detail-base';
 
 @NgModule({
   imports: [

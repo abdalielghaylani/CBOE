@@ -55,8 +55,8 @@
     </reg-header>
     <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
       <span class="form-inline">
-    <reg-record-detail-base [id]="currentRecord.ID" [template]="false" [temporary]="false" [editMode]="false" displayMode="view" [activated]="true"></reg-record-detail-base>
-  </span>
+        <reg-record-detail-base [id]="currentRecord.ID" [template]="false" [temporary]="false" displayMode="view" [activated]="true"></reg-record-detail-base>
+      </span>
     </dx-scroll-view>
   </div>
   <dx-load-panel [position]="{ of: '#duplicate-record-view' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true"
