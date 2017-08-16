@@ -223,7 +223,7 @@ export class CViewGroup implements IViewGroup {
     return pageId ? disabledControls.filter(dc => dc.pageId === pageId) : [];
   }
 
-  private static sortForms(forms: ICoeForm[]): ICoeForm[] {
+  private static sortAndFilterForms(forms: ICoeForm[]): ICoeForm[] {
     // The form array sometimes is not sorted property.
     // Registry should go first.
     // For now, doc-manager and inventory integration forms are removed.
@@ -234,9 +234,16 @@ export class CViewGroup implements IViewGroup {
         sorted.push(f);
       }
     });
+    let fragmentsFound = false;
     forms.forEach(f => {
       let dataSource = f._dataSourceId ? f._dataSourceId.toLowerCase() : '';
       if (!dataSource.startsWith('mixture') && !dataSource.startsWith('docmgr') && !dataSource.startsWith('inv')) {
+        if (dataSource.startsWith('fragments')) {
+          if (fragmentsFound) {
+            return;
+          }
+          fragmentsFound = true;
+        }
         sorted.push(f);
       }
     });
@@ -263,7 +270,7 @@ export class CViewGroup implements IViewGroup {
     let form: IForm = this.getForm(config, displayMode);
     if (form) {
       let disabledControlsFiltered = this.getFilteredDisabledControls(displayMode, disabledControls);
-      let coeForms = this.sortForms(form.coeForms.coeForm);
+      let coeForms = this.sortAndFilterForms(form.coeForms.coeForm);
       coeForms.forEach(f => {
         if (f.formDisplay.visible === 'true') {
           if (viewGroups.length === 0) {
