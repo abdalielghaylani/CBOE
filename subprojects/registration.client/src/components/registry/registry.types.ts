@@ -1,11 +1,14 @@
 import { apiUrlPrefix } from '../../configuration';
 import {
+  IIdentifier, IIdentifierList, IProjectList, IFragment, IComponent,
+  IBatchComponentFragment, IBatch, IProperty, IPropertyList
+} from '../common';
+import {
   IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
 import { IAppState, IRecordsData, IRecords, ILookupData } from '../../redux';
 import {
-  IIdentifier, IIdentifierList, IProjectList, IFragment, IComponent,
-  IBatchComponentFragment, IBatch, IRegistryRecord, IProperty, IPropertyList
+  IRegistryRecord
 } from './base';
 
 export enum RegistryStatus {

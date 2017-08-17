@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate, CValidator } from '../registry-base.types';
+import { IFormItemTemplate, CValidator } from '../common.types';
 
 @Component({
   selector: 'reg-base-form-item-template',
   template: ``,
-  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

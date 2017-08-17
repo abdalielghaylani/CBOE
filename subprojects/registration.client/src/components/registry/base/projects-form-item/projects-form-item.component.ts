@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
-import { RegTagBoxFormItem } from '../tag-box-form-item';
+import { IFormItemTemplate, RegTagBoxFormItem, tagBoxFormItemTemplate } from '../../../common';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
 
 @Component({
   selector: 'reg-projects-form-item-template',
-  template: require('../tag-box-form-item/tag-box-form-item.component.html'),
+  template: tagBoxFormItemTemplate,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

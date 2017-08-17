@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../../redux';
+import { IAppState } from '../../../redux';
 import { RegBaseFormItem } from '../base-form-item';
 
 @Component({
   selector: 'reg-drop-down-form-item-template',
   template: require('./drop-down-form-item.component.html'),
-  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

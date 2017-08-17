@@ -8,7 +8,8 @@ import { IFormGroup, prepareFormGroupData, FormGroupType, PrivilegeUtils, notify
 import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../../../redux';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
-import { CRegistryRecord, CViewGroup, CFragment } from '../../base';
+import { CFragment } from '../../../common';
+import { CRegistryRecord, CViewGroup } from '../../base';
 import { RegFormGroupView } from '../form-group-view';
 import * as registryUtils from '../../registry.utils';
 import * as X2JS from 'x2js';

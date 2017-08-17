@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IViewControl, CViewGroup, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject, IPropertyList } from '../registry-base.types';
+import { CViewGroup, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject } from '../registry-base.types';
+import { IViewControl, IPropertyList } from '../../../common';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
 
 @Component({

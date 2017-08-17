@@ -12,7 +12,8 @@ import { IFormGroup, prepareFormGroupData, FormGroupType, getExceptionMessage, n
 import { apiUrlPrefix } from '../../configuration';
 import { RecordDetailActions, IAppState, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
-import { CRegistryRecord, CViewGroup, CFragment } from './base';
+import { CRegistryRecord, CViewGroup } from './base';
+import { CFragment } from '../common';
 
 @Component({
   selector: 'reg-duplicate-record',

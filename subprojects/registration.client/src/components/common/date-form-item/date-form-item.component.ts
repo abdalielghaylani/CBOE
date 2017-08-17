@@ -5,7 +5,6 @@ import * as moment from 'moment-es6';
 @Component({
   selector: 'reg-date-form-item-template',
   template: require('./date-form-item.component.html'),
-  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

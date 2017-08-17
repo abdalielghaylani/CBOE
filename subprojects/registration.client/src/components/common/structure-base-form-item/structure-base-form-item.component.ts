@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
-import { ChemDrawWeb } from '../../../common';
+import { IFormItemTemplate } from '../common.types';
+import { ChemDrawWeb } from '../chemdraw-web';
 
 @Component({
   selector: 'reg-structure-base-form-item-template',
   template: ``,
-  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
