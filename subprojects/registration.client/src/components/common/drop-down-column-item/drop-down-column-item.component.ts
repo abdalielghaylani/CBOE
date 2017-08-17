@@ -19,10 +19,7 @@ export class RegDropDownColumnItem extends RegBaseColumnItem implements AfterVie
   protected useNumericValue: boolean = false;
 
   serializeValue(value: any): any {
-    if (value == null) {
-      value = '';
-    }
-    return this.useNumericValue ? value.toString() : value;
+    return this.useNumericValue ? (value == null ? '' : value.toString()) : value;
   }
 
   deserializeValue(value: any): any {

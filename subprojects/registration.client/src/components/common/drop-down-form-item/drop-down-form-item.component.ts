@@ -24,10 +24,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
   }
 
   serializeValue(value: any): any {
-    if (value == null) {
-      value = '';
-    }
-    return this.useNumericValue ? value.toString() : value;
+    return this.useNumericValue ? (value == null ? '' : value.toString()) : value;
   }
 
   protected update() {
