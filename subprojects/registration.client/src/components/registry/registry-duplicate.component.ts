@@ -43,13 +43,11 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   }, {
     dataField: 'CREATED',
     dataType: 'date',
-    caption: 'Created',
-    width: 80
+    caption: 'Created'
   }, {
     dataField: 'MODIFIED',
     dataType: 'date',
-    caption: 'Modified',
-    width: 80
+    caption: 'Modified'
   }, {
     dataField: 'CREATOR',
     caption: 'Created By'
@@ -73,7 +71,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     caption: 'Resolution options',
     cellTemplate: 'resolutionOptionTemplate',
     allowFiltering: false,
-    allowSorting: false
+    allowSorting: false,
+    width: 150
   }];
   private buttonVisibility = { duplicate: true, addBatch: true, useComponent: true, useStructure: true };
   private editRowIndex: number = -1;
@@ -126,7 +125,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
       this.buttonVisibility.duplicate = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
       this.buttonVisibility.useComponent = settings.filter(s => s.name === 'EnableUseComponentButton')[0].value === 'True' ? true : false;
       this.buttonVisibility.useStructure = settings.filter(s => s.name === 'EnableUseStructureButton')[0].value === 'True' ? true : false;
-      this.datasource = this.getDataSource(this.ngRedux.getState().session.lookups.users, e);
+      this.datasource = e;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
       this.actions.clearDuplicateRecord();
       this.changeDetector.markForCheck();
@@ -171,10 +170,4 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     this.onClose.emit(e);
   }
 
-  private getDataSource(users, data) {
-    for (let val of data) {
-      val.CREATOR = users.filter(i => i.PERSONID === val.CREATOR)[0].USERID;
-    }
-    return data;
-  }
 };
