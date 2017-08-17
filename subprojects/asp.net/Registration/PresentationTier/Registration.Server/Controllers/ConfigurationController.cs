@@ -515,9 +515,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
                     {
                         string structure = dr[dc] == null ? string.Empty : dr[dc].ToString();
-                        if (!string.IsNullOrEmpty(structure) && structure.StartsWith("VmpD"))
+                        if (!string.IsNullOrEmpty(structure))
                         {
-                            structure = ChemistryHelper.ConvertToCdxml(structure, true);
+                           string converted  = ChemistryHelper.ConvertToCdxml(structure, true);
+                           structure = converted.Replace("\r\n", " ");
                         }
                         data.Add(new JProperty(dc.ColumnName, structure));
                     }
