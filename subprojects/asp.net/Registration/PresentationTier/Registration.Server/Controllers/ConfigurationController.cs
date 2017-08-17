@@ -67,7 +67,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         || columnName.Equals("EXT_DISPLAY_COL", StringComparison.OrdinalIgnoreCase)
                         || columnName.Equals("EXT_SQL_FILTER", StringComparison.OrdinalIgnoreCase)
                         || columnName.Equals("EXT_SQL_SORTORDER", StringComparison.OrdinalIgnoreCase))
-                    {                      
+                    {
                         if ((column.FieldValue != null) && (!string.IsNullOrEmpty(column.FieldValue.ToString())))
                             COETableEditorBO.Get(tableName, columns);
                         break;
@@ -94,8 +94,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var columnValue = (string)data[columnName];
             if (columnValue == null)
             {
-               var defaultValue = COETableEditorUtilities.getDefaultValue(tableName, column.FieldName);            
-               column.FieldValue = defaultValue;
+                var defaultValue = COETableEditorUtilities.getDefaultValue(tableName, column.FieldName);
+                column.FieldValue = defaultValue;
             }
             else if (COETableEditorUtilities.getIsStructure(tableName, column.FieldName))
             {
@@ -511,7 +511,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var dr = selected[0];
                 var data = new JObject();
                 foreach (DataColumn dc in dt.Columns)
-                    data.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
+                {
+                    if (dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
+                    {
+                        string structure = dr[dc] == null ? string.Empty : dr[dc].ToString();
+                        if (!string.IsNullOrEmpty(structure) && structure.StartsWith("VmpD"))
+                        {
+                            structure = ChemistryHelper.ConvertToCdxml(structure, true);
+                        }
+                        data.Add(new JProperty(dc.ColumnName, structure));
+                    }
+                    else
+                    {
+                        data.Add(new JProperty(dc.ColumnName, dr[dc]));
+                    }
+                }
+
                 return data;
             }, new string[] { Consts.PrivilegeConfigReg });
         }
