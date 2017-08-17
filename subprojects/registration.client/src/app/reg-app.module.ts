@@ -17,13 +17,11 @@ import {
   RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
   RegSettingsPageHeader
 } from '../components';
-import { RegRecords, RegRecordDetail, RegRecordSearch, RegStructureImage, RegQueryManagement, RegTemplates, RegDuplicateRecord } from '../components';
+import { RegRecords, RegRecordDetail, RegRecordSearch, RegQueryManagement, RegTemplates, RegDuplicateRecord } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
 import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
-import { RegServicesModule } from '../services';
-import { RegCommonComponentModule } from '../components';
-import { RegLayoutComponentModule } from '../components';
+import { RegConfigurationComponentModule } from '../components';
 import { RegBaseComponentModule } from '../components/registry/base/';
 import {
   DxCheckBoxModule,
@@ -49,9 +47,7 @@ import {
     BrowserModule,
     routing,
     CommonModule,
-    RegServicesModule,
-    RegCommonComponentModule,
-    RegLayoutComponentModule,
+    RegConfigurationComponentModule,
     RegLoginModule,
     RegNavigatorModule,
     RegBaseComponentModule,
@@ -82,9 +78,7 @@ import {
     RegDuplicateRecord,
     RegRecordSearch,
     RegRecordDetail,
-    RegStructureImage,
     RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
-    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms, RegSettingsPageHeader,
     RegLoginPage,
     RegAboutPage,
     UnAuthorizedPage

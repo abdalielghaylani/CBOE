@@ -4,4 +4,3 @@ export * from './configuration';
 export * from './registry';
 export * from './login';
 export * from './navigator';
-export * from './structure-image';

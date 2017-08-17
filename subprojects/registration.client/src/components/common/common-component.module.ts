@@ -24,6 +24,7 @@ import {
   DxValidatorModule
 } from 'devextreme-angular';
 import { RegCommonModule } from '../../common';
+import { RegServicesModule } from '../../services';
 import { ChemDrawWeb } from './chemdraw-web';
 import { RegAlert } from './alert';
 import { RegButton } from './button';
@@ -37,6 +38,7 @@ import { RegDropDownColumnItem } from './drop-down-column-item';
 import { RegDropDownFormItem } from './drop-down-form-item';
 import { RegStructureBaseFormItem } from './structure-base-form-item';
 import { RegStructureColumnItem } from './structure-column-item';
+import { RegStructureImage } from './structure-image';
 import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegTextFormItem } from './text-form-item';
@@ -51,6 +53,7 @@ export * from './drop-down-column-item';
 export * from './drop-down-form-item';
 export * from './structure-base-form-item';
 export * from './structure-column-item';
+export * from './structure-image';
 export * from './structure-image-form-item';
 export * from './tag-box-form-item';
 export * from './text-form-item';
@@ -84,7 +87,8 @@ export * from './modal';
     DxListModule,
     DxTextBoxModule,
     DxValidatorModule,
-    RegCommonModule
+    RegCommonModule,
+    RegServicesModule
   ],
   declarations: [
     ChemDrawWeb,
@@ -93,7 +97,8 @@ export * from './modal';
     RegModal, RegModalContent,
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
-    RegStructureBaseFormItem, RegStructureImageFormItem
+    RegStructureBaseFormItem, RegStructureImageFormItem,
+    RegStructureImage
   ],
   exports: [
     ChemDrawWeb,
@@ -103,7 +108,8 @@ export * from './modal';
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem,
-    RegCommonModule
+    RegStructureImage,
+    RegCommonModule, RegServicesModule
   ],
   providers: [
     CStructureImageService
