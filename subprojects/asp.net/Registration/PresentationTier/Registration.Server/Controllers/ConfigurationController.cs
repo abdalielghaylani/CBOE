@@ -476,10 +476,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
                     foreach (DataRow dr in dt.Rows)
                     {
-                        var p = new JObject();
+                        var row = new JObject();
                         foreach (DataColumn dc in dt.Columns)
-                            p.Add(new JProperty(dc.ColumnName, dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase) ? "fragment/" + dr[0].ToString() : dr[dc]));
-                        rows.Add(p);
+                        {
+                            if (dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
+                            {
+                                string structure = dr[dc] == null ? string.Empty : dr[dc].ToString();
+                                if (!string.IsNullOrEmpty(structure))
+                                {
+                                    string converted = ChemistryHelper.ConvertToCdxml(structure, true);
+                                    structure = converted.Replace("\r\n", " ");
+                                }
+                                row.Add(new JProperty(dc.ColumnName, "fragment/" + dr[0].ToString()));
+                                row.Add(new JProperty("STRUCTURE_XML", structure));
+                            }
+                            else
+                            {
+                                row.Add(new JProperty(dc.ColumnName, dr[dc]));
+                            }
+                        }
+
+                        rows.Add(row);
                     }
                 }
                 return new JObject(
@@ -517,8 +534,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         string structure = dr[dc] == null ? string.Empty : dr[dc].ToString();
                         if (!string.IsNullOrEmpty(structure))
                         {
-                           string converted  = ChemistryHelper.ConvertToCdxml(structure, true);
-                           structure = converted.Replace("\r\n", " ");
+                            string converted = ChemistryHelper.ConvertToCdxml(structure, true);
+                            structure = converted.Replace("\r\n", " ");
                         }
                         data.Add(new JProperty(dc.ColumnName, structure));
                     }
