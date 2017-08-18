@@ -27,7 +27,7 @@ import { RegTemplates } from './templates.component';
 import { RegistryStatus } from './registry.types';
 import { CFragment } from '../common';
 import { PrivilegeUtils } from '../../common';
-import { CSystemSettings } from '../../redux';
+import { CSystemSettings, ISaveResponseData } from '../../redux';
 
 @Component({
   selector: 'reg-record-detail',
@@ -45,6 +45,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   @Input() id: number;
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
+  @select(s => s.registry.saveResponse) saveResponse$: Observable<ISaveResponseData>;
   private displayMode: string;
   private title: string;
   private parentHeight: string;
@@ -60,11 +61,13 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private submissionTemplatesEnabled: boolean = false;
   private routeSubscription: Subscription;
   private duplicateSubscription: Subscription;
+  private saveResponseSubscription: Subscription;
   private currentIndex: number = 0;
   private saveTemplateForm: DxForm;
   private saveTemplatePopupVisible: boolean = false;
   private newButtonEnabled: boolean = false;
   private backButtonEnabled: boolean = false;
+  private revision; number = new Date().getTime();
 
   private saveTemplateItems = [{
     dataField: 'name',
@@ -183,6 +186,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     if (this.duplicateSubscription) {
       this.duplicateSubscription.unsubscribe();
     }
+    this.clearSaveResponseSubscription();
   }
 
   private getParentHeight() {
@@ -202,21 +206,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   getElementValue(e: Element, path: string) {
     return registryUtils.getElementValue(e, path);
-  }
-
-  save() {
-    if (this.recordDetailView.save()) {
-      this.displayMode = 'view';
-      if (this.isNewRecord) {
-        if (this.recordDetailView.displayMode !== 'view') {
-          return;
-        }
-        this.saveButtonEnabled = false;
-        this.clearButtonEnabled = false;
-        this.newButtonEnabled = true;
-      }
-      this.update();
-    }
   }
 
   cancel() {
@@ -246,8 +235,40 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.router.navigate([`${path}/restore/${hitListId}`]);
   }
 
+  save() {
+    if (this.recordDetailView.save()) {
+      this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
+    }
+  }
+
   register() {
     this.recordDetailView.register();
+  }
+
+  private clearSaveResponseSubscription() {
+    if (this.saveResponseSubscription) {
+      this.saveResponseSubscription.unsubscribe();
+      this.saveResponseSubscription = undefined;
+    }
+  }
+
+  private refreshDetailView(data: ISaveResponseData) {
+    if (data == null) {
+      return;
+    }
+    this.clearSaveResponseSubscription();
+    this.actions.clearSaveResponse();
+    this.displayMode = 'view';
+    if (this.isNewRecord) {
+      if (this.recordDetailView.displayMode !== 'view') {
+        return;
+      }
+      this.saveButtonEnabled = false;
+      this.clearButtonEnabled = false;
+      this.newButtonEnabled = true;
+    }
+    this.revision = new Date().getTime();
+    this.update();
   }
 
   private togglePanel(e) {

@@ -48,6 +48,7 @@ export interface IRegistry {
   structureData: string;
   previousRecordDetail: IRecordDetail;
   duplicateRecords: any[] | any;
+  saveResponse: ISaveResponseData;
 }
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }
@@ -74,3 +75,10 @@ export interface IRecordSaveData {
   redirectToRecordsView?: boolean;
 }
 
+export class CSaveResponseData {
+  constructor(public id: number, public temporary: boolean, public error?: any) {
+  }
+}
+
+export interface ISaveResponseData extends CSaveResponseData {  
+}

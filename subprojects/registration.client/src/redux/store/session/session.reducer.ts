@@ -8,6 +8,14 @@ import {
 } from './session.initial-state';
 import { notifyError, notifyException } from '../../../common';
 
+function handleError(currentState: ISessionRecord, error): ISessionRecord {
+  if (error.status && error.status === 404) {
+    return INITIAL_SESSION_STATE;
+  }
+  notifyException('The operation failed unexpectedly', error, 5000);
+  return currentState;
+}
+
 export function sessionReducer(
   state: ISessionRecord = INITIAL_SESSION_STATE,
   action: IPayloadAction): ISessionRecord {
@@ -47,13 +55,11 @@ export function sessionReducer(
     case RegistryActions.OPEN_RECORDS_ERROR:
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
     case RecordDetailActions.LOAD_STRUCTURE_ERROR:
-    case RecordDetailActions.SAVE_RECORD_ERROR:
     case RecordDetailActions.UPDATE_RECORD_ERROR:
-      if (action.payload.status && action.payload.status === 404) {
-        return INITIAL_SESSION_STATE;
-      }
-      notifyException('The operation failed unexpectedly', action.payload, 5000);
-      return state;
+      return handleError(state, action.payload);
+
+    case RecordDetailActions.SAVE_RECORD_ERROR:
+      return handleError(state, action.payload.error);
 
     default:
       return state;

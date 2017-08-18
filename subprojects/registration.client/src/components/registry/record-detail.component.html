@@ -24,7 +24,7 @@
   </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
+      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
     </form>
   </dx-scroll-view>
   <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">

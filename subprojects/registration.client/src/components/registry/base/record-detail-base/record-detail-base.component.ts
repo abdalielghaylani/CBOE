@@ -30,6 +30,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   @Input() id: number;
   @Input() activated: boolean;
   @Input() displayMode: string;
+  @Input() revision?: number;
   public editMode: boolean;
   protected dataSubscription: Subscription;
   protected viewId: string;
@@ -78,6 +79,9 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     this.updateEditMode();
     if (this.id != null) {
       let viewId = `formGroupView_${this.id}`.replace('-', '_');
+      if (this.revision != null) {
+        viewId += `_${this.revision}`;
+      }
       if (viewId !== this.viewId) {
         this.viewId = viewId;
         this.position = `{ of: '#${this.viewId}' }`;
@@ -181,14 +185,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
         temporary: this.temporary, id: id, recordDoc: this.recordDoc,
         saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempListView
       });
-      if (!canRedirectToTempListView) {
-        this.displayMode = 'view';
-        this.changeDetector.markForCheck();
-      }
     } else {
-      this.displayMode = 'view';
       this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
-      this.changeDetector.markForCheck();
     }
     return true;
   }

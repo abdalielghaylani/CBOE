@@ -14,7 +14,7 @@ import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../redux';
-import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState } from '../redux';
+import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState, CSaveResponseData } from '../redux';
 import { IResponseData } from '../components';
 import { HttpService } from '../services';
 
@@ -96,16 +96,13 @@ export class RegistryEpics {
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${createRecordAction ? regNum : ''} successfully!`;
               notifySuccess(message, 5000);
-              if (payload.redirectToRecordsView === undefined || payload.redirectToRecordsView) {
-                return createRecordAction
-                  ? createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`)
-                  : createAction(RegActions.IGNORE_ACTION)();
-              } else {
-                return createAction(RegActions.IGNORE_ACTION)();
+              if ((payload.redirectToRecordsView === undefined || payload.redirectToRecordsView) && createRecordAction) {
+                return createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`);
               }
+              return RecordDetailActions.saveRecordSuccessAction(new CSaveResponseData(id, temporary));
             }
           })
-          .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(error)));
+          .catch(error => Observable.of(RecordDetailActions.saveRecordErrorAction(new CSaveResponseData(id, temporary, error))));
       });
   }
 

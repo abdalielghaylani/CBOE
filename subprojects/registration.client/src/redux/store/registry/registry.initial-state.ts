@@ -127,7 +127,8 @@ export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({
   currentRecord: INITIAL_RECORD_DETAIL,
   previousRecordDetail: INITIAL_RECORD_DETAIL,
   structureData: null,
-  duplicateRecords: null
+  duplicateRecords: null,
+  saveResponse: null
 });
 
 export const INITIAL_REGISTRY_STATE = RegistryFactory();

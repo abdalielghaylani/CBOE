@@ -1,6 +1,6 @@
-import { RegistryActions, RecordDetailActions, IPayloadAction } from '../../actions';
+import { RegistryActions, RecordDetailActions, SessionActions, IPayloadAction } from '../../actions';
 import { INITIAL_REGISTRY_STATE, INITIAL_RECORD_DETAIL } from './registry.initial-state';
-import { IRegistryRecord, IRecordDetail, IRecords, CRecordsData } from './registry.types';
+import { IRegistryRecord, IRecordDetail, IRecords, CRecordsData, ISaveResponseData } from './registry.types';
 
 export function registryReducer(
   state: IRegistryRecord = INITIAL_REGISTRY_STATE,
@@ -35,6 +35,11 @@ export function registryReducer(
       let a4 = action as ReduxActions.Action<any>;
       return state.update('previousRecordDetail', () => a4.payload);
 
+    case RecordDetailActions.SAVE_RECORD_SUCCESS:
+    case RecordDetailActions.SAVE_RECORD_ERROR:
+      let a5 = action as ReduxActions.Action<ISaveResponseData>;
+      return state.update('saveResponse', () => a5.payload);
+
     case RecordDetailActions.RETRIEVE_RECORD_SUCCESS:
       let a3 = action as ReduxActions.Action<IRecordDetail>;
       return state.update('currentRecord', () => a3.payload);
@@ -45,6 +50,12 @@ export function registryReducer(
     case RecordDetailActions.LOAD_STRUCTURE_SUCCESS:
       let cdxml = (action.payload as { data }).data;
       return state.update('structureData', () => cdxml);
+    
+    case RecordDetailActions.CLEAR_SAVE_RESPONSE:
+      return state.update('saveResponse', () => null);
+
+    case SessionActions.LOGOUT_USER:
+      return INITIAL_REGISTRY_STATE;
 
     default:
       return state;

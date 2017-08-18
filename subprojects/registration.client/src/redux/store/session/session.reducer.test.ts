@@ -79,7 +79,7 @@ describe('Session Reducer', () => {
     expect(nextState).toEqual(INITIAL_SESSION_STATE);
     nextState = sessionReducer(
       previousState,
-      RecordDetailActions.saveRecordErrorAction(error));
+      RecordDetailActions.saveRecordErrorAction({ error }));
     expect(nextState).toEqual(INITIAL_SESSION_STATE);
   });
 
@@ -100,7 +100,7 @@ describe('Session Reducer', () => {
     expect(nextState).toEqual(previousState);
     nextState = sessionReducer(
       previousState,
-      RecordDetailActions.saveRecordErrorAction(error));
+      RecordDetailActions.saveRecordErrorAction({ error }));
     expect(nextState).toEqual(previousState);
   });
 });

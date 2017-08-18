@@ -23,6 +23,7 @@ export class RecordDetailActions {
   static LOAD_STRUCTURE = 'LOAD_STRUCTURE';
   static LOAD_STRUCTURE_SUCCESS = 'LOAD_STRUCTURE_SUCCESS';
   static LOAD_STRUCTURE_ERROR = 'LOAD_STRUCTURE_ERROR';
+  static CLEAR_SAVE_RESPONSE = 'CLEAR_SAVE_RESPONSE';
   static clearRecordAction = createAction(RecordDetailActions.CLEAR_RECORD);
   static clearDuplicateRecordAction = createAction(RecordDetailActions.CLEAR_DUPLICATE_RECORD);
   static retrieveRecordAction = createAction(RecordDetailActions.RETRIEVE_RECORD,
@@ -41,6 +42,7 @@ export class RecordDetailActions {
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
   static loadStructureSuccessAction = createAction(RecordDetailActions.LOAD_STRUCTURE_SUCCESS);
   static loadStructureErrorAction = createAction(RecordDetailActions.LOAD_STRUCTURE_ERROR);
+  static clearSaveResponseAction = createAction(RecordDetailActions.CLEAR_SAVE_RESPONSE);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -82,5 +84,9 @@ export class RecordDetailActions {
 
   loadStructureError(data: string) {
     this.ngRedux.dispatch(RecordDetailActions.loadStructureErrorAction(data));
+  }
+
+  clearSaveResponse() {
+    this.ngRedux.dispatch(RecordDetailActions.clearSaveResponseAction());
   }
 }
