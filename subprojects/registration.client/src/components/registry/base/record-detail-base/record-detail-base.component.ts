@@ -94,6 +94,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
 
   protected loadRecordData(data: IRecordDetail) {
     if (!data.data || data.id !== this.id || (!this.isNewRecord && data.temporary !== this.temporary)) {
+      this.loadingVisible = true;
       this.actions.retrieveRecord(this.temporary, this.template, this.id);
       return;
     }
