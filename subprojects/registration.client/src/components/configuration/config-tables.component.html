@@ -1,8 +1,11 @@
-<div class="viewcontainer" (window:resize)="onResize($event)">
-  <reg-settings-page-header>{{ this.tableName() }}</reg-settings-page-header>
+<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configTable.window.viewIndex==='list')">
+  <reg-settings-page-header>{{ configTable.window.title }}</reg-settings-page-header>
   <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
-    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)'>
-    <dxo-editing mode="row" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')" [allowAdding]="hasPrivilege('ADD')"></dxo-editing>
+    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
+    (onEditingStart)="onEditingStart($event)">
+    <dxo-editing [mode]="configTable.editMode" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')"
+      [allowAdding]="hasPrivilege('ADD')">
+    </dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
@@ -17,4 +20,20 @@
       {{ data.row.inserted ? '' : data.value}}
     </div>
   </dx-data-grid>
+</div>
+<div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configTable.window.viewIndex==='add'||configTable.window.viewIndex==='edit')">
+  <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='add'" (onClick)="addConfigData($event)" iconName="plus"
+    title="Add {{configTable.tableName}}"></command-button>
+  <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='edit'" (onClick)="saveConfigData($event)" iconName="plus"
+    title="Save {{configTable.tableName}}"></command-button>
+  <reg-settings-page-header [isMenu]="false">{{configTable.window.title}}</reg-settings-page-header>
+  <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
+    <dx-form minColWidth=300 [colCount]="1" [formData]="configTable.formData" [items]="configTable.formColumns" labelLocation="top">
+      <div *dxTemplate="let data of 'structureTemplate'">
+        <reg-structure-fragment-template id="cdd" activated="true" editMode="true" [viewModel]="configTable.formData">
+        </reg-structure-fragment-template>
+      </div>
+    </dx-form>
+  </dx-scroll-view>
 </div>

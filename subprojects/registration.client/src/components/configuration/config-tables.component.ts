@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, NgRedux } from '@angular-redux/store';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -26,6 +26,7 @@ declare var jQuery: any;
 })
 export class RegConfigTables implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
+  @ViewChild(DxFormComponent) form: DxFormComponent;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   private lookupsSubscription: Subscription;
@@ -78,7 +79,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
     if (customTables && customTables[this.tableId]) {
       let customTableData: ICustomTableData = customTables[this.tableId];
       this.rows = customTableData.rows;
-      this.configTable = new CConfigTable(this.tableId, customTableData, this.ngRedux.getState());
+      this.configTable = new CConfigTable(this.tableId, this.tableName(), customTableData, this.ngRedux.getState());
       this.dataSource = this.createCustomStore(this);
       this.changeDetector.markForCheck();
     }
@@ -145,6 +146,50 @@ export class RegConfigTables implements OnInit, OnDestroy {
           $links.filter('.dx-link-delete').attr({ 'data-toggle': 'tooltip', 'title': 'Delete' });
         }
       }
+    }
+  }
+  onInitNewRow(e) {
+    if (this.tableId === 'VW_FRAGMENT') {
+      this.configTable.addEdit(e, 'add');
+    }
+  }
+
+  onEditingStart(e) {
+    if (this.tableId === 'VW_FRAGMENT') {
+      this.configTable.addEdit(e, 'edit');
+      e.cancel = true;
+    }
+  }
+
+  cancel(e) {
+    this.configTable.cancel(e);
+    this.grid.instance.cancelEditData();
+  }
+
+  addConfigData(e) {
+    let res: any = this.form.instance.validate();
+    if (res.isValid) {
+      if (this.tableId === 'VW_FRAGMENT') {
+        this.configTable.formData.STRUCTURE = this.configTable.formData.STRUCTURE_XML;
+      }
+      this.dataSource.insert(this.configTable.formData).done(result => {
+        this.grid.instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
+    }
+  }
+  saveConfigData(e) {
+    let res: any = this.form.instance.validate();
+    if (res.isValid) {
+      if (this.tableId === 'VW_FRAGMENT') {
+        this.configTable.formData.STRUCTURE = this.configTable.formData.STRUCTURE_XML;
+      }
+      this.dataSource.update(this.configTable.formData, []).done(result => {
+        this.grid.instance.refresh();
+      }).fail(err => {
+        notifyError(err, 5000);
+      });
     }
   }
 
@@ -288,7 +333,6 @@ export class RegConfigTables implements OnInit, OnDestroy {
     });
   }
   onValueChanged(e, d) {
-    let y = e;
     d.setValue(e.value, d.column.dataField);
   }
 };

@@ -32,6 +32,7 @@ import { RegConfigSettings } from './config-settings.component';
 import { RegConfigTables } from './config-tables.component';
 import { RegConfigXmlForms } from './config-xml-forms.component';
 import { RegSettingsPageHeader } from './settings-page-header.component';
+import { RegStructureFragmentFormItem } from './structure-fragment-form-item.component';
 
 export * from './config-addins.component';
 export * from './config-forms.component';
@@ -70,11 +71,12 @@ export * from './settings-page-header.component';
     RegLayoutComponentModule
   ],
   declarations: [
-    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms, RegSettingsPageHeader
+    RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
+    RegSettingsPageHeader, RegStructureFragmentFormItem
   ],
   exports: [
     RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms, RegSettingsPageHeader,
-    RegCommonComponentModule, RegLayoutComponentModule
+    RegCommonComponentModule, RegLayoutComponentModule, RegStructureFragmentFormItem
   ]
 })
 export class RegConfigurationComponentModule { }
