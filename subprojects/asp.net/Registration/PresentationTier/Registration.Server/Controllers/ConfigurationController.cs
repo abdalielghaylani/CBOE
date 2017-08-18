@@ -92,10 +92,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var columnName = column.FieldName;
             var columnValue = (string)data[columnName];
-            if (columnValue == null)
+            if (string.IsNullOrEmpty(columnValue))
             {
-                var defaultValue = COETableEditorUtilities.getDefaultValue(tableName, column.FieldName);
-                column.FieldValue = defaultValue;
+                if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase)
+                    && (columnName.Equals("EXT_SQL_FILTER") || columnName.Equals("EXT_SQL_SORTORDER"))
+                    )
+                {
+                    // Fix for CBOE-5862
+                    column.FieldValue = string.Empty;
+                }
+                else
+                {
+                    var defaultValue = COETableEditorUtilities.getDefaultValue(tableName, column.FieldName);
+                    column.FieldValue = string.IsNullOrEmpty(defaultValue) ? null : defaultValue;
+                }
             }
             else if (COETableEditorUtilities.getIsStructure(tableName, column.FieldName))
             {
