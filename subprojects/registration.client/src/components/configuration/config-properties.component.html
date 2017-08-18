@@ -16,7 +16,7 @@
     </div>
     <div *dxTemplate="let data of 'propertyValidationRuleTemplate'">
       &nbsp;
-      <a class="fa fa-check grid-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Validation Rules'></a>&nbsp;
+      <a *ngIf="data.data.type!=='BOOLEAN'" class="fa fa-check grid-icon" aria-hidden="true" (click)="showValidationRule(data)" title='Validation Rules'></a>&nbsp;
     </div>
   </dx-data-grid>
 </div>
@@ -61,7 +61,11 @@
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="p2">
             <dx-form minColWidth=300 [colCount]="1" [formData]="configProperties.formDataValidation" [items]="configProperties.formValidationColumns.editColumn"
-              (onFieldDataChanged)="configProperties.onValidationTypeChanged($event)"></dx-form>
+              (onFieldDataChanged)="configProperties.onValidationTypeChanged($event)">
+              <div *dxTemplate="let data of 'validationTypeTemplate'">
+                <reg-validation-type-form-item-template [activated]="true" [editMode]="true" [viewModel]="data" [viewConfig]="configProperties.formData"></reg-validation-type-form-item-template>
+              </div>
+            </dx-form>
             <div style='margin-top: 20px;' *ngIf="configProperties.formDataValidation.name==='wordListEnumeration'">
               <div class="panel panel-default">
                 <div class="tan panel-heading">

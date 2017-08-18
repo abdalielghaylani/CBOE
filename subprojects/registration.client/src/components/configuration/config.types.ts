@@ -241,11 +241,9 @@ export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = {
   editColumn: [{
     dataField: 'name',
     label: { text: 'Type' },
+    template: 'validationTypeTemplate',
     dataType: 'string',
-    editorType: 'dxSelectBox',
-    editorOptions: {
-      items: ['requiredField', 'textLength', 'wordListEnumeration', 'custom', 'notEmptyStructure', 'notEmptyStructureAndNoText']
-    }, isRequired: true
+    isRequired: true
   }, {
     dataField: 'error',
     label: { text: 'Error' },
