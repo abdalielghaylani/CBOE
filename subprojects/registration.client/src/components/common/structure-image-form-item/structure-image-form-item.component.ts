@@ -3,6 +3,8 @@ import { Http, ResponseContentType, RequestOptions, Request, RequestOptionsArgs,
 import { CStructureImageService } from '../structure-image.service';
 import { RegBaseFormItem } from '../base-form-item';
 
+export const noStructureImage = require('../assets/no-structure.png');
+
 @Component({
   selector: 'reg-structure-image-form-item-template',
   template: require('./structure-image-form-item.component.html'),
@@ -13,11 +15,10 @@ import { RegBaseFormItem } from '../base-form-item';
 export class RegStructureImageFormItem extends RegBaseFormItem {
   private image;
   private spinnerImage = require('../assets/spinner.gif');
-  private noStructureImage = require('../assets/no-structure.png');
-
+  
   constructor(private imageService: CStructureImageService, private changeDetector: ChangeDetectorRef) {
     super();
-    this.image = this.noStructureImage;
+    this.image = noStructureImage;
   }
 
   protected update() {
@@ -37,7 +38,7 @@ export class RegStructureImageFormItem extends RegBaseFormItem {
         self.changeDetector.markForCheck();
       })
       .catch(error => {
-        this.image = this.noStructureImage;
+        this.image = noStructureImage;
         self.changeDetector.markForCheck();
       });
   }
