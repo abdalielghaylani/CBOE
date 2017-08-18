@@ -204,6 +204,9 @@ export class RegConfigTables implements OnInit, OnDestroy {
     if (tableName === `VW_PICKLIST`) {
       data.PICKLISTDOMAIN = data.DESCRIPTION;
     }
+    if (tableName === 'VW_NOTEBOOKS') {
+      data.PERSONID = data.USER_CODE;
+    }
     return data;
   }
 
