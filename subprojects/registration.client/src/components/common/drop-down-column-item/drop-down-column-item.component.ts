@@ -5,7 +5,6 @@ import { RegBaseColumnItem } from '../base-column-item';
 @Component({
   selector: 'reg-drop-down-column-item-template',
   template: require('./drop-down-column-item.component.html'),
-  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -20,7 +19,7 @@ export class RegDropDownColumnItem extends RegBaseColumnItem implements AfterVie
   protected useNumericValue: boolean = false;
 
   serializeValue(value: any): any {
-    return this.useNumericValue ? value.toString() : value;
+    return this.useNumericValue ? (value == null ? '' : value.toString()) : value;
   }
 
   deserializeValue(value: any): any {

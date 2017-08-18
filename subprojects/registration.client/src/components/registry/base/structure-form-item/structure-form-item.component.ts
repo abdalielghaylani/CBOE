@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef, ViewChild, ViewEncapsulation } from '@angular/core';
 import * as dxDialog from 'devextreme/ui/dialog';
-import { RegStructureBaseFormItem } from '../structure-base-form-item';
-import { IStructureData, DrawingType } from '../registry-base.types';
+import { IStructureData, RegStructureBaseFormItem } from '../../../common';
+import { DrawingType } from '../registry-base.types';
 import { ChemDrawWeb } from '../../../common';
 
 @Component({
@@ -15,7 +15,6 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
   protected mode: DrawingType = DrawingType.Chemical;
   private structureData: IStructureData;
   private drawStructureImage = require('../assets/draw-structure.png');
-  private noStructureImage = require('../assets/no-structure.png');
   private unknownStructureImage = require('../assets/unknown-structure.png');
   private nonChemicalImage = require('../assets/non-chemical-content.png');
   private titleCdxml = `<CDXML><fonttable><font id="3" charset="iso-8859-1" name="Arial"/>

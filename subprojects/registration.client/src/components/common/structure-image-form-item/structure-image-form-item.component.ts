@@ -6,7 +6,7 @@ import { RegBaseFormItem } from '../base-form-item';
 @Component({
   selector: 'reg-structure-image-form-item-template',
   template: require('./structure-image-form-item.component.html'),
-  styles: [require('../registry-base.css')],
+  styles: [require('../common.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

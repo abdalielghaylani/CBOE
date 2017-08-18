@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrat
 import { DxDataGridComponent } from 'devextreme-angular';
 import { RegBaseFormItem } from '../base-form-item';
 
+export const dataGridFormItemTemplate = require('./data-grid-form-item.component.html');
+
 @Component({
   selector: 'reg-data-grid-form-item-template',
-  template: require('./data-grid-form-item.component.html'),
-  styles: [require('../registry-base.css')],
+  template: dataGridFormItemTemplate,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

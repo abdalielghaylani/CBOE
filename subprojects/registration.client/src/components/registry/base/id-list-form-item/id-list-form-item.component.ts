@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IViewControl, IIdentifierList, CIdentifierList } from '../registry-base.types';
-import { RegDataGridFormItem } from '../data-grid-form-item';
+import { IViewControl, IIdentifierList, CIdentifierList, RegDataGridFormItem, dataGridFormItemTemplate } from '../../../common';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
 
 @Component({
   selector: 'reg-id-list-form-item-template',
-  template: require('../data-grid-form-item/data-grid-form-item.component.html'),
+  template: dataGridFormItemTemplate,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

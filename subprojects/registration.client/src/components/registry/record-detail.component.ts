@@ -19,12 +19,13 @@ import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, n
 import { IResponseData, ITemplateData, CTemplateData } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
-import { IRegistryRecord, CRegistryRecord, CFragment, CViewGroup, RegRecordDetailBase } from './base';
+import { IRegistryRecord, CRegistryRecord, CViewGroup, RegRecordDetailBase } from './base';
 import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
 import { RegistryStatus } from './registry.types';
+import { CFragment } from '../common';
 import { PrivilegeUtils } from '../../common';
 import { CSystemSettings } from '../../redux';
 

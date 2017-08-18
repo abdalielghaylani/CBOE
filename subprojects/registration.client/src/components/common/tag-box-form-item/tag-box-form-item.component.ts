@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { RegBaseFormItem } from '../base-form-item';
 
+export const tagBoxFormItemTemplate = require('./tag-box-form-item.component.html');
+
 @Component({
   selector: 'reg-tag-box-form-item-template',
-  template: require('./tag-box-form-item.component.html'),
-  styles: [require('../registry-base.css')],
+  template: tagBoxFormItemTemplate,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

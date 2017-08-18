@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnChanges, AfterViewInit, ChangeDetectionStrategy, ViewChild, ViewEncapsulation } from '@angular/core';
 import { RegBaseColumnItem } from '../base-column-item';
-import { apiUrlPrefix } from '../../../../configuration';
+import { apiUrlPrefix } from '../../../configuration';
 
 @Component({
   selector: 'reg-structure-column-item-template',
   template: require('./structure-column-item.component.html'),
-  styles: [require('../registry-base.css')],
+  styles: [require('../common.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

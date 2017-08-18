@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../../redux';
-import { RegBaseFormItem } from '../base-form-item';
+import { IAppState } from '../../../redux';
+import { RegBaseFormItem } from '../../common';
 
 @Component({
-  selector: 'reg-drop-down-form-item-template',
-  template: require('./drop-down-form-item.component.html'),
-  styles: [require('../registry-base.css')],
+  selector: 'reg-validation-type-form-item-template',
+  template: require('./validation-type-form-item.component.html'),
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -25,7 +24,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
   }
 
   serializeValue(value: any): any {
-    return this.useNumericValue ? value.toString() : value;
+    return this.useNumericValue ? (value == null ? '' : value.toString()) : value;
   }
 
   protected update() {

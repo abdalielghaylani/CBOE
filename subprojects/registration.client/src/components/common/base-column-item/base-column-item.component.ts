@@ -3,7 +3,6 @@ import { Component, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncap
 @Component({
   selector: 'reg-base-column-item-template',
   template: ``,
-  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -1,13 +1,12 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IBatchComponentFragmentList } from '../registry-base.types';
-import { RegDataGridFormItem } from '../data-grid-form-item';
 import { NgRedux } from '@angular-redux/store';
+import { IBatchComponentFragmentList, RegDataGridFormItem, dataGridFormItemTemplate } from '../../../common';
 import { apiUrlPrefix } from '../../../../configuration';
 import { IAppState } from '../../../../redux';
 
 @Component({
   selector: 'reg-fragments-form-item-template',
-  template: require('../data-grid-form-item/data-grid-form-item.component.html'),
+  template: dataGridFormItemTemplate,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

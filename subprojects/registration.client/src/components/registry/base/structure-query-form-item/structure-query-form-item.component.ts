@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate } from '../registry-base.types';
-import { RegStructureBaseFormItem } from '../structure-base-form-item';
+import { IFormItemTemplate, RegStructureBaseFormItem } from '../../../common';
 
 @Component({
   selector: 'reg-structure-query-form-item-template',

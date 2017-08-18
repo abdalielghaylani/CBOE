@@ -6,8 +6,8 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { apiUrlPrefix } from '../../configuration';
-import { HttpService } from '../../services';
+import { apiUrlPrefix } from '../../../configuration';
+import { HttpService } from '../../../services';
 
 @Component({
   selector: 'reg-structure-image',

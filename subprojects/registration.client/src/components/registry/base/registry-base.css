@@ -4,16 +4,8 @@
   width: auto;
 }
 
-.small-structure-column {
-  max-height: 30px;
-}
-
 .structure-column {
   max-height: 50px;
-}
-
-.chemdraw-image {
-  max-height: 100px;
 }
 
 .pressed-button {
