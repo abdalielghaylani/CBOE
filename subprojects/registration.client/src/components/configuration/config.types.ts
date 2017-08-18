@@ -4,12 +4,19 @@ import { notify, notifyError, notifySuccess } from '../../common';
 export class CConfigTable {
   columns: any[];
   pickListDomains: any[];
+  window: CWindow;
+  editMode: string = 'row';
+  tableName: string;
+  formData: any = [];
+  formColumns: any[];
   projectType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'B', name: 'Batch' }];
   identifierType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' },
   { key: 'B', name: 'Batch' }, { key: 'C', name: 'Compound' }, { key: 'S', name: 'Base Fragment' }];
   sequenceType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'C', name: 'Compound' }];
   activeType = [{ key: 'T', name: 'Yes' }, { key: 'F', name: 'No' }];
-  constructor(tableId: string, customTableData: ICustomTableData, state: IAppState) {
+  constructor(tableId: string, tablename: string, customTableData: ICustomTableData, state: IAppState) {
+    this.tableName = tablename;
+    this.window = { title: this.tableName, viewIndex: 'list' };
     if (customTableData.config) {
       this.columns = customTableData.config;
       this.setOtherConfig(tableId);
@@ -75,6 +82,30 @@ export class CConfigTable {
     });
   }
 
+  cancel(e) {
+    this.window = { title: this.tableName, viewIndex: 'list' };
+  }
+
+  addEdit(e, type) {
+    this.formColumns = this.columns;
+    this.formColumns.find(i => i.dataField === 'STRUCTURE').template = 'structureTemplate';
+    this.formColumns.forEach(col => {
+      if (col.caption) {
+        col.label = { text: col.caption };
+      }
+      if (col.lookup) {
+        col.editorType = 'dxSelectBox';
+        col.editorOptions = col.lookup;
+      }
+    });
+    if (type === 'add') {
+      this.formData = [];
+      this.window = { title: 'Add ' + this.tableName, viewIndex: type };
+    } else {
+      this.formData = e.data;
+      this.window = { title: 'Edit ' + this.tableName, viewIndex: type };
+    }
+  }
 
   setOtherConfig(tableId: string) {
     switch (tableId) {
