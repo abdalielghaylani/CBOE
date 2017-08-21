@@ -21,7 +21,7 @@ describe('Component : Header Component', () => {
     });
   });
 
-  it('should check if RegHeader Component is created', async(inject([], () => {
+  it('should create RegHeader Component', async(inject([], () => {
     fixture.whenStable().then(() => {
       expect(fixture.componentInstance).toBeDefined();
     });
