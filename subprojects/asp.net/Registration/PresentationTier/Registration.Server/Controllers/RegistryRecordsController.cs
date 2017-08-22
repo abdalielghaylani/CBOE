@@ -24,7 +24,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var args = new Dictionary<string, object>();
             args.Add(":id", id);
-            var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempcompoundid=:id", args));
+            var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempbatchid=:id", args));
             if (count == 0)
                 throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
         }
