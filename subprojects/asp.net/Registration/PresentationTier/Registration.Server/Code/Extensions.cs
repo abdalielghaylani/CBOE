@@ -1,9 +1,5 @@
-﻿using CambridgeSoft.COE.Registration.Services.Types;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Xml;
+﻿using System.Xml;
+using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
