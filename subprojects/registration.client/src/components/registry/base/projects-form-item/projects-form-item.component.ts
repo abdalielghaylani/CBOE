@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { IFormItemTemplate, RegTagBoxFormItem, tagBoxFormItemTemplate } from '../../../common';
+import { IFormItemTemplate, RegTagBoxFormItem, tagBoxFormItemTemplate, IProject } from '../../../common';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
 
@@ -25,18 +25,18 @@ export class RegProjectsFormItem extends RegTagBoxFormItem {
 
   serializeValue(value: any[]): any {
     let index = 0;
-    let projects: any[] = this.savedValue.Project;
+    let projects: IProject[] = this.savedValue.Project;
+    let projectsToRemove = projects.map(p => p.ID);
     value.forEach(v => {
-      if (projects.length > index) {
-        projects[index].ProjectID.__text = v.toString();
+      let existing = projects.find(p => p.ProjectID.__text === v.toString());
+      if (existing != null) {
+        projectsToRemove = projectsToRemove.filter(pId => pId !== existing.ID);
       } else {
         projects.push({ ProjectID: { __text: v.toString() } });
       }
       ++index;
     });
-    while (projects.length > index) {
-      projects.splice(index, 1);
-    }
+    this.savedValue.Project = projects.filter(p => projectsToRemove.findIndex(pId => pId === p.ID) < 0);
     return this.savedValue;
   }
 
