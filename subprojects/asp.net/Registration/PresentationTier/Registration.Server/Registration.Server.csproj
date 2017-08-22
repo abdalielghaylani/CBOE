@@ -144,6 +144,7 @@
     <Compile Include="Code\ChemistryHelper.cs" />
     <Compile Include="Code\Consts.cs" />
     <Compile Include="Code\Enums.cs" />
+    <Compile Include="Code\Extensions.cs" />
     <Compile Include="Code\Logger.cs" />
     <Compile Include="Code\ViewConfigHelper.cs" />
     <Compile Include="Code\RegAppHelper.cs" />
