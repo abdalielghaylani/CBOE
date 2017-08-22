@@ -30,7 +30,7 @@
   <reg-settings-page-header [isMenu]="false">{{configTable.window.title}}</reg-settings-page-header>
   <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <dx-form minColWidth=300 [colCount]="1" [formData]="configTable.formData" [items]="configTable.formColumns" labelLocation="top">
-      <div *dxTemplate="let data of 'structureTemplate'">
+      <div *dxTemplate="let data of 'fragmentStructureTemplate'">
         <reg-structure-fragment-template id="cdd" activated="true" editMode="true" [viewModel]="configTable.formData">
         </reg-structure-fragment-template>
       </div>

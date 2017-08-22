@@ -35,49 +35,37 @@ export class CConfigTable {
         });
         break;
       case 'VW_PICKLIST':
-        this.setRequiredValidations([{ dataField: 'PICKLISTVALUE', caption: 'PICKLISTVALUE' },
-        { dataField: 'ACTIVE', caption: 'Is Active' }]);
+        this.setRequiredValidations(['PICKLISTVALUE', 'ACTIVE']);
         break;
       case 'VW_PICKLISTDOMAIN':
-        this.setRequiredValidations([{ dataField: 'DESCRIPTION', caption: 'DESCRIPTION' }]);
+        this.setRequiredValidations(['DESCRIPTION']);
         break;
       case 'VW_NOTEBOOKS':
-        this.setRequiredValidations([{ dataField: 'NAME', caption: 'Name' },
-        { dataField: 'ACTIVE', caption: 'Is Active' },
-        { dataField: 'USER_CODE', caption: 'User Code' }]);
+        this.setRequiredValidations(['NAME', 'ACTIVE', 'USER_CODE']);
         break;
       case 'VW_FRAGMENT':
-        this.setRequiredValidations([{ dataField: 'STRUCTURE', caption: 'STRUCTURE' },
-        { dataField: 'DESCRIPTION', caption: 'Fragment Type' },
-        { dataField: 'CODE', caption: 'Code' },
-        { dataField: 'MOLWEIGHT', caption: 'MW' },
-        { dataField: 'FORMULA', caption: 'Formula' }]);
+        this.setRequiredValidations(['STRUCTURE', 'DESCRIPTION', 'CODE', 'MOLWEIGHT', 'FORMULA']);
         break;
       case 'VW_FRAGMENTTYPE':
-        this.setRequiredValidations([{ dataField: 'DESCRIPTION', caption: 'Description' }]);
+        this.setRequiredValidations(['DESCRIPTION']);
         break;
       case 'VW_IDENTIFIERTYPE':
-        this.setRequiredValidations([{ dataField: 'NAME', caption: 'Name' },
-        { dataField: 'ACTIVE', caption: 'Active' },
-        { dataField: 'TYPE', caption: 'Type' }]);
+        this.setRequiredValidations(['NAME', 'ACTIVE', 'TYPE']);
         break;
       case 'VW_SITES':
-        this.setRequiredValidations([{ dataField: 'SITECODE', caption: 'Sites Id' }]);
+        this.setRequiredValidations(['SITECODE', 'SITENAME']);
         break;
       case 'VW_SEQUENCE':
-        this.setRequiredValidations([{ dataField: 'REGNUMBERLENGTH', caption: 'Registration number padded length' },
-        { dataField: 'NEXTINSEQUENCE', caption: 'Next in sequence' }, { dataField: 'BATCHNUMLENGTH', caption: 'Batch number padded length' },
-        { dataField: 'EXAMPLE', caption: 'EXAMPLE' }, { dataField: 'ACTIVE', caption: 'Is Active' },
-        { dataField: 'TYPE', caption: 'Type' }]);
+        this.setRequiredValidations(['REGNUMBERLENGTH', 'NEXTINSEQUENCE', 'EXAMPLE', 'ACTIVE', 'TYPE']);
         break;
     }
   }
 
-  setRequiredValidations(items: { dataField: string, caption: string }[]) {
+  setRequiredValidations(items: string[]) {
     items.forEach(col => {
-      let column = this.columns.find(i => i.dataField === col.dataField);
+      let column = this.columns.find(i => i.dataField === col);
       if (column != null) {
-        column.validationRules = [{ type: 'required', message: `${col.caption} is a required field` }];
+        column.validationRules = [{ type: 'required', message: `'${column.caption}' is a required field` }];
       }
     });
   }
@@ -88,7 +76,7 @@ export class CConfigTable {
 
   addEdit(e, type) {
     this.formColumns = this.columns;
-    this.formColumns.find(i => i.dataField === 'STRUCTURE').template = 'structureTemplate';
+    this.formColumns.find(i => i.dataField === 'STRUCTURE').template = 'fragmentStructureTemplate';
     this.formColumns.forEach(col => {
       if (col.caption) {
         col.label = { text: col.caption };

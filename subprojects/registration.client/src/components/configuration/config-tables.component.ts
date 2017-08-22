@@ -148,6 +148,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       }
     }
   }
+  
   onInitNewRow(e) {
     if (this.tableId === 'VW_FRAGMENT') {
       this.configTable.addEdit(e, 'add');
@@ -179,6 +180,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       });
     }
   }
+  
   saveConfigData(e) {
     let res: any = this.form.instance.validate();
     if (res.isValid) {
