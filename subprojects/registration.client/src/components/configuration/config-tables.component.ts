@@ -250,7 +250,11 @@ export class RegConfigTables implements OnInit, OnDestroy {
       data.PICKLISTDOMAIN = data.DESCRIPTION;
     }
     if (tableName === 'VW_NOTEBOOKS') {
-      data.PERSONID = data.USER_CODE;
+      if (this.configTable.columns.find(i => i.dataField === 'USER_CODE').lookup.dataSource.find(i => i.PERSON_ID === data.USER_CODE)) {
+        data.PERSONID = data.USER_CODE;
+      } else {
+        data.PERSONID = this.configTable.columns.find(i => i.dataField === 'USER_CODE').lookup.dataSource.find(i => i.USER_CODE === data.USER_CODE).PERSON_ID;
+      }
     }
     return data;
   }
