@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Xml;
-using CambridgeSoft.COE.Registration.Services.Types;
-using System;
 using CambridgeSoft.COE.Registration.Access;
+using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
@@ -16,7 +16,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         private static void CallPrivateMethod(object obj, string methodName)
         {
-            obj.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance).Invoke(obj, null);
+            obj.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance, null, Type.EmptyTypes, null).Invoke(obj, null);
         }
 
         private static void UpdateFromXml(object obj, XmlNode node)
@@ -42,11 +42,14 @@ namespace PerkinElmer.COE.Registration.Server.Code
             if (node != null && !string.IsNullOrEmpty(node.InnerText) && (record.SubmissionComments != node.InnerText))
                 record.SubmissionComments = node.InnerText;
 
-            //if (string.IsNullOrEmpty(record.RegNumber.RegNum))
-            //{
-            //    SetPrivateVariable(record, "_regNumber", RegNumber.NewRegNumber(rootNode.SelectSingleNode("RegNumber").OuterXml, false));
-            //    CallPrivateMethod(record, "MarkOld");
-            //}
+            /* TODO: RegNumber is not updating!
+            if (string.IsNullOrEmpty(record.RegNumber.RegNum))
+            {
+                SetPrivateVariable(record, "_regNumber", RegNumber.NewRegNumber(rootNode.SelectSingleNode("RegNumber").OuterXml, true));
+                CallPrivateMethod(record.RegNumber, "MarkDirty");
+                CallPrivateMethod(record, "MarkDirty");
+            }
+             */
 
             record.PropertyList.UpdateFromXmlEx(rootNode.SelectSingleNode("PropertyList"));
             record.ProjectList.UpdateFromXmlEx(rootNode.SelectSingleNode("ProjectList"));
