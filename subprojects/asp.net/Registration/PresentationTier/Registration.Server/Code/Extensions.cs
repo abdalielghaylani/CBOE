@@ -76,7 +76,56 @@ namespace PerkinElmer.COE.Registration.Server.Code
         public static void UpdateFromXmlEx(this IdentifierList list, XmlNode dataNode)
         {
             if (dataNode == null) return;
-            UpdateFromXml(list, dataNode);
+            XmlNodeList nodes = dataNode.SelectNodes("Identifier");
+
+            var newIemsToAdd = new List<Identifier>();
+            var itemsToRemove = new List<int>();
+            foreach (XmlNode node in nodes)
+            {
+                Identifier identifier = Identifier.NewIdentifier(node.OuterXml, true, true);
+                // look at the unique id for the identifier entry and input value, see if there is a match. If there is, keep the data
+                // otherwise assume it is new and add it
+                bool identifierFound = false;
+                foreach (Identifier idCurrent in list)
+                {
+                    if (idCurrent.UniqueID == identifier.UniqueID && idCurrent.InputText.Equals(identifier.InputText))
+                    {
+                        idCurrent.InputText = identifier.InputText;
+                        identifierFound = true;
+                        break;
+                    }
+                }
+
+                if (!identifierFound)
+                    newIemsToAdd.Add(identifier);
+            }
+
+            int index = 0;
+            foreach (Identifier idCurrent in list)
+            {
+                bool identifierFound = false;
+                foreach (XmlNode node in nodes)
+                {
+                    Identifier identifier = Identifier.NewIdentifier(node.OuterXml, true, true);
+                    if ((idCurrent.UniqueID == identifier.UniqueID) && idCurrent.InputText.Equals(identifier.InputText))
+                    {
+                        identifierFound = true;
+                        break;
+                    }
+                }
+
+                if (!identifierFound)
+                    itemsToRemove.Add(index);
+                index++;
+            }
+
+            foreach (var itemIndex in itemsToRemove)
+            {
+                RemoveItem(list, itemIndex);
+            }
+
+            foreach (Identifier identifer in newIemsToAdd)
+                list.Add(identifer);
         }
 
         public static void UpdateFromXmlEx(this BatchList list, XmlNode dataNode)
