@@ -2,11 +2,18 @@
 using System.Reflection;
 using System.Xml;
 using CambridgeSoft.COE.Registration.Services.Types;
+using System;
+using CambridgeSoft.COE.Registration.Access;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
     public static class Extensions
     {
+        private static void SetPrivateVariable(object obj, string name, object value)
+        {
+            obj.GetType().GetField("name", BindingFlags.NonPublic | BindingFlags.SetField | BindingFlags.Instance).SetValue(obj, value);
+        }
+
         private static void UpdateFromXml(object obj, XmlNode node)
         {
             var args = new object[] { node };
@@ -157,6 +164,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static void UpdateFromXmlEx(this Component component, XmlNode dataNode)
         {
+            if (dataNode == null) return;
             // Update Percentage
             var percentageNode = dataNode.SelectSingleNode("Percentage");
             double percetage;
@@ -173,10 +181,90 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static void UpdateFromXmlEx(this Compound compound, XmlNode dataNode)
         {
-            // TODO: need to call UpdateFromXml for each list
-            UpdateFromXml(compound, dataNode);
+            if (dataNode == null) return;
+            // Validate
+            var regNumberNode = dataNode.SelectSingleNode("RegNumber/RegNumber");
+            if (regNumberNode == null || !regNumberNode.InnerText.Equals(compound.RegNumber.RegNum, System.StringComparison.OrdinalIgnoreCase))
+                throw new Exception("The compound ID is invalid");
 
+            // Update
+            var lastModifiedDate = DateTime.Now;
+            var node = dataNode.SelectSingleNode("DateLastModified");
+            if (node != null)
+            {
+                DateTime.TryParse(node.InnerText, out lastModifiedDate);
+                compound.DateLastModified = lastModifiedDate;
+            }
             compound.IdentifierList.UpdateFromXmlEx(dataNode.SelectSingleNode("IdentifierList"));
+            compound.BaseFragment.UpdateFromXmlEx(dataNode.SelectSingleNode("BaseFragment"));
+            compound.FragmentList.UpdateFromXmlEx(dataNode.SelectSingleNode("FragmentList"));
+            compound.CompoundFragmentList.UpdateFromXmlEx(dataNode.SelectSingleNode("FragmentList"));
+            compound.PropertyList.UpdateFromXmlEx(dataNode.SelectSingleNode("PropertyList"));
+            compound.ProjectsList.UpdateFromXmlEx(dataNode.SelectSingleNode("ProjectList"));
+        }
+
+        public static void UpdateFromXmlEx(this BaseFragment baseFragment, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+            baseFragment.Structure.UpdateFromXmlEx(dataNode.SelectSingleNode("Structure"));
+        }
+
+        public static void UpdateFromXmlEx(this FragmentList list, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+        }
+
+        public static void UpdateFromXmlEx(this CompoundFragmentList list, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+        }
+
+        public static void UpdateFromXmlEx(this Structure structure, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+            var idNode = dataNode.SelectSingleNode("StructureID");
+            int id;
+            if (idNode != null && int.TryParse(idNode.InnerText, out id) && id == structure.ID)
+            {
+                int drawingType;
+                var node = dataNode.SelectSingleNode("DrawingType");
+                if (node != null && int.TryParse(node.InnerText, out drawingType))
+                {
+                    structure.DrawingType = (DrawingType)drawingType;
+                }
+                var structureElement = dataNode.SelectSingleNode("Structure") as XmlElement;
+                if (structureElement != null)
+                {
+                    structure.Value = structureElement.InnerText;
+                    if (structureElement.HasAttribute("formula"))
+                        structure.Formula = structureElement.GetAttribute("formula");
+                    if (structureElement.HasAttribute("molWeight"))
+                    {
+                        var molWeightStr = structureElement.GetAttribute("molWeight");
+                        double molWeight;
+                        if (double.TryParse(molWeightStr, out molWeight))
+                            structure.MolWeight = molWeight;
+                    }
+                    node = structureElement.SelectSingleNode("Structure/validationRuleList");
+                    if (node != null)
+                        SetPrivateVariable(structure, "_validationRulesXml", node.OuterXml);
+
+                    node = structureElement.SelectSingleNode("NormalizedStructure");
+                    if (node != null && !string.IsNullOrEmpty(node.InnerText))
+                        structure.NormalizedStructure = node.InnerText;
+                    // If Value is null, put the normalized structure here.
+                    //  This issue is occurring when a new component is added to a temporary record.
+                    if (string.IsNullOrEmpty(structure.Value))
+                        structure.Value = structure.NormalizedStructure;
+
+                    node = structureElement.SelectSingleNode("UseNormalization");
+                    COEDALBoolean useNormalization;
+                    if (node != null && Enum.TryParse<COEDALBoolean>(node.InnerText, out useNormalization))
+                        structure.UseNormalizedStructure = useNormalization == COEDALBoolean.T;
+                }
+                structure.PropertyList.UpdateFromXmlEx(structureElement.SelectSingleNode("PropertyList"));
+                structure.IdentifierList.UpdateFromXmlEx(structureElement.SelectSingleNode("IdentifierList"));
+            }
         }
     }
 }
