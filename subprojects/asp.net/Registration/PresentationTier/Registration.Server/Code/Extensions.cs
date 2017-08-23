@@ -79,12 +79,11 @@ namespace PerkinElmer.COE.Registration.Server.Code
             XmlNodeList nodes = dataNode.SelectNodes("Identifier");
 
             var newIemsToAdd = new List<Identifier>();
-            var itemsToRemove = new List<int>();
             foreach (XmlNode node in nodes)
             {
                 Identifier identifier = Identifier.NewIdentifier(node.OuterXml, true, true);
-                // look at the unique id for the identifier entry and input value, see if there is a match. If there is, keep the data
-                // otherwise assume it is new and add it
+                // Compare the unique id for the identifier entry and input value with existing entries to see if there is a match.
+                // If there is, keep the data. Otherwise assume it is new and add it.
                 bool identifierFound = false;
                 foreach (Identifier idCurrent in list)
                 {
@@ -100,6 +99,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     newIemsToAdd.Add(identifier);
             }
 
+            var itemsToRemove = new List<int>();
             int index = 0;
             foreach (Identifier idCurrent in list)
             {
@@ -115,7 +115,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 }
 
                 if (!identifierFound)
-                    itemsToRemove.Add(index);
+                    itemsToRemove.Insert(0, index);
                 index++;
             }
 
@@ -157,7 +157,17 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static void UpdateFromXmlEx(this Component component, XmlNode dataNode)
         {
-            var compoundNode = dataNode.SelectSingleNode("Compound");
+            // Update Percentage
+            var percentageNode = dataNode.SelectSingleNode("Percentage");
+            double percetage;
+            if (percentageNode != null && double.TryParse(percentageNode.InnerText, out percetage))
+            {
+                component.Percentage = percetage;
+            }
+
+            // Update compound
+            XmlNode compoundNode = dataNode.SelectSingleNode("Compound");
+            component.Compound.UpdateFromXmlEx(compoundNode);
             component.Compound.UpdateFromXmlEx(compoundNode);
         }
 
