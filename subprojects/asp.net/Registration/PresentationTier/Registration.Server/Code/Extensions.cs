@@ -157,7 +157,16 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static void UpdateFromXmlEx(this Component component, XmlNode dataNode)
         {
-            UpdateFromXml(component, dataNode);
+            var compoundNode = dataNode.SelectSingleNode("Compound");
+            component.Compound.UpdateFromXmlEx(compoundNode);
+        }
+
+        public static void UpdateFromXmlEx(this Compound compound, XmlNode dataNode)
+        {
+            // TODO: need to call UpdateFromXml for each list
+            UpdateFromXml(compound, dataNode);
+
+            compound.IdentifierList.UpdateFromXmlEx(dataNode.SelectSingleNode("IdentifierList"));
         }
     }
 }
