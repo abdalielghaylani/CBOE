@@ -9,9 +9,14 @@ namespace PerkinElmer.COE.Registration.Server.Code
 {
     public static class Extensions
     {
-        private static void SetPrivateVariable(object obj, string name, object value)
+        private static void SetPrivateVariable(object obj, string variableName, object value)
         {
-            obj.GetType().GetField("name", BindingFlags.NonPublic | BindingFlags.SetField | BindingFlags.Instance).SetValue(obj, value);
+            obj.GetType().GetField(variableName, BindingFlags.NonPublic | BindingFlags.SetField | BindingFlags.Instance).SetValue(obj, value);
+        }
+
+        private static void CallPrivateMethod(object obj, string methodName)
+        {
+            obj.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance).Invoke(obj, null);
         }
 
         private static void UpdateFromXml(object obj, XmlNode node)
@@ -33,9 +38,15 @@ namespace PerkinElmer.COE.Registration.Server.Code
             var rootNode = doc.DocumentElement;
 
             // RegistryRecord itself only update properties that are allowed to be updated not auto-generated fields like person created
-            var matchingChild = rootNode.SelectSingleNode("SubmissionComments");
-            if (matchingChild != null && !string.IsNullOrEmpty(matchingChild.InnerText) && (record.SubmissionComments != matchingChild.InnerText))
-                record.SubmissionComments = matchingChild.InnerText;
+            var node = rootNode.SelectSingleNode("SubmissionComments");
+            if (node != null && !string.IsNullOrEmpty(node.InnerText) && (record.SubmissionComments != node.InnerText))
+                record.SubmissionComments = node.InnerText;
+
+            //if (string.IsNullOrEmpty(record.RegNumber.RegNum))
+            //{
+            //    SetPrivateVariable(record, "_regNumber", RegNumber.NewRegNumber(rootNode.SelectSingleNode("RegNumber").OuterXml, false));
+            //    CallPrivateMethod(record, "MarkOld");
+            //}
 
             record.PropertyList.UpdateFromXmlEx(rootNode.SelectSingleNode("PropertyList"));
             record.ProjectList.UpdateFromXmlEx(rootNode.SelectSingleNode("ProjectList"));
