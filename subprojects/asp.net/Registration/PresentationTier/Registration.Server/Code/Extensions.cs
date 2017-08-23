@@ -137,7 +137,27 @@ namespace PerkinElmer.COE.Registration.Server.Code
         public static void UpdateFromXmlEx(this ComponentList list, XmlNode dataNode)
         {
             if (dataNode == null) return;
-            UpdateFromXml(list, dataNode);
+            var componentNodes = dataNode.SelectNodes("Component");
+            foreach (XmlNode componentNode in componentNodes)
+            {
+                var componentIndexNode = componentNode.SelectSingleNode("ComponentIndex");
+                int componentIndex;
+                if (componentIndexNode == null || !int.TryParse(componentIndexNode.InnerText, out componentIndex))
+                    continue;
+                foreach (var comp in list)
+                {
+                    if (comp.ComponentIndex == componentIndex)
+                    {
+                        comp.UpdateFromXmlEx(componentNode);
+                        break;
+                    }
+                }
+            }
+        }
+
+        public static void UpdateFromXmlEx(this Component component, XmlNode dataNode)
+        {
+            UpdateFromXml(component, dataNode);
         }
     }
 }
