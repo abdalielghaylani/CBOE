@@ -73,8 +73,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
             foreach (Property property in list)
             {
                 var propertyNode = dataNode.SelectSingleNode(string.Format("Property[@name='{0}']", property.Name));
-                string propertyName = ((XmlElement)propertyNode).GetAttribute("name");
-                if (property.Name.Equals(propertyName))
+                if (propertyNode != null)
                 {
                     property.UpdateFromXmlEx(propertyNode);
                 }
