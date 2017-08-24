@@ -6,7 +6,10 @@ import { RegFragmentsFormItem } from './fragments-form-item';
 import { RegIdListFormItem } from './id-list-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
 import { RegStructureFormItem } from './structure-form-item';
-import { RegStructureQueryFormItem } from './structure-query-form-item';
+import {
+  RegStructureQueryFormItem,
+  RegStructureQueryOptions
+} from './structure-query-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
 import { RegFormGroupItemView } from './form-group-item-view';
@@ -75,12 +78,12 @@ export * from './record-detail-base';
     RegCommonComponentModule
   ],
   declarations: [
-    RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem,
+    RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegRecordDetailBase
   ],
   exports: [
-    RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem,
+    RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegRecordDetailBase,
     RegCommonModule, RegCommonComponentModule

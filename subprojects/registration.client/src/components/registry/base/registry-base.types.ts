@@ -627,3 +627,20 @@ export class CSearchCriteria {
     });
   }
 }
+
+export class StructureQueryOptionsModel {
+  searchTypeValue: string = 'Substructure';
+  hitAnyChargeHetero: boolean = true;
+  reactionCenter: boolean = true;
+  hitAnyChargeCarbon: boolean = true;
+  permitExtraneousFragments: boolean = false;
+  permitExtraneousFragmentsIfRXN: boolean = false;
+  fragmentsOverlap: boolean = false;
+  tautometer: boolean = false;
+  fullSearch: boolean = true;
+  simThreshold: number = 100;
+  matchStereochemistry: boolean = true;
+  tetrahedralStereo: string = 'Same';
+  doubleBondStereo: string = 'Same';
+  relativeTetStereo: boolean = false;
+}
