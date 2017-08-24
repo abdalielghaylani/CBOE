@@ -1,12 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Xml;
+using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
     public static class Extensions
     {
+        private static void SetPrivateVariable(object obj, string variableName, object value)
+        {
+            obj.GetType().GetField(variableName, BindingFlags.NonPublic | BindingFlags.SetField | BindingFlags.Instance).SetValue(obj, value);
+        }
+
+        private static void CallPrivateMethod(object obj, string methodName)
+        {
+            obj.GetType().GetMethod(methodName, BindingFlags.NonPublic | BindingFlags.Instance, null, Type.EmptyTypes, null).Invoke(obj, null);
+        }
+
         private static void UpdateFromXml(object obj, XmlNode node)
         {
             var args = new object[] { node };
@@ -26,9 +38,18 @@ namespace PerkinElmer.COE.Registration.Server.Code
             var rootNode = doc.DocumentElement;
 
             // RegistryRecord itself only update properties that are allowed to be updated not auto-generated fields like person created
-            var matchingChild = rootNode.SelectSingleNode("SubmissionComments");
-            if (matchingChild != null && !string.IsNullOrEmpty(matchingChild.InnerText) && (record.SubmissionComments != matchingChild.InnerText))
-                record.SubmissionComments = matchingChild.InnerText;
+            var node = rootNode.SelectSingleNode("SubmissionComments");
+            if (node != null && !string.IsNullOrEmpty(node.InnerText) && (record.SubmissionComments != node.InnerText))
+                record.SubmissionComments = node.InnerText;
+
+            /* TODO: RegNumber is not updating!
+            if (string.IsNullOrEmpty(record.RegNumber.RegNum))
+            {
+                SetPrivateVariable(record, "_regNumber", RegNumber.NewRegNumber(rootNode.SelectSingleNode("RegNumber").OuterXml, true));
+                CallPrivateMethod(record.RegNumber, "MarkDirty");
+                CallPrivateMethod(record, "MarkDirty");
+            }
+             */
 
             record.PropertyList.UpdateFromXmlEx(rootNode.SelectSingleNode("PropertyList"));
             record.ProjectList.UpdateFromXmlEx(rootNode.SelectSingleNode("ProjectList"));
@@ -79,12 +100,11 @@ namespace PerkinElmer.COE.Registration.Server.Code
             XmlNodeList nodes = dataNode.SelectNodes("Identifier");
 
             var newIemsToAdd = new List<Identifier>();
-            var itemsToRemove = new List<int>();
             foreach (XmlNode node in nodes)
             {
                 Identifier identifier = Identifier.NewIdentifier(node.OuterXml, true, true);
-                // look at the unique id for the identifier entry and input value, see if there is a match. If there is, keep the data
-                // otherwise assume it is new and add it
+                // Compare the unique id for the identifier entry and input value with existing entries to see if there is a match.
+                // If there is, keep the data. Otherwise assume it is new and add it.
                 bool identifierFound = false;
                 foreach (Identifier idCurrent in list)
                 {
@@ -100,6 +120,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     newIemsToAdd.Add(identifier);
             }
 
+            var itemsToRemove = new List<int>();
             int index = 0;
             foreach (Identifier idCurrent in list)
             {
@@ -115,7 +136,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 }
 
                 if (!identifierFound)
-                    itemsToRemove.Add(index);
+                    itemsToRemove.Insert(0, index);
                 index++;
             }
 
@@ -157,16 +178,107 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static void UpdateFromXmlEx(this Component component, XmlNode dataNode)
         {
-            var compoundNode = dataNode.SelectSingleNode("Compound");
+            if (dataNode == null) return;
+            // Update Percentage
+            var percentageNode = dataNode.SelectSingleNode("Percentage");
+            double percetage;
+            if (percentageNode != null && double.TryParse(percentageNode.InnerText, out percetage))
+            {
+                component.Percentage = percetage;
+            }
+
+            // Update compound
+            XmlNode compoundNode = dataNode.SelectSingleNode("Compound");
+            component.Compound.UpdateFromXmlEx(compoundNode);
             component.Compound.UpdateFromXmlEx(compoundNode);
         }
 
         public static void UpdateFromXmlEx(this Compound compound, XmlNode dataNode)
         {
-            // TODO: need to call UpdateFromXml for each list
-            UpdateFromXml(compound, dataNode);
+            if (dataNode == null) return;
+            // Validate
+            var regNumberNode = dataNode.SelectSingleNode("RegNumber/RegNumber");
+            if (regNumberNode == null || !regNumberNode.InnerText.Equals(compound.RegNumber.RegNum, System.StringComparison.OrdinalIgnoreCase))
+                throw new Exception("The compound ID is invalid");
 
+            // Update
+            var lastModifiedDate = DateTime.Now;
+            var node = dataNode.SelectSingleNode("DateLastModified");
+            if (node != null)
+            {
+                DateTime.TryParse(node.InnerText, out lastModifiedDate);
+                compound.DateLastModified = lastModifiedDate;
+            }
             compound.IdentifierList.UpdateFromXmlEx(dataNode.SelectSingleNode("IdentifierList"));
+            compound.BaseFragment.UpdateFromXmlEx(dataNode.SelectSingleNode("BaseFragment"));
+            compound.FragmentList.UpdateFromXmlEx(dataNode.SelectSingleNode("FragmentList"));
+            compound.CompoundFragmentList.UpdateFromXmlEx(dataNode.SelectSingleNode("FragmentList"));
+            compound.PropertyList.UpdateFromXmlEx(dataNode.SelectSingleNode("PropertyList"));
+            compound.ProjectsList.UpdateFromXmlEx(dataNode.SelectSingleNode("ProjectList"));
+        }
+
+        public static void UpdateFromXmlEx(this BaseFragment baseFragment, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+            baseFragment.Structure.UpdateFromXmlEx(dataNode.SelectSingleNode("Structure"));
+        }
+
+        public static void UpdateFromXmlEx(this FragmentList list, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+        }
+
+        public static void UpdateFromXmlEx(this CompoundFragmentList list, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+        }
+
+        public static void UpdateFromXmlEx(this Structure structure, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+            var idNode = dataNode.SelectSingleNode("StructureID");
+            int id;
+            if (idNode != null && int.TryParse(idNode.InnerText, out id) && id == structure.ID)
+            {
+                int drawingType;
+                var node = dataNode.SelectSingleNode("DrawingType");
+                if (node != null && int.TryParse(node.InnerText, out drawingType))
+                {
+                    structure.DrawingType = (DrawingType)drawingType;
+                }
+                var structureElement = dataNode.SelectSingleNode("Structure") as XmlElement;
+                if (structureElement != null)
+                {
+                    structure.Value = structureElement.InnerText;
+                    if (structureElement.HasAttribute("formula"))
+                        structure.Formula = structureElement.GetAttribute("formula");
+                    if (structureElement.HasAttribute("molWeight"))
+                    {
+                        var molWeightStr = structureElement.GetAttribute("molWeight");
+                        double molWeight;
+                        if (double.TryParse(molWeightStr, out molWeight))
+                            structure.MolWeight = molWeight;
+                    }
+                    node = structureElement.SelectSingleNode("Structure/validationRuleList");
+                    if (node != null)
+                        SetPrivateVariable(structure, "_validationRulesXml", node.OuterXml);
+
+                    node = structureElement.SelectSingleNode("NormalizedStructure");
+                    if (node != null && !string.IsNullOrEmpty(node.InnerText))
+                        structure.NormalizedStructure = node.InnerText;
+                    // If Value is null, put the normalized structure here.
+                    //  This issue is occurring when a new component is added to a temporary record.
+                    if (string.IsNullOrEmpty(structure.Value))
+                        structure.Value = structure.NormalizedStructure;
+
+                    node = structureElement.SelectSingleNode("UseNormalization");
+                    COEDALBoolean useNormalization;
+                    if (node != null && Enum.TryParse<COEDALBoolean>(node.InnerText, out useNormalization))
+                        structure.UseNormalizedStructure = useNormalization == COEDALBoolean.T;
+                }
+                structure.PropertyList.UpdateFromXmlEx(structureElement.SelectSingleNode("PropertyList"));
+                structure.IdentifierList.UpdateFromXmlEx(structureElement.SelectSingleNode("IdentifierList"));
+            }
         }
     }
 }

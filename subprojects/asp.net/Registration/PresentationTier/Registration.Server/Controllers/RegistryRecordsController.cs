@@ -470,7 +470,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     registryRecord = RegistryRecord.GetRegistryRecord(regId);
                     if (registryRecord == null) throw new Exception();
                     errorMessage = "Unable to update the internal record.";
-                    registryRecord.InitializeFromXml(xml, false, false);
+                    registryRecord.UpdateFromXmlEx(xml);
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
