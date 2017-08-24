@@ -59,7 +59,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
             record.ProjectList.UpdateFromXmlEx(rootNode.SelectSingleNode("ProjectList"));
             record.IdentifierList.UpdateFromXmlEx(rootNode.SelectSingleNode("IdentifierList"));
             record.BatchList.UpdateFromXmlEx(rootNode.SelectSingleNode("BatchList"));
-            record.ComponentList.UpdateFromXmlEx(rootNode.SelectSingleNode("ComponentList"));           
+            record.ComponentList.UpdateFromXmlEx(rootNode.SelectSingleNode("ComponentList"));
         }
 
         #endregion
@@ -69,7 +69,26 @@ namespace PerkinElmer.COE.Registration.Server.Code
         public static void UpdateFromXmlEx(this PropertyList list, XmlNode dataNode)
         {
             if (dataNode == null) return;
-            UpdateFromXml(list, dataNode);
+
+            foreach (Property property in list)
+            {
+                var propertyNode = dataNode.SelectSingleNode(string.Format("Property[@name='{0}']", property.Name));
+                string propertyName = ((XmlElement)propertyNode).GetAttribute("name");
+                if (property.Name.Equals(propertyName))
+                {
+                    property.UpdateFromXmlEx(propertyNode);
+                }
+            }
+        }
+
+        public static void UpdateFromXmlEx(this Property property, XmlNode dataNode)
+        {
+            if (dataNode == null) return;
+
+            if (!property.Value.Equals(dataNode.InnerText))
+            {
+                property.Value = dataNode.InnerText;
+            }
         }
 
         #endregion
@@ -183,7 +202,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 foreach (Batch batch in list)
                 {
                     if (batch.ID == batchID)
-                    {                      
+                    {
                         batch.UpdateFromXmlEx(batchNode);
                     }
                 }
@@ -208,7 +227,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static void UpdateFromXmlEx(this BatchComponentList list, XmlNode dataNode)
         {
-            XmlNodeList batchIDNodeList = dataNode.SelectNodes("BatchComponent/BatchID");            
+            XmlNodeList batchIDNodeList = dataNode.SelectNodes("BatchComponent/BatchID");
             foreach (XmlNode batchIDNode in batchIDNodeList)
             {
                 int batchID = int.Parse(batchIDNode.InnerText);
