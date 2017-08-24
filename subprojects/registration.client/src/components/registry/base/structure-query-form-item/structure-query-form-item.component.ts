@@ -15,39 +15,39 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
   private searchTypeOptions: string[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
   private viewConfigGeneral = [{
     dataField: 'hitAnyChargeHetero',
-    label: { text: 'Hit any charge on heteroatom' },
+    label: { text: 'Hit any charge on hetero-atom', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'reactionCenter',
-    label: { text: 'Reaction query must hit reaction center' },
+    label: { text: 'Reaction query must hit reaction center', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'hitAnyChargeCarbon',
-    label: { text: 'Hit any charge on carbon' },
+    label: { text: 'Hit any charge on carbon', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'permitExtraneousFragments',
-    label: { text: 'Permit extraneous fragments in Full Structure Searches' },
+    label: { text: 'Permit extraneous fragments in full-structure searches', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'permitExtraneousFragmentsIfRXN',
-    label: { text: 'Permit extraneous fragments in Reaction Full Structure Searches' },
+    label: { text: 'Permit extraneous fragments in reaction full-structure searches', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'fragmentsOverlap',
-    label: { text: 'Query fragments can overlap in target' },
+    label: { text: 'Query fragments can overlap in target', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'tautometer',
-    label: { text: 'Tautomeric' },
+    label: { text: 'Tautomeric', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'fullSearch',
-    label: { text: 'Full structure similarity' },
+    label: { text: 'Full-structure similarity', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'simThreshold',
-    label: { text: 'Similarity search (20-100%)' },
+    label: { text: 'Similarity search (20-100%)', alignment: 'right' },
     dataType: 'number',
     editorType: 'dxNumberBox',
     editorOptions: { width: '100px' },
@@ -56,19 +56,19 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
   }];
   private viewConfigSterioChem = [{
     dataField: 'matchStereochemistry',
-    label: { text: 'Match Stereochemistry' },
+    label: { text: 'Match stereochemistry', alignment: 'right' },
     editorType: 'dxCheckBox'
   }, {
     dataField: 'tetrahedralStereo',
-    label: { text: 'Tetrahedral stereo center hits' },
+    label: { text: 'Tetrahedral stereo center hits', alignment: 'right' },
     template: 'tetrahedralTemplate',
   }, {
     dataField: 'relativeTetStereo',
-    label: { text: 'Thick bonds represent relative stereochemistry' },
+    label: { text: 'Thick bonds represent relative stereochemistry', alignment: 'right' },
     template: 'relativeTetStereoTemplate'
   }, {
     dataField: 'doubleBondStereo',
-    label: { text: 'Double bonds hits' },
+    label: { text: 'Double bonds hits', alignment: 'right' },
     template: 'doubleBondTemplate'
   }];
 
