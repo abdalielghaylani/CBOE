@@ -2,7 +2,7 @@
   <dxi-item class="rect" [ratio]="1">
     <dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)"  [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="false">
       <div *dxTemplate="let d of 'tetrahedralTemplate'">
-        <dx-radio-group [items]="['Same','Either','Any']" [(value)]="viewModel.tetrahedralStereo" [disabled]="!viewModel.matchStereochemistry">
+        <dx-radio-group layout='horizontal' [items]="['Same','Either','Any']" [(value)]="viewModel.tetrahedralStereo" [disabled]="!viewModel.matchStereochemistry">
           <div *dxTemplate="let data of 'item'">
             {{data}}
             <img [src]="tetrahedralSameImage"><img *ngIf="data==='Same'" [src]="tetrahedralSameImage">
@@ -18,7 +18,7 @@
         <img [src]="thickBondSecondImage">
       </div>
       <div *dxTemplate="let d of 'doubleBondTemplate'">
-        <dx-radio-group [items]="['Same','Any']" [(value)]="viewModel.doubleBondStereo" [disabled]="!viewModel.matchStereochemistry">
+        <dx-radio-group layout='horizontal' [items]="['Same','Any']" [(value)]="viewModel.doubleBondStereo" [disabled]="!viewModel.matchStereochemistry">
           <div *dxTemplate="let data of 'item'">
             {{data}}<img [src]="doublebondSameImage"><img *ngIf="data==='Same'" [src]="doublebondSameImage">
             <img *ngIf="data==='Any'" [src]="doublebondAnyFirstImage">
