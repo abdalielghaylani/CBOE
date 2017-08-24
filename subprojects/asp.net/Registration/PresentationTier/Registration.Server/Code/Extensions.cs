@@ -9,6 +9,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
 {
     public static class Extensions
     {
+        #region Utils - set or get private members/private methods via Reflection
         private static void SetPrivateVariable(object obj, string variableName, object value)
         {
             obj.GetType().GetField(variableName, BindingFlags.NonPublic | BindingFlags.SetField | BindingFlags.Instance).SetValue(obj, value);
@@ -31,6 +32,9 @@ namespace PerkinElmer.COE.Registration.Server.Code
             obj.GetType().GetMethod("RemoveItem", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(obj, args);
         }
 
+        #endregion
+
+        #region UpdateFromXmlEx RegistryRecord
         public static void UpdateFromXmlEx(this RegistryRecord record, string xml)
         {
             var doc = new XmlDocument();
@@ -55,8 +59,12 @@ namespace PerkinElmer.COE.Registration.Server.Code
             record.ProjectList.UpdateFromXmlEx(rootNode.SelectSingleNode("ProjectList"));
             record.IdentifierList.UpdateFromXmlEx(rootNode.SelectSingleNode("IdentifierList"));
             record.BatchList.UpdateFromXmlEx(rootNode.SelectSingleNode("BatchList"));
-            record.ComponentList.UpdateFromXmlEx(rootNode.SelectSingleNode("ComponentList"));
+            record.ComponentList.UpdateFromXmlEx(rootNode.SelectSingleNode("ComponentList"));           
         }
+
+        #endregion
+
+        #region PropertyList
 
         public static void UpdateFromXmlEx(this PropertyList list, XmlNode dataNode)
         {
@@ -64,6 +72,9 @@ namespace PerkinElmer.COE.Registration.Server.Code
             UpdateFromXml(list, dataNode);
         }
 
+        #endregion
+
+        #region ProjectList
         public static void UpdateFromXmlEx(this ProjectList list, XmlNode dataNode)
         {
             if (dataNode == null) return;
@@ -94,6 +105,9 @@ namespace PerkinElmer.COE.Registration.Server.Code
             }
         }
 
+        #endregion ProjectList
+
+        #region IdentifierList
         public static void UpdateFromXmlEx(this IdentifierList list, XmlNode dataNode)
         {
             if (dataNode == null) return;
@@ -146,15 +160,129 @@ namespace PerkinElmer.COE.Registration.Server.Code
             }
 
             foreach (Identifier identifer in newIemsToAdd)
+            {
                 list.Add(identifer);
+            }
         }
+
+        #endregion
+
+        #region BatchList
 
         public static void UpdateFromXmlEx(this BatchList list, XmlNode dataNode)
         {
             if (dataNode == null) return;
-            UpdateFromXml(list, dataNode);
+
+            XmlNodeList batchNodeList = dataNode.SelectNodes("Batch");
+
+            foreach (XmlNode batchNode in batchNodeList)
+            {
+                XmlNode batchIdNode = batchNode.SelectSingleNode("BatchID");
+                int batchID = int.Parse(batchIdNode.InnerText);
+                // look through each of the batches in the registry record and update if there is a match
+                foreach (Batch batch in list)
+                {
+                    if (batch.ID == batchID)
+                    {                      
+                        batch.UpdateFromXmlEx(batchNode);
+                    }
+                }
+            }
         }
 
+        public static void UpdateFromXmlEx(this Batch batch, XmlNode dataNode)
+        {
+            XmlNode projectListNode = dataNode.SelectSingleNode("ProjectList");
+            if (projectListNode != null)
+                batch.ProjectList.UpdateFromXmlEx(projectListNode);
+
+            XmlNode identifierListNode = dataNode.SelectSingleNode("IdentifierList");
+            batch.IdentifierList.UpdateFromXmlEx(identifierListNode);
+
+            XmlNode propertyListNode = dataNode.SelectSingleNode("PropertyList");
+            batch.PropertyList.UpdateFromXmlEx(propertyListNode);
+
+            XmlNode batchComponentListNode = dataNode.SelectSingleNode("BatchComponentList");
+            batch.BatchComponentList.UpdateFromXmlEx(batchComponentListNode);
+        }
+
+        public static void UpdateFromXmlEx(this BatchComponentList list, XmlNode dataNode)
+        {
+            XmlNodeList batchIDNodeList = dataNode.SelectNodes("BatchComponent/BatchID");            
+            foreach (XmlNode batchIDNode in batchIDNodeList)
+            {
+                int batchID = int.Parse(batchIDNode.InnerText);
+
+                foreach (BatchComponent batchComponent in list)
+                {
+                    if (batchComponent.BatchID == batchID)
+                    {
+                        batchComponent.UpdateFromXmlEx(batchIDNode.ParentNode);
+                    }
+                }
+            }
+        }
+
+        public static void UpdateFromXmlEx(this BatchComponent batchComponent, XmlNode dataNode)
+        {
+            XmlNode propertyListNode = dataNode.SelectSingleNode("PropertyList");
+            batchComponent.PropertyList.UpdateFromXmlEx(propertyListNode);
+            XmlNode batchcomponentFragmentListNode = dataNode.SelectSingleNode("BatchComponentFragmentList");
+            batchComponent.BatchComponentFragmentList.UpdateFromXmlEx(batchcomponentFragmentListNode);
+        }
+
+        public static void UpdateFromXmlEx(this BatchComponentFragmentList list, XmlNode dataNode)
+        {
+            XmlNodeList batchcomponentfragmentNodeList = dataNode.SelectNodes("BatchComponentFragment");
+
+            var itemsToRemove = new List<int>();
+            int index = 0;
+            foreach (BatchComponentFragment batchcmpFrg in list)
+            {
+                bool foundFragment = false;
+                foreach (XmlNode batchcomponentfragmentNode in batchcomponentfragmentNodeList)
+                {
+                    BatchComponentFragment batchcomponentfragment = BatchComponentFragment.NewBatchComponentFragment(batchcomponentfragmentNode.OuterXml, true, true);
+
+                    if (batchcomponentfragment.UniqueID == batchcmpFrg.UniqueID)
+                    {
+                        foundFragment = true;
+                        break;
+                    }
+                }
+
+                if (!foundFragment)
+                    itemsToRemove.Insert(0, index);
+
+                index++;
+            }
+
+            foreach (var itemIndex in itemsToRemove)
+            {
+                RemoveItem(list, itemIndex);
+            }
+
+            foreach (XmlNode batchcomponentfragmentNode in batchcomponentfragmentNodeList)
+            {
+                BatchComponentFragment batchcomponentfragment = BatchComponentFragment.NewBatchComponentFragment(batchcomponentfragmentNode.OuterXml, true, true);
+                bool foundFragment = false;
+                foreach (BatchComponentFragment batchcmpFrg in list)
+                {
+                    if (batchcomponentfragment.UniqueID == batchcmpFrg.UniqueID)
+                    {
+                        UpdateFromXml(batchcmpFrg, batchcomponentfragmentNode);
+                        foundFragment = true;
+                        break;
+                    }
+                }
+                if (!foundFragment)
+                    list.Add(batchcomponentfragment);
+            }
+        }
+
+        #endregion
+
+        #region Component List
         public static void UpdateFromXmlEx(this ComponentList list, XmlNode dataNode)
         {
             if (dataNode == null) return;
@@ -189,7 +317,6 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
             // Update compound
             XmlNode compoundNode = dataNode.SelectSingleNode("Compound");
-            component.Compound.UpdateFromXmlEx(compoundNode);
             component.Compound.UpdateFromXmlEx(compoundNode);
         }
 
@@ -276,9 +403,11 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     if (node != null && Enum.TryParse<COEDALBoolean>(node.InnerText, out useNormalization))
                         structure.UseNormalizedStructure = useNormalization == COEDALBoolean.T;
                 }
-                structure.PropertyList.UpdateFromXmlEx(structureElement.SelectSingleNode("PropertyList"));
-                structure.IdentifierList.UpdateFromXmlEx(structureElement.SelectSingleNode("IdentifierList"));
+                structure.PropertyList.UpdateFromXmlEx(dataNode.SelectSingleNode("PropertyList"));
+                structure.IdentifierList.UpdateFromXmlEx(dataNode.SelectSingleNode("IdentifierList"));
             }
         }
+
+        #endregion
     }
 }

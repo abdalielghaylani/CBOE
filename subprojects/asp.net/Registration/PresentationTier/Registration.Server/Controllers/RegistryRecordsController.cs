@@ -280,7 +280,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Record is locked and cannot be updated.";
                     if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();                   
                     errorMessage = "Unable to update the internal record.";
-                    registryRecord.InitializeFromXml(xml, false, false);                   
+                    registryRecord.UpdateFromXmlEx(xml);                 
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
