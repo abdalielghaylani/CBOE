@@ -18,8 +18,11 @@ export class RegDateFormItem extends RegBaseFormItem {
     return dateValue.toDate();
   }
 
-  serializeValue(value: Date): string  {
+  serializeValue(value: Date): string {
     if (this.type === 'date') {
+      if (value == null) {
+        return null;
+      }
       // Change to midday GMT
       value.setUTCHours(12);
     }
