@@ -11,3 +11,7 @@
 .pressed-button {
   background-color: #ededed;
 }
+
+.pref-image {
+  max-width: 24px;
+}

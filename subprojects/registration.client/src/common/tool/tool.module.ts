@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CircleIcon } from './circle-icon.component';
 import { CommandButton } from './command-button.component';
+import { CommandDropdown } from './command-dropdown.component';
 import { PageWithTools } from './page-with-tools.component';
 import { ToolPanel } from './tool-panel.component';
 import { FullScreenIcon } from './full-screen.component';
@@ -17,6 +18,7 @@ import { FullScreenIcon } from './full-screen.component';
   declarations: [
     CircleIcon,
     CommandButton,
+    CommandDropdown,
     PageWithTools,
     ToolPanel,
     FullScreenIcon
@@ -24,6 +26,7 @@ import { FullScreenIcon } from './full-screen.component';
   exports: [
     CircleIcon,
     CommandButton,
+    CommandDropdown,
     PageWithTools,
     ToolPanel,
     RouterModule,
