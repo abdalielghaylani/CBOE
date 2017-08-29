@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IFormItemTemplate, RegStructureBaseFormItem } from '../../../common';
-import { StructureQueryOptionsModel } from '../registry-base.types';
+import { StructureQueryOptionsModel, IStructureQueryOptions } from '../registry-base.types';
 
 @Component({
   selector: 'reg-structure-query-form-item-template',
@@ -11,6 +11,7 @@ import { StructureQueryOptionsModel } from '../registry-base.types';
 })
 export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
   private queryModel = new StructureQueryOptionsModel();
+  private structureCriteriaOptions: IStructureQueryOptions;
   private index: number = 0;
   private searchTypeOptions: string[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
   private viewConfigGeneral = [{
@@ -82,6 +83,37 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
 
   getSelectedValue(e) {
     this.queryModel.searchTypeValue = e;
+    this.onValueUpdated(this);
   }
 
-};
+  onValueUpdated(e) {
+    this.setStructureSearchOptions();
+    if (this.viewModel) {
+      this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+    }
+    this.valueUpdated.emit(this);
+  }
+
+  public setStructureSearchOptions() {
+    // Set structure search Attributes
+    if (this.queryModel) {
+      this.structureCriteriaOptions = {
+        _hitAnyChargeHetero: this.queryModel.hitAnyChargeCarbon ? 'YES' : 'NO',
+        _reactionCenter: this.queryModel.reactionCenter ? 'YES' : 'NO',
+        _hitAnyChargeCarbon: this.queryModel.hitAnyChargeCarbon ? 'YES' : 'NO',
+        _permitExtraneousFragments: this.queryModel.permitExtraneousFragments ? 'YES' : 'NO',
+        _permitExtraneousFragmentsIfRXN: this.queryModel.permitExtraneousFragmentsIfRXN ? 'YES' : 'NO',
+        _fragmentsOverlap: this.queryModel.fragmentsOverlap ? 'YES' : 'NO',
+        _tautometer: this.queryModel.tautometer ? 'YES' : 'NO',
+        _simThreshold: this.queryModel.simThreshold.toString(),
+        _fullSearch: this.queryModel.searchTypeValue === 'Full Structure' ? 'YES' : 'NO',
+        _identity: this.queryModel.searchTypeValue === 'Exact' ? 'YES' : 'NO',
+        _similar: this.queryModel.searchTypeValue === 'Similarity' ? 'YES' : 'NO',
+        _tetrahedralStereo: this.queryModel.matchStereochemistry ? this.queryModel.tetrahedralStereo : '',
+        _relativeTetStereo: this.queryModel.matchStereochemistry ? (this.queryModel.relativeTetStereo ? 'YES' : 'NO') : 'NO',
+        _doubleBondStereo: this.queryModel.matchStereochemistry ? (this.queryModel.doubleBondStereo === 'Any' ? 'NO' : 'YES') : 'NO'
+      };
+    }
+  }
+
+}

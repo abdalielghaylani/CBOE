@@ -13,6 +13,7 @@ export class RegStructureQueryOptions {
   @Input() viewModel = [];
   @Input() viewConfig;
   @Input() colCount = 2;
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   private tetrahedralSameImage = require('../assets/tetrahedral-same.png');
   private tetrahedralEitherImage = require('../assets/tetrahedral-either.png');
   private tetrahedralAnyImage = require('../assets/tetrahedral-any.png');
@@ -24,7 +25,8 @@ export class RegStructureQueryOptions {
   constructor() {
   }
 
-  protected onFieldDataChanged(e) {
+  onFieldDataChanged(e) {
+    this.valueUpdated.emit(e);
   }
 
 };

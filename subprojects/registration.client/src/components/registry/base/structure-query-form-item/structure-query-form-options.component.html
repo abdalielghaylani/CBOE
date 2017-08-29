@@ -2,7 +2,8 @@
   <dxi-item class="rect" [ratio]="1">
     <dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)"  [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="false">
       <div *dxTemplate="let d of 'tetrahedralTemplate'">
-        <dx-radio-group layout='horizontal' [items]="['Same','Either','Any']" [(value)]="viewModel.tetrahedralStereo" [disabled]="!viewModel.matchStereochemistry">
+        <dx-radio-group layout='horizontal' [items]="['Same','Either','Any']" [(value)]="viewModel.tetrahedralStereo" [disabled]="!viewModel.matchStereochemistry"
+        (onValueChanged)="onFieldDataChanged($event)">
           <div *dxTemplate="let data of 'item'">
             {{data}}
             <img [src]="tetrahedralSameImage" class="pref-image">
@@ -13,13 +14,13 @@
         </dx-radio-group>
       </div>
       <div *dxTemplate="let d of 'relativeTetStereoTemplate'">
-        <dx-check-box [(value)]="viewModel.relativeTetStereo" [disabled]="!viewModel.matchStereochemistry">
+        <dx-check-box (onValueChanged)="onFieldDataChanged($event)" [(value)]="viewModel.relativeTetStereo" [disabled]="!viewModel.matchStereochemistry">
         </dx-check-box> 
         <img [src]="thickBondFirstImage" class="pref-image" class="pref-image">
         <img [src]="thickBondSecondImage" class="pref-image" class="pref-image">
       </div>
       <div *dxTemplate="let d of 'doubleBondTemplate'">
-        <dx-radio-group layout='horizontal' [items]="['Same','Any']" [(value)]="viewModel.doubleBondStereo" [disabled]="!viewModel.matchStereochemistry">
+        <dx-radio-group (onValueChanged)="onFieldDataChanged($event)" layout='horizontal' [items]="['Same','Any']" [(value)]="viewModel.doubleBondStereo" [disabled]="!viewModel.matchStereochemistry">
           <div *dxTemplate="let data of 'item'">
             {{data}}
             <img [src]="doublebondSameImage" class="pref-image">

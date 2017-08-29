@@ -590,13 +590,28 @@ export class CSearchCriteria {
       let value: any = this.getQueryEntryValue(i);
       if (value) {
         if (typeof value === 'object' && value.viewModel) {
-          this.setQueryEntryValue(i, value.toString());
+          if (value && value.structureCriteriaOptions) {
+            this.setStructureSearchOptions(i, value);
+          } else {
+            this.setQueryEntryValue(i, value.toString());
+          }
         }
         items.push(i);
       }
     });
     return CSearchCriteria.x2jsTool.js2xml({ searchCriteria: new CSearchCriteria(items) })
       .replace('<searchCriteria>', `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`);
+  }
+
+  public setStructureSearchOptions(sc: any, entryValue) {
+    // Set structure search Attributes
+    if (entryValue && entryValue.structureCriteriaOptions) {
+      sc.structureCriteria = {};
+      sc.structureCriteria._negate = 'NO';
+      sc.structureCriteria.CSCartridgeStructureCriteria = {};
+      sc.structureCriteria.CSCartridgeStructureCriteria = entryValue.structureCriteriaOptions;
+      sc.structureCriteria.CSCartridgeStructureCriteria.__text = entryValue.toString();
+    }
   }
 
   public getQueryFormData(viewConfig: CViewGroup, displayMode: string, idList: string[]): any {
@@ -644,3 +659,22 @@ export class StructureQueryOptionsModel {
   doubleBondStereo: string = 'Same';
   relativeTetStereo: boolean = false;
 }
+
+export interface IStructureQueryOptions {
+  _hitAnyChargeHetero: string;
+  _reactionCenter: string;
+  _hitAnyChargeCarbon: string;
+  _permitExtraneousFragments: string;
+  _permitExtraneousFragmentsIfRXN: string;
+  _fragmentsOverlap: string;
+  _tautometer: string;
+  _doubleBondStereo: string;
+  _simThreshold: string;
+  _fullSearch: string;
+  _identity: string;
+  _similar: string;
+  _tetrahedralStereo: string;
+  _relativeTetStereo: string;
+}
+
+

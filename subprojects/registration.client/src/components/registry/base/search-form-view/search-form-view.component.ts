@@ -15,7 +15,9 @@ export class RegSearchFormView extends RegFormView {
   }
 
   protected onFieldDataChanged(e) {
-    if (this.viewModelCopy[e.dataField] !== e.value) {
+    if (e.value && e.value.structureCriteriaOptions) {
+      this.onValueUpdated(this);
+    } else if (this.viewModelCopy[e.dataField] !== e.value) {
       this.viewModelCopy[e.dataField] = e.value;
       this.onValueUpdated(this);
     }
