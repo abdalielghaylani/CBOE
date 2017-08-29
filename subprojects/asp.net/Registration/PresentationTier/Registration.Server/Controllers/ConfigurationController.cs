@@ -1519,8 +1519,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!found)
                     throw new IndexOutOfRangeException(string.Format("{0} was not found", settingInfo));
                 if (!updated)
-                    throw new IndexOutOfRangeException("No change is required");
+                    throw new RegistrationException("No change is required");
                 FrameworkUtils.SaveAppConfigSettings(currentApplicationName, appConfigSettings);
+                const string enableAudtingSettingName = "EnableAuditing";
+                if (settingName.Equals(enableAudtingSettingName))
+                {
+                    AuditingConfigurationProcessor processor = new AuditingConfigurationProcessor();
+                    processor.Process(enableAudtingSettingName, "", settingValue);
+                }
                 return new ResponseData(null, null, string.Format("{0} was updated successfully!", settingInfo), null);
             }, new string[] { Consts.PrivilegeConfigReg, "MANAGE_SYSTEM_SETTINGS" });
         }
