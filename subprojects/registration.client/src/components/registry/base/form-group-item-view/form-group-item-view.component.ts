@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { CViewGroup, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject } from '../registry-base.types';
+import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject } from '../registry-base.types';
 import { IViewControl, IPropertyList } from '../../../common';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
 
@@ -16,7 +16,7 @@ export class RegFormGroupItemView implements IViewControl, OnChanges {
   @Input() editMode: boolean;
   @Input() displayMode: string;
   @Input() viewModel: any;
-  @Input() viewConfig: CViewGroup;
+  @Input() viewConfig: CViewGroupContainer;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   protected items: any[] = [];
   protected formData: any = {};

@@ -9,7 +9,7 @@ import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../.
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { CFragment } from '../../../common';
-import { CRegistryRecord, CViewGroup } from '../../base';
+import { CRegistryRecord, CViewGroup, CViewGroupContainer } from '../../base';
 import { RegFormGroupView } from '../form-group-view';
 import * as registryUtils from '../../registry.utils';
 import * as X2JS from 'x2js';
@@ -39,7 +39,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   protected recordDoc: Document;
   protected regRecord: CRegistryRecord = new CRegistryRecord();
   protected formGroup: IFormGroup;
-  protected viewGroups: CViewGroup[];
+  protected viewGroupContainers: CViewGroupContainer[];
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
 
   constructor(
@@ -92,6 +92,14 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  protected createViewGroupContainers(viewGroups: CViewGroup[]): CViewGroupContainer[] {
+    // let containers = [];
+    // containers.push(new CViewGroupContainer('Registry Information'));
+    // containers.push(new CViewGroupContainer('Component:'));
+    // containers.push(new CViewGroupContainer('Batch:'));
+    return viewGroups.map(vg => new CViewGroupContainer(vg.title, [ vg ]));    
+  }
+
   protected loadRecordData(data: IRecordDetail) {
     if (!data.data || data.id !== this.id || (!this.isNewRecord && data.temporary !== this.temporary)) {
       this.loadingVisible = true;
@@ -114,7 +122,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
     }
     let lookups = state.session.lookups;
-    this.viewGroups = lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, lookups.disabledControls) : [];
+    let viewGroups = lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, lookups.disabledControls) : [];
+    this.viewGroupContainers = this.createViewGroupContainers(viewGroups);
     this.loadingVisible = false;
     this.contentReady.emit({ component: this, data: data });
     this.changeDetector.markForCheck();
@@ -156,10 +165,10 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
 
   public getUpdatedRecord(): Document {
     let x2jsTool = this.x2jsTool;
-    this.viewGroups.forEach(vg => {
-      let items = vg.getItems(this.displayMode);
+    this.viewGroupContainers.forEach(vgc => {
+      let items = vgc.getItems(this.displayMode);
       let validItems = items.filter(i => !i.itemType || i.itemType !== 'empty').map(i => i.dataField);
-      this.regRecord.serializeFormData(this.viewGroups, this.displayMode, validItems);
+      this.regRecord.serializeFormData(this.viewGroupContainers, this.displayMode, validItems);
     });
     let recordDoc = x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });
     if (!recordDoc) {
