@@ -1,0 +1,5 @@
+<dx-select-box *ngIf="viewModel.key.controlType==='PICKLIST'"
+  (onValueChanged)="onValueChanged($event)" [items]="items" [(value)]="value">
+</dx-select-box>
+<dx-text-box *ngIf="viewModel.key.controlType!=='PICKLIST'" (onValueChanged)="onValueChanged($event)" [(value)]="value">
+</dx-text-box>

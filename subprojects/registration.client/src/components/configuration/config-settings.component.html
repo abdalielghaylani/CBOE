@@ -5,6 +5,9 @@
     [grouping]="{ autoExpandAll: true }"
     rowAlternationEnabled="true" (onContentReady)="onContentReady($event)"
     (onCellPrepared)="onCellPrepared($event)" (onRowCollapsing)="onRowCollapsing($event)">
-    <dxo-editing mode="form" [allowUpdating]="true"></dxo-editing>
-  </dx-data-grid>
+    <dxo-editing mode="row" [allowUpdating]="true"></dxo-editing>
+    <div *dxTemplate="let d of 'valueEditTemplate'">
+      <reg-setting-value-form-item-template [viewModel]="d"></reg-setting-value-form-item-template>
+    </div>
+    </dx-data-grid>
 </div>

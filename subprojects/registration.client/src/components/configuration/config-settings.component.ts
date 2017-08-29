@@ -47,7 +47,8 @@ export class RegConfigSettings implements OnInit, OnDestroy {
     allowEditing: false
   }, {
     dataField: 'value',
-    dataType: 'string'
+    dataType: 'string',
+    editCellTemplate: 'valueEditTemplate'
   }, {
     dataField: 'description',
     dataType: 'string',

@@ -16,12 +16,14 @@ export class RegBaseColumnItem implements OnChanges {
   }
 
   ngOnChanges() {
-    this.viewConfig = this.viewModel.column.editorOptions;
+    if (this.viewModel) {
+      this.viewConfig = this.viewModel.column.editorOptions;
+    }
     this.update();
   }
 
   protected update() {
-    if (this.viewConfig && this.viewModel) {
+    if (this.viewModel) {
       this.value = this.deserializeValue(this.viewModel.value);
     }
   }
