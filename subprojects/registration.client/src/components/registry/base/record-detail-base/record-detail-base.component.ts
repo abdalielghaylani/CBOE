@@ -97,7 +97,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     // containers.push(new CViewGroupContainer('Registry Information'));
     // containers.push(new CViewGroupContainer('Component:'));
     // containers.push(new CViewGroupContainer('Batch:'));
-    return viewGroups.map(vg => new CViewGroupContainer(vg.title, [ vg ]));    
+    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, [ vg ]));    
   }
 
   protected loadRecordData(data: IRecordDetail) {

@@ -360,7 +360,7 @@ export class CViewGroup implements IViewGroup {
 }
 
 export class CViewGroupContainer implements IViewGroupContainer {
-  constructor(public title: string, public viewGroups: CViewGroup[] = []) {
+  constructor(public id: string, public title: string, public viewGroups: CViewGroup[] = []) {
   }
 
   private getGroupedItems(displayMode: string): any[] {
@@ -372,7 +372,7 @@ export class CViewGroupContainer implements IViewGroupContainer {
   }
 
   public static createSimpleViewGroupContainers(viewGroups: CViewGroup[]) {
-    return viewGroups.map(vg => new CViewGroupContainer(vg.title, [ vg ]));
+    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, [ vg ]));
   }
 
   public getEntryInfo(displayMode: string, id: string): CEntryInfo {
