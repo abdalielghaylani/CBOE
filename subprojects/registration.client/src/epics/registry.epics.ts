@@ -88,7 +88,7 @@ export class RegistryEpics {
           .map(result => {
             let responseData = result.json() as IResponseData;
             if ((responseData.data) && (responseData.data.DuplicateRecords)) {
-              return RecordDetailActions.loadDuplicateRecordSuccessAction(responseData.data.DuplicateRecords);
+              return RecordDetailActions.loadDuplicateRecordSuccessAction(responseData.data);
             } else {
               let actionType = payload.saveToPermanent ? 'registered' : 'saved';
               let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
