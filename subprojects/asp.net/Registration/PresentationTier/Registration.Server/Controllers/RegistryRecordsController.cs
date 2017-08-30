@@ -149,7 +149,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 else
                 {
                     // duplicate records found, return list of duplicate records
-                    return new ResponseData(null, null, null, GetDuplicateRecords(regRecord.FoundDuplicates));
+                    return new ResponseData(null, null, null, GetDuplicateRecords(regRecord));
                 }
             });
         }
@@ -175,10 +175,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 registryRecord = RegistryRecord.NewRegistryRecord();
                 registryRecord.InitializeFromXml(recordString, true, false);
-            }           
+            }
             registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
-            DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(duplicateCheckOption);          
-            return registryRecord.Register(duplicateCheck);           
+            DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(duplicateCheckOption);
+            return registryRecord.Register(duplicateCheck);
         }
 
         /// <summary>
@@ -278,9 +278,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
                     if (registryRecord == null) throw new Exception();
                     errorMessage = "Record is locked and cannot be updated.";
-                    if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();                   
+                    if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
                     errorMessage = "Unable to update the internal record.";
-                    registryRecord.UpdateFromXmlEx(xml);                 
+                    registryRecord.UpdateFromXmlEx(xml);
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
@@ -294,7 +294,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     else
                     {
                         // duplicate records found, return list of duplicate records
-                        return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord.FoundDuplicates));
+                        return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord));
                     }
                 }
                 catch (Exception ex)
@@ -317,19 +317,34 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
-        private JObject GetDuplicateRecords(string duplicateXml)
+        private JObject GetDuplicateRecords(RegistryRecord sourceRegistryRecord)
         {
-            if (string.IsNullOrWhiteSpace(duplicateXml))
+            if (string.IsNullOrWhiteSpace(sourceRegistryRecord.FoundDuplicates))
                 return null;
 
             List<string> duplicateRegIds = new List<string>();
             XmlDocument xmldoc = new XmlDocument();
-            xmldoc.LoadXml(duplicateXml);
+            xmldoc.LoadXml(sourceRegistryRecord.FoundDuplicates);
             XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+            var duplicateActionList = new JArray();
             foreach (XmlNode node in nodeList)
             {
-                RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
-                duplicateRegIds.Add(registryRecord.ID.ToString());
+                RegistryRecord duplicateRegistryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
+                duplicateRegIds.Add(duplicateRegistryRecord.ID.ToString());
+
+                DuplicatesResolver duplicatesResolver = InitializeDuplicatesResolver(sourceRegistryRecord,
+                    sourceRegistryRecord.FoundDuplicates,
+                    duplicateRegistryRecord.RegNum,
+                    string.Empty);
+
+                var duplicateActions = new JObject(
+                   new JProperty("ID", duplicateRegistryRecord.ID),
+                   new JProperty("REGNUMBER", duplicateRegistryRecord.RegNum),
+                   new JProperty("canAddBatch", duplicatesResolver.CanAddBatch),
+                   new JProperty("canUseCompound", duplicatesResolver.CanCreateCompoundForm),
+                   new JProperty("canUseStructure", duplicatesResolver.CanUseStructure)
+               );
+                duplicateActionList.Add(duplicateActions);
             }
 
             var tableName = string.Format("vw_mixture_regnumber WHERE regid IN ({0})", string.Join(",", duplicateRegIds));
@@ -337,7 +352,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             var responseMessage = new JObject(
                 new JProperty("DuplicateRecords", ExtractData(query, null, null, null)),
-                new JProperty("DuplicateActions", DuplicateAction.Batch.ToString(), DuplicateAction.Compound.ToString(), DuplicateAction.Duplicate.ToString(), DuplicateAction.None.ToString(), DuplicateAction.Temporary.ToString())
+                new JProperty("DuplicateActions", duplicateActionList)
             );
             return responseMessage;
         }
@@ -555,7 +570,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateAction))
                     throw new RegistrationException("Invalid duplicate action name");
-                
+
                 List<string> validDuplicateActions = new List<string>(new string[] { "AddBatch", "Duplicate", "UseComponent", "UseStructure" });
                 if (!validDuplicateActions.Contains(inputData.DuplicateAction))
                 {
@@ -569,40 +584,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (string.IsNullOrWhiteSpace(inputData.RegNo))
                         throw new RegistrationException("Invalid registration number");
                 }
-             
+
                 // get duplicates for the given input record data
                 RegistryRecord registryRecord = RegisterRecord(inputData.Data, "C");
 
                 if (!string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
-                {
-                    // duplicate records found
-                    XmlDocument xmldoc = new XmlDocument();
-                    xmldoc.LoadXml(registryRecord.FoundDuplicates);
-                    XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
-
-                    int selectedDuplicateRecord = 0;
-                    // get selected dulicate records's index
-                    if (!inputData.DuplicateAction.Equals("Duplicate"))
-                    {
-                        foreach (XmlNode node in nodeList)
-                        {
-                            if (node.InnerText.Equals(inputData.RegNo))
-                            {
-                                break;
-                            }
-                            selectedDuplicateRecord++;
-                        }
-                    }
-
-                    DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, registryRecord.FoundDuplicates, false);
-
-                    // Note: HasUnsolvedComponents check also initializes duplicatesResolver.Duplicates list
-                    if (!duplicatesResolver.HasUnsolvedComponents)
-                    {
-                        throw new RegistrationException("No un-resolved components found in the duplicate records");
-                    }
-
-                    duplicatesResolver.Duplicates.CurrentIndex = selectedDuplicateRecord;                
+                { 
+                    DuplicatesResolver duplicatesResolver = InitializeDuplicatesResolver(registryRecord,
+                        registryRecord.FoundDuplicates,
+                        inputData.RegNo,
+                        inputData.DuplicateAction);
 
                     switch (inputData.DuplicateAction)
                     {
@@ -619,7 +610,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             registryRecord = duplicatesResolver.UseStructure();
                             break;
                         default:
-                            throw new RegistrationException("Invalid duplicate action");                           
+                            throw new RegistrationException("Invalid duplicate action");
                     }
 
                     return new ResponseData(registryRecord.ID, registryRecord.RegNum, null, null);
@@ -627,6 +618,39 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return new ResponseData(message: "Registration of record failed due to a problem.");
             });
         }
+
+        private DuplicatesResolver InitializeDuplicatesResolver(RegistryRecord registryRecord, string duplicateXml, string duplicateRecordRegNum, string duplicateAction)
+        {
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.LoadXml(registryRecord.FoundDuplicates);
+            XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+
+            int selectedDuplicateRecord = 0;
+            // get selected dulicate records's index           
+            if (!duplicateAction.Equals("Duplicate"))
+            {
+                foreach (XmlNode node in nodeList)
+                {
+                    if (node.InnerText.Equals(duplicateRecordRegNum))
+                    {
+                        break;
+                    }
+                    selectedDuplicateRecord++;
+                }
+            }
+
+            DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, registryRecord.FoundDuplicates, false);
+
+            // Note: HasUnsolvedComponents check also initializes duplicatesResolver.Duplicates list
+            if (!duplicatesResolver.HasUnsolvedComponents)
+            {
+                throw new RegistrationException("No un-resolved components found in the duplicate records");
+            }
+
+            duplicatesResolver.Duplicates.CurrentIndex = selectedDuplicateRecord;
+            return duplicatesResolver;
+        }
+
         #endregion
     }
 }
