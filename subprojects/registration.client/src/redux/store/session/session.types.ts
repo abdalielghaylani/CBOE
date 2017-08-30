@@ -77,6 +77,10 @@ export class CSystemSettings {
     return this.isSettingTrue('EnableSubmissionTemplates');
   }
 
+  public get isSameBatchesIdentity(): boolean {
+    return this.isSettingTrue('SameBatchesIdentity');
+  }
+
   public get reviewRegisterSearchFormGroupId(): number {
     return +this.getSetting('Search', 'ReviewRegisterSearchFormGroupId');
   }

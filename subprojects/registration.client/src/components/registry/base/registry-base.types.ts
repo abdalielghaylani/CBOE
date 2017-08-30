@@ -53,7 +53,7 @@ export class CViewGroup implements IViewGroup {
   }
 
   private canAppend(f: ICoeForm): boolean {
-    return this.data.length === 0 || !f.title || this.title === f.title || f.title === 'Fragment Information';
+    return this.data.length === 0 || !f.title || this.title === f.title;
   }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
@@ -366,7 +366,12 @@ export class CViewGroupContainer implements IViewGroupContainer {
   private getGroupedItems(displayMode: string): any[] {
     let items = [];
     this.viewGroups.forEach(vg => {
-      items.concat(vg.getItems(displayMode));
+      items.push({
+        itemType: 'group',
+        caption: vg.title,
+        colCount: 5,
+        items: vg.getItems(displayMode)
+      });
     });
     return items;
   }
@@ -379,7 +384,7 @@ export class CViewGroupContainer implements IViewGroupContainer {
     let entryInfo = new CEntryInfo();
     this.viewGroups.forEach(vg => {
       let i = vg.getEntryInfo(displayMode, id);
-      if (i !== new CEntryInfo()) {
+      if (i.bindingExpression != null || i.dataSource != null || i.searchCriteriaItem != null) {
         entryInfo = i;
       }
     });

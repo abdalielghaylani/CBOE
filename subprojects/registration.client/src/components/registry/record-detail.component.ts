@@ -411,9 +411,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     let recordId = recordDetailBase.recordId;
     this.title = this.isNewRecord ?
       'Register a New Compound' :
-      this.temporary ?
-        'Edit a Temporary Record: ' + recordId :
-        'Edit a Registry Record: ' + recordId;
+      `${this.temporary ? 'Temporary' : 'Registry'} Record: ${recordId}`;
     this.update();
   }
 };
