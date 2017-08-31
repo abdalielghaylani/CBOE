@@ -20,6 +20,11 @@ export interface IViewGroup {
   data: ICoeForm[];
 }
 
+export interface IViewGroupContainer {
+  title: string;
+  viewGroups: CViewGroup[];
+}
+
 export class CEntryInfo {
   dataSource: string;
   bindingExpression: string;
@@ -48,7 +53,7 @@ export class CViewGroup implements IViewGroup {
   }
 
   private canAppend(f: ICoeForm): boolean {
-    return this.data.length === 0 || !f.title || this.title === f.title || f.title === 'Fragment Information';
+    return this.data.length === 0 || !f.title || this.title === f.title;
   }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
@@ -354,6 +359,51 @@ export class CViewGroup implements IViewGroup {
   }
 }
 
+export class CViewGroupContainer implements IViewGroupContainer {
+  constructor(public id: string, public title: string, public viewGroups: CViewGroup[] = []) {
+  }
+
+  private getGroupedItems(displayMode: string): any[] {
+    let items = [];
+    this.viewGroups.forEach(vg => {
+      items.push({
+        itemType: 'group',
+        caption: vg.title,
+        colCount: 5,
+        items: vg.getItems(displayMode)
+      });
+    });
+    return items;
+  }
+
+  public static createSimpleViewGroupContainers(viewGroups: CViewGroup[]) {
+    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, [ vg ]));
+  }
+
+  public getEntryInfo(displayMode: string, id: string): CEntryInfo {
+    let entryInfo = new CEntryInfo();
+    this.viewGroups.forEach(vg => {
+      let i = vg.getEntryInfo(displayMode, id);
+      if (i.bindingExpression != null || i.dataSource != null || i.searchCriteriaItem != null) {
+        entryInfo = i;
+      }
+    });
+    return entryInfo;
+  }
+
+  public getItems(displayMode: string): any[] {
+    return this.viewGroups.length === 1 ? this.viewGroups[0].getItems(displayMode) : this.getGroupedItems(displayMode);
+  }
+
+  public getSearchItems(): ISearchCriteriaItem[] {
+    let items = [];
+    this.viewGroups.forEach(vg => {
+      items.concat(vg.getSearchItems());
+    });
+    return items;
+  }
+}
+
 export class CRegistryRecord {
   _SameBatchesIdentity?: string; // True
   _ActiveRLS?: string; // Off
@@ -473,7 +523,7 @@ export class CRegistryRecord {
           : this;
   }
 
-  public setEntryValue(viewConfig: CViewGroup, displayMode: string, id: string, entryValue, serialize: boolean = false) {
+  public setEntryValue(viewConfig: CViewGroupContainer, displayMode: string, id: string, entryValue, serialize: boolean = false) {
     let entryInfo = viewConfig.getEntryInfo(displayMode, id);
     if (entryInfo.dataSource && entryInfo.bindingExpression) {
       let dataSource = this.getDataSource(entryInfo.dataSource);
@@ -494,10 +544,10 @@ export class CRegistryRecord {
   * @param idList The list of ID's to update
   * @param viewModel The view-model to flatten
   */
-  public serializeFormData(viewConfig: CViewGroup[], displayMode: string, idList: string[]) {
-    viewConfig.forEach(vg => {
+  public serializeFormData(viewConfig: CViewGroupContainer[], displayMode: string, idList: string[]) {
+    viewConfig.forEach(vgc => {
       idList.forEach(id => {
-        this.setEntryValue(vg, displayMode, id, null, true);
+        this.setEntryValue(vgc, displayMode, id, null, true);
       });
     });
   }
@@ -604,7 +654,7 @@ export class CSearchCriteria {
   }
 
   public setStructureSearchOptions(sc: any, entryValue) {
-    // Set structure search Attributes
+    // Set structure search attributes
     if (entryValue && entryValue.structureCriteriaOptions) {
       sc.structureCriteria = {};
       sc.structureCriteria._negate = 'NO';
@@ -614,7 +664,7 @@ export class CSearchCriteria {
     }
   }
 
-  public getQueryFormData(viewConfig: CViewGroup, displayMode: string, idList: string[]): any {
+  public getQueryFormData(viewConfig: CViewGroupContainer, displayMode: string, idList: string[]): any {
     let formData: any = {};
     idList.forEach(id => {
       let entryInfo = viewConfig.getEntryInfo(displayMode, id);
@@ -629,7 +679,7 @@ export class CSearchCriteria {
     return formData;
   }
 
-  public updateFromQueryFormData(formData: any, viewConfig: CViewGroup, displayMode: string, idList: string[]) {
+  public updateFromQueryFormData(formData: any, viewConfig: CViewGroupContainer, displayMode: string, idList: string[]) {
     idList.forEach(id => {
       let entryInfo = viewConfig.getEntryInfo(displayMode, id);
       if (entryInfo.searchCriteriaItem) {

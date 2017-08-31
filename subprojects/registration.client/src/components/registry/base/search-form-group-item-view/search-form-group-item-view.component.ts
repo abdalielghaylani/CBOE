@@ -15,12 +15,12 @@ export class RegSearchFormGroupItemView extends RegFormGroupItemView {
   }
 
   protected readVM() {
-    let validItems = this.items.filter(i => !i.itemType || i.itemType !== 'empty');
-    this.formData = (this.viewModel as CSearchCriteria).getQueryFormData(this.viewConfig, this.displayMode, validItems.map(i => i.dataField));
+    let validItems = RegFormGroupItemView.getValidItems(this.items).map(i => i.dataField);
+    this.formData = (this.viewModel as CSearchCriteria).getQueryFormData(this.viewConfig, this.displayMode, validItems);
   }
 
   protected writeVM() {
-    let validItems = this.items.filter(i => !i.itemType || i.itemType !== 'empty');
-    (this.viewModel as CSearchCriteria).updateFromQueryFormData(this.formData, this.viewConfig, this.displayMode, validItems.map(i => i.dataField));
+    let validItems = RegFormGroupItemView.getValidItems(this.items).map(i => i.dataField);
+    (this.viewModel as CSearchCriteria).updateFromQueryFormData(this.formData, this.viewConfig, this.displayMode, validItems);
   }
 };

@@ -33,6 +33,7 @@ import { RegConfigTables } from './config-tables.component';
 import { RegConfigXmlForms } from './config-xml-forms.component';
 import { RegSettingsPageHeader } from './settings-page-header.component';
 import { RegStructureFragmentFormItem } from './structure-fragment-form-item.component';
+import { RegSettingValueFormItem } from './setting-value-form-item';
 import { RegValidationFormItem } from './validation-type-form-item';
 
 export * from './config-addins.component';
@@ -43,6 +44,7 @@ export * from './config-tables.component';
 export * from './config-xml-forms.component';
 export * from './config.types';
 export * from './settings-page-header.component';
+export * from './setting-value-form-item';
 export * from './validation-type-form-item';
 
 @NgModule({
@@ -75,12 +77,12 @@ export * from './validation-type-form-item';
   declarations: [
     RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
     RegSettingsPageHeader, RegStructureFragmentFormItem,
-    RegValidationFormItem
+    RegSettingValueFormItem, RegValidationFormItem
   ],
   exports: [
     RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
     RegSettingsPageHeader, RegStructureFragmentFormItem,
-    RegValidationFormItem,
+    RegSettingValueFormItem, RegValidationFormItem,
     RegCommonComponentModule, RegLayoutComponentModule
   ]
 })

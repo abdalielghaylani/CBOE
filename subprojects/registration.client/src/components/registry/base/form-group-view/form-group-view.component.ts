@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import validationEngine from 'devextreme/ui/validation_engine';
-import { CViewGroup, IRegistryRecord } from '../registry-base.types';
+import { CViewGroup, CViewGroupContainer, IRegistryRecord } from '../registry-base.types';
 import { IViewControl } from '../../../common';
 import { IFormGroup, IForm, ICoeForm } from '../../../../common';
 import { IAppState } from '../../../../redux';
@@ -19,7 +19,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() editMode: boolean;
   @Input() displayMode: string = 'add';
   @Input() viewModel: any;
-  @Input() viewConfig: CViewGroup[];
+  @Input() viewConfig: CViewGroupContainer[];
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
 
   constructor(private ngRedux: NgRedux<IAppState>) {
