@@ -58,7 +58,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     dataField: 'STRUCTURE',
     caption: 'Structure',
     cellTemplate: 'cellTemplate',
-    width: 150,
+    width: 250,
     allowFiltering: false,
     allowSorting: false,
   }, {
