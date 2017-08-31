@@ -218,12 +218,29 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       let canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
       this.actions.saveRecord({
         temporary: this.temporary, id: id, recordDoc: this.recordDoc,
-        saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempListView
+        saveToPermanent: false,
+        checkDuplicate: this.isDuplicateResolutionEnabled(),
+        redirectToRecordsView: canRedirectToTempListView
       });
     } else {
-      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
+      this.actions.saveRecord({
+        temporary: this.temporary, id: id,
+        recordDoc: this.recordDoc, saveToPermanent: false,
+        checkDuplicate: this.isDuplicateResolutionEnabled()
+      });
     }
     return true;
+  }
+
+  isDuplicateResolutionEnabled(p?: boolean) {
+    let duplicateEnabled: boolean = false;
+    if (p || (!this.isNewRecord && !this.temporary)) {
+      duplicateEnabled = this.ngRedux.getState().session.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
+      if (duplicateEnabled) {
+        this.loadingVisible = true;
+      }
+    }
+    return duplicateEnabled;
   }
 
   public register() {
@@ -232,11 +249,11 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       return;
     }
     this.recordDoc = recordDoc;
-    let duplicateEnabled = this.ngRedux.getState().session.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
-    if (duplicateEnabled) {
-      this.loadingVisible = true;
-    }
-    this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
+    this.actions.saveRecord({
+      temporary: this.temporary, id: this.id,
+      recordDoc: this.recordDoc, saveToPermanent: true,
+      checkDuplicate: this.isDuplicateResolutionEnabled(true)
+    });
   }
 
   public prepareRegistryRecord() {
