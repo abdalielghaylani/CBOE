@@ -21,6 +21,7 @@ export interface IViewGroup {
 }
 
 export interface IViewGroupContainer {
+  id: string;
   title: string;
   viewGroups: CViewGroup[];
 }
@@ -369,6 +370,7 @@ export class CViewGroupContainer implements IViewGroupContainer {
       items.push({
         itemType: 'group',
         caption: vg.title,
+        cssClass: 'tan',
         colCount: 5,
         items: vg.getItems(displayMode)
       });
