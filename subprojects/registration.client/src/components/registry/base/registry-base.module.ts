@@ -12,6 +12,7 @@ import {
 } from './structure-query-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
+import { RegFormGroupItemBase } from './form-group-item-base';
 import { RegFormGroupItemView } from './form-group-item-view';
 import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
@@ -79,12 +80,12 @@ export * from './record-detail-base';
   ],
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
-    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
+    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegRecordDetailBase
   ],
   exports: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
-    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemView, RegSearchFormGroupItemView,
+    RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegRecordDetailBase,
     RegCommonModule, RegCommonComponentModule
   ]

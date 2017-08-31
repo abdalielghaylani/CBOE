@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { CFragment } from '../../../common';
 import { CRegistryRecord, CViewGroup, CViewGroupContainer } from '../../base';
 import { RegFormGroupView } from '../form-group-view';
-import { RegFormGroupItemView } from '../form-group-item-view';
+import { RegFormGroupItemBase } from '../form-group-item-base';
 import * as registryUtils from '../../registry.utils';
 import * as X2JS from 'x2js';
 
@@ -192,7 +192,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     let x2jsTool = this.x2jsTool;
     this.viewGroupContainers.forEach(vgc => {
       let items = vgc.getItems(this.displayMode);
-      let validItems = RegFormGroupItemView.getValidItems(items).map(i => i.dataField);
+      let validItems = RegFormGroupItemBase.getValidItems(items).map(i => i.dataField);
       this.regRecord.serializeFormData(this.viewGroupContainers, this.displayMode, validItems);
     });
     let recordDoc = x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });

@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject } from '../registry-base.types';
+import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject, CSearchCriteria } from '../registry-base.types';
 import { IViewControl, IPropertyList } from '../../../common';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
+import { RegFormGroupItemBase } from '../form-group-item-base';
 
 @Component({
   selector: 'reg-form-group-item-view',
@@ -10,24 +11,8 @@ import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../.
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegFormGroupItemView implements IViewControl, OnChanges {
-  @Input() id: string;
-  @Input() activated: boolean;
-  @Input() editMode: boolean;
-  @Input() displayMode: string;
-  @Input() viewModel: any;
-  @Input() viewConfig: CViewGroupContainer;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
-  protected items: any[] = [];
-  protected formData: any = {};
-  protected colCount: number = 5;
-
-  constructor() {
-  }
-
-  ngOnChanges() {
-    this.update();
-  }
+export class RegFormGroupItemView extends RegFormGroupItemBase {
+  @Input() viewModel: CRegistryRecord;
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
     return mode === 'add' ? f.addMode : mode === 'edit' ? f.editMode : f.viewMode;
@@ -58,40 +43,13 @@ export class RegFormGroupItemView implements IViewControl, OnChanges {
     });
   }
 
-  protected update() {
-    if (this.viewConfig) {
-      this.items = this.viewConfig.getItems(this.displayMode);
-      if (this.items.find(i => i.itemType === 'group') != null) {
-        this.colCount = 1;
-      }
-      this.readVM();
-    }
-  }
-
   protected readVM() {
-    let validItems = RegFormGroupItemView.getValidItems(this.items).map(i => i.dataField);
+    let validItems = this.getValidItems().map(i => i.dataField);
     this.formData = this.getFormData(validItems);
   }
 
   protected writeVM() {
-    let validItems = RegFormGroupItemView.getValidItems(this.items).map(i => i.dataField);
+    let validItems = this.getValidItems().map(i => i.dataField);
     this.updateViewModelFromFormData(validItems);
-  }
-
-  protected onValueUpdated(e) {
-    this.writeVM();
-    this.valueUpdated.emit(this);
-  }
-
-  public static getValidItems(items: any[]): any[] {
-    let validItems = [];
-    items.forEach(i => {
-      if (i.itemType === 'group') {
-        validItems = validItems.concat(i.items.filter(ix => !ix.itemType || ix.itemType !== 'empty'));
-      } else if (i.itemType !== 'empty') {
-        validItems.push(i);
-      }
-    });
-    return validItems;    
   }
 };
