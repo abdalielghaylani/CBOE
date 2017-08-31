@@ -178,12 +178,6 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     this.valueUpdated.emit(e);
   }
 
-  protected togglePanel(e) {
-    if (e.srcElement.children.length > 0) {
-      e.srcElement.children[0].click();
-    }
-  }
-
   protected updateEditMode() {
     this.editMode = this.displayMode != null && this.displayMode !== 'view';
   }
