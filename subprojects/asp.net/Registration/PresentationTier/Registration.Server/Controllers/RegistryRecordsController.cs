@@ -258,7 +258,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 doc.LoadXml(inputData.Data);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
-                    inputData.DuplicateCheckOption = "N";             
+                    inputData.DuplicateCheckOption = "N";
 
                 DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(inputData.DuplicateCheckOption);
                 string errorMessage = null;
@@ -279,17 +279,48 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
                     if (registryRecord == null) throw new Exception();
-                    originalRegistryRecord = registryRecord.Clone();
                     errorMessage = "Record is locked and cannot be updated.";
                     if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
+                    originalRegistryRecord = registryRecord.Clone();
                     errorMessage = "Unable to update the internal record.";
                     registryRecord.UpdateFromXmlEx(xml);
+
+                    bool checkOtherMixtures = inputData.CheckOtherMixtures;
+
+                    // If user selected 'Continue' or 'Create Copies' action from UI
+                    if (inputData.CopyAction)
+                    {
+                        // no need to check whether other mixtures affected
+                        checkOtherMixtures = false;
+                        if (inputData.CreateCopies)
+                        {
+                            // 'Create Copies' option
+                            if (IsStructureChanged(registryRecord, originalRegistryRecord))
+                            {
+                                registryRecord.CopyEditedStructures();
+                                duplicateCheck = DuplicateCheck.CompoundCheck;
+                            }
+                            else
+                            {
+                                // TODO: CopyEdited Components method is throwing an exception
+                                // registryRecord.CopyEditedComponents();
+                                duplicateCheck = DuplicateCheck.None;
+                            }
+                        }
+                        else
+                        {
+                            // 'Continue' option
+                            duplicateCheck = DuplicateCheck.CompoundCheck;
+                        }
+                    }
+
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
                     registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
-                    registryRecord.CheckOtherMixtures = inputData.CheckOtherMixtures;                    
+                    registryRecord.CheckOtherMixtures = checkOtherMixtures;
                     registryRecord = registryRecord.Save(duplicateCheck);
+
                     ValidateUpdatedRecord(registryRecord);
                     if (string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
                     {
@@ -311,7 +342,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (editAffectsOthersException != null)
                     {
                         string regNumbersLocked = FindRegNumbersLocked(editAffectsOthersException);
-                        return GetEditActions(registryRecord, originalRegistryRecord, editAffectsOthersException.Message, regNumbersLocked);
+                        return GetCopyActions(registryRecord, originalRegistryRecord, editAffectsOthersException.Message, regNumbersLocked);
                     }
 
                     if (registryRecord != null && ex is ValidationException)
@@ -332,7 +363,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
-        private ResponseData GetEditActions(RegistryRecord newRegistryRecord, RegistryRecord originalRegistryRecord, string message, string regNumbersLocked)
+        private ResponseData GetCopyActions(RegistryRecord newRegistryRecord, RegistryRecord originalRegistryRecord, string message, string regNumbersLocked)
         {
             bool isStructureChanged = false;
             JObject copyActions = null;
@@ -357,9 +388,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
 
                     copyActions = new JObject(new JProperty("caption", "There are several registrations affected."),
-                new JProperty("message", "Editing these components will affect all registry records that refer to them. Choose one of the following options:"),
-                new JProperty("canContinueOptionVisibility", allowContinue),
-                new JProperty("canCreateCopiesOptionVisibility", true));
+                                  new JProperty("message", "Editing these components will affect all registry records that refer to them. Choose one of the following options:"),
+                                  new JProperty("canContinueOptionVisibility", allowContinue),
+                                  new JProperty("canCreateCopiesOptionVisibility", true));
                 }
             }
             else
@@ -378,9 +409,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
 
                     copyActions = new JObject(new JProperty("caption", "There are several components affected."),
-                                    new JProperty("message", "This structure and its data are shared, so these edits will affect all components that refer to it. Choose one of the following options:"),
-                                    new JProperty("canContinueOptionVisibility", allowContinue),
-                                    new JProperty("canCreateCopiesOptionVisibility", allowCreateCopy));
+                                  new JProperty("message", "This structure and its data are shared, so these edits will affect all components that refer to it. Choose one of the following options:"),
+                                  new JProperty("canContinueOptionVisibility", allowContinue),
+                                  new JProperty("canCreateCopiesOptionVisibility", allowCreateCopy));
                 }
             }
 
