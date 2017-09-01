@@ -1,2 +1,9 @@
-<reg-search-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="activated" [editMode]="editMode" [colCount]="colCount">
-</reg-search-form-view>
+<div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+  <a class="list-header tan" data-toggle="collapse" href="#{{id}}">{{viewConfig.title}}</a>
+</div>
+<div [id]="id" class="panel-collapse collapse in">
+  <div class="p2">
+      <reg-search-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="activated" [editMode]="editMode" [colCount]="colCount"></reg-search-form-view>
+  </div>
+</div>
+  

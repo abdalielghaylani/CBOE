@@ -1,6 +1,6 @@
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
-import { CSearchCriteria, ISearchCriteriaItem } from '../registry-base.types';
-import { RegFormGroupItemView } from '../form-group-item-view';
+import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { CSearchCriteria } from '../registry-base.types';
+import { RegFormGroupItemBase } from '../form-group-item-base';
 
 @Component({
   selector: 'reg-search-form-group-item-view',
@@ -9,18 +9,16 @@ import { RegFormGroupItemView } from '../form-group-item-view';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegSearchFormGroupItemView extends RegFormGroupItemView {
-  constructor() {
-    super();
-  }
+export class RegSearchFormGroupItemView extends RegFormGroupItemBase {
+  @Input() viewModel: CSearchCriteria;
 
   protected readVM() {
-    let validItems = RegFormGroupItemView.getValidItems(this.items).map(i => i.dataField);
+    let validItems = this.getValidItems().map(i => i.dataField);
     this.formData = (this.viewModel as CSearchCriteria).getQueryFormData(this.viewConfig, this.displayMode, validItems);
   }
 
   protected writeVM() {
-    let validItems = RegFormGroupItemView.getValidItems(this.items).map(i => i.dataField);
+    let validItems = this.getValidItems().map(i => i.dataField);
     (this.viewModel as CSearchCriteria).updateFromQueryFormData(this.formData, this.viewConfig, this.displayMode, validItems);
   }
 };
