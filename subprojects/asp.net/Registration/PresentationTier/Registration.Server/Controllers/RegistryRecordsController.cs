@@ -14,6 +14,7 @@ using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using RegistrationWebApp.Forms.ComponentDuplicates.ContentArea;
+using CambridgeSoft.COE.Framework.Common.Exceptions;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -257,11 +258,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 doc.LoadXml(inputData.Data);
                 var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
-                    inputData.DuplicateCheckOption = "N";
+                    inputData.DuplicateCheckOption = "N";             
 
                 DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(inputData.DuplicateCheckOption);
                 string errorMessage = null;
                 RegistryRecord registryRecord = null;
+                RegistryRecord originalRegistryRecord = null;
                 try
                 {
                     errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
@@ -277,6 +279,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
                     if (registryRecord == null) throw new Exception();
+                    originalRegistryRecord = registryRecord.Clone();
                     errorMessage = "Record is locked and cannot be updated.";
                     if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
                     errorMessage = "Unable to update the internal record.";
@@ -285,6 +288,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
                     registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                    registryRecord.CheckOtherMixtures = inputData.CheckOtherMixtures;                    
                     registryRecord = registryRecord.Save(duplicateCheck);
                     ValidateUpdatedRecord(registryRecord);
                     if (string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
@@ -299,6 +303,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 catch (Exception ex)
                 {
+                    EditAffectsOtherMixturesException editAffectsOthersException = null;
+                    if (ex is EditAffectsOtherMixturesException)
+                        editAffectsOthersException = (EditAffectsOtherMixturesException)ex;
+                    if (ex.GetBaseException() is EditAffectsOtherMixturesException)
+                        editAffectsOthersException = (EditAffectsOtherMixturesException)ex.GetBaseException();
+                    if (editAffectsOthersException != null)
+                    {
+                        string regNumbersLocked = FindRegNumbersLocked(editAffectsOthersException);
+                        return GetEditActions(registryRecord, originalRegistryRecord, editAffectsOthersException.Message, regNumbersLocked);
+                    }
+
                     if (registryRecord != null && ex is ValidationException)
                     {
                         List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
@@ -315,6 +330,204 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException(errorMessage, ex);
                 }
             });
+        }
+
+        private ResponseData GetEditActions(RegistryRecord newRegistryRecord, RegistryRecord originalRegistryRecord, string message, string regNumbersLocked)
+        {
+            bool isStructureChanged = false;
+            JObject copyActions = null;
+            string affectedRegistries = GetAffectedRegistries(newRegistryRecord, originalRegistryRecord, out isStructureChanged);
+            if (message.Equals("This update causes other registrations to be updated as well."))
+            {
+                if (!string.IsNullOrEmpty(affectedRegistries))
+                {
+                    bool allowContinue = !newRegistryRecord.BatchList[0].BatchComponentList[0].BatchComponentFragmentList.IsDirty
+                        && newRegistryRecord.CanPropogateComponentEdits()
+                        && newRegistryRecord.CanEditComponent(0)
+                        && newRegistryRecord.IsEditable
+                        && newRegistryRecord.ComponentList[0].Compound.CanPropogateComponentEdits;
+
+                    // override allowContinue if user does not have privilege to propogate edits
+                    string checkLockedRecords = RegUtilities.GetLockingEnabled() ? regNumbersLocked : string.Empty;
+                    string canContinueOptionToolTip = string.Empty;
+                    if (!string.IsNullOrEmpty(checkLockedRecords))
+                    {
+                        allowContinue = false;
+                        canContinueOptionToolTip = string.Format("Compound is locked in Registration : {0}" + checkLockedRecords);
+                    }
+
+                    copyActions = new JObject(new JProperty("caption", "There are several registrations affected."),
+                new JProperty("message", "Editing these components will affect all registry records that refer to them. Choose one of the following options:"),
+                new JProperty("canContinueOptionVisibility", allowContinue),
+                new JProperty("canCreateCopiesOptionVisibility", true));
+                }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(affectedRegistries))
+                {
+                    bool allowCreateCopy = false;
+                    bool.TryParse(RegUtilities.GetConfigSetting("REGADMIN", "AllowCreateCopySharedStructure"), out allowCreateCopy);
+                    bool allowContinue = newRegistryRecord.CanPropogateStructureEdits() && newRegistryRecord.ComponentList[0].Compound.BaseFragment.Structure.CanPropogateStructureEdits;
+                    string checkLockedRecords = RegUtilities.GetLockingEnabled() ? regNumbersLocked : string.Empty;
+                    string canContinueOptionToolTip = string.Empty;
+                    if (!string.IsNullOrEmpty(checkLockedRecords))
+                    {
+                        allowContinue = false;
+                        canContinueOptionToolTip = string.Format("Compound is locked in Registration : {0}" + checkLockedRecords);
+                    }
+
+                    copyActions = new JObject(new JProperty("caption", "There are several components affected."),
+                                    new JProperty("message", "This structure and its data are shared, so these edits will affect all components that refer to it. Choose one of the following options:"),
+                                    new JProperty("canContinueOptionVisibility", allowContinue),
+                                    new JProperty("canCreateCopiesOptionVisibility", allowCreateCopy));
+                }
+            }
+
+            var responseMessage = new JObject(new JProperty("copyActions", copyActions));
+            return new ResponseData(null, null, null, responseMessage);
+        }
+
+        private string GetAffectedRegistries(RegistryRecord newRegistryRecord, RegistryRecord originalRegistryRecord, out bool structureChanged)
+        {
+            // here we will look through the components that match  - ignoring newly added components
+            // we need to see if any of the propertylists are dirty.  If they are not, but the structure
+            // is dirty, we need to assure that the edit to the structure changed the atom count
+            // only in that instance will we alert the user that they could affect other registries
+            string affectedRegistries = string.Empty;
+            structureChanged = false;
+            foreach (CambridgeSoft.COE.Registration.Services.Types.Component component in newRegistryRecord.ComponentList)
+            {
+                foreach (CambridgeSoft.COE.Registration.Services.Types.Component componentOriginal in originalRegistryRecord.ComponentList)
+                {
+                    if (componentOriginal.Compound.RegNumber.RegNum == component.Compound.RegNumber.RegNum)
+                    {
+                        if (component.IsDirty && (!component.Compound.FragmentList.IsDirty && !component.Compound.IdentifierList.IsDirty && !component.Compound.PropertyList.IsDirty
+                            && !component.Compound.BaseFragment.Structure.IdentifierList.IsDirty && !component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
+                        {
+                            // we need to know if the structure has changed to know whether or not to duplicate check when the editted record is submitted
+                            if (!RegUtilities.CheckIfMWAndFormulaMatch(component.Compound.BaseFragment.Structure.Value.ToString(), componentOriginal.Compound.BaseFragment.Structure.Value.ToString()))
+                            {
+                                structureChanged = true;
+                                if (string.IsNullOrEmpty(affectedRegistries))
+                                {
+                                    affectedRegistries = component.Compound.RegNumber.RegNum;
+                                }
+                                else
+                                {
+                                    affectedRegistries = affectedRegistries + ", " + component.Compound.RegNumber.RegNum;
+                                }
+                            }
+                        }
+
+                        if (component.IsDirty && (component.Compound.FragmentList.IsDirty || component.Compound.IdentifierList.IsDirty || component.Compound.PropertyList.IsDirty
+                             || component.Compound.BaseFragment.Structure.IdentifierList.IsDirty || component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
+                        {
+                            // we need to know if the structure has changed to know whether or not to duplicate check when the editted record is submitted
+                            if (component.IsDirty)
+                            {
+                                if (!RegUtilities.CheckIfMWAndFormulaMatch(component.Compound.BaseFragment.Structure.Value.ToString(), componentOriginal.Compound.BaseFragment.Structure.Value.ToString()))
+                                {
+                                    structureChanged = true;
+                                }
+                            }
+                            if (string.IsNullOrEmpty(affectedRegistries))
+                            {
+                                affectedRegistries = component.Compound.RegNumber.RegNum;
+                            }
+                            else
+                            {
+                                affectedRegistries = affectedRegistries + ", " + component.Compound.RegNumber.RegNum;
+                            }
+
+                        }
+                        // Check when changes made to equivalents in fragments.
+                        // Note : when SBI = TRUE.(Mandatory).
+                        if (string.IsNullOrEmpty(affectedRegistries) && originalRegistryRecord.SameBatchesIdentity)
+                        {
+                            foreach (CambridgeSoft.COE.Registration.Services.Types.Batch currentBatch in newRegistryRecord.BatchList)
+                            {
+                                if (currentBatch.IsDirty)
+                                {
+                                    foreach (BatchComponent batchComponent in currentBatch.BatchComponentList)
+                                    {
+                                        BatchComponentFragmentList fl = batchComponent.BatchComponentFragmentList;
+                                        if (fl.IsDirty)
+                                        {
+                                            if (batchComponent.ComponentIndex == componentOriginal.ComponentIndex)
+                                            {
+                                                if (string.IsNullOrEmpty(affectedRegistries))
+                                                    affectedRegistries = componentOriginal.Compound.RegNumber.RegNum;
+                                                else
+                                                    affectedRegistries = affectedRegistries + ", " + componentOriginal.Compound.RegNumber.RegNum;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return affectedRegistries;
+        }
+
+        private bool IsStructureChanged(RegistryRecord newRegistryRecord, RegistryRecord originalRegistryRecord)
+        {
+            // here we will look through the components that match  - ignoring newly added components
+            // we need to see if any of the propertylists are dirty.  If they are not, but the structure
+            // is dirty, we need to assure that the edit to the structure changed the atom count          
+            string affectedRegistries = string.Empty;
+            bool structureChanged = false;
+            foreach (CambridgeSoft.COE.Registration.Services.Types.Component component in newRegistryRecord.ComponentList)
+            {
+                foreach (CambridgeSoft.COE.Registration.Services.Types.Component componentOriginal in originalRegistryRecord.ComponentList)
+                {
+                    if (componentOriginal.Compound.RegNumber.RegNum == component.Compound.RegNumber.RegNum)
+                    {
+                        if (component.IsDirty && (!component.Compound.FragmentList.IsDirty && !component.Compound.IdentifierList.IsDirty && !component.Compound.PropertyList.IsDirty
+                            && !component.Compound.BaseFragment.Structure.IdentifierList.IsDirty && !component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
+                        {
+                            // we need to know if the structure has changed to know whether or not to duplicate check when the editted record is submitted
+                            if (!RegUtilities.CheckIfMWAndFormulaMatch(component.Compound.BaseFragment.Structure.Value.ToString(), componentOriginal.Compound.BaseFragment.Structure.Value.ToString()))
+                            {
+                                structureChanged = true;
+                                break;
+                            }
+                        }
+
+                        if (component.IsDirty && (component.Compound.FragmentList.IsDirty || component.Compound.IdentifierList.IsDirty || component.Compound.PropertyList.IsDirty
+                             || component.Compound.BaseFragment.Structure.IdentifierList.IsDirty || component.Compound.BaseFragment.Structure.PropertyList.IsDirty))
+                        {
+                            // we need to know if the structure has changed to know whether or not to duplicate check when the editted record is submitted
+                            if (component.IsDirty)
+                            {
+                                if (!RegUtilities.CheckIfMWAndFormulaMatch(component.Compound.BaseFragment.Structure.Value.ToString(), componentOriginal.Compound.BaseFragment.Structure.Value.ToString()))
+                                {
+                                    structureChanged = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return structureChanged;
+        }
+
+        private string FindRegNumbersLocked(EditAffectsOtherMixturesException editAffextExp)
+        {
+            string regNumbers = string.Empty;
+            string listofRegnumbers = string.Empty;
+            foreach (string[] valueSet in editAffextExp.SharedComponentConflicts.Values)
+            {
+                foreach (string regnum in valueSet)
+                {
+                    listofRegnumbers = string.IsNullOrEmpty(listofRegnumbers) ? "'" + regnum + "'" : listofRegnumbers + ",'" + regnum + "'";
+                }
+            }
+            regNumbers = RegistryRecord.GetLockedRegistryRecords(listofRegnumbers);
+            return regNumbers;
         }
 
         private JObject GetDuplicateRecords(RegistryRecord sourceRegistryRecord)
@@ -589,7 +802,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 RegistryRecord registryRecord = RegisterRecord(inputData.Data, "C");
 
                 if (!string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
-                { 
+                {
                     DuplicatesResolver duplicatesResolver = InitializeDuplicatesResolver(registryRecord,
                         registryRecord.FoundDuplicates,
                         inputData.RegNo,

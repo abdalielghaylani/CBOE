@@ -1525,7 +1525,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (settingName.Equals(enableAudtingSettingName))
                 {
                     AuditingConfigurationProcessor processor = new AuditingConfigurationProcessor();
-                    processor.Process(enableAudtingSettingName, "", settingValue);
+                    processor.Process(enableAudtingSettingName, string.Empty, settingValue);
                 }
                 return new ResponseData(null, null, string.Format("{0} was updated successfully!", settingInfo), null);
             }, new string[] { Consts.PrivilegeConfigReg, "MANAGE_SYSTEM_SETTINGS" });
