@@ -25,12 +25,6 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
-  private togglePanel(e) {
-    if (e.srcElement.children.length > 0) {
-      e.srcElement.children[0].click();
-    }
-  }
-
   ngOnChanges() {
     this.update();
   }

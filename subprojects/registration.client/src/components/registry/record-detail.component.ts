@@ -271,12 +271,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.update();
   }
 
-  private togglePanel(e) {
-    if (e.srcElement.children.length > 0) {
-      e.srcElement.children[0].click();
-    }
-  }
-
   private showSaveTemplate(e) {
     if (this.template) {
       if (confirm('Do you want to overwrite the saved template?')) {

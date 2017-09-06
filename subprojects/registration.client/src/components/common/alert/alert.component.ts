@@ -2,10 +2,16 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'reg-alert',
+  styles: [`.alert {
+            padding: 5px;
+            margin-bottom: 5px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }`],
   template: `
     <div
       [id]="qaid"
-      class="alert"
+      class="text-center alert"
       [attr.data-testid]="testid"
       [ngClass]="{
         'alert-info': status === 'info',

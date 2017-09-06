@@ -30,6 +30,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private datasource: any[];
   private loadingVisible: boolean = false;
   private currentRecord: { ID: number, REGNUMBER: string };
+  private duplicateActions: any[];
+  private duplicateButtonVisibility: boolean = false;
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
   private columns = [{
@@ -56,7 +58,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     dataField: 'STRUCTURE',
     caption: 'Structure',
     cellTemplate: 'cellTemplate',
-    width: 150,
+    width: 220,
     allowFiltering: false,
     allowSorting: false,
   }, {
@@ -75,7 +77,7 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
     allowSorting: false,
     width: 150
   }];
-  private buttonVisibility = { duplicate: true, addBatch: true, useComponent: true, useStructure: true };
+
   private editRowIndex: number = -1;
   constructor(
     private ngRedux: NgRedux<IAppState>,
@@ -121,16 +123,28 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   loadData(e) {
     if (e) {
       this.gridHeight = this.parentHeight - 80;
+      this.datasource = e.DuplicateRecords;
+      this.duplicateActions = e.DuplicateActions;
       let settings = this.ngRedux.getState().session.lookups.systemSettings;
-      this.buttonVisibility.addBatch = settings.filter(s => s.name === 'EnableAddBatchButton')[0].value === 'True' ? true : false;
-      this.buttonVisibility.duplicate = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
-      this.buttonVisibility.useComponent = settings.filter(s => s.name === 'EnableUseComponentButton')[0].value === 'True' ? true : false;
-      this.buttonVisibility.useStructure = settings.filter(s => s.name === 'EnableUseStructureButton')[0].value === 'True' ? true : false;
-      this.datasource = e;
+      this.duplicateButtonVisibility = settings.filter(s => s.name === 'EnableDuplicateButton')[0].value === 'True' ? true : false;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
       this.actions.clearDuplicateRecord();
       this.changeDetector.markForCheck();
     }
+  }
+
+  setButtonVisibility(buttonType: string, regNumber: string) {
+    if (this.duplicateActions) {
+      switch (buttonType) {
+        case 'AddBatch':
+          return this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canAddBatch;
+        case 'UseComponent':
+          return this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canUseCompound;
+        case 'UseStructure':
+          return this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canUseStructure;
+      }
+    }
+    return false;
   }
 
   updateGridColumn(gridColumn) {

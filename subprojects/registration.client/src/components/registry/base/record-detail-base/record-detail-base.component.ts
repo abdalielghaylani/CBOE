@@ -11,7 +11,7 @@ import { Observable } from 'rxjs/Observable';
 import { CFragment } from '../../../common';
 import { CRegistryRecord, CViewGroup, CViewGroupContainer } from '../../base';
 import { RegFormGroupView } from '../form-group-view';
-import { RegFormGroupItemView } from '../form-group-item-view';
+import { RegFormGroupItemBase } from '../form-group-item-base';
 import * as registryUtils from '../../registry.utils';
 import * as X2JS from 'x2js';
 
@@ -178,12 +178,6 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     this.valueUpdated.emit(e);
   }
 
-  protected togglePanel(e) {
-    if (e.srcElement.children.length > 0) {
-      e.srcElement.children[0].click();
-    }
-  }
-
   protected updateEditMode() {
     this.editMode = this.displayMode != null && this.displayMode !== 'view';
   }
@@ -192,7 +186,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     let x2jsTool = this.x2jsTool;
     this.viewGroupContainers.forEach(vgc => {
       let items = vgc.getItems(this.displayMode);
-      let validItems = RegFormGroupItemView.getValidItems(items).map(i => i.dataField);
+      let validItems = RegFormGroupItemBase.getValidItems(items).map(i => i.dataField);
       this.regRecord.serializeFormData(this.viewGroupContainers, this.displayMode, validItems);
     });
     let recordDoc = x2jsTool.js2dom({ MultiCompoundRegistryRecord: this.regRecord });
@@ -218,12 +212,29 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       let canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
       this.actions.saveRecord({
         temporary: this.temporary, id: id, recordDoc: this.recordDoc,
-        saveToPermanent: false, checkDuplicate: false, redirectToRecordsView: canRedirectToTempListView
+        saveToPermanent: false,
+        checkDuplicate: this.isDuplicateResolutionEnabled(),
+        redirectToRecordsView: canRedirectToTempListView
       });
     } else {
-      this.actions.saveRecord({ temporary: this.temporary, id: id, recordDoc: this.recordDoc, saveToPermanent: false, checkDuplicate: false });
+      this.actions.saveRecord({
+        temporary: this.temporary, id: id,
+        recordDoc: this.recordDoc, saveToPermanent: false,
+        checkDuplicate: this.isDuplicateResolutionEnabled()
+      });
     }
     return true;
+  }
+
+  isDuplicateResolutionEnabled(p?: boolean) {
+    let duplicateEnabled: boolean = false;
+    if (p || (!this.isNewRecord && !this.temporary)) {
+      duplicateEnabled = this.ngRedux.getState().session.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
+      if (duplicateEnabled) {
+        this.loadingVisible = true;
+      }
+    }
+    return duplicateEnabled;
   }
 
   public register() {
@@ -232,11 +243,11 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       return;
     }
     this.recordDoc = recordDoc;
-    let duplicateEnabled = this.ngRedux.getState().session.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
-    if (duplicateEnabled) {
-      this.loadingVisible = true;
-    }
-    this.actions.saveRecord({ temporary: this.temporary, id: this.id, recordDoc: this.recordDoc, saveToPermanent: true, checkDuplicate: duplicateEnabled });
+    this.actions.saveRecord({
+      temporary: this.temporary, id: this.id,
+      recordDoc: this.recordDoc, saveToPermanent: true,
+      checkDuplicate: this.isDuplicateResolutionEnabled(true)
+    });
   }
 
   public prepareRegistryRecord() {

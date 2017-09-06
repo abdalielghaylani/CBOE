@@ -1,12 +1,5 @@
 <div class="panel-group" [id]="id">
   <div class="panel panel-default" *ngFor="let viewGroupContainer of viewConfig">
-    <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-      <a class="list-header tan" data-toggle="collapse" href="#{{id + '_' + viewGroupContainer.id}}">{{viewGroupContainer.title}}</a>
-    </div>
-    <div [id]="id + '_' + viewGroupContainer.id" class="panel-collapse collapse in">
-      <div class="p2">
-        <reg-form-group-item-view (valueUpdated)="onValueUpdated($event)" [id]="id + '_' + viewGroupContainer.id + '_form'" [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [viewConfig]="viewGroupContainer" [viewModel]="viewModel"></reg-form-group-item-view>
-      </div>
-    </div>
+    <reg-form-group-item-view (valueUpdated)="onValueUpdated($event)" [id]="id + '_' + viewGroupContainer.id + '_form'" [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [viewConfig]="viewGroupContainer" [viewModel]="viewModel"></reg-form-group-item-view>
   </div>
 </div>
