@@ -52,4 +52,14 @@ describe('Component : Base Form Item Component', () => {
     });
   })));
 
+  it('should update values on initializing validator', async(inject([], () => {
+    fixture.whenStable().then(() => {
+      fixture.autoDetectChanges();
+      let testEvent = { 'component' : { 'peer' : ''} };
+      let data = 'Test Data';
+      fixture.componentInstance.onValidatorInitialized(testEvent, data);
+      expect(testEvent.component.peer).toBe(data);
+    });
+  })));
+
 });
