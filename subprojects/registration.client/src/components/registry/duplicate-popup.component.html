@@ -1,0 +1,13 @@
+<dx-popup class="popup" [width]="400" [height]="150" contentTemplate="content" [showTitle]="true" [title]="viewModel?viewModel.caption:''"
+  [shading]="false" [dragEnabled]="false" [closeOnOutsideClick]="false" [(visible)]=visible>
+  <div *dxTemplate="let data of 'content'">
+    <div style="padding:5px">
+      {{viewModel?viewModel.message:''}}
+    </div>
+    <command-button testid="cancel-button" (onClick)="onButtonClick('cancel')" iconName="undo" title="Cancel"></command-button>
+    <command-button *ngIf="viewModel?viewModel.canCreateCopiesOptionVisibility:false" testid="create-copies-button" (onClick)="onButtonClick('copies')"
+      iconName="clone" title="Create Copies"></command-button>
+    <command-button *ngIf="viewModel?viewModel.canContinueOptionVisibility:false" testid="continue-button" (onClick)="onButtonClick('continue')"
+      iconName="step-forward" title="Continue"></command-button>
+  </div>
+</dx-popup>

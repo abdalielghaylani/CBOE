@@ -14,7 +14,7 @@ import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../redux';
-import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState, CSaveResponseData } from '../redux';
+import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState, CSaveResponseData, IRecordData } from '../redux';
 import { IResponseData } from '../components';
 import { HttpService } from '../services';
 
@@ -79,15 +79,15 @@ export class RegistryEpics {
         let createRecordAction = id < 0 || payload.saveToPermanent;
         let temporary = !payload.saveToPermanent && (id < 0 || payload.temporary);
         let record = registryUtils.serializeData(payload.recordDoc);
-        let data = payload.checkDuplicate ? { data: record, duplicateCheckOption: 'C' } : { data: record };
+        payload.recordData.data = record;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return (createRecordAction
-          ? this.http.post(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records`, data, options)
-          : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, data, options))
+          ? this.http.post(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records`, payload.recordData, options)
+          : this.http.put(`${apiUrlPrefix}${temporary ? 'temp-' : ''}records/${id}`, payload.recordData, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
-            if ((responseData.data) && (responseData.data.DuplicateRecords)) {
+            if ((responseData.data) && (responseData.data.DuplicateRecords || responseData.data.copyActions)) {
               return RecordDetailActions.loadDuplicateRecordSuccessAction(responseData.data);
             } else {
               let actionType = payload.saveToPermanent ? 'registered' : 'saved';
@@ -96,7 +96,7 @@ export class RegistryEpics {
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${createRecordAction ? regNum : ''} successfully!`;
               notifySuccess(message, 5000);
-              if ((payload.redirectToRecordsView === undefined || payload.redirectToRecordsView) && createRecordAction) {
+              if ((payload.recordData.redirectToRecordsView === undefined || payload.recordData.redirectToRecordsView) && createRecordAction) {
                 return createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`);
               }
               return RecordDetailActions.saveRecordSuccessAction(new CSaveResponseData(id, temporary));
