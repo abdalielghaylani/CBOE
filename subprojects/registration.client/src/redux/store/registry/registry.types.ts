@@ -71,7 +71,15 @@ export interface IRecordSaveData {
   id: number;
   recordDoc: Document;
   saveToPermanent: boolean;
-  checkDuplicate: boolean;
+  recordData?: IRecordData;
+}
+
+export interface IRecordData {
+  data?: string;
+  duplicateCheckOption?: string;
+  copyAction?: boolean;
+  checkOtherMixtures?: boolean;
+  createCopies?: boolean;
   redirectToRecordsView?: boolean;
 }
 
@@ -80,5 +88,5 @@ export class CSaveResponseData {
   }
 }
 
-export interface ISaveResponseData extends CSaveResponseData {  
+export interface ISaveResponseData extends CSaveResponseData {
 }

@@ -7,6 +7,8 @@
       Duplicate Resolution
     </reg-header>
     <reg-alert qaid="qa-alert" testid="alert-error" status='error'>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" (click)="dismissAlert()">×</span></button>
       <p><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;The component you are trying to register already exists.
         Review the list of conflicts and choose a duplicate action.</p>
     </reg-alert>

@@ -16,7 +16,7 @@ import * as X2JS from 'x2js';
 import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, notify } from '../../common';
-import { IResponseData, ITemplateData, CTemplateData } from './registry.types';
+import { IResponseData, ITemplateData, CTemplateData, ICopyActions } from './registry.types';
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
 import { IRegistryRecord, CRegistryRecord, CViewGroup, RegRecordDetailBase } from './base';
@@ -68,6 +68,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private newButtonEnabled: boolean = false;
   private backButtonEnabled: boolean = false;
   private revision; number = new Date().getTime();
+  private copyActions: ICopyActions;
+  private isDuplicatePopupVisible: boolean = false;
 
   private saveTemplateItems = [{
     dataField: 'name',
@@ -173,9 +175,13 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   duplicateData(e) {
-    if (e) {
+    if (e && e.DuplicateRecords) {
       this.currentIndex = 2;
       this.changeDetector.markForCheck();
+    }
+    if (e && e.copyActions) {
+      this.isDuplicatePopupVisible = true;
+      this.copyActions = e.copyActions;
     }
   }
 
@@ -235,8 +241,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.router.navigate([`${path}/restore/${hitListId}`]);
   }
 
-  save() {
-    if (this.recordDetailView.save()) {
+  save(type?: string) {
+    if (this.recordDetailView.save(type)) {
       this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
     }
   }
@@ -408,4 +414,13 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       `${this.temporary ? 'Temporary' : 'Registry'} Record: ${recordId}`;
     this.update();
   }
+
+  private createCopies(e) {
+    if (e === 'cancel') {
+      this.isDuplicatePopupVisible = false;
+    } else {
+      this.save(e);
+    }
+  }
+
 };

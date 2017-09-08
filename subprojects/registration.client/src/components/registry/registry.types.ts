@@ -57,3 +57,10 @@ export class CTemplateData implements ITemplateData {
       Date, username?: string,
     date?: string) { }
 }
+
+export interface ICopyActions {
+  canContinueOptionVisibility: boolean;
+  canCreateCopiesOptionVisibility: boolean;
+  caption: string;
+  message: string;
+};

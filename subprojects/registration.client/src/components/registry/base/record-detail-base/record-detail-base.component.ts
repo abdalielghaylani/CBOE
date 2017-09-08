@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IFormGroup, prepareFormGroupData, FormGroupType, PrivilegeUtils, notifyError } from '../../../../common';
-import { RecordDetailActions, IAppState, IRecordDetail, ILookupData, CSystemSettings } from '../../../../redux';
+import { RecordDetailActions, IAppState, IRecordDetail, ILookupData, CSystemSettings, IRecordSaveData } from '../../../../redux';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { CFragment } from '../../../common';
@@ -196,7 +196,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     return recordDoc;
   }
 
-  public save(): boolean {
+  public save(type?: string): boolean {
     if (!this.formGroupView.validate()) {
       notifyError('One or more entries failed to validate!', 5000);
       return false;
@@ -207,23 +207,42 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     }
     this.recordDoc = recordDoc;
     let id = this.template ? -1 : this.id;
+    this.actions.saveRecord(
+      this.saveRecordData(id, false, type));
+    return true;
+  }
+
+  saveRecordData(id: number, savePermanent: boolean, type?: string): IRecordSaveData {
+    let data: IRecordSaveData = {
+      temporary: this.temporary,
+      id: this.id,
+      recordDoc: this.recordDoc,
+      saveToPermanent: savePermanent,
+      recordData: {}
+    };
     if (this.isNewRecord) {
       // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
-      let canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
-      this.actions.saveRecord({
-        temporary: this.temporary, id: id, recordDoc: this.recordDoc,
-        saveToPermanent: false,
-        checkDuplicate: this.isDuplicateResolutionEnabled(),
-        redirectToRecordsView: canRedirectToTempListView
-      });
-    } else {
-      this.actions.saveRecord({
-        temporary: this.temporary, id: id,
-        recordDoc: this.recordDoc, saveToPermanent: false,
-        checkDuplicate: this.isDuplicateResolutionEnabled()
-      });
+      data.recordData.redirectToRecordsView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
     }
-    return true;
+    if (type && type === 'continue') {
+      data.recordData.duplicateCheckOption = 'N';
+      data.recordData.checkOtherMixtures = false;
+      data.recordData.createCopies = false;
+    } else if (type && type === 'copies') {
+      data.recordData.duplicateCheckOption = 'N';
+      data.recordData.checkOtherMixtures = false;
+      data.recordData.createCopies = true;
+    } else {
+      if (this.isDuplicateResolutionEnabled(savePermanent)) {
+        data.recordData.duplicateCheckOption = 'C';
+      }
+      if (savePermanent || (!this.isNewRecord && !this.temporary)) {
+        data.recordData.copyAction = false;
+        data.recordData.checkOtherMixtures = true;
+        data.recordData.createCopies = false;
+      }
+    }
+    return data;
   }
 
   isDuplicateResolutionEnabled(p?: boolean) {
@@ -243,11 +262,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       return;
     }
     this.recordDoc = recordDoc;
-    this.actions.saveRecord({
-      temporary: this.temporary, id: this.id,
-      recordDoc: this.recordDoc, saveToPermanent: true,
-      checkDuplicate: this.isDuplicateResolutionEnabled(true)
-    });
+    this.actions.saveRecord(
+      this.saveRecordData(this.id, true));
   }
 
   public prepareRegistryRecord() {
