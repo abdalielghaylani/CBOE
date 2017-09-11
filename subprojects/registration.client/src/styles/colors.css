@@ -1019,3 +1019,7 @@
 .hover-green-40:hover {
   color: #c1f09a !important;
 }
+
+.background-light-red {
+  background-color: #f2dede !important;
+}
