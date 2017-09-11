@@ -1,5 +1,9 @@
-<dx-popup class="popup" [width]="400" [height]="150" contentTemplate="content" [showTitle]="true" [title]="viewModel?viewModel.caption:''"
-  [shading]="false" [dragEnabled]="false" [closeOnOutsideClick]="false" [(visible)]=visible>
+<dx-popup showCloseButton=false [width]="400" [height]="150" titleTemplate="caption" contentTemplate="content"
+  [showTitle]="true" [title]="viewModel?viewModel.caption:''" [shading]="false" [dragEnabled]="true" [closeOnOutsideClick]="false"
+  [(visible)]=visible>
+  <div *dxTemplate="let data of 'caption'" class="background-light-red">
+    <span class="red list-header"> {{viewModel?viewModel.caption:''}}</span>
+  </div>
   <div *dxTemplate="let data of 'content'">
     <div style="padding:5px">
       {{viewModel?viewModel.message:''}}
