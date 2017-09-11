@@ -252,7 +252,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(401, type: typeof(JObject))]
         public async Task<IHttpActionResult> UpdateRecord(int id, DuplicateResolutionData inputData)
         {
-            return await CallServiceMethod((service) =>
+            return await CallMethod(() =>
             {
                 var doc = new XmlDocument();
                 doc.LoadXml(inputData.Data);
