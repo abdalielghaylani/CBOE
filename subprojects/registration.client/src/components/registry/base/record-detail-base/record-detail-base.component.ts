@@ -224,14 +224,11 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
       data.recordData.redirectToRecordsView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
     }
-    if (type && type === 'continue') {
+    if (type && (type === 'continue' || type === 'copies')) {
       data.recordData.duplicateCheckOption = 'N';
       data.recordData.checkOtherMixtures = false;
-      data.recordData.createCopies = false;
-    } else if (type && type === 'copies') {
-      data.recordData.duplicateCheckOption = 'N';
-      data.recordData.checkOtherMixtures = false;
-      data.recordData.createCopies = true;
+      data.recordData.copyAction = true;
+      data.recordData.createCopies = (type === 'copies' ? true : false);
     } else {
       if (this.isDuplicateResolutionEnabled(savePermanent)) {
         data.recordData.duplicateCheckOption = 'C';
