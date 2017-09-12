@@ -275,6 +275,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     }
     this.revision = new Date().getTime();
     this.update();
+    this.isDuplicatePopupVisible = false;
   }
 
   private showSaveTemplate(e) {
