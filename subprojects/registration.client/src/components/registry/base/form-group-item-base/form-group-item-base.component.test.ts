@@ -1,7 +1,7 @@
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
 import { RegFormGroupItemBase } from './form-group-item-base.component';
-import { groupItemData } from './form-group-item-base-test-data';
+import { groupItemData } from './form-group-item-base-test-data.test';
 import { CViewGroupContainer } from '../registry-base.types';
 
 describe('Component : Form Group Item Base', () => {
@@ -47,8 +47,6 @@ describe('Component : Form Group Item Base', () => {
       fixture.componentInstance.displayMode = 'query';
       fixture.autoDetectChanges();
       fixture.componentInstance.update();
-      // expect(fixture.componentInstance.items).toEqual(groupItemData.ItemTestData);
-      // expect(fixture.componentInstance.colCount).toEqual(1);
       expect(fixture.componentInstance.readVM).toHaveBeenCalled();
     });
   })));
@@ -76,7 +74,7 @@ describe('Component : Form Group Item Base', () => {
     fixture.whenStable().then(() => {
       fixture.componentInstance.items = groupItemData.GroupTestDataInput;
       fixture.autoDetectChanges();
-      expect(fixture.componentInstance.getValidItems()).toEqual(groupItemData.GroupTestDataOuput);
+      expect(fixture.componentInstance.getValidItems()).toEqual(groupItemData.GroupTestDataOutput);
     });
   })));
 
@@ -90,7 +88,7 @@ describe('Component : Form Group Item Base', () => {
   it('should check valid items returned from Groups input', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
-      expect(RegFormGroupItemBase.getValidItems(groupItemData.GroupTestDataInput)).toEqual(groupItemData.GroupTestDataOuput);
+      expect(RegFormGroupItemBase.getValidItems(groupItemData.GroupTestDataInput)).toEqual(groupItemData.GroupTestDataOutput);
     });
   })));
 
