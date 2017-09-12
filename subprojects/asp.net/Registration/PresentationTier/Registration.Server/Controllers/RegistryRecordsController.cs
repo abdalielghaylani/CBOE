@@ -252,7 +252,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(401, type: typeof(JObject))]
         public async Task<IHttpActionResult> UpdateRecord(int id, DuplicateResolutionData inputData)
         {
-            return await CallServiceMethod((service) =>
+            return await CallMethod(() =>
             {
                 var doc = new XmlDocument();
                 doc.LoadXml(inputData.Data);
@@ -285,7 +285,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Unable to update the internal record.";
                     registryRecord.UpdateFromXmlEx(xml);
 
-                    bool checkOtherMixtures = inputData.CheckOtherMixtures;
+                    bool checkOtherMixtures = false;
 
                     // If user selected 'Continue' or 'Create Copies' action from UI
                     if (inputData.CopyAction)
@@ -312,6 +312,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             // 'Continue' option
                             duplicateCheck = DuplicateCheck.CompoundCheck;
                         }
+                    }
+                    else
+                    {
+                        // use case: Record is edited and updated not via Copy action ( contine, create copies).
+                        // TODO: if record is updated by adding a new batch only, then CheckOtherMixturs should be set to false.
+                        //       for the above use case, concider the CheckOtherMixtures parameter sent from client side
+                        // checkOtherMixtures = inputData.CheckOtherMixtures;
+                        checkOtherMixtures = registryRecord.ComponentList.IsDirty;
                     }
 
                     errorMessage = "Cannot set batch prefix.";
