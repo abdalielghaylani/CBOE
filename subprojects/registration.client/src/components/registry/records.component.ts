@@ -70,7 +70,7 @@ export class RegRecords implements OnInit, OnDestroy {
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
     private actions: RegistrySearchActions,
-    private elementRef: ElementRef,   
+    private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef) {
     this.records = new CRecords(this.temporary, new CRecordsData(this.temporary));
     this.createCustomStore(this);
@@ -266,6 +266,10 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onSelectionChanged(e) {
     this.selectedRows = e.selectedRowKeys;
+    if (this.rowSelected) {
+      this.records.data.rows = this.selectedRows;
+    }
+    this.grid.instance.refresh();
   }
 
   onSearchClick(e) {
