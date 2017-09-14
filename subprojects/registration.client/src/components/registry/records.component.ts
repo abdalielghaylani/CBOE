@@ -404,10 +404,12 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private deleteMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
-      let ids: number[] = this.selectedRows.map(r => r[this.idField]);
-      let succeeded: number[] = [];
-      let failed: number[] = [];
-      this.deleteRows(ids, failed, succeeded);
+      if (confirm('Are you sure you want to delete these Registry Records?')) {
+        let ids: number[] = this.selectedRows.map(r => r[this.idField]);
+        let succeeded: number[] = [];
+        let failed: number[] = [];
+        this.deleteRows(ids, failed, succeeded);
+      }
     }
   }
 
