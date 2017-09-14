@@ -242,7 +242,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   save(type?: string) {
-    if (this.recordDetailView.save(type)) {
+    if (this.recordDetailView.save(type)) {      
       this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
     }
   }
@@ -259,6 +259,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private refreshDetailView(data: ISaveResponseData) {
+    this.isDuplicatePopupVisible = false;
     if (data == null) {
       return;
     }
@@ -273,9 +274,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       this.clearButtonEnabled = false;
       this.newButtonEnabled = true;
     }
-    this.revision = new Date().getTime();
+    this.revision = new Date().getTime();   
     this.update();
-    this.isDuplicatePopupVisible = false;
   }
 
   private showSaveTemplate(e) {

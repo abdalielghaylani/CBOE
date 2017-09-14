@@ -1,5 +1,5 @@
-<dx-popup showCloseButton=false [width]="550" [height]="150" titleTemplate="caption" contentTemplate="content" [showTitle]="true"
-  [title]="viewModel?viewModel.caption:''" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [dragEnabled]="true" [closeOnOutsideClick]="false" [(visible)]=visible>
+<dx-popup showCloseButton=false [width]="550" [height]="150" titleTemplate="caption" contentTemplate="content" [showTitle]="true" [title]="viewModel?viewModel.caption:''" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [dragEnabled]="true" [closeOnOutsideClick]="false"
+  [(visible)]=visible>
   <div *dxTemplate="let data of 'caption'" class="background-light-red">
     <h5 class="red list-header"> {{viewModel?viewModel.caption:''}}</h5>
   </div>
@@ -8,9 +8,8 @@
       {{viewModel?viewModel.message:''}}
     </h6>
     <command-button testid="cancel-button" (onClick)="onButtonClick('cancel')" iconName="undo" title="Cancel"></command-button>
-    <command-button *ngIf="viewModel?viewModel.canCreateCopiesOptionVisibility:false" testid="create-copies-button" (onClick)="onButtonClick('copies')"
-      iconName="clone" title="Create Copies"></command-button>
-    <command-button *ngIf="viewModel?viewModel.canContinueOptionVisibility:false" testid="continue-button" (onClick)="onButtonClick('continue')"
-      iconName="step-forward" title="Continue"></command-button>
+    <command-button *ngIf="viewModel?viewModel.canCreateCopiesOptionVisibility:false" testid="create-copies-button" (onClick)="onButtonClick('CreateCopies')" iconName="clone" title="Create Copies"></command-button>
+    <command-button *ngIf="viewModel?viewModel.canContinueOptionVisibility:false" testid="continue-button" (onClick)="onButtonClick('Continue')" iconName="step-forward" title="Continue"></command-button>
+    <command-button *ngIf="viewModel?viewModel.okOptionVisibility:false" testid="ok-button" (onClick)="onButtonClick(viewModel.action)" iconName="step-forward" title="OK"></command-button>
   </div>
 </dx-popup>

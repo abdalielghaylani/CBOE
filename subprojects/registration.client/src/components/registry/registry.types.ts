@@ -61,6 +61,8 @@ export class CTemplateData implements ITemplateData {
 export interface ICopyActions {
   canContinueOptionVisibility: boolean;
   canCreateCopiesOptionVisibility: boolean;
+  okOptionVisibility: boolean;
   caption: string;
   message: string;
+  action : string;
 };
