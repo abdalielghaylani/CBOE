@@ -254,10 +254,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> UpdateRecord(int id, DuplicateResolutionData inputData)
         {
             return await CallMethod(() =>
-            {
-                var doc = new XmlDocument();
-                doc.LoadXml(inputData.Data);
-                var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+            {              
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
                     inputData.DuplicateCheckOption = "N";
 
@@ -267,15 +264,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 RegistryRecord originalRegistryRecord = null;
                 try
                 {
-                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
-                    var xml = string.Empty;
+                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";                   
                     var xmlDoc = new XmlDocument();
                     xmlDoc.LoadXml(inputData.Data);
                     errorMessage = "Unable to process chemical structures.";
-                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                    var xml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
                     errorMessage = "Unable to determine the registry number.";
                     const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
-                    XmlNode regNode = doc.SelectSingleNode(regNumXPath);
+                    XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
                     string regNum = regNode.InnerText.Trim();
                     errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
@@ -944,11 +940,38 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     if (string.IsNullOrWhiteSpace(inputData.RegNo))
                         throw new RegistrationException("Invalid registration number");
+                }                              
+              
+                var xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(inputData.Data);
+                const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
+                XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
+               
+                RegistryRecord registryRecord = null;
+                if (regNode == null || string.IsNullOrEmpty(regNode.InnerText))
+                {
+                    // use case: record is not registered yet
+                    // try to register record to get the duplicates
+                    registryRecord = RegisterRecord(inputData.Data, "C");
+                }
+                else
+                {
+                    // use case: record is alrady registered 
+                    // try to save the record to get the duplicates
+                    string regNum = regNode.InnerText.Trim();                   
+                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                    if (registryRecord == null) throw new Exception();
+                    var recordXml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
+                    // errorMessage = "Record is locked and cannot be updated.";
+                    // if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
+                    registryRecord.UpdateFromXmlEx(recordXml);              
+                   
+                    registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                    registryRecord.CheckOtherMixtures = false;
+                    registryRecord = registryRecord.Save(DuplicateCheck.CompoundCheck);
                 }
 
-                // get duplicates for the given input record data
-                RegistryRecord registryRecord = RegisterRecord(inputData.Data, "C");
-
+                // do duplicate resolution based on the given duplicate action
                 if (!string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
                 {
                     DuplicatesResolver duplicatesResolver = InitializeDuplicatesResolver(registryRecord,
