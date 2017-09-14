@@ -8,13 +8,11 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public class DuplicateResolutionData
     {
         [JsonConstructor]
-        public DuplicateResolutionData(string data, string duplicateCheck, bool copyAction = false, bool checkOtherMixtures = false, bool createCopies = false)
+        public DuplicateResolutionData(string data, string duplicateCheck, string action = null)
         {
             Data = data;
-            DuplicateCheckOption = duplicateCheck;          
-            CheckOtherMixtures = checkOtherMixtures;
-            CopyAction = copyAction;
-            CreateCopies = createCopies;
+            DuplicateCheckOption = duplicateCheck;
+            Action = action;
         }
 
         /// <summary>
@@ -30,22 +28,9 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string DuplicateCheckOption { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the CopiesAction should be applied
+        /// Gets or sets the duplicate resolution action ( CopiesAction or DuplicateMixture or DuplicateRecords )
         /// </summary>
-        [JsonProperty(PropertyName = "copyAction")]
-        public bool CopyAction { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to check other mixtures affected
-        /// </summary>
-        [JsonProperty(PropertyName = "checkOtherMixtures")]
-        public bool CheckOtherMixtures { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether 'CreateCopies' or Continue
-        /// True if 'CreateCopies' option selected, false if 'Continue' option selected
-        /// </summary>
-        [JsonProperty(PropertyName = "createCopies")]
-        public bool CreateCopies { get; set; }
+        [JsonProperty(PropertyName = "action")]
+        public string Action { get; set; }
     }
 }

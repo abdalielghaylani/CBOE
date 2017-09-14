@@ -15,6 +15,7 @@ using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using RegistrationWebApp.Forms.ComponentDuplicates.ContentArea;
 using CambridgeSoft.COE.Framework.Common.Exceptions;
+using RegistrationWebApp.Forms.ComponentDuplicates;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -286,39 +287,42 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     registryRecord.UpdateFromXmlEx(xml);
 
                     bool checkOtherMixtures = false;
-
-                    // If user selected 'Continue' or 'Create Copies' action from UI
-                    if (inputData.CopyAction)
+                    if (inputData.Action == "CreateCopies")
                     {
-                        // no need to check whether other mixtures affected
+                        // 'Continue' or 'Create Copies' option
                         checkOtherMixtures = false;
-                        if (inputData.CreateCopies)
+                        if (IsStructureChanged(registryRecord, originalRegistryRecord))
                         {
-                            // 'Create Copies' option
-                            if (IsStructureChanged(registryRecord, originalRegistryRecord))
-                            {
-                                registryRecord.CopyEditedStructures();
-                                duplicateCheck = DuplicateCheck.CompoundCheck;
-                            }
-                            else
-                            {
-                                // TODO: CopyEdited Components method is throwing an exception
-                                // registryRecord.CopyEditedComponents();
-                                duplicateCheck = DuplicateCheck.None;
-                            }
+                            registryRecord.CopyEditedStructures();
+                            duplicateCheck = DuplicateCheck.CompoundCheck;
                         }
                         else
                         {
-                            // 'Continue' option
-                            duplicateCheck = DuplicateCheck.CompoundCheck;
+                            registryRecord.CopyEditedComponents();
+                            duplicateCheck = DuplicateCheck.None;
                         }
+                    }
+                    else if (inputData.Action == "Continue")
+                    {
+                        // 'Continue' option
+                        duplicateCheck = DuplicateCheck.CompoundCheck;
+                        checkOtherMixtures = false;
+                    }
+                    else if (inputData.Action == "DuplicateMixture")
+                    {
+                        duplicateCheck = DuplicateCheck.None;
+                        checkOtherMixtures = false;
+                    }
+                    else if (inputData.Action == "DuplicateRecords")
+                    {
+                        duplicateCheck = DuplicateCheck.None;
+                        checkOtherMixtures = false;
                     }
                     else
                     {
-                        // use case: Record is edited and updated not via Copy action ( contine, create copies).
+                        // use case: Record is edited and updated not via Copy action ( continue, create copies).
                         // TODO: if record is updated by adding a new batch only, then CheckOtherMixturs should be set to false.
-                        //       for the above use case, concider the CheckOtherMixtures parameter sent from client side
-                        // checkOtherMixtures = inputData.CheckOtherMixtures;
+                        //       for the above use case, concider the CheckOtherMixtures parameter sent from client side                        
                         checkOtherMixtures = registryRecord.ComponentList.IsDirty;
                     }
 
@@ -337,7 +341,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     else
                     {
                         // duplicate records found, return list of duplicate records
-                        return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord));
+                        // return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord));
+                        return HandleDuplicates(registryRecord);
                     }
                 }
                 catch (Exception ex)
@@ -371,6 +376,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        #region COPY ACTIONS
         private ResponseData GetCopyActions(RegistryRecord newRegistryRecord, RegistryRecord originalRegistryRecord, string message, string regNumbersLocked)
         {
             bool isStructureChanged = false;
@@ -398,7 +404,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     copyActions = new JObject(new JProperty("caption", "There are several registrations affected."),
                                   new JProperty("message", "Editing these components will affect all registry records that refer to them. Choose one of the following options:"),
                                   new JProperty("canContinueOptionVisibility", allowContinue),
-                                  new JProperty("canCreateCopiesOptionVisibility", true));
+                                  new JProperty("canCreateCopiesOptionVisibility", true),
+                                  new JProperty("okOptionVisibility", false),
+                                  new JProperty("action", "CopiesAction"));
                 }
             }
             else
@@ -419,7 +427,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     copyActions = new JObject(new JProperty("caption", "There are several components affected."),
                                   new JProperty("message", "This structure and its data are shared, so these edits will affect all components that refer to it. Choose one of the following options:"),
                                   new JProperty("canContinueOptionVisibility", allowContinue),
-                                  new JProperty("canCreateCopiesOptionVisibility", allowCreateCopy));
+                                  new JProperty("canCreateCopiesOptionVisibility", allowCreateCopy),
+                                  new JProperty("okOptionVisibility", false),
+                                  new JProperty("action", "CopiesAction"));
                 }
             }
 
@@ -568,6 +578,113 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             regNumbers = RegistryRecord.GetLockedRegistryRecords(listofRegnumbers);
             return regNumbers;
         }
+        #endregion
+
+        #region HandleDuplicates
+        private ResponseData HandleDuplicates(RegistryRecord registryRecord)
+        {
+            RegUtilities.DuplicateType duplicateType = GetDuplicateType(registryRecord, registryRecord.FoundDuplicates, false);
+            JObject duplicateActions = null;
+            string regNumber = null;
+            switch (duplicateType)
+            {
+                case RegUtilities.DuplicateType.Compound:
+                    duplicateActions = new JObject(new JProperty("caption", "A duplicate is being created"),
+                        new JProperty("message", "The component you are trying to register already exists. Review the list of conflicts and choose whether to use an existing component or create a duplicate"),
+                        new JProperty("canContinueOptionVisibility", false),
+                        new JProperty("canCreateCopiesOptionVisibility", false),
+                        new JProperty("okOptionVisibility", true),
+                        new JProperty("action", "DuplicateMixture"));
+                    break;
+                case RegUtilities.DuplicateType.Mixture:
+                    duplicateActions = new JObject(new JProperty("caption", "There are duplicates of this record"),
+                        new JProperty("message", "You are about to duplicate records. Do you want to proceed?"),
+                        new JProperty("canContinueOptionVisibility", false),
+                        new JProperty("canCreateCopiesOptionVisibility", false),
+                        new JProperty("okOptionVisibility", true),
+                        new JProperty("action", "DuplicateRecords"));
+                    break;
+                case RegUtilities.DuplicateType.None:
+                    regNumber = registryRecord.RegNumber.RegNum;
+                    break;
+                case RegUtilities.DuplicateType.DuplicatedOrCopied:
+                    registryRecord.UpdateFragments();
+                    registryRecord.UpdateXml();
+                    registryRecord = registryRecord.Save(DuplicateCheck.None);
+                    regNumber = registryRecord.RegNumber.RegNum;
+                    break;
+            }
+
+            JObject responseMessage = duplicateActions == null ? null : new JObject(new JProperty("copyActions", duplicateActions));
+            return new ResponseData(null, regNumber, null, responseMessage);
+        }
+
+        private RegUtilities.DuplicateType GetDuplicateType(RegistryRecord registryRecord, string duplicatesXml, bool isPreReg)
+        {
+            if (string.IsNullOrEmpty(duplicatesXml))
+                return RegUtilities.DuplicateType.None;
+
+            if (duplicatesXml.Contains("<COMPOUNDLIST>") && duplicatesXml.Contains("</COMPOUNDLIST>"))
+            {
+                int startIndex = duplicatesXml.IndexOf("<COMPOUNDLIST>");
+                int endIndex = duplicatesXml.LastIndexOf("</COMPOUNDLIST>") + "</COMPOUNDLIST>".Length;
+                duplicatesXml = duplicatesXml.Substring(startIndex, endIndex - startIndex);
+
+                DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, duplicatesXml, isPreReg);
+
+                if (duplicatesResolver.Duplicates == null)
+                {
+                    return RegUtilities.DuplicateType.DuplicatedOrCopied;
+                }
+                else
+                {
+                    if (!registryRecord.IsSingleCompound && registryRecord.CanAutoSelectComponentForDupChk())
+                    {   // this looks through all the components in the mixture that are duplicated and choose the first mactching
+                        // component that is stored in the duplicate resolve.  after each interaction one 
+                        // of the components is removed so you need to pad the index +1 or you miss the last component.
+                        for (int i = 0; i < duplicatesResolver.CompoundsToResolve.Count + 1; i++)
+                        {
+                            registryRecord = duplicatesResolver.AutoCreateCompoundForm();
+                        }
+                        // now check to see if a duplicate mixture was found after tha autoresolution
+                        if (registryRecord.DalResponseMessage.Contains("mixture"))
+                        {
+                            return RegUtilities.DuplicateType.Mixture;
+                        }
+                        else
+                        {
+                            return RegUtilities.DuplicateType.None;
+                        }
+                    }
+                    return RegUtilities.DuplicateType.Compound;
+                }
+            }
+
+            if (duplicatesXml.Contains("<REGISTRYLIST>") && duplicatesXml.Contains("</REGISTRYLIST>"))
+            {
+                int startIndex = duplicatesXml.IndexOf("<REGISTRYLIST>");
+                int endIndex = duplicatesXml.LastIndexOf("</REGISTRYLIST>") + "</REGISTRYLIST>".Length;
+                duplicatesXml = duplicatesXml.Substring(startIndex, endIndex - startIndex);
+
+                DuplicatesList duplicatesList = new DuplicatesList(duplicatesXml, true, registryRecord.ComponentList.Count > 1);
+
+                if (duplicatesList.Count > 0)
+                    return RegUtilities.DuplicateType.Mixture;
+                else
+                {
+                    if (registryRecord.IsTemporal)
+                        registryRecord.Register(DuplicateCheck.None);
+                    else
+                        registryRecord.Save(DuplicateCheck.None);
+
+                    return RegUtilities.DuplicateType.None;
+                }
+            }
+
+            return RegUtilities.DuplicateType.None;
+        }
+
+        #endregion
 
         private JObject GetDuplicateRecords(RegistryRecord sourceRegistryRecord)
         {
