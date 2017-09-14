@@ -945,9 +945,39 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (string.IsNullOrWhiteSpace(inputData.RegNo))
                         throw new RegistrationException("Invalid registration number");
                 }
+                              
+                var xml = string.Empty;
+                var xmlDoc = new XmlDocument();
+                xmlDoc.LoadXml(inputData.Data);
+                // errorMessage = "Unable to process chemical structures.";
+                xml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
+                // errorMessage = "Unable to determine the registry number.";
+                const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
+                XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
+               
+                RegistryRecord registryRecord = null;
+                if ( regNode == null || string.IsNullOrEmpty(regNode.InnerText))
+                {
+                    registryRecord = RegisterRecord(inputData.Data, "C");
+                }
+                else
+                {
+                    string regNum = regNode.InnerText.Trim();
+                    // errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
+                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                    if (registryRecord == null) throw new Exception();
+                    // errorMessage = "Record is locked and cannot be updated.";
+                    // if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();                  
+                    // errorMessage = "Unable to update the internal record.";
+                    registryRecord.UpdateFromXmlEx(xml);
+                    bool checkOtherMixtures = registryRecord.ComponentList.IsDirty;
+                    // errorMessage = "Unable to save the record.";
+                    registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                    registryRecord.CheckOtherMixtures = checkOtherMixtures;
+                    registryRecord = registryRecord.Save(DuplicateCheck.CompoundCheck);
+                }
 
-                // get duplicates for the given input record data
-                RegistryRecord registryRecord = RegisterRecord(inputData.Data, "C");
+                // get duplicates for the given input record data                
 
                 if (!string.IsNullOrWhiteSpace(registryRecord.FoundDuplicates))
                 {
