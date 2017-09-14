@@ -308,11 +308,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         duplicateCheck = DuplicateCheck.CompoundCheck;
                         checkOtherMixtures = false;
                     }
-                    else if (inputData.Action == "DuplicateMixture")
-                    {
-                        duplicateCheck = DuplicateCheck.None;
-                        checkOtherMixtures = false;
-                    }
                     else if (inputData.Action == "DuplicateRecords")
                     {
                         duplicateCheck = DuplicateCheck.None;
@@ -340,8 +335,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                     else
                     {
-                        // duplicate records found, return list of duplicate records
-                        // return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord));
                         return HandleDuplicates(registryRecord);
                     }
                 }
@@ -589,13 +582,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             switch (duplicateType)
             {
                 case RegUtilities.DuplicateType.Compound:
-                    duplicateActions = new JObject(new JProperty("caption", "A duplicate is being created"),
-                        new JProperty("message", "The component you are trying to register already exists. Review the list of conflicts and choose whether to use an existing component or create a duplicate"),
-                        new JProperty("canContinueOptionVisibility", false),
-                        new JProperty("canCreateCopiesOptionVisibility", false),
-                        new JProperty("okOptionVisibility", true),
-                        new JProperty("action", "DuplicateMixture"));
-                    break;
+                    return new ResponseData(null, null, null, GetDuplicateRecords(registryRecord));
                 case RegUtilities.DuplicateType.Mixture:
                     duplicateActions = new JObject(new JProperty("caption", "There are duplicates of this record"),
                         new JProperty("message", "You are about to duplicate records. Do you want to proceed?"),
@@ -631,6 +618,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 duplicatesXml = duplicatesXml.Substring(startIndex, endIndex - startIndex);
 
                 DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, duplicatesXml, isPreReg);
+
+                if (!duplicatesResolver.HasUnsolvedComponents)
+                {
+                    return RegUtilities.DuplicateType.None;
+                }
 
                 if (duplicatesResolver.Duplicates == null)
                 {
