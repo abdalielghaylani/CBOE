@@ -22,14 +22,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
-        private enum UpdateAction
-        {
-            Continue = 0,
-            CreateCopies = 0,
-            DuplicateMixture = 1,
-            DuplicateRecords = 2
-        }
-
         private void CheckTempRecordId(int id)
         {
             var args = new Dictionary<string, object>();
@@ -627,7 +619,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return new ResponseData(null, regNumber, null, responseMessage);
         }
 
-        private static RegUtilities.DuplicateType GetDuplicateType(RegistryRecord registryRecord, string duplicatesXml, bool isPreReg)
+        private RegUtilities.DuplicateType GetDuplicateType(RegistryRecord registryRecord, string duplicatesXml, bool isPreReg)
         {
             if (string.IsNullOrEmpty(duplicatesXml))
                 return RegUtilities.DuplicateType.None;
@@ -646,7 +638,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-
                     if (!registryRecord.IsSingleCompound && registryRecord.CanAutoSelectComponentForDupChk())
                     {   // this looks through all the components in the mixture that are duplicated and choose the first mactching
                         // component that is stored in the duplicate resolve.  after each interaction one 
