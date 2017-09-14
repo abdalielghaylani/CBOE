@@ -2,8 +2,10 @@
   <command-button testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
   <div>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
-    <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
-    <command-button *ngIf="!!records.data.hitlistId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
+    <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)"
+      iconName="edit" title="Edit Query"></command-button>
+    <command-button *ngIf="!!records.data.hitlistId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh"
+      title="Retrieve All"></command-button>
     <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
     <command-button *ngIf="!records.data.hitlistId" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
   </div>
@@ -30,7 +32,8 @@
         (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onInitialized)='onInitialized($event)'
         (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onRowPrepared)="onRowPrepared($event)"
         (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true">
-        <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
+        <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}"
+          [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
         <dxo-selection mode="multiple"></dxo-selection>
         <dxo-load-panel [enabled]="true"></dxo-load-panel>
         <dxo-scrolling mode="infinite"></dxo-scrolling>
@@ -53,31 +56,36 @@
               <i class="fa fa-check" aria-hidden="true"></i>
             </div>
           </div>
-          <div *ngIf="approveMarkedEnabled" testid="approve-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+          <div *ngIf="approveMarkedEnabled" testid="approve-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label=""
+            style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="approveMarked()">
               <i class="fa fa-thumbs-o-up white" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="approveMarked()">Approve Marked</button>
           </div>
-          <div *ngIf="deleteMarkedEnabled" testid="delete-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+          <div *ngIf="deleteMarkedEnabled" testid="delete-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label=""
+            style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="deleteMarked()">
               <i class="fa fa-trash white" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="deleteMarked()">Delete Marked</button>
           </div>
-          <div *ngIf="selectedRows &amp;&amp; selectedRows.length > 0 &amp;&amp; !rowSelected" testid="show-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+          <div *ngIf="selectedRows &amp;&amp; selectedRows.length > 0 &amp;&amp; !rowSelected" testid="show-marked-button" class="btn-group btn-group-xs pull-right"
+            role="group" aria-label="" style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="showMarked()">
               <i class="fa fa-check-square-o white" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="showMarked()">Show Marked</button>
           </div>
-          <div *ngIf="rowSelected" testid="show-all-records-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+          <div *ngIf="rowSelected" testid="show-all-records-button" class="btn-group btn-group-xs pull-right" role="group" aria-label=""
+            style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="showSearchResults()">
               <i class="fa fa-undo white" aria-hidden="true"></i>
             </button>
             <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="showSearchResults()">Show All Records</button>
           </div>
-          <div *ngIf="selectedRows.length > 0" testid="saved-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+          <div *ngIf="selectedRows.length > 0" testid="saved-marked-button" class="btn-group btn-group-xs pull-right" role="group"
+            aria-label="" style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="saveQuery(true)">
               <i class="fa fa-floppy-o white" aria-hidden="true"></i>
             </button>
@@ -97,7 +105,8 @@
   </div>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=1">
-  <reg-search-query [temporary]="temporary" [hitlistId]="records.data.hitlistId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
+  <reg-search-query [temporary]="temporary" [hitlistId]="records.data.hitlistId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)"
+    (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
   <reg-record-search [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
