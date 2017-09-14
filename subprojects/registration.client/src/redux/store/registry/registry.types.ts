@@ -77,9 +77,7 @@ export interface IRecordSaveData {
 export interface IRecordData {
   data?: string;
   duplicateCheckOption?: string;
-  copyAction?: boolean;
-  checkOtherMixtures?: boolean;
-  createCopies?: boolean;
+  action?: string;
   redirectToRecordsView?: boolean;
 }
 
