@@ -260,9 +260,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private refreshDetailView(data: ISaveResponseData) {
     this.isDuplicatePopupVisible = false;
-    if (data == null) {
-      return;
-    }
     this.clearSaveResponseSubscription();
     this.actions.clearSaveResponse();
     this.displayMode = 'view';
@@ -275,7 +272,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       this.newButtonEnabled = true;
     }
     this.revision = new Date().getTime();   
-    this.update();
+    this.update();   
   }
 
   private showSaveTemplate(e) {
