@@ -39,7 +39,7 @@ describe('Component : Search Form View', () => {
     });
   })));
 
-  it('should check if values updated on Field data chnaged event call', async(inject([], () => {
+  it('should check if values updated on Field data changed event call', async(inject([], () => {
     fixture.whenStable().then(() => {
       spyOn(fixture.componentInstance, 'onValueUpdated');
       fixture.autoDetectChanges();
