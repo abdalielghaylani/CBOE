@@ -956,7 +956,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    // use case: record is alrady registered 
+                    // use case: record is already registered 
                     // try to save the record to get the duplicates
                     string regNum = regNode.InnerText.Trim();                   
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
