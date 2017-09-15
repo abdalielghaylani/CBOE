@@ -15,7 +15,7 @@ import { DxFormComponent } from 'devextreme-angular';
 import { CViewGroup, CSearchCriteria, ISearchCriteriaItem } from './base';
 import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData, ILookupData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroupType, prepareFormGroupData, IFormGroup, notify } from '../../common';
+import { FormGroupType, prepareFormGroupData, IFormGroup, notifyError } from '../../common';
 import * as X2JS from 'x2js';
 
 declare var jQuery: any;
@@ -87,11 +87,16 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private search() {
-    let queryData: IQueryData = {
-      temporary: this.temporary,
-      searchCriteria: this.searchCriteria.serialize()
-    };
-    this.actions.searchRecords(queryData);
+    let criteria = this.searchCriteria.serialize();
+    if (criteria.match(/searchcriteriaitem/gi).length > 1) {
+      let queryData: IQueryData = {
+        temporary: this.temporary,
+        searchCriteria: criteria
+      };
+      this.actions.searchRecords(queryData);
+    } else {
+      notifyError(`You must specify at least one field.`, 5000);
+    }
   }
 
   private get x2jsTool() {
