@@ -42,20 +42,8 @@
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
         <div *dxTemplate="let data of 'toolbarContents'">
-          <div class="count green" [hidden]="records.data.totalCount==0">
-            <div class="count-type">Record matching</div>
-            <div class="count-type-amount border-green round border-2 padding-xs">
-              {{records.data.totalCount}}
-              <i class="fa fa-book" aria-hidden="true"></i>
-            </div>
-          </div>
-          <div class="count orange" [hidden]="selectedRows.length==0">
-            <div class="count-type">Marked Hits</div>
-            <div class="count-type-amount border-orange round border-2 padding-xs">
-              {{selectedRows.length}}
-              <i class="fa fa-check" aria-hidden="true"></i>
-            </div>
-          </div>
+          <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="records.data.totalCount"></badge-count>
+          <badge-count [hidden]="selectedRows.length==0" color="orange" icon="check" text="Marked Hits" [count]="selectedRows ? selectedRows.length : ''"></badge-count>
           <div *ngIf="approveMarkedEnabled" testid="approve-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label=""
             style="margin:5px">
             <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="approveMarked()">

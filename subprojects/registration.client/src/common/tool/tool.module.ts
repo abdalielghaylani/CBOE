@@ -8,6 +8,7 @@ import { CommandDropdown } from './command-dropdown.component';
 import { PageWithTools } from './page-with-tools.component';
 import { ToolPanel } from './tool-panel.component';
 import { FullScreenIcon } from './full-screen.component';
+import { BadgeCount } from './badge-count.component';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { FullScreenIcon } from './full-screen.component';
     CommandDropdown,
     PageWithTools,
     ToolPanel,
-    FullScreenIcon
+    FullScreenIcon,
+    BadgeCount
   ],
   exports: [
     CircleIcon,
@@ -30,7 +32,8 @@ import { FullScreenIcon } from './full-screen.component';
     PageWithTools,
     ToolPanel,
     RouterModule,
-    FullScreenIcon
+    FullScreenIcon,
+    BadgeCount
   ]
 })
 export class RegToolModule { }
