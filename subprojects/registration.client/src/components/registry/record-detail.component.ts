@@ -182,6 +182,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     if (e && e.copyActions) {
       this.isDuplicatePopupVisible = true;
       this.copyActions = e.copyActions;
+      this.displayMode = 'edit';
     }
   }
 
@@ -258,9 +259,9 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private refreshDetailView(data: ISaveResponseData) {
-    if (data) {
-      this.isDuplicatePopupVisible = false;
+  private refreshDetailView(data: ISaveResponseData, cancel?: boolean) {
+    this.isDuplicatePopupVisible = false;
+    if (data || cancel) {
       this.clearSaveResponseSubscription();
       this.actions.clearSaveResponse();
       this.displayMode = 'view';
@@ -417,9 +418,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private createCopies(e) {
     if (e === 'cancel') {
-      this.isDuplicatePopupVisible = false;
-      this.displayMode = 'view';
-      this.update();
+      this.refreshDetailView(null, true);
     } else {
       this.save(e);
     }
