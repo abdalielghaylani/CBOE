@@ -182,7 +182,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     if (e && e.copyActions) {
       this.isDuplicatePopupVisible = true;
       this.copyActions = e.copyActions;
-      this.displayMode = 'edit';
     }
   }
 
@@ -260,20 +259,22 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private refreshDetailView(data: ISaveResponseData) {
-    this.isDuplicatePopupVisible = false;
-    this.clearSaveResponseSubscription();
-    this.actions.clearSaveResponse();
-    this.displayMode = 'view';
-    if (this.isNewRecord) {
-      if (this.recordDetailView.displayMode !== 'view') {
-        return;
+    if (data) {
+      this.isDuplicatePopupVisible = false;
+      this.clearSaveResponseSubscription();
+      this.actions.clearSaveResponse();
+      this.displayMode = 'view';
+      if (this.isNewRecord) {
+        if (this.recordDetailView.displayMode !== 'view') {
+          return;
+        }
+        this.saveButtonEnabled = false;
+        this.clearButtonEnabled = false;
+        this.newButtonEnabled = true;
       }
-      this.saveButtonEnabled = false;
-      this.clearButtonEnabled = false;
-      this.newButtonEnabled = true;
+      this.revision = new Date().getTime();
+      this.update();
     }
-    this.revision = new Date().getTime();
-    this.update();
   }
 
   private showSaveTemplate(e) {
