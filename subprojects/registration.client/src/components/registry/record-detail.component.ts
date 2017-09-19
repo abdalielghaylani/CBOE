@@ -259,21 +259,23 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private refreshDetailView(data: ISaveResponseData) {
+  private refreshDetailView(data: ISaveResponseData, cancel?: boolean) {
     this.isDuplicatePopupVisible = false;
-    this.clearSaveResponseSubscription();
-    this.actions.clearSaveResponse();
-    this.displayMode = 'view';
-    if (this.isNewRecord) {
-      if (this.recordDetailView.displayMode !== 'view') {
-        return;
+    if (data || cancel) {
+      this.clearSaveResponseSubscription();
+      this.actions.clearSaveResponse();
+      this.displayMode = 'view';
+      if (this.isNewRecord) {
+        if (this.recordDetailView.displayMode !== 'view') {
+          return;
+        }
+        this.saveButtonEnabled = false;
+        this.clearButtonEnabled = false;
+        this.newButtonEnabled = true;
       }
-      this.saveButtonEnabled = false;
-      this.clearButtonEnabled = false;
-      this.newButtonEnabled = true;
+      this.revision = new Date().getTime();
+      this.update();
     }
-    this.revision = new Date().getTime();
-    this.update();
   }
 
   private showSaveTemplate(e) {
@@ -416,9 +418,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private createCopies(e) {
     if (e === 'cancel') {
-      this.isDuplicatePopupVisible = false;
-      this.displayMode = 'view';
-      this.update();
+      this.refreshDetailView(null, true);
     } else {
       this.save(e);
     }
