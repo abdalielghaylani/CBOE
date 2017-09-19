@@ -206,16 +206,15 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       return false;
     }
     this.recordDoc = recordDoc;
-    let id = this.template ? -1 : this.id;
     this.actions.saveRecord(
-      this.saveRecordData(id, false, type));
+      this.saveRecordData(false, type));
     return true;
   }
 
-  saveRecordData(id: number, savePermanent: boolean, type?: string): IRecordSaveData {
+  saveRecordData(savePermanent: boolean, type?: string): IRecordSaveData {
     let data: IRecordSaveData = {
       temporary: this.temporary,
-      id: this.id,
+      id: this.template ? -1 : this.id,
       recordDoc: this.recordDoc,
       saveToPermanent: savePermanent,
       recordData: {}
@@ -225,14 +224,14 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       data.recordData.redirectToRecordsView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
     }
     if (type) {
-      data.recordData.duplicateCheckOption = 'N';   
+      data.recordData.duplicateCheckOption = 'N';
       data.recordData.action = type;
     } else {
       if (this.isDuplicateResolutionEnabled(savePermanent)) {
         data.recordData.duplicateCheckOption = 'C';
       }
       if (savePermanent || (!this.isNewRecord && !this.temporary)) {
-        data.recordData.action = '';        
+        data.recordData.action = '';
       }
     }
     return data;
@@ -256,7 +255,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     }
     this.recordDoc = recordDoc;
     this.actions.saveRecord(
-      this.saveRecordData(this.id, true));
+      this.saveRecordData(true));
   }
 
   public prepareRegistryRecord() {
