@@ -36,7 +36,6 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   protected dataSubscription: Subscription;
   protected viewId: string;
   protected position: string;
-  protected loadingVisible: boolean = true;
   protected recordDoc: Document;
   protected regRecord: CRegistryRecord = new CRegistryRecord();
   protected formGroup: IFormGroup;
@@ -127,7 +126,6 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
 
   protected loadRecordData(data: IRecordDetail) {
     if (!data.data || data.id !== this.id || (!this.isNewRecord && data.temporary !== this.temporary)) {
-      this.loadingVisible = true;
       this.actions.retrieveRecord(this.temporary, this.template, this.id);
       return;
     }
@@ -149,7 +147,6 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     let lookups = state.session.lookups;
     let viewGroups = lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, lookups.disabledControls) : [];
     this.viewGroupContainers = this.createViewGroupContainers(viewGroups);
-    this.loadingVisible = false;
     this.contentReady.emit({ component: this, data: data });
     this.changeDetector.markForCheck();
   }
@@ -241,9 +238,6 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     let duplicateEnabled: boolean = false;
     if (p || (!this.isNewRecord && !this.temporary)) {
       duplicateEnabled = this.ngRedux.getState().session.lookups.systemSettings.filter(s => s.name === 'CheckDuplication')[0].value === 'True' ? true : false;
-      if (duplicateEnabled) {
-        this.loadingVisible = true;
-      }
     }
     return duplicateEnabled;
   }

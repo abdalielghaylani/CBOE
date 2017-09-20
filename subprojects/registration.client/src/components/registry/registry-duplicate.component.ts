@@ -28,7 +28,6 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private duplicateData$: Observable<any[]>;
   private recordsSubscription: Subscription;
   private datasource: any[];
-  private loadingVisible: boolean = false;
   private currentRecord: { ID: number, REGNUMBER: string };
   private duplicateActions: any[];
   private duplicateButtonVisibility: boolean = false;
@@ -174,15 +173,14 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   }
 
   createDuplicateRecord(action: string, regNum: string) {
-    this.loadingVisible = true;
     this.actions.createDuplicate(
       this.ngRedux.getState().registry.previousRecordDetail,
       action, regNum);
+    this.onClose.emit(action);
   }
 
   cancelDuplicateResolution(e) {
-    this.loadingVisible = false;
-    this.onClose.emit(e);
+    this.onClose.emit('cancel');
   }
 
 };
