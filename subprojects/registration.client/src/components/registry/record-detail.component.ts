@@ -70,6 +70,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private revision; number = new Date().getTime();
   private copyActions: ICopyActions;
   private isDuplicatePopupVisible: boolean = false;
+  private loadingVisible: boolean = false;
 
   private saveTemplateItems = [{
     dataField: 'name',
@@ -175,17 +176,20 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   duplicateData(e) {
-    if (e && e.DuplicateRecords) {
-      // if duplicate records returned after clicking the duplicate action (continue) from popup window,
-      // make sure that duplicate popup is hidden before displaying duplicate resolution options
-      this.isDuplicatePopupVisible = false;
-      this.currentIndex = 2;
-      this.changeDetector.markForCheck();
-    }
-    if (e && e.copyActions) {
-      this.isDuplicatePopupVisible = true;
-      this.copyActions = e.copyActions;
-      this.displayMode = 'edit';
+    if (e) {
+      this.loadingVisible = false;
+      if (e.DuplicateRecords) {
+        // if duplicate records returned after clicking the duplicate action (continue) from popup window,
+        // make sure that duplicate popup is hidden before displaying duplicate resolution options
+        this.isDuplicatePopupVisible = false;
+        this.currentIndex = 2;
+        this.changeDetector.markForCheck();
+      }
+      if (e.copyActions) {
+        this.isDuplicatePopupVisible = true;
+        this.copyActions = e.copyActions;
+        this.displayMode = 'edit';
+      }
     }
   }
 
@@ -226,8 +230,12 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   cancelDuplicateResolution(e) {
-    this.actions.clearDuplicateRecord();
-    this.currentIndex = 0;
+    if (e === 'cancel') {
+      this.actions.clearDuplicateRecord();
+      this.currentIndex = 0;
+    } else {
+      this.loadingVisible = true;
+    }
   }
 
   edit() {
@@ -248,6 +256,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   save(type?: string) {
     if (this.recordDetailView.save(type)) {
+      this.loadingVisible = true;
       if (!this.saveResponseSubscription) {
         this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
       }
@@ -255,6 +264,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   register() {
+    this.loadingVisible = true;
     this.recordDetailView.register();
   }
 
@@ -268,6 +278,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private refreshDetailView(data: ISaveResponseData, cancel?: boolean) {
     this.isDuplicatePopupVisible = false;
     if (data || cancel) {
+      this.loadingVisible = false;
       // do not redirect to view mode, if there is a error returned from server api
       if (data && data.error) {
         return;
@@ -307,12 +318,15 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       data.description = this.saveTemplateData.description;
       data.isPublic = this.saveTemplateData.isPublic;
       data.data = registryUtils.serializeData(recordDoc);
+      this.loadingVisible = true;
       this.http.post(url, data).toPromise()
         .then(res => {
           this.regTemplates.dataSource = undefined;
+          this.loadingVisible = false;
           notifySuccess((res.json() as IResponseData).message, 5000);
         })
         .catch(error => {
+          this.loadingVisible = false;
           notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
         });
       this.saveTemplatePopupVisible = false;
@@ -360,14 +374,17 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private cancelApproval() {
     let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Submitted}`;
+    this.loadingVisible = true;
     this.http.put(url, undefined).toPromise()
       .then(res => {
         this.regTemplates.dataSource = undefined;
         this.statusId = RegistryStatus.Submitted;
         this.update();
+        this.loadingVisible = false;
         notifySuccess(`The current temporary record's approval was cancelled successfully!`, 5000);
       })
       .catch(error => {
+        this.loadingVisible = false;
         notifyException(`The approval cancelling process failed due to a problem`, error, 5000);
       });
     this.saveTemplatePopupVisible = false;
@@ -375,14 +392,17 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private approve() {
     let url = `${apiUrlPrefix}temp-records/${this.id}/${RegistryStatus.Approved}`;
+    this.loadingVisible = true;
     this.http.put(url, undefined).toPromise()
       .then(res => {
         this.regTemplates.dataSource = undefined;
         this.statusId = RegistryStatus.Approved;
         this.update();
+        this.loadingVisible = false;
         notifySuccess(`The current temporary record was approved successfully!`, 5000);
       })
       .catch(error => {
+        this.loadingVisible = false;
         notifyException(`The approval process failed due to a problem`, error, 5000);
       });
     this.saveTemplatePopupVisible = false;
@@ -390,13 +410,16 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private delete() {
     if (confirm('Are you sure you want to delete this Registry Record?')) {
+      this.loadingVisible = true;
       let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
       this.http.delete(url).toPromise()
         .then(res => {
+          this.loadingVisible = false;
           notifySuccess(`The record was deleted successfully!`, 5000);
           this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
         })
         .catch(error => {
+          this.loadingVisible = false;
           notifyException(`The record was not deleted due to a problem`, error, 5000);
         });
     }

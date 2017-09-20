@@ -45,9 +45,6 @@
       </div>
     </div>
   </dx-popup>
-  <dx-load-panel [position]="{ of: '#record-detail-view' }" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true"
-    [shading]="true" [closeOnOutsideClick]="false">
-  </dx-load-panel>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!==1">
   <reg-templates (onClose)="showDetails($event)"></reg-templates>
@@ -55,3 +52,6 @@
 <div class="viewcontainer" [hidden]="currentIndex!=2">
   <reg-duplicate-record [parentHeight]="parentHeight" (onClose)="cancelDuplicateResolution($event)"></reg-duplicate-record>
 </div>
+<dx-load-panel [position]="{at: 'center'}" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)"
+  [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>
