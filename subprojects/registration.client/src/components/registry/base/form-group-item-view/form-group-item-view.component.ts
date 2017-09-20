@@ -24,7 +24,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
 
   private getEntryValue(id: string): any {
     let entryInfo = this.viewConfig.getEntryInfo(this.displayMode, id);
-    let dataSource = this.viewModel.getDataSource(entryInfo.dataSource);
+    let dataSource = this.viewModel.getDataSource(entryInfo.dataSource, this.viewConfig.subIndex);
     let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression);
     return foundObject.property ? foundObject.obj[foundObject.property] : undefined;
   }

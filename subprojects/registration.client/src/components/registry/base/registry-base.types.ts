@@ -361,7 +361,7 @@ export class CViewGroup implements IViewGroup {
 }
 
 export class CViewGroupContainer implements IViewGroupContainer {
-  constructor(public id: string, public title: string, public viewGroups: CViewGroup[] = []) {
+  constructor(public id: string, public title: string, public subIndex = 0, public viewGroups: CViewGroup[] = []) {
   }
 
   private getGroupedItems(displayMode: string): any[] {
@@ -379,7 +379,7 @@ export class CViewGroupContainer implements IViewGroupContainer {
   }
 
   public static createSimpleViewGroupContainers(viewGroups: CViewGroup[]) {
-    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, [ vg ]));
+    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, 0, [ vg ]));
   }
 
   public getEntryInfo(displayMode: string, id: string): CEntryInfo {
@@ -517,18 +517,18 @@ export class CRegistryRecord {
     return foundObject;
   }
 
-  public getDataSource(dataSource: string): any {
+  public getDataSource(dataSource: string, subIndex: number): any {
     dataSource = dataSource.toLowerCase();
-    return dataSource.indexOf('fragmentscsla') >= 0 ? this.BatchList.Batch[0].BatchComponentList.BatchComponent[0]
-      : dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[0]
-        : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.BatchList.Batch[0]
+    return dataSource.indexOf('fragmentscsla') >= 0 ? this.BatchList.Batch[subIndex].BatchComponentList.BatchComponent[0]
+      : dataSource.indexOf('component') >= 0 ? this.ComponentList.Component[subIndex]
+        : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.BatchList.Batch[subIndex]
           : this;
   }
 
   public setEntryValue(viewConfig: CViewGroupContainer, displayMode: string, id: string, entryValue, serialize: boolean = false) {
     let entryInfo = viewConfig.getEntryInfo(displayMode, id);
     if (entryInfo.dataSource && entryInfo.bindingExpression) {
-      let dataSource = this.getDataSource(entryInfo.dataSource);
+      let dataSource = this.getDataSource(entryInfo.dataSource, viewConfig.subIndex);
       let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
       if (foundObject.property) {
         if (serialize) {

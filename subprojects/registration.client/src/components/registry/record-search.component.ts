@@ -87,11 +87,16 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private search() {
-    let queryData: IQueryData = {
-      temporary: this.temporary,
-      searchCriteria: this.searchCriteria.serialize()
-    };
-    this.actions.searchRecords(queryData);
+    let criteria = this.searchCriteria.serialize();
+    if (criteria.match(/searchcriteriaitem/gi).length > 1) {
+      let queryData: IQueryData = {
+        temporary: this.temporary,
+        searchCriteria: criteria
+      };
+      this.actions.searchRecords(queryData);
+    } else {
+      notify(`You must specify at least one field.`, `warning`, 5000);
+    }
   }
 
   private get x2jsTool() {

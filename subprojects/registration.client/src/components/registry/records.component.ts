@@ -296,6 +296,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.http.delete(url)
       .toPromise()
       .then(result => {
+        this.records.data.totalCount = this.records.data.totalCount - 1;
         notifySuccess(`The record (ID: ${id}) was deleted successfully!`, 5000);
         deferred.resolve(false);
       })
@@ -373,6 +374,7 @@ export class RegRecords implements OnInit, OnDestroy {
       // Also display a message about success/failure.
       this.records.data.rows = this.records.data.rows.filter(r => !succeeded.find(s => s === r[this.idField]));
       this.selectedRows = this.selectedRows.filter(r => !succeeded.find(s => s === r[this.idField]));
+      this.records.data.totalCount = this.records.data.totalCount - succeeded.length;
       if (failed.length === 0) {
         notifySuccess(`All marked records were deleted successfully!`, 5000);
       } else if (succeeded.length === 0) {

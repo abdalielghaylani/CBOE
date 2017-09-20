@@ -694,6 +694,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     duplicateRegistryRecord.RegNum,
                     string.Empty);
 
+                duplicatesResolver.DetermineAvailableActions();
+
                 var duplicateActions = new JObject(
                    new JProperty("ID", duplicateRegistryRecord.ID),
                    new JProperty("REGNUMBER", duplicateRegistryRecord.RegNum),

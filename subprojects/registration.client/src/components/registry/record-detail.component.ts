@@ -176,12 +176,16 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   duplicateData(e) {
     if (e && e.DuplicateRecords) {
+      // if duplicate records returned after clicking the duplicate action (continue) from popup window,
+      // make sure that duplicate popup is hidden before displaying duplicate resolution options
+      this.isDuplicatePopupVisible = false;
       this.currentIndex = 2;
       this.changeDetector.markForCheck();
     }
     if (e && e.copyActions) {
       this.isDuplicatePopupVisible = true;
       this.copyActions = e.copyActions;
+      this.displayMode = 'edit';
     }
   }
 
@@ -192,6 +196,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     if (this.duplicateSubscription) {
       this.duplicateSubscription.unsubscribe();
     }
+    this.actions.clearSaveResponse();
     this.clearSaveResponseSubscription();
   }
 
@@ -242,8 +247,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   save(type?: string) {
-    if (this.recordDetailView.save(type)) {      
-      this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
+    if (this.recordDetailView.save(type)) {
+      if (!this.saveResponseSubscription) {
+        this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
+      }
     }
   }
 
@@ -258,21 +265,25 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     }
   }
 
-  private refreshDetailView(data: ISaveResponseData) {
+  private refreshDetailView(data: ISaveResponseData, cancel?: boolean) {
     this.isDuplicatePopupVisible = false;
-    this.clearSaveResponseSubscription();
-    this.actions.clearSaveResponse();
-    this.displayMode = 'view';
-    if (this.isNewRecord) {
-      if (this.recordDetailView.displayMode !== 'view') {
+    if (data || cancel) {
+      // do not redirect to view mode, if there is a error returned from server api
+      if (data && data.error) {
         return;
       }
-      this.saveButtonEnabled = false;
-      this.clearButtonEnabled = false;
-      this.newButtonEnabled = true;
+      this.displayMode = 'view';
+      if (this.isNewRecord) {
+        if (this.recordDetailView.displayMode !== 'view') {
+          return;
+        }
+        this.saveButtonEnabled = false;
+        this.clearButtonEnabled = false;
+        this.newButtonEnabled = true;
+      }
+      this.revision = new Date().getTime();
+      this.update();
     }
-    this.revision = new Date().getTime();   
-    this.update();   
   }
 
   private showSaveTemplate(e) {
@@ -415,7 +426,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private createCopies(e) {
     if (e === 'cancel') {
-      this.isDuplicatePopupVisible = false;
+      this.refreshDetailView(null, true);
     } else {
       this.save(e);
     }
