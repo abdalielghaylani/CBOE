@@ -52,4 +52,16 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     let validItems = this.getValidItems().map(i => i.dataField);
     this.updateViewModelFromFormData(validItems);
   }
+
+  protected selectBatch() {
+
+  }
+
+  protected addBatch() {
+
+  }
+
+  protected deleteBatch() {
+    
+  }
 };

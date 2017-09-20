@@ -17,6 +17,7 @@ export class CommandButton {
   @Input() color: string = 'blue';
   @Input() size: string = 'xs';
   @Input() iconName: string = 'exclamation';
+  @Input() pullRight: boolean = true;
   @Output() onClick = new EventEmitter<any>();
 
   handleClick(event) {

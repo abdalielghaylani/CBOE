@@ -24,6 +24,8 @@ export interface IViewGroupContainer {
   id: string;
   title: string;
   viewGroups: CViewGroup[];
+  subArray: any[];
+  subIndex: number;
 }
 
 export class CEntryInfo {
@@ -361,7 +363,12 @@ export class CViewGroup implements IViewGroup {
 }
 
 export class CViewGroupContainer implements IViewGroupContainer {
-  constructor(public id: string, public title: string, public subIndex = 0, public viewGroups: CViewGroup[] = []) {
+  constructor(
+    public id: string,
+    public title: string,
+    public viewGroups: CViewGroup[] = [],
+    public subArray: any[] = null,
+    public subIndex = 0) {
   }
 
   private getGroupedItems(displayMode: string): any[] {
@@ -379,7 +386,7 @@ export class CViewGroupContainer implements IViewGroupContainer {
   }
 
   public static createSimpleViewGroupContainers(viewGroups: CViewGroup[]) {
-    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, 0, [ vg ]));
+    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, [ vg ]));
   }
 
   public getEntryInfo(displayMode: string, id: string): CEntryInfo {
