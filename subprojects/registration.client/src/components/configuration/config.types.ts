@@ -7,7 +7,7 @@ export class CConfigTable {
   window: CWindow;
   editMode: string = 'row';
   tableName: string;
-  formData: any = [];
+  formData: any = {};
   formColumns: any[];
   projectType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'B', name: 'Batch' }];
   identifierType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' },
@@ -87,7 +87,7 @@ export class CConfigTable {
       }
     });
     if (type === 'add') {
-      this.formData = [];
+      this.formData = {};
       this.window = { title: 'Add ' + this.tableName, viewIndex: type };
     } else {
       this.formData = e.data;
