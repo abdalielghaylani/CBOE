@@ -1,6 +1,10 @@
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject, CSearchCriteria } from '../registry-base.types';
-import { IViewControl, IPropertyList } from '../../../common';
+import * as dxDialog from 'devextreme/ui/dialog';
+import { HttpService } from '../../../../services';
+import { basePath, apiUrlPrefix } from '../../../../configuration';
+import { IViewControl, IPropertyList, IBatch } from '../../../common';
+import { notifyError, notifyException, notifySuccess } from '../../../../common';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
 import { RegFormGroupItemBase } from '../form-group-item-base';
 
@@ -13,6 +17,10 @@ import { RegFormGroupItemBase } from '../form-group-item-base';
 })
 export class RegFormGroupItemView extends RegFormGroupItemBase {
   @Input() viewModel: CRegistryRecord;
+
+  constructor(private http: HttpService, private changeDetector: ChangeDetectorRef) {
+    super();
+  }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
     return mode === 'add' ? f.addMode : mode === 'edit' ? f.editMode : f.viewMode;
@@ -43,6 +51,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     });
   }
 
+  protected update() {
+    this.viewConfig.title = 'Batch: ' + this.viewModel.BatchList.Batch[this.viewConfig.subIndex].FullRegNumber;
+    super.update();
+  }
+
   protected readVM() {
     let validItems = this.getValidItems().map(i => i.dataField);
     this.formData = this.getFormData(validItems);
@@ -61,7 +74,31 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
 
   }
 
-  protected deleteBatch() {
-    
+  protected deleteBatch(showConfirmation: boolean = true) {
+    if (showConfirmation) {
+      let dialogResult = dxDialog.confirm(
+        `Are you sure that you want to delete the batch?`,
+        'Confirm Deleting a Batch');
+      dialogResult.done(r => {
+        if (r) {
+          this.deleteBatch(false);
+        }
+      });
+    } else {
+      let batch = this.viewConfig.subArray[this.viewConfig.subIndex] as IBatch;
+      let url = `${apiUrlPrefix}batches/${batch.BatchID}`;
+      this.http.delete(url).toPromise()
+        .then(res => {
+          notifySuccess(`The batch was deleted successfully!`, 2000);
+          this.viewModel.BatchList.Batch.splice(this.viewConfig.subIndex, 1);
+          this.viewConfig.subArray = this.viewModel.BatchList.Batch;
+          this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
+          this.update();
+          this.changeDetector.markForCheck();
+        })
+        .catch(error => {
+          notifyException(`The batch was not deleted due to a problem`, error, 5000);
+        });
+    }
   }
 };
