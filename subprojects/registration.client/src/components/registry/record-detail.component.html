@@ -1,9 +1,9 @@
 <div id="record-detail-view" class="viewcontainer" (window:resize)="onResize($event)" [hidden]="currentIndex!=0">
-  <div *ngIf="submissionTemplatesEnabled" class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px">
+  <div *ngIf="submissionTemplatesEnabled" class="btn-group btn-group-xs pull-right m1" role="group" aria-label="">
     <button type="button" class="btn btn-default border-2 status background-blue border-blue">
       <i class="fa-undo white" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+    <button type="button" class="btn border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
       aria-expanded="false">Templates <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>

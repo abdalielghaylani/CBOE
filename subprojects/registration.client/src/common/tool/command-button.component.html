@@ -1,4 +1,4 @@
-<div [attr.data-testid]="testid" class="btn-group btn-group-{{size}} mr1" [ngClass]="pullRight ? 'pull-right' : ''" role="group" aria-label="">
+<div [attr.data-testid]="testid" class="btn-group btn-group-{{size}}" [ngClass]="pullRight ? 'pull-right m1' : 'mr1'" role="group" aria-label="">
   <button type="button" class="btn btn-default border-2 status background-{{color}} border-{{color}}" (click)="handleClick($event)">
     <i class="fa fa-{{iconName}} white" aria-hidden="true"></i>
   </button>

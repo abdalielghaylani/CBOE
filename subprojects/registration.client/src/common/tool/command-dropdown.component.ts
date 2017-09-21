@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'command-dropdown',
   template: `
-  <div class="btn-group btn-group-xs pull-right" style="margin:5px" [title]="title"> 
+  <div class="btn-group btn-group-xs pull-right m1" [title]="title"> 
   <button type="button" class="btn btn-default border-2 status background-blue border-blue">
         <i class="fa fa-{{iconName}} white" aria-hidden="true"></i>
         </button>
