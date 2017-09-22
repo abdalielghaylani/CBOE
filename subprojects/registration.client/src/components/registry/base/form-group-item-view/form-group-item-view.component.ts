@@ -51,7 +51,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     });
   }
 
-  protected update() {
+  protected updateBatch() {
     this.viewConfig.title = 'Batch: ' + this.viewModel.BatchList.Batch[this.viewConfig.subIndex].FullRegNumber;
     super.update();
   }
@@ -93,7 +93,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
           this.viewModel.BatchList.Batch.splice(this.viewConfig.subIndex, 1);
           this.viewConfig.subArray = this.viewModel.BatchList.Batch;
           this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
-          this.update();
+          this.updateBatch();
           this.changeDetector.markForCheck();
         })
         .catch(error => {
