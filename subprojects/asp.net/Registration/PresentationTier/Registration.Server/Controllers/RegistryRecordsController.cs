@@ -615,7 +615,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, duplicatesXml, isPreReg);
 
-                //  Note: HasUnsolvedComponents check also initializes duplicatesResolver.Duplicates list
+                // Note: HasUnsolvedComponents check also initializes duplicatesResolver.Duplicates list
                 bool hasUnResolvedComponents  = duplicatesResolver.HasUnsolvedComponents;
 
                 if (duplicatesResolver.Duplicates == null)
