@@ -28,5 +28,33 @@ namespace PerkinElmer.COE.Registration.Server.Code
         public const string EXPORTFILESPATH = "\\COERegistrationExportFiles\\";
 
         public const string PrivilegeConfigReg = "CONFIG_REG";
+
+        #region COE FORM Index
+        public const int MIXTURESUBFORMINDEX = 1000;
+
+        public const int MIXTURESEARCHFORM = 0;
+
+        public const int COMPOUNDSUBFORMINDEX = 1001;
+
+        public const int COMPOUNDSEARCHFORM = 1;
+
+        // id of the coeform in which formelements for Structure level properties reside
+        public const int STRUCTURESUBFORMINDEX = 1;
+
+        public const int STRUCTURESEARCHFORM = 4;
+
+        public const int BATCHSUBFORMINDEX = 1002;
+
+        public const int BATCHSEARCHFORM = 2;
+
+        public const int BATCHCOMPONENTSUBFORMINDEX = 1003;
+
+        public const int BATCHCOMPONENTSEARCHFORM = 3;
+
+        public const int TEMPORARYBASEFORM = 0;
+
+        public const int TEMPORARYCHILDFORM = 1;
+
+        #endregion
     }
 }
