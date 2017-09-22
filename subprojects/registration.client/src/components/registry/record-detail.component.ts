@@ -256,16 +256,21 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   save(type?: string) {
     if (this.recordDetailView.save(type)) {
-      this.loadingVisible = true;
-      if (!this.saveResponseSubscription) {
-        this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
-      }
+      this.getSaveResponse();
     }
   }
 
   register() {
+    if (this.recordDetailView.register()) {
+      this.getSaveResponse();
+    }
+  }
+
+  getSaveResponse() {
     this.loadingVisible = true;
-    this.recordDetailView.register();
+    if (!this.saveResponseSubscription) {
+      this.saveResponseSubscription = this.saveResponse$.subscribe((value: ISaveResponseData) => this.refreshDetailView(value));
+    }
   }
 
   private clearSaveResponseSubscription() {
@@ -281,6 +286,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       this.loadingVisible = false;
       // do not redirect to view mode, if there is a error returned from server api
       if (data && data.error) {
+        this.changeDetector.markForCheck();
         return;
       }
       this.displayMode = 'view';
