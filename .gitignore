@@ -1,7 +1,7 @@
 obj/
 *.suo
 *proj.user
-packages/
+**/PresentationTier/packages/
 !**/CommonRuntimeLibraries/*.dll
 !**/CommonRuntimeLibraries/*.pdb
 **/bin
