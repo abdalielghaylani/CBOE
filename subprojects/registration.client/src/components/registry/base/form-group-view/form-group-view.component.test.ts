@@ -9,8 +9,9 @@ import {
   RegDropDownColumnItem, RegStructureColumnItem
 } from '../../../index';
 import { NgReduxModule } from '@angular-redux/store/lib';
+import { CommandButton } from '../../../../common/tool/command-button.component';
 
-describe('Component : Form Group Item View', () => {
+describe('Component : Form Group View', () => {
 
   let fixture;
 
@@ -21,7 +22,7 @@ describe('Component : Form Group Item View', () => {
         declarations: [RegFormGroupView, RegFormGroupItemView, RegFormView, RegDateFormItem,
           RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegDropDownFormItem,
           RegStructureFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownColumnItem,
-          RegStructureColumnItem],
+          RegStructureColumnItem, CommandButton],
       });
     };
 
@@ -32,7 +33,7 @@ describe('Component : Form Group Item View', () => {
     });
   });
 
-  it('should create Form group item view Component', async(inject([], () => {
+  it('should create Form group view Component', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       expect(fixture.componentInstance).toBeDefined();
