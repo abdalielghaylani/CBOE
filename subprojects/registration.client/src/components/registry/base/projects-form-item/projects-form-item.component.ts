@@ -20,6 +20,12 @@ export class RegProjectsFormItem extends RegTagBoxFormItem {
   }
 
   deserializeValue(value: any): any[] {
+    value.Project.forEach(v => {
+      if (!v.ProjectID.__text) {
+        // for data loading from template
+        v.ProjectID = { __text: v.ProjectID };
+      }
+    });
     return value.Project.map(v => +v.ProjectID.__text);
   }
 
