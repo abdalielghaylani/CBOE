@@ -1,7 +1,7 @@
 <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
   <a class="list-header tan" data-toggle="collapse" href="#{{id}}">{{viewConfig.title}}</a>
   <span *ngIf="viewConfig.subArray != null">
-    <command-button *ngIf="viewConfig.subArray.length > 1" testid="select-batch-command" (onClick)="selectBatch()" iconName="caret-down" title="Select Batch" [pullRight]="false"></command-button>
+    <reg-batch-selector [viewModel]="viewModel.BatchList.Batch" (onSelected)="onBatchSelected($event)"></reg-batch-selector>
     <command-button *ngIf="!editMode" testid="add-batch-command" (onClick)="addBatch()" iconName="plus" title="Add Batch" [pullRight]="false"></command-button>
     <command-button *ngIf="!editMode &amp;&amp; viewConfig.subArray.length > 1" testid="delete-batch-command" (onClick)="deleteBatch()" iconName="trash" title="Delete Batch" [pullRight]="false"></command-button>
   </span>

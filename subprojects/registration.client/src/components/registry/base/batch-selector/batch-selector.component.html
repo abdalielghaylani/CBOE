@@ -1,0 +1,13 @@
+<command-button id="select-batch-command" testid="select-batch-command" (onClick)="showSelector($event)" iconName="caret-down" title="Select Batch" [pullRight]="false"></command-button>
+<div class="absolute">
+  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" [showTitle]="false" [shading]="true" [closeOnOutsideClick]="true"
+    contentTemplate="contentTemplate" [(visible)]="selectorVisible">
+    <div *dxTemplate="let data of 'contentTemplate'">
+      <dx-data-grid [columns]="columns" [dataSource]="viewModel"
+        [paging]="{enabled: true}" [filterRow]="{ visible: viewModel.length > 4 }" [selection]="{ mode: 'single' }"
+        [hoverStateEnabled]="true" [paging]="{ enabled: true, pageSize: 10 }" [rowAlternationEnabled]="true"
+        [scrolling]="{ mode: 'infinite' }" [height]="viewModel.length > 8 ? 265 : 'auto'" (onRowClick)="selectBatch($event)">
+      </dx-data-grid>
+    </div>
+  </dx-popup>
+</div>

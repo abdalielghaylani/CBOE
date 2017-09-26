@@ -53,7 +53,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
 
   protected updateBatch() {
     this.viewConfig.title = 'Batch: ' + this.viewModel.BatchList.Batch[this.viewConfig.subIndex].FullRegNumber;
-    super.update();
+    this.update();
   }
 
   protected readVM() {
@@ -94,11 +94,15 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
           this.viewConfig.subArray = this.viewModel.BatchList.Batch;
           this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
           this.updateBatch();
-          this.changeDetector.markForCheck();
         })
         .catch(error => {
           notifyException(`The batch was not deleted due to a problem`, error, 5000);
         });
     }
+  }
+
+  protected onBatchSelected(batchId) {
+    this.viewConfig.subIndex = this.viewConfig.subArray.findIndex(b => b.BatchID === batchId);
+    this.updateBatch();
   }
 };

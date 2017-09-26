@@ -18,6 +18,7 @@ import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
 import { RegRecordDetailBase } from './record-detail-base';
+import { RegBatchSelector } from './batch-selector';
 import {
   DxBoxModule,
   DxButtonModule,
@@ -50,6 +51,7 @@ export * from './form-view';
 export * from './form-group-view';
 export * from './registry-base.types';
 export * from './record-detail-base';
+export * from './batch-selector';
 
 @NgModule({
   imports: [
@@ -81,12 +83,12 @@ export * from './record-detail-base';
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase
+    RegRecordDetailBase, RegBatchSelector
   ],
   exports: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase,
+    RegRecordDetailBase, RegBatchSelector,
     RegCommonModule, RegCommonComponentModule
   ]
 })
