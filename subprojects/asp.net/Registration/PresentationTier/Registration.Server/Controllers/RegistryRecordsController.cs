@@ -853,9 +853,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                 RegistryRecord savedRegistryRecord = registryRecord.Save();
                 ValidateUpdatedRecord(savedRegistryRecord);
-                doc.LoadXml(savedRegistryRecord.XmlWithAddIns);
-                JObject record = new JObject(new JProperty("record", ChemistryHelper.ConvertStructuresToCdxml(doc).OuterXml));
-                return new ResponseData(savedRegistryRecord.ID, null, data: record);
+                return new ResponseData(savedRegistryRecord.ID);
             }, new string[] { "ADD_COMPOUND_TEMP" });
         }
 
