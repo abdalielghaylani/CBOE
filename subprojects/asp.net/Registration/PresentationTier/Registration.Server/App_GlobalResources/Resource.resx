@@ -2759,4 +2759,13 @@
   <data name="User_Preference_Note_Text" xml:space="preserve">
     <value>Note: Red coloured fields indicate mandatory fields when registering,&lt;br&gt; but they are for information only and not required here to save your user preference</value>
   </data>
+  <data name="NotApprovedCannotRegister" xml:space="preserve">
+    <value>This record was not approved and thus cannot be registered</value>
+  </data>
+  <data name="NotAuthorizedToRegisterTempRecords" xml:space="preserve">
+    <value>You are not authorized to register this Temporary Registry.</value>
+  </data>
+  <data name="RedBoxWarningMessage_BulkReg" xml:space="preserve">
+    <value>Chemical warning(s) found</value>
+  </data>
 </root>
