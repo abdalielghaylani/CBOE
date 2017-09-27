@@ -254,7 +254,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> UpdateRecord(int id, DuplicateResolutionData inputData)
         {
             return await CallMethod(() =>
-            {              
+            {
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
                     inputData.DuplicateCheckOption = "N";
 
@@ -264,7 +264,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 RegistryRecord originalRegistryRecord = null;
                 try
                 {
-                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";                   
+                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
                     var xmlDoc = new XmlDocument();
                     xmlDoc.LoadXml(inputData.Data);
                     errorMessage = "Unable to process chemical structures.";
@@ -616,7 +616,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 DuplicatesResolver duplicatesResolver = new DuplicatesResolver(registryRecord, duplicatesXml, isPreReg);
 
                 // Note: HasUnsolvedComponents check also initializes duplicatesResolver.Duplicates list
-                bool hasUnResolvedComponents  = duplicatesResolver.HasUnsolvedComponents;
+                bool hasUnResolvedComponents = duplicatesResolver.HasUnsolvedComponents;
 
                 if (duplicatesResolver.Duplicates == null)
                 {
@@ -729,6 +729,48 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 RegistryRecord.DeleteRegistryRecord(regNum);
                 return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully!", regNum));
             }, new string[] { "DELETE_REG", "EDIT_COMPOUND_REG" });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "records/bulkRegister")]
+        [SwaggerOperation("BulkRegisterRecords")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> BulkRegisterRecords(BulkRegistrationData inputData)
+        {
+            return await CallMethod(() =>
+            {
+                DuplicateAction duplicateAction = GetDuplicateAction(inputData.DuplicateAction);
+                int logId = BulkRegistrationHelper.BulkRegisterRecords(inputData.Records, duplicateAction, inputData.Description, base.UserIdentity.Name);
+
+                return new ResponseData(null, null, message: string.Format("The selected registry records were registered successfully!"));
+            });
+        }
+
+        private DuplicateAction GetDuplicateAction(string duplicateActionName)
+        {
+            DuplicateAction duplicateAction = DuplicateAction.None;
+            switch (duplicateActionName)
+            {
+                case "Duplicate":
+                    duplicateAction = DuplicateAction.Duplicate;
+                    break;
+                case "Batch":
+                    duplicateAction = DuplicateAction.Batch;
+                    break;
+                case "Temporary":
+                    duplicateAction = DuplicateAction.Temporary;
+                    break;
+                case "Compound":
+                    duplicateAction = DuplicateAction.Compound;
+                    break;
+                default:
+                    duplicateAction = DuplicateAction.None;
+                    break;
+            }
+
+            return duplicateAction;
         }
 
         #endregion // Permanent Records
@@ -940,13 +982,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     if (string.IsNullOrWhiteSpace(inputData.RegNo))
                         throw new RegistrationException("Invalid registration number");
-                }                              
-              
+                }
+
                 var xmlDoc = new XmlDocument();
                 xmlDoc.LoadXml(inputData.Data);
                 const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
                 XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
-               
+
                 RegistryRecord registryRecord = null;
                 if (regNode == null || string.IsNullOrEmpty(regNode.InnerText))
                 {
@@ -958,14 +1000,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     // use case: record is alrady registered 
                     // try to save the record to get the duplicates
-                    string regNum = regNode.InnerText.Trim();                   
+                    string regNum = regNode.InnerText.Trim();
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
                     if (registryRecord == null) throw new Exception();
                     var recordXml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
                     // errorMessage = "Record is locked and cannot be updated.";
                     // if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
-                    registryRecord.UpdateFromXmlEx(recordXml);              
-                   
+                    registryRecord.UpdateFromXmlEx(recordXml);
+
                     registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                     registryRecord.CheckOtherMixtures = false;
                     registryRecord = registryRecord.Save(DuplicateCheck.CompoundCheck);

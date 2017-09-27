@@ -4634,11 +4634,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This record was not approved and thus cannot be registered.
+        /// </summary>
+        internal static string NotApprovedCannotRegister {
+            get {
+                return ResourceManager.GetString("NotApprovedCannotRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You are not authorized to register the following records: {0}.
         /// </summary>
         internal static string NotAuthorizedToRegisterFollowingRecords_Label_Text {
             get {
                 return ResourceManager.GetString("NotAuthorizedToRegisterFollowingRecords_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized to register this Temporary Registry..
+        /// </summary>
+        internal static string NotAuthorizedToRegisterTempRecords {
+            get {
+                return ResourceManager.GetString("NotAuthorizedToRegisterTempRecords", resourceCulture);
             }
         }
         
@@ -5089,6 +5107,15 @@ namespace Resources {
         internal static string Records_Label_Text {
             get {
                 return ResourceManager.GetString("Records_Label_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chemical warning(s) found.
+        /// </summary>
+        internal static string RedBoxWarningMessage_BulkReg {
+            get {
+                return ResourceManager.GetString("RedBoxWarningMessage_BulkReg", resourceCulture);
             }
         }
         
