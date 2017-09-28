@@ -14,7 +14,7 @@ import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
 import { notify, notifySuccess } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../redux';
-import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState, CSaveResponseData, IRecordData } from '../redux';
+import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState, CSaveResponseData, IRecordData, IRegisterRecordList } from '../redux';
 import { IResponseData } from '../components';
 import { HttpService } from '../services';
 
@@ -29,6 +29,7 @@ export class RegistryEpics {
       this.handleSaveRecord,
       this.createDuplicateRecord,
       this.handleLoadStructure,
+      this.bulkRegisterRecord,
     )(action$, store);
   }
 
@@ -123,6 +124,23 @@ export class RegistryEpics {
             return createAction(UPDATE_LOCATION)(`records`);
           })
           .catch(error => Observable.of(RecordDetailActions.duplicateRecordErrorAction(error)));
+      });
+  }
+
+  private bulkRegisterRecord: Epic = (action$: Observable<ReduxActions.Action<IRegisterRecordList>>) => {
+    return action$.filter(({ type }) => type === RegistryActions.BULK_REGISTER_RECORD)
+      .mergeMap(({ payload }) => {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return (
+          this.http.post(`${apiUrlPrefix}/records/bulk-register`, payload, options))
+          .map(result => {
+            let responseData = result.json() as IResponseData;
+            let message = `The records was registered in the registry successfully!`;
+            notifySuccess(message, 5000);
+            return createAction(UPDATE_LOCATION)(`records`);
+          })
+          .catch(error => Observable.of(RegistryActions.bulkRegisterRecordErrorAction(error)));
       });
   }
 

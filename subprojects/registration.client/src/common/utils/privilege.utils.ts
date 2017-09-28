@@ -132,6 +132,11 @@ export class PrivilegeUtils {
     }
   }
 
+  static hasRegisterPrivilege(userPrivileges: any[]): boolean {
+    // REGISTER_TEMP privilege also required to register an already submitted record
+    return this.userHasPrivilege('REGISTER_TEMP', userPrivileges);
+  }
+
   static hasProjectsTablePrivilege(action: string, userPrivileges: any[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_PROJECTS_TABLE'
       : action === 'EDIT' ? 'EDIT_PROJECTS_TABLE'

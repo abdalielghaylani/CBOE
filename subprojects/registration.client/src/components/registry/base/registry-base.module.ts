@@ -19,6 +19,7 @@ import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
 import { RegRecordDetailBase } from './record-detail-base';
 import { RegBatchSelector } from './batch-selector';
+import { RegBulkRegisterPopup } from './bulk-register-popup';
 import {
   DxBoxModule,
   DxButtonModule,
@@ -83,12 +84,12 @@ export * from './batch-selector';
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase, RegBatchSelector
+    RegRecordDetailBase, RegBatchSelector, RegBulkRegisterPopup
   ],
   exports: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase, RegBatchSelector,
+    RegRecordDetailBase, RegBatchSelector, RegBulkRegisterPopup,
     RegCommonModule, RegCommonComponentModule
   ]
 })
