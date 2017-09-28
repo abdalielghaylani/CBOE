@@ -501,7 +501,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   // set bulk register button visibility
   private get registerMarkedEnabled(): boolean {
-    return this.selectedRows && this.selectedRows.length > 0 && this.temporary && PrivilegeUtils.hasRegisterMarkedPrivilege(this.lookups.userPrivileges);
+    return this.selectedRows && this.selectedRows.length > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
   }
 
   private approveRows(ids: number[], failed: number[], succeeded: number[]) {
