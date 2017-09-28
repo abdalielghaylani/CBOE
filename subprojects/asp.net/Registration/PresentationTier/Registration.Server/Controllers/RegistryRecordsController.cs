@@ -732,7 +732,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route(Consts.apiPrefix + "records/bulkRegister")]
+        [Route(Consts.apiPrefix + "records/bulk-register")]
         [SwaggerOperation("BulkRegisterRecords")]
         [SwaggerResponse(201, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(JObject))]
@@ -741,36 +741,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                DuplicateAction duplicateAction = GetDuplicateAction(inputData.DuplicateAction);
-                int logId = BulkRegistrationHelper.BulkRegisterRecords(inputData.Records, duplicateAction, inputData.Description, base.UserIdentity.Name);
+                DuplicateAction duplicateAction = BulkRegistrationHelper.GetDuplicateAction(inputData.DuplicateAction);
+                int logId = BulkRegistrationHelper.BulkRegisterRecords(inputData.Records, duplicateAction, inputData.Description, UserIdentity.Name);
+                // TODO: send results to client
 
                 return new ResponseData(null, null, message: string.Format("The selected registry records were registered successfully!"));
             });
-        }
-
-        private DuplicateAction GetDuplicateAction(string duplicateActionName)
-        {
-            DuplicateAction duplicateAction = DuplicateAction.None;
-            switch (duplicateActionName)
-            {
-                case "Duplicate":
-                    duplicateAction = DuplicateAction.Duplicate;
-                    break;
-                case "Batch":
-                    duplicateAction = DuplicateAction.Batch;
-                    break;
-                case "Temporary":
-                    duplicateAction = DuplicateAction.Temporary;
-                    break;
-                case "Compound":
-                    duplicateAction = DuplicateAction.Compound;
-                    break;
-                default:
-                    duplicateAction = DuplicateAction.None;
-                    break;
-            }
-
-            return duplicateAction;
         }
 
         #endregion // Permanent Records
