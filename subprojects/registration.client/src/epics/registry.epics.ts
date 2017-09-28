@@ -136,7 +136,7 @@ export class RegistryEpics {
           this.http.post(`${apiUrlPrefix}/records/bulk-register`, payload, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
-            let message = `The record was registered in the registry successfully!`;
+            let message = `The records was registered in the registry successfully!`;
             notifySuccess(message, 5000);
             return createAction(UPDATE_LOCATION)(`records`);
           })
