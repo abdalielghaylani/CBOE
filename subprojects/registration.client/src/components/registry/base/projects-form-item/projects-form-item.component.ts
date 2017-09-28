@@ -23,6 +23,7 @@ export class RegProjectsFormItem extends RegTagBoxFormItem {
     value.Project.forEach(v => {
       if (!v.ProjectID.__text) {
         // for data loading from template
+        v.ID = v.ProjectID;
         v.ProjectID = { __text: v.ProjectID };
       }
     });

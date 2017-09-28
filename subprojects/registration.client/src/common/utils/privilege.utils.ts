@@ -133,7 +133,7 @@ export class PrivilegeUtils {
   }
 
   static hasRegisterPrivilege(userPrivileges: any[]): boolean {
-    // REGISTER_TEMP privilege also required to register an already submitted record
+    // REGISTER_TEMP privilege is required to register an already submitted record
     return this.userHasPrivilege('REGISTER_TEMP', userPrivileges);
   }
 
