@@ -64,5 +64,10 @@ export interface ICopyActions {
   okOptionVisibility: boolean;
   caption: string;
   message: string;
-  action : string;
+  action: string;
 };
+export interface IRegMarkedPopupModel {
+  description: string; 
+  option: string; 
+  isVisible: boolean;
+}

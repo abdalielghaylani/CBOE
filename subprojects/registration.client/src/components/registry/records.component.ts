@@ -17,7 +17,7 @@ import 'rxjs/add/operator/toPromise';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { CRecords, RegistryStatus } from './registry.types';
+import { CRecords, RegistryStatus, IRegMarkedPopupModel } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import { HttpService } from '../../services';
@@ -63,6 +63,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private sortCriteria: string;
   private structureImageApiPrefix: string = `${apiUrlPrefix}StructureImage/`;
   private idField;
+  private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
 
   constructor(
     private router: Router,
@@ -404,6 +405,17 @@ export class RegRecords implements OnInit, OnDestroy {
       });
   }
 
+  registerMarkedStart(e) {
+    let records: string[] = [];
+    this.selectedRows.forEach(v => { records.push(v.ID.toString()); });
+    this.registryActions.bulkRegister(
+      {
+        description: e.description,
+        duplicateAction: e.option,
+        records: records
+      });
+  }
+
   private deleteMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
       if (confirm('Are you sure you want to delete these Registry Records?')) {
@@ -412,6 +424,17 @@ export class RegRecords implements OnInit, OnDestroy {
         let failed: number[] = [];
         this.deleteRows(ids, failed, succeeded);
       }
+    }
+  }
+
+  private registerMarked() {
+    let maxRecordAllowed = this.lookups.systemSettings.find(v => v.name === 'MaxRegisterMarked').value;
+    if ((this.selectedRows ? this.selectedRows.length : 0) <= Number(maxRecordAllowed)) {
+      this.regMarkedModel.isVisible = true;
+    } else {
+      notify(`You are trying to register more than ` + maxRecordAllowed
+        + ` records, which is not allowed. Please unmark some records and try again.`,
+        `warning`, 5000);
     }
   }
 
@@ -474,6 +497,11 @@ export class RegRecords implements OnInit, OnDestroy {
       return PrivilegeUtils.hasDeletePrivilege(this.temporary, this.lookups.userPrivileges);
     }
     return false;
+  }
+
+  // set bulk register button visibility
+  private get registerMarkedEnabled(): boolean {
+    return this.selectedRows && this.selectedRows.length > 0 && this.temporary && PrivilegeUtils.hasRegisterMarkedPrivilege(this.lookups.userPrivileges);
   }
 
   private approveRows(ids: number[], failed: number[], succeeded: number[]) {

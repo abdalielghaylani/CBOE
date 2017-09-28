@@ -12,6 +12,7 @@
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     <span *ngIf="records.temporary">Temporary</span> Registration Records
   </reg-header>
+  <reg-bulk-register-popup [viewModel]="regMarkedModel" *ngIf="regMarkedModel.isVisible" (registerMarked)="registerMarkedStart($event)"></reg-bulk-register-popup>
   <dx-popup [width]="300" [height]="250" [showTitle]="true" title="Save Query" [dragEnabled]="false" [closeOnOutsideClick]="true"
     [(visible)]="popupVisible">
     <div *dxTemplate="let data of 'content'">
@@ -44,41 +45,16 @@
         <div *dxTemplate="let data of 'toolbarContents'">
           <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="records.data.totalCount"></badge-count>
           <badge-count [hidden]="selectedRows.length==0" color="orange" icon="check" text="Marked Hits" [count]="selectedRows ? selectedRows.length : ''"></badge-count>
-          <div *ngIf="approveMarkedEnabled" testid="approve-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label=""
-            style="margin:5px">
-            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="approveMarked()">
-              <i class="fa fa-thumbs-o-up white" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="approveMarked()">Approve Marked</button>
-          </div>
-          <div *ngIf="deleteMarkedEnabled" testid="delete-marked-button" class="btn-group btn-group-xs pull-right" role="group" aria-label=""
-            style="margin:5px">
-            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="deleteMarked()">
-              <i class="fa fa-trash white" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="deleteMarked()">Delete Marked</button>
-          </div>
-          <div *ngIf="selectedRows &amp;&amp; selectedRows.length > 0 &amp;&amp; !rowSelected" testid="show-marked-button" class="btn-group btn-group-xs pull-right"
-            role="group" aria-label="" style="margin:5px">
-            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="showMarked()">
-              <i class="fa fa-check-square-o white" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="showMarked()">Show Marked</button>
-          </div>
-          <div *ngIf="rowSelected" testid="show-all-records-button" class="btn-group btn-group-xs pull-right" role="group" aria-label=""
-            style="margin:5px">
-            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="showSearchResults()">
-              <i class="fa fa-undo white" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="showSearchResults()">Show All Records</button>
-          </div>
-          <div *ngIf="selectedRows.length > 0" testid="saved-marked-button" class="btn-group btn-group-xs pull-right" role="group"
-            aria-label="" style="margin:5px">
-            <button type="button" class="btn btn-default border-2 status background-blue border-blue" (click)="saveQuery(true)">
-              <i class="fa fa-floppy-o white" aria-hidden="true"></i>
-            </button>
-            <button type="button" class="btn btn-default border-2 status border-blue blue" (click)="saveQuery(true)">Save Marked</button>
-          </div>
+          <command-button *ngIf="approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up"
+            title="Approve Marked"></command-button>
+          <command-button *ngIf="deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
+          <command-button *ngIf="registerMarkedEnabled" testid="register-marked-button" (onClick)="registerMarked()" iconName="registered"
+            title="Register Marked"></command-button>
+          <command-button *ngIf="selectedRows &amp;&amp; selectedRows.length > 0 &amp;&amp; !rowSelected" testid="show-marked-button"
+            (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
+          <command-button *ngIf="rowSelected" testid="show-all-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show All Records"></command-button>
+          <command-button *ngIf="selectedRows.length > 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o"
+            title="Save Marked"></command-button>
         </div>
         <div *dxTemplate="let data of 'structureTemplate'">
           <img src="{{structureImageApiPrefix + data.value}}" />{{apiUrlPrefix}}

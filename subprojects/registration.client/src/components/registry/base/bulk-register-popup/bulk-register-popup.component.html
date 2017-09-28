@@ -1,0 +1,21 @@
+<dx-popup [width]="500" [height]="240" showCloseButton=false [showTitle]="true" title="Please choose duplicate action" [dragEnabled]="false"
+  [closeOnOutsideClick]="false" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [(visible)]="viewModel.isVisible">
+  <div *dxTemplate="let data of 'content'">
+    <div style="margin: 15px">
+      <dx-form [formData]="viewModel" [colCount]="1" [items]="[{
+      dataField: 'option',
+      label: { text: 'Action' },
+      editorType: 'dxRadioGroup',
+      editorOptions:{items:['Duplicate','Batch','Temporary','None']}
+    },{
+      dataField: 'description',
+      label: { text: 'Description' },
+      editorType: 'dxTextBox'
+    }]"></dx-form>
+      <div style="margin-top: 15px">
+        <button class="mr1 btn btn-primary" (click)="register($event)">Register Marked</button>
+        <button class="mr1 btn btn-primary" (click)="cancelRegisterMarked()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</dx-popup>

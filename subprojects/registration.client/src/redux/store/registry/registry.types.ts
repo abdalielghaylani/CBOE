@@ -61,6 +61,12 @@ export interface IRegistryRetrievalQuery {
   sort?: string;
 }
 
+export interface IRegisterRecordList {
+  duplicateAction: String;
+  records: string[];
+  description: string;
+}
+
 export interface IQueryData {
   temporary: boolean;
   searchCriteria: string;
