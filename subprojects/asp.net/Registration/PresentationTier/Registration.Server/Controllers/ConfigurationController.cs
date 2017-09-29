@@ -489,20 +489,38 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         var row = new JObject();
                         foreach (DataColumn dc in dt.Columns)
                         {
-                            if (dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
+                            var columnName = dc.ColumnName;
+                            var columnValue = dr[dc];
+                            // Find dc.ColumnName in config.lookup.displayExpr
+                            var lookupColumn = config.Where(r => r["lookup"] != null && dc.ColumnName.Equals(r["lookup"]["displayExpr"].ToString()));
+                            if (lookupColumn.Count() > 0)
                             {
-                                string structure = dr[dc] == null ? string.Empty : dr[dc].ToString();
+                                columnName = (string)lookupColumn.Select(r => r["dataField"]).First();
+                                var lookupTable = (JArray)lookupColumn.Select(r => r["lookup"]["dataSource"]).First();
+                                var lookupTablePrperties = lookupTable.First().ToObject<Dictionary<string, string>>().Keys;
+                                if (columnValue != null)
+                                {
+                                    var match = lookupTable.Where(r => r[lookupTablePrperties.ElementAt(1)].ToString().Equals(columnValue));
+                                    if (match.Count() == 1)
+                                    {
+                                        columnValue = match.First()[lookupTablePrperties.ElementAt(0)];
+                                    }
+                                }
+                            }
+                            if (columnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
+                            {
+                                string structure = columnValue == null ? string.Empty : columnValue.ToString();
                                 if (!string.IsNullOrEmpty(structure))
                                 {
                                     string converted = ChemistryHelper.ConvertToCdxml(structure, true);
                                     structure = converted.Replace("\r\n", " ");
                                 }
-                                row.Add(new JProperty(dc.ColumnName, "fragment/" + dr[0].ToString()));
+                                row.Add(new JProperty(columnName, "fragment/" + dr[0].ToString()));
                                 row.Add(new JProperty("STRUCTURE_XML", structure));
                             }
                             else
                             {
-                                row.Add(new JProperty(dc.ColumnName, dr[dc]));
+                                row.Add(new JProperty(columnName, columnValue));
                             }
                         }
 
