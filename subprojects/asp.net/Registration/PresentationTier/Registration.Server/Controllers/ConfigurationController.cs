@@ -157,8 +157,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
                 var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
                 var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
-                if (!string.IsNullOrEmpty(lookupTableName)) fieldName = lookupColumns[1].FieldName;
-                if (label == null) label = fieldName;
+                var lookupFieldName = string.IsNullOrEmpty(lookupTableName) ? fieldName : lookupColumns[1].FieldName;
+                if (label == null) label = lookupFieldName;
                 var columnObj = new JObject(
                     new JProperty("dataField", fieldName),
                     new JProperty("caption", label),
