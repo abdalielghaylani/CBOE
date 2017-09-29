@@ -552,5 +552,34 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return SearchRecordsInternal(queryData, true, skip, count, sort);
             });
         }
+
+        /// <summary>
+        /// Returns the list of registry records for a hit-list
+        /// </summary>
+        /// <remarks>Returns the list of registry records for a hit-list by its ID</remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Unexpected error</response>
+        /// <param name="id">The hit-list ID</param>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <param name="skip">The number of items to skip</param>
+        /// <param name="count">The maximum number of items to return</param>
+        /// <param name="sort">The sorting information</param>
+        /// <returns>The promise to return a JSON object containing an array of registration records</returns>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "hitlists/{id}/export")]
+        [SwaggerOperation("ExportHitlistRecords")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> ExportHitlistRecords(int id, bool? temp = null, int? skip = null, int? count = null, string sort = null)
+        {
+            return await CallMethod(() =>
+            {
+                return GetHitlistRecordsInternal(id, temp, skip, count, sort);
+            });
+        }
     }
 }
