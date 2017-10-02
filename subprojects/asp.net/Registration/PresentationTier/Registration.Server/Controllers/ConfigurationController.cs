@@ -144,6 +144,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         #endregion
 
         #region Custom tables
+        private class Lookup
+        {
+            public string DataField { get; set; }
+
+            public JArray DataSource { get; set; }
+
+            public Dictionary<string, string>.KeyCollection Keys { get; set; }
+        }
+
         private JArray GetTableConfig(string tableName)
         {
             // Returns the field configuration
@@ -484,6 +493,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     COETableEditorBOList.NewList().TableName = tableName;
                     var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
+                    // Find dc.ColumnName in config.lookup.displayExpr
+                    var lookups = new Dictionary<string, Lookup>();
+                    foreach (var item in config.Where(r => r["lookup"] != null))
+                    {
+                        lookups.Add(item["lookup"]["displayExpr"].ToString(),
+                            new Lookup()
+                            {
+                                DataField = item["dataField"].ToString(),
+                                DataSource = (JArray)item["lookup"]["dataSource"],
+                                Keys = item["lookup"]["dataSource"].First().ToObject<Dictionary<string, string>>().Keys
+                            });
+                    }
+
                     foreach (DataRow dr in dt.Rows)
                     {
                         var row = new JObject();
@@ -491,19 +513,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         {
                             var columnName = dc.ColumnName;
                             var columnValue = dr[dc];
-                            // Find dc.ColumnName in config.lookup.displayExpr
-                            var lookupColumn = config.Where(r => r["lookup"] != null && dc.ColumnName.Equals(r["lookup"]["displayExpr"].ToString()));
-                            if (lookupColumn.Count() > 0)
+
+                            if (lookups.ContainsKey(columnName))
                             {
-                                columnName = (string)lookupColumn.Select(r => r["dataField"]).First();
-                                var lookupTable = (JArray)lookupColumn.Select(r => r["lookup"]["dataSource"]).First();
-                                var lookupTablePrperties = lookupTable.First().ToObject<Dictionary<string, string>>().Keys;
+                                var lookupData = lookups[columnName];
+                                columnName = lookupData.DataField;
                                 if (columnValue != null)
                                 {
-                                    var match = lookupTable.Where(r => r[lookupTablePrperties.ElementAt(1)].ToString().Equals(columnValue));
+                                    var match = lookupData.DataSource.Where(r => r[lookupData.Keys.ElementAt(1)].ToString().Equals(columnValue));
                                     if (match.Count() == 1)
                                     {
-                                        columnValue = match.First()[lookupTablePrperties.ElementAt(0)];
+                                        columnValue = match.First()[lookupData.Keys.ElementAt(0)];
                                     }
                                 }
                             }
