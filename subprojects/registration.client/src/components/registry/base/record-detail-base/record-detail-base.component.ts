@@ -163,6 +163,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
         'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
         'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
         'MultiCompoundRegistryRecord.BatchList.Batch.IdentifierList.Identifier',
+        'MultiCompoundRegistryRecord.BatchList.Batch.ProjectList.Project',
+        'MultiCompoundRegistryRecord.BatchList.Batch.PropertyList.Property',
         'MultiCompoundRegistryRecord.IdentifierList.Identifier',
         'MultiCompoundRegistryRecord.ProjectList.Project',
         'MultiCompoundRegistryRecord.PropertyList.Property',
