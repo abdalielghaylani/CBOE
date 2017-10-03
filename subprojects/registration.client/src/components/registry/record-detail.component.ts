@@ -43,7 +43,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   @Input() temporary: boolean;
   @Input() template: boolean;
   @Input() id: number;
-  @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
   @select(s => s.registry.saveResponse) saveResponse$: Observable<ISaveResponseData>;
   private displayMode: string;
