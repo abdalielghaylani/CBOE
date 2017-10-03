@@ -20,6 +20,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() displayMode: string = 'add';
   @Input() viewModel: any;
   @Input() viewConfig: CViewGroupContainer[];
+  @Input() updatable: boolean = false;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
 
   constructor(private ngRedux: NgRedux<IAppState>) {

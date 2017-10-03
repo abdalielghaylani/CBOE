@@ -14,6 +14,7 @@ export class RegFormGroupItemBase implements IViewControl, OnChanges {
   @Input() activated: boolean;
   @Input() editMode: boolean;
   @Input() displayMode: string;
+  @Input() updatable: boolean = false;
   @Input() viewModel: any;
   @Input() viewConfig: CViewGroupContainer;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
