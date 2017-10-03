@@ -163,6 +163,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var column in columns)
             {
                 var fieldName = column.FieldName;
+                var hidden = COETableEditorUtilities.GetHiddenProperty(tableName, fieldName);
+                if (hidden) continue;
                 var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
                 var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
                 var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
@@ -177,15 +179,37 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!string.IsNullOrEmpty(lookupTableName))
                 {
                     columnObj.Add("lookup", new JObject(
-                    new JProperty("dataSource", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName))),
-                    new JProperty("valueExpr", lookupColumns[0].FieldName),
-                    new JProperty("displayExpr", lookupColumns[1].FieldName)));
+                        new JProperty("dataSource", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName))),
+                        new JProperty("valueExpr", lookupColumns[0].FieldName),
+                        new JProperty("displayExpr", lookupColumns[1].FieldName))
+                    );
+                }
+                var validationRuleList = COETableEditorUtilities.getValidationRuleList(tableName, fieldName);
+                if (validationRuleList != null)
+                {
+                    columnObj.Add("validationRules", new JArray(
+                        validationRuleList.Select(
+                            vr => {
+                                var min = vr.Parameter.Where(p => p.Name == "min");
+                                var max = vr.Parameter.Where(p => p.Name == "max");
+                                return JObject.FromObject(
+                                    new ValidationRuleData(
+                                        vr.Name,
+                                        min.Count() == 0 ? null : min.First().Value.ToString(),
+                                        max.Count() == 0 ? null : max.First().Value.ToString(),
+                                        0,
+                                        vr.ErrorMessage,
+                                        null,
+                                        vr.Parameter.Select(p => new ValidationParameter(p.Name, p.Value)).ToList<ValidationParameter>()
+                                    )
+                                );
+                            }
+                        ).ToList<JObject>()
+                    ));
+
                 }
                 config.Add(columnObj);
             }
-            // TODO: Structure lookup needs additional information
-            // This should also return user authorization
-            // Refer to routines like COETableEditorUtilities.HasDeletePrivileges and COETableEditorUtilities.HasEditPrivileges
             return config;
         }
 
