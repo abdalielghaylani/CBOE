@@ -32,6 +32,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   @Input() activated: boolean;
   @Input() displayMode: string;
   @Input() revision?: number;
+  @Input() updatable: boolean = false;
   public editMode: boolean;
   protected dataSubscription: Subscription;
   protected viewId: string;
