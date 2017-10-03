@@ -2,7 +2,7 @@ import { RegFormGroupView } from './form-group-view.component';
 import { TestModule } from '../../../../test/test.module';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { RegFormGroupItemView } from '../form-group-item-view/form-group-item-view.component';
-import { RegFormView, RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegStructureFormItem } from '../registry-base.module';
+import { RegFormView, RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegStructureFormItem, RegBatchSelector } from '../registry-base.module';
 import { DevExtremeModule } from 'devextreme-angular';
 import {
   RegDateFormItem, RegDropDownFormItem, RegStructureImageFormItem, RegTextFormItem,
@@ -22,7 +22,7 @@ describe('Component : Form Group View', () => {
         declarations: [RegFormGroupView, RegFormGroupItemView, RegFormView, RegDateFormItem,
           RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegDropDownFormItem,
           RegStructureFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownColumnItem,
-          RegStructureColumnItem, CommandButton],
+          RegStructureColumnItem, CommandButton, RegBatchSelector],
       });
     };
 
