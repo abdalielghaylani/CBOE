@@ -102,7 +102,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     let compId = this.isNewRecord ? 'New' : this.temporary ? 'Temporary' : this.regRecord.ComponentList.Component[0].Compound.RegNumber.RegNumber;
     let batchId = this.isNewRecord ? 'New' : this.temporary ? 'Temporary' : this.regRecord.BatchList.Batch[0].FullRegNumber;
     containers.push(new CViewGroupContainer(this.id + '_comp', `Component: ${compId}`));
-    containers.push(new CViewGroupContainer(this.id + '_batch', `Batch: ${batchId}`, [], this.temporary ? null : this.regRecord.BatchList.Batch));
+    containers.push(new CViewGroupContainer(this.id + '_batch', `Batch: ${batchId}`, [],
+      this.temporary || this.isNewRecord ? null : this.regRecord.BatchList.Batch));
     viewGroups.forEach(vg => {
       let forms = vg.data;
       let form = forms.find(f => f._dataSourceId != null);
