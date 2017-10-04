@@ -177,7 +177,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         protected JArray ExtractPickListDomain()
         {
             var args = new Dictionary<string, object>();
-            args.Add(":loggedInUser", null);
+            args.Add(":loggedInUser", UserIdentity.ID);
             var pickListDomains = ExtractData("SELECT * FROM VW_PICKLISTDOMAIN");
             foreach (var pickListDomain in pickListDomains)
             {
