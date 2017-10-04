@@ -4,7 +4,7 @@
     (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
     (onEditingStart)="onEditingStart($event)">
     <dxo-editing [mode]="configTable.editMode" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')"
-      [allowAdding]="hasPrivilege('ADD')">
+      [allowAdding]="hasPrivilege('ADD')" [form]="configTable.editFormOptions">
     </dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
     <dxo-filter-row [visible]="true"></dxo-filter-row>

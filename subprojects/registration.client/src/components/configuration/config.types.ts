@@ -10,6 +10,11 @@ export class CConfigTable {
   tableName: string;
   formData: any = {};
   formColumns: any[];
+  editFormOptions = {
+    showRequiredMark: true,
+    requiredMark: '*',
+    items: []
+  };
   projectType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'B', name: 'Batch' }];
   identifierType = [
     { key: 'A', name: 'All' },
@@ -31,6 +36,12 @@ export class CConfigTable {
       this.setDataType();
       this.setOtherConfig(tableId);
       this.setValidationRule(tableId);
+      this.editFormOptions.items = this.columns.map(c => {
+        return {
+          dataField: c.dataField,
+          isRequired: c.validationRules != null && c.validationRules.find(r => r.type === 'required') != null
+        };
+      });
     }
   }
 
