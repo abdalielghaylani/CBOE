@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
@@ -16,6 +17,8 @@ using CambridgeSoft.COE.Framework.COESecurityService;
 using RegistrationWebApp.Forms.ComponentDuplicates.ContentArea;
 using CambridgeSoft.COE.Framework.Common.Exceptions;
 using RegistrationWebApp.Forms.ComponentDuplicates;
+using CambridgeSoft.COE.Framework.COEHitListService;
+using CambridgeSoft.COE.Framework;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -742,10 +745,105 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 DuplicateAction duplicateAction = BulkRegistrationHelper.GetDuplicateAction(inputData.DuplicateAction);
-                int logId = BulkRegistrationHelper.BulkRegisterRecords(inputData.Records, duplicateAction, inputData.Description, UserIdentity.Name);
-                // TODO: send results to client
 
-                return new ResponseData(null, null, message: string.Format("The selected registry records were registered successfully!"));
+                string username = UserIdentity.Name;
+                COEHitListBO coeHitListBO = COEHitListBO.GetMarkedHitList("REGDB", username, 4002);
+
+                try
+                {
+                    foreach (string recordId in inputData.Records)
+                    {
+                        coeHitListBO.MarkHit(Convert.ToInt32(recordId));
+                    }
+
+                    RegistryRecordList.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                    RegRecordListInfo reglistInfo = RegistryRecordList.LoadRegistryRecordList(duplicateAction,
+                        coeHitListBO.HitListID,
+                        RegUtilities.GetApprovalsEnabled(),
+                        username,
+                        inputData.Description);
+
+                    var args = new Dictionary<string, object>();
+                    args.Add(":logId", reglistInfo.IntLogId);
+                    StringBuilder sql = new StringBuilder();
+                    sql.Append("select vw1.log_id logId, vw1.description description, vw1.user_id userId,");
+                    sql.Append(" vw2.temp_id tempId, vw2.reg_number regNumber, vw2.action, vw2.comments");
+                    sql.Append(" from vw_log_bulkregistration_ID vw1 inner join vw_log_bulkregistration vw2");
+                    sql.Append(" on vw1.log_id = vw2.log_id");
+                    sql.AppendFormat(" where vw1.log_id = :logId");
+
+                    JArray records = new JArray();
+                    using (var reader = GetReader(sql.ToString(), args))
+                    {
+                        var fieldCount = reader.FieldCount;
+                        while (reader.Read())
+                        {
+                            var row = new JObject();
+                            for (int i = 0; i < fieldCount; ++i)
+                            {
+                                var fieldName = reader.GetName(i);
+                                var fieldType = reader.GetFieldType(i);
+                                object fieldData = null;
+                                switch (fieldType.Name.ToLower())
+                                {
+                                    case "int16":
+                                    case "int32":
+                                        fieldData = reader.GetInt32(i);
+                                        break;
+                                    case "datetime":
+                                        fieldData = reader.GetDateTime(i);
+                                        break;
+                                    case "decimal":
+                                        fieldData = reader.GetDecimal(i);
+                                        break;
+                                    default:
+                                        fieldData = reader.GetString(i);
+                                        break;
+                                }
+
+                                row.Add(new JProperty(fieldName, fieldData));
+                            }
+                            records.Add(row);
+                        }
+                    }
+
+                    foreach (JObject record in records)
+                    {
+                        RegistryRecord registryRecord = null;
+                        if (Convert.ToUInt32(record["TEMPID"]) > 0)
+                        {
+                            registryRecord = RegistryRecord.GetRegistryRecord(Convert.ToInt32(record["TEMPID"]));
+                        }
+                        else
+                        {
+                            registryRecord = RegistryRecord.GetRegistryRecord(Convert.ToString(record["REGNUMBER"]));
+                        }
+
+                        var xmlDoc = new XmlDocument();
+                        xmlDoc.LoadXml(registryRecord.Xml);
+                        const string lastModifedDateXPath = "/MultiCompoundRegistryRecord/DateLastModified";
+                        XmlNode regNode = xmlDoc.SelectSingleNode(lastModifedDateXPath);
+                        string lastModifedDate = regNode.InnerText.Trim();
+
+                        DateTime dt = Convert.ToDateTime(lastModifedDate);
+                        string lastModDate = dt.ToString("yyyymmddhhmss");
+
+                        string structure = "record/" + registryRecord.ID + "?" + lastModDate;
+                        record.Add(new JProperty("structure", structure));
+                    }
+
+                    var response = new JObject(new JProperty("records", records));
+                    return new ResponseData(null, null, null, data: response);
+                }
+                catch (Exception ex)
+                {
+                    COEHitListBO marked = COEHitListBO.Get(HitListType.MARKED, coeHitListBO.HitListID);
+                    foreach (string recordId in inputData.Records)
+                    {
+                        marked.UnMarkHit(int.Parse(recordId));
+                    }
+                    throw ex;
+                }
             });
         }
 

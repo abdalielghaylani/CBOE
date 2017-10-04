@@ -151,7 +151,6 @@
     <Compile Include="Code\RegAppHelper.cs" />
     <Compile Include="Code\RegistrationException.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Models\CriteriaBulkLog.cs" />
     <Compile Include="Controllers\RegControllerBase.cs" />
     <Compile Include="Controllers\DataConversionController.cs" />
     <Compile Include="Controllers\BatchController.cs" />
@@ -165,7 +164,6 @@
     <Compile Include="Models\AddinEvent.cs" />
     <Compile Include="Models\BulkRegistrationData.cs" />
     <Compile Include="Models\ControlState.cs" />
-    <Compile Include="Models\CriteriaLog.cs" />
     <Compile Include="Models\DuplicateActionData.cs" />
     <Compile Include="Models\DuplicateResolutionData.cs" />
     <Compile Include="Models\Component.cs" />
