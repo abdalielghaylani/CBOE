@@ -1,5 +1,6 @@
-import { IAppState, ICustomTableData } from '../../redux';
+import { IAppState, ICustomTableData, IValidationRuleData } from '../../redux';
 import { notify, notifyError, notifySuccess } from '../../common';
+import { CValidator } from '../common';
 
 export class CConfigTable {
   columns: any[];
@@ -10,8 +11,13 @@ export class CConfigTable {
   formData: any = {};
   formColumns: any[];
   projectType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'B', name: 'Batch' }];
-  identifierType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' },
-  { key: 'B', name: 'Batch' }, { key: 'C', name: 'Compound' }, { key: 'S', name: 'Base Fragment' }];
+  identifierType = [
+    { key: 'A', name: 'All' },
+    { key: 'R', name: 'Registry' },
+    { key: 'B', name: 'Batch' },
+    { key: 'C', name: 'Compound' },
+    { key: 'S', name: 'Base Fragment' }
+  ];
   sequenceType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'C', name: 'Compound' }];
   activeType = [{ key: 'T', name: 'Yes' }, { key: 'F', name: 'No' }];
   constructor(tableId: string, tablename: string, customTableData: ICustomTableData, state: IAppState) {
@@ -19,46 +25,28 @@ export class CConfigTable {
     this.window = { title: this.tableName, viewIndex: 'list' };
     if (customTableData.config) {
       this.columns = customTableData.config;
+      this.columns[0].allowEditing = false;
+      this.columns[0].formItem = { visible: false };
+      this.editMode = this.columns.length > 8 ? 'form' : 'row';
+      this.setDataType();
       this.setOtherConfig(tableId);
       this.setValidationRule(tableId);
     }
   }
 
-  setValidationRule(tableId: string) {
-    switch (tableId) {
-      case 'VW_PROJECT':
-        this.columns.forEach(col => {
-          if (col.dataField !== 'PROJECTID') {
-            col.validationRules =
-              [{ type: 'required', message: col.caption + ' required' }];
-          }
-        });
-        break;
-      case 'VW_PICKLIST':
-        this.setRequiredValidations(['PICKLISTVALUE', 'ACTIVE']);
-        break;
-      case 'VW_PICKLISTDOMAIN':
-        this.setRequiredValidations(['DESCRIPTION']);
-        break;
-      case 'VW_NOTEBOOKS':
-        this.setRequiredValidations(['NAME', 'ACTIVE', 'USER_CODE']);
-        break;
-      case 'VW_FRAGMENT':
-        this.setRequiredValidations(['STRUCTURE', 'DESCRIPTION', 'CODE', 'MOLWEIGHT', 'FORMULA']);
-        break;
-      case 'VW_FRAGMENTTYPE':
-        this.setRequiredValidations(['DESCRIPTION']);
-        break;
-      case 'VW_IDENTIFIERTYPE':
-        this.setRequiredValidations(['NAME', 'ACTIVE', 'TYPE']);
-        break;
-      case 'VW_SITES':
-        this.setRequiredValidations(['SITECODE', 'SITENAME']);
-        break;
-      case 'VW_SEQUENCE':
-        this.setRequiredValidations(['REGNUMBERLENGTH', 'NEXTINSEQUENCE', 'EXAMPLE', 'ACTIVE', 'TYPE']);
-        break;
-    }
+  protected setDataType() {
+    this.columns.forEach(c => {
+      c.dataType = c.dataType === 'Double' ? 'number' : 'string';
+    });
+  }
+
+  protected setValidationRule(tableId: string) {
+    this.columns.forEach(c => {
+      if (c.validationRules) {
+        let rulesFromServer = c.validationRules as IValidationRuleData[];
+        c.validationRules = CValidator.getValidationRules(rulesFromServer);
+      }
+    });
   }
 
   setRequiredValidations(items: string[]) {
@@ -332,26 +320,26 @@ export class CConfigPropertiesFormData {
   validationRules: any[];
 };
 
-export class CPropertiesValidationFormData {
+export class CPropertiesValidationFormData implements IValidationRuleData {
   name: string;
   min: number;
   max: number;
   maxLength: number;
   error: string;
   defaultValue: string;
-  parameters: any = [];
+  parameters: any[] = [];
   clientScript: string;
   validWord: string;
 }
 
-export class CPropertiesValidationFormDataModel {
+export class CPropertiesValidationFormDataModel implements IValidationRuleData {
   name: string;
   min: number;
   max: number;
   maxLength: number;
   error: string;
   defaultValue: string;
-  parameters: any = [];
+  parameters: any[] = [];
 }
 
 export class CConfigProperties {

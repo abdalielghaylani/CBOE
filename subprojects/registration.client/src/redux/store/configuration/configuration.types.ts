@@ -1,5 +1,15 @@
 import { TypedRecord } from 'typed-immutable-record';
 
+export interface IValidationRuleData {
+  name: string;
+  min: number;
+  max: number;
+  maxLength: number;
+  error: string;
+  defaultValue: string;
+  parameters: any[];
+}
+
 export interface ICustomTableData {
   config?: any;
   rows: any[];

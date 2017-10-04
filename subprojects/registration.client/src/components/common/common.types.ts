@@ -1,4 +1,5 @@
 import { EventEmitter } from '@angular/core';
+import { IValidationRuleData } from '../../redux';
 import * as X2JS from 'x2js';
 
 export interface IViewControl {
@@ -383,5 +384,36 @@ export class CValidator {
       });
     }
     return e.rule.isValid;
+  }
+
+  public static getValidationRules(ruleDataList: IValidationRuleData[]): any[] {
+    let rules = [];
+    if (ruleDataList) {
+      ruleDataList.forEach(rd => {
+        let rule: any = {};
+        if (rd.name === 'requiredField' || rd.name === 'chemicallyValid') {
+          rule.type = 'required';
+        } else if (rd.name === 'textLength') {
+          rules.push({
+            type: 'stringLength',
+            min: rd.min ? rd.min : this.getParamNumber(rd.parameters, 'min', 0),
+            max: rd.max ? rd.max : this.getParamNumber(rd.parameters, 'min', 100)
+          });
+        } else if (rd.name === 'float') {
+          // TODO
+        } else if (rd.name === 'numericRange') {
+          // TODO
+        } else if (rd.name === 'wordListEnumeration') {
+          // TODO
+        } else {
+          // console.log(r);
+        }
+        if (rule.type) {
+          rule.message = rd.error ? rd.error : 'This field is required!';
+          rules.push(rule);
+        }
+      });
+    }
+    return rules;
   }
 }
