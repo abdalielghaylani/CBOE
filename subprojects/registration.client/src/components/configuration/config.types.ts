@@ -47,6 +47,13 @@ export class CConfigTable {
         c.validationRules = CValidator.getValidationRules(rulesFromServer);
       }
     });
+    this.columns.forEach(c => {
+      if (c.lookup) {
+        if (c.validationRules == null || c.validationRules.find(r => r.type === 'required') == null) {
+          c.editorOptions = { showClearButton: true };
+        }
+      }
+    });
   }
 
   setRequiredValidations(items: string[]) {
