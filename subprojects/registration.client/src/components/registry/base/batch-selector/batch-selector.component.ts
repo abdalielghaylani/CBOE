@@ -18,7 +18,7 @@ export class RegBatchSelector {
   @Output() onSelected = new EventEmitter<any>();
   private selectorVisible: boolean = false;
   private columns: any[] = [
-    { dataField: 'BatchID', caption: 'ID', width: 60 },
+    { dataField: 'BatchID', caption: 'Batch ID', width: 80 },
     { dataField: 'BatchNumber', caption: 'Batch Number', width: 100 },
     { dataField: 'FullRegNumber', caption: 'Full Reg Number' },
     { dataField: 'DateCreated', caption: 'Date Created', dataType: 'date' },
