@@ -39,7 +39,7 @@ export class CConfigTable {
       this.editFormOptions.items = this.columns.map(c => {
         return {
           dataField: c.dataField,
-          isRequired: c.validationRules != null && c.validationRules.find(r => r.type === 'required') != null
+          validationRules: c.validationRules
         };
       });
     }

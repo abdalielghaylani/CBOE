@@ -403,6 +403,9 @@ export class CValidator {
           // TODO
         } else if (rd.name === 'wordListEnumeration') {
           // TODO
+        } else if (rd.name === 'positiveNumber') {
+          rule.type = 'pattern';
+          rule.pattern = '^[1-9]\d*$';
         } else {
           // console.log(r);
         }
