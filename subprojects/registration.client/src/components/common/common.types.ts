@@ -394,11 +394,9 @@ export class CValidator {
         if (rd.name === 'requiredField' || rd.name === 'chemicallyValid') {
           rule.type = 'required';
         } else if (rd.name === 'textLength') {
-          rules.push({
-            type: 'stringLength',
-            min: rd.min ? rd.min : this.getParamNumber(rd.parameters, 'min', 0),
-            max: rd.max ? rd.max : this.getParamNumber(rd.parameters, 'min', 100)
-          });
+          rule.type = 'stringLength';
+          rule.min = rd.min ? +rd.min : this.getParamNumber(rd.parameters, 'min', 0);
+          rule.max = rd.max ? +rd.max : this.getParamNumber(rd.parameters, 'min', 100);
         } else if (rd.name === 'float') {
           // TODO
         } else if (rd.name === 'numericRange') {
@@ -408,8 +406,10 @@ export class CValidator {
         } else {
           // console.log(r);
         }
-        if (rule.type) {
-          rule.message = rd.error ? rd.error : 'This field is required!';
+        if (rule.type != null) {
+          if (rd.error != null) {
+            rule.message = rd.error;
+          }
           rules.push(rule);
         }
       });
