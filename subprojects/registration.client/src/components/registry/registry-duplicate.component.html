@@ -34,7 +34,7 @@
       </div>
       <div *dxTemplate="let data of 'resolutionOptionTemplate'">
         <a *ngIf="setButtonVisibility('AddBatch', data.value)" class="fa fa-object-ungroup grid-icon" aria-hidden="true" (click)="createDuplicateRecord('AddBatch', data.value)"
-          title='Move Batches'></a>&nbsp;
+          title='Add Batch'></a>&nbsp;
         <a *ngIf="setButtonVisibility('UseComponent', data.value)" class="fa fa-calendar-plus-o grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseComponent', data.value)"
           title='Use Component'></a>&nbsp;
         <a *ngIf="setButtonVisibility('UseStructure', data.value)" class="fa fa-code-fork grid-icon" aria-hidden="true" (click)="createDuplicateRecord('UseStructure', data.value)"
