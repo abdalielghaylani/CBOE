@@ -744,10 +744,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                DuplicateAction duplicateAction = BulkRegistrationHelper.GetDuplicateAction(inputData.DuplicateAction);
-
-                string username = UserIdentity.Name;
-                COEHitListBO coeHitListBO = COEHitListBO.GetMarkedHitList("REGDB", username, 4002);
+                DuplicateAction duplicateAction = BulkRegistrationHelper.GetDuplicateAction(inputData.DuplicateAction);                            
+                COEHitListBO coeHitListBO = COEHitListBO.New("REGDB", HitListType.MARKED);
+                coeHitListBO.Update();
 
                 try
                 {
@@ -758,9 +757,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     RegistryRecordList.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                     RegRecordListInfo reglistInfo = RegistryRecordList.LoadRegistryRecordList(duplicateAction,
-                        coeHitListBO.HitListID,
+                        coeHitListBO.ID,
                         RegUtilities.GetApprovalsEnabled(),
-                        username,
+                        UserIdentity.Name,
                         inputData.Description);
 
                     var args = new Dictionary<string, object>();
@@ -837,7 +836,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    COEHitListBO marked = COEHitListBO.Get(HitListType.MARKED, coeHitListBO.HitListID);
+                    COEHitListBO marked = COEHitListBO.Get(HitListType.MARKED, coeHitListBO.ID);
                     foreach (string recordId in inputData.Records)
                     {
                         marked.UnMarkHit(int.Parse(recordId));
