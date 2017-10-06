@@ -4,9 +4,7 @@ using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Xml;
 using Microsoft.Web.Http;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService;
@@ -24,9 +22,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class SearchController : RegControllerBase
-    {
-        private const string databaseName = "REGDB";
-
+    {      
         private static COEHitListBO GetHitlistBO(int id)
         {
             var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
@@ -173,12 +169,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
                 configRegRecord.COEFormHelper.Load(formGroupType);
                 var formGroup = configRegRecord.FormGroup;
-                var tempHitLists = COEHitListBOList.GetRecentHitLists(databaseName, COEUser.Name, formGroup.Id, 10);
+                var tempHitLists = COEHitListBOList.GetRecentHitLists(Consts.REGDB, COEUser.Name, formGroup.Id, 10);
                 foreach (var h in tempHitLists)
                 {
                     result.Add(new HitlistData(h));
                 }
-                var savedHitLists = COEHitListBOList.GetSavedHitListList(databaseName, COEUser.Name, formGroup.Id);
+                var savedHitLists = COEHitListBOList.GetSavedHitListList(Consts.REGDB, COEUser.Name, formGroup.Id);
                 foreach (var h in savedHitLists)
                 {
                     result.Add(new HitlistData(h));

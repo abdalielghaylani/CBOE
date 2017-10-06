@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
+﻿
 namespace PerkinElmer.COE.Registration.Server.Code
 {
     public static class Consts
@@ -28,6 +24,8 @@ namespace PerkinElmer.COE.Registration.Server.Code
         public const string EXPORTFILESPATH = "\\COERegistrationExportFiles\\";
 
         public const string PrivilegeConfigReg = "CONFIG_REG";
+
+        public const string REGDB = "REGDB";
 
         #region COE FORM Index
         public const int MIXTURESUBFORMINDEX = 1000;
