@@ -81,6 +81,10 @@ export class CSystemSettings {
     return this.isSettingTrue('SameBatchesIdentity');
   }
 
+  public get isMoveBatchEnabled(): boolean {
+    return this.isSettingTrue('EnableMoveBatch');
+  }
+
   public get reviewRegisterSearchFormGroupId(): number {
     return +this.getSetting('Search', 'ReviewRegisterSearchFormGroupId');
   }

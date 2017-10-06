@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ConfigurationActions, ICustomTableData, IConfiguration, IAppState } from '../../redux';
+import { ConfigurationActions, ICustomTableData, IConfiguration, ISettingData, IAppState } from '../../redux';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;
@@ -147,7 +147,7 @@ export class RegConfigSettings implements OnInit, OnDestroy {
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
-            let rows = result.json();
+            let rows: ISettingData[] = result.json();
             parent.ngRedux.getState().session.lookups.systemSettings = rows;
             rows = rows.filter(r => r.isAdmin === undefined || !r.isAdmin);
             deferred.resolve(rows, { totalCount: rows.length });

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
 import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject, CSearchCriteria } from '../registry-base.types';
 import * as dxDialog from 'devextreme/ui/dialog';
+import { IAppState, CSystemSettings } from '../../../../redux';
 import { HttpService } from '../../../../services';
 import { basePath, apiUrlPrefix } from '../../../../configuration';
 import { IViewControl, IPropertyList, IBatch } from '../../../common';
@@ -17,8 +19,12 @@ import { RegFormGroupItemBase } from '../form-group-item-base';
 })
 export class RegFormGroupItemView extends RegFormGroupItemBase {
   @Input() viewModel: CRegistryRecord;
+  private batchCommandsEnabled: boolean = false;
+  private addBatchEnabled: boolean = false;
+  private moveBatchEnabled: boolean = false;
+  private deleteBatchEnabled: boolean = false;
 
-  constructor(private http: HttpService, private changeDetector: ChangeDetectorRef) {
+  constructor(private ngRedux: NgRedux<IAppState>, private http: HttpService, private changeDetector: ChangeDetectorRef) {
     super();
   }
 
@@ -74,6 +80,10 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
 
   }
 
+  protected moveBatch() {
+
+  }
+
   protected deleteBatch(showConfirmation: boolean = true) {
     if (showConfirmation) {
       let dialogResult = dxDialog.confirm(
@@ -105,5 +115,15 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   protected onBatchSelected(batchId) {
     this.viewConfig.subIndex = this.viewConfig.subArray.findIndex(b => b.BatchID === batchId);
     this.updateBatch();
+  }
+
+  protected update() {
+    super.update();
+    let lookups = this.ngRedux.getState().session.lookups;
+    let systemSettings = new CSystemSettings(lookups.systemSettings);
+    this.batchCommandsEnabled = this.viewConfig.subArray != null;
+    this.addBatchEnabled = this.batchCommandsEnabled && !this.editMode && this.updatable;
+    this.deleteBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
+    this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
   }
 };
