@@ -405,7 +405,7 @@ export class CValidator {
           // TODO
         } else if (rd.name === 'positiveNumber') {
           rule.type = 'pattern';
-          rule.pattern = '^[1-9]\d*$';
+          rule.pattern = '^[1-9][0-9]*$';
         } else {
           // console.log(r);
         }
