@@ -322,6 +322,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       }
     });
   }
+
   onValueChanged(e, d) {
     d.setValue(e.value, d.column.dataField);
   }

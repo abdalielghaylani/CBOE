@@ -51,11 +51,27 @@ export class CConfigTable {
     });
   }
 
+  protected validateStringLength(options): boolean {
+    let length = options.value == null ? 0 : options.value.length;
+    if (length === 0) {
+      return true;
+    }
+    let rule = options.rule;
+    return (rule.min == null || length >= rule.min) && (rule.max == null || length <= rule.max);
+  }
+
   protected setValidationRule(tableId: string) {
     this.columns.forEach(c => {
       if (c.validationRules) {
         let rulesFromServer = c.validationRules as IValidationRuleData[];
-        c.validationRules = CValidator.getValidationRules(rulesFromServer);
+        let validationRules = CValidator.getValidationRules(rulesFromServer);
+        c.validationRules = validationRules.map(r => {
+          if (r.type === 'stringLength') {
+            r.type = 'custom';
+            r.validationCallback = this.validateStringLength;
+          }
+          return r;
+        });
       }
     });
     this.columns.forEach(c => {
