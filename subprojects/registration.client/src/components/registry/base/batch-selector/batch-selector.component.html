@@ -1,7 +1,7 @@
-<command-button id="select-batch-command" testid="select-batch-command" (onClick)="showSelector($event)" iconName="caret-down" title="Select Batch" [pullRight]="false"></command-button>
+<command-button id="select-batch-command" testid="select-batch-command" (onClick)="showForm($event)" iconName="caret-down" title="Select Batch" [pullRight]="false"></command-button>
 <div class="absolute">
-  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" [showTitle]="false" [shading]="true" [closeOnOutsideClick]="true"
-    contentTemplate="contentTemplate" [(visible)]="selectorVisible">
+  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Select Batch" [shading]="true" [closeOnOutsideClick]="true"
+    contentTemplate="contentTemplate" [(visible)]="formVisible">
     <div *dxTemplate="let data of 'contentTemplate'">
       <dx-data-grid [columns]="columns" [dataSource]="viewModel"
         [paging]="{enabled: true}" [filterRow]="{ visible: viewModel.length > 4 }" [selection]="{ mode: 'single' }"

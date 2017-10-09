@@ -1,0 +1,9 @@
+<command-button id="add-batch-command" testid="add-batch-command" (onClick)="showForm($event)" iconName="plus" title="Add Batch" [pullRight]="false"></command-button>
+<div class="absolute">
+  <dx-popup showCloseButton=false [fullScreen]="false" width="900" height="auto" title="Add Batch" [shading]="true" [closeOnOutsideClick]="true"
+    contentTemplate="contentTemplate" [(visible)]="formVisible">
+    <div *dxTemplate="let data of 'contentTemplate'">
+      <reg-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="true" [editMode]="true" [colCount]="colCount"></reg-form-view>
+    </div>
+  </dx-popup>
+</div>

@@ -8,14 +8,14 @@ import { IBatch } from '../../../common';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../../../common';
 
 @Component({
-  selector: 'reg-batch-selector',
-  template: require('./batch-selector.component.html'),
+  selector: 'reg-batch-mover',
+  template: require('./batch-mover.component.html'),
   styles: [require('../registry-base.css')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegBatchSelector {
+export class RegBatchMover {
   @Input() viewModel: IBatch[] = [];
-  @Output() onSelected = new EventEmitter<any>();
+  @Output() onMoved = new EventEmitter<any>();
   private formVisible: boolean = false;
   private columns: any[] = [
     { dataField: 'BatchID', caption: 'Batch ID', width: 80 },
@@ -42,11 +42,15 @@ export class RegBatchSelector {
 
   protected showForm(e) {
     this.formVisible = true;
-  }
+    // Must show a dialog to pick a permanent record to move the current batch to.
+    // Upon selecting a record and confirmation, batch should be moved to the selected record.
+    }
 
-  protected selectBatch(e) {
-    let value = e.values[e.columns.findIndex(c => c.dataField === 'BatchID')];
+  protected moveBatch(e) {
+    // Move the bach
+    // Close popup
     this.formVisible = false;
-    this.onSelected.emit(value);
+    // Inform container
+    this.onMoved.emit(e);
   }
 };

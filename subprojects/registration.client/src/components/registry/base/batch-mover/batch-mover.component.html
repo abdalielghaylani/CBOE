@@ -1,0 +1,11 @@
+<command-button id="move-batch-command" testid="move-batch-command" (onClick)="showForm($event)" iconName="arrows" title="Move Batch" [pullRight]="false"></command-button>
+<div class="absolute">
+  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Move Batch" [shading]="true" [closeOnOutsideClick]="true"
+    contentTemplate="contentTemplate" [(visible)]="formVisible">
+    <div *dxTemplate="let data of 'contentTemplate'">
+      Not Implemented Yet!
+      <dx-form>
+      </dx-form>
+    </div>
+  </dx-popup>
+</div>

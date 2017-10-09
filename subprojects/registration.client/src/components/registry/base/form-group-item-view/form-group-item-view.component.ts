@@ -72,18 +72,6 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     this.updateViewModelFromFormData(validItems);
   }
 
-  protected selectBatch() {
-
-  }
-
-  protected addBatch() {
-
-  }
-
-  protected moveBatch() {
-
-  }
-
   protected deleteBatch(showConfirmation: boolean = true) {
     if (showConfirmation) {
       let dialogResult = dxDialog.confirm(
