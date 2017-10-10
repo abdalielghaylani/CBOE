@@ -47,6 +47,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private lookupsSubscription: Subscription;
   private recordsSubscription: Subscription;
   private hitlistSubscription: Subscription;
+  private bulkRegisterSubscription: Subscription;
   private lookups: ILookupData;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
@@ -54,6 +55,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private tempResultRows: any[];
   private hitlistVM: regSearchTypes.CQueryManagementVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
   private hitlistData$: Observable<ISearchRecords>;
+  private bulkRecordData$: Observable<any[]>;
   private isMarkedQuery: boolean;
   private loadIndicatorVisible: boolean = false;
   private records: CRecords;
@@ -80,6 +82,10 @@ export class RegRecords implements OnInit, OnDestroy {
   ngOnInit() {
     this.idField = this.temporary ? 'BATCHID' : 'ID';
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
+    this.bulkRecordData$ = this.ngRedux.select(['registry', 'bulkRegisterRecords']);
+    if (!this.bulkRegisterSubscription) {
+      this.bulkRegisterSubscription = this.bulkRecordData$.subscribe(d => { this.bulkRegisterStatus(d); });
+    }
   }
 
   ngOnDestroy() {
@@ -91,6 +97,17 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     if (this.hitlistSubscription) {
       this.hitlistSubscription.unsubscribe();
+    }
+    if (this.bulkRegisterSubscription) {
+      this.bulkRegisterSubscription.unsubscribe();
+    }
+  }
+
+  bulkRegisterStatus(val) {
+    if (val) {
+      this.currentIndex = 3;
+      this.regMarkedModel.isVisible = false;
+      this.changeDetector.markForCheck();
     }
   }
 
@@ -553,4 +570,10 @@ export class RegRecords implements OnInit, OnDestroy {
       this.approveRows(ids, failed, succeeded);
     }
   }
+
+  showRegistryRecords() {
+    this.registryActions.clearBulkRrgisterStatus();
+    this.router.navigate([`records`]);
+  }
+
 };

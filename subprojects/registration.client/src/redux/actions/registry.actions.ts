@@ -12,13 +12,17 @@ export class RegistryActions {
   static OPEN_RECORDS_SUCCESS = 'OPEN_RECORDS_SUCCESS';
   static OPEN_RECORDS_ERROR = 'OPEN_RECORDS_ERROR';
   static BULK_REGISTER_RECORD = 'BULK_REGISTER_RECORD';
+  static CLEAR_BULK_REGISTER_RECORD = 'CLEAR_BULK_REGISTER_RECORD';
   static BULK_REGISTER_RECORD_SUCCESS = 'BULK_REGISTER_RECORD_SUCCESS';
   static BULK_REGISTER_RECORD_ERROR = 'BULK_REGISTER_RECORD_ERROR';
   static DELETE_RECORD = 'DELETE_RECORD';
   static DELETE_RECORD_SUCCESS = 'DELETE_RECORD_SUCCESS';
   static DELETE_RECORD_ERROR = 'DELETE_RECORD_ERROR';
+  static clearBulkRegisterRecordAction = createAction(RegistryActions.CLEAR_BULK_REGISTER_RECORD);
   static bulkRegisterRecordAction = createAction(RegistryActions.BULK_REGISTER_RECORD,
     (payload: IRegisterRecordList) => (payload));
+  static bulkRegisterRecordSuccessAction = createAction(RegistryActions.BULK_REGISTER_RECORD_SUCCESS,
+    (payload: any) => (payload));
   static bulkRegisterRecordErrorAction = createAction(RegistryActions.BULK_REGISTER_RECORD_ERROR,
     (payload: any) => (payload));
   static openRecordsAction = createAction(RegistryActions.OPEN_RECORDS,
@@ -56,6 +60,10 @@ export class RegistryActions {
 
   bulkRegister(payload: IRegisterRecordList) {
     this.ngRedux.dispatch(RegistryActions.bulkRegisterRecordAction(payload));
+  }
+
+  clearBulkRrgisterStatus() {
+    this.ngRedux.dispatch(RegistryActions.clearBulkRegisterRecordAction());
   }
 
 }

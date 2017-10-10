@@ -75,3 +75,6 @@
 <div class="viewcontainer" [hidden]="currentIndex!=2">
   <reg-record-search [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
+<div class="viewcontainer" [hidden]="currentIndex!=3">
+<reg-bulk-register-record (onClose)="showRegistryRecords($event)"></reg-bulk-register-record>
+</div>

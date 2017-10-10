@@ -31,6 +31,12 @@ export function registryReducer(
     case RecordDetailActions.LOAD_DUPLICATE_RECORD_SUCCESS:
       return state.update('duplicateRecords', () => action.payload);
 
+    case RegistryActions.BULK_REGISTER_RECORD_SUCCESS:
+      return state.update('bulkRegisterRecords', () => action.payload);
+
+      case RegistryActions.CLEAR_BULK_REGISTER_RECORD:
+      return state.update('bulkRegisterRecords', () => null);
+
     case RecordDetailActions.SAVE_RECORD:
       let a4 = action as ReduxActions.Action<any>;
       return state.update('previousRecordDetail', () => a4.payload);
@@ -50,7 +56,7 @@ export function registryReducer(
     case RecordDetailActions.LOAD_STRUCTURE_SUCCESS:
       let cdxml = (action.payload as { data }).data;
       return state.update('structureData', () => cdxml);
-    
+
     case RecordDetailActions.CLEAR_SAVE_RESPONSE:
       return state.update('saveResponse', () => null);
 

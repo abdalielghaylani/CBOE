@@ -48,6 +48,7 @@ export interface IRegistry {
   structureData: string;
   previousRecordDetail: IRecordDetail;
   duplicateRecords: any[] | any;
+  bulkRegisterRecords: any[] | any;
   saveResponse: ISaveResponseData;
 }
 

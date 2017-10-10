@@ -1,0 +1,27 @@
+<div id="bulk-record-view">
+  <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <reg-header testid="templates-heading" id="templates-heading">
+    Bulk Register Marked
+  </reg-header>
+  <dx-data-grid [columns]="columns" [dataSource]="datasource" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
+    <dxo-selection mode="single"></dxo-selection>
+    <div *dxTemplate="let data of 'toolbarContents'">
+      <div class="count tan pull-left">
+        <div class="count-type">Total Number of Records:</div>
+        <div class="count-type-amount border-tan round border-2 padding-xs">
+          {{ datasource ? datasource.length : '' }}
+          <i class="fa fa-book" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+    <div *dxTemplate="let data of 'recorrdViewTemplate'">
+      <a (click)="reviewRecord(data)" style="font-weight:bold;text-decoration:none;cursor:pointer">{{data.value}}</a>
+    </div>
+    <div *dxTemplate="let data of 'cellTemplate'">
+      <reg-structure-image [src]="data.value"></reg-structure-image>
+    </div>
+  </dx-data-grid>
+</div>
