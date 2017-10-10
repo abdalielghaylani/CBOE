@@ -818,18 +818,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         else
                         {
                             registryRecord = RegistryRecord.GetRegistryRecord(Convert.ToString(record["REGNUMBER"]));
+                            record["TEMPID"] = registryRecord.ID;
                         }
 
-                        var xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(registryRecord.Xml);
-                        const string lastModifedDateXPath = "/MultiCompoundRegistryRecord/DateLastModified";
-                        XmlNode regNode = xmlDoc.SelectSingleNode(lastModifedDateXPath);
-                        string lastModifedDate = regNode.InnerText.Trim();
-
-                        DateTime dt = Convert.ToDateTime(lastModifedDate);
-                        string lastModDate = dt.ToString("yyyymmddhhmss");
-
-                        string structure = "record/" + registryRecord.ID + "?" + lastModDate;
+                        string structure = string.Format("record/{0}?{1}", registryRecord.ID, DateTime.Now.ToString("yyyyMMddHHmmss")); 
                         record.Add(new JProperty("structure", structure));
                     }
 
