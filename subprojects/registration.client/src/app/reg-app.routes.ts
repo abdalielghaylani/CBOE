@@ -12,7 +12,8 @@ import {
   RegConfigXmlFormsPage,
   RegLoginPage,
   RegRecordSearchPage,
-  UnAuthorizedPage
+  UnAuthorizedPage,
+  ConfigurationPage
 } from '../pages';
 
 export const REG_APP_ROUTES: Routes = [{
@@ -49,7 +50,12 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'records/temp/:id',
   component: RegRecordDetailPage
-}, {
+},
+{
+  path: 'configuration',
+  component: ConfigurationPage
+},
+{
   path: 'configuration/properties',
   data: { privilege: 'CONFIG_REG' },
   canActivate: [AuthGuard],

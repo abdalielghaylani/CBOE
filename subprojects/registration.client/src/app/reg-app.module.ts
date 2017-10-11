@@ -11,7 +11,7 @@ import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from 
 import {
   RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
   RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage,
-  RegConfigXmlFormsPage, UnAuthorizedPage
+  RegConfigXmlFormsPage, UnAuthorizedPage, ConfigurationPage
 } from '../pages';
 import {
   RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
@@ -86,7 +86,8 @@ import {
     RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage, RegConfigXmlFormsPage,
     RegLoginPage,
     RegAboutPage,
-    UnAuthorizedPage
+    UnAuthorizedPage,
+    ConfigurationPage
   ],
   bootstrap: [
     RegApp

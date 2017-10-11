@@ -36,7 +36,7 @@
   </li>
   <li reg-sidebar-item *ngIf="setVisibility('CONFIG_REG')" class="{{ (routerLink$ | async).indexOf('configuration') > 0 ? 'selected' : '' }}">
     <circle-icon title="Configuration" color="green-mid" iconName="gears" isSelected="{{((routerLink$ | async).indexOf('configuration') > 0)}}"
-      routeLink="configuration/VW_PROJECT">
+      routeLink="configuration">
     </circle-icon>
   </li>
 </reg-sidebar>
