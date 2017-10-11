@@ -17,12 +17,16 @@ using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.RegistrationAdmin.Services;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Framework.COEExportService;
+using CambridgeSoft.COE.Framework.COEFormService;
+using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
+using CambridgeSoft.COE.Framework.Common.Messaging;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class SearchController : RegControllerBase
-    {      
+    {
         private static COEHitListBO GetHitlistBO(int id)
         {
             var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
@@ -33,6 +37,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitlistBO;
         }
 
+        private static FormGroup GetFormGroup(bool? temp)
+        {
+            var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            configRegRecord.COEFormHelper.Load(formGroupType);
+            return configRegRecord.FormGroup;
+        }
+
         private static QueryData GetHitlistQueryInternal(int id, bool? temp)
         {
             var hitlistBO = GetHitlistBO(id);
@@ -41,10 +53,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             COESearchCriteriaBO searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
             if (searchCriteriaBO.SearchCriteria == null)
                 throw new RegistrationException("No search criteria is associated with this hit-list");
-            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-            configRegRecord.COEFormHelper.Load(formGroupType);
-            var formGroup = configRegRecord.FormGroup;
+            var formGroup = GetFormGroup(temp);
             return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteriaBO.SearchCriteria.ToString());
         }
 
@@ -165,10 +174,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var result = new List<HitlistData>();
-                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-                configRegRecord.COEFormHelper.Load(formGroupType);
-                var formGroup = configRegRecord.FormGroup;
+                var formGroup = GetFormGroup(temp);
                 var tempHitLists = COEHitListBOList.GetRecentHitLists(Consts.REGDB, COEUser.Name, formGroup.Id, 10);
                 foreach (var h in tempHitLists)
                 {
@@ -304,11 +310,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-                CambridgeSoft.COE.Framework.COEHitListService.DAL objDAL = null;
-                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-                configRegRecord.COEFormHelper.Load(formGroupType);
-                var formGroup = configRegRecord.FormGroup;
+                var formGroup = GetFormGroup(temp);
                 var genericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
                 string name = hitlistData["Name"].ToString();
                 bool isPublic = Convert.ToBoolean(hitlistData["IsPublic"].ToString());
@@ -321,7 +323,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 HitListType hitlistType = (HitListType)(int)hitlistData["HitlistType"];
                 int searchcriteriaId = Convert.ToInt32(hitlistData["SearchcriteriaId"].ToString());
                 string searchcriteriaType = hitlistData["SearchcriteriaType"].ToString();
-                var id = objDAL.CreateNewTempHitList(name, isPublic, dscription, userID, numHits, databaseName, hitListID, dataViewID, hitlistType, searchcriteriaId, searchcriteriaType);
+                CambridgeSoft.COE.Framework.COEHitListService.DAL dal = null;
+                var id = dal.CreateNewTempHitList(name, isPublic, dscription, userID, numHits, databaseName, hitListID, dataViewID, hitlistType, searchcriteriaId, searchcriteriaType);
                 return new ResponseData(id: id);
             });
         }
@@ -430,11 +433,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 JObject data = new JObject();
-                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-                configRegRecord.COEFormHelper.Load(formGroupType);
-                var formGroup = configRegRecord.FormGroup;
-                int dataViewId = formGroup.Id;
+                var formGroup = GetFormGroup(temp);
+                int dataViewId = formGroup.DataViewId;
                 var hitlistBO1 = GetHitlistBO(id1);
                 if (hitlistBO1 == null)
                     throw new RegistrationException(string.Format("The hit-list identified by ID {0} is invalid", id1));
@@ -485,10 +485,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             CheckAuthentication();
             var hitlistData = Request.Content.ReadAsAsync<JObject>().Result;
-            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-            configRegRecord.COEFormHelper.Load(formGroupType);
-            var formGroup = configRegRecord.FormGroup;
+            var formGroup = GetFormGroup(temp);
             var genericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
             var hitlistBO = genericBO.MarkedHitList;
             hitlistBO.Name = hitlistData["Name"].ToString();
@@ -575,6 +572,98 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 return GetHitlistRecordsInternal(id, temp, skip, count, sort);
+            });
+        }
+
+        /// <summary>
+        /// Returns the sdfile for the list of registry records for a hit-list
+        /// </summary>
+        /// <remarks>Returns the sdfile exported</remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="404">Not found</response>
+        /// <response code="500">Unexpected error</response>
+        /// <param name="id">The ID of the hit-list to be exported to the sdfile</param>
+        /// <param name="exportType">The export type expected</param>
+        /// <param name="resultsCriteriaData">The selected fields to be included in the export</param>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <returns>The SD file exported for the matching hit-list</returns>
+        [HttpPost]
+        [Route(Consts.apiPrefix + "hitlists/{id}/sdfile")]
+        [SwaggerOperation("ExportHitlistToSdfile")]
+        [SwaggerResponse(200, type: typeof(string))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> ExportHitlistToSdfile(int id, string exportType, ResultsCriteriaData resultsCriteriaData, bool? temp = null)
+        {
+            return await CallMethod(() =>
+            {
+                var formGroup = GetFormGroup(temp);
+                var hitlistBO = GetHitlistBO(id);
+
+                COEExport coex = new COEExport();
+
+                PagingInfo pagingInfo = new PagingInfo();
+                pagingInfo.HitListID = hitlistBO.HitListID;
+                pagingInfo.RecordCount = hitlistBO.HitListInfo.RecordCount;
+
+                var resultsCriteria = new ResultsCriteria();
+                foreach (var criteriaTableData in resultsCriteriaData.Criterias)
+                {
+                    var resultsCriteriaTable = new ResultsCriteria.ResultsCriteriaTable()
+                    {
+                        Id = criteriaTableData.TableId,
+                        Criterias = new List<ResultsCriteria.IResultsCriteriaBase>()
+                    };
+                    foreach (var fieldData in criteriaTableData.Fields)
+                    {
+                        var field = new ResultsCriteria.Field
+                        {
+                            Id = fieldData.FieldId,
+                            Alias = fieldData.Alias,
+                            Visible = fieldData.Visible
+                        };
+                        resultsCriteriaTable.Criterias.Add(field);
+                    }
+                    foreach (var molWeightData in criteriaTableData.MolWeights)
+                    {
+                        var molWeight = new ResultsCriteria.MolWeight
+                        {
+                            Id = molWeightData.FieldId,
+                            Alias = molWeightData.Alias,
+                            Visible = molWeightData.Visible
+                        };
+                        resultsCriteriaTable.Criterias.Add(molWeight);
+                    }
+                    foreach (var formulaData in criteriaTableData.Formulas)
+                    {
+                        var formula = new ResultsCriteria.Formula
+                        {
+                            Id = formulaData.FieldId,
+                            Alias = formulaData.Alias,
+                            Visible = formulaData.Visible
+                        };
+                        resultsCriteriaTable.Criterias.Add(formula);
+                    }
+                    foreach (var cDXToMolFileData in criteriaTableData.CDXToMolFiles)
+                    {
+                        var cDXToMolFile = new ResultsCriteria.CDXToMolFile
+                        {
+                            Id = cDXToMolFileData.FieldId,
+                            Alias = cDXToMolFileData.Alias,
+                            Visible = cDXToMolFileData.Visible
+                        };
+                        resultsCriteriaTable.Criterias.Add(cDXToMolFile);
+                    }
+                    resultsCriteria.Tables.Add(resultsCriteriaTable);
+                }
+
+                string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
+
+                return exportedData;
             });
         }
     }
