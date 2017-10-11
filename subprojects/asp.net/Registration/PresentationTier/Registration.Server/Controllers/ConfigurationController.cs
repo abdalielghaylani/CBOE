@@ -163,8 +163,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var column in columns)
             {
                 var fieldName = column.FieldName;
-                var hidden = COETableEditorUtilities.GetHiddenProperty(tableName, fieldName);
-                if (hidden) continue;
                 var lookupTableName = COETableEditorUtilities.getLookupTableName(tableName, fieldName);
                 var lookupColumns = COETableEditorUtilities.getLookupColumnList(tableName, fieldName);
                 var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
@@ -175,6 +173,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("caption", label),
                     new JProperty("dataType", column.FieldType.ToString())
                 );
+                if (COETableEditorUtilities.GetHiddenProperty(tableName, fieldName))
+                    columnObj.Add("allowEditing", false);
                 if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("visible", false));
                 if (!string.IsNullOrEmpty(lookupTableName))
                 {

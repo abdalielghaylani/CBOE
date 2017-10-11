@@ -3,7 +3,7 @@ import { IViewControl } from '../../../common';
 import { CViewGroupContainer } from '../registry-base.types';
 
 @Component({
-  selector: 'reg-search-form-group-item-base',
+  selector: 'reg-form-group-item-base',
   template: ``,
   styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,

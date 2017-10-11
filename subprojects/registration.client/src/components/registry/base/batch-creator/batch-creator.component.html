@@ -4,6 +4,9 @@
     contentTemplate="contentTemplate" [(visible)]="formVisible">
     <div *dxTemplate="let data of 'contentTemplate'">
       <reg-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="true" [editMode]="true" [colCount]="colCount"></reg-form-view>
+      <command-button testid="add-batch-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel"></command-button>
+      <command-button testid="add-batch-add-button" (onClick)="createBatch($event)" iconName="plus" title="Add"></command-button>
+      <div style="height:32px"></div>
     </div>
   </dx-popup>
 </div>

@@ -36,11 +36,22 @@ export class RegBatchCreator implements OnChanges {
   }
 
   protected update() {
-    this.items = this.viewConfig != null ? this.viewConfig.getItems('add') : [];
+    this.items = this.viewConfig != null ? this.viewConfig.getItems('edit') : [];
     if (this.items.find(i => i.itemType === 'group') != null) {
       this.colCount = 1;
     }
+    let validItems = [];
+    this.items.forEach(i => {
+      if (i.itemType === 'group') {
+        validItems = validItems.concat(i.items.filter(ix => !ix.itemType || ix.itemType !== 'empty'));
+      } else if (i.itemType !== 'empty') {
+        validItems.push(i);
+      }
+    });
     this.formData = {};
+    validItems.forEach(i => {
+      this.formData[i.dataField] = undefined;
+    });
   }
 
   protected onValueUpdated(e) {
@@ -51,8 +62,11 @@ export class RegBatchCreator implements OnChanges {
   }
 
   protected createBatch(e) {
-    let value = e.values[e.columns.findIndex(c => c.dataField === 'BatchID')];
     this.formVisible = false;
-    this.onCreated.emit(value);
+    this.onCreated.emit(this.formData);
+  }
+
+  protected cancel(e) {
+    this.formVisible = false;    
   }
 };
