@@ -4,11 +4,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { select } from '@angular-redux/store';
 import { RegContainer, RegRecords } from '../components';
-import { RegistryActions, IRegistry } from '../redux';
+import { RecordDetailActions, RegistryActions, IRegistry } from '../redux';
 
 @Component({
   selector: 'records-page',
-  providers: [RegistryActions],
+  providers: [RegistryActions, RecordDetailActions],
   template: `
     <reg-container testid="records">
       <reg-records

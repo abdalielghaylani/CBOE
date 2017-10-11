@@ -1,4 +1,4 @@
-<div id="bulk-record-view">
+<div id="bulk-record-view" [hidden]="detailViewVisible===true">
   <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
   <reg-header testid="templates-heading" id="templates-heading">
     Bulk Register Marked
@@ -24,4 +24,15 @@
       <reg-structure-image [src]="data.value"></reg-structure-image>
     </div>
   </dx-data-grid>
+</div>
+<div *ngIf="detailViewVisible===true">
+  <command-button testid="close-button" (onClick)="cancelDetailView($event)" iconName="backward" title="Back"></command-button>
+  <reg-header testid="templates-heading" id="templates-heading" isMenu="false">
+    {{currentRecord.temporary?'Temp ':''}} Registry Record: {{currentRecord.temporary?currentRecord.ID:currentRecord.REGNUMBER}}
+  </reg-header>
+  <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
+    <span class="form-inline">
+        <reg-record-detail-base *ngIf="detailViewVisible===true" [id]="currentRecord.ID" [template]="false" [temporary]="currentRecord.temporary" displayMode="view" [activated]="true"></reg-record-detail-base>
+      </span>
+  </dx-scroll-view>
 </div>

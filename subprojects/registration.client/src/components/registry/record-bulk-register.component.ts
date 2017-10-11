@@ -28,6 +28,8 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   private bulkRecordData$: Observable<any[]>;
   private recordsSubscription: Subscription;
   private datasource: any[];
+  private detailViewVisible: boolean = false;
+  private currentRecord: { ID: number, RegNumber: string, temporary: boolean } = { ID: 0, RegNumber: '', temporary: false };
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
   private columns = [{
@@ -61,7 +63,6 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
     caption: 'REGNUMBER'
   }];
 
-  private editRowIndex: number = -1;
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private router: Router,
@@ -102,7 +103,18 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   }
 
   reviewRecord(data) {
-    this.router.navigate([`records${data.key.regNumber ? '' : '/temp'}/${data.value}`]);
+    this.detailViewVisible = true;
+    this.currentRecord = {
+      ID: data.key.TEMPID,
+      RegNumber: data.key.regNumber,
+      temporary: (data.key.regNumber ? false : true)
+    };
+    this.changeDetector.markForCheck();
+  }
+
+  cancelDetailView() {
+    this.detailViewVisible = false;
+
   }
 
   onToolbarPreparing(e) {
@@ -123,6 +135,5 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   private cancel(e) {
     this.onClose.emit(e);
   }
-
 
 };
