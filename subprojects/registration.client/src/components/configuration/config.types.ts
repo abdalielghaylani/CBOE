@@ -52,7 +52,7 @@ export class CConfigTable {
   }
 
   protected validateStringLength(options): boolean {
-    let length = options.value == null ? 0 : options.value.length;
+    let length = options.value == null ? 0 : options.value.toString().length;
     if (length === 0) {
       return true;
     }
