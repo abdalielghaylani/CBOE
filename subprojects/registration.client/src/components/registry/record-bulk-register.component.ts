@@ -106,8 +106,8 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
     this.detailViewVisible = true;
     this.currentRecord = {
       ID: data.key.TEMPID,
-      RegNumber: data.key.regNumber,
-      temporary: (data.key.regNumber ? false : true)
+      RegNumber: data.key.REGNUMBER,
+      temporary: (data.key.REGNUMBER ? false : true)
     };
     this.changeDetector.markForCheck();
   }
