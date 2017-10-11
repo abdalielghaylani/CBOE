@@ -35,7 +35,12 @@ export class RegDropDownFormItem extends RegBaseFormItem {
       if (lookups) {
         let pickListDomain = lookups.pickListDomains.find(d => d.ID === pickListDomainIndex);
         if (pickListDomain != null) {
-          this.dataSource = pickListDomain.data;
+          this.dataSource = pickListDomain.data.map(d => {
+            if (d[pickListDomain.EXT_DISPLAY_COL] === '') {
+              d[pickListDomain.EXT_DISPLAY_COL] = ' ';
+            }
+            return d;
+          });
           this.valueExpr = pickListDomain.EXT_ID_COL;
           this.displayExpr = pickListDomain.EXT_DISPLAY_COL;
         }
