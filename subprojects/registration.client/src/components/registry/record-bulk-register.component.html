@@ -17,6 +17,9 @@
         </div>
       </div>
     </div>
+    <div *dxTemplate="let data of 'tempViewTemplate'">
+      <a *ngIf="!data.key.REGNUMBER" (click)="reviewRecord(data)" style="font-weight:bold;text-decoration:none;cursor:pointer">{{data.value}}</a>
+    </div>
     <div *dxTemplate="let data of 'recorrdViewTemplate'">
       <a (click)="reviewRecord(data)" style="font-weight:bold;text-decoration:none;cursor:pointer">{{data.value}}</a>
     </div>
@@ -32,7 +35,12 @@
   </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <span class="form-inline">
-        <reg-record-detail-base *ngIf="detailViewVisible===true" [id]="currentRecord.ID" [template]="false" [temporary]="currentRecord.temporary" displayMode="view" [activated]="true"></reg-record-detail-base>
+        <reg-record-detail-base *ngIf="detailViewVisible===true" [id]="currentRecord.ID" 
+        [template]="false" [temporary]="currentRecord.temporary" displayMode="view"
+         [activated]="true" (contentReady)="lodingCompleted();"></reg-record-detail-base>
       </span>
   </dx-scroll-view>
 </div>
+<dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true"
+  shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

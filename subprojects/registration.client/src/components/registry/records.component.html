@@ -25,9 +25,6 @@
     </div>
   </dx-popup>
   <div>
-    <dx-load-panel #loadPanel [position]="{ of: '#divDataGrid' }" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true"
-      [shading]="false" [closeOnOutsideClick]="false">
-    </dx-load-panel>
     <div id="divDataGrid">
       <dx-data-grid [height]="gridHeight" id="grdRecords" [columns]=records.gridColumns [dataSource]="records.data.rows" rowAlternationEnabled=true
         (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onInitialized)='onInitialized($event)'
@@ -76,5 +73,8 @@
   <reg-record-search [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=3">
-<reg-bulk-register-record (onClose)="showRegistryRecords($event)"></reg-bulk-register-record>
+  <reg-bulk-register-record (onClose)="showRegistryRecords($event)" (onLodingComplete)="lodingCompleted()"></reg-bulk-register-record>
 </div>
+<dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true"
+  shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

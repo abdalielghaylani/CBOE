@@ -431,6 +431,8 @@ export class RegRecords implements OnInit, OnDestroy {
         duplicateAction: e.option,
         records: records
       });
+    this.regMarkedModel.isVisible = false;
+    this.loadIndicatorVisible = true;
   }
 
   private deleteMarked() {
@@ -574,6 +576,10 @@ export class RegRecords implements OnInit, OnDestroy {
   showRegistryRecords() {
     this.registryActions.clearBulkRrgisterStatus();
     this.router.navigate([`records`]);
+  }
+
+  lodingCompleted() {
+    this.loadIndicatorVisible = false;
   }
 
 };

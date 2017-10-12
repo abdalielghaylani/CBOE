@@ -30,15 +30,17 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   private datasource: any[];
   private detailViewVisible: boolean = false;
   private currentRecord: { ID: number, RegNumber: string, temporary: boolean } = { ID: 0, RegNumber: '', temporary: false };
+  private loadIndicatorVisible: boolean = false;
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
+  @Output() onLodingComplete = new EventEmitter<any>();
   private columns = [{
     dataField: 'LOGID',
     caption: 'LogId'
   }, {
     dataField: 'TEMPID',
-    caption: 'ID',
-    cellTemplate: 'recorrdViewTemplate',
+    caption: 'TempID',
+    cellTemplate: 'tempViewTemplate',
   }, {
     dataField: 'DESCRIPTION',
     caption: 'Description'
@@ -60,7 +62,8 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
     caption: 'Submitted By'
   }, {
     dataField: 'REGNUMBER',
-    caption: 'REGNUMBER'
+    caption: 'REGNUMBER',
+    cellTemplate: 'recorrdViewTemplate',
   }];
 
   constructor(
@@ -87,6 +90,7 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
       this.gridHeight = this.parentHeight - 80;
       this.datasource = e;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
+      this.onLodingComplete.emit();
       this.changeDetector.markForCheck();
     }
   }
@@ -109,12 +113,12 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
       RegNumber: data.key.REGNUMBER,
       temporary: (data.key.REGNUMBER ? false : true)
     };
+    this.loadIndicatorVisible = true;
     this.changeDetector.markForCheck();
   }
 
   cancelDetailView() {
     this.detailViewVisible = false;
-
   }
 
   onToolbarPreparing(e) {
@@ -134,6 +138,10 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
 
   private cancel(e) {
     this.onClose.emit(e);
+  }
+
+  lodingCompleted() {
+    this.loadIndicatorVisible = false;
   }
 
 };
