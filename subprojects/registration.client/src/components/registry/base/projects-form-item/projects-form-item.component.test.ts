@@ -17,8 +17,8 @@ class MockRedux extends NgRedux<IAppState> {
   getState = () => this.state;
 }
 
-class mockDxForm extends DevExtremeModule{
-  option = function(field, value){ return true; };
+class mockDxForm extends DevExtremeModule {
+  option = function (field, value) { return true; };
 }
 
 
@@ -26,16 +26,16 @@ describe('Component : Project Form Item', () => {
 
   let fixture;
   let mockRedux: NgRedux<IAppState>;
-  let mockState : IAppState = { session : projectsFormItemTestData.sessionData };
+  let mockState: IAppState = { session: projectsFormItemTestData.sessionData };
 
   beforeEach(done => {
     mockRedux = new MockRedux(mockState);
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [ TestModule, DevExtremeModule ],
-        declarations : [ RegProjectsFormItem ],
+        imports: [TestModule, DevExtremeModule],
+        declarations: [RegProjectsFormItem],
         providers: [
-          { provide: NgRedux, useValue : mockRedux }
+          { provide: NgRedux, useValue: mockRedux }
         ]
       });
     };
@@ -48,14 +48,14 @@ describe('Component : Project Form Item', () => {
 
   });
 
-  xit('should instantiate Project Form Item Component', async(inject([], () => {
+  it('should instantiate Project Form Item Component', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       expect(fixture.componentInstance).toBeDefined();
     });
   })));
 
-  xit('should check de serialized value', async(inject([], () => {
+  it('should check de serialized value', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       expect(Array.isArray(fixture.componentInstance.deserializeValue(projectsFormItemTestData.deSerializeInputVal))).toBeTruthy();
@@ -63,7 +63,7 @@ describe('Component : Project Form Item', () => {
     });
   })));
 
-  xit('should check serialized value', async(inject([], () => {
+  it('should check serialized value', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.componentInstance.savedValue = projectsFormItemTestData.serializeInputSavedValue;
       fixture.autoDetectChanges();
@@ -73,7 +73,7 @@ describe('Component : Project Form Item', () => {
     });
   })));
 
-  xit('should check value on update method call', async(inject([], () => {
+  it('should check value on update method call', async(inject([], () => {
     fixture.whenStable().then(() => {
       fixture.componentInstance.viewModel = projectsFormItemTestData.viewModel;
       fixture.autoDetectChanges();
@@ -93,7 +93,7 @@ describe('Component : Project Form Item', () => {
       fixture.componentInstance.savedValue = projectsFormItemTestData.serializeInputSavedValue;
       spyOn(fixture.componentInstance, 'onValueUpdated');
       fixture.autoDetectChanges();
-      fixture.componentInstance.onValueChanged(projectsFormItemTestData.testEventData, {'component' : dxComponent});
+      fixture.componentInstance.onValueChanged(projectsFormItemTestData.testEventData, { 'component': dxComponent });
       expect(fixture.componentInstance.onValueUpdated).toHaveBeenCalled();
     });
   })));
