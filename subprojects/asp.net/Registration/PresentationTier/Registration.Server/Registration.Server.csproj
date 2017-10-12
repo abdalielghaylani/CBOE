@@ -166,7 +166,8 @@
     <Compile Include="Models\ControlState.cs" />
     <Compile Include="Models\CriteriaFieldData.cs" />
     <Compile Include="Models\DuplicateActionData.cs" />
-    <Compile Include="Models\DuplicateResolutionData.cs" />
+    <Compile Include="Models\BatchData.cs" />
+    <Compile Include="Models\RecordData.cs" />
     <Compile Include="Models\Component.cs" />
     <Compile Include="Models\Batch.cs" />
     <Compile Include="Models\ExportConfigurationData.cs" />

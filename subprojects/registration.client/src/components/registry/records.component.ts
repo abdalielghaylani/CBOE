@@ -287,7 +287,6 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.rowSelected) {
       this.records.data.rows = this.selectedRows;
     }
-    this.grid.instance.refresh();
   }
 
   onSearchClick(e) {

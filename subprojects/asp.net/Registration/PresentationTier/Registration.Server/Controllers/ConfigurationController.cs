@@ -188,8 +188,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (validationRuleList != null)
                 {
                     columnObj.Add("validationRules", new JArray(
-                        validationRuleList.Select(
-                            vr => {
+                        validationRuleList.Select(vr =>
+                            {
                                 var min = vr.Parameter.Where(p => p.Name == "min");
                                 var max = vr.Parameter.Where(p => p.Name == "max");
                                 return JObject.FromObject(
