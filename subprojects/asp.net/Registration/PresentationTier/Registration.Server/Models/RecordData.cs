@@ -3,12 +3,12 @@
 namespace PerkinElmer.COE.Registration.Server.Models
 {
     /// <summary>
-    /// The class for the DuplicateResolution data object
+    /// The class for the registry record data
     /// </summary>
-    public class DuplicateResolutionData
+    public class RecordData
     {
         [JsonConstructor]
-        public DuplicateResolutionData(string data, string duplicateCheck, string action = null)
+        public RecordData(string data, string duplicateCheck, string action = null)
         {
             Data = data;
             DuplicateCheckOption = duplicateCheck;
@@ -16,7 +16,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         /// <summary>
-        /// Gets or sets the data XML in xml format
+        /// Gets or sets the data in XML format
         /// </summary>
         [JsonProperty(PropertyName = "data")]
         public string Data { get; set; }

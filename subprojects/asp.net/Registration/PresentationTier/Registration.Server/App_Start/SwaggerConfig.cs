@@ -1,3 +1,6 @@
+using System;
+using System.IO;
+using System.Reflection;
 using System.Web.Http;
 using WebActivatorEx;
 using PerkinElmer.COE.Registration.Server;
@@ -93,8 +96,10 @@ namespace PerkinElmer.COE.Registration.Server
                 // Xml comments (http://msdn.microsoft.com/en-us/library/b2s063f7(v=vs.110).aspx), you can incorporate
                 // those comments into the generated docs and UI. You can enable this by providing the path to one or
                 // more Xml comment files.
-                //
-                // c.IncludeXmlComments(GetXmlCommentsPath());
+                var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                var commentsFileName = Assembly.GetExecutingAssembly().GetName().Name + ".XML";
+                var commentsFile = Path.Combine(baseDirectory, "bin", commentsFileName);
+                c.IncludeXmlComments(commentsFile);
 
                 // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                 // exposed in your API. However, there may be occasions when more control of the output is needed.

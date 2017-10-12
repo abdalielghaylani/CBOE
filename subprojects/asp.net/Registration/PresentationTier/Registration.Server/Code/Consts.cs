@@ -1,5 +1,4 @@
-﻿
-namespace PerkinElmer.COE.Registration.Server.Code
+﻿namespace PerkinElmer.COE.Registration.Server.Code
 {
     public static class Consts
     {

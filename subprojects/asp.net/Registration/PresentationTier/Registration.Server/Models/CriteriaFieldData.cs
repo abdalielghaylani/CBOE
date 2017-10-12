@@ -36,7 +36,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string Alias { get; set; }
 
         /// <summary>
-        /// Gets or sets the visible
+        /// Gets or sets a value indicating whether or not this criterion is visible
         /// </summary>
         [JsonProperty(PropertyName = "visible")]
         public bool Visible { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -64,6 +65,48 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var message = !string.IsNullOrEmpty(registryRecord.RedBoxWarning) ? registryRecord.RedBoxWarning : "An unexpected error happened while saving the registry record!";
                 throw new RegistrationException(message);
             }
+        }
+
+        private JObject GetDuplicateRecords(RegistryRecord sourceRegistryRecord)
+        {
+            if (string.IsNullOrWhiteSpace(sourceRegistryRecord.FoundDuplicates))
+                return null;
+
+            List<string> duplicateRegIds = new List<string>();
+            XmlDocument xmldoc = new XmlDocument();
+            xmldoc.LoadXml(sourceRegistryRecord.FoundDuplicates);
+            XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
+            var duplicateActionList = new JArray();
+            foreach (XmlNode node in nodeList)
+            {
+                RegistryRecord duplicateRegistryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
+                duplicateRegIds.Add(duplicateRegistryRecord.ID.ToString());
+
+                DuplicatesResolver duplicatesResolver = InitializeDuplicatesResolver(sourceRegistryRecord,
+                    sourceRegistryRecord.FoundDuplicates,
+                    duplicateRegistryRecord.RegNum,
+                    string.Empty);
+
+                duplicatesResolver.DetermineAvailableActions();
+
+                var duplicateActions = new JObject(
+                   new JProperty("ID", duplicateRegistryRecord.ID),
+                   new JProperty("REGNUMBER", duplicateRegistryRecord.RegNum),
+                   new JProperty("canAddBatch", duplicatesResolver.CanAddBatch),
+                   new JProperty("canUseCompound", duplicatesResolver.CanCreateCompoundForm),
+                   new JProperty("canUseStructure", duplicatesResolver.CanUseStructure)
+               );
+                duplicateActionList.Add(duplicateActions);
+            }
+
+            var tableName = string.Format("vw_mixture_regnumber WHERE regid IN ({0})", string.Join(",", duplicateRegIds));
+            var query = GetQuery(tableName, RecordColumns, null, "modified", "regid");
+
+            var responseMessage = new JObject(
+                new JProperty("DuplicateRecords", ExtractData(query, null, null, null)),
+                new JProperty("DuplicateActions", duplicateActionList)
+            );
+            return responseMessage;
         }
 
         #region Permanent Records
@@ -132,7 +175,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(201, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> CreateRecord(DuplicateResolutionData inputData)
+        public async Task<IHttpActionResult> CreateRecord(RecordData inputData)
         {
             return await CallMethod(() =>
             {
@@ -256,7 +299,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerOperation("UpdateRecord")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> UpdateRecord(int id, DuplicateResolutionData inputData)
+        public async Task<IHttpActionResult> UpdateRecord(int id, RecordData inputData)
         {
             return await CallMethod(() =>
             {
@@ -370,7 +413,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
-        #region COPY ACTIONS
+        #region Copy Handling
         private ResponseData GetCopyActions(RegistryRecord newRegistryRecord, RegistryRecord originalRegistryRecord, string message, string regNumbersLocked)
         {
             bool isStructureChanged = false;
@@ -574,7 +617,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
         #endregion
 
-        #region HandleDuplicates
+        #region Duplicate Handling
         private ResponseData HandleDuplicates(RegistryRecord registryRecord)
         {
             RegUtilities.DuplicateType duplicateType = GetDuplicateType(registryRecord, registryRecord.FoundDuplicates, false);
@@ -674,50 +717,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             return RegUtilities.DuplicateType.None;
         }
-
         #endregion
-
-        private JObject GetDuplicateRecords(RegistryRecord sourceRegistryRecord)
-        {
-            if (string.IsNullOrWhiteSpace(sourceRegistryRecord.FoundDuplicates))
-                return null;
-
-            List<string> duplicateRegIds = new List<string>();
-            XmlDocument xmldoc = new XmlDocument();
-            xmldoc.LoadXml(sourceRegistryRecord.FoundDuplicates);
-            XmlNodeList nodeList = xmldoc.GetElementsByTagName("REGNUMBER");
-            var duplicateActionList = new JArray();
-            foreach (XmlNode node in nodeList)
-            {
-                RegistryRecord duplicateRegistryRecord = RegistryRecord.GetRegistryRecord(node.InnerText);
-                duplicateRegIds.Add(duplicateRegistryRecord.ID.ToString());
-
-                DuplicatesResolver duplicatesResolver = InitializeDuplicatesResolver(sourceRegistryRecord,
-                    sourceRegistryRecord.FoundDuplicates,
-                    duplicateRegistryRecord.RegNum,
-                    string.Empty);
-
-                duplicatesResolver.DetermineAvailableActions();
-
-                var duplicateActions = new JObject(
-                   new JProperty("ID", duplicateRegistryRecord.ID),
-                   new JProperty("REGNUMBER", duplicateRegistryRecord.RegNum),
-                   new JProperty("canAddBatch", duplicatesResolver.CanAddBatch),
-                   new JProperty("canUseCompound", duplicatesResolver.CanCreateCompoundForm),
-                   new JProperty("canUseStructure", duplicatesResolver.CanUseStructure)
-               );
-                duplicateActionList.Add(duplicateActions);
-            }
-
-            var tableName = string.Format("vw_mixture_regnumber WHERE regid IN ({0})", string.Join(",", duplicateRegIds));
-            var query = GetQuery(tableName, RecordColumns, null, "modified", "regid");
-
-            var responseMessage = new JObject(
-                new JProperty("DuplicateRecords", ExtractData(query, null, null, null)),
-                new JProperty("DuplicateActions", duplicateActionList)
-            );
-            return responseMessage;
-        }
 
         [HttpDelete]
         [Route(Consts.apiPrefix + "records/{id}")]
@@ -839,6 +839,42 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
             });
         }
+
+        #region Batch Handling
+        /// <summary>
+        /// Returns the XML data of a batch for a registry record
+        /// </summary>
+        /// <param name="id">The ID of the registry record</param>
+        /// <param name="batchId">The ID of the batch (0 for new batch)</param>
+        /// <returns>The XML data of the specified batch</returns>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "records/{id}/batches/{batchId}")]
+        [SwaggerOperation("GetBatchOfRecord")]
+        [SwaggerResponse(HttpStatusCode.OK, type: typeof(BatchData))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, type: typeof(JObject))]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetBatchOfRecord(int id, int batchId)
+        {
+            return await CallMethod(() =>
+            {
+                return new ResponseData(null, null, null, null);
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "records/{id}/batches")]
+        [SwaggerOperation("AddBatchToRecord")]
+        [SwaggerResponse(HttpStatusCode.Created, type: typeof(ResponseData))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, type: typeof(JObject))]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, type: typeof(JObject))]
+        public async Task<IHttpActionResult> AddBatchToRecord(int id, BatchData batchData)
+        {
+            return await CallMethod(() =>
+            {
+                return new ResponseData(null, null, null, null);
+            });
+        }
+        #endregion
 
         #endregion // Permanent Records
 
