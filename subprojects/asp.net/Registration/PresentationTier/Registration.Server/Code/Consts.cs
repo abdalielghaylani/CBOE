@@ -27,6 +27,8 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public const string REGDB = "REGDB";
 
+        public const string PRIVILEGEMANAGETABLES = "MANAGE_TABLES";
+
         #region COE FORM Index
         public const int MIXTURESUBFORMINDEX = 1000;
 

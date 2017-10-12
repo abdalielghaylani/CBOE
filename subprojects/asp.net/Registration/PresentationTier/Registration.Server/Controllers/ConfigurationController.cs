@@ -575,7 +575,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("config", config),
                     new JProperty("rows", rows)
                 );
-            }, new string[] { Consts.PrivilegeConfigReg });
+            }, new string[] { Consts.PrivilegeConfigReg, Consts.PRIVILEGEMANAGETABLES });
         }
 
         [HttpGet]
