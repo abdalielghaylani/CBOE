@@ -50,7 +50,7 @@ export class SessionEpics {
     } else if (this.getPrivilege(homeMenuPrivileges, 'ADD_COMPOUND_TEMP')) {
       this.router.navigate(['records/new']);
     } else if (this.getPrivilege(homeMenuPrivileges, 'CONFIG_REG')) {
-      this.router.navigate(['configuration/VW_PROJECT']);
+      this.router.navigate(['configuration']);
     } else {
       this.router.navigate(['unauthorized']);
     }
