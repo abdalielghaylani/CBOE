@@ -224,7 +224,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (string permission in permissions)
             {
                 isAuthorized = Csla.ApplicationContext.User.IsInRole(permission);
-                if (isAuthorized)
+                if (!isAuthorized)
                     break;
             }
 
