@@ -256,6 +256,7 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<row><td>ISLockPermissions.dll</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\ISLockPermissions.dll</td></row>
+		<row><td>ISSELFREG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isregsvr.dll</td></row>
 		<row><td>NewBinary1</td><td/><td>&lt;ISProductFolder&gt;\Support\Themes\InstallShield Blue Theme\banner.jpg</td></row>
 		<row><td>NewBinary10</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CompleteSetupIco.ibd</td></row>
 		<row><td>NewBinary11</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CustomSetupIco.ibd</td></row>
@@ -1051,6 +1052,10 @@ End If
 		<row><td>ISLockPermissionsInstall</td><td>3073</td><td>ISLockPermissions.dll</td><td>ISLockPermissionsInstallAction</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
+		<row><td>ISSelfRegisterCosting</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterCosting</td><td/><td/></row>
+		<row><td>ISSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFiles</td><td/><td/></row>
+		<row><td>ISSelfRegisterFinalize</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFinalize</td><td/><td/></row>
+		<row><td>ISUnSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISUnSelfRegisterFiles</td><td/><td/></row>
 		<row><td>SetARPINSTALLLOCATION</td><td>51</td><td>ARPINSTALLLOCATION</td><td>[INSTALLDIR]</td><td/><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%SystemRoot]\Profiles\All Users</td><td/><td/></row>
 		<row><td>ShowMsiLog</td><td>226</td><td>SystemFolder</td><td>[SystemFolder]notepad.exe "[MsiLogFileLocation]"</td><td/><td>Shows Property-driven MSI Log</td></row>
@@ -1956,6 +1961,7 @@ End If
 		<row><td>pe_background_dd.png</td><td>RegistrationClientAssets</td><td>PE_BAC~1.PNG|pe_background_dd.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\assets\pe_background_dd.png</td><td>1</td><td/></row>
 		<row><td>perkinelmer.coe.registration</td><td>RegServerBin</td><td>PERKIN~1.DLL|PerkinElmer.COE.Registration.Server.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\bin\PerkinElmer.COE.Registration.Server.dll</td><td>1</td><td/></row>
 		<row><td>perkinelmer.coe.registration1</td><td>RegServerBin</td><td>PERKIN~1.CON|PerkinElmer.COE.Registration.Server.dll.config</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\bin\PerkinElmer.COE.Registration.Server.dll.config</td><td>1</td><td/></row>
+		<row><td>perkinelmer.coe.registration2</td><td>RegServerBin</td><td>PERKIN~1.XML|PerkinElmer.COE.Registration.Server.xml</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\bin\PerkinElmer.COE.Registration.Server.xml</td><td>1</td><td/></row>
 		<row><td>pki_logo.png</td><td>RegistrationClientAssets</td><td>pki-logo.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\assets\pki-logo.png</td><td>1</td><td/></row>
 		<row><td>pyengine3.dll</td><td>RegServerBin</td><td>PYENGI~1.DLL|PyEngine3.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\bin\PyEngine3.dll</td><td>1</td><td/></row>
 		<row><td>quickgraph.algorithms.dll</td><td>RegServerBin</td><td>QUICKG~1.DLL|QuickGraph.Algorithms.dll</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\bin\QuickGraph.Algorithms.dll</td><td>1</td><td/></row>
@@ -4095,6 +4101,10 @@ End If
 		<row><td>ISLockPermissionsCost</td><td/><td>1401</td><td/><td/></row>
 		<row><td>ISLockPermissionsInstall</td><td/><td>5901</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>ISFOUNDNEWERPRODUCTVERSION</td><td>450</td><td>ISPreventDowngrade</td><td/></row>
+		<row><td>ISSelfRegisterCosting</td><td/><td>2201</td><td/><td/></row>
+		<row><td>ISSelfRegisterFiles</td><td/><td>5601</td><td/><td/></row>
+		<row><td>ISSelfRegisterFinalize</td><td/><td>6601</td><td/><td/></row>
+		<row><td>ISUnSelfRegisterFiles</td><td/><td>2202</td><td/><td/></row>
 		<row><td>InstallFiles</td><td/><td>4000</td><td>InstallFiles</td><td/></row>
 		<row><td>InstallFinalize</td><td/><td>6600</td><td>InstallFinalize</td><td/></row>
 		<row><td>InstallInitialize</td><td/><td>1501</td><td>InstallInitialize</td><td/></row>
