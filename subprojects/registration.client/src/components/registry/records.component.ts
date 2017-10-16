@@ -467,8 +467,10 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private printRecords() {
-    let printContents, popupWin;
+    let printContents: string;
+    let popupWin;
     printContents = document.getElementById('grdRecords').innerHTML;
+    printContents = printContents.replace('<div class="dx-loadpanel-message">Loading...</div>', '');
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
     popupWin.document.open();
     popupWin.document.write(`<html>
