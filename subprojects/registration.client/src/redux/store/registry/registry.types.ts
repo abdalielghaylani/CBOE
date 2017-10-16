@@ -1,4 +1,5 @@
 import { TypedRecord } from 'typed-immutable-record';
+import { IResponseData } from '../../../components/registry/registry.types';
 
 export interface IRecordDetail {
   temporary: boolean;
@@ -50,6 +51,7 @@ export interface IRegistry {
   duplicateRecords: any[] | any;
   bulkRegisterRecords: any[] | any;
   saveResponse: ISaveResponseData;
+  responseData: IResponseData;
 }
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }

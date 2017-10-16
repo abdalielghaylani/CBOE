@@ -17,7 +17,7 @@ import 'rxjs/add/operator/toPromise';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { CRecords, RegistryStatus, IRegMarkedPopupModel } from './registry.types';
+import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import { HttpService } from '../../services';
@@ -43,9 +43,11 @@ export class RegRecords implements OnInit, OnDestroy {
   @Input() hitListId: number;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
+  private responseData$: Observable<IResponseData>;
   private records$: Observable<IRecords>;
   private lookupsSubscription: Subscription;
   private recordsSubscription: Subscription;
+  private responseSubscription: Subscription;
   private hitlistSubscription: Subscription;
   private bulkRegisterSubscription: Subscription;
   private lookups: ILookupData;
@@ -80,6 +82,10 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.responseData$ = this.ngRedux.select(['registry', 'responseData']);
+    if (!this.responseSubscription) {
+      this.responseSubscription = this.responseData$.subscribe(d => { this.deleteRecordStatus(d); });
+    }
     this.idField = this.temporary ? 'BATCHID' : 'ID';
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
     this.bulkRecordData$ = this.ngRedux.select(['registry', 'bulkRegisterRecords']);
@@ -101,6 +107,9 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.bulkRegisterSubscription) {
       this.bulkRegisterSubscription.unsubscribe();
     }
+    if (this.responseSubscription) {
+      this.responseSubscription.unsubscribe();
+    }
   }
 
   bulkRegisterStatus(val) {
@@ -108,6 +117,18 @@ export class RegRecords implements OnInit, OnDestroy {
       this.currentIndex = 3;
       this.regMarkedModel.isVisible = false;
       this.changeDetector.markForCheck();
+    }
+  }
+
+  deleteRecordStatus(e: IResponseData) {
+    if (e) {
+      if (e.data.status) {
+        notifySuccess(e.message, 5000);
+      } else {
+        notifyError(e.message, 5000);
+      }
+      this.retrieveAll();
+      this.registryActions.clearResponse();
     }
   }
 
@@ -307,18 +328,9 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onRowRemoving(e) {
     // TODO: Should use redux
-    let deferred = jQuery.Deferred();
-    let id = e.data[this.idField];
-    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
-    this.http.delete(url)
-      .toPromise()
-      .then(result => {
-        this.records.data.totalCount = this.records.data.totalCount - 1;
-        notifySuccess(`The record (ID: ${id}) was deleted successfully!`, 5000);
-        deferred.resolve(false);
-      })
-      .catch(error => deferred.resolve(true));
-    e.cancel = deferred.promise();
+    let ids = e.data[this.idField];
+    this.registryActions.deleteRecord(this.temporary, { data: [{ id: ids }] });
+    e.cancel = true;
   }
 
   private manageQueries() {
@@ -437,10 +449,9 @@ export class RegRecords implements OnInit, OnDestroy {
   private deleteMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
       if (confirm('Are you sure you want to delete these Registry Records?')) {
-        let ids: number[] = this.selectedRows.map(r => r[this.idField]);
-        let succeeded: number[] = [];
-        let failed: number[] = [];
-        this.deleteRows(ids, failed, succeeded);
+        let ids = [];
+        this.selectedRows.map(r => { ids.push({ id: r[this.idField] }); });
+        this.registryActions.deleteRecord(this.temporary, { data: ids });
       }
     }
   }
@@ -576,7 +587,8 @@ export class RegRecords implements OnInit, OnDestroy {
 
   showRegistryRecords() {
     this.registryActions.clearBulkRrgisterStatus();
-    this.router.navigate([`records`]);
+    this.currentIndex = 0;
+    this.retrieveAll();
   }
 
   lodingCompleted() {

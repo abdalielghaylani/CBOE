@@ -18,6 +18,8 @@ export class RegistryActions {
   static DELETE_RECORD = 'DELETE_RECORD';
   static DELETE_RECORD_SUCCESS = 'DELETE_RECORD_SUCCESS';
   static DELETE_RECORD_ERROR = 'DELETE_RECORD_ERROR';
+  static CLEAR_RESPONSE = 'CLEAR_RESPONSE';
+  static clearResponseAction = createAction(RegistryActions.CLEAR_RESPONSE);
   static clearBulkRegisterRecordAction = createAction(RegistryActions.CLEAR_BULK_REGISTER_RECORD);
   static bulkRegisterRecordAction = createAction(RegistryActions.BULK_REGISTER_RECORD,
     (payload: IRegisterRecordList) => (payload));
@@ -32,7 +34,7 @@ export class RegistryActions {
   static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR,
     (payload: any) => (payload));
   static deleteRecordAction = createAction(RegistryActions.DELETE_RECORD,
-    (temporary: boolean, id: number) => ({ temporary, id }));
+    (temporary: boolean, data: any) => ({ temporary, data }));
   static deleteRecordSuccessAction = createAction(RegistryActions.DELETE_RECORD_SUCCESS);
   static deleteRecordErrorAction = createAction(RegistryActions.DELETE_RECORD_ERROR);
 
@@ -54,8 +56,8 @@ export class RegistryActions {
     this.ngRedux.dispatch(RegistryActions.openRecordsAction(payload));
   }
 
-  deleteRecord(temporary: boolean, id: number) {
-    this.ngRedux.dispatch(RegistryActions.deleteRecordAction(temporary, id));
+  deleteRecord(temporary: boolean, data: any) {
+    this.ngRedux.dispatch(RegistryActions.deleteRecordAction(temporary, data));
   }
 
   bulkRegister(payload: IRegisterRecordList) {
@@ -66,4 +68,7 @@ export class RegistryActions {
     this.ngRedux.dispatch(RegistryActions.clearBulkRegisterRecordAction());
   }
 
+  clearResponse() {
+    this.ngRedux.dispatch(RegistryActions.clearResponseAction());
+  }
 }

@@ -53,6 +53,7 @@ export function sessionReducer(
       return state.update('lookups', () => action.payload);
 
     case RegistryActions.OPEN_RECORDS_ERROR:
+    case RegistryActions.DELETE_RECORD_ERROR:
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
     case RecordDetailActions.LOAD_STRUCTURE_ERROR:
     case RecordDetailActions.UPDATE_RECORD_ERROR:

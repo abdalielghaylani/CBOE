@@ -34,12 +34,18 @@ export function registryReducer(
     case RegistryActions.BULK_REGISTER_RECORD_SUCCESS:
       return state.update('bulkRegisterRecords', () => action.payload);
 
-      case RegistryActions.CLEAR_BULK_REGISTER_RECORD:
+    case RegistryActions.CLEAR_BULK_REGISTER_RECORD:
       return state.update('bulkRegisterRecords', () => null);
 
     case RecordDetailActions.SAVE_RECORD:
       let a4 = action as ReduxActions.Action<any>;
       return state.update('previousRecordDetail', () => a4.payload);
+
+    case RegistryActions.DELETE_RECORD_SUCCESS:
+      return state.update('responseData', () => action.payload);
+
+    case RegistryActions.CLEAR_RESPONSE:
+      return state.update('responseData', () => null);
 
     case RecordDetailActions.SAVE_RECORD_SUCCESS:
     case RecordDetailActions.SAVE_RECORD_ERROR:
