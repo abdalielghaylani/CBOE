@@ -160,6 +160,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 XmlNode regNode = recordXml.SelectSingleNode(personCreatedIdPath);
                 int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
 
+                if (id < 0)
+                {
+                    // set default SCIENTIST ID = currrent user id for registration template XML 
+                    string propertyPath = string.Format("MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='{0}']", "SCIENTIST_ID");
+                    XmlNode xNode = recordXml.SelectSingleNode(propertyPath);
+                    xNode.InnerText = UserIdentity.ID.ToString();                   
+                }
+
                 bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
                 bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
 
@@ -836,7 +844,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             record["TEMPID"] = registryRecord.ID;
                         }
 
-                        string structure = string.Format("record/{0}?{1}", registryRecord.ID, DateTime.Now.ToString("yyyyMMddHHmmss"));
+                        string structure = string.Format("{0}record/{1}?{2}", registryRecord.IsTemporal ? "temp" : string.Empty, registryRecord.ID, DateTime.Now.ToString("yyyyMMddHHmmss"));
                         record.Add(new JProperty("structure", structure));
                     }
 
@@ -1132,7 +1140,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                     else
                     {
-                        message = string.Format("The {0} record, {1}, was deleted successfully!", temporary ? "temporary" : string.Empty, records[0]);
+                        message = string.Format("The {0} record{1}, {2}, {3} deleted successfully!",
+                            temporary ? "temporary" : string.Empty,
+                            records.Count > 1 ? "s" : string.Empty,
+                            string.Join(",", records),
+                            records.Count > 1 ? "were" : "was");
                     }
                 }
                 else
