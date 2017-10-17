@@ -22,7 +22,7 @@
 <reg-sidebar *ngIf="loggedIn$ | async" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
   <li reg-sidebar-item *ngIf="setVisibility('SEARCH_TEMP')" class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
     <circle-icon title="Review Temporary" color="yellow" isSelected="{{ (routerLink$ | async).endsWith('/temp') }}" iconName="table"
-      routeLink="records/temp"></circle-icon>
+      routeLink="records/temp/reload"></circle-icon>
   </li>
   <li reg-sidebar-item *ngIf="setVisibility('ADD_COMPOUND_TEMP')" class="{{ (routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') ? 'selected' : '' }}">
     <circle-icon title="Submit New Compound" color="purple" iconName="flask" isSelected="{{(routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') }}"

@@ -105,9 +105,11 @@ export class RegRecords implements OnInit, OnDestroy {
       this.hitlistSubscription.unsubscribe();
     }
     if (this.bulkRegisterSubscription) {
+      this.registryActions.clearBulkRrgisterStatus();
       this.bulkRegisterSubscription.unsubscribe();
     }
     if (this.responseSubscription) {
+      this.registryActions.clearResponse();
       this.responseSubscription.unsubscribe();
     }
   }

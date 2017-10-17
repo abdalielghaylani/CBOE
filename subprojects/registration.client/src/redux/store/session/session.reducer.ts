@@ -54,6 +54,7 @@ export function sessionReducer(
 
     case RegistryActions.OPEN_RECORDS_ERROR:
     case RegistryActions.DELETE_RECORD_ERROR:
+    case RegistryActions.BULK_REGISTER_RECORD_ERROR:
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
     case RecordDetailActions.LOAD_STRUCTURE_ERROR:
     case RecordDetailActions.UPDATE_RECORD_ERROR:
