@@ -537,12 +537,6 @@ export class RegRecords implements OnInit, OnDestroy {
     return this.selectedRows && this.selectedRows.length > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
   }
 
-  private get getTotalRecordsCount(): Number {
-    if (this.grid.instance) {
-      return this.grid.instance.getTotalSummaryValue('count');
-    }
-  }
-
   private approveRows(ids: number[], failed: number[], succeeded: number[]) {
     if (ids.length === 0) {
       // If id list is empty, change deleted rows and refresh grid.

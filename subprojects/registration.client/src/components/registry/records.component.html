@@ -32,12 +32,8 @@
         <dxo-sorting mode="single"></dxo-sorting>
         <dxo-filter-row [visible]="true"></dxo-filter-row>
         <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <dxo-summary>
-          <dxi-total-item column="Batch ID" summaryType="count" alignment="center">
-          </dxi-total-item>
-        </dxo-summary>
         <div *dxTemplate="let data of 'toolbarContents'">
-          <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
+          <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="records.data.totalCount"></badge-count>
           <badge-count [hidden]="selectedRows.length==0" color="orange" icon="check" text="Marked Hits" [count]="selectedRows ? selectedRows.length : ''"></badge-count>
           <command-button *ngIf="approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
           <command-button *ngIf="deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
