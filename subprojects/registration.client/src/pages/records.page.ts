@@ -29,7 +29,7 @@ export class RegRecordsPage {
     this.temporary = (router.url.match(/.*\/temp.*/g) || []).length > 0;
     this.restore = (router.url.match(/.*\/restore.*/g) || []).length > 0;
     // For fixing issue :- View/Component doesn't refresh/reload if we try to reload/navigate to current route.
-    // Added route(record/temp/reload) for Force reloading (records/temp) route.
+    // Added route(record/temp/reload) for force reloading (records/temp) route.
     this.reload = (router.url.match(/.*\/reload.*/g) || []).length > 0;
     if (this.reload) {
       this.router.navigate(['records/temp']);

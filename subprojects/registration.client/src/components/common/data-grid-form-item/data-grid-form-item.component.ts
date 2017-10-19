@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation, ViewChild } from '@angular/core';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { RegBaseFormItem } from '../base-form-item';
+import * as dxDialog from 'devextreme/ui/dialog';
 
 export const dataGridFormItemTemplate = require('./data-grid-form-item.component.html');
 
@@ -81,7 +82,19 @@ export class RegDataGridFormItem extends RegBaseFormItem {
   }
 
   protected addRow(e) {
-    e.component.addRow();
+    let isEditing = e.component.hasEditData();
+    if (!isEditing) {
+      e.component.addRow();
+    } else {
+      let dialogResult = dxDialog.confirm(
+        `Alert: Are you sure you want to continue? Unsaved changes will lost while adding new row.`,
+        'Confirm Add Row');
+      dialogResult.done(r => {
+        if (r) {
+          e.component.addRow();
+        }
+      });
+    }
   }
 
   protected edit(e) {
