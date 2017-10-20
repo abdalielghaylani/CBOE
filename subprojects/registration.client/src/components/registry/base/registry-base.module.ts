@@ -17,6 +17,7 @@ import { RegFormGroupItemView } from './form-group-item-view';
 import { RegSearchFormGroupView } from './search-form-group-view';
 import { RegSearchFormGroupItemView } from './search-form-group-item-view';
 import { RegSearchFormView } from './search-form-view';
+import { RegSearchExport } from './search-export';
 import { RegRecordDetailBase } from './record-detail-base';
 import { RegBatchCreator } from './batch-creator';
 import { RegBatchMover } from './batch-mover';
@@ -57,6 +58,7 @@ export * from './record-detail-base';
 export * from './batch-creator';
 export * from './batch-mover';
 export * from './batch-selector';
+export * from './search-export';
 
 @NgModule({
   imports: [
@@ -88,13 +90,13 @@ export * from './batch-selector';
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup
+    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup, RegSearchExport
   ],
   exports: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup,
-    RegCommonModule, RegCommonComponentModule
+    RegCommonModule, RegCommonComponentModule, RegSearchExport
   ]
 })
 export class RegBaseComponentModule { }

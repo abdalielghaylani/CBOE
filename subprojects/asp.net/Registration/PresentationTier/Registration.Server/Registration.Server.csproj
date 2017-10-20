@@ -164,7 +164,6 @@
     <Compile Include="Models\AddinEvent.cs" />
     <Compile Include="Models\BulkRegistrationData.cs" />
     <Compile Include="Models\ControlState.cs" />
-    <Compile Include="Models\CriteriaFieldData.cs" />
     <Compile Include="Models\DuplicateActionData.cs" />
     <Compile Include="Models\BatchData.cs" />
     <Compile Include="Models\RecordData.cs" />
@@ -178,12 +177,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CriteriaTableData.cs" />
     <Compile Include="Models\ImportConfigurationData.cs" />
     <Compile Include="Models\LookupData.cs" />
     <Compile Include="Models\PropertyData.cs" />
     <Compile Include="Models\QueryData.cs" />
-    <Compile Include="Models\ResultsCriteriaData.cs" />
+    <Compile Include="Models\ResultsCriteriaTableData.cs" />
     <Compile Include="Models\TemplateData.cs" />
     <Compile Include="Models\ValidationParameter.cs" />
     <Compile Include="Models\ValidationRuleData.cs" />

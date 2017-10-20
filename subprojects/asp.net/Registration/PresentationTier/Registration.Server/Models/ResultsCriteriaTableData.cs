@@ -7,21 +7,29 @@ using Newtonsoft.Json;
 namespace PerkinElmer.COE.Registration.Server.Models
 {
     /// <summary>
-    /// The class for the CriteriaField data object
+    /// The class for the CriteriaTable data object
     /// </summary>
-    public partial class CriteriaFieldData
+    public class ResultsCriteriaTableData
     {
-        public CriteriaFieldData() 
+        public ResultsCriteriaTableData()
         {
         }
 
         [JsonConstructor]
-        public CriteriaFieldData(int fieldId, string alias, bool visible)
+        public ResultsCriteriaTableData(int tableId, int fieldId, string alias, bool visible)
         {
+            TableId = tableId;
             FieldId = fieldId;
             Alias = alias;
             Visible = visible;
+
         }
+
+        /// <summary>
+        /// Gets or sets the tableId
+        /// </summary>
+        [JsonProperty(PropertyName = "tableId")]
+        public int TableId { get; set; }
 
         /// <summary>
         /// Gets or sets the fieldId

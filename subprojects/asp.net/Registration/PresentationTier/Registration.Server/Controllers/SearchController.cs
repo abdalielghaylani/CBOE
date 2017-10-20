@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Net;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Security;
@@ -576,94 +578,139 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
-        /// Returns the sdfile for the list of registry records for a hit-list
+        /// Returns the exported file according to the specified file type for a hit-list
         /// </summary>
-        /// <remarks>Returns the sdfile exported</remarks>
+        /// <remarks>Returns the exported file according to the specified file type</remarks>
         /// <response code="200">Successful operation</response>
         /// <response code="400">Bad request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="404">Not found</response>
         /// <response code="500">Unexpected error</response>
-        /// <param name="id">The ID of the hit-list to be exported to the sdfile</param>
+        /// <param name="id">The ID of the hit-list to be exported to the SD File</param>
         /// <param name="exportType">The export type expected</param>
-        /// <param name="resultsCriteriaData">The selected fields to be included in the export</param>
+        /// <param name="resultsCriteriaTableData">The selected fields to be included in the export</param>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
-        /// <returns>The SD file exported for the matching hit-list</returns>
+        /// <returns>The exported file for the matching hit-list</returns>
         [HttpPost]
-        [Route(Consts.apiPrefix + "hitlists/{id}/sdfile")]
-        [SwaggerOperation("ExportHitlistToSdfile")]
+        [Route(Consts.apiPrefix + "hitlists/{id}/export/{exportType}")]
+        [SwaggerOperation("ExportHitlist")]
         [SwaggerResponse(200, type: typeof(string))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> ExportHitlistToSdfile(int id, string exportType, ResultsCriteriaData resultsCriteriaData, bool? temp = null)
+        public HttpResponseMessage ExportHitlist(int id, string exportType, List<ResultsCriteriaTableData> resultsCriteriaTableData, bool? temp = null)
         {
-            return await CallMethod(() =>
+            CheckAuthentication();
+            var formGroup = GetFormGroup(temp);
+            var hitlistBO = GetHitlistBO(id);
+
+            var coex = new COEExport();
+
+            var pagingInfo = new PagingInfo()
             {
-                var formGroup = GetFormGroup(temp);
-                var hitlistBO = GetHitlistBO(id);
+                HitListID = hitlistBO.HitListID,
+                RecordCount = hitlistBO.HitListInfo.RecordCount
+            };
 
-                COEExport coex = new COEExport();
-
-                PagingInfo pagingInfo = new PagingInfo();
-                pagingInfo.HitListID = hitlistBO.HitListID;
-                pagingInfo.RecordCount = hitlistBO.HitListInfo.RecordCount;
-
-                var resultsCriteria = new ResultsCriteria();
-                foreach (var criteriaTableData in resultsCriteriaData.Criterias)
+            var resultsCriteria = new ResultsCriteria();
+            foreach (var criteriaTableData in resultsCriteriaTableData)
+            {
+                var field = new ResultsCriteria.Field
                 {
-                    var resultsCriteriaTable = new ResultsCriteria.ResultsCriteriaTable()
+                    Id = criteriaTableData.FieldId,
+                    Alias = criteriaTableData.Alias,
+                    Visible = criteriaTableData.Visible
+                };
+
+                var resultsCriteriaTable = resultsCriteria.Tables.Find(t => t.Id == criteriaTableData.TableId);
+                if (resultsCriteriaTable == null)
+                {
+                    resultsCriteriaTable = new ResultsCriteria.ResultsCriteriaTable()
                     {
                         Id = criteriaTableData.TableId,
                         Criterias = new List<ResultsCriteria.IResultsCriteriaBase>()
                     };
-                    foreach (var fieldData in criteriaTableData.Fields)
-                    {
-                        var field = new ResultsCriteria.Field
-                        {
-                            Id = fieldData.FieldId,
-                            Alias = fieldData.Alias,
-                            Visible = fieldData.Visible
-                        };
-                        resultsCriteriaTable.Criterias.Add(field);
-                    }
-                    foreach (var molWeightData in criteriaTableData.MolWeights)
-                    {
-                        var molWeight = new ResultsCriteria.MolWeight
-                        {
-                            Id = molWeightData.FieldId,
-                            Alias = molWeightData.Alias,
-                            Visible = molWeightData.Visible
-                        };
-                        resultsCriteriaTable.Criterias.Add(molWeight);
-                    }
-                    foreach (var formulaData in criteriaTableData.Formulas)
-                    {
-                        var formula = new ResultsCriteria.Formula
-                        {
-                            Id = formulaData.FieldId,
-                            Alias = formulaData.Alias,
-                            Visible = formulaData.Visible
-                        };
-                        resultsCriteriaTable.Criterias.Add(formula);
-                    }
-                    foreach (var cDXToMolFileData in criteriaTableData.CDXToMolFiles)
-                    {
-                        var cDXToMolFile = new ResultsCriteria.CDXToMolFile
-                        {
-                            Id = cDXToMolFileData.FieldId,
-                            Alias = cDXToMolFileData.Alias,
-                            Visible = cDXToMolFileData.Visible
-                        };
-                        resultsCriteriaTable.Criterias.Add(cDXToMolFile);
-                    }
+                    resultsCriteriaTable.Criterias.Add(field);
                     resultsCriteria.Tables.Add(resultsCriteriaTable);
                 }
+                else
+                {
+                    resultsCriteriaTable.Criterias.Add(field);
+                }
+            }
 
-                string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
+            string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
 
-                return exportedData;
+            try
+            {
+                using (var stream = new MemoryStream())
+                {
+                    var writer = new StreamWriter(stream);
+                    writer.Write(exportedData);
+                    writer.Flush();
+                    stream.Position = 0;
+
+                    var httpResponseMessage = new HttpResponseMessage();
+                    httpResponseMessage.Content = new ByteArrayContent(stream.ToArray());
+                    httpResponseMessage.Content.Headers.Add("x-filename", string.Format("Exported{0}HitsFromDV{1}.sdf", hitlistBO.HitListInfo.RecordCount, formGroup.Id));
+                    httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("chemical/x-mdl-sdfile");
+                    httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
+                    httpResponseMessage.Content.Headers.ContentDisposition.FileName = "ExportedSDFfile.sdf";
+                    httpResponseMessage.StatusCode = System.Net.HttpStatusCode.OK;
+
+                    return httpResponseMessage;
+                }
+            }
+            catch (IOException)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError);
+            }
+        }
+
+        /// <summary>
+        /// Return the results criteria for search
+        /// </summary>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Unexpected error</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <returns>The promise to return a JSON object containing an array of results criteria</returns>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "hitlists/resultsCriteria")]
+        [SwaggerOperation("GetResultsCriteria")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetResultsCriteria(bool? temp = null)
+        {
+            return await CallMethod(() =>
+            {
+                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                configRegRecord.COEFormHelper.Load(formGroupType);
+                GenericBO bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
+
+                COEDataView dataView = new COEDataView();
+                dataView.GetFromXML(bo.DataView.ToString());
+                dataView.RemoveNonRelationalTables();
+
+                var resultsCriteria = new JArray();
+                foreach (var dataViewTable in dataView.Tables)
+                {
+                    foreach (var dataViewField in dataViewTable.Fields)
+                    {
+                        resultsCriteria.Add(new JObject(
+                            new JProperty("tableId", dataViewTable.Id),
+                            new JProperty("tableName", dataViewTable.Alias),
+                            new JProperty("fieldId", dataViewField.Id),
+                            new JProperty("fieldName", dataViewField.Alias),
+                            new JProperty("visible", dataViewField.Visible)));
+                    }
+                }
+                return resultsCriteria;
             });
         }
     }

@@ -46,7 +46,6 @@ export class RegistrySearchActions {
     (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveQueryFormSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_SUCCESS);
   static retrieveQueryFormErrorAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_ERROR);
-
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
   searchRecords(queryData: IQueryData) {

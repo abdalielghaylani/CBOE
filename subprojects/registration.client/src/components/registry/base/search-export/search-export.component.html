@@ -1,0 +1,23 @@
+<command-button id="search-export-command" testid="search-export-command" (onClick)="showForm($event)" iconName="files-o" title="Export"></command-button>
+<div class="absolute">
+  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Export" [shading]="true" [closeOnOutsideClick]="true"
+    contentTemplate="contentTemplate" [(visible)]="formVisible">
+    
+    <div *dxTemplate="let data of 'contentTemplate'">
+      <div class="row" style="margin-bottom: 5px;">
+        <div class="col-sm-2"><label>Export Format:</label></div>
+        <div class="col-sm-10">
+          <dx-select-box [items]="filesType" [value]="selectedFileType" [width]="100" 
+          (onValueChanged)="fileTypeValueChanged($event);" displayExpr="displayExpr" valueExpr="valueExpr">
+          </dx-select-box>
+      </div>
+      </div>      
+      <dx-data-grid [columns]="columns" [dataSource]="dataSource" (onSelectionChanged)="onSelectionChanged($event)" [paging]="{enabled: false}"
+        [rowAlternationEnabled]="true" [height]="400" (onContentReady)='onContentReady($event)'>
+        <dxo-selection mode="multiple" showCheckBoxesMode="always"></dxo-selection>
+      </dx-data-grid>
+      <command-button testid="search-export-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel" [pullRight]="true"></command-button>
+      <command-button testid="search-export-export-button" (onClick)="export($event)" iconName="floppy-o" title="Export" [pullRight]="true"></command-button>
+    </div>
+  </dx-popup>
+</div>

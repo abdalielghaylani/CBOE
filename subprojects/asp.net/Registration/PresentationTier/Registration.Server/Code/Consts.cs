@@ -28,6 +28,8 @@
 
         public const string PRIVILEGEMANAGETABLES = "MANAGE_TABLES";
 
+        public const string CHEMBIOVIZAPLPICATIONNAME = "CHEMBIOVIZ";
+
         #region COE FORM Index
         public const int MIXTURESUBFORMINDEX = 1000;
 
