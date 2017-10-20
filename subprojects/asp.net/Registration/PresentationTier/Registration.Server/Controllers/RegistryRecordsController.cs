@@ -160,14 +160,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 XmlNode regNode = recordXml.SelectSingleNode(personCreatedIdPath);
                 int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
 
-                if (id < 0)
-                {
-                    // set default SCIENTIST ID = currrent user id for registration template XML 
-                    string propertyPath = string.Format("MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='{0}']", "SCIENTIST_ID");
-                    XmlNode xNode = recordXml.SelectSingleNode(propertyPath);
-                    xNode.InnerText = UserIdentity.ID.ToString();                   
-                }
-
                 bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
                 bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
 
