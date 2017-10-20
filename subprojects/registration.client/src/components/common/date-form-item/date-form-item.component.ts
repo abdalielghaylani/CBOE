@@ -30,4 +30,15 @@ export class RegDateFormItem extends RegBaseFormItem {
     let formatted = moment.default(value).utcOffset(0).format('YYYY-MM-DD hh:mm:ss A');
     return formatted;
   }
+
+  protected update() {
+    let options = this.viewModel.editorOptions;
+    // set default value
+    if (!options.value) {
+      if (this.editMode && options.defaultValue && options.defaultValue === 'TODAY') {
+        options.value = moment.default(Date.now()).utcOffset(0).format('YYYY-MM-DD hh:mm:ss A');
+      }
+    }
+    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
+  }
 };

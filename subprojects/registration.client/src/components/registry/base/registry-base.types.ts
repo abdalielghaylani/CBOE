@@ -141,6 +141,23 @@ export class CViewGroup implements IViewGroup {
     item.editorOptions.readOnly = readOnly;
   }
 
+  private setDefaultValue(fe: IFormElement, item: any) {
+    let type = fe.displayInfo.type;
+    if (type.endsWith('COEDropDownList')) {
+      let pickListDomain = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
+      if (pickListDomain) {
+        if (fe.defaultValue) {
+          item.editorOptions.defaultValue = fe.defaultValue;
+        }
+      }
+    } else if (type.indexOf('COEDatePicker') > 0) {
+      let defaultDate = fe.configInfo ? fe.configInfo.fieldConfig.DefaultDate : undefined;
+      if (defaultDate) {
+        item.editorOptions.defaultValue = defaultDate;
+      }
+    }
+  }
+
   private checkValidationRules(fe: IFormElement, item: any) {
     let ruleList: IValidationRuleList = fe.validationRuleList;
     if (ruleList && ruleList.validationRule) {
@@ -336,6 +353,7 @@ export class CViewGroup implements IViewGroup {
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
             this.checkEditorType(fe, item);
+            this.setDefaultValue(fe, item);
             this.checkValidationRules(fe, item);
             this.removeDuplicate(items, item);
             items.push(item);
@@ -386,7 +404,7 @@ export class CViewGroupContainer implements IViewGroupContainer {
   }
 
   public static createSimpleViewGroupContainers(viewGroups: CViewGroup[]) {
-    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, [ vg ]));
+    return viewGroups.map(vg => new CViewGroupContainer(vg.id, vg.title, [vg]));
   }
 
   public getEntryInfo(displayMode: string, id: string): CEntryInfo {
