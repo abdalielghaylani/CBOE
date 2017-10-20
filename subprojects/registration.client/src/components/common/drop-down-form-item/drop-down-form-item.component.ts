@@ -34,7 +34,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
       let lookups = this.ngRedux.getState().session.lookups;
       if (lookups) {
         let pickListDomain = lookups.pickListDomains.find(d => d.ID === pickListDomainIndex);
-        if (pickListDomain != null) {
+        if (pickListDomain && pickListDomain.data) {
           this.dataSource = pickListDomain.data.map(d => {
             if (d[pickListDomain.EXT_DISPLAY_COL] === '') {
               d[pickListDomain.EXT_DISPLAY_COL] = ' ';
