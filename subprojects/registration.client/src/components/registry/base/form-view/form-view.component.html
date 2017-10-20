@@ -6,10 +6,10 @@
     <reg-projects-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-projects-form-item-template>
   </div>
   <div *dxTemplate="let data of 'fragmentsTemplate'">
-    <reg-fragments-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-fragments-form-item-template>
+    <reg-fragments-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data" [viewConfig]="viewConfig"></reg-fragments-form-item-template>
   </div>
   <div *dxTemplate="let data of 'idListTemplate'">
-    <reg-id-list-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-id-list-form-item-template>
+    <reg-id-list-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data" [viewConfig]="viewConfig"></reg-id-list-form-item-template>
   </div>
   <div *dxTemplate="let data of 'dropDownTemplate'">
     <reg-drop-down-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-drop-down-form-item-template>

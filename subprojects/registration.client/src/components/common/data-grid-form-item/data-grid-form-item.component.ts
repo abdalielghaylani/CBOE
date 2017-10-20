@@ -103,9 +103,33 @@ export class RegDataGridFormItem extends RegBaseFormItem {
     }
   }
 
+  getName() {
+    let validItems = [];
+    this.viewConfig.forEach(i => {
+      if (i.itemType === 'group') {
+        validItems = validItems.concat(i.items.filter(ix => !ix.itemType || ix.itemType !== 'empty'));
+      } else if (i.itemType !== 'empty') {
+        validItems.push(i);
+      }
+    });
+    let val = validItems.find(r => r.dataField === this.viewModel.dataField);
+    if (val && val.label && val.label.text) {
+      return val.label.text;
+    }
+    return 'list item';
+  }
+
   protected delete(e) {
     if (this.allowDeleting) {
-      e.component.deleteRow(e.row.rowIndex);
+      let name = this.getName();
+      let dialogResult = dxDialog.confirm(
+        `Alert: Are you sure you want to delete this ` + name + ` ?`,
+        `Remove ` + name);
+      dialogResult.done(r => {
+        if (r) {
+          e.component.deleteRow(e.row.rowIndex);
+        }
+      });
     }
   }
 

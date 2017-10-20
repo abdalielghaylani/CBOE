@@ -2,7 +2,7 @@
   (onContentReady)="onContentReady($event)"
   (onRowInserting)="onRowInserting($event, viewModel)" (onRowUpdating)="onRowUpdating($event, viewModel)" (onRowRemoving)="onRowRemoving($event, viewModel)"
   (onRowInserted)="onRowInserted($event, viewModel)" (onRowUpdated)="onRowUpdated($event, viewModel)" (onRowRemoved)="onRowRemoved($event, viewModel)">
-  <dxo-editing [mode]="editingMode"></dxo-editing>
+  <dxo-editing [mode]="editingMode" [texts]="{confirmDeleteMessage:''}"></dxo-editing>
   <div *dxTemplate="let d of 'commandHeaderCellTemplate'">
     <a *ngIf="allowAdding" class="fa fa-lg fa-plus-square-o grid-icon" aria-hidden="true" title='Add a row' (click)="addRow(d)"></a>
   </div>
