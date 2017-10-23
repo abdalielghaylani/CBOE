@@ -32,17 +32,18 @@ export class RegDropDownFormItem extends RegBaseFormItem {
     if (options.pickListDomain) {
       let pickListDomainIndex = options.pickListDomain as number;
       let lookups = this.ngRedux.getState().session.lookups;
-      if (lookups) {
+      if (lookups && lookups.pickListDomains) {
         let pickListDomain = lookups.pickListDomains.find(d => d.ID === pickListDomainIndex);
         if (pickListDomain && pickListDomain.data) {
+          let valueCol = 'value';
           this.dataSource = pickListDomain.data.map(d => {
-            if (d[pickListDomain.EXT_DISPLAY_COL] === '') {
-              d[pickListDomain.EXT_DISPLAY_COL] = ' ';
+            if (d[valueCol] === '') {
+              d[valueCol] = ' ';
             }
             return d;
           });
-          this.valueExpr = pickListDomain.EXT_ID_COL;
-          this.displayExpr = pickListDomain.EXT_DISPLAY_COL;
+          this.valueExpr = 'key';
+          this.displayExpr = 'value';
         }
       }
     } else if (options.dropDownItemsSelect) {
@@ -60,16 +61,22 @@ export class RegDropDownFormItem extends RegBaseFormItem {
     }
 
     // set default value
+    let isDefaultValueSet: boolean = false;
     if (!options.value) {
       if (this.editMode && options.defaultValue && options.defaultValue === '&&loggedInUser') {
-        // options.value = 68;  
         let lookups = this.ngRedux.getState().session.lookups;
         if (lookups) {
           let user = lookups.users.find(user => user.USERID === this.ngRedux.getState().session.user.fullName);
           options.value = user.PERSONID;
+          isDefaultValueSet = true;
         }
       }
     }
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
+
+    // initialized default value, so update view model also
+    if (isDefaultValueSet) {
+      this.updateViewModel();
+    }
   }
 };

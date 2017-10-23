@@ -145,15 +145,25 @@ export class CViewGroup implements IViewGroup {
     let type = fe.displayInfo.type;
     if (type.endsWith('COEDropDownList')) {
       let pickListDomain = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
-      if (pickListDomain) {
-        if (fe.defaultValue) {
-          item.editorOptions.defaultValue = fe.defaultValue;
-        }
+      if (pickListDomain && fe.defaultValue) {
+        item.editorOptions.defaultValue = fe.defaultValue;
       }
-    } else if (type.indexOf('COEDatePicker') > 0) {
+    } else if (type.endsWith('COEDatePicker')) {
       let defaultDate = fe.configInfo ? fe.configInfo.fieldConfig.DefaultDate : undefined;
       if (defaultDate) {
         item.editorOptions.defaultValue = defaultDate;
+      }
+    } else if (type.endsWith('COETextArea')) {
+      if (fe.defaultValue) {
+        item.editorOptions.defaultValue = fe.defaultValue;
+      }
+    } else if (type.endsWith('COETextBox')) {
+      if (fe.defaultValue) {
+        item.editorOptions.defaultValue = fe.defaultValue;
+      }
+    } else if (type.endsWith('COENumericTextBox')) {
+      if (fe.defaultValue) {
+        item.editorOptions.defaultValue = fe.defaultValue;
       }
     }
   }

@@ -45,6 +45,12 @@ export class RegBaseFormItem implements IFormItemTemplate, OnChanges {
     }
   }
 
+  protected updateViewModel() {
+    let value = this.serializeValue(this.value);
+    this.viewModel.component.option('formData.' + this.viewModel.dataField, value);
+    this.onValueUpdated(this);
+  }
+
   protected onValueUpdated(e) {
     this.valueUpdated.emit(e);
   }
