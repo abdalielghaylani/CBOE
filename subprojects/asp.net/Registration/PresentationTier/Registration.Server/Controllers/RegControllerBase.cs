@@ -18,6 +18,7 @@ using CambridgeSoft.COE.RegistrationAdmin.Services;
 using Csla.Data;
 using Newtonsoft.Json.Linq;
 using PerkinElmer.COE.Registration.Server.Code;
+using CambridgeSoft.COE.Framework.COEPickListPickerService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -181,26 +182,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var pickListDomains = ExtractData("SELECT * FROM VW_PICKLISTDOMAIN");
             foreach (var pickListDomain in pickListDomains)
             {
-                var where = pickListDomain["EXT_SQL_FILTER"];
-                if (where != null)
+                var picklistNameValueList = PickListNameValueList.GetPickListNameValueList(Convert.ToInt32(pickListDomain["ID"]), true, null);
+
+                var list = new JArray();
+                foreach (string key in picklistNameValueList.KeyValueList.Keys)
                 {
-                    where = where.ToString().Replace("&&loggedInUser", ":loggedInUser");
+                    var item = new JObject(new JProperty("key", Convert.ToInt32(key)), new JProperty("value", picklistNameValueList.KeyValueList[key]));
+                    list.Add(item);
                 }
-                string extIdColumn = pickListDomain["EXT_ID_COL"].ToString();
-                string extDisplayColumn = pickListDomain["EXT_DISPLAY_COL"].ToString();
-                string extTable = pickListDomain["EXT_TABLE"].ToString();
-
-                if (string.IsNullOrEmpty(extTable)) continue;
-                if (string.IsNullOrEmpty(extIdColumn) && string.IsNullOrEmpty(extDisplayColumn)) continue;
-
-                var sql = string.Format("SELECT {0}, {1} FROM {2} {3} {4}",
-                    pickListDomain["EXT_ID_COL"],
-                    pickListDomain["EXT_DISPLAY_COL"],
-                    pickListDomain["EXT_TABLE"],
-                    where,
-                    pickListDomain["EXT_SQL_SORTORDER"]);
-                pickListDomain["data"] = ExtractData(sql, args);
-
+                pickListDomain["data"] = list;
             }
             return pickListDomains;
         }
