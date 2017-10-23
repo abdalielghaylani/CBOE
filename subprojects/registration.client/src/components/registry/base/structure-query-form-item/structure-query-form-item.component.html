@@ -13,7 +13,7 @@
   </dx-box>
 </div>
 <div class="panel panel-default panelContainer" [hidden]="!(index===1||index===2)">
-  <div class="panel-heading">
+  <div  id='searchPreferenceDxBox' class="panel-heading">
     <dx-box direction="row" width="100%">
       <dxi-item class="rect" [ratio]="1">
         <div class="dx-field">
@@ -30,7 +30,7 @@
   <div class="panel-body">
     <reg-structure-query-form-options-template [hidden]="index!=1" [viewConfig]="viewConfigGeneral" [viewModel]="queryModel"
       (valueUpdated)="onValueUpdated($event)">
-    </reg-structure-query-form-options-template>
+    </reg-structure-query-form-options-template> 
     <reg-structure-query-form-options-template [hidden]="index!=2" [viewConfig]="viewConfigSterioChem" [colCount]=1 [viewModel]="queryModel"
       (valueUpdated)="onValueUpdated($event)">
     </reg-structure-query-form-options-template>

@@ -31,3 +31,17 @@
   color: black;
   background-color: lightgray;
 }
+
+/* Following Fixes are For IE */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  #structQueryFormOptionId .dx-item .dx-box-item {
+    min-width: 450px !important;
+  }
+
+  div#searchPreferenceDxBox > dx-box > div {
+    min-width: 100% !important;
+  }
+}
+
+/* End */
