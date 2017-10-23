@@ -66,7 +66,8 @@ export class RegDropDownFormItem extends RegBaseFormItem {
       if (this.editMode && options.defaultValue && options.defaultValue === '&&loggedInUser') {
         let lookups = this.ngRedux.getState().session.lookups;
         if (lookups) {
-          let user = lookups.users.find(user => user.USERID === this.ngRedux.getState().session.user.fullName);
+          let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
+          let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
           options.value = user.PERSONID;
           isDefaultValueSet = true;
         }
