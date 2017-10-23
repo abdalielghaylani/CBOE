@@ -1119,7 +1119,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             List<string> failedRecords = new List<string>();
             try
             {
-                command = BulkDelete.Execute(coeHitListBO.ID, true, string.Empty);
+                command = BulkDelete.Execute(coeHitListBO.ID, temporary, string.Empty);
                 if (command.Result)
                 {
                     if (command.FailedRecords.Length > 0)
