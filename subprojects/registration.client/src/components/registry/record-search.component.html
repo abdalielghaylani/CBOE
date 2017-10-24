@@ -16,8 +16,10 @@
 <reg-header testid="configuration-heading" id="qa-configuration-heading">
   {{ 'Search ' + (temporary ? 'Temporary' : 'Permanent') + ' Registry' }}
 </reg-header>
+<badge-count color="green" icon="book" text="Total Searchable Records" [count]="totalSearchableCount"></badge-count>
 <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
   <form class="form-inline" role="form" ng-submit="search(query)">
-    <reg-search-form-group-view [viewModel]="searchCriteria" [viewConfig]="viewGroups" [editMode]="true" [displayMode]="displayMode" [activated]="cddActivated" (valueUpdated)="onValueUpdated($event)" ></reg-search-form-group-view>
+    <reg-search-form-group-view [viewModel]="searchCriteria" [viewConfig]="viewGroups" [editMode]="true" [displayMode]="displayMode"
+      [activated]="cddActivated" (valueUpdated)="onValueUpdated($event)"></reg-search-form-group-view>
   </form>
 </dx-scroll-view>

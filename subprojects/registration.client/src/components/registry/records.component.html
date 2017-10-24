@@ -59,7 +59,7 @@
   <reg-search-query [temporary]="temporary" [hitlistId]="records.data.hitlistId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-record-search [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
+  <reg-record-search [totalSearchableCount]="records.data.totalCount" [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=3">
   <reg-bulk-register-record (onClose)="showRegistryRecords($event)" (onLodingComplete)="lodingCompleted()"></reg-bulk-register-record>

@@ -30,6 +30,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Input() temporary: boolean;
   @Input() parentHeight: string;
   @Input() activated: boolean;
+  @Input() totalSearchableCount: number;
   @Output() onClose = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
   public formGroup: IFormGroup;
