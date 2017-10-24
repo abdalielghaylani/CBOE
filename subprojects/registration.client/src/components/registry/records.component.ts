@@ -532,6 +532,11 @@ export class RegRecords implements OnInit, OnDestroy {
     return false;
   }
 
+  private get filterRowEnabled(): boolean {
+    let tt = this.records.data.totalCount <= fetchLimit;
+    return this.records.data.totalCount <= fetchLimit;
+  }
+
   // set bulk register button visibility
   private get registerMarkedEnabled(): boolean {
     return this.selectedRows && this.selectedRows.length > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
