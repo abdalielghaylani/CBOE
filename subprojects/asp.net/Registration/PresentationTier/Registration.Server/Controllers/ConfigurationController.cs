@@ -179,7 +179,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (!string.IsNullOrEmpty(lookupTableName))
                 {
                     columnObj.Add("lookup", new JObject(
-                        new JProperty("dataSource", ExtractData(string.Format("SELECT {0},{1} FROM {2}", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName))),
+                        new JProperty("dataSource", ExtractData(string.Format("SELECT {0},{1} FROM {2} WHERE {1} IS NOT NULL", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName))),
                         new JProperty("valueExpr", lookupColumns[0].FieldName),
                         new JProperty("displayExpr", lookupColumns[1].FieldName))
                     );
