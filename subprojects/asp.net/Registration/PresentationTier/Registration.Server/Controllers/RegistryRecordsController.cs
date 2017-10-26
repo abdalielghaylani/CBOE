@@ -1102,9 +1102,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 int id = Convert.ToInt32(item.GetValue("id"));
                 if (temporary)
-                    CheckTempRecordId(id);
+                    CheckTempRecordId(id);               
                 records.Add(id);
             }
+
+            if (!temporary)
+            {
+                // for permanant registry records, hitlist need to be generated using mixture id of the perm record
+                var list  = ExtractData(string.Format("select MIXTUREID from  VW_MIXTURE m where m.REGID in ({0})", string.Join(",", records)), null, null, null);
+                records.Clear();
+                foreach (JObject item in list)
+                {                  
+                    records.Add(Convert.ToInt32(item.GetValue("MIXTUREID")));
+                }
+            }
+
+            if (records.Count <= 0 )
+                throw new ArgumentNullException("Input data is invalid");
 
             var coeHitListBO = COEHitListBO.New(Consts.REGDB, HitListType.MARKED);
             coeHitListBO.Update();
