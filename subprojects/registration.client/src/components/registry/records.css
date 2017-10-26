@@ -27,6 +27,10 @@
   vertical-align: middle;
 }
 
+/deep/ .dx-datagrid-total-footer {
+  display: none;
+}
+
 .list-header {
   text-decoration: none;
   cursor: pointer;

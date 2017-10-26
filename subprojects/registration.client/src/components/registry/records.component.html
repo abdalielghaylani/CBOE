@@ -1,7 +1,7 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
   <command-button testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
   <div>
-    <reg-search-export *ngIf="!!records.data.hitlistId" [temporary]="temporary" [hitListId]="records.data.hitlistId" ></reg-search-export>
+    <reg-search-export *ngIf="!!records.data.hitlistId" [temporary]="temporary" [hitListId]="records.data.hitlistId"></reg-search-export>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
     <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
     <command-button *ngIf="!!records.data.hitlistId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
@@ -33,8 +33,11 @@
         <dxo-sorting mode="single"></dxo-sorting>
         <dxo-filter-row [visible]="filterRowEnabled"></dxo-filter-row>
         <dxo-search-panel [visible]="filterRowEnabled" [width]="240" placeholder="Search..."></dxo-search-panel>
+        <dxo-summary>
+          <dxi-total-item column="ID" summaryType="count" alignment="center"></dxi-total-item>
+        </dxo-summary>
         <div *dxTemplate="let data of 'toolbarContents'">
-          <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="records.data.totalCount"></badge-count>
+          <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
           <badge-count [hidden]="selectedRows.length==0" color="orange" icon="check" text="Marked Hits" [count]="selectedRows ? selectedRows.length : ''"></badge-count>
           <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
           <command-button [hidden]="!deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>

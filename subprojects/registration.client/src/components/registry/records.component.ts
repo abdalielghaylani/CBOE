@@ -536,6 +536,14 @@ export class RegRecords implements OnInit, OnDestroy {
     return this.records.data.totalCount <= fetchLimit;
   }
 
+  private get getTotalRecordsCount(): Number {
+    if (this.filterRowEnabled && this.grid.instance) {
+      return this.grid.instance.getTotalSummaryValue('count');
+    } else {
+      return this.records.data.totalCount;
+    }
+  }
+
   // set bulk register button visibility
   private get registerMarkedEnabled(): boolean {
     return this.selectedRows && this.selectedRows.length > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
