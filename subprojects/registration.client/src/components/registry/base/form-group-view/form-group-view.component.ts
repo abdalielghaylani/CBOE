@@ -37,8 +37,8 @@ export class RegFormGroupView implements IViewControl, OnChanges {
     this.valueUpdated.emit(this);
   }
 
-  validate(): boolean {
+  validate() {
     let result = validationEngine.validateGroup('vg');
-    return !result || result.isValid;
+    return result;
   }
 };

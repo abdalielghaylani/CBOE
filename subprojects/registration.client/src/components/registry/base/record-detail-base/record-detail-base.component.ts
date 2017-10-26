@@ -41,6 +41,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   protected regRecord: CRegistryRecord = new CRegistryRecord();
   protected formGroup: IFormGroup;
   protected viewGroupContainers: CViewGroupContainer[];
+  protected validationError: { isvalid: boolean, errorMessages: string[] } = { isvalid: true, errorMessages: [] };
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
 
   constructor(
@@ -196,10 +197,21 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     }
     return recordDoc;
   }
+  validate(): boolean {
+    let result = this.formGroupView.validate();
+    this.validationError.isvalid = !result || result.isValid;
+    this.validationError.errorMessages = [];
+    result.brokenRules.forEach(element => {
+      if (element.validator.errorMessage) {
+        this.validationError.errorMessages.push(element.validator.errorMessage);
+      }
+    });
+    this.changeDetector.markForCheck();
+    return !result || result.isValid;
+  }
 
   public save(type?: string): boolean {
-    if (!this.formGroupView.validate()) {
-      notifyError('One or more entries failed to validate!', 5000);
+    if (!this.validate()) {
       return false;
     }
     let recordDoc = this.getUpdatedRecord();

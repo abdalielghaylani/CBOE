@@ -45,6 +45,7 @@ export class RegStructureBaseFormItem extends ChemDrawWeb implements IFormItemTe
 
   protected onValidatorInitialized(e, d) {
     e.component.peer = d;
+    e.component.validationRule = d.viewModel.editorOptions.customRules.validationRule ? d.viewModel.editorOptions.customRules.validationRule : [];
   }
 
   protected validate(options) {

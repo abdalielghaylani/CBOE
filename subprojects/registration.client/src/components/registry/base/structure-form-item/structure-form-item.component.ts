@@ -60,7 +60,18 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
   }
 
   protected validate(options) {
-    return true;
+    let vm = options.validator.peer.viewModel;
+    options.validator.isValid = true;
+    options.validator.validationRule.forEach(element => {
+      if (element._validationRuleName === 'notEmptyStructure') {
+        if (vm.editorOptions && vm.editorOptions.value && vm.editorOptions.value.Structure.__text) {
+        } else {
+          options.validator.isValid = false;
+          options.validator.errorMessage = element._errorMessage;
+        }
+      }
+    });
+    return options.validator.isValid;
   }
 
   private updateMode(mode: DrawingType, forceRefresh: boolean = true) {

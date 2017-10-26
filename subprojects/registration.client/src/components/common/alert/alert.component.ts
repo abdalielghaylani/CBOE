@@ -5,13 +5,12 @@ import { Component, Input } from '@angular/core';
   styles: [`.alert {
             padding: 5px;
             margin-bottom: 5px;
-            border: 1px solid transparent;
             border-radius: 4px;
         }`],
   template: `
     <div
       [id]="qaid"
-      class="text-center alert"
+      class="{{class}} alert"
       [attr.data-testid]="testid"
       [ngClass]="{
         'alert-info': status === 'info',
@@ -28,4 +27,5 @@ export class RegAlert {
   @Input() status = 'info';
   @Input() qaid: string;
   @Input() testid: string;
+  @Input() class: string = 'text-center';
 };
