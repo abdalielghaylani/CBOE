@@ -533,7 +533,6 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private get filterRowEnabled(): boolean {
-    let tt = this.records.data.totalCount <= fetchLimit;
     return this.records.data.totalCount <= fetchLimit;
   }
 
