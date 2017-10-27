@@ -180,6 +180,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var args = new Dictionary<string, object>();
             args.Add(":loggedInUser", UserIdentity.ID);
             var pickListDomains = ExtractData("SELECT * FROM VW_PICKLISTDOMAIN");
+            PickListNameValueList.InvalidateCache();
             foreach (var pickListDomain in pickListDomains)
             {
                 var picklistNameValueList = PickListNameValueList.GetPickListNameValueList(Convert.ToInt32(pickListDomain["ID"]), true, null);
