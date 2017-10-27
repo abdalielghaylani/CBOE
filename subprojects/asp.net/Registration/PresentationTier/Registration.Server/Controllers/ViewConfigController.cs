@@ -200,6 +200,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }, cacheControl: new CacheControlHeaderValue { NoCache = true });
         }
 
+        [HttpPost]
+        [Route(Consts.apiPrefix + "ViewConfig/query")]
+        [SwaggerOperation("GetQueryValues")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetQueryValues(JObject data)
+        {
+            return await CallMethod(() =>
+            {
+                string query = data["sql"].ToString();  
+             
+                if (!query.Trim().ToLower().StartsWith("select"))
+                    throw new RegistrationException("only select statements are allowed in the query input");
+             
+                var response = new JObject();
+                response.Add(new JProperty("data", ExtractData(query, null, null, null)));
+                return new ResponseData(data: response);
+            });
+        }
+
         [HttpGet]
         [Route(Consts.apiPrefix + "ViewConfig/recordsView/{id}/{registryType}/{pageMode}")]
         [SwaggerOperation("GetRecordsView")]
