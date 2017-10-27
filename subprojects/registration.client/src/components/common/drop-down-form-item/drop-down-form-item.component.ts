@@ -15,7 +15,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
   protected dataSource: any[];
   protected valueExpr: string;
   protected displayExpr: string;
-  protected useNumericValue: boolean = false; 
+  protected useNumericValue: boolean = false;
 
   constructor(private ngRedux: NgRedux<IAppState>, private http: HttpService, private changeDetector: ChangeDetectorRef) {
     super();
@@ -49,10 +49,8 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         }
       }
     } else if (options.dropDownItemsSelect) {
-      if (options.dropDownItemsSelect) {
-        let query = options.dropDownItemsSelect;
-        this.fillDropDown(this, query);
-      }
+      let query = options.dropDownItemsSelect;
+      this.fillDropDown(this, query, options);
     } else if (options.dataSource) {
       this.dataSource = options.dataSource;
       this.valueExpr = options.valueExpr;
@@ -64,8 +62,11 @@ export class RegDropDownFormItem extends RegBaseFormItem {
     if (this.dataSource && this.dataSource.length > 0) {
       this.useNumericValue = typeof this.dataSource.slice(-1)[0][this.valueExpr] === 'number';
     }
+    this.setValue(options);
+  }
 
-    // set default value
+  private setValue(options) {
+    // set default value, if default value is configured in the form group xml
     let isDefaultValueSet: boolean = false;
     if (!options.value) {
       if (this.editMode && options.defaultValue && options.defaultValue === '&&loggedInUser') {
@@ -78,15 +79,15 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         }
       }
     }
-    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
 
+    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
     // initialized default value, so update view model also
     if (isDefaultValueSet) {
       this.updateViewModel();
     }
   }
 
-  fillDropDown(control: RegDropDownFormItem, query: string) {
+  fillDropDown(control: RegDropDownFormItem, query: string, options: any) {
     let deferred = jQuery.Deferred();
     let url = `${apiUrlPrefix}${'ViewConfig/query'}`;
     let body = { 'sql': query };
@@ -98,10 +99,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         control.dataSource = data;
         control.valueExpr = 'KEY';
         control.displayExpr = 'VALUE';
-        if (!control.value) {
-          control.value = '';
-        } 
-        // TODO: set default value if any
+        control.setValue(options);
         control.changeDetector.markForCheck();
         deferred.resolve(false);
       })
