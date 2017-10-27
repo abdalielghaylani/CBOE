@@ -61,7 +61,8 @@ export class RegSearchExport implements OnInit, OnDestroy {
     let data = this.selectedRows.map(r => {
       return {
         tableId: r.tableId,
-        fieldId: r.fieldId
+        fieldId: r.fieldId,
+        visible: true
       };
     });
     this.http.post(url, data).toPromise()
