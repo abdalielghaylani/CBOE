@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { HttpService } from './../../../services/http.service';
+import { apiUrlPrefix } from './../../../configuration';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../redux';
 import { RegBaseFormItem } from '../base-form-item';
@@ -13,9 +15,9 @@ export class RegDropDownFormItem extends RegBaseFormItem {
   protected dataSource: any[];
   protected valueExpr: string;
   protected displayExpr: string;
-  protected useNumericValue: boolean = false;
+  protected useNumericValue: boolean = false; 
 
-  constructor(private ngRedux: NgRedux<IAppState>) {
+  constructor(private ngRedux: NgRedux<IAppState>, private http: HttpService, private changeDetector: ChangeDetectorRef) {
     super();
   }
 
@@ -47,7 +49,10 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         }
       }
     } else if (options.dropDownItemsSelect) {
-      // TODO: Parse the select statement and use proper data for drop-down
+      if (options.dropDownItemsSelect) {
+        let query = options.dropDownItemsSelect;
+        this.fillDropDown(this, query);
+      }
     } else if (options.dataSource) {
       this.dataSource = options.dataSource;
       this.valueExpr = options.valueExpr;
@@ -79,5 +84,27 @@ export class RegDropDownFormItem extends RegBaseFormItem {
     if (isDefaultValueSet) {
       this.updateViewModel();
     }
+  }
+
+  fillDropDown(control: RegDropDownFormItem, query: string) {
+    let deferred = jQuery.Deferred();
+    let url = `${apiUrlPrefix}${'ViewConfig/query'}`;
+    let body = { 'sql': query };
+
+    this.http.post(url, body)
+      .toPromise()
+      .then(result => {
+        let data = result.json().data.data;
+        control.dataSource = data;
+        control.valueExpr = 'KEY';
+        control.displayExpr = 'VALUE';
+        if (!control.value) {
+          control.value = '';
+        } 
+        // TODO: set default value if any
+        control.changeDetector.markForCheck();
+        deferred.resolve(false);
+      })
+      .catch(error => deferred.resolve(true));
   }
 };
