@@ -85,6 +85,11 @@ export class CSystemSettings {
     return this.isSettingTrue('EnableMoveBatch');
   }
 
+  public get isInventoryIntegrationEnabled(): boolean {
+    let setting: ISettingData = this.getSetting('Inventory', 'InventoryIntegration');
+    return setting.value === 'Enabled' ? true : false;
+  }
+
   public get reviewRegisterSearchFormGroupId(): number {
     return +this.getSetting('Search', 'ReviewRegisterSearchFormGroupId');
   }
@@ -140,7 +145,7 @@ export class CSystemSettings {
   public get searchComponentsToAddRRFormGroupId(): number {
     return +this.getSetting('Search', 'SearchComponentsToAddRRFormGroupId');
   }
-  
+
   public get searchComponentsToAddVMFormGroupId(): number {
     return +this.getSetting('Search', 'SearchComponentsToAddVMFormGroupId');
   }
