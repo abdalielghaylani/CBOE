@@ -42,6 +42,10 @@
   div#searchPreferenceDxBox > dx-box > div {
     min-width: 100% !important;
   }
+
+  dxi-item#CDDToolbarID {
+    transform: rotate(90deg);
+  }
 }
 
 /* End */
