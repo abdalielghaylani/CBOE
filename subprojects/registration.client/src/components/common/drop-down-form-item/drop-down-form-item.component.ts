@@ -49,8 +49,10 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         }
       }
     } else if (options.dropDownItemsSelect) {
-      let query = options.dropDownItemsSelect;
-      this.fillDropDown(this, query, options);
+      let query = options.dropDownItemsSelect.__text;
+      if (query) {
+        this.fillDropDown(this, query, options);
+      }
     } else if (options.dataSource) {
       this.dataSource = options.dataSource;
       this.valueExpr = options.valueExpr;
@@ -59,25 +61,41 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         this.value = '';
       }
     }
-    if (this.dataSource && this.dataSource.length > 0) {
-      this.useNumericValue = typeof this.dataSource.slice(-1)[0][this.valueExpr] === 'number';
-    }
     this.setValue(options);
   }
 
   private setValue(options) {
     // set default value, if default value is configured in the form group xml
     let isDefaultValueSet: boolean = false;
-    if (!options.value) {
-      if (this.editMode && options.defaultValue && options.defaultValue === '&&loggedInUser') {
-        let lookups = this.ngRedux.getState().session.lookups;
-        if (lookups) {
-          let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
-          let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
-          options.value = user.PERSONID;
+
+    if (this.editMode && options.defaultValue) {
+      if (options.defaultValue === '&&useSortOrderTop') {
+        if (this.dataSource.length > 0) {
+          let topItem;
+          if (options.value) {
+            topItem = this.dataSource.find(item => item.key === +options.value);
+          }
+          if (!topItem) {
+            topItem = this.dataSource[0];
+          }
+          options.value = topItem.key;
           isDefaultValueSet = true;
         }
+      } else if (options.defaultValue === '&&loggedInUser') {
+        if (!options.value) {
+          let lookups = this.ngRedux.getState().session.lookups;
+          if (lookups) {
+            let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
+            let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
+            options.value = user.PERSONID;
+            isDefaultValueSet = true;
+          }
+        }
       }
+    }
+
+    if (this.dataSource && this.dataSource.length > 0) {
+      this.useNumericValue = typeof this.dataSource.slice(-1)[0][this.valueExpr] === 'number';
     }
 
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;

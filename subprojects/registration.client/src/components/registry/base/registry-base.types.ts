@@ -144,8 +144,7 @@ export class CViewGroup implements IViewGroup {
   private setDefaultValue(fe: IFormElement, item: any) {
     let type = fe.displayInfo.type;
     if (type.endsWith('COEDropDownList')) {
-      let pickListDomain = fe.configInfo ? fe.configInfo.fieldConfig.PickListDomain : undefined;
-      if (pickListDomain && fe.defaultValue) {
+      if (fe.defaultValue) {
         item.editorOptions.defaultValue = fe.defaultValue;
       }
     } else if (type.endsWith('COEDatePicker')) {
