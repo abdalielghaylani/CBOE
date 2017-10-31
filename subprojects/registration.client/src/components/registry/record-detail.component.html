@@ -10,6 +10,7 @@
       <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
     </ul>
   </div>
+  <command-button *ngIf="createContainerButtonEnabled" testid="new-container" (onClick)="createInvContainer()" iconName="flask" title="New Container" [pullRight]="true"></command-button>
   <command-button *ngIf="clearButtonEnabled" testid="clear-record-details-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
   <command-button *ngIf="deleteButtonEnabled" testid="delete-record-details-button" (onClick)="delete()" iconName="trash" title="Delete"></command-button>
   <command-button *ngIf="editButtonEnabled" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>

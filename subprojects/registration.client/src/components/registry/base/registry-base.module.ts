@@ -46,6 +46,7 @@ import {
 } from 'devextreme-angular';
 import { RegCommonModule } from '../../../common';
 import { RegCommonComponentModule } from '../../common';
+import { RegInvContainerCreator } from '../create-inventory-container/create-inventory-container';
 
 export * from './fragments-form-item'
 export * from './id-list-form-item';
@@ -90,13 +91,13 @@ export * from './search-export';
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup, RegSearchExport
+    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup, RegSearchExport, RegInvContainerCreator
   ],
   exports: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup,
-    RegCommonModule, RegCommonComponentModule, RegSearchExport
+    RegCommonModule, RegCommonComponentModule, RegSearchExport, RegInvContainerCreator
   ]
 })
 export class RegBaseComponentModule { }

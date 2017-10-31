@@ -24,10 +24,11 @@ import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
-import { RegistryStatus } from './registry.types';
+import { RegistryStatus, IRegInvModel } from './registry.types';
 import { CFragment } from '../common';
 import { PrivilegeUtils } from '../../common';
 import { CSystemSettings, ISaveResponseData } from '../../redux';
+import { RegInvContainerCreator } from './create-inventory-container/create-inventory-container';
 
 @Component({
   selector: 'reg-record-detail',
@@ -71,6 +72,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private copyActions: ICopyActions;
   private isDuplicatePopupVisible: boolean = false;
   private loadingVisible: boolean = false;
+  private createContainerButtonEnabled: boolean = false;
 
   private saveTemplateItems = [{
     dataField: 'name',
@@ -159,6 +161,9 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
     let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
+    this.createContainerButtonEnabled = ss.isInventoryIntegrationEnabled
+      && !this.temporary
+      && !this.isNewRecord;
     this.backButtonEnabled = hitListId > 0 || this.bulkreg;
     if (forceUpdate) {
       this.changeDetector.markForCheck();
@@ -476,6 +481,13 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     } else {
       this.save(e);
     }
+  }
+
+  private createInvContainer() {
+    let regInvContainer = new RegInvContainerCreator();
+    let invModel: IRegInvModel;
+    invModel = { batchIDs: [this.recordDetailView.slectedBatchId], isBulkContainerCreation: false };
+    regInvContainer.createContainer(invModel);
   }
 
 };

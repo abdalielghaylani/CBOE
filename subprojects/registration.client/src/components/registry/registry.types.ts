@@ -71,3 +71,8 @@ export interface IRegMarkedPopupModel {
   option: string; 
   isVisible: boolean;
 }
+
+export interface IRegInvModel {
+  batchIDs: string[]; 
+  isBulkContainerCreation: boolean;
+}
