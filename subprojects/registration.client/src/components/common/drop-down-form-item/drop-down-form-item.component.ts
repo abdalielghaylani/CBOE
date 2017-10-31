@@ -49,8 +49,13 @@ export class RegDropDownFormItem extends RegBaseFormItem {
         }
       }
     } else if (options.dropDownItemsSelect) {
-      let query = options.dropDownItemsSelect.__text;
-      if (query) {
+      let query: string;
+      if (options.dropDownItemsSelect.__text) {
+        query = options.dropDownItemsSelect.__text;
+      } else {
+        query = options.dropDownItemsSelect;
+      }
+      if (query && query.trim().toUpperCase().startsWith('SELECT')) {
         this.fillDropDown(this, query, options);
       }
     } else if (options.dataSource) {
