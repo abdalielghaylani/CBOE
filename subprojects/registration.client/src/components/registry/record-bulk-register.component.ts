@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { IFormGroup, prepareFormGroupData, FormGroupType, getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { IAppState, ILookupData } from '../../redux';
+import { IAppState, ILookupData, RegistryActions } from '../../redux';
 import { HttpService } from '../../services';
 import { CRegistryRecord, CViewGroup } from './base';
 import { CFragment } from '../common';
@@ -28,12 +28,8 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   private bulkRecordData$: Observable<any[]>;
   private recordsSubscription: Subscription;
   private datasource: any[];
-  private detailViewVisible: boolean = false;
   private currentRecord: { ID: number, RegNumber: string, temporary: boolean } = { ID: 0, RegNumber: '', temporary: false };
-  private loadIndicatorVisible: boolean = false;
-  @Input() parentHeight: number;
-  @Output() onClose = new EventEmitter<any>();
-  @Output() onLodingComplete = new EventEmitter<any>();
+  private loadIndicatorVisible: boolean = true;
   private columns = [{
     dataField: 'LOGID',
     caption: 'LogId'
@@ -70,6 +66,7 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
     private ngRedux: NgRedux<IAppState>,
     private router: Router,
     private http: HttpService,
+    private registryActions: RegistryActions,
     private changeDetector: ChangeDetectorRef,
     private elementRef: ElementRef
   ) { }
@@ -87,10 +84,9 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
 
   loadData(e) {
     if (e) {
-      this.gridHeight = this.parentHeight - 80;
       this.datasource = e;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
-      this.onLodingComplete.emit();
+      this.loadIndicatorVisible = false;
       this.changeDetector.markForCheck();
     }
   }
@@ -107,18 +103,8 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   }
 
   reviewRecord(data) {
-    this.detailViewVisible = true;
-    this.currentRecord = {
-      ID: data.key.TEMPID,
-      RegNumber: data.key.REGNUMBER,
-      temporary: (data.key.REGNUMBER ? false : true)
-    };
-    this.loadIndicatorVisible = true;
-    this.changeDetector.markForCheck();
-  }
-
-  cancelDetailView() {
-    this.detailViewVisible = false;
+    let temporary = (data.key.REGNUMBER ? false : true);
+    this.router.navigate([`records/${temporary ? 'temp' : ''}/bulkreg/${data.key.TEMPID}`]);
   }
 
   onToolbarPreparing(e) {
@@ -132,16 +118,9 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
     return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
   }
 
-  dismissAlert() {
-    this.gridHeight = this.parentHeight - 20;
-  }
-
   private cancel(e) {
-    this.onClose.emit(e);
-  }
-
-  lodingCompleted() {
-    this.loadIndicatorVisible = false;
+    this.registryActions.clearBulkRrgisterStatus();
+    this.router.navigate([`records/temp`]);
   }
 
 };

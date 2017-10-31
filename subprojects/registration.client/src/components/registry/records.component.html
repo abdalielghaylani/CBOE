@@ -64,8 +64,5 @@
 <div class="viewcontainer" [hidden]="currentIndex!=2">
   <reg-record-search [totalSearchableCount]="records.data.totalCount" [temporary]="temporary" (onClose)="headerClicked($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
-<div class="viewcontainer" [hidden]="currentIndex!=3">
-  <reg-bulk-register-record (onClose)="showRegistryRecords($event)" (onLodingComplete)="lodingCompleted()"></reg-bulk-register-record>
-</div>
 <dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>

@@ -43,6 +43,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   @Input() temporary: boolean;
   @Input() template: boolean;
   @Input() id: number;
+  @Input() bulkreg: boolean;
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
   @select(s => s.registry.saveResponse) saveResponse$: Observable<ISaveResponseData>;
   private displayMode: string;
@@ -144,7 +145,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.cancelButtonEnabled = editMode && !this.isNewRecord;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
     this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !editMode))
-      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
+      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled) && !this.bulkreg;
     this.approveButtonEnabled = !editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
 
     this.deleteButtonEnabled = !this.isNewRecord
@@ -158,7 +159,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
     let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
-    this.backButtonEnabled = hitListId > 0;
+    this.backButtonEnabled = hitListId > 0 || this.bulkreg;
     if (forceUpdate) {
       this.changeDetector.markForCheck();
     }
@@ -247,10 +248,14 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   back() {
-    let state = this.ngRedux.getState();
-    let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
-    let path = this.temporary ? 'records/temp' : 'records';
-    this.router.navigate([`${path}/restore/${hitListId}`]);
+    if (this.bulkreg) {
+      this.router.navigate([`records/bulkreg`]);
+    } else {
+      let state = this.ngRedux.getState();
+      let path = this.temporary ? 'records/temp' : 'records';
+      let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
+      this.router.navigate([`${path}/restore/${hitListId}`]);
+    }
   }
 
   save(type?: string) {
@@ -426,7 +431,11 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
         .then(res => {
           this.clearLoadindicator();
           notifySuccess(`The record was deleted successfully!`, 5000);
-          this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+          if (this.bulkreg) {
+            this.router.navigate([`records/bulkreg`]);
+          } else {
+            this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+          }
         })
         .catch(error => {
           this.clearLoadindicator();

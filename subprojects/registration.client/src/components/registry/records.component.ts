@@ -49,7 +49,6 @@ export class RegRecords implements OnInit, OnDestroy {
   private recordsSubscription: Subscription;
   private responseSubscription: Subscription;
   private hitlistSubscription: Subscription;
-  private bulkRegisterSubscription: Subscription;
   private lookups: ILookupData;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
@@ -88,10 +87,6 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     this.idField = this.temporary ? 'BATCHID' : 'ID';
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
-    this.bulkRecordData$ = this.ngRedux.select(['registry', 'bulkRegisterRecords']);
-    if (!this.bulkRegisterSubscription) {
-      this.bulkRegisterSubscription = this.bulkRecordData$.subscribe(d => { this.bulkRegisterStatus(d); });
-    }
   }
 
   ngOnDestroy() {
@@ -104,10 +99,6 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.hitlistSubscription) {
       this.hitlistSubscription.unsubscribe();
     }
-    if (this.bulkRegisterSubscription) {
-      this.registryActions.clearBulkRrgisterStatus();
-      this.bulkRegisterSubscription.unsubscribe();
-    }
     if (this.responseSubscription) {
       this.registryActions.clearResponse();
       this.responseSubscription.unsubscribe();
@@ -116,9 +107,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   bulkRegisterStatus(val) {
     if (val) {
-      this.currentIndex = 3;
-      this.regMarkedModel.isVisible = false;
-      this.changeDetector.markForCheck();
+      this.router.navigate([`records/bulkreg`]);
     }
   }
 
@@ -445,7 +434,8 @@ export class RegRecords implements OnInit, OnDestroy {
         records: records
       });
     this.regMarkedModel.isVisible = false;
-    this.loadIndicatorVisible = true;
+    this.registryActions.clearBulkRrgisterStatus();
+    this.router.navigate([`records/bulkreg`]);
   }
 
   private deleteMarked() {
@@ -600,7 +590,6 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   showRegistryRecords() {
-    this.registryActions.clearBulkRrgisterStatus();
     this.currentIndex = 0;
     this.retrieveAll();
   }

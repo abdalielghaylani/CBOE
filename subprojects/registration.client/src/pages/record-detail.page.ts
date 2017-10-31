@@ -13,6 +13,7 @@ import { RegContainer, RegRecordDetail } from '../components';
     <reg-container testid="records">
       <reg-record-detail
         [temporary]="temporary"
+        [bulkreg]="bulkreg"
         [template]="template"
         [id]="id">
       </reg-record-detail>
@@ -22,11 +23,13 @@ import { RegContainer, RegRecordDetail } from '../components';
 export class RegRecordDetailPage {
   private temporary: boolean;
   private template: boolean;
+  private bulkreg: boolean;
   private id: number;
 
   constructor(private router: Router, private actions: RecordDetailActions) {
     let urlSegments = router.url.split('/');
     this.temporary = !!urlSegments.find(s => s === 'temp');
+    this.bulkreg = !!urlSegments.find(s => s === 'bulkreg');
     let id = urlSegments[urlSegments.length - 1];
     this.template = !!urlSegments.find(s => s === 'new') && id !== 'new';
     this.id = id.startsWith('new') ? -1 : +id;

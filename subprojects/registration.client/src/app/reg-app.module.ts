@@ -9,7 +9,7 @@ import { RegApp } from './reg-app';
 import { GridActions, SessionActions, ACTION_PROVIDERS, IAppState } from '../redux';
 import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from '../epics';
 import {
-  RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
+  RegRecordsPage, RegBulkRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
   RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage,
   RegConfigXmlFormsPage, UnAuthorizedPage, ConfigurationPage
 } from '../pages';
@@ -73,6 +73,7 @@ import {
   declarations: [
     RegApp,
     RegRecordsPage,
+    RegBulkRecordsPage,
     RegRecordSearchPage,
     RegRecordDetailPage,
     RegRecords,

@@ -13,7 +13,8 @@ import {
   RegLoginPage,
   RegRecordSearchPage,
   UnAuthorizedPage,
-  ConfigurationPage
+  ConfigurationPage,
+  RegBulkRecordsPage
 } from '../pages';
 
 export const REG_APP_ROUTES: Routes = [{
@@ -36,11 +37,20 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/restore',
   component: RegRecordsPage
 }, {
+  path: 'records/bulkreg',
+  component: RegBulkRecordsPage
+}, {
   path: 'records/temp/restore/:id',
   component: RegRecordsPage
 }, {
   path: 'records/restore/:id',
   component: RegRecordsPage
+}, {
+  path: 'records/temp/bulkreg/:id',
+  component: RegRecordDetailPage
+}, {
+  path: 'records/bulkreg/:id',
+  component: RegRecordDetailPage
 }, {
   path: 'records/new/:templateId',
   component: RegRecordDetailPage
