@@ -33,6 +33,8 @@ export class RegSearchExport implements OnInit, OnDestroy {
     { dataField: 'tableName', caption: 'Table', groupIndex: 0 },
     { dataField: 'tableId', visible: false },
     { dataField: 'fieldId', visible: false },
+    { dataField: 'indexType', visible: false },
+    { dataField: 'mimeType', visible: false },
     { dataField: 'fieldName', caption: 'Field Name' }
   ];
 
