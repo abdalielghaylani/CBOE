@@ -1,6 +1,6 @@
 <command-button id="search-export-command" testid="search-export-command" (onClick)="showForm($event)" iconName="files-o" title="Export"></command-button>
 <div class="absolute">
-  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Export" [shading]="true" [closeOnOutsideClick]="true"
+  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Export" [shading]="true" [closeOnOutsideClick]="false"
     contentTemplate="contentTemplate" [(visible)]="formVisible">
     
     <div *dxTemplate="let data of 'contentTemplate'">

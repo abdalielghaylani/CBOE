@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Security;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Xml;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
@@ -156,6 +157,104 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
             hitlistBO.Update();
             return GetHitlistRecordsInternal(hitlistBO.HitListID, temp, skip, count, sort);
+        }
+
+        private COEDataView AddMolWt(COEDataView dataView)
+        {
+            int basetableid = dataView.Basetable;
+            COEDataView resultDataview = new COEDataView();
+            resultDataview = GetDataViewClone(dataView);
+            resultDataview.Tables = new COEDataView.DataViewTableList();
+            COEDataView basetableDataview = new COEDataView();
+            COEDataView childtableDataview = new COEDataView();
+            foreach (COEDataView.DataViewTable coeTable in dataView.Tables)
+            {
+                if (coeTable.Id == basetableid)
+                {
+                    basetableDataview.Tables.Add(GetTableNode(coeTable));
+                }
+                else
+                {
+                    childtableDataview.Tables.Add(GetTableNode(coeTable));
+                }
+            }
+            resultDataview.Tables.AddRange(basetableDataview.Tables);
+            resultDataview.Tables.AddRange(childtableDataview.Tables);
+
+            return resultDataview;
+        }
+
+        private COEDataView GetDataViewClone(COEDataView dataview)
+        {
+            COEDataView newDataview = new COEDataView();
+            newDataview.Application = dataview.Application;
+            newDataview.Basetable = dataview.Basetable;
+
+            newDataview.Database = dataview.Database;
+            newDataview.DataViewHandling = dataview.DataViewHandling;
+            newDataview.DataViewID = dataview.DataViewID;
+            newDataview.Description = dataview.Description;
+            newDataview.Name = dataview.Name;
+            newDataview.Relationships = dataview.Relationships;
+            newDataview.Tables = dataview.Tables;
+            newDataview.XmlNs = dataview.XmlNs;
+            return newDataview;
+        }
+
+        private COEDataView.DataViewTable GetTableNode(COEDataView.DataViewTable coeTable)
+        {
+            COEDataView.DataViewTable newCoeTable = new COEDataView.DataViewTable();
+            newCoeTable = GetDVTableNode(coeTable);
+            newCoeTable.Fields = new COEDataView.DataViewFieldList();
+            for (int i = 0; i < coeTable.Fields.Count; i++)
+            {
+                COEDataView.Field xnode = new COEDataView.Field();
+                xnode = coeTable.Fields[i];
+                newCoeTable.Fields.Add(xnode);
+
+                // only add the mw and mf virtual columns if we have reason to believe that this is a structure column
+                if ((coeTable.Fields[i].IndexType == COEDataView.IndexTypes.CS_CARTRIDGE) ||
+                        (coeTable.Fields[i].MimeType == COEDataView.MimeTypes.CHEMICAL_X_CDX))
+                {
+                    newCoeTable.Fields.Add(GetFieldNode(xnode, "Mol Wt"));
+                    newCoeTable.Fields.Add(GetFieldNode(xnode, "Mol Formula"));
+                }
+            }
+
+            return newCoeTable;
+        }
+
+        private COEDataView.Field GetFieldNode(COEDataView.Field node, string alias)
+        {
+            COEDataView.Field newnode = new COEDataView.Field();
+            newnode.Alias = alias;
+            newnode.DataType = node.DataType;
+            newnode.Id = node.Id;
+            newnode.IndexType = node.IndexType;
+            newnode.LookupDisplayFieldId = node.LookupDisplayFieldId;
+            newnode.LookupFieldId = node.LookupFieldId;
+            newnode.LookupSortOrder = node.LookupSortOrder;
+            newnode.MimeType = node.MimeType;
+            newnode.Name = node.Name;
+            newnode.ParentTableId = node.ParentTableId;
+            newnode.SortOrder = node.SortOrder;
+            newnode.Visible = node.Visible;
+
+            return newnode;
+        }
+
+        private COEDataView.DataViewTable GetDVTableNode(COEDataView.DataViewTable node)
+        {
+            COEDataView.DataViewTable newnode = new COEDataView.DataViewTable();
+            newnode.Alias = node.Alias;
+            newnode.Database = node.Database;
+            newnode.Fields = node.Fields;
+            newnode.Id = node.Id;
+            newnode.IsView = node.IsView;
+            newnode.Name = node.Name;
+            newnode.PrimaryKey = node.PrimaryKey;
+
+            return newnode;
         }
 
         /// <summary>
@@ -616,12 +715,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var resultsCriteria = new ResultsCriteria();
             foreach (var criteriaTableData in resultsCriteriaTableData)
             {
-                var field = new ResultsCriteria.Field
-                {
-                    Id = criteriaTableData.FieldId,
-                    Alias = criteriaTableData.Alias,
-                    Visible = criteriaTableData.Visible
-                };
+                var isStructureIndex = !string.IsNullOrEmpty(criteriaTableData.IndexType) && criteriaTableData.IndexType.ToUpper() == "CS_CARTRIDGE";
+                var isStructureMimeType = !string.IsNullOrEmpty(criteriaTableData.MimeType) && criteriaTableData.MimeType.ToUpper() == "CHEMICAL_X_CDX";
+                var isStructureColumn = isStructureIndex || isStructureMimeType;
 
                 var resultsCriteriaTable = resultsCriteria.Tables.Find(t => t.Id == criteriaTableData.TableId);
                 if (resultsCriteriaTable == null)
@@ -631,16 +727,44 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         Id = criteriaTableData.TableId,
                         Criterias = new List<ResultsCriteria.IResultsCriteriaBase>()
                     };
-                    resultsCriteriaTable.Criterias.Add(field);
                     resultsCriteria.Tables.Add(resultsCriteriaTable);
                 }
-                else
+
+                if (!criteriaTableData.Alias.ToLower().Contains("mol wt") && !criteriaTableData.Alias.ToLower().Contains("mol formula"))
                 {
+                    var field = new ResultsCriteria.Field
+                    {
+                        Id = criteriaTableData.FieldId,
+                        Alias = criteriaTableData.Alias,
+                        Visible = criteriaTableData.Visible
+                    };
+
                     resultsCriteriaTable.Criterias.Add(field);
+                }
+
+                if (isStructureColumn && criteriaTableData.Alias.ToLower().Contains("mol wt"))
+                {
+                    ResultsCriteria.MolWeight molWeightCriteria = new ResultsCriteria.MolWeight();
+                    molWeightCriteria.Alias = criteriaTableData.Alias;
+                    molWeightCriteria.Id = criteriaTableData.FieldId;
+                    molWeightCriteria.Visible = criteriaTableData.Visible;
+                    resultsCriteriaTable.Criterias.Add(molWeightCriteria);
+                }
+
+                if (isStructureColumn && criteriaTableData.Alias.ToLower().Contains("mol formula"))
+                {
+                    ResultsCriteria.Formula formulaCriteria = new ResultsCriteria.Formula();
+                    formulaCriteria.Alias = criteriaTableData.Alias;
+                    formulaCriteria.Id = criteriaTableData.FieldId;
+                    formulaCriteria.Visible = criteriaTableData.Visible;
+                    resultsCriteriaTable.Criterias.Add(formulaCriteria);
                 }
             }
 
             string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
+            // CSBR-138818 Replacing <sub> with null while export.
+            if (exportedData != null)
+                exportedData = exportedData.Replace("<sub>", string.Empty).Replace("</sub>", string.Empty);
 
             try
             {
@@ -694,7 +818,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 GenericBO bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
 
                 COEDataView dataView = new COEDataView();
-                dataView.GetFromXML(bo.DataView.ToString());
+                dataView.GetFromXML(AddMolWt(bo.DataView).ToString());
                 dataView.RemoveNonRelationalTables();
 
                 var resultsCriteria = new JArray();
@@ -707,7 +831,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             new JProperty("tableName", dataViewTable.Alias),
                             new JProperty("fieldId", dataViewField.Id),
                             new JProperty("fieldName", dataViewField.Alias),
-                            new JProperty("visible", dataViewField.Visible)));
+                            new JProperty("visible", dataViewField.Visible),
+                            new JProperty("indexType", dataViewField.IndexType.ToString()),
+                            new JProperty("mimeType", dataViewField.MimeType.ToString())));
                     }
                 }
                 return resultsCriteria;

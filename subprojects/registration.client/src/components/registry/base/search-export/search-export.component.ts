@@ -56,43 +56,45 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }
 
   protected export(e) {
-    let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
-    
-    let data = this.selectedRows.map(r => {
-      return {
-        tableId: r.tableId,
-        fieldId: r.fieldId,
-        visible: true
-      };
-    });
-    this.http.post(url, data).toPromise()
-    .then(res => {
-      let filename = res.headers.get('x-filename');
-      let contentType = res.headers.get('content-type');
-      let linkElement = document.createElement('a');
-      try {
-        let blob = new Blob([res.arrayBuffer()], { type: contentType });
-        let urlFile = window.URL.createObjectURL(blob);
-
-        linkElement.setAttribute('href', urlFile);
-        linkElement.setAttribute('download', filename);
-
-        let clickEvent = new MouseEvent('click', {
+    if (this.selectedRows.length > 0) {
+      let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
+      let data = this.selectedRows.map(r => {
+        return {
+          tableId: r.tableId,
+          fieldId: r.fieldId,
+          visible: true,
+          indexType: r.indexType,
+          mimeType: r.mimeType,
+          alias: r.fieldName
+        };
+      });
+      this.http.post(url, data).toPromise().then(res => {
+        let filename = res.headers.get('x-filename');
+        let contentType = res.headers.get('content-type');
+        let linkElement = document.createElement('a');
+        try {
+          let blob = new Blob([res.arrayBuffer()], { type: contentType });
+          let urlFile = window.URL.createObjectURL(blob);
+          linkElement.setAttribute('href', urlFile);
+          linkElement.setAttribute('download', filename);
+          let clickEvent = new MouseEvent('click', {
             'view': window,
             'bubbles': true,
             'cancelable': false
-        });
-        linkElement.dispatchEvent(clickEvent);
-    } catch (ex) {
-        
+          });
+          linkElement.dispatchEvent(clickEvent);
+        } catch (ex) {
+          
+        }
+        notifySuccess(`The file was exported correctly`, 5000);
+      })
+      .catch(error => {
+        notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
+      });
+      this.formVisible = false;
+    } else {
+      notify(`At least one field is required!`, 'warning', 5000);
     }
-      notifySuccess(`The file was exported correctly`, 5000);
-    })
-    .catch(error => {
-      notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
-    });
-
-    this.formVisible = false;
   }
 
   protected cancel(e) {

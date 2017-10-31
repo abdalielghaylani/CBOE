@@ -16,14 +16,16 @@ namespace PerkinElmer.COE.Registration.Server.Models
         }
 
         [JsonConstructor]
-        public ResultsCriteriaTableData(int tableId, int fieldId, string alias, bool visible)
+        public ResultsCriteriaTableData(int tableId, int fieldId, string alias, bool visible, string indexType, string mimeType)
         {
             TableId = tableId;
             FieldId = fieldId;
             Alias = alias;
             Visible = visible;
-
+            IndexType = indexType;
+            MimeType = mimeType;
         }
+
 
         /// <summary>
         /// Gets or sets the tableId
@@ -48,5 +50,17 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "visible")]
         public bool Visible { get; set; }
+
+        /// <summary>
+        /// Gets or sets the indexType
+        /// </summary>
+        [JsonProperty(PropertyName = "indexType")]
+        public string IndexType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the mimeType
+        /// </summary>
+        [JsonProperty(PropertyName = "mimeType")]
+        public string MimeType { get; set; }
     }
 }
