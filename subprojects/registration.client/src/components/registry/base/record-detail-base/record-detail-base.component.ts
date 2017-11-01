@@ -259,6 +259,9 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   public register() {
+    if (!this.validate()) {
+      return false;
+    }
     let recordDoc = this.getUpdatedRecord();
     if (!recordDoc) {
       return;
