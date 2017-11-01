@@ -117,7 +117,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     this.addBatchEnabled = this.batchCommandsEnabled && !this.editMode && this.updatable;
     this.deleteBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
-    this.createContainerButtonEnabled = systemSettings.isInventoryIntegrationEnabled;
+    this.createContainerButtonEnabled = systemSettings.isInventoryIntegrationEnabled && !this.editMode;
   }
 
   private createInvContainer() {

@@ -163,7 +163,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
     this.createContainerButtonEnabled = ss.isInventoryIntegrationEnabled
       && !this.temporary
-      && !this.isNewRecord;
+      && !this.isNewRecord
+      && !editMode;
     this.backButtonEnabled = hitListId > 0 || this.bulkreg;
     if (forceUpdate) {
       this.changeDetector.markForCheck();
