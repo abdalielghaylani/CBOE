@@ -1,4 +1,5 @@
-<dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="!editMode" labelLocation="top">
+<dx-form id="id" (onFieldDataChanged)="onFieldDataChanged($event)" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig"
+  [readOnly]="!editMode" labelLocation="top">
   <div *dxTemplate="let data of 'dateTemplate'">
     <reg-date-form-item-template [editMode]="editMode" [viewModel]="data"></reg-date-form-item-template>
   </div>
@@ -22,5 +23,8 @@
   </div>
   <div *dxTemplate="let data of 'textTemplate'">
     <reg-text-form-item-template [editMode]="editMode" [viewModel]="data"></reg-text-form-item-template>
+  </div>
+  <div *dxTemplate="let data of 'urlTemplate'">
+    <a target="_blank" href="{{data.editorOptions.value}}">{{data.editorOptions.value}}</a>
   </div>
 </dx-form>
