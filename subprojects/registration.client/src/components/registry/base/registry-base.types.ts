@@ -133,6 +133,8 @@ export class CViewGroup implements IViewGroup {
     } else if (fe.displayInfo.type.endsWith('COEFragments')) {
       item.template = 'fragmentsTemplate';
       item.colSpan = 5;
+    } else if (fe.displayInfo.type.endsWith('COECheckBox')) {
+      item.template = 'checkBoxTemplate';
     }
     if (!item.template) {
       item.template = 'textTemplate';
@@ -223,7 +225,7 @@ export class CViewGroup implements IViewGroup {
 
   private removeDuplicate(items: any[], item) {
     let duplicateIndex = items.findIndex(i => i.dataField === item.dataField);
-    if (duplicateIndex > 0) {
+    if (duplicateIndex > -1) {
       items.splice(duplicateIndex, 1);
     }
   }
@@ -242,12 +244,21 @@ export class CViewGroup implements IViewGroup {
     return form;
   }
 
-  private static getFilteredDisabledControls(displayMode: string, disabledControls: any[]): any[] {
-    let pageId: string = displayMode === 'add' ? 'SUBMITMIXTURE'
-      : displayMode === 'view' ? 'VIEWMIXTURE'
-        : displayMode === 'edit' ? 'REVIEWREGISTERMIXTURE'
-          : displayMode === 'query' ? 'CHEMBIOVIZSEARCH'
-            : undefined;
+  private static getFilteredDisabledControls(temporary: boolean, displayMode: string, disabledControls: any[]): any[] {
+    let pageId;
+    switch (displayMode) {
+      case 'add':
+        pageId = 'SUBMITMIXTURE';
+        break;
+      case 'view':
+      case 'edit':
+        pageId = temporary ? 'REVIEWREGISTERMIXTURE' : 'VIEWMIXTURE';
+        break;
+      case 'query':
+        pageId = 'CHEMBIOVIZSEARCH';
+        break;
+    }
+
     return pageId ? disabledControls.filter(dc => dc.pageId === pageId) : [];
   }
 
@@ -292,12 +303,12 @@ export class CViewGroup implements IViewGroup {
     return changed;
   }
 
-  public static getViewGroups(config: IFormGroup, displayMode: string, disabledControls: any[]): CViewGroup[] {
+  public static getViewGroups(temporary: boolean, config: IFormGroup, displayMode: string, disabledControls: any[]): CViewGroup[] {
     let viewGroups: CViewGroup[] = [];
     let viewGroupsFiltered: CViewGroup[] = [];
     let form: IForm = this.getForm(config, displayMode);
     if (form) {
-      let disabledControlsFiltered = this.getFilteredDisabledControls(displayMode, disabledControls);
+      let disabledControlsFiltered = this.getFilteredDisabledControls(temporary, displayMode, disabledControls);
       let coeForms = this.sortAndFilterForms(form.coeForms.coeForm);
       coeForms.forEach(f => {
         if (f.formDisplay.visible === 'true') {

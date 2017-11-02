@@ -68,7 +68,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
-    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
+    this.viewGroups = this.lookups ? CViewGroup.getViewGroups(true, this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
     this.searchCriteria = new CSearchCriteria(CSearchCriteria.getConfiguredItems(this.viewGroups));
     this.update();
   }

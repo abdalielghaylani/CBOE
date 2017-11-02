@@ -139,9 +139,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     this.recordDoc = registryUtils.getDocument(data.data);
     this.prepareRegistryRecord();
     let formGroupType = FormGroupType.SubmitMixture;
-    if (this.id >= 0 && !this.temporary && !this.template) {
-      // TODO: For mixture, this should be ReviewRegistryMixture
-      formGroupType = FormGroupType.ViewMixture;
+    if (this.id >= 0 && !this.template) {
+      formGroupType = this.temporary ? FormGroupType.ReviewRegisterMixture : FormGroupType.ViewMixture;
     }
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
@@ -150,7 +149,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       this.displayMode = this.isNewRecord ? 'add' : this.formGroup.detailsForms.detailsForm[0].coeForms._defaultDisplayMode === 'Edit' ? 'edit' : 'view';
     }
     let lookups = state.session.lookups;
-    let viewGroups = lookups ? CViewGroup.getViewGroups(this.formGroup, this.displayMode, lookups.disabledControls) : [];
+    let viewGroups = lookups ? CViewGroup.getViewGroups(this.temporary, this.formGroup, this.displayMode, lookups.disabledControls) : [];
     this.viewGroupContainers = this.createViewGroupContainers(viewGroups);
     this.contentReady.emit({ component: this, data: data });
     this.changeDetector.markForCheck();
