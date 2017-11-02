@@ -20,7 +20,7 @@ export class RegInvContainerCreator {
       return;
     }
     let chemInvUrlSection: string = invModel.isBulkContainerCreation
-      ? (`cheminv/gui/ImportFromChemReg.asp?RegIDList=3,5&OpenAsModalFrame=false`)
+      ? (`cheminv/gui/ImportFromChemReg.asp?RegIDList=${invModel.batchIDs.join()}&OpenAsModalFrame=false`)
       : (`cheminv/gui/CreateOrEditContainer.asp?GetData=new&vRegBatchID=${invModel.batchIDs[0]}&RefreshOpenerLocation=true`);
     let windowParams: string = invModel.isBulkContainerCreation
       ? (`width=1100,height=700`)

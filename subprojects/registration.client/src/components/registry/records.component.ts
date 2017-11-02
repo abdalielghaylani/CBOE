@@ -17,7 +17,7 @@ import 'rxjs/add/operator/toPromise';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
+import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData, IRegInvModel } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import { HttpService } from '../../services';
@@ -25,6 +25,7 @@ import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
 import { RegistryActions, RegistrySearchActions } from '../../redux';
 import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings } from '../../redux';
+import { RegInvContainerCreator } from './create-inventory-container/create-inventory-container';
 
 declare var jQuery: any;
 
@@ -522,6 +523,13 @@ export class RegRecords implements OnInit, OnDestroy {
     return false;
   }
 
+  // set create container button visibility
+  private get createContainersEnabled(): boolean {
+    return (this.selectedRows && this.selectedRows.length > 0)
+      ? (!this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
+      : false;      
+  }
+
   private get filterRowEnabled(): boolean {
     return this.records.data.totalCount <= fetchLimit;
   }
@@ -596,6 +604,13 @@ export class RegRecords implements OnInit, OnDestroy {
 
   lodingCompleted() {
     this.loadIndicatorVisible = false;
+  }
+
+  createBulkContainers() {
+    let regInvContainer = new RegInvContainerCreator();
+    let invModel: IRegInvModel;
+    invModel = { batchIDs: this.selectedRows.map(({ ID }) => ID), isBulkContainerCreation: true };
+    regInvContainer.createContainer(invModel);
   }
 
 };

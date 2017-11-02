@@ -39,6 +39,7 @@
         <div *dxTemplate="let data of 'toolbarContents'">
           <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
           <badge-count [hidden]="selectedRows.length==0" color="orange" icon="check" text="Marked Hits" [count]="selectedRows ? selectedRows.length : ''"></badge-count>
+          <command-button *ngIf="createContainersEnabled" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
           <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
           <command-button [hidden]="!deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
           <command-button [hidden]="!registerMarkedEnabled" testid="register-marked-button" (onClick)="registerMarked()" iconName="registered" title="Register Marked"></command-button>
