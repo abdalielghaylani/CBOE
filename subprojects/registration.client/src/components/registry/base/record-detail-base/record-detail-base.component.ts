@@ -116,7 +116,9 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       } else if (dataSource.startsWith('batch')) {
         containers[2].viewGroups.push(vg);
       } else if (dataSource.startsWith('fragments')) {
-        containers[sameBatch ? 1 : 2].viewGroups.push(vg);
+        if (lookups.systemSettings.find(i => i.name === 'EnableFragments').value === 'True') {
+          containers[sameBatch ? 1 : 2].viewGroups.push(vg);
+        }
       }
     });
     // containers.forEach(c => {
