@@ -26,16 +26,19 @@ export class RegSearchExport implements OnInit, OnDestroy {
   private rows: any[] = [];
   private dataSource: CustomStore;
   private formVisible: boolean = false;
-  private selectedRows: any[] = [];
-  private selectedFileType: string = 'SDFNested';
-  private filesType: any[] = [ { displayExpr: 'SDF Nested', valueExpr: 'SDFNested' }, { displayExpr: 'SDF Flat', valueExpr: 'SDFFlatFileUncorrelated' } ];
+  private selectedRowsKeys: any[] = [];
+  private selectedFileType: string = 'SDFFlatFileUncorrelated';
+  private filesType: any[] = [ { displayExpr: 'SDF Flat', valueExpr: 'SDFFlatFileUncorrelated' }, { displayExpr: 'SDF Nested', valueExpr: 'SDFNested' } ];
+  private exportTemplates: any[] = [];
+  private currentExportTemplate = 0;
   private columns: any[] = [
     { dataField: 'tableName', caption: 'Table', groupIndex: 0 },
     { dataField: 'tableId', visible: false },
     { dataField: 'fieldId', visible: false },
     { dataField: 'indexType', visible: false },
     { dataField: 'mimeType', visible: false },
-    { dataField: 'fieldName', caption: 'Field Name' }
+    { dataField: 'fieldName', caption: 'Field Name' },
+    { dataField: 'key', visible: false }
   ];
 
   constructor(
@@ -47,6 +50,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataSource = this.createCustomStore(this);
+    this.getExportTemplates(); 
   }
 
   ngOnDestroy() {
@@ -57,19 +61,41 @@ export class RegSearchExport implements OnInit, OnDestroy {
     this.formVisible = true;
   }
 
-  protected export(e) {
-    if (this.selectedRows.length > 0) {
-      let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
-      let data = this.selectedRows.map(r => {
-        return {
-          tableId: r.tableId,
-          fieldId: r.fieldId,
-          visible: true,
-          indexType: r.indexType,
-          mimeType: r.mimeType,
-          alias: r.fieldName
-        };
+  protected getExportTemplates() {
+    let url = `${apiUrlPrefix}/exportTemplates${this.temporary ? '?temp=true' : ''}`;
+    this.http.get(url).toPromise().then(result => {
+      result.json().forEach(t => {
+        this.exportTemplates.push({ ID: t.ID, Name: t.Name });
       });
+    })
+    .catch(error => {
+      let message = getExceptionMessage(`The export tempaltes were not retrieved properly due to a problem`, error);
+    });
+  }
+
+  protected exportTemplateValueChanged(e) {
+    this.currentExportTemplate = e.value;
+    this.dataSource = this.createCustomStore(this);
+  }
+
+  protected export(e) {
+    if (this.selectedRowsKeys.length > 0) {
+      let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
+      
+      let data: any[] = [];
+      this.selectedRowsKeys.forEach(key => {
+        let field = this.rows.find(r => r.key === key);
+        if (field) {
+          data.push({
+            tableId: field.tableId,
+            fieldId: field.fieldId,
+            visible: true,
+            indexType: field.indexType,
+            mimeType: field.mimeType,
+            alias: field.fieldName });
+        }
+      });      
+
       this.http.post(url, data).toPromise().then(res => {
         let filename = res.headers.get('x-filename');
         let contentType = res.headers.get('content-type');
@@ -104,14 +130,15 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }
 
   onSelectionChanged(e) {
-    this.selectedRows = e.selectedRowKeys;
+    this.selectedRowsKeys = e.component.getSelectedRowKeys();
   }
+
   protected isVisible(e) {
     return e.visible;
   }
 
   onContentReady(e) {
-    // e.component.selectRows(this.rows.filter(this.isVisible).map(r => r.fieldId));
+    e.component.selectRows(this.selectedRowsKeys);
   }
 
   fileTypeValueChanged(e) {
@@ -120,15 +147,25 @@ export class RegSearchExport implements OnInit, OnDestroy {
 
   private createCustomStore(parent: RegSearchExport): CustomStore {
     let tableName = 'hitlists/resultsCriteria';
-    let apiUrlBase = `${apiUrlPrefix}${tableName}${this.temporary ? '?temp=true' : ''}`;
+    let params = '';
+    if (this.temporary) { params += `${params ? '&' : '?'}temp=true`; }
+    if (this.currentExportTemplate > 0) { params += `${params ? '&' : '?'}templateId=${this.currentExportTemplate}`; }
+    let apiUrlBase = `${apiUrlPrefix}${tableName}${params}`;
     return new CustomStore({
-      // key: 'fieldId',
+      key: 'key',
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
             let rows = result.json();
+            parent.rows = rows; 
+            parent.selectedRowsKeys = [];
+            parent.rows.forEach(row => {
+              if (row.visible) {
+                parent.selectedRowsKeys.push(row.key); 
+              }
+            });       
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {

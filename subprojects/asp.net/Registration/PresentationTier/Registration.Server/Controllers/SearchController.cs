@@ -4,6 +4,7 @@ using System.Net;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Security;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
@@ -46,6 +47,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
             configRegRecord.COEFormHelper.Load(formGroupType);
             return configRegRecord.FormGroup;
+        }
+
+        private static GenericBO GetGenericBO(bool? temp)
+        {
+            var formGroup = GetFormGroup(temp);
+            GenericBO bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, formGroup);
+            return bo;
         }
 
         private static QueryData GetHitlistQueryInternal(int id, bool? temp)
@@ -255,6 +263,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             newnode.PrimaryKey = node.PrimaryKey;
 
             return newnode;
+        }
+
+        private JArray GetExportTemplates(int dataViewId)
+        {
+            var exportTemplate = new JArray();
+            exportTemplate.Add(new JObject(
+                new JProperty("ID", 0),
+                new JProperty("Name", "Default Template")));
+
+            var templateList = COEExportTemplateBOList.GetUserTemplatesByDataViewId(dataViewId, COEUser.Name, true);
+            foreach (var template in templateList)
+            {
+                exportTemplate.Add(new JObject(
+                new JProperty("ID", template.ID),
+                new JProperty("Name", template.Name)));
+            }
+            return exportTemplate;
         }
 
         /// <summary>
@@ -800,6 +825,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <param name="templateId">The selected template</param>
         /// <returns>The promise to return a JSON object containing an array of results criteria</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/resultsCriteria")]
@@ -808,35 +834,90 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetResultsCriteria(bool? temp = null)
+        public async Task<IHttpActionResult> GetResultsCriteria(bool? temp = null, int? templateId = null)
         {
             return await CallMethod(() =>
             {
-                var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-                configRegRecord.COEFormHelper.Load(formGroupType);
-                GenericBO bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
-
+                GenericBO bo = GetGenericBO(temp);
                 COEDataView dataView = new COEDataView();
                 dataView.GetFromXML(AddMolWt(bo.DataView).ToString());
                 dataView.RemoveNonRelationalTables();
+
+                XmlDocument templateCriterias = new XmlDocument();
+                COEExportTemplateBO exportTemplateBo = templateId.HasValue ? COEExportTemplateBO.Get(templateId.Value) : null;
+                if (exportTemplateBo != null && exportTemplateBo.ResultCriteria != null)
+                {
+                    templateCriterias.Load(new StringReader(exportTemplateBo.ResultCriteria.ToString()));
+                }
 
                 var resultsCriteria = new JArray();
                 foreach (var dataViewTable in dataView.Tables)
                 {
                     foreach (var dataViewField in dataViewTable.Fields)
                     {
+                        var visible = false;
+                        var fieldAlias = dataViewField.Alias;
+                        string xmlNamespace = "COE";
+                        string xmlNSres = "COE.ResultsCriteria";
+                        XmlNamespaceManager managerRes = new XmlNamespaceManager(new NameTable());
+                        managerRes.AddNamespace(xmlNamespace, xmlNSres);
+                        XmlNode templateFeildNode = templateCriterias.SelectSingleNode("//" + xmlNamespace + ":tables/COE:table/COE:field[@fieldId='" + dataViewField.Id + "']", managerRes);
+
+                        var isStructureIndex = dataViewField.IndexType.ToString().ToUpper() == "CS_CARTRIDGE";
+                        var isStructureMimeType = dataViewField.MimeType.ToString().ToUpper() == "CHEMICAL_X_CDX";
+                        var isStructureColumn = isStructureIndex || isStructureMimeType;
+
+                        if (isStructureColumn && templateId == null) 
+                        {
+                            visible = true; // if is default template, structure columns should be selected by default
+                        }
+
+                        if (templateFeildNode != null)
+                        {
+                            visible = true;
+                            if (!isStructureColumn)
+                                fieldAlias = templateFeildNode.Attributes["alias"].Value;
+                        }
+
+                        var key = string.Format("{0}{1}", dataViewField.Id, Regex.Replace(fieldAlias, @"\s", "")).ToLower();
                         resultsCriteria.Add(new JObject(
+                            new JProperty("key", key),
                             new JProperty("tableId", dataViewTable.Id),
                             new JProperty("tableName", dataViewTable.Alias),
                             new JProperty("fieldId", dataViewField.Id),
-                            new JProperty("fieldName", dataViewField.Alias),
-                            new JProperty("visible", dataViewField.Visible),
+                            new JProperty("fieldName", fieldAlias),
+                            new JProperty("visible", visible),
                             new JProperty("indexType", dataViewField.IndexType.ToString()),
                             new JProperty("mimeType", dataViewField.MimeType.ToString())));
                     }
                 }
+
                 return resultsCriteria;
+            });
+        }
+
+        /// <summary>
+        /// Return the export templates for the current user
+        /// </summary>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Unexpected error</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <returns>The promise to return a JSON object containing an array of export templates</returns>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "exportTemplates")]
+        [SwaggerOperation("GetExportTemplates")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetExportTemplates(bool? temp = null)
+        {
+            return await CallMethod(() =>
+            {
+                GenericBO bo = GetGenericBO(temp);
+                return GetExportTemplates(bo.DataView.DataViewID);
             });
         }
     }
