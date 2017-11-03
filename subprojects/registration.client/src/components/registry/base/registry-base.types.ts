@@ -223,13 +223,6 @@ export class CViewGroup implements IViewGroup {
     return fixed;
   }
 
-  private removeDuplicate(items: any[], item) {
-    let duplicateIndex = items.findIndex(i => i.dataField === item.dataField);
-    if (duplicateIndex > -1) {
-      items.splice(duplicateIndex, 1);
-    }
-  }
-
   private static getForm(config: IFormGroup, displayMode: string): IForm {
     let form: IForm = undefined;
     if (config) {
@@ -374,11 +367,14 @@ export class CViewGroup implements IViewGroup {
             }
             this.setItemValue(item, 'editorType', this.getEditorType(fe));
             this.setItemValue(item, 'dataField', this.getDataField(fe));
-            this.checkEditorType(fe, item);
-            this.setDefaultValue(fe, item);
-            this.checkValidationRules(fe, item);
-            this.removeDuplicate(items, item);
-            items.push(item);
+            // discard duplicate formElements
+            let duplicateIndex = items.findIndex(i => i.dataField === item.dataField);
+            if (duplicateIndex === -1) {
+              this.checkEditorType(fe, item);
+              this.setDefaultValue(fe, item);
+              this.checkValidationRules(fe, item);
+              items.push(item);
+            }
           }
         });
       }
