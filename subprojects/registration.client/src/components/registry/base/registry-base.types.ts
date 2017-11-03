@@ -491,6 +491,7 @@ export class CRegistryRecord {
     }
     return expression.replace('.Sequence.ID', '.SequenceID')
       .replace('.Structure.ID', '.Structure.StructureID')
+      .replace('.Structure.UseNormalizedStructure', '.Structure.UseNormalization')
       .replace('.Structure.Value', '.Structure')
       .replace('.Structure.Formula', '.Structure.Structure._formula')
       .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
