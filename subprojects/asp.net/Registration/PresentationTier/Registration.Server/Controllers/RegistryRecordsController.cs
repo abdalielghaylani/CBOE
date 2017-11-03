@@ -1146,11 +1146,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                     else
                     {
-                        message = string.Format("The {0} record{1}, {2}, {3} deleted successfully!",
-                            temporary ? "temporary" : string.Empty,
-                            records.Count > 1 ? "s" : string.Empty,
-                            string.Join(",", records),
-                            records.Count > 1 ? "were" : "was");
+                        message = string.Format("{0} {1} deleted successfully!", records.Count, records.Count == 1 ? "record" : "records");
                     }
                 }
                 else
