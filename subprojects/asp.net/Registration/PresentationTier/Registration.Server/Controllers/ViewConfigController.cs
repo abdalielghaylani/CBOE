@@ -149,14 +149,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private JArray GetUserPrivileges()
         {
             var appUserPrivilages = new JArray();
-            string coeIdentifier = "Registration";
             Dictionary<string, List<string>> appUserPrivileges = UserPrivileges;
-            if (appUserPrivileges.ContainsKey(coeIdentifier.ToUpper()))
+            foreach (string appName in appUserPrivileges.Keys)
             {
-                foreach (string privilege in appUserPrivileges[coeIdentifier.ToUpper()])
+                var app = new JArray();
+                foreach (string privilege in appUserPrivileges[appName.ToUpper()])
                 {
-                    appUserPrivilages.Add(new JObject(new JProperty("name", privilege)));
+                    app.Add(new JObject(new JProperty("name", privilege)));
                 }
+                appUserPrivilages.Add(new JObject(new JProperty("appName", appName), new JProperty("privileges", app)));
             }
             return appUserPrivilages;
         }
@@ -210,11 +211,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                string query = data["sql"].ToString();  
-             
+                string query = data["sql"].ToString();
+
                 if (!query.Trim().ToLower().StartsWith("select"))
                     throw new RegistrationException("only select statements are allowed in the query input");
-             
+
                 var response = new JObject();
                 response.Add(new JProperty("data", ExtractData(query, null, null, null)));
                 return new ResponseData(data: response);
