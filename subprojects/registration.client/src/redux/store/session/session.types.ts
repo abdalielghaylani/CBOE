@@ -21,6 +21,11 @@ export interface ISettingData {
   isHidden?: boolean;
 }
 
+export interface IAppPrivilege {
+  appName: string;
+  privileges?: any[];
+}
+
 export interface ILookupData {
   users?: any[];
   fragments?: any[];
@@ -36,7 +41,7 @@ export interface ILookupData {
   addinAssemblies?: any[];
   propertyGroups?: any[];
   homeMenuPrivileges?: any[];
-  userPrivileges?: any[];
+  userPrivileges?: IAppPrivilege[];
   disabledControls?: any[];
 }
 

@@ -1,3 +1,4 @@
+import { PrivilegeUtils } from './../../../../common/utils/privilege.utils';
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject, CSearchCriteria } from '../registry-base.types';
@@ -117,7 +118,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     this.addBatchEnabled = this.batchCommandsEnabled && !this.editMode && this.updatable;
     this.deleteBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
-    this.createContainerButtonEnabled = systemSettings.isInventoryIntegrationEnabled && !this.editMode;
+    this.createContainerButtonEnabled = systemSettings.isInventoryIntegrationEnabled
+      && !this.editMode
+      && PrivilegeUtils.hasCreateContainerPrivilege(lookups.userPrivileges);
   }
 
   private createInvContainer() {

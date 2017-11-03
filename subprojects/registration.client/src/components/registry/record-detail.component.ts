@@ -161,7 +161,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
     let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
-    this.createContainerButtonEnabled = ss.isInventoryIntegrationEnabled
+    this.createContainerButtonEnabled = ss.isInventoryIntegrationEnabled 
+      && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges)
       && !this.temporary
       && !this.isNewRecord
       && !editMode;
