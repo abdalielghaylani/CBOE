@@ -3,7 +3,7 @@
   <reg-header testid="templates-heading" id="templates-heading">
     Bulk Register Marked
   </reg-header>
-  <dx-data-grid *ngIf="!loadIndicatorVisible" [columns]="columns" [noDataText]="" [dataSource]="datasource" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
+  <dx-data-grid [wordWrapEnabled]="true" *ngIf="!loadIndicatorVisible" [columns]="columns" [noDataText]="" [dataSource]="datasource" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
     <dxo-sorting mode="single"></dxo-sorting>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
@@ -28,6 +28,5 @@
     </div>
   </dx-data-grid>
 </div>
-<dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true"
-  shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
+<dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>
