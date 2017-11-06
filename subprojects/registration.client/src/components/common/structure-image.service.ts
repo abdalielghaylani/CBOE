@@ -32,7 +32,7 @@ export class CStructureImageService {
       Accept: 'image/png'
     });
     let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.ArrayBuffer });
-    return this.http.post('https://cdd20-qa.scienceaccelerated.com/cdd/rest/generateImage', data, options)
+    return this.http.post('https://chemdrawdirect.perkinelmer.cloud/cdd/rest/generateImage', data, options)
       .toPromise()
       .then(result => {
         let imageData = 'data:image/png;base64,' + btoa(String.fromCharCode.apply(null, new Uint8Array(result.arrayBuffer())));
