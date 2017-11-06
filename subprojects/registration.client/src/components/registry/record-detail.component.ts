@@ -156,7 +156,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
     let canRedirectToTempListView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
     this.clearButtonEnabled = this.isNewRecord;
-    this.newButtonEnabled = !canRedirectToTempListView && !editMode;
+    this.newButtonEnabled = this.temporary && !canRedirectToTempListView && !editMode;
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
