@@ -526,7 +526,9 @@ export class RegRecords implements OnInit, OnDestroy {
   // set create container button visibility
   private get createContainersEnabled(): boolean {
     return (this.selectedRows && this.selectedRows.length > 0)
-      ? (!this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
+      ? (!this.temporary 
+          && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
+          && PrivilegeUtils.hasCreateContainerPrivilege(this.lookups.userPrivileges)
       : false;      
   }
 
