@@ -12,6 +12,10 @@ using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Registration.Services.Types;
+using CambridgeSoft.COE.Registration;
+using Csla.Validation;
+using CambridgeSoft.COE.Framework.Common.Validation;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -53,7 +57,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> GetAllBatches()
         {
             return await CallMethod(() =>
-           {             
+           {
                var data = ExtractData("SELECT BATCHID, TEMPBATCHID, BATCHNUMBER, FULLREGNUMBER, DATECREATED, PERSONCREATED, PERSONREGISTERED, PERSONAPPROVED, DATELASTMODIFIED FROM REGDB.VW_BATCH");
                if (data.Count() == 0)
                    throw new IndexOutOfRangeException(string.Format("Cannot find the Batches."));
@@ -116,18 +120,67 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
            });
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("CreateBatch")]
-        [SwaggerResponse(201, type: typeof(JObject))]
-        public async Task<IHttpActionResult> CreateBatch(JObject data)
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        public async Task<IHttpActionResult> CreateBatch(RecordData inputData)
         {
-            return await CallServiceMethod((service) =>
+            return await CallMethod(() =>
             {
-                CheckAuthentication();
-                XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString());
-                var resultString = RegDal.InsertRegistryRecordTemporary(datatoXml.InnerXml);
-                return new ResponseData(Convert.ToInt32(resultString));
+                string errorMessage = null;
+                RegistryRecord registryRecord = null;
+                try
+                {
+                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
+                    var xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(inputData.Data);
+                    errorMessage = "Unable to process chemical structures.";
+                    var xml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
+                    errorMessage = "Unable to determine the registry number.";
+                    const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
+                    XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
+                    string regNum = regNode.InnerText.Trim();
+                    errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
+                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                    if (registryRecord == null) throw new Exception();
+                    errorMessage = "Record is locked and cannot be updated.";
+                    if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
+
+                    registryRecord.BeginEdit();
+                    registryRecord.AddBatch();
+                    registryRecord.ApplyEdit();
+
+                    errorMessage = "Unable to update the internal record.";
+                    registryRecord.UpdateFromXmlEx(xml);
+
+                    errorMessage = "Cannot set batch prefix.";
+                    registryRecord.BatchPrefixDefaultOverride(true);
+                    errorMessage = "Unable to save the record.";
+                    registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                    registryRecord.CheckOtherMixtures = false;
+                    registryRecord = registryRecord.Save(DuplicateCheck.None);
+
+                    return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
+                }
+                catch (Exception ex)
+                {
+                    if (registryRecord != null && ex is ValidationException)
+                    {
+                        List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
+                        brokenRuleDescriptionList.ForEach(rd =>
+                        {
+                            errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
+                        });
+                    }
+                    if (ex is RegistrationException)
+                    {
+                        if (errorMessage.EndsWith(".")) errorMessage.Substring(0, errorMessage.Length - 1);
+                        errorMessage += " - " + ex.Message;
+                    }
+                    throw new RegistrationException(errorMessage, ex);
+                }
             });
         }
 
@@ -138,7 +191,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         public async Task<IHttpActionResult> UpdateBatch(string regType, JObject data)
         {
             return await CallMethod(() =>
-            {              
+            {
                 string message = string.Empty;
                 XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString(Newtonsoft.Json.Formatting.None));
                 if (regType == "Temp")
