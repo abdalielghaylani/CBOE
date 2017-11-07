@@ -22,6 +22,7 @@ import { RegInvContainerCreator } from '../../create-inventory-container/create-
 })
 export class RegFormGroupItemView extends RegFormGroupItemBase {
   @Input() viewModel: CRegistryRecord;
+  @Input() invIntegrationEnabled: boolean = false;
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
   private moveBatchEnabled: boolean = false;
@@ -118,9 +119,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     this.addBatchEnabled = this.batchCommandsEnabled && !this.editMode && this.updatable;
     this.deleteBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
-    this.createContainerButtonEnabled = systemSettings.isInventoryIntegrationEnabled
-      && !this.editMode
-      && PrivilegeUtils.hasCreateContainerPrivilege(lookups.userPrivileges);
+    this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
   }
 
   private createInvContainer() {

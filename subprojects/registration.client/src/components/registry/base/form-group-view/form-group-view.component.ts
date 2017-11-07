@@ -21,6 +21,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() viewModel: any;
   @Input() viewConfig: CViewGroupContainer[];
   @Input() updatable: boolean = false;
+  @Input() invIntegrationEnabled: boolean = false;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
 
   constructor(private ngRedux: NgRedux<IAppState>) {

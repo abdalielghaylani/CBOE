@@ -3,4 +3,4 @@
   <ol style="font-size:13px;"><li *ngFor="let msg of validationError.errorMessages">{{msg}}</li></ol>
   </div></reg-alert>
 <reg-form-group-view (valueUpdated)="onValueUpdated($event)" [id]="viewId" [viewConfig]="viewGroupContainers" [viewModel]="regRecord"
-  [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [updatable]="updatable"></reg-form-group-view>
+  [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [updatable]="updatable" [invIntegrationEnabled]="invIntegrationEnabled"></reg-form-group-view>
