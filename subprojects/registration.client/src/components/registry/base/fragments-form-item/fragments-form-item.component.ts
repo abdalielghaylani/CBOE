@@ -12,6 +12,7 @@ import { IAppState } from '../../../../redux';
 })
 export class RegFragmentsFormItem extends RegDataGridFormItem {
   private fragmentList: IBatchComponentFragmentList;
+  private removedItem: any = [];
 
   constructor(private ngRedux: NgRedux<IAppState>) {
     super();
@@ -44,9 +45,40 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
     });
   }
 
+  // Fragment item should be removed from lookup once it is added in list
+  modifyLookups(value: any) {
+    let component = this.grid.instance.columnOption(1, 'editorOptions');
+    this.grid.instance.columnOption(1, 'editorOptions', []);
+    value.forEach(element => {
+      let index = component.dataSource.findIndex(i => i.CODE === element.code);
+      if (index >= 0) {
+        this.removedItem.push(component.dataSource.find(i => i.CODE === element.code));
+        component.dataSource.splice(index, 1);
+      }
+    });
+    let notdeleted = [];
+    this.removedItem.forEach(item => {
+      let isDeleted = value.findIndex(m => m.code === item.CODE);
+      if (isDeleted < 0) {
+        component.dataSource.push(item);
+      } else {
+        notdeleted.push(item);
+      }
+    });
+    this.removedItem = notdeleted;
+    component.dataSource = this.sortList(component.dataSource);
+    this.grid.instance.columnOption(1, 'editorOptions', component);
+
+  }
+
+  sortList(c) {
+    return c.sort(function (a, b) { return (a.FRAGMENTID > b.FRAGMENTID) ? 1 : ((b.FRAGMENTID > a.FRAGMENTID) ? -1 : 0); });
+  }
+
   serializeValue(value: any): IBatchComponentFragmentList {
+    this.modifyLookups(value);
     let orderIndex = 0;
-    this.fragmentList = { 
+    this.fragmentList = {
       BatchComponentFragment: this.grid.dataSource.map(r => {
         ++orderIndex;
         let fragment: any = {
@@ -74,7 +106,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       caption: 'Code',
       editCellTemplate: 'dropDownTemplate',
       editorOptions: {
-        dataSource: lookups.fragments,
+        dataSource: this.sortList(lookups.fragments),
         displayExpr: 'CODE',
         valueExpr: 'CODE',
         dropDownWidth: 600,
@@ -126,7 +158,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
       width: 80,
       validationRules: [
         { type: 'required', message: 'A valid equivalent value is required.' },
-        { type: 'numeric', message: 'The equivalent value must be numeric.'},
+        { type: 'numeric', message: 'The equivalent value must be numeric.' },
         { type: 'range', min: 0 + Number.EPSILON, message: 'The equivalent value must be greater than 0.' }
       ]
     }, {
