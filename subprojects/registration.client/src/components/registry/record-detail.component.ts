@@ -147,7 +147,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.cancelButtonEnabled = editMode && !this.isNewRecord;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
     this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !editMode))
-      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled) && !this.bulkreg;
+      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
     this.approveButtonEnabled = !editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
 
     this.deleteButtonEnabled = !this.isNewRecord
@@ -161,7 +161,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
     let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
-    this.createContainerButtonEnabled = ss.isInventoryIntegrationEnabled 
+    this.createContainerButtonEnabled = ss.isInventoryIntegrationEnabled
       && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges)
       && !this.temporary
       && !this.isNewRecord
