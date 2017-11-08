@@ -27,6 +27,7 @@ export class RegInvContainerCreator {
       : (`width=800,height=700`);
     let createContainerUrl: string = invIntegrationBasePath + chemInvUrlSection;
     window.open(createContainerUrl, 'Create New Container', windowParams);
+    window.opener = null;
   }
 
   private isBrowserIE() {
