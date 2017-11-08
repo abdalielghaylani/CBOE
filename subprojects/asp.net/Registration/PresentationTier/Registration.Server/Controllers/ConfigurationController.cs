@@ -1367,7 +1367,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    // rules will be added or updated in seperate api call and there will not be a scenario like both precistion and rules will be updated at the same time
+                    // there will not be a scenario like both precistion and rules will be updated at the same time
                     // remove all existing validation rules, and create new rules using the new rule data
                     ValidationRuleList valRulesToDelete = selectedProperty.ValRuleList.Clone();
                     foreach (CambridgeSoft.COE.Registration.Services.Types.ValidationRule valRule in valRulesToDelete)
@@ -1410,6 +1410,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         validationRule.MAX = ruleData.Max;
                         validationRule.MaxLength = ruleData.MaxLength;
                         validationRule.DefaultValue = ruleData.DefaultValue;
+                        configurationBO.SelectedPropertyName = selectedProperty.Name;
+                        if (ruleData.Name.ToUpper() == "REQUIREDFIELD" && !configurationBO.IsPropValidToAddValidator)
+                        {
+                            configurationBO.DefalutValue = ruleData.DefaultValue;
+                        }
                         selectedProperty.ValRuleList.Add(validationRule);
                     }
                 }
