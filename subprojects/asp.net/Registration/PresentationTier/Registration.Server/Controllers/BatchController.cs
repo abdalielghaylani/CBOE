@@ -179,6 +179,60 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPut]
+        [Route(Consts.apiPrefix + "records/{regNum}/batches")]
+        [SwaggerOperation("UpdateBatchRecord")]
+        [SwaggerResponse(HttpStatusCode.Created, type: typeof(ResponseData))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, type: typeof(JObject))]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, type: typeof(JObject))]
+        public async Task<IHttpActionResult> UpdateBatchRecord(string regNum, BatchData batchData)
+        {
+            return await CallMethod(() =>
+            {
+                string errorMessage = null;
+                RegistryRecord registryRecord = null;
+                try
+                {
+                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
+                    var xmlDoc = new XmlDocument();
+                    xmlDoc.LoadXml(batchData.Data);
+                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+                    if (registryRecord == null) throw new Exception();
+                    errorMessage = "Record is locked and cannot be updated.";
+                    if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
+
+                    errorMessage = "Unable to update the internal record.";
+                    registryRecord.BatchList.UpdateFromXmlEx(xmlDoc.FirstChild);
+
+                    errorMessage = "Cannot set batch prefix.";
+                    registryRecord.BatchPrefixDefaultOverride(true);
+                    errorMessage = "Unable to save the record.";
+                    registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
+                    registryRecord.CheckOtherMixtures = false;
+                    registryRecord = registryRecord.Save(DuplicateCheck.None);
+
+                    return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
+                }
+                catch (Exception ex)
+                {
+                    if (registryRecord != null && ex is ValidationException)
+                    {
+                        List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
+                        brokenRuleDescriptionList.ForEach(rd =>
+                        {
+                            errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
+                        });
+                    }
+                    if (ex is RegistrationException)
+                    {
+                        if (errorMessage.EndsWith(".")) errorMessage.Substring(0, errorMessage.Length - 1);
+                        errorMessage += " - " + ex.Message;
+                    }
+                    throw new RegistrationException(errorMessage, ex);
+                }
+            });
+        }
+
+        [HttpPut]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("UpdateBatch")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
