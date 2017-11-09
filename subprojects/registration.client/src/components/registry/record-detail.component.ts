@@ -317,6 +317,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private showSaveTemplate(e) {
     if (this.template) {
       if (confirm('Do you want to overwrite the saved template?')) {
+        this.updateTemplate();
       }
     } else {
       this.saveTemplatePopupVisible = true;
@@ -337,6 +338,30 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       data.data = registryUtils.serializeData(recordDoc);
       this.loadingVisible = true;
       this.http.post(url, data).toPromise()
+        .then(res => {
+          this.regTemplates.dataSource = undefined;
+          this.clearLoadindicator();
+          notifySuccess((res.json() as IResponseData).message, 5000);
+        })
+        .catch(error => {
+          this.clearLoadindicator();
+          notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
+        });
+      this.saveTemplatePopupVisible = false;
+    }
+  }
+
+  private updateTemplate() {
+    if (this.recordDetailView.validate()) {
+      let recordDoc = this.recordDetailView.getUpdatedRecord();
+      if (!recordDoc) {
+        return;
+      }
+      let url = `${apiUrlPrefix}templates/${this.id}`;
+      let data: ITemplateData = new CTemplateData(null);
+      data.data = registryUtils.serializeData(recordDoc);
+      this.loadingVisible = true;
+      this.http.put(url, data).toPromise()
         .then(res => {
           this.regTemplates.dataSource = undefined;
           this.clearLoadindicator();
