@@ -24,7 +24,7 @@ export class RegStructureBaseFormItem extends ChemDrawWeb implements IFormItemTe
     return value;
   }
 
-  serializeValue(value: any): any  {
+  serializeValue(value: any): any {
     return value;
   }
 
@@ -37,7 +37,11 @@ export class RegStructureBaseFormItem extends ChemDrawWeb implements IFormItemTe
   protected onContentChanged(e) {
     if (this.cdd && !this.cdd.isSaved()) {
       if (this.viewModel) {
-        this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+        if (this.cdd.isBlankStructure() && this.viewModel.component.option('formData.' + this.viewModel.dataField + '.Structure.__text')) {
+          this.viewModel.component.option('formData.' + this.viewModel.dataField + '.Structure.__text', undefined);
+        } else {
+          this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+        }
       }
       this.valueUpdated.emit(this);
     }
