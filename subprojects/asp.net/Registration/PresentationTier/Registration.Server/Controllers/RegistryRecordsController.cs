@@ -875,20 +875,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 return new ResponseData(null, null, null, null);
             });
         }
-
-        [HttpPost]
-        [Route(Consts.apiPrefix + "records/{id}/batches")]
-        [SwaggerOperation("AddBatchToRecord")]
-        [SwaggerResponse(HttpStatusCode.Created, type: typeof(ResponseData))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, type: typeof(JObject))]
-        [SwaggerResponse(HttpStatusCode.Unauthorized, type: typeof(JObject))]
-        public async Task<IHttpActionResult> AddBatchToRecord(int id, BatchData batchData)
-        {
-            return await CallMethod(() =>
-            {
-                return new ResponseData(null, null, null, null);
-            });
-        }
         #endregion
 
         #endregion // Permanent Records

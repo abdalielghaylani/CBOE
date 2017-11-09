@@ -120,12 +120,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
            });
         }
 
-        [HttpPut]
-        [Route(Consts.apiPrefix + "batches")]
-        [SwaggerOperation("CreateBatch")]
-        [SwaggerResponse(200, type: typeof(ResponseData))]
-        [SwaggerResponse(401, type: typeof(JObject))]
-        public async Task<IHttpActionResult> CreateBatch(RecordData inputData)
+        [HttpPost]
+        [Route(Consts.apiPrefix + "records/{regNum}/batches")]
+        [SwaggerOperation("AddBatchToRecord")]
+        [SwaggerResponse(HttpStatusCode.Created, type: typeof(ResponseData))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, type: typeof(JObject))]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, type: typeof(JObject))]
+        public async Task<IHttpActionResult> AddBatchToRecord(string regNum, BatchData batchData)
         {
             return await CallMethod(() =>
             {
@@ -135,14 +136,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
                     var xmlDoc = new XmlDocument();
-                    xmlDoc.LoadXml(inputData.Data);
-                    errorMessage = "Unable to process chemical structures.";
-                    var xml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
-                    errorMessage = "Unable to determine the registry number.";
-                    const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
-                    XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
-                    string regNum = regNode.InnerText.Trim();
-                    errorMessage = string.Format("Unable to find the registry entry: {0}", regNum);
+                    xmlDoc.LoadXml(batchData.Data);
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
                     if (registryRecord == null) throw new Exception();
                     errorMessage = "Record is locked and cannot be updated.";
@@ -153,7 +147,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     registryRecord.ApplyEdit();
 
                     errorMessage = "Unable to update the internal record.";
-                    registryRecord.UpdateFromXmlEx(xml);
+                    registryRecord.BatchList.UpdateFromXmlEx(xmlDoc.FirstChild);
 
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
