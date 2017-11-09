@@ -19,7 +19,7 @@ declare var jQuery: any;
 @Component({
   selector: 'reg-config-addins',
   template: require('./config-addins.component.html'),
-  styles: [require('./config.component.css')],
+  styles: [require('./config.component.css'), require('../registry/records.css')],
   host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
