@@ -193,6 +193,63 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
+        [HttpPut]
+        [Route(Consts.apiPrefix + "templates/{id}")]
+        [SwaggerOperation("UpdateTemplate")]
+        [SwaggerResponse(201, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdateTemplate(int id, TemplateData data)
+        {
+            return await CallMethod(() =>
+            {                
+                COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(id);
+
+                if (genericStorageBO == null)
+                    throw new IndexOutOfRangeException(string.Format("The template, {0}, was not found.", id));
+
+                string errorMessage = null;
+                RegistryRecord registryRecord = null;
+                try
+                {
+                    errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
+                    string xml = data.Data;
+                    var doc = new XmlDocument();
+                    doc.LoadXml(xml);
+                    errorMessage = "Unable to process chemical structures.";
+                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+
+                    registryRecord = RegistryRecord.NewRegistryRecord();
+                    errorMessage = "Unable to initialize the internal record.";
+                    registryRecord.InitializeFromXml(xml, true, false);
+
+                    errorMessage = "Unable to save the template.";
+                    genericStorageBO.COEGenericObject = registryRecord.XmlWithAddIns;
+                    genericStorageBO.Save();
+                }
+                catch (Exception ex)
+                {
+                    if (registryRecord != null && ex is ValidationException)
+                    {
+                        List<BrokenRuleDescription> brokenRuleDescriptionList = registryRecord.GetBrokenRulesDescription();
+                        brokenRuleDescriptionList.ForEach(rd =>
+                        {
+                            errorMessage += "\n" + string.Join(", ", rd.BrokenRulesMessages);
+                        });
+                    }
+                    if (ex is RegistrationException)
+                    {
+                        if (errorMessage.EndsWith(".")) errorMessage.Substring(0, errorMessage.Length - 1);
+                        errorMessage += " - " + ex.Message;
+                    }
+                    throw new RegistrationException(errorMessage, ex);
+                }
+
+                return new ResponseData(message: string.Format("The template, {0}, was saved successfully!", genericStorageBO.Name));
+            });
+        }
+
         [HttpDelete]
         [Route(Consts.apiPrefix + "templates/{id}")]
         [SwaggerOperation("DeleteTemplate")]
