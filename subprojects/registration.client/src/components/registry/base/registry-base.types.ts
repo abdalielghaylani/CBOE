@@ -490,7 +490,8 @@ export class CRegistryRecord {
       .replace('.Structure.UseNormalizedStructure', '.Structure.UseNormalization')
       .replace('.Structure.Value', '.Structure')
       .replace('.Structure.Formula', '.Structure.Structure._formula')
-      .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
+      .replace('.Structure.MolWeight', '.Structure.Structure._molWeight')
+      .replace('ID', 'BatchID');
   }
 
   /**
