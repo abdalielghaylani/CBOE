@@ -10,6 +10,7 @@ import { RegBaseFormItem } from '../base-form-item';
 export class RegTextFormItem extends RegBaseFormItem {
 
   protected update() {
+    super.update();
     let options = this.viewModel.editorOptions;
     // set default value
     let isDefaultValueSet: boolean = false;
