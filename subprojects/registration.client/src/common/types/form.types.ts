@@ -40,12 +40,34 @@ export interface IDisplayInfo {
   visible?: string;
 }
 
+export interface IColumn {
+  _name?: string;
+  headerText?: string;
+  _hidden?: string;
+  width: string;
+  formElement?: IFormElement;
+}
+
+export interface IColumns {
+  Column?: IColumn[];
+}
+
+export interface ITable {
+  _name?: string;
+  Columns?: IColumns;
+}
+
+export interface ITables {
+  table?: ITable[];
+}
+
 export interface IFieldConfig {
   CSSLabelClass?: string;
   CSSClass?: string;
   dropDownItemsSelect?: string;
   PickListDomain?: any;
   DefaultDate?: string;
+  tables?: ITables;
 }
 
 export interface IConfigInfo {

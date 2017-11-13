@@ -70,43 +70,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private JObject GetHitlistRecordsInternal(int id, bool? temp, int? skip = null, int? count = null, string sort = null)
         {
-            var hitlistType = HitListType.TEMP;
-            var hitlistBO = COEHitListBO.Get(hitlistType, id);
-            if (hitlistBO == null)
-                throw new RegistrationException("Cannot instantiate the hit-list object");
-            if (hitlistBO.HitListID == 0) hitlistType = HitListType.SAVED;
-            if (temp != null && temp.Value)
-            {
-                var tableName = "vw_temporarycompound c inner join vw_temporarybatch b on c.tempbatchid = b.tempbatchid";
-                var whereClause = string.Format(" WHERE c.tempcompoundid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
-                    hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
-                var query = GetQuery(tableName + whereClause, TempRecordColumns, sort, "c.datelastmodified", "c.tempcompoundid");
-                var args = new Dictionary<string, object>();
-                args.Add(":hitlistId", id);
-                return new JObject(
-                   new JProperty("temporary", true),
-                    new JProperty("hitlistId", id),
-                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
-                   new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
-                   new JProperty("rows", ExtractData(query, args, skip, count))
-               );
-            }
-            else
-            {
-                var tableName = "vw_mixture_regnumber";
-                var whereClause = string.Format(" WHERE mixtureid in (SELECT ID FROM COEDB.{0} WHERE hitlistId=:hitlistId)",
-                    hitlistType == HitListType.TEMP ? "coetemphitlist" : "coesavedhitlist");
-                var query = GetQuery(tableName + whereClause, RecordColumns, sort, "modified", "regid");
-                var args = new Dictionary<string, object>();
-                args.Add(":hitlistId", id);
-                return new JObject(
-                    new JProperty("temporary", false),
-                    new JProperty("hitlistId", id),
-                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName + whereClause, args))),
-                    new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
-                    new JProperty("rows", ExtractData(query, args, skip, count))
-                );
-            }
+            var hitlistBO = GetHitlistBO(id);
+            return GetRegistryRecordsListView(temp, count, hitlistBO.HitListInfo);
         }
 
         private JObject SearchRecordsInternal(QueryData queryData, bool? temp, int? skip, int? count, string sort)
@@ -164,7 +129,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
             }
             hitlistBO.Update();
-            return GetHitlistRecordsInternal(hitlistBO.HitListID, temp, skip, count, sort);
+            return GetRegistryRecordsListView(temp, count, hitlistInfo);
         }
 
         private COEDataView AddMolWt(COEDataView dataView)
@@ -879,7 +844,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 fieldAlias = templateFeildNode.Attributes["alias"].Value;
                         }
 
-                        var key = string.Format("{0}{1}", dataViewField.Id, Regex.Replace(fieldAlias, @"\s", "")).ToLower();
+                        var key = string.Format("{0}{1}", dataViewField.Id, Regex.Replace(fieldAlias, @"\s", string.Empty)).ToLower();
                         resultsCriteria.Add(new JObject(
                             new JProperty("key", key),
                             new JProperty("tableId", dataViewTable.Id),

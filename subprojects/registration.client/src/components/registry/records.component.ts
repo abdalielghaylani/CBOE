@@ -15,7 +15,8 @@ import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 import { DxDataGridComponent } from 'devextreme-angular';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { CViewGroup, CViewGroupColumns } from './base';
+import { FormGroupType, prepareFormGroupData, IFormGroup, notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
 import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData, IRegInvModel } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
@@ -46,6 +47,7 @@ export class RegRecords implements OnInit, OnDestroy {
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   private responseData$: Observable<IResponseData>;
   private records$: Observable<IRecords>;
+  private viewGroupsColumns: CViewGroupColumns;
   private lookupsSubscription: Subscription;
   private recordsSubscription: Subscription;
   private responseSubscription: Subscription;
@@ -68,7 +70,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private structureImageApiPrefix: string = `${apiUrlPrefix}StructureImage/`;
   private idField;
   private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
-
+  
   constructor(
     private router: Router,
     private http: HttpService,
@@ -86,8 +88,15 @@ export class RegRecords implements OnInit, OnDestroy {
     if (!this.responseSubscription) {
       this.responseSubscription = this.responseData$.subscribe(d => { this.deleteRecordStatus(d); });
     }
-    this.idField = this.temporary ? 'BATCHID' : 'ID';
+    this.idField = this.temporary ? 'TEMPBATCHID' : 'REGID';
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
+
+    let formGroupType = this.temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
+    prepareFormGroupData(formGroupType, this.ngRedux);
+    let state = this.ngRedux.getState();
+    let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
+    this.viewGroupsColumns = this.lookups ? 
+    CViewGroup.getViewGroupsColumns(true, formGroup, 'list', this.lookups.disabledControls, this.lookups.systemSettings) : new CViewGroupColumns();
   }
 
   ngOnDestroy() {
@@ -181,7 +190,6 @@ export class RegRecords implements OnInit, OnDestroy {
         this.records.filterRow.visible = false;
       }
       this.records.setRecordData(records.data);
-      this.records.gridColumns = records.gridColumns.map(s => this.updateGridColumn(s));
     } else if (this.records.data.rows.length > 0 && this.records.data.rows.length === records.data.startIndex) {
       this.records.setRecordData(records.data);
     }
@@ -189,6 +197,7 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.currentIndex !== 0) {
       this.currentIndex = 0;
     }
+
     this.changeDetector.markForCheck();
   }
 
@@ -208,20 +217,6 @@ export class RegRecords implements OnInit, OnDestroy {
         return ref.records.getFetchedRows();
       }
     });
-  }
-
-  updateGridColumn(gridColumn) {
-    if (gridColumn.lookup) {
-      gridColumn.lookup = {
-        dataSource: this.lookups.users,
-        displayExpr: 'USERID',
-        valueExpr: 'PERSONID'
-      };
-    } else if (gridColumn.cellTemplate === 'statusTemplate') {
-      let systemSettings = new CSystemSettings(this.lookups.systemSettings);
-      gridColumn.visible = systemSettings.isApprovalsEnabled;
-    }
-    return gridColumn;
   }
 
   private onDocumentClick(event: any) {
@@ -284,6 +279,12 @@ export class RegRecords implements OnInit, OnDestroy {
           $deleteIcon.addClass('dx-icon-trash');
           $deleteIcon.attr({ 'data-toggle': 'tootip', 'title': 'Delete' });
         }
+      }
+    }
+    if (e.rowType === 'data' && e.column.dataField === 'Mol Formula') {
+      let fieldData = e.value;
+      if (fieldData) {
+        e.cellElement.html(fieldData);
       }
     }
   }

@@ -38,7 +38,6 @@ export class CRecordsData implements IRecordsData {
 export interface IRecords {
   temporary: boolean;
   data: IRecordsData;
-  gridColumns: any[];
 }
 
 export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, IRecords { }

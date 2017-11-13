@@ -123,14 +123,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var tableName = "vw_mixture_regnumber";
-                var query = GetQuery(tableName, RecordColumns, sort, "modified", "regid");
-                return new JObject(
-                    new JProperty("temporary", false),
-                    new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
-                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
-                    new JProperty("rows", ExtractData(query, null, skip, count))
-                );
+                return GetRegistryRecordsListView(false, count, null);
             }, new string[] { "SEARCH_REG" });
         }
 
@@ -970,14 +963,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var tableName = "vw_temporarycompound c inner join vw_temporarybatch b on c.tempbatchid = b.tempbatchid";
-                var query = GetQuery(tableName, TempRecordColumns, sort, "c.datelastmodified", "tempcompoundid");
-                return new JObject(
-                    new JProperty("temporary", true),
-                    new JProperty("startIndex", skip == null ? 0 : Math.Max(skip.Value, 0)),
-                    new JProperty("totalCount", Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) c FROM " + tableName))),
-                    new JProperty("rows", ExtractData(query, null, skip, count))
-                );
+                return GetRegistryRecordsListView(true, count, null);
             }, new string[] { "SEARCH_TEMP" });
         }
 

@@ -7,6 +7,7 @@ import {
   IAddInList, IBatchList, IComponentList, IIdentifierList, IProjectList, IPropertyList, IValidationRuleList,
   IRegNumber, IStructureData
 } from '../../common';
+import { CSystemSettings } from '../../../redux';
 
 export enum DrawingType {
   Chemical = 0,
@@ -37,6 +38,11 @@ export class CEntryInfo {
 export class CBoundObject {
   obj: any;
   property?: string;
+}
+
+export class CViewGroupColumns {
+  baseTableColumns: any[] = [];
+  batchTableColumns: any[] = [];
 }
 
 export class CViewGroup implements IViewGroup {
@@ -230,6 +236,10 @@ export class CViewGroup implements IViewGroup {
         if (config.queryForms && config.queryForms.queryForm && config.queryForms.queryForm.length > 0) {
           form = config.queryForms.queryForm[0];
         }
+      } else if (displayMode === 'list') {
+        if (config.listForms && config.listForms.listForm && config.listForms.listForm.length > 0) {
+          form = config.listForms.listForm[0];
+        }
       } else if (config.detailsForms && config.detailsForms.detailsForm && config.detailsForms.detailsForm.length > 0) {
         form = config.detailsForms.detailsForm[0];
       }
@@ -248,6 +258,7 @@ export class CViewGroup implements IViewGroup {
         pageId = temporary ? 'REVIEWREGISTERMIXTURE' : 'VIEWMIXTURE';
         break;
       case 'query':
+      case 'list':
         pageId = 'CHEMBIOVIZSEARCH';
         break;
     }
@@ -324,6 +335,37 @@ export class CViewGroup implements IViewGroup {
     return viewGroupsFiltered;
   }
 
+  public static getViewGroupsColumns(temporary: boolean, config: IFormGroup, displayMode: string, disabledControls: any[], 
+    systemSettings: any[]): CViewGroupColumns {
+    let viewGroups: CViewGroup[] = [];
+    let viewGroupColumns = new CViewGroupColumns();
+    let form: IForm = this.getForm(config, displayMode);
+    if (form) {
+      let disabledControlsFiltered = this.getFilteredDisabledControls(temporary, displayMode, disabledControls);
+      let coeForms = this.sortAndFilterForms(form.coeForms.coeForm);
+      coeForms.forEach(f => {
+        if (f.formDisplay.visible === 'true') {
+          if (viewGroups.length === 0) {
+            viewGroups.push(new CViewGroup([], disabledControlsFiltered));
+          }
+          let viewGroup = viewGroups[viewGroups.length - 1];
+          if (!viewGroup.append(f)) {
+            viewGroups.push(new CViewGroup([f], disabledControlsFiltered));
+          }
+        }
+        if (viewGroups.length === 1) {
+          viewGroupColumns = viewGroups[0].getColumns(displayMode);
+          let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.cellTemplate === 'statusTemplate');
+          if (statusColumn) {
+            let sysSettings = new CSystemSettings(systemSettings);
+            statusColumn.visible = sysSettings.isApprovalsEnabled;
+          }
+        } 
+      });
+    }
+    return viewGroupColumns;
+  }
+
   public getEntryInfo(displayMode: string, id: string): CEntryInfo {
     let entryInfo = new CEntryInfo();
     this.data.forEach(f => {
@@ -380,6 +422,78 @@ export class CViewGroup implements IViewGroup {
       }
     });
     return this.fixColSpans(items);
+  }
+
+  public getColumns(displayMode: string): CViewGroupColumns {
+    let columns = [];
+    let batchColumns = [];
+    this.data.forEach(f => {
+      let formElementContainer = this.getFormElementContainer(f, displayMode);
+      if (formElementContainer && formElementContainer.formElement) {
+        formElementContainer.formElement.forEach(fe => {
+          let fieldConfig = fe.configInfo ? fe.configInfo.fieldConfig : undefined;          
+          if (fieldConfig && fieldConfig.tables) {
+            let index = 0;
+             fieldConfig.tables.table.forEach( tb => {
+              if (tb.Columns && tb.Columns.Column) {
+                tb.Columns.Column.forEach(c => { 
+                  if (c._name === 'STATUSCOLUMN') {
+                    let col = {
+                      dataField: (c.formElement) ? c.formElement._name : c._name,
+                      caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
+                      visible: (c._hidden && c._hidden.toLowerCase() === 'true') ? false : true,
+                      width: 70,
+                      allowEditing: false,
+                      allowFiltering: false,
+                      allowSorting: false,
+                      cellTemplate: 'statusTemplate'
+                    };
+                    if (index > 0) {
+                      batchColumns.push(col);
+                    } else {
+                      columns.push(col);
+                    }
+                  } else if (c._name === 'Structure' || c._name === 'STRUCTUREAGGREGATION') {
+                    let col = {
+                      dataField: (c.formElement) ? c.formElement._name : c._name,
+                      caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
+                      visible: (c._hidden && c._hidden.toLowerCase() === 'true') ? false : true,
+                      width: (c.width) ? c.width : '140',
+                      allowEditing: false,
+                      allowFiltering: false,
+                      allowSorting: false,
+                      cellTemplate: 'structureImageColumnTemplate'
+                    };
+                    if (index > 0) {
+                      batchColumns.push(col);
+                    } else {
+                      columns.push(col);
+                    }
+                  } else {
+                    let col = {
+                      dataField: (c.formElement) ? c.formElement._name : c._name,
+                      caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
+                      visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked') ? false : true,
+                      width: (c.width) ? c.width : 'auto',
+                    };
+                    if (index > 0) {
+                      batchColumns.push(col);
+                    } else {
+                      columns.push(col);
+                    }
+                  }    
+                });
+              }
+              index++;
+             });             
+          };
+        });
+      }
+    });
+    let viewGroupColumns = new CViewGroupColumns();
+    viewGroupColumns.baseTableColumns = columns;
+    viewGroupColumns.batchTableColumns = batchColumns;
+    return viewGroupColumns;
   }
 
   public getSearchItems(): ISearchCriteriaItem[] {

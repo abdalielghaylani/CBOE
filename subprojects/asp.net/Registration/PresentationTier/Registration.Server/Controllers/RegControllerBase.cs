@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,6 +20,9 @@ using Csla.Data;
 using Newtonsoft.Json.Linq;
 using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Framework.COEPickListPickerService;
+using CambridgeSoft.COE.Framework.Common;
+using CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService;
+using CambridgeSoft.COE.Framework.Common.Messaging;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -386,6 +390,107 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Compound ? "Compound" :
                 propertyType == ConfigurationRegistryRecord.PropertyListType.PropertyList ? "Registry" :
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
+        }
+
+        protected static JObject GetRegistryRecordsListView(bool? temp, int? count, HitListInfo hitlist)
+        {
+            var formGroupType = temp.HasValue && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+            var baseColumnKey = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            configRegRecord.COEFormHelper.Load(formGroupType);
+
+            var bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
+            bo.PagingInfo.RecordCount = count.HasValue ? count.Value : 1000; // max records
+            bo.PagingInfo.Start = 0;
+            bo.PagingInfo.End = count.HasValue ? count.Value + 1 : 1001;
+            bo.AllowFullScan = true;
+            bo.CurrentFormType = FormGroup.CurrentFormEnum.ListForm;
+
+            if (hitlist != null)
+                bo.HitListToRestore = hitlist;
+
+            bo.Search();
+
+            var dataColumns = new List<KeyValuePair<string, List<DataColumn>>>();
+            foreach (DataTable dataTable in bo.Dataset.Tables)
+            {
+                var columnArray = new DataColumn[dataTable.Columns.Count];
+                dataTable.Columns.CopyTo(columnArray, 0);
+                dataColumns.Add(new KeyValuePair<string, List<DataColumn>>(dataTable.TableName, columnArray.ToList()));
+            }
+
+            var data = new JArray();
+            var baseDataTable = bo.Dataset.Tables[0];
+            foreach (DataRow dataRow in baseDataTable.Rows)
+            {
+                var row = new JObject();
+                var baseTableIndex = 0;
+                var baseColumnKeyId = string.Empty;
+                foreach (var fieldData in dataRow.ItemArray)
+                {
+                    var fieldName = dataColumns.SingleOrDefault(k => k.Key == baseDataTable.TableName).Value[baseTableIndex].ColumnName;
+                    if (fieldName.Equals(baseColumnKey)) 
+                    {
+                        baseColumnKeyId = fieldData.ToString();
+                    }
+                    if (fieldData.ToString().StartsWith("VmpD"))
+                    {
+                        row.Add(new JProperty(fieldName, ChemistryHelper.ConvertToCdxml(fieldData.ToString())));
+                    }
+                    else
+                    {
+                        row.Add(new JProperty(fieldName, fieldData));
+                    }
+                    baseTableIndex++;
+                }
+
+                var batchInformationRows = new JArray();
+                if (baseDataTable.ChildRelations.Count > 0)
+                {
+                    var batchRelation = baseDataTable.ChildRelations.Cast<DataRelation>().FirstOrDefault(r => r.ChildTable.Rows.Count > 0);
+                    if (batchRelation != null) 
+                    {
+                        var baseColumnIndex = dataColumns.SingleOrDefault(k => k.Key == batchRelation.ChildTable.TableName).Value.FindIndex(c => c.ColumnName == baseColumnKey);
+                        foreach (DataRow relationRow in batchRelation.ChildTable.Rows)
+                        {
+                            if (baseColumnKeyId != relationRow.ItemArray[baseColumnIndex].ToString()) 
+                            {
+                                continue;
+                            }
+                            
+                            var batchRow = new JObject();
+                            var batchTableIndex = 0;
+                            foreach (var fieldData in relationRow.ItemArray)
+                            {
+                                var fieldName = dataColumns.SingleOrDefault(k => k.Key == batchRelation.ChildTable.TableName).Value[batchTableIndex].ColumnName;
+                                if (batchRow.SelectToken(fieldName) == null)
+                                {
+                                    if (fieldData.ToString().StartsWith("VmpD"))
+                                    {
+                                        batchRow.Add(new JProperty(fieldName, ChemistryHelper.ConvertToCdxml(fieldData.ToString())));
+                                    }
+                                    else
+                                    {
+                                        batchRow.Add(new JProperty(fieldName, fieldData));
+                                    }
+                                }
+                                batchTableIndex++;
+                            }
+                            batchInformationRows.Add(batchRow);
+                        }
+                    }
+                }
+                row.Add(new JProperty("BatchDataSource", batchInformationRows));
+                data.Add(row);
+            }
+
+            return new JObject(
+                new JProperty("temporary", temp),
+                new JProperty("hitlistId", hitlist != null ? hitlist.HitListID : 0),
+                new JProperty("startIndex", 0),
+                new JProperty("totalCount", hitlist != null ? bo.CurrentHitList.CurrentRecordCount : bo.DatabaseRecordCount),
+                new JProperty("rows", data)
+            );
         }
     }
 }

@@ -40,6 +40,7 @@ import { RegStructureBaseFormItem } from './structure-base-form-item';
 import { RegStructureColumnItem } from './structure-column-item';
 import { RegStructureImage } from './structure-image';
 import { RegStructureImageFormItem } from './structure-image-form-item';
+import { RegStructureImageColumnItem } from './structure-image-column-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegTextFormItem } from './text-form-item';
 import { CStructureImageService } from './structure-image.service';
@@ -55,6 +56,7 @@ export * from './structure-base-form-item';
 export * from './structure-column-item';
 export * from './structure-image';
 export * from './structure-image-form-item';
+export * from './structure-image-column-item';
 export * from './tag-box-form-item';
 export * from './text-form-item';
 export * from './chemdraw-web';
@@ -97,7 +99,7 @@ export * from './modal';
     RegModal, RegModalContent,
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
-    RegStructureBaseFormItem, RegStructureImageFormItem,
+    RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem,
     RegStructureImage
   ],
   exports: [
@@ -107,7 +109,7 @@ export * from './modal';
     RegModal, RegModalContent,
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
-    RegStructureBaseFormItem, RegStructureImageFormItem,
+    RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem,
     RegStructureImage,
     RegCommonModule, RegServicesModule
   ],
