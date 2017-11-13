@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ using CambridgeSoft.COE.Framework.COEHitListService;
 using CambridgeSoft.COE.Framework;
 using CambridgeSoft.COE.Registration.Services;
 using Resources;
+using CambridgeSoft.COE.Framework.COESearchService;
+using CambridgeSoft.COE.Framework.Common;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -161,12 +164,89 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
 
                 bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
-                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
+                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;               
 
                 return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
                     new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
-                    new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor));
+                    new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor),
+                    new JProperty("inventoryContainers", GetInventoryContainerList(id)));
             });
+        }
+
+        private JObject GetInventoryContainerList(int id)
+        {
+            if (id <= 0)
+                return null;
+
+            if (!RegUtilities.GetInventoryIntegration())
+                return null;
+
+            var regNum = GetRegNumber(id);
+            RegistryRecord registryRecord = RegistryRecord.GetRegistryRecord(regNum);
+
+            DataSet retVal = GetInvContainers(registryRecord.RegNumber.ID, -1);
+
+            if (retVal == null || retVal.Tables.Count == 0)
+                return null;
+
+            InvContainerList invContainerList = InvContainerList.NewInvContainerList(retVal.Tables[0], registryRecord.RegNumber.RegNum);
+            JObject invList = new JObject();
+
+            var recordList = new JArray();
+            foreach (InvContainer container in invContainerList)
+            {
+                recordList.Add(GenerateInvContainerJSON(container));
+            }
+            invList.Add(new JProperty("containers", recordList));
+
+            var batchContainerList = new JArray();
+            foreach (CambridgeSoft.COE.Registration.Services.Types.Batch batch in registryRecord.BatchList)
+            {
+                retVal = GetInvContainers(registryRecord.RegNumber.ID, batch.BatchNumber);
+                invContainerList = InvContainerList.NewInvContainerList(retVal.Tables[0], registryRecord.RegNumber.RegNum);
+                foreach (InvContainer container in invContainerList)
+                {
+                    batchContainerList.Add(GenerateInvContainerJSON(container));
+                }
+            }
+            invList.Add(new JProperty("batchContainers", batchContainerList));
+
+            return invList;
+        }
+
+        private JObject GenerateInvContainerJSON(InvContainer container)
+        {
+            var containerObject = new JObject(
+            new JProperty("containerID", container.ContainerID),
+            new JProperty("qtyAvailable", container.QtyAvailable),
+            new JProperty("containerSize", container.ContainerSize),
+            new JProperty("location", RegAppHelper.ExtractHtmlInnerText(container.Location)),
+            new JProperty("requestURL", container.RequestURL),
+            new JProperty("requestFromBatchURL", container.RequestFromBatchURL),
+            new JProperty("requestFromContainerURL", container.RequestFromContainerURL),
+            new JProperty("containerType", container.ContainerType),
+            new JProperty("regBatchID", container.RegBatchID),
+            new JProperty("regNumber", container.RegNumber),
+            new JProperty("invBatchID", container.InvBatchID),
+            new JProperty("invCompoundID", container.InvCompoundID),
+            new JProperty("totalQtyAvailable", container.TotalQtyAvailable),
+            new JProperty("id", RegAppHelper.ExtractHtmlInnerText(container.Barcode)),
+            new JProperty("idUrl", container.Barcode));
+            return containerObject;
+        }
+
+        private DataSet GetInvContainers(int regid, int batchid)
+        {
+            COESearch search = new COESearch();
+            ResultsCriteria rc = RegUtilities.GetInvContainersRC(regid, batchid);
+            SearchCriteria sc = RegUtilities.GetInvContainersSC(regid, batchid);
+            PagingInfo pi = new PagingInfo();
+            pi.Start = 1;
+            pi.End = 100001;
+            pi.RecordCount = 100000;
+
+            SearchResponse result = search.DoSearch(sc, rc, pi, RegUtilities.GetInvContainersDataViewID());
+            return result.ResultsDataSet;
         }
 
         [HttpPost]
@@ -1088,22 +1168,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 int id = Convert.ToInt32(item.GetValue("id"));
                 if (temporary)
-                    CheckTempRecordId(id);               
+                    CheckTempRecordId(id);
                 records.Add(id);
             }
 
             if (!temporary)
             {
                 // for permanant registry records, hitlist need to be generated using mixture id of the perm record
-                var list  = ExtractData(string.Format("select MIXTUREID from  VW_MIXTURE m where m.REGID in ({0})", string.Join(",", records)), null, null, null);
+                var list = ExtractData(string.Format("select MIXTUREID from  VW_MIXTURE m where m.REGID in ({0})", string.Join(",", records)), null, null, null);
                 records.Clear();
                 foreach (JObject item in list)
-                {                  
+                {
                     records.Add(Convert.ToInt32(item.GetValue("MIXTUREID")));
                 }
             }
 
-            if (records.Count <= 0 )
+            if (records.Count <= 0)
                 throw new ArgumentNullException("Input data is invalid");
 
             var coeHitListBO = COEHitListBO.New(Consts.REGDB, HitListType.MARKED);
@@ -1155,7 +1235,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var recordList = new JArray();
                 foreach (string id in failedRecords)
                 {
-                    response.Add(new JProperty("id", id));
+                    recordList.Add(new JProperty("id", id));
                 }
                 response = new JObject();
                 response.Add(new JProperty("failedRecords", recordList));
