@@ -118,7 +118,8 @@ export const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDeta
   id: -1,
   data: null,
   isLoggedInUserOwner: false,
-  isLoggedInUserSuperVisor: false
+  isLoggedInUserSuperVisor: false,
+  inventoryContainers: null
 })();
 
 export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({

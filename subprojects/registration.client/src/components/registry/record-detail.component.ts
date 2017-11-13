@@ -1,3 +1,4 @@
+import { IInventoryContainerList } from './../../redux/store/registry/registry.types';
 import {
   Component,
   Input,
@@ -73,6 +74,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private isDuplicatePopupVisible: boolean = false;
   private loadingVisible: boolean = false;
   private createContainerButtonEnabled: boolean = false;
+  private inventoryContainersList: IInventoryContainerList;
 
   private saveTemplateItems = [{
     dataField: 'name',
@@ -493,6 +495,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     let recordDetail: IRecordDetail = e.data;
     this.isLoggedInUserOwner = recordDetail.isLoggedInUserOwner;
     this.isLoggedInUserSuperVisor = recordDetail.isLoggedInUserSuperVisor;
+
+    if (recordDetail.inventoryContainers && recordDetail.inventoryContainers.containers) {
+      this.inventoryContainersList = recordDetail.inventoryContainers;
+    }
     let recordDetailBase: RegRecordDetailBase = e.component;
     this.displayMode = recordDetailBase.displayMode;
     let recordId = recordDetailBase.recordId;

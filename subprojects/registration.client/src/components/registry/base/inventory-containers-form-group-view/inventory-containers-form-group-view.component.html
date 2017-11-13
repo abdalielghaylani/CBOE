@@ -1,0 +1,8 @@
+<div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+  <a class="list-header tan" data-toggle="collapse" href="#{{id}}">Inventory Containers</a>
+</div>
+<div [id]="id" class="panel-collapse collapse in">
+  <div class="p2">
+    <inventory-containers-form-group-item-view [invContainers]="invContainers.containers"></inventory-containers-form-group-item-view>
+  </div>
+</div>

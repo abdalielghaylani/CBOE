@@ -81,7 +81,8 @@ export class RegistryEpics {
               id: payload.id,
               data: result.json().data,
               isLoggedInUserOwner: result.json().isLoggedInUserOwner,
-              isLoggedInUserSuperVisor: result.json().isLoggedInUserSuperVisor
+              isLoggedInUserSuperVisor: result.json().isLoggedInUserSuperVisor,
+              inventoryContainers: result.json().inventoryContainers
             } as IRecordDetail);
           })
           .catch(error => Observable.of(RecordDetailActions.retrieveRecordErrorAction(error)));

@@ -1,6 +1,9 @@
 <reg-alert qaid="qa-alert" class="text-left" testid="alert-error" status='error' [hidden]="validationError.isvalid">
   <div style="padding-left:15px;"><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;One or more entries failed to validate!</strong>
-  <ol style="font-size:13px;"><li *ngFor="let msg of validationError.errorMessages">{{msg}}</li></ol>
-  </div></reg-alert>
-<reg-form-group-view (valueUpdated)="onValueUpdated($event)" [id]="viewId" [viewConfig]="viewGroupContainers" [viewModel]="regRecord"
-  [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [updatable]="updatable" [invIntegrationEnabled]="invIntegrationEnabled"></reg-form-group-view>
+    <ol style="font-size:13px;">
+      <li *ngFor="let msg of validationError.errorMessages">{{msg}}</li>
+    </ol>
+  </div>
+</reg-alert>
+<reg-form-group-view (valueUpdated)="onValueUpdated($event)" [id]="viewId" [viewConfig]="viewGroupContainers" [viewModel]="regRecord" [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [updatable]="updatable" [invIntegrationEnabled]="invIntegrationEnabled"
+  [invContainers]="invContainers"></reg-form-group-view>

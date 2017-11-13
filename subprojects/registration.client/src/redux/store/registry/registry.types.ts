@@ -7,6 +7,7 @@ export interface IRecordDetail {
   data: string;
   isLoggedInUserOwner: boolean;
   isLoggedInUserSuperVisor: boolean;
+  inventoryContainers : IInventoryContainerList;
 }
 
 export interface IRecordDetailRecord extends TypedRecord<IRecordDetailRecord>, IRecordDetail { }
@@ -68,6 +69,11 @@ export interface IRegisterRecordList {
   duplicateAction: String;
   records: string[];
   description: string;
+}
+
+export interface IInventoryContainerList { 
+  containers: any[];
+  batchContainers: any[];
 }
 
 export interface IQueryData {

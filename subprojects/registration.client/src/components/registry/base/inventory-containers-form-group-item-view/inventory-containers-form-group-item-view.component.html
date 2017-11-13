@@ -1,0 +1,19 @@
+<div>
+  <dx-data-grid [columns]="columns" [dataSource]="invContainers" rowAlternationEnabled="true" [height]="gridHeight">
+    <dxo-sorting mode="single"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-selection mode="single"></dxo-selection>
+  </dx-data-grid>
+</div>
+<div>
+  <table>
+    <tr>
+      <td>
+        {{numberOfContainers}}
+      </td>
+      <td>
+        {{totalQuantityAvailable}}
+      </td>
+    </tr>
+  </table>
+</div>

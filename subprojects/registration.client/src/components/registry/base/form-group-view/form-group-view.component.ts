@@ -1,3 +1,4 @@
+import { IInventoryContainerList } from './../../../../redux/store/registry/registry.types';
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import validationEngine from 'devextreme/ui/validation_engine';
@@ -22,7 +23,8 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() viewConfig: CViewGroupContainer[];
   @Input() updatable: boolean = false;
   @Input() invIntegrationEnabled: boolean = false;
-  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();  
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Input() invContainers: IInventoryContainerList;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
@@ -41,5 +43,12 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   validate() {
     let result = validationEngine.validateGroup('vg');
     return result;
+  }
+
+  private get inventoryContainersViewEnabled(): boolean {
+    if (this.invContainers && this.invContainers.containers) {
+      return this.invContainers.containers.length > 0 ? true : false;
+    }
+    return false;
   }
 };

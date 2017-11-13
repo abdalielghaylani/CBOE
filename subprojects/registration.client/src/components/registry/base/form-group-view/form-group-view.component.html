@@ -1,5 +1,9 @@
 <div class="panel-group" [id]="id">
   <div class="panel panel-default" *ngFor="let viewGroupContainer of viewConfig">
-    <reg-form-group-item-view (valueUpdated)="onValueUpdated($event)" [id]="id + '_' + viewGroupContainer.id + '_form'" [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [viewConfig]="viewGroupContainer" [viewModel]="viewModel" [updatable]="updatable" [invIntegrationEnabled]="invIntegrationEnabled"></reg-form-group-item-view>
+    <reg-form-group-item-view (valueUpdated)="onValueUpdated($event)" [id]="id + '_' + viewGroupContainer.id + '_form'" [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [viewConfig]="viewGroupContainer" [viewModel]="viewModel" [updatable]="updatable"
+      [invIntegrationEnabled]="invIntegrationEnabled"></reg-form-group-item-view>
+  </div>
+  <div class="panel panel-default" *ngIf="inventoryContainersViewEnabled">
+    <inventory-containers-form-group-view [invContainers]="invContainers"></inventory-containers-form-group-view>
   </div>
 </div>

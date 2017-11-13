@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
 import { IFormGroup, prepareFormGroupData, FormGroupType, PrivilegeUtils, notifyError } from '../../../../common';
-import { RecordDetailActions, IAppState, IRecordDetail, ILookupData, CSystemSettings, IRecordSaveData } from '../../../../redux';
+import { RecordDetailActions, IAppState, IRecordDetail, ILookupData, CSystemSettings, IRecordSaveData, IInventoryContainerList } from '../../../../redux';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { CFragment } from '../../../common';
@@ -34,6 +34,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   @Input() revision?: number;
   @Input() updatable: boolean = false;
   @Input() invIntegrationEnabled: boolean = false;
+  @Input() invContainers: IInventoryContainerList;
   public editMode: boolean;
   protected dataSubscription: Subscription;
   protected viewId: string;
@@ -44,7 +45,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   protected viewGroupContainers: CViewGroupContainer[];
   protected validationError: { isvalid: boolean, errorMessages: string[] } = { isvalid: true, errorMessages: [] };
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
-
+  
   constructor(
     protected ngRedux: NgRedux<IAppState>,
     protected actions: RecordDetailActions,
