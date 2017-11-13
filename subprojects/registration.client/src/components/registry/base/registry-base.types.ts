@@ -335,7 +335,7 @@ export class CViewGroup implements IViewGroup {
     return viewGroupsFiltered;
   }
 
-  public static getViewGroupsColumns(temporary: boolean, config: IFormGroup, displayMode: string, disabledControls: any[], 
+  public static getViewGroupsColumns(temporary: boolean, config: IFormGroup, displayMode: string, disabledControls: any[],
     systemSettings: any[]): CViewGroupColumns {
     let viewGroups: CViewGroup[] = [];
     let viewGroupColumns = new CViewGroupColumns();
@@ -360,7 +360,7 @@ export class CViewGroup implements IViewGroup {
             let sysSettings = new CSystemSettings(systemSettings);
             statusColumn.visible = sysSettings.isApprovalsEnabled;
           }
-        } 
+        }
       });
     }
     return viewGroupColumns;
@@ -431,12 +431,12 @@ export class CViewGroup implements IViewGroup {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
-          let fieldConfig = fe.configInfo ? fe.configInfo.fieldConfig : undefined;          
+          let fieldConfig = fe.configInfo ? fe.configInfo.fieldConfig : undefined;
           if (fieldConfig && fieldConfig.tables) {
             let index = 0;
-             fieldConfig.tables.table.forEach( tb => {
+            fieldConfig.tables.table.forEach(tb => {
               if (tb.Columns && tb.Columns.Column) {
-                tb.Columns.Column.forEach(c => { 
+                tb.Columns.Column.forEach(c => {
                   if (c._name === 'STATUSCOLUMN') {
                     let col = {
                       dataField: (c.formElement) ? c.formElement._name : c._name,
@@ -481,11 +481,11 @@ export class CViewGroup implements IViewGroup {
                     } else {
                       columns.push(col);
                     }
-                  }    
+                  }
                 });
               }
               index++;
-             });             
+            });
           };
         });
       }
@@ -596,6 +596,9 @@ export class CRegistryRecord {
   }
 
   private static fixBindingExpression(expression: string): string {
+    if (expression === 'ID') {
+      expression = 'BatchID';
+    }
     if (expression.endsWith('.RegNumber.RegNum')) {
       expression = expression.replace('.RegNumber.RegNum', '.RegNumber.RegNumber');
     }
@@ -604,8 +607,7 @@ export class CRegistryRecord {
       .replace('.Structure.UseNormalizedStructure', '.Structure.UseNormalization')
       .replace('.Structure.Value', '.Structure')
       .replace('.Structure.Formula', '.Structure.Structure._formula')
-      .replace('.Structure.MolWeight', '.Structure.Structure._molWeight')
-      .replace('ID', 'BatchID');
+      .replace('.Structure.MolWeight', '.Structure.Structure._molWeight');
   }
 
   /**
