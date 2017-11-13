@@ -32,6 +32,7 @@ export class RegDateFormItem extends RegBaseFormItem {
   }
 
   protected update() {
+    super.update();
     let options = this.viewModel.editorOptions;
     // set default value
     let isDefaultValueSet: boolean = false;
