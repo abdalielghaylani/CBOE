@@ -30,7 +30,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   private createContainerButtonEnabled: boolean = false;
   private invModel: IRegInvModel;
 
-  constructor(private ngRedux: NgRedux<IAppState>, private http: HttpService, private changeDetector: ChangeDetectorRef) {
+  constructor(private ngRedux: NgRedux<IAppState>,
+    private http: HttpService,
+    private changeDetector: ChangeDetectorRef) {
     super();
   }
 
@@ -97,7 +99,6 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
           this.viewModel.BatchList.Batch.splice(this.viewConfig.subIndex, 1);
           this.viewConfig.subArray = this.viewModel.BatchList.Batch;
           this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
-          this.updateBatch();
           this.changeDetector.markForCheck();
         })
         .catch(error => {
@@ -109,6 +110,20 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   protected onBatchSelected(batchId) {
     this.viewConfig.subIndex = this.viewConfig.subArray.findIndex(b => b.BatchID === batchId);
     this.updateBatch();
+  }
+
+  protected onBatchCreated(e) {
+    let regNum = this.viewModel.RegNumber.RegNumber;
+    let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
+    this.http.post(url, e).toPromise()
+      .then(res => {
+        notifySuccess(`The batch created successfully!`, 2000);
+        this.updateBatch();
+        this.changeDetector.markForCheck();
+      })
+      .catch(error => {
+        notifyException(`The batch was not created due to a problem`, error, 5000);
+      });
   }
 
   protected update() {

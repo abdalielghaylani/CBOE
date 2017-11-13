@@ -2,11 +2,16 @@ import {
   Component, Input, Output, EventEmitter, ElementRef, ViewChild,
   OnInit, OnDestroy, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import { NgRedux } from '@angular-redux/store';
-import { IAppState } from '../../../../redux';
+import { NgRedux, select } from '@angular-redux/store';
+import { IAppState, RecordDetailActions, IRecordDetail } from '../../../../redux';
 import { IBatch } from '../../../common';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../../../common';
-import { CViewGroupContainer } from '../registry-base.types';
+import { CViewGroupContainer, CRegistryRecord } from '../registry-base.types';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import * as X2JS from 'x2js';
+import * as registryUtils from '../../registry.utils';
+
 
 @Component({
   selector: 'reg-batch-creator',
@@ -16,8 +21,14 @@ import { CViewGroupContainer } from '../registry-base.types';
 })
 export class RegBatchCreator implements OnChanges {
   @Input() viewModel: IBatch[] = [];
+  private regRecord: CRegistryRecord;
   @Input() viewConfig: CViewGroupContainer;
   @Output() onCreated = new EventEmitter<any>();
+  @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() batchCreatorInitialised: EventEmitter<any> = new EventEmitter<any>();
+  protected dataSubscription: Subscription;
+  @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
+
   private formVisible: boolean = false;
   private items: any[];
   private formData: any;
@@ -25,14 +36,45 @@ export class RegBatchCreator implements OnChanges {
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
+    protected actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef,
     private elementRef: ElementRef
   ) {
     this.update();
+    let rec = this.ngRedux.getState().registry.currentRecord;
+    if (!(rec.id && rec.id === -1 && rec.data !== null)) {
+      this.actions.retrieveRecord(false, false, -1);
+    }
+    if (!this.dataSubscription) {
+      this.dataSubscription =
+        this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));
+    }
   }
 
   ngOnChanges() {
     this.update();
+  }
+
+  protected loadRecordData(rec: IRecordDetail) {
+    if (rec.id && rec.id === -1 && rec.data !== null) {
+      let recordData = this.ngRedux.getState().registry.currentRecord.data;
+      let recordDoc = registryUtils.getDocument(recordData);
+      let recordJson: any = this.x2jsTool().dom2js(recordDoc);
+      this.regRecord = recordJson.MultiCompoundRegistryRecord;
+    }
+  }
+
+  protected x2jsTool() {
+    return new X2JS.default({
+      arrayAccessFormPaths: [
+        'MultiCompoundRegistryRecord.BatchList.Batch',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
+        'MultiCompoundRegistryRecord.BatchList.Batch.IdentifierList.Identifier',
+        'MultiCompoundRegistryRecord.BatchList.Batch.ProjectList.Project',
+        'MultiCompoundRegistryRecord.BatchList.Batch.PropertyList.Property'
+      ]
+    });
   }
 
   protected update() {
@@ -55,6 +97,12 @@ export class RegBatchCreator implements OnChanges {
   }
 
   protected onValueUpdated(e) {
+    this.viewConfig.getItems('add').forEach(item => {
+      let value = this.regRecord.BatchList.Batch[0].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
+      if (value) {
+        this.regRecord.BatchList.Batch[0].PropertyList.Property.find(i => i._name + 'Property' === item.dataField).__text = e.viewModel[item.dataField];
+      }
+    });
   }
 
   protected showForm(e) {
@@ -63,10 +111,11 @@ export class RegBatchCreator implements OnChanges {
 
   protected createBatch(e) {
     this.formVisible = false;
-    this.onCreated.emit(this.formData);
+    let recordJson: any = this.x2jsTool().js2xml(this.regRecord.BatchList);
+    this.onCreated.emit({ 'data': `<BatchList>` + recordJson + `</BatchList>` });
   }
 
   protected cancel(e) {
-    this.formVisible = false;    
+    this.formVisible = false;
   }
 };
