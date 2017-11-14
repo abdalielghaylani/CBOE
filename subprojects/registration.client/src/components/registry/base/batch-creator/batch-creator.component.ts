@@ -19,7 +19,7 @@ import * as registryUtils from '../../registry.utils';
   styles: [require('../registry-base.css')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegBatchCreator implements OnChanges {
+export class RegBatchCreator implements OnChanges, OnDestroy {
   @Input() viewModel: IBatch[] = [];
   private regRecord: CRegistryRecord;
   @Input() viewConfig: CViewGroupContainer;
@@ -53,6 +53,12 @@ export class RegBatchCreator implements OnChanges {
 
   ngOnChanges() {
     this.update();
+  }
+
+  ngOnDestroy() {
+    if (this.dataSubscription) {
+      this.dataSubscription.unsubscribe();
+    }
   }
 
   protected loadRecordData(rec: IRecordDetail) {
