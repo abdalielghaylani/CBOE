@@ -474,7 +474,7 @@ export class CViewGroup implements IViewGroup {
                       dataField: (c.formElement) ? c.formElement._name : c._name,
                       caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
                       visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked') ? false : true,
-                      width: (c.width) ? c.width : 'auto',
+                      // width: (c.width) ? c.width : 'auto',
                     };
                     if (index > 0) {
                       batchColumns.push(col);
