@@ -470,17 +470,17 @@ export class CViewGroup implements IViewGroup {
                       columns.push(col);
                     }
                   } else {
-                    let col = {
-                      dataField: (c.formElement) ? c.formElement._name : c._name,
-                      caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
-                      visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked') ? false : true,
-                      // width: (c.width) ? c.width : 'auto',
-                    };
-                    if (index > 0) {
-                      batchColumns.push(col);
-                    } else {
-                      columns.push(col);
-                    }
+                    if (!c._childTableName) {
+                      let col = {
+                        dataField: (c.formElement) ? c.formElement._name : c._name,
+                        caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
+                        visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked') ? false : true,
+                      };
+                      if (index > 0) {
+                        batchColumns.push(col);
+                      } else {
+                        columns.push(col);
+                    }}
                   }
                 });
               }

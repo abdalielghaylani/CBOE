@@ -14,17 +14,21 @@ export const nonStructureImage = require('../assets/no-structure.png');
 export class RegStructureImageColumnItem {
   @Input() source: any;
   private image;
+  private imageId;
   private spinnerImage = require('../assets/spinner.gif');
   
   constructor(private imageService: CStructureImageService, private changeDetector: ChangeDetectorRef) {
     this.image = nonStructureImage;
+    this.imageId = '0';
   }
 
   ngOnInit() {
     let value = this.source;
-    if (value && value.Structure != null) {
+    if (value && value.Structure != null && value.TEMPBATCHID) {
+      this.imageId = `image${value.TEMPBATCHID}`;
       value = value.Structure;
-    } else if (value && value.STRUCTUREAGGREGATION != null) {
+    } else if (value && value.STRUCTUREAGGREGATION != null && value.REGID) {
+      this.imageId = `image${value.REGID}`;
       value = value.STRUCTUREAGGREGATION;
     }
     if (!value) {

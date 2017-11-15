@@ -46,6 +46,7 @@ export interface IColumn {
   _hidden?: string;
   width: string;
   formElement?: IFormElement;
+  _childTableName?: string;
 }
 
 export interface IColumns {
