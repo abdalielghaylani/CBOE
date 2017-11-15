@@ -16,6 +16,7 @@ using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
+using Resources;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -170,6 +171,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return disabledControlArray;
         }
 
+        /// <summary>
+        /// Get System Information 
+        /// </summary>
+        /// <returns>Object with system data</returns>
+        private JObject GetSystemInformation()
+        {
+            return new JObject(
+                new JProperty(Resource.Support_Label_Text, Resource.SupportContent_Label_Text),
+                new JProperty(Resource.Orders_Label_Text, Resource.OrdersContent_Label_Text),
+                new JProperty(Resource.Version_Label_Text, string.Format(Resource.VersionContent_Label_Text, CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetFrameworkFileVersion(),
+                                                                        CambridgeSoft.COE.Registration.Services.Common.RegSvcUtilities.GetFileVersion()))
+            );
+        }
+
         [HttpGet]
         [Route(Consts.apiPrefix + "ViewConfig/Lookups")]
         [SwaggerOperation("GetLookups")]
@@ -196,7 +211,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     GetPropertyGroups(),
                     GetHomeMenuPrivileges(),
                     GetUserPrivileges(),
-                    GetDisabledControls()
+                    GetDisabledControls(),
+                    GetSystemInformation()
                 );
             }, cacheControl: new CacheControlHeaderValue { NoCache = true });
         }

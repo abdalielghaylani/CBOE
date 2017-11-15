@@ -30,7 +30,8 @@ namespace PerkinElmer.COE.Registration.Server.Models
             JArray propertyGroups,
             JArray homeMenuPrivileges,
             JArray userPrivileges,
-            JArray disabledControls
+            JArray disabledControls,
+            JObject systemInformation
         )
         {
             Users = users;
@@ -49,6 +50,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             HomeMenuPrivileges = homeMenuPrivileges;
             UserPrivileges = userPrivileges;
             DisabledControls = disabledControls;
+            SystemInformation = systemInformation;
         }
 
         /// <summary>
@@ -152,5 +154,11 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "disabledControls")]
         public JArray DisabledControls { get; set; }
+
+        /// <summary>
+        /// Gets or sets the system information data
+        /// </summary>
+        [JsonProperty(PropertyName = "systemInformation")]
+        public JObject SystemInformation { get; set; }
     }
 }
