@@ -1,4 +1,4 @@
-<dx-date-box (onValueChanged)="onValueChanged($event, viewModel)" width="100%" [type]="type" [fieldEditEnabled]="false" [value]="value" [readOnly]="readOnly" >
+<dx-date-box (onValueChanged)="onValueChanged($event, viewModel)" width="100%" [type]="type" [acceptCustomValue]="false" [value]="value" [readOnly]="readOnly" >
   <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
     <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
   </dx-validator>
