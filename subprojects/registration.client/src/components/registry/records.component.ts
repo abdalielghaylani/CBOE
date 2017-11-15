@@ -70,6 +70,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private structureImageApiPrefix: string = `${apiUrlPrefix}StructureImage/`;
   private idField;
   private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
+  private defaultPrintStructureImage = require('../common/assets/no-structure.png');
   
   constructor(
     private router: Router,
@@ -492,9 +493,19 @@ export class RegRecords implements OnInit, OnDestroy {
     this.records.data.rows.forEach(row => {
       let structureImage: any;
       if (row.TEMPBATCHID) {
-        structureImage = document.getElementById(`image${row.TEMPBATCHID}`).attributes.getNamedItem('src').nodeValue;
+        let image = document.getElementById(`image${row.TEMPBATCHID}`);
+        if (image && image.attributes && image.attributes.getNamedItem('src')) {
+          structureImage = image.attributes.getNamedItem('src').nodeValue;
+        } else {
+          structureImage = this.defaultPrintStructureImage;
+        }
       } else if (row.REGID) {
-        structureImage = document.getElementById(`image${row.REGID}`).attributes.getNamedItem('src').nodeValue;
+        let image = document.getElementById(`image${row.REGID}`);
+        if (image && image.attributes && image.attributes.getNamedItem('src')) {
+          structureImage = image.attributes.getNamedItem('src').nodeValue;
+        } else {
+          structureImage = this.defaultPrintStructureImage;
+        }
       }
       printContents += '<tr>';
       this.viewGroupsColumns.baseTableColumns.forEach(c => {

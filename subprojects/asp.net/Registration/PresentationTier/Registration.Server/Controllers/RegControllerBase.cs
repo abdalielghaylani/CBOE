@@ -433,14 +433,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         baseColumnKeyId = fieldData.ToString();
                     }
-                    if (fieldData.ToString().StartsWith("VmpD"))
-                    {
-                        row.Add(new JProperty(fieldName, ChemistryHelper.ConvertToCdxml(fieldData.ToString())));
-                    }
-                    else
-                    {
-                        row.Add(new JProperty(fieldName, fieldData));
-                    }
+                    row.Add(new JProperty(fieldName, fieldData));
                     baseTableIndex++;
                 }
 
@@ -465,14 +458,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 var fieldName = dataColumns.SingleOrDefault(k => k.Key == batchRelation.ChildTable.TableName).Value[batchTableIndex].ColumnName;
                                 if (batchRow.SelectToken(fieldName) == null)
                                 {
-                                    if (fieldData.ToString().StartsWith("VmpD"))
-                                    {
-                                        batchRow.Add(new JProperty(fieldName, ChemistryHelper.ConvertToCdxml(fieldData.ToString())));
-                                    }
-                                    else
-                                    {
-                                        batchRow.Add(new JProperty(fieldName, fieldData));
-                                    }
+                                    batchRow.Add(new JProperty(fieldName, fieldData));
                                 }
                                 batchTableIndex++;
                             }
