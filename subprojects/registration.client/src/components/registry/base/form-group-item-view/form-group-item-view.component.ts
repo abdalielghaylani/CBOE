@@ -1,3 +1,4 @@
+import { IInventoryContainerList } from './../../../../redux/store/registry/registry.types';
 import { PrivilegeUtils } from './../../../../common/utils/privilege.utils';
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
@@ -23,13 +24,15 @@ import { RegInvContainerCreator } from '../../create-inventory-container/create-
 export class RegFormGroupItemView extends RegFormGroupItemBase {
   @Input() viewModel: CRegistryRecord;
   @Input() invIntegrationEnabled: boolean = false;
+  @Input() invContainers: IInventoryContainerList;
+  @Output() batchValueChanged = new EventEmitter<any>();
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
   private moveBatchEnabled: boolean = false;
   private deleteBatchEnabled: boolean = false;
   private createContainerButtonEnabled: boolean = false;
   private invModel: IRegInvModel;
-  @Output() batchValueChanged = new EventEmitter<any>();
+  private selectedBatchId: number;
 
   constructor(private ngRedux: NgRedux<IAppState>,
     private http: HttpService,
@@ -111,6 +114,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   protected onBatchSelected(batchId) {
     this.viewConfig.subIndex = this.viewConfig.subArray.findIndex(b => b.BatchID === batchId);
     this.updateBatch();
+    this.selectedBatchId = batchId;
   }
 
   protected onBatchCreated(e) {
@@ -143,4 +147,18 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     regInvContainer.createContainer(this.invModel);
   }
 
+  private get batchContainers(): any[] {
+    let batchId = this.selectedBatchId ? this.selectedBatchId : 0;
+    let batch = null;
+    if (batchId > 0) {
+      batch = this.viewConfig.subArray.find(b => b.BatchID === batchId) as IBatch;
+    } else {
+      batch = this.viewModel.BatchList.Batch[batchId];
+    }
+    return this.invContainers.batchContainers.filter(item => item.regBatchID === batch.FullRegNumber);
+  }
+
+  private get batchContainersEnabled(): boolean {
+    return this.batchCommandsEnabled && this.invContainers && this.invContainers.batchContainers && this.batchContainers.length > 0 ? true : false;
+  }
 };
