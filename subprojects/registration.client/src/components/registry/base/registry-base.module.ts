@@ -46,7 +46,7 @@ import {
 } from 'devextreme-angular';
 import { RegCommonModule } from '../../../common';
 import { RegCommonComponentModule } from '../../common';
-import { RegInvContainerCreator } from '../create-inventory-container/create-inventory-container';
+import { RegInvContainerHandler } from '../inventory-container-handler/inventory-container-handler';
 import { InventoryContainersFormGroup } from './inventory-containers-form-group-view/inventory-containers-form-group-view.component';
 import { InventoryContainersFormGroupItemView } from './inventory-containers-form-group-item-view/inventory-containers-form-group-item-view.component';
 
@@ -93,14 +93,14 @@ export * from './search-export';
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup, RegSearchExport, RegInvContainerCreator,
+    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup, RegSearchExport, RegInvContainerHandler,
     InventoryContainersFormGroup, InventoryContainersFormGroupItemView
   ],
   exports: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
     RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup,
-    RegCommonModule, RegCommonComponentModule, RegSearchExport, RegInvContainerCreator, InventoryContainersFormGroup, InventoryContainersFormGroupItemView
+    RegCommonModule, RegCommonComponentModule, RegSearchExport, RegInvContainerHandler, InventoryContainersFormGroup, InventoryContainersFormGroupItemView
   ]
 })
 export class RegBaseComponentModule { }

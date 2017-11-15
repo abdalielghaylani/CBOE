@@ -3,18 +3,19 @@
     <dxo-sorting mode="single"></dxo-sorting>
     <dxo-filter-row [visible]="true"></dxo-filter-row>
     <dxo-selection mode="single"></dxo-selection>
-    <dxo-filter-row [visible]="false"></dxo-filter-row>
+      <div *dxTemplate="let data of 'containerCellTemplate'">
+        <div class="dx-link" (click)="viewContainerDetails(data)"><strong>{{data.value}}</strong></div>
+      </div>
+      <div *dxTemplate="let data of 'containerRequestCellTemplate'">
+        <i (click)="requestFromContainer(data)" class="fa fa-flask fa-lg dx-link" aria-hidden="true"></i>
+      </div>
   </dx-data-grid>
 </div>
 <div>
   <table>
     <tr>
-      <td>
-        {{numberOfContainers}}
-      </td>
-      <td>
-        {{totalQuantityAvailable}}
-      </td>
+      <td>{{numberOfContainers}}</td>
+      <td>{{totalQuantityAvailable}}</td>
     </tr>
   </table>
 </div>

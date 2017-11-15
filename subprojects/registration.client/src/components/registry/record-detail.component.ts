@@ -29,7 +29,7 @@ import { RegistryStatus, IRegInvModel } from './registry.types';
 import { CFragment } from '../common';
 import { PrivilegeUtils } from '../../common';
 import { CSystemSettings, ISaveResponseData } from '../../redux';
-import { RegInvContainerCreator } from './create-inventory-container/create-inventory-container';
+import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
 
 @Component({
   selector: 'reg-record-detail',
@@ -517,7 +517,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private createInvContainer() {
-    let regInvContainer = new RegInvContainerCreator();
+    let regInvContainer = new RegInvContainerHandler();
     let invModel: IRegInvModel;
     invModel = { batchIDs: [this.recordDetailView.slectedBatchId], isBulkContainerCreation: false };
     regInvContainer.createContainer(invModel);

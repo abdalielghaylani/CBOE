@@ -1,5 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef, ElementRef, ViewChild, Input } from '@angular/core';
 import { DxDataGridComponent } from 'devextreme-angular';
+import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
+
 @Component({
   selector: 'inventory-containers-form-group-item-view',
   template: require('./inventory-containers-form-group-item-view.component.html'),
@@ -10,12 +12,14 @@ import { DxDataGridComponent } from 'devextreme-angular';
 export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   private gridHeight: string;
+  private invHandler = new RegInvContainerHandler();
   @Input() invContainers: any[];
   private columns = [{
     dataField: 'id',
     caption: 'ID',
     dataType: 'string',
-    allowEditing: false
+    allowEditing: false,
+    cellTemplate: 'containerCellTemplate'
   }, {
     dataField: 'qtyAvailable',
     caption: 'Qty Available',
@@ -42,7 +46,15 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
     caption: 'Reg Number',
     dataType: 'string',
     allowEditing: false
-  }];
+  }, {
+    dataField: '',
+    caption: 'Request from Container',
+    dataType: 'string',
+    alignment: 'center',
+    cellTemplate: 'containerRequestCellTemplate',
+    allowEditing: false
+  }
+];
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -94,5 +106,13 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   }
 
   private onCellPrepared(e) {
+  }
+
+  private viewContainerDetails(d) {
+    this.invHandler.openContainerPopup(d.data.idUrl.split('\"')[1].substr(1), `Container Info`, null);
+  }
+
+  private requestFromContainer(d) {
+    this.invHandler.openContainerPopup(d.data.requestFromContainerURL.substr(1), `Get Container Samples`, null);
   }
 };

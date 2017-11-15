@@ -12,7 +12,7 @@ import { notifyError, notifyException, notifySuccess } from '../../../../common'
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
 import { RegFormGroupItemBase } from '../form-group-item-base';
 import { IRegInvModel } from '../../registry.types';
-import { RegInvContainerCreator } from '../../create-inventory-container/create-inventory-container';
+import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
 
 @Component({
   selector: 'reg-form-group-item-view',
@@ -142,7 +142,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   }
 
   private createInvContainer() {
-    let regInvContainer = new RegInvContainerCreator();
+    let regInvContainer = new RegInvContainerHandler();
     this.invModel = { batchIDs: [this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID], isBulkContainerCreation: false };
     regInvContainer.createContainer(this.invModel);
   }

@@ -26,7 +26,7 @@ import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
 import { RegistryActions, RegistrySearchActions } from '../../redux';
 import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings } from '../../redux';
-import { RegInvContainerCreator } from './create-inventory-container/create-inventory-container';
+import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
 
 declare var jQuery: any;
 
@@ -679,7 +679,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   createBulkContainers() {
-    let regInvContainer = new RegInvContainerCreator();
+    let regInvContainer = new RegInvContainerHandler();
     let invModel: IRegInvModel;
     invModel = { batchIDs: this.selectedRows.map(({ ID }) => ID), isBulkContainerCreation: true };
     regInvContainer.createContainer(invModel);
