@@ -32,6 +32,14 @@
   background-color: lightgray;
 }
 
+.container-info {
+  margin-top: 15px;
+  font-size: 13px;
+  width: 97%;
+  color: gray;
+  margin-left: 14.28%;
+}
+
 /* Following Fixes are For IE */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
