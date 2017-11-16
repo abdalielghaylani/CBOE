@@ -180,8 +180,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return new JObject(
                 new JProperty(Resource.Support_Label_Text, Resource.SupportContent_Label_Text),
                 new JProperty(Resource.Orders_Label_Text, Resource.OrdersContent_Label_Text),
-                new JProperty(Resource.Version_Label_Text, string.Format(Resource.VersionContent_Label_Text, CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetFrameworkFileVersion(),
-                                                                        CambridgeSoft.COE.Registration.Services.Common.RegSvcUtilities.GetFileVersion()))
+                new JProperty(Resource.Version_Label_Text, string.Format(Resource.VersionContent_Label_Text,
+                    CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetFrameworkFileVersion(),
+                    CambridgeSoft.COE.Registration.Services.Common.RegSvcUtilities.GetFileVersion()))
             );
         }
 

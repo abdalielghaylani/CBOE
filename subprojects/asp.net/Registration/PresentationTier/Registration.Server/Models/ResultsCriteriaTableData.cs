@@ -26,7 +26,6 @@ namespace PerkinElmer.COE.Registration.Server.Models
             MimeType = mimeType;
         }
 
-
         /// <summary>
         /// Gets or sets the tableId
         /// </summary>
