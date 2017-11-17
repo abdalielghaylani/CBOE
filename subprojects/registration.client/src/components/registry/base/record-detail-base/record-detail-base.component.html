@@ -7,3 +7,6 @@
 </reg-alert>
 <reg-form-group-view (batchValueChanged)="onBatchValueChanged($event)" (valueUpdated)="onValueUpdated($event)" [id]="viewId" [viewConfig]="viewGroupContainers" [viewModel]="regRecord" [activated]="activated" [editMode]="editMode" [displayMode]="displayMode" [updatable]="updatable" [invIntegrationEnabled]="invIntegrationEnabled"
   [invContainers]="invContainers"></reg-form-group-view>
+<dx-load-panel [position]="{at: 'center'}" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true"
+[shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

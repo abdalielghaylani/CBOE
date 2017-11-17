@@ -43,9 +43,10 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   protected regRecord: CRegistryRecord = new CRegistryRecord();
   protected formGroup: IFormGroup;
   protected viewGroupContainers: CViewGroupContainer[];
+  private loadingVisible: boolean = false;
   protected validationError: { isvalid: boolean, errorMessages: string[] } = { isvalid: true, errorMessages: [] };
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
-  
+
   constructor(
     protected ngRedux: NgRedux<IAppState>,
     protected actions: RecordDetailActions,
@@ -154,6 +155,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     let viewGroups = lookups ? CViewGroup.getViewGroups(this.temporary, this.formGroup, this.displayMode, lookups.disabledControls) : [];
     this.viewGroupContainers = this.createViewGroupContainers(viewGroups);
     this.contentReady.emit({ component: this, data: data });
+    this.loadingVisible = false;
     this.changeDetector.markForCheck();
   }
 
@@ -184,6 +186,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   onBatchValueChanged(e) {
+    this.loadingVisible = true;
     this.actions.retrieveRecord(this.temporary, this.template, this.id);
     if (!this.dataSubscription) {
       this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));

@@ -33,6 +33,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   private createContainerButtonEnabled: boolean = false;
   private invModel: IRegInvModel;
   private selectedBatchId: number;
+  private loadingVisible: boolean = false;
 
   constructor(private ngRedux: NgRedux<IAppState>,
     private http: HttpService,
@@ -118,15 +119,18 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   }
 
   protected onBatchCreated(e) {
+    this.loadingVisible = true;
     let regNum = this.viewModel.RegNumber.RegNumber;
     let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
     this.http.post(url, e).toPromise()
       .then(res => {
         this.batchValueChanged.emit(e);
         notifySuccess(`The batch created successfully!`, 2000);
+        this.loadingVisible = false;
       })
       .catch(error => {
         notifyException(`The batch was not created due to a problem`, error, 5000);
+        this.loadingVisible = false;
       });
   }
 
