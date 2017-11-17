@@ -27,6 +27,6 @@
     <a target="_blank" href="{{data.editorOptions.value}}">{{data.editorOptions.value}}</a>
   </div>
   <div *dxTemplate="let data of 'checkBoxTemplate'">
-    <dx-check-box [value]="data.editorOptions.value === 'T'"></dx-check-box>
+    <reg-check-box-form-item-template [editMode]="editMode" [viewModel]="data"></reg-check-box-form-item-template>
   </div>
 </dx-form>

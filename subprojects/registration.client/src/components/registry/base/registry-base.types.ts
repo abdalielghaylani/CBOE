@@ -139,7 +139,8 @@ export class CViewGroup implements IViewGroup {
     } else if (fe.displayInfo.type.endsWith('COEFragments')) {
       item.template = 'fragmentsTemplate';
       item.colSpan = 5;
-    } else if (fe.displayInfo.type.endsWith('COECheckBox')) {
+    } else if (fe.displayInfo.type.endsWith('COECheckBox') ||
+      fe.displayInfo.type.endsWith('COECheckBoxReadOnly')) {
       item.template = 'checkBoxTemplate';
     }
     if (!item.template) {
@@ -480,7 +481,8 @@ export class CViewGroup implements IViewGroup {
                         batchColumns.push(col);
                       } else {
                         columns.push(col);
-                    }}
+                      }
+                    }
                   }
                 });
               }

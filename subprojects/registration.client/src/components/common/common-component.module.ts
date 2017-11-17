@@ -32,6 +32,7 @@ import { RegForm, RegFormGroup, RegFormError, RegInput, RegInputLogin, RegLabel,
 import { RegModal, RegModalContent } from './modal';
 import { RegBaseColumnItem } from './base-column-item';
 import { RegBaseFormItem } from './base-form-item';
+import { RegCheckBoxFormItem } from './check-box-form-item';
 import { RegDataGridFormItem } from './data-grid-form-item';
 import { RegDateFormItem } from './date-form-item';
 import { RegDropDownColumnItem } from './drop-down-column-item';
@@ -48,6 +49,7 @@ import { CStructureImageService } from './structure-image.service';
 export * from './common.types';
 export * from './base-column-item';
 export * from './base-form-item';
+export * from './check-box-form-item';
 export * from './data-grid-form-item';
 export * from './date-form-item';
 export * from './drop-down-column-item';
@@ -90,7 +92,7 @@ export * from './modal';
     DxTextBoxModule,
     DxValidatorModule,
     RegCommonModule,
-    RegServicesModule
+    RegServicesModule,
   ],
   declarations: [
     ChemDrawWeb,
@@ -99,7 +101,7 @@ export * from './modal';
     RegModal, RegModalContent,
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
-    RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem,
+    RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
     RegStructureImage
   ],
   exports: [
@@ -109,7 +111,7 @@ export * from './modal';
     RegModal, RegModalContent,
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
-    RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem,
+    RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
     RegStructureImage,
     RegCommonModule, RegServicesModule
   ],
