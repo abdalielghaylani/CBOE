@@ -1,14 +1,15 @@
 <div>
-  <dx-data-grid [columns]="columns" [dataSource]="invContainers" rowAlternationEnabled="true" [height]="gridHeight">
+  <dx-data-grid [columns]="columns" [dataSource]="invContainersVM" rowAlternationEnabled="true" [height]="gridHeight">
     <dxo-sorting mode="single"></dxo-sorting>
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-filter-row [visible]="invContainersVM.length > 4"></dxo-filter-row>
     <dxo-selection mode="single"></dxo-selection>
-      <div *dxTemplate="let data of 'containerCellTemplate'">
-        <div class="dx-link" (click)="viewContainerDetails(data)"><strong>{{data.value}}</strong></div>
-      </div>
-      <div *dxTemplate="let data of 'containerRequestCellTemplate'">
-        <i (click)="requestFromContainer(data)" class="fa fa-flask fa-lg dx-link" aria-hidden="true"></i>
-      </div>
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <div *dxTemplate="let data of 'containerCellTemplate'">
+      <div class="dx-link" (click)="viewContainerDetails(data)"><strong>{{data.value}}</strong></div>
+    </div>
+    <div *dxTemplate="let data of 'containerRequestCellTemplate'">
+      <i (click)="requestFromContainer(data)" class="fa fa-flask fa-lg dx-link" aria-hidden="true"></i>
+    </div>
   </dx-data-grid>
 </div>
 <div>
@@ -17,5 +18,5 @@
       <td>{{numberOfContainers}}</td>
       <td>{{totalQuantityAvailable}}</td>
     </tr>
-  </table> 
+  </table>
 </div>

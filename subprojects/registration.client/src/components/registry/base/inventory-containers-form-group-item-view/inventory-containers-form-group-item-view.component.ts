@@ -13,7 +13,7 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   private gridHeight: string;
   private invHandler = new RegInvContainerHandler();
-  @Input() invContainers: any[];
+  @Input() invContainersVM: any[] = [];
   private columns = [{
     dataField: 'id',
     caption: 'ID',
@@ -54,7 +54,7 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
     cellTemplate: 'containerRequestCellTemplate',
     allowEditing: false
   }
-];
+  ];
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -69,16 +69,16 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   }
 
   private get totalQuantityAvailable(): string {
-    if (this.invContainers && this.invContainers.length > 0) {
-      let invContainer = this.invContainers[0];
+    if (this.invContainersVM && this.invContainersVM.length > 0) {
+      let invContainer = this.invContainersVM[0];
       return `Total Quantity Available:  ${invContainer.totalQtyAvailable}`;
     }
     return '';
   }
 
   private get numberOfContainers(): string {
-    if (this.invContainers) {
-      return `Number of Containers:  ${this.invContainers.length}`;
+    if (this.invContainersVM) {
+      return `Number of Containers:  ${this.invContainersVM.length}`;
     }
     return '';
   }
