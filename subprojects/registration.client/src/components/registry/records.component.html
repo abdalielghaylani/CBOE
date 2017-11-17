@@ -40,7 +40,9 @@
         </dxo-summary>
         <div *dxTemplate="let data of 'batchDetailTemplate'">
             <dx-data-grid id="grdBatchDetailRecords" noDataText="" [columns]="viewGroupsColumns.batchTableColumns" 
-            [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true></dx-data-grid>
+            [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true
+            [filterRow]="{ visible: data.data.BatchDataSource.length > 4 }" 
+            [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'"></dx-data-grid>
         </div>
         <div *dxTemplate="let data of 'toolbarContents'">
           <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
