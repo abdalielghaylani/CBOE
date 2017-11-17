@@ -16,6 +16,7 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Registration;
 using Csla.Validation;
 using CambridgeSoft.COE.Framework.Common.Validation;
+using Resources;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -232,26 +233,57 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             });
         }
 
-        [HttpPut]
-        [Route(Consts.apiPrefix + "batches/{id}")]
-        [SwaggerOperation("UpdateBatch")]
-        [SwaggerResponse(200, type: typeof(ResponseData))]
-        public async Task<IHttpActionResult> UpdateBatch(string regType, JObject data)
+        [HttpPost]
+        [Route(Consts.apiPrefix + "batches/{id}/{sourceRegNum}/{targetRegNum}")]
+        [SwaggerOperation("MoveBatchRecord")]
+        [SwaggerResponse(HttpStatusCode.Created, type: typeof(ResponseData))]
+        [SwaggerResponse(HttpStatusCode.BadRequest, type: typeof(JObject))]
+        [SwaggerResponse(HttpStatusCode.Unauthorized, type: typeof(JObject))]
+        public async Task<IHttpActionResult> MoveBatchRecord(int id, string sourceRegNum, string targetRegNum)
         {
             return await CallMethod(() =>
             {
-                string message = string.Empty;
-                XmlDocument datatoXml = JsonConvert.DeserializeXmlNode(data.ToString(Newtonsoft.Json.Formatting.None));
-                if (regType == "Temp")
+                RegistryRecord sourceRegistryRecord = null;
+                try
                 {
-                    RegDal.UpdateRegistryRecordTemporary(datatoXml.InnerXml, out message);
-                }
-                else if (regType == "Perm")
-                {
-                    RegDal.UpdateRegistryRecord(datatoXml.InnerXml, CambridgeSoft.COE.Registration.DuplicateCheck.CompoundCheck, out message);
-                }
+                    sourceRegistryRecord = RegistryRecord.GetRegistryRecord(sourceRegNum);
+                    if (sourceRegistryRecord == null)
+                        throw new RegistrationException(string.Format("cannot find registry record {0}", sourceRegNum));
 
-                return new ResponseData(null, null, message, null);
+                    RegistryRecord targetRegistryRecord = RegistryRecord.GetRegistryRecord(targetRegNum);
+                    if (targetRegistryRecord == null)
+                        throw new RegistrationException(string.Format("the registry number {0} doesent exist", targetRegNum));
+
+                    if (id == 0)
+                        throw new RegistrationException(string.Format("batch id '{0}' is not valid", targetRegNum));
+
+                    CambridgeSoft.COE.Registration.Services.Types.Batch.MoveBatch(id, targetRegNum);
+
+                    sourceRegistryRecord.BatchList.Remove(sourceRegistryRecord.BatchList.GetBatchById(id));
+                }
+                catch (Exception ex)
+                {
+                    Exception baseEx = ex.GetBaseException();
+                    if (baseEx != null)
+                    {
+                        if (baseEx.Message.Contains("Source_Destination_Match"))
+                        {
+                            throw new RegistrationException(Resource.SourceAndDestinationMatch_ErrorMessage);
+                        }
+                        else if (baseEx.Message.Contains("ORA-20030"))
+                        {
+                            throw new RegistrationException(Resource.CannotMoveBatch_Label_Text);
+                        }
+                        else if (baseEx.Message.Contains("ORA-20037") || baseEx.Message.Contains("ORA-20038") || baseEx.Message.Contains("ORA-20035"))
+                        {
+                            if (sourceRegistryRecord != null)
+                            {
+                                sourceRegistryRecord.BatchList.Remove(sourceRegistryRecord.BatchList.GetBatchById(id));
+                            }
+                        }
+                    }
+                }
+                return new ResponseData(message: string.Format("The batch was successfully moved into Registry Record {0}", targetRegNum));
             });
         }
 
