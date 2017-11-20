@@ -681,7 +681,7 @@ export class RegRecords implements OnInit, OnDestroy {
   createBulkContainers() {
     let regInvContainer = new RegInvContainerHandler();
     let invModel: IRegInvModel;
-    invModel = { batchIDs: this.selectedRows.map(({ ID }) => ID), isBulkContainerCreation: true };
+    invModel = { batchIDs: this.selectedRows.map(({ REGID }) => REGID), isBulkContainerCreation: true };
     regInvContainer.createContainer(invModel);
   }
 
