@@ -38,6 +38,7 @@ export interface ILookupData {
   formGroups?: any[];
   customTables?: any[];
   systemSettings?: ISettingData[];
+  systemInformation?: any;
   addinAssemblies?: any[];
   propertyGroups?: any[];
   homeMenuPrivileges?: any[];

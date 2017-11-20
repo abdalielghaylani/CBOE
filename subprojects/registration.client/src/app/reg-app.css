@@ -207,3 +207,17 @@
   padding-left: 15px;
   padding-right: 15px;
 }
+
+.mt9 {
+  margin-top: 9px;
+}
+
+.about-popup {
+  padding: 15px 20px;
+  color: grey;
+  font-weight: 400;
+}
+
+.row.about-popup div {
+  padding-bottom: 5px;
+}

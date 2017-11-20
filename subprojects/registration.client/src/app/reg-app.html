@@ -6,15 +6,18 @@
     <reg-logo></reg-logo>
   </reg-navigator-header>
   <reg-navigator-items>
-    <!--li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a href="/api/browser" class="text-decoration-none" target="API Browser"><i class="fa fa-wrench fa-lg maroon"></i> API Browser</a>
-    </li-->
-    <li reg-navigator-item *ngIf="loggedIn$ | async">
-      <a [routerLink]="['profile']">
+    <li reg-navigator-item class="mt9" *ngIf="loggedIn$ | async">
         <span class="fa fa-user-circle-o fa-lg #A4AEB5"></span>
         <span class="welcome coolgray text-relaxed">Welcome</span>
         <span class="username black text-relaxed">{{ fullName$ | async }}</span>
-      </a>
+        <span class="btn username black text-relaxed dropdown-toggle" aria-label="dropDownHelp" type="button" data-toggle="dropdown">Help
+          <span class="caret"></span>
+        </span>
+        <ul class="dropdown-menu" aria-labelledby="dropDownHelp">
+          <li><a [href]="helpRedirectLink" target="_blank">User Guide</a></li>
+          <li><a [href]="helpRedirectLink" target="_blank">Admin Guide</a></li>
+        </ul>
+        <span class="username black text-relaxed" (click)="openAboutPopup()">About</span>
     </li>
     <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="sessionActions.logoutUser()"><a data-toggle="tooltip" title="Logout"><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>
   </reg-navigator-items>
@@ -49,4 +52,18 @@
     <router-outlet></router-outlet>
   </div>
 </main>
+<dx-popup [fullScreen]="false" width="450" height="auto" title="About" [shading]="true" 
+  [closeOnOutsideClick]="true" contentTemplate="contentTemplate" [(visible)]="isAboutPopupVisible">
+    <div *dxTemplate="let data of 'contentTemplate'">
+      <div class="row">
+        <div class="col-xs-6 text-left"><reg-logo></reg-logo></div>
+        <div class="col-xs-6 text-right"><reg-login-logo></reg-login-logo></div>
+      </div>
+      <div class="row about-popup">
+        <div class="col-xs-2" [innerHTML]="aboutContent.supportLabelText"></div><div class="col-xs-10" [innerHTML]="aboutContent.supportContentLabelText"></div>
+        <div class="col-xs-2" [innerHTML]="aboutContent.ordersLabelText"></div><div class="col-xs-10" [innerHTML]="aboutContent.ordersContentLabelText"></div>
+        <div class="col-xs-2" [innerHTML]="aboutContent.versionLabelText"></div><div class="col-xs-10" [innerHTML]="aboutContent.versionContentLabelText"></div>
+      </div>
+    </div>
+</dx-popup>
 <reg-footer [cssClass]="this.fullScreenEnabled? 'footer-fullScreen' :'footer'"></reg-footer>
