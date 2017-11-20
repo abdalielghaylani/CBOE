@@ -1069,6 +1069,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             case "URL":
                                 propertyData.Precision = string.Empty;
                                 break;
+                            case "NUMBER":
+                                if (!string.IsNullOrEmpty(propertyData.Precision) && propertyData.Precision.Contains("."))
+                                {
+                                    propertyData.Precision = RegAdminUtils.ConvertPrecision(propertyData.Precision, false);
+                                }                            
+                                break;
                         }
                         propertyData.SortOrder = property.SortOrder;
                         propertyData.SubType = property.SubType;
