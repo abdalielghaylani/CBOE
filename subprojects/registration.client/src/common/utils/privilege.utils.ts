@@ -182,6 +182,11 @@ export class PrivilegeUtils {
     return this.userHasRegAppPrivilege('REGISTER_TEMP', userPrivileges);
   }
 
+  static hasAddBatchPrivilege(userPrivileges: IAppPrivilege[]): boolean {
+    // ADD_BATCH_PERM privilege is required to add a batch
+    return this.userHasRegAppPrivilege('ADD_BATCH_PERM', userPrivileges);
+  }
+
   static hasProjectsTablePrivilege(action: string, userPrivileges: IAppPrivilege[]): boolean {
     let privilege = action === 'ADD' ? 'ADD_PROJECTS_TABLE'
       : action === 'EDIT' ? 'EDIT_PROJECTS_TABLE'

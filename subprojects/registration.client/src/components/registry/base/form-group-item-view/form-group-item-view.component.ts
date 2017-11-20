@@ -163,10 +163,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let lookups = this.ngRedux.getState().session.lookups;
     let systemSettings = new CSystemSettings(lookups.systemSettings);
     this.batchCommandsEnabled = this.viewConfig.subArray != null;
-    this.addBatchEnabled = this.batchCommandsEnabled && !this.editMode && this.updatable;
-    this.deleteBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
+    let canModifyBatch: boolean = this.batchCommandsEnabled && !this.editMode && this.updatable;
+    this.addBatchEnabled = canModifyBatch && PrivilegeUtils.hasAddBatchPrivilege(lookups.userPrivileges);
+    this.deleteBatchEnabled = canModifyBatch && this.viewConfig.subArray.length > 1;
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
-    this.selectBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
+    this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
     this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
   }
 
