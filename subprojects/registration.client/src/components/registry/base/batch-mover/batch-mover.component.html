@@ -1,11 +1,11 @@
 <command-button id="move-batch-command" testid="move-batch-command" (onClick)="showForm($event)" iconName="arrows" title="Move Batch" [pullRight]="false"></command-button>
 <div class="absolute">
-  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Move Batch" [shading]="true" [closeOnOutsideClick]="true"
-    contentTemplate="contentTemplate" [(visible)]="formVisible">
+  <dx-popup showCloseButton=false [fullScreen]="false" width="400" height="auto" title="Move Batch" [shading]="true" [closeOnOutsideClick]="false" [showCloseButton]="false" contentTemplate="contentTemplate" [(visible)]="formVisible">
     <div *dxTemplate="let data of 'contentTemplate'">
-      Not Implemented Yet!
-      <dx-form>
+      <dx-form id="moveBatchForm" labelLocation="left" minColWidth="200" [colCount]="1" [items]="moveBatchItems" [formData]="moveBatchData" (onInitialized)='onBatchMoveFormInit($event)'>
       </dx-form>
+      <command-button testid="move-batch-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel"></command-button>
+      <command-button testid="move-batch-add-button" (onClick)="moveBatch($event)" iconName="plus" title="Move"></command-button>
     </div>
   </dx-popup>
 </div>

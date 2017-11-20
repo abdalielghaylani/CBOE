@@ -1,6 +1,6 @@
 import { IInventoryContainerList } from './../../../../redux/store/registry/registry.types';
 import { PrivilegeUtils } from './../../../../common/utils/privilege.utils';
-import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, ChangeDetectionStrategy, ViewEncapsulation, OnInit } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject, CSearchCriteria } from '../registry-base.types';
 import * as dxDialog from 'devextreme/ui/dialog';
@@ -21,7 +21,7 @@ import { RegInvContainerHandler } from '../../inventory-container-handler/invent
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegFormGroupItemView extends RegFormGroupItemBase {
+export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit {
   @Input() viewModel: CRegistryRecord;
   @Input() invIntegrationEnabled: boolean = false;
   @Input() invContainers: IInventoryContainerList;
@@ -30,6 +30,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
   private addBatchEnabled: boolean = false;
   private moveBatchEnabled: boolean = false;
   private deleteBatchEnabled: boolean = false;
+  private selectBatchEnabled: boolean = false;
   private createContainerButtonEnabled: boolean = false;
   private invModel: IRegInvModel;
   private selectedBatchId: number;
@@ -39,6 +40,12 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     private http: HttpService,
     private changeDetector: ChangeDetectorRef) {
     super();
+  }
+
+  ngOnInit() {
+    if (this.viewModel && this.viewConfig.subArray != null && this.viewModel.BatchList && this.viewConfig.subArray.length > 0) {
+      this.selectedBatchId = Number(this.viewModel.BatchList.Batch[0].BatchID);
+    }
   }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
@@ -134,6 +141,23 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
       });
   }
 
+  protected onBatchMoved(e) {
+    this.loadingVisible = true;
+    let regNum = this.viewModel.RegNumber.RegNumber;
+    let url = `${apiUrlPrefix}/batches/${e.batchId}/${this.viewModel.RegNumber.RegNumber}/${e.targetRegNum}`;
+    this.http.post(url, null).toPromise()
+      .then(res => {
+        this.batchValueChanged.emit(e);
+        notifySuccess(res.json().message, 2000);
+        this.loadingVisible = false;
+      })
+      .catch(error => {
+        notifyException(`The batch was not moved due to a problem`, error, 5000);
+        this.loadingVisible = false;
+      });
+  }
+
+
   protected update() {
     super.update();
     let lookups = this.ngRedux.getState().session.lookups;
@@ -142,6 +166,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase {
     this.addBatchEnabled = this.batchCommandsEnabled && !this.editMode && this.updatable;
     this.deleteBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
+    this.selectBatchEnabled = this.addBatchEnabled && this.viewConfig.subArray.length > 1;
     this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
   }
 
