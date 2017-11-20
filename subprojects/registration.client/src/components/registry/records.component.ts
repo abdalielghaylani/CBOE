@@ -429,7 +429,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   registerMarkedStart(e) {
     let records: string[] = [];
-    this.selectedRows.forEach(v => { records.push(v.ID.toString()); });
+    this.selectedRows.forEach(v => { records.push(v.TEMPBATCHID.toString()); });
     this.registryActions.bulkRegister(
       {
         description: e.description,
