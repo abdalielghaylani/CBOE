@@ -18,7 +18,17 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 var settings = group.Settings;
                 foreach (var setting in settings)
                 {
-                    settingList.Add(new SettingData(group, setting));
+                    if (!(setting.IsHidden.ToLower().Equals(bool.TrueString.ToLower())))
+                    {
+                        if (setting.IsHidden.ToLower().Equals(bool.TrueString.ToLower()))
+                            continue;
+
+                        if ((setting.IsAdmin.Equals(bool.TrueString) && CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetManageConfigurationSettings())
+                        || !setting.IsAdmin.Equals(bool.TrueString))
+                        {
+                            settingList.Add(new SettingData(group, setting));
+                        }
+                    }  
                 }
             }
             return settingList;

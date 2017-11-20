@@ -178,9 +178,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private JObject GetSystemInformation()
         {
             return new JObject(
-                new JProperty(Resource.Support_Label_Text, Resource.SupportContent_Label_Text),
-                new JProperty(Resource.Orders_Label_Text, Resource.OrdersContent_Label_Text),
-                new JProperty(Resource.Version_Label_Text, string.Format(Resource.VersionContent_Label_Text,
+                new JProperty("supportLabelText", Resource.Support_Label_Text),
+                new JProperty("supportContentLabelText", Resource.SupportContent_Label_Text),
+                new JProperty("ordersLabelText", Resource.Orders_Label_Text),
+                new JProperty("ordersContentLabelText", Resource.OrdersContent_Label_Text),
+                new JProperty("versionLabelText", Resource.Version_Label_Text),
+                new JProperty("versionContentLabelText", string.Format(Resource.VersionContent_Label_Text,
                     CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetFrameworkFileVersion(),
                     CambridgeSoft.COE.Registration.Services.Common.RegSvcUtilities.GetFileVersion()))
             );
