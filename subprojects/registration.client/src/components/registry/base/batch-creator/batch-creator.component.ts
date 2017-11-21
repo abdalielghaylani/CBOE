@@ -112,6 +112,7 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
   }
 
   protected showForm(e) {
+    this.update();
     this.formVisible = true;
   }
 
