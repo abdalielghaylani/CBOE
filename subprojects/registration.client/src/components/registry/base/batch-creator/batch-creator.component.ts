@@ -3,6 +3,7 @@ import {
   OnInit, OnDestroy, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
+import validationEngine from 'devextreme/ui/validation_engine';
 import { IAppState, RecordDetailActions, IRecordDetail } from '../../../../redux';
 import { IBatch } from '../../../common';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../../../common';
@@ -117,9 +118,16 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
   }
 
   protected createBatch(e) {
-    this.formVisible = false;
-    let recordJson: any = this.x2jsTool().js2xml(this.regRecord.BatchList);
-    this.onCreated.emit({ 'data': `<BatchList>` + recordJson + `</BatchList>` });
+    if (this.validate().isValid) {
+      this.formVisible = false;
+      let recordJson: any = this.x2jsTool().js2xml(this.regRecord.BatchList);
+      this.onCreated.emit({ 'data': `<BatchList>` + recordJson + `</BatchList>` });
+    }
+  }
+
+  validate() {
+    let result = validationEngine.validateGroup('vg');
+    return result;
   }
 
   protected cancel(e) {

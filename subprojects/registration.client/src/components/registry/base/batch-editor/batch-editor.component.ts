@@ -3,6 +3,7 @@ import {
   OnInit, OnChanges, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
+import validationEngine from 'devextreme/ui/validation_engine';
 import { IAppState, RecordDetailActions, IRecordDetail } from '../../../../redux';
 import { IBatch, CBatch } from '../../../common';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../../../common';
@@ -95,9 +96,16 @@ export class RegBatchEditor implements OnChanges {
   }
 
   protected editBatch(e) {
-    this.formVisible = false;
-    let recordJson: any = this.x2jsTool().js2xml(this.currentBatch);
-    this.onEdit.emit({ 'data': `<BatchList><Batch>` + recordJson + `</Batch></BatchList>` });
+    if (this.validate().isValid) {
+      this.formVisible = false;
+      let recordJson: any = this.x2jsTool().js2xml(this.currentBatch);
+      this.onEdit.emit({ 'data': `<BatchList><Batch>` + recordJson + `</Batch></BatchList>` });
+    }
+  }
+
+  validate() {
+    let result = validationEngine.validateGroup('vg');
+    return result;
   }
 
   protected cancel(e) {
