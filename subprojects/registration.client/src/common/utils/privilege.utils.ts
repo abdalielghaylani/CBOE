@@ -183,8 +183,33 @@ export class PrivilegeUtils {
   }
 
   static hasAddBatchPrivilege(userPrivileges: IAppPrivilege[]): boolean {
-    // ADD_BATCH_PERM privilege is required to add a batch
+    // ADD_BATCH_PERM privilege is required to add a batch 
     return this.userHasRegAppPrivilege('ADD_BATCH_PERM', userPrivileges);
+  }
+
+  static hasDeleteBatchPrivilege(userPrivileges: IAppPrivilege[]): boolean {
+    // DELETE_BATCH_REG privilege is required to delete a batch     
+    if (!this.userHasRegAppPrivilege('DELETE_BATCH_REG', userPrivileges)) {
+      return false;
+    }
+    // if the user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
+    if (this.userHasRegAppPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
+      return true;
+    }
+  }
+
+  static hasEditBatchPrivilege(userPrivileges: IAppPrivilege[]): boolean {
+
+    let hasBaseEditPrivilege = this.userHasRegAppPrivilege('EDIT_COMPOUND_REG', userPrivileges);
+    // base privilege EDIT_COMPOUND_REG is required for editing a compound
+    if (!hasBaseEditPrivilege) {
+      return false;
+    }
+
+    // if the user has EDIT_SCOPE_ALL, he will be able to edit records created by other users
+    if (this.userHasRegAppPrivilege('EDIT_SCOPE_ALL', userPrivileges)) {
+      return true;
+    }
   }
 
   static hasProjectsTablePrivilege(action: string, userPrivileges: IAppPrivilege[]): boolean {

@@ -182,10 +182,12 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     this.batchCommandsEnabled = this.viewConfig.subArray != null;
     let canModifyBatch: boolean = this.batchCommandsEnabled && !this.editMode && this.updatable;
     this.addBatchEnabled = canModifyBatch && PrivilegeUtils.hasAddBatchPrivilege(lookups.userPrivileges);
-    this.deleteBatchEnabled = canModifyBatch && this.viewConfig.subArray.length > 1;
+    this.deleteBatchEnabled = canModifyBatch && this.viewConfig.subArray.length > 1
+      && PrivilegeUtils.hasDeleteBatchPrivilege(lookups.userPrivileges);
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
     this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
-    this.editBatchEnabled = this.selectBatchEnabled && this.addBatchEnabled;
+    this.editBatchEnabled = this.selectBatchEnabled && canModifyBatch
+      && PrivilegeUtils.hasEditBatchPrivilege(lookups.userPrivileges);
     this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
   }
 
