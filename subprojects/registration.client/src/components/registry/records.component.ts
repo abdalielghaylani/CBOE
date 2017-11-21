@@ -536,7 +536,7 @@ export class RegRecords implements OnInit, OnDestroy {
       });
     });
 
-    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=500,width=auto');
     popupWin.document.open();
     popupWin.document.write(`<html>
         <head>
