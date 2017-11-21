@@ -186,6 +186,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         if (errorMessage.EndsWith(".")) errorMessage.Substring(0, errorMessage.Length - 1);
                         errorMessage += " - " + ex.Message;
                     }
+                    if (ex is CambridgeSoft.COE.Framework.ExceptionHandling.COEBusinessLayerException)
+                    {
+                        if (errorMessage.EndsWith(".")) errorMessage = errorMessage.Substring(0, errorMessage.Length - 1);
+
+                        if (ex.GetBaseException() != null)
+                        {
+                            errorMessage += " - " + ex.GetBaseException().Message;
+                        }
+                        else
+                        {
+                            errorMessage += " - " + ex.Message;
+                        }
+                    }
+                    
                     throw new RegistrationException(errorMessage, ex);
                 }
 
