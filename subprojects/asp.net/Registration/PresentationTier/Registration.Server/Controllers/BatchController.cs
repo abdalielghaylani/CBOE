@@ -149,6 +149,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     errorMessage = "Unable to update the internal record.";
                     registryRecord.BatchList.UpdateFromXmlEx(xmlDoc.FirstChild);
+                  
+                    if (registryRecord.BatchList.Count > 0)
+                    {
+                        CambridgeSoft.COE.Registration.Services.Types.Batch firstBatch = registryRecord.BatchList[0];
+                        List<CambridgeSoft.COE.Registration.Services.Types.Batch> modifiedBatchList = (from bl in registryRecord.BatchList
+                                                         where bl.IsDirty == true
+                                                         select bl).ToList();
+                        registryRecord.BatchList.Clear();
+                        if (modifiedBatchList != null && modifiedBatchList.Count > 0)
+                        {
+                            foreach (CambridgeSoft.COE.Registration.Services.Types.Batch batchItem in modifiedBatchList)
+                            {
+                                registryRecord.BatchList.Add(batchItem);
+                            }
+                        }
+                        else
+                        {
+                            // keep at least one batch when there is no modification in batch to avoid exception
+                            registryRecord.BatchList.Add(firstBatch);
+                        }
+                    }
 
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
@@ -176,7 +197,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                     throw new RegistrationException(errorMessage, ex);
                 }
-            });
+            }, new string[] { "ADD_BATCH_PERM" });
         }
 
         [HttpPut]
@@ -284,19 +305,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     }
                 }
                 return new ResponseData(message: string.Format("The batch was successfully moved into Registry Record {0}", targetRegNum));
-            });
+            }, new string[] { "DELETE_BATCH_REG" });
         }
 
         [HttpDelete]
         [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("DeleteBatch")]
-        [SwaggerResponse(200, type: typeof(string))]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
         public async Task<IHttpActionResult> DeleteBatch(int id)
         {
-            CheckAuthentication();
-            CambridgeSoft.COE.Registration.Services.Types.Batch.DeleteBatch(id);
-            var responseMessage = Request.CreateResponse(HttpStatusCode.OK, string.Format("The component #{0} was deleted successfully!", id));
-            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+            return await CallMethod(() =>
+            {
+                CambridgeSoft.COE.Registration.Services.Types.Batch.DeleteBatch(id);
+                return new ResponseData(message: string.Format("The batch #{0} was deleted successfully!", id));
+
+            }, new string[] { "DELETE_BATCH_REG" });
         }
     }
 }

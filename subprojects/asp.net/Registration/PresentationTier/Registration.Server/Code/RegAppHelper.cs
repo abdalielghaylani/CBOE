@@ -18,7 +18,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 var settings = group.Settings;
                 foreach (var setting in settings)
                 {
-                    if (!(setting.IsHidden.ToLower().Equals(bool.TrueString.ToLower())))
+                    if (!setting.IsHidden.ToLower().Equals(bool.TrueString.ToLower()))
                     {
                         if (setting.IsHidden.ToLower().Equals(bool.TrueString.ToLower()))
                             continue;
