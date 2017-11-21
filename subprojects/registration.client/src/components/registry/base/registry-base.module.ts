@@ -20,6 +20,7 @@ import { RegSearchFormView } from './search-form-view';
 import { RegSearchExport } from './search-export';
 import { RegRecordDetailBase } from './record-detail-base';
 import { RegBatchCreator } from './batch-creator';
+import { RegBatchEditor } from './batch-editor';
 import { RegBatchMover } from './batch-mover';
 import { RegBatchSelector } from './batch-selector';
 import { RegBulkRegisterPopup } from './bulk-register-popup';
@@ -59,6 +60,7 @@ export * from './form-group-view';
 export * from './registry-base.types';
 export * from './record-detail-base';
 export * from './batch-creator';
+export * from './batch-editor';
 export * from './batch-mover';
 export * from './batch-selector';
 export * from './search-export';
@@ -93,13 +95,13 @@ export * from './search-export';
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup, RegSearchExport, RegInvContainerHandler,
+    RegRecordDetailBase, RegBatchCreator, RegBatchEditor, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup, RegSearchExport, RegInvContainerHandler,
     InventoryContainersFormGroup, InventoryContainersFormGroupItemView
   ],
   exports: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,
     RegFormView, RegSearchFormView, RegFormGroupView, RegSearchFormGroupView, RegFormGroupItemBase, RegFormGroupItemView, RegSearchFormGroupItemView,
-    RegRecordDetailBase, RegBatchCreator, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup,
+    RegRecordDetailBase, RegBatchCreator, RegBatchEditor, RegBatchMover, RegBatchSelector, RegBulkRegisterPopup,
     RegCommonModule, RegCommonComponentModule, RegSearchExport, RegInvContainerHandler, InventoryContainersFormGroup, InventoryContainersFormGroupItemView
   ]
 })

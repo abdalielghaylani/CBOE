@@ -28,6 +28,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   @Output() batchValueChanged = new EventEmitter<any>();
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
+  private editBatchEnabled: boolean = false;
   private moveBatchEnabled: boolean = false;
   private deleteBatchEnabled: boolean = false;
   private selectBatchEnabled: boolean = false;
@@ -141,6 +142,22 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       });
   }
 
+  onBatchEdit(e) {
+    this.loadingVisible = true;
+    let regNum = this.viewModel.RegNumber.RegNumber;
+    let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
+    this.http.put(url, e).toPromise()
+      .then(res => {
+        this.batchValueChanged.emit(e);
+        notifySuccess(`The batch updated successfully!`, 2000);
+        this.loadingVisible = false;
+      })
+      .catch(error => {
+        notifyException(`The batch was not updated due to a problem`, error, 5000);
+        this.loadingVisible = false;
+      });
+  }
+
   protected onBatchMoved(e) {
     this.loadingVisible = true;
     let regNum = this.viewModel.RegNumber.RegNumber;
@@ -168,6 +185,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     this.deleteBatchEnabled = canModifyBatch && this.viewConfig.subArray.length > 1;
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
     this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
+    this.editBatchEnabled = this.selectBatchEnabled && this.addBatchEnabled;
     this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
   }
 

@@ -1,0 +1,12 @@
+<command-button id="add-batch-command" testid="edit-batch-command" (onClick)="showForm($event)" iconName="edit" title="Edit Batch" [pullRight]="false"></command-button>
+<div class="absolute">
+  <dx-popup showCloseButton=false [fullScreen]="false" width="900" height="auto" title="Edit Batch" [shading]="true" [closeOnOutsideClick]="false"
+    contentTemplate="contentTemplate" [(visible)]="formVisible">
+    <div *dxTemplate="let data of 'contentTemplate'">
+      <reg-form-view *ngIf="formVisible" [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="true" [editMode]="true" [colCount]="colCount"></reg-form-view>
+      <command-button testid="edit-batch-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel"></command-button>
+      <command-button testid="edit-batch-add-button" (onClick)="editBatch($event)" iconName="floppy-o" title="Save"></command-button>
+      <div style="height:32px"></div>
+    </div>
+  </dx-popup>
+</div>
