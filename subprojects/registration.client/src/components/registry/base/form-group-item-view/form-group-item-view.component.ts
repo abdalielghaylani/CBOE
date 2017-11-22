@@ -108,9 +108,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       this.http.delete(url).toPromise()
         .then(res => {
           notifySuccess(`The batch was deleted successfully!`, 2000);
-          this.viewModel.BatchList.Batch.splice(this.viewConfig.subIndex, 1);
-          this.viewConfig.subArray = this.viewModel.BatchList.Batch;
-          this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
+          this.removeBatchItem();     
           this.setLoadingVisible(false);
         })
         .catch(error => {       
@@ -164,7 +162,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/batches/${e.batchId}/${this.viewModel.RegNumber.RegNumber}/${e.targetRegNum}`;
     this.http.post(url, null).toPromise()
       .then(res => {
-        this.batchValueChanged.emit(e);     
+        this.removeBatchItem();     
         notifySuccess(res.json().message, 2000);
         this.setLoadingVisible(false);
       })
@@ -172,6 +170,13 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
         notifyException(`The batch was not moved due to a problem`, error, 5000);
         this.setLoadingVisible(false);
       });
+  }
+
+  private removeBatchItem() {
+    this.viewModel.BatchList.Batch.splice(this.viewConfig.subIndex, 1);
+    this.viewConfig.subArray = this.viewModel.BatchList.Batch;
+    this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
+    this.update();
   }
 
   private setLoadingVisible(visible: boolean) {
