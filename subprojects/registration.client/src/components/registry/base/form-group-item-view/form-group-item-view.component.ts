@@ -106,16 +106,18 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     } else {
       let batch = this.viewConfig.subArray[this.viewConfig.subIndex] as IBatch;
       let url = `${apiUrlPrefix}batches/${batch.BatchID}`;
+      this.loadingVisible = true;
       this.http.delete(url).toPromise()
         .then(res => {
           notifySuccess(`The batch was deleted successfully!`, 2000);
           this.viewModel.BatchList.Batch.splice(this.viewConfig.subIndex, 1);
           this.viewConfig.subArray = this.viewModel.BatchList.Batch;
           this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
-          this.changeDetector.markForCheck();
+          this.setLoadingVisible(false);
         })
-        .catch(error => {
+        .catch(error => {       
           notifyException(`The batch was not deleted due to a problem`, error, 5000);
+          this.setLoadingVisible(false);
         });
     }
   }
@@ -132,13 +134,13 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
     this.http.post(url, e).toPromise()
       .then(res => {
-        this.batchValueChanged.emit(e);
+        this.batchValueChanged.emit(e);      
         notifySuccess(`The batch created successfully!`, 2000);
-        this.loadingVisible = false;
+        this.setLoadingVisible(false);
       })
-      .catch(error => {
+      .catch(error => {      
         notifyException(`The batch was not created due to a problem`, error, 5000);
-        this.loadingVisible = false;
+        this.setLoadingVisible(false);
       });
   }
 
@@ -148,13 +150,13 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
     this.http.put(url, e).toPromise()
       .then(res => {
-        this.batchValueChanged.emit(e);
+        this.batchValueChanged.emit(e);       
         notifySuccess(`The batch updated successfully!`, 2000);
-        this.loadingVisible = false;
+        this.setLoadingVisible(false);
       })
       .catch(error => {
         notifyException(`The batch was not updated due to a problem`, error, 5000);
-        this.loadingVisible = false;
+        this.setLoadingVisible(false);
       });
   }
 
@@ -164,16 +166,20 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/batches/${e.batchId}/${this.viewModel.RegNumber.RegNumber}/${e.targetRegNum}`;
     this.http.post(url, null).toPromise()
       .then(res => {
-        this.batchValueChanged.emit(e);
+        this.batchValueChanged.emit(e);     
         notifySuccess(res.json().message, 2000);
-        this.loadingVisible = false;
+        this.setLoadingVisible(false);
       })
       .catch(error => {
         notifyException(`The batch was not moved due to a problem`, error, 5000);
-        this.loadingVisible = false;
+        this.setLoadingVisible(false);
       });
   }
 
+  private setLoadingVisible(visible: boolean) {
+    this.loadingVisible = visible;
+    this.changeDetector.markForCheck();
+  }
 
   protected update() {
     super.update();
