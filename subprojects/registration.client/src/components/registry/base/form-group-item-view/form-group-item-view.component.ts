@@ -195,7 +195,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       && PrivilegeUtils.hasDeleteBatchPrivilege(lookups.userPrivileges);
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
     this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
-    this.editBatchEnabled = this.selectBatchEnabled && canModifyBatch
+    this.editBatchEnabled = this.batchCommandsEnabled && canModifyBatch
       && PrivilegeUtils.hasEditBatchPrivilege(lookups.userPrivileges);
     this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
   }
