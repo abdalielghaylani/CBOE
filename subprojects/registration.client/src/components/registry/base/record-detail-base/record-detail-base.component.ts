@@ -308,7 +308,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       : this.getElementValue(this.recordDoc.documentElement, 'RegNumber/RegNumber');
   }
 
-  public get slectedBatchId(): string {
+  public get selectedBatchId(): string {
     return this.temporary ? '' : this.regRecord.BatchList.Batch[0].BatchID;
   }
 

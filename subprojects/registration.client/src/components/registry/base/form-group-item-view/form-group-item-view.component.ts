@@ -11,7 +11,6 @@ import { IViewControl, IPropertyList, IBatch } from '../../../common';
 import { notifyError, notifyException, notifySuccess } from '../../../../common';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
 import { RegFormGroupItemBase } from '../form-group-item-base';
-import { IRegInvModel } from '../../registry.types';
 import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
 
 @Component({
@@ -33,7 +32,6 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   private deleteBatchEnabled: boolean = false;
   private selectBatchEnabled: boolean = false;
   private createContainerButtonEnabled: boolean = false;
-  private invModel: IRegInvModel;
   private selectedBatchId: number;
   private loadingVisible: boolean = false;
 
@@ -199,8 +197,10 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   private createInvContainer() {
     let regInvContainer = new RegInvContainerHandler();
-    this.invModel = { batchIDs: [this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID], isBulkContainerCreation: false };
-    regInvContainer.createContainer(this.invModel);
+    let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
+    systemSettings.isInventoryUseFullContainerForm 
+    ? regInvContainer.openCreateContainerDetailView(this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID)
+    : regInvContainer.openCreateContainerListView([this.viewModel.RegNumber.RegID]);
   }
 
   private get batchContainers(): any[] {

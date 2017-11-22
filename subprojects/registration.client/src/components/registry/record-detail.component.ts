@@ -25,7 +25,7 @@ import { basePath, apiUrlPrefix } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
-import { RegistryStatus, IRegInvModel } from './registry.types';
+import { RegistryStatus } from './registry.types';
 import { CFragment } from '../common';
 import { PrivilegeUtils } from '../../common';
 import { CSystemSettings, ISaveResponseData } from '../../redux';
@@ -518,9 +518,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private createInvContainer() {
     let regInvContainer = new RegInvContainerHandler();
-    let invModel: IRegInvModel;
-    invModel = { batchIDs: [this.recordDetailView.slectedBatchId], isBulkContainerCreation: false };
-    regInvContainer.createContainer(invModel);
+    let systemSettings = new CSystemSettings(this.getLookup('systemSettings'));
+    systemSettings.isInventoryUseFullContainerForm
+    ? regInvContainer.openCreateContainerDetailView(this.recordDetailView.selectedBatchId)
+    : regInvContainer.openCreateContainerListView([this.recordDetailView.id.toString()]);
   }
 
 };

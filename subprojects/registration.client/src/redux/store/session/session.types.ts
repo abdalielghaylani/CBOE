@@ -96,6 +96,11 @@ export class CSystemSettings {
     return setting.value === 'Enabled' ? true : false;
   }
 
+  public get isInventoryUseFullContainerForm(): boolean {
+    let setting: ISettingData = this.getSetting('Inventory', 'UseFullContainerForm');
+    return setting.value === 'True' ? true : false;
+  }
+
   public get reviewRegisterSearchFormGroupId(): number {
     return +this.getSetting('Search', 'ReviewRegisterSearchFormGroupId');
   }

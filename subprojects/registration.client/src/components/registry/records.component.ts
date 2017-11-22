@@ -18,7 +18,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { CViewGroup, CViewGroupColumns } from './base';
 import { FormGroupType, prepareFormGroupData, IFormGroup, notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData, IRegInvModel } from './registry.types';
+import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, apiUrlPrefix } from '../../configuration';
 import { HttpService } from '../../services';
@@ -680,9 +680,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   createBulkContainers() {
     let regInvContainer = new RegInvContainerHandler();
-    let invModel: IRegInvModel;
-    invModel = { batchIDs: this.selectedRows.map(({ REGID }) => REGID), isBulkContainerCreation: true };
-    regInvContainer.createContainer(invModel);
+    regInvContainer.openCreateContainerListView(this.selectedRows.map(({ REGID }) => REGID));
   }
 
 };
