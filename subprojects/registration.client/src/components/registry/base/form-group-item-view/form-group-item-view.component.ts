@@ -207,7 +207,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let batchId = this.selectedBatchId ? this.selectedBatchId : 0;
     let batch = null;
     if (batchId > 0) {
-      batch = this.viewConfig.subArray.find(b => b.BatchID === batchId) as IBatch;
+      batch = this.viewConfig.subArray.find(b => b.BatchID === batchId.toString()) as IBatch;
     } else {
       batch = this.viewModel.BatchList.Batch[batchId];
     }
