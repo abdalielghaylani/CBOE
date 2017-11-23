@@ -27,6 +27,7 @@ import { PrivilegeUtils } from '../../common';
 import { RegistryActions, RegistrySearchActions } from '../../redux';
 import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings } from '../../redux';
 import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
+import * as dxDialog from 'devextreme/ui/dialog';
 
 declare var jQuery: any;
 
@@ -681,10 +682,15 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private approveMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
-      let ids: number[] = this.selectedRows.map(r => r[this.idField]);
-      let succeeded: number[] = [];
-      let failed: number[] = [];
-      this.approveRows(ids, failed, succeeded);
+      let dialogResult = dxDialog.confirm(
+        `Alert: Are you sure you want to approve the marked registries?`,
+        'Confirm Approval');
+      dialogResult.done(res => {
+        let ids: number[] = this.selectedRows.map(r => r[this.idField]);
+        let succeeded: number[] = [];
+        let failed: number[] = [];
+        this.approveRows(ids, failed, succeeded);
+      });
     }
   }
 
