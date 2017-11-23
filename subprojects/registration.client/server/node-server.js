@@ -18,7 +18,7 @@ let users;
  */
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000;
 
 authPassport.readUsers()
   .then( (_users) => {

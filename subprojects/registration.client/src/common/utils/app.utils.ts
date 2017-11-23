@@ -6,10 +6,14 @@ export function getExceptionMessage(baseMessage: string, error): string {
   let errorResult;
   let reason: string;
   if (error._body) {
-    errorResult = JSON.parse(error._body);
-    reason = errorResult.Message;
-    if (reason.endsWith('!')) {
-      reason = reason.substring(0, reason.length - 1);
+    try {
+      errorResult = JSON.parse(error._body);
+      reason = errorResult.Message;
+      if (reason.endsWith('!')) {
+        reason = reason.substring(0, reason.length - 1);
+      }
+    } catch (e) {
+      // Ignore JSON parse error, in case the error message is due to login failure
     }
   }
   return baseMessage + ((reason) ? ': ' + reason : '!');

@@ -121,6 +121,7 @@ const baseConfig = {
       index: basePath,
     },
     proxy: Object.assign({}, proxy(), proxySettings),
+    port: process.env.PORT || 8080,
   },
 
   module: {
