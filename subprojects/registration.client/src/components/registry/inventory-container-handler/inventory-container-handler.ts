@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 import * as dxDialog from 'devextreme/ui/dialog';
-import { invIntegrationBasePath } from '../../../configuration';
+import { invIntegrationBasePath, invNormalWindowParams } from '../../../configuration';
 
 export class RegInvContainerHandler {
 
@@ -11,26 +11,15 @@ export class RegInvContainerHandler {
   constructor() {
   }
 
-  public openCreateContainerDetailView(RegBatchId: string) {
-    let invUrlSection = `cheminv/gui/CreateOrEditContainer.asp?GetData=new&vRegBatchID=${RegBatchId}&RefreshOpenerLocation=true`;
-    this.openContainerPopup(invUrlSection, 'Create New Container', null);
-  }
-
-  public openCreateContainerListView(RegIds: string[]) {
-    let invUrlSection = `cheminv/gui/ImportFromChemReg.asp?RegIDList=${RegIds.join()}&OpenAsModalFrame=true`;
-    let windowParams = `width=1100,height=700`;
-    this.openContainerPopup(invUrlSection, 'Create New Container', windowParams);
-  }
-
   private isBrowserIE() {
     return (!!navigator.userAgent.match(/Trident/g)
       || !!navigator.userAgent.match(/MSIE/g));
   }
 
-  public openContainerPopup(url, title, params) {
+  public openContainerPopup(url: string, params: string) {
     if (!this.isBrowserIE()) { dxDialog.alert(this.warningText, `Warning`); return; }
-    let windowParams = params ? params : `width=800,height=700`;
-    window.open((invIntegrationBasePath + url), title, windowParams);
+    let windowParams = params ? params : invNormalWindowParams;
+    window.open((invIntegrationBasePath + url), '_blank', windowParams);
     window.opener = null;
   }
 

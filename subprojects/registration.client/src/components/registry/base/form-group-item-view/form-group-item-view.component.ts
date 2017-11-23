@@ -6,7 +6,7 @@ import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEnt
 import * as dxDialog from 'devextreme/ui/dialog';
 import { IAppState, CSystemSettings } from '../../../../redux';
 import { HttpService } from '../../../../services';
-import { basePath, apiUrlPrefix } from '../../../../configuration';
+import { basePath, apiUrlPrefix, invWideWindowParams } from '../../../../configuration';
 import { IViewControl, IPropertyList, IBatch } from '../../../common';
 import { notifyError, notifyException, notifySuccess } from '../../../../common';
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
@@ -221,9 +221,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   private createInvContainer() {
     let regInvContainer = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
-    systemSettings.isInventoryUseFullContainerForm
-      ? regInvContainer.openCreateContainerDetailView(this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID)
-      : regInvContainer.openCreateContainerListView([this.viewModel.RegNumber.RegID]);
+    systemSettings.isInventoryUseFullContainerForm 
+    ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
+      this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID + `&RefreshOpenerLocation=false`), null)
+    : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
+      this.viewModel.RegNumber.RegID + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
 
   private get batchContainers(): any[] {

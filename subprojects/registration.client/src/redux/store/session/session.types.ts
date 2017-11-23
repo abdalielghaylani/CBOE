@@ -101,6 +101,16 @@ export class CSystemSettings {
     return setting.value === 'True' ? true : false;
   }
 
+  public get invSendToInventoryURL(): string {
+    let setting: ISettingData = this.getSetting('Inventory', 'SendToInventoryURL');
+    return setting.value ? setting.value : '';
+  }
+
+  public get invNewContainerURL(): string {
+    let setting: ISettingData = this.getSetting('Inventory', 'NewContainerURL');
+    return setting.value ? setting.value : '';
+  }
+
   public get reviewRegisterSearchFormGroupId(): number {
     return +this.getSetting('Search', 'ReviewRegisterSearchFormGroupId');
   }

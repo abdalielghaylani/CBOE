@@ -20,7 +20,7 @@ import { FormGroupType, prepareFormGroupData, IFormGroup, notify, notifyError, n
 import * as regSearchTypes from './registry-search.types';
 import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
-import { fetchLimit, apiUrlPrefix } from '../../configuration';
+import { fetchLimit, apiUrlPrefix, invWideWindowParams } from '../../configuration';
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
@@ -71,7 +71,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private idField;
   private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
-  
+
   constructor(
     private router: Router,
     private http: HttpService,
@@ -290,6 +290,17 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  onBatchCellPrepared(e) {
+    if (e.rowType === 'data' && e.column.command === 'edit') {
+      let isEditing = e.row.isEditing;
+      let $links = e.cellElement.find('.dx-link');
+      $links.text('');
+      let $editIcon = $links.filter('.dx-link-edit');
+      $editIcon.addClass('fa fa-flask fa-2');
+      $editIcon.attr({ 'data-toggle': 'tootip', 'title': 'Create Container' });
+    }
+  }
+
   onToolbarPreparing(e) {
     e.toolbarOptions.items.unshift({
       location: 'before',
@@ -318,6 +329,17 @@ export class RegRecords implements OnInit, OnDestroy {
     e.cancel = true;
     let id = e.data[this.idField];
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}/${id}`]);
+  }
+
+  onEditingBatchGridStart(e) {
+    e.cancel = true;
+    let invContainerHandler = new RegInvContainerHandler();
+    let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
+    systemSettings.isInventoryUseFullContainerForm
+    ? invContainerHandler.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
+      e.data.BATCHID + `&RefreshOpenerLocation=false`), null)
+    : invContainerHandler.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
+      e.data.REGID + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
 
   onRowRemoving(e) {
@@ -595,11 +617,8 @@ export class RegRecords implements OnInit, OnDestroy {
 
   // set create container button visibility
   private get createContainersEnabled(): boolean {
-    return (this.selectedRows && this.selectedRows.length > 0)
-      ? (!this.temporary 
-          && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
-          && PrivilegeUtils.hasCreateContainerPrivilege(this.lookups.userPrivileges)
-      : false;      
+    return ((!this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
+            && PrivilegeUtils.hasCreateContainerPrivilege(this.lookups.userPrivileges)) ? true : false;
   }
 
   private get filterRowEnabled(): boolean {
@@ -680,7 +699,9 @@ export class RegRecords implements OnInit, OnDestroy {
 
   createBulkContainers() {
     let regInvContainer = new RegInvContainerHandler();
-    regInvContainer.openCreateContainerListView(this.selectedRows.map(({ REGID }) => REGID));
+    let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
+    regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
+      this.selectedRows.map(({ REGID }) => REGID).join() + `&OpenAsModalFrame=false`), invWideWindowParams);
   }
 
 };

@@ -109,10 +109,10 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   }
 
   private viewContainerDetails(d) {
-    this.invHandler.openContainerPopup(d.data.idUrl.split('\"')[1].substr(1), `Container Info`, null);
+    this.invHandler.openContainerPopup(d.data.idUrl.split('\"')[1], null);
   }
 
   private requestFromContainer(d) {
-    this.invHandler.openContainerPopup(d.data.requestFromContainerURL.substr(1), `Get Container Samples`, null);
+    this.invHandler.openContainerPopup(d.data.requestFromContainerURL, null);
   }
 };

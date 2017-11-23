@@ -21,7 +21,7 @@ import { IResponseData, ITemplateData, CTemplateData, ICopyActions } from './reg
 import { DxFormComponent } from 'devextreme-angular';
 import DxForm from 'devextreme/ui/form';
 import { IRegistryRecord, CRegistryRecord, CViewGroup, RegRecordDetailBase } from './base';
-import { basePath, apiUrlPrefix } from '../../configuration';
+import { basePath, apiUrlPrefix, invWideWindowParams } from '../../configuration';
 import { FormGroupType, IFormContainer, getFormGroupData, notifyError, notifyException, notifySuccess } from '../../common';
 import { HttpService } from '../../services';
 import { RegTemplates } from './templates.component';
@@ -520,8 +520,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     let regInvContainer = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.getLookup('systemSettings'));
     systemSettings.isInventoryUseFullContainerForm
-    ? regInvContainer.openCreateContainerDetailView(this.recordDetailView.selectedBatchId)
-    : regInvContainer.openCreateContainerListView([this.recordDetailView.id.toString()]);
+    ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
+      this.recordDetailView.selectedBatchId + `&RefreshOpenerLocation=false`), null)
+    : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
+      this.recordDetailView.id + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
 
 };
