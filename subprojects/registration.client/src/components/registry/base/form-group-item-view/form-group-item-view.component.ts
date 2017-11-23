@@ -24,6 +24,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   @Input() viewModel: CRegistryRecord;
   @Input() invIntegrationEnabled: boolean = false;
   @Input() invContainers: IInventoryContainerList;
+  @Input() isLoggedInUserRecordSuperVisor: boolean = false;
   @Output() batchValueChanged = new EventEmitter<any>();
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
@@ -108,10 +109,10 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       this.http.delete(url).toPromise()
         .then(res => {
           notifySuccess(`The batch was deleted successfully!`, 2000);
-          this.removeBatchItem();     
+          this.removeBatchItem();
           this.setLoadingVisible(false);
         })
-        .catch(error => {       
+        .catch(error => {
           notifyException(`The batch was not deleted due to a problem`, error, 5000);
           this.setLoadingVisible(false);
         });
@@ -120,8 +121,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   protected onBatchSelected(batchId) {
     this.viewConfig.subIndex = this.viewConfig.subArray.findIndex(b => b.BatchID === batchId);
-    this.updateBatch();
     this.selectedBatchId = batchId;
+    this.setBatchDisplayModeInRecordEditMode();
+    this.updateBatch();
   }
 
   protected onBatchCreated(e) {
@@ -130,11 +132,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
     this.http.post(url, e).toPromise()
       .then(res => {
-        this.batchValueChanged.emit(e);      
+        this.batchValueChanged.emit(e);
         notifySuccess(`The batch created successfully!`, 2000);
         this.setLoadingVisible(false);
       })
-      .catch(error => {      
+      .catch(error => {
         notifyException(`The batch was not created due to a problem`, error, 5000);
         this.setLoadingVisible(false);
       });
@@ -146,7 +148,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
     this.http.put(url, e).toPromise()
       .then(res => {
-        this.batchValueChanged.emit(e);       
+        this.batchValueChanged.emit(e);
         notifySuccess(`The batch updated successfully!`, 2000);
         this.setLoadingVisible(false);
       })
@@ -162,7 +164,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/batches/${e.batchId}/${this.viewModel.RegNumber.RegNumber}/${e.targetRegNum}`;
     this.http.post(url, null).toPromise()
       .then(res => {
-        this.removeBatchItem();     
+        this.removeBatchItem();
         notifySuccess(res.json().message, 2000);
         this.setLoadingVisible(false);
       })
@@ -186,37 +188,70 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   protected update() {
     super.update();
+    this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
     let lookups = this.ngRedux.getState().session.lookups;
     let systemSettings = new CSystemSettings(lookups.systemSettings);
     this.batchCommandsEnabled = this.viewConfig.subArray != null;
+    this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
+    let isLoggedUserBatchOwner: boolean = false;
+    if (this.viewConfig.subArray != null) {
+      let batch: IBatch = this.getSelectedBatch();
+      isLoggedUserBatchOwner = this.isLoggedInUserBatchOwner(batch);
+    }
     let canModifyBatch: boolean = this.batchCommandsEnabled && !this.editMode && this.updatable;
     this.addBatchEnabled = canModifyBatch && PrivilegeUtils.hasAddBatchPrivilege(lookups.userPrivileges);
     this.deleteBatchEnabled = canModifyBatch && this.viewConfig.subArray.length > 1
-      && PrivilegeUtils.hasDeleteBatchPrivilege(lookups.userPrivileges);
+      && PrivilegeUtils.hasDeleteBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
-    this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
     this.editBatchEnabled = this.batchCommandsEnabled && canModifyBatch
-      && PrivilegeUtils.hasEditBatchPrivilege(lookups.userPrivileges);
-    this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
+      && PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
+  }
+
+  private setBatchDisplayModeInRecordEditMode() {
+    if (this.displayMode === 'edit') {
+      let batch: IBatch = this.getSelectedBatch();
+      let isLoggedUserBatchOwner = this.isLoggedInUserBatchOwner(batch);
+      let lookups = this.ngRedux.getState().session.lookups;
+      let editBatchPrivilege = PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
+      this.editMode = editBatchPrivilege;
+      this.changeDetector.markForCheck();
+    }
   }
 
   private createInvContainer() {
     let regInvContainer = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
-    systemSettings.isInventoryUseFullContainerForm 
-    ? regInvContainer.openCreateContainerDetailView(this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID)
-    : regInvContainer.openCreateContainerListView([this.viewModel.RegNumber.RegID]);
+    systemSettings.isInventoryUseFullContainerForm
+      ? regInvContainer.openCreateContainerDetailView(this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID)
+      : regInvContainer.openCreateContainerListView([this.viewModel.RegNumber.RegID]);
   }
 
   private get batchContainers(): any[] {
+    let batch: IBatch = this.getSelectedBatch();
+    return this.invContainers.batchContainers.filter(item => item.regBatchID === batch.FullRegNumber);
+  }
+
+  private getSelectedBatch(): IBatch {
+    let batch: IBatch = null;
     let batchId = this.selectedBatchId ? this.selectedBatchId : 0;
-    let batch = null;
     if (batchId > 0) {
       batch = this.viewConfig.subArray.find(b => b.BatchID === batchId.toString()) as IBatch;
     } else {
       batch = this.viewModel.BatchList.Batch[batchId];
     }
-    return this.invContainers.batchContainers.filter(item => item.regBatchID === batch.FullRegNumber);
+    return batch;
+  }
+
+  private isLoggedInUserBatchOwner(batch: IBatch): boolean {
+    let lookups = this.ngRedux.getState().session.lookups;
+    if (lookups) {
+      let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
+      let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
+      if (+batch.PersonCreated.__text === user.PERSONID) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private get batchContainersEnabled(): boolean {

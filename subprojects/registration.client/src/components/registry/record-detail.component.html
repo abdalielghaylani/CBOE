@@ -3,8 +3,7 @@
     <button type="button" class="btn btn-default border-2 status background-blue border-blue">
       <i class="fa-undo white" aria-hidden="true"></i>
     </button>
-    <button type="button" class="btn border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-      aria-expanded="false">Templates <span class="caret"></span></button>
+    <button type="button" class="btn border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Templates <span class="caret"></span></button>
     <ul class="dropdown-menu">
       <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>
       <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
@@ -16,12 +15,9 @@
   <command-button *ngIf="editButtonEnabled" testid="edit-record-details-button" (onClick)="edit()" iconName="edit" title="Edit"></command-button>
   <command-button *ngIf="cancelButtonEnabled" testid="cancel-record-details-button" (onClick)="cancel()" iconName="undo" title="Cancel"></command-button>
   <command-button *ngIf="saveButtonEnabled" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title={{saveButtonTitle}}></command-button>
-  <command-button *ngIf="registerButtonEnabled" testid="register-record-details-button" (onClick)="register()" iconName="registered"
-    title="Register"></command-button>
-  <command-button *ngIf="approveButtonEnabled" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up"
-    title="Approve"></command-button>
-  <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()"
-    iconName="thumbs-o-down" title="Cancel Approval"></command-button>
+  <command-button *ngIf="registerButtonEnabled" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
+  <command-button *ngIf="approveButtonEnabled" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up" title="Approve"></command-button>
+  <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
   <command-button *ngIf="newButtonEnabled" testid="new-record-details-button" (onClick)="newRecord()" iconName="plus" title="New"></command-button>
   <command-button *ngIf="backButtonEnabled" testid="back-button" (onClick)="back()" iconName="arrow-circle-left" title="Back"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
@@ -29,16 +25,14 @@
   </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true"
-        [revision]="revision" [updatable]="true" [invIntegrationEnabled]="createContainerButtonEnabled" [invContainers]="inventoryContainersList" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
+      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true" [invIntegrationEnabled]="createContainerButtonEnabled" [invContainers]="inventoryContainersList"
+        [isLoggedInUserRecordSuperVisor]="isLoggedInUserSuperVisor" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
     </form>
   </dx-scroll-view>
   <reg-duplicate-popup [visible]="isDuplicatePopupVisible" [viewModel]="copyActions" (popupClick)="createCopies($event)"></reg-duplicate-popup>
-  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true"
-    [(visible)]="saveTemplatePopupVisible">
+  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">
     <div *dxTemplate="let data of 'content'">
-      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData"
-        (onInitialized)='onSaveTemplateFormInit($event)'>
+      <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
       </dx-form>
       <div style="margin-top: 15px">
         <button class="mr1 btn btn-primary" (click)="saveTemplate()">Save</button>
@@ -53,6 +47,5 @@
 <div class="viewcontainer" [hidden]="currentIndex!=2">
   <reg-duplicate-record [parentHeight]="parentHeight" (onClose)="cancelDuplicateResolution($event)"></reg-duplicate-record>
 </div>
-<dx-load-panel [position]="{at: 'center'}" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)"
-  [shading]="true" [closeOnOutsideClick]="false">
+<dx-load-panel [position]="{at: 'center'}" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>

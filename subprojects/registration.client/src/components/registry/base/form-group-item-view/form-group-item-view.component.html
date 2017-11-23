@@ -3,11 +3,11 @@
   <span *ngIf="batchCommandsEnabled">
     <reg-batch-selector *ngIf="selectBatchEnabled" [viewModel]="viewModel.BatchList.Batch" (onSelected)="onBatchSelected($event)"></reg-batch-selector>
     <reg-batch-creator *ngIf="addBatchEnabled" [viewModel]="viewModel.BatchList.Batch" [viewConfig]="viewConfig" 
-    (onSelected)="onBatchSelected($event)" (onCreated)="onBatchCreated($event)"></reg-batch-creator>
-    <reg-batch-mover *ngIf="moveBatchEnabled" [viewModel]="viewModel.BatchList.Batch" (onMoved)="onBatchMoved($event)" [batchId] = "selectedBatchId"></reg-batch-mover>
+    (onSelected)="onBatchSelected($event)" (onCreated)="onBatchCreated($event)"></reg-batch-creator>    
     <reg-batch-editor *ngIf="editBatchEnabled" [viewModel]="viewModel.BatchList.Batch" [viewConfig]="viewConfig" 
     (onSelected)="onBatchSelected($event)" (onEdit)="onBatchEdit($event)"></reg-batch-editor>
     <command-button *ngIf="deleteBatchEnabled" testid="delete-batch-command" (onClick)="deleteBatch()" iconName="trash" title="Delete Batch" [pullRight]="false"></command-button>
+    <reg-batch-mover *ngIf="moveBatchEnabled" [viewModel]="viewModel.BatchList.Batch" (onMoved)="onBatchMoved($event)" [batchId] = "selectedBatchId"></reg-batch-mover>
     <command-button *ngIf="createContainerButtonEnabled" testid="new-container" (onClick)="createInvContainer()" iconName="flask" title="New Container" [pullRight]="false"></command-button>
   </span>
 </div>

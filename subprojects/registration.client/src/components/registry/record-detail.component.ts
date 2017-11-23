@@ -75,7 +75,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private loadingVisible: boolean = false;
   private createContainerButtonEnabled: boolean = false;
   private inventoryContainersList: IInventoryContainerList;
-
+ 
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
