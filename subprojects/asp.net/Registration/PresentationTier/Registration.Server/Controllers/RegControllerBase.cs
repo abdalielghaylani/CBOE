@@ -392,7 +392,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
 
-        protected static JObject GetRegistryRecordsListView(bool? temp, int? count, HitListInfo hitlist)
+        protected static JObject GetRegistryRecordsListView(bool? temp, int? count, string sort, HitListInfo hitlist)
         {
             var formGroupType = temp.HasValue && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
             var baseColumnKey = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
@@ -405,6 +405,38 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             bo.PagingInfo.End = count.HasValue ? count.Value + 1 : 1001;
             bo.AllowFullScan = true;
             bo.CurrentFormType = FormGroup.CurrentFormEnum.ListForm;
+
+            if (string.IsNullOrEmpty(sort))
+            {
+                bool isChildCriteria = false;
+                OrderByCriteria newCriteria = new OrderByCriteria();
+                OrderByCriteria.OrderByCriteriaItem item = new OrderByCriteria.OrderByCriteriaItem();
+                item.ID = 1;
+                item.OrderIndex = 1;
+                item.Direction = OrderByCriteria.OrderByDirection.DESC;
+                bool criteriaFound = false;
+                var columnToOrderWith = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
+                foreach (ResultsCriteria.ResultsCriteriaTable table in bo.ResultsCriteria.Tables)
+                {
+                    foreach (ResultsCriteria.IResultsCriteriaBase criteria in table.Criterias)
+                    {
+                        if (criteria.Alias == columnToOrderWith)
+                        {
+                            item.ResultCriteriaItem = criteria;
+                            item.TableID = table.Id;
+                            criteriaFound = true;
+                            isChildCriteria = table.Id != bo.DataView.Basetable;
+                            newCriteria.Items.Add(item);
+                            break;
+                        }
+                    }
+                    if (criteriaFound)
+                        break;
+                }
+
+                if (!isChildCriteria)
+                    bo.OrderByCriteria = newCriteria;
+            }
 
             if (hitlist != null)
                 bo.HitListToRestore = hitlist;
@@ -429,7 +461,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 foreach (var fieldData in dataRow.ItemArray)
                 {
                     var fieldName = dataColumns.SingleOrDefault(k => k.Key == baseDataTable.TableName).Value[baseTableIndex].ColumnName;
-                    if (fieldName.Equals(baseColumnKey)) 
+                    if (fieldName.Equals(baseColumnKey))
                     {
                         baseColumnKeyId = fieldData.ToString();
                     }
@@ -441,16 +473,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (baseDataTable.ChildRelations.Count > 0)
                 {
                     var batchRelation = baseDataTable.ChildRelations.Cast<DataRelation>().FirstOrDefault(r => r.ChildTable.Rows.Count > 0);
-                    if (batchRelation != null) 
+                    if (batchRelation != null)
                     {
                         var baseColumnIndex = dataColumns.SingleOrDefault(k => k.Key == batchRelation.ChildTable.TableName).Value.FindIndex(c => c.ColumnName == baseColumnKey);
                         foreach (DataRow relationRow in batchRelation.ChildTable.Rows)
                         {
-                            if (baseColumnKeyId != relationRow.ItemArray[baseColumnIndex].ToString()) 
+                            if (baseColumnKeyId != relationRow.ItemArray[baseColumnIndex].ToString())
                             {
                                 continue;
                             }
-                            
+
                             var batchRow = new JObject();
                             var batchTableIndex = 0;
                             foreach (var fieldData in relationRow.ItemArray)

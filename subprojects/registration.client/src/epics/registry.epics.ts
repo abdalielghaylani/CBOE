@@ -114,7 +114,7 @@ export class RegistryEpics {
                 + `${createRecordAction ? regNum : ''} successfully!`;
               notifySuccess(message, 5000);
               if ((payload.recordData.redirectToRecordsView === undefined || payload.recordData.redirectToRecordsView) && createRecordAction) {
-                return createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}`);
+                 return createAction(UPDATE_LOCATION)(`records/${temporary ? 'temp' : ''}/${newId}`);
               }
               return RecordDetailActions.saveRecordSuccessAction(new CSaveResponseData(id, temporary));
             }

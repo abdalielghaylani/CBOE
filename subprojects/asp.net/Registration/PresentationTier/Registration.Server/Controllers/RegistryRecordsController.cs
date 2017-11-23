@@ -123,7 +123,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                return GetRegistryRecordsListView(false, count, null);
+                return GetRegistryRecordsListView(false, count, sort, null);
             }, new string[] { "SEARCH_REG" });
         }
 
@@ -963,7 +963,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                return GetRegistryRecordsListView(true, count, null);
+                return GetRegistryRecordsListView(true, count, sort, null);
             }, new string[] { "SEARCH_TEMP" });
         }
 
