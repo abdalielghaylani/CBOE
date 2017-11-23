@@ -25,7 +25,6 @@ declare var jQuery: any;
 export class RegConfigSettings implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @select(s => s.configuration.customTables) customTables$: Observable<any>;
-  private rows: any[] = [];
   private dataSubscription: Subscription;
   private gridHeight: string;
   private dataSource: CustomStore;

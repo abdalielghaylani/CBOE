@@ -110,7 +110,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   ngOnInit() {
     let state = this.ngRedux.getState();
     if (this.id >= 0 && (state.registry.records.data.rows.length === 0 && state.registry.tempRecords.data.rows.length === 0)) {
-      this.router.navigate(['/']);
       return;
     }
     this.parentHeight = this.getParentHeight();
