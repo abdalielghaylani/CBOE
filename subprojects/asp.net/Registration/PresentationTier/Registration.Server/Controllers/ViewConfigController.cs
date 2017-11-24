@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Microsoft.Web.Http;
@@ -14,6 +16,7 @@ using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COESecurityService;
 using PerkinElmer.COE.Registration.Server.Code;
 using PerkinElmer.COE.Registration.Server.Models;
+using CambridgeSoft.COE.Registration.Services.Common;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
 using Resources;
@@ -172,6 +175,40 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
+        /// Returns the assembly file version
+        /// </summary>
+        /// <returns>Assembly file version</returns>
+        private static string GetFrameworkFileVersion()
+        {
+            string retVal = "Unknown";
+            var assembly = Assembly.GetAssembly(typeof(COEConnectionInfo));
+            if (assembly != null)
+            {
+                var fileversionAttributte = assembly.GetCustomAttributes(typeof(AssemblyFileVersionAttribute), false);
+                if (fileversionAttributte != null && fileversionAttributte.Length > 0)
+                    retVal = ((AssemblyFileVersionAttribute)fileversionAttributte[0]).Version;
+            }
+            return retVal;
+        }
+
+        /// <summary>
+        /// Returns the assembly File version attribute.
+        /// </summary>
+        /// <returns>File version text</returns>
+        private static string GetRegistrationServicesFileVersion()
+        {
+            string retVal = "Unknown";
+            var assembly = Assembly.GetAssembly(typeof(RegSvcUtilities));
+            if (assembly != null)
+            {
+                FileVersionInfo fileVersion = FileVersionInfo.GetVersionInfo(assembly.Location);
+                if (fileVersion != null)
+                    retVal = fileVersion.FileVersion;
+            }
+            return retVal;
+        }
+
+        /// <summary>
         /// Get System Information 
         /// </summary>
         /// <returns>Object with system data</returns>
@@ -184,8 +221,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("ordersContentLabelText", Resource.OrdersContent_Label_Text),
                 new JProperty("versionLabelText", Resource.Version_Label_Text),
                 new JProperty("versionContentLabelText", string.Format(Resource.VersionContent_Label_Text,
-                    CambridgeSoft.COE.Framework.COEConfigurationService.ConfigurationUtilities.GetFrameworkFileVersion(),
-                    CambridgeSoft.COE.Registration.Services.Common.RegSvcUtilities.GetFileVersion()))
+                    GetFrameworkFileVersion(),
+                    GetRegistrationServicesFileVersion()))
             );
         }
 
