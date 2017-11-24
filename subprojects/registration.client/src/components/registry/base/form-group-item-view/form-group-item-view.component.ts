@@ -178,7 +178,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     this.viewModel.BatchList.Batch.splice(this.viewConfig.subIndex, 1);
     this.viewConfig.subArray = this.viewModel.BatchList.Batch;
     this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
-    this.update();
+
+    // after removing batch, default select first batch and update the UI
+    this.selectedBatchId = 0;
+    let batch: IBatch = this.viewModel.BatchList.Batch[this.selectedBatchId];
+    this.onBatchSelected(batch.BatchID);
   }
 
   private setLoadingVisible(visible: boolean) {
@@ -221,11 +225,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   private createInvContainer() {
     let regInvContainer = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
-    systemSettings.isInventoryUseFullContainerForm 
-    ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
-      this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID + `&RefreshOpenerLocation=false`), null)
-    : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
-      this.viewModel.RegNumber.RegID + `&OpenAsModalFrame=true`), invWideWindowParams);
+    systemSettings.isInventoryUseFullContainerForm
+      ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
+        this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID + `&RefreshOpenerLocation=false`), null)
+      : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
+        this.viewModel.RegNumber.RegID + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
 
   private get batchContainers(): any[] {
