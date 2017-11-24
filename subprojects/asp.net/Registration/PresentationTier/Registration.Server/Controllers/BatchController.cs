@@ -210,13 +210,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         }
                         else if (baseEx.Message.Contains("ORA-20031"))
                         {
-                            throw new RegistrationException(string.Format("the target registry number {0} doesent exist", targetRegNum));
+                            throw new RegistrationException(string.Format("the target registry number '{0}' does not exist", targetRegNum));
                         }
                     }
                     if (!moveBatchSuccss)
                         throw new RegistrationException(ex.Message);
                 }
-                return new ResponseData(message: string.Format("The batch was successfully moved into Registry Record {0}", targetRegNum));
+                return new ResponseData(message: string.Format("The batch was successfully moved into Registry Record {0}!", targetRegNum));
             }, new string[] { "DELETE_BATCH_REG" });
         }
 
