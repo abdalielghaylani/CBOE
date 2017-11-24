@@ -475,6 +475,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return data;
         }
 
+        private bool CheckCustomTablePropertyIsUsed(string tableName, string id)
+        {
+            var tablEditor = COETableEditorBO.New();
+            foreach (var curCol in COETableEditorUtilities.getColumnList(tableName))
+            {
+                string isUsedCheckValue = COETableEditorUtilities.GetIsUsedCheckProperty(tableName, curCol.FieldName);
+                if (!string.IsNullOrEmpty(isUsedCheckValue) && tablEditor.IsUsedCheck(isUsedCheckValue, id))
+                    return true;
+            }
+            return false;
+        }
+
         [HttpGet]
         [Route(Consts.apiPrefix + "custom-tables")]
         [SwaggerOperation("GetCustomTables")]
@@ -672,6 +684,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 if (!COETableEditorUtilities.HasDeletePrivileges(tableName))
                     throw new UnauthorizedAccessException(string.Format("Not allowed to delete entries from {0}", tableName));
+
+                if (CheckCustomTablePropertyIsUsed(tableName, id.ToString()))
+                    throw new InvalidOperationException("The entry is being used and therefore should not be deleted.");
+
                 COETableEditorBOList.NewList().TableName = tableName;
                 // TODO: Should check if id is present.
                 // If not, throw error 404.
