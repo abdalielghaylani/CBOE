@@ -25,7 +25,7 @@
     <div id="divDataGrid">
       <dx-data-grid [height]="gridHeight" id="grdRecords" noDataText="" [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="records.data.rows" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onInitialized)='onInitialized($event)'
         (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onRowPrepared)="onRowPrepared($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true"
-        [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }" columnAutoWidth=true>
+        [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }" columnAutoWidth=true wordWrapEnabled=true>
         <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
         <dxo-selection mode="multiple" showCheckBoxesMode="always"></dxo-selection>
         <dxo-load-panel [enabled]="true"></dxo-load-panel>

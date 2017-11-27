@@ -470,6 +470,21 @@ export class CViewGroup implements IViewGroup {
                     } else {
                       columns.push(col);
                     }
+                  } else if (c._name === 'REG_COMMENTS' || c._name === 'NOTEBOOK_TEXT' || c._name === 'PURITY_COMMENTS'
+                  || c._name === 'BATCH_COMMENT' || c._name === 'STORAGE_REQ_AND_WARNINGS') {
+                    if (!c._childTableName) {
+                      let col = {
+                        dataField: (c.formElement) ? c.formElement._name : c._name,
+                        caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
+                        width: 150,
+                        visible: (c._hidden && c._hidden.toLowerCase() === 'true') ? false : true,
+                      };
+                      if (index > 0) {
+                        batchColumns.push(col);
+                      } else {
+                        columns.push(col);
+                      }
+                    }
                   } else {
                     if (!c._childTableName) {
                       let col = {
