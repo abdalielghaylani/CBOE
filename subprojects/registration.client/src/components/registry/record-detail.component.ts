@@ -30,6 +30,7 @@ import { CFragment } from '../common';
 import { PrivilegeUtils } from '../../common';
 import { CSystemSettings, ISaveResponseData } from '../../redux';
 import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
+import * as dxDialog from 'devextreme/ui/dialog';
 
 @Component({
   selector: 'reg-record-detail',
@@ -457,24 +458,29 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private delete() {
-    if (confirm('Are you sure you want to delete this Registry Record?')) {
-      this.loadingVisible = true;
-      let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
-      this.http.delete(url).toPromise()
-        .then(res => {
-          this.clearLoadindicator();
-          notifySuccess(`The record was deleted successfully!`, 5000);
-          if (this.bulkreg) {
-            this.router.navigate([`records/bulkreg`]);
-          } else {
-            this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
-          }
-        })
-        .catch(error => {
-          this.clearLoadindicator();
-          notifyException(`The record was not deleted due to a problem`, error, 5000);
-        });
-    }
+      let dialogResult = dxDialog.confirm(
+        `Are you sure you want to delete this Registry Record?`,
+        `Confirm Delete`);
+      dialogResult.done(result => {
+        if (result) {
+          this.loadingVisible = true;
+          let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
+          this.http.delete(url).toPromise()
+            .then(res => {
+              this.clearLoadindicator();
+              notifySuccess(`The record was deleted successfully!`, 5000);
+              if (this.bulkreg) {
+                this.router.navigate([`records/bulkreg`]);
+              } else {
+                this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+              }
+            })
+            .catch(error => {
+              this.clearLoadindicator();
+              notifyException(`The record was not deleted due to a problem`, error, 5000);
+            });
+        }
+      });
   }
 
   private clear() {

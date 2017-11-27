@@ -466,11 +466,16 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private deleteMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
-      if (confirm('Are you sure you want to delete these Registry Records?')) {
-        let ids = [];
-        this.selectedRows.map(r => { ids.push({ id: r[this.idField] }); });
-        this.registryActions.deleteRecord(this.temporary, { data: ids });
-      }
+      let dialogResult = dxDialog.confirm(
+        `Are you sure you want to delete these Registry Records?`,
+        'Confirm Delete');
+      dialogResult.done(result => {
+        if (result) {
+          let ids = [];
+          this.selectedRows.map(r => { ids.push({ id: r[this.idField] }); });
+          this.registryActions.deleteRecord(this.temporary, { data: ids });
+        }
+      });
     }
   }
 
