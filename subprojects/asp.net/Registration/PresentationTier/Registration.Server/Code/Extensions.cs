@@ -294,7 +294,12 @@ namespace PerkinElmer.COE.Registration.Server.Code
                     }
                 }
                 if (!foundFragment)
+                {
+                    // Mark BatchComponentFragmentList as Dirty to fix
+                    // CBOE-6398 Update Record: Getting error when add a fragment to the registry record which has more than one batch (SBI-True)                   
+                    CallPrivateMethod(batchcomponentfragment, "MarkDirty");
                     list.Add(batchcomponentfragment);
+                }
             }
         }
 

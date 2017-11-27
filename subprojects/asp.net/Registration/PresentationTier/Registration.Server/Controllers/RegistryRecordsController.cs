@@ -434,7 +434,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         // use case: Record is edited and updated not via Copy action ( continue, create copies).
                         // TODO: if record is updated by adding a new batch only, then CheckOtherMixturs should be set to false.
-                        //       for the above use case, concider the CheckOtherMixtures parameter sent from client side                        
+                        //       for the above use case, concider the CheckOtherMixtures parameter sent from client side    
+
+                        registryRecord.UpdateFragments();
                         checkOtherMixtures = registryRecord.ComponentList.IsDirty;
                     }
 
