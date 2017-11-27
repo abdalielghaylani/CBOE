@@ -491,7 +491,17 @@ export class CViewGroup implements IViewGroup {
                         dataField: (c.formElement) ? c.formElement._name : c._name,
                         caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
                         visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked') ? false : true,
+                        dataType: 'string'
                       };
+
+                      if (c.formElement && c.formElement.displayInfo && c.formElement.displayInfo.type) {
+                        if (c.formElement.displayInfo.type.indexOf('COEDatePicker') > 0) {
+                          col.dataType = 'date';
+                        } else if (c.formElement.displayInfo.type.indexOf('COECheckBoxReadOnly') > 0) {
+                          col.dataType = 'boolean';
+                        }
+                      }
+
                       if (index > 0) {
                         batchColumns.push(col);
                       } else {
