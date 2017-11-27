@@ -104,10 +104,18 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
   }
 
   protected onValueUpdated(e) {
-    this.viewConfig.getItems('add').forEach(item => {
+    this.viewConfig.getItems('edit').forEach(item => {
       let value = this.regRecord.BatchList.Batch[0].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
       if (value) {
         this.regRecord.BatchList.Batch[0].PropertyList.Property.find(i => i._name + 'Property' === item.dataField).__text = e.viewModel[item.dataField];
+      } else {
+        let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
+        if (entryInfo.dataSource && entryInfo.bindingExpression) {
+          let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
+          if (foundObject.property) {
+            this.regRecord.BatchList.Batch[0][foundObject.property] = e.viewModel[item.dataField];
+          }
+        }
       }
     });
   }

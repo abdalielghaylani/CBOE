@@ -78,18 +78,37 @@ export class RegBatchEditor implements OnChanges {
   }
 
   protected onValueUpdated(e) {
-    this.viewConfig.getItems('add').forEach(item => {
+    this.viewConfig.getItems('edit').forEach(item => {
       let value = this.currentBatch.PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
       if (value) {
         this.currentBatch.PropertyList.Property.find(i => i._name + 'Property' === item.dataField).__text = e.viewModel[item.dataField];
+      } else {
+        let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
+        if (entryInfo.dataSource && entryInfo.bindingExpression) {
+          let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
+          if (foundObject.property) {
+            this.currentBatch[foundObject.property] = e.viewModel[item.dataField];
+          }
+        }
       }
     });
   }
 
   protected showForm(e) {
     this.currentBatch = this.viewConfig.subArray[this.viewConfig.subIndex];
-    this.viewModel[this.viewConfig.subIndex].PropertyList.Property.forEach(item => {
-      this.formData[item._name + 'Property'] = item.__text;
+    this.viewConfig.getItems('edit').forEach(item => {
+      let value = this.viewModel[this.viewConfig.subIndex].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
+      if (value) {
+        this.formData[value._name + 'Property'] = value.__text;
+      } else {
+        let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
+        if (entryInfo.dataSource && entryInfo.bindingExpression) {
+          let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
+          if (foundObject.property) {
+            this.formData[item.dataField] = this.viewModel[this.viewConfig.subIndex][foundObject.property];
+          }
+        }
+      }
     });
     this.formVisible = true;
     this.changeDetector.markForCheck();
