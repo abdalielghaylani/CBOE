@@ -178,7 +178,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// Returns the assembly file version
         /// </summary>
         /// <returns>Assembly file version</returns>
-        private static string GetFrameworkFileVersion()
+        private string GetFrameworkFileVersion()
         {
             string retVal = "Unknown";
             var assembly = Assembly.GetAssembly(typeof(COEConnectionInfo));
@@ -195,7 +195,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// Returns the assembly File version attribute.
         /// </summary>
         /// <returns>File version text</returns>
-        private static string GetRegistrationServicesFileVersion()
+        private string GetRegistrationServicesFileVersion()
         {
             string retVal = "Unknown";
             var assembly = Assembly.GetAssembly(typeof(RegSvcUtilities));

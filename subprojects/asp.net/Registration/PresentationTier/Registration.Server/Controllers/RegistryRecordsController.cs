@@ -436,7 +436,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         // TODO: if record is updated by adding a new batch only, then CheckOtherMixturs should be set to false.
                         //       for the above use case, concider the CheckOtherMixtures parameter sent from client side    
 
-                        registryRecord.UpdateFragments();
+                        registryRecord.FixBatchesFragmentsEx();
                         checkOtherMixtures = registryRecord.ComponentList.IsDirty;
                     }
 

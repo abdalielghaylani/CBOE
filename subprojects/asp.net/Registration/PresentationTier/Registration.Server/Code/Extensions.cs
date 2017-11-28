@@ -288,7 +288,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 {
                     if (batchcomponentfragment.UniqueID == batchcmpFrg.UniqueID)
                     {
-                        UpdateFromXml(batchcmpFrg, batchcomponentfragmentNode);
+                        UpdateFromXml(batchcmpFrg, batchcomponentfragmentNode);                  
                         foundFragment = true;
                         break;
                     }
@@ -431,6 +431,30 @@ namespace PerkinElmer.COE.Registration.Server.Code
             }
         }
 
+        #endregion
+
+        #region registry record
+        public static void FixBatchesFragmentsEx(this RegistryRecord registryRecord)
+        {
+            registryRecord.UpdateFragments();
+
+            // In case fragments has been updated, we need to modify the other batches if the flag sameIdentity = true.
+            if (registryRecord.SameBatchesIdentity)
+            {
+                if (registryRecord.BatchList.Count > 0)
+                {
+                    // We assume the first batch is the one that has the correct values for the fragment sections. Notice that in RegGUI only values of batch 0 are editable (if SBI = true).
+                    foreach (BatchComponent batchComp in registryRecord.BatchList[0].BatchComponentList)
+                    {
+                        // Overwrite values of other batches.
+                        for (int i = 1; i < registryRecord.BatchList.Count; i++)
+                        {
+                            registryRecord.BatchList[i].BatchComponentList[batchComp.OrderIndex - 1].BatchComponentFragmentList = batchComp.BatchComponentFragmentList;
+                        }
+                    }
+                }
+            }
+        }
         #endregion
     }
 }

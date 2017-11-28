@@ -129,6 +129,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Unable to update the internal record.";
                     registryRecord.BatchList.UpdateFromXmlEx(xmlDoc.FirstChild);
 
+                    registryRecord.FixBatchesFragmentsEx();
+
                     errorMessage = "Cannot set batch prefix.";
                     registryRecord.BatchPrefixDefaultOverride(true);
                     errorMessage = "Unable to save the record.";
