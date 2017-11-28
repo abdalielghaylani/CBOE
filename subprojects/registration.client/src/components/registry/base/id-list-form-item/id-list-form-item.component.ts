@@ -54,12 +54,19 @@ export class RegIdListFormItem extends RegDataGridFormItem {
     let options = this.viewModel.editorOptions;
     let value = options && options.value ? options.value : [];
     this.dataSource = this.deserializeValue(value);
+    let identifierList = lookups.identifierTypes.filter(i => i.TYPE === options.idListType);
+    let activeItems = identifierList.filter(i => i.ACTIVE === 'T');
+    this.dataSource.forEach(i => {
+      if (i.id && activeItems.find(j => j.ID === i.id) === undefined) {
+        activeItems.push(identifierList.find(k => k.ID === i.id));
+      }
+    });
     this.columns = lookups ? [{
       dataField: 'id',
       caption: 'Identifier',
       editorType: 'dxSelectBox',
       lookup: {
-        dataSource: lookups.identifierTypes.filter(i => i.TYPE === options.idListType && i.ACTIVE === 'T'),
+        dataSource: activeItems,
         displayExpr: 'NAME',
         valueExpr: 'ID',
         placeholder: 'Select Identifier'
