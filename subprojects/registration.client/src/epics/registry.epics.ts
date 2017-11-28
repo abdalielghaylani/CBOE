@@ -108,13 +108,14 @@ export class RegistryEpics {
               return RecordDetailActions.loadDuplicateRecordSuccessAction(responseData.data);
             } else {
               let actionType = payload.saveToPermanent ? 'registered' : 'saved';
+              let recordId = responseData.id;
               let newId = payload.saveToPermanent ? responseData.regNumber : responseData.id;
               let regNum = ` (${payload.saveToPermanent ? 'Reg Number' : 'ID'}: ${newId})`;
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${createRecordAction ? regNum : ''} successfully!`;
               notifySuccess(message, 5000);
               if ((payload.recordData.redirectToRecordsView === undefined || payload.recordData.redirectToRecordsView) && createRecordAction) {
-                 return createAction(UPDATE_LOCATION)(`records/${temporary ? 'temp' : ''}/${newId}`);
+                 return createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}/${recordId}`);
               }
               return RecordDetailActions.saveRecordSuccessAction(new CSaveResponseData(id, temporary));
             }
@@ -133,11 +134,12 @@ export class RegistryEpics {
           this.http.post(`${apiUrlPrefix}/records/duplicate`, data, options))
           .map(result => {
             let responseData = result.json() as IResponseData;
+            let recordId = responseData.id;
             let newId = responseData.regNumber;
             let message = `The record was registered in the registry`
               + `${newId} successfully!`;
             notifySuccess(message, 5000);
-            return createAction(UPDATE_LOCATION)(`records`);
+            return createAction(UPDATE_LOCATION)(`records/${recordId}`);
           })
           .catch(error => Observable.of(RecordDetailActions.duplicateRecordErrorAction(error)));
       });
