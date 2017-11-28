@@ -85,7 +85,7 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
   }
 
   protected update() {
-    this.items = this.viewConfig != null ? this.viewConfig.getItems('edit') : [];
+    this.items = this.viewConfig != null ? this.getValidItems() : [];
     if (this.items.find(i => i.itemType === 'group') != null) {
       this.colCount = 1;
     }
@@ -104,7 +104,7 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
   }
 
   protected onValueUpdated(e) {
-    this.viewConfig.getItems('edit').forEach(item => {
+    this.getValidItems().forEach(item => {
       let value = this.regRecord.BatchList.Batch[0].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
       if (value) {
         this.regRecord.BatchList.Batch[0].PropertyList.Property.find(i => i._name + 'Property' === item.dataField).__text = e.viewModel[item.dataField];
@@ -118,6 +118,18 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
         }
       }
     });
+  }
+
+  private getValidItems(): any[] {
+    let validItems = [];
+    this.viewConfig.getItems('edit').forEach(i => {
+      if (i.itemType === 'group') {
+        validItems = validItems.concat(i.items.filter(ix => !ix.itemType || ix.itemType !== 'empty'));
+      } else if (i.itemType !== 'empty') {
+        validItems.push(i);
+      }
+    });
+    return validItems;
   }
 
   protected showForm(e) {

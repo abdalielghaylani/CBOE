@@ -59,7 +59,7 @@ export class RegBatchEditor implements OnChanges {
   }
 
   protected update() {
-    this.items = this.viewConfig != null ? this.viewConfig.getItems('edit') : [];
+    this.items = this.viewConfig != null ? this.getValidItems() : [];
     if (this.items.find(i => i.itemType === 'group') != null) {
       this.colCount = 1;
     }
@@ -78,7 +78,7 @@ export class RegBatchEditor implements OnChanges {
   }
 
   protected onValueUpdated(e) {
-    this.viewConfig.getItems('edit').forEach(item => {
+    this.getValidItems().forEach(item => {
       let value = this.currentBatch.PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
       if (value) {
         this.currentBatch.PropertyList.Property.find(i => i._name + 'Property' === item.dataField).__text = e.viewModel[item.dataField];
@@ -96,7 +96,7 @@ export class RegBatchEditor implements OnChanges {
 
   protected showForm(e) {
     this.currentBatch = this.viewConfig.subArray[this.viewConfig.subIndex];
-    this.viewConfig.getItems('edit').forEach(item => {
+    this.getValidItems().forEach(item => {
       let value = this.viewModel[this.viewConfig.subIndex].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
       if (value) {
         this.formData[value._name + 'Property'] = value.__text;
@@ -120,6 +120,18 @@ export class RegBatchEditor implements OnChanges {
       let recordJson: any = this.x2jsTool().js2xml(this.currentBatch);
       this.onEdit.emit({ 'data': `<BatchList><Batch>` + recordJson + `</Batch></BatchList>` });
     }
+  }
+
+  private getValidItems(): any[] {
+    let validItems = [];
+    this.viewConfig.getItems('edit').forEach(i => {
+      if (i.itemType === 'group') {
+        validItems = validItems.concat(i.items.filter(ix => !ix.itemType || ix.itemType !== 'empty'));
+      } else if (i.itemType !== 'empty') {
+        validItems.push(i);
+      }
+    });
+    return validItems;
   }
 
   validate() {
