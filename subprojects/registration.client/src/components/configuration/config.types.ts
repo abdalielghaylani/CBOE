@@ -196,19 +196,22 @@ export const CONFIG_FORMS_COLUMNS = [
   {
     dataField: 'name',
     allowEditing: false
-  }, 
+  },
   {
     dataField: 'label',
     allowEditing: true,
     validationRules:
-    [
-      { group: 'label', type: 'required', 
-        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)' },
-      { group: 'label', type: 'pattern', 
-        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
-        pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/    
-      }
-    ]
+      [
+        {
+          group: 'label', type: 'required',
+          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
+        },
+        {
+          group: 'label', type: 'pattern',
+          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
+          pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
+        }
+      ]
   },
   {
     dataField: 'controlType',
