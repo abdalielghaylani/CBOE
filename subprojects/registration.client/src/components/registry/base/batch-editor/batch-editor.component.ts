@@ -85,15 +85,21 @@ export class RegBatchEditor implements OnChanges {
       } else {
         let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
         if (entryInfo.dataSource && entryInfo.bindingExpression) {
-          let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
-          if (foundObject.property === 'BatchComponentFragmentList') {
-            this.currentBatch.BatchComponentList.BatchComponent[0][foundObject.property] = e.viewModel[item.dataField];
-          } else {
-            this.currentBatch[foundObject.property] = e.viewModel[item.dataField];
+          let dataSource = this.getDataSource(entryInfo.dataSource, 0);
+          let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
+          if (foundObject.property) {
+            dataSource[foundObject.property] = e.viewModel[item.dataField];
           }
         }
       }
     });
+  }
+
+  private getDataSource(dataSource: string, subIndex: number): any {
+    dataSource = dataSource.toLowerCase();
+    return dataSource.indexOf('fragmentscsla') >= 0 ? this.currentBatch.BatchComponentList.BatchComponent[0]
+      : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.currentBatch
+        : this;
   }
 
   protected showForm(e) {
@@ -105,13 +111,10 @@ export class RegBatchEditor implements OnChanges {
       } else {
         let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
         if (entryInfo.dataSource && entryInfo.bindingExpression) {
-          let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
+          let dataSource = this.getDataSource(entryInfo.dataSource, this.viewConfig.subIndex);
+          let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
           if (foundObject.property) {
-            if (foundObject.property === 'BatchComponentFragmentList') {
-              this.formData[item.dataField] = this.viewModel[this.viewConfig.subIndex].BatchComponentList.BatchComponent[0][foundObject.property];
-            } else {
-              this.formData[item.dataField] = this.viewModel[this.viewConfig.subIndex][foundObject.property];
-            }
+            this.formData[item.dataField] = dataSource[foundObject.property];
           }
         }
       }

@@ -111,17 +111,21 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
       } else {
         let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
         if (entryInfo.dataSource && entryInfo.bindingExpression) {
-          let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
+          let dataSource = this.getDataSource(entryInfo.dataSource, 0);
+          let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
           if (foundObject.property) {
-            if (foundObject.property === 'BatchComponentFragmentList') {
-              this.regRecord.BatchList.Batch[0].BatchComponentList.BatchComponent[0][foundObject.property] = e.viewModel[item.dataField];
-            } else {
-              this.regRecord.BatchList.Batch[0][foundObject.property] = e.viewModel[item.dataField];
-            }
+            dataSource[foundObject.property] = e.viewModel[item.dataField];
           }
         }
       }
     });
+  }
+
+  private getDataSource(dataSource: string, subIndex: number): any {
+    dataSource = dataSource.toLowerCase();
+    return dataSource.indexOf('fragmentscsla') >= 0 ? this.regRecord.BatchList.Batch[subIndex].BatchComponentList.BatchComponent[0]
+        : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.regRecord.BatchList.Batch[subIndex]
+          : this;
   }
 
   private getValidItems(): any[] {
