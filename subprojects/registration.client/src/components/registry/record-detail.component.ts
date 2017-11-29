@@ -528,7 +528,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     let systemSettings = new CSystemSettings(this.getLookup('systemSettings'));
     systemSettings.isInventoryUseFullContainerForm
     ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
-      this.recordDetailView.selectedBatchId + `&RefreshOpenerLocation=false`), null)
+      this.recordDetailView.selectedBatchId + `&RefreshOpenerLocation=true`), null)
     : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
       this.recordDetailView.id + `&OpenAsModalFrame=true`), invWideWindowParams);
   }

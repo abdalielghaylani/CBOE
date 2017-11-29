@@ -227,7 +227,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
     systemSettings.isInventoryUseFullContainerForm
       ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
-        this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID + `&RefreshOpenerLocation=false`), null)
+        this.viewModel.BatchList.Batch[this.viewConfig.subIndex].BatchID + `&RefreshOpenerLocation=true`), null)
       : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
         this.viewModel.RegNumber.RegID + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
