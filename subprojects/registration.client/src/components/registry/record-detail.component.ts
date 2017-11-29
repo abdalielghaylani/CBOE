@@ -76,6 +76,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private loadingVisible: boolean = false;
   private createContainerButtonEnabled: boolean = false;
   private inventoryContainersList: IInventoryContainerList;
+  private saveTemplatePopupHeight: number = 220;
  
   private saveTemplateItems = [{
     dataField: 'name',
@@ -322,6 +323,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
         this.updateTemplate();
       }
     } else {
+      this.saveTemplatePopupHeight = !!navigator.userAgent.match(/firefox/i) ? 238 : 220;
       this.saveTemplatePopupVisible = true;
     }
   }

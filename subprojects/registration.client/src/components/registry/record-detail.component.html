@@ -30,7 +30,7 @@
     </form>
   </dx-scroll-view>
   <reg-duplicate-popup [visible]="isDuplicatePopupVisible" [viewModel]="copyActions" (popupClick)="createCopies($event)"></reg-duplicate-popup>
-  <dx-popup [width]="400" [height]="220" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">
+  <dx-popup [width]="400" [height]="saveTemplatePopupHeight" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">
     <div *dxTemplate="let data of 'content'">
       <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
       </dx-form>
