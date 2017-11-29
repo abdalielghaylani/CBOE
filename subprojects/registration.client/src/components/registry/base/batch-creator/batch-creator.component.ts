@@ -113,7 +113,11 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
         if (entryInfo.dataSource && entryInfo.bindingExpression) {
           let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
           if (foundObject.property) {
-            this.regRecord.BatchList.Batch[0][foundObject.property] = e.viewModel[item.dataField];
+            if (foundObject.property === 'BatchComponentFragmentList') {
+              this.regRecord.BatchList.Batch[0].BatchComponentList.BatchComponent[0][foundObject.property] = e.viewModel[item.dataField];
+            } else {
+              this.regRecord.BatchList.Batch[0][foundObject.property] = e.viewModel[item.dataField];
+            }
           }
         }
       }

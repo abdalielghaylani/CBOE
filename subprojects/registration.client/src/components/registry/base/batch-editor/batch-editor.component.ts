@@ -86,7 +86,9 @@ export class RegBatchEditor implements OnChanges {
         let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
         if (entryInfo.dataSource && entryInfo.bindingExpression) {
           let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
-          if (foundObject.property) {
+          if (foundObject.property === 'BatchComponentFragmentList') {
+            this.currentBatch.BatchComponentList.BatchComponent[0][foundObject.property] = e.viewModel[item.dataField];
+          } else {
             this.currentBatch[foundObject.property] = e.viewModel[item.dataField];
           }
         }
@@ -105,7 +107,11 @@ export class RegBatchEditor implements OnChanges {
         if (entryInfo.dataSource && entryInfo.bindingExpression) {
           let foundObject = CRegistryRecord.findBoundObject(entryInfo.dataSource, entryInfo.bindingExpression, true);
           if (foundObject.property) {
-            this.formData[item.dataField] = this.viewModel[this.viewConfig.subIndex][foundObject.property];
+            if (foundObject.property === 'BatchComponentFragmentList') {
+              this.formData[item.dataField] = this.viewModel[this.viewConfig.subIndex].BatchComponentList.BatchComponent[0][foundObject.property];
+            } else {
+              this.formData[item.dataField] = this.viewModel[this.viewConfig.subIndex][foundObject.property];
+            }
           }
         }
       }
