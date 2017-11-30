@@ -122,7 +122,6 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   protected onBatchSelected(batchId) {
     this.viewConfig.subIndex = this.viewConfig.subArray.findIndex(b => b.BatchID === batchId);
     this.selectedBatchId = batchId;
-    this.setBatchDisplayModeInRecordEditMode();
     this.updateBatch();
   }
 
@@ -202,13 +201,14 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       let batch: IBatch = this.getSelectedBatch();
       isLoggedUserBatchOwner = this.isLoggedInUserBatchOwner(batch);
     }
-    let canModifyBatch: boolean = this.batchCommandsEnabled && !this.editMode && this.updatable;
+    let canModifyBatch: boolean = this.batchCommandsEnabled && this.displayMode === 'view' && this.updatable;
     this.addBatchEnabled = canModifyBatch && PrivilegeUtils.hasAddBatchPrivilege(lookups.userPrivileges);
     this.deleteBatchEnabled = canModifyBatch && this.viewConfig.subArray.length > 1
       && PrivilegeUtils.hasDeleteBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
     this.editBatchEnabled = this.batchCommandsEnabled && canModifyBatch
       && PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
+    this.setBatchDisplayModeInRecordEditMode();
   }
 
   private setBatchDisplayModeInRecordEditMode() {
