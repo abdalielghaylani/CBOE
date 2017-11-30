@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Web;
 using System.Web.Http;
 using System.Xml;
 using System.Threading.Tasks;
@@ -19,6 +20,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [AllowAnonymous]
     public class AuthController : RegControllerBase
     {
+        private string CryptData(string txt, string key)
+        {
+            txt = ShiftChr(txt, -1);
+            int keyLength = key.Length;
+            int keyPtr = 0;
+            string hold = string.Empty;
+            string cryptKey = string.Empty;
+            for (int i = 0; i < txt.Length; i++)
+            {
+                keyPtr = (keyPtr + 1) % keyLength;
+                cryptKey = ((char)((short)txt[i] ^ (short)key[keyPtr])).ToString();
+                hold += cryptKey;
+            }
+            return ShiftChr(hold, 1);
+        }
+
+        private string ShiftChr(string txt, int offset)
+        {
+            string hold = string.Empty;
+            for (int i = 0; i < txt.Length; i++)
+                hold += ((char)((short)txt[i] + offset)).ToString();
+            return hold;
+        }
+
         [HttpPost]
         [Route(Consts.apiPrefix + "auth/login")]
         [SwaggerOperation("Login")]
@@ -30,13 +55,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var message = new StringBuilder();
             try
             {
-                message.AppendLine(string.Format("Logging in user, {0}...", userData["username"]));
                 var webClient = new WebClient();
-                var loginUrl = string.Format("/COESingleSignOn/SingleSignOn.asmx/GetAuthenticationTicket?userName={0}&password=", userData["username"]);
+                var userName = userData["username"].ToString();
+                var password = userData["password"].ToString();
+                var loginUrl = string.Format("/COESingleSignOn/SingleSignOn.asmx/GetAuthenticationTicket?userName={0}&password=", userName);
                 loginUrl = GetAbsoluteUrl(loginUrl, true);
                 string token;
                 message.AppendLine(string.Format("Opening {0}...", loginUrl));
-                using (var loginResponse = new StreamReader(await webClient.OpenReadTaskAsync(loginUrl + userData["password"])))
+                using (var loginResponse = new StreamReader(await webClient.OpenReadTaskAsync(loginUrl + password)))
                     token = loginResponse.ReadToEnd();
                 var xml = new XmlDocument();
                 xml.LoadXml(token);
@@ -47,7 +73,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     new JProperty("meta",
                         new JObject(
                             new JProperty("token", token),
-                            new JProperty("profile", new JObject(new JProperty("fullName", userData["username"])))
+                            new JProperty("profile", new JObject(new JProperty("fullName", userName)))
                         )
                     )
                 ));
@@ -56,7 +82,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var inactivityCookie = new CookieHeaderValue("DisableInactivity", "true");
                 inactivityCookie.Path = "/";
                 inactivityCookie.Expires = DateTime.Now.AddMinutes(25);
-                responseMessage.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie, inactivityCookie });
+                var userNameCookie = new CookieHeaderValue("CS%5FSEC%5FUserName", HttpUtility.UrlEncode(userName));
+                userNameCookie.Path = "/";
+                var userIdCookie = new CookieHeaderValue("CS%5FSEC%5FUserID", CryptData(password, userName));
+                userIdCookie.Path = "/";
+                responseMessage.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie, inactivityCookie, userNameCookie, userIdCookie });
             }
             catch (Exception ex)
             {
