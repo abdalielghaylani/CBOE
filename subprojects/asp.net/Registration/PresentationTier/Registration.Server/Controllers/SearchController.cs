@@ -71,7 +71,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private JObject GetHitlistRecordsInternal(int id, bool? temp, int? skip = null, int? count = null, string sort = null)
         {
             var hitlistBO = GetHitlistBO(id);
-            return GetRegistryRecordsListView(temp, count, sort, hitlistBO.HitListInfo);
+            return GetRegistryRecordsListView(temp, skip, count, sort, hitlistBO.HitListInfo);
         }
 
         private JObject SearchRecordsInternal(QueryData queryData, bool? temp, int? skip, int? count, string sort)
@@ -129,7 +129,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
             }
             hitlistBO.Update();
-            return GetRegistryRecordsListView(temp, count, sort, hitlistInfo);
+            return GetRegistryRecordsListView(temp, skip, count, sort, hitlistInfo);
         }
 
         private COEDataView AddMolWt(COEDataView dataView)

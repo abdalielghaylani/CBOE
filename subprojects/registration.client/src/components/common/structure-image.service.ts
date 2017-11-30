@@ -5,7 +5,7 @@ import * as crypto from 'crypto';
 @Injectable()
 export class CStructureImageService {
   private static HASH_KEY = 'reg';
-  private static QUEUE_SIZE: number = 20;
+  private static QUEUE_SIZE: number = 200;
   private static queue: any[] = [];
 
   private modals: any[] = [];

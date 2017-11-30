@@ -11,5 +11,5 @@ export const helpLink = `CBOEHelp/CBOEContextHelp/Registration%20Webhelp/default
 export const invNormalWindowParams =  `width=800,height=700`;
 export const invWideWindowParams =  `width=1100,height=700`;
 export const basePath = process.env.NODE_ENV === 'production' ? '/Registration.Server/' : '/';
-export const fetchLimit = 1000;
+export const fetchLimit = 20;
 export const apiUrlPrefix = `${basePath}api/v1/`;

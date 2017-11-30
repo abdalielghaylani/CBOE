@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { CViewGroup, CViewGroupColumns } from './base';
-import { FormGroupType, prepareFormGroupData, IFormGroup, notify, notifyError, notifySuccess } from '../../common';
+import { FormGroupType, prepareFormGroupData, IFormGroup, getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import * as regSearchTypes from './registry-search.types';
 import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
@@ -82,7 +82,6 @@ export class RegRecords implements OnInit, OnDestroy {
     private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef) {
     this.records = new CRecords(this.temporary, new CRecordsData(this.temporary));
-    this.createCustomStore(this);
   }
 
   ngOnInit() {
@@ -100,7 +99,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.viewGroupsColumns = this.lookups ? 
     CViewGroup.getViewGroupsColumns(true, formGroup, 'list', this.lookups.disabledControls, this.lookups.systemSettings) : new CViewGroupColumns();
   }
-
+  
   ngOnDestroy() {
     if (this.lookupsSubscription) {
       this.lookupsSubscription.unsubscribe();
@@ -205,7 +204,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   createCustomStore(ref: RegRecords) {
     ref.dataStore = new CustomStore({
-      load: function (loadOptions) {
+      load: function (loadOptions) {        
         if (loadOptions.sort !== null) {
           let sortCriteria = !loadOptions.sort[0].desc ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
           if (ref.sortCriteria !== sortCriteria && ref.records.data.rows.length !== ref.records.data.totalCount) {
@@ -258,7 +257,7 @@ export class RegRecords implements OnInit, OnDestroy {
     if (!this.rowSelected && e.rowType === 'data'
       && this.records.data.rows.length < this.records.data.totalCount
       && e.rowIndex === this.records.data.rows.length - 1) {
-      this.updateContents();
+       this.updateContents();
     }
   }
 

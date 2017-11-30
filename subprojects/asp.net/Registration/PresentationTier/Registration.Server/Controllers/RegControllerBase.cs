@@ -397,7 +397,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
 
-        protected static JObject GetRegistryRecordsListView(bool? temp, int? count, string sort, HitListInfo hitlist)
+        protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist)
         {
             var formGroupType = temp.HasValue && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
             var baseColumnKey = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
@@ -405,43 +405,51 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             configRegRecord.COEFormHelper.Load(formGroupType);
 
             var bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
-            bo.PagingInfo.RecordCount = count.HasValue ? count.Value : 1000; // max records
-            bo.PagingInfo.Start = 0;
-            bo.PagingInfo.End = count.HasValue ? count.Value + 1 : 1001;
             bo.AllowFullScan = true;
             bo.CurrentFormType = FormGroup.CurrentFormEnum.ListForm;
 
-            if (string.IsNullOrEmpty(sort))
+            var columnToOrderWith = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
+            var sortDirection = OrderByCriteria.OrderByDirection.DESC;
+            if (!string.IsNullOrEmpty(sort))
             {
-                bool isChildCriteria = false;
-                OrderByCriteria newCriteria = new OrderByCriteria();
-                OrderByCriteria.OrderByCriteriaItem item = new OrderByCriteria.OrderByCriteriaItem();
-                item.ID = 1;
-                item.OrderIndex = 1;
-                item.Direction = OrderByCriteria.OrderByDirection.DESC;
-                bool criteriaFound = false;
-                var columnToOrderWith = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
-                foreach (ResultsCriteria.ResultsCriteriaTable table in bo.ResultsCriteria.Tables)
-                {
-                    foreach (ResultsCriteria.IResultsCriteriaBase criteria in table.Criterias)
-                    {
-                        if (criteria.Alias == columnToOrderWith)
-                        {
-                            item.ResultCriteriaItem = criteria;
-                            item.TableID = table.Id;
-                            criteriaFound = true;
-                            isChildCriteria = table.Id != bo.DataView.Basetable;
-                            newCriteria.Items.Add(item);
-                            break;
-                        }
-                    }
-                    if (criteriaFound)
-                        break;
+                if (!sort.Contains("DESC")) 
+                { 
+                    sortDirection = OrderByCriteria.OrderByDirection.ASC; 
                 }
-
-                if (!isChildCriteria)
-                    bo.OrderByCriteria = newCriteria;
+                columnToOrderWith = sort.Replace("DESC", string.Empty);
             }
+
+            bool isChildCriteria = false;
+            OrderByCriteria newCriteria = new OrderByCriteria();
+            OrderByCriteria.OrderByCriteriaItem item = new OrderByCriteria.OrderByCriteriaItem();
+            item.ID = 1;
+            item.OrderIndex = 1;
+            item.Direction = sortDirection;
+            bool criteriaFound = false;
+            foreach (ResultsCriteria.ResultsCriteriaTable table in bo.ResultsCriteria.Tables)
+            {
+                foreach (ResultsCriteria.IResultsCriteriaBase criteria in table.Criterias)
+                {
+                    if (criteria.Alias == columnToOrderWith)
+                    {
+                        item.ResultCriteriaItem = criteria;
+                        item.TableID = table.Id;
+                        criteriaFound = true;
+                        isChildCriteria = table.Id != bo.DataView.Basetable;
+                        newCriteria.Items.Add(item);
+                        break;
+                    }
+                }
+                if (criteriaFound)
+                    break;
+            }
+
+            if (!isChildCriteria)
+                bo.OrderByCriteria = newCriteria;
+
+            bo.PagingInfo.RecordCount = count.HasValue ? count.Value : 200; // max records
+            bo.PagingInfo.Start = skip.HasValue ? skip.Value + 1 : 1;
+            bo.PagingInfo.End = count.HasValue ? count.Value + 1 : 1001;
 
             if (hitlist != null)
                 bo.HitListToRestore = hitlist;
@@ -510,7 +518,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return new JObject(
                 new JProperty("temporary", temp),
                 new JProperty("hitlistId", hitlist != null ? hitlist.HitListID : 0),
-                new JProperty("startIndex", 0),
+                new JProperty("startIndex", skip.HasValue ? Math.Max(skip.Value, 0) : 0),
                 new JProperty("totalCount", hitlist != null ? bo.CurrentHitList.CurrentRecordCount : bo.DatabaseRecordCount),
                 new JProperty("rows", data)
             );
