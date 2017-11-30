@@ -9,6 +9,14 @@ import { RegBaseFormItem } from '../base-form-item';
 })
 export class RegCheckBoxFormItem extends RegBaseFormItem {
 
+  deserializeValue(value: any): any {
+    return value === 'T' ? true : false;
+  }
+
+  serializeValue(value: any): any {
+    return value ? 'T' : 'F';
+  }
+
   protected update() {
     super.update();
     let options = this.viewModel.editorOptions;
@@ -20,7 +28,7 @@ export class RegCheckBoxFormItem extends RegBaseFormItem {
         isDefaultValueSet = true;
       }
     }
-    this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
+    this.value = options && options.value ? this.deserializeValue(options.value) : false;
 
     // initialized default value, so update view model also
     if (isDefaultValueSet) {
