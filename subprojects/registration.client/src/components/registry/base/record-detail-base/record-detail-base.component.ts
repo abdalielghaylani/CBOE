@@ -36,6 +36,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   @Input() invIntegrationEnabled: boolean = false;
   @Input() isLoggedInUserRecordSuperVisor: boolean = false;
   @Input() invContainers: IInventoryContainerList;
+  @Input() useCurrent: boolean;
   public editMode: boolean;
   protected dataSubscription: Subscription;
   protected viewId: string;
@@ -135,11 +136,16 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
 
   protected loadRecordData(data: IRecordDetail) {
     if (!data.data || data.id !== this.id || (!this.isNewRecord && data.temporary !== this.temporary)) {
-      this.actions.retrieveRecord(this.temporary, this.template, this.id);
-      return;
+      if (this.useCurrent && data.id !== this.id) {
+        return;
+      } else {
+        this.actions.retrieveRecord(this.temporary, this.template, this.id);
+        return;
+      }
     }
     this.clearDataSubscription();
     this.actions.clearRecord();
+
     this.recordDoc = registryUtils.getDocument(data.data);
     this.prepareRegistryRecord();
     let formGroupType = FormGroupType.SubmitMixture;
@@ -247,10 +253,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       saveToPermanent: savePermanent,
       recordData: {}
     };
-    if (this.isNewRecord) {
-      // if user does not have SEARCH_TEMP privilege, should not re-direct to records list view, after successful save
-      data.recordData.redirectToRecordsView = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
-    }
+
     if (type) {
       data.recordData.duplicateCheckOption = 'N';
       data.recordData.action = type;

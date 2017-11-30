@@ -64,6 +64,9 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/temp/:id',
   component: RegRecordDetailPage
 }, {
+  path: 'records/temp/:id/current',
+  component: RegRecordDetailPage
+}, {
   path: 'configuration',
   component: ConfigurationPage
 }, {

@@ -47,6 +47,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   @Input() template: boolean;
   @Input() id: number;
   @Input() bulkreg: boolean;
+  @Input() useCurrent: boolean;
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
   @select(s => s.registry.saveResponse) saveResponse$: Observable<ISaveResponseData>;
   private displayMode: string;
@@ -77,7 +78,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private createContainerButtonEnabled: boolean = false;
   private inventoryContainersList: IInventoryContainerList;
   private saveTemplatePopupHeight: number = 220;
- 
+
   private saveTemplateItems = [{
     dataField: 'name',
     label: { text: 'Template Name' },
@@ -111,7 +112,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     let state = this.ngRedux.getState();
-    if (this.id >= 0 && (state.registry.records.data.rows.length === 0 && state.registry.tempRecords.data.rows.length === 0)) {
+    if (this.id >= 0 && !this.useCurrent && (state.registry.records.data.rows.length === 0 && state.registry.tempRecords.data.rows.length === 0)) {
       return;
     }
     this.parentHeight = this.getParentHeight();
@@ -307,10 +308,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       if (this.isNewRecord) {
         if (this.recordDetailView.displayMode !== 'view') {
           return;
-        }
-        this.saveButtonEnabled = false;
-        this.clearButtonEnabled = false;
-        this.newButtonEnabled = true;
+        }     
       }
       this.revision = new Date().getTime();
       this.update();
@@ -460,29 +458,29 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private delete() {
-      let dialogResult = dxDialog.confirm(
-        `Are you sure you want to delete this Registry Record?`,
-        `Confirm Delete`);
-      dialogResult.done(result => {
-        if (result) {
-          this.loadingVisible = true;
-          let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
-          this.http.delete(url).toPromise()
-            .then(res => {
-              this.clearLoadindicator();
-              notifySuccess(`The record was deleted successfully!`, 5000);
-              if (this.bulkreg) {
-                this.router.navigate([`records/bulkreg`]);
-              } else {
-                this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
-              }
-            })
-            .catch(error => {
-              this.clearLoadindicator();
-              notifyException(`The record was not deleted due to a problem`, error, 5000);
-            });
-        }
-      });
+    let dialogResult = dxDialog.confirm(
+      `Are you sure you want to delete this Registry Record?`,
+      `Confirm Delete`);
+    dialogResult.done(result => {
+      if (result) {
+        this.loadingVisible = true;
+        let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
+        this.http.delete(url).toPromise()
+          .then(res => {
+            this.clearLoadindicator();
+            notifySuccess(`The record was deleted successfully!`, 5000);
+            if (this.bulkreg) {
+              this.router.navigate([`records/bulkreg`]);
+            } else {
+              this.router.navigate([`records/${this.temporary ? 'temp' : ''}`]);
+            }
+          })
+          .catch(error => {
+            this.clearLoadindicator();
+            notifyException(`The record was not deleted due to a problem`, error, 5000);
+          });
+      }
+    });
   }
 
   private clear() {
@@ -527,10 +525,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     let regInvContainer = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.getLookup('systemSettings'));
     systemSettings.isInventoryUseFullContainerForm
-    ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
-      this.recordDetailView.selectedBatchId + `&RefreshOpenerLocation=true`), null)
-    : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
-      this.recordDetailView.id + `&OpenAsModalFrame=true`), invWideWindowParams);
+      ? regInvContainer.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
+        this.recordDetailView.selectedBatchId + `&RefreshOpenerLocation=true`), null)
+      : regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
+        this.recordDetailView.id + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
 
 };

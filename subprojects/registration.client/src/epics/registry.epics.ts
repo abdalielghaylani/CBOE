@@ -12,7 +12,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/catch';
 import * as registryUtils from '../components/registry/registry.utils';
 import { apiUrlPrefix } from '../configuration';
-import { notify, notifySuccess, notifyError } from '../common';
+import { notify, notifySuccess, notifyError, PrivilegeUtils } from '../common';
 import { IPayloadAction, RegActions, RegistryActions, RecordDetailActions, SessionActions } from '../redux';
 import { IRecordDetail, IRegistry, IRegistryRetrievalQuery, IRecordSaveData, IAppState, CSaveResponseData, IRecordData, IRegisterRecordList } from '../redux';
 import { IResponseData } from '../components';
@@ -20,7 +20,7 @@ import { HttpService } from '../services';
 
 @Injectable()
 export class RegistryEpics {
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService, private ngRedux: NgRedux<IAppState>) { }
 
   handleRegistryActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
     return combineEpics(
@@ -114,8 +114,24 @@ export class RegistryEpics {
               let message = `The record was ${actionType} in the ${temporary ? 'temporary' : ''} registry`
                 + `${createRecordAction ? regNum : ''} successfully!`;
               notifySuccess(message, 5000);
-              if ((payload.recordData.redirectToRecordsView === undefined || payload.recordData.redirectToRecordsView) && createRecordAction) {
-                 return createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}/${recordId}`);
+              let searchTempPrivilege = true;
+              if (temporary) {
+                searchTempPrivilege = PrivilegeUtils.hasSearchTempPrivilege(this.ngRedux.getState().session.lookups.userPrivileges);
+              }
+              if (searchTempPrivilege && createRecordAction) {
+                return createAction(UPDATE_LOCATION)(`records${temporary ? '/temp' : ''}/${recordId}`);
+              } else if (searchTempPrivilege === false) {
+                // use case: user does not have SEARCH_TEMP privilege
+                // update the redux store( currentRecord)
+                // navigate to record detail view and view will be generated using the record data from redux store
+                this.ngRedux.dispatch(createAction(UPDATE_LOCATION)(`records/temp/${recordId}/current`));
+                return RecordDetailActions.retrieveRecordSuccessAction({
+                  temporary: true,
+                  id: recordId,
+                  data: responseData.data.data,
+                  isLoggedInUserOwner: true,
+                  isLoggedInUserSuperVisor: false
+                } as IRecordDetail);
               }
               return RecordDetailActions.saveRecordSuccessAction(new CSaveResponseData(id, temporary));
             }

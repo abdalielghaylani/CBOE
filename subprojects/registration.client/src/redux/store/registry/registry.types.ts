@@ -91,8 +91,7 @@ export interface IRecordSaveData {
 export interface IRecordData {
   data?: string;
   duplicateCheckOption?: string;
-  action?: string;
-  redirectToRecordsView?: boolean;
+  action?: string; 
 }
 
 export class CSaveResponseData {

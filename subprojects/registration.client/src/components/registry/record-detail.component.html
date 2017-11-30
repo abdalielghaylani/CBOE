@@ -17,8 +17,7 @@
   <command-button *ngIf="saveButtonEnabled" testid="save-record-details-button" (onClick)="save()" iconName="floppy-o" title={{saveButtonTitle}}></command-button>
   <command-button *ngIf="registerButtonEnabled" testid="register-record-details-button" (onClick)="register()" iconName="registered" title="Register"></command-button>
   <command-button *ngIf="approveButtonEnabled" testid="approve-temp-record-button" (onClick)="approve()" iconName="thumbs-o-up" title="Approve"></command-button>
-  <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button>
-  <command-button *ngIf="newButtonEnabled" testid="new-record-details-button" (onClick)="newRecord()" iconName="plus" title="New"></command-button>
+  <command-button *ngIf="cancelApprovalButtonEnabled" testid="cancel-temp-record-approval-button" (onClick)="cancelApproval()" iconName="thumbs-o-down" title="Cancel Approval"></command-button> 
   <command-button *ngIf="backButtonEnabled" testid="back-button" (onClick)="back()" iconName="arrow-circle-left" title="Back"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
@@ -26,7 +25,7 @@
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
       <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true" [invIntegrationEnabled]="createContainerButtonEnabled" [invContainers]="inventoryContainersList"
-        [isLoggedInUserRecordSuperVisor]="isLoggedInUserSuperVisor" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
+        [isLoggedInUserRecordSuperVisor]="isLoggedInUserSuperVisor" [useCurrent]="useCurrent" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
     </form>
   </dx-scroll-view>
   <reg-duplicate-popup [visible]="isDuplicatePopupVisible" [viewModel]="copyActions" (popupClick)="createCopies($event)"></reg-duplicate-popup>

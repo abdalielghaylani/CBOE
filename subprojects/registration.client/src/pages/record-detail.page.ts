@@ -15,7 +15,8 @@ import { RegContainer, RegRecordDetail } from '../components';
         [temporary]="temporary"
         [bulkreg]="bulkreg"
         [template]="template"
-        [id]="id">
+        [id]="id"
+        [useCurrent]="useCurrent">
       </reg-record-detail>
     </reg-container>
   `
@@ -25,13 +26,21 @@ export class RegRecordDetailPage {
   private template: boolean;
   private bulkreg: boolean;
   private id: number;
+  private useCurrent: boolean;
 
   constructor(private router: Router, private actions: RecordDetailActions) {
     let urlSegments = router.url.split('/');
     this.temporary = !!urlSegments.find(s => s === 'temp');
     this.bulkreg = !!urlSegments.find(s => s === 'bulkreg');
-    let id = urlSegments[urlSegments.length - 1];
+    this.useCurrent = !!urlSegments.find(s => s === 'current');
+    let id;
+    if (this.useCurrent) {
+      id = urlSegments[urlSegments.length - 2];
+    } else {
+      id = urlSegments[urlSegments.length - 1];
+    }
     this.template = !!urlSegments.find(s => s === 'new') && id !== 'new';
+
     this.id = id.startsWith('new') ? -1 : +id;
   }
 }
