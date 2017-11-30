@@ -157,7 +157,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 int personCreatedId = Convert.ToInt32(regNode.InnerText.Trim());
 
                 bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
-                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;               
+                bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
 
                 return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
                     new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
@@ -1025,7 +1025,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                 RegistryRecord savedRegistryRecord = registryRecord.Save();
                 ValidateUpdatedRecord(savedRegistryRecord);
-                return new ResponseData(savedRegistryRecord.ID);
+
+                if (CheckAuthorizations("SEARCH_REG"))
+                {
+                    return new ResponseData(savedRegistryRecord.ID);
+                }
+                else
+                {
+                    var recordXml = new XmlDocument();
+                    recordXml.LoadXml(savedRegistryRecord.XmlWithAddIns);
+
+                    JObject newRecordData = new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
+                        new JProperty("isLoggedInUserOwner", true),
+                        new JProperty("isLoggedInUserSuperVisor", false));
+                    return new ResponseData(savedRegistryRecord.ID, data: newRecordData);
+                }
+
             }, new string[] { "ADD_COMPOUND_TEMP" });
         }
 

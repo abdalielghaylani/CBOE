@@ -227,6 +227,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 throw new PrivilegeNotHeldException("Not allowed to execute " + string.Join(",", permissions));
         }
 
+        protected bool CheckAuthorizations(string permission)
+        {
+          return Csla.ApplicationContext.User.IsInRole(permission);
+        }
+
         protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null, [CallerMemberName] string memberName = "", CacheControlHeaderValue cacheControl = null)
         {
             HttpResponseMessage responseMessage;
