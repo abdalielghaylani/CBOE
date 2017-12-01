@@ -23,6 +23,9 @@ export class RegDropDownColumnItem extends RegBaseColumnItem implements AfterVie
   }
 
   deserializeValue(value: any): any {
+    if (typeof value === 'string') {
+      value = value.trim();
+    }
     return this.useNumericValue ? +value : value;
   }
 

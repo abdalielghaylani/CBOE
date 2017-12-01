@@ -22,6 +22,9 @@ export class RegDropDownFormItem extends RegBaseFormItem {
   }
 
   deserializeValue(value: any): any {
+    if (typeof value === 'string') {
+      value = value.trim();
+    }
     return this.useNumericValue ? +value : value;
   }
 
