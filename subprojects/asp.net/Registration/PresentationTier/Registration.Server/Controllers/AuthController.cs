@@ -121,7 +121,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 bool isValid = false;
                 const string SSO_URL = "/COESingleSignOn/SingleSignOn.asmx/";
                 var ssoCookies = Request.Headers.GetCookies();
-                var tokenCookie = ssoCookies == null || ssoCookies.First() == null ? null : ssoCookies.First().Cookies.First(c => c.Name == Consts.ssoCookieName);
+                var tokenCookie = ssoCookies == null || ssoCookies.FirstOrDefault() == null ? null : ssoCookies.First().Cookies.FirstOrDefault(c => c.Name == Consts.ssoCookieName);
                 var token = tokenCookie == null ? null : tokenCookie.Value;
                 if (!string.IsNullOrEmpty(token))
                 {
