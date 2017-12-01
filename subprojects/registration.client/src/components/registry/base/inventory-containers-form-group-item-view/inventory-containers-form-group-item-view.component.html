@@ -1,9 +1,11 @@
 <div>
-  <dx-data-grid [columns]="columns" [dataSource]="invContainersVM" rowAlternationEnabled="true" [height]="gridHeight">
+  <dx-data-grid id="InvContainerList" [columns]="columns" [dataSource]="invContainersVM" rowAlternationEnabled="true" [height]="invContainersVM.length > 10 ? 275 : 'auto'">
     <dxo-sorting mode="single"></dxo-sorting>
     <dxo-filter-row [visible]="invContainersVM.length > 4"></dxo-filter-row>
     <dxo-selection mode="single"></dxo-selection>
     <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-load-panel [enabled]="false"></dxo-load-panel>
+    <dxo-scrolling mode="infinite"></dxo-scrolling>
     <div *dxTemplate="let data of 'containerCellTemplate'">
       <div class="dx-link" (click)="viewContainerDetails(data)"><strong>{{data.value}}</strong></div>
     </div>
@@ -20,3 +22,4 @@
     </tr>
   </table> 
 </div>
+  
