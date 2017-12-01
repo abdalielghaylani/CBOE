@@ -334,14 +334,14 @@ export class CValidator {
 
   private static validateNumericRange(rule: IValidationRule, e) {
     if (e.value) {
-      let min = this.getParamNumber(rule.params.param, 'min');
-      let max = this.getParamNumber(rule.params.param, 'max');
-      if (min && max) {
+      let min = this.getParamNumber(rule.params.param, 'min', -1);
+      let max = this.getParamNumber(rule.params.param, 'max', -1);
+      if (min > -1 && max > -1) {
         let floatingValue = Number.parseFloat(e.value);
         if (floatingValue === Number.NaN) {
           e.rule.isValid = false;
         } else {
-          e.rule.isValue = (!min || floatingValue >= min) && (!max || floatingValue <= max);
+          e.rule.isValid = (floatingValue >= min) && (floatingValue <= max);
         }
       }
     }
