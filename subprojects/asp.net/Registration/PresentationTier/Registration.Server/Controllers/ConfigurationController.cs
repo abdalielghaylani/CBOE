@@ -529,40 +529,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     COETableEditorBOList.NewList().TableName = tableName;
                     var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
-                    // Find dc.ColumnName in config.lookup.displayExpr
-                    var lookups = new Dictionary<string, Lookup>();
-                    foreach (var item in config.Where(r => r["lookup"] != null))
-                    {
-                        lookups.Add(item["lookup"]["displayExpr"].ToString(),
-                            new Lookup()
-                            {
-                                DataField = item["dataField"].ToString(),
-                                DataSource = (JArray)item["lookup"]["dataSource"],
-                                Keys = item["lookup"]["dataSource"].First().ToObject<Dictionary<string, string>>().Keys
-                            });
-                    }
-
+                    var columnCount = config.Count();
+                    if (dt.Columns.Count != columnCount)
+                        throw new RegistrationException("Invalid column configuration");
                     foreach (DataRow dr in dt.Rows)
                     {
                         var row = new JObject();
-                        foreach (DataColumn dc in dt.Columns)
+                        for (var columnIndex = 0; columnIndex < columnCount; ++columnIndex)
                         {
-                            var columnName = dc.ColumnName;
+                            var dc = dt.Columns[columnIndex];
+                            var columnName = config[columnIndex]["dataField"].ToString();
                             var columnValue = dr[dc];
-
-                            if (lookups.ContainsKey(columnName))
-                            {
-                                var lookupData = lookups[columnName];
-                                columnName = lookupData.DataField;
-                                if (columnValue != null)
-                                {
-                                    var match = lookupData.DataSource.Where(r => r[lookupData.Keys.ElementAt(1)].ToString().Equals(columnValue));
-                                    if (match.Count() == 1)
-                                    {
-                                        columnValue = match.First()[lookupData.Keys.ElementAt(0)];
-                                    }
-                                }
-                            }
                             if (columnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
                             {
                                 string structure = columnValue == null ? string.Empty : columnValue.ToString();
