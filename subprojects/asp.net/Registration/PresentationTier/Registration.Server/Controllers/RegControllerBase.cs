@@ -405,6 +405,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             configRegRecord.COEFormHelper.Load(formGroupType);
 
             var bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
+            bo.RefreshDatabaseRecordCount();
             bo.AllowFullScan = true;
             bo.CurrentFormType = FormGroup.CurrentFormEnum.ListForm;
 
@@ -455,6 +456,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 bo.HitListToRestore = hitlist;
 
             bo.Search();
+            bo.KeepRecordCountSyncrhonized = true;
 
             var dataColumns = new List<KeyValuePair<string, List<DataColumn>>>();
             foreach (DataTable dataTable in bo.Dataset.Tables)
