@@ -98,7 +98,7 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
     // Set structure search Attributes
     if (this.queryModel) {
       this.structureCriteriaOptions = {
-        _hitAnyChargeHetero: this.queryModel.hitAnyChargeCarbon ? 'YES' : 'NO',
+        _hitAnyChargeHetero: this.queryModel.hitAnyChargeHetero ? 'YES' : 'NO',
         _reactionCenter: this.queryModel.reactionCenter ? 'YES' : 'NO',
         _hitAnyChargeCarbon: this.queryModel.hitAnyChargeCarbon ? 'YES' : 'NO',
         _permitExtraneousFragments: this.queryModel.permitExtraneousFragments ? 'YES' : 'NO',
