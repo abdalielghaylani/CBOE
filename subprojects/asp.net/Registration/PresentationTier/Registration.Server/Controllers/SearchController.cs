@@ -553,8 +553,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         newHitlist = COEHitListOperationManager.UnionHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                 }
-                newHitlist.Name = string.Format("({0}) {1} ({2})", hitlistBO1.Name, symbol, hitlistBO2.Name);
-                newHitlist.Description = string.Format("{0} {1} {2}", hitlistBO1.Description, join, hitlistBO2.Description);
+                string hitListName = string.Format("({0}) {1} ({2})", hitlistBO1.Name, symbol, hitlistBO2.Name);
+                string hitListDescription = string.Format("{0} {1} {2}", hitlistBO1.Description, join, hitlistBO2.Description);
+                newHitlist.Name = hitListName.Substring(0, Math.Min(hitListName.Length, 50));
+                newHitlist.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));
                 newHitlist.Update();
                 return GetHitlistRecordsInternal(newHitlist.HitListID, temp);
             });
