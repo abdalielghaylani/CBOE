@@ -361,6 +361,11 @@ export class CViewGroup implements IViewGroup {
             let sysSettings = new CSystemSettings(systemSettings);
             statusColumn.visible = sysSettings.isApprovalsEnabled;
           }
+          let lockedColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID');
+          if (lockedColumn) {
+            let sysSettings = new CSystemSettings(systemSettings);
+            lockedColumn.visible = sysSettings.isLockingEnabled;
+          }
         }
       });
     }
@@ -478,6 +483,7 @@ export class CViewGroup implements IViewGroup {
                         caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
                         width: 150,
                         visible: (c._hidden && c._hidden.toLowerCase() === 'true') ? false : true,
+                        dataType: 'string'
                       };
                       if (index > 0) {
                         batchColumns.push(col);
@@ -487,21 +493,19 @@ export class CViewGroup implements IViewGroup {
                     }
                   } else {
                     if (!c._childTableName) {
-                      let col = {
+                      let col: any;
+                      col = {
                         dataField: (c.formElement) ? c.formElement._name : c._name,
                         caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
-                        visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked') ? false : true,
-                        dataType: 'string'
+                        visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked' || c._name === 'Review Record') ? false : true
                       };
-
                       if (c.formElement && c.formElement.displayInfo && c.formElement.displayInfo.type) {
                         if (c.formElement.displayInfo.type.indexOf('COEDatePicker') > 0) {
                           col.dataType = 'date';
                         } else if (c.formElement.displayInfo.type.indexOf('COECheckBoxReadOnly') > 0) {
                           col.dataType = 'boolean';
                         }
-                      }
-
+                      }                      
                       if (index > 0) {
                         batchColumns.push(col);
                       } else {

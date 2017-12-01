@@ -91,6 +91,10 @@ export class CSystemSettings {
     return this.isSettingTrue('EnableMoveBatch');
   }
 
+  public get isLockingEnabled(): boolean {
+    return this.isSettingTrue('LockingEnabled');
+  }
+
   public get isInventoryIntegrationEnabled(): boolean {
     let setting: ISettingData = this.getSetting('Inventory', 'InventoryIntegration');
     return setting.value === 'Enabled' ? true : false;
