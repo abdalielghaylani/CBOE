@@ -197,17 +197,21 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     this.batchCommandsEnabled = this.viewConfig.subArray != null;
     this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
     let isLoggedUserBatchOwner: boolean = false;
+    let isLoggedUserBatchOwnerSuperVisor: boolean = false;
     if (this.viewConfig.subArray != null) {
       let batch: IBatch = this.getSelectedBatch();
       isLoggedUserBatchOwner = this.isLoggedInUserBatchOwner(batch);
+      if (!isLoggedUserBatchOwner) {
+        isLoggedUserBatchOwnerSuperVisor = this.isLoggedInUserBatchOwnerSupervisor(batch);
+      }
     }
     let canModifyBatch: boolean = this.batchCommandsEnabled && this.displayMode === 'view' && this.updatable;
     this.addBatchEnabled = canModifyBatch && PrivilegeUtils.hasAddBatchPrivilege(lookups.userPrivileges);
     this.deleteBatchEnabled = canModifyBatch && this.viewConfig.subArray.length > 1
-      && PrivilegeUtils.hasDeleteBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
+      && PrivilegeUtils.hasDeleteBatchPrivilege(isLoggedUserBatchOwner, isLoggedUserBatchOwnerSuperVisor, lookups.userPrivileges);
     this.moveBatchEnabled = this.deleteBatchEnabled && systemSettings.isMoveBatchEnabled;
     this.editBatchEnabled = this.batchCommandsEnabled && canModifyBatch
-      && PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
+      && PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, isLoggedUserBatchOwnerSuperVisor, lookups.userPrivileges);
     this.setBatchDisplayModeInRecordEditMode();
   }
 
@@ -215,8 +219,12 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     if (this.displayMode === 'edit') {
       let batch: IBatch = this.getSelectedBatch();
       let isLoggedUserBatchOwner = this.isLoggedInUserBatchOwner(batch);
+      let isLoggedUserBatchOwnerSuperVisor: boolean = false;
+      if (!isLoggedUserBatchOwner) {
+        isLoggedUserBatchOwnerSuperVisor = this.isLoggedInUserBatchOwnerSupervisor(batch);
+      }
       let lookups = this.ngRedux.getState().session.lookups;
-      let editBatchPrivilege = PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, this.isLoggedInUserRecordSuperVisor, lookups.userPrivileges);
+      let editBatchPrivilege = PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, isLoggedUserBatchOwnerSuperVisor, lookups.userPrivileges);
       this.editMode = editBatchPrivilege;
       this.changeDetector.markForCheck();
     }
@@ -257,6 +265,24 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
         return true;
       }
     }
+    return false;
+  }
+
+  private isLoggedInUserBatchOwnerSupervisor(batch: IBatch): boolean {
+    if (!this.isLoggedInUserRecordSuperVisor) {
+      return false;
+    }
+
+    // logged in user is a super visor of the record created user
+    let recordPersonCreated = this.viewModel.PersonCreated;
+    let batchPersonCreated = batch.PersonCreated.__text;
+    if (recordPersonCreated === batchPersonCreated) {
+      // record created user and batch created user are same
+      return true;
+    }
+
+    // record created user and batch created user are not same
+    // and logged in user is not a super visor of batch created user
     return false;
   }
 
