@@ -304,6 +304,15 @@ export class CValidator {
     return NaN;
   }
 
+  private static validateInteger(rule: IValidationRule, e) {
+    if (e.value) {
+      let IntegerValue = Number(e.value);
+      if (isNaN(IntegerValue)) {
+        e.rule.isValid = false;
+      }
+    }
+  }
+
   private static validateFloat(rule: IValidationRule, e) {
     if (e.value) {
       let floatingValue = this.filterFloat(e.value);
@@ -364,6 +373,8 @@ export class CValidator {
             this.validateRequiredField(r, e);
           } else if (r._validationRuleName === 'textLength') {
             this.validateTextLength(r, e);
+          } else if (r._validationRuleName === 'integer') {
+            this.validateInteger(r, e);
           } else if (r._validationRuleName === 'float') {
             this.validateFloat(r, e);
           } else if (r._validationRuleName === 'numericRange') {
