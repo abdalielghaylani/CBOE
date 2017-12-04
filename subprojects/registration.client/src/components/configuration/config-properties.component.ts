@@ -32,6 +32,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   private gridHeight: string;
   private dataSource: CustomStore;
   private configProperties: CConfigProperties;
+  private loadingVisible = false;
 
   constructor(
     private http: HttpService,
@@ -129,11 +130,14 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   addProperty(e) {
+    this.showLoadPanel();
     let valid = this.forms._results[0].instance.validate();
     if (this.configProperties.combuteValidation(valid.brokenRules)) {
       this.dataSource.insert(this.configProperties.formData).done(result => {
+        this.hideLoadPanel();
         this.grid._results[0].instance.refresh();
       }).fail(err => {
+        this.hideLoadPanel();
         notifyError(err, 5000);
       });
       this.cancel();
@@ -141,11 +145,14 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   saveProperty(e) {
+    this.showLoadPanel();
     let valid = this.forms._results[0].instance.validate();
     if (this.configProperties.combuteValidation(valid.brokenRules)) {
       this.dataSource.update(this.configProperties.formData, []).done(result => {
+        this.hideLoadPanel();
         this.grid._results[0].instance.refresh();
       }).fail(err => {
+        this.hideLoadPanel();
         notifyError(err, 5000);
       });
       this.cancel();
@@ -275,18 +282,30 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       remove: function (key) {
         let deferred = jQuery.Deferred();
         let id = key[Object.getOwnPropertyNames(key)[0]];
+        parent.showLoadPanel();
         parent.http.delete(`${apiUrlBase}/${id}`)
           .toPromise()
           .then(result => {
+            parent.hideLoadPanel();
             notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
+            parent.hideLoadPanel();
             let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
             deferred.reject(message);
           });
         return deferred.promise();
       }
     });
+  }
+
+  private showLoadPanel() {
+    this.loadingVisible = true;
+  }
+
+  private hideLoadPanel() {
+    this.loadingVisible = false;
+    this.changeDetector.markForCheck();
   }
 };
