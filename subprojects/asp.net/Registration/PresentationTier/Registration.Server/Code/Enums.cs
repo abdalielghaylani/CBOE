@@ -180,4 +180,35 @@ namespace PerkinElmer.COE.Registration.Server.Code
         /// </summary>
         BatchList = 1
     }
+
+    /// <summary>
+    /// Duplicate resolution copies action
+    /// </summary>
+    public enum CopiesAction
+    {
+        /// <summary>
+        /// None
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Copy Component
+        /// </summary>
+        CopyComponent,
+
+        /// <summary>
+        /// Copy Structure
+        /// </summary>
+        CopyStructure,
+
+        /// <summary>
+        /// CopyComponentWithDupCheck
+        /// </summary>
+        CopyComponentWithDupCheck,
+
+        /// <summary>
+        /// CopyStructureWithDupCheck
+        /// </summary>
+        CopyStructureWithDupCheck
+    }
 }
