@@ -187,7 +187,7 @@ export class PrivilegeUtils {
     return this.userHasRegAppPrivilege('ADD_BATCH_PERM', userPrivileges);
   }
 
-  static hasDeleteBatchPrivilege(loggedInUserBatchOwner: boolean,  isLoggedInUserRecordSuperVisor: boolean, userPrivileges: IAppPrivilege[]): boolean {
+  static hasDeleteBatchPrivilege(loggedInUserBatchOwner: boolean, isLoggedInUserBatchOwnerSuperVisor: boolean, userPrivileges: IAppPrivilege[]): boolean {
     // DELETE_BATCH_REG privilege is required to delete a batch     
     if (!this.userHasRegAppPrivilege('DELETE_BATCH_REG', userPrivileges)) {
       return false;
@@ -197,7 +197,7 @@ export class PrivilegeUtils {
       return true;
     }
 
-    if (isLoggedInUserRecordSuperVisor && this.userHasRegAppPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges)) {
+    if (isLoggedInUserBatchOwnerSuperVisor && this.userHasRegAppPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges)) {
       return true;
     }
 
@@ -208,7 +208,7 @@ export class PrivilegeUtils {
     return false;
   }
 
-  static hasEditBatchPrivilege(loggedInUserBatchOwner: boolean, isLoggedInUserRecordSuperVisor: boolean, userPrivileges: IAppPrivilege[]): boolean {
+  static hasEditBatchPrivilege(loggedInUserBatchOwner: boolean, isLoggedInUserBatchOwnerSuperVisor: boolean, userPrivileges: IAppPrivilege[]): boolean {
 
     let hasBaseEditPrivilege = this.userHasRegAppPrivilege('EDIT_COMPOUND_REG', userPrivileges);
     // base privilege EDIT_COMPOUND_REG is required for editing a compound
@@ -221,7 +221,7 @@ export class PrivilegeUtils {
       return true;
     }
 
-    if (isLoggedInUserRecordSuperVisor && this.userHasRegAppPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges)) {
+    if (isLoggedInUserBatchOwnerSuperVisor && this.userHasRegAppPrivilege('EDIT_SCOPE_SUPERVISOR', userPrivileges)) {
       return true;
     }
 

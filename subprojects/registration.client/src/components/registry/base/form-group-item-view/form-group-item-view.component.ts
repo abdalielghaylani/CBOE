@@ -24,7 +24,6 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   @Input() viewModel: CRegistryRecord;
   @Input() invIntegrationEnabled: boolean = false;
   @Input() invContainers: IInventoryContainerList;
-  @Input() isLoggedInUserRecordSuperVisor: boolean = false;
   @Output() batchValueChanged = new EventEmitter<any>();
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
@@ -269,20 +268,16 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   }
 
   private isLoggedInUserBatchOwnerSupervisor(batch: IBatch): boolean {
-    if (!this.isLoggedInUserRecordSuperVisor) {
-      return false;
+    let lookups = this.ngRedux.getState().session.lookups;
+    if (lookups) {
+      let loggedInUserName = this.ngRedux.getState().session.user.fullName.toUpperCase();
+      let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
+      let batchOwnerId = +batch.PersonCreated.__text;
+      let batchOwner = lookups.users.find(user => user.PERSONID === batchOwnerId);
+      if (batchOwner.SUPERVISORID === user.PERSONID) {
+        return true;
+      }
     }
-
-    // logged in user is a super visor of the record created user
-    let recordPersonCreated = this.viewModel.PersonCreated;
-    let batchPersonCreated = batch.PersonCreated.__text;
-    if (recordPersonCreated === batchPersonCreated) {
-      // record created user and batch created user are same
-      return true;
-    }
-
-    // record created user and batch created user are not same
-    // and logged in user is not a super visor of batch created user
     return false;
   }
 
