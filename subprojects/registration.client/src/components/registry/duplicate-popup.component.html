@@ -8,7 +8,7 @@
       {{viewModel?viewModel.message:''}}
     </h6>
     <command-button testid="cancel-button" (onClick)="onButtonClick('cancel')" iconName="undo" title="Cancel"></command-button>
-    <command-button *ngIf="viewModel?viewModel.canCreateCopiesOptionVisibility:false" testid="create-copies-button" (onClick)="onButtonClick('CreateCopies')" iconName="clone" title="Create Copies"></command-button>
+    <command-button *ngIf="viewModel?viewModel.canCreateCopiesOptionVisibility:false" testid="create-copies-button" (onClick)="onButtonClick(viewModel.action)" iconName="clone" title="Create Copies"></command-button>
     <command-button *ngIf="viewModel?viewModel.canContinueOptionVisibility:false" testid="continue-button" (onClick)="onButtonClick('Continue')" iconName="step-forward" title="Continue"></command-button>
     <command-button *ngIf="viewModel?viewModel.okOptionVisibility:false" testid="ok-button" (onClick)="onButtonClick(viewModel.action)" iconName="step-forward" title="OK"></command-button>
   </div>
