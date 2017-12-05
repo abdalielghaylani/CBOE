@@ -117,19 +117,27 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 throw new RegistrationException("The search criteria is invalid", ex);
             }
-            var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
-            var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
-            hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
-            if (!string.IsNullOrEmpty(structureName))
+
+            try
             {
-                var additionalCriteriaCount = searchCriteria.Items.Count - 1;
-                var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
-                var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
-                hitlistBO.Name = string.Format("{0}{1}", structureName, more);
-                hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
+                var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
+                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
+                hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
+                if (!string.IsNullOrEmpty(structureName))
+                {
+                    var additionalCriteriaCount = searchCriteria.Items.Count - 1;
+                    var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
+                    var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
+                    hitlistBO.Name = string.Format("{0}{1}", structureName, more);
+                    hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
+                }
+                hitlistBO.Update();
+                return GetRegistryRecordsListView(temp, skip, count, sort, hitlistInfo);
             }
-            hitlistBO.Update();
-            return GetRegistryRecordsListView(temp, skip, count, sort, hitlistInfo);
+            catch (Exception exc)
+            {
+                throw new RegistrationException("The search could not be performed", exc);
+            }
         }
 
         private COEDataView AddMolWt(COEDataView dataView)
@@ -834,7 +842,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         var isStructureMimeType = dataViewField.MimeType.ToString().ToUpper() == "CHEMICAL_X_CDX";
                         var isStructureColumn = isStructureIndex || isStructureMimeType;
 
-                        if (isStructureColumn && templateId == null) 
+                        if (isStructureColumn && templateId == null)
                         {
                             visible = true; // if is default template, structure columns should be selected by default
                         }
