@@ -34,3 +34,4 @@ nbdist/
 
 ### StyleCop ###
 StyleCop.Cache
+package-lock.json

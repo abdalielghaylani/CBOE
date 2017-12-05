@@ -79,7 +79,7 @@ export class RegFragmentsFormItem extends RegDataGridFormItem {
     this.modifyLookups(value);
     let orderIndex = 0;
     this.fragmentList = {
-      BatchComponentFragment: this.grid.dataSource.map(r => {
+      BatchComponentFragment: (this.grid.dataSource as any[]).map(r => {
         ++orderIndex;
         let fragment: any = {
           Equivalents: r.equivalents,

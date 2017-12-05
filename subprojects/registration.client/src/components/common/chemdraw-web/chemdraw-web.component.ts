@@ -6,6 +6,7 @@ import {
   ElementRef, ViewEncapsulation,
   OnInit, OnDestroy, AfterViewInit
 } from '@angular/core';
+import 'devextreme/integration/jquery';
 
 @Component({
   selector: 'chemdraw-web',

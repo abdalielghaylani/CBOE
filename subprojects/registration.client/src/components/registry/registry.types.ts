@@ -23,7 +23,7 @@ export class CRecords implements IRecords {
   setRecordData(d: IRecordsData) {
     if (d.startIndex === 0) {
       this.data = d;
-    } else {
+    } else if (d.startIndex === this.data.rows.length) {
       this.data.totalCount = d.totalCount;
       this.data.rows = this.data.rows.concat(d.rows);
     }

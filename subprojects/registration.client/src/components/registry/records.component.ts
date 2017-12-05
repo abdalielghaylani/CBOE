@@ -215,7 +215,7 @@ export class RegRecords implements OnInit, OnDestroy {
         if (ref.records.data.rows.length === ref.records.data.totalCount) {
           ref.records.filterRow.visible = true;
         }
-        return ref.records.getFetchedRows();
+        return Promise.resolve(ref.records.getFetchedRows());
       }
     });
   }

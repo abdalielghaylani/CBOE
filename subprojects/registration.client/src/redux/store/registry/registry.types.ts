@@ -17,7 +17,7 @@ export interface IRecordsData {
   startIndex: number;
   totalCount: number;
   hitlistId?: number;
-  rows: any[] | any;
+  rows: any[];
 }
 
 export class CRecordsData implements IRecordsData {
@@ -25,7 +25,7 @@ export class CRecordsData implements IRecordsData {
   startIndex: number = 0;
   totalCount: number = 0;
   hitlistId?: number = 0;
-  rows: any[] | Function = [];
+  rows: any[] = [];
   constructor(temporary: boolean, rows: any[] = undefined) {
     this.temporary = temporary;
     if (rows) {
