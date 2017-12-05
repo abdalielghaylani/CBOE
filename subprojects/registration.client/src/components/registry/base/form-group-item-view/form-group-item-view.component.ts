@@ -215,7 +215,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   }
 
   private setBatchDisplayModeInRecordEditMode() {
-    if (this.displayMode === 'edit') {
+    if (this.viewConfig.subArray != null && this.displayMode === 'edit') {
       let batch: IBatch = this.getSelectedBatch();
       let isLoggedUserBatchOwner = this.isLoggedInUserBatchOwner(batch);
       let isLoggedUserBatchOwnerSuperVisor: boolean = false;
@@ -274,7 +274,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       let user = lookups.users.find(user => user.USERID.toUpperCase() === loggedInUserName);
       let batchOwnerId = +batch.PersonCreated.__text;
       let batchOwner = lookups.users.find(user => user.PERSONID === batchOwnerId);
-      if (batchOwner.SUPERVISORID === user.PERSONID) {
+      if (batchOwner && batchOwner.SUPERVISORID && batchOwner.SUPERVISORID === user.PERSONID) {
         return true;
       }
     }
