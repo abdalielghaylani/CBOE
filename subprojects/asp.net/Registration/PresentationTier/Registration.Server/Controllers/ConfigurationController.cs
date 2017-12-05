@@ -529,6 +529,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     COETableEditorBOList.NewList().TableName = tableName;
                     var dt = COETableEditorBOList.getTableEditorDataTable(tableName);
+                    // Find dc.ColumnName in config.lookup.displayExpr
+                    var lookups = new Dictionary<string, Lookup>();
+                    foreach (var item in config.Where(r => r["lookup"] != null))
+                    {
+                        lookups.Add(item["lookup"]["displayExpr"].ToString(),
+                            new Lookup()
+                            {
+                                DataField = item["dataField"].ToString(),
+                                DataSource = (JArray)item["lookup"]["dataSource"],
+                                Keys = item["lookup"]["dataSource"].First().ToObject<Dictionary<string, string>>().Keys
+                            });
+                    }
+
                     var columnCount = config.Count();
                     if (dt.Columns.Count != columnCount)
                         throw new RegistrationException("Invalid column configuration");
@@ -540,6 +553,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             var dc = dt.Columns[columnIndex];
                             var columnName = config[columnIndex]["dataField"].ToString();
                             var columnValue = dr[dc];
+                            // Lookup column values need to be converted to keys
+                            if (lookups.ContainsKey(dc.ColumnName))
+                            {
+                                var lookupData = lookups[dc.ColumnName];
+                                if (columnValue != null)
+                                {
+                                    var match = lookupData.DataSource.Where(r => r[lookupData.Keys.ElementAt(1)].ToString().Equals(columnValue));
+                                    if (match.Count() == 1)
+                                    {
+                                        columnValue = match.First()[lookupData.Keys.ElementAt(0)];
+                                    }
+                                }
+                            }
                             if (columnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
                             {
                                 string structure = columnValue == null ? string.Empty : columnValue.ToString();
@@ -1066,7 +1092,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 if (!string.IsNullOrEmpty(propertyData.Precision) && propertyData.Precision.Contains("."))
                                 {
                                     propertyData.Precision = RegAdminUtils.ConvertPrecision(propertyData.Precision, false);
-                                }                            
+                                }
                                 break;
                         }
                         propertyData.SortOrder = property.SortOrder;

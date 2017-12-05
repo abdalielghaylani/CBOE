@@ -59,7 +59,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let entryInfo = this.viewConfig.getEntryInfo(this.displayMode, id);
     let dataSource = this.viewModel.getDataSource(entryInfo.dataSource, this.viewConfig.subIndex);
     let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression);
-    return foundObject.property ? foundObject.obj[foundObject.property] : undefined;
+    return foundObject && foundObject.property ? foundObject.obj[foundObject.property] : undefined;
   }
 
   private getFormData(idList: string[]): any {

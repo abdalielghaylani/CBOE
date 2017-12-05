@@ -686,14 +686,16 @@ export class CRegistryRecord {
         let m = n.match(/PropertyList\[@Name='(.*)'/);
         if (m && m.length > 1) {
           let propertyList = nextObject.PropertyList as IPropertyList;
-          let p = propertyList.Property.filter(p => p._name === m[1]);
-          if (createMissing && p.length === 0) {
-            propertyList.Property.push({ _name: m[1] });
-            p = propertyList.Property.filter(p => p._name === m[1]);
-          }
-          if (p.length > 0) {
-            foundObject.obj = p[0];
-            foundObject.property = '__text';
+          if (propertyList != null) {
+            let p = propertyList.Property.filter(p => p._name === m[1]);
+            if (createMissing && p.length === 0) {
+              propertyList.Property.push({ _name: m[1] });
+              p = propertyList.Property.filter(p => p._name === m[1]);
+            }
+            if (p.length > 0) {
+              foundObject.obj = p[0];
+              foundObject.property = '__text';
+            }
           }
         } else if (index === objectNames.length) {
           foundObject.obj = nextObject;
@@ -722,7 +724,7 @@ export class CRegistryRecord {
     if (entryInfo.dataSource && entryInfo.bindingExpression) {
       let dataSource = this.getDataSource(entryInfo.dataSource, viewConfig.subIndex);
       let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
-      if (foundObject.property) {
+      if (foundObject && foundObject.property) {
         if (serialize) {
           CRegistryRecord.serializeValue(foundObject.obj, foundObject.property);
         } else {
