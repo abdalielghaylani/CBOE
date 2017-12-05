@@ -6,16 +6,28 @@
     <i class="fa-undo white" aria-hidden="true"></i>
   </button>
   <button type="button" class="btn border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-    aria-expanded="false">Restore <span class="caret"></span></button>
+    aria-expanded="false">Restore
+    <span class="caret"></span>
+  </button>
   <ul class="dropdown-menu">
-    <li><button type="button" class="btn">Last Hitlist</button></li>
-    <li><button type="button" class="btn">Last Query</button></li>
-    <li><button type="button" class="btn">Last Query to Form</button></li>
+    <li>
+      <button type="button" class="btn">Last Hitlist</button>
+    </li>
+    <li>
+      <button type="button" class="btn">Last Query</button>
+    </li>
+    <li>
+      <button type="button" class="btn">Last Query to Form</button>
+    </li>
   </ul>
 </div>
 <reg-header testid="configuration-heading" id="qa-configuration-heading">
   {{ 'Search ' + (temporary ? 'Temporary' : 'Permanent') + ' Registry' }}
 </reg-header>
+<dx-form class="pull-right" [formData]="optionData" style="padding-top:10px;" (onFieldDataChanged)="onOptionChanged($event)">
+  <dxi-item dataField="isHighLightSubstructure" editorType="dxCheckBox" [label]="{ text: 'Highlight sub-structure' }">
+  </dxi-item>
+</dx-form>
 <badge-count color="green" icon="book" text="Total Searchable Records" [count]="totalSearchableCount"></badge-count>
 <dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
   <form class="form-inline" role="form" ng-submit="search(query)">

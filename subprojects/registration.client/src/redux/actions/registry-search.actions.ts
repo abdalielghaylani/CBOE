@@ -23,6 +23,9 @@ export class RegistrySearchActions {
   static UPDATE_HITLIST_ERROR = 'UPDATE_HITLIST_ERROR';
   static SAVE_HITLISTS = 'SAVE_HITLISTS';
   static SAVE_HITLISTS_ERROR = 'SAVE_HITLISTS_ERROR';
+  static SEARCH_OPTION_CHANGED = 'SEARCH_OPTION_CHANGED';
+  static searchOptionChangedAction = createAction(RegistrySearchActions.SEARCH_OPTION_CHANGED,
+    (highLight: boolean) => ( highLight ));
   static openHitlistsAction = createAction(RegistrySearchActions.OPEN_HITLISTS,
     (temporary: boolean) => ({ temporary }));
   static openHitlistsSuccessAction = createAction(RegistrySearchActions.OPEN_HITLISTS_SUCCESS);
@@ -74,6 +77,10 @@ export class RegistrySearchActions {
 
   openHitlists(temporary: boolean) {
     this.ngRedux.dispatch(RegistrySearchActions.openHitlistsAction(temporary));
+  }
+
+  seachOptionChanged(highLight: boolean) {
+    this.ngRedux.dispatch(RegistrySearchActions.searchOptionChangedAction(highLight));
   }
 
   deleteHitlist(temporary: boolean, id: number) {

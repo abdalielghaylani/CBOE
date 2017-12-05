@@ -41,6 +41,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private title: string;
   private displayMode: string = 'query';
   private cddActivated: boolean = false;
+  private optionData = { isHighLightSubstructure: undefined };
 
   constructor(
     private router: Router,
@@ -70,6 +71,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     this.formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.viewGroups = this.lookups ? CViewGroup.getViewGroups(true, this.formGroup, this.displayMode, this.lookups.disabledControls) : [];
     this.searchCriteria = new CSearchCriteria(CSearchCriteria.getConfiguredItems(this.viewGroups));
+    this.optionData.isHighLightSubstructure = this.ngRedux.getState().registrysearch.highLightSubstructure;
     this.update();
   }
 
@@ -135,4 +137,9 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private onValueUpdated(e) {
     // console.log(this.searchItems);
   }
+
+  private onOptionChanged(e) {
+    this.actions.seachOptionChanged(this.optionData.isHighLightSubstructure);
+  }
+
 };

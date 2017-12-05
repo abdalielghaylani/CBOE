@@ -46,6 +46,7 @@ export interface ISearchRecordsRecord extends TypedRecord<ISearchRecordsRecord>,
 
 export interface IRegistrySearch {
   hitlist?: ISearchRecordsRecord;
+  highLightSubstructure?: boolean;
 }
 
 export interface IRegistrySearchRecord extends TypedRecord<IRegistrySearchRecord>, IRegistrySearch { }
@@ -55,7 +56,8 @@ const INITIAL_RECORDS = makeTypedFactory<ISearchRecords, ISearchRecordsRecord>({
 })();
 
 export const SearchFactory = makeTypedFactory<IRegistrySearch, IRegistrySearchRecord>({
-  hitlist: INITIAL_RECORDS
+  hitlist: INITIAL_RECORDS,
+  highLightSubstructure: false
 });
 
 export const INITIAL_SEARCH_STATE = SearchFactory();
