@@ -288,7 +288,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 {
                     if (batchcomponentfragment.UniqueID == batchcmpFrg.UniqueID)
                     {
-                        UpdateFromXml(batchcmpFrg, batchcomponentfragmentNode);                  
+                        UpdateFromXml(batchcmpFrg, batchcomponentfragmentNode);
                         foundFragment = true;
                         break;
                     }
@@ -394,20 +394,36 @@ namespace PerkinElmer.COE.Registration.Server.Code
                 var node = dataNode.SelectSingleNode("DrawingType");
                 if (node != null && int.TryParse(node.InnerText, out drawingType))
                 {
-                    structure.DrawingType = (DrawingType)drawingType;
+                    if (!structure.DrawingType.Equals((DrawingType)drawingType))
+                    {
+                        structure.DrawingType = (DrawingType)drawingType;
+                    }
                 }
                 var structureElement = dataNode.SelectSingleNode("Structure") as XmlElement;
                 if (structureElement != null)
                 {
-                    structure.Value = structureElement.InnerText;
+                    if (!structure.Value.Equals(structureElement.InnerText))
+                    {
+                        structure.Value = structureElement.InnerText;
+                    }
                     if (structureElement.HasAttribute("formula"))
-                        structure.Formula = structureElement.GetAttribute("formula");
+                    {
+                        if (!structure.Formula.Equals(structureElement.GetAttribute("formula")))
+                        {
+                            structure.Formula = structureElement.GetAttribute("formula");
+                        }
+                    }
                     if (structureElement.HasAttribute("molWeight"))
                     {
                         var molWeightStr = structureElement.GetAttribute("molWeight");
                         double molWeight;
                         if (double.TryParse(molWeightStr, out molWeight))
-                            structure.MolWeight = molWeight;
+                        {
+                            if (!structure.MolWeight.Equals(molWeight))
+                            {
+                                structure.MolWeight = molWeight;
+                            }
+                        }
                     }
                     node = structureElement.SelectSingleNode("Structure/validationRuleList");
                     if (node != null)
@@ -415,11 +431,21 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
                     node = structureElement.SelectSingleNode("NormalizedStructure");
                     if (node != null && !string.IsNullOrEmpty(node.InnerText))
-                        structure.NormalizedStructure = node.InnerText;
+                    {
+                        if (!structure.NormalizedStructure.Equals(node.InnerText))
+                        {
+                            structure.NormalizedStructure = node.InnerText;
+                        }
+                    }
                     // If Value is null, put the normalized structure here.
                     //  This issue is occurring when a new component is added to a temporary record.
                     if (string.IsNullOrEmpty(structure.Value))
-                        structure.Value = structure.NormalizedStructure;
+                    {
+                        if (!structure.Value.Equals(structure.NormalizedStructure))
+                        {
+                            structure.Value = structure.NormalizedStructure;
+                        }
+                    }
 
                     node = structureElement.SelectSingleNode("UseNormalization");
                     COEDALBoolean useNormalization;
