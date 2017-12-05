@@ -1,4 +1,4 @@
-import { RegistrySearchActions,SessionActions, IPayloadAction } from '../../actions';
+import { RegistrySearchActions, SessionActions, IPayloadAction } from '../../actions';
 import { IRegistrySearchRecord, ISearchRecords, IHitlistRetrieveInfo, INITIAL_SEARCH_STATE } from './registry-search.types';
 import { notify, notifyError, notifySuccess } from '../../../common';
 

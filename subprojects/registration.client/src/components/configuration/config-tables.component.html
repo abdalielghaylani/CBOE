@@ -16,8 +16,7 @@
       {{data.value}}
     </div>
     <div *dxTemplate="let data of 'disabledTemplate'">
-      <dx-text-box [(value)]="data.value" *ngIf="data.row.inserted" (onValueChanged)="onValueChanged($event,data)"></dx-text-box>
-      {{ data.row.inserted ? '' : data.value}}
+      <dx-text-box [(value)]="data.value" [disabled]="!data.row.inserted &amp;&amp; data.row.data.LOCKED === 'T'" (onValueChanged)="onValueChanged($event,data)"></dx-text-box>
     </div>
   </dx-data-grid>
 </div>

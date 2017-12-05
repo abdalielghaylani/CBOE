@@ -5,8 +5,8 @@ import { CValidator } from '../common';
 export class CConfigTable {
   columns: any[];
   pickListDomains: any[];
-  window: CWindow;
-  editMode: string = 'row';
+  window: IWindow;
+  editMode: string = 'form';
   tableName: string;
   formData: any = {};
   formColumns: any[];
@@ -32,7 +32,6 @@ export class CConfigTable {
       this.columns = customTableData.config;
       this.columns[0].allowEditing = false;
       this.columns[0].formItem = { visible: false };
-      this.editMode = this.columns.length > 8 ? 'form' : 'row';
       this.setDataType();
       this.setOtherConfig(tableId);
       this.setValidationRule(tableId);
@@ -182,7 +181,6 @@ export class CConfigTable {
       column[property] = value;
     }
   }
-
 }
 
 export const CONFIG_FORMS_COLUMNS = [
@@ -394,7 +392,7 @@ export class CConfigProperties {
   formColumns: any;
   formData: CConfigPropertiesFormData;
   formDataValidation: CPropertiesValidationFormData;
-  window: CWindow;
+  window: IWindow;
   addRuleVisible: boolean = false;
   formValidationColumns: any;
   validationGridColumns: any;
@@ -740,7 +738,7 @@ export class CAddInModel {
 export class CConfigAddIn {
   columns: any;
   editRow: any;
-  window: CWindow;
+  window: IWindow;
   configView: string;
   configVal: string;
   addinAssemblies: any;
@@ -786,7 +784,7 @@ export class CConfigAddIn {
 
 }
 
-export interface CWindow {
+export interface IWindow {
   title: string;
   viewIndex: string; // = 'list' || 'add' || 'edit' || 'validation';
 }

@@ -5,6 +5,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { select, NgRedux } from '@angular-redux/store';
 import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
+import DevExtreme from 'devextreme/bundles/dx.all.d';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,8 +15,6 @@ import { apiUrlPrefix } from '../../configuration';
 import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
 import { PrivilegeUtils } from '../../common';
-
-declare var jQuery: any;
 
 @Component({
   selector: 'reg-config-tables',
@@ -80,7 +79,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       let customTableData: ICustomTableData = customTables[this.tableId];
       this.rows = customTableData.rows;
       this.configTable = new CConfigTable(this.tableId, this.tableName(), customTableData, this.ngRedux.getState());
-      this.dataSource = this.createCustomStore(this);
+      this.dataSource = this.createCustomStore();
       this.changeDetector.markForCheck();
     }
     this.gridHeight = this.getGridHeight();
@@ -148,7 +147,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       }
     }
   }
-  
+
   onInitNewRow(e) {
     if (this.tableId === 'VW_FRAGMENT') {
       this.configTable.addEdit(e, 'add');
@@ -180,7 +179,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
       });
     }
   }
-  
+
   saveConfigData(e) {
     let res: any = this.form.instance.validate();
     if (res.isValid) {
@@ -247,27 +246,26 @@ export class RegConfigTables implements OnInit, OnDestroy {
     return tableName.split(' ').map(n => n.charAt(0).toUpperCase() + n.slice(1)).join(' ');
   }
 
-  private createCustomStore(parent: RegConfigTables): CustomStore {
-    let tableName = parent.tableId;
+  private createCustomStore(): CustomStore {
+    let tableName = this.tableId;
     let apiUrlBase = `${apiUrlPrefix}custom-tables/${tableName}`;
     return new CustomStore({
-      load: function (loadOptions) {
-        let deferred = jQuery.Deferred();
-        parent.http.get(apiUrlBase)
-          .toPromise()
-          .then(result => {
-            let rows = result.json().rows;
-            deferred.resolve(rows, { totalCount: rows.length });
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
+      load: ((loadOptions: DevExtreme.data.LoadOptions): Promise<any> => {
+        return new Promise<void>((resolve, reject) => {
+          this.http.get(apiUrlBase)
+            .toPromise()
+            .then(result => {
+              let rows = result.json().rows;
+              resolve(rows);
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
+              reject(message);
+            });
+        });
+      }).bind(this),
 
-      update: function (key, values) {
-        let deferred = jQuery.Deferred();
+      update: ((key, values): Promise<any> => {
         let data = key;
         let newData = values;
         for (let k in newData) {
@@ -276,50 +274,51 @@ export class RegConfigTables implements OnInit, OnDestroy {
           }
         }
         let id = data[Object.getOwnPropertyNames(data)[0]];
-        parent.http.put(`${apiUrlBase}/${id}`, data)
-          .toPromise()
-          .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
-            deferred.reject(message);
+        return new Promise<any>((resolve, reject) => {
+          this.http.put(`${apiUrlBase}/${id}`, data)
+            .toPromise()
+            .then(result => {
+              notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
+              resolve(result.json());
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
+              reject(message);
+            });
           });
-        return deferred.promise();
-      },
+      }).bind(this),
 
-      insert: function (values) {
-        let deferred = jQuery.Deferred();
-        parent.http.post(`${apiUrlBase}`, values)
-          .toPromise()
-          .then(result => {
-            let id = result.json().id;
-            notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
-            deferred.reject(message);
+      insert: ((values): Promise<any> => {
+        return new Promise<any>((resolve, reject) => {
+          this.http.post(`${apiUrlBase}`, values)
+            .toPromise()
+            .then(result => {
+              let id = result.json().id;
+              notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
+              resolve(result.json());
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
+              reject(message);
+            });
           });
-        return deferred.promise();
-      },
+      }).bind(this),
 
-      remove: function (key) {
-        let deferred = jQuery.Deferred();
+      remove: ((key): Promise<any> => {
         let id = key[Object.getOwnPropertyNames(key)[0]];
-        parent.http.delete(`${apiUrlBase}/${id}`)
-          .toPromise()
-          .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
-            deferred.reject(message);
+        return new Promise<any>((resolve, reject) => {
+          this.http.delete(`${apiUrlBase}/${id}`)
+            .toPromise()
+            .then(result => {
+              notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
+              resolve(result.json());
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
+              reject(message);
+            });
           });
-        return deferred.promise();
-      }
+      }).bind(this)
     });
   }
 
