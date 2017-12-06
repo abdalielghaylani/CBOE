@@ -96,10 +96,10 @@ export class RegRecords implements OnInit, OnDestroy {
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
-    this.viewGroupsColumns = this.lookups ? 
-    CViewGroup.getViewGroupsColumns(this.temporary, formGroup, 'list', this.lookups.disabledControls, this.lookups.systemSettings) : new CViewGroupColumns();
+    this.viewGroupsColumns = this.lookups ?
+      CViewGroup.getViewGroupsColumns(this.temporary, formGroup, 'list', this.lookups.disabledControls, this.lookups.systemSettings) : new CViewGroupColumns();
   }
-  
+
   ngOnDestroy() {
     if (this.lookupsSubscription) {
       this.lookupsSubscription.unsubscribe();
@@ -204,7 +204,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   createCustomStore(ref: RegRecords) {
     ref.dataStore = new CustomStore({
-      load: function (loadOptions) {        
+      load: function (loadOptions) {
         if (loadOptions.sort !== null) {
           let sortCriteria = !loadOptions.sort[0].desc ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
           if (ref.sortCriteria !== sortCriteria && ref.records.data.rows.length !== ref.records.data.totalCount) {
@@ -257,7 +257,7 @@ export class RegRecords implements OnInit, OnDestroy {
     if (!this.rowSelected && e.rowType === 'data'
       && this.records.data.rows.length < this.records.data.totalCount
       && e.rowIndex === this.records.data.rows.length - 1) {
-       this.updateContents();
+      this.updateContents();
     }
   }
 
@@ -336,10 +336,10 @@ export class RegRecords implements OnInit, OnDestroy {
     let invContainerHandler = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
     systemSettings.isInventoryUseFullContainerForm
-    ? invContainerHandler.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
-      e.data.BATCHID + `&RefreshOpenerLocation=false`), null)
-    : invContainerHandler.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
-      e.data.REGID + `&OpenAsModalFrame=true`), invWideWindowParams);
+      ? invContainerHandler.openContainerPopup((systemSettings.invNewContainerURL + `&vRegBatchID=` +
+        e.data.BATCHID + `&RefreshOpenerLocation=false`), null)
+      : invContainerHandler.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
+        e.data.REGID + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
 
   onRowRemoving(e) {
@@ -503,7 +503,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
     let printContents: string;
     let popupWin;
-    
+
     printContents = '<table width="100%" height="auto"><tr>';
     this.viewGroupsColumns.baseTableColumns.forEach(c => {
       if (c.visible) {
@@ -558,7 +558,7 @@ export class RegRecords implements OnInit, OnDestroy {
             let field = batchRow[c.dataField];
             printContents += `<td >${(field) ? field : ''}</td>`;
           }
-        });          
+        });
         printContents += '</tr>';
       });
     });
@@ -623,11 +623,12 @@ export class RegRecords implements OnInit, OnDestroy {
   // set create container button visibility
   private get createContainersEnabled(): boolean {
     return ((!this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
-            && PrivilegeUtils.hasCreateContainerPrivilege(this.lookups.userPrivileges)) ? true : false;
+      && PrivilegeUtils.hasCreateContainerPrivilege(this.lookups.userPrivileges)) ? true : false;
   }
 
   private get filterRowEnabled(): boolean {
-    return this.records.data.totalCount <= fetchLimit;
+    // return this.records.data.totalCount <= fetchLimit;
+    return false;
   }
 
   private get getTotalRecordsCount(): Number {
