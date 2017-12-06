@@ -76,9 +76,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private JObject SearchRecordsInternal(QueryData queryData, bool? temp, int? skip, int? count, string sort)
         {
-            var coeSearch = new COESearch();
-            var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
-            var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
             var searchCriteria = new SearchCriteria();
             string structureName = string.Empty;            
             try
@@ -120,19 +117,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             try
             {
-                var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
-                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);              
-                hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
-                if (!string.IsNullOrEmpty(structureName))
-                {
-                    var additionalCriteriaCount = searchCriteria.Items.Count - 1;
-                    var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
-                    var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
-                    hitlistBO.Name = string.Format("{0}{1}", structureName, more);
-                    hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
-                }
-                hitlistBO.Update();
-                return GetRegistryRecordsListView(temp, skip, count, sort, hitlistInfo, queryData.HighlightSubStructures);
+                return GetRegistryRecordsListView(temp, skip, count, sort, null, searchCriteria, queryData.HighlightSubStructures);
             }
             catch (Exception exc)
             {

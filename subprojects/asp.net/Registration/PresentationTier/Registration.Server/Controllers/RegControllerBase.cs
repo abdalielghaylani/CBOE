@@ -397,7 +397,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
 
-        protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist, bool highlightSubStructures = false)
+        protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist = null, SearchCriteria searchCriteria = null, bool highlightSubStructures = false)
         {
             var formGroupType = temp.HasValue && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
             var baseColumnKey = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
@@ -408,6 +408,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             bo.RefreshDatabaseRecordCount();
             bo.AllowFullScan = true;
             bo.CurrentFormType = FormGroup.CurrentFormEnum.ListForm;
+            if (searchCriteria != null) 
+            {
+                bo.SearchCriteria = searchCriteria;
+                bo.CommitSize = 1500;
+                bo.ReturnPartialHitlist = true;
+                bo.KeepRecordCountSyncrhonized = true;
+            }
 
             var columnToOrderWith = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
             var sortDirection = OrderByCriteria.OrderByDirection.DESC;
@@ -445,19 +452,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     break;
             }
 
-            if (!isChildCriteria)
+            if (!isChildCriteria && searchCriteria == null)
                 bo.OrderByCriteria = newCriteria;
 
-            bo.PagingInfo.RecordCount = count.HasValue ? count.Value : 200; // max records
+            bo.PagingInfo.RecordCount = count.HasValue ? count.Value : 20; // max records
             bo.PagingInfo.Start = skip.HasValue ? skip.Value + 1 : 1;
-            bo.PagingInfo.End = count.HasValue ? count.Value + 1 : 1001;
+            bo.PagingInfo.End = count.HasValue ? count.Value + 1 : 21;
             bo.PagingInfo.HighlightSubStructures = highlightSubStructures;
 
             if (hitlist != null)
                 bo.HitListToRestore = hitlist;
 
             bo.Search();
-            bo.KeepRecordCountSyncrhonized = true;
 
             var dataColumns = new List<KeyValuePair<string, List<DataColumn>>>();
             foreach (DataTable dataTable in bo.Dataset.Tables)
@@ -520,9 +526,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             return new JObject(
                 new JProperty("temporary", temp),
-                new JProperty("hitlistId", hitlist != null ? hitlist.HitListID : 0),
+                new JProperty("hitlistId", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ? bo.CurrentHitList.HitListID : 0),
                 new JProperty("startIndex", skip.HasValue ? Math.Max(skip.Value, 0) : 0),
-                new JProperty("totalCount", hitlist != null ? bo.CurrentHitList.CurrentRecordCount : bo.DatabaseRecordCount),
+                new JProperty("totalCount", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ? bo.CurrentHitList.CurrentRecordCount : bo.DatabaseRecordCount),
                 new JProperty("rows", data)
             );
         }
