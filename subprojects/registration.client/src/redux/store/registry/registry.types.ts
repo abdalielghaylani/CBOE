@@ -78,6 +78,7 @@ export interface IInventoryContainerList {
 export interface IQueryData {
   temporary: boolean;
   searchCriteria: string;
+  highlightSubStructures?: boolean;
 }
 
 export interface IRecordSaveData {

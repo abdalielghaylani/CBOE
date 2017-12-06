@@ -92,9 +92,11 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private search() {
     let criteria = this.searchCriteria.serialize();
     if (criteria.match(/searchcriteriaitem/gi).length > 1) {
+      let highLightSubstructure = this.ngRedux.getState().registrysearch.highLightSubstructure;
       let queryData: IQueryData = {
         temporary: this.temporary,
-        searchCriteria: criteria
+        searchCriteria: criteria,
+        highlightSubStructures: highLightSubstructure
       };
       this.actions.searchRecords(queryData);
     } else {
