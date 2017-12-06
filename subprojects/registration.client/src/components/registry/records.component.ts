@@ -97,7 +97,7 @@ export class RegRecords implements OnInit, OnDestroy {
     let state = this.ngRedux.getState();
     let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.viewGroupsColumns = this.lookups ? 
-    CViewGroup.getViewGroupsColumns(true, formGroup, 'list', this.lookups.disabledControls, this.lookups.systemSettings) : new CViewGroupColumns();
+    CViewGroup.getViewGroupsColumns(this.temporary, formGroup, 'list', this.lookups.disabledControls, this.lookups.systemSettings) : new CViewGroupColumns();
   }
   
   ngOnDestroy() {

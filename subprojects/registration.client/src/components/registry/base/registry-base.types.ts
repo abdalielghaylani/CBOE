@@ -360,16 +360,15 @@ export class CViewGroup implements IViewGroup {
         }
         if (viewGroups.length === 1) {
           viewGroupColumns = viewGroups[0].getColumns(displayMode);
-          let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.cellTemplate === 'statusTemplate');
+          let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID');
           if (statusColumn) {
             let sysSettings = new CSystemSettings(systemSettings);
-            statusColumn.visible = sysSettings.isApprovalsEnabled;
-          }
-          let lockedColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID');
-          if (lockedColumn) {
-            let sysSettings = new CSystemSettings(systemSettings);
-            lockedColumn.visible = sysSettings.isLockingEnabled;
-          }
+            if (temporary) {
+              statusColumn.visible = sysSettings.isApprovalsEnabled;
+            } else {
+              statusColumn.visible = sysSettings.isLockingEnabled;
+            }
+          } 
         }
       });
     }
@@ -447,7 +446,7 @@ export class CViewGroup implements IViewGroup {
             fieldConfig.tables.table.forEach(tb => {
               if (tb.Columns && tb.Columns.Column) {
                 tb.Columns.Column.forEach(c => {
-                  if (c._name === 'STATUSCOLUMN') {
+                  if (c._name === 'STATUSCOLUMN' || c._name === 'STATUSID') {
                     let col = {
                       dataField: (c.formElement) ? c.formElement._name : c._name,
                       caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
