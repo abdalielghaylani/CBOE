@@ -40,7 +40,7 @@
   margin-left: 14.28%;
 }
 
-/* Following Fixes are For IE */
+/* Following Fixes are For IE11 */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
   #structQueryFormOptionId .dx-item .dx-box-item {

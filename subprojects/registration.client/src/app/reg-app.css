@@ -221,3 +221,11 @@
 .row.about-popup div {
   padding-bottom: 5px;
 }
+
+/* Following Fixes are For IE11 */
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+
+  #NavHeaderRegLogo {
+    width: 250px;
+  }
+}
