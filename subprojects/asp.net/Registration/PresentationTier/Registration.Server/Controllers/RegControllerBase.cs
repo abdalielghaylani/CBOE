@@ -397,7 +397,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
 
-        protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist)
+        protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist, bool highlightSubStructures = false)
         {
             var formGroupType = temp.HasValue && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
             var baseColumnKey = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
@@ -451,6 +451,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             bo.PagingInfo.RecordCount = count.HasValue ? count.Value : 200; // max records
             bo.PagingInfo.Start = skip.HasValue ? skip.Value + 1 : 1;
             bo.PagingInfo.End = count.HasValue ? count.Value + 1 : 1001;
+            bo.PagingInfo.HighlightSubStructures = highlightSubStructures;
 
             if (hitlist != null)
                 bo.HitListToRestore = hitlist;

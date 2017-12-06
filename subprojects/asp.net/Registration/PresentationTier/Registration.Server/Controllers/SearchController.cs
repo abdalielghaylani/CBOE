@@ -80,7 +80,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
             var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
             var searchCriteria = new SearchCriteria();
-            string structureName = string.Empty;
+            string structureName = string.Empty;            
             try
             {
                 searchCriteria.GetFromXML(queryData.SearchCriteria);
@@ -121,7 +121,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             try
             {
                 var hitlistInfo = coeSearch.GetPartialHitList(searchCriteria, dataView);
-                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
+                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);              
                 hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
                 if (!string.IsNullOrEmpty(structureName))
                 {
@@ -132,7 +132,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
                 }
                 hitlistBO.Update();
-                return GetRegistryRecordsListView(temp, skip, count, sort, hitlistInfo);
+                return GetRegistryRecordsListView(temp, skip, count, sort, hitlistInfo, queryData.HighlightSubStructures);
             }
             catch (Exception exc)
             {
