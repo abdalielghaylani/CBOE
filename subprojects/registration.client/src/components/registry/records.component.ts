@@ -600,12 +600,16 @@ export class RegRecords implements OnInit, OnDestroy {
     popupWin.document.close();
   }
 
+  private get isSessionValid(): boolean {
+    return this.ngRedux.getState().session.lookups != null;
+  }
+
   private isApproved(data): boolean {
     return data.value === RegistryStatus.Approved;
   }
 
   private get approvalsEnabled(): boolean {
-    return this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
+    return this.temporary && this.isSessionValid && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isApprovalsEnabled;
   }
 
   private get approveMarkedEnabled(): boolean {
@@ -622,7 +626,8 @@ export class RegRecords implements OnInit, OnDestroy {
 
   // set create container button visibility
   private get createContainersEnabled(): boolean {
-    return ((!this.temporary && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
+    return ((!this.temporary && this.isSessionValid
+      && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).isInventoryIntegrationEnabled)
       && PrivilegeUtils.hasCreateContainerPrivilege(this.lookups.userPrivileges)) ? true : false;
   }
 
