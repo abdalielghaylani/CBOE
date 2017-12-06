@@ -297,7 +297,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             else
             {
                 registryRecord = RegistryRecord.NewRegistryRecord();
-                registryRecord.InitializeFromXml(recordString, true, false);             
+                registryRecord.InitializeFromXml(recordString, true, false);
+                registryRecord.IsDirectReg = true;
             }
             registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
             DuplicateCheck duplicateCheck = TranslateDuplicateCheckingInstruction(duplicateCheckOption);
