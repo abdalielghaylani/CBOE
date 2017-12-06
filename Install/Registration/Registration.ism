@@ -347,7 +347,6 @@
 		<row><td>App_GlobalResources</td><td>{8B68C0DA-EE40-48A4-82F1-539FCFE82736}</td><td>APP_GLOBALRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ComonResources</td><td>{00B27677-4259-4572-9FDE-BFC176D91628}</td><td>COMMONRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerBin</td><td>{07FC7566-E929-422E-B976-B7E7847F86F0}</td><td>BIN</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>RegServerForms</td><td>{5522BE4D-90B5-4031-BC5B-B1D06D30F90E}</td><td>FORMS</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerRoot</td><td>{53F8F555-94AB-4D51-9663-F7DB51BCA96C}</td><td>REGISTRATION.SERVER</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerWebServices</td><td>{FE94AC56-D1D4-4FAE-9689-60BC5D9E38EC}</td><td>WEBSERVICES</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegistrationClient</td><td>{E0F6AEE1-71A5-4385-9E49-5FA200E81C8C}</td><td>REGISTRATION.SERVER</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1132,7 +1131,6 @@ End If
 		<row><td>CommonFilesFolder</td><td>TARGETDIR</td><td>.:Common</td><td/><td>0</td><td/></row>
 		<row><td>DATABASEDIR</td><td>ISYourDataBaseDir</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>DesktopFolder</td><td>TARGETDIR</td><td>.:Desktop</td><td/><td>3</td><td/></row>
-		<row><td>FORMS</td><td>REGISTRATION.SERVER</td><td>Forms</td><td/><td>0</td><td/></row>
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
@@ -1864,7 +1862,6 @@ End If
 		<row><td>RegistrationClient</td><td>RegistrationWebSite</td></row>
 		<row><td>RegistrationServer</td><td>App_GlobalResources</td></row>
 		<row><td>RegistrationServer</td><td>RegServerBin</td></row>
-		<row><td>RegistrationServer</td><td>RegServerForms</td></row>
 		<row><td>RegistrationServer</td><td>RegServerRoot</td></row>
 		<row><td>RegistrationServer</td><td>RegServerWebServices</td></row>
 	</table>
@@ -1882,13 +1879,11 @@ End If
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
 		<row><td>_12ec66d7572ff82174931939647</td><td>RegistrationClient</td><td>912EC6~1.SVG|912ec66d7572ff821749319396470bde.svg</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\912ec66d7572ff821749319396470bde.svg</td><td>1</td><td/></row>
-		<row><td>_1732a2beb42a3a3c0a9ad3b56d1</td><td>RegistrationClient</td><td>91732A~1.TTF|91732a2beb42a3a3c0a9ad3b56d1bf7a.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\91732a2beb42a3a3c0a9ad3b56d1bf7a.ttf</td><td>1</td><td/></row>
 		<row><td>_3a64fa2a1f89c9956e7bfc3d5a6</td><td>RegistrationClient</td><td>63A64F~1.SVG|63a64fa2a1f89c9956e7bfc3d5a62283.svg</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\63a64fa2a1f89c9956e7bfc3d5a62283.svg</td><td>1</td><td/></row>
 		<row><td>_48c34a56d699c29117adc64c43a</td><td>RegistrationClient</td><td>448C34~1.WOF|448c34a56d699c29117adc64c43affeb.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\448c34a56d699c29117adc64c43affeb.woff2</td><td>1</td><td/></row>
 		<row><td>_74f50d287a8c48dc19ba404d20f</td><td>RegistrationClient</td><td>674F50~1.EOT|674f50d287a8c48dc19ba404d20fe713.eot</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\674f50d287a8c48dc19ba404d20fe713.eot</td><td>1</td><td/></row>
 		<row><td>_8ebc5d2f0da91dcd186ec3768c7</td><td>RegistrationClient</td><td>38EBC5~1.SVG|38ebc5d2f0da91dcd186ec3768c7f9b8.svg</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\38ebc5d2f0da91dcd186ec3768c7f9b8.svg</td><td>1</td><td/></row>
 		<row><td>_9889688147bd7575d6327160d64</td><td>RegistrationClient</td><td>898896~1.SVG|89889688147bd7575d6327160d64e760.svg</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\89889688147bd7575d6327160d64e760.svg</td><td>1</td><td/></row>
-		<row><td>_c18694294666d556dd5dcdb2a06</td><td>RegistrationClient</td><td>9C1869~1.WOF|9c18694294666d556dd5dcdb2a062156.woff</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\9c18694294666d556dd5dcdb2a062156.woff</td><td>1</td><td/></row>
 		<row><td>_e6221546b024b119652e3eeeb24</td><td>RegistrationClient</td><td>2E6221~1.PNG|2e6221546b024b119652e3eeeb2433f5.png</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\2e6221546b024b119652e3eeeb2433f5.png</td><td>1</td><td/></row>
 		<row><td>af7ae505a9eed503f8b8e6982036</td><td>RegistrationClient</td><td>AF7AE5~1.WOF|af7ae505a9eed503f8b8e6982036873e.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\af7ae505a9eed503f8b8e6982036873e.woff2</td><td>1</td><td/></row>
 		<row><td>b06871f281fee6b241d60582ae93</td><td>RegistrationClient</td><td>B06871~1.TTF|b06871f281fee6b241d60582ae9369b9.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist\b06871f281fee6b241d60582ae9369b9.ttf</td><td>1</td><td/></row>
@@ -1993,7 +1988,6 @@ End If
 	<table name="Font">
 		<col key="yes" def="s72">File_</col>
 		<col def="S128">FontTitle</col>
-		<row><td>_1732a2beb42a3a3c0a9ad3b56d1</td><td/></row>
 		<row><td>b06871f281fee6b241d60582ae93</td><td/></row>
 		<row><td>e18bbf611f2a2e43afc071aa2f4e</td><td/></row>
 	</table>
@@ -2134,7 +2128,6 @@ End If
 		<row><td>App_GlobalResources</td><td/><td/><td>_BE004D9C_65EC_4BB2_9938_BDDA8945BD46_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ComonResources</td><td/><td/><td>_B90BE541_DC5F_42B5_942F_904BD529A112_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerBin</td><td/><td/><td>_5740C332_7115_45A3_B1F0_88CF471CAA95_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>RegServerForms</td><td/><td/><td>_ECC6E74F_944C_4580_97A0_02FDD4580594_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerRoot</td><td/><td/><td>_BE0D6A50_DDD4_4208_A927_50E2940DB1E7_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerWebServices</td><td/><td/><td>_DBFAAAA6_8CE3_408F_ACBA_7FA313748A96_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegistrationClient</td><td/><td/><td>_9743183B_9BF0_4232_99E3_836ABA480CDE_FILTER</td><td/><td/><td/><td/></row>
@@ -2233,7 +2226,6 @@ End If
 		<col def="S0">IncludeFiles</col>
 		<col def="S0">ExcludeFiles</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>RegServerForms</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\asp.net\Registration\PresentationTier\Registration.Server\Forms</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>RegistrationClient</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist</td><td>4</td><td>polyfills*.js,vendor*.js,app*.js,*.png,*.gif,*.*</td><td/><td>10</td></row>
 	</table>
 
