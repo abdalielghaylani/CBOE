@@ -168,6 +168,14 @@ export class RegConfigTables implements OnInit, OnDestroy {
 
   addConfigData(e) {
     let res: any = this.form.instance.validate();
+
+    if (this.tableId === 'VW_FRAGMENT' &&
+      this.configTable.formColumns.find(i => i.dataField === 'STRUCTURE').validationRules.find(r => r.type === 'required') !== null
+      && this.configTable.formData.STRUCTURE_XML === undefined) {
+      notifyError('There must be a valid chemical structure.');
+      return;
+    }
+
     if (res.isValid) {
       if (this.tableId === 'VW_FRAGMENT') {
         this.configTable.formData.STRUCTURE = this.configTable.formData.STRUCTURE_XML;

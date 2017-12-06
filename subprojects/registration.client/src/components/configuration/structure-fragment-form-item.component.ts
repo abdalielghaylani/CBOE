@@ -28,7 +28,11 @@ export class RegStructureFragmentFormItem extends ChemDrawWeb {
   protected onContentChanged(e) {
     if (this.cdd && !this.cdd.isSaved()) {
       if (this.viewModel) {
-        this.viewModel.STRUCTURE_XML = this.getValue();
+        if (this.cdd.isBlankStructure()) {
+          this.viewModel.STRUCTURE_XML = undefined;
+        } else {
+          this.viewModel.STRUCTURE_XML = this.getValue();
+        }
       }
       this.valueUpdated.emit(this);
     }
