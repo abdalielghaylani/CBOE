@@ -61,6 +61,7 @@ export class RegIdListFormItem extends RegDataGridFormItem {
         activeItems.push(identifierList.find(k => k.ID === i.id));
       }
     });
+    let maxLength = options.fieldConfig.Columns.Column.find(i => i._name === 'Value').formElement.configInfo.MaxLength;
     this.columns = lookups ? [{
       dataField: 'id',
       caption: 'Identifier',
@@ -76,7 +77,8 @@ export class RegIdListFormItem extends RegDataGridFormItem {
       ]
     }, {
       dataField: 'inputText',
-      caption: 'Value'
+      caption: 'Value',
+      editorOptions: { maxLength: maxLength }
     }] : [];
     this.checkCommandColumn();
     this.editingMode = 'row';
