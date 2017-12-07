@@ -906,29 +906,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
             });
         }
-
-        #region Batch Handling
-        /// <summary>
-        /// Returns the XML data of a batch for a registry record
-        /// </summary>
-        /// <param name="id">The ID of the registry record</param>
-        /// <param name="batchId">The ID of the batch (0 for new batch)</param>
-        /// <returns>The XML data of the specified batch</returns>
-        [HttpGet]
-        [Route(Consts.apiPrefix + "records/{id}/batches/{batchId}")]
-        [SwaggerOperation("GetBatchOfRecord")]
-        [SwaggerResponse(HttpStatusCode.OK, type: typeof(BatchData))]
-        [SwaggerResponse(HttpStatusCode.BadRequest, type: typeof(JObject))]
-        [SwaggerResponse(HttpStatusCode.Unauthorized, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetBatchOfRecord(int id, int batchId)
-        {
-            return await CallMethod(() =>
-            {
-                return new ResponseData(null, null, null, null);
-            });
-        }
-        #endregion
-
         #endregion // Permanent Records
 
         #region Temporary Records

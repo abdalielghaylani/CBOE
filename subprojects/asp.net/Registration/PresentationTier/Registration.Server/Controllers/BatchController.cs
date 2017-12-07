@@ -24,13 +24,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     public class BatchController : RegControllerBase
     {
         [HttpPost]
-        [Route(Consts.apiPrefix + "records/{regNum}/batches")]
+        [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("AddBatchToRecord")]
         [SwaggerResponse(HttpStatusCode.Created, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> AddBatchToRecord(string regNum, BatchData batchData)
+        public async Task<IHttpActionResult> AddBatchToRecord(BatchData batchData)
         {
             return await CallMethod(() =>
             {
@@ -41,8 +41,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
                     var xmlDoc = new XmlDocument();
                     xmlDoc.LoadXml(batchData.Data);
-                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
-                    if (registryRecord == null) throw new Exception();
+                    registryRecord = RegistryRecord.GetRegistryRecord(batchData.RegNum);
+                    if (registryRecord == null) throw new Exception("Registration record not found");
                     errorMessage = "Record is locked and cannot be updated.";
                     if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
 
@@ -104,13 +104,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPut]
-        [Route(Consts.apiPrefix + "records/{regNum}/batches")]
+        [Route(Consts.apiPrefix + "batches")]
         [SwaggerOperation("UpdateBatchRecord")]
         [SwaggerResponse(HttpStatusCode.Created, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> UpdateBatchRecord(string regNum, BatchData batchData)
+        public async Task<IHttpActionResult> UpdateBatchRecord(BatchData batchData)
         {
             return await CallMethod(() =>
             {
@@ -121,8 +121,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
                     var xmlDoc = new XmlDocument();
                     xmlDoc.LoadXml(batchData.Data);
-                    registryRecord = RegistryRecord.GetRegistryRecord(regNum);
-                    if (registryRecord == null) throw new Exception();
+                    registryRecord = RegistryRecord.GetRegistryRecord(batchData.RegNum);
+                    if (registryRecord == null) throw new Exception("Registration record not found");
                     errorMessage = "Record is locked and cannot be updated.";
                     if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
 
@@ -161,30 +161,30 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPost]
-        [Route(Consts.apiPrefix + "batches/{id}/{sourceRegNum}/{targetRegNum}")]
+        [Route(Consts.apiPrefix + "batches/{id}")]
         [SwaggerOperation("MoveBatchRecord")]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> MoveBatchRecord(int id, string sourceRegNum, string targetRegNum)
+        public async Task<IHttpActionResult> MoveBatchRecord(int id, MoveBatchData data)
         {
             return await CallMethod(() =>
             {
                 RegistryRecord sourceRegistryRecord = null;
                 try
                 {
-                    sourceRegistryRecord = RegistryRecord.GetRegistryRecord(sourceRegNum);
+                    sourceRegistryRecord = RegistryRecord.GetRegistryRecord(data.SourceRegNum);
                     if (sourceRegistryRecord == null)
-                        throw new RegistrationException(string.Format("cannot find registry record {0}", sourceRegNum));
+                        throw new RegistrationException(string.Format("cannot find registry record {0}", data.SourceRegNum));
 
-                    RegistryRecord targetRegistryRecord = RegistryRecord.GetRegistryRecord(targetRegNum);
+                    RegistryRecord targetRegistryRecord = RegistryRecord.GetRegistryRecord(data.TargetRegNum);
                     if (targetRegistryRecord == null)
-                        throw new RegistrationException(string.Format("the registry number {0} doesent exist", targetRegNum));
+                        throw new RegistrationException(string.Format("the registry number {0} doesent exist", data.TargetRegNum));
 
                     if (id == 0)
-                        throw new RegistrationException(string.Format("batch id '{0}' is not valid", targetRegNum));
+                        throw new RegistrationException(string.Format("batch id '{0}' is not valid", id));
 
-                    CambridgeSoft.COE.Registration.Services.Types.Batch.MoveBatch(id, targetRegNum);
+                    CambridgeSoft.COE.Registration.Services.Types.Batch.MoveBatch(id, data.TargetRegNum);
 
                     sourceRegistryRecord.BatchList.Remove(sourceRegistryRecord.BatchList.GetBatchById(id));
                 }
@@ -212,13 +212,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         }
                         else if (baseEx.Message.Contains("ORA-20031"))
                         {
-                            throw new RegistrationException(string.Format("the target registry number '{0}' does not exist", targetRegNum));
+                            throw new RegistrationException(string.Format("the target registry number '{0}' does not exist", data.TargetRegNum));
                         }
                     }
                     if (!moveBatchSuccss)
                         throw new RegistrationException(ex.Message);
                 }
-                return new ResponseData(message: string.Format("The batch was successfully moved into Registry Record {0}!", targetRegNum));
+                return new ResponseData(message: string.Format("The batch was successfully moved into Registry Record {0}!", data.TargetRegNum));
             }, new string[] { "DELETE_BATCH_REG" });
         }
 

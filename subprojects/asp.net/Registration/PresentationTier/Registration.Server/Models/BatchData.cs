@@ -8,9 +8,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
     public class BatchData
     {
         [JsonConstructor]
-        public BatchData(string data)
+        public BatchData(string data, string regNum)
         {
             Data = data;
+            RegNum = regNum;
         }
 
         /// <summary>
@@ -18,5 +19,11 @@ namespace PerkinElmer.COE.Registration.Server.Models
         /// </summary>
         [JsonProperty(PropertyName = "data")]
         public string Data { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Registration Number
+        /// </summary>
+        [JsonProperty(PropertyName = "regNum")]
+        public string RegNum { get; set; }
     }
 }
