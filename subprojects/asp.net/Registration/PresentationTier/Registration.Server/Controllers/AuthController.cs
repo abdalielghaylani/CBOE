@@ -86,7 +86,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 userNameCookie.Path = "/";
                 var userIdCookie = new CookieHeaderValue("CS%5FSEC%5FUserID", CryptData(password, userName));
                 userIdCookie.Path = "/";
-                responseMessage.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie, inactivityCookie, userNameCookie, userIdCookie });
+                var cdpCookie = new CookieHeaderValue("isCDP", "true");
+                cdpCookie.Path = "/";
+                responseMessage.Headers.AddCookies(new CookieHeaderValue[] { ssoCookie, inactivityCookie, userNameCookie, userIdCookie, cdpCookie });
             }
             catch (Exception ex)
             {
