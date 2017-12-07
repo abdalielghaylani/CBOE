@@ -1,8 +1,5 @@
-<dx-popup showCloseButton=false [width]="550" [height]="150" titleTemplate="caption" contentTemplate="content" [showTitle]="true" [title]="viewModel?viewModel.caption:''" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [dragEnabled]="true" [closeOnOutsideClick]="false"
+<dx-popup showCloseButton=false [width]="550" [height]="150" contentTemplate="content" [showTitle]="true" [title]="viewModel?viewModel.caption:''" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [dragEnabled]="true" [closeOnOutsideClick]="false"
   [(visible)]=visible>
-  <div *dxTemplate="let data of 'caption'" class="background-light-red">
-    <h5 class="red list-header"> {{viewModel?viewModel.caption:''}}</h5>
-  </div>
   <div *dxTemplate="let data of 'content'">
     <h6 style="padding:3px;font-size:13px">
       {{viewModel?viewModel.message:''}}
