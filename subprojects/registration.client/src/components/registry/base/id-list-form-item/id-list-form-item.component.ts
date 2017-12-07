@@ -54,7 +54,7 @@ export class RegIdListFormItem extends RegDataGridFormItem {
     let options = this.viewModel.editorOptions;
     let value = options && options.value ? options.value : [];
     this.dataSource = this.deserializeValue(value);
-    let identifierList = lookups.identifierTypes.filter(i => i.TYPE === options.idListType);
+    let identifierList = lookups.identifierTypes.filter(i => (i.TYPE === options.idListType || i.TYPE === 'A'));
     let activeItems = identifierList.filter(i => i.ACTIVE === 'T');
     this.dataSource.forEach(i => {
       if (i.id && activeItems.find(j => j.ID === i.id) === undefined) {
