@@ -62,6 +62,7 @@ export interface IRegistryRetrievalQuery {
   skip?: number;
   take?: number;
   sort?: string;
+  hitListId?: number;
 }
 
 export interface IRegisterRecordList {

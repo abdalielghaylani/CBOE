@@ -30,17 +30,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class SearchController : RegControllerBase
-    {
-        private static COEHitListBO GetHitlistBO(int id)
-        {
-            var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-            if (hitlistBO == null || hitlistBO.HitListID == 0)
-                hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
-            if (hitlistBO == null || hitlistBO.HitListID == 0)
-                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
-            return hitlistBO;
-        }
-
+    {      
         private static FormGroup GetFormGroup(bool? temp)
         {
             var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
@@ -123,6 +113,66 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 throw new RegistrationException("The search could not be performed", exc);
             }
+        }
+
+        private int CreateTempHitlist(QueryData queryData, bool? temp) 
+        {
+            var coeSearch = new COESearch();
+            var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
+            var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
+            var searchCriteria = new SearchCriteria();
+            string structureName = string.Empty;
+            try
+            {
+                searchCriteria.GetFromXML(queryData.SearchCriteria);
+                SearchCriteria.SearchExpression itemToDelete = null;
+                foreach (var item in searchCriteria.Items)
+                {
+                    if (item is SearchCriteria.SearchCriteriaItem)
+                    {
+                        var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                        var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
+                        if (structureCriteria != null)
+                        {
+                            var query = structureCriteria.Query4000;
+                            if (!string.IsNullOrEmpty(query))
+                            {
+                                if (query.StartsWith("<"))
+                                {
+                                    var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
+                                    if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
+                                    structureCriteria.Structure = cdxData;
+                                }
+                                else if (query.StartsWith("VmpD"))
+                                {
+                                    var cdxmlData = ChemistryHelper.ConvertToCdxmlAndName(query, ref structureName, true);
+                                    if (string.IsNullOrEmpty(cdxmlData)) itemToDelete = item;
+                                }
+                            }
+                        }
+                    }
+                }
+                if (itemToDelete != null) searchCriteria.Items.Remove(itemToDelete);
+            }
+            catch (Exception ex)
+            {
+                throw new RegistrationException("The search criteria is invalid", ex);
+            }
+            
+            var hitlistInfo = coeSearch.GetHitList(searchCriteria, dataView);
+            var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
+            hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
+            if (!string.IsNullOrEmpty(structureName))
+            {
+                var additionalCriteriaCount = searchCriteria.Items.Count - 1;
+                var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
+                var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
+                hitlistBO.Name = string.Format("{0}{1}", structureName, more);
+                hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
+            }
+            hitlistBO.Update();
+
+            return hitlistInfo.HitListID;
         }
 
         private COEDataView AddMolWt(COEDataView dataView)
@@ -614,7 +664,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                return SearchRecordsInternal(queryData, null, skip, count, sort);
+                return CreateTempHitlist(queryData, false);
+                // return SearchRecordsInternal(queryData, null, skip, count, sort);
             });
         }
 
@@ -628,7 +679,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                return SearchRecordsInternal(queryData, true, skip, count, sort);
+                return CreateTempHitlist(queryData, true);
             });
         }
 

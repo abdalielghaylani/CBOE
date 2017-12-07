@@ -166,7 +166,8 @@ export class RegRecords implements OnInit, OnDestroy {
       temporary: this.temporary,
       skip: this.records.data.rows.length,
       take: fetchLimit,
-      sort: this.sortCriteria
+      sort: this.sortCriteria,
+      hitListId: this.records.data.hitlistId
     });
     this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
     if (!this.recordsSubscription) {
@@ -249,7 +250,8 @@ export class RegRecords implements OnInit, OnDestroy {
       temporary: this.temporary,
       skip: this.records.data.rows.length,
       take: fetchLimit,
-      sort: this.sortCriteria
+      sort: this.sortCriteria,
+      hitListId: this.records.data.hitlistId
     });
   }
 

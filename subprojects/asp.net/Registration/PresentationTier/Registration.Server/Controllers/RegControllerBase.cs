@@ -23,6 +23,8 @@ using CambridgeSoft.COE.Framework.COEPickListPickerService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService;
 using CambridgeSoft.COE.Framework.Common.Messaging;
+using CambridgeSoft.COE.Framework.COEHitListService;
+using CambridgeSoft.COE.Framework;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -43,6 +45,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 HttpStatusCode.NotFound :
                 HttpStatusCode.InternalServerError;
             return string.IsNullOrEmpty(message) ? Request.CreateErrorResponse(statusCode, ex) : Request.CreateErrorResponse(statusCode, message, ex);
+        }
+
+        protected static COEHitListBO GetHitlistBO(int id)
+        {
+            var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
+                hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
+                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+            return hitlistBO;
         }
 
         protected RegistrationOracleDAL RegDal
@@ -414,6 +426,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 bo.CommitSize = 1500;
                 bo.ReturnPartialHitlist = true;
                 bo.KeepRecordCountSyncrhonized = true;
+                bo.ReturnPartialHitlist = false;
             }
 
             var columnToOrderWith = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";

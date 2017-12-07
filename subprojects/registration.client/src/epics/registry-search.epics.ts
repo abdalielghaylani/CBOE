@@ -93,7 +93,7 @@ export class RegistrySearchEpics {
       .mergeMap(({ payload }) => {
         return this.http.post(`${apiUrlPrefix}search/${payload.temporary ? 'temp-' : ''}records`, payload)
           .map(result => {
-            return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
+            return RegistrySearchActions.retrieveHitlistAction(payload.temporary, { type: 'Retrieve', id: result.json() });
           })
           .catch(error => Observable.of(RegistrySearchActions.searchRecordsErrorAction(error)));
       });

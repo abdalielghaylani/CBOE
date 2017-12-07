@@ -31,6 +31,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
+        private static HitListInfo GetHitlistInfo(int? hitlistId)
+        {
+            HitListInfo hitListInfo = null;
+            if (hitlistId.HasValue && hitlistId.Value > 0)
+            {
+                var hitlistBO = GetHitlistBO(hitlistId.Value);
+                hitListInfo = hitlistBO.HitListInfo;
+            }
+            return hitListInfo;
+        }
+        
         private void CheckTempRecordId(int id)
         {
             var args = new Dictionary<string, object>();
@@ -119,11 +130,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
         [SwaggerResponse(500, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetRecords(int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> GetRecords(int? skip = null, int? count = null, string sort = null, int? hitlistId = null)
         {
             return await CallMethod(() =>
             {
-                return GetRegistryRecordsListView(false, skip, count, sort, null);
+                HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
+                return GetRegistryRecordsListView(false, skip, count, sort, hitListInfo);
             }, new string[] { "SEARCH_REG" });
         }
 
@@ -915,11 +927,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
         [SwaggerResponse(500, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetTempRecords(int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> GetTempRecords(int? skip = null, int? count = null, string sort = null, int? hitlistId = null)
         {
             return await CallMethod(() =>
             {
-                return GetRegistryRecordsListView(true, skip, count, sort, null);
+                HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
+                return GetRegistryRecordsListView(true, skip, count, sort, hitListInfo);
             }, new string[] { "SEARCH_TEMP" });
         }
 
