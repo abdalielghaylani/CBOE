@@ -124,8 +124,8 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
   private getDataSource(dataSource: string, subIndex: number): any {
     dataSource = dataSource.toLowerCase();
     return dataSource.indexOf('fragmentscsla') >= 0 ? this.regRecord.BatchList.Batch[subIndex].BatchComponentList.BatchComponent[0]
-        : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.regRecord.BatchList.Batch[subIndex]
-          : this;
+      : dataSource.indexOf('batch') >= 0 || dataSource.startsWith('fragments') ? this.regRecord.BatchList.Batch[subIndex]
+        : this;
   }
 
   private getValidItems(): any[] {
@@ -149,7 +149,7 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
     if (this.validate().isValid) {
       this.formVisible = false;
       let recordJson: any = this.x2jsTool().js2xml(this.regRecord.BatchList);
-      this.onCreated.emit({ 'data': `<BatchList>` + recordJson + `</BatchList>` });
+      this.onCreated.emit(`<BatchList>${recordJson}</BatchList>`);
     }
   }
 

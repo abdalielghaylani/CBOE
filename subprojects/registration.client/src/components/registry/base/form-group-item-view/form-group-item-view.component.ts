@@ -126,9 +126,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   protected onBatchCreated(e) {
     this.loadingVisible = true;
-    let regNum = this.viewModel.RegNumber.RegNumber;
-    let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
-    this.http.post(url, e).toPromise()
+    let batchData: any = {};
+    batchData.data = e;
+    batchData.regNum = this.viewModel.RegNumber.RegNumber;
+    let url = `${apiUrlPrefix}/batches`;
+    this.http.post(url, batchData).toPromise()
       .then(res => {
         this.batchValueChanged.emit(e);
         notifySuccess(`The batch created successfully!`, 2000);
@@ -142,9 +144,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   onBatchEdit(e) {
     this.loadingVisible = true;
-    let regNum = this.viewModel.RegNumber.RegNumber;
-    let url = `${apiUrlPrefix}/records/` + regNum + `/batches`;
-    this.http.put(url, e).toPromise()
+    let batchData: any = {};
+    batchData.data = e;
+    batchData.regNum = this.viewModel.RegNumber.RegNumber;
+    let url = `${apiUrlPrefix}/batches`;
+    this.http.put(url, batchData).toPromise()
       .then(res => {
         this.batchValueChanged.emit(e);
         notifySuccess(`The batch updated successfully!`, 2000);
@@ -158,9 +162,11 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   protected onBatchMoved(e) {
     this.loadingVisible = true;
-    let regNum = this.viewModel.RegNumber.RegNumber;
-    let url = `${apiUrlPrefix}/batches/${e.batchId}/${this.viewModel.RegNumber.RegNumber}/${e.targetRegNum}`;
-    this.http.post(url, null).toPromise()
+    let batchData: any = {};
+    batchData.sourceRegNum = this.viewModel.RegNumber.RegNumber;
+    batchData.targetRegNum = e.targetRegNum;
+    let url = `${apiUrlPrefix}/batches/${e.batchId}`;
+    this.http.post(url, batchData).toPromise()
       .then(res => {
         this.removeBatchItem();
         notifySuccess(res.json().message, 2000);
