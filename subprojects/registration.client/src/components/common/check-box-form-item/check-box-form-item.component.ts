@@ -20,6 +20,7 @@ export class RegCheckBoxFormItem extends RegBaseFormItem {
   protected update() {
     super.update();
     let options = this.viewModel.editorOptions;
+    this.readOnly = options.readOnly;
     // set default value
     let isDefaultValueSet: boolean = false;
     if (!options.value) {
