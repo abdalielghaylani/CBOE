@@ -150,4 +150,21 @@ export class RegDataGridFormItem extends RegBaseFormItem {
   protected onDropDownValueUpdated(e, d) {
     this.grid.instance.cellValue(d.rowIndex, d.column.dataField, e);
   }
+
+  protected validate(options) {
+    let component = options.validator.peer;
+    let vm = component.viewModel;
+    options.validator.isValid = true;
+    if (component.grid.instance.hasEditData()) {
+      let vc = component.viewConfig;
+      let items = vc.length > 0 && vc[0].itemType === 'group' ? vc.map(g => g.items).reduce((v, a) => a.concat(v), []) : vc;
+      let item = items.find(i => i.dataField === vm.dataField);
+      let label = item && item.label && item.label.text ? item.label.text : vm.dataField;
+      options.validator.errorMessage = `You must complete editing the '${label}' field`;
+      options.validator.isValid = false;
+    } else {
+      super.validate(options);
+    }
+    return options.validator.isValid;
+  }
 };
