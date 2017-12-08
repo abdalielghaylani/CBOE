@@ -15,7 +15,9 @@ import { DxFormComponent } from 'devextreme-angular';
 import { CViewGroup, CSearchCriteria, ISearchCriteriaItem } from './base';
 import { RegistrySearchActions, IAppState, ISearchRecords, IQueryData, ILookupData } from '../../redux';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroupType, prepareFormGroupData, IFormGroup, notify } from '../../common';
+import { FormGroupType, prepareFormGroupData, IFormGroup, notify, notifyException } from '../../common';
+import { HttpService } from '../../services';
+import { apiUrlPrefix } from '../../configuration';
 import * as X2JS from 'x2js';
 
 declare var jQuery: any;
@@ -48,7 +50,8 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
     private elementRef: ElementRef,
     private changeDetector: ChangeDetectorRef,
     private ngRedux: NgRedux<IAppState>,
-    private actions: RegistrySearchActions) {
+    private actions: RegistrySearchActions,
+    private http: HttpService) {
   }
 
   ngOnInit() {
@@ -130,6 +133,18 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   }
 
   private restorePreference(e) {
+  }
+
+  private restoreLastQueryToForm() {
+    let url = `${apiUrlPrefix}hitlists/${this.temporary}/restoreLastQuery`;
+    this.http.get(url).toPromise()
+      .then(res => {
+        let queryData = res.json() as IQueryData;
+        this.restore(queryData);
+      })
+      .catch(error => {
+        notifyException(`Restoring the selected query failed due to a problem`, error, 5000);
+      });
   }
 
   private cancel(e) {

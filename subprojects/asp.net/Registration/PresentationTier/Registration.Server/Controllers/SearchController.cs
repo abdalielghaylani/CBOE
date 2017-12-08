@@ -328,6 +328,50 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
+        /// Returns last search criteria.
+        /// </summary>
+        /// <response code="200">Successful</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <returns>Last search criteria object</returns>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "hitlists/{temp}/restoreLastQuery")]
+        [SwaggerOperation("GetLastHitlistStructureCriteria")]
+        [SwaggerResponse(200, type: typeof(List<HitlistData>))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetLastHitlistStructureCriteria(bool? temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                var formGroup = GetFormGroup(temp);
+                var tempHitLists = COEHitListBOList.GetRecentHitLists(Consts.REGDB, COEUser.Name, formGroup.Id, 1);
+                if (tempHitLists.Count > 0)
+                {
+                    var hitlistID = tempHitLists[0].HitListID;
+                    var queryData = GetHitlistQueryInternal(hitlistID, temp);
+                    var searchCriteria = new SearchCriteria();
+                    searchCriteria.GetFromXML(queryData.SearchCriteria);
+                    foreach (var item in searchCriteria.Items)
+                    {
+                        if (!(item is SearchCriteria.SearchCriteriaItem)) continue;
+                        var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                        var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
+                        if (structureCriteria == null) continue;
+                        var query = structureCriteria.Query4000;
+                        if (!string.IsNullOrEmpty(query) && query.StartsWith("VmpD"))
+                        {
+                            structureCriteria.Structure = SecurityElement.Escape(ChemistryHelper.ConvertToCdxml(query, true));
+                        }
+                    }
+                    queryData.SearchCriteria = searchCriteria.ToString();
+                    return queryData;
+                }
+                throw new RegistrationException("The hit-list has no query associated with it");
+            });
+        }
+
+        /// <summary>
         /// Deletes a hit-list
         /// </summary>
         /// <remarks>Deletes a hit-list by its ID</remarks>
