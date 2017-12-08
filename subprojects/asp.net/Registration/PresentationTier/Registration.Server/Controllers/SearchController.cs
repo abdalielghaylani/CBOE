@@ -13,6 +13,8 @@ using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
 using CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService;
 using CambridgeSoft.COE.Framework;
+using CambridgeSoft.COE.Framework.Caching;
+using CambridgeSoft.COE.Framework.COEDataViewService;
 using CambridgeSoft.COE.Framework.COEHitListService;
 using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
 using CambridgeSoft.COE.Framework.COESearchCriteriaService;
@@ -42,6 +44,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private static GenericBO GetGenericBO(bool? temp)
         {
             var formGroup = GetFormGroup(temp);
+            if (ServerCache.Exists(formGroup.DataViewId.ToString(), typeof(COEDataViewBO)))
+                ServerCache.Remove(formGroup.DataViewId.ToString(), typeof(COEDataViewBO));
             GenericBO bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, formGroup);
             return bo;
         }
