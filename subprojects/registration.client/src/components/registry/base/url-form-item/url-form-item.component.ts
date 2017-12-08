@@ -24,7 +24,6 @@ export class RegUrlFormItem extends RegBaseFormItem {
   }
 
   protected onClick(e) {
-    console.log(this);
     let clientEvents = this.viewModel.editorOptions.config.clientEvents;
     if (clientEvents != null && clientEvents.event != null) {
       let script = clientEvents.event.__text;
