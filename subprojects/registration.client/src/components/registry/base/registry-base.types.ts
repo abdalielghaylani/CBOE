@@ -849,7 +849,12 @@ export class CSearchCriteria {
             this.setQueryEntryValue(i, value.toString());
           }
         }
-        items.push(i);
+        let item: any = i;
+        if (item.molweightCriteria) {
+          items.push(this.getMolWeightCriteria(i, value));
+        } else {
+          items.push(i);
+        }
       }
     });
     return CSearchCriteria.x2jsTool.js2xml({ searchCriteria: new CSearchCriteria(items) })
@@ -864,6 +869,47 @@ export class CSearchCriteria {
       sc.structureCriteria.CSCartridgeStructureCriteria = {};
       sc.structureCriteria.CSCartridgeStructureCriteria = entryValue.structureCriteriaOptions;
       sc.structureCriteria.CSCartridgeStructureCriteria.__text = entryValue.toString();
+    }
+  }
+
+  public getMolWeightCriteria(c: any, entryValue: any) {
+    let searchCriteria: any = {
+      searchCriteriaItem: {
+        _fieldid: c._fieldid,
+        _id: c._id,
+        _tableid: c._tableid,
+        _searchLookupByID: c._searchLookupByID,
+        _aggregateFunctionName: c._aggregateFunctionName
+      }
+    };
+
+    let molWeightCriteria: any = {
+      CSCartridgeMolWeightCriteria: {
+        _max: '',
+        _min: '',
+        _negate: c.molweightCriteria._negate,
+        _operator: c.molweightCriteria._operator,
+        __text: entryValue
+      }
+    };
+    this.setMinMaxValues(molWeightCriteria.CSCartridgeMolWeightCriteria, entryValue);
+    searchCriteria.searchCriteriaItem.molWeightCriteria = molWeightCriteria;
+    return searchCriteria.searchCriteriaItem;
+  }
+
+  private setMinMaxValues(criteria: any, text: string) {
+    let value = Number.parseFloat(text);
+    if (value !== Number.NaN) {
+      let min = value;
+      let max = value;
+      let tolerance = 0.5;
+      let decimalPointIndex = text.indexOf('.');
+      if (decimalPointIndex >= 0) {
+        let decimalDigits = text.length - decimalPointIndex;
+        tolerance = 5 * Math.pow(10, -decimalDigits);
+      }
+      criteria._min = min - tolerance;
+      criteria._max = max + tolerance;
     }
   }
 
