@@ -131,8 +131,13 @@ export class CViewGroup implements IViewGroup {
       if (!readOnly) {
         item.colSpan = 5;
       }
-    } else if (type.indexOf('COELink') > 0) {
+    } else if (type.indexOf('COELink') > 0 && !!fe.clientEvents) {
+      item.label = { visible: false };
       item.template = 'urlTemplate';
+      item.editorOptions = {
+        label: fe.label,
+        config: fe
+      };
     } else if (type.indexOf('COEDatePicker') > 0) {
       item.template = 'dateTemplate';
     } else if (fe.bindingExpression.endsWith('ProjectList')) {

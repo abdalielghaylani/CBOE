@@ -24,7 +24,7 @@
     <reg-text-form-item-template [editMode]="editMode" [viewModel]="data"></reg-text-form-item-template>
   </div>
   <div *dxTemplate="let data of 'urlTemplate'">
-    <a target="_blank" href="{{data.editorOptions.value}}">{{data.editorOptions.value}}</a>
+    <reg-url-form-item-template [editMode]="editMode" [viewModel]="data"></reg-url-form-item-template>
   </div>
   <div *dxTemplate="let data of 'checkBoxTemplate'">
     <reg-check-box-form-item-template [editMode]="editMode" [viewModel]="data"></reg-check-box-form-item-template>

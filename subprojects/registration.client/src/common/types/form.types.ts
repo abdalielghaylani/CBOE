@@ -91,6 +91,7 @@ export interface IFormElement {
   dataSource?: string;
   searchCriteriaItem?: any;
   validationRuleList?: any;
+  clientEvents?: any;
   // TODO: ...
 }
 
