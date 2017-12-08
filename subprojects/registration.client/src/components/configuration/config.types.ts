@@ -1,4 +1,4 @@
-import { IAppState, ICustomTableData, IValidationRuleData } from '../../redux';
+import { IAppState, ILookupData, ICustomTableData, IValidationRuleData } from '../../redux';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { CValidator } from '../common';
 
@@ -25,8 +25,8 @@ export class CConfigTable {
   ];
   sequenceType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'C', name: 'Compound' }];
   activeType = [{ key: 'T', name: 'Yes' }, { key: 'F', name: 'No' }];
-  constructor(tableId: string, tablename: string, customTableData: ICustomTableData, state: IAppState) {
-    this.tableName = tablename;
+  constructor(tableId: string, tableName: string, customTableData: ICustomTableData) {
+    this.tableName = tableName;
     this.window = { title: this.tableName, viewIndex: 'list' };
     if (customTableData.config) {
       this.columns = customTableData.config;
@@ -396,17 +396,17 @@ export class CConfigProperties {
   addRuleVisible: boolean = false;
   formValidationColumns: any;
   validationGridColumns: any;
-  constructor(state: IAppState) {
+  constructor(lookups: ILookupData) {
     this.window = { title: 'Manage Data Properties', viewIndex: 'list' };
-    this.columns = this.buildPropertiesColumnConfig(state);
+    this.columns = this.buildPropertiesColumnConfig(lookups);
     this.formValidationColumns = CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS;
     this.formColumns = CONFIG_PROPERTIES_FORMS;
     this.formData = new CConfigPropertiesFormData();
     this.formDataValidation = new CPropertiesValidationFormData();
     this.formColumns[0].editorOptions = { dataSource: [], valueExpr: 'groupName', displayExpr: 'groupLabel' };
-    this.formColumns[0].editorOptions.dataSource = getLookups(state).propertyGroups;
+    this.formColumns[0].editorOptions.dataSource = lookups.propertyGroups;
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
-    this.formColumns[5].editorOptions.dataSource = getLookups(state).pickListDomains;
+    this.formColumns[5].editorOptions.dataSource = lookups.pickListDomains;
   }
 
   addParams(n: string, v: string) {
@@ -590,7 +590,7 @@ export class CConfigProperties {
     }
   }
 
-  private buildPropertiesColumnConfig(state: IAppState): any[] {
+  private buildPropertiesColumnConfig(lookups: ILookupData): any[] {
     return [{
       dataField: 'groupLabel',
       caption: 'Properties',
@@ -618,7 +618,7 @@ export class CConfigProperties {
       caption: 'PickList Domain',
       allowSorting: false,
       width: 120,
-      lookup: { dataSource: getLookups(state).pickListDomains, valueExpr: 'ID', displayExpr: 'DESCRIPTION' }
+      lookup: { dataSource: lookups.pickListDomains, valueExpr: 'ID', displayExpr: 'DESCRIPTION' }
     }, {
       dataField: 'sortOrder',
       caption: 'Sort Order',

@@ -78,7 +78,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
     if (customTables && customTables[this.tableId]) {
       let customTableData: ICustomTableData = customTables[this.tableId];
       this.rows = customTableData.rows;
-      this.configTable = new CConfigTable(this.tableId, this.tableName(), customTableData, this.ngRedux.getState());
+      this.configTable = new CConfigTable(this.tableId, this.tableName(), customTableData);
       this.dataSource = this.createCustomStore();
       this.changeDetector.markForCheck();
     }

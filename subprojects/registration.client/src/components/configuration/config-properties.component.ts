@@ -3,7 +3,7 @@ import {
   OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { select, NgRedux } from '@angular-redux/store';
+import { select, NgRedux, } from '@angular-redux/store';
 import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
 import { Observable } from 'rxjs/Observable';
@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { CConfigProperties, CPropertiesValidationFormDataModel } from './config.types';
 import { getExceptionMessage, notify, notifyError, notifyException, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration } from '../../redux';
+import { ConfigurationActions, IAppState, ILookupData, ICustomTableData, IConfiguration } from '../../redux';
 import { HttpService } from '../../services';
 
 declare var jQuery: any;
@@ -53,8 +53,10 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   loadData(customTables: any) {
-    if (customTables) {
-      this.configProperties = new CConfigProperties(this.ngRedux.getState());
+    const state: IAppState = this.ngRedux.getState();
+    const lookups: ILookupData = state && state.session ? state.session.lookups : undefined;
+    if (customTables && lookups) {
+      this.configProperties = new CConfigProperties(lookups);
       this.dataSource = this.createCustomStore(this);
       this.changeDetector.markForCheck();
     }

@@ -5,7 +5,7 @@
 <dx-data-grid id="grdSearchQuery" [height]="parentHeight" [columns]=hitlistVM.gridColumns [attr.data-target]=hitlistVM [masterDetail]="{ enabled: false, template: 'detail' }"
   [dataSource]=records rowAlternationEnabled=true (onEditorPreparing)='onEditorPreparing($event)' (onRowRemoving)='onRowRemoving($event)'
   (onCellPrepared)='onCellPrepared($event)' (onContentReady)='onContentReady($event)' (onRowUpdating)='onRowUpdating($event)'
-  [paging]="{enabled: false}">
+  [paging]="{enabled: false}" [wordWrapEnabled]="true">
   <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="false" [texts]="{
       confirmDeleteMessage: 'Are you sure you want to delete this hitlist?',
       confirmDeleteTitle: 'Remove Hitlist'
