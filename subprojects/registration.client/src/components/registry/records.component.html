@@ -51,13 +51,13 @@
         <div *dxTemplate="let data of 'toolbarContents'">
           <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
           <badge-count [hidden]="selectedRows.length==0" color="orange" icon="check" text="Marked Hits" [count]="selectedRows ? selectedRows.length : ''"></badge-count>
-          <command-button *ngIf="createContainersEnabled && selectedRows.length>0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
+          <command-button *ngIf="createContainersEnabled &amp;&amp; selectedRows.length>0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
           <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
           <command-button [hidden]="!deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
           <command-button [hidden]="!registerMarkedEnabled" testid="register-marked-button" (onClick)="registerMarked()" iconName="registered" title="Register Marked"></command-button>
           <command-button *ngIf="selectedRows &amp;&amp; selectedRows.length > 0 &amp;&amp; !rowSelected" testid="show-marked-button" (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
           <command-button [hidden]="!rowSelected" testid="show-all-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show All Records"></command-button>
-          <command-button [hidden]="selectedRows.length <= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
+          <command-button [hidden]="selectedRows.length &lt;= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
         </div>
         <div *dxTemplate="let data of 'structureImageColumnTemplate'">
           <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>

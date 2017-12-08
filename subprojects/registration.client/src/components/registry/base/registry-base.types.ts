@@ -438,7 +438,7 @@ export class CViewGroup implements IViewGroup {
   }
 
   public getColumns(displayMode: string): CViewGroupColumns {
-    let columns = [];
+    let regColumns = [];
     let batchColumns = [];
     this.data.forEach(f => {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
@@ -448,77 +448,45 @@ export class CViewGroup implements IViewGroup {
           if (fieldConfig && fieldConfig.tables) {
             let index = 0;
             fieldConfig.tables.table.forEach(tb => {
+              const columns = index === 0 ? regColumns : batchColumns;
               if (tb.Columns && tb.Columns.Column) {
                 tb.Columns.Column.forEach(c => {
+                  const column: any = {
+                    dataField: (c.formElement) ? c.formElement._name : c._name,
+                    caption: (c.headerText && typeof c.headerText === 'string') ? c.headerText : c._name,
+                    visible: !c._hidden || c._hidden.toLowerCase() !== 'true'
+                  };
                   if (c._name === 'STATUSCOLUMN' || c._name === 'STATUSID') {
-                    let col = {
-                      dataField: (c.formElement) ? c.formElement._name : c._name,
-                      caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
-                      visible: (c._hidden && c._hidden.toLowerCase() === 'true') ? false : true,
-                      width: 70,
-                      allowEditing: false,
-                      allowFiltering: false,
-                      allowSorting: false,
-                      cellTemplate: 'statusTemplate'
-                    };
-                    if (index > 0) {
-                      batchColumns.push(col);
-                    } else {
-                      columns.push(col);
-                    }
+                    column.width = 70;
+                    column.allowEditing = false;
+                    column.allowFiltering = false;
+                    column.allowSorting = false;
+                    column.cellTemplate = 'statusTemplate';
+                    columns.push(column);
                   } else if (c._name === 'Structure' || c._name === 'STRUCTUREAGGREGATION') {
-                    let col = {
-                      dataField: (c.formElement) ? c.formElement._name : c._name,
-                      caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
-                      visible: (c._hidden && c._hidden.toLowerCase() === 'true') ? false : true,
-                      width: (c.width) ? c.width : '140',
-                      allowEditing: false,
-                      allowFiltering: false,
-                      allowSorting: false,
-                      cellTemplate: 'structureImageColumnTemplate'
-                    };
-                    if (index > 0) {
-                      batchColumns.push(col);
-                    } else {
-                      columns.push(col);
-                    }
+                    column.width = (c.width) ? c.width : '140';
+                    column.allowEditing = false;
+                    column.allowFiltering = false;
+                    column.allowSorting = false;
+                    column.cellTemplate = 'structureImageColumnTemplate';
+                    columns.push(column);
                   } else if (c._name === 'REG_COMMENTS' || c._name === 'NOTEBOOK_TEXT' || c._name === 'PURITY_COMMENTS'
                     || c._name === 'BATCH_COMMENT' || c._name === 'STORAGE_REQ_AND_WARNINGS') {
                     if (!c._childTableName) {
-                      let col = {
-                        dataField: (c.formElement) ? c.formElement._name : c._name,
-                        caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
-                        width: 150,
-                        visible: (c._hidden && c._hidden.toLowerCase() === 'true') ? false : true,
-                        dataType: 'string'
-                      };
-                      if (index > 0) {
-                        batchColumns.push(col);
-                      } else {
-                        columns.push(col);
+                      column.width = 150;
+                      column.dataType = 'string';
+                      columns.push(column);
+                    }
+                  } else if (!c._childTableName) {
+                    column.visible = column.visible && c._name !== 'Marked' && c._name !== 'Review Record';
+                    if (c.formElement && c.formElement.displayInfo && c.formElement.displayInfo.type) {
+                      if (c.formElement.displayInfo.type.indexOf('COEDatePicker') > 0) {
+                        column.dataType = 'date';
+                      } else if (c.formElement.displayInfo.type.indexOf('COECheckBoxReadOnly') > 0) {
+                        column.dataType = 'boolean';
                       }
                     }
-                  } else {
-                    if (!c._childTableName) {
-                      let col: any;
-                      col = {
-                        dataField: (c.formElement) ? c.formElement._name : c._name,
-                        caption: (c.headerText && c.headerText !== '') ? c.headerText : c._name,
-                        visible: ((c._hidden && c._hidden.toLowerCase() === 'true') || c._name === 'Marked' || c._name === 'Review Record') ? false : true
-                      };
-                      if (c.formElement && c.formElement.displayInfo && c.formElement.displayInfo.type) {
-                        if (c.formElement.displayInfo.type.indexOf('COEDatePicker') > 0) {
-                          col.dataType = 'date';
-                        } else if (c.formElement.displayInfo.type.indexOf('COECheckBoxReadOnly') > 0) {
-                          col.dataType = 'boolean';
-                        }
-                      }
-                      if (index > 0) {
-                        batchColumns.push(col);
-                      } else {
-                        columns.push(col);
-                      }
-                    }
+                    columns.push(column);
                   }
                 });
               }
@@ -529,7 +497,7 @@ export class CViewGroup implements IViewGroup {
       }
     });
     let viewGroupColumns = new CViewGroupColumns();
-    viewGroupColumns.baseTableColumns = columns;
+    viewGroupColumns.baseTableColumns = regColumns;
     viewGroupColumns.batchTableColumns = batchColumns;
     return viewGroupColumns;
   }
@@ -885,8 +853,6 @@ export class CSearchCriteria {
 
     let molWeightCriteria: any = {
       CSCartridgeMolWeightCriteria: {
-        _max: '',
-        _min: '',
         _negate: c.molweightCriteria._negate,
         _operator: c.molweightCriteria._operator,
         __text: entryValue
@@ -908,8 +874,8 @@ export class CSearchCriteria {
         let decimalDigits = text.length - decimalPointIndex;
         tolerance = 5 * Math.pow(10, -decimalDigits);
       }
-      criteria._min = min - tolerance;
-      criteria._max = max + tolerance;
+      criteria._min = (min - tolerance).toString();
+      criteria._max = (max + tolerance).toString();
     }
   }
 
