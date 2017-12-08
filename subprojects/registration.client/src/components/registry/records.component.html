@@ -44,7 +44,8 @@
             [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true 
             [filterRow]="{ visible: data.data.BatchDataSource.length > 4 }" (onInitialized)='onInitialized($event)'
             (onCellPrepared)="onBatchCellPrepared($event)" (onEditingStart)="onEditingBatchGridStart($event)"
-            [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'">
+            [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'"
+            [wordWrapEnabled]="true">
               <dxo-editing *ngIf="createContainersEnabled" mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
             </dx-data-grid>
         </div>
