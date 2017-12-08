@@ -105,6 +105,11 @@ export class CSystemSettings {
     return setting.value === 'True' ? true : false;
   }
 
+  public get isSendToInventoryEnabled(): boolean {
+    let setting: ISettingData = this.getSetting('Inventory', 'SendtoInventory');
+    return setting.value === 'True' ? true : false;
+  }
+
   public get invSendToInventoryURL(): string {
     let setting: ISettingData = this.getSetting('Inventory', 'SendToInventoryURL');
     return setting.value ? setting.value : '';
