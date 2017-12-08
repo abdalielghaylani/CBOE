@@ -127,7 +127,7 @@ export class RegBatchEditor implements OnChanges {
     if (this.validate().isValid) {
       this.formVisible = false;
       let recordJson: any = this.x2jsTool().js2xml(this.currentBatch);
-      this.onEdit.emit(`<BatchList>${recordJson}</BatchList>`);
+      this.onEdit.emit(`<BatchList><Batch>${recordJson}</Batch></BatchList>`);
     }
   }
 
