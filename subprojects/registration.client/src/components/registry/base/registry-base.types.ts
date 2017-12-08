@@ -345,8 +345,8 @@ export class CViewGroup implements IViewGroup {
     return viewGroupsFiltered;
   }
 
-  public static getViewGroupsColumns(temporary: boolean, config: IFormGroup, displayMode: string, disabledControls: any[],
-    systemSettings: any[]): CViewGroupColumns {
+  public static getColumns(temporary: boolean, config: IFormGroup, disabledControls: any[], systemSettings: CSystemSettings): CViewGroupColumns {
+    const displayMode = 'list';
     let viewGroups: CViewGroup[] = [];
     let viewGroupColumns = new CViewGroupColumns();
     let form: IForm = this.getForm(config, displayMode);
@@ -365,15 +365,14 @@ export class CViewGroup implements IViewGroup {
         }
         if (viewGroups.length === 1) {
           viewGroupColumns = viewGroups[0].getColumns(displayMode);
-          let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID');
+          let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID' || c.dataField === 'Approved');
           if (statusColumn) {
-            let sysSettings = new CSystemSettings(systemSettings);
             if (temporary) {
-              statusColumn.visible = sysSettings.isApprovalsEnabled;
+              statusColumn.visible = systemSettings.isApprovalsEnabled;
             } else {
-              statusColumn.visible = sysSettings.isLockingEnabled;
+              statusColumn.visible = systemSettings.isLockingEnabled;
             }
-          } 
+          }
         }
       });
     }
@@ -484,7 +483,7 @@ export class CViewGroup implements IViewGroup {
                       columns.push(col);
                     }
                   } else if (c._name === 'REG_COMMENTS' || c._name === 'NOTEBOOK_TEXT' || c._name === 'PURITY_COMMENTS'
-                  || c._name === 'BATCH_COMMENT' || c._name === 'STORAGE_REQ_AND_WARNINGS') {
+                    || c._name === 'BATCH_COMMENT' || c._name === 'STORAGE_REQ_AND_WARNINGS') {
                     if (!c._childTableName) {
                       let col = {
                         dataField: (c.formElement) ? c.formElement._name : c._name,
@@ -513,7 +512,7 @@ export class CViewGroup implements IViewGroup {
                         } else if (c.formElement.displayInfo.type.indexOf('COECheckBoxReadOnly') > 0) {
                           col.dataType = 'boolean';
                         }
-                      }                      
+                      }
                       if (index > 0) {
                         batchColumns.push(col);
                       } else {

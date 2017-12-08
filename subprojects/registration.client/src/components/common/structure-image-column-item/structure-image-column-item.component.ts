@@ -37,14 +37,18 @@ export class RegStructureImageColumnItem {
     let self = this;
     this.image = this.spinnerImage;
     self.changeDetector.markForCheck();
-    this.imageService.generateImage(value)
-      .then(result => {
-        self.image = result;
-        self.changeDetector.markForCheck();
-      })
-      .catch(error => {
-        this.image = nonStructureImage;
-        self.changeDetector.markForCheck();
-      });
+    if (!value) {
+      this.image = nonStructureImage;
+    } else {
+      this.imageService.generateImage(value)
+        .then(result => {
+          self.image = result;
+          self.changeDetector.markForCheck();
+        })
+        .catch(error => {
+          this.image = nonStructureImage;
+          self.changeDetector.markForCheck();
+        });
+    }
   }
 };
