@@ -699,10 +699,12 @@ export class RegRecords implements OnInit, OnDestroy {
         `Alert: Are you sure you want to approve the marked registries?`,
         'Confirm Approval');
       dialogResult.done(res => {
-        let ids: number[] = this.selectedRows.map(r => r[this.idField]);
-        let succeeded: number[] = [];
-        let failed: number[] = [];
-        this.approveRows(ids, failed, succeeded);
+        if (res) {
+          let ids: number[] = this.selectedRows.map(r => r[this.idField]);
+          let succeeded: number[] = [];
+          let failed: number[] = [];
+          this.approveRows(ids, failed, succeeded);
+        }
       });
     }
   }
