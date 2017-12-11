@@ -199,17 +199,17 @@ export const CONFIG_FORMS_COLUMNS = [
     dataField: 'label',
     allowEditing: true,
     validationRules:
-      [
-        {
-          group: 'label', type: 'required',
-          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
-        },
-        {
-          group: 'label', type: 'pattern',
-          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
-          pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
-        }
-      ]
+    [
+      {
+        group: 'label', type: 'required',
+        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
+      },
+      {
+        group: 'label', type: 'pattern',
+        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
+        pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
+      }
+    ]
   },
   {
     dataField: 'controlType',
@@ -366,11 +366,11 @@ export class CConfigPropertiesFormData {
 };
 
 export class CPropertiesValidationFormData implements IValidationRuleData {
-  name: string;
+  name: string = '';
   min: number;
   max: number;
   maxLength: number;
-  error: string;
+  error: string = '';
   defaultValue: string;
   parameters: any[] = [];
   clientScript: string;
@@ -378,11 +378,11 @@ export class CPropertiesValidationFormData implements IValidationRuleData {
 }
 
 export class CPropertiesValidationFormDataModel implements IValidationRuleData {
-  name: string;
+  name: string = '';
   min: number;
   max: number;
   maxLength: number;
-  error: string;
+  error: string = '';
   defaultValue: string;
   parameters: any[] = [];
 }
@@ -490,6 +490,7 @@ export class CConfigProperties {
   }
 
   addValidationRule(e) {
+    this.formDataValidation = new CPropertiesValidationFormData();
     this.addRuleVisible = true;
   }
 
@@ -504,6 +505,7 @@ export class CConfigProperties {
 
   clearFormData() {
     this.formData = new CConfigPropertiesFormData();
+    this.formDataValidation = new CPropertiesValidationFormData();
   }
 
   addEditProperty(w: string, d?: any) {
@@ -539,6 +541,7 @@ export class CConfigProperties {
         case 'wordListEnumeration':
         case 'notEmptyStructure':
         case 'notEmptyStructureAndNoText':
+        case '':
           e.component._refresh();
           break;
         case 'custom':
