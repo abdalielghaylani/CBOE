@@ -79,11 +79,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
             foreach (COEFormHelper.COEFormGroups formGroupType in Enum.GetValues(typeof(COEFormHelper.COEFormGroups)))
             {
-                configRegRecord.COEFormHelper.Load(formGroupType);
-                formGroups.Add(new JObject(
-                    new JProperty("name", formGroupType.ToString()),
-                    new JProperty("data", configRegRecord.FormGroup.ToString())
-                ));
+                if (formGroupType <= COEFormHelper.COEFormGroups.SearchPermanent)
+                {
+                    configRegRecord.COEFormHelper.Load(formGroupType);
+                    formGroups.Add(new JObject(
+                        new JProperty("name", formGroupType.ToString()),
+                        new JProperty("data", configRegRecord.FormGroup.ToString())
+                    ));
+                }
             }
 
             return formGroups;
