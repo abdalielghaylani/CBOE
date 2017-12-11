@@ -817,8 +817,7 @@ export class CSearchCriteria {
             this.setQueryEntryValue(i, value.toString());
           }
         }
-        let item: any = i;
-        if (item.molweightCriteria) {
+        if ((i as any).molweightCriteria) {
           items.push(this.getMolWeightCriteria(i, value));
         } else {
           items.push(i);
