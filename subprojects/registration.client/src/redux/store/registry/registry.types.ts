@@ -63,6 +63,7 @@ export interface IRegistryRetrievalQuery {
   take?: number;
   sort?: string;
   hitListId?: number;
+  highlightSubStructures?: boolean;
 }
 
 export interface IRegisterRecordList {

@@ -150,7 +150,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   restoreHitlist() {
     if ((this.restore) && (this.hitListId > 0)) {
-      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: this.hitListId });
+      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: this.hitListId }, this.ngRedux.getState().registrysearch.highLightSubstructure);
       this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
       if (!this.recordsSubscription) {
         this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
@@ -168,7 +168,8 @@ export class RegRecords implements OnInit, OnDestroy {
       skip: this.records.data.rows.length,
       take: fetchLimit,
       sort: this.sortCriteria,
-      hitListId: this.records.data.hitlistId
+      hitListId: this.records.data.hitlistId,
+      highlightSubStructures: this.ngRedux.getState().registrysearch.highLightSubstructure
     });
     this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
     if (!this.recordsSubscription) {
@@ -252,7 +253,8 @@ export class RegRecords implements OnInit, OnDestroy {
       skip: this.records.data.rows.length,
       take: fetchLimit,
       sort: this.sortCriteria,
-      hitListId: this.records.data.hitlistId
+      hitListId: this.records.data.hitlistId,
+      highlightSubStructures: this.ngRedux.getState().registrysearch.highLightSubstructure
     });
   }
 

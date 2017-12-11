@@ -63,7 +63,8 @@ export class RegistrySearchEpics {
       });
   }
 
-  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: IHitlistRetrieveInfo }>>) => {
+  private handleRetrieveHitlist: Epic = (action$: Observable<ReduxActions.Action<{ 
+    temporary: boolean, data: IHitlistRetrieveInfo, highlightSubStructures: boolean }>>) => {
     return action$.filter(({ type }) => type === RegistrySearchActions.RETRIEVE_HITLIST)
       .mergeMap(({ payload }) => {
         if (payload.data.type === 'Retrieve' || payload.data.type === 'Refresh') {
@@ -72,6 +73,7 @@ export class RegistrySearchEpics {
             params += (params ? '&' : '?');
             params += 'refresh=true';
           }
+          if (payload.highlightSubStructures) { params += `${params ? '&' : '?'}highlightSubStructures=${payload.highlightSubStructures}`; }
           return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.id}/records${params}`)
             .map(result => {
               return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
@@ -79,6 +81,7 @@ export class RegistrySearchEpics {
             .catch(error => Observable.of(RegistrySearchActions.retrieveHitlistErrorAction(error)));
         } else if (payload.data.type === 'Advanced') {
           let params = payload.temporary ? '?temp=true' : '';
+          if (payload.highlightSubStructures) { params += `${params ? '&' : '?'}highlightSubStructures=${payload.highlightSubStructures}`; }
           return this.http.get(`${apiUrlPrefix}hitlists/${payload.data.data.id1}/${payload.data.data.op}/${payload.data.data.id2}/records${params}`)
             .map(result => {
               return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
@@ -93,7 +96,7 @@ export class RegistrySearchEpics {
       .mergeMap(({ payload }) => {
         return this.http.post(`${apiUrlPrefix}search/${payload.temporary ? 'temp-' : ''}records`, payload)
           .map(result => {
-            return RegistrySearchActions.retrieveHitlistAction(payload.temporary, { type: 'Retrieve', id: result.json() });
+            return RegistrySearchActions.retrieveHitlistAction(payload.temporary, { type: 'Retrieve', id: result.json() }, payload.highlightSubStructures);
           })
           .catch(error => Observable.of(RegistrySearchActions.searchRecordsErrorAction(error)));
       });

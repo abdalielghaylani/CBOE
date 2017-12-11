@@ -43,6 +43,7 @@ export class RegistryEpics {
         if (payload.take) { params += `${params ? '&' : '?'}count=${payload.take}`; }
         if (payload.sort) { params += `${params ? '&' : '?'}sort=${payload.sort}`; }
         if (payload.hitListId) { params += `${params ? '&' : '?'}hitListId=${payload.hitListId}`; }
+        if (payload.highlightSubStructures) { params += `${params ? '&' : '?'}highlightSubStructures=${payload.highlightSubStructures}`; }
         url += params;
         return this.http.get(url)
           .map(result => {

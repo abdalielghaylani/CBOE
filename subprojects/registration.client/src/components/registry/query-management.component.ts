@@ -138,20 +138,20 @@ export class RegQueryManagement implements OnInit, OnDestroy {
         id2: this.selectedHitlist.id,
         op: this.hitlistVM.advancedRestoreType
       }
-    });
+    }, this.ngRedux.getState().registrysearch.highLightSubstructure);
     this.grid.instance.collapseAll(-1);
     this.onClose.emit(e);
   }
 
   private restoreSelectedHitlist(e: IHitlistData) {
     if (this.hitlistId !== e.id) {
-      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: e.id });
+      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: e.id }, this.ngRedux.getState().registrysearch.highLightSubstructure);
       this.onClose.emit(e);
     }
   }
 
   private refreshSelectedHitlist(e: IHitlistData) {
-    this.actions.retrieveHitlist(this.temporary, { type: 'Refresh', id: e.id });
+    this.actions.retrieveHitlist(this.temporary, { type: 'Refresh', id: e.id }, this.ngRedux.getState().registrysearch.highLightSubstructure);
     this.onClose.emit(e);
   }
 

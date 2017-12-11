@@ -62,10 +62,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteriaBO.SearchCriteria.ToString());
         }
 
-        private JObject GetHitlistRecordsInternal(int id, bool? temp, int? skip = null, int? count = null, string sort = null)
+        private JObject GetHitlistRecordsInternal(int id, bool? temp, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
         {
             var hitlistBO = GetHitlistBO(id);
-            return GetRegistryRecordsListView(temp, skip, count, sort, hitlistBO.HitListInfo);
+            return GetRegistryRecordsListView(temp, skip, count, sort, hitlistBO.HitListInfo, null, highlightSubStructures);
         }
 
         private JObject SearchRecordsInternal(QueryData queryData, bool? temp, int? skip, int? count, string sort)
@@ -533,7 +533,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetHitlistRecords(int id, bool? temp = null, bool? refresh = null, int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> GetHitlistRecords(int id, bool? temp = null, bool? refresh = null, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
         {
             return await CallMethod(() =>
             {
@@ -542,7 +542,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var queryData = GetHitlistQueryInternal(id, temp);
                     return SearchRecordsInternal(queryData, temp, skip, count, sort);
                 }
-                return GetHitlistRecordsInternal(id, temp, skip, count, sort);
+                return GetHitlistRecordsInternal(id, temp, skip, count, sort, highlightSubStructures);
             });
         }
 
@@ -713,7 +713,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 return CreateTempHitlist(queryData, false);
-                // return SearchRecordsInternal(queryData, null, skip, count, sort);
             });
         }
 

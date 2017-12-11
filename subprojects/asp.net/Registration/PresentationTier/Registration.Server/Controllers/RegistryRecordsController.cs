@@ -130,12 +130,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
         [SwaggerResponse(500, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetRecords(int? skip = null, int? count = null, string sort = null, int? hitlistId = null)
+        public async Task<IHttpActionResult> GetRecords(int? skip = null, int? count = null, string sort = null, int? hitlistId = null, bool highlightSubStructures = false)
         {
             return await CallMethod(() =>
             {
                 HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
-                return GetRegistryRecordsListView(false, skip, count, sort, hitListInfo);
+                return GetRegistryRecordsListView(false, skip, count, sort, hitListInfo, null, highlightSubStructures);
             }, new string[] { "SEARCH_REG" });
         }
 
@@ -927,12 +927,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(401, type: typeof(JObject))]
         [SwaggerResponse(500, type: typeof(JObject))]
-        public async Task<IHttpActionResult> GetTempRecords(int? skip = null, int? count = null, string sort = null, int? hitlistId = null)
+        public async Task<IHttpActionResult> GetTempRecords(int? skip = null, int? count = null, string sort = null, int? hitlistId = null, bool highlightSubStructures = false)
         {
             return await CallMethod(() =>
             {
                 HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
-                return GetRegistryRecordsListView(true, skip, count, sort, hitListInfo);
+                return GetRegistryRecordsListView(true, skip, count, sort, hitListInfo, null, highlightSubStructures);
             }, new string[] { "SEARCH_TEMP" });
         }
 

@@ -42,7 +42,7 @@ export class RegistrySearchActions {
     (temporary: boolean, rows: any[]) => ({ temporary, rows }));
   static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
   static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST,
-    (temporary: boolean, data: IHitlistRetrieveInfo) => ({ temporary, data }));
+    (temporary: boolean, data: IHitlistRetrieveInfo, highlightSubStructures: boolean) => ({ temporary, data, highlightSubStructures }));
   static retrieveHitlistSuccessAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_SUCCESS);
   static retrieveHitlistErrorAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_ERROR);
   static retrieveQueryFormAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM,
@@ -91,7 +91,7 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(temporary, data));
   };
 
-  retrieveHitlist(temporary: boolean, data: IHitlistRetrieveInfo) {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(temporary, data));
+  retrieveHitlist(temporary: boolean, data: IHitlistRetrieveInfo, highlightSubStructures: boolean) {
+    this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(temporary, data, highlightSubStructures));
   };
 }
