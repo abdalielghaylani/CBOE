@@ -123,9 +123,13 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       } else {
         val.sortOrder = val.sortOrder + 1;
       }
+      val.updateSortOder = true;
+      this.showLoadPanel();
       this.dataSource.update(val, []).done(result => {
+        this.hideLoadPanel();
         this.grid._results[0].instance.refresh();
       }).fail(err => {
+        this.hideLoadPanel();
         notifyError(err, 5000);
       });
     }
@@ -251,8 +255,12 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       },
 
       update: function (data) {
+        let url = apiUrlBase;
+        if (data.updateSortOder) {
+          url = `${apiUrlBase}/sortOrder`;
+        }
         let deferred = jQuery.Deferred();
-        parent.http.put(`${apiUrlBase}`, data)
+        parent.http.put(url, data)
           .toPromise()
           .then(result => {
             notifySuccess(`The Property ${data.name} was updated successfully!`, 5000);
