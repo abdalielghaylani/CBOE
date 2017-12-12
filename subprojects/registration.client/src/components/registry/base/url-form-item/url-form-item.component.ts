@@ -10,6 +10,7 @@ import { RegBaseFormItem } from '../../../common';
 })
 export class RegUrlFormItem extends RegBaseFormItem {
   protected label: string;
+  protected clientEvent: boolean = false;
 
   protected update() {
     super.update();
@@ -19,6 +20,9 @@ export class RegUrlFormItem extends RegBaseFormItem {
       if (this.editMode && options.defaultValue) {
         options.value = options.defaultValue;
       }
+    }
+    if (options.config.clientEvents) {
+      this.clientEvent = true;
     }
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
   }

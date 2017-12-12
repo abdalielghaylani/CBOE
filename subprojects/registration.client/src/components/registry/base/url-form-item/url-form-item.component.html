@@ -1,1 +1,2 @@
-<a href="#" (click)="onClick($event)">{{label}}</a>
+<a *ngIf="clientEvent" href="#" (click)="onClick($event)">{{label}}</a>
+<a *ngIf="!clientEvent" [href]="value" target="_blank">{{value}}</a>
