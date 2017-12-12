@@ -161,11 +161,12 @@ export class CViewGroup implements IViewGroup {
     item.editorOptions.readOnly = readOnly;
   }
 
-  private setDefaultValue(fe: IFormElement, item: any) {
+  private setDefaultValue(fe: IFormElement, item: any, displayMode?: string) {
     let type = fe.displayInfo.type;
     if (type.endsWith('COEDropDownList')) {
       if (fe.defaultValue) {
         item.editorOptions.defaultValue = fe.defaultValue;
+        item.editorOptions.displayMode = displayMode;
       }
     } else if (type.endsWith('COEDatePicker')) {
       let defaultDate = fe.configInfo ? fe.configInfo.fieldConfig.DefaultDate : undefined;
@@ -426,7 +427,7 @@ export class CViewGroup implements IViewGroup {
             let duplicateIndex = items.findIndex(i => i.dataField === item.dataField);
             if (duplicateIndex === -1) {
               this.checkEditorType(fe, item);
-              this.setDefaultValue(fe, item);
+              this.setDefaultValue(fe, item, displayMode);
               this.checkValidationRules(fe, item);
               items.push(item);
             }
