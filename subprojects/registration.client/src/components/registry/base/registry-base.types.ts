@@ -860,24 +860,50 @@ export class CSearchCriteria {
         __text: entryValue
       }
     };
-    this.setMinMaxValues(molWeightCriteria.CSCartridgeMolWeightCriteria, entryValue);
+    if (entryValue) {
+      const criteria = molWeightCriteria.CSCartridgeMolWeightCriteria;
+      entryValue = entryValue.trim().toUpperCase();
+      if ((entryValue.startsWith(`"`) && entryValue.endsWith(`"`))
+        || (entryValue.startsWith(`'`) && entryValue.endsWith(`'`))) {
+          entryValue = entryValue.substring(1, entryValue.length - 2).trim();
+      }
+      criteria._max = 1e20;
+      const values = entryValue.split(' AND ');
+      this.setMinMaxValues(criteria, values[0]);
+      this.setMinMaxValues(criteria, values[1]);
+    }
     searchCriteria.searchCriteriaItem.molWeightCriteria = molWeightCriteria;
     return searchCriteria.searchCriteriaItem;
   }
 
   private setMinMaxValues(criteria: any, text: string) {
-    let value = Number.parseFloat(text);
-    if (value !== Number.NaN) {
-      let min = value;
-      let max = value;
-      let tolerance = 0.5;
-      let decimalPointIndex = text.indexOf('.');
-      if (decimalPointIndex >= 0) {
-        let decimalDigits = text.length - decimalPointIndex;
-        tolerance = 5 * Math.pow(10, -decimalDigits);
+    if (text) {
+      text = text.trim();
+      const match = text.match(/^([<>]?)(.*)$/);
+      if (match.length === 3) {
+        const type: string = !match[1] ? 'both' : match[1] === '<' ? 'max' : 'min';
+        let value = Number(match[2] ? match[2].trim() : undefined);
+        if (!isNaN(value)) {
+          let min = value;
+          let max = value;
+          if (type === 'both') {
+            let tolerance = 0.5;
+            let decimalPointIndex = text.indexOf('.');
+            if (decimalPointIndex >= 0) {
+              let decimalDigits = Math.min(text.length - decimalPointIndex, 3);
+              tolerance = 5 * Math.pow(10, -decimalDigits);
+            }
+            min -= tolerance;
+            max += tolerance;
+          }
+          if (type !== 'max') {
+            criteria._min = Math.max(criteria._min ? criteria._min : 0, min);
+          }
+          if (type !== 'min') {
+            criteria._max = Math.min(criteria._max, max);
+          }
+        }
       }
-      criteria._min = (min - tolerance).toString();
-      criteria._max = (max + tolerance).toString();
     }
   }
 

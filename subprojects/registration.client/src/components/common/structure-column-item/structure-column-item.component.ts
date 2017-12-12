@@ -14,7 +14,7 @@ export class RegStructureColumnItem extends RegBaseColumnItem {
 
   deserializeValue(value: any): any {
     let size = this.smallImage ? '/30/60?' : '/50/100?';
-    return `${apiUrlPrefix}StructureImage/${value}`.replace('?', size);
+    return value ? `${apiUrlPrefix}StructureImage/${value}`.replace('?', size) : '';
   }
 
   update() {
