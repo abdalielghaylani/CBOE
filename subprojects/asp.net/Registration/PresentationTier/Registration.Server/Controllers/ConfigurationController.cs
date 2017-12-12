@@ -1447,9 +1447,52 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 selectedProperty.ApplyEdit();
                 configurationBO.Save();
 
+                return new ResponseData(message: string.Format("The property, {0}, was updated successfully!", data.Name));
+            }, new string[] { Consts.PrivilegeConfigReg, "MANAGE_PROPERTIES" });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "properties/sortrOder")]
+        [SwaggerOperation("UpdatePropertySortOrder")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UpdatePropertySortOrder(PropertyData data)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrWhiteSpace(data.Name))
+                    throw new RegistrationException("Invalid property name");
+
+                var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                var propertyTypes = Enum.GetValues(typeof(ConfigurationRegistryRecord.PropertyListType)).Cast<ConfigurationRegistryRecord.PropertyListType>();
+                ConfigurationProperty selectedProperty = null;
+                foreach (var propertyType in propertyTypes)
+                {
+                    configurationBO.SelectedPropertyList = propertyType;
+                    var propertyList = configurationBO.GetSelectedPropertyList;
+                    if (propertyList == null) continue;
+                    var properties = (IEnumerable<Property>)propertyList;
+                    foreach (var property in properties)
+                    {
+                        if (!property.Name.Equals(data.Name)) continue;
+                        selectedProperty = (ConfigurationProperty)property;
+                        break;
+                    }
+
+                    if (selectedProperty != null)
+                        break;
+                }
+
+                if (selectedProperty == null)
+                    throw new RegistrationException(string.Format("The property, {0}, was not found", data.Name));
+
                 // update sort order
                 if (selectedProperty.SortOrder != data.SortOrder)
                 {
+                    selectedProperty.BeginEdit();
                     var selectedPropertyList = configurationBO.GetSelectedPropertyList;
 
                     bool moveUp = selectedProperty.SortOrder > data.SortOrder ? true : false;
@@ -1462,6 +1505,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             selectedPropertyList[affectedPropertyName].FriendlyName);
                     }
 
+                    selectedProperty.ApplyEdit();
                     configurationBO.Save();
                 }
 
