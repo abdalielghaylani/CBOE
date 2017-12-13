@@ -20,7 +20,6 @@ export class RegInvContainerHandler {
     if (!this.isBrowserIE()) { dxDialog.alert(this.warningText, `Warning`); return; }
     let windowParams = params ? params : invNormalWindowParams;
     window.open((invIntegrationBasePath + url), '_blank', windowParams);
-    window.opener = null;
   }
 
 };

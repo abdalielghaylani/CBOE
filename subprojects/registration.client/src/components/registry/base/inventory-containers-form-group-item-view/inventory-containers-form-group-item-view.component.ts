@@ -1,6 +1,8 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRef, ElementRef, ViewChild, Input } from '@angular/core';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
+import { NgRedux } from '@angular-redux/store';
+import { IAppState, CSystemSettings } from '../../../../redux';
 
 @Component({
   selector: 'inventory-containers-form-group-item-view',
@@ -14,55 +16,60 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   private gridHeight: string;
   private invHandler = new RegInvContainerHandler();
   @Input() invContainersVM: any[] = [];
-  private columns = [{
-    dataField: 'id',
-    caption: 'ID',
-    dataType: 'string',
-    allowEditing: false,
-    cellTemplate: 'containerCellTemplate'
-  }, {
-    dataField: 'qtyAvailable',
-    caption: 'Qty Available',
-    dataType: 'string',
-    allowEditing: false
-  },
-  {
-    dataField: 'containerSize',
-    caption: 'Container Size',
-    dataType: 'string',
-    allowEditing: false
-  }, {
-    dataField: 'location',
-    caption: 'Location',
-    dataType: 'string',
-    allowEditing: false
-  }, {
-    dataField: 'containerType',
-    caption: 'Container Type',
-    dataType: 'string',
-    allowEditing: false
-  }, {
-    dataField: 'regBatchID',
-    caption: 'Reg Number',
-    dataType: 'string',
-    allowEditing: false
-  }, {
-    dataField: '',
-    caption: 'Request from Container',
-    dataType: 'string',
-    alignment: 'center',
-    cellTemplate: 'containerRequestCellTemplate',
-    allowEditing: false
-  }
-  ];
+  private systemSettings: CSystemSettings;
+  private columns: any[] = [];
 
   constructor(
     private changeDetector: ChangeDetectorRef,
-    private elementRef: ElementRef
-  ) { }
+    private elementRef: ElementRef,
+    private ngRedux: NgRedux<IAppState>
+  ) {
+    let showRequestFromContainer = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).showRequestFromContainer;
+    this.columns = [{
+      dataField: 'id',
+      caption: 'ID',
+      dataType: 'string',
+      allowEditing: false,
+      cellTemplate: 'containerCellTemplate'
+    }, {
+      dataField: 'qtyAvailable',
+      caption: 'Qty Available',
+      dataType: 'string',
+      allowEditing: false
+    },
+    {
+      dataField: 'containerSize',
+      caption: 'Container Size',
+      dataType: 'string',
+      allowEditing: false
+    }, {
+      dataField: 'location',
+      caption: 'Location',
+      dataType: 'string',
+      allowEditing: false
+    }, {
+      dataField: 'containerType',
+      caption: 'Container Type',
+      dataType: 'string',
+      allowEditing: false
+    }, {
+      dataField: 'regBatchID',
+      caption: 'Reg Number',
+      dataType: 'string',
+      allowEditing: false
+    }, {
+      dataField: '',
+      caption: 'Request from Container',
+      dataType: 'string',
+      alignment: 'center',
+      cellTemplate: 'containerRequestCellTemplate',
+      allowEditing: false,
+      visible: showRequestFromContainer
+    }
+    ];
+  }
 
   ngOnInit() {
-
   }
 
   ngOnDestroy() {

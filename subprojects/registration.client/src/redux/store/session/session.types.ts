@@ -115,6 +115,11 @@ export class CSystemSettings {
     return setting.value ? setting.value : '';
   }
 
+  public get showRequestFromContainer(): boolean {
+    let setting: ISettingData = this.getSetting('Inventory', 'ShowRequestFromContainer');
+    return setting.value === 'True';
+  }
+
   public get invNewContainerURL(): string {
     let setting: ISettingData = this.getSetting('Inventory', 'NewContainerURL');
     return setting.value ? setting.value : '';
