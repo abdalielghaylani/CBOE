@@ -120,6 +120,7 @@ export class IStructureData {
   CanPropogateStructureEdits?: string; // True
   PropertyList?: IPropertyList;
   IdentifierList?: IIdentifierList;
+  OrgDrawingType?: any;
 }
 
 export interface IBaseFragment {

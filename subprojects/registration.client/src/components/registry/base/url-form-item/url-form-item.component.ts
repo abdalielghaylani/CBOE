@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import * as dxDialog from 'devextreme/ui/dialog';
-import { RegBaseFormItem } from '../../../common';
+import { RegBaseFormItem, IStructureData } from '../../../common';
 
 @Component({
   selector: 'reg-url-form-item-template',
@@ -38,8 +38,12 @@ export class RegUrlFormItem extends RegBaseFormItem {
           this.label);
         dialogResult.done(r => {
           if (r) {
-            let baseStructure = this.viewModel.component.option(`formData.BaseFragmentStructure`);
+            let baseStructure: IStructureData = this.viewModel.component.option(`formData.BaseFragmentStructure`);
             baseStructure.Structure.__text = this.viewModel.component.option(`formData.BaseFragmentNormalizedStructure`);
+            if (baseStructure.OrgDrawingType != null) {
+              baseStructure.DrawingType = baseStructure.OrgDrawingType;
+              baseStructure.NormalizedStructure = baseStructure.Structure.__text;
+            }
             this.viewModel.component.option(`formData.BaseFragmentStructure`, baseStructure);
             this.viewModel.component.repaint();
           }

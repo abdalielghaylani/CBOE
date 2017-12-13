@@ -44,17 +44,21 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
   }
 
   serializeValue(value: any): any  {
-    if (this.structureData) {
-      this.structureData.Structure.__text = value;
-      this.structureData.Structure._update = 'yes';
-      this.structureData.NormalizedStructure = undefined;
-      let drawingTypeNodeType = typeof this.structureData.DrawingType;
-      if (drawingTypeNodeType === 'string') {
-        this.structureData.DrawingType = (+this.mode).toString();
-      } else if (drawingTypeNodeType === 'object') {
-        this.structureData.DrawingType.__text = (+this.mode).toString();
+    const data = this.structureData;
+    if (data) {
+      data.Structure.__text = value;
+      data.Structure._update = 'yes';
+      data.NormalizedStructure = undefined;
+      let drawingTypeNodeType = typeof data.DrawingType;
+      if (data.OrgDrawingType == null) {
+        data.OrgDrawingType = JSON.parse(JSON.stringify(data.DrawingType));
       }
-      value = this.structureData;
+      if (drawingTypeNodeType === 'string') {
+        data.DrawingType = (+this.mode).toString();
+      } else if (drawingTypeNodeType === 'object') {
+        data.DrawingType.__text = (+this.mode).toString();
+      }
+      value = data;
     }
     return value;
   }
