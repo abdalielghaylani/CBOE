@@ -1452,7 +1452,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpPut]
-        [Route(Consts.apiPrefix + "properties/sortrOder")]
+        [Route(Consts.apiPrefix + "properties/sortOrder")]
         [SwaggerOperation("UpdatePropertySortOrder")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
