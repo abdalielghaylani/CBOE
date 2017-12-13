@@ -23,8 +23,8 @@
   </dx-popup>
   <div>
     <div id="divDataGrid">
-      <dx-data-grid [height]="gridHeight" id="grdRecords" noDataText="" [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)" (onInitialized)='onInitialized($event)'
-        (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onRowPrepared)="onRowPrepared($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true"
+      <dx-data-grid [height]="gridHeight" id="grdRecords" noDataText="" [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)"
+        (onInitialized)='onInitialized($event)' (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onRowPrepared)="onRowPrepared($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true"
         [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }" columnAutoWidth=true wordWrapEnabled=true>
         <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
         <dxo-selection mode="multiple" showCheckBoxesMode="always"></dxo-selection>
@@ -40,14 +40,10 @@
           <dxi-total-item *ngIf="!temporary" column="REGID" summaryType="count" alignment="center"></dxi-total-item>
         </dxo-summary>
         <div *dxTemplate="let data of 'batchDetailTemplate'">
-            <dx-data-grid id="grdBatchDetailRecords" noDataText="" [columns]="viewGroupsColumns.batchTableColumns" 
-            [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true 
-            [filterRow]="{ visible: data.data.BatchDataSource.length > 4 }" (onInitialized)='onInitialized($event)'
-            (onCellPrepared)="onBatchCellPrepared($event)" (onEditingStart)="onEditingBatchGridStart($event)"
-            [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'"
-            [wordWrapEnabled]="true">
-              <dxo-editing *ngIf="createContainersEnabled" mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
-            </dx-data-grid>
+          <dx-data-grid id="grdBatchDetailRecords" noDataText="" [columns]="viewGroupsColumns.batchTableColumns" [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true [filterRow]="{ visible: data.data.BatchDataSource.length > 4 }"
+            (onInitialized)='onInitialized($event)' (onCellPrepared)="onBatchCellPrepared($event)" (onEditingStart)="onEditingBatchGridStart($event)" [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'" [wordWrapEnabled]="true">
+            <dxo-editing *ngIf="createContainersEnabled" mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
+          </dx-data-grid>
         </div>
         <div *dxTemplate="let data of 'toolbarContents'">
           <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
@@ -62,6 +58,10 @@
         </div>
         <div *dxTemplate="let data of 'structureImageColumnTemplate'">
           <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>
+        </div>
+        <div *dxTemplate="let data of 'checkBoxTemplate'">
+          <dx-check-box [value]="data.value === 'T'">
+          </dx-check-box>
         </div>
         <div *dxTemplate="let data of 'statusTemplate'">
           <div class="center">

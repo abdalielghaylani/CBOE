@@ -487,6 +487,7 @@ export class CViewGroup implements IViewGroup {
                         column.dataType = 'date';
                       } else if (c.formElement.displayInfo.type.indexOf('COECheckBoxReadOnly') > 0) {
                         column.dataType = 'boolean';
+                        column.cellTemplate = 'checkBoxTemplate';
                       }
                     }
                     columns.push(column);
