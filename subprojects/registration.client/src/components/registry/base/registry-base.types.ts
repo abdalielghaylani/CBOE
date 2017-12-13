@@ -866,10 +866,11 @@ export class CSearchCriteria {
       entryValue = entryValue.trim().toUpperCase();
       if ((entryValue.startsWith(`"`) && entryValue.endsWith(`"`))
         || (entryValue.startsWith(`'`) && entryValue.endsWith(`'`))) {
-          entryValue = entryValue.substring(1, entryValue.length - 2).trim();
+        entryValue = entryValue.substring(1, entryValue.length - 2).trim();
       }
       criteria._max = 1e20;
-      const values = entryValue.split(' AND ');
+      const match = entryValue.match(/^(.*\d+)( *- *)(\+?\d+.*)$/);
+      const values = match && match.length === 4 ? [`>${match[1]}`, `<${match[3]}`] : entryValue.split(' AND ');
       this.setMinMaxValues(criteria, values[0]);
       this.setMinMaxValues(criteria, values[1]);
     }
