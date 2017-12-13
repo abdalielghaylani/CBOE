@@ -884,17 +884,31 @@ export class CSearchCriteria {
       const match = text.match(/^([<>]?)(.*)$/);
       if (match.length === 3) {
         const type: string = !match[1] ? 'both' : match[1] === '<' ? 'max' : 'min';
-        let value = Number(match[2] ? match[2].trim() : undefined);
-        if (!isNaN(value)) {
+        text = match[2] ? match[2].trim() : undefined;
+        if (text && text[0] === '+') {
+          text = text.substring(1).trim();
+        }
+        let value = Number(text);
+        if (type === 'both' && (isNaN(value) || value < 0)) {
+          criteria._max = -criteria._max;
+        } else {
           let min = value;
           let max = value;
           if (type === 'both') {
-            let tolerance = 0.5;
-            let decimalPointIndex = text.indexOf('.');
-            if (decimalPointIndex >= 0) {
-              let decimalDigits = Math.min(text.length - decimalPointIndex, 3);
-              tolerance = 5 * Math.pow(10, -decimalDigits);
+            let toleranceLevel = 1;
+            if (value > 0) {
+              let expIndex = text.toLowerCase().indexOf('e');
+              if (expIndex > 0) {
+                let digits = text.substring(0, expIndex).replace('.', '').replace('+', '').match(/^(0*)([^0]\d*)$/)[2];
+                toleranceLevel = digits.length - Math.floor(Math.log10(value));
+              } else {
+                let decimalPointIndex = text.indexOf('.');
+                if (decimalPointIndex >= 0) {
+                  toleranceLevel = text.length - decimalPointIndex;
+                }
+              }
             }
+            let tolerance = 5 * Math.pow(10, -Math.min(toleranceLevel, 3));
             min -= tolerance;
             max += tolerance;
           }
