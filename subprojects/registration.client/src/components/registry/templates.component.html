@@ -6,7 +6,7 @@
   <dx-data-grid [dataSource]="dataSource" [columns]="columns" [paging]="{enabled: false}"
     [searchPanel]="{ visible: true }" [filterRow]="{ visible: true }" [height]="gridHeight"
     [grouping]="{ autoExpandAll: true }"
-    rowAlternationEnabled="true" (onContentReady)="onContentReady($event)"
+    rowAlternationEnabled="true" (onInitialized)="onInitialized($event)"
     (onCellPrepared)="onCellPrepared($event)">
     <dxo-editing mode="form" [allowDeleting]="true"></dxo-editing>
     <div *dxTemplate="let data of 'structureCellTemplate'">

@@ -66,11 +66,13 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  onContentReady(e) {
-    e.component.columnOption('command:edit', {
-      visibleIndex: -1,
-      width: 80
-    });
+  onInitialized(e) {
+    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
+      e.component.columnOption('command:edit', {
+        visibleIndex: -1,
+        width: 80
+      });
+    }
   }
 
   onCellPrepared(e) {

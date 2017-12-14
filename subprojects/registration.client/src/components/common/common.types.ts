@@ -416,8 +416,12 @@ export class CValidator {
         } else if (rd.name === 'wordListEnumeration') {
           // TODO
         } else if (rd.name === 'positiveNumber') {
-          rule.type = 'pattern';
-          rule.pattern = '^[1-9][0-9]*$';
+          rule.type = 'custom';
+          rule.validationCallback = (options): boolean => {
+            const value = options.value;
+            const numericValue = Number(value);
+            return !isNaN(numericValue) && numericValue > 0;
+          }
         } else {
           // console.log(r);
         }

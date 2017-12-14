@@ -105,17 +105,13 @@ export class RegConfigSettings implements OnInit, OnDestroy {
     }
   }
 
-  onContentReady(e) {
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate: 'cellTemplate'
-    });
-    e.component.columnOption('command:edit', {
-      visibleIndex: -1,
-      width: 80
-    });
+  onInitialized(e) {
+    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
+      e.component.columnOption('command:edit', {
+        visibleIndex: -1,
+        width: 80
+      });
+    }
   }
 
   onCellPrepared(e) {

@@ -108,21 +108,13 @@ export class RegConfigTables implements OnInit, OnDestroy {
     }
   }
 
-  onContentReady(e) {
-    e.component.columnOption('STRUCTURE', {
-      width: 150,
-      allowFiltering: false,
-      allowSorting: false,
-      cellTemplate: 'cellTemplate'
-    });
-    e.component.columnOption('command:edit', {
-      visibleIndex: -1,
-      width: 80
-    });
-    e.component.columnOption('command', {
-      visibleIndex: -1,
-      width: 80
-    });
+  onInitialized(e) {
+    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
+      e.component.columnOption('command:edit', {
+        visibleIndex: -1,
+        width: 80
+      });
+    }
   }
 
   onCellPrepared(e) {
@@ -293,7 +285,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
               let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
               reject(message);
             });
-          });
+        });
       }).bind(this),
 
       insert: ((values): Promise<any> => {
@@ -309,7 +301,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
               let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
               reject(message);
             });
-          });
+        });
       }).bind(this),
 
       remove: ((key): Promise<any> => {
@@ -325,7 +317,7 @@ export class RegConfigTables implements OnInit, OnDestroy {
               let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
               reject(message);
             });
-          });
+        });
       }).bind(this)
     });
   }

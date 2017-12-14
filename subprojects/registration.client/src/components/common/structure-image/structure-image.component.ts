@@ -32,8 +32,9 @@ export class RegStructureImage {
   constructor(private http: HttpService) { }
 
   ngOnInit() {
-    if (this.src && this.src.indexOf('/') > 0) {
-      let typeId = this.src.split('/');
+    const src = this.src ? this.src.toString() : '';
+    if (src && src.indexOf('/') > 0) {
+      let typeId = src.split('/');
       this.type = typeId[0];
       let idModDate = typeId[1].split('?');
       if (idModDate.length === 1) {

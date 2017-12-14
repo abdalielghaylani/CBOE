@@ -1,8 +1,8 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configTable.window.viewIndex==='list')">
   <reg-settings-page-header>{{ configTable.window.title }}</reg-settings-page-header>
   <dx-data-grid [columns]="configTable.columns" [dataSource]="dataSource" [height]="gridHeight" rowAlternationEnabled="true"
-    (onContentReady)='onContentReady($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)'
-    (onEditingStart)="onEditingStart($event)">
+    (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)'
+    (onInitNewRow)='onInitNewRow($event)' (onEditingStart)="onEditingStart($event)">
     <dxo-editing [mode]="configTable.editMode" [allowUpdating]="hasPrivilege('EDIT')" [allowDeleting]="hasPrivilege('DELETE')"
       [allowAdding]="hasPrivilege('ADD')" [form]="configTable.editFormOptions">
     </dxo-editing>

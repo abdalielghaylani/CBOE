@@ -139,6 +139,10 @@ export class CConfigTable {
         this.setColumnConfig('USER_CODE', 'cellTemplate', 'viewTemplate');
         break;
       case 'VW_FRAGMENT':
+        this.setColumnConfig('STRUCTURE', 'width', 150);
+        this.setColumnConfig('STRUCTURE', 'allowFiltering', false);
+        this.setColumnConfig('STRUCTURE', 'allowSorting', false);
+        this.setColumnConfig('STRUCTURE', 'cellTemplate', 'cellTemplate');
         this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
         this.setColumnConfig('FRAGMENTID', 'allowEditing', false);
         break;

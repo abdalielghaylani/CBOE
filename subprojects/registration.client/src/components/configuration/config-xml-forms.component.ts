@@ -86,15 +86,19 @@ export class RegConfigXmlForms implements OnInit, OnDestroy {
       this.grid.instance.repaint();
     }
   }
+
   onEditingStart(e) {
     this.popup = { visible: true, data: e.data.data, title: e.data.name, key: e.key };
     e.cancel = true;
   }
-  onContentReady(e) {
-    e.component.columnOption('command:edit', {
-      visibleIndex: -1,
-      width: 80
-    });
+
+  onInitialized(e) {
+    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
+      e.component.columnOption('command:edit', {
+        visibleIndex: -1,
+        width: 80
+      });
+    }
   }
 
   onCellPrepared(e) {

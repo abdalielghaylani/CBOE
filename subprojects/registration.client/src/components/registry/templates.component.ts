@@ -112,11 +112,13 @@ export class RegTemplates implements OnInit, OnDestroy {
     }
   }
 
-  private onContentReady(e) {
-    e.component.columnOption('command:edit', {
-      visibleIndex: -1,
-      width: 80
-    });
+  onInitialized(e) {
+    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
+      e.component.columnOption('command:edit', {
+        visibleIndex: -1,
+        width: 80
+      });
+    }
   }
 
   private onCellPrepared(e) {
