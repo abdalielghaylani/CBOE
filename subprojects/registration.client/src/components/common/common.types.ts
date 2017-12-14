@@ -363,6 +363,22 @@ export class CValidator {
     }
   }
 
+  private static validateCas(rule: IValidationRule, e) {
+    e.rule.isValue = true;
+    if (e.value) {
+      let isValid = /^[0-9]{1,7}-[0-9][0-9]-[0-9]$/.test(e.value);
+      if (isValid) {
+        const freeCas = e.value.replace(/-/g, '');
+        let casSum = 0;
+        for (let casIndex = freeCas.length - 1; casIndex > 0; --casIndex) {
+          casSum += casIndex * (freeCas.substring(freeCas.length - casIndex - 1, freeCas.length - casIndex));
+        }
+        isValid = (casSum % 10) === ((freeCas.substring(freeCas.length - 1, freeCas.length)) % 10);
+      }
+      e.rule.isValue = isValid;
+    }
+  }
+
   public static validate(e) {
     e.rule.isValid = true;
     let peer: IFormItemTemplate = e.validator.peer;
@@ -382,6 +398,8 @@ export class CValidator {
             this.validateNumericRange(r, e);
           } else if (r._validationRuleName === 'wordListEnumeration') {
             this.validateWordList(r, e);
+          } else if (r._validationRuleName === 'casValidation') {
+            this.validateCas(r, e);
           } else {
             // console.log(r);
           }
@@ -421,7 +439,7 @@ export class CValidator {
             const value = options.value;
             const numericValue = Number(value);
             return !isNaN(numericValue) && numericValue > 0;
-          }
+          };
         } else {
           // console.log(r);
         }

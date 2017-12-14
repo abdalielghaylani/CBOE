@@ -118,9 +118,8 @@ export class CViewGroup implements IViewGroup {
         idListType: fe.Id.startsWith('S') ? 'S' : fe.Id.startsWith('C') ? 'C' : fe.Id.startsWith('B') ? 'B' : 'R',
         dataField: item.dataField
       };
-      if (fe.configInfo && fe.configInfo.fieldConfig && fe.configInfo.fieldConfig.tables
-        && fe.configInfo.fieldConfig.tables.table) {
-        item.editorOptions.fieldConfig = fe.configInfo.fieldConfig.tables.table;
+      if (fe.configInfo && fe.configInfo.fieldConfig) {
+        item.editorOptions.fieldConfig = fe.configInfo.fieldConfig;
       }
       item.colSpan = 2;
     } else if (type.endsWith('COEStructureQuery')) {

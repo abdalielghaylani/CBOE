@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { IFieldConfig } from '../../../../common';
 import { IViewControl, IIdentifierList, CIdentifierList, RegDataGridFormItem, dataGridFormItemTemplate } from '../../../common';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState } from '../../../../redux';
@@ -61,10 +62,14 @@ export class RegIdListFormItem extends RegDataGridFormItem {
         activeItems.push(identifierList.find(k => k.ID === i.id));
       }
     });
-    let maxLength = options.fieldConfig.Columns.Column.find(i => i._name === 'Value').formElement.configInfo.MaxLength;
+    // TODO: Now, the field configuration object includes the full details of how the grid should behave.
+    // All fields as well as their validation rules must come from the configuration.
+    const fieldConfig: IFieldConfig = options.fieldConfig;
+    let maxLength = fieldConfig.tables.table[0].Columns.Column.find(i => i._name === 'Value').formElement.configInfo.MaxLength;
     this.columns = lookups ? [{
       dataField: 'id',
       caption: 'Identifier',
+      allowSorting: false,
       editorType: 'dxSelectBox',
       lookup: {
         dataSource: activeItems,
@@ -78,7 +83,38 @@ export class RegIdListFormItem extends RegDataGridFormItem {
     }, {
       dataField: 'inputText',
       caption: 'Value',
-      editorOptions: { maxLength: maxLength }
+      allowSorting: false,
+      editorOptions: { maxLength: maxLength },
+      validationRules: [{
+        type: 'custom',
+        validationCallback: (o): boolean => {
+          o.rule.isValue = true;
+          if (o.value && fieldConfig.ClientSideEvents && fieldConfig.ClientSideEvents.Event) {
+            const v = fieldConfig.ClientSideEvents.Event.find(e => e._name === 'CustomValidation');
+            if (v && v.Params && v.Params.param) {
+              const v2 = v.Params.param.find(p => p._validationMethod === 'IsAValidCas');
+              if (v2 && v2._parentColValue === o.data.id.toString()) {
+                let isValid = /^[0-9]{1,7}-[0-9][0-9]-[0-9]$/.test(o.value);
+                if (isValid) {
+                  const freeCas = o.value.replace(/-/g, '');
+                  let casSum = 0;
+                  for (let casIndex = freeCas.length - 1; casIndex > 0; --casIndex) {
+                    casSum += casIndex * (freeCas.substring(freeCas.length - casIndex - 1, freeCas.length - casIndex));
+                  }
+                  isValid = (casSum % 10) === ((freeCas.substring(freeCas.length - 1, freeCas.length)) % 10);
+                }
+                if (!isValid) {
+                  o.rule.isValue = false;
+                  if (v2._errorMessage) {
+                    o.rule.message = v2._errorMessage;
+                  }
+                }
+              }
+            }
+          }
+          return o.rule.isValue;
+        }
+      }]
     }] : [];
     this.checkCommandColumn();
     this.editingMode = 'row';

@@ -22,16 +22,31 @@ function getValidationArrayPaths(basePath: string): string[] {
   ];
 }
 
+function getFieldConfigArrayPaths(basePath: string): string[] {
+  return [
+    `${basePath}.tables.table`,
+    `${basePath}.tables.table.Columns.Column`,
+    `${basePath}.ClientSideEvents.Event`,
+    `${basePath}.ClientSideEvents.Event.Params.param`,
+    `${basePath}.DefaultRows.Row`
+  ];
+}
+
+function getFormElementArrayPaths(basePath: string): string[] {
+  return getValidationArrayPaths(basePath)
+    .concat(getFieldConfigArrayPaths(`${basePath}.configInfo.fieldConfig`));
+}
+
 function getCoeFormArrayPaths(basePath: string): string[] {
   return getValidationArrayPaths(`${basePath}`)
-    .concat(getValidationArrayPaths(`${basePath}.layoutInfo.formElement`))
-    .concat(getValidationArrayPaths(`${basePath}.addMode.formElement`))
-    .concat(getValidationArrayPaths(`${basePath}.editMode.formElement`))
-    .concat(getValidationArrayPaths(`${basePath}.viewMode.formElement`));
+    .concat(getFormElementArrayPaths(`${basePath}.layoutInfo.formElement`))
+    .concat(getFormElementArrayPaths(`${basePath}.addMode.formElement`))
+    .concat(getFormElementArrayPaths(`${basePath}.editMode.formElement`))
+    .concat(getFormElementArrayPaths(`${basePath}.viewMode.formElement`));
 }
 
 function getFormArrayPaths(basePath: string): string[] {
-  return [ `${basePath}` ].concat(getCoeFormArrayPaths(`${basePath}.coeForms.coeForm`));
+  return [`${basePath}`].concat(getCoeFormArrayPaths(`${basePath}.coeForms.coeForm`));
 }
 
 export function convertToFormGroup(data: string): IFormGroup {

@@ -69,10 +69,13 @@ export interface IFieldConfig {
   PickListDomain?: any;
   DefaultDate?: string;
   tables?: ITables;
+  ClientSideEvents?: any;
+  DefaultRows?: any;
 }
 
 export interface IConfigInfo {
   fieldConfig: IFieldConfig;
+  MaxLength?: any;
 }
 
 export interface IFormElement {
