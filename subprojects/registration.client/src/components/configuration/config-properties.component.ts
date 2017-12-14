@@ -137,18 +137,16 @@ export class RegConfigProperties implements OnInit, OnDestroy {
 
   addProperty(e) {
     let valid = this.forms._results[0].instance.validate();
-    if (valid.isValid) {
+    if (this.configProperties.combuteValidation(valid.brokenRules)) {
       this.showLoadPanel();
-      if (this.configProperties.combuteValidation(valid.brokenRules)) {
-        this.dataSource.insert(this.configProperties.formData).done(result => {
-          this.hideLoadPanel();
-          this.grid._results[0].instance.refresh();
-        }).fail(err => {
-          this.hideLoadPanel();
-          notifyError(err, 5000);
-        });
-        this.cancel();
-      }
+      this.dataSource.insert(this.configProperties.formData).done(result => {
+        this.hideLoadPanel();
+        this.grid._results[0].instance.refresh();
+      }).fail(err => {
+        this.hideLoadPanel();
+        notifyError(err, 5000);
+      });
+      this.cancel();
     }
   }
 
