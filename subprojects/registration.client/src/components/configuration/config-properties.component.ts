@@ -74,8 +74,9 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   private onDocumentClick(event: any) {
-    if (event.srcElement.title === 'Full Screen') {
-      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+    const target = event.target || event.srcElement;
+    if (target.title === 'Full Screen') {
+      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
       this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
       this.grid.height = this.gridHeight;
       this.grid._results[0].instance.repaint();
@@ -218,9 +219,10 @@ export class RegConfigProperties implements OnInit, OnDestroy {
     }
   }
 
-  private togglePanel(e) {
-    if (e.srcElement.children.length > 0) {
-      e.srcElement.children[0].click();
+  private togglePanel(event) {
+    const target = event.target || event.srcElement;
+    if (target.children.length > 0) {
+      target.children[0].click();
     }
   }
 

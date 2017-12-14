@@ -224,8 +224,9 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private onDocumentClick(event: any) {
-    if (event.srcElement.title === 'Full Screen') {
-      let fullScreenMode = event.srcElement.className === 'fa fa-compress fa-stack-1x white';
+    const target = event.target || event.srcElement;
+    if (target.title === 'Full Screen') {
+      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
       this.parentHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
     }
   }

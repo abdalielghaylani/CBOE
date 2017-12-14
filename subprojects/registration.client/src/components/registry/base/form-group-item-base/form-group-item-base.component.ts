@@ -53,9 +53,10 @@ export class RegFormGroupItemBase implements IViewControl, OnChanges {
     return RegFormGroupItemBase.getValidItems(this.items);
   }
 
-  protected togglePanel(e) {
-    if (e.srcElement.children.length > 0) {
-      e.srcElement.children[0].click();
+  protected togglePanel(event) {
+    const target = event.target || event.srcElement;
+    if (target.children.length > 0) {
+      target.children[0].click();
     }
   }
 
