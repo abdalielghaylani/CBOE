@@ -156,7 +156,7 @@
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="p2">
             <dx-data-grid [columns]="configProperties.formValidationColumns.grdColumns" [dataSource]="configProperties.formData.validationRules"
-              [height]="gridHeight-200" rowAlternationEnabled="true" (onInitNewRow)='onInitNewRow($event,false)' (onContentReady)='onContentReady($event)'
+              [height]="gridHeight-200" rowAlternationEnabled="true" (onInitNewRow)='onInitNewRow($event,false)' (onInitialized)='onInitialized($event)'
               (onCellPrepared)="onCellPrepared($event,'validation')" (onRowRemoved)='onValidationRowRemoved($event)'>
               <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false"></dxo-editing>
               <dxo-sorting mode="single"></dxo-sorting>

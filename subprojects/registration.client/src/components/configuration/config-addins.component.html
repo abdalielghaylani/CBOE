@@ -49,13 +49,13 @@
         <div id="collapseTwo" class="panel-collapse collapse in">
           <div class="p2">
             <dx-data-grid *ngIf="configAddIn.window.viewIndex==='add'" [dataSource]="configAddIn.editRow.events" [columns]="configAddIn.columns.editColumn.events"
-              [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
+              [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
               (onCellPrepared)='onCellPrepared($event)'>
               <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
               <dxo-scrolling mode="infinite"></dxo-scrolling>
             </dx-data-grid>
             <dx-data-grid *ngIf="configAddIn.window.viewIndex==='edit'" [dataSource]="configAddIn.editRow.events" [columns]="configAddIn.columns.editColumn.events"
-              [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onContentReady)='onContentReady($event)'
+              [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
               (onCellPrepared)='onCellPrepared($event)'>
               <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
               <dxo-scrolling mode="infinite"></dxo-scrolling>

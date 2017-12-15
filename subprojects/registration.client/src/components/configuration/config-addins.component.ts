@@ -108,11 +108,13 @@ export class RegConfigAddins implements OnInit, OnDestroy {
     e.cancel = true;
     this.configAddIn.addEditProperty('edit', e);
   }
+
   onInitNewRow(e) {
     this.configAddIn.addEditProperty('add', e);
     e.component.cancelEditData();
     e.component.refresh();
   }
+  
   onFieldDataChanged(e) {
     if (e.dataField === 'className' && e.value) {
       this.configAddIn.editRow.events = [];

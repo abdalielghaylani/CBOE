@@ -60,7 +60,7 @@
           <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>
         </div>
         <div *dxTemplate="let data of 'checkBoxTemplate'">
-          <dx-check-box [value]="data.value === 'T'">
+          <dx-check-box [value]="data.value === 'T'" [readOnly]="true">
           </dx-check-box>
         </div>
         <div *dxTemplate="let data of 'statusTemplate'">
