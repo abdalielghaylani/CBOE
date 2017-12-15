@@ -170,7 +170,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && !this.temporary
       && !this.isNewRecord
       && !editMode;
-    this.backButtonEnabled = hitListId > 0 || this.bulkreg;
+    this.backButtonEnabled = (hitListId > 0 || this.bulkreg) && !editMode;
     if (forceUpdate) {
       this.changeDetector.markForCheck();
     }
