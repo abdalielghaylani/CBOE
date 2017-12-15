@@ -78,9 +78,6 @@
                       <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>validWord </b></span></div>
                       <div class="col-sm-8">
                         <dx-text-box [(value)]='configProperties.formDataValidation.validWord'>
-                          <dx-validator>
-                            <dxi-validation-rule type="required" message="Word required"></dxi-validation-rule>
-                          </dx-validator>
                         </dx-text-box>
                       </div>
                       <div class="col-sm-1">
@@ -114,9 +111,6 @@
                         <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>Min:</b></span></div>
                         <div class="col-sm-8">
                           <dx-number-box [(value)]='configProperties.formDataValidation.min' [showSpinButtons]="true">
-                            <dx-validator>
-                              <dxi-validation-rule type="required" message="Min Length is required"></dxi-validation-rule>
-                            </dx-validator>
                           </dx-number-box>
                         </div>
                         <div class="col-sm-1">
@@ -128,9 +122,6 @@
                         <div class="col-sm-2"> <span class="dx-field-item-label-text"><b>Max:</b></span></div>
                         <div class="col-sm-8">
                           <dx-number-box [(value)]='configProperties.formDataValidation.max' [showSpinButtons]="true">
-                            <dx-validator>
-                              <dxi-validation-rule type="required" message="Max Length is required"></dxi-validation-rule>
-                            </dx-validator>
                           </dx-number-box>
                         </div>
                         <div class="col-sm-1">

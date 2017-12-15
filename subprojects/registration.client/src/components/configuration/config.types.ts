@@ -412,6 +412,9 @@ export class CConfigProperties {
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.formColumns[5].editorOptions.dataSource = lookups.pickListDomains;
   }
+  clearParams(p: string) {
+    this.formDataValidation[p] = undefined;
+  }
 
   addParams(n: string, v: string) {
     if (isBlank(v)) {
@@ -432,6 +435,7 @@ export class CConfigProperties {
           this.formDataValidation.parameters.push({ name: n, value: v });
         }
       }
+      this.clearParams(n);
     }
   }
 
