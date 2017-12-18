@@ -171,12 +171,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var hitlistInfo = coeSearch.GetHitList(searchCriteria, dataView);
             var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
             hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
+            hitlistBO.Name = string.Format("Search {0}", hitlistInfo.HitListID);
             if (!string.IsNullOrEmpty(structureName))
             {
                 var additionalCriteriaCount = searchCriteria.Items.Count - 1;
                 var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
-                var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
-                hitlistBO.Name = TrimtHitListName(string.Format("{0}{1}", structureName, more));
+                var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;                
                 hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
             }
             hitlistBO.Update();
@@ -649,9 +649,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         newHitlist = COEHitListOperationManager.UnionHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                 }
-                string hitListName = string.Format("({0}) {1} ({2})", hitlistBO1.Name, symbol, hitlistBO2.Name);
                 string hitListDescription = string.Format("{0} {1} {2}", hitlistBO1.Description, join, hitlistBO2.Description);
-                newHitlist.Name = TrimtHitListName(hitListName); 
+                newHitlist.Name = string.Format("Search {0}", newHitlist.HitListID); 
                 newHitlist.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));
                 newHitlist.Update();
                 return GetHitlistRecordsInternal(newHitlist.HitListID, temp);
