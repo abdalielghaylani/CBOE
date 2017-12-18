@@ -119,6 +119,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
         }
 
+        private string TrimtHitListName(string hitListName)
+        {
+            return hitListName.Substring(0, Math.Min(hitListName.Length, 50));
+        }
+
         private int CreateTempHitlist(QueryData queryData, bool? temp) 
         {
             var coeSearch = new COESearch();
@@ -171,7 +176,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var additionalCriteriaCount = searchCriteria.Items.Count - 1;
                 var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
                 var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
-                hitlistBO.Name = string.Format("{0}{1}", structureName, more);
+                hitlistBO.Name = TrimtHitListName(string.Format("{0}{1}", structureName, more));
                 hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
             }
             hitlistBO.Update();
@@ -440,7 +445,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 if (hitlistBO.HitListID > 0)
                 {
-                    hitlistBO.Name = hitlistData.Name;
+                    hitlistBO.Name = TrimtHitListName(hitlistData.Name);
                     hitlistBO.Description = hitlistData.Description;
                     hitlistBO.IsPublic = hitlistData.IsPublic.HasValue ? hitlistData.IsPublic.Value : false;
                     if (hitlistBO.SearchCriteriaID > 0)
@@ -646,7 +651,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 string hitListName = string.Format("({0}) {1} ({2})", hitlistBO1.Name, symbol, hitlistBO2.Name);
                 string hitListDescription = string.Format("{0} {1} {2}", hitlistBO1.Description, join, hitlistBO2.Description);
-                newHitlist.Name = hitListName.Substring(0, Math.Min(hitListName.Length, 50));
+                newHitlist.Name = TrimtHitListName(hitListName); 
                 newHitlist.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));
                 newHitlist.Update();
                 return GetHitlistRecordsInternal(newHitlist.HitListID, temp);
@@ -672,7 +677,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var formGroup = GetFormGroup(temp);
             var genericBO = GenericBO.GetGenericBO("Registration", formGroup.Id);
             var hitlistBO = genericBO.MarkedHitList;
-            hitlistBO.Name = hitlistData["Name"].ToString();
+            hitlistBO.Name = TrimtHitListName(hitlistData["Name"].ToString());
             hitlistBO.Description = hitlistData["Description"].ToString();
             hitlistBO.HitListType = HitListType.SAVED;
             hitlistBO.Save();
