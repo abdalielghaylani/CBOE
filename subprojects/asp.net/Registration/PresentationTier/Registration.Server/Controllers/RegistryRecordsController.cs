@@ -1281,6 +1281,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         inputData.RegNo,
                         inputData.DuplicateAction);
 
+                    // re-calculate privilges for duplicate resolution actions
+                    duplicatesResolver.DetermineAvailableActions();
+
                     switch (inputData.DuplicateAction)
                     {
                         case "AddBatch":
