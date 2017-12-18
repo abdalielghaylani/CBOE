@@ -44,3 +44,11 @@
 .grid-icon:hover {
   background-color: #cccccc;
 }
+
+.list-header {
+  text-decoration: none;
+  cursor: pointer;
+  margin: 8px;
+  font-weight: 500;
+  font-size: 16px;
+}

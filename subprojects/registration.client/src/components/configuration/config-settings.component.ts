@@ -1,17 +1,11 @@
-import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
-  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { select, NgRedux } from '@angular-redux/store';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { Component, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { NgRedux } from '@angular-redux/store';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ConfigurationActions, ICustomTableData, IConfiguration, ISettingData, IAppState } from '../../redux';
+import { ISettingData, IAppState, ILookupData } from '../../redux';
 import { HttpService } from '../../services';
+import { RegConfigBaseComponent } from './config-base';
 
 declare var jQuery: any;
 
@@ -22,17 +16,14 @@ declare var jQuery: any;
   host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegConfigSettings implements OnInit, OnDestroy {
-  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
-  @select(s => s.configuration.customTables) customTables$: Observable<any>;
-  private dataSubscription: Subscription;
-  private gridHeight: string;
+export class RegConfigSettings extends RegConfigBaseComponent {
   private dataSource: CustomStore;
   private columns = [{
     dataField: 'groupLabel',
     dataType: 'string',
     caption: 'Group',
     groupIndex: 0,
+    groupCellTemplate: 'groupCellTemplate',
     allowEditing: false
   }, {
     dataField: 'name',
@@ -60,74 +51,13 @@ export class RegConfigSettings implements OnInit, OnDestroy {
     allowEditing: false
   }];
 
-  constructor(
-    private http: HttpService,
-    private ngRedux: NgRedux<IAppState>,
-    private changeDetector: ChangeDetectorRef,
-    private configurationActions: ConfigurationActions,
-    private elementRef: ElementRef
-  ) { }
-
-  ngOnInit() {
-    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+  constructor(private ngRedux: NgRedux<IAppState>, elementRef: ElementRef, http: HttpService) {
+    super(elementRef, http);
   }
 
-  ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
-  }
-
-  loadData(customTables: any) {
-    if (customTables) {
-      this.dataSource = this.createCustomStore(this);
-      this.changeDetector.markForCheck();
-    }
+  loadData(lookups: ILookupData) {
+    this.dataSource = this.createCustomStore(this);
     this.gridHeight = this.getGridHeight();
-  }
-
-  private getGridHeight() {
-    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
-  }
-
-  private onResize(event: any) {
-    this.gridHeight = this.getGridHeight();
-    this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
-  }
-
-  private onDocumentClick(event: any) {
-    const target = event.target || event.srcElement;
-    if (target.title === 'Full Screen') {
-      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
-      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
-      this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
-    }
-  }
-
-  onInitialized(e) {
-    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
-      e.component.columnOption('command:edit', {
-        visibleIndex: -1,
-        width: 80
-      });
-    }
-  }
-
-  onCellPrepared(e) {
-    if (e.rowType === 'data' && e.column.command === 'edit') {
-      let isEditing = e.row.isEditing;
-      let $links = e.cellElement.find('.dx-link');
-      $links.text('');
-      if (isEditing) {
-        $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-      } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-      }
-    }
   }
 
   onRowCollapsing(e) {
@@ -155,7 +85,7 @@ export class RegConfigSettings implements OnInit, OnDestroy {
         return deferred.promise();
       },
 
-      update: function(key, values) {
+      update: function (key, values) {
         let deferred = jQuery.Deferred();
         let data = key;
         let newData = values;

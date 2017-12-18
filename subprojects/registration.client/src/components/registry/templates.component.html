@@ -15,5 +15,8 @@
     <div *dxTemplate="let d of 'loadCellTemplate'">
       <a class="fa fa fa-check grid-icon" aria-hidden="true" title='Load this submission template' (click)="loadTemplate(d.data.id)"></a>&nbsp; {{d.value}}
     </div>
+    <div *dxTemplate="let d of 'groupCellTemplate'">
+      <div class="list-header tan">{{d.value}}</div>
+    </div>
   </dx-data-grid>
 </div>

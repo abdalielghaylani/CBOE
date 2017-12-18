@@ -34,4 +34,7 @@
     <a [ngClass]="(hitlistId &amp;&amp; hitlistId > 0 &amp;&amp; d.data.hitlistId !== hitlistId)?'fa fa fa-filter grid-icon':'fa fa fa-filter grid-icon-disabled'" aria-hidden="true" title='Advanced' (click)="showAdvRestorePopup(d)"></a>
     <a *ngIf="d.data.hitlistType === 'TEMP'" class="fa fa fa-floppy-o grid-icon" aria-hidden="true" title='Add to saved hitlist' (click)="moveToSaveHitlist(d.data)"></a>
   </div>
+  <div *dxTemplate="let d of 'groupCellTemplate'">
+    <div class="list-header tan">{{d.value}}</div>
+  </div>
 </dx-data-grid>

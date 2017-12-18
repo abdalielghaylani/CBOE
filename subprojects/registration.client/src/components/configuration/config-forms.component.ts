@@ -1,18 +1,11 @@
-import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
-  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { Component, ElementRef } from '@angular/core';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import { CConfigForms } from './config.types';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
+import { ILookupData } from '../../redux';
 import { apiUrlPrefix } from '../../configuration';
-import { ConfigurationActions, ICustomTableData, IConfiguration } from '../../redux';
 import { HttpService } from '../../services';
+import { RegConfigBaseComponent } from './config-base';
 
 declare var jQuery: any;
 
@@ -20,89 +13,25 @@ declare var jQuery: any;
   selector: 'reg-config-forms',
   template: require('./config-forms.component.html'),
   styles: [require('./config.component.css')],
-  host: { '(document:click)': 'onDocumentClick($event)' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  host: { '(document:click)': 'onDocumentClick($event)' }
 })
-export class RegConfigForms implements OnInit, OnDestroy {
-  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
-  @select(s => s.configuration.customTables) customTables$: Observable<any>;
+export class RegConfigForms extends RegConfigBaseComponent {
   private rows: any[] = [];
-  private dataSubscription: Subscription;
-  private gridHeight: string;
   private dataSource: CustomStore;
   private configForms: CConfigForms;
 
-  constructor(
-    private http: HttpService,
-    private changeDetector: ChangeDetectorRef,
-    private configurationActions: ConfigurationActions,
-    private elementRef: ElementRef
-  ) { }
-
-  ngOnInit() {
-    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+  constructor(elementRef: ElementRef, http: HttpService) {
+    super(elementRef, http);
   }
 
-  ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
-  }
-
-  loadData(customTables: any) {
-    if (customTables) {
-      this.dataSource = this.createCustomStore(this);
-      this.changeDetector.markForCheck();
-    }
+  loadData(lookups: ILookupData) {
+    this.dataSource = this.createCustomStore(this);
     this.gridHeight = this.getGridHeight();
     this.configForms = new CConfigForms();
   }
 
   editLookupValueChanged(e, d) {
     d.setValue(e.value, d.column.dataField);
-  }
-
-  private getGridHeight() {
-    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
-  }
-
-  private onResize(event: any) {
-    this.gridHeight = this.getGridHeight();
-    this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
-  }
-
-  private onDocumentClick(event: any) {
-    const target = event.target || event.srcElement;
-    if (target.title === 'Full Screen') {
-      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
-      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
-      this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
-    }
-  }
-
-  onInitialized(e) {
-    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
-      e.component.columnOption('command:edit', {
-        visibleIndex: -1,
-        width: 80
-      });
-    }
-  }
-
-  onCellPrepared(e) {
-    if (e.rowType === 'data' && e.column.command === 'edit') {
-      let isEditing = e.row.isEditing;
-      let $links = e.cellElement.find('.dx-link');
-      $links.text('');
-      if (isEditing) {
-        $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-      } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-      }
-    }
   }
 
   private createCustomStore(parent: RegConfigForms): CustomStore {

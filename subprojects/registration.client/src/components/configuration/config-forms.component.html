@@ -18,5 +18,8 @@
       <dx-select-box [items]="configForms.cssClassItems" [(value)]="data.value" (onValueChanged)="editLookupValueChanged($event,data);">
       </dx-select-box>
     </div>
+    <div *dxTemplate="let d of 'groupCellTemplate'">
+      <div class="list-header tan">{{d.value}}</div>
+    </div>
   </dx-data-grid>
 </div>

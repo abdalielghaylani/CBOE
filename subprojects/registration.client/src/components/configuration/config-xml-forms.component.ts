@@ -10,8 +10,9 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ConfigurationActions, ICustomTableData, IConfiguration } from '../../redux';
+import { ILookupData } from '../../redux';
 import { HttpService } from '../../services';
+import { RegConfigBaseComponent } from './config-base';
 
 declare var jQuery: any;
 
@@ -22,37 +23,17 @@ declare var jQuery: any;
   host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegConfigXmlForms implements OnInit, OnDestroy {
-  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
-  @select(s => s.configuration.customTables) customTables$: Observable<any>;
+export class RegConfigXmlForms extends RegConfigBaseComponent {
   private rows: any[] = [];
-  private dataSubscription: Subscription;
-  private gridHeight: string;
   private dataSource: CustomStore;
   private popup = { visible: false, title: '', data: '', key: {} };
 
-  constructor(
-    private http: HttpService,
-    private changeDetector: ChangeDetectorRef,
-    private configurationActions: ConfigurationActions,
-    private elementRef: ElementRef
-  ) { }
-
-  ngOnInit() {
-    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+  constructor(elementRef: ElementRef, http: HttpService) {
+    super(elementRef, http);
   }
 
-  ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
-  }
-
-  loadData(customTables: any) {
-    if (customTables) {
-      this.dataSource = this.createCustomStore(this);
-      this.changeDetector.markForCheck();
-    }
+  loadData(lookups: ILookupData) {
+    this.dataSource = this.createCustomStore(this);
     this.gridHeight = this.getGridHeight();
   }
 
@@ -68,52 +49,9 @@ export class RegConfigXmlForms implements OnInit, OnDestroy {
     $temp.remove();
   }
 
-  private getGridHeight() {
-    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
-  }
-
-  private onResize(event: any) {
-    this.gridHeight = this.getGridHeight();
-    this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
-  }
-
-  private onDocumentClick(event: any) {
-    const target = event.target || event.srcElement;
-    if (target.title === 'Full Screen') {
-      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
-      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
-      this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
-    }
-  }
-
   onEditingStart(e) {
     this.popup = { visible: true, data: e.data.data, title: e.data.name, key: e.key };
     e.cancel = true;
-  }
-
-  onInitialized(e) {
-    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
-      e.component.columnOption('command:edit', {
-        visibleIndex: -1,
-        width: 80
-      });
-    }
-  }
-
-  onCellPrepared(e) {
-    if (e.rowType === 'data' && e.column.command === 'edit') {
-      let isEditing = e.row.isEditing;
-      let $links = e.cellElement.find('.dx-link');
-      $links.text('');
-      if (isEditing) {
-        $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-      } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-      }
-    }
   }
 
   private createCustomStore(parent: RegConfigXmlForms): CustomStore {

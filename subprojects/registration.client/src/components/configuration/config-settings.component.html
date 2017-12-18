@@ -9,5 +9,8 @@
     <div *dxTemplate="let d of 'valueEditTemplate'">
       <reg-setting-value-form-item-template [viewModel]="d"></reg-setting-value-form-item-template>
     </div>
+    <div *dxTemplate="let d of 'groupCellTemplate'">
+      <div class="list-header tan">{{d.value}}</div>
+    </div>
     </dx-data-grid>
 </div>

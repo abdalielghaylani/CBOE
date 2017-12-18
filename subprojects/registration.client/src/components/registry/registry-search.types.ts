@@ -31,6 +31,7 @@ export const HITLIST_GRID_COLUMNS = [{
 }, {
   caption: 'Queries',
   groupIndex: 0,
+  groupCellTemplate: 'groupCellTemplate',
   allowEditing: false,
   formItem: { visible: false },
   calculateCellValue: function (d) { return d.hitlistType === 'TEMP' ? 'Recent' : 'Saved'; }

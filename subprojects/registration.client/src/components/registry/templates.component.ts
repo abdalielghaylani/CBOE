@@ -33,6 +33,7 @@ export class RegTemplates implements OnInit, OnDestroy {
     dataType: 'string',
     caption: 'Type',
     groupIndex: 0,
+    groupCellTemplate: 'groupCellTemplate',
     allowEditing: false
   }, {
     dataField: 'id',

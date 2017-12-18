@@ -193,7 +193,8 @@ export const CONFIG_FORMS_COLUMNS = [
     allowFiltering: false,
     allowSorting: false,
     allowEditing: false,
-    groupIndex: 0
+    groupIndex: 0,
+    groupCellTemplate: 'groupCellTemplate',
   },
   {
     dataField: 'name',
@@ -606,6 +607,7 @@ export class CConfigProperties {
       dataField: 'groupLabel',
       caption: 'Properties',
       groupIndex: 0,
+      groupCellTemplate: 'groupCellTemplate',
       allowEditing: false
     }, {
       dataField: 'name',
@@ -754,10 +756,10 @@ export class CConfigAddIn {
   configVal: string;
   addinAssemblies: any;
   currentEvents: any;
-  constructor(state: IAppState) {
+  constructor(lookups: ILookupData) {
     this.columns = CONFIG_ADDIN_COLUMNS;
     this.window = { title: 'Manage Addins', viewIndex: 'list' };
-    this.addinAssemblies = getLookups(state).addinAssemblies;
+    this.addinAssemblies = lookups.addinAssemblies;
     this.columns.editColumn.addIn[1].editorOptions = { items: [this.addinAssemblies[0].name], value: this.addinAssemblies[0].name };
     this.columns.editColumn.addIn[2].editorOptions = { dataSource: this.addinAssemblies[0].classes, valueExpr: 'name', displayExpr: 'name' };
   }

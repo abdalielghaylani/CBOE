@@ -1,18 +1,12 @@
-import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChildren,
-  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { select, NgRedux, } from '@angular-redux/store';
-import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
+import { Component, ElementRef, ViewChildren } from '@angular/core';
+import { DxFormComponent } from 'devextreme-angular';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import { CConfigProperties, CPropertiesValidationFormDataModel } from './config.types';
-import { getExceptionMessage, notify, notifyError, notifyException, notifySuccess } from '../../common';
+import { getExceptionMessage, notifyError, notifyException, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ConfigurationActions, IAppState, ILookupData, ICustomTableData, IConfiguration } from '../../redux';
+import { ILookupData } from '../../redux';
 import { HttpService } from '../../services';
+import { RegConfigBaseComponent } from './config-base';
 
 declare var jQuery: any;
 
@@ -20,76 +14,23 @@ declare var jQuery: any;
   selector: 'reg-config-properties',
   template: require('./config-properties.component.html'),
   styles: [require('./config.component.css')],
-  host: { '(document:click)': 'onDocumentClick($event)' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  host: { '(document:click)': 'onDocumentClick($event)' }
 })
-export class RegConfigProperties implements OnInit, OnDestroy {
-  @ViewChildren(DxDataGridComponent) grid;
+export class RegConfigProperties extends RegConfigBaseComponent {
   @ViewChildren(DxFormComponent) forms;
-  @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private rows: any[] = [];
-  private dataSubscription: Subscription;
-  private gridHeight: string;
   private dataSource: CustomStore;
   private configProperties: CConfigProperties;
   private loadingVisible = false;
 
-  constructor(
-    private http: HttpService,
-    private changeDetector: ChangeDetectorRef,
-    private ngRedux: NgRedux<IAppState>,
-    private configurationActions: ConfigurationActions,
-    private elementRef: ElementRef
-  ) { }
-
-  ngOnInit() {
-    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+  constructor(elementRef: ElementRef, http: HttpService) {
+    super(elementRef, http);
   }
 
-  ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
-  }
-
-  loadData(customTables: any) {
-    const state: IAppState = this.ngRedux.getState();
-    const lookups: ILookupData = state && state.session ? state.session.lookups : undefined;
-    if (customTables && lookups) {
-      this.configProperties = new CConfigProperties(lookups);
-      this.dataSource = this.createCustomStore(this);
-      this.changeDetector.markForCheck();
-    }
+  loadData(lookups: ILookupData) {
+    this.configProperties = new CConfigProperties(lookups);
+    this.dataSource = this.createCustomStore(this);
     this.gridHeight = this.getGridHeight();
-  }
-
-  private getGridHeight() {
-    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
-  }
-
-  private onResize(event: any) {
-    this.gridHeight = this.getGridHeight();
-    this.grid.height = this.getGridHeight();
-    this.grid._results[0].instance.repaint();
-  }
-
-  private onDocumentClick(event: any) {
-    const target = event.target || event.srcElement;
-    if (target.title === 'Full Screen') {
-      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
-      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
-      this.grid.height = this.gridHeight;
-      this.grid._results[0].instance.repaint();
-    }
-  }
-
-  onInitialized(e) {
-    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
-      e.component.columnOption('command:edit', {
-        visibleIndex: -1,
-        width: 80
-      });
-    }
   }
 
   onInitNewRow(e, parent?: boolean) {
@@ -118,7 +59,8 @@ export class RegConfigProperties implements OnInit, OnDestroy {
     this.configProperties.window = { title: 'Validation Rule', viewIndex: 'validation' };
     this.configProperties.formData = d.data;
   }
-  moveupordown(data, move) {
+
+  moveUpOrDown(data, move) {
     if ((move === 'up' && data.value > 0) || (move === 'down' && data.data.sortOrderMax)) {
       let val = data.data;
       if (move === 'up') {
@@ -167,6 +109,7 @@ export class RegConfigProperties implements OnInit, OnDestroy {
       this.cancel();
     }
   }
+
   onValidationRowRemoved(e) {
     this.dataSource.update(this.configProperties.formData, []);
   }
@@ -184,7 +127,6 @@ export class RegConfigProperties implements OnInit, OnDestroy {
           validationModel = this.configProperties.formDataValidation;
           this.configProperties.formData.validationRules.push(validationModel);
           break;
-
       }
       this.dataSource.update(this.configProperties.formData, []).then((result) => {
         this.configProperties.clearFormDataValidations();
@@ -194,7 +136,6 @@ export class RegConfigProperties implements OnInit, OnDestroy {
   }
 
   onCellPrepared(e, t?: string) {
-
     let disableEditCause = 'This type of property is not editable because it would '
       + 'affect existing data. You can either delete or hide this property and '
       + 'create a new property with the desired changes. In order to delete the '
@@ -216,13 +157,6 @@ export class RegConfigProperties implements OnInit, OnDestroy {
         $links.filter('.dx-link-delete').attr({ 'data-toggle': 'tooltip', 'title': 'Delete' });
         $links.filter('.dx-link-edit').append(disableEditIcon);
       }
-    }
-  }
-
-  private togglePanel(event) {
-    const target = event.target || event.srcElement;
-    if (target.children.length > 0) {
-      target.children[0].click();
     }
   }
 
@@ -320,6 +254,5 @@ export class RegConfigProperties implements OnInit, OnDestroy {
 
   private hideLoadPanel() {
     this.loadingVisible = false;
-    this.changeDetector.markForCheck();
   }
 };

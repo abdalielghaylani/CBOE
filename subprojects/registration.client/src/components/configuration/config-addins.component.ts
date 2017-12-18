@@ -1,107 +1,34 @@
-import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChildren,
-  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { select, NgRedux } from '@angular-redux/store';
-import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
+import { Component, ElementRef, ViewChildren, OnInit, Injector } from '@angular/core';
+import DevExtreme from 'devextreme/bundles/dx.all.d';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { CConfigAddIn } from './config.types';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
-import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration } from '../../redux';
-import { apiUrlPrefix } from '../../configuration';
+import { DxFormComponent } from 'devextreme-angular';
 import { HttpService } from '../../services';
-
-declare var jQuery: any;
+import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
+import { ILookupData } from '../../redux';
+import { apiUrlPrefix } from '../../configuration';
+import { CConfigAddIn } from './config.types';
+import { RegConfigBaseComponent } from './config-base';
 
 @Component({
   selector: 'reg-config-addins',
   template: require('./config-addins.component.html'),
   styles: [require('./config.component.css'), require('../registry/records.css')],
-  host: { '(document:click)': 'onDocumentClick($event)' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  host: { '(document:click)': 'onDocumentClick($event)' }
 })
-export class RegConfigAddins implements OnInit, OnDestroy {
-  @ViewChildren(DxDataGridComponent) grid;
+export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
   @ViewChildren(DxFormComponent) forms;
-  @select(s => s.configuration.customTables) customTables$: Observable<any>;
   private rows: any[] = [];
-  private dataSubscription: Subscription;
-  private gridHeight: string;
   private dataSource: CustomStore;
   private configAddIn: CConfigAddIn;
 
-  constructor(
-    private http: HttpService,
-    private changeDetector: ChangeDetectorRef,
-    private ngRedux: NgRedux<IAppState>,
-    private configurationActions: ConfigurationActions,
-    private elementRef: ElementRef
-  ) { }
-
-  ngOnInit() {
-    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
+  constructor(elementRef: ElementRef, http: HttpService) {
+    super(elementRef, http);
   }
 
-  ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
-  }
-
-  loadData(customTables: any) {
-    if (customTables) {
-      this.configAddIn = new CConfigAddIn(this.ngRedux.getState());
-      this.dataSource = this.createCustomStore(this);
-      this.changeDetector.markForCheck();
-    }
+  loadData(lookups: ILookupData) {
+    this.configAddIn = new CConfigAddIn(lookups);
+    this.dataSource = this.createCustomStore();
     this.gridHeight = this.getGridHeight();
-  }
-
-  private getGridHeight() {
-    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
-  }
-
-  private onResize(event: any) {
-    this.gridHeight = this.getGridHeight();
-    this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
-  }
-
-  private onDocumentClick(event: any) {
-    const target = event.target || event.srcElement;
-    if (target.title === 'Full Screen') {
-      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
-      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
-      this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
-    }
-  }
-
-  onInitialized(e) {
-    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
-      e.component.columnOption('command:edit', {
-        visibleIndex: -1,
-        width: 80
-      });
-    }
-  }
-
-  onCellPrepared(e) {
-    if (e.rowType === 'data' && e.column.command === 'edit') {
-      let isEditing = e.row.isEditing;
-      let $links = e.cellElement.find('.dx-link');
-      $links.text('');
-      if (isEditing) {
-        $links.filter('.dx-link-save').addClass('dx-icon-save');
-        $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
-      } else {
-        $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
-      }
-    }
   }
 
   onEditingStart(e) {
@@ -114,7 +41,7 @@ export class RegConfigAddins implements OnInit, OnDestroy {
     e.component.cancelEditData();
     e.component.refresh();
   }
-  
+
   onFieldDataChanged(e) {
     if (e.dataField === 'className' && e.value) {
       this.configAddIn.editRow.events = [];
@@ -155,34 +82,26 @@ export class RegConfigAddins implements OnInit, OnDestroy {
     this.configAddIn.window = { title: 'Manage Addins', viewIndex: 'list' };
   }
 
-  private togglePanel(event) {
-    const target = event.target || event.srcElement;
-    if (target.children.length > 0) {
-      target.children[0].click();
-    }
-  }
-
-  private createCustomStore(parent: RegConfigAddins): CustomStore {
+  private createCustomStore(): CustomStore {
     let tableName = 'addins';
     let apiUrlBase = `${apiUrlPrefix}${tableName}`;
     return new CustomStore({
-      load: function (loadOptions) {
-        let deferred = jQuery.Deferred();
-        parent.http.get(apiUrlBase)
-          .toPromise()
-          .then(result => {
-            let rows = result.json();
-            deferred.resolve(rows, { totalCount: rows.length });
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
+      load: ((loadOptions: DevExtreme.data.LoadOptions): Promise<any> => {
+        return new Promise<void>((resolve, reject) => {
+          this.http.get(apiUrlBase)
+            .toPromise()
+            .then(result => {
+              let rows = result.json();
+              resolve(rows);
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
+              reject(message);
+            });
+        });
+      }).bind(this),
 
-      update: function (key, values) {
-        let deferred = jQuery.Deferred();
+      update: ((key, values): Promise<any> => {
         let data = key;
         let newData = values;
         for (let k in newData) {
@@ -191,50 +110,51 @@ export class RegConfigAddins implements OnInit, OnDestroy {
           }
         }
         let id = data[Object.getOwnPropertyNames(data)[0]];
-        parent.http.put(`${apiUrlBase}`, data)
-          .toPromise()
-          .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
+        return new Promise<any>((resolve, reject) => {
+          this.http.put(`${apiUrlBase}`, data)
+            .toPromise()
+            .then(result => {
+              notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
+              resolve(result.json());
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
+              reject(message);
+            });
+        });
+      }).bind(this),
 
-      insert: function (values) {
-        let deferred = jQuery.Deferred();
-        parent.http.post(`${apiUrlBase}`, values)
-          .toPromise()
-          .then(result => {
-            let id = result.json().id;
-            notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      },
+      insert: ((values): Promise<any> => {
+        return new Promise<any>((resolve, reject) => {
+          this.http.post(`${apiUrlBase}`, values)
+            .toPromise()
+            .then(result => {
+              let id = result.json().id;
+              notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
+              resolve(result.json());
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
+              reject(message);
+            });
+        });
+      }).bind(this),
 
-      remove: function (key) {
-        let deferred = jQuery.Deferred();
+      remove: ((key): Promise<any> => {
         let id = key[Object.getOwnPropertyNames(key)[0]];
-        parent.http.delete(`${apiUrlBase}/${id}`)
-          .toPromise()
-          .then(result => {
-            notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
-            deferred.resolve(result.json());
-          })
-          .catch(error => {
-            let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
-            deferred.reject(message);
-          });
-        return deferred.promise();
-      }
+        return new Promise<any>((resolve, reject) => {
+          this.http.delete(`${apiUrlBase}/${id}`)
+            .toPromise()
+            .then(result => {
+              notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
+              resolve(result.json());
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
+              reject(message);
+            });
+        });
+      }).bind(this)
     });
   }
 };
