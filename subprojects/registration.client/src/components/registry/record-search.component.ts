@@ -34,6 +34,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Input() activated: boolean;
   @Input() totalSearchableCount: number;
   @Output() onClose = new EventEmitter<any>();
+  @Output() onSearch = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
   public formGroup: IFormGroup;
   private lookups: ILookupData;
@@ -102,6 +103,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
         highlightSubStructures: highLightSubstructure
       };
       this.actions.searchRecords(queryData);
+      this.onSearch.emit();
     } else {
       notify(`You must specify at least one field.`, `warning`, 5000);
     }

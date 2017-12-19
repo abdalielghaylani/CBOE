@@ -248,6 +248,10 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  onSearch() {
+    this.loadIndicatorVisible = true;
+  }
+
   updateContents() {
     this.registryActions.openRecords({
       temporary: this.temporary,
