@@ -174,6 +174,9 @@ export class RegConfigTables implements OnInit, OnDestroy {
         this.configTable.formData.STRUCTURE = this.configTable.formData.STRUCTURE_XML;
       }
       this.dataSource.insert(this.configTable.formData).done(result => {
+        if (this.tableId === 'VW_FRAGMENT') {
+          this.configTable.cancel(e);
+        }
         this.grid.instance.refresh();
       }).fail(err => {
         notifyError(err, 5000);
@@ -188,6 +191,9 @@ export class RegConfigTables implements OnInit, OnDestroy {
         this.configTable.formData.STRUCTURE = this.configTable.formData.STRUCTURE_XML;
       }
       this.dataSource.update(this.configTable.formData, []).done(result => {
+        if (this.tableId === 'VW_FRAGMENT') {
+          this.configTable.cancel(e);
+        }
         this.grid.instance.refresh();
       }).fail(err => {
         notifyError(err, 5000);
