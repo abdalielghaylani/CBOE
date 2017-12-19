@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Text;
 using System.Web.Http;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
@@ -20,6 +21,8 @@ using CambridgeSoft.COE.Registration.Services.Common;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
 using Resources;
+using CambridgeSoft.COE.Framework.COESearchService;
+
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -109,23 +112,61 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         private static JArray GetDisabledControls(string appName)
-        {
+        {          
             var disabledControlArray = new JArray();
             var disabledControls = COEPageControlSettings.GetControlListToDisableForCurrentUser(appName);
+            string invGroupFieldSettings = GetInvIntegrationGroupFieldSettings(appName);
             foreach (var disabledControl in disabledControls)
             {
                 var pageId = disabledControl.PageID.Replace("_ASPX", string.Empty);
                 pageId = pageId.Substring(pageId.LastIndexOf('_') + 1);
-                disabledControlArray.Add(new JObject(
-                    new JProperty("id", disabledControl.ID),
-                    new JProperty("action", disabledControl.Action),
-                    new JProperty("formId", disabledControl.COEFormID),
-                    new JProperty("parentControlId", disabledControl.ParentControlId),
-                    new JProperty("placeHolderId", disabledControl.PlaceHolderID),
-                    new JProperty("pageId", pageId)
-                ));
+
+                if ((disabledControl.ID.Equals("ReqMaterial") || disabledControl.ID.Equals("RequestFromBatchURL"))
+                    && !string.IsNullOrEmpty(invGroupFieldSettings) && invGroupFieldSettings.Contains(disabledControl.ID))
+                {
+                    // do not add into disabledControls list
+                }
+                else
+                {
+                    disabledControlArray.Add(new JObject(
+                            new JProperty("id", disabledControl.ID),
+                            new JProperty("action", disabledControl.Action),
+                            new JProperty("formId", disabledControl.COEFormID),
+                            new JProperty("parentControlId", disabledControl.ParentControlId),
+                            new JProperty("placeHolderId", disabledControl.PlaceHolderID),
+                            new JProperty("pageId", pageId)
+                            ));
+
+                }
             }
             return disabledControlArray;
+        }
+
+        private static string GetInvIntegrationGroupFieldSettings(string appName)
+        {
+            if (!appName.ToUpper().Equals(Consts.REGISTRATIONAPLPICATIONNAME))
+                return string.Empty;
+
+            StringBuilder str = new StringBuilder();
+            if (RegUtilities.GetInventoryIntegration())
+            {
+                COESearch simpleSearch = new COESearch(RegUtilities.GetInvGroupingFieldsDataViewID());
+                ResultPageInfo rpi = new ResultPageInfo(0, 100, 1, 101);
+                DataResult dr = simpleSearch.GetDataPage(rpi, new string[] { "GROUPINGFIELDS.FIELDNAME" });
+                if (dr != null && dr.ResultSet != null)
+                {                    
+                    if (dr.ResultSet.Contains("REG_ID_FK"))
+                    {
+                        str.Append("ReqMaterial");
+                    }
+                        
+                    if (dr.ResultSet.Contains("BATCH_NUMBER_FK"))
+                    {
+                        str.Append("RequestFromBatchURL");                        
+                    }                    
+                }
+            }
+            return str.ToString();
         }
 
         private JArray GetHomeMenuPrivileges()

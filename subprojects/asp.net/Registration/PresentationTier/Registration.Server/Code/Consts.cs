@@ -30,6 +30,8 @@
 
         public const string CHEMBIOVIZAPLPICATIONNAME = "CHEMBIOVIZ";
 
+        public const string REGISTRATIONAPLPICATIONNAME = "REGISTRATION";
+
         #region COE FORM Index
         public const int MIXTURESUBFORMINDEX = 1000;
 
