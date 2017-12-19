@@ -82,7 +82,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
 
   addProperty(e) {
     let valid = this.forms._results[0].instance.validate();
-    if (this.configProperties.combuteValidation(valid.brokenRules)) {
+    if (this.configProperties.validate(valid.brokenRules)) {
       this.showLoadPanel();
       this.dataSource.insert(this.configProperties.formData).done(result => {
         this.hideLoadPanel();
@@ -98,7 +98,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
   saveProperty(e) {
     this.showLoadPanel();
     let valid = this.forms._results[0].instance.validate();
-    if (this.configProperties.combuteValidation(valid.brokenRules)) {
+    if (this.configProperties.validate(valid.brokenRules)) {
       this.dataSource.update(this.configProperties.formData, []).done(result => {
         this.hideLoadPanel();
         this.grid._results[0].instance.refresh();

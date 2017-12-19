@@ -1,4 +1,4 @@
-import { IAppState, ILookupData, ICustomTableData, IValidationRuleData } from '../../redux';
+import { IAppState, ILookupData, CCustomTableData, ICustomTableData, IValidationRuleData } from '../../redux';
 import { notify, notifyError, notifySuccess } from '../../common';
 import { CValidator } from '../common';
 
@@ -25,7 +25,10 @@ export class CConfigTable {
   ];
   sequenceType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'C', name: 'Compound' }];
   activeType = [{ key: 'T', name: 'Yes' }, { key: 'F', name: 'No' }];
-  constructor(tableId: string, tableName: string, customTableData: ICustomTableData) {
+  constructor(
+    tableId: string = '',
+    tableName: string = '',
+    customTableData: ICustomTableData = new CCustomTableData()) {
     this.tableName = tableName;
     this.window = { title: this.tableName, viewIndex: 'list' };
     if (customTableData.config) {
@@ -440,7 +443,7 @@ export class CConfigProperties {
     }
   }
 
-  combuteValidation(broken: any) {
+  validate(broken: any) {
     if (!this.filterRule(broken, 'always')) {
       return false;
     }

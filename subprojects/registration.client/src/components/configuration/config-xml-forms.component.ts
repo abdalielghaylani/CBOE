@@ -1,14 +1,6 @@
-import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
-  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { select } from '@angular-redux/store';
-import { DxDataGridComponent } from 'devextreme-angular';
+import { Component, ElementRef } from '@angular/core';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
 import { ILookupData } from '../../redux';
 import { HttpService } from '../../services';
@@ -20,8 +12,7 @@ declare var jQuery: any;
   selector: 'reg-config-xml-forms',
   template: require('./config-xml-forms.component.html'),
   styles: [require('./config.component.css')],
-  host: { '(document:click)': 'onDocumentClick($event)' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  host: { '(document:click)': 'onDocumentClick($event)' }
 })
 export class RegConfigXmlForms extends RegConfigBaseComponent {
   private rows: any[] = [];

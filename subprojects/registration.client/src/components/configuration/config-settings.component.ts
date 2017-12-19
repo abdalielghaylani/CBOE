@@ -13,8 +13,7 @@ declare var jQuery: any;
   selector: 'reg-config-settings',
   template: require('./config-settings.component.html'),
   styles: [require('./config.component.css')],
-  host: { '(document:click)': 'onDocumentClick($event)' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  host: { '(document:click)': 'onDocumentClick($event)' }
 })
 export class RegConfigSettings extends RegConfigBaseComponent {
   private dataSource: CustomStore;

@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChildren, OnInit, Injector } from '@angular/core';
 import DevExtreme from 'devextreme/bundles/dx.all.d';
 import CustomStore from 'devextreme/data/custom_store';
-import { DxFormComponent } from 'devextreme-angular';
+import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import { HttpService } from '../../services';
 import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
 import { ILookupData } from '../../redux';
@@ -16,6 +16,7 @@ import { RegConfigBaseComponent } from './config-base';
   host: { '(document:click)': 'onDocumentClick($event)' }
 })
 export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
+  @ViewChildren(DxDataGridComponent) grids;
   @ViewChildren(DxFormComponent) forms;
   private rows: any[] = [];
   private dataSource: CustomStore;
@@ -51,7 +52,7 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
       this.configAddIn.columns.editColumn.events[1].lookup = {
         dataSource: this.configAddIn.currentEvents[0].eventHandlers, valueExpr: 'name', displayExpr: 'name'
       };
-      this.grid._results[1].instance.refresh();
+      this.grids.last.instance.refresh();
     }
   }
 
@@ -77,8 +78,8 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
   }
 
   cancel() {
-    this.grid._results[0].instance.cancelEditData();
-    this.grid._results[0].instance.refresh();
+    this.grids.first.instance.cancelEditData();
+    this.grids.first.instance.refresh();
     this.configAddIn.window = { title: 'Manage Addins', viewIndex: 'list' };
   }
 

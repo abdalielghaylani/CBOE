@@ -1,20 +1,15 @@
-import {
-  Component, Input, Output, EventEmitter, ElementRef, ViewChild,
-  OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef
-} from '@angular/core';
+import { Component, ViewChild, ElementRef, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { select, NgRedux } from '@angular-redux/store';
-import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
+import { DxFormComponent } from 'devextreme-angular';
 import DevExtreme from 'devextreme/bundles/dx.all.d';
 import CustomStore from 'devextreme/data/custom_store';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
 import { CConfigTable } from './config.types';
-import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
 import { apiUrlPrefix } from '../../configuration';
-import { ConfigurationActions, IAppState, ICustomTableData, IConfiguration, ILookupData } from '../../redux';
+import { ILookupData } from '../../redux';
 import { HttpService } from '../../services';
 import { PrivilegeUtils } from '../../common';
+import { RegConfigBaseComponent } from './config-base';
 
 @Component({
   selector: 'reg-config-tables',
@@ -23,47 +18,19 @@ import { PrivilegeUtils } from '../../common';
   host: { '(document:click)': 'onDocumentClick($event)' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegConfigTables implements OnInit, OnDestroy {
-  @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
+export class RegConfigTables extends RegConfigBaseComponent {
   @ViewChild(DxFormComponent) form: DxFormComponent;
-  @select(s => s.configuration.customTables) customTables$: Observable<any>;
-  @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
-  private lookupsSubscription: Subscription;
-  private lookups: ILookupData;
   private tableId: string;
-  private rows: any[] = [];
-  private tableIdSubscription: Subscription;
-  private dataSubscription: Subscription;
-  private gridHeight: string;
   private dataSource: CustomStore;
-  private configTable: CConfigTable;
+  private configTable: CConfigTable = new CConfigTable();
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpService,
     private changeDetector: ChangeDetectorRef,
-    private ngRedux: NgRedux<IAppState>,
-    private configurationActions: ConfigurationActions,
-    private elementRef: ElementRef
-  ) { }
-
-  ngOnInit() {
-    this.tableIdSubscription = this.route.params.subscribe(params => {
-      let paramLabel = 'tableId';
-      this.tableId = params[paramLabel];
-      this.configurationActions.openTable(this.tableId);
-    });
-    this.dataSubscription = this.customTables$.subscribe((customTables: any) => this.loadData(customTables));
-    this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveLookUpData(d); } });
-  }
-
-  ngOnDestroy() {
-    if (this.tableIdSubscription) {
-      this.tableIdSubscription.unsubscribe();
-    }
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
+    elementRef: ElementRef,
+    http: HttpService
+  ) {
+    super(elementRef, http);
   }
 
   refreshDataGrid() {
@@ -73,49 +40,25 @@ export class RegConfigTables implements OnInit, OnDestroy {
     }
   }
 
-  loadData(customTables: any) {
-    this.refreshDataGrid();
-    if (customTables && customTables[this.tableId]) {
-      let customTableData: ICustomTableData = customTables[this.tableId];
-      this.rows = customTableData.rows;
-      this.configTable = new CConfigTable(this.tableId, this.tableName(), customTableData);
-      this.dataSource = this.createCustomStore();
-      this.changeDetector.markForCheck();
-    }
-    this.gridHeight = this.getGridHeight();
-  }
-
-  private retrieveLookUpData(lookups: ILookupData) {
-    this.lookups = lookups;
-  }
-
-  private getGridHeight() {
-    return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
-  }
-
-  private onResize(event: any) {
-    this.gridHeight = this.getGridHeight();
-    this.grid.height = this.getGridHeight();
-    this.grid.instance.repaint();
-  }
-
-  private onDocumentClick(event: any) {
-    const target = event.target || event.srcElement;
-    if (target.title === 'Full Screen') {
-      let fullScreenMode = target.className === 'fa fa-compress fa-stack-1x white';
-      this.gridHeight = (this.elementRef.nativeElement.parentElement.clientHeight - (fullScreenMode ? 10 : 190)).toString();
-      this.grid.height = this.gridHeight;
-      this.grid.instance.repaint();
-    }
-  }
-
-  onInitialized(e) {
-    if (!e.component.columnOption('command:edit', 'visibleIndex')) {
-      e.component.columnOption('command:edit', {
-        visibleIndex: -1,
-        width: 80
-      });
-    }
+  loadData(lookups: ILookupData) {
+    this.route.params.subscribe((params => {
+      const paramLabel = 'tableId';
+      const tableId = params[paramLabel];
+      if (this.tableId !== tableId) {
+        this.http.get(`${apiUrlPrefix}custom-tables/${tableId}?configOnly=true`)
+          .subscribe((r => {
+            this.tableId = tableId;
+            this.configTable = new CConfigTable(this.tableId, this.tableName(), r.json());
+            this.dataSource = this.createCustomStore();
+            this.gridHeight = this.getGridHeight();
+            this.changeDetector.markForCheck();
+          }).bind(this), err => {
+            if (err.status == null || err.status !== 404) {
+              notifyError(err, 5000);
+            }
+          });
+      }
+    }).bind(this));
   }
 
   onCellPrepared(e) {
@@ -202,6 +145,9 @@ export class RegConfigTables implements OnInit, OnDestroy {
   }
 
   private hasPrivilege(action: string): boolean {
+    if (this.lookups == null) {
+      return false;
+    }
     let retValue: boolean = false;
     switch (this.tableId) {
       case 'VW_PROJECT':

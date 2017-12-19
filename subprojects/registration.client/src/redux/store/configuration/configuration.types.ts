@@ -18,7 +18,7 @@ export interface ICustomTableData {
 export class CCustomTableData implements ICustomTableData {
   config: any;
   rows: any[];
-  constructor(config: any = {}, rows: any[] = []) {
+  constructor(config?: any, rows?: any[]) {
     this.config = config;
     this.rows = rows;
   }

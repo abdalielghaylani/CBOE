@@ -1,7 +1,8 @@
-import { Component, OnDestroy, ElementRef, ViewChildren } from '@angular/core';
+import { Component, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { HttpService } from '../../../services';
 import { IAppState, ILookupData } from '../../../redux';
@@ -11,12 +12,14 @@ import { IAppState, ILookupData } from '../../../redux';
   template: ``
 })
 export class RegConfigBaseComponent implements OnDestroy {
-  @ViewChildren(DxDataGridComponent) grid;
+  @ViewChild(DxDataGridComponent) grid;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   protected elementRef: ElementRef;
   protected http: HttpService;
   protected gridHeight: string;
+  protected lookups: ILookupData;
+  protected lookupsSubscription: Subscription;
 
   constructor(elementRef: ElementRef, http: HttpService) {
     this.elementRef = elementRef;
@@ -24,7 +27,14 @@ export class RegConfigBaseComponent implements OnDestroy {
   }
 
   ngOnInit() {
-    this.lookups$.subscribe(d => { if (d) { this.loadData(d); } });
+    if (this.lookupsSubscription == null) {
+      this.lookupsSubscription = this.lookups$.subscribe(d => {
+        if (d != null && this.lookups !== d) {
+          this.lookups = d;
+          this.loadData(d);
+        }
+      });
+    }
   }
 
   ngOnDestroy() {
