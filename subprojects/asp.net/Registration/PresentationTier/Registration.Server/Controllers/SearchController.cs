@@ -68,7 +68,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return GetRegistryRecordsListView(temp, skip, count, sort, hitlistBO.HitListInfo, null, highlightSubStructures);
         }
 
-        private JObject SearchRecordsInternal(QueryData queryData, bool? temp, int? skip, int? count, string sort)
+        private JObject SearchRecordsInternal(int id, QueryData queryData, bool? temp, int? skip, int? count, string sort)
         {
             var searchCriteria = new SearchCriteria();
             string structureName = string.Empty;            
@@ -111,7 +111,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             try
             {
-                return GetRegistryRecordsListView(temp, skip, count, sort, null, searchCriteria, queryData.HighlightSubStructures);
+                var hitlistBO = GetHitlistBO(id);
+                return GetRegistryRecordsListView(temp, skip, count, sort, hitlistBO.HitListInfo, searchCriteria, queryData.HighlightSubStructures);
             }
             catch (Exception exc)
             {
@@ -530,6 +531,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="skip">The number of items to skip</param>
         /// <param name="count">The maximum number of items to return</param>
         /// <param name="sort">The sorting information</param>
+        /// <param name="highlightSubStructures">The flag indicating if the substructure need to be highlighted</param>
         /// <returns>The promise to return a JSON object containing an array of registration records</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id}/records")]
@@ -545,7 +547,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (refresh != null && refresh.Value)
                 {
                     var queryData = GetHitlistQueryInternal(id, temp);
-                    return SearchRecordsInternal(queryData, temp, skip, count, sort);
+                    return SearchRecordsInternal(id, queryData, temp, skip, count, sort);
                 }
                 return GetHitlistRecordsInternal(id, temp, skip, count, sort, highlightSubStructures);
             });
@@ -628,24 +630,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var hitlistBO2 = GetHitlistBO(id2);
                 if (hitlistBO2 == null)
                     throw new RegistrationException(string.Format("The hit-list identified by ID {0} is invalid", id2));
-                char symbol;
                 string join;
                 COEHitListBO newHitlist;
                 switch (op)
                 {
                     case "intersect":
-                        symbol = 'x';
                         join = "intersecting with";
                         newHitlist = COEHitListOperationManager.IntersectHitList(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                     case "subtract":
-                        symbol = '-';
                         join = "subtracted by";
                         newHitlist = COEHitListOperationManager.SubtractHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                     default: // union
                         join = "combining with";
-                        symbol = '+';
                         newHitlist = COEHitListOperationManager.UnionHitLists(hitlistBO1.HitListInfo, hitlistBO2.HitListInfo, dataViewId);
                         break;
                 }

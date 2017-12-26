@@ -418,6 +418,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             var bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
             bo.RefreshDatabaseRecordCount();
+            bo.CreateNewHitList = false;
             bo.AllowFullScan = true;
             bo.CurrentFormType = FormGroup.CurrentFormEnum.ListForm;
             if (searchCriteria != null) 
