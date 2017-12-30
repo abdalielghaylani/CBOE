@@ -32,7 +32,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
     public class SearchController : RegControllerBase
-    {      
+    {
         private static FormGroup GetFormGroup(bool? temp)
         {
             var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
@@ -71,7 +71,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private JObject SearchRecordsInternal(int id, QueryData queryData, bool? temp, int? skip, int? count, string sort)
         {
             var searchCriteria = new SearchCriteria();
-            string structureName = string.Empty;            
+            string structureName = string.Empty;
             try
             {
                 searchCriteria.GetFromXML(queryData.SearchCriteria);
@@ -168,7 +168,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 throw new RegistrationException("The search criteria is invalid", ex);
             }
-            
+
             var hitlistInfo = coeSearch.GetHitList(searchCriteria, dataView);
             var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
             hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
@@ -288,16 +288,135 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var exportTemplate = new JArray();
             exportTemplate.Add(new JObject(
                 new JProperty("ID", 0),
-                new JProperty("Name", "Default Template")));
+                new JProperty("Name", "Default Template"),
+                new JProperty("Description", "Default Template"),
+                new JProperty("IsPublic", false)));
 
             var templateList = COEExportTemplateBOList.GetUserTemplatesByDataViewId(dataViewId, COEUser.Name, true);
             foreach (var template in templateList)
             {
                 exportTemplate.Add(new JObject(
                 new JProperty("ID", template.ID),
-                new JProperty("Name", template.Name)));
+                new JProperty("Name", template.Name),
+                new JProperty("Description", template.Description),
+                new JProperty("IsPublic", template.IsPublic)));
             }
             return exportTemplate;
+        }
+
+        private JArray GetExportResultsCriteria(bool? temp, int? templateId)
+        {
+            var resultsCriteria = new JArray();
+
+            GenericBO bo = GetGenericBO(temp);
+            COEDataView dataView = new COEDataView();
+            dataView.GetFromXML(AddMolWt(bo.DataView).ToString());
+            dataView.RemoveNonRelationalTables();
+
+            XmlDocument templateCriterias = new XmlDocument();
+            COEExportTemplateBO exportTemplateBo = templateId.HasValue ? COEExportTemplateBO.Get(templateId.Value) : null;
+            if (exportTemplateBo != null && exportTemplateBo.ResultCriteria != null)
+            {
+                templateCriterias.Load(new StringReader(exportTemplateBo.ResultCriteria.ToString()));
+            }
+
+            foreach (var dataViewTable in dataView.Tables)
+            {
+                foreach (var dataViewField in dataViewTable.Fields)
+                {
+                    var visible = false;
+                    var fieldAlias = dataViewField.Alias;
+                    string xmlNamespace = "COE";
+                    string xmlNSres = "COE.ResultsCriteria";
+                    XmlNamespaceManager managerRes = new XmlNamespaceManager(new NameTable());
+                    managerRes.AddNamespace(xmlNamespace, xmlNSres);
+                    XmlNode templateFeildNode = templateCriterias.SelectSingleNode("//" + xmlNamespace + ":tables/COE:table/COE:field[@fieldId='" + dataViewField.Id + "']", managerRes);
+
+                    var isStructureIndex = dataViewField.IndexType.ToString().ToUpper() == "CS_CARTRIDGE";
+                    var isStructureMimeType = dataViewField.MimeType.ToString().ToUpper() == "CHEMICAL_X_CDX";
+                    var isStructureColumn = isStructureIndex || isStructureMimeType;
+
+                    if (isStructureColumn && templateId == null)
+                    {
+                        visible = true; // if is default template, structure columns should be selected by default
+                    }
+
+                    if (templateFeildNode != null)
+                    {
+                        visible = true;
+                        if (!isStructureColumn) {
+                            visible = bool.Parse(templateFeildNode.Attributes["visible"].Value);
+                            fieldAlias = templateFeildNode.Attributes["alias"].Value;
+                        }
+                    }
+
+                    var key = string.Format("{0}{1}", dataViewField.Id, Regex.Replace(fieldAlias, @"\s", string.Empty)).ToLower();
+                    resultsCriteria.Add(new JObject(
+                        new JProperty("key", key),
+                        new JProperty("tableId", dataViewTable.Id),
+                        new JProperty("tableName", dataViewTable.Alias),
+                        new JProperty("fieldId", dataViewField.Id),
+                        new JProperty("fieldName", fieldAlias),
+                        new JProperty("visible", visible),
+                        new JProperty("indexType", dataViewField.IndexType.ToString()),
+                        new JProperty("mimeType", dataViewField.MimeType.ToString())));
+                }
+            }
+
+            return resultsCriteria;
+        }
+
+        private ResultsCriteria GetResultsCriteria(List<ResultsCriteriaTableData> resultsCriteriaTableData)
+        {
+            var resultsCriteria = new ResultsCriteria();
+            foreach (var criteriaTableData in resultsCriteriaTableData)
+            {
+                var isStructureIndex = !string.IsNullOrEmpty(criteriaTableData.IndexType) && criteriaTableData.IndexType.ToUpper() == "CS_CARTRIDGE";
+                var isStructureMimeType = !string.IsNullOrEmpty(criteriaTableData.MimeType) && criteriaTableData.MimeType.ToUpper() == "CHEMICAL_X_CDX";
+                var isStructureColumn = isStructureIndex || isStructureMimeType;
+
+                var resultsCriteriaTable = resultsCriteria.Tables.Find(t => t.Id == criteriaTableData.TableId);
+                if (resultsCriteriaTable == null)
+                {
+                    resultsCriteriaTable = new ResultsCriteria.ResultsCriteriaTable()
+                    {
+                        Id = criteriaTableData.TableId,
+                        Criterias = new List<ResultsCriteria.IResultsCriteriaBase>()
+                    };
+                    resultsCriteria.Tables.Add(resultsCriteriaTable);
+                }
+
+                if (!criteriaTableData.Alias.ToLower().Contains("mol wt") && !criteriaTableData.Alias.ToLower().Contains("mol formula"))
+                {
+                    var field = new ResultsCriteria.Field
+                    {
+                        Id = criteriaTableData.FieldId,
+                        Alias = criteriaTableData.Alias,
+                        Visible = criteriaTableData.Visible
+                    };
+
+                    resultsCriteriaTable.Criterias.Add(field);
+                }
+
+                if (isStructureColumn && criteriaTableData.Alias.ToLower().Contains("mol wt"))
+                {
+                    ResultsCriteria.MolWeight molWeightCriteria = new ResultsCriteria.MolWeight();
+                    molWeightCriteria.Alias = criteriaTableData.Alias;
+                    molWeightCriteria.Id = criteriaTableData.FieldId;
+                    molWeightCriteria.Visible = criteriaTableData.Visible;
+                    resultsCriteriaTable.Criterias.Add(molWeightCriteria);
+                }
+
+                if (isStructureColumn && criteriaTableData.Alias.ToLower().Contains("mol formula"))
+                {
+                    ResultsCriteria.Formula formulaCriteria = new ResultsCriteria.Formula();
+                    formulaCriteria.Alias = criteriaTableData.Alias;
+                    formulaCriteria.Id = criteriaTableData.FieldId;
+                    formulaCriteria.Visible = criteriaTableData.Visible;
+                    resultsCriteriaTable.Criterias.Add(formulaCriteria);
+                }
+            }
+            return resultsCriteria;
         }
 
         /// <summary>
@@ -797,54 +916,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 RecordCount = hitlistBO.HitListInfo.RecordCount
             };
 
-            var resultsCriteria = new ResultsCriteria();
-            foreach (var criteriaTableData in resultsCriteriaTableData)
-            {
-                var isStructureIndex = !string.IsNullOrEmpty(criteriaTableData.IndexType) && criteriaTableData.IndexType.ToUpper() == "CS_CARTRIDGE";
-                var isStructureMimeType = !string.IsNullOrEmpty(criteriaTableData.MimeType) && criteriaTableData.MimeType.ToUpper() == "CHEMICAL_X_CDX";
-                var isStructureColumn = isStructureIndex || isStructureMimeType;
-
-                var resultsCriteriaTable = resultsCriteria.Tables.Find(t => t.Id == criteriaTableData.TableId);
-                if (resultsCriteriaTable == null)
-                {
-                    resultsCriteriaTable = new ResultsCriteria.ResultsCriteriaTable()
-                    {
-                        Id = criteriaTableData.TableId,
-                        Criterias = new List<ResultsCriteria.IResultsCriteriaBase>()
-                    };
-                    resultsCriteria.Tables.Add(resultsCriteriaTable);
-                }
-
-                if (!criteriaTableData.Alias.ToLower().Contains("mol wt") && !criteriaTableData.Alias.ToLower().Contains("mol formula"))
-                {
-                    var field = new ResultsCriteria.Field
-                    {
-                        Id = criteriaTableData.FieldId,
-                        Alias = criteriaTableData.Alias,
-                        Visible = criteriaTableData.Visible
-                    };
-
-                    resultsCriteriaTable.Criterias.Add(field);
-                }
-
-                if (isStructureColumn && criteriaTableData.Alias.ToLower().Contains("mol wt"))
-                {
-                    ResultsCriteria.MolWeight molWeightCriteria = new ResultsCriteria.MolWeight();
-                    molWeightCriteria.Alias = criteriaTableData.Alias;
-                    molWeightCriteria.Id = criteriaTableData.FieldId;
-                    molWeightCriteria.Visible = criteriaTableData.Visible;
-                    resultsCriteriaTable.Criterias.Add(molWeightCriteria);
-                }
-
-                if (isStructureColumn && criteriaTableData.Alias.ToLower().Contains("mol formula"))
-                {
-                    ResultsCriteria.Formula formulaCriteria = new ResultsCriteria.Formula();
-                    formulaCriteria.Alias = criteriaTableData.Alias;
-                    formulaCriteria.Id = criteriaTableData.FieldId;
-                    formulaCriteria.Visible = criteriaTableData.Visible;
-                    resultsCriteriaTable.Criterias.Add(formulaCriteria);
-                }
-            }
+            var resultsCriteria = GetResultsCriteria(resultsCriteriaTableData);
 
             string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
             // CSBR-138818 Replacing <sub> with null while export.
@@ -898,61 +970,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                GenericBO bo = GetGenericBO(temp);
-                COEDataView dataView = new COEDataView();
-                dataView.GetFromXML(AddMolWt(bo.DataView).ToString());
-                dataView.RemoveNonRelationalTables();
-
-                XmlDocument templateCriterias = new XmlDocument();
-                COEExportTemplateBO exportTemplateBo = templateId.HasValue ? COEExportTemplateBO.Get(templateId.Value) : null;
-                if (exportTemplateBo != null && exportTemplateBo.ResultCriteria != null)
-                {
-                    templateCriterias.Load(new StringReader(exportTemplateBo.ResultCriteria.ToString()));
-                }
-
-                var resultsCriteria = new JArray();
-                foreach (var dataViewTable in dataView.Tables)
-                {
-                    foreach (var dataViewField in dataViewTable.Fields)
-                    {
-                        var visible = false;
-                        var fieldAlias = dataViewField.Alias;
-                        string xmlNamespace = "COE";
-                        string xmlNSres = "COE.ResultsCriteria";
-                        XmlNamespaceManager managerRes = new XmlNamespaceManager(new NameTable());
-                        managerRes.AddNamespace(xmlNamespace, xmlNSres);
-                        XmlNode templateFeildNode = templateCriterias.SelectSingleNode("//" + xmlNamespace + ":tables/COE:table/COE:field[@fieldId='" + dataViewField.Id + "']", managerRes);
-
-                        var isStructureIndex = dataViewField.IndexType.ToString().ToUpper() == "CS_CARTRIDGE";
-                        var isStructureMimeType = dataViewField.MimeType.ToString().ToUpper() == "CHEMICAL_X_CDX";
-                        var isStructureColumn = isStructureIndex || isStructureMimeType;
-
-                        if (isStructureColumn && templateId == null)
-                        {
-                            visible = true; // if is default template, structure columns should be selected by default
-                        }
-
-                        if (templateFeildNode != null)
-                        {
-                            visible = true;
-                            if (!isStructureColumn)
-                                fieldAlias = templateFeildNode.Attributes["alias"].Value;
-                        }
-
-                        var key = string.Format("{0}{1}", dataViewField.Id, Regex.Replace(fieldAlias, @"\s", string.Empty)).ToLower();
-                        resultsCriteria.Add(new JObject(
-                            new JProperty("key", key),
-                            new JProperty("tableId", dataViewTable.Id),
-                            new JProperty("tableName", dataViewTable.Alias),
-                            new JProperty("fieldId", dataViewField.Id),
-                            new JProperty("fieldName", fieldAlias),
-                            new JProperty("visible", visible),
-                            new JProperty("indexType", dataViewField.IndexType.ToString()),
-                            new JProperty("mimeType", dataViewField.MimeType.ToString())));
-                    }
-                }
-
-                return resultsCriteria;
+                return GetExportResultsCriteria(temp, templateId);
             });
         }
 
@@ -978,6 +996,169 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 GenericBO bo = GetGenericBO(temp);
                 return GetExportTemplates(bo.DataView.DataViewID);
+            });
+        }
+
+        /// <summary>
+        /// Returns the list of registry records to be printed
+        /// </summary>
+        /// <remarks>Returns the list of registry records for to be printed</remarks>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Unexpected error</response>
+        /// <param name="id">The hit-list ID</param>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <param name="skip">The number of items to skip</param>
+        /// <param name="count">The maximum number of items to return</param>
+        /// <param name="sort">The sorting information</param>
+        /// <param name="highlightSubStructures">The flag indicating if the structures should be highlighted</param>
+        /// <returns>The promise to return a JSON object containing an array of registration records</returns>
+        [HttpGet]
+        [Route(Consts.apiPrefix + "hitlists/{id}/print")]
+        [SwaggerOperation("PrintRecords")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> PrintRecords(int id, bool? temp = null, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
+        {
+            return await CallMethod(() =>
+            {
+                var result = (id > 0) ? GetHitlistRecordsInternal(id, temp, skip, count, sort, highlightSubStructures) : GetRegistryRecordsListView(temp, skip, count, sort, null, null, highlightSubStructures);
+                return result;
+                /* 
+                var rows = result.SelectToken("rows");
+                var printContents = new StringBuilder();
+                printContents.AppendLine("<table width='100%' height='auto'><tr>");
+                foreach (var column in printRecordsColumnData.BaseTableColumns)
+                {
+                    printContents.AppendLine(string.Format("<td>{0}</td>", column.Caption));
+                }
+                foreach (var column in printRecordsColumnData.BatchTableColumns)
+                {
+                    printContents.AppendLine(string.Format("<td>{0}</td>", column.Caption));
+                }
+                printContents.AppendLine("</tr>");
+
+                foreach (JObject row in rows)
+                {
+                    var batchDataSourceCount = row["BatchDataSource"].Count();
+                    printContents.AppendLine("<tr>");
+
+                    foreach (var column in printRecordsColumnData.BaseTableColumns)
+                    {
+                        var field = row[column.DataField];
+                        if (field != null)
+                        {
+                            if (column.DataField == "STATUSID")
+                            {
+                                printContents.AppendLine(string.Format("<td rowspan={0}><div class='center'>", batchDataSourceCount));
+                                printContents.AppendLine(string.Format("<i class='fa fa-lg fa-thumbs-{0}'></i></div></td>", field.ToString().Equals("2") ? "o-up green" : "o-down red"));
+                            }
+                            else if (column.DataField == "Structure" || column.DataField == "STRUCTUREAGGREGATION")
+                            {
+                                printContents.AppendLine(string.Format("<td rowspan={0}><img src='{1}'/></td>", batchDataSourceCount, field.ToString()));
+                            }
+                            else
+                            {
+                                printContents.AppendLine(string.Format("<td rowspan={0}>{1}</td>", batchDataSourceCount, field.ToString()));
+                            }
+                        }
+                    }
+
+                    var rowIndex = 0;
+                    foreach (JObject batchRow in row["BatchDataSource"])
+                    {
+                        if (rowIndex > 0)
+                        {
+                            printContents.AppendLine("<tr>");
+                        }
+                        foreach (var column in printRecordsColumnData.BatchTableColumns)
+                        {
+                            var field = batchRow[column.DataField];
+                            if (field != null)
+                            {
+                                printContents.AppendLine(string.Format("<td>{0}</td>", field.ToString()));
+                            }
+                        }
+                        printContents.AppendLine("</tr>");
+                    }
+                }
+
+                return printContents.ToString();
+                */
+            });
+        }
+
+        /// <summary>
+        /// Return the export templates for the current user
+        /// </summary>
+        /// <response code="200">Successful operation</response>
+        /// <response code="400">Bad request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Unexpected error</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <returns>The promise to return a JSON object containing an array of export templates</returns>
+        [HttpPost]
+        [Route(Consts.apiPrefix + "hitlists/saveExportTemplates")]
+        [SwaggerOperation("GetExportTemplates")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> SaveExportTemplates(int id, ExportTemplateData exportTemplateData, bool? temp = null)
+        {
+            return await CallMethod(() =>
+            {
+                GenericBO bo = GetGenericBO(temp);
+                var exportTemplate = id > 0 ? COEExportTemplateBO.Get(id) : new COEExportTemplateBO();
+                exportTemplate.Name = exportTemplateData.TemplateName;
+                exportTemplate.Description = exportTemplateData.TemplateDescription;
+                exportTemplate.IsPublic = exportTemplateData.IsPublic;
+                exportTemplate.UserName = COEUser.Name;
+                exportTemplate.DataViewId = bo.DataView.DataViewID;
+                exportTemplate.ResultCriteria = GetResultsCriteria(exportTemplateData.ResultsCriteriaTableData);
+                
+                if (id > 0)
+                {
+                    exportTemplate.Update();
+                }
+                else
+                {                    
+                    exportTemplate.Save();
+                    id = exportTemplate.ID;
+                }
+
+                return new ResponseData(id: id);;
+            });
+        }
+
+        /// <summary>
+        /// Deletes an export template
+        /// </summary>
+        /// <remarks>Deletes an export by its ID</remarks>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="404">Not Found</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <param name="id">The ID of the export template to delete</param>
+        /// <returns>The <see cref="ResponseData"/> object containing the ID of deleted export template</returns>
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(404, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        [HttpDelete]
+        [Route(Consts.apiPrefix + "exportTemplates/{id}")]
+        [SwaggerOperation("DeleteExportTemplate")]
+        public async Task<IHttpActionResult> DeleteExportTemplate(int id)
+        {
+            return await CallMethod(() =>
+            {
+                COEExportTemplateBO.Delete(id);
+                return new ResponseData(id: id);
             });
         }
     }

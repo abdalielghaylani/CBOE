@@ -1,7 +1,7 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
-  <command-button testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
+  <command-button *ngIf="isPrintAndExportAvailable" testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
   <div>
-    <reg-search-export *ngIf="!!records.data.hitlistId" [temporary]="temporary" [hitListId]="records.data.hitlistId"></reg-search-export>
+    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="records.data.hitlistId"></reg-search-export>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
     <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
     <command-button *ngIf="!!records.data.hitlistId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
@@ -23,7 +23,7 @@
   </dx-popup>
   <div>
     <div id="divDataGrid">
-      <dx-data-grid [height]="gridHeight" id="grdRecords" noDataText="" [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)"
+      <dx-data-grid [height]="gridHeight" id="grdRecords" noDataText="Sorry your search returned 0 hits." [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)"
         (onInitialized)='onInitialized($event)' (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onRowPrepared)="onRowPrepared($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true"
         [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }" columnAutoWidth=true wordWrapEnabled=true>
         <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>

@@ -20,7 +20,7 @@ import { FormGroupType, prepareFormGroupData, IFormGroup, getExceptionMessage, n
 import * as regSearchTypes from './registry-search.types';
 import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
-import { fetchLimit, apiUrlPrefix, invWideWindowParams } from '../../configuration';
+import { fetchLimit, printAndExportLimit, apiUrlPrefix, invWideWindowParams } from '../../configuration';
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
@@ -28,6 +28,7 @@ import { RegistryActions, RegistrySearchActions } from '../../redux';
 import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings } from '../../redux';
 import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
 import * as dxDialog from 'devextreme/ui/dialog';
+import { forEach } from '@angular/router/src/utils/collection';
 
 declare var jQuery: any;
 
@@ -72,6 +73,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private idField;
   private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
+  private isPrintAndExportAvailable: boolean = false;
 
   constructor(
     private router: Router,
@@ -218,6 +220,7 @@ export class RegRecords implements OnInit, OnDestroy {
         if (ref.records.data.rows.length === ref.records.data.totalCount) {
           ref.records.filterRow.visible = true;
         }
+        ref.isPrintAndExportAvailable = ref.records.data.totalCount <= printAndExportLimit;
         return Promise.resolve(ref.records.getFetchedRows());
       }
     });
@@ -510,104 +513,115 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private printRecords() {
-
-    let printContents: string;
-    let popupWin;
-
-    printContents = '<table width="100%" height="auto"><tr>';
-    this.viewGroupsColumns.baseTableColumns.forEach(c => {
-      if (c.visible) {
-        printContents += `<td>${c.caption}</td>`;
-      }
-    });
-    this.viewGroupsColumns.batchTableColumns.forEach(c => {
-      if (c.visible) {
-        printContents += `<td>${c.caption}</td>`;
-      }
-    });
-    printContents += '</tr>';
-
-    this.records.data.rows.forEach(row => {
-      let structureImage: any;
-      if (row.TEMPBATCHID) {
-        let image = document.getElementById(`image${row.TEMPBATCHID}`);
-        if (image && image.attributes && image.attributes.getNamedItem('src')) {
-          structureImage = image.attributes.getNamedItem('src').nodeValue;
-        } else {
-          structureImage = this.defaultPrintStructureImage;
-        }
-      } else if (row.REGID) {
-        let image = document.getElementById(`image${row.REGID}`);
-        if (image && image.attributes && image.attributes.getNamedItem('src')) {
-          structureImage = image.attributes.getNamedItem('src').nodeValue;
-        } else {
-          structureImage = this.defaultPrintStructureImage;
-        }
-      }
-      printContents += '<tr>';
-      this.viewGroupsColumns.baseTableColumns.forEach(c => {
-        if (c.visible) {
-          let field = row[c.dataField];
-          if (c.caption === 'Approved') {
-            printContents += `<td rowspan=${row.BatchDataSource.length}><div class="center">
-            <i class="fa fa-lg fa-thumbs-${(field === RegistryStatus.Approved) ? 'o-up green' : 'o-down red'}"></i></div></td>`;
-          } else if (c.dataField === 'Structure' || c.dataField === 'STRUCTUREAGGREGATION') {
-            printContents += `<td rowspan=${row.BatchDataSource.length}><img src="${structureImage}" /></td>`;
-          } else {
-            printContents += `<td rowspan=${row.BatchDataSource.length}>${(field) ? field : ''}</td>`;
+    let url = `${apiUrlPrefix}hitlists/${this.records.data.hitlistId}/print`;
+    let params = '';
+    if (this.temporary) { params += '?temp=true'; }
+    params += `${params ? '&' : '?'}count=${printAndExportLimit}`;
+    if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; } 
+    params += `&highlightSubStructures=${this.ngRedux.getState().registrysearch.highLightSubstructure}`;
+    url += params;
+    this.http.get(url).toPromise()
+      .then(res => {
+        let rows = res.json().rows;        
+        let printContents: string;
+        printContents = '<table width="100%" height="auto"><tr>';
+        this.viewGroupsColumns.baseTableColumns.forEach(c => {
+          if (c.visible) {
+            printContents += `<td>${c.caption}</td>`;
           }
-        }
-      });
-      let rowIndex = 0;
-      row.BatchDataSource.forEach(batchRow => {
-        if (rowIndex > 0) {
-          printContents += '<tr>';
-        }
+        });
         this.viewGroupsColumns.batchTableColumns.forEach(c => {
           if (c.visible) {
-            let field = batchRow[c.dataField];
-            printContents += `<td >${(field) ? field : ''}</td>`;
+            printContents += `<td>${c.caption}</td>`;
           }
         });
         printContents += '</tr>';
+        rows.forEach(row => {
+          printContents += '<tr>';
+          this.viewGroupsColumns.baseTableColumns.forEach(c => {
+            if (c.visible) {
+              let field = row[c.dataField];
+              if (c.caption === 'Approved') {
+                printContents += `<td rowspan=${row.BatchDataSource.length}><div class="center">
+                <i class="fa fa-lg fa-thumbs-${(field === RegistryStatus.Approved) ? 'o-up green' : 'o-down red'}"></i></div></td>`;
+              } else if (c.dataField === 'Structure' || c.dataField === 'STRUCTUREAGGREGATION') {
+                let structureImage = this.defaultPrintStructureImage;
+                printContents += `<td rowspan=${row.BatchDataSource.length}><img src="${structureImage}" /></td>`;
+              } else if (c.dataType && c.dataType === 'date') {
+                let date = new Date(field);
+                printContents += `<td rowspan=${row.BatchDataSource.length}>
+                ${(field) ? `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}` : ''}</td>`;
+              } else if (c.dataType && c.dataType === 'boolean') {
+                printContents += `<td rowspan=${row.BatchDataSource.length}><div class="center">
+                <i class="fa fa-${(field === 'T') ? 'check-' : ''}square-o"></i></div></td>`;
+              } else {
+                printContents += `<td rowspan=${row.BatchDataSource.length}>${(field) ? field : ''}</td>`;
+              }
+            }
+          });
+          let rowIndex = 0;
+          row.BatchDataSource.forEach(batchRow => {
+            if (rowIndex > 0) {
+              printContents += '<tr>';
+            }
+            this.viewGroupsColumns.batchTableColumns.forEach(c => {
+              if (c.visible) {
+                let field = batchRow[c.dataField];
+                if (c.dataType && c.dataType === 'date') {
+                  let date = new Date(field);
+                  printContents += `<td>${(field) ? date.toDateString() : ''}</td>`;
+                } else if (c.dataType && c.dataType === 'boolean') {
+                  printContents += `<td><div class="center">
+                  <i class="fa fa-${(field === 'T') ? 'check-' : ''}square-o"></i></div></td>`;
+                } else {
+                  printContents += `<td >${(field) ? field : ''}</td>`;
+                }
+              }
+            });
+            printContents += '</tr>';
+          });
+        });
+        
+        let popupWin;    
+        popupWin = window.open('', '_blank', 'top=0,left=0,height=500,width=auto');
+        popupWin.document.open();
+        popupWin.document.write(`<html>
+            <head>
+              <title>Print table</title>
+              <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
+              <style>
+              table, tr, td 
+              {
+                  border:solid 1px #f0f0f0;
+                  font-size: 12px;
+                  font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
+                  white-space: nowrap;
+                  border-spacing: 0px;
+              }
+              img {
+                max-width: 100px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+              }
+              .center {
+                text-align: center;
+              }
+              .green {
+                color: #58a618 !important;
+              }
+              .red {
+                color: #b71234 !important;
+              }
+              </style>
+            </head>
+        <body onload="window.print();window.close();">${printContents}</body>
+          </html>`);
+        popupWin.document.close();
+      })
+      .catch(error => {
+        
       });
-    });
-
-    popupWin = window.open('', '_blank', 'top=0,left=0,height=500,width=auto');
-    popupWin.document.open();
-    popupWin.document.write(`<html>
-        <head>
-          <title>Print table</title>
-          <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
-          <style>
-          table, tr, td 
-          {
-              border:solid 1px #f0f0f0;
-              font-size: 12px;
-              font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
-              white-space: nowrap;
-              border-spacing: 0px;
-          }
-          img {
-            max-width: 100px;
-            margin-left: auto;
-            margin-right: auto;
-            display: block;
-          }
-          .center {
-            text-align: center;
-          }
-          .green {
-            color: #58a618 !important;
-          }
-          .red {
-            color: #b71234 !important;
-          }
-          </style>
-        </head>
-    <body onload="window.print();window.close();">${printContents}</body>
-      </html>`);
-    popupWin.document.close();
   }
 
   private get isSessionValid(): boolean {
