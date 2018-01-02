@@ -14,7 +14,6 @@ import { IAppState, CSystemSettings } from '../../../../redux';
 export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   private gridHeight: string;
-  private invHandler = new RegInvContainerHandler();
   @Input() invContainersVM: any[] = [];
   private systemSettings: CSystemSettings;
   private columns: any[] = [];
@@ -24,7 +23,10 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
     private elementRef: ElementRef,
     private ngRedux: NgRedux<IAppState>
   ) {
-    let showRequestFromContainer = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).showRequestFromContainer;
+    let lookups = this.ngRedux.getState().session.lookups;
+    let showRequestFromContainer = new CSystemSettings(lookups.systemSettings).showRequestFromContainer;
+    let showRequestFromBatch = lookups.disabledControls.filter((i) => i.id === `RequestFromBatchURL`).length === 0
+      && new CSystemSettings(lookups.systemSettings).showRequestFromBatch;
     this.columns = [{
       dataField: 'id',
       caption: 'ID',
@@ -57,6 +59,14 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
       caption: 'Reg Number',
       dataType: 'string',
       allowEditing: false
+    }, {
+      dataField: '',
+      caption: 'Request from Batch',
+      dataType: 'string',
+      alignment: 'center',
+      cellTemplate: 'batchRequestCellTemplate',
+      allowEditing: false,
+      visible: showRequestFromBatch
     }, {
       dataField: '',
       caption: 'Request from Container',
@@ -117,10 +127,12 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
   }
 
   private viewContainerDetails(d) {
-    this.invHandler.openContainerPopup(d.data.idUrl.split('\"')[1], null);
+    let invHandler = new RegInvContainerHandler();
+    invHandler.openContainerPopup(d.data.idUrl.split('\"')[1], null);
   }
 
-  private requestFromContainer(d) {
-    this.invHandler.openContainerPopup(d.data.requestFromContainerURL, null);
+  private openRequestForm(url) {
+    let invHandler = new RegInvContainerHandler();
+    invHandler.openContainerPopup(url, null);
   }
 };

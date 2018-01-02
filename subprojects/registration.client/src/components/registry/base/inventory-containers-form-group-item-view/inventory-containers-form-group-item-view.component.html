@@ -11,7 +11,10 @@
       <div class="dx-link" (click)="viewContainerDetails(data)"><strong>{{data.value}}</strong></div>
     </div>
     <div *dxTemplate="let data of 'containerRequestCellTemplate'">
-      <i (click)="requestFromContainer(data)" class="fa fa-flask fa-lg dx-link" aria-hidden="true"></i>
+      <i (click)="openRequestForm(data.data.requestFromContainerURL)" class="fa fa-flask fa-lg dx-link" aria-hidden="true"></i>
+    </div>
+    <div *dxTemplate="let data of 'batchRequestCellTemplate'">
+      <i (click)="openRequestForm(data.data.requestFromBatchURL)" class="fa fa-flask fa-lg dx-link" aria-hidden="true"></i>
     </div>
   </dx-data-grid>
 </div>

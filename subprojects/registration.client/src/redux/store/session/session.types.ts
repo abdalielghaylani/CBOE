@@ -120,6 +120,16 @@ export class CSystemSettings {
     return setting.value === 'True';
   }
 
+  public get showRequestMaterial(): boolean {
+    let setting: ISettingData = this.getSetting('Inventory', 'ShowRequestMaterial');
+    return setting.value === 'True';
+  }
+
+  public get showRequestFromBatch(): boolean {
+    let setting: ISettingData = this.getSetting('Inventory', 'ShowRequestFromBatch');
+    return setting.value === 'True';
+  }
+
   public get invNewContainerURL(): string {
     let setting: ISettingData = this.getSetting('Inventory', 'NewContainerURL');
     return setting.value ? setting.value : '';

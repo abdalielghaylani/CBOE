@@ -34,6 +34,8 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   private createContainerButtonEnabled: boolean = false;
   private selectedBatchId: number;
   private loadingVisible: boolean = false;
+  private invHandler = new RegInvContainerHandler();
+  private showRequestMaterialButton: boolean = false;
 
   constructor(private ngRedux: NgRedux<IAppState>,
     private http: HttpService,
@@ -45,6 +47,10 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     if (this.viewModel && this.viewConfig.subArray != null && this.viewModel.BatchList && this.viewConfig.subArray.length > 0) {
       this.selectedBatchId = Number(this.viewModel.BatchList.Batch[0].BatchID);
     }
+    let lookups = this.ngRedux.getState().session.lookups;
+    this.showRequestMaterialButton = lookups.disabledControls.filter((i) => i.id === `ReqMaterial`).length === 0
+      && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).showRequestMaterial
+      && (this.batchContainers && (this.batchContainers.length > 0));
   }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
@@ -289,5 +295,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   private get batchContainersEnabled(): boolean {
     return this.batchCommandsEnabled && this.invContainers && this.invContainers.batchContainers && this.batchContainers.length > 0 ? true : false;
+  }
+
+  requestMaterial() {
+    this.invHandler.openContainerPopup(this.batchContainers[this.batchContainers.length - 1].requestURL +  `&RequestType=R`, null);
   }
 };
