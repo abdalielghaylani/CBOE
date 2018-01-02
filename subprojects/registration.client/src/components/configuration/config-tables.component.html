@@ -24,7 +24,7 @@
   <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
   <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='add'" (onClick)="addConfigData($event)" iconName="plus"
     title="Add {{configTable.tableName}}"></command-button>
-  <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='edit'" (onClick)="saveConfigData($event)" iconName="plus"
+  <command-button testid="close-button" *ngIf="configTable.window.viewIndex==='edit'" (onClick)="saveConfigData($event)" iconName="floppy-o"
     title="Save {{configTable.tableName}}"></command-button>
   <reg-settings-page-header [isMenu]="false">{{configTable.window.title}}</reg-settings-page-header>
   <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
