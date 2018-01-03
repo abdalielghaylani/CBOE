@@ -49,6 +49,7 @@ export class RegConfigTables extends RegConfigBaseComponent {
           .subscribe((r => {
             this.tableId = tableId;
             this.configTable = new CConfigTable(this.tableId, this.tableName(), r.json());
+            if (this.tableId === 'VW_SEQUENCE') { this.configTable.columns.forEach((i) => i.alignment = 'center'); }
             this.dataSource = this.createCustomStore();
             this.gridHeight = this.getGridHeight();
             this.changeDetector.markForCheck();

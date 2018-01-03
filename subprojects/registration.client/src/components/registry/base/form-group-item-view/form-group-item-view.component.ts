@@ -49,8 +49,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     }
     let lookups = this.ngRedux.getState().session.lookups;
     this.showRequestMaterialButton = lookups.disabledControls.filter((i) => i.id === `ReqMaterial`).length === 0
-      && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).showRequestMaterial
-      && (this.batchContainers && (this.batchContainers.length > 0));
+      && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).showRequestMaterial;
   }
 
   private getFormElementContainer(f: ICoeForm, mode: string): ICoeFormMode {
