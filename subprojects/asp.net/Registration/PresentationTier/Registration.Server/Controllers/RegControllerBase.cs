@@ -542,7 +542,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("temporary", temp),
                 new JProperty("hitlistId", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ? bo.CurrentHitList.HitListID : 0),
                 new JProperty("startIndex", skip.HasValue ? Math.Max(skip.Value, 0) : 0),
-                new JProperty("totalCount", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ? bo.CurrentHitList.CurrentRecordCount : bo.DatabaseRecordCount),
+                new JProperty("totalCount", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ?
+                    (data.Count != bo.CurrentHitList.CurrentRecordCount) ? data.Count : bo.CurrentHitList.CurrentRecordCount : bo.DatabaseRecordCount),
                 new JProperty("rows", data)
             );
         }
