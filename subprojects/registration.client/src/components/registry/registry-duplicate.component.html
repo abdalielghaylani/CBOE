@@ -54,7 +54,7 @@
     <reg-header testid="templates-heading" id="templates-heading" isMenu="false">
       Registry Record:{{currentRecord.REGNUMBER}}
     </reg-header>
-    <dx-scroll-view id="detailScrollView" [height]="gridHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
+    <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
       <span class="form-inline">
         <reg-record-detail-base [id]="currentRecord.ID" [template]="false" [temporary]="false" displayMode="view" [activated]="true"></reg-record-detail-base>
       </span>
