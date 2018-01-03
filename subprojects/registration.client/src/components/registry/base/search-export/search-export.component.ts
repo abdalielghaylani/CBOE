@@ -14,6 +14,7 @@ import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, g
   notify, notifyError, notifyException, notifySuccess } from '../../../../common';
 import { IAppState } from '../../../../redux';
 import DxForm from 'devextreme/ui/form';
+import { RequestOptionsArgs, RequestOptions, ResponseContentType } from '@angular/http';
 
 @Component({
   selector: 'reg-search-export',
@@ -284,7 +285,8 @@ export class RegSearchExport implements OnInit, OnDestroy {
         }
       });      
 
-      this.http.post(url, data).toPromise().then(res => {
+      let options = new RequestOptions({ responseType: ResponseContentType.ArrayBuffer });
+      this.http.post(url, data, options).toPromise().then(res => {
         let filename = res.headers.get('x-filename');
         let contentType = res.headers.get('content-type');
         let linkElement = document.createElement('a');
@@ -293,8 +295,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
           let blob = new Blob([res.arrayBuffer()], { type: type });         
           let urlFile = window.URL.createObjectURL(blob);
           linkElement.setAttribute('href', urlFile);
-          linkElement.setAttribute('download', filename);
-          linkElement.setAttribute('charset', '');
+          linkElement.setAttribute('download', filename);        
           let clickEvent = new MouseEvent('click', {
             'view': window,
             'bubbles': true,
