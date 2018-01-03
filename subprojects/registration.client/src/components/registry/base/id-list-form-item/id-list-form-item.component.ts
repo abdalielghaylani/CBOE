@@ -7,6 +7,7 @@ import { IAppState } from '../../../../redux';
 @Component({
   selector: 'reg-id-list-form-item-template',
   template: dataGridFormItemTemplate,
+  styles: [require('../registry-base.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

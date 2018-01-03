@@ -8,6 +8,7 @@ export const dataGridFormItemTemplate = require('./data-grid-form-item.component
 @Component({
   selector: 'reg-data-grid-form-item-template',
   template: dataGridFormItemTemplate,
+  styles: [require('../common.css')],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

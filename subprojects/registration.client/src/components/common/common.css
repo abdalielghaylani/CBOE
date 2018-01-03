@@ -9,3 +9,7 @@
 .structure-column {
   max-height: 50px;
 }
+
+.dx-invalid-message > .dx-overlay-content {
+  position: fixed !important;
+}
