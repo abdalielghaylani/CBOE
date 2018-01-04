@@ -855,16 +855,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             CheckAuthentication();
             var formGroup = GetFormGroup(temp);
-            var hitlistBO = GetHitlistBO(id);
+
+            PagingInfo pagingInfo = new PagingInfo();
+            if (id > 0)
+            {
+                var hitlistBO = GetHitlistBO(id);
+                pagingInfo.HitListID = hitlistBO.HitListID;
+                pagingInfo.RecordCount = hitlistBO.HitListInfo.RecordCount;
+            }
+            else
+            {
+                pagingInfo.RecordCount = 1000;
+            }
 
             var coex = new COEExport();
-
-            var pagingInfo = new PagingInfo()
-            {
-                HitListID = hitlistBO.HitListID,
-                RecordCount = hitlistBO.HitListInfo.RecordCount
-            };
-
             var resultsCriteria = GetResultsCriteria(resultsCriteriaTableData);
 
             string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
@@ -883,7 +887,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     var httpResponseMessage = new HttpResponseMessage();
                     httpResponseMessage.Content = new ByteArrayContent(stream.ToArray());
-                    httpResponseMessage.Content.Headers.Add("x-filename", string.Format("Exported{0}HitsFromDV{1}.sdf", hitlistBO.HitListInfo.RecordCount, formGroup.Id));
+                    httpResponseMessage.Content.Headers.Add("x-filename", string.Format("Exported{0}HitsFromDV{1}.sdf", pagingInfo.RecordCount, formGroup.Id));
                     httpResponseMessage.Content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("chemical/x-mdl-sdfile");
                     httpResponseMessage.Content.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("attachment");
                     httpResponseMessage.Content.Headers.ContentDisposition.FileName = "ExportedSDFfile.sdf";

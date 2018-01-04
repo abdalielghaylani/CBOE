@@ -15,6 +15,7 @@ import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, g
 import { IAppState } from '../../../../redux';
 import DxForm from 'devextreme/ui/form';
 import { RequestOptionsArgs, RequestOptions, ResponseContentType } from '@angular/http';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'reg-search-export',
@@ -293,15 +294,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
         try {
           let type = `${contentType}; charset=UTF-8`;
           let blob = new Blob([res.arrayBuffer()], { type: type });         
-          let urlFile = window.URL.createObjectURL(blob);
-          linkElement.setAttribute('href', urlFile);
-          linkElement.setAttribute('download', filename);        
-          let clickEvent = new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': false
-          });
-          linkElement.dispatchEvent(clickEvent);
+          FileSaver.saveAs(blob, filename);
         } catch (ex) {
           
         }
