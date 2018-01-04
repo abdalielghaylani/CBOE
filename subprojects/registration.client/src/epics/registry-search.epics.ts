@@ -13,6 +13,7 @@ import { notify, notifySuccess } from '../common';
 import { HttpService } from '../services';
 import { IPayloadAction, RegistrySearchActions, RegistryActions, SessionActions, IGridPullAction } from '../redux';
 import { IAppState, IHitlistData, IHitlistRetrieveInfo, IQueryData } from '../redux';
+import { HitlistType } from '../redux/store/registry/registry-search.types';
 
 @Injectable()
 export class RegistrySearchEpics {
@@ -56,7 +57,7 @@ export class RegistrySearchEpics {
       .mergeMap(({ payload }) => {
         return this.http.put(`${apiUrlPrefix}hitlists/${payload.data.hitlistId}${ payload.temporary ? '?temp=true' : ''}`, payload.data)
           .map(result => {
-            notifySuccess('The selected hitlist was updated successfully!', 5000);
+            notifySuccess(`The selected hitlist was ${payload.data.hitlistType === HitlistType.SAVED ? 'saved' : 'updated'} successfully!`, 5000);
             return RegistrySearchActions.openHitlistsAction(payload.temporary);
           })
           .catch(error => Observable.of(RegistrySearchActions.updateHitlistErrorAction()));
