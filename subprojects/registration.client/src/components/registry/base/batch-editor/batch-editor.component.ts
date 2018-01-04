@@ -23,6 +23,7 @@ import * as registryUtils from '../../registry.utils';
 export class RegBatchEditor implements OnChanges {
   @Input() viewModel: IBatch[] = [];
   private currentBatch: CBatch;
+  private errorMessages;
   @Input() viewConfig: CViewGroupContainer;
   @Output() onEdit = new EventEmitter<any>();
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
@@ -72,9 +73,11 @@ export class RegBatchEditor implements OnChanges {
       }
     });
     this.formData = {};
+    this.errorMessages = [];
     validItems.forEach(i => {
       this.formData[i.dataField] = undefined;
     });
+    this.changeDetector.markForCheck();
   }
 
   protected onValueUpdated(e) {
@@ -93,6 +96,7 @@ export class RegBatchEditor implements OnChanges {
         }
       }
     });
+    this.validate();
   }
 
   private getDataSource(dataSource: string, subIndex: number): any {
@@ -103,6 +107,7 @@ export class RegBatchEditor implements OnChanges {
   }
 
   protected showForm(e) {
+    this.update();
     this.currentBatch = this.viewConfig.subArray[this.viewConfig.subIndex];
     this.getValidItems().forEach(item => {
       let value = this.viewModel[this.viewConfig.subIndex].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
@@ -145,6 +150,14 @@ export class RegBatchEditor implements OnChanges {
 
   validate() {
     let result = validationEngine.validateGroup('vg');
+    this.errorMessages = [];
+    if (result.brokenRules) {
+      result.brokenRules.forEach(element => {
+        if (element.validator.errorMessage) {
+          this.errorMessages.push(element.validator.errorMessage);
+        }
+      });
+    }
     return result;
   }
 

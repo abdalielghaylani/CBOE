@@ -23,6 +23,7 @@ import * as registryUtils from '../../registry.utils';
 export class RegBatchCreator implements OnChanges, OnDestroy {
   @Input() viewModel: IBatch[] = [];
   private regRecord: CRegistryRecord;
+  private errorMessages;
   @Input() viewConfig: CViewGroupContainer;
   @Output() onCreated = new EventEmitter<any>();
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
@@ -98,9 +99,11 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
       }
     });
     this.formData = {};
+    this.errorMessages = [];
     validItems.forEach(i => {
       this.formData[i.dataField] = undefined;
     });
+    this.changeDetector.markForCheck();
   }
 
   protected onValueUpdated(e) {
@@ -119,6 +122,7 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
         }
       }
     });
+    this.validate();
   }
 
   private getDataSource(dataSource: string, subIndex: number): any {
@@ -155,6 +159,14 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
 
   validate() {
     let result = validationEngine.validateGroup('vg');
+    this.errorMessages = [];
+    if (result.brokenRules) {
+      result.brokenRules.forEach(element => {
+        if (element.validator.errorMessage) {
+          this.errorMessages.push(element.validator.errorMessage);
+        }
+      });
+    }
     return result;
   }
 

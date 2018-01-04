@@ -1,9 +1,20 @@
-<command-button id="add-batch-command" testid="add-batch-command" (onClick)="showForm($event)" iconName="plus" title="Add Batch" [pullRight]="false"></command-button>
+<command-button id="add-batch-command" testid="add-batch-command" (onClick)="showForm($event)" iconName="plus" title="Add Batch"
+  [pullRight]="false"></command-button>
 <div class="absolute">
   <dx-popup showCloseButton=false [fullScreen]="false" width="900" height="auto" title="Add Batch" [shading]="true" [closeOnOutsideClick]="true"
     contentTemplate="contentTemplate" [(visible)]="formVisible">
     <div *dxTemplate="let data of 'contentTemplate'">
-      <reg-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="true" [editMode]="true" [colCount]="colCount"></reg-form-view>
+      <reg-alert qaid="qa-alert" class="text-left" testid="alert-error" status='error' [hidden]="errorMessages.length<=0">
+        <div style="padding-left:15px;">
+          <strong>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;One or more entries failed to validate!</strong>
+          <ol style="font-size:13px;">
+            <li *ngFor="let msg of errorMessages">{{msg}}</li>
+          </ol>
+        </div>
+      </reg-alert>
+      <reg-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="true"
+        [editMode]="true" [colCount]="colCount"></reg-form-view>
       <command-button testid="add-batch-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel"></command-button>
       <command-button testid="add-batch-add-button" (onClick)="createBatch($event)" iconName="plus" title="Add"></command-button>
       <div style="height:32px"></div>
