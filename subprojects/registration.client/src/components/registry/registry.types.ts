@@ -27,6 +27,9 @@ export class CRecords implements IRecords {
       this.data.totalCount = d.totalCount;
       this.data.rows = this.data.rows.concat(d.rows);
     }
+    if (d.rows.length === 0 && this.data.totalCount !== this.data.rows.length) {
+      this.data.totalCount = this.data.rows.length;
+    }
   }
   getFetchedRows() {
     return this.data.rows;
