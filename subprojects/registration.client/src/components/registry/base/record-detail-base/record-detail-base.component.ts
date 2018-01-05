@@ -281,11 +281,12 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     }
     let recordDoc = this.getUpdatedRecord();
     if (!recordDoc) {
-      return;
+      return true;
     }
     this.recordDoc = recordDoc;
     this.actions.saveRecord(
       this.saveRecordData(true));
+    return true;
   }
 
   public prepareRegistryRecord() {
