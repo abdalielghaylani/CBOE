@@ -25,7 +25,8 @@ export class RegistrySearchEpics {
       this.handleDeleteHitlist,
       this.handleUpdateHitlist,
       this.handleRetrieveHitlist,
-      this.handleSearchRecords
+      this.handleSearchRecords,
+      this.handleSaveMarkedHitlist
     )(action$, store);
   }
 
@@ -102,4 +103,18 @@ export class RegistrySearchEpics {
           .catch(error => Observable.of(RegistrySearchActions.searchRecordsErrorAction(error)));
       });
   }
+
+  private handleSaveMarkedHitlist: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: IHitlistData }>>) => {
+    return action$.filter(({ type }) => type === RegistrySearchActions.SAVE_MARKED_HITLIST)
+      .mergeMap(({ payload }) => {
+        let url: string = `${apiUrlPrefix}hitlists/mark/${payload.temporary}`;
+        return this.http.post(url, payload.data)
+          .map(result => {
+            notifySuccess('Marked records saved successfully!', 5000);
+            return RegistrySearchActions.saveMarkedHitlistSuccessAction(result);
+          })
+          .catch(error => Observable.of(RegistrySearchActions.saveMarkedHitlistErrorAction(error)));
+      });
+  }
+
 }

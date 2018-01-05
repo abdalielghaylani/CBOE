@@ -368,6 +368,43 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         /// <summary>
+        /// Creates a hit-list from a marked list
+        /// </summary>
+        /// <response code="200">Successful</response>
+        /// <response code="400">Bad Request</response>
+        /// <response code="401">Unauthorized</response>
+        /// <response code="500">Internal Server Error</response>
+        /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
+        /// <returns>A <see cref="ResponseData" /> object containing the ID of the created hit-list/></returns>
+        [HttpPost]
+        [Route(Consts.apiPrefix + "hitlists/mark/{temp}")]
+        [SwaggerOperation("SaveMarkedHitlist")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> SaveMarkedHitlist(HitlistData hitlistData, bool temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                CheckAuthentication();
+                GenericBO genericBO = GetGenericBO(temp);
+                foreach (int recordId in hitlistData.MarkedHitIDs)
+                {
+                    genericBO.MarkHit(recordId, temp ? "TEMPBATCHID" : "MIXTUREID");
+                }
+
+                COEHitListBO hitlistBO = genericBO.MarkedHitList;
+                hitlistBO.Name = hitlistData.Name;
+                hitlistBO.Description = hitlistData.Description;
+                hitlistBO.HitListType = HitListType.SAVED;
+                hitlistBO.NumHits = hitlistData.MarkedHitIDs.Count;
+                hitlistBO.Save();
+                return new ResponseData(id: hitlistBO.ID);
+            });
+        }
+
+        /// <summary>
         /// Returns all hit-lists.
         /// </summary>
         /// <response code="200">Successful</response>

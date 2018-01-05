@@ -25,7 +25,7 @@ import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
 import { RegistryActions, RegistrySearchActions } from '../../redux';
-import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings } from '../../redux';
+import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings, HitlistType } from '../../redux';
 import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
 import * as dxDialog from 'devextreme/ui/dialog';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -384,8 +384,17 @@ export class RegRecords implements OnInit, OnDestroy {
   private saveHitlist() {
     if (this.hitlistVM.saveQueryVM.data.name && this.hitlistVM.saveQueryVM.data.description) {
       if (this.isMarkedQuery === true) {
+        let selectedhitIds = [];
+        (this.temporary) ? this.selectedRows.forEach(v => { selectedhitIds.push(v.TEMPBATCHID); })
+          : this.selectedRows.forEach(v => { selectedhitIds.push(v.MIXTUREID); });
+        this.actions.saveMarkedHitlist(this.temporary, {
+          name: this.hitlistVM.saveQueryVM.data.name,
+          description: this.hitlistVM.saveQueryVM.data.description,
+          isPublic: this.hitlistVM.saveQueryVM.data.isPublic,
+          hitlistType: HitlistType.MARKED,
+          markedHitIds: selectedhitIds
+        });
         this.hitlistVM.saveQueryVM.clear();
-        notifySuccess('Marked records saved successfully!', 5000);
       } else {
         this.hitlistVM.saveQueryVM.clear();
         notifySuccess('Query saved successfully!', 5000);
