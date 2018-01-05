@@ -77,6 +77,7 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
           .toPromise()
           .then(result => {
             notifySuccess(`The XML- ${key.name} was updated successfully!`, 5000);
+            parent.cancel();
             deferred.resolve(result.json());
           })
           .catch(error => {
@@ -88,7 +89,7 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
     });
   }
 
-  cancel(e) {
+  cancel() {
     this.popup.visible = false;
   }
 
