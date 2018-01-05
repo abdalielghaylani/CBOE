@@ -47,6 +47,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return string.IsNullOrEmpty(message) ? Request.CreateErrorResponse(statusCode, ex) : Request.CreateErrorResponse(statusCode, message, ex);
         }
 
+        /// <summary>
+        /// Gets the database record count
+        /// </summary>
+        /// <param name="bo">GenericBO object</param>
+        /// <returns>database record count</returns>
+        private static int GetDatabaseRecordCount(GenericBO bo)
+        {
+            bo.KeepRecordCountSyncrhonized = true;
+            return bo.DatabaseRecordCount;
+        }
+
         protected static COEHitListBO GetHitlistBO(int id)
         {
             var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
@@ -543,7 +554,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("hitlistId", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ? bo.CurrentHitList.HitListID : 0),
                 new JProperty("startIndex", skip.HasValue ? Math.Max(skip.Value, 0) : 0),
                 new JProperty("totalCount", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ?
-                    (data.Count != bo.CurrentHitList.CurrentRecordCount) ? data.Count : bo.CurrentHitList.CurrentRecordCount : bo.DatabaseRecordCount),
+                    (data.Count != bo.CurrentHitList.CurrentRecordCount) ? data.Count : bo.CurrentHitList.CurrentRecordCount : GetDatabaseRecordCount(bo)),
                 new JProperty("rows", data)
             );
         }
