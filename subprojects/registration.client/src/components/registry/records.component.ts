@@ -231,7 +231,7 @@ export class RegRecords implements OnInit, OnDestroy {
         if (ref.records.data.rows.length === ref.records.data.totalCount) {
           ref.records.filterRow.visible = true;
         }
-        ref.isPrintAndExportAvailable = ref.records.data.totalCount <= printAndExportLimit;
+        ref.isPrintAndExportAvailable = ref.rowSelected || ref.records.data.totalCount <= printAndExportLimit;
         return Promise.resolve(ref.records.getFetchedRows());
       }
     });
@@ -441,6 +441,7 @@ export class RegRecords implements OnInit, OnDestroy {
       this.tempResultRows = this.records.data.rows;
       this.records.data.rows = this.selectedRows;
       this.grid.instance.refresh();
+      this.isPrintAndExportAvailable = true;
     }
   }
 
@@ -525,6 +526,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private showSearchResults() {
     if (this.rowSelected) {
       this.rowSelected = false;
+      this.isPrintAndExportAvailable = false || this.records.data.totalCount <= printAndExportLimit;
       this.selectedRows = this.records.data.rows;
       this.records.data.rows = this.tempResultRows;
       this.tempResultRows = [];
@@ -539,8 +541,13 @@ export class RegRecords implements OnInit, OnDestroy {
     params += `${params ? '&' : '?'}count=${printAndExportLimit}`;
     if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; } 
     params += `&highlightSubStructures=${this.ngRedux.getState().registrysearch.highLightSubstructure}`;
+    
+    let data: number[];
+    if (this.rowSelected) { 
+      data = this.selectedRows.map(r => r[this.idField]);
+    }
     url += params;
-    this.http.get(url).toPromise()
+    this.http.post(url, data).toPromise()
       .then(res => {
         let rows = res.json().rows;        
         let printContents: string;

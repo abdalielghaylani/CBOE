@@ -73,7 +73,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitListName.Substring(0, Math.Min(hitListName.Length, 50));
         }
 
-        private int CreateTempHitlist(QueryData queryData, bool? temp) 
+        private int CreateTempHitlist(QueryData queryData, bool? temp)
         {
             var coeSearch = new COESearch();
             var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
@@ -125,7 +125,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 var additionalCriteriaCount = searchCriteria.Items.Count - 1;
                 var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
-                var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;                
+                var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
                 hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
             }
             hitlistBO.Update();
@@ -292,7 +292,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (templateFeildNode != null)
                     {
                         visible = true;
-                        if (!isStructureColumn) {
+                        if (!isStructureColumn)
+                        {
                             visible = bool.Parse(templateFeildNode.Attributes["visible"].Value);
                             fieldAlias = templateFeildNode.Attributes["alias"].Value;
                         }
@@ -374,6 +375,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Bad Request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Internal Server Error</response>
+        /// <param name="hitlistData">The hit-list information</param>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>A <see cref="ResponseData" /> object containing the ID of the created hit-list/></returns>
         [HttpPost]
@@ -753,7 +755,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         break;
                 }
                 string hitListDescription = string.Format("{0} {1} {2}", hitlistBO1.Description, join, hitlistBO2.Description);
-                newHitlist.Name = string.Format("Search {0}", newHitlist.HitListID); 
+                newHitlist.Name = string.Format("Search {0}", newHitlist.HitListID);
                 newHitlist.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));
                 newHitlist.Update();
                 return GetHitlistRecordsInternal(newHitlist.HitListID, temp);
@@ -907,7 +909,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
             var coex = new COEExport();
             var resultsCriteria = GetResultsCriteria(resultsCriteriaTableData);
-
+       
             string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
             // CSBR-138818 Replacing <sub> with null while export.
             if (exportedData != null)
@@ -998,86 +1000,46 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
         /// <param name="id">The hit-list ID</param>
+        /// <param name="markedIds">The list of ids for marked records</param>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <param name="skip">The number of items to skip</param>
         /// <param name="count">The maximum number of items to return</param>
         /// <param name="sort">The sorting information</param>
         /// <param name="highlightSubStructures">The flag indicating if the structures should be highlighted</param>
         /// <returns>The promise to return a JSON object containing an array of registration records</returns>
-        [HttpGet]
+        [HttpPost]
         [Route(Consts.apiPrefix + "hitlists/{id}/print")]
         [SwaggerOperation("PrintRecords")]
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> PrintRecords(int id, bool? temp = null, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
+        public async Task<IHttpActionResult> PrintRecords(int id, List<int> markedIds, bool? temp = null, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
         {
             return await CallMethod(() =>
             {
-                var result = (id > 0) ? GetHitlistRecordsInternal(id, temp, skip, count, sort, highlightSubStructures) : GetRegistryRecordsListView(temp, skip, count, sort, null, null, highlightSubStructures);
+                SearchCriteria searchCriteria = null;
+                if (markedIds != null && markedIds.Count > 0)
+                {
+                    id = 0;
+                    searchCriteria = new SearchCriteria();
+                    searchCriteria.SearchCriteriaID = 1;
+                    SearchCriteria.SearchCriteriaItem item;
+                    item = new SearchCriteria.SearchCriteriaItem();
+                    SearchCriteria.NumericalCriteria criteria = new SearchCriteria.NumericalCriteria();
+                    criteria.InnerText = string.Join(",", markedIds);
+                    criteria.Operator = SearchCriteria.COEOperators.IN;
+                    criteria.Trim = SearchCriteria.Positions.None;
+                    item.FieldId = (temp.HasValue && temp.Value) ? 100 : 101;
+                    item.TableId = 1;
+                    item.Criterium = criteria;
+                    searchCriteria.Items.Add(item);
+                }
+
+                var result = (id > 0) ?
+                    GetHitlistRecordsInternal(id, temp, skip, count, sort, highlightSubStructures) :
+                    GetRegistryRecordsListView(temp, skip, count, sort, null, searchCriteria, highlightSubStructures);
                 return result;
-                /* 
-                var rows = result.SelectToken("rows");
-                var printContents = new StringBuilder();
-                printContents.AppendLine("<table width='100%' height='auto'><tr>");
-                foreach (var column in printRecordsColumnData.BaseTableColumns)
-                {
-                    printContents.AppendLine(string.Format("<td>{0}</td>", column.Caption));
-                }
-                foreach (var column in printRecordsColumnData.BatchTableColumns)
-                {
-                    printContents.AppendLine(string.Format("<td>{0}</td>", column.Caption));
-                }
-                printContents.AppendLine("</tr>");
-
-                foreach (JObject row in rows)
-                {
-                    var batchDataSourceCount = row["BatchDataSource"].Count();
-                    printContents.AppendLine("<tr>");
-
-                    foreach (var column in printRecordsColumnData.BaseTableColumns)
-                    {
-                        var field = row[column.DataField];
-                        if (field != null)
-                        {
-                            if (column.DataField == "STATUSID")
-                            {
-                                printContents.AppendLine(string.Format("<td rowspan={0}><div class='center'>", batchDataSourceCount));
-                                printContents.AppendLine(string.Format("<i class='fa fa-lg fa-thumbs-{0}'></i></div></td>", field.ToString().Equals("2") ? "o-up green" : "o-down red"));
-                            }
-                            else if (column.DataField == "Structure" || column.DataField == "STRUCTUREAGGREGATION")
-                            {
-                                printContents.AppendLine(string.Format("<td rowspan={0}><img src='{1}'/></td>", batchDataSourceCount, field.ToString()));
-                            }
-                            else
-                            {
-                                printContents.AppendLine(string.Format("<td rowspan={0}>{1}</td>", batchDataSourceCount, field.ToString()));
-                            }
-                        }
-                    }
-
-                    var rowIndex = 0;
-                    foreach (JObject batchRow in row["BatchDataSource"])
-                    {
-                        if (rowIndex > 0)
-                        {
-                            printContents.AppendLine("<tr>");
-                        }
-                        foreach (var column in printRecordsColumnData.BatchTableColumns)
-                        {
-                            var field = batchRow[column.DataField];
-                            if (field != null)
-                            {
-                                printContents.AppendLine(string.Format("<td>{0}</td>", field.ToString()));
-                            }
-                        }
-                        printContents.AppendLine("</tr>");
-                    }
-                }
-
-                return printContents.ToString();
-                */
             });
         }
 
@@ -1088,6 +1050,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="400">Bad request</response>
         /// <response code="401">Unauthorized</response>
         /// <response code="500">Unexpected error</response>
+        /// <param name="id">The template id</param>
+        /// <param name="exportTemplateData">The template information</param>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The promise to return a JSON object containing an array of export templates</returns>
         [HttpPost]
@@ -1109,18 +1073,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 exportTemplate.UserName = COEUser.Name;
                 exportTemplate.DataViewId = bo.DataView.DataViewID;
                 exportTemplate.ResultCriteria = GetResultsCriteria(exportTemplateData.ResultsCriteriaTableData);
-                
+
                 if (id > 0)
                 {
                     exportTemplate.Update();
                 }
                 else
-                {                    
+                {
                     exportTemplate.Save();
                     id = exportTemplate.ID;
                 }
 
-                return new ResponseData(id: id);;
+                return new ResponseData(id: id);
             });
         }
 
