@@ -47,6 +47,7 @@ export class RegRecords implements OnInit, OnDestroy {
   @Input() hitListId: number;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
+  @select(s => s.session.isLoading) isLoading$: Observable<any>;
   private responseData$: Observable<IResponseData>;
   private records$: Observable<IRecords>;
   private viewGroupsColumns: CViewGroupColumns;
@@ -54,6 +55,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private recordsSubscription: Subscription;
   private responseSubscription: Subscription;
   private hitlistSubscription: Subscription;
+  private isLoadingSubscription: Subscription;
   private lookups: ILookupData;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
@@ -101,6 +103,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.viewGroupsColumns = this.lookups
       ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, new CSystemSettings(this.lookups.systemSettings))
       : new CViewGroupColumns();
+    this.isLoadingSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
   }
 
   ngOnDestroy() {
@@ -117,12 +120,20 @@ export class RegRecords implements OnInit, OnDestroy {
       this.registryActions.clearResponse();
       this.responseSubscription.unsubscribe();
     }
+    if (this.isLoadingSubscription) {
+      this.isLoadingSubscription.unsubscribe();
+    }
   }
 
   bulkRegisterStatus(val) {
     if (val) {
       this.router.navigate([`records/bulkreg`]);
     }
+  }
+
+  setProgressBarVisibility(e) {
+    this.loadIndicatorVisible = e;
+    this.changeDetector.markForCheck();
   }
 
   deleteRecordStatus(e: IResponseData) {

@@ -1,5 +1,5 @@
 import { IPayloadAction } from '../../actions';
-import { RegistryActions, RecordDetailActions, SessionActions } from '../../actions';
+import { RegistryActions, RecordDetailActions, RegistrySearchActions, SessionActions } from '../../actions';
 import { ISessionRecord } from './session.types';
 import {
   INITIAL_SESSION_STATE,
@@ -62,6 +62,15 @@ export function sessionReducer(
 
     case RecordDetailActions.SAVE_RECORD_ERROR:
       return handleError(state, action.payload.error);
+
+
+    case RegistrySearchActions.SEARCH_RECORDS:
+      return state.update('isLoading', () => true);
+    case RegistrySearchActions.SEARCH_RECORDS_SUCCESS:
+      return state.update('isLoading', () => false);
+    case RegistrySearchActions.SEARCH_RECORDS_ERROR:
+      handleError(state, action.payload);
+      return state.update('isLoading', () => false);
 
     default:
       return state;
