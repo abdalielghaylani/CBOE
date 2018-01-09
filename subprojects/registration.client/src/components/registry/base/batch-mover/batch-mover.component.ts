@@ -55,6 +55,7 @@ export class RegBatchMover implements OnInit {
   private showForm(e) {
     this.moveBatchData.targetRegNum = '';
     this.moveBatchData.batchId = this.batchId;
+    if (this.moveBatchForm) { this.moveBatchForm.resetValues(); }
     this.formVisible = true;
   }
 
