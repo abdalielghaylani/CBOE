@@ -74,7 +74,6 @@ export class RegConfigSettings extends RegConfigBaseComponent {
           .then(result => {
             let rows: ISettingData[] = result.json();
             parent.ngRedux.getState().session.lookups.systemSettings = rows;
-            rows = rows.filter(r => r.isAdmin === undefined || !r.isAdmin);
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
