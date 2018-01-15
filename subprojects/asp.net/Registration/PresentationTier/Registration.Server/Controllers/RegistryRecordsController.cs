@@ -194,7 +194,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (retVal == null || retVal.Tables.Count == 0)
                 return null;
 
-            InvContainerList invContainerList = InvContainerList.NewInvContainerList(retVal.Tables[0], registryRecord.RegNumber.RegNum);
+            var containerTable = retVal.Tables[0];
+            containerTable.DefaultView.Sort = "CONTAINERID DESC";
+            containerTable = containerTable.DefaultView.ToTable();
+
+            var invContainerList = InvContainerList.NewInvContainerList(containerTable, registryRecord.RegNumber.RegNum);
             JObject invList = new JObject();
 
             var recordList = new JArray();
@@ -205,10 +209,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             invList.Add(new JProperty("containers", recordList));
 
             var batchContainerList = new JArray();
-            foreach (CambridgeSoft.COE.Registration.Services.Types.Batch batch in registryRecord.BatchList)
+            foreach (var batch in registryRecord.BatchList)
             {
                 retVal = GetInvContainers(registryRecord.RegNumber.ID, batch.BatchNumber);
-                invContainerList = InvContainerList.NewInvContainerList(retVal.Tables[0], registryRecord.RegNumber.RegNum);
+                invContainerList = InvContainerList.NewInvContainerList(containerTable, registryRecord.RegNumber.RegNum);
                 foreach (InvContainer container in invContainerList)
                 {
                     batchContainerList.Add(GenerateInvContainerJSON(container));
