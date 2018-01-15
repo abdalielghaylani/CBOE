@@ -72,6 +72,11 @@ export function sessionReducer(
       handleError(state, action.payload);
       return state.update('isLoading', () => false);
 
+    case RegistrySearchActions.RETRIEVE_HITLIST:
+      return state.update('isLoading', () => true);
+    case RegistrySearchActions.RETRIEVE_HITLIST_ERROR:
+      return state.update('isLoading', () => false);
+
     default:
       return state;
   }
