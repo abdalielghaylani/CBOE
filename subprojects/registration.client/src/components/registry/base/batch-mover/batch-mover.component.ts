@@ -68,11 +68,18 @@ export class RegBatchMover implements OnInit {
     if (!res.isValid) {
       return false;
     }
+
+    let dialogResult = dxDialog.confirm(
+      `Are you sure you want to move the batch?`,
+      'Confirm move batch');
+    dialogResult.done(response => {
+      if (response) {
+        this.moveBatchData.batchId = this.batchId;
+        this.onMoved.emit(this.moveBatchData);
+      }
+    });
     // Close popup
     this.formVisible = false;
-    // Inform container
-    this.moveBatchData.batchId = this.batchId;
-    this.onMoved.emit(this.moveBatchData);
   }
 };
 
