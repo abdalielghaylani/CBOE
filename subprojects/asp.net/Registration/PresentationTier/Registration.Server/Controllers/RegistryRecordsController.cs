@@ -271,7 +271,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 if (string.IsNullOrWhiteSpace(inputData.DuplicateCheckOption))
                     inputData.DuplicateCheckOption = "N";
 
-                RegistryRecord regRecord = RegisterRecord(inputData.Data, inputData.DuplicateCheckOption);
+                RegistryRecord regRecord = null;
+                try
+                {
+                    regRecord = RegisterRecord(inputData.Data, inputData.DuplicateCheckOption);
+                }
+                catch (Exception ex)
+                {
+                    throw new RegistrationException(ex.Message.Replace(@"<br />", " "), ex);
+                }
 
                 if (string.IsNullOrWhiteSpace(regRecord.FoundDuplicates))
                 {
