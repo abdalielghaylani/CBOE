@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/toPromise';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { CViewGroup, CViewGroupColumns } from './base';
-import { FormGroupType, prepareFormGroupData, IFormGroup, getExceptionMessage, notify, notifyError, notifySuccess } from '../../common';
+import { FormGroupType, prepareFormGroupData, IFormGroup, getExceptionMessage, notify, notifyError, notifySuccess, notifyException } from '../../common';
 import * as regSearchTypes from './registry-search.types';
 import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
@@ -398,13 +398,23 @@ export class RegRecords implements OnInit, OnDestroy {
         let selectedhitIds = [];
         (this.temporary) ? this.selectedRows.forEach(v => { selectedhitIds.push(v.TEMPBATCHID); })
           : this.selectedRows.forEach(v => { selectedhitIds.push(v.MIXTUREID); });
-        this.actions.saveMarkedHitlist(this.temporary, {
+
+        let url: string = `${apiUrlPrefix}hitlists/mark/${this.temporary}`;
+        this.http.post(url, {
           name: this.hitlistVM.saveQueryVM.data.name,
           description: this.hitlistVM.saveQueryVM.data.description,
           isPublic: this.hitlistVM.saveQueryVM.data.isPublic,
           hitlistType: HitlistType.MARKED,
           markedHitIds: selectedhitIds
-        });
+        })
+          .toPromise()
+          .then(result => {
+            notifySuccess('Marked records saved successfully!', 5000);
+          })
+          .catch(error => {
+            notifyException(`Saving the marked records failed due to a problem`, error, 5000);
+          });
+
         this.hitlistVM.saveQueryVM.clear();
       } else {
         this.hitlistVM.saveQueryVM.clear();

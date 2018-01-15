@@ -24,10 +24,6 @@ export class RegistrySearchActions {
   static SAVE_HITLISTS = 'SAVE_HITLISTS';
   static SAVE_HITLISTS_ERROR = 'SAVE_HITLISTS_ERROR';
   static SEARCH_OPTION_CHANGED = 'SEARCH_OPTION_CHANGED';
-  static SAVE_MARKED_HITLIST = 'SAVE_MARKED_HITLIST';
-  static SAVE_MARKED_HITLIST_SUCCESS = 'SAVE_MARKED_HITLIST_SUCCESS';
-  static SAVE_MARKED_HITLIST_ERROR = 'SAVE_MARKED_HITLIST_ERROR';
-
 
   static searchOptionChangedAction = createAction(RegistrySearchActions.SEARCH_OPTION_CHANGED,
     (highLight: boolean) => ( highLight ));
@@ -54,10 +50,6 @@ export class RegistrySearchActions {
     (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveQueryFormSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_SUCCESS);
   static retrieveQueryFormErrorAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_ERROR);
-  static saveMarkedHitlistAction = createAction(RegistrySearchActions.SAVE_MARKED_HITLIST,
-    (temporary: boolean, data: IHitlistData) => ({ temporary, data }));
-  static saveMarkedHitlistErrorAction = createAction(RegistrySearchActions.SAVE_MARKED_HITLIST_ERROR);
-  static saveMarkedHitlistSuccessAction = createAction(RegistrySearchActions.SAVE_MARKED_HITLIST_SUCCESS);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -105,15 +97,4 @@ export class RegistrySearchActions {
     this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(temporary, data, highlightSubStructures));
   };
 
-  saveMarkedHitlist(temporary: boolean, data: IHitlistData) {
-    this.ngRedux.dispatch(RegistrySearchActions.saveMarkedHitlistAction(temporary, data));
-  };
-
-  saveMarkedHitlistSuccess(data: any[]) {
-    this.ngRedux.dispatch(RegistrySearchActions.saveMarkedHitlistSuccessAction(data));
-  }
-
-  saveMarkedHitlistErrorAction() {
-    this.ngRedux.dispatch(RegistrySearchActions.saveMarkedHitlistErrorAction());
-  }
 }
