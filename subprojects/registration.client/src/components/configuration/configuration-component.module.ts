@@ -21,7 +21,8 @@ import {
   DxListModule,
   DxTagBoxModule,
   DxTextBoxModule,
-  DxValidatorModule
+  DxValidatorModule,
+  DxFileUploaderModule
 } from 'devextreme-angular';
 import { RegCommonComponentModule } from '../common';
 import { RegLayoutComponentModule } from '../layout';
@@ -72,7 +73,8 @@ export * from './validation-type-form-item';
     DxTextBoxModule,
     DxValidatorModule,
     RegCommonComponentModule,
-    RegLayoutComponentModule
+    RegLayoutComponentModule,
+    DxFileUploaderModule
   ],
   declarations: [
     RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,

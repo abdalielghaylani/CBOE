@@ -152,6 +152,9 @@ export class CViewGroup implements IViewGroup {
     } else if (fe.displayInfo.type.endsWith('COECheckBox') ||
       fe.displayInfo.type.endsWith('COECheckBoxReadOnly')) {
       item.template = 'checkBoxTemplate';
+    } else if (fe.displayInfo.type.endsWith('COEListUpload') ||
+      fe.displayInfo.type.endsWith('COEListUploadReadOnly')) {
+      item.template = 'fileUploaderTemplate';
     }
     if (!item.template) {
       item.template = 'textTemplate';

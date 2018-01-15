@@ -22,5 +22,8 @@
   </div>
   <div *dxTemplate="let data of 'checkBoxTemplate'">
     <reg-check-box-form-item-template [editMode]="editMode" [viewModel]="data"></reg-check-box-form-item-template>
+  </div>  
+  <div *dxTemplate="let data of 'fileUploaderTemplate'">
+    <reg-file-uploader-form-item-template [editMode]="editMode" [viewModel]="data"></reg-file-uploader-form-item-template>
   </div>
 </dx-form>

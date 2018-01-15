@@ -21,7 +21,8 @@ import {
   DxListModule,
   DxTagBoxModule,
   DxTextBoxModule,
-  DxValidatorModule
+  DxValidatorModule,
+  DxFileUploaderModule
 } from 'devextreme-angular';
 import { RegCommonModule } from '../../common';
 import { RegServicesModule } from '../../services';
@@ -44,6 +45,7 @@ import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegStructureImageColumnItem } from './structure-image-column-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegTextFormItem } from './text-form-item';
+import { RegFileUploaderFormItem } from './file-uploader-form-item';
 import { CStructureImageService } from './structure-image.service';
 
 export * from './common.types';
@@ -61,6 +63,7 @@ export * from './structure-image-form-item';
 export * from './structure-image-column-item';
 export * from './tag-box-form-item';
 export * from './text-form-item';
+export * from './file-uploader-form-item';
 export * from './chemdraw-web';
 export * from './alert';
 export * from './button';
@@ -93,6 +96,7 @@ export * from './modal';
     DxValidatorModule,
     RegCommonModule,
     RegServicesModule,
+    DxFileUploaderModule
   ],
   declarations: [
     ChemDrawWeb,
@@ -102,7 +106,7 @@ export * from './modal';
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
-    RegStructureImage
+    RegStructureImage, RegFileUploaderFormItem
   ],
   exports: [
     ChemDrawWeb,
@@ -112,7 +116,7 @@ export * from './modal';
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
-    RegStructureImage,
+    RegStructureImage, RegFileUploaderFormItem,
     RegCommonModule, RegServicesModule
   ],
   providers: [

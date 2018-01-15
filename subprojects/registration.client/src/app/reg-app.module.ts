@@ -40,7 +40,8 @@ import {
   DxTextAreaModule,
   DxListModule,
   DxTextBoxModule,
-  DxValidatorModule
+  DxValidatorModule,
+  DxFileUploaderModule
 } from 'devextreme-angular';
 
 @NgModule({
@@ -68,7 +69,8 @@ import {
     DxTextAreaModule,
     DxListModule,
     DxTextBoxModule,
-    DxValidatorModule
+    DxValidatorModule,
+    DxFileUploaderModule
   ],
   declarations: [
     RegApp,

@@ -44,7 +44,8 @@ import {
   DxListModule,
   DxTagBoxModule,
   DxTextBoxModule,
-  DxValidatorModule
+  DxValidatorModule,
+  DxFileUploaderModule
 } from 'devextreme-angular';
 import { RegCommonModule } from '../../../common';
 import { RegCommonComponentModule } from '../../common';
@@ -91,7 +92,8 @@ export * from './url-form-item';
     DxTextBoxModule,
     DxValidatorModule,
     RegCommonModule,
-    RegCommonComponentModule
+    RegCommonComponentModule,
+    DxFileUploaderModule
   ],
   declarations: [
     RegIdListFormItem, RegFragmentsFormItem, RegProjectsFormItem, RegStructureFormItem, RegStructureQueryFormItem, RegStructureQueryOptions,

@@ -80,7 +80,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var formGroups = new JArray();
             var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            foreach (COEFormHelper.COEFormGroups formGroupType in Enum.GetValues(typeof(COEFormHelper.COEFormGroups)))
+            var formGroupTypes = Enum.GetValues(typeof(COEFormHelper.COEFormGroups));
+            foreach (COEFormHelper.COEFormGroups formGroupType in formGroupTypes)
             {
                 if (formGroupType <= COEFormHelper.COEFormGroups.SearchPermanent)
                 {
@@ -112,7 +113,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         private static JArray GetDisabledControls(string appName)
-        {          
+        {
             var disabledControlArray = new JArray();
             var disabledControls = COEPageControlSettings.GetControlListToDisableForCurrentUser(appName);
             string invGroupFieldSettings = GetInvIntegrationGroupFieldSettings(appName);
@@ -154,16 +155,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 ResultPageInfo rpi = new ResultPageInfo(0, 100, 1, 101);
                 DataResult dr = simpleSearch.GetDataPage(rpi, new string[] { "GROUPINGFIELDS.FIELDNAME" });
                 if (dr != null && dr.ResultSet != null)
-                {                    
+                {
                     if (dr.ResultSet.Contains("REG_ID_FK"))
                     {
                         str.Append("ReqMaterial");
                     }
-                        
+
                     if (dr.ResultSet.Contains("BATCH_NUMBER_FK"))
                     {
-                        str.Append("RequestFromBatchURL");                        
-                    }                    
+                        str.Append("RequestFromBatchURL");
+                    }
                 }
             }
             return str.ToString();
