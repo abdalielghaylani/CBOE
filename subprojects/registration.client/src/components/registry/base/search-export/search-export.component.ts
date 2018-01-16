@@ -10,8 +10,10 @@ import { apiUrlPrefix } from '../../../../configuration';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { HttpService } from '../../../../services';
-import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, getExceptionMessage, 
-  notify, notifyError, notifyException, notifySuccess } from '../../../../common';
+import {
+  IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, getExceptionMessage,
+  notify, notifyError, notifyException, notifySuccess
+} from '../../../../common';
 import { IAppState } from '../../../../redux';
 import DxForm from 'devextreme/ui/form';
 import { RequestOptionsArgs, RequestOptions, ResponseContentType } from '@angular/http';
@@ -32,7 +34,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
   private formVisible: boolean = false;
   private selectedRowsKeys: any[] = [];
   private selectedFileType: string = 'SDFFlatFileUncorrelated';
-  private filesType: any[] = [ { displayExpr: 'SDF Flat', valueExpr: 'SDFFlatFileUncorrelated' }, { displayExpr: 'SDF Nested', valueExpr: 'SDFNested' } ];
+  private filesType: any[] = [{ displayExpr: 'SDF Flat', valueExpr: 'SDFFlatFileUncorrelated' }, { displayExpr: 'SDF Nested', valueExpr: 'SDFNested' }];
   private exportTemplates: any[] = [];
   private currentExportTemplate = 0;
   private isAllowUpdatingEnabled: boolean = false;
@@ -80,11 +82,11 @@ export class RegSearchExport implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataSource = this.createCustomStore(this);
-    this.getExportTemplates(); 
+    this.getExportTemplates();
   }
 
   ngOnDestroy() {
-    this.isAllowUpdatingEnabled = true;  
+    this.isAllowUpdatingEnabled = true;
   }
 
   protected showForm(e) {
@@ -104,7 +106,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
 
   private cancelSaveTemplate(e) {
     this.resetTemplateButtons();
-    if (this.currentExportTemplate > 0) {      
+    if (this.currentExportTemplate > 0) {
       this.isEditDeleteTemplateButtonEnabled = true;
       this.changeDetector.markForCheck();
     }
@@ -128,7 +130,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
   protected exportTemplateValueChanged(e) {
     if (this.currentExportTemplate !== e.value) {
       this.resetTemplateButtons();
-      if (e.value > 0) {      
+      if (e.value > 0) {
         this.isEditDeleteTemplateButtonEnabled = true;
         this.changeDetector.markForCheck();
       }
@@ -139,7 +141,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
 
   protected cancel(e) {
     this.isAllowUpdatingEnabled = false;
-    this.formVisible = false;    
+    this.formVisible = false;
   }
 
   onSelectionChanged(e) {
@@ -198,7 +200,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
         this.currentExportTemplate = 0;
         this.exportTemplates = [];
         this.changeDetector.markForCheck();
-        this.getExportTemplates(); 
+        this.getExportTemplates();
         this.createCustomStore(this);
         notifySuccess(`The template was deleted successfully!`, 5000);
       }).bind(this))
@@ -215,9 +217,9 @@ export class RegSearchExport implements OnInit, OnDestroy {
         this.changeDetector.markForCheck();
       });
     })
-    .catch(error => {
-      let message = getExceptionMessage(`The export tempaltes were not retrieved properly due to a problem`, error);
-    });
+      .catch(error => {
+        let message = getExceptionMessage(`The export tempaltes were not retrieved properly due to a problem`, error);
+      });
   }
 
   private saveTemplate(e) {
@@ -270,12 +272,12 @@ export class RegSearchExport implements OnInit, OnDestroy {
         });
     }
   }
-  
+
   protected export(e) {
     this.isAllowUpdatingEnabled = false;
     if (this.selectedRowsKeys.length > 0) {
       let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
-      
+
       let data: any[] = [];
       this.selectedRowsKeys.forEach(key => {
         let field = this.rows.find(r => r.key === key);
@@ -286,9 +288,10 @@ export class RegSearchExport implements OnInit, OnDestroy {
             visible: true,
             indexType: field.indexType,
             mimeType: field.mimeType,
-            alias: field.fieldName });
+            alias: field.fieldName
+          });
         }
-      });      
+      });
 
       let options = new RequestOptions({ responseType: ResponseContentType.ArrayBuffer });
       this.http.post(url, data, options).toPromise().then(res => {
@@ -297,16 +300,16 @@ export class RegSearchExport implements OnInit, OnDestroy {
         let linkElement = document.createElement('a');
         try {
           let type = `${contentType}; charset=UTF-8`;
-          let blob = new Blob([res.arrayBuffer()], { type: type });         
+          let blob = new Blob([res.arrayBuffer()], { type: type });
           FileSaver.saveAs(blob, filename);
         } catch (ex) {
-          
+
         }
         notifySuccess(`The file was exported correctly`, 5000);
       })
-      .catch(error => {
-        notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
-      });
+        .catch(error => {
+          notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
+        });
       this.formVisible = false;
     } else {
       notify(`At least one field is required!`, 'warning', 5000);
@@ -327,7 +330,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
           .toPromise()
           .then(result => {
             let rows = result.json();
-            parent.rows = rows; 
+            parent.rows = rows;
             parent.selectedRowsKeys = [];
             parent.rows.forEach(row => {
               if (row.visible) {
@@ -340,8 +343,8 @@ export class RegSearchExport implements OnInit, OnDestroy {
             let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
             deferred.reject(message);
           });
-          return deferred.promise();
-        },
+        return deferred.promise();
+      },
       update: function (key, values) {
         parent.updatedFields.push({ key: key, name: values });
         parent.isAllowUpdatingEnabled = false;
