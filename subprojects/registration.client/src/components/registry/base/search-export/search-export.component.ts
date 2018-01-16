@@ -221,50 +221,54 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }
 
   private saveTemplate(e) {
-    this.grid.instance.saveEditData();
-    let resultsCriteria: any[] = [];
-    this.rows.forEach(row => {
-      let updatedRow = this.updatedFields.find(r => r.key === `${row.fieldId}${row.fieldName.toLowerCase()}`);
-      resultsCriteria.push({
-        tableId: row.tableId,
-        fieldId: row.fieldId,
-        visible: this.selectedRowsKeys.find(s => s === `${row.fieldId}${row.fieldName.toLowerCase()}`) !== undefined,
-        indexType: row.indexType,
-        mimeType: row.mimeType,
-        alias: (updatedRow) ? updatedRow.name.fieldName : row.fieldName });
-    });
+    let validationResult: any = this.saveTemplateForm.validate();
+    if (validationResult.isValid) {
+      this.grid.instance.saveEditData();
+      let resultsCriteria: any[] = [];
+      this.rows.forEach(row => {
+        let updatedRow = this.updatedFields.find(r => r.key === `${row.fieldId}${row.fieldName.toLowerCase()}`);
+        resultsCriteria.push({
+          tableId: row.tableId,
+          fieldId: row.fieldId,
+          visible: this.selectedRowsKeys.find(s => s === `${row.fieldId}${row.fieldName.toLowerCase()}`) !== undefined,
+          indexType: row.indexType,
+          mimeType: row.mimeType,
+          alias: (updatedRow) ? updatedRow.name.fieldName : row.fieldName
+        });
+      });
 
-    let data = {
-      templateName: this.saveTemplateData.name,
-      templateDescription: this.saveTemplateData.description,
-      isPublic: this.saveTemplateData.isPublic,
-      resultsCriteriaTableData: resultsCriteria
-    };
+      let data = {
+        templateName: this.saveTemplateData.name,
+        templateDescription: this.saveTemplateData.description,
+        isPublic: this.saveTemplateData.isPublic,
+        resultsCriteriaTableData: resultsCriteria
+      };
 
-    let tableName = 'hitlists/saveExportTemplates';
-    let params = `?id=${this.currentExportTemplate}`;
-    if (this.temporary) { params += `&temp=true`; }
-    let apiUrlBase = `${apiUrlPrefix}${tableName}${params}`;
-    this.http.post(apiUrlBase, data)
-    .toPromise()
-    .then(result => {
-      this.currentExportTemplate = result.json().id;
-      this.exportTemplates = [];
-      this.isAllowUpdatingEnabled = false;
-      this.changeDetector.markForCheck();
-      this.resetTemplateButtons();
-      if (this.currentExportTemplate > 0) {      
-        this.isEditDeleteTemplateButtonEnabled = true;
-        this.changeDetector.markForCheck();
-      }
-      this.getExportTemplates(); 
-      this.changeDetector.markForCheck();
-      this.createCustomStore(this);
-      notifySuccess(`The template was saved successfully!`, 5000);
-    })
-    .catch(error => {
-      let message = getExceptionMessage(`The template ${this.currentExportTemplate} was not saved due to a problem`, error);
-    });
+      let tableName = 'hitlists/saveExportTemplates';
+      let params = `?id=${this.currentExportTemplate}`;
+      if (this.temporary) { params += `&temp=true`; }
+      let apiUrlBase = `${apiUrlPrefix}${tableName}${params}`;
+      this.http.post(apiUrlBase, data)
+        .toPromise()
+        .then(result => {
+          this.currentExportTemplate = result.json().id;
+          this.exportTemplates = [];
+          this.isAllowUpdatingEnabled = false;
+          this.changeDetector.markForCheck();
+          this.resetTemplateButtons();
+          if (this.currentExportTemplate > 0) {
+            this.isEditDeleteTemplateButtonEnabled = true;
+            this.changeDetector.markForCheck();
+          }
+          this.getExportTemplates();
+          this.changeDetector.markForCheck();
+          this.createCustomStore(this);
+          notifySuccess(`The template was saved successfully!`, 5000);
+        })
+        .catch(error => {
+          let message = getExceptionMessage(`The template ${this.currentExportTemplate} was not saved due to a problem`, error);
+        });
+    }
   }
   
   protected export(e) {
