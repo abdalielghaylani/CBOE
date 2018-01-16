@@ -220,7 +220,7 @@ export class CViewGroup implements IViewGroup {
 
   private isVisible(fe: IFormElement, displayMode: string, formId: string): boolean {
     if (displayMode === 'query') {
-      return !this.disabledControls.find(dc => dc.id && dc.id === fe.Id && dc.id === formId)
+      return !this.disabledControls.find(dc => dc.id && dc.id === fe.Id && dc.formId === formId)
         && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name && fe.configInfo
         && !fe.displayInfo.type.endsWith('COELabel')
         && !fe.displayInfo.type.endsWith('RegStatusControl')
