@@ -8,7 +8,8 @@ import { select, NgRedux } from '@angular-redux/store';
 
 @Component({
   selector: 'reg-settings-page-header',
-  template: require('./settings-page-header.component.html')
+  template: require('./settings-page-header.component.html'),
+  styles: [require('./config.component.css')]
 })
 export class RegSettingsPageHeader {
   @Input() testid: string;

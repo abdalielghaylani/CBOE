@@ -52,3 +52,9 @@
   font-weight: 500;
   font-size: 16px;
 }
+
+ul#CustomTablesDropDown > li > a > i,
+#SystemBehaviorsDropDown > li > a > i {
+  width: 25px;
+  text-align: center;
+}
