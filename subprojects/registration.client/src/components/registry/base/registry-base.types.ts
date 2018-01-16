@@ -218,13 +218,22 @@ export class CViewGroup implements IViewGroup {
     return !fe.label && (bindingExpression === 'id' || bindingExpression.endsWith('regnum')) && fe.displayInfo.type.endsWith('COETextBoxReadOnly');
   }
 
-  private isVisible(fe: IFormElement): boolean {
-    return !this.disabledControls.find(dc => dc.id && dc.id === fe.Id)
-      && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name && fe.configInfo
-      && !fe.displayInfo.type.endsWith('COELabel')
-      && !fe.displayInfo.type.endsWith('RegStatusControl')
-      && !fe.displayInfo.type.endsWith('COEChemDrawToolbar')
-      && !this.isIdText(fe);
+  private isVisible(fe: IFormElement, displayMode: string, formId: string): boolean {
+    if (displayMode === 'query') {
+      return !this.disabledControls.find(dc => dc.id && dc.id === fe.Id && dc.id === formId)
+        && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name && fe.configInfo
+        && !fe.displayInfo.type.endsWith('COELabel')
+        && !fe.displayInfo.type.endsWith('RegStatusControl')
+        && !fe.displayInfo.type.endsWith('COEChemDrawToolbar')
+        && !this.isIdText(fe);
+    } else {
+      return !this.disabledControls.find(dc => dc.id && dc.id === fe.Id)
+        && fe.displayInfo && fe.displayInfo.visible === 'true' && fe._name && fe.configInfo
+        && !fe.displayInfo.type.endsWith('COELabel')
+        && !fe.displayInfo.type.endsWith('RegStatusControl')
+        && !fe.displayInfo.type.endsWith('COEChemDrawToolbar')
+        && !this.isIdText(fe);
+    }
   }
 
   private fixColSpans(items: any[]): any[] {
@@ -417,8 +426,8 @@ export class CViewGroup implements IViewGroup {
     this.data.forEach(f => {
       let formElementContainer = this.getFormElementContainer(f, displayMode);
       if (formElementContainer && formElementContainer.formElement) {
-        formElementContainer.formElement.forEach(fe => {
-          if (this.isVisible(fe)) {
+        formElementContainer.formElement.forEach((fe) => {
+          if (this.isVisible(fe, displayMode, f._id)) {
             let item: any = {};
             if (fe.label) {
               this.setItemValue(item, 'label', { text: fe.label });
@@ -514,7 +523,7 @@ export class CViewGroup implements IViewGroup {
       let formElementContainer = this.getFormElementContainer(f, 'query');
       if (formElementContainer && formElementContainer.formElement) {
         formElementContainer.formElement.forEach(fe => {
-          if (this.isVisible(fe) && fe.searchCriteriaItem) {
+          if (this.isVisible(fe, 'query', f._id) && fe.searchCriteriaItem) {
             items.push(JSON.parse(JSON.stringify(fe.searchCriteriaItem)));
           }
         });
