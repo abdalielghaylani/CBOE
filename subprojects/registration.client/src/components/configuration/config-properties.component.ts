@@ -230,16 +230,13 @@ export class RegConfigProperties extends RegConfigBaseComponent {
       remove: function (key) {
         let deferred = jQuery.Deferred();
         let id = key[Object.getOwnPropertyNames(key)[0]];
-        parent.showLoadPanel();
         parent.http.delete(`${apiUrlBase}/${id}`)
           .toPromise()
           .then(result => {
-            parent.hideLoadPanel();
             notifySuccess(`The record ${id} of ${tableName} was deleted successfully!`, 5000);
             deferred.resolve(result.json());
           })
           .catch(error => {
-            parent.hideLoadPanel();
             let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
             deferred.reject(message);
           });
