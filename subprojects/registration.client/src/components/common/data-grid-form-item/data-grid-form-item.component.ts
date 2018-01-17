@@ -88,7 +88,7 @@ export class RegDataGridFormItem extends RegBaseFormItem {
       e.component.addRow();
     } else {
       let dialogResult = dxDialog.confirm(
-        `Are you sure you want to continue? Unsaved changes will lost while adding new row.`,
+        `Are you sure you want to continue? Unsaved changes will be lost while adding new row.`,
         'Confirm Add Row');
       dialogResult.done(r => {
         if (r) {
