@@ -18,6 +18,7 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
   private rows: any[] = [];
   private dataSource: CustomStore;
   private popup = { visible: false, title: '', data: '', key: {} };
+  private loadingVisible: boolean = false;
 
   constructor(elementRef: ElementRef, http: HttpService) {
     super(elementRef, http);
@@ -65,6 +66,7 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
       },
 
       update: function (key, values) {
+        parent.loadingVisible = true;
         let deferred = jQuery.Deferred();
         let data = key;
         let newData = values;
@@ -78,11 +80,13 @@ export class RegConfigXmlForms extends RegConfigBaseComponent {
           .then(result => {
             notifySuccess(`The XML- ${key.name} was updated successfully!`, 5000);
             parent.cancel();
+            parent.loadingVisible = false;
             deferred.resolve(result.json());
           })
           .catch(error => {
             let message = getExceptionMessage(`The XML- ${key.name} was not updated due to a problem`, error);
-            deferred.reject(message);
+            parent.loadingVisible = false;
+            deferred.reject(notifyError(message, 5000));
           });
         return deferred.promise();
       }
