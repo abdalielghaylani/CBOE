@@ -55,11 +55,13 @@ export class RegBatchMover implements OnInit {
   private showForm(e) {
     this.moveBatchData.targetRegNum = '';
     this.moveBatchData.batchId = this.batchId;
-    if (this.moveBatchForm) { this.moveBatchForm.resetValues(); }
     this.formVisible = true;
   }
 
   private cancel(e) {
+    if (this.moveBatchForm) {
+      this.moveBatchForm.resetValues();
+    }
     this.formVisible = false;
   }
 
@@ -79,6 +81,9 @@ export class RegBatchMover implements OnInit {
       }
     });
     // Close popup
+    if (this.moveBatchForm) {
+      this.moveBatchForm.resetValues();
+    }
     this.formVisible = false;
   }
 };
