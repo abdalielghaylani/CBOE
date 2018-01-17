@@ -18,6 +18,7 @@ import { IAppState } from '../../../../redux';
 import DxForm from 'devextreme/ui/form';
 import { RequestOptionsArgs, RequestOptions, ResponseContentType } from '@angular/http';
 import * as FileSaver from 'file-saver';
+import * as dxDialog from 'devextreme/ui/dialog';
 
 @Component({
   selector: 'reg-search-export',
@@ -193,20 +194,28 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }
 
   protected deleteTemplate() {
-    let url = `${apiUrlPrefix}exportTemplates/${this.currentExportTemplate}`;
-    this.http.delete(url)
-      .toPromise()
-      .then((result => {
-        this.currentExportTemplate = 0;
-        this.exportTemplates = [];
-        this.changeDetector.markForCheck();
-        this.getExportTemplates();
-        this.createCustomStore(this);
-        notifySuccess(`The template was deleted successfully!`, 5000);
-      }).bind(this))
-      .catch(error => {
-        let message = getExceptionMessage(`The template ${this.currentExportTemplate} was not deleted due to a problem`, error);
-      });
+    let dialogResult = dxDialog.confirm(
+      `Are you sure you want to continue?`,
+      'Confirm Delete template');
+    dialogResult.done(r => {
+      if (r) {
+        let url = `${apiUrlPrefix}exportTemplates/${this.currentExportTemplate}`;
+        this.http.delete(url)
+          .toPromise()
+          .then((result => {
+            this.currentExportTemplate = 0;
+            this.exportTemplates = [];
+            this.changeDetector.markForCheck();
+            this.getExportTemplates();
+            this.createCustomStore(this);
+            notifySuccess(`The template was deleted successfully!`, 5000);
+          }).bind(this))
+          .catch(error => {
+            let message = getExceptionMessage(`The template ${this.currentExportTemplate} was not deleted due to a problem`, error);
+          });
+      }
+    }
+    );
   }
 
   protected getExportTemplates() {
