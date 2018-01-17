@@ -60,6 +60,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
   private selectedRows: any[] = [];
+  private markedRecords: any[] = [];
   private tempResultRows: any[];
   private hitlistVM: regSearchTypes.CQueryManagementVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
   private hitlistData$: Observable<ISearchRecords>;
@@ -447,10 +448,12 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private showMarked() {
+    this.markedRecords = [];
     if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
       this.rowSelected = true;
       this.tempResultRows = this.records.data.rows;
       this.records.data.rows = this.selectedRows;
+      this.selectedRows.map(r => { this.markedRecords.push(r[this.idField]); });
       this.grid.instance.refresh();
       this.isPrintAndExportAvailable = true;
     }

@@ -30,6 +30,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid;
   @Input() temporary: boolean;
   @Input() hitListId: number;
+  @Input() markedRecords: any[];
   private rows: any[] = [];
   private dataSource: CustomStore;
   private formVisible: boolean = false;
@@ -287,11 +288,14 @@ export class RegSearchExport implements OnInit, OnDestroy {
     if (this.selectedRowsKeys.length > 0) {
       let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
 
-      let data: any[] = [];
+      let data = {
+        resultsCriteriaTables: [],
+        records: (this.markedRecords) ? this.markedRecords : [],
+      };
       this.selectedRowsKeys.forEach(key => {
         let field = this.rows.find(r => r.key === key);
         if (field) {
-          data.push({
+          data.resultsCriteriaTables.push({
             tableId: field.tableId,
             fieldId: field.fieldId,
             visible: true,

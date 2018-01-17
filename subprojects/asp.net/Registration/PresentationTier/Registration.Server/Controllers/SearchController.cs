@@ -75,7 +75,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         private int CreateTempHitlist(QueryData queryData, bool? temp)
         {
-            var coeSearch = new COESearch();
             var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
             var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
             var searchCriteria = new SearchCriteria();
@@ -117,6 +116,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 throw new RegistrationException("The search criteria is invalid", ex);
             }
 
+            var hitlistInfo = CreateTempHitlist(dataView, searchCriteria, structureName);
+            return hitlistInfo.HitListID;
+        }
+
+        private HitListInfo CreateTempHitlist(COEDataView dataView, SearchCriteria searchCriteria, string structureName = null)
+        {
+            var coeSearch = new COESearch();
             var hitlistInfo = coeSearch.GetHitList(searchCriteria, dataView);
             var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
             hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
@@ -129,8 +135,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
             }
             hitlistBO.Update();
-
-            return hitlistInfo.HitListID;
+            return hitlistInfo;
         }
 
         private COEDataView AddMolWt(COEDataView dataView)
@@ -879,7 +884,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="500">Unexpected error</response>
         /// <param name="id">The ID of the hit-list to be exported to the SD File</param>
         /// <param name="exportType">The export type expected</param>
-        /// <param name="resultsCriteriaTableData">The selected fields to be included in the export</param>
+        /// <param name="inputData">The data related to the Result Criteria and the Marked Records</param>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The exported file for the matching hit-list</returns>
         [HttpPost]
@@ -890,7 +895,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public HttpResponseMessage ExportHitlist(int id, string exportType, List<ResultsCriteriaTableData> resultsCriteriaTableData, bool? temp = null)
+        public HttpResponseMessage ExportHitlist(int id, string exportType, HitlistExportData inputData, bool? temp = null)
         {
             CheckAuthentication();
             var formGroup = GetFormGroup(temp);
@@ -902,14 +907,37 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 pagingInfo.HitListID = hitlistBO.HitListID;
                 pagingInfo.RecordCount = hitlistBO.HitListInfo.RecordCount;
             }
+            else if (inputData.Records != null && inputData.Records.Count > 0)
+            {
+                var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
+                var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
+                SearchCriteria searchCriteria = null;
+                searchCriteria = new SearchCriteria();
+                searchCriteria.SearchCriteriaID = 1;
+                SearchCriteria.SearchCriteriaItem item;
+                item = new SearchCriteria.SearchCriteriaItem();
+                SearchCriteria.NumericalCriteria criteria = new SearchCriteria.NumericalCriteria();
+                criteria.InnerText = string.Join(",", inputData.Records);
+                criteria.Operator = SearchCriteria.COEOperators.IN;
+                criteria.Trim = SearchCriteria.Positions.None;
+                item.FieldId = (temp.HasValue && temp.Value) ? 100 : 101;
+                item.TableId = 1;
+                item.Criterium = criteria;
+                searchCriteria.Items.Add(item);
+
+                var tempHitlist = CreateTempHitlist(dataView, searchCriteria);
+
+                pagingInfo.HitListID = tempHitlist.HitListID;
+                pagingInfo.RecordCount = tempHitlist.RecordCount;
+            }
             else
             {
                 pagingInfo.RecordCount = 1000;
             }
 
             var coex = new COEExport();
-            var resultsCriteria = GetResultsCriteria(resultsCriteriaTableData);
-       
+            var resultsCriteria = GetResultsCriteria(inputData.ResultsCriteriaTables);
+
             string exportedData = coex.GetData(resultsCriteria, pagingInfo, formGroup.Id, exportType);
             // CSBR-138818 Replacing <sub> with null while export.
             if (exportedData != null)
