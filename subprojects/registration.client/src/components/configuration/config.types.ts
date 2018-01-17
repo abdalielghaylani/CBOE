@@ -128,6 +128,7 @@ export class CConfigTable {
       case 'VW_PICKLIST':
         this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
         this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
+        this.setColumnConfig('PICKLISTDOMAIN', 'caption', 'PICKLISTDOMAIN');
         break;
       case 'VW_PICKLISTDOMAIN':
         this.setColumnConfig('LOCKED', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
