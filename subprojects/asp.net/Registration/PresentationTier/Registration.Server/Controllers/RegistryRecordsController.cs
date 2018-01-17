@@ -77,7 +77,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (registryRecord.ID == 0 || !string.IsNullOrEmpty(registryRecord.RedBoxWarning))
             {
                 var message = !string.IsNullOrEmpty(registryRecord.RedBoxWarning) ? registryRecord.RedBoxWarning : "An unexpected error happened while saving the registry record!";
-                throw new RegistrationException(message);
+                throw new RegistrationException(message.Replace(@"<br />", " "));
             }
         }
 
