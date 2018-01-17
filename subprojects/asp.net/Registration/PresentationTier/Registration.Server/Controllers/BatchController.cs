@@ -53,6 +53,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Unable to update the internal record.";
                     registryRecord.BatchList.UpdateFromXmlEx(xmlDoc.FirstChild);
 
+                    // Fix for CBOE-6440 Add Batch: FW, MW and Percent Active values are not calculated correctly for newly added batches (SBI-True)
+                    registryRecord.FixBatchesFragmentsEx();
+
                     if (registryRecord.BatchList.Count > 0)
                     {
                         CambridgeSoft.COE.Registration.Services.Types.Batch firstBatch = registryRecord.BatchList[0];
