@@ -101,6 +101,10 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
     }
   }
 
+  private onCDDResize(event: any) {
+    setTimeout( () => { this.cdd.fitToContainer(); }, 500); // Timing given to auto center structure
+  }
+
   private onClick(e) {
     let mode = +e.element[0].id.slice(-1);
     if (mode !== this.mode) {
