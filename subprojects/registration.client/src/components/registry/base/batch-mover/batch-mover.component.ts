@@ -79,11 +79,12 @@ export class RegBatchMover implements OnInit {
         this.moveBatchData.batchId = this.batchId;
         this.onMoved.emit(this.moveBatchData);
       }
+      if (this.moveBatchForm) {
+        this.moveBatchForm.resetValues();
+        this.moveBatchForm.updateData('batchId', this.batchId);
+      }
     });
     // Close popup
-    if (this.moveBatchForm) {
-      this.moveBatchForm.resetValues();
-    }
     this.formVisible = false;
   }
 };
