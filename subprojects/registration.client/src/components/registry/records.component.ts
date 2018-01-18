@@ -553,17 +553,17 @@ export class RegRecords implements OnInit, OnDestroy {
     let params = '';
     if (this.temporary) { params += '?temp=true'; }
     params += `${params ? '&' : '?'}count=${printAndExportLimit}`;
-    if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; } 
+    if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; }
     params += `&highlightSubStructures=${this.ngRedux.getState().registrysearch.highLightSubstructure}`;
-    
+
     let data: number[];
-    if (this.rowSelected) { 
+    if (this.rowSelected) {
       data = this.selectedRows.map(r => r[this.idField]);
     }
     url += params;
     this.http.post(url, data).toPromise()
       .then(res => {
-        let rows = res.json().rows;        
+        let rows = res.json().rows;
         let printContents: string;
         printContents = '<table width="100%" height="auto"><tr>';
         this.viewGroupsColumns.baseTableColumns.forEach(c => {
@@ -622,8 +622,8 @@ export class RegRecords implements OnInit, OnDestroy {
             printContents += '</tr>';
           });
         });
-        
-        let popupWin;    
+
+        let popupWin;
         popupWin = window.open('', '_blank', 'top=0,left=0,height=500,width=auto');
         popupWin.document.open();
         popupWin.document.write(`<html>
@@ -661,7 +661,7 @@ export class RegRecords implements OnInit, OnDestroy {
         popupWin.document.close();
       })
       .catch(error => {
-        
+
       });
   }
 
@@ -729,6 +729,7 @@ export class RegRecords implements OnInit, OnDestroy {
         notify(`Approving for some records failed: ${failed.join(', ')}`, `warning`, 5000);
       }
       this.grid.instance.refresh();
+      this.loadIndicatorVisible = false;
       return;
     }
     // Otherwise, shift ids
@@ -759,13 +760,14 @@ export class RegRecords implements OnInit, OnDestroy {
   private approveMarked() {
     if (this.selectedRows && this.selectedRows.length > 0) {
       let dialogResult = dxDialog.confirm(
-        `Alert: Are you sure you want to approve the marked registries?`,
+        `Are you sure you want to approve the marked registries?`,
         'Confirm Approval');
       dialogResult.done(res => {
         if (res) {
           let ids: number[] = this.selectedRows.map(r => r[this.idField]);
           let succeeded: number[] = [];
           let failed: number[] = [];
+          this.loadIndicatorVisible = true;
           this.approveRows(ids, failed, succeeded);
         }
       });
