@@ -21,6 +21,10 @@
   <command-button *ngIf="backButtonEnabled" testid="back-button" (onClick)="back()" iconName="arrow-circle-left" title="Back"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
+    <span class="fa-stack fa" *ngIf="approveButtonEnabled||cancelApprovalButtonEnabled">
+      <i class="fa fa-circle fa-stack-2x {{approveButtonEnabled? 'red' : 'green'}}"></i>
+      <i class="fa fa-thumbs-o-{{approveButtonEnabled? 'down' : 'up'}} fa-stack-1x fa-inverse"></i>
+    </span>
   </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
