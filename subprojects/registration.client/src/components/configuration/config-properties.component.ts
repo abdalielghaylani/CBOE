@@ -52,7 +52,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
   cancel() {
     this.configProperties.window = { title: 'Manage Data Properties', viewIndex: 'list' };
     this.configProperties.clearFormData();
-    this.grid._results[0].instance.cancelEditData();
+    this.grids._results[0].instance.cancelEditData();
   }
 
   showValidationRule(d: any) {
@@ -72,7 +72,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
       this.showLoadPanel();
       this.dataSource.update(val, []).done(result => {
         this.hideLoadPanel();
-        this.grid._results[0].instance.refresh();
+        this.grids._results[0].instance.refresh();
       }).fail(err => {
         this.hideLoadPanel();
         notifyError(err, 5000);
@@ -86,7 +86,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
       this.showLoadPanel();
       this.dataSource.insert(this.configProperties.formData).done(result => {
         this.hideLoadPanel();
-        this.grid._results[0].instance.refresh();
+        this.grids._results[0].instance.refresh();
       }).fail(err => {
         this.hideLoadPanel();
         notifyError(err, 5000);
@@ -101,7 +101,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
     if (this.configProperties.validate(valid.brokenRules)) {
       this.dataSource.update(this.configProperties.formData, []).done(result => {
         this.hideLoadPanel();
-        this.grid._results[0].instance.refresh();
+        this.grids._results[0].instance.refresh();
       }).fail(err => {
         this.hideLoadPanel();
         notifyError(err, 5000);
@@ -130,7 +130,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
       }
       this.dataSource.update(this.configProperties.formData, []).then((result) => {
         this.configProperties.clearFormDataValidations();
-        this.grid._results[1].instance.refresh();
+        this.grids._results[1].instance.refresh();
       });
     }
   }

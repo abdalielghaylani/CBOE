@@ -1,4 +1,4 @@
-import { Component, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ElementRef, ViewChild, ViewChildren } from '@angular/core';
 import { select, NgRedux } from '@angular-redux/store';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
@@ -13,6 +13,7 @@ import { IAppState, ILookupData } from '../../../redux';
 })
 export class RegConfigBaseComponent implements OnDestroy {
   @ViewChild(DxDataGridComponent) grid;
+  @ViewChildren(DxDataGridComponent) grids;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   protected ngUnsubscribe: Subject<void> = new Subject<void>();
   protected elementRef: ElementRef;
