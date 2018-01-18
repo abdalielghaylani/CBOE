@@ -309,7 +309,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       if (this.isNewRecord) {
         if (this.recordDetailView.displayMode !== 'view') {
           return;
-        }     
+        }
       }
       this.revision = new Date().getTime();
       this.update();
@@ -318,9 +318,14 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   private showSaveTemplate(e) {
     if (this.template) {
-      if (confirm('Do you want to overwrite the saved template?')) {
-        this.updateTemplate();
-      }
+      let dialogResult = dxDialog.confirm(
+        `Do you want to overwrite the saved template?`,
+        'Confirm overwrite template');
+      dialogResult.done(response => {
+        if (response) {
+          this.updateTemplate();
+        }
+      });
     } else {
       this.saveTemplatePopupHeight = !!navigator.userAgent.match(/firefox/i) ? 238 : 220;
       this.saveTemplatePopupVisible = true;
