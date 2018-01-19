@@ -74,6 +74,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }];
   private saveTemplateData: IShareableObject = new CShareableObject('', '', false);
   private saveTemplateForm: DxForm;
+  private loadIndicatorVisible: boolean = false;
 
   constructor(
     private http: HttpService,
@@ -285,7 +286,9 @@ export class RegSearchExport implements OnInit, OnDestroy {
 
   protected export(e) {
     this.isAllowUpdatingEnabled = false;
+    
     if (this.selectedRowsKeys.length > 0) {
+      this.loadIndicatorVisible = true;
       let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
 
       let data = {
@@ -318,11 +321,14 @@ export class RegSearchExport implements OnInit, OnDestroy {
         } catch (ex) {
 
         }
+        this.clearLoadindicator();
         notifySuccess(`The file was exported correctly`, 5000);
       })
         .catch(error => {
+          this.clearLoadindicator();
           notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
         });
+
       this.formVisible = false;
     } else {
       notify(`At least one field is required!`, 'warning', 5000);
@@ -365,4 +371,10 @@ export class RegSearchExport implements OnInit, OnDestroy {
       }
     });
   }
+
+  clearLoadindicator() {
+    this.loadIndicatorVisible = false;
+    this.changeDetector.markForCheck();
+  }
+
 };

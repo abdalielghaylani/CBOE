@@ -38,4 +38,6 @@
       <command-button testid="search-export-export-button" (onClick)="export($event)" iconName="floppy-o" title="Export" [pullRight]="true"></command-button>
     </div>
   </dx-popup>
+  <dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
+  </dx-load-panel>
 </div>

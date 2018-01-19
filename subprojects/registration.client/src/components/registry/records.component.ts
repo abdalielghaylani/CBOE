@@ -549,6 +549,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private printRecords() {
+    this.loadIndicatorVisible = true;
     let url = `${apiUrlPrefix}hitlists/${this.records.data.hitlistId}/print`;
     let params = '';
     if (this.temporary) { params += '?temp=true'; }
@@ -659,9 +660,10 @@ export class RegRecords implements OnInit, OnDestroy {
         <body onload="window.print();window.close();">${printContents}</body>
           </html>`);
         popupWin.document.close();
+        this.setProgressBarVisibility(false);
       })
       .catch(error => {
-
+        this.setProgressBarVisibility(false);
       });
   }
 
