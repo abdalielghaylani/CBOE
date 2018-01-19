@@ -317,6 +317,8 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   public clear() {
+    this.validationError = { isvalid: true, errorMessages: [] };
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));
+    this.changeDetector.markForCheck();
   }
 }
