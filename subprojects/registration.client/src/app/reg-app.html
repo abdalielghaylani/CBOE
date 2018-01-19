@@ -17,7 +17,7 @@
           <li><a [href]="helpRedirectLink" target="_blank">User Guide</a></li>
           <li><a [href]="helpRedirectLink" target="_blank">Admin Guide</a></li>
         </ul>
-        <span class="username black text-relaxed" (click)="openAboutPopup()">About</span>
+        <span class="username black text-relaxed cursor-pointer" (click)="openAboutPopup()">About</span>
     </li>
     <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="sessionActions.logoutUser()"><a data-toggle="tooltip" title="Logout"><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>
   </reg-navigator-items>

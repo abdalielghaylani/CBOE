@@ -222,6 +222,10 @@
   padding-bottom: 5px;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 /* Following Fixes are For IE11 */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
