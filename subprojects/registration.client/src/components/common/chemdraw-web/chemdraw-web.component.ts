@@ -43,7 +43,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   protected update() {
     if (this.cdd) {
       this.cdd.setViewOnly(!this.editMode);
-      this.cdd.fitToContainer();
+      this.CDDResize({});
     } else {
       this.activate();
     }
@@ -56,7 +56,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   protected onCddInit(cdd) {
     this.cdd = cdd;
     this.creatingCdd = false;
-    cdd.fitToContainer();
+    this.CDDResize({});
     cdd.setViewOnly(!this.editMode);
     if (this.value) {
       cdd.loadCDXML(this.value);
@@ -112,5 +112,10 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
 
   public toString(): string {
     return this.getValue();
+  }
+
+  private CDDResize(event: any) {
+    setTimeout( () => { this.cdd.fitToContainer(); }, 500);
+    // Timing given to auto center structure once loading stabilises
   }
 };
