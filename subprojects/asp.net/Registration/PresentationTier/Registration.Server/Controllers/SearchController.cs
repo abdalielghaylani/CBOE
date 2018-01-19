@@ -132,7 +132,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var additionalCriteriaCount = searchCriteria.Items.Count - 1;
                 var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
                 var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
-                hitlistBO.Description = string.Format("Search for {0}{1}", structureName, moreDesc);
+                var hitListDescription = string.Format("Search for {0}{1}", structureName, moreDesc);
+                hitlistBO.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));                
             }
             hitlistBO.Update();
             return hitlistInfo;
