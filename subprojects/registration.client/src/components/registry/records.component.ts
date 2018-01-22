@@ -438,7 +438,6 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private headerClicked(e) {
-    this.loadIndicatorVisible = true;
     this.currentIndex = 0;
   }
 
