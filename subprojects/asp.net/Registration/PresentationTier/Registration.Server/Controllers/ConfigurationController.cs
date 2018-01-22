@@ -769,11 +769,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     throw new RegistrationException("Invalid addin name");
                 var configurationBO = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
                 bool found = false;
+                int index = 0;
                 foreach (AddIn addin in configurationBO.AddInList)
                 {
-                    if (!addin.FriendlyName.Equals(name)) continue;
-                    found = true;
-                    configurationBO.AddInList.Remove(addin);
+                    if (!addin.FriendlyName.Equals(name))
+                    {
+                        index++;
+                        continue;
+                    }
+                    found = true;                  
+                    configurationBO.AddInList.RemoveAt(index);
                     configurationBO.Save();
                     break;
                 }
