@@ -21,7 +21,7 @@
   <command-button *ngIf="backButtonEnabled" testid="back-button" (onClick)="back()" iconName="arrow-circle-left" title="Back"></command-button>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
-    <span class="fa-stack fa" *ngIf="approveButtonEnabled||cancelApprovalButtonEnabled">
+    <span class="fa-stack fa" *ngIf="approvalIconEnabled">
       <i class="fa fa-circle fa-stack-2x {{approveButtonEnabled? 'red' : 'green'}}"></i>
       <i class="fa fa-thumbs-o-{{approveButtonEnabled? 'down' : 'up'}} fa-stack-1x fa-inverse"></i>
     </span>

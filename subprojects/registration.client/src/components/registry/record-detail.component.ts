@@ -146,12 +146,22 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && statusId === RegistryStatus.Approved
       && PrivilegeUtils.hasCancelApprovalPrivilege(userPrivileges);
 
-    this.editButtonEnabled = !this.isNewRecord && !this.cancelApprovalButtonEnabled && !editMode && canEdit;
+    let enableEditIfNoteApproved: boolean = true;
+    if (ss.isApprovalsEnabled) {
+      enableEditIfNoteApproved = statusId === RegistryStatus.Approved ? false : true;
+    }
+
+    this.editButtonEnabled = !this.isNewRecord
+      && enableEditIfNoteApproved
+      && !editMode && canEdit;
     this.saveButtonEnabled = (this.isNewRecord && !this.cancelApprovalButtonEnabled) || editMode;
     this.cancelButtonEnabled = editMode && !this.isNewRecord;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
-    this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !editMode))
-      && (!this.approvalsEnabled || this.cancelApprovalButtonEnabled);
+    if (ss.isApprovalsEnabled) {
+      canRegister = (statusId === RegistryStatus.Approved);
+    }
+    this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !editMode));
+
     this.approveButtonEnabled = !editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
 
     this.deleteButtonEnabled = !this.isNewRecord
@@ -408,6 +418,17 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private get isNewRecord(): boolean {
     return this.id < 0 || this.template;
   }
+
+  private get approvalIconEnabled(): boolean {
+    let lookups = this.ngRedux.getState().session.lookups;
+    if (!lookups) {
+      return false;
+    }
+
+    let ss = new CSystemSettings(this.getLookup('systemSettings'));
+    return this.temporary && ss.isApprovalsEnabled;
+  }
+
 
   private get saveButtonTitle(): string {
     return this.isNewRecord ? 'Submit' : 'Save';
