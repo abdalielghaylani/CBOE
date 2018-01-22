@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace PerkinElmer.COE.Registration.Server.Models
 {
@@ -30,7 +30,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public string TemplateDescription { get; set; }
 
         /// <summary>
-        /// Gets or sets IsPublic
+        /// Gets or sets a value indicating whether it is Public
         /// </summary>
         [JsonProperty(PropertyName = "isPublic")]
         public bool IsPublic { get; set; }

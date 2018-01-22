@@ -138,7 +138,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             else
             {
                 if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase)
-                    && (columnName.Equals("EXT_SQL_FILTER")))
+                    && columnName.Equals("EXT_SQL_FILTER"))
                     column.FieldValue = HttpUtility.HtmlEncode(columnValue);
                 else
                     column.FieldValue = columnValue;

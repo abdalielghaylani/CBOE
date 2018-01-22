@@ -23,7 +23,6 @@ using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
 using Resources;
 using CambridgeSoft.COE.Framework.COESearchService;
 
-
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]
