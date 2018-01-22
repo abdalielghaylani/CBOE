@@ -10,6 +10,7 @@ import { RegBaseFormItem, IStructureData } from '../../../common';
 })
 export class RegUrlFormItem extends RegBaseFormItem {
   protected label: string;
+  private displayValue: string;
   protected clientEvent: boolean = false;
 
   protected update() {
@@ -25,6 +26,14 @@ export class RegUrlFormItem extends RegBaseFormItem {
       this.clientEvent = true;
     }
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
+    this.displayValue = this.formatDisplay();
+  }
+
+  formatDisplay() {
+    if (this.value && this.value.length > 40) {
+      return this.value.substring(0, 40) + '..';
+    }
+    return '';
   }
 
   protected onClick(e) {
