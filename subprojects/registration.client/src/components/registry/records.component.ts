@@ -666,13 +666,14 @@ export class RegRecords implements OnInit, OnDestroy {
               </html>`);
             let is_chrome = Boolean(popupWin.chrome);
             if (is_chrome) {
-              setTimeout(function() { // wait until all resources loaded 
+              setTimeout(() => {
                 popupWin.document.close(); // necessary for IE >= 10
                 popupWin.focus(); // necessary for IE >= 10
                 popupWin.print();
-                popupWin.close();
+                popupWin.close();     
                 this.setProgressBarVisibility(false);
               }, 1000);
+              
             } else {
               popupWin.document.close(); // necessary for IE >= 10
               popupWin.focus(); // necessary for IE >= 10     
