@@ -426,7 +426,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     }
 
     let ss = new CSystemSettings(this.getLookup('systemSettings'));
-    return this.temporary && ss.isApprovalsEnabled;
+    return this.temporary && this.displayMode === 'view' && ss.isApprovalsEnabled;
   }
 
 
