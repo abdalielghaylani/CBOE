@@ -47,6 +47,7 @@ import { RegTagBoxFormItem } from './tag-box-form-item';
 import { RegTextFormItem } from './text-form-item';
 import { RegFileUploaderFormItem } from './file-uploader-form-item';
 import { CStructureImageService } from './structure-image.service';
+import { CStructureImagePrintService } from './structure-image-print.service';
 
 export * from './common.types';
 export * from './base-column-item';
@@ -120,7 +121,8 @@ export * from './modal';
     RegCommonModule, RegServicesModule
   ],
   providers: [
-    CStructureImageService
+    CStructureImageService,
+    CStructureImagePrintService
   ]
 })
 export class RegCommonComponentModule { }
