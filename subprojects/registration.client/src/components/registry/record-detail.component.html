@@ -26,7 +26,7 @@
       <i class="fa fa-thumbs-o-{{approveButtonEnabled? 'down' : 'up'}} fa-stack-1x fa-inverse"></i>
     </span>
   </reg-header>
-  <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByContent="true" scrollByThumb="true" showScrollbar="true">
+  <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
       <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true" [invIntegrationEnabled]="createContainerButtonEnabled" [invContainers]="inventoryContainersList"
         [useCurrent]="useCurrent" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
