@@ -135,12 +135,7 @@ export class RegDataGridFormItem extends RegBaseFormItem {
   }
 
   protected save(e) {
-    if (e.data && e.data.inputText) {
-      e.component.saveEditData();
-    } else {
-      let name = this.getName();
-      dxDialog.alert('Unable to save. You must enter values in ' + name + ' field', 'Alert');
-    }
+    e.component.saveEditData();
   }
 
   protected cancel(e) {
