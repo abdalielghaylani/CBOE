@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+  <searchCriteriaItem fieldid="7" id="0" tableid="1" searchLookupByID="false">
+    <structureCriteria negate="NO" implementation="CsCartridge" format="base64cdx" absoluteHitsRel="NO" relativeTetStereo="NO" reactionCenter="YES" fullSearch="NO" tautometer="NO" fragmentsOverlap="NO" permitExtraneousFragmentsIfRXN="NO" permitExtraneousFragments="NO" doubleBondStereo="YES" hitAnyChargeHetero="YES" identity="NO" hitAnyChargeCarbon="YES" similar="NO" ignoreImplicitHydrogens="NO" simThreshold="100" tetrahedralStereo="YES" query8000="" cartridgeParams="" />
+  </searchCriteriaItem>
+</searchCriteria>

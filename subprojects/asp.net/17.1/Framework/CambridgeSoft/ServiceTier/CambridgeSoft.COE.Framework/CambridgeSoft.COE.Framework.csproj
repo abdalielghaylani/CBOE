@@ -1,0 +1,1341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4CF61F5B-2D46-4136-B277-5080A04B395B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CambridgeSoft.COE.Framework</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.Framework</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Framework.snk</AssemblyOriginatorKeyFile>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>http://localhost/CambridgeSoft.COE.Framework/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <DocumentationFile>bin\Debug\CambridgeSoft.COE.Framework.XML</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\CambridgeSoft.COE.Framework.XML</DocumentationFile>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>bin\Debug\CambridgeSoft.COE.Framework.XML</DocumentationFile>
+    <WarningLevel>0</WarningLevel>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\CambridgeSoft.COE.Framework.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AJAXExtensionsToolbox, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\AJAXExtensionsToolbox.dll</HintPath>
+    </Reference>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v10.2.Core, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Charts.v10.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Data.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Utils.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Web.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraBars.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2.UI, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2.Web, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraEditors.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraEditors.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraNavBar.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraPivotGrid.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraPrinting.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Extensions, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Service, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Web, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraRichEdit.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraTreeList.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Shared.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.Shared.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Documents.Excel.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.Documents.Excel.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.Misc.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Shared.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.Shared.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebCalcManager.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebCalcManager.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebChart.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebChart.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebListbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebListbar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebNavigator.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebTab.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebTab.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebToolbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebToolbar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebCombo.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebCombo.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDataInput.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebDataInput.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDateChooser.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebDateChooser.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebHtmlEditor.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebHtmlEditor.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebNavBar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebNavBar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSchedule.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebSchedule.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebScheduleDataProvider.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebScheduleDataProvider.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSpellChecker.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ChemDrawControl17">
+      <HintPath>..\..\CommonRuntimeLibraries\Interop.ChemDrawControl17.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b36ca0e12e438b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=2.1.0.0, Culture=neutral, PublicKeyToken=152312c3a223b399, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging">
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7ae566350f7e2d48, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51205.0, Culture=neutral, PublicKeyToken=2c79a496fd4bd8ae, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=2.111.7.10, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>True</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=aa4871b6f938aabe, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Algorithms, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=86e9aba414f6c605, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Algorithms.Graphviz, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=d86a19566c7d7ecb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Algorithms.Graphviz.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Collections, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=360dbfce46d07a98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Concepts, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=d25c7a271d7196db, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Concepts.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Exceptions, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=4aa6e29d05bdc8a0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Predicates, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=e0730e9e9d3cdc3d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Predicates.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Representations, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=454e3737b09e112f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Representations.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Web, Version=1.2.2661.22231, Culture=neutral, PublicKeyToken=6f0bb3f7e29fcc73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SautinSoft.RtfToHtml, Version=3.0.0.1, Culture=neutral, PublicKeyToken=c666a5e96a3d5457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\SautinSoft.RtfToHtml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\System.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TECIT.TBarCode, Version=9.3.7.0, Culture=neutral, PublicKeyToken=1b5f4306b234b83d, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\TECIT.TBarCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caching\CacheableChemdrawControl.cs" />
+    <Compile Include="Caching\LocalCache.cs" />
+    <Compile Include="Caching\COECacheDependency.cs" />
+    <Compile Include="Caching\ICacheable.cs" />
+    <Compile Include="Caching\OracleCacheDependency.cs" />
+    <Compile Include="Caching\ServerCache.cs" />
+    <Compile Include="Caching\TimeoutEnabledObject.cs" />    
+    <Compile Include="DataView\COEDataViewManager\ValidCartridgeReadOnlyBO.cs" />
+    <Compile Include="ClientConfiguration\AppSettingsManager.cs" />
+    <Compile Include="ClientConfiguration\COEClientConfigurationManager.cs" />
+    <Compile Include="ClientConfiguration\ClientConfigurationUtlities.cs" />
+    <Compile Include="COEChemDrawConverter\BLL\COEChemDrawConverter.cs" />
+    <Compile Include="COEChemDrawConverter\BLL\COEChemDrawConverterUtils.cs" />
+    <Compile Include="ClientConfiguration\Client\COELoggingConfiguration.cs" />
+    <Compile Include="Common\COEEmail.cs" />
+    <Compile Include="Common\Compression\GZip.cs" />
+    <Compile Include="Common\Configuration\ActionLink.cs" />
+    <Compile Include="Common\Configuration\COEConfigurationBaseClasses.cs" />
+    <Compile Include="Common\Configuration\Behaviour.cs" />
+    <Compile Include="Common\Configuration\CacheItemData.cs" />
+    <Compile Include="Common\Configuration\CachingData.cs" />
+    <Compile Include="Common\Configuration\ChemDrawOptions.cs" />
+    <Compile Include="Common\Configuration\ExportManagement.cs" />
+    <Compile Include="Common\Configuration\LeftPanelElement.cs" />
+    <Compile Include="Common\Configuration\LeftPanelOptions.cs" />
+    <Compile Include="Common\Configuration\MenuElement.cs" />
+    <Compile Include="Common\Configuration\MenuOptions.cs" />
+    <Compile Include="Common\Configuration\QueryManagement.cs" />
+    <Compile Include="Common\Configuration\Reporting.cs" />
+    <Compile Include="Common\Configuration\SearchPreferences.cs" />
+    <Compile Include="Common\Configuration\ApplicationData.cs" />
+    <Compile Include="Common\Configuration\ApplicationDataConfigurationSection.cs" />
+    <Compile Include="Common\Configuration\ApplicationDefaultsData.cs" />
+    <Compile Include="Common\Configuration\AppSettings.cs" />
+    <Compile Include="Common\Configuration\ChemDrawEmbedData.cs" />
+    <Compile Include="Common\Configuration\ChildTable.cs" />
+    <Compile Include="Common\Configuration\ChildTableData.cs" />
+    <Compile Include="Common\Configuration\COEChemBioVizConfiguration.cs" />
+    <Compile Include="ClientConfiguration\Client\COEClientConfigurationSettings.cs" />
+    <Compile Include="Common\Configuration\Home\ApplicationHome.cs" />
+    <Compile Include="Common\Configuration\Home\CustomItemsConfiguration.cs" />
+    <Compile Include="Common\Configuration\Home\CustomItems.cs" />
+    <Compile Include="Common\Configuration\ImportIniFileMapperSection.cs" />
+    <Compile Include="Common\Configuration\InnerXmlData.cs" />
+    <Compile Include="Common\Configuration\Home\COEHomeSettings.cs" />
+    <Compile Include="Common\Configuration\Home\Groups.cs" />
+    <Compile Include="Common\Configuration\Home\LinkData.cs" />
+    <Compile Include="Common\Configuration\InnerXml.cs" />
+    <Compile Include="Common\Configuration\LinkParameters.cs" />
+    <Compile Include="Common\Configuration\NameValueConfigurationElement.cs" />
+    <Compile Include="Common\Configuration\Parameter.cs" />
+    <Compile Include="Common\Configuration\ParentApplicationData.cs" />
+    <Compile Include="Common\Configuration\TableEditor.cs" />
+    <Compile Include="Common\Configuration\TableEditorData.cs" />
+    <Compile Include="Common\Configuration\ValidationRule.cs" />
+    <Compile Include="Common\Configuration\WebGrid.cs" />
+    <Compile Include="Common\DAL\OracleDatabase.cs" />
+    <Compile Include="Common\Exceptions\BusinessObjectNotFoundException.cs" />
+    <Compile Include="Common\Exceptions\COEDecimalFormatConversionException.cs" />
+    <Compile Include="Common\Exceptions\COENumericFormatConversionException.cs" />
+    <Compile Include="Common\Exceptions\DataviewException.cs" />
+    <Compile Include="Common\Exceptions\ICOEException.cs" />
+    <Compile Include="Common\Exceptions\ServerException.cs" />
+    <Compile Include="Common\GUIShell\DataServices\COEWorkFlow.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COEWorkFlow.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Common\GUIShell\DataServices\CompoundTreeInfo.Designer.cs" />
+    <Compile Include="Common\IniParser\IniSections\IniFormFieldUIInfo.cs" />
+    <Compile Include="Common\IniParser\IniSections\IniFormField.cs" />
+    <Compile Include="Common\IniParser\IniSections\IniRegistrationSection.cs" />
+    <Compile Include="Common\IniParser\IniSections\IniRegistrationSettingItem.cs" />
+    <Compile Include="Common\IniParser\IniSections\IniRegularSection.cs" />
+    <Compile Include="Common\IniParser\IniSections\IniSection.cs" />
+    <Compile Include="Common\IniParser\IniSections\IniSettingItem.cs" />
+    <Compile Include="Common\IniParser\IniSettingInfo.cs" />
+    <Compile Include="Common\Interfaces\IConfigurationManager.cs" />
+    <Compile Include="Common\Interfaces\IDestinationRecord.cs" />
+    <Compile Include="Common\Messaging\COEReport.cs" />
+    <Compile Include="Common\Messaging\FormGroup.cs" />
+    <Compile Include="Common\Messaging\JumpTo.cs" />
+    <Compile Include="Common\Messaging\JumpToList.cs" />
+    <Compile Include="Common\Messaging\JumpToListType.cs" />
+    <Compile Include="Common\Messaging\OrderByCriteria.cs" />
+    <Compile Include="Common\Messaging\ReportBuilderMeta.cs" />
+    <Compile Include="Common\Messaging\SearchCriteriaType.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\ApplicationVariableReader.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\AppSetting.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\AppSettingList.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\COEConfigurationReader.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\ControlIdChangeUtility.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\ControlSetting.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\ControlSettingList.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\SessionReader.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\SettingReaderUtilities.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\Control.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\ControlList.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\ISettingReader.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\Page.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\PageControlSettings.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\PageList.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\Privilege.cs" />
+    <Compile Include="Common\PageControlSettings\BLL\PrivilegeList.cs" />
+    <Compile Include="Common\PageControlSettings\DAL\DAL.cs" />
+    <Compile Include="Common\PageControlSettings\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\Graphs\SQLGeneratorAdjacencyGraph.cs" />
+    <Compile Include="Common\SqlGenerator\NonQueries\SetJChemPassword.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\GroupByClause.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\AggregateFunctions\SelectClauseAggregateFunction.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\AggregateFunctions\SelectClauseAvg.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\AggregateFunctions\SelectClauseMax.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\AggregateFunctions\SelectClauseMin.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseCDXToScreen.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseDirectFormula.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseDirectStructure.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseJChemFormula.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseJChemMolWeight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseMarkedHit.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseMolSimilarity.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseDirectMolWeight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseSortByHitList.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseStructureHighlight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SQLFunctions\SelectClauseToDate.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SQLFunctions\SelectClauseSQLFunction.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SQLFunctions\SelectClauseLowerCase.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseJChemFormula.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseJChemMolWeight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseJCCompare.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseDirectFlexmatch.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseDirectSimilar.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseDirectSss.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseDirectFormula.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseFullText.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\IWhereClauseParser.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseBase.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseContains.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseEndsWith.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseHitlist.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseLogical.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseDirectMolWeight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseNotContains.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseNotLike.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseStartsWith.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseStructureList.cs" />
+    <Compile Include="Common\SqlGenerator\Utils\ParameterHelper.cs" />
+    <Compile Include="Common\SqlGenerator\Utils\SqlInjection.cs" />
+    <Compile Include="Common\SqlGenerator\Utils\XmlTranslation.cs" />
+    <Compile Include="Common\Utility\ParsingUtilities.cs" />
+    <Compile Include="Common\Validation\BrokenRuleDescription.cs" />
+    <Compile Include="Common\Validation\BusinessListWithValidation.cs" />
+    <Compile Include="Common\Validation\IReportBrokenRules.cs" />
+    <Compile Include="Common\VersionInfo.cs" />
+    <Compile Include="Configuration\BLL\ICOEConfigurationProcessor.cs" />
+    <Compile Include="Configuration\COEConfigurationUtlities.cs" />
+    <Compile Include="Configuration\BLL\COEConfigurationBO.cs" />
+    <Compile Include="ClientConfiguration\BLL\COEClientConfigurationBO.cs" />
+    <Compile Include="DatabasePublishing\BLL\COEDatabaseBO.cs" />
+    <Compile Include="DatabasePublishing\BLL\COEDatabaseBOList.cs" />
+    <Compile Include="DatabasePublishing\COEDatabasePublishingUtilities.cs" />
+    <Compile Include="DatabasePublishing\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="DataView\BLL\COEDataViewAsDataSet.cs" />
+    <Compile Include="DisplayDataBroker\BLL\COEDisplayDataBroker.cs" />
+    <Compile Include="DisplayDataBroker\BLL\IKeyValueListHolder.cs" />
+    <Compile Include="DataView\COEDataViewManager\COEDataViewManagerBO.cs" />
+    <Compile Include="DataView\COEDataViewManager\COEDataViewManagerUtilities.cs" />
+    <Compile Include="DataView\COEDataViewManager\FieldBO.cs" />
+    <Compile Include="DataView\COEDataViewManager\FieldListBO.cs" />
+    <Compile Include="DataView\COEDataViewManager\RelationshipBO.cs" />
+    <Compile Include="DataView\COEDataViewManager\RelationshipListBO.cs" />
+    <Compile Include="DataView\COEDataViewManager\TableBO.cs" />
+    <Compile Include="DataView\COEDataViewManager\TableListBO.cs" />
+    <Compile Include="ExceptionHandling\COEBaseException.cs" />
+    <Compile Include="ExceptionHandling\COEBusinessLayerException.cs" />
+    <Compile Include="ExceptionHandling\COEDALException.cs" />
+    <Compile Include="ExceptionHandling\COEExceptionDispatcher.cs" />
+    <Compile Include="ExceptionHandling\COEUserActionDescriptionAttribute.cs" />
+    <Compile Include="ExceptionHandling\ExceptionContext.cs" />
+    <Compile Include="ExceptionHandling\Logging\COETextExceptionFormatter.cs" />
+    <Compile Include="Export\BLL\COEAdvancedExport.cs" />
+    <Compile Include="Export\BLL\COEExportTemplateBO.cs" />
+    <Compile Include="Export\BLL\COEExportTemplateBOList.cs" />
+    <Compile Include="Export\BLL\COEFormInterchange.cs" />
+    <Compile Include="Export\BLL\Formatters\CBVExcelFormatter.cs" />
+    <Compile Include="Export\BLL\Formatters\Excel.cs" />
+    <Compile Include="Export\BLL\Formatters\XML.cs" />
+    <Compile Include="Export\BLL\IFormInterchangeFormatter.cs" />
+    <Compile Include="Export\COEExportTemplateUtilities.cs" />
+    <Compile Include="HitList\BLL\COEHitListOperationManager.cs" />
+    <Compile Include="Logging\BLL\COELogWriter.cs" />
+    <Compile Include="Logging\BLL\MethodTimer.cs" />
+    <Compile Include="Logging\COECallingClientLoggingConfig.cs" />
+    <Compile Include="Logging\COELoggingSettings.cs" />
+    <Compile Include="Common\GUIShell\DataServices\COEFooter.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COEFooter.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Common\GUIShell\DataServices\COELogo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COELogo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Common\GUIShell\DataServices\COEMenu.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COEMenu.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Common\GUIShell\DataServices\COENavigationPane.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>COENavigationPane.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseAnalyticalRowNum.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseCDXToMolFile.cs" />
+    <Compile Include="Export\BLL\FormatterBase.cs" />
+    <Compile Include="Export\BLL\Formatters\SDFNested.cs" />
+    <Compile Include="Export\BLL\Formatters\SDFFlatFileCorrelated.cs" />
+    <Compile Include="Export\BLL\Formatters\SDFFlatFileUncorrelated.cs" />
+    <Compile Include="Logging\BLL\COELog.cs" />
+    <Compile Include="NamespaceDocs\NamespacesDocs.cs" />
+    <Compile Include="Common\Configuration\ExportFormatterData.cs" />
+    <Compile Include="Export\BLL\COEExport.cs" />
+    <Compile Include="Export\BLL\FormatterLoader.cs" />
+    <Compile Include="Export\BLL\IFormatter.cs" />
+    <Compile Include="Export\DAL\DAL.cs" />
+    <Compile Include="Export\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="PickListPicker\BLL\PickListNameValueList.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Class\OrderByGrouping.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Class\WhereClause.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Interface\IOrderByGrouping.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Interface\IPicklistService.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Interface\ISelectClause.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Interface\ISqlBuilder.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Interface\IConditionClause.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Class\QueryBuilder.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Class\QueryBuilderList.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Class\SelectClause.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Interface\IWhereClause.cs" />
+    <Compile Include="PickListPicker\BLL\SQL\Class\PickListStatus.cs" />
+    <Compile Include="PickListPicker\DAL\DAL.cs" />
+    <Compile Include="PickListPicker\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="Common\BLL\BLLBase.cs" />
+    <Compile Include="Common\BLL\BLLUtils.cs" />
+    <Compile Include="Common\COEDatabaseName.cs" />
+    <Compile Include="Common\Configuration\COEConfigurationSettings.cs" />
+    <Compile Include="Common\Configuration\DALProviderData.cs" />
+    <Compile Include="Common\Configuration\DatabaseData.cs" />
+    <Compile Include="Common\Configuration\DBMSTypeData.cs" />
+    <Compile Include="Common\Configuration\SearchServiceData.cs" />
+    <Compile Include="Common\Configuration\SelectClassMappingsHandler.cs" />
+    <Compile Include="Common\Configuration\ServiceData.cs" />
+    <Compile Include="Common\Configuration\SQLGeneratorData.cs" />
+    <Compile Include="Common\COEAppName.cs" />
+    <Compile Include="Common\EventHandlers\CriticalEventHandler.cs" />
+    <Compile Include="Common\DAL\DALFactory.cs" />
+    <Compile Include="Common\DAL\ConnStringType.cs" />
+    <Compile Include="Common\DAL\DALBase.cs" />
+    <Compile Include="Common\DAL\DALManager.cs" />
+    <Compile Include="Common\DAL\DALUtils.cs" />
+    <Compile Include="Common\DAL\MolSvrWrapper\CSField.cs" />
+    <Compile Include="Common\DAL\MolSvrWrapper\Enumerations.cs" />
+    <Compile Include="Common\DAL\MolSvrWrapper\MolSrvHelper.cs" />
+    <Compile Include="Common\DAL\MolSvrWrapper\MolSrvWrapper.cs" />
+    <Compile Include="Common\Exceptions\EmptyRegistryRecord.cs" />
+    <Compile Include="Common\Exceptions\InvalidCompoundIDType.cs" />
+    <Compile Include="Common\Exceptions\MolServerException.cs" />
+    <Compile Include="Common\Exceptions\NoRecordToSaveException.cs" />
+    <Compile Include="Common\Exceptions\SQLGeneratorException.cs" />
+    <Compile Include="Common\Exceptions\UnsupportedDataTypeException.cs" />
+    <Compile Include="Common\FrameworkUtils.cs" />
+    <Compile Include="Common\GUIShell\GUIShellPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\GUIShell\GUIShellTypes.cs" />
+    <Compile Include="Common\GUIShell\GUIShellUtilities.cs" />
+    <Compile Include="Common\Interfaces\ICOEConfigurationManager.cs" />
+    <Compile Include="Common\Interfaces\ISearchManager.cs" />
+    <Compile Include="Common\Loader\LoaderBase.cs" />
+    <Compile Include="Common\Messaging\AppInfo.cs" />
+    <Compile Include="Common\Messaging\COEDataView.cs" />
+    <Compile Include="Common\Messaging\DBMSInfo.cs" />
+    <Compile Include="Common\Messaging\DBMSType.cs" />
+    <Compile Include="Common\Messaging\HitListInfo.cs" />
+    <Compile Include="Common\Messaging\HitListType.cs" />
+    <Compile Include="Common\Messaging\PagingInfo.cs" />
+    <Compile Include="Common\Messaging\ResultsCriteria.cs" />
+    <Compile Include="Common\Messaging\SearchCriteria.cs" />
+    <Compile Include="Common\Messaging\SearchResponse.cs" />
+    <Compile Include="Common\Messaging\SecurityInfo.cs" />
+    <Compile Include="Common\Notifications\Notification.cs" />
+    <Compile Include="Common\Notifications\NotificationMessage.cs" />
+    <Compile Include="Common\Notifications\NotificationUtility.cs" />
+    <Compile Include="Common\SqlGenerator\IColumn.cs" />
+    <Compile Include="Common\SqlGenerator\Field.cs" />
+    <Compile Include="Common\SqlGenerator\ISource.cs" />
+    <Compile Include="Common\SqlGenerator\Lookup.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\DataView.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\Graphs\Graph.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\Graphs\SQLGeneratorEdge.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\Graphs\SQLGeneratorVertex.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\Graphs\SQLGeneratorVertexEdgeProvider.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\INamesLookup.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\SearchCriteria.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\ResultsCriteria.cs" />
+    <Compile Include="Common\SqlGenerator\NonQueries\Insert.cs" />
+    <Compile Include="Common\SqlGenerator\NonQueries\NonQuery.cs" />
+    <Compile Include="Common\SqlGenerator\NonQueries\Truncate.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\AggregateItems\GroupByClauseItem.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\AggregateItems\OrderByClauseItem.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\JoinClause.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\OrderByClause.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\Query.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectClause.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\ISelectClauseParser.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseCase.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseConcatenation.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseFactory.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseField.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseFormula.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseItem.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseLiteral.cs" />
+    <Compile Include="Common\SqlGenerator\Queries?SelectItems\SelectClauseMolWeight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseMolWeight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereClause.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseBetween.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseBinaryOperation.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseEqual.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseFactory.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseFormula.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseGreaterThan.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseIn.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseItem.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseLessThan.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseLike.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseMolWeight.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseNAryOperation.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseNotEqual.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseStructure.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseUnaryOperation.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseVerbatim.cs" />
+    <Compile Include="Common\SqlGenerator\QueryBuilder.cs" />
+    <Compile Include="Common\SqlGenerator\Relation.cs" />
+    <Compile Include="Common\SqlGenerator\Table.cs" />
+    <Compile Include="Common\SqlGenerator\Utils\FieldTypesConversor.cs" />
+    <Compile Include="Common\SqlGenerator\Utils\NormalizationUtils.cs" />
+    <Compile Include="Common\SqlGenerator\Utils\SpecialCharacters.cs" />
+    <Compile Include="Common\SqlGenerator\Value.cs" />
+    <Compile Include="Common\COEUser.cs" />
+    <Compile Include="Common\Utility\COEConvert.cs" />
+    <Compile Include="Common\Utility\Utilities.cs" />
+    <Compile Include="Common\Utility\XMLValidator.cs" />
+    <Compile Include="Configuration\BLL\COEConfiguration.cs" />
+    <Compile Include="Configuration\BLL\SqlConfigurationSource.cs" />
+    <Compile Include="Configuration\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="Common\Utility\WebUtils.cs" />
+    <Compile Include="DataView\BLL\COEDataViewBO.cs" />
+    <Compile Include="DataView\BLL\COEDataViewBOList.cs" />
+    <Compile Include="DataView\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="DataView\DAL\SystemDataOledbClientDAL.cs" />
+    <Compile Include="DataView\DAL\SystemDataSqlClientDAL.cs" />
+    <Compile Include="Form\BLL\COEFormBO.cs" />
+    <Compile Include="Form\BLL\COEFormBOList.cs" />
+    <Compile Include="Form\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="Form\DAL\SystemDataOledbClientDAL.cs" />
+    <Compile Include="Form\DAL\SystemDataSqlClientDAL.cs" />
+    <Compile Include="GenericObjectStorage\BLL\COEGenericObjectStorageBO.cs" />
+    <Compile Include="GenericObjectStorage\BLL\COEGenericObjectStorageBOList.cs" />
+    <Compile Include="GenericObjectStorage\COEGenericObjectStorageUtlities.cs" />
+    <Compile Include="GenericObjectStorage\DAL\DAL.cs" />
+    <Compile Include="GenericObjectStorage\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="GenericObjectStorage\DAL\SystemDataOledbClientDAL.cs" />
+    <Compile Include="GenericObjectStorage\DAL\SystemDataSqlClientDAL.cs" />
+    <Compile Include="HitList\BLL\COEHitListBO.cs" />
+    <Compile Include="HitList\BLL\COEHitListBOList.cs" />
+    <Compile Include="HitList\DAL\SystemDataSqlClientDAL.cs" />
+    <Compile Include="DataView\COEDataViewUtilities.cs" />
+    <Compile Include="DataView\DAL\DAL.cs" />
+    <Compile Include="DatabasePublishing\DAL\DAL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Form\DAL\DAL.cs" />
+    <Compile Include="Form\COEFormUtlities.cs" />
+    <Compile Include="HitList\DAL\DAL.cs" />
+    <Compile Include="HitList\DAL\SystemDataOledbClientDAL.cs" />
+    <Compile Include="HitList\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="HitList\HitListUtilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyMinClientVersion.cs" />
+    <Compile Include="Properties\AssemblyMinSchemaVersion.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\BLL\Builders\DataBaseReportBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\Builders\ListViewReportBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\Builders\ReportBuilderBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\Builders\ReportBuilderFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\Builders\ResultsCriteriaReportBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\COEReportBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\COEReportBOList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\COEReporting.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\BLL\COEReportTypeList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\COEReportUtilities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\DAL\DAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Reporting\DAL\OracleDataAccessClientDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SearchCriteria\BLL\COESearchCriteriaBO.cs" />
+    <Compile Include="SearchCriteria\BLL\COESearchCriteriaBOList.cs" />
+    <Compile Include="SearchCriteria\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="SearchCriteria\DAL\DAL.cs" />
+    <Compile Include="SearchCriteria\DAL\SystemDataOledbClientDAL.cs" />
+    <Compile Include="SearchCriteria\DAL\SystemDataSqlClientDAL.cs" />
+    <Compile Include="SearchCriteria\COESearchCriteriaUtilities.cs" />
+    <Compile Include="Search\BLL\COESearchUtilities.cs" />       
+    <Compile Include="Search\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="Search\Processors\BaseCustomProcessor.cs" />
+    <Compile Include="Search\Processors\DomainProcessor.cs" />
+    <Compile Include="Search\Processors\JChemSearchProcessor.cs" />
+    <Compile Include="Search\Processors\SearchByHitlistProcessor.cs" />
+    <Compile Include="Search\Processors\Select\HighlightProcessor.cs" />
+    <Compile Include="Search\Processors\Select\JChemSelectProcessor.cs" />
+    <Compile Include="Search\Processors\Select\SelectProcessor.cs" />
+    <Compile Include="Search\Processors\StructureListProcessor.cs" />
+    <Compile Include="Search\Utils\MessagingTypes\DataListResult.cs" />
+    <Compile Include="Search\Utils\MessagingTypes\DataResult.cs" />
+    <Compile Include="Search\Utils\MessagingTypes\ResultPageInfo.cs" />
+    <Compile Include="Search\Utils\MessagingTypes\ResultSetInfo.cs" />
+    <Compile Include="Search\Utils\MessagingTypes\SearchInput.cs" />
+    <Compile Include="Search\Utils\Translators\InputFieldsToSearchCriteria.cs" />
+    <Compile Include="Search\Utils\Translators\ResultFieldsToResultsCriteria.cs" />
+    <Compile Include="Security\BLL\COEAccessRights\COEAccessRightsBO.cs" />
+    <Compile Include="Security\BLL\COEConnection.cs" />
+    <Compile Include="Security\BLL\COEAccessRights\COEUserReadOnlyBO.cs" />
+    <Compile Include="Security\BLL\COEAccessRights\COEUserReadOnlyBOList.cs" />
+    <Compile Include="Security\BLL\COEAccessRights\COERoleReadOnlyBO.cs" />
+    <Compile Include="Security\BLL\COEAccessRights\COERoleReadOnlyBOList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\ApplicationList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COEApplicationReadOnlyBO.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COEGroupBO.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COERoleBO.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COERoleBOList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COEUserBO.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COEUserBOList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COEApplicationReadOnlyBOList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COEPrivilegeBO.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\COEPrivilegeBOList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\GroupHeirarchy.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\GroupList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\GroupUser.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\GroupUserList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\PersonList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\PrivilegeList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\RoleList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\SiteList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\SupervisorList.cs" />
+    <Compile Include="Security\BLL\COEManageSecurity\UserList.cs" />
+    <Compile Include="Security\COECredentials.cs" />
+    <Compile Include="Security\COESecurityUtilities.cs" />
+    <Compile Include="Security\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="Search\BLL\COESearch.cs" />
+    <Compile Include="Search\BLL\SearchManager.cs" />
+    <Compile Include="Search\DAL\KeepAliveHolder.cs" />
+    <Compile Include="Search\DAL\DAL.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Search\Enums.cs" />
+    <Compile Include="Search\Processors\FormulaProcessor.cs" />
+    <Compile Include="Search\Processors\GenericProcessor.cs" />
+    <Compile Include="Search\Processors\MolWeightProcessor.cs" />
+    <Compile Include="Search\Processors\SearchProcessor.cs" />
+    <Compile Include="Search\Processors\StructureProcessor.cs" />
+    <Compile Include="Configuration\BLL\ConfigurationManager.cs" />
+    <Compile Include="Configuration\DAL\DAL.cs" />
+    <Compile Include="Security\BLL\COEIdentity.cs" />
+    <Compile Include="Security\BLL\COEMembershipProvider.cs" />
+    <Compile Include="Security\BLL\COEPrincipal.cs" />
+    <Compile Include="Security\DAL\DAL.cs" />
+    <Compile Include="Security\Exceptions\IncompatibleVersions.cs" />
+    <Compile Include="Security\Exceptions\InvalidConnection.cs" />
+    <Compile Include="Security\Exceptions\InvalidCredentials.cs" />
+    <Compile Include="ServerControls\ChemDrawEmbed\COEChemDrawEmbed.cs" />
+    <Compile Include="ServerControls\ChemDrawEmbed\COEChemDrawEmbedBoundField.cs" />
+    <Compile Include="ServerControls\COEConfigSettingsManager\COEConfigSettingManager.cs">
+    </Compile>
+    <Compile Include="ServerControls\COEExportControl\ExportControl.cs" />
+    <Compile Include="ServerControls\COEModalIFrame\COEModalIFrame.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEButton.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEChart.cs" />
+    <Compile Include="ServerControls\FormGenerator\COECurrencyEdit.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEFileUpload.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEImageButton.cs" />
+    <Compile Include="ServerControls\FormGenerator\COENumericTextBox.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEStateControl.cs" />
+    <Compile Include="ServerControls\COEWebGrid\COEGridControl.cs" />
+    <Compile Include="ServerControls\COEWebGrid\COETemplatedColumn.cs" />
+    <Compile Include="ServerControls\COEWebGrid\COEUltraGridView.cs" />
+    <Compile Include="ServerControls\COEWebGrid\XmlCriteriaBuilder.cs" />
+    <Compile Include="ServerControls\ErrorControl\ErrorControl.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEBoolean.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEChemDrawToolbar.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEFileUploader.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEIFrame.cs" />
+    <Compile Include="ServerControls\FormGenerator\COERadioButtonList.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEImageSwitch.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEListUpload.cs" />
+    <Compile Include="ServerControls\FormGenerator\COENumericEdit.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEOrderingControl.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEPercentEdit.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEResourceLink.cs" />
+    <Compile Include="ServerControls\FormGenerator\COETabContainer.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEMaskEdit.cs" />
+    <Compile Include="ServerControls\FormGenerator\COETabRepeater.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerControls\FormGenerator\COETileView.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEWebDateEdit.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEWebPanelContainer.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEWebPanelRepeater.cs" />
+    <Compile Include="ServerControls\FormGenerator\GlobalizationHelper.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEDesignable.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEDisplayMode.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEFileUpload.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEFullDatasource.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEHelpContainer.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDateEdit.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEReadOnly.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOECurrentForm.cs" />
+    <Compile Include="ServerControls\HomePage\BaseCustomItem.cs" />
+    <Compile Include="ServerControls\HomePage\ICustomHomeItem.cs" />
+    <Compile Include="ServerControls\ICOEGrid.cs" />
+    <Compile Include="ServerControls\Login\AccessControler.cs" />
+    <Compile Include="ServerControls\Login\Arguments.cs" />
+    <Compile Include="ServerControls\Login\LoginDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Login\LoginDialog.Designer.cs">
+      <DependentUpon>LoginDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerControls\Login\MRUList.cs" />
+    <Compile Include="ServerControls\Login\ServerDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Login\ServerDialog.designer.cs">
+      <DependentUpon>ServerDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerControls\PageControlSettingsManager\COEPageCtrlSettingManager.cs" />
+    <Compile Include="ServerControls\Reporting\COEXtraReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\COEXtraReport.Designer.cs">
+      <DependentUpon>COEXtraReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\IReportPicker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\IReportViewer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\ReportPickerController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\ReportViewerController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Web\COEReportSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Web\COEReportViewer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Win\OffsetPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Win\OffsetPicker.Designer.cs">
+      <DependentUpon>OffsetPicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Win\ReportPreviewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Win\ReportPreviewer.Designer.cs">
+      <DependentUpon>ReportPreviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Win\ReportSelectionUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\Win\ReportSelectionUserControl.Designer.cs">
+      <DependentUpon>ReportSelectionUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\XRChemDrawEmbed.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServerControls\Reporting\XRTBarCode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServerControls\TableManager\COETableManager.cs" />
+    <Compile Include="ServerControls\UploadControl\UploadControl.cs" />
+    <Compile Include="ServerControls\TileView\TileView.cs" />
+    <Compile Include="ServerControls\DataMapper\COEDataBinder.cs" />
+    <Compile Include="ServerControls\DataMapper\COEDataMapper.cs" />
+    <Compile Include="ServerControls\FormGenerator\COECheckBox.cs" />
+    <Compile Include="ServerControls\FormGenerator\COECheckBoxReadOnly.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEChemDraw.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEChemDrawEmbedReadOnly.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEComplexLink.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDatePicker.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDatePickerReadOnly.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDetailForm.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDocManager.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDocManagerClassic.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDropDownList.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDropDownListUltra.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEDynamicImage.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEForm.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEFormCollection.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEFormGenerator.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEFormGeneratorRepeater.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEFormGroup.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEFragments.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEGridView.cs" />
+    <Compile Include="ServerControls\FormGenerator\COELink.cs" />
+    <Compile Include="ServerControls\FormGenerator\COELinkButton.cs" />
+    <Compile Include="ServerControls\FormGenerator\COELabel.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEListView.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEMarkHitButton.cs" />
+    <Compile Include="ServerControls\FormGenerator\COERadioButton.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEShowDetailLinkButton.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEStructureQuery.cs" />
+    <Compile Include="ServerControls\FormGenerator\COETexArea.cs" />
+    <Compile Include="ServerControls\FormGenerator\COETextAreaReadOnly.cs" />
+    <Compile Include="ServerControls\FormGenerator\COETextBox.cs" />
+    <Compile Include="ServerControls\FormGenerator\COETextBoxReadOnly.cs" />
+    <Compile Include="ServerControls\FormGenerator\COETextEdit.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEUrlControl.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEValidationSummary.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEValidatorFactory.cs" />
+    <Compile Include="ServerControls\FormGenerator\COERichTextReadOnly.cs" />
+    <Compile Include="ServerControls\FormGenerator\COEWebGridUltra.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEContainer.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOECultureable.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEGenerableControl.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEHitMarker.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOELabelable.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOERequireable.cs" />
+    <Compile Include="ServerControls\FormGenerator\ICOEDisplayModeChanger.cs" />
+    <Compile Include="ServerControls\HitlistManager\COEHitlistManager.cs" />
+    <Compile Include="ServerControls\HomePage\HomeWebPart.cs" />
+    <Compile Include="ServerControls\MarkHitControls\MarkHitButton.cs" />
+    <Compile Include="ServerControls\PagerControl\PagerControl.cs" />
+    <Compile Include="ServerControls\Utilities\LabelStylesParser.cs" />
+    <Compile Include="ServerControls\WorkFlow\WorkFlow.cs" />
+    <Compile Include="TableEditor\BLL\TableEditorBO.cs" />
+    <Compile Include="TableEditor\BLL\TableEditorBOList.cs" />
+    <Compile Include="TableEditor\COETableEditorUtlities.cs" />
+    <Compile Include="TableEditor\Column.cs" />
+    <Compile Include="TableEditor\DAL\DAL.cs" />
+    <Compile Include="TableEditor\DAL\OracleDataAccessClientDAL.cs" />
+    <Compile Include="Web References\coesinglesignon\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Common\Messaging\xsd\COEDataView.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\Messaging\xsd\HitListInfo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\Messaging\xsd\PagingInfo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\Messaging\xsd\ResultsCriteria.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\Messaging\xsd\SearchCriteria.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\Messaging\xsd\SearchResponse.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\Messaging\xsd\SecurityInfo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\Messaging\xsd\SelectClauseClassMappings.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Framework.snk" />
+    <None Include="ServerControls\FormGenerator\Xml\COEForm.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web References\coesinglesignon\singlesignon.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Common\Messaging\xsd\XML Examples\Get Data %28multiple queries%29\DataView.xml" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Get Data %28multiple queries%29\Query.txt" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Get Data %28multiple queries%29\ResultsCriteria.xml" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Get Data %28multiple queries%29\SearchCriteria.xml" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Hit List Insertion\DataView.xml" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Hit List Insertion\Query.txt" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Hit List Insertion\ResultsCriteria.xml" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Hit List Insertion\SearchCriteria.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Common\Messaging\xsd\XML Examples\Misc\DataView.xml" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Misc\Queries.txt" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Misc\ResultsCriteria.xml" />
+    <Content Include="Common\Messaging\xsd\XML Examples\Misc\SearchCriteria.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Common\Messaging\xsd\XML Examples\SelectClauseClassMappings.xml" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\error.png" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\DownloadChemDraw.jpg" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\JSAndCSS\positioning.js" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\ThumbDown.png" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\ThumbUp.png" />
+    <Content Include="Common\PageControlSettings\Misc\COEPageControlSettings_Custom.xml" />
+    <Content Include="Common\PageControlSettings\Misc\COEPageControlSettings_Master.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Common\PageControlSettings\Misc\COEPageControlSettings_Merged.xml" />
+    <Content Include="Common\PageControlSettings\Misc\COEPageControlSettings_Privileges.xml" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\std_cis.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\std_either.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\std_trans.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\st_any.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\st_down.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\st_down_thick.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\st_either.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\st_up.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\st_up_thick.GIF" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\disable.png" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\down.png" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\up.png" />
+    <EmbeddedResource Include="ServerControls\ErrorControl\Images\Warning_h.png" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\help.png" />
+    <EmbeddedResource Include="ServerControls\FormGenerator\Images\searching.gif" />
+    <Content Include="Reporting\BLL\Sample\RegistryRecordMasterDetail.xml" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Add_h.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\cancel_btn.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\export_btn.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\File_Edit.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Folder.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\resultcriteria.xml" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\File_Add.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Remove_h.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Add_Document.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Arrow_Down_B.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Arrow_Up_B.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Block.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Check.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Close_Window.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Details.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Edit.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Export.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Save.png" />
+    <EmbeddedResource Include="ServerControls\COEExportControl\Stop.png" />
+    <Content Include="ServerControls\FormGenerator\Xml\coeForm.xml" />
+    <Content Include="ServerControls\FormGenerator\Xml\coeFormData.xml" />
+    <Content Include="ServerControls\FormGenerator\Xml\coeFormGroup.xml" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Rec_B.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Rec_B_d.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\First_Default.gif" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Last_Default.gif" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Previous_Default.gif" />
+    <Content Include="ServerControls\Reporting\XRChemDrawEmbed.bmp" />
+    <EmbeddedResource Include="ServerControls\Login\LoginDialog.resx">
+      <DependentUpon>LoginDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerControls\Login\ServerDialog.resx">
+      <DependentUpon>ServerDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerControls\PageControlSettingsManager\Themes\Images\watermark.jpg" />
+    <EmbeddedResource Include="ServerControls\PageControlSettingsManager\Themes\Images\backgroundtoolbar.gif" />
+    <EmbeddedResource Include="ServerControls\PageControlSettingsManager\Themes\Images\buttonimage.gif" />
+    <EmbeddedResource Include="ServerControls\PageControlSettingsManager\Themes\Images\file.gif" />
+    <EmbeddedResource Include="ServerControls\PageControlSettingsManager\Themes\Images\folder.gif" />
+    <EmbeddedResource Include="ServerControls\PageControlSettingsManager\Themes\Styles_PageControl.css" />
+    <EmbeddedResource Include="ServerControls\MarkHitControls\centerMarked.gif" />
+    <EmbeddedResource Include="ServerControls\MarkHitControls\centerUnMarked.gif" />
+    <EmbeddedResource Include="ServerControls\MarkHitControls\left.gif" />
+    <EmbeddedResource Include="ServerControls\MarkHitControls\right.gif" />
+    <EmbeddedResource Include="ServerControls\PagerControl\InProgress.gif" />
+    <EmbeddedResource Include="ServerControls\PagerControl\First_Track_1_d.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Last_Track_1_d.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Next_B_d.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Previous_B_d.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\First_Track_1.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Last_Track_1.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Next_B.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Previous_B.png" />
+    <EmbeddedResource Include="ServerControls\PagerControl\Next_Default.gif" />
+    <EmbeddedResource Include="ServerControls\Reporting\COEXtraReport.resx">
+      <DependentUpon>COEXtraReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerControls\Reporting\Win\OffsetPicker.resx">
+      <DependentUpon>OffsetPicker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerControls\Reporting\Win\ReportPreviewer.resx">
+      <DependentUpon>ReportPreviewer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerControls\Reporting\Win\ReportSelectionUserControl.resx">
+      <DependentUpon>ReportSelectionUserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Common\GUIShell\DataServices\COEWorkFlow.xsc">
+      <DependentUpon>COEWorkFlow.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COEWorkFlow.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>COEWorkFlow.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COEWorkFlow.xss">
+      <DependentUpon>COEWorkFlow.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\CompoundTreeInfo.xsc">
+      <DependentUpon>CompoundTreeInfo.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\CompoundTreeInfo.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Common\GUIShell\DataServices\CompoundTreeInfo.xss">
+      <DependentUpon>CompoundTreeInfo.xsd</DependentUpon>
+    </None>
+    <None Include="Common\Configuration\ConfigurationClasses.cd" />
+    <None Include="Common\GUIShell\DataServices\COEFooter.xsc">
+      <DependentUpon>COEFooter.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COEFooter.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>COEFooter.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COEFooter.xss">
+      <DependentUpon>COEFooter.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COELogo.xsc">
+      <DependentUpon>COELogo.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COELogo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>COELogo.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COELogo.xss">
+      <DependentUpon>COELogo.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COEMenu.xsc">
+      <DependentUpon>COEMenu.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COEMenu.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>COEMenu.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COEMenu.xss">
+      <DependentUpon>COEMenu.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COENavigationPane.xsc">
+      <DependentUpon>COENavigationPane.xsd</DependentUpon>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COENavigationPane.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>COENavigationPane.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Common\GUIShell\DataServices\COENavigationPane.xss">
+      <DependentUpon>COENavigationPane.xsd</DependentUpon>
+    </None>
+    <None Include="Common\PageControlSettings\Misc\COEPageControlSettings.cd" />
+    <None Include="Reporting\ReportingClassDiagram.cd" />
+    <None Include="Search\HitList.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Search\ResultRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Search\SearchCriteria.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Search\SearchRequest.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Search\SearchRequest.xsx">
+      <DependentUpon>SearchRequest.xsd</DependentUpon>
+    </None>
+    <None Include="TableEditor.cd" />
+    <None Include="Web References\coesinglesignon\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\coesinglesignon\singlesignon.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/coesinglesignon/singlesignon.asmx">
+      <UrlBehavior>Static</UrlBehavior>
+      <RelPath>Web References\coesinglesignon\</RelPath>
+      <UpdateFromURL>http://localhost/coesinglesignon/singlesignon.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CambridgeSoft_COE_Framework_coesinglesignon_SingleSignOn</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\SqlGenerator\Queries\WhereItems\AggregateFunctions\" />
+    <Folder Include="Common\SqlGenerator\Queries\WhereItems\SQLFunctions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy  "$(TargetDir)CambridgeSoft.COE.Framework.dll" "$(ProjectDir)..\..\CommonRuntimeLibraries\</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

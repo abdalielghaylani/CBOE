@@ -1,0 +1,162 @@
+<html>
+
+<head>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>CREATE TABLE TEMPORARY</title>
+</head>
+
+<body>
+
+<font SIZE="2" COLOR="#0000ff">
+<p>CREATE TABLE </font><font SIZE="2">TEMPORARY_STRUCTURES (</p>
+<p>TEMP_COMPOUND_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">not null</font><font SIZE="2">,</p>
+<p>COMMIT_TYPE VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>REG_INTERNAL_ID VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CPD_INTERNAL_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>PRODUCER VARCHAR2(120) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>NOTEBOOK_PAGE VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>NOTEBOOK_TEXT VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>NOTEBOOK_NUMBER NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>PROJECT_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>MOL_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>BATCH_COMMENT VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CHEMICAL_NAME VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CHEM_NAME_AUTOGEN VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SYNONYM_R VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>LIT_REF VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>PREPARATION VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>STORAGE_REQ_AND_WARNINGS VARCHAR2(2000) </font>
+<font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SEQUENCE_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SPECTRUM_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CAS_NUMBER VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>RNO_NUMBER VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FEMA_GRAS_NUMBER VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>GROUP_CODE VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SCIENTIST_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>BP VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>MP VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>H1NMR VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>C13NMR VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>MS VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>IR VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>GC VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>PHYSICAL_FORM VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>COLOR VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>FLASHPOINT VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>HPLC VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>OPTICAL_ROTATION VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>REFRACTIVE_INDEX VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CREATION_DATE </font><font SIZE="2" COLOR="#0000ff">DATE null</font><font SIZE="2">,</p>
+<p>COMPOUND_TYPE NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>STRUCTURE_COMMENTS_TXT VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">
+null</font><font SIZE="2">,</p>
+<p>ENTRY_DATE </font><font SIZE="2" COLOR="#0000ff">DATE null</font><font SIZE="2">,</p>
+<p>LAST_MOD_DATE </font><font SIZE="2" COLOR="#0000ff">DATE null</font><font SIZE="2">,</p>
+<p>SALT_CODE NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SALT_NAME VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SALT_MW NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SALT_EQUIVALENTS NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SOLVATE_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SOLVATE_NAME VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SOLVATE_MW NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SOLVATE_EQUIVALENTS NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FORMULA_WEIGHT NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>BATCH_FORMULA VARCHAR2(250) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>BATCH_PROJECT_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SOURCE VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>VENDOR_NAME VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>VENDOR_ID VARCHAR2(100) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>PERCENT_ACTIVE NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>AMOUNT_UNITS VARCHAR2(100) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>PURITY VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>LC_UV_MS VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CHN_COMBUSTION VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>UV_SPECTRUM VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>APPEARANCE VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>LogD NUMBER (38,8) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>SOLUBILITY VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>COLLABORATOR_ID VARCHAR2(200)</font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>PRODUCT_TYPE VARCHAR2(100)</font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CHIRAL VARCHAR2 (200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>CLogP NUMBER (38,8) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>H_BOND_DONORS NUMBER (38,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>H_BOND_ACCEPTORS NUMBER (38,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>BASE64_CDX CLOB </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>LAST_MOD_PERSON_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>ENTRY_PERSON_ID NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>MW_TEXT VARCHAR2(200) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>MF_TEXT VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>MW NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>MW2 NUMBER(10,5) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FORMULA2 VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>AMOUNT VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p>DUPLICATE VARCHAR2(500) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>APPROVED NUMBER(1,0) </font><font SIZE="2" COLOR="#0000ff">DEFAULT </font>
+<font SIZE="2">0 </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>APPROVED_BY NUMBER(8,0) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>APPROVED_DATE </font><font SIZE="2" COLOR="#0000ff">DATE null</font><font SIZE="2">,</p>
+<p>APPROVED_TIME </font><font SIZE="2" COLOR="#0000ff">VARCHAR</font><font SIZE="2">(30)
+</font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_1 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_2 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_3 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_4 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_5 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_6 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_7 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_8 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_9 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>FIELD_10 VARCHAR2(2000) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>LOAD_ID VARCHAR2(50) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,</p>
+<p>DATETIME_STAMP VARCHAR2(30) </font><font SIZE="2" COLOR="#0000ff">null</font><font SIZE="2">,
+</p>
+<p></font><font SIZE="2" COLOR="#0000ff">constraint </font><font SIZE="2">
+PK_TEMP_COMPOUND_ID </p>
+<p></font><font SIZE="2" COLOR="#0000ff">primary key </font><font SIZE="2">(TEMP_COMPOUND_ID) 
+USING </font><font SIZE="2" COLOR="#0000ff">INDEX </font><font SIZE="2">
+TABLESPACE &amp;&amp;indexTableSpaceName</p>
+<p>)</p>
+<p>LOB (BASE64_CDX) STORE </font><font SIZE="2" COLOR="#0000ff">AS</font><font SIZE="2">(</p>
+<p>DISABLE STORAGE </font><font SIZE="2" COLOR="#0000ff">IN </font>
+<font SIZE="2">ROW NOCACHE PCTVERSION 10</p>
+<p>TABLESPACE &amp;&amp;lobsTableSpaceName</p>
+<p>STORAGE (INITIAL &amp;&amp;lobB64cdx </font><font SIZE="2" COLOR="#0000ff">NEXT
+</font><font SIZE="2">&amp;&amp;lobB64cdx)</p>
+<p>) </p>
+<p>;</p>
+</font><font SIZE="2" COLOR="#0000ff">
+<p><a name="project_id"></a>alter table </font><font SIZE="2">
+TEMPORARY_STRUCTURES</p>
+<p></font><font SIZE="2" COLOR="#0000ff">add constraint </font><font SIZE="2">
+PROJECTSTEMPORARY_STRUCTUR </font><font SIZE="2" COLOR="#0000ff">foreign key
+</font><font SIZE="2">(</p>
+<p>PROJECT_ID)</p>
+<p></font><font SIZE="2" COLOR="#0000ff">references </font><font SIZE="2">
+PROJECTS (</p>
+<p>PROJECT_INTERNAL_ID); </p>
+</font><font SIZE="2" COLOR="#0000ff">
+<p>alter table </font><font SIZE="2">TEMPORARY_STRUCTURES</p>
+<p></font><font SIZE="2" COLOR="#0000ff">add constraint </font><font SIZE="2">
+SEQUENCETEMPORARY_STRUCTUR </font><font SIZE="2" COLOR="#0000ff">foreign key
+</font><font SIZE="2">(</p>
+<p>SEQUENCE_ID)</p>
+<p></font><font SIZE="2" COLOR="#0000ff">references SEQUENCE </font>
+<font SIZE="2">(</p>
+<p>SEQUENCE_ID); </p>
+</font>
+
+</body>
+
+</html>

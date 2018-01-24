@@ -1,0 +1,1140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About_Label_Text" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="About_Page_Title" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="Accept_Button_Text" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Action_ColHeader_Caption" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ActivateUserConfirmation_Label_Text" xml:space="preserve">
+    <value>User already exists in database. Would you like to Activate it?</value>
+  </data>
+  <data name="Add_Button_Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Add_Label_Text" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddRole_Button_Text" xml:space="preserve">
+    <value>Add Role</value>
+  </data>
+  <data name="AddSchema_Button_Text" xml:space="preserve">
+    <value>Add Schema</value>
+  </data>
+  <data name="AddSchema_Label_Text" xml:space="preserve">
+    <value>Add Schema</value>
+  </data>  
+  <data name="AddTable_Page_Title" xml:space="preserve">
+    <value>Add Table</value>
+  </data>
+  <data name="AddUser_Button_Text" xml:space="preserve">
+    <value>Add User</value>
+  </data>
+  <data name="AdminGuide_Label_Text" xml:space="preserve">
+    <value>Admin Guide</value>
+  </data>
+  <data name="Alias_ColHeader_Caption" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="Alias_Label_Text" xml:space="preserve">
+    <value>Alias</value>
+  </data>
+  <data name="AliasRequired_Label_Text" xml:space="preserve">
+    <value>Alias field is mandatory.</value>
+  </data>
+  <data name="AllRelationshipsValid" xml:space="preserve">
+    <value>All relationships are valid</value>
+  </data>
+  <data name="AllSchemas_Label_Text" xml:space="preserve">
+    <value>All Schemas</value>
+  </data>
+  <data name="AllTablesAndFieldsValid" xml:space="preserve">
+    <value>All tables and fields are valid</value>
+  </data>
+  <data name="AvailableRoles_ColHeader_Caption" xml:space="preserve">
+    <value>Available Roles</value>
+  </data>
+  <data name="AvailableUsers_ColHeader_Caption" xml:space="preserve">
+    <value>Available Users</value>
+  </data>
+  <data name="Back_Button_Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Back_Label_Text" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="BaseTable_Label_Text" xml:space="preserve">
+    <value>Base Table</value>
+  </data>
+  <data name="BeginProcessingMethod_Label_Text" xml:space="preserve">
+    <value>Begin {0}</value>
+  </data>
+  <data name="Cancel_Button_Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChangeNameDescription_Button_Text" xml:space="preserve">
+    <value>Name and Description</value>
+  </data>
+  <data name="ChildField_ColHeader_Caption" xml:space="preserve">
+    <value>Child Field</value>
+  </data>
+  <data name="ChildTable_ColHeader_Caption" xml:space="preserve">
+    <value>Child Table</value>
+  </data>
+  <data name="Choose_Label_Text" xml:space="preserve">
+    <value>Choose...</value>
+  </data>
+  <data name="ChooseParentField_Label_Text" xml:space="preserve">
+    <value>Choose parent field and relationship type</value>
+  </data>
+  <data name="ChooseTableToAdd_Label_Text" xml:space="preserve">
+    <value>Choose a table to add.</value>
+  </data>
+  <data name="CircularRelationship_Label_Text" xml:space="preserve">
+    <value>* Invalid Relationship! The relationship you are setting is already defined, but the other way around. (Accepting your action is allowing a circular relationship)</value>
+  </data>
+  <data name="Clear_Button_Text" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Close_Button_Text" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="COE_HOME" xml:space="preserve">
+    <value>Home.aspx</value>
+  </data>
+  <data name="COEManager_Page_Title" xml:space="preserve">
+    <value>CBOE Manager</value>
+  </data>
+  <data name="COESecurity_Page_Title" xml:space="preserve">
+    <value>CBOE Security Manager</value>
+  </data>
+  <data name="ConfirmRelationShipDeletion_Alert_Text" xml:space="preserve">
+    <value>Are you sure you want to delete the relationship? </value>
+  </data>
+  <data name="CopyrightInfo" xml:space="preserve">
+    <value>&amp;copy; Copyright 1998-2018 PerkinElmer Informatics, Inc.</value>
+  </data>
+  <data name="CreateAlias_Button_Text" xml:space="preserve">
+    <value>Create Alias</value>
+  </data>
+  <data name="CreateFieldAlias_Button_Text" xml:space="preserve">
+    <value>Create Field Alias</value>
+  </data>
+  <data name="CreateFromAnotherDV_MenuItem_Text" xml:space="preserve">
+    <value>Create from another Dataview</value>
+  </data>
+  <data name="CreateFromMasterDV_MenuItem_Text" xml:space="preserve">
+    <value>Create from master Dataview</value>
+  </data>
+  <data name="CreateMasterDV_MenuItem_Text" xml:space="preserve">
+    <value>Create Master DataView</value>
+  </data>
+  <data name="CurrentDataView_Label_Text" xml:space="preserve">
+    <value>Current Data View</value>
+  </data>
+  <data name="CurrentRoles_ColHeader_Caption" xml:space="preserve">
+    <value>Current Roles</value>
+  </data>
+  <data name="CurrentUsers_ColHeader_Caption" xml:space="preserve">
+    <value>Current Users</value>
+  </data>
+  <data name="CustomizedDV_Label_Text" xml:space="preserve">
+    <value>I want to choose the users and roles for this Data View</value>
+  </data>
+  <data name="Database_ColHeader_Caption" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="Database_Label_Text" xml:space="preserve">
+    <value>Database</value>
+  </data>
+  <data name="DataType_ColHeader_Caption" xml:space="preserve">
+    <value>Data Type</value>
+  </data>
+  <data name="DataViewFromSchema_Label_Text" xml:space="preserve">
+    <value>Enter information for new Dataview from Schema</value>
+  </data>
+  <data name="DataViewManager_MenuItem_Text" xml:space="preserve">
+    <value>Dataview Manager</value>
+  </data>
+  <data name="DataViewManager_Page_Title" xml:space="preserve">
+    <value>CBOE Data View Manager</value>
+  </data>
+  <data name="DataviewNameAlreadyExists_Label_Text" xml:space="preserve">
+    <value>The name you have chosen is already used, please use a different name for your dataview.</value>
+  </data>
+  <data name="DateCreated_Label_Text" xml:space="preserve">
+    <value>Date Created</value>
+  </data>
+  <data name="DateFormat" xml:space="preserve">
+    <value>MM/dd/yyyy</value>
+  </data>
+  <data name="DateHourFormat" xml:space="preserve">
+    <value>yyyy/MM/dd hh:mm:ss</value>
+  </data>
+  <data name="DefineRelationships_Page_Title" xml:space="preserve">
+    <value>Define Relationships</value>
+  </data>
+  <data name="Delete_Button_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Delete_Label_Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteADataview_Page_Title" xml:space="preserve">
+    <value>Delete a dataview</value>
+  </data>
+  <data name="DeleteDataViewHeader" xml:space="preserve">
+    <value>Dataview deletion confirmation</value>
+  </data>
+  <data name="DeleteDataViewWarning" xml:space="preserve">
+    <value>Deleting a dataview may cause other user's work to be lost.&lt;br&gt;This change cannot be undone, please consider carefully if you want to continue with this action.&lt;br&gt;Do you want to proceed?</value>
+  </data>
+  <data name="Description_Label_Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionRequired_Label_Text" xml:space="preserve">
+    <value>Description field is mandatory.</value>
+  </data>
+  <data name="Display_Label_Text" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="DisplayFieldTitle_Label_Text" xml:space="preserve">
+    <value>Select the display field</value>
+  </data>
+  <data name="DisplayName_ColHeader_Caption" xml:space="preserve">
+    <value>Display Name</value>
+  </data>
+  <data name="DuplicateTable_Button_Text" xml:space="preserve">
+    <value>Duplicate Table</value>
+  </data>
+  <data name="Edit_Label_Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edit_Role_Role_Title" xml:space="preserve">
+    <value>Edit Role Roles</value>
+  </data>
+  <data name="Edit_Role_Title" xml:space="preserve">
+    <value>Edit Role</value>
+  </data>
+  <data name="Edit_Role_User_Title" xml:space="preserve">
+    <value>Edit Role Users</value>
+  </data>
+  <data name="Edit_User_Title" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="EditDataView_MenuItem_Text" xml:space="preserve">
+    <value>Edit Dataview</value>
+  </data>
+  <data name="EditMasterDataView_MenuItem_Text" xml:space="preserve">
+    <value>Edit Master Dataview</value>
+  </data>
+  <data name="EditTable_Button_Text" xml:space="preserve">
+    <value>Edit Table</value>
+  </data>
+  <data name="EditTable_Label_Text" xml:space="preserve">
+    <value>Edit Table</value>
+  </data>
+  <data name="EditTableAndFields_Page_Title" xml:space="preserve">
+    <value>Edit Table and Fields</value>
+  </data>
+  <data name="EditTags_Button_Text" xml:space="preserve">
+    <value>Edit Tags</value>
+  </data>
+  <data name="EditTags_Page_Title" xml:space="preserve">
+    <value>Edit Tags</value>
+  </data>
+  <data name="EmptySchema_Label_Text" xml:space="preserve">
+    <value>The schema is empty.</value>
+  </data>
+  <data name="EndProcessingMethod_Label_Text" xml:space="preserve">
+    <value>End {0}</value>
+  </data>
+  <data name="EnterLDAPUserName_TextBox_Text" xml:space="preserve">
+    <value>Enter LDAP User Name</value>
+  </data>
+  <data name="EnterNameDescription_Page_Title" xml:space="preserve">
+    <value>Enter a Name and Description</value>
+  </data>
+  <data name="ErrorMessage_Label_Text" xml:space="preserve">
+    <value>An error has occurred.&lt;BR&gt;Please go back and try again.</value>
+  </data>
+  <data name="ErrorsPanel_Title_Text" xml:space="preserve">
+    <value>The following errors were found:</value>
+  </data>
+  <data name="ErrorTextNotCoppiedFromClipboard_Alert_Text" xml:space="preserve">
+    <value>Text was not copied from clipboard!</value>
+  </data>
+  <data name="ErrorTextNotCoppiedToClipboard_Alert_Text" xml:space="preserve">
+    <value>Text was not copied to clipboard!</value>
+  </data>
+  <data name="ExistingDataViews_Label_Text" xml:space="preserve">
+    <value>Existing DataViews</value>
+  </data>
+  <data name="ExistingTables_Label_Text" xml:space="preserve">
+    <value>Existing tables</value>
+  </data>
+  <data name="Field_Label_Text" xml:space="preserve">
+    <value>Field</value>
+  </data>
+  <data name="FilterTable_Label_Text" xml:space="preserve">
+    <value>Filter table name</value>
+  </data>
+  <data name="FooterSeparator_Label_Text" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="FormDesigner_MenuItem_Text" xml:space="preserve">
+    <value>Form Designer</value>
+  </data>
+  <data name="FormDesignerEdit_MenuItem_Text" xml:space="preserve">
+    <value>Edit Form</value>
+  </data>
+  <data name="FormGroup_Label_Text" xml:space="preserve">
+    <value>Form Group</value>
+  </data>
+  <data name="FriendlyName_Label_Text" xml:space="preserve">
+    <value>Friendly Name</value>
+  </data>
+  <data name="FromTitleLabel" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="GetLDAPUser_Button_Text" xml:space="preserve">
+    <value>Get LDAP User</value>
+  </data>
+  <data name="GoTo_MenuItem_Text" xml:space="preserve">
+    <value>GoTo</value>
+  </data>
+  <data name="HeaderSeparetor_Label_Text" xml:space="preserve">
+    <value>|</value>
+  </data>
+  <data name="Help_Button_Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_Label_Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_Page_Title" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="HideHiddenFields_Button_Text" xml:space="preserve">
+    <value>Hide hidden fields</value>
+  </data>
+  <data name="Home_Button_Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Home_Label_Text" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Home_Page_Title" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="ID_ColHeader_Caption" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ID_Label_Text" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="InactivityMessage_Error_Text" xml:space="preserve">
+    <value>You have been logged out due to inactivity.  Please login again.</value>
+  </data>
+  <data name="IndexType_ColHeader_Caption" xml:space="preserve">
+    <value>Index Type</value>
+  </data>
+  <data name="Invalid_Button_Text" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="Invalid_Label_Text" xml:space="preserve">
+    <value>Invalid</value>
+  </data>
+  <data name="InvalidAlias_Label_Text" xml:space="preserve">
+    <value>The maximum length is of 30 characters for alias field.</value>
+  </data>
+  <data name="InvalidCharsInRoleName_Error_Text" xml:space="preserve">
+    <value>Only letters, numbers and underscore are allowed.</value>
+  </data>
+  <data name="InvalidDatasource_Label_Text" xml:space="preserve">
+    <value>Invalid Datasource!</value>
+  </data>
+  <data name="InvalidDataView_Label_Text" xml:space="preserve">
+    <value>Invalid DataView.&lt;br&gt; Please, try again.</value>
+  </data>
+  <data name="InvalidDescription_Label_Text" xml:space="preserve">
+    <value>Description can be alpha-numeric and the maximum length is of 255 characters. Allowed special characters are: = _' () ! ? , . : * / + % - and space</value>
+  </data>
+  <data name="InvalidLookUp_Label_Text" xml:space="preserve">
+    <value>Invalid lookUp!</value>
+  </data>
+  <data name="InvalidName_Label_Text" xml:space="preserve">
+    <value>Name can be alpha-numeric and the maximum length is of 50 characters. Allowed special characters are: = _' () ! ? , . : * / + % - and space</value>
+  </data>
+  <data name="InvalidRelationshipDifferentTypes_Label_Text" xml:space="preserve">
+    <value>* Invalid Relationship! The fields choosen have missmatching types.</value>
+  </data>
+  <data name="InvalidRelationshipIsLookup_Label_Text" xml:space="preserve">
+    <value>* Invalid Relationship! A lookup field should not be used in a relationship.</value>
+  </data>
+  <data name="InvalidRelationShips_Label_Text" xml:space="preserve">
+    <value>* Invalid Relationship! </value>
+  </data>
+  <data name="InvalidRelationshipSameField_Label_Text" xml:space="preserve">
+    <value>* Invalid Relationship! You cannot make a self relationship. (the parent is the same as the child)</value>
+  </data>
+  <data name="IsDefault_ColHeader_Caption" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="IsUniqueKey_ColHeader_Caption" xml:space="preserve">
+    <value>Unique?</value>
+  </data>
+  <data name="Join_ColHeader_Caption" xml:space="preserve">
+    <value>Join</value>
+  </data>
+  <data name="JoinType_Label_Text" xml:space="preserve">
+    <value>Join Type</value>
+  </data>
+  <data name="LDAPUserValidation_Error_Message" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="Login_Button_Text" xml:space="preserve">
+    <value>Log in</value>
+  </data>
+  <data name="Login_Page_Tiltle" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="Login_Title_Text" xml:space="preserve">
+    <value>CBOE Manager Login</value>
+  </data>
+  <data name="Logo_Image_Tooltip" xml:space="preserve">
+    <value>CambridgeSoft Enterprise Manager</value>
+  </data>
+  <data name="LogOff_Label_Text" xml:space="preserve">
+    <value>Log off</value>
+  </data>
+  <data name="Lookup_ColHeader_Caption" xml:space="preserve">
+    <value>LookUp</value>
+  </data>
+  <data name="Lookup_Page_Title" xml:space="preserve">
+    <value>Edit a lookup</value>
+  </data>
+  <data name="LookupFieldTitle_Label_Text" xml:space="preserve">
+    <value>Select Lookup Field:</value>
+  </data>
+  <data name="Lookups_Label_Text" xml:space="preserve">
+    <value>Lookups</value>
+  </data>
+  <data name="LookupSortOrder_Label_Text" xml:space="preserve">
+    <value>Select Lookup Sort Direction:</value>
+  </data>
+  <data name="LookupTitle_Label_Text" xml:space="preserve">
+    <value>Define a lookup for this field:</value>
+  </data>
+  <data name="Main_HyperLink_Text" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="Manage_Roles_Title" xml:space="preserve">
+    <value>Manage_Roles</value>
+  </data>
+  <data name="Manager_Users_Title" xml:space="preserve">
+    <value>Manager Users</value>
+  </data>
+  <data name="MasterDVExists_Label_Text" xml:space="preserve">
+    <value>Already exists a Master Dataview in the Database. &lt;BR&gt; Please try editing that.</value>
+  </data>
+  <data name="Messages_Page_Title" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="MimeType_ColHeader_Caption" xml:space="preserve">
+    <value>Content Type</value>
+  </data>
+  <data name="MoveDown_Button_Text" xml:space="preserve">
+    <value>Move Down</value>
+  </data>
+  <data name="MoveUp_Button_Text" xml:space="preserve">
+    <value>Move Up</value>
+  </data>
+  <data name="Name_ColHeader_Caption" xml:space="preserve">
+    <value>Column Name</value>
+  </data>
+  <data name="Name_Label_Text" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameAndDescription_Label_Text" xml:space="preserve">
+    <value>Name and Description</value>
+  </data>
+  <data name="NameRequired_Label_Text" xml:space="preserve">
+    <value>Name field is mandatory.</value>
+  </data>
+  <data name="NewDataView_Page_Title" xml:space="preserve">
+    <value>Select an existing Data View</value>
+  </data>
+  <data name="NewRelationship_Button_Text" xml:space="preserve">
+    <value>New Relationship</value>
+  </data>
+  <data name="Next_Button_Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Next_Label_Text" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="NoDataViews_Label_Text" xml:space="preserve">
+    <value>No Dataviews to display. &lt;BR&gt; Please try creating one from Master Dataview</value>
+  </data>
+  <data name="NoDataViewSelected_Label_Text" xml:space="preserve">
+    <value>Please Select a Dataview.</value>
+  </data>
+  <data name="NoEnoughPrivileges_Label_Text" xml:space="preserve">
+    <value>Sorry, but you are not allowed to browse this page.</value>
+  </data>
+  <data name="NoFieldsInTable_Label_Text" xml:space="preserve">
+    <value>There are no fields in this table to be used as parent key</value>
+  </data>
+  <data name="NoLookupInSchema_Label_Text" xml:space="preserve">
+    <value>There is no lookup in this schema</value>
+  </data>
+  <data name="NoLookupInTable_Label_Text" xml:space="preserve">
+    <value>There is no lookup in this table</value>
+  </data>
+  <data name="NoMasterDataView_Label_Text" xml:space="preserve">
+    <value>No Master DataView in the Database. &lt;BR&gt; Please try creating a Master Dataview from scratch</value>
+  </data>
+  <data name="NoPkInSchema_Label_Text" xml:space="preserve">
+    <value>The schema has no primary key defined</value>
+  </data>
+  <data name="NoPkInTable_Label_Text" xml:space="preserve">
+    <value>The table has no primary key defined</value>
+  </data>
+  <data name="NoRecordsFound_Label_Text" xml:space="preserve">
+    <value>No Records Found. Please, try again.</value>
+  </data>
+  <data name="NoRelInSchema_Label_Text" xml:space="preserve">
+    <value>No relationship defined within this schema</value>
+  </data>
+  <data name="NoRelInTable_Label_Text" xml:space="preserve">
+    <value>No relationship defined within this table</value>
+  </data>
+  <data name="NoTagsInTable_Label_Text" xml:space="preserve">
+    <value>The table has no tag associated</value>
+  </data>
+  <data name="NotPublicDataView_Label_Text" xml:space="preserve">
+    <value>This dataview is available only for these users and roles:</value>
+  </data>
+  <data name="OK_Button_Text" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="OrderBy_Label_Text" xml:space="preserve">
+    <value>Order By</value>
+  </data>
+  <data name="OrderIndex_ColHeader_Caption" xml:space="preserve">
+    <value>Order</value>
+  </data>
+  <data name="PageControlSet_Link_Text" xml:space="preserve">
+    <value>Config application controls privileges</value>
+  </data>
+  <data name="PageNotFound_Label_Text" xml:space="preserve">
+    <value>Page Not Found. Please, try again.</value>
+  </data>
+  <data name="PageSettingsDisable_Label_Text" xml:space="preserve">
+    <value>COEPageControlSettings is disable. &lt;br&gt; Please check your configuration</value>
+  </data>
+  <data name="ParentColumn_ColHeader_Caption" xml:space="preserve">
+    <value>Parent Column</value>
+  </data>
+  <data name="ParentField_ColHeader_Caption" xml:space="preserve">
+    <value>Parent Field</value>
+  </data>
+  <data name="ParentTable_ColHeader_Caption" xml:space="preserve">
+    <value>Parent Table</value>
+  </data>  
+  <data name="GranterUserRequired_Label_Text" xml:space="preserve">
+    <value>Granter user cannot be empty</value>
+  </data>
+  <data name="Password_Label_Text" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordCannotBeChangedLDAP_Tooptip_Text" xml:space="preserve">
+    <value>Password cannot be changed here. Contact your ldap administrator.</value>
+  </data>
+  <data name="PasswordRequired_Label_Text" xml:space="preserve">
+    <value>Password cannot be empty</value>
+  </data>
+  <data name="PrimaryKey_ColHeader_Caption" xml:space="preserve">
+    <value>Primary Key</value>
+  </data>
+  <data name="PrimaryKey_Label_Text" xml:space="preserve">
+    <value>Primary Keys</value>
+  </data>
+  <data name="PublicDataView_Label_Text" xml:space="preserve">
+    <value>This is a public dataview, available for all the users and roles.</value>
+  </data>
+  <data name="PublicDV_Label_Text" xml:space="preserve">
+    <value>This is a Public Data View (All users and Roles can see it)</value>
+  </data>
+  <data name="Publish_Button_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Publish_Button_Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="Publish_Button_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Publish_Button_EditRoleRoles" xml:space="preserve">
+    <value>Edit Roles</value>
+  </data>
+  <data name="Publish_Button_EditRoleUsers" xml:space="preserve">
+    <value>Edit Users</value>
+  </data>
+  <data name="Publish_Button_Text" xml:space="preserve">
+    <value>Publish</value>
+  </data> 
+  <data name="PublishingSchema_Div_Text" xml:space="preserve">
+    <value>Publishing Schema...</value>
+  </data>
+  <data name="Refresh_Button_Text" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="RefreshSchema_Button_Text" xml:space="preserve">
+    <value>Refresh Schema</value>
+  </data>
+  <data name="Relationships_Label_Text" xml:space="preserve">
+    <value>Relationships</value>
+  </data>
+  <data name="Remove_Label_Text" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="RemoveField_Button_Text" xml:space="preserve">
+    <value>Remove Field</value>
+  </data>
+  <data name="RemoveRole_Button_Text" xml:space="preserve">
+    <value>Remove Role</value>
+  </data>
+  <data name="RemoveSchema_Button_Text" xml:space="preserve">
+    <value>Remove Schema</value>
+  </data>
+  <data name="RemoveTable_Button_Text" xml:space="preserve">
+    <value>Remove Table</value>
+  </data>
+  <data name="RemoveUser_Button_Text" xml:space="preserve">
+    <value>Remove User</value>
+  </data>
+  <data name="Resolve_Button_Text" xml:space="preserve">
+    <value>Resolve</value>
+  </data>
+  <data name="Role_Label_Text" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="RoleName_Length_Error_Text" xml:space="preserve">
+    <value>Role name should not exceed 100 characters.</value>
+  </data>
+  <data name="Roles_ColHeader_Caption" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="RootNode_Label_Text" xml:space="preserve">
+    <value>Root Node</value>
+  </data>
+  <data name="Save_Button_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Save_Label_Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SavedDV_Label_Text" xml:space="preserve">
+    <value>The DataViews has been successfully saved</value>
+  </data>
+  <data name="Schema_Label_Text" xml:space="preserve">
+    <value>Schema</value>
+  </data>
+  <data name="SchemaPassword_Label_Text" xml:space="preserve">
+    <value>Schema Password</value>
+  </data>
+  <data name="SchemaRequired_LabelText" xml:space="preserve">
+    <value>Please select a schema</value>
+  </data>
+  <data name="SchemaSummary_Label_Text" xml:space="preserve">
+    <value>Schema Summary</value>
+  </data>
+  <data name="Search_Button_Text" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Searching_Label_Text" xml:space="preserve">
+    <value>Searching...</value>
+  </data>
+  <data name="SecuritySettings_Label_Text" xml:space="preserve">
+    <value>Security Settings: </value>
+  </data>
+  <data name="Secutiry_Page_Title" xml:space="preserve">
+    <value>Security Settings</value>
+  </data>
+  <data name="SeeRelationshipsErrorsBelow" xml:space="preserve">
+    <value>See relationships' errors below</value>
+  </data>
+  <data name="SeeTablesErrorsBelow" xml:space="preserve">
+    <value>See tables's errors below</value>
+  </data>
+  <data name="Select_Label_Text" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="SelectBaseTable_Label_Text" xml:space="preserve">
+    <value>Select Base Table</value>
+  </data>
+  <data name="SelectBaseTable_Validator_Text" xml:space="preserve">
+    <value>Please select a base table</value>
+  </data>
+  <data name="SelectDefaultField_Label_Text" xml:space="preserve">
+    <value>Please select at least one display field</value>
+  </data>
+  <data name="SelectJoinField_Label_Text" xml:space="preserve">
+    <value>Select a joining field</value>
+  </data>
+  <data name="SelectJoinType_Label_Text" xml:space="preserve">
+    <value>Select a join type</value>
+  </data>
+  <data name="SelectLookupField_Label_Text" xml:space="preserve">
+    <value>Select a lookup field</value>
+  </data>
+  <data name="Lookup_Label_Text" xml:space="preserve">
+    <value>There is no table to create lookup</value>
+  </data>
+  <data name="SelectLookupFor_Label_Text" xml:space="preserve">
+    <value>Lookup Table For:  {0} Datatype: {1}</value>
+  </data>
+  <data name="SelectLookupSchema_Label_Text" xml:space="preserve">
+    <value>Select a lookup schema</value>
+  </data>
+  <data name="SelectLookupTable_Label_Text" xml:space="preserve">
+    <value>Select a lookup table</value>
+  </data>
+  <data name="SelectParentColumnFor_Label_Text" xml:space="preserve">
+    <value>Parent Column For: {0} Datatype: {1}</value>
+  </data>
+  <data name="SelectParentSchema_Label_Text" xml:space="preserve">
+    <value>Select a parent schema</value>
+  </data>
+  <data name="SelectParentTable_Label_Text" xml:space="preserve">
+    <value>Select a parent table</value>
+  </data>
+  <data name="SelectTable_Label_Text" xml:space="preserve">
+    <value>Select a table on the left</value>
+  </data>
+  <data name="SelectTables_Pagel_Title" xml:space="preserve">
+    <value>Select Tables for "{0}" ({1}) </value>
+  </data>
+  <data name="SelectTablesMasterDataview_Pagel_Title" xml:space="preserve">
+    <value>Select Tables for Master Dataview</value>
+  </data>
+  <data name="SessiontimeOut_Label_Text" xml:space="preserve">
+    <value>The session has expired. Please, try login in again.</value>
+  </data>
+  <data name="ShowHiddenFields_Button_Text" xml:space="preserve">
+    <value>Show hidden fields</value>
+  </data>
+  <data name="SiteRights_Label_Text" xml:space="preserve">
+    <value>© {0} CambridgeSoft Corporation. All Rights Reserved.</value>
+  </data>
+  <data name="SortBy_Label_Text" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="SortByDBAsc_Label_Text" xml:space="preserve">
+    <value>DB Asc</value>
+  </data>
+  <data name="SortByDBDesc_Label_Text" xml:space="preserve">
+    <value>DB Desc</value>
+  </data>
+  <data name="SortByIDAsc_Label_Text" xml:space="preserve">
+    <value>ID Asc</value>
+  </data>
+  <data name="SortByIDDesc_Label_Text" xml:space="preserve">
+    <value>ID Desc</value>
+  </data>
+  <data name="SortOrder_ColHeader_Caption" xml:space="preserve">
+    <value>Sort Order</value>
+  </data>
+  <data name="Submit_Button_Text" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SuccessfullyDeletedDataView_Label_Text" xml:space="preserve">
+    <value>The DataView was successfully deleted.</value>
+  </data>
+  <data name="SuccessfullySaveDataView_Label_Text" xml:space="preserve">
+    <value>The DataView  was successfully submitted.</value>
+  </data>
+  <data name="Table_Label_Text" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="TableEditor_Page_Title" xml:space="preserve">
+    <value>Table Editor</value>
+  </data>
+  <data name="TableEditor_Title_Text" xml:space="preserve">
+    <value>Table Editor</value>
+  </data>
+  <data name="TableRemovedHasLookups_Label_Text" xml:space="preserve">
+    <value>Warning! You have chosen to delete a table with lookups.  All lookups involving this table will be deleted.</value>
+  </data>
+  <data name="TableRemovedHasRelationships_Label_Text" xml:space="preserve">
+    <value>Warning! You have chosen to delete a table with relationships.  All relationships involving this table will be deleted.</value>
+  </data>
+  <data name="TableRemovedHasRelationshipsAndLookups_Label_Text" xml:space="preserve">
+    <value>Warning! You have chosen to delete a table with relationships and lookups.  All relationships and lookups involving this table will be deleted.</value>
+  </data>
+  <data name="TablesRemovedHaveLookups_Label_Text" xml:space="preserve">
+    <value>Warning! You have chosen to delete some tables with lookups.  All lookups involving these tables will be deleted.</value>
+  </data>
+  <data name="TablesRemovedHaveRelationships_Label_Text" xml:space="preserve">
+    <value>Warning! You have chosen to delete some tables with relationships.  All relationships involving these tables will be deleted.</value>
+  </data>
+  <data name="TablesRemovedHaveRelationshipsAndLookups_Label_Text" xml:space="preserve">
+    <value>Warning! You have chosen to delete some tables with relationships and lookups.  All relationships and lookups involving these tables will be deleted.</value>
+  </data>
+  <data name="TablesToAdd_Column_Text" xml:space="preserve">
+    <value>Tables to add</value>
+  </data>
+  <data name="TableSummary_Label_Text" xml:space="preserve">
+    <value>Table Summary</value>
+  </data>
+  <data name="Tags_Label_Text" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="ToTitleLabel" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="Type_Label_Text" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UnknownErrorMessage_Label_Text" xml:space="preserve">
+    <value>An unknown error has occurred.&lt;BR&gt;Please go back and try again.</value>
+  </data>
+  <data name="UnSelectTable_Button_Text" xml:space="preserve">
+    <value>Unselect Table</value>
+  </data>
+  <data name="UnsupportedControlType_Label_Text" xml:space="preserve">
+    <value>Unsupported Control Type</value>
+  </data>
+  <data name="UnsupportedFooter_Label_Text" xml:space="preserve">
+    <value>Unsupported kind of Footer UC. You must implement ICOEFooterUC interface</value>
+  </data>
+  <data name="UnsupportedHeader_Label_Text" xml:space="preserve">
+    <value>Unsupported kind of Header UC. You must implement ICOEHeaderUC interface</value>
+  </data>
+  <data name="Update_Button_Text" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="UpdateFields_Button_Text" xml:space="preserve">
+    <value>Update Fields</value>
+  </data>
+  <data name="UpdateFields_Label_Text" xml:space="preserve">
+    <value>Update Fields</value>
+  </data>
+  <data name="UpdateTable_Button_Text" xml:space="preserve">
+    <value>Update Table</value>
+  </data>
+  <data name="UpdateTable_Label_Text" xml:space="preserve">
+    <value>Update Table</value>
+  </data>
+  <data name="User_Label_Text" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="Users_ColHeader_Caption" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="Valid_Button_Text" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="Valid_Label_Text" xml:space="preserve">
+    <value>Valid</value>
+  </data>
+  <data name="Validate_Button_Text" xml:space="preserve">
+    <value>Validate</value>
+  </data>
+  <data name="ValidationSummary_Page_Title" xml:space="preserve">
+    <value>Validation Summary</value>
+  </data>
+  <data name="ValidationSummaryFooter_Label_Text" xml:space="preserve">
+    <value>Review the validation errors</value>
+  </data>
+  <data name="ValidationSummaryHeader_Label_Text" xml:space="preserve">
+    <value>Validation Summary</value>
+  </data>
+  <data name="ValidDataSource_Label_Text" xml:space="preserve">
+    <value>Valid Datasource!</value>
+  </data>
+  <data name="ValidToSave_Label_Text" xml:space="preserve">
+    <value>Valid to save into the Database</value>
+  </data>
+  <data name="Visible_ColHeader_Caption" xml:space="preserve">
+    <value>Visible?</value>
+  </data>
+  <data name="Welcome_Label_Text" xml:space="preserve">
+    <value>Current Login</value>
+  </data>
+  <data name="IsDefaultQuery_ColHeader_Caption" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="Apply_Index_Confirmation_Message" xml:space="preserve">
+    <value>Index is not present.&lt;br /&gt;Do you want to create index on</value>
+  </data>
+  <data name="Apply_Index_Error_Message" xml:space="preserve">
+    <value>Unable to create index on this field.</value>
+  </data>
+  <data name="Index_Label_Text" xml:space="preserve">
+    <value>Indexes</value>
+  </data>
+  <data name="NoIndexInTable_Label_Text" xml:space="preserve">
+    <value>Either a view or table has no indexes defined</value>
+  </data>
+  <data name="Apply_Index_ConfirmationBox_Title" xml:space="preserve">
+    <value>Create Index</value>
+  </data>
+  <data name="PublishRelationships_Label_Text" xml:space="preserve">
+    <value>Publish relationships?</value>
+  </data>
+  <data name="Invalid_PrimaryKey" xml:space="preserve">
+    <value>Invalid primary key!</value>
+  </data>
+  <data name="TablesSelectedInDataView_Label_Text" xml:space="preserve">
+    <value>Fields highlighted in red color have been already selected.</value>
+  </data>
+  <data name="DuplicateTableAlias" xml:space="preserve">
+    <value>The table alias is already in use, please choose another alias for table.</value>
+  </data>
+  <data name="ToolTip_IsDafaultQuery_Indexed_Field" xml:space="preserve">
+    <value>Index is present on this field</value>
+  </data>
+  <data name="ToolTip_IsDefaultQuery_Header" xml:space="preserve">
+    <value>Use while querying database</value>
+  </data>
+  <data name="ToolTip_IsDefault_Header" xml:space="preserve">
+    <value>Use as a default field</value>
+  </data>
+  <data name="ToolTip_IsDafaultQuery_NonIndexed_Field" xml:space="preserve">
+    <value>Index is not present on this field</value>
+  </data>
+  <data name="Apply_Index_showprogressbar_Title" xml:space="preserve">
+    <value>Indexing...</value>
+  </data>
+  <data name="Indexname_ColHeader_Caption" xml:space="preserve">
+    <value>Index Name</value>
+  </data>
+  <data name="Apply_Index_Error_Message_ForView" xml:space="preserve">
+    <value>You have selected a View; Indexing functionality is not available !</value>
+  </data>
+  <data name="SchemaDeleteFromMaster_Label_Text" xml:space="preserve">
+    <value>Warning! You have chosen a table whose schema is not present in Master, Please publish it to work existing dataview properly.</value>
+  </data>
+  <data name="DuplicateTableError" xml:space="preserve">
+    <value>Duplicate table names are not allowed.</value>
+  </data>
+  <data name="BaseTableNoPkUk" xml:space="preserve">
+    <value>Selected base table has no Primary/Unique key constraint.</value>
+  </data>
+  <data name="SelectPkForBaseTable" xml:space="preserve">
+    <value>Please select primary key field for base table.</value>
+  </data>
+  <data name="TableNothavePkUk" xml:space="preserve">
+    <value>Table does not have Primary/Unique key constraint.</value>
+  </data>
+  <data name="ErrorSelectBaseTable" xml:space="preserve">
+    <value>Warning! Selected base table does not have a valid primary key constraint.</value>
+  </data>
+  <data name="Lookup_InvalidJoin" xml:space="preserve">
+    <value>Invalid join : Datatype mismatch</value>
+  </data>
+  <data name="Lookup_JoinAndDisplaySame" xml:space="preserve">
+    <value>Join and Display field cannot be the same.&lt;br /&gt;</value>
+  </data>
+  <data name="Lookup_NoDisplaySelected" xml:space="preserve">
+    <value>No lookup display field selected.&lt;br /&gt;</value>
+  </data>
+  <data name="Lookup_NoLookUpSelected" xml:space="preserve">
+    <value>No lookup field selected.&lt;br /&gt;</value>
+  </data>
+  <data name="Lookup_NoSortingSelected" xml:space="preserve">
+    <value>No sorting selected.&lt;br /&gt;</value>
+  </data>
+  <data name="LOB_DataType_Error_Text" xml:space="preserve">
+    <value>can not be set for the field having data type</value>
+  </data>
+  <data name="DisplayName_ToolTip" xml:space="preserve">
+    <value>Total length is 30 characters.&lt;:= 4,&gt;:= 4,&amp;:=5,%:= 5 characters respectively</value>
+  </data>
+  <data name="ConfirmTableDeletion_Alert_Text" xml:space="preserve">
+    <value>If any relationships or lookups are involved with this table then they will be deleted either. Are you sure you want to delete the table?</value>
+  </data>
+  <data name="InvalidPkDataType" xml:space="preserve">
+    <value>User can not select field whose datatype is DATE,TIME,BLOB or CLOB.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WarningInvalidPkUk" xml:space="preserve">
+    <value>Warning! Selected field is not a valid primary key. &lt;br /&gt;&lt;br /&gt;</value>
+  </data>
+  <data name="ConfirmCircualrDependancyRelationship" xml:space="preserve">
+    <value>You are trying to reference a table that will create a circular reference in this DataView. This is not allowed.</value>
+  </data>
+  <data name="InvalidChildTableMultipleParents" xml:space="preserve">
+    <value>Child table cannot have multiple Parent tables. Existing Parent table :</value>
+  </data>
+  <data name="UnsupportedCartridge_Label_Text" xml:space="preserve">
+    <value>The Index Type '{0}' of field '{1}' is not supported. The value has been reset to 'UNKNOWN'.</value>
+  </data>  
+  <data name="Instance_Label_Text" xml:space="preserve">
+    <value>Data source</value>
+  </data>
+  <data name="FetchInstanceSchema_Error" xml:space="preserve">
+    <value>Fetch the instance schemas failed, please contact to administrator.</value>
+  </data>
+  <data name="DuplicateDataField" xml:space="preserve">
+    <value>Duplicate columns in dataview:</value>
+  </data>
+  <data name="InvalidDatasourceUsernameOrPassword" xml:space="preserve">
+    <value>Invalid datasource username or password.</value>
+  </data>
+  <data name="InvalidSpotfireServiceUrl" xml:space="preserve">
+    <value>Spotfire service cannot be reached. please check Spotfire service address.</value>
+  </data>
+  <data name="InvalidSpotfireUsernameOrPassword" xml:space="preserve">
+    <value>Invalid username or password for Spotfire server.</value>
+  </data>
+  <data name="SpotfireServerCommunicationError" xml:space="preserve">
+    <value>Error happend while communicating with Spotfire server, please try it later.</value>
+  </data>
+  <data name="UnknownSpotfireError" xml:space="preserve">
+    <value>Unknown exception happend while calling Spotfire server. Please contact with Spotfire server administrator.</value>
+  </data>
+  <data name="PKI_ABOUT_TEXT" xml:space="preserve">
+    <value>PKI&amp;nbsp;&amp;nbsp;</value>
+  </data>
+  <data name="DataSourceBusyError" xml:space="preserve">
+    <value>DataPortal.Create failed (System.IO.IOException: The process cannot access the file"</value>
+  </data>
+  <data name="DataSourceBusyMessage" xml:space="preserve">
+    <value>The service is busy, please try it later.</value>
+  </data>
+  <data name="DataSourceExistsError" xml:space="preserve">
+    <value>Data source name already exists.</value>
+  </data>
+  <data name="FieldDependencyCheckWarning" xml:space="preserve">
+    <value>Field cannot be removed as other field depends on it. Please update parent/lookup for field '{0}' firstly and then try it again. </value>
+  </data>
+</root>

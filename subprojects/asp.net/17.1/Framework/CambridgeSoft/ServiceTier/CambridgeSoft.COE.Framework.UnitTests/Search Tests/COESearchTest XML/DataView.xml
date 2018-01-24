@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="203" database="COETEST" name="" description="" dataviewHandling="USE_CLIENT_DATAVIEW" dataviewid="5002">
+  <tables>
+    <table id="203" name="MOLTABLE" alias="MOLTABLE" database="COETEST" primaryKey="206">
+      <fields id="204" name="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias="ID" sortOrder="0"/>
+      <fields id="205" name="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias="STRUCTURE" sortOrder="1"/>
+      <fields id="206" name="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias="MOLID" sortOrder="2"/>
+      <fields id="207" name="MOLNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias="MOLNAME" sortOrder="3"/>
+    </table>
+    <table id="210" name="SYNONYMS_R" alias="Synonyms" database="COETEST" primaryKey="213">
+      <fields id="211" name="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias="ID"/>
+      <fields id="212" name="SYNONYM_R" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias="SYNONYM_R"/>
+      <fields id="213" name="SYN_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias="SYN_ID"/>
+    </table>
+  </tables>
+  <relationships>
+    <relationship child="210" parent="203" childkey="213" parentkey="206" jointype="INNER"/>
+  </relationships>
+</COEDataView>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="CHEMINVDB2" name="Registration/Inventory Containers_Test" description="Registration/Inventory Containers" application="REGISTRATION" dataviewHandling="USE_SERVER_DATAVIEW" dataviewid="-1">
+  <tables>
+    <table id="1" name="INV_CONTAINERS" alias="CONTAINERS" database="CHEMINVDB2" isView="false" primaryKey="2">
+      <fields id="2" name="CONTAINER_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="CONTAINERID" />
+      <fields id="3" name="REG_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" lookupFieldId="31" lookupDisplayFieldId="32" alias="REGNUMBER" />
+      <fields id="4" name="QTY_AVAILABLE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" alias="QTYAVAILABLE" />
+      <fields id="5" name="CONTAINER_TYPE_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" lookupFieldId="21" lookupDisplayFieldId="22" alias="CONTAINERTYPE" />
+      <fields id="6" name="QTY_MAX" dataType="REAL" indexType="NONE" mimeType="NONE" visible="true" alias="CONTAINERSIZE" />
+      <fields id="7" name="LOCATION_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" lookupFieldId="41" lookupDisplayFieldId="42" alias="LOCATION" />
+      <fields id="8" name="LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="LOCATIONID" />
+      <fields id="9" name="REG_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="REGID" />
+      <fields id="10" name="BATCH_NUMBER_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="BATCHID" />
+      <fields id="11" name="COMPOUND_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" lookupFieldId="51" lookupDisplayFieldId="52" alias="REGBATCHID" />
+      <fields id="12" name="UNIT_OF_MEAS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" lookupFieldId="61" lookupDisplayFieldId="62" alias="UOMABR" />
+      <fields id="13" name="BATCH_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="INVBATCHID" />
+      <fields id="14" name="CONTAINER_STATUS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="STATUSID" />
+      <fields id="15" name="COMPOUND_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="COMPOUNDID" />
+      <fields id="16" name="BARCODE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="BARCODE" />
+      <fields id="17" name="BATCH_ID2_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="INVBATCHID2" />
+      <fields id="18" name="BATCH_ID3_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="INVBATCHID3" />
+    </table>
+    <table id="20" name="INV_CONTAINER_TYPES" alias="CONTAINERTYPES" database="CHEMINVDB2" isView="false" primaryKey="21">
+      <fields id="21" name="CONTAINER_TYPE_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="CONTAINERTYPEID" />
+      <fields id="22" name="CONTAINER_TYPE_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" alias="CONTAINERTYPÈNAME" />
+    </table>
+    <table id="30" name="REG_NUMBERS" alias="REGNUMBERS" database="REGDB" isView="false" primaryKey="31">
+      <fields id="31" name="REG_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="REGID" />
+      <fields id="32" name="REG_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" alias="REGNUMBER" />
+    </table>
+    <table id="40" name="INV_LOCATIONS" alias="LOCATIONS" database="CHEMINVDB2" isView="false" primaryKey="41">
+      <fields id="41" name="LOCATION_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="LOCATIONID" />
+      <fields id="42" name="LOCATION_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" alias="LOCATIONNAME" />
+    </table>
+    <table id="50" name="INV_VW_COMPOUNDS" alias="VW_COMPOUNDS" database="CHEMINVDB2" isView="true" primaryKey="51">
+      <fields id="51" name="COMPOUND_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="COMPOUNDID" />
+      <fields id="52" name="REG_BATCH_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" alias="FULLREGNUMBER" />
+    </table>
+    <table id="60" name="INV_UNITS" alias="UNITS" database="CHEMINVDB2" isView="false" primaryKey="61">
+      <fields id="61" name="UNIT_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="UNITID" />
+      <fields id="62" name="UNIT_ABREVIATION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" alias="UNITABR" />
+    </table>
+  </tables>
+  <relationships />
+</COEDataView>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="CHEMINVDB2" name="Inventory Grouping Fields" description="Inventory Grouping Fields"  application="REGISTRATION" dataviewHandling="USE_SERVER_DATAVIEW" dataviewid="3002">
+	<tables>
+		<table id="1" name="INV_CONTAINER_BATCH_FIELDS" alias="GROUPINGFIELDS" database="CHEMINVDB2" isView="false" primaryKey="11">
+			<fields id="11" name="FIELD_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="true" alias="FIELDID"/>
+			<fields id="12" name="FIELD_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="true" alias="FIELDNAME"/>
+		</table>
+	</tables>
+	<relationships/>
+</COEDataView>

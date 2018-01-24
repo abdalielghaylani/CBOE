@@ -1,0 +1,16 @@
+Classical COEHitListBO Insertion Example
+Query: 
+	SELECT 343245, INV_CONTAINERS.CONTAINER_ID 
+	FROM INV_CONTAINERS c, INV_LOCATIONS, INV_COMPOUNDS 
+	WHERE c.LOCATION_ID_FK = INV_LOCATIONS.LOCATION_ID 
+		AND c.COMPOUND_ID_FK = INV_COMPOUNDS.COMPOUND_ID 
+		AND (c.DATE_EXPIRES > TO_DATE(':0','MM,DD,YYYY')) 
+		AND (LOWER(INV_LOCATIONS.LOCATION_NAME) = ':1') 
+		AND CSCARTRIDGE.MoleculeContains(INV_COMPOUNDS.BASE64_CDX, :2, :3, :4)=1
+
+Parameters:
+	Value: '01/01/2006'												Type: DateTime
+	Value: 'stock room 123									'		Type: Text
+	Value: 'SELECT query FROM CSCARTRIDGE.Queries WHERE id =  VmpDRDAxMDAEAwIBAAAAA….QAAAAAAAAAAAA=													'	 Type: Text
+	Value: ''	 Type: Text
+	Value: 'absoluteHitsRel=NO, relativeTetStereo=NO, tetrahedralStereo=Yes, simThreshold=100, reactionCenter=YES, fullSearch=NO, tautometer=NO, fragmentsOverlap=NO, permitExtraneousFragmentsIfRXN=NO, permitExtraneousFragments=NO, doubleBondStereo=YES, hitAnyChrgeHetero=YES, identity=NO, hitAnyChargeCarbon=YES, similar=NO, format=NO'	 Type: Text

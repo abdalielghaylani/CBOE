@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="COE.SearchResponse" elementFormDefault="qualified" targetNamespace="COE.SearchResponse" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="COE.HitListInfo" />
+  <xs:import namespace="COE.PagingInfo" />
+  <xs:element name="SearchResponse" type="tns:SearchResponse" />
+  <xs:complexType name="SearchResponse">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" xmlns:q1="COE.HitListInfo" ref="q1:HitListInfo" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ResultsDataSet" nillable="true">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="xs:schema" />
+            <xs:any />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="1" maxOccurs="1" xmlns:q2="COE.PagingInfo" ref="q2:PagingInfo" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppointmentDialog_AllDayEvent" xml:space="preserve">
+    <value>終日イベント</value>
+  </data>
+  <data name="AppointmentDialog_AppointmentTab_Text" xml:space="preserve">
+    <value>予定</value>
+  </data>
+  <data name="AppointmentDialog_Description_Section508" xml:space="preserve">
+    <value>説明</value>
+  </data>
+  <data name="AppointmentDialog_EndDate_Section508" xml:space="preserve">
+    <value>終了日</value>
+  </data>
+  <data name="AppointmentDialog_EndTime" xml:space="preserve">
+    <value>終了時刻:</value>
+  </data>
+  <data name="AppointmentDialog_EndTime_Section508" xml:space="preserve">
+    <value>終了時刻</value>
+  </data>
+  <data name="AppointmentDialog_Location" xml:space="preserve">
+    <value>配置:</value>
+  </data>
+  <data name="AppointmentDialog_RecurrenceDescriptionText" xml:space="preserve">
+    <value>繰り返し: これは定期的な予定です。</value>
+  </data>
+  <data name="AppointmentDialog_RecurrenceStatus" xml:space="preserve">
+    <value>これは定期的な予定です。</value>
+  </data>
+  <data name="AppointmentDialog_Reminder" xml:space="preserve">
+    <value>リマインダ</value>
+  </data>
+  <data name="AppointmentDialog_ReminderInterval_Section508" xml:space="preserve">
+    <value>アラートの間隔</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_EightHours" xml:space="preserve">
+    <value>8 時間</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_FifteenMinutes" xml:space="preserve">
+    <value>15 分</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_FiveMinutes" xml:space="preserve">
+    <value>5 分</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_FourHours" xml:space="preserve">
+    <value>4 時間</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_HalfDay" xml:space="preserve">
+    <value>0.5 日間</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_OneDay" xml:space="preserve">
+    <value>1 日</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_OneHour" xml:space="preserve">
+    <value>1 時間</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_TenMinutes" xml:space="preserve">
+    <value>10 分</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_ThirtyMinutes" xml:space="preserve">
+    <value>30 分</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_TowDays" xml:space="preserve">
+    <value>2 日間</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_TwoHours" xml:space="preserve">
+    <value>2 時間</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_ZeroMinutes" xml:space="preserve">
+    <value>0 分</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs" xml:space="preserve">
+    <value>時間を表示:</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Busy" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Free" xml:space="preserve">
+    <value>フリー</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_OutofOffice" xml:space="preserve">
+    <value>外出中</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Section508" xml:space="preserve">
+    <value>時間を表示</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Tentative" xml:space="preserve">
+    <value>暫定</value>
+  </data>
+  <data name="AppointmentDialog_StartDate_Section508" xml:space="preserve">
+    <value>開始日</value>
+  </data>
+  <data name="AppointmentDialog_StartTime" xml:space="preserve">
+    <value>開始時刻</value>
+  </data>
+  <data name="AppointmentDialog_StartTime_Section508" xml:space="preserve">
+    <value>開始時間</value>
+  </data>
+  <data name="AppointmentDialog_Subject" xml:space="preserve">
+    <value>件名</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Delete_AltText" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Delete_Tooltip" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_HightPriority_AltText" xml:space="preserve">
+    <value>高い</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_HightPriority_Tooltip" xml:space="preserve">
+    <value>重要性: 高</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_LowPriority_AltText" xml:space="preserve">
+    <value>低い</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_LowPriority_Tooltip" xml:space="preserve">
+    <value>重要性: 低</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Print_AltText" xml:space="preserve">
+    <value>印刷</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Print_Tooltip" xml:space="preserve">
+    <value>印刷</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Recurrence_AltText" xml:space="preserve">
+    <value>繰り返し</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Recurrence_Text" xml:space="preserve">
+    <value>繰り返し...</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Recurrence_Tooltip" xml:space="preserve">
+    <value>繰り返し</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_SaveAndClose_AltText" xml:space="preserve">
+    <value>保存して閉じる</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_SaveAndClose_Text" xml:space="preserve">
+    <value>保存して閉じる</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_SaveAndClose_Tooltip" xml:space="preserve">
+    <value>保存して閉じる</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_CantFindDateChooser" xml:space="preserve">
+    <value>エラー:予定フォーム上にフィールが見つかりません。</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceAfterEndDay" xml:space="preserve">
+    <value>終了日より後に発生する場合は予定を変更することはできません。</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceBeforeStartDate" xml:space="preserve">
+    <value>開始日より前に発生する場合は予定を変更することはできません。</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceSkipNextOccurrence" xml:space="preserve">
+    <value>後で発生する同じ予定をスキップする場合は予定を変更することはできません。</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceSkipPrevOccurrence" xml:space="preserve">
+    <value>前に発生する同じ予定をスキップする場合は予定を変更することはできません。</value>
+  </data>
+  <data name="JS_AppointmentDialog_ReccurrenceStatus" xml:space="preserve">
+    <value>Recurrence: これは定期的な予定です。</value>
+  </data>
+  <data name="JS_AppointmentDialog_RecurrenceDescriptionLabel" xml:space="preserve">
+    <value>定期的な予定:</value>
+  </data>
+  <data name="JS_ComboBox_AM" xml:space="preserve">
+    <value>AM</value>
+  </data>
+  <data name="JS_ComboBox_MustSpecifyValidTime" xml:space="preserve">
+    <value>有効な時間を指定してください。</value>
+  </data>
+  <data name="JS_ComboBox_PM" xml:space="preserve">
+    <value>PM</value>
+  </data>
+  <data name="JS_RecurrenceDialog_InvalidPattern" xml:space="preserve">
+    <value>回帰パターンが有効ではありません。</value>
+  </data>
+  <data name="JS_RecurrenceDialog_LooseDataConfirmation" xml:space="preserve">
+    <value>この定期的な予定に関連する例外が失われます。よろしいですか？</value>
+  </data>
+  <data name="JS_ReminderDialog_Now" xml:space="preserve">
+    <value>現在</value>
+  </data>
+  <data name="JS_ReminderDialog_Overdue" xml:space="preserve">
+    <value>期限切れ</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_CancelButton" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_Message" xml:space="preserve">
+    <value>これは繰り返し予定です。この予定のみを開きますか？シリーズとして開きますか？</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_OpenOccurrence" xml:space="preserve">
+    <value>この項目のみを開く</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_OpenSeries" xml:space="preserve">
+    <value>定期的な項目として開く</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="OneHour" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="OneMinute" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="OneMinuteOrLess" xml:space="preserve">
+    <value>1 分以内</value>
+  </data>
+  <data name="OneWeek" xml:space="preserve">
+    <value>週</value>
+  </data>
+  <data name="RecurrenceDialog_AppointmentTimeLegend" xml:space="preserve">
+    <value>時間の設定</value>
+  </data>
+  <data name="RecurrenceDialog_April" xml:space="preserve">
+    <value>4 月</value>
+  </data>
+  <data name="RecurrenceDialog_August" xml:space="preserve">
+    <value>8 月</value>
+  </data>
+  <data name="RecurrenceDialog_CancelButton" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="RecurrenceDialog_Daily" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="RecurrenceDialog_Day" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="RecurrenceDialog_day_lowercase" xml:space="preserve">
+    <value>日</value>
+  </data>
+  <data name="RecurrenceDialog_Days" xml:space="preserve">
+    <value>日ごと</value>
+  </data>
+  <data name="RecurrenceDialog_December" xml:space="preserve">
+    <value>12 月</value>
+  </data>
+  <data name="RecurrenceDialog_EndAfter" xml:space="preserve">
+    <value>反復回数:</value>
+  </data>
+  <data name="RecurrenceDialog_EndBy" xml:space="preserve">
+    <value>終了日:</value>
+  </data>
+  <data name="RecurrenceDialog_EndDateLabel" xml:space="preserve">
+    <value>終了日:</value>
+  </data>
+  <data name="RecurrenceDialog_EndTimeLabel" xml:space="preserve">
+    <value>終了時刻:</value>
+  </data>
+  <data name="RecurrenceDialog_Every" xml:space="preserve">
+    <value>間隔</value>
+  </data>
+  <data name="RecurrenceDialog_EveryWeekDay" xml:space="preserve">
+    <value>月曜日から金曜日</value>
+  </data>
+  <data name="RecurrenceDialog_February" xml:space="preserve">
+    <value>2 月</value>
+  </data>
+  <data name="RecurrenceDialog_First" xml:space="preserve">
+    <value>先頭にスクロール</value>
+  </data>
+  <data name="RecurrenceDialog_Fourth" xml:space="preserve">
+    <value>4 番目</value>
+  </data>
+  <data name="RecurrenceDialog_Friday" xml:space="preserve">
+    <value>金曜日</value>
+  </data>
+  <data name="RecurrenceDialog_January" xml:space="preserve">
+    <value>1 月</value>
+  </data>
+  <data name="RecurrenceDialog_July" xml:space="preserve">
+    <value>7 月</value>
+  </data>
+  <data name="RecurrenceDialog_June" xml:space="preserve">
+    <value>6 月</value>
+  </data>
+  <data name="RecurrenceDialog_Last" xml:space="preserve">
+    <value>最後にスクロール</value>
+  </data>
+  <data name="RecurrenceDialog_March" xml:space="preserve">
+    <value>3 月</value>
+  </data>
+  <data name="RecurrenceDialog_May" xml:space="preserve">
+    <value>5 月</value>
+  </data>
+  <data name="RecurrenceDialog_Monday" xml:space="preserve">
+    <value>月曜日</value>
+  </data>
+  <data name="RecurrenceDialog_Monthly" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="RecurrenceDialog_Months" xml:space="preserve">
+    <value>に設定</value>
+  </data>
+  <data name="RecurrenceDialog_NoEndDate" xml:space="preserve">
+    <value>終了日なし</value>
+  </data>
+  <data name="RecurrenceDialog_November" xml:space="preserve">
+    <value>11 月</value>
+  </data>
+  <data name="RecurrenceDialog_Occurrences" xml:space="preserve">
+    <value>回</value>
+  </data>
+  <data name="RecurrenceDialog_October" xml:space="preserve">
+    <value>10 月</value>
+  </data>
+  <data name="RecurrenceDialog_OfEvery" xml:space="preserve">
+    <value>か月ごとの</value>
+  </data>
+  <data name="RecurrenceDialog_OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="RecurrenceDialog_RangeofRecurrence" xml:space="preserve">
+    <value>期間</value>
+  </data>
+  <data name="RecurrenceDialog_RecurrencePatterLegend" xml:space="preserve">
+    <value>パターンの設定</value>
+  </data>
+  <data name="RecurrenceDialog_RecursEvery" xml:space="preserve">
+    <value>繰り返し頻度</value>
+  </data>
+  <data name="RecurrenceDialog_RemoveRecurrenceButton" xml:space="preserve">
+    <value>定期的な設定の削除(&amp;R)</value>
+  </data>
+  <data name="RecurrenceDialog_Saturday" xml:space="preserve">
+    <value>土曜日</value>
+  </data>
+  <data name="RecurrenceDialog_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_1" xml:space="preserve">
+    <value>カレンダー付きの日の番号を入力する編集可能フィールド</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_10" xml:space="preserve">
+    <value>定期的予定の終了時間を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_11" xml:space="preserve">
+    <value>何日か毎に定期的に予定を繰り返し</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_12" xml:space="preserve">
+    <value>全ての平日で予定を繰り返し</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_13" xml:space="preserve">
+    <value>各定期的な予定間の日数を入力する編集可能フィールド</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_14" xml:space="preserve">
+    <value>一定の曜日で繰り返す予定の週の周期数を入力する編集可能フィールド</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_15" xml:space="preserve">
+    <value>毎年同じカレンダー日に予定を繰り返し</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_16" xml:space="preserve">
+    <value>記念月を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_17" xml:space="preserve">
+    <value>記念月の日付を入力する編集可能フィールド</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_18" xml:space="preserve">
+    <value>毎年ある月に同じ週の同じ曜日に予定を繰り返し</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_19" xml:space="preserve">
+    <value>項目が発生する週を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_2" xml:space="preserve">
+    <value>各定期的な予定間でスキップする月数を入力する編集可能フィールド</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_20" xml:space="preserve">
+    <value>発生する曜日を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_21" xml:space="preserve">
+    <value>毎年発生する項目の月を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_22" xml:space="preserve">
+    <value>定期的予定の開始日と最初の予定日を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_23" xml:space="preserve">
+    <value>定期的な予定の最大数超過後に終了</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_24" xml:space="preserve">
+    <value>定期的予定の最大数を入力する編集可能フィールド</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_25" xml:space="preserve">
+    <value>指定日で終了</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_26" xml:space="preserve">
+    <value>繰り返しが停止した時は終了日を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_3" xml:space="preserve">
+    <value>週を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_4" xml:space="preserve">
+    <value>日または曜日を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_5" xml:space="preserve">
+    <value>各定期的な予定間でスキップする月数を入力する編集可能フィールド</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_6" xml:space="preserve">
+    <value>1月以上毎で同じカレンダー日に予定を繰り返し</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_7" xml:space="preserve">
+    <value>1月以上毎に特定の週の同じ曜日で予定を繰り返し</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_8" xml:space="preserve">
+    <value>定期的予定の開始時間を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_9" xml:space="preserve">
+    <value>各項目の開始日が異なる場合は定期的予定の終了日を選択してください。</value>
+  </data>
+  <data name="RecurrenceDialog_September" xml:space="preserve">
+    <value>9 月</value>
+  </data>
+  <data name="RecurrenceDialog_Start_Label" xml:space="preserve">
+    <value>開始日:</value>
+  </data>
+  <data name="RecurrenceDialog_Sunday" xml:space="preserve">
+    <value>日曜日</value>
+  </data>
+  <data name="RecurrenceDialog_The" xml:space="preserve">
+    <value>曜日</value>
+  </data>
+  <data name="RecurrenceDialog_Third" xml:space="preserve">
+    <value>3 番目</value>
+  </data>
+  <data name="RecurrenceDialog_Thursday" xml:space="preserve">
+    <value>木曜日</value>
+  </data>
+  <data name="RecurrenceDialog_Tuesday" xml:space="preserve">
+    <value>火曜日</value>
+  </data>
+  <data name="RecurrenceDialog_Wednesday" xml:space="preserve">
+    <value>水曜日</value>
+  </data>
+  <data name="RecurrenceDialog_Weekday" xml:space="preserve">
+    <value>平日</value>
+  </data>
+  <data name="RecurrenceDialog_WeekendDay" xml:space="preserve">
+    <value>週末</value>
+  </data>
+  <data name="RecurrenceDialog_Weekly" xml:space="preserve">
+    <value>週</value>
+  </data>
+  <data name="RecurrenceDialog_WeeksOn" xml:space="preserve">
+    <value>週</value>
+  </data>
+  <data name="RecurrenceDialog_Yearly" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="ReminderDialog_ClickSnoozeLabel" xml:space="preserve">
+    <value>[再通知] をクリックしてアラームを再表示します:</value>
+  </data>
+  <data name="ReminderDialog_CloseButton" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="ReminderDialog_DimissAllButton" xml:space="preserve">
+    <value>すべてのアラームを消す</value>
+  </data>
+  <data name="ReminderDialog_DismissButton" xml:space="preserve">
+    <value>アラームを消す</value>
+  </data>
+  <data name="ReminderDialog_DueInHeader" xml:space="preserve">
+    <value>期限</value>
+  </data>
+  <data name="ReminderDialog_LocationLabel" xml:space="preserve">
+    <value>配置:</value>
+  </data>
+  <data name="ReminderDialog_NoSubject" xml:space="preserve">
+    <value>(件名なし)</value>
+  </data>
+  <data name="ReminderDialog_OpenItemButton" xml:space="preserve">
+    <value>項目を開く</value>
+  </data>
+  <data name="ReminderDialog_SnoozeButton" xml:space="preserve">
+    <value>スヌーズ</value>
+  </data>
+  <data name="ReminderDialog_SubjectHeader" xml:space="preserve">
+    <value>件名</value>
+  </data>
+  <data name="ReminderDialog_TimeLabel" xml:space="preserve">
+    <value>時間:</value>
+  </data>
+  <data name="Weeks" xml:space="preserve">
+    <value>週単位</value>
+  </data>
+  <data name="AppointmentTitle" xml:space="preserve">
+    <value>予定</value>
+  </data>
+  <data name="ModifyRecurrenceDialogTitle" xml:space="preserve">
+    <value>繰り返しダイアログの変更</value>
+  </data>
+  <data name="RecurrenceDialogTitle" xml:space="preserve">
+    <value>繰り返しパターン</value>
+  </data>
+  <data name="ReminderDialogTitle" xml:space="preserve">
+    <value>アラーム</value>
+  </data>
+</root>

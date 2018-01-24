@@ -1,0 +1,1748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<formGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="4019" dataViewId="4019" enableValidationSummary="true" xmlns="COE.FormGroup">
+  <queryForms defaultForm="0">
+    <queryForm id="0" defaultDisplayMode="Add">
+      <coeForms>
+        <coeForm id="0" name="VW_MIXTURE_REGNUMBER">
+          <validationRuleList />
+          <title>Registry Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo>
+            <formElement name="StructureQuery">
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[0].Criterium</bindingExpression>
+              <Id>CompoundStructureQueryControl</Id>
+              <displayInfo>
+                <cssClass>FEStructureDivQuery</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEStructureQuery</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <Links>
+                    <CSSClass>FELinkButton</CSSClass>
+                  </Links>
+                  <Labels>
+                    <CSSClass>FELabel</CSSClass>
+                  </Labels>
+                  <ChemDraw>
+                    <CSSClass>FEChemDraw</CSSClass>
+                    <Height>200px</Height>
+                    <Width>240px</Width>
+                    <ID>CompoundStructure</ID>
+                  </ChemDraw>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="405" id="0" tableid="4" searchLookupByID="true">
+                <structureCriteria negate="NO" implementation="CsCartridge" format="base64cdx" absoluteHitsRel="NO" relativeTetStereo="NO" reactionCenter="YES" fullSearch="NO" tautometer="NO" fragmentsOverlap="NO" permitExtraneousFragmentsIfRXN="NO" permitExtraneousFragments="NO" doubleBondStereo="YES" hitAnyChargeHetero="YES" identity="NO" hitAnyChargeCarbon="YES" similar="NO" ignoreImplicitHydrogens="NO" simThreshold="100" tetrahedralStereo="YES" query8000="" cartridgeParams="" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="PERSONCREATED">
+              <label>Created By:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[1].Criterium.Value</bindingExpression>
+              <Id>PERSONCREATEDTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <dropDownItemsSelect>
+                  </dropDownItemsSelect>
+                  <PickListDomain>3</PickListDomain>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <Enable>True</Enable>
+                  <ID>RegCreatedTextBox</ID>
+                  <AutoPostBack>False</AutoPostBack>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="105" id="1" tableid="1" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="RegNumber">
+              <label>Registry Number</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[3].Criterium.Value</bindingExpression>
+              <Id>RegNumberTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="106" id="3" tableid="1" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="IN" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="STARTDATECREATED">
+              <label>Start Date Created</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[2].Criterium.Value</bindingExpression>
+              <Id>RegStartDateCreatedTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <Width>100%</Width>
+                  <MaxDate>1/1/0001 12:00:00 AM</MaxDate>
+                  <Editable>True</Editable>
+                  <AllowNull>True</AllowNull>
+                  <AutoCloseUp>True</AutoCloseUp>
+                  <FirstDayOfWeek>Default</FirstDayOfWeek>
+                  <GridLines>None</GridLines>
+                  <NullDateLabel />
+                  <NullValueRepresentation>NotSet</NullValueRepresentation>
+                  <Section508Compliant>False</Section508Compliant>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="104" id="2" tableid="1">
+                <dateCriteria negate="NO" operator="GTE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="ENDDATECREATED">
+              <label>End Date Created</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[42].Criterium.Value</bindingExpression>
+              <Id>RegEndDateCreatedTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <Width>100%</Width>
+                  <MaxDate>1/1/0001 12:00:00 AM</MaxDate>
+                  <Editable>True</Editable>
+                  <AllowNull>True</AllowNull>
+                  <AutoCloseUp>True</AutoCloseUp>
+                  <FirstDayOfWeek>Default</FirstDayOfWeek>
+                  <GridLines>None</GridLines>
+                  <NullDateLabel />
+                  <NullValueRepresentation>NotSet</NullValueRepresentation>
+                  <Section508Compliant>False</Section508Compliant>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="104" id="42" tableid="1">
+                <dateCriteria negate="NO" operator="LTE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="SeqNumber">
+              <label>Sequence Number</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText>Enter the sequence number or a comma separated list</helpText>
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[4].Criterium.Value</bindingExpression>
+              <Id>SeqNumberTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="custom" errorMessage="Not a valid ID. It should be a positive integer or a comma separated list of positive integers" displayPosition="Top_Right">
+                  <params>
+                    <param name="clientScript" value="if(!IsValidPositiveInteger(arguments.Value)) { var values = arguments.Value.split(','); if(values.length &gt; 0) { for(j = 0; j &lt; values.length; j++) { if(!IsValidPositiveInteger(values[j])) { arguments.IsValid = false; break; } else arguments.IsValid = true; } } else arguments.IsValid = false; } else { arguments.IsValid = true; }" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="203" id="4" tableid="2" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="IN" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="PREFIX">
+              <label>Prefix</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[5].Criterium.Value</bindingExpression>
+              <Id>PREFIXTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>
+                CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <dropDownItemsSelect>SELECT S.SEQUENCEID AS KEY, S.PREFIX AS VALUE FROM REGDB.VW_SEQUENCE S WHERE (TYPE = 'R' OR TYPE = 'A') ORDER BY S.PREFIX ASC</dropDownItemsSelect>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <Enable>True</Enable>
+                  <ID>PrefixTextBox</ID>
+                  <AutoPostBack>False</AutoPostBack>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="202" id="5" tableid="2" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="REGISTRY_PROJECT">
+              <label>Registry Project Name</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[6].Criterium.Value</bindingExpression>
+              <Id>REGISTRY_PROJECTDropDownListPerm</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <dropDownItemsSelect>SELECT PROJECTID as key, NAME as value FROM REGDB.VW_PROJECT WHERE (TYPE ='R' OR TYPE='A') AND (ACTIVE = 'T' OR ACTIVE = 'F')</dropDownItemsSelect>
+                  <PickListDomain />
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <Enable>True</Enable>
+                  <ID>REGISTRY_PROJECTDropDownListPerm</ID>
+                  <AutoPostBack>False</AutoPostBack>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="302" id="6" tableid="3" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="MolWeight">
+              <label>MW</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[7].Criterium.Value</bindingExpression>
+              <Id>CompoundMolWeightTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="custom" errorMessage="Not a valid MW expression!" displayPosition="Top_Right">
+                  <params>
+                    <param name="clientScript" value="if(!IsValidMolWeight(arguments.Value)){arguments.IsValid = false;}                    else{arguments.IsValid=true;}" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="405" id="7" tableid="4" searchLookupByID="true">
+                <molweightCriteria negate="NO" implementation="CsCartridge" max="0" min="0">
+                  <Value />
+                </molweightCriteria>
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="Formula">
+              <label>MF</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[8].Criterium.Value</bindingExpression>
+              <Id>CompoundFormulaTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="custom" errorMessage="Not a valid Molecular Formula!" displayPosition="Top_Right">
+                  <params>
+                    <param name="clientScript" value="if(!IsValidFormula(arguments.Value)){arguments.IsValid = false;}else{arguments.IsValid=true;}" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="405" id="8" tableid="4" searchLookupByID="true">
+                <formulaCriteria negate="NO" implementation="CsCartridge" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="IDENTIFIERTYPE">
+              <label>Identifier</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[9].Criterium.Value</bindingExpression>
+              <Id>IDENTIFIERTYPETextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <dropDownItemsSelect>SELECT ID as key, NAME as value FROM REGDB.VW_IDENTIFIERTYPE WHERE (TYPE ='R' OR TYPE='A') AND ACTIVE = 'T'</dropDownItemsSelect>
+                  <PickListDomain />
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <Enable>True</Enable>
+                  <ID>IDENTIFIERTYPETextBox</ID>
+                  <AutoPostBack>False</AutoPostBack>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="503" id="9" tableid="5" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="IdentifierValue">
+              <label>Value</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[10].Criterium.Value</bindingExpression>
+              <Id>IdentifierValueTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="502" id="10" tableid="5" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="IN" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="REG_COMMENTS">
+              <label>Registry Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[11].Criterium.Value</bindingExpression>
+              <Id>REG_COMMENTSProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:Height>30px</COE:Height>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="150" id="11" tableid="1" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+        <coeForm id="1" name="VW_MIXTURE_STRUCTURE">
+          <validationRuleList>
+            <validationRule validationRuleName="notEmptyQuery" errorMessage="You must specify at least one field. The drawing should be a chemical structure." display="None" displayPosition="Top_Left">
+              <params />
+            </validationRule>
+          </validationRuleList>
+          <title>Component Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo>
+            <formElement name="COMPONENTID">
+              <label>Component ID</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[13].Criterium.Value</bindingExpression>
+              <Id>CompNumberTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="413" id="13" tableid="4" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="EQUAL" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="IDENTIFIERTYPE">
+              <label>Identifier</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[14].Criterium.Value</bindingExpression>
+              <Id>IDENTIFIERTYPETextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <dropDownItemsSelect>SELECT ID as key, NAME as value FROM REGDB.VW_IDENTIFIERTYPE WHERE (TYPE ='C' OR TYPE='A') AND ACTIVE = 'T'</dropDownItemsSelect>
+                  <PickListDomain />
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <Enable>True</Enable>
+                  <ID>IDENTIFIERTYPETextBox</ID>
+                  <AutoPostBack>False</AutoPostBack>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="603" id="14" tableid="6" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="IdentifierValue">
+              <label>Value</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[15].Criterium.Value</bindingExpression>
+              <Id>IdentifierValueTextBox</Id>
+              <displayInfo>
+                <cssClass>Std50x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="602" id="15" tableid="6" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="IN" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="CHEM_NAME_AUTOGEN">
+              <label>Structure Name</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[16].Criterium.Value</bindingExpression>
+              <Id>CHEM_NAME_AUTOGENProperty</Id>
+              <displayInfo>
+                <cssClass>Std100x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="4500" id="16" tableid="4" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="CMP_COMMENTS">
+              <label>Component Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[17].Criterium.Value</bindingExpression>
+              <Id>CMP_COMMENTSProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:Height>50px</COE:Height>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="450" id="17" tableid="4" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="STRUCTURE_COMMENTS_TXT">
+              <label>Stereochemistry Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[18].Criterium.Value</bindingExpression>
+              <Id>STRUCTURE_COMMENTS_TXTProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:Height>50px</COE:Height>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="451" id="18" tableid="4" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+        <coeForm id="2" name="VW_BATCH">
+          <validationRuleList />
+          <title>Batch Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo>
+            <formElement name="BatchID">
+              <label>BatchID</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[19].Criterium.Value</bindingExpression>
+              <Id>BatchIDTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="custom" errorMessage="Not a valid ID. It should be a positive integer" displayPosition="Top_Right">
+                  <params>
+                    <param name="clientScript" value="if(!IsValidPositiveInteger(arguments.Value)){arguments.IsValid = false;}                else{arguments.IsValid=true;}" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="900" id="19" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="PERSONCREATED">
+              <label>Created By:</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[20].Criterium.Value</bindingExpression>
+              <Id>BatchPersonCreatedTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <dropDownItemsSelect>
+                  </dropDownItemsSelect>
+                  <PickListDomain>3</PickListDomain>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <Enable>True</Enable>
+                  <ID>PERSONCREATEDTextBox</ID>
+                  <AutoPostBack>False</AutoPostBack>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="905" id="20" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="START_DATECREATED">
+              <label>Start Date Created</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[21].Criterium.Value</bindingExpression>
+              <Id>BatchStartDateCreatedTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <Width>100%</Width>
+                  <MaxDate>1/1/0001 12:00:00 AM</MaxDate>
+                  <Editable>True</Editable>
+                  <AllowNull>True</AllowNull>
+                  <AutoCloseUp>True</AutoCloseUp>
+                  <FirstDayOfWeek>Default</FirstDayOfWeek>
+                  <GridLines>None</GridLines>
+                  <NullDateLabel />
+                  <NullValueRepresentation>NotSet</NullValueRepresentation>
+                  <Section508Compliant>False</Section508Compliant>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="903" id="21" tableid="9">
+                <dateCriteria negate="NO" operator="GTE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="END_DATECREATED">
+              <label>End Date Created</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[43].Criterium.Value</bindingExpression>
+              <Id>BatchEndDateCreatedTextBox</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <Width>100%</Width>
+                  <MaxDate>1/1/0001 12:00:00 AM</MaxDate>
+                  <Editable>True</Editable>
+                  <AllowNull>True</AllowNull>
+                  <AutoCloseUp>True</AutoCloseUp>
+                  <FirstDayOfWeek>Default</FirstDayOfWeek>
+                  <GridLines>None</GridLines>
+                  <NullDateLabel />
+                  <NullValueRepresentation>NotSet</NullValueRepresentation>
+                  <Section508Compliant>False</Section508Compliant>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="903" id="43" tableid="9">
+                <dateCriteria negate="NO" operator="LTE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="SCIENTIST_ID">
+              <label>Scientist</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[22].Criterium.Value</bindingExpression>
+              <Id>SCIENTIST_IDProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:dropDownItemsSelect>
+                  </COE:dropDownItemsSelect>
+                  <PickListDomain>3</PickListDomain>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:CSSClass>FEDropDownList</COE:CSSClass>
+                  <COE:Enable>True</COE:Enable>
+                  <COE:ID>SCIENTIST_IDProperty</COE:ID>
+                  <COE:AutoPostBack>False</COE:AutoPostBack>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="950" id="22" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="IN" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="START_CREATION_DATE">
+              <label>Start Synthesis Date</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[23].Criterium.Value</bindingExpression>
+              <Id>START_CREATION_DATEProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo xmlns:COE="COE.FormGroup">
+                <fieldConfig>
+                  <Width>100%</Width>
+                  <MaxDate>1/1/0001 12:00:00 AM</MaxDate>
+                  <Editable>True</Editable>
+                  <AllowNull>True</AllowNull>
+                  <AutoCloseUp>True</AutoCloseUp>
+                  <FirstDayOfWeek>Default</FirstDayOfWeek>
+                  <GridLines>None</GridLines>
+                  <NullDateLabel />
+                  <NullValueRepresentation>NotSet</NullValueRepresentation>
+                  <Section508Compliant>False</Section508Compliant>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <FontSize />
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="951" id="23" tableid="9">
+                <dateCriteria negate="NO" operator="GTE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="END_CREATION_DATE">
+              <label>End Synthesis Date</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[44].Criterium.Value</bindingExpression>
+              <Id>END_CREATION_DATEProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePicker</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo xmlns:COE="COE.FormGroup">
+                <fieldConfig>
+                  <Width>100%</Width>
+                  <MaxDate>1/1/0001 12:00:00 AM</MaxDate>
+                  <Editable>True</Editable>
+                  <AllowNull>True</AllowNull>
+                  <AutoCloseUp>True</AutoCloseUp>
+                  <FirstDayOfWeek>Default</FirstDayOfWeek>
+                  <GridLines>None</GridLines>
+                  <NullDateLabel />
+                  <NullValueRepresentation>NotSet</NullValueRepresentation>
+                  <Section508Compliant>False</Section508Compliant>
+                  <CSSClass>FETextBox</CSSClass>
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <FontSize />
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="951" id="44" tableid="9">
+                <dateCriteria negate="NO" operator="LTE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="BATCH_PROJECT">
+              <label>Batch Project Name</label>
+              <showHelp>false</showHelp>
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria[38].Criterium.Value</bindingExpression>
+              <Id>BATCH_PROJECTDropDownListPerm</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <configInfo>
+                <fieldConfig>
+                  <dropDownItemsSelect>SELECT PROJECTID as key, NAME as value FROM REGDB.VW_PROJECT WHERE (TYPE ='B' OR TYPE='A') AND (ACTIVE = 'T' OR ACTIVE = 'F')</dropDownItemsSelect>
+                  <PickListDomain />
+                  <CSSLabelClass>FELabel</CSSLabelClass>
+                  <CSSClass>FEDropDownList</CSSClass>
+                  <Enable>True</Enable>
+                  <ID>Inner_BATCH_PROJECTDropDownListPerm</ID>
+                  <AutoPostBack>False</AutoPostBack>
+                </fieldConfig>
+              </configInfo>
+              <dataSource />
+              <dataSourceId />
+              <searchCriteriaItem fieldid="1502" id="38" tableid="15">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="NOTEBOOK_TEXT">
+              <label>Notebook Reference</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[24].Criterium.Value</bindingExpression>
+              <Id>NOTEBOOK_TEXTProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="952" id="24" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="NO" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="AMOUNT">
+              <label>Amount</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[25].Criterium.Value</bindingExpression>
+              <Id>AMOUNTProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="953" id="25" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="AMOUNT_UNITS">
+              <label>Units</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[26].Criterium.Value</bindingExpression>
+              <Id>AMOUNT_UNITSProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDropDownList</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:dropDownItemsSelect>
+                  </COE:dropDownItemsSelect>
+                  <PickListDomain>2</PickListDomain>
+                  <COE:CSSClass>FEDropDownList</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                  <COE:Enable>True</COE:Enable>
+                  <COE:ID>AMOUNT_UNITSProperty</COE:ID>
+                  <COE:AutoPostBack>False</COE:AutoPostBack>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="954" id="26" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="IN" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="PURITY">
+              <label>Purity</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[27].Criterium.Value</bindingExpression>
+              <Id>PURITYProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="956" id="27" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="PURITY_COMMENTS">
+              <label>Purity Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[28].Criterium.Value</bindingExpression>
+              <Id>PURITY_COMMENTSProperty</Id>
+              <displayInfo>
+                <cssClass>Std75x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="957" id="28" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="SAMPLEID">
+              <label>Sample ID</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[29].Criterium.Value</bindingExpression>
+              <Id>SAMPLEIDProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="958" id="29" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="APPEARANCE">
+              <label>Appearance</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[30].Criterium.Value</bindingExpression>
+              <Id>APPEARANCEProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="955" id="30" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="SOLUBILITY">
+              <label>Solubility</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[31].Criterium.Value</bindingExpression>
+              <Id>SOLUBILITYProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="959" id="31" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="BATCH_COMMENT">
+              <label>Batch Comments</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[32].Criterium.Value</bindingExpression>
+              <Id>BATCH_COMMENTProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:Height>50px</COE:Height>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="960" id="32" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="STORAGE_REQ_AND_WARNINGS">
+              <label>Storage Requirements Warnings</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[33].Criterium.Value</bindingExpression>
+              <Id>STORAGE_REQ_AND_WARNINGSProperty</Id>
+              <displayInfo>
+                <cssClass>Std50x80</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextArea</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:Height>50px</COE:Height>
+                  <COE:TextMode>MultiLine</COE:TextMode>
+                  <COE:CSSClass>FETextArea</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="961" id="33" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="FORMULA_WEIGHT">
+              <label>Formula Weight</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[34].Criterium.Value</bindingExpression>
+              <Id>FORMULA_WEIGHTProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="9500" id="34" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="BATCH_FORMULA">
+              <label>Molecular Formula</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[35].Criterium.Value</bindingExpression>
+              <Id>BATCH_FORMULAProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="9501" id="35" tableid="9" searchLookupByID="true">
+                <textCriteria negate="NO" normalizedChemicalName="NO" hillFormula="NO" fullWordSearch="NO" caseSensitive="YES" trim="NONE" operator="LIKE" hint="" defaultWildCardPosition="NONE" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+            <formElement name="PERCENT_ACTIVE">
+              <label>Percent Active</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[36].Criterium.Value</bindingExpression>
+              <Id>PERCENT_ACTIVEProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>false</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="9502" id="36" tableid="9" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+        <coeForm id="3" name="VW_MIXTURE_BATCHCOMPONENT">
+          <validationRuleList />
+          <title>Batch Component Information</title>
+          <titleCssClass>COEFormTitle</titleCssClass>
+          <layoutInfo>
+            <formElement name="PERCENTAGE">
+              <label>Percentage</label>
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>SearchCriteria.[37].Criterium.Value</bindingExpression>
+              <Id>PERCENTAGEProperty</Id>
+              <displayInfo>
+                <cssClass>Std25x40</cssClass>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList>
+                <validationRule validationRuleName="float" errorMessage="This property can have at most 3 integer and 2 decimal digits" displayPosition="Top_Left">
+                  <params>
+                    <param name="integerPart" value="3" />
+                    <param name="decimalPart" value="2" />
+                  </params>
+                </validationRule>
+              </validationRuleList>
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:fieldConfig>
+                  <COE:CSSClass>FETextBox</COE:CSSClass>
+                  <COE:CSSLabelClass>FELabel</COE:CSSLabelClass>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <searchCriteriaItem fieldid="8500" id="37" tableid="8" searchLookupByID="true">
+                <numericalCriteria negate="NO" trim="NONE" operator="EQUAL" />
+              </searchCriteriaItem>
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <cssClass>COEFormDisplay</cssClass>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>false</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+    </queryForm>
+  </queryForms>
+  <detailsForms defaultForm="0" />
+  <styleSheet>/COERegistration/App_Themes/Blue/COEFormsBlue.css</styleSheet>
+  <listForms defaultForm="0">
+    <listForm id="0" defaultDisplayMode="View">
+      <coeForms>
+        <coeForm id="0" dataMember="">
+          <validationRuleList />
+          <layoutInfo>
+            <formElement name="">
+              <showHelp>false</showHelp>
+              <isFileUpload>false</isFileUpload>
+              <pageComunicationProvider />
+              <fileUploadBindingExpression />
+              <helpText />
+              <defaultValue />
+              <bindingExpression>Dataset</bindingExpression>
+              <Id>ListView</Id>
+              <displayInfo>
+                <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGrid</type>
+                <visible>true</visible>
+              </displayInfo>
+              <validationRuleList />
+              <serverEvents />
+              <clientEvents />
+              <COE:configInfo xmlns:COE="COE.FormGroup">
+                <COE:GridConfigSettings>
+                  <COE:AllowSorting>true</COE:AllowSorting>
+                  <COE:AllowChildSorting>true</COE:AllowChildSorting>
+                  <COE:IsReadOnly>true</COE:IsReadOnly>
+                  <COE:FixedHeader>true</COE:FixedHeader>
+                  <COE:ShowExpandCollapseImage>false</COE:ShowExpandCollapseImage>
+                  <COE:ShowChildDataOnly>false</COE:ShowChildDataOnly>
+                </COE:GridConfigSettings>
+                <COE:fieldConfig>
+                  <COE:tables>
+                    <COE:table name="Table_13">
+                      <COE:headerStyle>color: #000099; background-color: #CFD8E6; font-weight: bold; font-family: Verdana; font-size: 10px;border-collapse:collapse;white-space: nowrap;</COE:headerStyle>
+                      <COE:columnStyle>color: #000000; background-color: #FFFFFF; border-color: #CFD8E6; border-style:solid; border-width:1px; font-size:10px;font-family: Verdana;vertical-align:middle;text-align:center;white-space: nowrap;</COE:columnStyle>
+                      <COE:Columns>
+                        <Column name="COMPONENT_REGNUMBER" allowSorting="yes">
+                          <headerText>Component Id</headerText>
+                          <formElement name="COMPONENT_REGNUMBER">
+                            <displayInfo>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="COMPONENT_REGID" childTableName="Table_14">
+                          <formElement name="COMPONENT_REGID">
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="MIXTUREREGNUMBERS">
+                          <headerText>Registry Numbers</headerText>
+                          <formElement name="MIXTUREREGNUMBERS">
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                      </COE:Columns>
+                    </COE:table>
+                    <COE:table name="Table_14">
+                      <COE:headerStyle>color: #000099; background-color: #CFD8E6; font-weight: bold; font-family: Verdana; font-size: 10px;border-collapse:collapse;white-space: nowrap;</COE:headerStyle>
+                      <COE:columnStyle>color: #000000; background-color: #FFFFFF; border-color: #CFD8E6; border-style:solid; border-width:1px; font-size:10px;font-family: Verdana;vertical-align:middle;text-align:center;white-space: nowrap;</COE:columnStyle>
+                      <COE:Columns>
+                        <Column name="NORMALIZEDSTRUCTURE">
+                          <headerText>Structure</headerText>
+                          <height>100px</height>
+                          <width>150px</width>
+                          <formElement name="NORMALIZEDSTRUCTURE">
+                            <Id>StructureColumn</Id>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEChemDrawEmbedReadOnly</type>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                                <Height>100px</Height>
+                                <Width>150px</Width>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Mol Wt" allowSorting="yes">
+                          <headerText>Mol Wt</headerText>
+                          <width>70px</width>
+                          <formElement name="Mol Wt">
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="Mol Formula" allowSorting="yes">
+                          <headerText>Mol Formula</headerText>
+                          <width>70px</width>
+                          <formElement name="Mol Formula">
+                            <configInfo>
+                              <fieldConfig>
+                                <CSSClass>FETableItem</CSSClass>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELabel</type>
+                            </displayInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="DATECREATED">
+                          <headerText>Date Created</headerText>
+                          <width>70px</width>
+                          <formElement name="DATECREATED">
+                            <label />
+                            <defaultValue />
+                            <bindingExpression>DATECREATED</bindingExpression>
+                            <Id>DATECREATED</Id>
+                            <validationRuleList />
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                            <displayInfo>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEDatePickerReadOnly</type>
+                              <visible>true</visible>
+                            </displayInfo>
+                            <dataSource />
+                            <dataSourceId />
+                          </formElement>
+                        </Column>
+                        <Column name="PERSONCREATED" allowSorting="yes">
+                          <headerText>Person Created</headerText>
+                          <width>70px</width>
+                          <formElement name="PERSONCREATED">
+                            <displayInfo>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="PERSONREGISTERED" allowSorting="yes">
+                          <headerText>Person Registered</headerText>
+                          <width>70px</width>
+                          <formElement name="PERSONREGISTERED">
+                            <displayInfo>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                        <Column name="CMP_COMMENTS">
+                          <headerText>Comments</headerText>
+                          <width>70px</width>
+                          <formElement name="CMP_COMMENTS">
+                            <displayInfo>
+                              <cssClass>Std50x80</cssClass>
+                              <type>CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextAreaReadOnly</type>
+                            </displayInfo>
+                            <configInfo>
+                              <fieldConfig>
+                              </fieldConfig>
+                            </configInfo>
+                          </formElement>
+                        </Column>
+                      </COE:Columns>
+                    </COE:table>
+                  </COE:tables>
+                </COE:fieldConfig>
+              </COE:configInfo>
+              <dataSource />
+              <dataSourceId />
+              <requiredStyle />
+              <displayData />
+            </formElement>
+          </layoutInfo>
+          <formDisplay>
+            <style>border-color:#CFD8E6; border-style:solid; border-width:1px; overflow:visible</style>
+            <layoutStyle>flowLayout</layoutStyle>
+            <visible>true</visible>
+          </formDisplay>
+          <addMode />
+          <editMode />
+          <viewMode />
+          <clientScripts />
+        </coeForm>
+      </coeForms>
+      <resultsCriteria sortByHitList="false" xmlns="COE.ResultsCriteria">
+        <tables>
+          <table id="13">
+            <field visible="true" alias="COMPONENT_REGID" orderById="0" direction="asc" fieldId="1300" />
+            <field visible="true" alias="COMPONENT_REGNUMBER" orderById="0" direction="asc" fieldId="1301" />
+            <field visible="true" alias="MIXTUREREGNUMBERS" orderById="0" direction="asc" fieldId="1302" />
+          </table>
+          <table id="14">
+            <field visible="true" alias="REGID" orderById="0" direction="asc" fieldId="1402" />
+            <field visible="true" alias="NORMALIZEDSTRUCTURE" orderById="0" direction="asc" fieldId="1407" />
+            <field visible="true" alias="PERSONCREATED" orderById="0" direction="asc" fieldId="1405" />
+            <field visible="true" alias="PERSONREGISTERED" orderById="0" direction="asc" fieldId="1406" />
+            <field visible="true" alias="DATECREATED" orderById="0" direction="asc" fieldId="1403" />
+            <field visible="true" alias="CMP_COMMENTS" orderById="0" direction="asc" fieldId="1408" />
+            <field visible="true" alias="STRUCTURE_COMMENTS_TXT" orderById="0" direction="asc" fieldId="1409" />
+            <SQLFunction visible="true" alias="Mol Wt" orderById="0" direction="asc" functionName="ROUND">
+              <MolWeight visible="true" orderById="0" direction="asc" fieldId="1407" />
+              <literal visible="true" orderById="0" direction="asc">4</literal>
+            </SQLFunction>
+            <SQLFunction visible="true" alias="Mol Formula" orderById="0" direction="asc" functionName="regexp_replace">
+              <Formula visible="true" orderById="0" direction="asc" fieldId="1407" sortable="false" />
+              <literal visible="true" orderById="0" direction="asc">'([[:digit:]]+)'</literal>
+              <literal visible="true" orderById="0" direction="asc">'&lt;sub&gt;\1&lt;/sub&gt;'</literal>
+            </SQLFunction>
+          </table>
+        </tables>
+      </resultsCriteria>
+    </listForm>
+  </listForms>
+</formGroup>

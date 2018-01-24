@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+  <tables>
+    <table id="1">
+      <literal>'LookupTest'</literal>
+      <field fieldId="1" alias="ID"/>
+      <field fieldId="2"/>
+      <field fieldId="9" alias="UNITS"/>
+    </table>
+  </tables>
+</resultsCriteria>

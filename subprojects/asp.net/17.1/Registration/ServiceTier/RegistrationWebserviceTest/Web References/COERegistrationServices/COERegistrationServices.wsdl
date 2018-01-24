@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="CambridgeSoft.COE.Registration.Services.Web" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="CambridgeSoft.COE.Registration.Services.Web" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Services for Registration. For more information see &lt;A HREF='COERegistrationServicesTesting.htm'&gt;COERegistrationServices Testing&lt;/A&gt;</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="CambridgeSoft.COE.Registration.Services.Web">
+      <s:element name="GetTempID">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTempIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTempIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COECredentials" type="tns:COECredentials" />
+      <s:complexType name="COECredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationTicket" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="SaveRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="registryRecordXml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTemporaryRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTemporaryRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateTemporaryRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveTemporaryRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveTemporaryRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveTemporaryRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTemporaryRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTemporaryRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTemporaryRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTemporaryRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="id" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteTemporaryRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteTemporaryRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="duplicateAction" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="regNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUniqueRegistryRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="duplicateCheck" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckUniqueRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckUniqueRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveRegistryInfoFromTempBatchID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tempBatchID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveRegistryInfoFromTempBatchIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveRegistryInfoFromTempBatchIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrievePicklist">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strCriteria" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrievePicklistResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrievePicklistResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMatchingFragmentList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchExpression" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveMatchingFragmentListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveMatchingFragmentListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetrieveNewRegistryRecord">
+        <s:complexType />
+      </s:element>
+      <s:element name="RetrieveNewRegistryRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetrieveNewRegistryRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserIsInRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="vstrRoles" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserIsInRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserIsInRolesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTempIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTempID" />
+  </wsdl:message>
+  <wsdl:message name="GetTempIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTempIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTempIDCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="SaveRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="SaveRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateTemporaryRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTemporaryRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="CreateTemporaryRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTemporaryRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTemporaryRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveTemporaryRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveTemporaryRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveTemporaryRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveTemporaryRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveTemporaryRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemporaryRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTemporaryRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemporaryRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTemporaryRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTemporaryRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTemporaryRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteTemporaryRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTemporaryRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteTemporaryRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteTemporaryRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="CreateRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="CreateRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="CheckUniqueRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckUniqueRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="CheckUniqueRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckUniqueRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckUniqueRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRegistryInfoFromTempBatchIDSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveRegistryInfoFromTempBatchID" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRegistryInfoFromTempBatchIDSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveRegistryInfoFromTempBatchIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveRegistryInfoFromTempBatchIDCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="RetrievePicklistSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrievePicklist" />
+  </wsdl:message>
+  <wsdl:message name="RetrievePicklistSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrievePicklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrievePicklistCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMatchingFragmentListSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveMatchingFragmentList" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMatchingFragmentListSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveMatchingFragmentListResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveMatchingFragmentListCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveNewRegistryRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrieveNewRegistryRecord" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveNewRegistryRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrieveNewRegistryRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrieveNewRegistryRecordCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="UserIsInRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:UserIsInRoles" />
+  </wsdl:message>
+  <wsdl:message name="UserIsInRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:UserIsInRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserIsInRolesCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:portType name="COERegistrationServicesSoap">
+    <wsdl:operation name="GetTempID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a temporal Id to be used for submitted registry records.</wsdl:documentation>
+      <wsdl:input message="tns:GetTempIDSoapIn" />
+      <wsdl:output message="tns:GetTempIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Saves a registry record for later use.</wsdl:documentation>
+      <wsdl:input message="tns:SaveRegistryRecordSoapIn" />
+      <wsdl:output message="tns:SaveRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemporaryRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a temporary (not yet registered) registry record.</wsdl:documentation>
+      <wsdl:input message="tns:CreateTemporaryRegistryRecordSoapIn" />
+      <wsdl:output message="tns:CreateTemporaryRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveTemporaryRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve a temporary (not yet registered) registry record.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveTemporaryRegistryRecordSoapIn" />
+      <wsdl:output message="tns:RetrieveTemporaryRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemporaryRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update an existing temporary (not yet registered) registry record.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateTemporaryRegistryRecordSoapIn" />
+      <wsdl:output message="tns:UpdateTemporaryRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemporaryRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes a temporary (not yet registered) registry record.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteTemporaryRegistryRecordSoapIn" />
+      <wsdl:output message="tns:DeleteTemporaryRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create a permanent registry record.&lt;BR&gt;duplicateAction (D)uplicate, add (B)atch, put into (T)emporary, or do (N)ot store.</wsdl:documentation>
+      <wsdl:input message="tns:CreateRegistryRecordSoapIn" />
+      <wsdl:output message="tns:CreateRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve a permanent registry record.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveRegistryRecordSoapIn" />
+      <wsdl:output message="tns:RetrieveRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update a permanent registry record.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateRegistryRecordSoapIn" />
+      <wsdl:output message="tns:UpdateRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckUniqueRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check whether the registry record would be a duplicate permanent registry record.&lt;BR&gt;duplicateCheck (C)ompound, (M)ixture, or (N)one.</wsdl:documentation>
+      <wsdl:input message="tns:CheckUniqueRegistryRecordSoapIn" />
+      <wsdl:output message="tns:CheckUniqueRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRegistryInfoFromTempBatchID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns XML with information regarding temp to perm registrations.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveRegistryInfoFromTempBatchIDSoapIn" />
+      <wsdl:output message="tns:RetrieveRegistryInfoFromTempBatchIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePicklist">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns XML with picklist.&lt;BR&gt;strCriteria is a SQL statement the returns two columns.&lt;BR&gt;The 1st column is a unique integer ID.&lt;BR&gt;The 2nd column is a unique string description.&lt;BR&gt;eg. SELECT PERSON_ID,USER_ID FROM CS_SECURITY.PEOPLE ORDER BY USER_ID&lt;BR&gt;strCriteria can also be an interger ID value or a string DESCRIPTION value in the PICKLISTDOMAIN table.&lt;BR&gt;eg. 2 or Units</wsdl:documentation>
+      <wsdl:input message="tns:RetrievePicklistSoapIn" />
+      <wsdl:output message="tns:RetrievePicklistSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMatchingFragmentList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve FragmentList matching the search expression.&lt;BR&gt;A search expression is one or more search terms separated by a vertical bar (|).&lt;BR&gt;The vertical bar (|) has the effect of an AND.&lt;BR&gt;A search term is a Name followed by one or more Operator Value pairs separated by OR.&lt;BR&gt;Name is a Column Name in the RegDB.VW_FRAGMENT view. Valid Names are:&lt;BR&gt;FRAGMENTID, CODE, DESCRIPTION, FRAGMENTTYPEID, MOLWEIGHT, FORMULA, CREATED, MODIFIED, STRUCTURE, and STRUCTUREFORMAT.&lt;BR&gt;Name is not case sensitive.&lt;BR&gt;The operators for numeric values are: =, &gt;, &lt;, and BETWEEN.&lt;BR&gt;When using BETWEEN two numeric values are separated by AND; eg. MolWeight between 90 AND 100.&lt;BR&gt;CODE =9 OR =17 is an example of using OR in a search term.&lt;BR&gt;The operators for structure values are: EXACT, SUBSTRUCTURE, SIMILARITY, and MOLWEIGHT.&lt;BR&gt;To use the SIMILARITY operator SIMTHRESHOLD should be specified in the search options.&lt;BR&gt;These operators are not case senstive. Note that the MOLWEIGHT operator is distinct from the MOLWEIGHT name.&lt;BR&gt;The case   senstive operators for text values are: Equals, Contains, StartsWith, EndWith, and NotContains.&lt;BR&gt;The case insenstive operators for text values are: equals, contains, startsWith, endWith, and notContains.&lt;BR&gt;Note that case of the the first letter of the operator detrmines whether the operator if case sensitive or not.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveMatchingFragmentListSoapIn" />
+      <wsdl:output message="tns:RetrieveMatchingFragmentListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveNewRegistryRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve NewRegistryRecord XML for use as template for Save or Register.&lt;BR&gt;Returns XmlWithAddins.&lt;BR&gt;If add-ins are not desired then the &lt;AddIns&gt; section should be removed from &lt;MultiCompoundRegistryRecord&gt;.</wsdl:documentation>
+      <wsdl:input message="tns:RetrieveNewRegistryRecordSoapIn" />
+      <wsdl:output message="tns:RetrieveNewRegistryRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserIsInRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Determines whether the user has the provided role(s).&lt;BR&gt;Input a comma separated list of roles.&lt;BR&gt;Output is a comma separated list of True/False values.</wsdl:documentation>
+      <wsdl:input message="tns:UserIsInRolesSoapIn" />
+      <wsdl:output message="tns:UserIsInRolesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="COERegistrationServicesSoap" type="tns:COERegistrationServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTempID">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/GetTempID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetTempIDCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/SaveRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:SaveRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemporaryRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/CreateTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveTemporaryRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RetrieveTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemporaryRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/UpdateTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemporaryRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/DeleteTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/CreateRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RetrieveRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/UpdateRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUniqueRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/CheckUniqueRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CheckUniqueRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRegistryInfoFromTempBatchID">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveRegistryInfoFromTempBatchID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RetrieveRegistryInfoFromTempBatchIDCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePicklist">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrievePicklist" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RetrievePicklistCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMatchingFragmentList">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveMatchingFragmentList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RetrieveMatchingFragmentListCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveNewRegistryRecord">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveNewRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:RetrieveNewRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserIsInRoles">
+      <soap:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/UserIsInRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UserIsInRolesCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="COERegistrationServicesSoap12" type="tns:COERegistrationServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTempID">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/GetTempID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetTempIDCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/SaveRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:SaveRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTemporaryRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/CreateTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveTemporaryRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RetrieveTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTemporaryRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/UpdateTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteTemporaryRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/DeleteTemporaryRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteTemporaryRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/CreateRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CreateRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RetrieveRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/UpdateRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckUniqueRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/CheckUniqueRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CheckUniqueRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveRegistryInfoFromTempBatchID">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveRegistryInfoFromTempBatchID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RetrieveRegistryInfoFromTempBatchIDCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrievePicklist">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrievePicklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RetrievePicklistCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveMatchingFragmentList">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveMatchingFragmentList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RetrieveMatchingFragmentListCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrieveNewRegistryRecord">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/RetrieveNewRegistryRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:RetrieveNewRegistryRecordCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserIsInRoles">
+      <soap12:operation soapAction="CambridgeSoft.COE.Registration.Services.Web/UserIsInRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UserIsInRolesCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="COERegistrationServices">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Services for Registration. For more information see &lt;A HREF='COERegistrationServicesTesting.htm'&gt;COERegistrationServices Testing&lt;/A&gt;</wsdl:documentation>
+    <wsdl:port name="COERegistrationServicesSoap" binding="tns:COERegistrationServicesSoap">
+      <soap:address location="http://localhost/COERegistration/WebServices/COERegistrationServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="COERegistrationServicesSoap12" binding="tns:COERegistrationServicesSoap12">
+      <soap12:address location="http://localhost/COERegistration/WebServices/COERegistrationServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

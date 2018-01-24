@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+  <!-- Restrict to compounds whose substance_name contains the word "benzene" -->
+	<searchCriteriaItem id="4"  
+					 fieldid="15" 
+					 modifier="" 
+					 tableid="3">
+		<textCriteria operator="LIKE">*benzene*</textCriteria>
+	</searchCriteriaItem>
+  <searchCriteriaID>1</searchCriteriaID>
+</searchCriteria>

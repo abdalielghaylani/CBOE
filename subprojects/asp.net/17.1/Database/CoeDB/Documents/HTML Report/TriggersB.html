@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta name="keywords" content="Toad Data Modeler, html, report">
+		<title>Toad Data Modeler - HTML Report</title>
+
+		<link rel="stylesheet" type="text/css" media="screen" href="aqua_blue.css" title="report">
+		<link rel="stylesheet" type="text/css" media="print" href="aqua_blue_print.css" title="report">
+	</head>
+
+<body class="rightPage">
+<a name = "Trigger_11"></a>
+<div class="caption1">COEDB.PEOPLE_TRIG</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;PEOPLE_TRIG&quot; BEFORE INSERT<br> 	ON &quot;COEDB&quot;.&quot;PEOPLE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT people_seq.NEXTVAL<br>      INTO :NEW.person_id<br>      FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_13"></a>
+<div class="caption1">COEDB.PRIVILEGE_TABLES_TRIG</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;PRIVILEGE_TABLES_TRIG&quot; BEFORE INSERT<br> 	ON &quot;COEDB&quot;.&quot;PRIVILEGE_TABLES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT privilege_tables_seq.NEXTVAL<br>      INTO :NEW.privilege_table_id<br>      FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_12"></a>
+<div class="caption1">COEDB.SECURITY_ROLES_TRIG</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;SECURITY_ROLES_TRIG&quot; BEFORE INSERT<br> 	ON &quot;COEDB&quot;.&quot;SECURITY_ROLES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT security_roles_seq.NEXTVAL<br>      INTO :NEW.role_id<br>      FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_10"></a>
+<div class="caption1">COEDB.SITES_TRIG</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;SITES_TRIG&quot; BEFORE INSERT<br> 	ON &quot;COEDB&quot;.&quot;SITES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT sites_seq.NEXTVAL<br>      INTO :NEW.site_id<br>      FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_6"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CS_SEC_PRIV_AD0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CS_SEC_PRIV_AD0&quot; AFTER DELETE<br> 	ON &quot;COEDB&quot;.&quot;CS_SECURITY_PRIVILEGES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> DECLARE<br>    raid           NUMBER (10);<br>    deleted_data   VARCHAR2 (4000);<br> BEGIN<br>    SELECT seq_audit.NEXTVAL INTO raid FROM DUAL;<br> <br>    audit_trail.record_transaction (raid, 'CS_SECURITY_PRIVILEGES', :OLD.rid, 'D');<br>    deleted_data := TO_CHAR (:OLD.role_internal_id) || '|'<br>                 || TO_CHAR (:OLD.css_login) || '|'<br>                 || TO_CHAR (:OLD.css_create_user) || '|'<br>                 || TO_CHAR (:OLD.css_edit_user) || '|'<br>                 || TO_CHAR (:OLD.css_delete_user) || '|'<br>                 || TO_CHAR (:OLD.css_change_password) || '|'<br>                 || TO_CHAR (:OLD.css_create_role) || '|'<br>                 || TO_CHAR (:OLD.css_edit_role) || '|'<br>                 || TO_CHAR (:OLD.css_delete_role) || '|'<br>                 || TO_CHAR (:OLD.css_create_workgrp) || '|'<br>                 || TO_CHAR (:OLD.css_edit_workgrp) || '|'<br>                 || TO_CHAR (:OLD.css_delete_workgrp) || '|'<br>                 || TO_CHAR (:OLD.rid) || '|'<br>                 ||          :OLD.creator || '|'<br>                 || TO_CHAR (:OLD.timeStamp);<br> <br>    INSERT INTO audit_delete (raid, row_data)<br>         VALUES (raid, deleted_data);<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_7"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CS_SEC_PRIV_AU0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CS_SEC_PRIV_AU0&quot; AFTER UPDATE OF &quot;CSS_EDIT_WORKGRP&quot;,&quot;CSS_DELETE_USER&quot;,&quot;ROLE_INTERNAL_ID&quot;,&quot;RID&quot;,&quot;CSS_EDIT_ROLE&quot;,&quot;CSS_CREATE_WORKGRP&quot;,&quot;CSS_DELETE_WORKGRP&quot;,&quot;CSS_CREATE_ROLE&quot;,&quot;CSS_LOGIN&quot;,&quot;CSS_CREATE_USER&quot;,&quot;CSS_CHANGE_PASSWORD&quot;,&quot;CSS_DELETE_ROLE&quot;,&quot;CSS_EDIT_USER&quot;<br> 	ON &quot;COEDB&quot;.&quot;CS_SECURITY_PRIVILEGES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> DECLARE<br>    raid   NUMBER (10);<br> BEGIN<br>    SELECT seq_audit.NEXTVAL INTO raid FROM DUAL;<br> <br>    audit_trail.record_transaction (raid, 'CS_SECURITY_PRIVILEGES', :OLD.rid, 'U');<br> <br>    IF UPDATING ('role_internal_id') THEN<br>       IF :OLD.role_internal_id != :NEW.role_internal_id THEN<br>          audit_trail.column_update (raid, 'ROLE_INTERNAL_ID', :OLD.role_internal_id, :NEW.role_internal_id);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_create_user') THEN<br>       IF :OLD.css_create_user != :NEW.css_create_user THEN<br>          audit_trail.column_update (raid, 'CSS_CREATE_USER', :OLD.css_create_user, :NEW.css_create_user);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_edit_user') THEN<br>       IF :OLD.css_edit_user != :NEW.css_edit_user THEN<br>          audit_trail.column_update (raid, 'CSS_EDIT_USER', :OLD.css_edit_user, :NEW.css_edit_user);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_delete_user') THEN<br>       IF :OLD.css_delete_user != :NEW.css_delete_user THEN<br>          audit_trail.column_update (raid, 'CSS_DELETE_USER', :OLD.css_delete_user, :NEW.css_delete_user);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_change_password') THEN<br>       IF :OLD.css_change_password != :NEW.css_change_password THEN<br>          audit_trail.column_update (raid, 'CSS_CHANGE_PASSWORD', :OLD.css_change_password, :NEW.css_change_password);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_create_role') THEN<br>       IF :OLD.css_create_role != :NEW.css_create_role THEN<br>          audit_trail.column_update (raid, 'CSS_CREATE_ROLE', :OLD.css_create_role, :NEW.css_create_role);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_edit_role') THEN<br>       IF :OLD.css_edit_role != :NEW.css_edit_role THEN<br>          audit_trail.column_update (raid, 'CSS_EDIT_ROLE', :OLD.css_edit_role, :NEW.css_edit_role);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_delete_role') THEN<br>       IF :OLD.css_delete_role != :NEW.css_delete_role THEN<br>          audit_trail.column_update (raid, 'CSS_DELETE_ROLE', :OLD.css_delete_role, :NEW.css_delete_role);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_create_workgrp') THEN<br>       IF :OLD.css_create_workgrp != :NEW.css_create_workgrp THEN<br>          audit_trail.column_update (raid, 'CSS_CREATE_WORKGRP', :OLD.css_create_workgrp, :NEW.css_create_workgrp);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_edit_workgrp') THEN<br>       IF :OLD.css_edit_workgrp != :NEW.css_edit_workgrp THEN<br>          audit_trail.column_update (raid, 'CSS_EDIT_WORKGRP', :OLD.css_edit_workgrp, :NEW.css_edit_workgrp);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('css_delete_workgrp') THEN<br>       IF :OLD.css_delete_workgrp != :NEW.css_delete_workgrp THEN<br>          audit_trail.column_update (raid, 'CSS_DELETE_WORKGRP', :OLD.css_delete_workgrp, :NEW.css_delete_workgrp);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('rid') THEN<br>       IF :OLD.rid != :NEW.rid THEN<br>          audit_trail.column_update (raid, 'RID', :OLD.rid, :NEW.rid);<br>       END IF;<br>    END IF;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_8"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CS_SEC_PRIV_BI0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CS_SEC_PRIV_BI0&quot; BEFORE INSERT<br> 	ON &quot;COEDB&quot;.&quot;CS_SECURITY_PRIVILEGES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT TRUNC (seq_rid.NEXTVAL)<br>      INTO :NEW.rid<br>      FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_14"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CSS_PEOPLE_AD0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CSS_PEOPLE_AD0&quot; AFTER DELETE<br> 	ON &quot;COEDB&quot;.&quot;PEOPLE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> DECLARE<br>    raid           NUMBER (10);<br>    deleted_data   VARCHAR2 (4000);<br> BEGIN<br>    SELECT seq_audit.NEXTVAL INTO raid FROM DUAL;<br> <br>    audit_trail.record_transaction (raid, 'PEOPLE', :OLD.rid, 'D');<br>    deleted_data := TO_CHAR (:OLD.person_id) || '|'<br>                 ||          :OLD.user_code || '|'<br>                 ||          :OLD.user_id || '|'<br>                 || TO_CHAR (:OLD.supervisor_internal_id) || '|'<br>                 ||          :OLD.title || '|'<br>                 ||          :OLD.first_name || '|'<br>                 ||          :OLD.middle_name || '|'<br>                 ||          :OLD.last_name || '|'<br>                 || TO_CHAR (:OLD.site_id) || '|'<br>                 ||          :OLD.department || '|'<br>                 ||          :OLD.int_address || '|'<br>                 ||          :OLD.telephone || '|'<br>                 ||          :OLD.email || '|'<br>                 || TO_CHAR (:OLD.active) || '|'<br>                 || TO_CHAR (:OLD.rid) || '|'<br>                 ||          :OLD.creator || '|'<br>                 || TO_CHAR (:OLD.timestamp);<br> <br>    INSERT INTO audit_delete (raid, row_data)<br>         VALUES (raid, deleted_data);<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_1"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CSS_PEOPLE_AU0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CSS_PEOPLE_AU0&quot; AFTER UPDATE OF &quot;EMAIL&quot;,&quot;RID&quot;,&quot;PERSON_ID&quot;,&quot;FIRST_NAME&quot;,&quot;LAST_NAME&quot;,&quot;TELEPHONE&quot;,&quot;ACTIVE&quot;,&quot;USER_CODE&quot;,&quot;SITE_ID&quot;,&quot;DEPARTMENT&quot;,&quot;MIDDLE_NAME&quot;,&quot;SUPERVISOR_INTERNAL_ID&quot;,&quot;USER_ID&quot;,&quot;TITLE&quot;,&quot;INT_ADDRESS&quot;<br> 	ON &quot;COEDB&quot;.&quot;PEOPLE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> DECLARE<br>    raid   NUMBER (10);<br> BEGIN<br>    SELECT seq_audit.NEXTVAL INTO raid FROM DUAL;<br> <br>    audit_trail.record_transaction (raid, 'PEOPLE', :OLD.rid, 'U');<br> <br>    IF UPDATING ('person_id') THEN<br>       IF :OLD.person_id != :NEW.person_id THEN<br>          audit_trail.column_update (raid, 'PERSON_ID', :OLD.person_id, :NEW.person_id);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('user_code') THEN<br>       IF :OLD.user_code != :NEW.user_code THEN<br>          audit_trail.column_update (raid, 'USER_CODE', :OLD.user_code, :NEW.user_code);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('user_id') THEN<br>       IF :OLD.user_id != :NEW.user_id THEN<br>          audit_trail.column_update (raid, 'USER_ID', :OLD.user_id, :NEW.user_id);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('supervisor_internal_id') THEN<br>       IF :OLD.supervisor_internal_id != :NEW.supervisor_internal_id THEN<br>          audit_trail.column_update (raid, 'SUPERVIOR_INTERNAL_ID', :OLD.supervisor_internal_id, :NEW.supervisor_internal_id);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('title') THEN<br>       IF :OLD.title != :NEW.title THEN<br>          audit_trail.column_update (raid, 'TITLE', :OLD.title, :NEW.title);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('first_name') THEN<br>       IF :OLD.first_name != :NEW.first_name THEN<br>          audit_trail.column_update (raid, 'FIRST_NAME', :OLD.first_name, :NEW.first_name);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('middle_name') THEN<br>       IF :OLD.middle_name != :NEW.middle_name THEN<br>          audit_trail.column_update (raid, 'MIDDLE_NAME', :OLD.middle_name, :NEW.middle_name);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('last_name') THEN<br>       IF :OLD.last_name != :NEW.last_name THEN<br>          audit_trail.column_update (raid, 'LAST_NAME', :OLD.last_name, :NEW.last_name);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('site_id') THEN<br>       IF :OLD.site_id != :NEW.site_id THEN<br>          audit_trail.column_update (raid, 'SITE_ID', :OLD.site_id, :NEW.site_id);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('department') THEN<br>       IF :OLD.department != :NEW.department THEN<br>          audit_trail.column_update (raid, 'DEPARTMENT', :OLD.department, :NEW.department);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('int_address') THEN<br>       IF :OLD.int_address != :NEW.int_address THEN<br>          audit_trail.column_update (raid, 'INT_ADDRESS', :OLD.int_address, :NEW.int_address);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('telephone') THEN<br>       IF :OLD.telephone != :NEW.telephone THEN<br>          audit_trail.column_update (raid, 'TELEPHONE', :OLD.telephone, :NEW.telephone);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('email') THEN<br>       IF :OLD.email != :NEW.email THEN<br>          audit_trail.column_update (raid, 'EMAIL', :OLD.email, :NEW.email);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('active') THEN<br>       IF :OLD.active != :NEW.active THEN<br>          audit_trail.column_update (raid, 'ACTIVE', :OLD.active, :NEW.active);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('rid') THEN<br>       IF :OLD.rid != :NEW.rid THEN<br>          audit_trail.column_update (raid, 'RID', :OLD.rid, :NEW.rid);<br>       END IF;<br>    END IF;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_2"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CSS_PEOPLE_BI0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CSS_PEOPLE_BI0&quot; BEFORE INSERT<br> 	ON &quot;COEDB&quot;.&quot;PEOPLE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT TRUNC (seq_rid.NEXTVAL)<br>      INTO :NEW.rid<br>      FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_3"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CSS_SEC_ROLES_AD0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CSS_SEC_ROLES_AD0&quot; AFTER DELETE<br> 	ON &quot;COEDB&quot;.&quot;SECURITY_ROLES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> DECLARE<br>    raid           NUMBER (10);<br>    deleted_data   VARCHAR2 (4000);<br> BEGIN<br>    SELECT seq_audit.NEXTVAL INTO raid FROM DUAL;<br> <br>    audit_trail.record_transaction (raid, 'SECURITY_ROLES', :OLD.rid, 'D');<br>    deleted_data := TO_CHAR (:OLD.role_id) || '|'<br>                 || TO_CHAR (:OLD.privilege_table_int_id) || '|'<br>                 || TO_CHAR (:OLD.role_name) || '|'<br>                 || TO_CHAR (:OLD.rid) || '|'<br>                 ||          :OLD.creator || '|'<br>                 || TO_CHAR (:OLD.TIMESTAMP);<br> <br>    INSERT INTO audit_delete (raid, row_data)<br>         VALUES (raid, deleted_data);<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_4"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CSS_SEC_ROLES_AU0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CSS_SEC_ROLES_AU0&quot; AFTER UPDATE OF &quot;ROLE_NAME&quot;,&quot;ROLE_ID&quot;,&quot;PRIVILEGE_TABLE_INT_ID&quot;,&quot;RID&quot;<br> 	ON &quot;COEDB&quot;.&quot;SECURITY_ROLES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> DECLARE<br>    raid   NUMBER (10);<br> BEGIN<br>    SELECT seq_audit.NEXTVAL INTO raid FROM DUAL;<br> <br>    audit_trail.record_transaction (raid, 'SECURITY_ROLES', :OLD.rid, 'U');<br> <br>    IF UPDATING ('role_id') THEN<br>       IF :OLD.role_id != :NEW.role_id THEN<br>          audit_trail.column_update (raid, 'ROLE_ID', :OLD.role_id, :NEW.role_id);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('privilege_table_int_id') THEN<br>       IF :OLD.privilege_table_int_id != :NEW.privilege_table_int_id THEN<br>          audit_trail.column_update (raid, 'PRIVILEGE_TABLE_INT_ID', :OLD.privilege_table_int_id, :NEW.privilege_table_int_id);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('role_name') THEN<br>       IF :OLD.role_name != :NEW.role_name THEN<br>          audit_trail.column_update (raid, 'ROLE_NAME', :OLD.role_name, :NEW.role_name);<br>       END IF;<br>    END IF;<br> <br>    IF UPDATING ('rid') THEN<br>       IF :OLD.rid != :NEW.rid THEN<br>          audit_trail.column_update (raid, 'RID', :OLD.rid, :NEW.rid);<br>       END IF;<br>    END IF;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_5"></a>
+<div class="caption1">COEDB.TRG_AUDIT_CSS_SEC_ROLES_BI0</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;COEDB&quot;.&quot;TRG_AUDIT_CSS_SEC_ROLES_BI0&quot; BEFORE INSERT<br> 	ON &quot;COEDB&quot;.&quot;SECURITY_ROLES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT TRUNC (seq_rid.NEXTVAL)<br>      INTO :NEW.rid<br>      FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+</body></html>

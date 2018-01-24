@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <members>
+    <member name="R:Project">
+      <summary>
+        <p>The primary method of the ChemACX WebService is the DoSearch method of ChemACXWebService.</p>
+        <p>Supporting classes, objects and methods can be found both in ChemACXWebService and <see cref="N:CambridgeSoft.COE.Framework.COESearchService">CambridgeSoft.COE.Framework.COESearchService</see> </p>
+      </summary>
+    </member>
+  </members>
+</doc>

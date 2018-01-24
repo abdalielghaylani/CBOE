@@ -1,0 +1,33 @@
+<%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
+
+<%-- Images --%>
+<asp:Image runat="server" SkinID="LogoImage" ImageUrl="./Images/LogoHeader.png" CssClass="LogoImage" />
+<asp:Image runat="server" SkinID="IconImage"  ImageUrl="./Images/AppIcon.png" />
+<asp:Image runat="server" SkinID="ClientLogo" ImageUrl="./Images/ClientLogo.png" />
+
+
+<%-- Goto webMenu --%>
+<ignav:UltraWebMenu runat="server" SkinID="GoToUltraWebMenu">
+    <ExpandEffects ShadowColor="LightGray" Type="GradientWipe" />
+</ignav:UltraWebMenu>
+
+
+<%-- Labels --%>
+<asp:Label runat="server" SkinID="ConfirmationMessage" CssClass="ConfirmationMessage"/>
+<asp:Label runat="server" SkinID="FooterItemSeparator" CssClass="FooterItemSeparator"/>
+<asp:Label runat="server" SkinID="FooterItem" CssClass="FooterItem"/>
+<asp:Label runat="server" SkinID="ErrorMessageLabel" CssClass="ErrorMessageLabel"/>
+<asp:Label runat="server" SkinID="Text" CssClass="Text"/>
+<asp:Label runat="server" SkinID="Title" CssClass="Title"/>
+
+<%-- HyperLinks --%>
+<asp:HyperLink runat="server" SkinID="FooterItem" CssClass="FooterItem"/>
+
+<%-- Buttons --%>
+<asp:Button runat="server" SkinID="LogOffButton" CssClass="LogOffButton" />
+<asp:Button runat="server" SkinID="ButtonLikeLink" CssClass="LogOffButton" />
+
+ 

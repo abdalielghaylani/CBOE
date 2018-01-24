@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppointmentDialog_AllDayEvent" xml:space="preserve">
+    <value>All Day Event</value>
+  </data>
+  <data name="AppointmentDialog_AppointmentTab_Text" xml:space="preserve">
+    <value>Appointment</value>
+  </data>
+  <data name="AppointmentDialog_Description_Section508" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AppointmentDialog_EndDate_Section508" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="AppointmentDialog_EndTime" xml:space="preserve">
+    <value>End Time:</value>
+  </data>
+  <data name="AppointmentDialog_EndTime_Section508" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="AppointmentDialog_Location" xml:space="preserve">
+    <value>Location:</value>
+  </data>
+  <data name="AppointmentDialog_RecurrenceDescriptionText" xml:space="preserve">
+    <value>Recurrence: This is a recurring appointment.</value>
+  </data>
+  <data name="AppointmentDialog_RecurrenceStatus" xml:space="preserve">
+    <value>This is a recurring appointment.</value>
+  </data>
+  <data name="AppointmentDialog_Reminder" xml:space="preserve">
+    <value>Reminder</value>
+  </data>
+  <data name="AppointmentDialog_ReminderInterval_Section508" xml:space="preserve">
+    <value>Reminder Interval</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_EightHours" xml:space="preserve">
+    <value>8 hours</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_FifteenMinutes" xml:space="preserve">
+    <value>15 minutes</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_FiveMinutes" xml:space="preserve">
+    <value>5 minutes</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_FourHours" xml:space="preserve">
+    <value>4 hours</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_HalfDay" xml:space="preserve">
+    <value>0.5 days</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_OneDay" xml:space="preserve">
+    <value>1 day</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_OneHour" xml:space="preserve">
+    <value>1 hour</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_TenMinutes" xml:space="preserve">
+    <value>10 minutes</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_ThirtyMinutes" xml:space="preserve">
+    <value>30 minutes</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_TowDays" xml:space="preserve">
+    <value>2 days</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_TwoHours" xml:space="preserve">
+    <value>2 hours</value>
+  </data>
+  <data name="AppointmentDialog_ReminderIntervalOption_ZeroMinutes" xml:space="preserve">
+    <value>0 minutes</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs" xml:space="preserve">
+    <value>Show Time As:</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Busy" xml:space="preserve">
+    <value>Busy</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Free" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_OutofOffice" xml:space="preserve">
+    <value>Out of Office</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Section508" xml:space="preserve">
+    <value>Show Time As</value>
+  </data>
+  <data name="AppointmentDialog_ShowTimeAs_Tentative" xml:space="preserve">
+    <value>Tentative</value>
+  </data>
+  <data name="AppointmentDialog_StartDate_Section508" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="AppointmentDialog_StartTime" xml:space="preserve">
+    <value>Start Time:</value>
+  </data>
+  <data name="AppointmentDialog_StartTime_Section508" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="AppointmentDialog_Subject" xml:space="preserve">
+    <value>Subject:</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Delete_AltText" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Delete_Tooltip" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_HightPriority_AltText" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_HightPriority_Tooltip" xml:space="preserve">
+    <value>Importance: High</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_LowPriority_AltText" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_LowPriority_Tooltip" xml:space="preserve">
+    <value>Importance: Low</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Print_AltText" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Print_Tooltip" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Recurrence_AltText" xml:space="preserve">
+    <value>Recurrence</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Recurrence_Text" xml:space="preserve">
+    <value>Recurrence...</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_Recurrence_Tooltip" xml:space="preserve">
+    <value>Recurrence</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_SaveAndClose_AltText" xml:space="preserve">
+    <value>Save and Close</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_SaveAndClose_Text" xml:space="preserve">
+    <value>Save and Close</value>
+  </data>
+  <data name="AppointmentDialog_Toolbar_SaveAndClose_Tooltip" xml:space="preserve">
+    <value>Save and Close</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_CantFindDateChooser" xml:space="preserve">
+    <value>Error: can not find fields on appointment form</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceAfterEndDay" xml:space="preserve">
+    <value>Cannot reschedule an occurrence if it occurs later than the end date of the recurrence.</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceBeforeStartDate" xml:space="preserve">
+    <value>Cannot reschedule an occurrence if it occurs before the start date of the recurrence.</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceSkipNextOccurrence" xml:space="preserve">
+    <value>Cannot reschedule an occurrence if it skips over a later occurrence of the same appointment.</value>
+  </data>
+  <data name="JS_AppointmentDialog_Error_OccurrenceSkipPrevOccurrence" xml:space="preserve">
+    <value>Cannot reschedule an occurrence if it skips over an earlier occurrence of the same appointment.</value>
+  </data>
+  <data name="JS_AppointmentDialog_ReccurrenceStatus" xml:space="preserve">
+    <value>Recurrence: This is a recurring appointment.</value>
+  </data>
+  <data name="JS_AppointmentDialog_RecurrenceDescriptionLabel" xml:space="preserve">
+    <value>Recurrence: </value>
+  </data>
+  <data name="JS_ComboBox_AM" xml:space="preserve">
+    <value>AM</value>
+  </data>
+  <data name="JS_ComboBox_MustSpecifyValidTime" xml:space="preserve">
+    <value>You Must Specify a Valid Time!</value>
+  </data>
+  <data name="JS_ComboBox_PM" xml:space="preserve">
+    <value>PM</value>
+  </data>
+  <data name="JS_RecurrenceDialog_InvalidPattern" xml:space="preserve">
+    <value>The recurrence pattern is not valid</value>
+  </data>
+  <data name="JS_RecurrenceDialog_LooseDataConfirmation" xml:space="preserve">
+    <value>Any exceptions associated with this recurring appointment will be lost. Is this OK?</value>
+  </data>
+  <data name="JS_ReminderDialog_Now" xml:space="preserve">
+    <value>Now</value>
+  </data>
+  <data name="JS_ReminderDialog_Overdue" xml:space="preserve">
+    <value>overdue</value>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_Message" xml:space="preserve">
+    <value>This is a recurring appointment. Do you want to open this occurrence or the series?</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_OpenOccurrence" xml:space="preserve">
+    <value>Open this occurrence.</value>
+  </data>
+  <data name="ModifyRecurrenceDialog_OpenSeries" xml:space="preserve">
+    <value>Open the series.</value>
+  </data>
+  <data name="OneDay" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="OneHour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="OneMinute" xml:space="preserve">
+    <value>minute</value>
+  </data>
+  <data name="OneMinuteOrLess" xml:space="preserve">
+    <value>1 minute or less</value>
+  </data>
+  <data name="OneWeek" xml:space="preserve">
+    <value>week</value>
+  </data>
+  <data name="RecurrenceDialog_AppointmentTimeLegend" xml:space="preserve">
+    <value>Appointment time</value>
+  </data>
+  <data name="RecurrenceDialog_April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="RecurrenceDialog_August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="RecurrenceDialog_CancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="RecurrenceDialog_Daily" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="RecurrenceDialog_Day" xml:space="preserve">
+    <value>Day</value>
+  </data>
+  <data name="RecurrenceDialog_day_lowercase" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="RecurrenceDialog_Days" xml:space="preserve">
+    <value>day(s)</value>
+  </data>
+  <data name="RecurrenceDialog_December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="RecurrenceDialog_EndAfter" xml:space="preserve">
+    <value>End after:</value>
+  </data>
+  <data name="RecurrenceDialog_EndBy" xml:space="preserve">
+    <value>End by:</value>
+  </data>
+  <data name="RecurrenceDialog_EndDateLabel" xml:space="preserve">
+    <value>End Date:</value>
+  </data>
+  <data name="RecurrenceDialog_EndTimeLabel" xml:space="preserve">
+    <value>End Time:</value>
+  </data>
+  <data name="RecurrenceDialog_Every" xml:space="preserve">
+    <value>Every</value>
+  </data>
+  <data name="RecurrenceDialog_EveryWeekDay" xml:space="preserve">
+    <value>Every Weekday</value>
+  </data>
+  <data name="RecurrenceDialog_February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="RecurrenceDialog_First" xml:space="preserve">
+    <value>first</value>
+  </data>
+  <data name="RecurrenceDialog_Fourth" xml:space="preserve">
+    <value>fourth</value>
+  </data>
+  <data name="RecurrenceDialog_Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="RecurrenceDialog_January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="RecurrenceDialog_July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="RecurrenceDialog_June" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="RecurrenceDialog_Last" xml:space="preserve">
+    <value>last</value>
+  </data>
+  <data name="RecurrenceDialog_March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="RecurrenceDialog_May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="RecurrenceDialog_Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="RecurrenceDialog_Monthly" xml:space="preserve">
+    <value>Monthly</value>
+  </data>
+  <data name="RecurrenceDialog_Months" xml:space="preserve">
+    <value>month(s)</value>
+  </data>
+  <data name="RecurrenceDialog_NoEndDate" xml:space="preserve">
+    <value>No end date</value>
+  </data>
+  <data name="RecurrenceDialog_November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="RecurrenceDialog_Occurrences" xml:space="preserve">
+    <value>occurrences</value>
+  </data>
+  <data name="RecurrenceDialog_October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="RecurrenceDialog_OfEvery" xml:space="preserve">
+    <value>of every</value>
+  </data>
+  <data name="RecurrenceDialog_OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="RecurrenceDialog_RangeofRecurrence" xml:space="preserve">
+    <value>Range of recurrence</value>
+  </data>
+  <data name="RecurrenceDialog_RecurrencePatterLegend" xml:space="preserve">
+    <value>Recurrence pattern</value>
+  </data>
+  <data name="RecurrenceDialog_RecursEvery" xml:space="preserve">
+    <value>Recurs every</value>
+  </data>
+  <data name="RecurrenceDialog_RemoveRecurrenceButton" xml:space="preserve">
+    <value>Remove Recurrence</value>
+  </data>
+  <data name="RecurrenceDialog_Saturday" xml:space="preserve">
+    <value>Saturday </value>
+  </data>
+  <data name="RecurrenceDialog_Second" xml:space="preserve">
+    <value>second</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_1" xml:space="preserve">
+    <value>Editable field to enter day number of calendar month</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_10" xml:space="preserve">
+    <value>Select the end time of your recurring appointment</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_11" xml:space="preserve">
+    <value>Appointment recurs periodically once every several days</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_12" xml:space="preserve">
+    <value>Appointment recurs on every weekday</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_13" xml:space="preserve">
+    <value>Editable field to enter number of days between each occurrence</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_14" xml:space="preserve">
+    <value>Editable field to enter how frequently as a number of weeks the appointment recurs on a certain day or days of the week</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_15" xml:space="preserve">
+    <value>Appointment recurs on the same calendar date every year</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_16" xml:space="preserve">
+    <value>Select the anniversary month</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_17" xml:space="preserve">
+    <value>Editable field to enter the date in the anniversary month</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_18" xml:space="preserve">
+    <value>Appointment recurs on the same day and week in a specific month every year</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_19" xml:space="preserve">
+    <value>Select the week of the month the occurrence takes place</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_2" xml:space="preserve">
+    <value>Editable field to enter number of months to skip between occurrences</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_20" xml:space="preserve">
+    <value>Select the day of the week the occurrence takes place</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_21" xml:space="preserve">
+    <value>Select the month of the year the occurrence takes place every year</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_22" xml:space="preserve">
+    <value>Select the start date of your recurrence, also the date on which the first appointment occurs</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_23" xml:space="preserve">
+    <value>End after maximum number of occurrences</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_24" xml:space="preserve">
+    <value>Editable field to enter the maximum number of occurrences
+</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_25" xml:space="preserve">
+    <value>End by a specific date</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_26" xml:space="preserve">
+    <value>Select the end date when the recurrence will stop</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_3" xml:space="preserve">
+    <value>Select the week of the month</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_4" xml:space="preserve">
+    <value>Select the day or days of the week</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_5" xml:space="preserve">
+    <value>Editable field to enter number of months to skip between occurrences</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_6" xml:space="preserve">
+    <value>Appointment recurs on the same calendar date of every one or more months</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_7" xml:space="preserve">
+    <value>Appointment recurs on the same day or days of the specified week in every one or more months</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_8" xml:space="preserve">
+    <value>Select the start time of your recurring appointment</value>
+  </data>
+  <data name="RecurrenceDialog_Section508_9" xml:space="preserve">
+    <value>Select the end date of your recurring appointment if it is different from the day each occurrence will start</value>
+  </data>
+  <data name="RecurrenceDialog_September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="RecurrenceDialog_Start_Label" xml:space="preserve">
+    <value>Start:</value>
+  </data>
+  <data name="RecurrenceDialog_Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="RecurrenceDialog_The" xml:space="preserve">
+    <value>The</value>
+  </data>
+  <data name="RecurrenceDialog_Third" xml:space="preserve">
+    <value>third</value>
+  </data>
+  <data name="RecurrenceDialog_Thursday" xml:space="preserve">
+    <value>Thursday </value>
+  </data>
+  <data name="RecurrenceDialog_Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="RecurrenceDialog_Wednesday" xml:space="preserve">
+    <value>Wednesday </value>
+  </data>
+  <data name="RecurrenceDialog_Weekday" xml:space="preserve">
+    <value>weekday</value>
+  </data>
+  <data name="RecurrenceDialog_WeekendDay" xml:space="preserve">
+    <value>weekend day</value>
+  </data>
+  <data name="RecurrenceDialog_Weekly" xml:space="preserve">
+    <value>Weekly</value>
+  </data>
+  <data name="RecurrenceDialog_WeeksOn" xml:space="preserve">
+    <value>week(s) on</value>
+  </data>
+  <data name="RecurrenceDialog_Yearly" xml:space="preserve">
+    <value>Yearly</value>
+  </data>
+  <data name="ReminderDialog_ClickSnoozeLabel" xml:space="preserve">
+    <value>Click Snooze to be reminded again in:</value>
+  </data>
+  <data name="ReminderDialog_CloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ReminderDialog_DimissAllButton" xml:space="preserve">
+    <value>Dismiss All</value>
+  </data>
+  <data name="ReminderDialog_DismissButton" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
+  <data name="ReminderDialog_DueInHeader" xml:space="preserve">
+    <value>Due In</value>
+  </data>
+  <data name="ReminderDialog_LocationLabel" xml:space="preserve">
+    <value>Location:</value>
+  </data>
+  <data name="ReminderDialog_NoSubject" xml:space="preserve">
+    <value>(No Subject)</value>
+  </data>
+  <data name="ReminderDialog_OpenItemButton" xml:space="preserve">
+    <value>Open Item</value>
+  </data>
+  <data name="ReminderDialog_SnoozeButton" xml:space="preserve">
+    <value>Snooze</value>
+  </data>
+  <data name="ReminderDialog_SubjectHeader" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ReminderDialog_TimeLabel" xml:space="preserve">
+    <value>Time:</value>
+  </data>
+  <data name="Weeks" xml:space="preserve">
+    <value>weeks</value>
+  </data>
+  <data name="AppointmentTitle" xml:space="preserve">
+    <value>Appointment</value>
+  </data>
+  <data name="ModifyRecurrenceDialogTitle" xml:space="preserve">
+    <value>Modify Recurrence Dialog</value>
+  </data>
+  <data name="RecurrenceDialogTitle" xml:space="preserve">
+    <value>Recurrence pattern</value>
+  </data>
+  <data name="ReminderDialogTitle" xml:space="preserve">
+    <value>Reminder</value>
+  </data>
+</root>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<COEDataView  xmlns="COE.COEDataView" basetable="193" database="COEDB" dataviewid="5003">
+		<tables>
+			<table id="193" name="VW_LOG_BULKREGISTRATION_ID"  database="REGDB" primaryKey="194" >
+				<fields id="194" name="LOG_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" />
+				<fields id="195" name="DUPLICATE_ACTION" alias="DUPLICATE_ACTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" />
+        <fields id="196" name="DESCRIPTION" alias="DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" />
+        <fields id="197" name="USER_ID"  alias="USER_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" />
+				<fields id="198" name="DATETIME_STAMP"  dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" />
+			</table>
+			<table id="210" name="VW_LOG_BULKREGISTRATION"  database="REGDB" primaryKey="211" >
+				<fields id="211" name="LOG_ID" alias="LOG_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" />
+				<fields id="212" name="TEMP_ID" alias="TEMP_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" />
+        <fields id="213" name="ACTION" alias="ACTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" />
+				<fields id="214" name="REG_NUMBER" alias="REG_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" />
+				<fields id="215" name="BATCH_NUMBER" alias="BATCH_NUMBER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" />
+        <fields id="216" name="COMMENTS"  alias="COMMENTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" />
+      </table>
+		</tables>
+		<relationships>
+			<relationship parentkey="194" childkey="211" parent="193" child="210" jointype="INNER" />
+		</relationships>
+	</COEDataView>

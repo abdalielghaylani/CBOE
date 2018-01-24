@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COEDataView  xmlns="COE.COEDataView" basetable="1" database="COEDB" name="Batches" description="Batches with Identifiers and Projects" dataviewHandling="USE_CLIENT_DATAVIEW" dataviewid="100080">
+  <tables>
+    <table id="1" name="REG_NUMBERS" alias="REG_NUMBERS" database="REGDB" isView="0" primaryKey="9" >
+      <fields id="2" name="CPD_INTERNAL_ID" alias="CPD_INTERNAL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="3" name="DATETIME_STAMP" alias="DATETIME_STAMP" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="4" name="LAST_BATCH_NUMBER" alias="LAST_BATCH_NUMBER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="5" name="LOAD_ID" alias="LOAD_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="6" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="7" name="REGISTRAR_PERSON_ID" alias="REGISTRAR_PERSON_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="8" name="REGISTRY_DATE" alias="REGISTRY_DATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="9" name="REG_ID" alias="REG_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="10" name="REG_NUMBER" alias="REG_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="11" name="SEQUENCE_INTERNAL_ID" alias="SEQUENCE_INTERNAL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="12" name="SEQUENCE_NUMBER" alias="SEQUENCE_NUMBER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+    </table>
+    <table id="13" name="BATCHES" alias="BATCHES" database="REGDB" isView="0" primaryKey="19" >
+      <fields id="14" name="AMOUNT" alias="AMOUNT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="15" name="AMOUNT_UNITS" alias="AMOUNT_UNITS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="16" name="APPEARANCE" alias="APPEARANCE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="17" name="BATCH_COMMENT" alias="BATCH_COMMENT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="18" name="BATCH_FORMULA" alias="BATCH_FORMULA" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="19" name="BATCH_INTERNAL_ID" alias="BATCH_INTERNAL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="20" name="BATCH_NUMBER" alias="BATCH_NUMBER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="21" name="BATCH_REG_PERSON_ID" alias="BATCH_REG_PERSON_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="22" name="CREATION_DATE" alias="CREATION_DATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="23" name="DATECREATED" alias="DATECREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="24" name="ENTRY_PERSON_ID" alias="ENTRY_PERSON_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="25" name="FORMULA_WEIGHT" alias="FORMULA_WEIGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="26" name="FULLREGNUMBER" alias="FULLREGNUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="27" name="LAST_MOD_DATE" alias="LAST_MOD_DATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="28" name="NOTEBOOK_TEXT" alias="NOTEBOOK_TEXT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="29" name="PERCENT_ACTIVE" alias="PERCENT_ACTIVE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="30" name="PURITY" alias="PURITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="31" name="PURITY_COMMENTS" alias="PURITY_COMMENTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="32" name="REG_INTERNAL_ID" alias="REG_INTERNAL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="33" name="SAMPLEID" alias="SAMPLEID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="34" name="SCIENTIST_ID" alias="SCIENTIST_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="35" name="SOLUBILITY" alias="SOLUBILITY" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="36" name="STATUS_ID" alias="STATUS_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="37" name="STORAGE_REQ_AND_WARNINGS" alias="STORAGE_REQ_AND_WARNINGS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="38" name="TEMPBATCHID" alias="TEMPBATCHID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="39" name="TEMP_ID" alias="TEMP_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+    </table>
+    <table id="40" name="BATCH_IDENTIFIER" alias="BATCH_IDENTIFIER" database="REGDB" isView="0" primaryKey="42" >
+      <fields id="41" name="BATCHID" alias="BATCHID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="42" name="ID" alias="BATCHIDENTIFIERID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="43" name="ORDERINDEX" alias="ORDERINDEX" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="44" name="TYPE" alias="TYPE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="45" name="VALUE" alias="VALUE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+    </table>
+    <table id="46" name="BATCH_PROJECT" alias="BATCH_PROJECT" database="REGDB" isView="0" primaryKey="48" >
+      <fields id="47" name="BATCHID" alias="BATCHID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="48" name="ID" alias="BATCHPROJECTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="49" name="ORDERINDEX" alias="ORDERINDEX" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+      <fields id="50" name="PROJECTID" alias="PROJECTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" />
+    </table>
+    
+  </tables>
+  <relationships>
+    <relationship parent="1" child="13" parentkey="9" childkey="32" jointype="INNER" /> <!-- RegNum - Batches -->
+    <relationship parent="13" child="40" parentkey="19" childkey="41" jointype="INNER" /> <!-- Batches - Batch_Identifier -->
+    <relationship parent="13" child="46" parentkey="19" childkey="47" jointype="INNER" /> <!-- Batches - Batch_Project -->
+  </relationships>
+</COEDataView>

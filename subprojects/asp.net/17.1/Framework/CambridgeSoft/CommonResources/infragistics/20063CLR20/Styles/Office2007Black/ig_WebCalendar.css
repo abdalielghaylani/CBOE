@@ -1,0 +1,73 @@
+/* CSS Document */
+
+.igWebCalendarMainBlack2k7 {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	background-color: #ffffff;
+	
+
+	
+
+}
+
+.igWebCalendarTitleBlack2k7{
+
+	width: 166px;
+	background-color: #D2D5DA;
+	border-with: 0px;
+	font-size: 11px;
+	
+
+}
+.igWebCalendarNextPrevBlack2k7 {
+	padding: 4px;
+	background-color: #D2D5DA;
+	
+}
+
+.igWebCalendarDayheaderBlack2k7{
+
+	padding-top: 1px;
+	border: 1px solid #A7A6AA;
+	border-width: 0px 0px 1px 0px;
+	font-weight: normal;
+	font-size: 11px;
+}
+
+.igWebCalendarFooterBlack2k7{
+
+
+	height: 16px;
+
+	background-image:url(WebCalendar/Footer.jpg);
+	background-repeat: repeat-x;
+	
+
+	text-align: center;
+	
+	font-weight: normal;
+	
+	width: 50px;
+	font-size: 11px;
+}
+
+.igWebCalendarToydayDayBlack2k7 {
+	border: 1px solid #BB5503;
+	padding: 1px;
+
+}
+
+.igWebCalendarSelectedDayBlack2k7 {
+	background-color: #FBC84F;
+	padding: 1px;
+}
+
+.igWebCalendarDayBlack2k7 {
+	font-size: 11px;
+	padding: 1px;
+}
+
+.igWebCalendarOtherMonthDayBlack2k7{
+	color: #B3B3B3;
+
+}

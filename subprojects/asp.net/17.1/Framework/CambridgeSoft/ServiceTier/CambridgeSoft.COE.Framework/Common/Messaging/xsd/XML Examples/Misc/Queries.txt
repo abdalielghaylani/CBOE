@@ -1,0 +1,122 @@
+SQLGenerated queries:
+--------------------------------------------------------------
+Query:
+SELECT INV_CONTAINERS.BARCODE, '102345' 
+FROM INV_CONTAINERS c, 
+		INV_LOCATIONS, 
+		INV_COMPOUNDS 
+WHERE c.LOCATION_ID_FK = INV_LOCATIONS.LOCATION_ID 
+			AND c.COMPOUND_ID_FK = INV_COMPOUNDS.COMPOUND_ID 
+			AND (c.DATE_EXPIRES >= TO_DATE(':0','MM,DD,YYYY')) 
+			AND (INV_LOCATIONS.LOCATION_BARCODE < :1) 
+			AND (TRIM(c.BARCODE) = :2) 
+			AND LOWER(TRIM(INV_LOCATIONS.LOCATION_NAME)) LIKE :3) 
+			AND CSCARTRIDGE.MolWeightContains(INV_COMPOUNDS.BASE64_CDX, :4, :5, :6)=1 
+			AND CSCARTRIDGE.FormulaContains(INV_COMPOUNDS.BASE64_CDX, :7, :8)=1 
+			AND CSCARTRIDGE.MoleculeContains(INV_COMPOUNDS.BASE64_CDX, :9, :10, :11)=1
+Parameters:
+0 - Value: '01/01/2006'	 Type: DateTime
+1 - Value: '0111112220'	 Type: Text
+2 - Value: '123.321'	 Type: Text
+3 - Value: '"cambridge, massachussets"'	 Type: Text
+4 - Value: '1'	 Type: Text
+5 - Value: '200'	 Type: Text
+6 - Value: ''	 Type: Text
+7 - Value: 'C1CCCCC1'	 Type: Text
+8 - Value: 'FULL=NO'	 Type: Text
+9 - Value: 'SELECT query FROM CSCARTRIDGE.Queries WHERE id = VmpDRDAxMDAEAwIBAAAAA….QAAAAAAAAAAAA='	 Type: Text
+10 - Value: ''	 Type: Text
+11 - Value: 'absoluteHitsRel=NO, relativeTetStereo=NO, tetrahedralStereo=Yes, simThreshold=100, reactionCenter=YES, fullSearch=NO, tautometer=NO, fragmentsOverlap=NO, permitExtraneousFragmentsIfRXN=NO, permitExtraneousFragments=NO, doubleBondStereo=YES, hitAnyChrgeHetero=YES, identity=NO, hitAnyChargeCarbon=YES, similar=NO, format=NO'	 Type: Text
+--------------------------------------------------------------
+
+Query:
+SELECT INV_RESERVATIONS.DATE_RESERVED || ' + ' || INV_RESERVATIONS.QTY_RESERVED, 
+			DECODE (INV_RESERVATIONS.QTY_RESERVED, '1', INV_RESERVATIONS.QTY_RESERVED, '2', 'Not Assigned', INV_RESERVATIONS.RESERVATION_ID) 
+FROM INV_RESERVATIONS r, 
+		INV_LOCATIONS, 
+		INV_COMPOUNDS 
+WHERE c.LOCATION_ID_FK = INV_LOCATIONS.LOCATION_ID 
+			AND c.COMPOUND_ID_FK = INV_COMPOUNDS.COMPOUND_ID 
+			AND (c.DATE_EXPIRES >= TO_DATE(':0','MM,DD,YYYY')) 
+			AND (INV_LOCATIONS.LOCATION_BARCODE < :1) 
+			AND (TRIM(c.BARCODE) = :2) 
+			AND LOWER(TRIM(INV_LOCATIONS.LOCATION_NAME)) LIKE :3) 
+			AND CSCARTRIDGE.MolWeightContains(INV_COMPOUNDS.BASE64_CDX, :4, :5, :6)=1 
+			AND CSCARTRIDGE.FormulaContains(INV_COMPOUNDS.BASE64_CDX, :7, :8)=1 
+			AND CSCARTRIDGE.MoleculeContains(INV_COMPOUNDS.BASE64_CDX, :9, :10, :11)=1
+
+Parameters:
+0 - Value: '01/01/2006'	 Type: DateTime
+1 - Value: '0111112220'	 Type: Text
+2 - Value: '123.321'	 Type: Text
+3 - Value: '"cambridge, massachussets"'	 Type: Text
+4 - Value: '1'	 Type: Text
+5 - Value: '200'	 Type: Text
+6 - Value: ''	 Type: Text
+7 - Value: 'C1CCCCC1'	 Type: Text
+8 - Value: 'FULL=NO'	 Type: Text
+9 - Value: 'SELECT query FROM CSCARTRIDGE.Queries WHERE id = VmpDRDAxMDAEAwIBAAAAA….QAAAAAAAAAAAA='	 Type: Text
+10 - Value: ''	 Type: Text
+11 - Value: 'absoluteHitsRel=NO, relativeTetStereo=NO, tetrahedralStereo=Yes, simThreshold=100, reactionCenter=YES, fullSearch=NO, tautometer=NO, fragmentsOverlap=NO, permitExtraneousFragmentsIfRXN=NO, permitExtraneousFragments=NO, doubleBondStereo=YES, hitAnyChrgeHetero=YES, identity=NO, hitAnyChargeCarbon=YES, similar=NO, format=NO'	 Type: Text
+--------------------------------------------------------------
+
+Query:
+SELECT MAX(INV_SYNONYMS.SUBSTANCE_NAME), 
+			AVG(INV_SYNONYMS.SUBSTANCE_NAME) 
+FROM INV_SYNONYMS s, 
+		INV_LOCATIONS, 
+		INV_COMPOUNDS 
+WHERE c.LOCATION_ID_FK = INV_LOCATIONS.LOCATION_ID 
+			AND c.COMPOUND_ID_FK = INV_COMPOUNDS.COMPOUND_ID 
+			AND (c.DATE_EXPIRES >= TO_DATE(':0','MM,DD,YYYY')) 
+			AND (INV_LOCATIONS.LOCATION_BARCODE < :1) 
+			AND (TRIM(c.BARCODE) = :2) 
+			AND LOWER(TRIM(INV_LOCATIONS.LOCATION_NAME)) LIKE :3) 
+			AND CSCARTRIDGE.MolWeightContains(INV_COMPOUNDS.BASE64_CDX, :4, :5, :6)=1 
+			AND CSCARTRIDGE.FormulaContains(INV_COMPOUNDS.BASE64_CDX, :7, :8)=1 
+			AND CSCARTRIDGE.MoleculeContains(INV_COMPOUNDS.BASE64_CDX, :9, :10, :11)=1
+
+Parameters:
+0 - Value: '01/01/2006'	 Type: DateTime
+1 - Value: '0111112220'	 Type: Text
+2 - Value: '123.321'	 Type: Text
+3 - Value: '"cambridge, massachussets"'	 Type: Text
+4 - Value: '1'	 Type: Text
+5 - Value: '200'	 Type: Text
+6 - Value: ''	 Type: Text
+7 - Value: 'C1CCCCC1'	 Type: Text
+8 - Value: 'FULL=NO'	 Type: Text
+9 - Value: 'SELECT query FROM CSCARTRIDGE.Queries WHERE id = VmpDRDAxMDAEAwIBAAAAA….QAAAAAAAAAAAA='	 Type: Text
+10 - Value: ''	 Type: Text
+11 - Value: 'absoluteHitsRel=NO, relativeTetStereo=NO, tetrahedralStereo=Yes, simThreshold=100, reactionCenter=YES, fullSearch=NO, tautometer=NO, fragmentsOverlap=NO, permitExtraneousFragmentsIfRXN=NO, permitExtraneousFragments=NO, doubleBondStereo=YES, hitAnyChrgeHetero=YES, identity=NO, hitAnyChargeCarbon=YES, similar=NO, format=NO'	 Type: Text
+--------------------------------------------------------------
+Query:
+SELECT CSCARTRIDGE.MolWeight('INV_COMPOUNDS.BASE64_CDX'), 
+			CSCARTRIDGE.Formula('INV_COMPOUNDS.BASE64_CDX', '') 
+FROM INV_COMPOUNDS, 
+			INV_LOCATIONS, 
+			INV_COMPOUNDS 
+WHERE c.LOCATION_ID_FK = INV_LOCATIONS.LOCATION_ID 
+			AND c.COMPOUND_ID_FK = INV_COMPOUNDS.COMPOUND_ID 
+			AND (c.DATE_EXPIRES >= TO_DATE(':0','MM,DD,YYYY')) 
+			AND (INV_LOCATIONS.LOCATION_BARCODE < :1) 
+			AND (TRIM(c.BARCODE) = :2) 
+			AND LOWER(TRIM(INV_LOCATIONS.LOCATION_NAME)) LIKE :3) 
+			AND CSCARTRIDGE.MolWeightContains(INV_COMPOUNDS.BASE64_CDX, :4, :5, :6)=1 
+			AND CSCARTRIDGE.FormulaContains(INV_COMPOUNDS.BASE64_CDX, :7, :8)=1 
+			AND CSCARTRIDGE.MoleculeContains(INV_COMPOUNDS.BASE64_CDX, :9, :10, :11)=1
+
+Parameters:
+0 - Value: '01/01/2006'	 Type: DateTime
+1 - Value: '0111112220'	 Type: Text
+2 - Value: '123.321'	 Type: Text
+3 - Value: '"cambridge, massachussets"'	 Type: Text
+4 - Value: '1'	 Type: Text
+5 - Value: '200'	 Type: Text
+6 - Value: ''	 Type: Text
+7 - Value: 'C1CCCCC1'	 Type: Text
+8 - Value: 'FULL=NO'	 Type: Text
+9 - Value: 'SELECT query FROM CSCARTRIDGE.Queries WHERE id = VmpDRDAxMDAEAwIBAAAAA….QAAAAAAAAAAAA='	 Type: Text
+10 - Value: ''	 Type: Text
+11 - Value: 'absoluteHitsRel=NO, relativeTetStereo=NO, tetrahedralStereo=Yes, simThreshold=100, reactionCenter=YES, fullSearch=NO, tautometer=NO, fragmentsOverlap=NO, permitExtraneousFragmentsIfRXN=NO, permitExtraneousFragments=NO, doubleBondStereo=YES, hitAnyChrgeHetero=YES, identity=NO, hitAnyChargeCarbon=YES, similar=NO, format=NO'	 Type: Text
+--------------------------------------------------------------

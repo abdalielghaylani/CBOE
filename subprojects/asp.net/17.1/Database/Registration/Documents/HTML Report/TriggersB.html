@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta name="keywords" content="Toad Data Modeler, html, report">
+		<title>Toad Data Modeler - HTML Report</title>
+
+		<link rel="stylesheet" type="text/css" media="screen" href="classic_yellow.css" title="report">
+		<link rel="stylesheet" type="text/css" media="print" href="classic_yellow_print.css" title="report">
+	</head>
+
+<body class="rightPage">
+<a name = "Trigger_20"></a>
+<div class="caption1">REGDB.PARAMETER_ID_TRIG</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;PARAMETER_ID_TRIG&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;PARAMETERS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_PARAMETERS.NEXTVAL INTO :NEW.PARAMETER_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_26"></a>
+<div class="caption1">REGDB.TRG_ALT_IDS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_ALT_IDS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;ALT_IDS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_ALT_IDS.NEXTVAL INTO :NEW.ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_23"></a>
+<div class="caption1">REGDB.TRG_BATCH_PROJ_UTILIZATIONS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_BATCH_PROJ_UTILIZATIONS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;BATCH_PROJ_UTILIZATIONS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_BATCH_PROJ_UTIL.NEXTVAL INTO :NEW.BATCH_PROJ_UTIL_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_27"></a>
+<div class="caption1">REGDB.TRG_BATCH_PROJECTS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_BATCH_PROJECTS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;BATCH_PROJECTS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_BATCH_PROJECTS.NEXTVAL INTO :NEW.BATCH_PROJECT_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_8"></a>
+<div class="caption1">REGDB.TRG_BATCHES</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_BATCHES&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;BATCHES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_BATCHES.NEXTVAL INTO :NEW.BATCH_INTERNAL_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_24"></a>
+<div class="caption1">REGDB.TRG_CMPD_MOL_UTILIZATIONS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_CMPD_MOL_UTILIZATIONS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;CMPD_MOL_UTILIZATIONS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_CMPD_MOL_UTIL.NEXTVAL INTO :NEW.CMPD_MOL_UTIL_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_1"></a>
+<div class="caption1">REGDB.TRG_COMMIT_TYPES</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_COMMIT_TYPES&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;COMMIT_TYPES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_COMMIT_TYPES.NEXTVAL INTO :NEW.COMMIT_TYPE_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_12"></a>
+<div class="caption1">REGDB.TRG_COMPOUND_MOLECULE</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_COMPOUND_MOLECULE&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;COMPOUND_MOLECULE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_COMPOUND_MOLECULE.NEXTVAL INTO :NEW.CPD_DATABASE_COUNTER  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_21"></a>
+<div class="caption1">REGDB.TRG_COMPOUND_PROJECT</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_COMPOUND_PROJECT&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;COMPOUND_PROJECT&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_COMPOUND_PROJECT.NEXTVAL INTO :NEW.COMP_PROJECT_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_3"></a>
+<div class="caption1">REGDB.TRG_COMPOUND_SALT</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_COMPOUND_SALT&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;COMPOUND_SALT&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_COMPOUND_SALT.NEXTVAL INTO :NEW.COMPOUND_SALT_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_16"></a>
+<div class="caption1">REGDB.TRG_COMPOUND_TYPE</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_COMPOUND_TYPE&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;COMPOUND_TYPE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_COMPOUND_TYPE.NEXTVAL INTO :NEW.COMPOUND_TYPE  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_5"></a>
+<div class="caption1">REGDB.TRG_EXPERIMENT_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_EXPERIMENT_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;EXPERIMENTS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_EXPERIMENTS.NEXTVAL INTO :NEW.EXPERIMENT_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_13"></a>
+<div class="caption1">REGDB.TRG_EXPERIMENT_TYPE_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_EXPERIMENT_TYPE_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;EXPERIMENTTYPE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_EXPERIMENTTYPE.NEXTVAL INTO :NEW.EXPERIMENT_TYPE_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_29"></a>
+<div class="caption1">REGDB.TRG_FRAGMENT_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_FRAGMENT_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;FRAGMENTS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_FRAGMENT_ID.NEXTVAL INTO :NEW.FRAGMENT_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_10"></a>
+<div class="caption1">REGDB.TRG_IDENTIFIERS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_IDENTIFIERS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;IDENTIFIERS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>  SELECT SEQ_IDENTIFIERS.NEXTVAL INTO :NEW.ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_25"></a>
+<div class="caption1">REGDB.TRG_MOL_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_MOL_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;STRUCTURES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT MOLID_SEQ.NEXTVAL INTO :NEW.MOL_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_2"></a>
+<div class="caption1">REGDB.TRG_NOTEBOOKS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_NOTEBOOKS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;NOTEBOOKS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_NOTEBOOKS.NEXTVAL INTO :NEW.NOTEBOOK_NUMBER FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_18"></a>
+<div class="caption1">REGDB.TRG_PARAMETER_TYPE_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_PARAMETER_TYPE_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;PARAMETERTYPE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_PARAMETERTYPE.NEXTVAL INTO :NEW.PARAMETER_TYPE_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_14"></a>
+<div class="caption1">REGDB.TRG_PROJECTS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_PROJECTS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;PROJECTS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_PROJECTS.NEXTVAL INTO :NEW.PROJECT_INTERNAL_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_17"></a>
+<div class="caption1">REGDB.TRG_REG_NUMBERS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_REG_NUMBERS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;REG_NUMBERS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_REG_NUMBERS.NEXTVAL INTO :NEW.REG_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_9"></a>
+<div class="caption1">REGDB.TRG_RESULT_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_RESULT_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;RESULTS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_RESULTS.NEXTVAL INTO :NEW.RESULT_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_4"></a>
+<div class="caption1">REGDB.TRG_RESULT_TYPE_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_RESULT_TYPE_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;RESULTTYPE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_RESULTTYPE.NEXTVAL INTO :NEW.RESULT_TYPE_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_19"></a>
+<div class="caption1">REGDB.TRG_SALTS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_SALTS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;SALTS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_SALTS.NEXTVAL INTO :NEW.SALT_CODE  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_6"></a>
+<div class="caption1">REGDB.TRG_SEQUENCE</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_SEQUENCE&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;SEQUENCE&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_SEQUENCE.NEXTVAL INTO :NEW.SEQUENCE_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_15"></a>
+<div class="caption1">REGDB.TRG_SOLVATES</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_SOLVATES&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;SOLVATES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br>    SELECT SEQ_SOLVATES.NEXTVAL INTO :NEW.SOLVATE_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_11"></a>
+<div class="caption1">REGDB.TRG_TEMP_MOL_ID</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_TEMP_MOL_ID&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;TEMPORARY_STRUCTURES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT MOLID_SEQ.NEXTVAL INTO :NEW.MOL_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_7"></a>
+<div class="caption1">REGDB.TRG_TEMPORARY_STRUCTURES</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_TEMPORARY_STRUCTURES&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;TEMPORARY_STRUCTURES&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_TEMPORARY_STRUCTURES.NEXTVAL INTO :NEW.TEMP_COMPOUND_ID  FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_28"></a>
+<div class="caption1">REGDB.TRG_UTILIATIONS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_UTILIATIONS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;UTILIZATIONS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_UTILIZATIONS.NEXTVAL INTO :NEW.UTILIZATION_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+<a name = "Trigger_22"></a>
+<div class="caption1">REGDB.TRG_UTILIZATIONS</div><br><br> 
+<table class="tabformat" border="0" cellpadding="2" cellspacing="1" width="100%">
+ 
+  <tr>
+    <td class="tabdata" > <pre><code>CREATE TRIGGER &quot;REGDB&quot;.&quot;TRG_UTILIZATIONS&quot; BEFORE INSERT<br> 	ON &quot;REGDB&quot;.&quot;UTILIZATIONS&quot; REFERENCING NEW AS NEW OLD AS OLD FOR EACH ROW<br> BEGIN<br> SELECT SEQ_UTILIZATIONS.NEXTVAL INTO :NEW.UTILIZATION_ID FROM DUAL;<br> END;<br> /
+</code></pre>   </td>  </tr>
+</table>
+
+ <br><br> 
+</body></html>

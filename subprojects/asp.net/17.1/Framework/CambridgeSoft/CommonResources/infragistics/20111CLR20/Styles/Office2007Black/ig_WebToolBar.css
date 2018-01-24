@@ -1,0 +1,60 @@
+/* CSS Document */
+.igWebToolBarMainBlack2k7{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: black;
+	background-image: url(WebToolBar/igWebToolBarBg2.jpg);
+	background-repeat: repeat-x;
+	background-color: #949DA6;
+	border-bottom: 1px solid #949DA6;
+	height: 30px; 
+/* 	padding-top: 1px; */
+}
+
+.igWebToolBarMainBlack2k7 input {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	/* padding-top: 2px;
+	padding-bottom: 2px; */
+/* 	height: 23px; */
+width: 40px;
+	border: 1px solid #ffffff;
+}
+
+.igWebToolBarNormalBlack2k7 {
+	width: 100px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	padding-left: 2px;
+	height: 30px;
+	font-size: 11px;
+	}
+
+.igWebToolBarHoverBlack2k7 {
+	background-image: url(WebToolBar/igWebToolBarHover.jpg);
+	background-repeat: repeat-x;
+	background-color: #FFDB75;
+	border: 1px solid #FFBD69;
+	font-size: 11px;
+
+	padding-left: 1px;
+	width: 99px;
+
+}
+
+.igWebToolBarSelectedBlack2k7 {
+	background-image: url(WebToolBar/igWebToolBarSelected.jpg);
+	background-repeat: repeat-x;
+	background-color: #FEB75B;
+	border: 1px solid #FFBD69;
+	font-size: 11px;
+	padding-left: 1px;
+	width: 99px;
+
+}
+
+.igWebToolTextBoxBlack2k7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	border: 1px solid #898989;
+}
+	

@@ -1,0 +1,344 @@
+<MultiCompoundRegistryRecord>
+    <ID></ID>
+    <DateCreated></DateCreated>
+    <DateLastModified></DateLastModified>
+    <PersonCreated></PersonCreated>
+    <RegNumber>
+            <RegID></RegID>
+            <RootNumber></RootNumber>
+            <SequenceNumber></SequenceNumber>
+            <RegNumber></RegNumber>
+            <Sequence></Sequence>
+    </RegNumber>
+    <IdentifierList>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">0</Type>
+                <Value></Value>
+            </Identifier>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">4</Type>
+                <Value></Value>
+            </Identifier>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">9</Type>
+                <Value></Value>
+            </Identifier>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">5</Type>
+                <Value></Value>
+            </Identifier>
+    </IdentifierList>
+    <PropertyList>
+            <Property name="">
+            </Property>
+     </PropertyList>
+     <ProjectList>
+            <ProjectID lookupTable="Project" lookupField="ProjectID" displayField="Description" displayValue=""></ProjectID>
+    </ProjectList>
+
+    <ComponentList>
+     <Component>
+      <Compound>
+        <CompoundID></CompoundID>
+        <DateCreated></DateCreated>
+        <PersonCreated></PersonCreated>
+        <DateLastModified></DateLastModified>
+	<RegisteredCompoundID></RegisteredCompoundID>
+	<CompoundIndex>0</CompoundIndex>
+        <PropertyList>
+            <Property name="CN">
+                <ValidationRuleList>
+                    <ValidationRule name="TextLength">
+                            <parameter name="Min">3</parameter>
+                            <parameter name="Max">12</parameter>
+                    </ValidationRule>
+                </ValidationRuleList>
+            </Property>
+            <Property name="PATENT">
+                <ValidationRuleList>
+                    <ValidationRule name="TextLength">
+                            <parameter name="Min">3</parameter>
+                            <parameter name="Max">60</parameter>
+                    </ValidationRule>
+                </ValidationRuleList>
+            </Property>
+            <Property name="HISTORY">
+                <ValidationRuleList>
+                    <ValidationRule name="TextLength">
+                            <parameter name="Min">3</parameter>
+                            <parameter name="Max">120</parameter>
+                    </ValidationRule>
+                </ValidationRuleList>
+            </Property>
+            <Property name="OCURR">
+                <ValidationRuleList>
+                        <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">120</parameter>
+                        </ValidationRule>
+                    </ValidationRuleList>
+            </Property>
+            <Property name="COMMENTS">
+                <ValidationRuleList>
+                        <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">240</parameter>
+                        </ValidationRule>
+                    </ValidationRuleList>
+            </Property>
+        </PropertyList>
+
+        <RegNumber>
+            <RegID></RegID>
+            <RootNumber></RootNumber>
+            <SequenceNumber></SequenceNumber>
+            <RegNumber></RegNumber>
+            <Sequence></Sequence>
+        </RegNumber>
+
+        <BaseFragment>
+
+            <Structure>
+                <StructureID></StructureID>
+                <StrucureFormat></StrucureFormat>
+                <Structure molWeight="" formula="">
+                    <ValidationRuleList>
+                        <ValidationRule name="Required"></ValidationRule>
+                        <ValidationRule name="OnlyChemicalContentAllowed"></ValidationRule>
+                    </ValidationRuleList>
+                </Structure>
+            </Structure>
+        </BaseFragment>
+
+        <FragmentList>
+            <Fragment>
+                <ID></ID>
+                <Code></Code>
+                <Description></Description>
+                <DateCreated></DateCreated>
+                <DateLastModified></DateLastModified>
+
+                <Structure>
+                    <StructureID></StructureID>
+                    <StructureFormat></StructureFormat>
+                    <Structure molWeight="" formula="">
+                        <ValidationRuleList>
+                            <ValidationRule name="Required"></ValidationRule>
+                            <ValidationRule name="OnlyChemicalContentAllowed"></ValidationRule>
+                    </ValidationRuleList>
+                    </Structure>
+                </Structure>
+            </Fragment>
+        </FragmentList>
+
+        <IdentifierList>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">0</Type>
+                <Value></Value>
+            </Identifier>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">4</Type>
+                <Value></Value>
+            </Identifier>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">9</Type>
+                <Value></Value>
+            </Identifier>
+            <Identifier>
+                <ID></ID>
+                <Type lookupTable="Identifier" lookupField="IdentifierType" displayField="IdentifierName" displayValue="">5</Type>
+                <Value></Value>
+            </Identifier>
+        </IdentifierList>
+       </Compound>
+      </Component>
+     </ComponentList>
+     <BatchList>
+            <Batch>
+                <BatchID></BatchID>
+                <BatchNumber></BatchNumber>
+                <DateCreated></DateCreated>
+                <PersonCreated></PersonCreated>
+                <DateLastModified></DateLastModified>
+
+                <PropertyList>
+                    <Property name="CO">
+                        <ValidationRuleList>
+                            <ValidationRule name="PositiveInteger">
+                        </ValidationRule>
+                    </ValidationRuleList>
+                    </Property>
+                    <Property name="ITEMNUMBER">
+                        <ValidationRuleList>
+                            <ValidationRule name="PositiveInteger">
+                        </ValidationRule>
+                    </ValidationRuleList>
+                    </Property>
+                    <Property name="NOTEBOOKREF">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">120</parameter>
+                        </ValidationRule>
+                    </ValidationRuleList>
+                    </Property>
+                    <Property name="PURITY">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">2</parameter>
+                                <parameter name="Max">240</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="OPTICALROTATION">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="REFRACTIONINDEX">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="NUMMS">
+                        <ValidationRuleList>
+                            <ValidationRule name="PositiveInteger"></ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="NUMANAL">
+                        <ValidationRuleList>
+                            <ValidationRule name="PositiveInteger"></ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="CHEMIST"  lookupTable="CS_SECURITY.People" lookupField="Person_ID" displayField="User_ID" displayValue="">
+                        <ValidationRuleList>
+                            <ValidationRule name="PositiveInteger"></ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="WORKNUMBER">
+                        <ValidationRuleList>
+                            <ValidationRule name="PositiveInteger"></ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="REMARKS">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="COMMENTS">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="DATEENTERED">
+                        <ValidationRuleList>
+                            <ValidationRule name="Date"></ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="DELIVERYDATE">
+                        <ValidationRuleList>
+                            <ValidationRule name="Date"></ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="MELTINGPOINT">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="BOILINGPOINT">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="DENSITY">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="POLARITY">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="SOLUBILITY">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="RETENTIONINDEX">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="MONOMERICCOMPOSITION">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="DEGREEOFSUBSTITUTION">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                    <Property name="RAMIFICATION">
+                        <ValidationRuleList>
+                            <ValidationRule name="TextLength">
+                                <parameter name="Min">3</parameter>
+                                <parameter name="Max">60</parameter>
+                            </ValidationRule>
+                        </ValidationRuleList>
+                    </Property>
+                </PropertyList>
+                <ProjectList>
+                    <ProjectID lookupTable="Project" lookupField="ProjectID" displayField="Description" displayValue=""></ProjectID>
+                </ProjectList>
+
+                <PercentageList>
+                   <Percentage CompoundIndex="0"></Percentage>
+                </PercentageList>
+            </Batch>
+    </BatchList>
+</MultiCompoundRegistryRecord>

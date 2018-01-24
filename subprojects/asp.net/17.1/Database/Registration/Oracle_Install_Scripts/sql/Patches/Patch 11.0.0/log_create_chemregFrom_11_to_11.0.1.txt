@@ -1,0 +1,664 @@
+Enter the target Oracle service name:firmm
+Enter the name of an Oracle account with system privileges (system):
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+Starting "Users.sql"...
+
+Validating CSCARTRIDGE...
+
+
+PL/SQL procedure successfully completed.
+
+Validating COEDB...
+
+
+PL/SQL procedure successfully completed.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+User altered.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+User altered.
+
+Connected.
+
+Starting "Update_ChemReg_DB_From_11_to_11.0.1.SQL"...
+
+
+Table altered.
+
+
+Table altered.
+
+
+97397 rows updated.
+
+
+Commit complete.
+
+
+Table altered.
+
+
+Index created.
+
+
+View created.
+
+
+Table dropped.
+
+
+Trigger dropped.
+
+
+Table created.
+
+
+Table created.
+
+
+View created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+View created.
+
+
+Table created.
+
+
+Table altered.
+
+
+View created.
+
+
+Table created.
+
+
+Index created.
+
+
+View created.
+
+
+View created.
+
+
+Table altered.
+
+
+Table created.
+
+
+Sequence created.
+
+
+Trigger created.
+
+
+Index created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+View created.
+
+
+View created.
+
+
+Table altered.
+
+
+View created.
+
+
+Table altered.
+
+
+View created.
+
+
+Table altered.
+
+
+View created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table created.
+
+
+Sequence created.
+
+
+Trigger created.
+
+
+Index created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+View created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Index created.
+
+
+Table altered.
+
+
+View created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Index created.
+
+
+Table altered.
+
+
+View created.
+
+
+Table created.
+
+
+Table created.
+
+
+Table created.
+
+
+1 row created.
+
+
+Commit complete.
+
+
+Sequence created.
+
+
+View created.
+
+
+Table altered.
+
+
+View created.
+
+
+View created.
+
+
+View created.
+
+
+View created.
+
+
+View created.
+
+
+View created.
+
+
+View created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+View created.
+
+
+Trigger altered.
+
+
+1 row created.
+
+
+1 row updated.
+
+
+Trigger altered.
+
+
+Table altered.
+
+
+View created.
+
+
+Index created.
+
+
+1 row created.
+
+DECLARE
+*
+ERROR at line 1:
+ORA-29863: warning in the execution of ODCIINDEXCREATE routine 
+ORA-06512: at line 9 
+ORA-06512: at line 14 
+
+
+
+Table altered.
+
+
+PL/SQL procedure successfully completed.
+
+
+Starting "pkg_RegistrationRLS_def.sql"...
+
+
+Package created.
+
+
+Starting "pkg_CompoundRegistry_def.sql"...
+
+
+Package created.
+
+
+Starting "pkg_CompoundRegistry_body.sql"...
+
+
+Warning: Package Body created with compilation errors.
+
+
+Starting "pkg_RegistrationRLS_body.sql"...
+
+
+Package body created.
+
+
+Starting "pkg_ConfigurationCompoundRegistry_def.sql"...
+
+
+Package created.
+
+
+Starting "pkg_ConfigurationCompoundRegistry_body.sql"...
+
+
+Package body created.
+
+
+Starting "pkg_Gui_Util_def.sql"...
+
+
+Package created.
+
+
+Starting "pkg_Gui_Util_body.sql"...
+
+
+Package body created.
+
+
+Package altered.
+
+
+Starting "CONVERT SR Registry in MR Registry"...
+
+
+PL/SQL procedure successfully completed.
+
+
+Procedure                                                                       
+--------------------------------------------------------------------------------
+Comment                                                                         
+--------------------------------------------------------------------------------
+Converting SR in MR                                                             
+Finished. 97397 compound processed. Begin: 05:03:14.9280 End: 05:04:33.4120 Elap
+                                                                                
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+Commit complete.
+
+Connected.
+
+PL/SQL procedure successfully completed.
+
+
+PL/SQL procedure successfully completed.
+
+Connected.
+
+Starting "Alter_CoeDB_for_ChemReg_ora.sql"...
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+Commit complete.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+
+Connected.
+
+Starting "Grants.sql"...
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+Grant succeeded.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+User altered.
+
+
+PL/SQL procedure successfully completed.
+
+Begin: 04:45:37.8650                                                            
+End: 05:04:38.7240                                                              
+Elapsed: 00:19:00.8590                                                          
+
+PL/SQL procedure successfully completed.
+
+logged session to: COERegistrationDBPatch08\log_create_chemregFrom_11_to_11.0.1.txt

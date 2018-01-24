@@ -1,0 +1,103 @@
+/*
+******************************************************************
+							ultraWebMenu Horizontal
+*******************************************************************/
+
+			.igMenuBlue2k7{
+		   		background-image:url(WebMenu/background.jpg);
+            	background-repeat: repeat-x;
+				border: 1px solid #9FBBDE;
+			}
+	
+		.igMenuItemBlue2k7{
+		   	/*background-image:url(WebMenu/background.jpg);
+            background-repeat: repeat-x;*/
+			
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			height: 20px;
+			padding-left: 8px;
+			padding-right: 8px;
+
+		}
+		.igMenuItemHoverBlue2k7{
+		   	background-image:url(WebMenu/igMenuItemHover.jpg);
+            background-repeat: repeat-x;
+			
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			border: 1px solid #DDCF9B;
+			border-width: 1px 0px 1px 0px;
+		}
+		
+
+		
+		.igMenuItemSelectedBlue2k7{
+		   	background-image:url(WebMenu/igMenuItemSelected.jpg);
+            background-repeat: repeat-x;
+			height: 20px;
+			font-family: Verdana;
+			font-size: 11px;
+			padding-left: 8px;
+			padding-right: 8px;
+		}
+    
+		.igMenuIslandBlue2k7 {
+		background-color: #FAFAFA;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		border: 1px solid #868686;
+		background-image:none;
+		}
+
+
+/*******************************************************************
+							ultraWebMenu Horizontal
+*******************************************************************/
+
+
+
+/*******************************************************************
+							ultraWebMenu Vertical
+*******************************************************************/
+	.igMenuVerticalBlue2k7 {
+		background-color: #BCD0E9;
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		border: 1px solid #9FBBDE;
+		
+		text-align: left;
+	}
+	
+			.igMenuItemVerticalBlue2k7{
+		   	/*background-image:url(WebMenu/background.jpg);
+            background-repeat: repeat-x;*/
+			
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			height: 20px;
+			padding-left: 2px;
+			padding-right: 8px;
+			vertical-align: middle;
+			
+
+		}
+		.igMenuItemHoverVerticalBlue2k7{
+		   	background-image:url(WebMenu/igMenuItemHover.jpg);
+            background-repeat: repeat-x;
+			background-color: #FFF9CB;
+			font-family: Verdana, Arial, Helvetica, sans-serif;
+			font-size: 11px;
+			border: 1px solid #DDCF9B;
+			border-width: 1px 0px 1px 0px;
+			
+			
+		}
+
+
+
+
+/*******************************************************************
+							ultraWebMenu Vertical
+*******************************************************************/
+

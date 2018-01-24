@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+  <tables>
+    <table id="1">
+      <literal>*</literal>
+      <field fieldId="20" alias="Twentieth"/>
+      <field fieldId="21" alias="Twenty first" visible="false"/>
+    </table>
+  </tables>
+</resultsCriteria>

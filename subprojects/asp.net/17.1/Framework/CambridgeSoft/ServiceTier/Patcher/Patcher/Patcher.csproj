@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1075038E-F9B4-40D3-AEB3-F6B8D83B42E5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CambridgeSoft.COE.Patcher</RootNamespace>
+    <AssemblyName>COEPatcher</AssemblyName>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <StartupObject>CambridgeSoft.COE.Patcher.Program</StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Framework.snk</AssemblyOriginatorKeyFile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>http://localhost/CambridgeSoft.COE.Patcher/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=2.111.7.10, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\CommonRuntimeLibraries\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClasses\BugFixBaseCommand.cs" />
+    <Compile Include="Repository\BAL\ExecuteSql.cs" />
+    <Compile Include="Repository\BAL\IDBCommunicator.cs" />
+    <Compile Include="Repository\FileSystemConfigurationRepository.cs" />
+    <Compile Include="Repository\IConfigurationRepository.cs" />
+    <Compile Include="Repository\OracleConfigurationRepository.cs" />
+    <Compile Include="Target 12.5.0\BatchHighlightingField.cs" />
+    <Compile Include="Target 12.5.0\BatchHighlightingTooltip.cs" />
+    <Compile Include="Target 12.5.0\BatchHighlightingValue.cs" />
+    <Compile Include="Target 12.5.0\COEObjectConfig1250.cs" />
+    <Compile Include="Target 12.5.0\CSBR158157.cs" />
+    <Compile Include="Target 12.5.0\CSBR158405.cs" />
+    <Compile Include="Target 12.5.0\CSBR118435.cs" />
+    <Compile Include="Target 12.5.0\CSBR130681.cs" />
+    <Compile Include="Target 12.5.0\CSBR132544.cs" />
+    <Compile Include="Target 12.5.0\CSBR132598.cs" />
+    <Compile Include="Target 12.5.0\CSBR156748.cs" />
+    <Compile Include="Target 12.5.0\CSBR156958.cs" />
+    <Compile Include="Target 12.5.0\CSBR157371.cs" />
+    <Compile Include="Target 12.5.0\CSBR157720.cs" />
+    <Compile Include="Target 12.5.0\CSBR157764.cs" />
+    <Compile Include="Target 12.5.0\CSBR157798.CS" />
+    <Compile Include="Target 12.5.0\CSBR158036.cs" />
+    <Compile Include="Target 12.5.0\CSBR158057.cs" />
+    <Compile Include="Target 12.5.0\CSBR158516.cs" />
+    <Compile Include="Target 12.5.0\CSBR158662.cs" />
+    <Compile Include="Target 12.5.0\CSBR158761.cs" />
+    <Compile Include="Target 12.5.0\CSBR158773.CS" />
+    <Compile Include="Target 12.5.0\CSBR159135.cs" />
+    <Compile Include="Target 12.5.0\CSBR159479.cs" />
+    <Compile Include="Target 12.5.0\DefaultBatchPrefix.cs" />
+    <Compile Include="Target 12.5.0\DocMgrEnabled.cs" />
+    <Compile Include="Target 12.5.0\EnableAuditing.cs" />
+    <Compile Include="Target 12.5.0\EnableSubmissionDuplicateChecking.cs" />
+    <Compile Include="Target 12.5.0\InventoryIntegration.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250FormBO4017.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4002.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4003.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4005.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4006.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4010.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4011.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4012.cs" />
+    <Compile Include="Target 12.5.0\Upgrade1250_4013.cs" />
+    <Compile Include="Target 12.5.1\COEObjectConfig1251.cs" />
+    <Compile Include="Target 12.5.1\CSBR156118.cs" />
+    <Compile Include="Target 12.5.1\CSBR161660.cs" />
+    <Compile Include="Target 12.5.1\CSBR160099.cs" />
+    <Compile Include="Target 12.5.1\CSBR160138.cs" />
+    <Compile Include="Target 12.5.1\CSBR160172.cs" />
+    <Compile Include="Target 12.5.1\CSBR161189.cs" />
+    <Compile Include="Target 12.5.1\CSBR161739.cs" />
+    <Compile Include="Target 12.5.1\UpgradeCBVExcelLinkToClickOnce.cs" />
+    <Compile Include="Target 12.5.1\CSBR160789.cs" />
+    <Compile Include="Target 12.5.3\CSBR167909.cs" />
+    <Compile Include="Target11.0.4\AddBaseFragmentPropsToNoStructureSearch.cs" />
+    <Compile Include="Target11.0.4\CSBR133765.cs" />
+    <Compile Include="Target11.0.4\CSBR134552.cs" />
+    <Compile Include="Target11.0.4\CSBR139582.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4002.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4019.cs" />
+    <Compile Include="Target11.0.4\CSBR130448.cs" />
+    <Compile Include="Target11.0.4\CSBR130767.cs" />
+    <Compile Include="PatchController.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Target11.0.2\CSBR115952.cs" />
+    <Compile Include="Target11.0.2\CSBR124363.cs" />
+    <Compile Include="Target11.0.2\CSBR125232.cs" />
+    <Compile Include="Target11.0.2\CSBR125310.cs" />
+    <Compile Include="Target11.0.2\CSBR127570.cs" />
+    <Compile Include="Target11.0.2\CSBR127668.cs" />
+    <Compile Include="Target11.0.2\CSBR127941.cs" />
+    <Compile Include="Target11.0.2\CSBR128177.cs" />
+    <Compile Include="Target11.0.2\CSBR128322.cs" />
+    <Compile Include="Target11.0.2\CSBR128529.cs" />
+    <Compile Include="Target11.0.2\CSBR128771.cs" />
+    <Compile Include="Target11.0.2\CSBR128849.cs" />
+    <Compile Include="Target11.0.3\AddHighlightedStructureMapping.cs" />
+    <Compile Include="Target11.0.3\AddManageGroupsHomeSetting.cs" />
+    <Compile Include="Target11.0.3\CSBR132632.cs" />
+    <Compile Include="Target11.0.3\CSBR133911.cs" />
+    <Compile Include="Target11.0.3\CSBR134539.cs" />
+    <Compile Include="Target11.0.3\CSBR134630.cs" />
+    <Compile Include="Target11.0.3\CSBR134929.cs" />
+    <Compile Include="Target11.0.3\CSBR130421.cs" />
+    <Compile Include="Target11.0.3\CSBR132631.cs" />
+    <Compile Include="Target11.0.3\CSBR132990.cs" />
+    <Compile Include="Target11.0.3\CSBR133423.cs" />
+    <Compile Include="Target11.0.3\CSBR132305.cs" />
+    <Compile Include="Target11.0.2\MarkedHitsMax.cs" />
+    <Compile Include="Target11.0.3\AddBatchProjectsAndIdentifiersGrids.cs" />
+    <Compile Include="Target11.0.3\CSBR133571_133563.cs" />
+    <Compile Include="Target11.0.3\CSBR116596.cs" />
+    <Compile Include="Target11.0.3\CSBR125230.cs" />
+    <Compile Include="Target11.0.3\CSBR131872.cs" />
+    <Compile Include="Target11.0.3\CSBR131873.cs" />
+    <Compile Include="Target11.0.3\CSBR132100.cs" />
+    <Compile Include="Target11.0.3\CSBR132208.cs" />
+    <Compile Include="Target11.0.3\CSBR132237.cs" />
+    <Compile Include="Target11.0.3\CSBR132365.cs" />
+    <Compile Include="Target11.0.3\CSBR132413.cs" />
+    <Compile Include="Target11.0.3\CSBR133194.cs" />
+    <Compile Include="Target11.0.3\CSBR133313.cs" />
+    <Compile Include="Target11.0.3\CSBR133341.cs" />
+    <Compile Include="Target11.0.3\CSBR133565.cs" />
+    <Compile Include="Target11.0.3\CSBR133757.cs" />
+    <Compile Include="Target11.0.3\FilterIdentifiersByTypeInSearchDropDowns.cs" />
+    <Compile Include="Target11.0.3\MakeFormVisibleForProjectsAndIdentifiers.cs" />
+    <Compile Include="Target11.0.3\NoStructureDuplicateCheckAppSetting.cs" />
+    <Compile Include="Target11.0.3\DuplicateComponentsDashBoardLink.cs" />
+    <Compile Include="Target11.0.3\RemoveABatch_ProjectGridOn4011.cs" />
+    <Compile Include="Target11.0.3\SeqProjectsForProjects.cs" />
+    <Compile Include="Target11.0.3\TablePeopleToAssociateProjects.cs" />
+    <Compile Include="Target11.0.3\UnifyingWebGridsIdsForPageControlSettings.cs" />
+    <Compile Include="Target11.0.4\MigCOEFrameworkConfig.cs" />
+    <Compile Include="Target11.0.4\MigCOEObjectConfig.cs" />
+    <Compile Include="Target11.0.4\AddStructureIdentifierToConfigSettings.cs" />
+    <Compile Include="Target11.0.4\CSBR125166.cs" />
+    <Compile Include="Target11.0.4\CSBR129258.cs" />
+    <Compile Include="Target11.0.4\CSBR133562.cs" />
+    <Compile Include="Target11.0.4\CSBR133850.cs" />
+    <Compile Include="Target11.0.4\CSBR133859.cs" />
+    <Compile Include="Target11.0.4\CSBR135678.cs" />
+    <Compile Include="Target11.0.4\CSBR139135.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4002.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4003.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4004.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4005.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4006.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4007.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4008.cs" />
+    <Compile Include="Target11.0.4\MigCOEDataView4016.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4003.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4006.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4010.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4011.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4012.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4013.cs" />
+    <Compile Include="Target11.0.4\MigCOEFormGroup4014.cs" />
+    <Compile Include="Target11.0.4\PF4Changelist394925.cs" />
+    <Compile Include="Target11.0.4\AddBatchNumberLengthToSequenceView.cs" />
+    <Compile Include="Target11.0.4\StructureIdentifierType_LookupEntry.cs" />
+    <Compile Include="Target12.1.1\CSBR141834.cs" />
+    <Compile Include="Target12.1.1\CSBR144633.cs" />
+    <Compile Include="Target12.3.0\AddBatch.cs" />
+    <Compile Include="Target12.3.0\AddDocManagerElements.cs" />
+    <Compile Include="Target12.3.0\AddSDFSearchTo4003Form.cs" />
+    <Compile Include="Target12.1.0\UpdateAssemblyVersions.cs" />
+    <Compile Include="Target12.1.0\UpgradeCBVExcelLink.cs" />
+    <Compile Include="Target12.3.0\AddCachingConfigs.cs" />
+    <Compile Include="Target12.3.0\CSBR148015.cs" />
+    <Compile Include="Target12.3.0\CSBR148022.cs" />
+    <Compile Include="Target12.3.0\CSBR148353.cs" />
+    <Compile Include="Target12.3.0\CSBR148626.cs" />
+    <Compile Include="Target12.3.0\CSBR148773.cs" />
+    <Compile Include="Target12.3.0\CSBR148780.cs" />
+    <Compile Include="Target12.3.0\CSBR148820.cs" />
+    <Compile Include="Target12.3.1\CSBR148975.cs" />
+    <Compile Include="Target12.3.0\InventoryAndRegistrationIntegrationShowContainers.cs" />
+    <Compile Include="Target12.3.0\ApprovalsWorkflowFix.cs" />
+    <Compile Include="Target12.3.0\CBVNAppNameAddition.cs" />
+    <Compile Include="Target12.3.0\ChangeDefaultSaveQueryHistoryToYES.cs" />
+    <Compile Include="Target12.3.0\LockingWorkflowFix.cs" />
+    <Compile Include="Target12.3.0\RegistrationCoreNamespace.cs" />
+    <Compile Include="Target12.3.0\SendToInventoryTextChange.cs" />
+    <Compile Include="Target12.3.0\SubmissionComments.cs" />
+    <Compile Include="Target12.3.0\UpgradeCBVExcelLinkTo1230.cs" />
+    <Compile Include="Target12.4.0\ChangeMasterDataviewEditionLink.cs" />
+    <Compile Include="Target12.4.0\UpgradeCBVExcelLinkTo1240.cs" />
+    <Compile Include="Target12.5.2\CSBR159710.cs" />
+    <Compile Include="Target12.5.2\CSBR163957.cs" />
+    <Compile Include="Target 12.5.1\CSBR156515.cs" />
+    <Compile Include="Target12.5.2\CSBR158516_1252.cs" />
+    <Compile Include="Target12.5.2\CSBR159983.cs" />
+    <Compile Include="Target12.5.2\CSBR162684.cs" />
+    <Compile Include="Target12.5.2\CSBR164488.cs" />
+    <Compile Include="Target12.5.2\CSBR164590.CS" />
+    <Compile Include="Target12.5.2\CSBR164725.cs" />
+    <Compile Include="Target12.5.2\CSBR1648691.cs" />
+    <Compile Include="Target12.5.2\CSBR165722.cs" />
+    <Compile Include="Target12.5.2\CSBR166631_132063.cs" />
+    <Compile Include="Target12.5.2\CSBR167678.cs" />
+    <Compile Include="Target12.5.2\LockingWorkFlow.cs" />
+    <Compile Include="Target12.5.2\PicklistFeatureRequest.cs" />
+    <Compile Include="Target12.5.2\SqlFilter_SqlSortOrder_FrameworkConfig.cs" />
+    <Compile Include="Target12.6.0\CBOE1493.cs" />
+    <Compile Include="Target12.6.0\EN3588.cs" />
+    <Compile Include="Target12.6.0\EN4243.cs" />
+    <Compile Include="Target12.6.0\EN3309.cs" />
+    <Compile Include="Target12.6.0\EN3365.cs" />
+    <Compile Include="Target12.6.0\EN4247.cs" />
+    <Compile Include="Target12.6.0\EN4253_EN4246.cs" />
+    <Compile Include="Target12.6.0\EN5480.cs" />
+    <Compile Include="Target12.6.2\CBOE2580.cs" />
+    <Compile Include="Target12.6.2\CBOE2616.cs" />
+    <Compile Include="Target12.6.2\CBOE2620.cs" />
+    <Compile Include="Target12.6.2\CBOE2642.cs" />
+    <Compile Include="Target12.6.2\CBOE3870.cs" />
+    <Compile Include="Target12.6.3\CBOE4255.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Target12.6.3\CBOE4493.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Target12.6.3\CBOE4553.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Utilities\PatcherUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DeveloperNotes.txt" />
+    <Content Include="PatchLists\11.0.2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\11.0.3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\11.0.4.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.1.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.1.1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.3.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.3.1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.4.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.5.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.5.1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.5.2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.5.3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.6.0.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.6.2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PatchLists\12.6.3.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="README.txt">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Framework.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\PatchLists\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

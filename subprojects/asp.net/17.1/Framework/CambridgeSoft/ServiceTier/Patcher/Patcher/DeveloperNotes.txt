@@ -1,0 +1,18 @@
+Process for developing a csbr fix that needs patching xmls:
+
+a) Create a folder for your file, if not present.
+	- It is recomended to have your new class in a folder that represents the target the csbr is.
+	- If there is no folder that fits this you should create one and name it TargetYOURTARGET, IE Target11.0.3
+
+b) Add a new class to that folder and name it CSBRNUMBER. IE: CSBR188788
+	- Use the following Namespace: CambridgeSoft.COE.Patcher
+
+c) Inherit abstract class BugFixCommand
+d) Be sure your class have a public constructor without parameters
+e) Implement the Fix(...) method.
+	- Identify the xml you need to modify from the paramaters being passed.
+	- Modify them carefully, trying to be as much specific as possible for the xpath selectors, having in mind that 
+  the xml might have been modified by the customer already.
+
+f) In the PatchList folder look for the text file for the csbr target you have fixed and add the CSBRNUMBER to the end of that file
+	- If the file is not there create one. Name it TARGET.txt. IE: 11.0.3.txt

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resultsCriteria xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" sortByHitList="false" xmlns="COE.ResultsCriteria">
+  <tables>
+    <table id="203">
+      <field visible="true" orderById="1" direction="desc" fieldId="204" />
+      <Formula visible="true" alias="Formula" orderById="0" direction="asc" fieldId="205" sortable="false" />
+      <MolWeight visible="true" alias="Molweight" orderById="0" direction="asc" fieldId="205" />
+      <field visible="true" orderById="2" direction="asc" fieldId="207" />
+      <field visible="true" orderById="3" direction="asc" fieldId="206" />
+      <field visible="true" orderById="0" direction="asc" fieldId="205" />
+    </table>
+    <table id="210">
+      <field visible="true" orderById="0" direction="asc" fieldId="211" />
+      <field visible="true" orderById="0" direction="asc" fieldId="212" />
+      <field visible="true" orderById="0" direction="asc" fieldId="213" />
+    </table>
+  </tables>
+</resultsCriteria>

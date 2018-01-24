@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="REGDB" name="Search for registered components" description="Search for registered components" application="REGISTRATION" dataviewHandling="USE_SERVER_DATAVIEW" dataviewid="4016">
+	<tables>
+		<table id="1" name="VW_COMPOUND_STRUCTURE" alias="VW_COMPOUND_STRUCTURE" database="REGDB" primaryKey="10">
+			<fields id="10" name="COMPOUNDID" alias="COMPOUNDID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="1"/>
+			<fields id="11" name="REG_NUMBER" alias="REG_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+			<fields id="12" name="STRUCTURE" alias="STRUCTURE" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" sortOrder="3"/>
+                        <fields id="13" name="NORMALIZEDSTRUCTURE" dataType="TEXT" alias="STRUCTURE" indexType="CS_CARTRIDGE" mimeType="NONE" sortOrder="4" />
+		</table>
+	</tables>
+	<relationships/>
+</COEDataView>

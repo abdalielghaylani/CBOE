@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+  
+
+  <!-- Restrict to compounds that comply 10 <= molweight <= 1000 -->
+	<searchCriteriaItem id="7"  
+		 fieldid="16" 
+		 modifier="" 
+		 tableid="3">
+		<molweightCriteria min="10" max="1000" />
+	</searchCriteriaItem>
+
+
+  
+  <searchCriteriaID>1</searchCriteriaID>
+</searchCriteria>

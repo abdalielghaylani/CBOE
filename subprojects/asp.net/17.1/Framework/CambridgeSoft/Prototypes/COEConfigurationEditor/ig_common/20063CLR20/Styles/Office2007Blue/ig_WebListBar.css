@@ -1,0 +1,191 @@
+.igwlbMainBlue2k7{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #000000;
+	background-color: white;
+	font-size: 11px;
+	text-align: left;
+	border: solid 1px #6593CF;
+	
+	border-width: 0px 1px 1px 1px;
+}
+
+.igwlbItemNormalBlue2k7 {
+	background-color: white;
+	color: #48AAF3;
+	text-align: left;
+	padding-left: 5px;
+	
+}
+.igwlbItemHoverBlue2k7{
+	text-align: left;
+	color: #48AAF3;
+	text-decoration: underline;
+	padding-left: 5px;
+}
+
+.igwlbItemSelectedBlue2k7{
+	text-align: left;
+	color: #48AAF3;
+	text-decoration: underline;
+	padding-left: 5px;
+
+}
+
+.igwlbGroupNormalBlue2k7{
+	Background-color: white;
+	border: 1px solid #6593CF;
+	border-width: 1px 0px 0px 0px;
+	font-size: 11px;
+}
+
+
+.igwlbGroupBtNormalBlue2k7 {
+	border: 1px solid #6593CF;
+	border-width: 1px 0px 0px 0px;
+	background-image: 	url(WebListBar/igwlb_group_bt_normal.jpg);
+	background-repeat: repeat-x;
+	
+	background-color: #C1DBFF;
+	height: 31px;
+	
+	color: #204D89;
+	font-weight: bold;
+	padding-left: 2px;
+	font-size: 11px;
+}
+
+.igwlbGroupBtHoverBlue2k7 {
+	background-image: 	url(WebListBar/igwlb_group_bt_hover.jpg);
+	background-repeat: repeat-x;
+	height: 31px;
+	
+	border: 1px solid #6593CF;
+	border-width: 1px 0px 0px 0px;
+	color: #204D89;
+	font-weight: bold;
+	
+	padding-left: 2px;
+	font-size: 11px;
+
+}
+
+
+.igwlbGroupBtSelectedBlue2k7 {
+	background-image: 	url(WebListBar/igwlb_group_bt_selected.jpg);
+	background-repeat: repeat-x;
+	height: 31px;
+	
+	border: 1px solid #6593CF;
+	border-width: 1px 0px 0px 0px;
+	
+	color: #black;
+	font-weight: bold;
+	
+	padding-left: 2px;
+	
+	background-color: #FEE17B; 
+	font-size: 11px;
+
+}
+
+
+/* ********************** ExplorerBar ********************** */
+
+.igwlbExplorerBarMainBlue2k7{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #204D89;
+	background-color: white;
+	font-size: 11px;
+	text-align: left;
+	border: 0px;
+}
+
+.igwlbGroupExplorerBarNormalBlue2k7{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	Background-color: white;
+	border: 1px solid #6593CF;
+	border-width: 0px 1px 1px 1px;
+	
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+
+
+.igwlbExplorerBarHeaderExpandedBlue2k7 {
+	border: 1px solid #6593CF;
+	border-width: 1px 0px 0px 0px;
+	background-image: 	url(WebListBar/explorerBarHeader.jpg);
+	background-repeat: repeat-x;
+	
+	background-color: #D9DCE0;
+	height: 22px;
+	font-size: 11px;
+	
+	color: #204D89;
+	font-weight: bold;
+	padding-left: 2px;
+	
+	padding-right: 11px;
+	
+	border-left: 1px solid #6593CF;
+	border-right: 1px solid #6593CF;
+
+	
+	margin-top: 5px;
+	
+}
+
+.igwlbExplorerBarHeaderCollapsedBlue2k7 {
+	border: 1px solid #6593CF;
+	border-width: 1px 0px 0px 0px;
+	background-image: 	url(WebListBar/explorerBarHeader.jpg);
+	background-repeat: repeat-x;
+	
+	background-color: #D9DCE0;
+	height: 22px;
+	font-size: 11px;
+	
+	color: #204D89;
+	font-weight: bold;
+	padding-left: 2px;
+	
+	padding-right: 11px;
+	padding-top: 1px;
+	
+	border-left: 1px solid #6593CF;
+	border-right: 1px solid #6593CF;
+	border-bottom: 1px solid #6593CF;
+	
+	margin-top: 5px;
+	
+}
+
+.igwlbExplorerBarHeaderHoverBlue2k7 {
+	border: 1px solid #6593CF;
+	border-width: 1px 0px 0px 0px;
+	background-image: url(WebListBar/explorerBarHeaderHover.jpg);
+	background-repeat: repeat-x;
+	
+	background-color: #D9DCE0;
+	height: 22px;
+	font-size: 11px;
+	
+	padding-right: 11px;
+	color: #204D89;
+	font-weight: bold;
+	padding-left: 2px;
+	border-left: 1px solid #6593CF;
+	border-right: 1px solid #6593CF;
+
+	
+	
+	margin-top: 5px;
+
+}
+
+
+
+
+/* ********************** ExplorerBar ********************** */

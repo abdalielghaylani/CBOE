@@ -1,0 +1,720 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>CambridgeSoft.COE.Framework.UnitTests</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.Framework.UnitTests</AssemblyName>
+    <WarningLevel>4</WarningLevel>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>http://localhost/CambridgeSoft.COE.Framework.UnitTests/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <Optimize>true</Optimize>
+    <OutputPath>.\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v10.2.Core, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Charts.v10.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Data.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Utils.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.Web.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraBars.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2.UI, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v10.2.Web, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraCharts.v10.2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraEditors.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraEditors.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraNavBar.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraPivotGrid.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraPrinting.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Extensions, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Service, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Service.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v10.2.Web, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraReports.v10.2.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v10.2.Design, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraRichEdit.v10.2.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraTreeList.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraVerticalGrid.v10.2, Version=10.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\DevExpress.XtraVerticalGrid.v10.2.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.Excel.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.Excel.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Misc.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.Misc.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.Shared.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.Shared.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebCalcManager.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebCalcManager.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebChart.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebChart.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.ExcelExport.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebGrid.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebListbar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebListbar.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebNavigator.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebNavigator.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebTab.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebTab.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.UltraWebToolbar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.UltraWebToolbar.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebCombo.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebCombo.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDataInput.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebDataInput.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebDateChooser.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebDateChooser.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebHtmlEditor.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebHtmlEditor.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebNavBar.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebNavBar.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSchedule.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebSchedule.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebScheduleDataProvider.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebScheduleDataProvider.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Infragistics2.WebUI.WebSpellChecker.v6.3, Version=6.3.20063.53, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v6.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.ChemDrawControl12, Version=12.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Interop.ChemDrawControl12.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Caching, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9b36ca0e12e438b5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=2.1.0.0, Culture=neutral, PublicKeyToken=152312c3a223b399, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7ae566350f7e2d48, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51205.0, Culture=neutral, PublicKeyToken=2c79a496fd4bd8ae, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Oracle.DataAccess, Version=2.102.2.20, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=aa4871b6f938aabe, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Algorithms, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=86e9aba414f6c605, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Algorithms.Graphviz, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=d86a19566c7d7ecb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Algorithms.Graphviz.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Collections, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=360dbfce46d07a98, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Concepts, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=d25c7a271d7196db, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Concepts.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Exceptions, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=4aa6e29d05bdc8a0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Exceptions.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Predicates, Version=2.1.2661.22229, Culture=neutral, PublicKeyToken=e0730e9e9d3cdc3d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Predicates.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Representations, Version=2.1.2661.22230, Culture=neutral, PublicKeyToken=454e3737b09e112f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Representations.dll</HintPath>
+    </Reference>
+    <Reference Include="QuickGraph.Web, Version=1.2.2661.22231, Culture=neutral, PublicKeyToken=6f0bb3f7e29fcc73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\QuickGraph.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SautinSoft.RtfToHtml, Version=3.0.0.1, Culture=neutral, PublicKeyToken=c666a5e96a3d5457, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\SautinSoft.RtfToHtml.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=1.0.61025.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\System.Web.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mobile" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TECIT.TBarCode, Version=9.3.7.0, Culture=neutral, PublicKeyToken=1b5f4306b234b83d, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CommonRuntimeLibraries\TECIT.TBarCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>App.config</DependentUpon>
+    </Compile>
+    <Compile Include="CachingTest.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\DataViewTest.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\ResultsCriteriaTest.cs" />
+    <Compile Include="Common\SqlGenerator\MetaData\SearchCriteriaTest.cs" />
+    <Compile Include="Common\SqlGenerator\NonQueries\InsertTest.cs" />
+    <Compile Include="Common\SqlGenerator\NonQueries\TruncateTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\AggregateItems\GroupByClauseItemTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\AggregateItems\OrderByClauseItemTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\AggregateFunctions\SelectClauseMinTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseAvgTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseCaseTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseConcatenationTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseFormulaTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseMaxTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SelectClauseMolWeightTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\SelectItems\SQLFunctions\SelectClauseLowerCaseTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseBetweenTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseEqualTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseFactoryTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseFormulaTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseFulltextTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseGreaterThanTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseHitlistTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseInTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseLessThanTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseLikeTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseLogicalTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseMolWeightTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseNotEqualTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseNotLikeTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseStructureTest.cs" />
+    <Compile Include="Common\SqlGenerator\Queries\WhereItems\WhereClauseVerbatimTest.cs" />
+    <Compile Include="DataView Tests\COEDatabaseBOTest.cs" />
+    <Compile Include="DataView Tests\COEDataViewAsDataSetTest.cs" />
+    <Compile Include="DataView Tests\COEDataViewSupportingClassesTest.cs" />
+    <Compile Include="DataView Tests\DataViewDAL.cs" />
+    <Compile Include="DataView Tests\COEDataViewBOListTest.cs" />
+    <Compile Include="DataView Tests\COEDataViewBOTest.cs" />
+    <Compile Include="DataView Tests\COEDataViewManagerBOTest.cs" />
+    <Compile Include="COELogTest.cs" />
+    <Compile Include="DataView Tests\DataviewCommand.cs" />
+    <Compile Include="DataView Tests\FieldBOTest.cs" />
+    <Compile Include="DataView Tests\FieldListBOTest.cs" />
+    <Compile Include="DataView Tests\FieldTest.cs" />
+    <Compile Include="DataView Tests\LoginBase.cs" />
+    <Compile Include="DisplayDataBroker\COEDisplayDataBrokerTest.cs" />
+    <Compile Include="Export Tests\COEExportTemplateBOListTest.cs" />
+    <Compile Include="Export Tests\COEExportTemplateBOTest.cs" />
+    <Compile Include="Export Tests\COEExportTest.cs" />
+    <Compile Include="Form Tests\COEFormUtilitiesTest.cs" />
+    <Compile Include="Helpers\Authentication.cs" />
+    <Compile Include="Helpers\DALHelper.cs" />
+    <Compile Include="Helpers\PickListPickerHelper.cs" />
+    <Compile Include="Helpers\SearchHelper.cs" />
+    <Compile Include="Helpers\SecurityHelper.cs" />
+    <Compile Include="QueryOrderByTest.cs" />
+    <Compile Include="Search Tests\COEAggregationResultsTests.cs" />
+    <Compile Include="COEDataBinderTest.cs" />
+    <Compile Include="Form Tests\COEFormBOListTest.cs" />
+    <Compile Include="Form Tests\COEFormBOTest.cs" />
+    <Compile Include="COEFormGeneratorTest.cs" />
+    <Compile Include="COEFormGroupTest.cs" />
+    <Compile Include="COEFrameworkServices.asmxTest.cs" />
+    <Compile Include="GenericObjectStorage Tests\COEGenericObjectStorageBOListTest.cs" />
+    <Compile Include="GenericObjectStorage Tests\COEGenericObjectStorageBOTest.cs" />
+    <Compile Include="COEHitListBOTest.cs" />
+    <Compile Include="COEPrincipalTest.cs" />
+    <Compile Include="Search Tests\COESimpleAPISearchTest.cs" />
+    <Compile Include="Search Tests\COESearchByAggregateTest.cs" />
+    <Compile Include="Search Tests\COESearchByHitlistTests.cs" />
+    <Compile Include="COESearchCriteriaBOTest.cs" />
+    <Compile Include="Search Tests\COESearchTest.cs" />
+    <Compile Include="Search Tests\COEStructureListTests.cs" />
+    <Compile Include="ConfigurationManagerTest.cs" />
+    <Compile Include="COEUserTests.cs" />
+    <Compile Include="COERoleTests.cs" />
+    <Compile Include="Search Tests\FilterChildDataTest.cs" />
+    <Compile Include="PerformanceTests\DataViewToStringTest.cs" />
+    <Compile Include="Search Tests\LookupSearchTest.cs" />
+    <Compile Include="MessagingTypesTest.cs" />
+    <Compile Include="MolSrvWrapper\MolSrvHelperTest.cs" />
+    <Compile Include="PickListNameValueListTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="QueryBuilderTest.cs" />
+    <Compile Include="QueryCriteriaManagerTest.cs" />
+    <Compile Include="ResultsCriteriaTest.cs" />
+    <Compile Include="Search Tests\MultipleInstancesTest.cs" />
+    <Compile Include="SearchDALTest.cs" />
+    <Compile Include="SearchManagerTest.cs" />
+    <Compile Include="Security\ApplicationListTest.cs" />
+    <Compile Include="Security\COEAccessRightsBOTest.cs" />
+    <Compile Include="Security\COEApplicationReadOnlyBOListTest.cs" />
+    <Compile Include="Security\COEApplicationReadOnlyBOTest.cs" />
+    <Compile Include="Security\COEGroupBOTest.cs" />
+    <Compile Include="Security\COEIdentityTest.cs" />
+    <Compile Include="Security\COEPrincipalTest.cs" />
+    <Compile Include="Security\COEPrivilegeBOListTest.cs" />
+    <Compile Include="Security\COEPrivilegeBOTest.cs" />
+    <Compile Include="Security\COERoleBOListTest.cs" />
+    <Compile Include="Security\COERoleBOTest.cs" />
+    <Compile Include="Security\COERoleReadOnlyBOListTest.cs" />
+    <Compile Include="Security\COERoleReadOnlyBOTest.cs" />
+    <Compile Include="Security\COEUserBOListTest.cs" />
+    <Compile Include="Security\COEUserBOTest.cs" />
+    <Compile Include="Security\COEUserReadOnlyBOListTest.cs" />
+    <Compile Include="Security\COEUserReadOnlyBOTest.cs" />
+    <Compile Include="Security\GroupHeirarchyTest.cs" />
+    <Compile Include="Security\GroupListTest.cs" />
+    <Compile Include="Security\GroupUserListTest.cs" />
+    <Compile Include="Security\GroupUserTest.cs" />
+    <Compile Include="Security\PersonListTest.cs" />
+    <Compile Include="Security\PrivilegeListTest.cs" />
+    <Compile Include="Security\RoleListTest.cs" />
+    <Compile Include="Security\SiteListTest.cs" />
+    <Compile Include="Security\SupervisorListTest.cs" />
+    <Compile Include="Security\UserListTest.cs" />
+    <Compile Include="SqlInjectionTest.cs" />
+    <Compile Include="VSCodeGenAccessors.cs" />
+    <Compile Include="Web References\FrameworkProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="XMLExamples.cs" />
+    <Compile Include="XmlTranslationTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="COEExportToExcel\DataView.xml" />
+    <Content Include="COEExportToExcel\ResultsCriteria.xml" />
+    <Content Include="COEExportToExcel\SearchCriteria.xml" />
+    <Content Include="Common\SqlGenerator\Queries\SelectItems\ResultsCriteria.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\4003RelationShips.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\COEDataViewForTests.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\COEFormForTests.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\COETESTGrandChildDataview.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\COETESTResultCriteria.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\COTESTDataview.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\COTESTPaginginfo.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataView.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataView1.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataviewExport.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataViewNoBaseTable.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataviewWith30Tables.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataViewWithEmptyAlias.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataViewWithNoAlias.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataViewWithNoDatabaseName.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DataViewWithSameTableIds.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DVEmptyTableId.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvEmptyTableName.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvFieldIdEmpty.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvIndexType.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvInvalidDataType.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvInvalidId.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvIsDefaultField.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DVIsView.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DVJoinType.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvLookup.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvMissingPropTable.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DVNewFieldWithMissingProperties.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvNoBaseNoPK.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvNoFieldId.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvNoTableId.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvNoTableName.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DVRelationship.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvSortOrder.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DVUniqueKey.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvVisible.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DVWithInvalidMimeType.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvWithLookupAndRelations.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\DvWithNewField.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\JumpToTest.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\PaginginfoExport.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\rel1.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\RelationshipTest.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\RelationshipWithNoIds.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\ResultCriteriaExport.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\resultcriteria\dataviewmar1.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\ResultsCriteria.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\SearchCriteria.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\searchCriteriaExport.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\SearchCriteriaForTests.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\TableTest.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\TableWithNoIds.xml" />
+    <Content Include="DataView Tests\COEDataViewTestXML\tbl1.xml" />
+    <Content Include="Export Tests\COEExportXML\4003RelationShips.xml" />
+    <Content Include="Export Tests\COEExportXML\COEDataViewForTests.xml" />
+    <Content Include="Export Tests\COEExportXML\COEFormForTests.xml" />
+    <Content Include="Export Tests\COEExportXML\COETESTGrandChildDataview.xml" />
+    <Content Include="Export Tests\COEExportXML\COETESTResultCriteria.xml" />
+    <Content Include="Export Tests\COEExportXML\COTESTDataview.xml" />
+    <Content Include="Export Tests\COEExportXML\COTESTPaginginfo.xml" />
+    <Content Include="Export Tests\COEExportXML\DataView.xml" />
+    <Content Include="Export Tests\COEExportXML\DataviewExport.xml" />
+    <Content Include="Export Tests\COEExportXML\JumpToTest.xml" />
+    <Content Include="Export Tests\COEExportXML\PaginginfoExport.xml" />
+    <Content Include="Export Tests\COEExportXML\rel1.xml" />
+    <Content Include="Export Tests\COEExportXML\RelationshipTest.xml" />
+    <Content Include="Export Tests\COEExportXML\RelationshipWithNoIds.xml" />
+    <Content Include="Export Tests\COEExportXML\ResultCriteriaExport.xml" />
+    <Content Include="Export Tests\COEExportXML\resultcriteria\dataviewmar1.xml" />
+    <Content Include="Export Tests\COEExportXML\resultcriteria\resultcriteriamarMOLFORM.xml" />
+    <Content Include="Export Tests\COEExportXML\resultcriteria\resultcriteriamarSTRUCT.xml" />
+    <Content Include="Export Tests\COEExportXML\resultcriteria\resultcriteriaMOLID.xml" />
+    <Content Include="Export Tests\COEExportXML\resultcriteria\resultcriteriaSYNID.xml" />
+    <Content Include="Export Tests\COEExportXML\ResultsCriteria.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchCriteria.xml" />
+    <Content Include="Export Tests\COEExportXML\searchCriteriaExport.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchCriteriaForTests.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\DataView.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\DataviewWithOuterJoins.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\OrderByCriteria.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\ResultsCriteria.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\ResultsCriteria1.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\SearchCriteria.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\SearchCriteria1.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\SearchCriteria_ExactStructure.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\SearchCriteria_FullStructure.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\SearchCriteria_SimilarityStructure.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\SearchCriteria_SimilarityStructure2.xml" />
+    <Content Include="Export Tests\COEExportXML\SearchXML\SearchCriteria_SubStructure.xml" />
+    <Content Include="Export Tests\COEExportXML\TableTest.xml" />
+    <Content Include="Export Tests\COEExportXML\TableWithNoIds.xml" />
+    <Content Include="Export Tests\COEExportXML\tbl1.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\BatchesWithIdentifiersAndProjects.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentRC.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentRCAggFirst.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentRCSortByAVG.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentRCSortByAVGDesc.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentRCSortByCountAndField.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentRCSortByMolWtAndFormula.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentWithSQLFunctionRC.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ChildToParentWrappedWithSQLFunctionRC.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\GrandChildToParentRC.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\GrandChildSearchCriteriaACX.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\GrandChildToChildRC.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ModifiedSCOTTDataview.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\ResultsCriteriaForBatches.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\SCOTTSearchCriteria.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\SearchCriteria.xml" />
+    <Content Include="Search Tests\COEAggregationResultsTests XML\TwoChildToParentRC.xml" />
+    <Content Include="AuthoringTests.txt" />
+    <Content Include="COEFormGroup XML\ExpectedFormGroup.xml" />
+    <Content Include="COEFormGroup XML\FormGroup.xml" />
+    <Content Include="DisplayData XML\DisplayDataFormGroupTest.xml" />
+    <Content Include="FormGenerator XML\FormElements.xml" />
+    <Content Include="FormGenerator XML\FormGroup.xml" />
+    <Content Include="LookupTest XML\DataView.xml" />
+    <Content Include="LookupTest XML\ResultCriteria.xml" />
+    <Content Include="LookupTest XML\SearchCriteria.xml" />
+    <Content Include="OperatorGuessingXML\DataView.xml" />
+    <Content Include="OperatorGuessingXML\ResultCriteria.xml" />
+    <Content Include="OperatorGuessingXML\SearchCriteria.xml" />
+    <Content Include="OrderByTest XML\DataView.xml" />
+    <Content Include="OrderByTest XML\ResultCriteria.xml" />
+    <Content Include="OrderByTest XML\SearchCriteria.xml" />
+    <Content Include="Search Tests\COESimpleAPISearch XML\DataView.xml" />
+    <Content Include="Search Tests\COESearchByAggregateTest XML\ResultsCriteria.xml" />
+    <Content Include="Search Tests\COESearchByHitlistTests XML\SearchByHitlistSearchCriteria.xml" />
+    <Content Include="Search Tests\COESearchByHitlistTests XML\SourceDV.xml" />
+    <Content Include="Search Tests\COESearchByHitlistTests XML\SourceRC.xml" />
+    <Content Include="Search Tests\COESearchByHitlistTests XML\SourceSearchCriteria.xml" />
+    <Content Include="Search Tests\COESearchByHitlistTests XML\TargetDV.xml" />
+    <Content Include="Search Tests\COESearchByHitlistTests XML\TargetRC.xml" />
+    <Content Include="Search Tests\COESearchTest XML\DataView.xml" />
+    <Content Include="Search Tests\COESearchTest XML\DataviewWithOuterJoins.xml" />
+    <Content Include="Search Tests\COESearchTest XML\OrderedSearchTestXml\DataView.xml" />
+    <Content Include="Search Tests\COESearchTest XML\OrderedSearchTestXml\OrderByCriteria.xml" />
+    <Content Include="Search Tests\COESearchTest XML\OrderedSearchTestXml\ResultsCriteria.xml" />
+    <Content Include="Search Tests\COESearchTest XML\OrderedSearchTestXml\ResultsCriteria1.xml" />
+    <Content Include="Search Tests\COESearchTest XML\OrderedSearchTestXml\SearchCriteria.xml" />
+    <Content Include="Search Tests\COESearchTest XML\OrderedSearchTestXml\SearchCriteria1.xml" />
+    <Content Include="Search Tests\COESearchTest XML\ResultsCriteria.xml" />
+    <Content Include="Search Tests\COESearchTest XML\SearchCriteria.xml" />
+    <Content Include="Search Tests\COESearchTest XML\TaggedDvSearch XML\DataView.xml" />
+    <Content Include="Search Tests\COESearchTest XML\TaggedDvSearch XML\DataviewWithOuterJoins.xml" />
+    <Content Include="Search Tests\COEStructureListTests XML\DataView.xml" />
+    <Content Include="Search Tests\COEStructureListTests XML\ProdSubsetResultsCriteria.xml" />
+    <Content Include="Search Tests\COEStructureListTests XML\ResultsCriteria.xml" />
+    <Content Include="Search Tests\COEStructureListTests XML\SubstanceSubsetRC.xml" />
+    <Content Include="Search Tests\FilterChildDataTest XML\ResultsCriteria.xml" />
+    <Content Include="Search Tests\LookupSearchTest XML\DataView.xml" />
+    <Content Include="Search Tests\LookupSearchTest XML\ResultsCriteria.xml" />
+    <Content Include="Search Tests\LookupSearchTest XML\SearchCriteria.xml" />
+    <Content Include="Search Tests\Multiple instances XML\resultCriteria.xml" />
+    <Content Include="Search Tests\Multiple instances XML\searchCriteria.xml" />
+    <Content Include="SearchCriteria Pre-Parsing XML\ExpectedSearchCriteria.xml" />
+    <Content Include="SearchCriteria Pre-Parsing XML\SearchCriteria.xml" />
+    <Content Include="Serialization XML\COEFORM.xml" />
+    <Content Include="Serialization XML\COEFormGroup.xml" />
+    <Content Include="Serialization XML\CustomResultsCriteria.xml" />
+    <Content Include="Serialization XML\CustomSearchCriteria.xml" />
+    <Content Include="Serialization XML\DataView.xml" />
+    <Content Include="Serialization XML\ResultCriteria.xml" />
+    <Content Include="Serialization XML\SearchCriteria.xml" />
+    <Content Include="Serialization XML\SearchResponse.xml" />
+    <Content Include="TestXML\COEFormForTests.xml" />
+    <Content Include="DataView.xml" />
+    <Content Include="DataView1.xml" />
+    <Content Include="TestXML\COEDataViewForTests.xml" />
+    <Content Include="MultipleTablesTest XML\DataView.xml" />
+    <Content Include="MultipleTablesTest XML\ResultCriteria.xml" />
+    <Content Include="MultipleTablesTest XML\SearchCriteria.xml" />
+    <Content Include="QueryBuilderTest XML\DataView.xml" />
+    <Content Include="QueryBuilderTest XML\ResultCriteria.xml" />
+    <Content Include="QueryBuilderTest XML\SearchCriteria.xml" />
+    <Content Include="ResultCriteria.xml" />
+    <Content Include="SearchCriteria.xml" />
+    <Content Include="SearchResponse.xml" />
+    <Content Include="TestXML\DataView.xml" />
+    <Content Include="TestXML\ResultsCriteria.xml" />
+    <Content Include="TestXML\SearchCriteria.xml" />
+    <Content Include="TestXML\SearchCriteriaForTests.xml" />
+    <None Include="Search Tests\SearchOrderedTest.orderedtest" />
+    <None Include="Web References\FrameworkProxy\COEFrameworkServices.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>App.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Search Tests\COEStructureListTests XML\LargeSearchSamples.sdf" />
+    <None Include="Search Tests\COEStructureListTests XML\SearchSamples.sdf" />
+    <None Include="Web References\FrameworkProxy\COEDataView.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\FrameworkProxy\COEFrameworkServices.wsdl" />
+    <None Include="Web References\FrameworkProxy\DataListResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\FrameworkProxy\DataResult.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\FrameworkProxy\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://localhost/COEFrameworkServices/COEFrameworkServices.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\FrameworkProxy\</RelPath>
+      <UpdateFromURL>http://localhost/COEFrameworkServices/COEFrameworkServices.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>CambridgeSoft_COE_Framework_UnitTests_FrameworkProxy_COEFrameworkServices</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
+</Project>

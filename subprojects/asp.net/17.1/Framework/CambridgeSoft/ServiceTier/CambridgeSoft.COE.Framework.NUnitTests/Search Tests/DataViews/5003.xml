@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COEDataView  xmlns="COE.COEDataView" basetable="1429" database="COEDB" dataviewid="5003">
+  <tables>
+    <table id="1429" name="ASSAYEDCOMPOUNDS" alias="Samples" database="COETEST" primaryKey="1448">
+      <fields id="1448" name="PUBCHEM_COMPOUND_CID" alias="PubChem CID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0" />
+      <fields id="1430" name="BASE64_CDX" alias="Structure" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" sortOrder="1" />
+      <fields id="1457" name="PUBCHEM_MOLECULAR_FORMULA" alias="Formula" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2" />
+      <fields id="1458" name="PUBCHEM_MOLECULAR_WEIGHT" alias="MW" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3" />
+      <fields id="1459" name="PUBCHEM_OPENEYE_CAN_SMILES" alias="Smiles" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4" />
+ 		</table>
+    <table id="1901" name="AID629ERA" alias="ERalpha Primary Screen" database="COETEST" primaryKey="1906" >
+      <fields id="1903" name="% Inhibition" alias="% Inhibition" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" />
+      <fields id="1904" name="PUBCHEM_ACTIVITY_OUTCOME" alias="Active?" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" />
+      <fields id="1905" name="PUBCHEM_ACTIVITY_SCORE" alias="Score" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" />
+      <fields id="1906" name="PUBCHEM_CID" alias="PubChem CID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" />
+    </table>
+    <table id="1879" name="AID1078ERA" alias="ERalpha Dose Response" database="COETEST" primaryKey="1884">
+      <fields id="1881" name="EC50 (1 nM E2)" alias="EC50 (1 nM E2)" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="1" />
+      <fields id="1882" name="PUBCHEM_ACTIVITY_OUTCOME" alias="Active?" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2" />
+      <fields id="1883" name="PUBCHEM_ACTIVITY_SCORE" alias="Score" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3" />
+      <fields id="1884" name="PUBCHEM_CID" alias="PubChem CID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4" />
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="1448" childkey="1906" parent="1429" child="1901" jointype="OUTER" />
+    <relationship parentkey="1448" childkey="1884" parent="1429" child="1879" jointype="OUTER" />
+  </relationships>
+</COEDataView>

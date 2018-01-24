@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="11" database="COEDB" name="ELN Search dataview for fragments" description="ELN - Fragment search dataview for Registration" application="REGISTRATION"  dataviewHandling="USE_SERVER_DATAVIEW" dataviewid="4007">
+	<tables>
+		<table id="11" name="VW_FRAGMENT" alias="VW_FRAGMENT" database="REGDB" isView="0" primaryKey="21">
+			<fields id="21" name="FRAGMENTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="FRAGMENTID"/>
+			<fields id="22" name="CODE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="CODE"/>
+			<fields id="23" name="DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="DESCRIPTION"/>
+			<fields id="24" name="FRAGMENTTYPEID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="FRAGMENTTYPEID"/>
+			<fields id="25" name="MOLWEIGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="MOLWEIGHT"/>
+			<fields id="26" name="FORMULA" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="FORMULA"/>
+			<fields id="27" name="CREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="CREATED"/>
+			<fields id="28" name="MODIFIED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="MODIFIED"/>
+			<fields id="29" name="STRUCTURE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="STRUCTURE"/>
+			<fields id="30" name="STRUCTUREFORMAT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" lookupSortOrder="ASCENDING" alias="STRUCTUREFORMAT"/>
+		</table>
+	</tables>
+	<relationships/>
+</COEDataView>

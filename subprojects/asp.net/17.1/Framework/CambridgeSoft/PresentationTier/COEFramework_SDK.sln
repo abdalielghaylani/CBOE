@@ -1,0 +1,58 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4092089B-2D3D-4E4B-B47B-A4B83CEC5D49}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.Debug = "False"
+	EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		..\ChemOfficeEnterprise11\COEExceptionHandling.xml = ..\ChemOfficeEnterprise11\COEExceptionHandling.xml
+		..\ChemOfficeEnterprise11\COEFrameworkConfig.xml = ..\ChemOfficeEnterprise11\COEFrameworkConfig.xml
+		..\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml = ..\ChemOfficeEnterprise11\COESharedAssemblyConfig.xml
+		..\ChemOfficeEnterprise11\ExceptionsHandling.xml = ..\ChemOfficeEnterprise11\ExceptionsHandling.xml
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\SDKDocumentation\", "SDKDocumentation", "{B439A212-0E84-41D9-A4B0-06DC421EF8BE}"
+	ProjectSection(WebsiteProperties) = preProject
+		Debug.AspNetCompiler.VirtualPath = "/SDKDocumentation"
+		Debug.AspNetCompiler.PhysicalPath = "..\PresentationTier\SDKDocumentation\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\SDKDocumentation\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/SDKDocumentation"
+		Release.AspNetCompiler.PhysicalPath = "..\PresentationTier\SDKDocumentation\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\SDKDocumentation\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "1619"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|.NET = Debug|.NET
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Release|.NET = Release|.NET
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Debug|.NET.ActiveCfg = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Debug|.NET.Build.0 = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Release|.NET.ActiveCfg = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Release|.NET.Build.0 = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{B439A212-0E84-41D9-A4B0-06DC421EF8BE}.Release|Mixed Platforms.Build.0 = Debug|.NET
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RLSConfigurationTool", "RLSConfigurationTool\RLSConfigurationTool.csproj", "{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4CF61F5B-2D46-4136-B277-5080A04B395B} = {4CF61F5B-2D46-4136-B277-5080A04B395B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework", "..\..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj", "{4CF61F5B-2D46-4136-B277-5080A04B395B}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 1
+		SccProjectUniqueName0 = ..\\..\\..\\Framework\\CambridgeSoft\\ServiceTier\\CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
+		SccProjectName0 = Perforce\u0020Project
+		SccLocalPath0 = ..\\..\\..\\Framework\\CambridgeSoft
+		SccProvider0 = MSSCCI:Perforce\u0020SCM
+		SccProjectFilePathRelativizedFromConnection0 = ServiceTier\\CambridgeSoft.COE.Framework\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Debug|x86.ActiveCfg = Debug|x86
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Debug|x86.Build.0 = Debug|x86
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Release|x86.ActiveCfg = Release|x86
+		{EC9F0F15-4BB7-43DF-BD18-D6A552E4B502}.Release|x86.Build.0 = Release|x86
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF61F5B-2D46-4136-B277-5080A04B395B}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

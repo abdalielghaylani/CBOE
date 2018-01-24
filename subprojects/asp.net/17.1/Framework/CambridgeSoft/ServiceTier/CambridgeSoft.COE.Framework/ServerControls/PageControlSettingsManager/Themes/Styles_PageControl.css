@@ -1,0 +1,81 @@
+.PageControlButton 
+{
+	width:72px;
+	height: 22px;
+	margin-left:10px;
+	font-size: 11px;
+	color: #000000;
+	cursor: pointer;
+	border: none;
+	background-position:center center;
+	background-repeat:no-repeat;
+	background-color :Transparent
+}
+
+.PageControlContentTable
+{
+	background-color:white;
+	font-size: 10px;
+	font-family:Verdana;
+	color:#000066;
+	width:100%;
+}
+
+.PageControlListBox
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #000099;
+	background-color:#FFFFFF;
+	height: 250px;	
+	width: 180px;
+	overflow:auto;	
+	border-top: #C0C0C0 1px solid;
+	border-left: #C0C0C0 1px solid;
+	border-right: #C0C0C0 1px solid;
+	border-bottom: #C0C0C0 1px solid;
+}
+
+.PageControlTree
+{
+	overflow:auto;
+	width: 250px;	
+	height: 680px;
+	border-right: #170061 2px solid;
+}
+
+.PageControlBarTable
+{
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+    background-position:right bottom;
+}
+.PageControlRow
+{
+	background-repeat:repeat-x;
+	height: 40px;
+	width:660px;
+}
+.PageControlCell
+{
+	font-size: 11px;
+	font-family: Verdana;
+	font-weight:bold;
+	text-align:right;
+	margin-right:5px;
+	padding-right:10px;
+	height: 20px;
+	width: 75px;	
+}
+.PageControlTitleLabel
+{
+	font-size: 14px;
+	padding-right: 30px;
+	color: #333333;
+	font-family: Verdana;
+	font-weight:bold;
+	width:185px;
+}
+
+

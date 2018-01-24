@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C8FE316A-43DD-4A05-859E-2DDF6EB2F8B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StructureSearchSupport</RootNamespace>
+    <AssemblyName>StructureSearchSupport</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SpotfireDeveloper.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Spotfire.Dxp.Application">
+      <HintPath>..\..\CBVNAddins\SpotfireAddin\SpotfireIntegration.Common\CommonRuntimeLibraries\Spotfire.Dxp.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="Spotfire.Dxp.Data, Version=10.12.5216.4689, Culture=neutral, PublicKeyToken=789861576bd64dc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CBVNAddins\SpotfireAddin\SpotfireIntegration.Common\CommonRuntimeLibraries\Spotfire.Dxp.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Spotfire.Dxp.Framework">
+      <HintPath>..\..\CBVNAddins\SpotfireAddin\SpotfireIntegration.Common\CommonRuntimeLibraries\Spotfire.Dxp.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spotfire.Dxp.Internal, Version=10.12.5216.4689, Culture=neutral, PublicKeyToken=789861576bd64dc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CBVNAddins\SpotfireAddin\SpotfireIntegration.Common\CommonRuntimeLibraries\Spotfire.Dxp.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="Spotfire.Dxp.Services, Version=10.12.5216.4689, Culture=neutral, PublicKeyToken=789861576bd64dc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\CBVNAddins\SpotfireAddin\SpotfireIntegration.Common\CommonRuntimeLibraries\Spotfire.Dxp.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccordRendererIdentifiers.cs" />
+    <Compile Include="ChemDrawInvoker.cs" />
+    <Compile Include="ChemDrawRendererIdentifiers.cs" />
+    <Compile Include="ChemIQRendererIdentifiers.cs" />
+    <Compile Include="CommandHandler.cs" />
+    <Compile Include="GetResultCommandHandler.cs" />
+    <Compile Include="InvariantResources.Designer.cs" />
+    <Compile Include="JavaProcessHost.cs" />
+    <Compile Include="MarvinRendererIdentifiers.cs" />
+    <Compile Include="MarvinSketchProcessHost.cs" />
+    <Compile Include="MDLDrawRendererIdentifiers.cs" />
+    <Compile Include="NetProcessHost.cs" />
+    <Compile Include="ProcessHost.cs" />
+    <Compile Include="RendererIdentifierConverter.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs" />
+    <Compile Include="SetParameterCommandHandler.cs" />
+    <Compile Include="ShowEditorCommandHandler.cs" />
+    <Compile Include="StructureSearch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SpotfireDeveloper.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InvariantResources.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Properties\Resources.sv-SE.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

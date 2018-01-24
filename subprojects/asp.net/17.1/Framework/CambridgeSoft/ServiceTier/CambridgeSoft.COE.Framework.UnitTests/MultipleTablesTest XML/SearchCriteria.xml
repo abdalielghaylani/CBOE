@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+	<!--field3: Integer-->
+	<searchCriteriaItem id="1" fieldid="3" tableid ="1" modifier="">
+		<numericalCriteria trim="BOTH" operator="EQUAL">00050</numericalCriteria>
+	</searchCriteriaItem>
+  <searchCriteriaID>1</searchCriteriaID>
+</searchCriteria>

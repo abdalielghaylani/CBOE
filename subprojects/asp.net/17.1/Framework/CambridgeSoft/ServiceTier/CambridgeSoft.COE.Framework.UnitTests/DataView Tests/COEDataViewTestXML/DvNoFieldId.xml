@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<table id="1217" name="GLOBALS" alias="GLOBALS" database="COETEST" isView="0" primaryKey="1218" >
+  <fields id="1218" name="ID" alias="ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+  <fields name="VALUE" alias="VALUE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+</table>

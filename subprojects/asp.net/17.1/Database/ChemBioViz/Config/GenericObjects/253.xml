@@ -1,0 +1,3008 @@
+﻿<configuration subdirectory="GenericObjects" databasename="ChemBioViz" description="CBVN Form" formgroup="0" id="253" ispublic="True" name="Pubchem Compound Activity Report" username="CSSADMIN"><xml><![CDATA[<?xml version="1.0" encoding="utf-16"?>
+<cbvnform>
+  <connection dbappname="PubChem New" tablename="ASSAYEDCOMPOUNDS" dbappid="5101" tableid="1000" />
+  <tabs selected="2">
+    <tab type="form" name="Complete Activity Report">
+      <greatis>
+        <object name="FormViewControl" assembly="ChemBioViz.NET.FormViewControl, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null" TreasuryVersion="1">
+          <AutoScroll>True</AutoScroll>
+          <BackColor>ControlLightLight</BackColor>
+          <FormBorderStyle>None</FormBorderStyle>
+          <ClientSize>781, 516</ClientSize>
+          <Location>0, 28</Location>
+          <Text>PubChem New.ASSAYEDCOMPOUNDS</Text>
+          <Cursor>Arrow</Cursor>
+          <Dock>Fill</Dock>
+          <Name>FormViewControl</Name>
+          <Visible>False</Visible>
+          <object name="BASE64_CDX" assembly="ChemControls.ChemDraw, ChemControls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <ReadOnly>True</ReadOnly>
+            <Base64>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
+AAIAKQAEBgQACAAAAAUGBAAQAAAAAAAFgCwAAAAKAAIAKgAEBgQACAAAAAUGBAAb
+AAAAAAAFgC0AAAAKAAIAKwAEBgQACQAAAAUGBAALAAAAAAAFgC4AAAAKAAIALAAE
+BgQACQAAAAUGBAAQAAAAAAAFgC8AAAAKAAIALQAEBgQACQAAAAUGBAAcAAAAAAAF
+gDAAAAAKAAIALgAEBgQACgAAAAUGBAALAAAAAAAFgDEAAAAKAAIALwAEBgQACgAA
+AAUGBAAMAAAAAAAFgDIAAAAKAAIAMAAEBgQACgAAAAUGBAAUAAAAAAAFgDMAAAAK
+AAIAMQAEBgQACwAAAAUGBAANAAAAAAAFgDQAAAAKAAIAMgAEBgQACwAAAAUGBAAV
+AAAAAAAFgDUAAAAKAAIAMwAEBgQADAAAAAUGBAAOAAAAAAAFgDYAAAAKAAIANAAE
+BgQADAAAAAUGBAAWAAAAAAAFgDcAAAAKAAIANQAEBgQADQAAAAUGBAAXAAAAAAAF
+gDgAAAAKAAIANgAEBgQADQAAAAUGBAAYAAAAAAAFgDkAAAAKAAIANwAEBgQADgAA
+AAUGBAAPAAAAAAAFgDoAAAAKAAIAOAAEBgQADgAAAAUGBAAZAAAAAAAFgDsAAAAK
+AAIAOQAEBgQADgAAAAUGBAAaAAAAAAAFgDwAAAAKAAIAOgAEBgQADwAAAAUGBAAR
+AAAAAAAFgD0AAAAKAAIAOwAEBgQADwAAAAUGBAAdAAAAAAAFgD4AAAAKAAIAPAAE
+BgQADwAAAAUGBAAeAAAAAAAFgD8AAAAKAAIAPQAEBgQAEQAAAAUGBAASAAAAAAAF
+gEAAAAAKAAIAPgAEBgQAEQAAAAUGBAAfAAAAAAAFgEEAAAAKAAIAPwAEBgQAEQAA
+AAUGBAAgAAAAAAAFgEIAAAAKAAIAQAAEBgQAEgAAAAUGBAATAAAAAAAFgEMAAAAK
+AAIAQQAEBgQAEgAAAAUGBAAhAAAAAAAFgEQAAAAKAAIAQgAEBgQAEgAAAAUGBAAi
+AAAAAAAHgEUAAAAEAhAA6KcwAJGpIgGUJTwAkakiAQoAAgBDAA4ABgAjAAAAIQQA
+CgIABwAHCgIACwAGgAAAAAAAAggAT240ACoDGQEEAhAAT64pACoDGQGCoTcA908s
+AQIHAgABAAAHDwABAAAABAAAAPAAAwBBYnMAAAAAAAAAAAAAAAA=
+</Base64>
+            <ChemDrawDocument mode="binary">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</ChemDrawDocument>
+            <BorderStyle>FixedSingle</BorderStyle>
+            <BackColor>White</BackColor>
+            <Cursor>Default</Cursor>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <ForeColor>DarkGray</ForeColor>
+            <Location>64, 80</Location>
+            <Name>BASE64_CDX</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>733, 202</Size>
+            <TabIndex>3</TabIndex>
+            <Tag>Base64.BASE64_CDX</Tag>
+            <ImeMode>Disable</ImeMode>
+          </object>
+          <object name="Formula" assembly="ChemControls.ChemFormulaBox, ChemControls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <ScrollBars>None</ScrollBars>
+            <Text>C10H16N2O3S</Text>
+            <BackColor>White</BackColor>
+            <BorderStyle>FixedSingle</BorderStyle>
+            <ReadOnly>True</ReadOnly>
+            <Location>441, 299</Location>
+            <Name>Formula</Name>
+            <Size>89, 20</Size>
+            <TabIndex>5</TabIndex>
+            <Tag>Text.Formula</Tag>
+          </object>
+          <object name="Label4" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleCenter</TextAlign>
+            <Text>MW:</Text>
+            <Location>310, 299</Location>
+            <Name>Label4</Name>
+            <Size>33, 20</Size>
+            <TabIndex>6</TabIndex>
+          </object>
+          <object name="Molweight" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>244.311</Text>
+            <BackColor>White</BackColor>
+            <ReadOnly>True</ReadOnly>
+            <Location>349, 299</Location>
+            <Name>Molweight</Name>
+            <Size>56, 20</Size>
+            <TabIndex>7</TabIndex>
+            <Tag>Text.Molweight</Tag>
+          </object>
+          <object name="Label1" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>Single Point Results</Text>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <Location>64, 331</Location>
+            <Name>Label1</Name>
+            <Size>260, 28</Size>
+            <TabIndex>24</TabIndex>
+          </object>
+          <object name="Label2" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <ImageAlign>BottomLeft</ImageAlign>
+            <TextAlign>BottomLeft</TextAlign>
+            <Text>AID713ERADR Secondary Screen</Text>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <Location>62, 428</Location>
+            <Name>Label2</Name>
+            <Size>343, 37</Size>
+            <TabIndex>25</TabIndex>
+          </object>
+          <object name="Label5" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>Activity Report for Compound</Text>
+            <Font>Microsoft Sans Serif, 15.75pt, style=Bold</Font>
+            <ForeColor>HotTrack</ForeColor>
+            <Location>146, 35</Location>
+            <Name>Label5</Name>
+            <Size>370, 31</Size>
+            <TabIndex>30</TabIndex>
+          </object>
+          <object name="TextBox1" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>253</Text>
+            <BackColor>White</BackColor>
+            <ForeColor>HotTrack</ForeColor>
+            <ReadOnly>True</ReadOnly>
+            <Font>Microsoft Sans Serif, 15.75pt, style=Bold</Font>
+            <Location>473, 32</Location>
+            <Name>TextBox1</Name>
+            <Size>259, 31</Size>
+            <TabIndex>31</TabIndex>
+            <Tag>Text.PUBCHEM_COMPOUND_CID</Tag>
+          </object>
+          <object name="Label6" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>BottomLeft</TextAlign>
+            <Text>AID741MRP Secondary Screen</Text>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <Location>66, 836</Location>
+            <Name>Label6</Name>
+            <Size>468, 31</Size>
+            <TabIndex>34</TabIndex>
+          </object>
+          <object name="Label7" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>BottomLeft</TextAlign>
+            <Text>AID820CAPDR Secondary Screen</Text>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <Location>69, 1155</Location>
+            <Name>Label7</Name>
+            <Size>429, 43</Size>
+            <TabIndex>38</TabIndex>
+          </object>
+          <object name="Table_2200" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_OUTCOME</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_OUTCOME</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_OUTCOME</Name>
+                  <Width>200</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_SCORE</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_SCORE</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_SCORE</Name>
+                  <Width>181</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>% Inhibition</DataPropertyName>
+                  <HeaderText>% Inhibition</HeaderText>
+                  <Name>% Inhibition</Name>
+                  <Width>119</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>FRET Signal</DataPropertyName>
+                  <HeaderText>FRET Signal</HeaderText>
+                  <Name>FRET Signal</Name>
+                  <Width>101</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Cursor>Default</Cursor>
+            <Location>64, 359</Location>
+            <Name>Table_2200</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>733, 57</Size>
+            <TabIndex>16</TabIndex>
+            <Tag>Table_2200</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="Table_2400" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>Dose Response</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>209</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Default</Cursor>
+            <Location>543, 542</Location>
+            <Name>Table_2400</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>254, 220</Size>
+            <TabIndex>18</TabIndex>
+            <Tag>Table_2400</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView1" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC50</DataPropertyName>
+                  <HeaderText>IC50</HeaderText>
+                  <Name>IC50</Name>
+                  <Width>100</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Rsquare</DataPropertyName>
+                  <HeaderText>Rsquare</HeaderText>
+                  <Name>Rsquare</Name>
+                  <Width>100</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item2>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>65, 542</Location>
+            <Name>CBVDataGridView1</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>472, 59</Size>
+            <TabIndex>26</TabIndex>
+            <Tag>Table_2300</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView2" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC50</DataPropertyName>
+                  <HeaderText>IC50</HeaderText>
+                  <Name>IC50</Name>
+                  <Visible>False</Visible>
+                  <Width>81</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Rsquare</DataPropertyName>
+                  <HeaderText>Rsquare</HeaderText>
+                  <Name>Rsquare</Name>
+                  <Visible>False</Visible>
+                  <Width>81</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item2>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>65, 476</Location>
+            <Name>CBVDataGridView2</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>732, 60</Size>
+            <TabIndex>27</TabIndex>
+            <Tag>Table_2300</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView3" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>BLOB_CONTENT</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>230</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>547, 960</Location>
+            <Name>CBVDataGridView3</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>254, 205</Size>
+            <TabIndex>28</TabIndex>
+            <Tag>Table_2600</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView4" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Dose Response</DataPropertyName>
+                  <HeaderText>Dose Response</HeaderText>
+                  <Name>Dose Response</Name>
+                  <Visible>False</Visible>
+                  <Width>93</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>547, 1291</Location>
+            <Name>CBVDataGridView4</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>254, 205</Size>
+            <TabIndex>29</TabIndex>
+            <Tag>Table_2800</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView5" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Tox)</DataPropertyName>
+                  <HeaderText>Pct Viability (Tox)</HeaderText>
+                  <Name>Pct Viability (Tox)</Name>
+                  <Visible>False</Visible>
+                  <Width>102</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Reversal)</DataPropertyName>
+                  <HeaderText>Pct Viability (Reversal)</HeaderText>
+                  <Name>Pct Viability (Reversal)</Name>
+                  <Visible>False</Visible>
+                  <Width>126</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Slope Diff(SlopeVia-SlopeRev)</DataPropertyName>
+                  <HeaderText>Slope Diff(SlopeVia-SlopeRev)</HeaderText>
+                  <Name>Slope Diff(SlopeVia-SlopeRev)</Name>
+                  <Visible>False</Visible>
+                  <Width>166</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item3>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>66, 870</Location>
+            <Name>CBVDataGridView5</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>735, 84</Size>
+            <TabIndex>32</TabIndex>
+            <Tag>Table_2500</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView6" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Tox)</DataPropertyName>
+                  <HeaderText>Pct Viability (Tox)</HeaderText>
+                  <Name>Pct Viability (Tox)</Name>
+                  <Visible>False</Visible>
+                  <Width>102</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Reversal)</DataPropertyName>
+                  <HeaderText>Pct Viability (Reversal)</HeaderText>
+                  <Name>Pct Viability (Reversal)</Name>
+                  <Visible>False</Visible>
+                  <Width>126</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Slope Diff(SlopeVia-SlopeRev)</DataPropertyName>
+                  <HeaderText>Slope Diff(SlopeVia-SlopeRev)</HeaderText>
+                  <Name>Slope Diff(SlopeVia-SlopeRev)</Name>
+                  <Width>171</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item3>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>66, 960</Location>
+            <Name>CBVDataGridView6</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>472, 79</Size>
+            <TabIndex>33</TabIndex>
+            <Tag>Table_2500</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView9" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 min concentration</DataPropertyName>
+                  <HeaderText>IC501 min concentration</HeaderText>
+                  <Name>IC501 min concentration</Name>
+                  <Visible>False</Visible>
+                  <Width>139</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at min conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at min conc</HeaderText>
+                  <Name>IC501 pct act at min conc</Name>
+                  <Visible>False</Visible>
+                  <Width>143</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 max conc</DataPropertyName>
+                  <HeaderText>IC501 max conc</HeaderText>
+                  <Name>IC501 max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>95</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at max conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at max conc</HeaderText>
+                  <Name>IC501 pct act at max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>144</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>66, 1374</Location>
+            <Name>CBVDataGridView9</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>472, 78</Size>
+            <TabIndex>37</TabIndex>
+            <Tag>Table_2700</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView8" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 min concentration</DataPropertyName>
+                  <HeaderText>IC501 min concentration</HeaderText>
+                  <Name>IC501 min concentration</Name>
+                  <Visible>False</Visible>
+                  <Width>139</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at min conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at min conc</HeaderText>
+                  <Name>IC501 pct act at min conc</Name>
+                  <Visible>False</Visible>
+                  <Width>143</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 max conc</DataPropertyName>
+                  <HeaderText>IC501 max conc</HeaderText>
+                  <Name>IC501 max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>95</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at max conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at max conc</HeaderText>
+                  <Name>IC501 pct act at max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>144</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>66, 1291</Location>
+            <Name>CBVDataGridView8</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>472, 77</Size>
+            <TabIndex>39</TabIndex>
+            <Tag>Table_2700</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView7" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 min concentration</DataPropertyName>
+                  <HeaderText>IC501 min concentration</HeaderText>
+                  <Name>IC501 min concentration</Name>
+                  <Visible>False</Visible>
+                  <Width>139</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at min conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at min conc</HeaderText>
+                  <Name>IC501 pct act at min conc</Name>
+                  <Visible>False</Visible>
+                  <Width>143</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 max conc</DataPropertyName>
+                  <HeaderText>IC501 max conc</HeaderText>
+                  <Name>IC501 max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>95</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at max conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at max conc</HeaderText>
+                  <Name>IC501 pct act at max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>144</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>66, 1211</Location>
+            <Name>CBVDataGridView7</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>735, 73</Size>
+            <TabIndex>40</TabIndex>
+            <Tag>Table_2700</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+        </object>
+      </greatis>
+    </tab>
+    <tab type="grid" name="All Assays Table" cardview="0">
+      <wingrid>
+        <object name="FormViewControl" assembly="ChemBioViz.NET.FormViewControl, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null" TreasuryVersion="1">
+          <AutoScroll>True</AutoScroll>
+          <FormBorderStyle>None</FormBorderStyle>
+          <ClientSize>453, 313</ClientSize>
+          <Text>PubChem New.ASSAYEDCOMPOUNDS</Text>
+          <Dock>Fill</Dock>
+          <Name>FormViewControl</Name>
+          <Visible>False</Visible>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_COMPOUND_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_COMPOUND_CID</HeaderText>
+                  <Name>PUBCHEM_COMPOUND_CID</Name>
+                  <Width>172</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Formula</DataPropertyName>
+                  <HeaderText>Formula</HeaderText>
+                  <Name>Formula</Name>
+                  <Width>100</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_OPENEYE_CAN_SMILES</DataPropertyName>
+                  <HeaderText>PUBCHEM_OPENEYE_CAN_SMILES</HeaderText>
+                  <Name>PUBCHEM_OPENEYE_CAN_SMILES</Name>
+                  <Visible>False</Visible>
+                  <Width>188</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BASE64_CDX</DataPropertyName>
+                  <HeaderText>BASE64_CDX</HeaderText>
+                  <Name>BASE64_CDX</Name>
+                  <Width>100</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Molweight</DataPropertyName>
+                  <DefaultCellStyle mode="constructor">
+                    <assembly>System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</assembly>
+                    <Format>F2</Format>
+                  </DefaultCellStyle>
+                  <HeaderText>Molweight</HeaderText>
+                  <Name>Molweight</Name>
+                  <Width>81</Width>
+                </object>
+              </Item4>
+              <Item5 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2200</DataPropertyName>
+                  <HeaderText>Table_2200</HeaderText>
+                  <Name>Table_2200</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item5>
+              <Item6 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2400</DataPropertyName>
+                  <HeaderText>Table_2400</HeaderText>
+                  <Name>Table_2400</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item6>
+              <Item7 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2300</DataPropertyName>
+                  <HeaderText>Table_2300</HeaderText>
+                  <Name>Table_2300</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item7>
+              <Item8 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2800</DataPropertyName>
+                  <HeaderText>Table_2800</HeaderText>
+                  <Name>Table_2800</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item8>
+              <Item9 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2600</DataPropertyName>
+                  <HeaderText>Table_2600</HeaderText>
+                  <Name>Table_2600</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item9>
+              <Item10 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2500</DataPropertyName>
+                  <HeaderText>Table_2500</HeaderText>
+                  <Name>Table_2500</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item10>
+              <Item11 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2700</DataPropertyName>
+                  <HeaderText>Table_2700</HeaderText>
+                  <Name>Table_2700</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item11>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>60</Height>
+              </object>
+            </RowTemplate>
+            <Cursor>Default</Cursor>
+            <Dock>Fill</Dock>
+            <Location>0, 0</Location>
+            <Name />
+            <RightToLeft>No</RightToLeft>
+            <Size>453, 313</Size>
+            <TabIndex>16</TabIndex>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_OUTCOME</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_OUTCOME</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_OUTCOME</Name>
+                  <Width>194</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_SCORE</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_SCORE</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_SCORE</Name>
+                  <Width>177</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>% Inhibition</DataPropertyName>
+                  <HeaderText>% Inhibition</HeaderText>
+                  <Name>% Inhibition</Name>
+                  <Width>81</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>FRET Signal</DataPropertyName>
+                  <HeaderText>FRET Signal</HeaderText>
+                  <Name>FRET Signal</Name>
+                  <Width>80</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>17</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>BLOB_CONTENT</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>231</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>18</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC50</DataPropertyName>
+                  <HeaderText>IC50</HeaderText>
+                  <Name>IC50</Name>
+                  <Width>81</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Rsquare</DataPropertyName>
+                  <HeaderText>Rsquare</HeaderText>
+                  <Name>Rsquare</Name>
+                  <Width>81</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item2>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>19</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Dose Response</DataPropertyName>
+                  <HeaderText>Dose Response</HeaderText>
+                  <Name>Dose Response</Name>
+                  <Visible>False</Visible>
+                  <Width>93</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>20</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>BLOB_CONTENT</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>107</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>21</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Tox)</DataPropertyName>
+                  <HeaderText>Pct Viability (Tox)</HeaderText>
+                  <Name>Pct Viability (Tox)</Name>
+                  <Visible>False</Visible>
+                  <Width>102</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Reversal)</DataPropertyName>
+                  <HeaderText>Pct Viability (Reversal)</HeaderText>
+                  <Name>Pct Viability (Reversal)</Name>
+                  <Visible>False</Visible>
+                  <Width>126</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Slope Diff(SlopeVia-SlopeRev)</DataPropertyName>
+                  <HeaderText>Slope Diff(SlopeVia-SlopeRev)</HeaderText>
+                  <Name>Slope Diff(SlopeVia-SlopeRev)</Name>
+                  <Width>171</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item3>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>22</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 min concentration</DataPropertyName>
+                  <HeaderText>IC501 min concentration</HeaderText>
+                  <Name>IC501 min concentration</Name>
+                  <Visible>False</Visible>
+                  <Width>139</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at min conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at min conc</HeaderText>
+                  <Name>IC501 pct act at min conc</Name>
+                  <Visible>False</Visible>
+                  <Width>143</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 max conc</DataPropertyName>
+                  <HeaderText>IC501 max conc</HeaderText>
+                  <Name>IC501 max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>95</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at max conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at max conc</HeaderText>
+                  <Name>IC501 pct act at max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>144</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>23</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+        </object>
+      </wingrid>
+    </tab>
+    <tab type="query" name="Find Active Compounds">
+      <greatis>
+        <object name="FormViewControl" assembly="ChemBioViz.NET.FormViewControl, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null" TreasuryVersion="1">
+          <AutoScroll>True</AutoScroll>
+          <BackColor>SteelBlue</BackColor>
+          <FormBorderStyle>None</FormBorderStyle>
+          <ClientSize>781, 567</ClientSize>
+          <Location>0, 28</Location>
+          <Text>PubChem New.ASSAYEDCOMPOUNDS</Text>
+          <Cursor>Arrow</Cursor>
+          <Dock>Fill</Dock>
+          <Name>FormViewControl</Name>
+          <object name="Label1" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>Compound ID</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Cursor>Default</Cursor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>204, 75</Location>
+            <Name>Label1</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>186, 20</Size>
+            <TabIndex>0</TabIndex>
+          </object>
+          <object name="PUBCHEM_COMPOUND_CID" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <BackColor>White</BackColor>
+            <ForeColor>WindowText</ForeColor>
+            <Cursor>IBeam</Cursor>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Location>399, 76</Location>
+            <Name>PUBCHEM_COMPOUND_CID</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>250, 20</Size>
+            <TabIndex>1</TabIndex>
+            <Tag>Text.PUBCHEM_COMPOUND_CID</Tag>
+            <ImeMode>NoControl</ImeMode>
+          </object>
+          <object name="BASE64_CDX" assembly="ChemControls.ChemDraw, ChemControls, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <ReadOnly>False</ReadOnly>
+            <Base64>VmpDRDAxMDAEAwIBAAAAAAAAAAAAAACAAAAAAAMADwAAAENoZW1EcmF3IDEyLjAI
+ABMAAABVbnRpdGxlZCBEb2N1bWVudAQCEAAAAAAAAAAAAAAAAAAAAAAAAQkIAABA
+swAAwI4CAgkIAACASQAAQEwBDQgBAAEIBwEAAToEAQABOwQBAABFBAEAATwEAQAA
+DAYBAAEPBgEAAQ0GAQAAQgQBAABDBAEAAEQEAQAACggIAAMAYADIAAMACwgIAAQA
+AADwAAMACQgEADOzAgAICAQAAAACAAcIBAAAAAEABggEAAAABAAFCAQAAAAeAAQI
+AgB4AAMIBAAAAHgAIwgBAAUMCAEAACgIAQABKQgBAAEqCAEAAQIIEAAAACQAAAAk
+AAAAJAAAACQAAQMCAAAAAgMCAAEAAAMyAAgA////////AAAAAAAA//8AAAAA////
+/wAAAAD//wAAAAD/////AAAAAP////8AAP//AAEkAAAAAgADAOQEBQBBcmlhbAQA
+5AQPAFRpbWVzIE5ldyBSb21hbgGAAwAAAAQCEAAAAAAAAAAAAAAA0AIAABwCFggE
+AAAAJAAYCAQAAAAkABkIAAAQCAIAAQAPCAIAAQAAAAAAAAA=
+</Base64>
+            <ChemDrawDocument mode="binary">AAEAAAD/////AQAAAAAAAAAPAQAAANMBAAACVmpDRDAxMDAEAwIBAAAAAAAAAAAAAACAAAAAAAMADwAAAENoZW1EcmF3IDEyLjAIABMAAABVbnRpdGxlZCBEb2N1bWVudAQCEAAAAAAAAAAAAAAAAAAAAAAAAQkIAABAswAAwI4CAgkIAACASQAAQEwBDQgBAAEIBwEAAToEAQABOwQBAABFBAEAATwEAQAADAYBAAEPBgEAAQ0GAQAAQgQBAABDBAEAAEQEAQAACggIAAMAYADIAAMACwgIAAQAAADwAAMACQgEADOzAgAICAQAAAACAAcIBAAAAAEABggEAAAABAAFCAQAAAAeAAQIAgB4AAMIBAAAAHgAIwgBAAUMCAEAACgIAQABKQgBAAEqCAEAAQIIEAAAACQAAAAkAAAAJAAAACQAAQMCAAAAAgMCAAEAAAMyAAgA////////AAAAAAAA//8AAAAA/////wAAAAD//wAAAAD/////AAAAAP////8AAP//AAEkAAAAAgADAOQEBQBBcmlhbAQA5AQPAFRpbWVzIE5ldyBSb21hbgGAAwAAAAQCEAAAAAAAAAAAAAAA0AIAABwCFggEAAAAJAAYCAQAAAAkABkIAAAQCAIAAQAPCAIAAQAAAAAAAAAL</ChemDrawDocument>
+            <AutoValidate>EnablePreventFocusChange</AutoValidate>
+            <BorderStyle>FixedSingle</BorderStyle>
+            <BackColor>LightGray</BackColor>
+            <Cursor>Default</Cursor>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <ForeColor>DarkGray</ForeColor>
+            <Location>204, 116</Location>
+            <Name>BASE64_CDX</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>445, 100</Size>
+            <TabIndex>3</TabIndex>
+            <Tag>Base64.BASE64_CDX</Tag>
+            <ImeMode>NoControl</ImeMode>
+          </object>
+          <object name="Label3" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>Molecular Formula</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Cursor>Default</Cursor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>204, 237</Location>
+            <Name>Label3</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>186, 20</Size>
+            <TabIndex>4</TabIndex>
+          </object>
+          <object name="Label4" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>Molecular Weight</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Cursor>Default</Cursor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>204, 281</Location>
+            <Name>Label4</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>186, 20</Size>
+            <TabIndex>6</TabIndex>
+          </object>
+          <object name="Molweight" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <BackColor>White</BackColor>
+            <ForeColor>WindowText</ForeColor>
+            <Cursor>IBeam</Cursor>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Location>396, 282</Location>
+            <Name>Molweight</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>253, 20</Size>
+            <TabIndex>7</TabIndex>
+            <Tag>Text.Molweight</Tag>
+            <ImeMode>NoControl</ImeMode>
+          </object>
+          <object name="PUBCHEM_OPENEYE_CAN_SMILES" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <BackColor>White</BackColor>
+            <ForeColor>WindowText</ForeColor>
+            <Cursor>IBeam</Cursor>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Location>396, 323</Location>
+            <Name>PUBCHEM_OPENEYE_CAN_SMILES</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>253, 20</Size>
+            <TabIndex>13</TabIndex>
+            <Tag>Text.PUBCHEM_OPENEYE_CAN_SMILES</Tag>
+            <ImeMode>NoControl</ImeMode>
+          </object>
+          <object name="TextBox1" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>396, 238</Location>
+            <Name>TextBox1</Name>
+            <Size>253, 20</Size>
+            <TabIndex>14</TabIndex>
+            <Tag>Text.Formula</Tag>
+          </object>
+          <object name="SMILES String" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>SMILES String</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>204, 323</Location>
+            <Name>SMILES String</Name>
+            <Size>186, 23</Size>
+            <TabIndex>15</TabIndex>
+          </object>
+          <object name="TextBox2" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>595, 424</Location>
+            <Name>TextBox2</Name>
+            <Size>151, 20</Size>
+            <TabIndex>16</TabIndex>
+            <Tag>Text.AID713ERADR:IC50</Tag>
+          </object>
+          <object name="Label2" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>IC50</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 422</Location>
+            <Name>Label2</Name>
+            <TabIndex>17</TabIndex>
+          </object>
+          <object name="TextBox3" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>228, 425</Location>
+            <Name>TextBox3</Name>
+            <Size>162, 20</Size>
+            <TabIndex>18</TabIndex>
+            <Tag>Text.AID630SMAD:% Inhibition</Tag>
+          </object>
+          <object name="TextBox4" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>228, 596</Location>
+            <Name>TextBox4</Name>
+            <Size>162, 20</Size>
+            <TabIndex>19</TabIndex>
+            <Tag>Text.AID741MRP:Slope % Viability (Tox)</Tag>
+          </object>
+          <object name="TextBox5" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>595, 593</Location>
+            <Name>TextBox5</Name>
+            <Size>151, 20</Size>
+            <TabIndex>20</TabIndex>
+            <Tag>Text.AID820CAPDR:IC50 mean</Tag>
+          </object>
+          <object name="Label5" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>% Inhibition</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>68, 422</Location>
+            <Name>Label5</Name>
+            <TabIndex>22</TabIndex>
+          </object>
+          <object name="Label6" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>% Viability (Tox)</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>68, 594</Location>
+            <Name>Label6</Name>
+            <Size>124, 23</Size>
+            <TabIndex>23</TabIndex>
+          </object>
+          <object name="Label7" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>IC50 mean</Text>
+            <BackColor>SteelBlue</BackColor>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 592</Location>
+            <Name>Label7</Name>
+            <TabIndex>24</TabIndex>
+          </object>
+          <object name="Label8" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleCenter</TextAlign>
+            <Text>Query for Active Compounds</Text>
+            <Font>Microsoft Sans Serif, 15.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>172, 30</Location>
+            <Name>Label8</Name>
+            <Size>477, 23</Size>
+            <TabIndex>25</TabIndex>
+          </object>
+          <object name="Label9" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>AID630SMAD Single Point</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold, Italic</Font>
+            <ForeColor>White</ForeColor>
+            <Location>68, 386</Location>
+            <Name>Label9</Name>
+            <Size>224, 23</Size>
+            <TabIndex>26</TabIndex>
+          </object>
+          <object name="Label10" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>AID713ERADR Secondary Screen</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold, Italic</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 382</Location>
+            <Name>Label10</Name>
+            <Size>268, 27</Size>
+            <TabIndex>27</TabIndex>
+          </object>
+          <object name="Label11" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>AID741MRP Secondary Screen</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold, Italic</Font>
+            <ForeColor>White</ForeColor>
+            <Location>68, 545</Location>
+            <Name>Label11</Name>
+            <Size>249, 32</Size>
+            <TabIndex>28</TabIndex>
+          </object>
+          <object name="Label12" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>AID820CAPDR Secondary Screen</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold, Italic</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 545</Location>
+            <Name>Label12</Name>
+            <Size>249, 23</Size>
+            <TabIndex>29</TabIndex>
+          </object>
+          <object name="TextBox6" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>228, 452</Location>
+            <Name>TextBox6</Name>
+            <Size>162, 20</Size>
+            <TabIndex>30</TabIndex>
+            <Tag>Text.AID630SMAD:PUBCHEM_ACTIVITY_OUTCOME</Tag>
+          </object>
+          <object name="Label13" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>Outcome</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>68, 448</Location>
+            <Name>Label13</Name>
+            <TabIndex>31</TabIndex>
+          </object>
+          <object name="TextBox7" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>228, 479</Location>
+            <Name>TextBox7</Name>
+            <Size>162, 20</Size>
+            <TabIndex>32</TabIndex>
+            <Tag>Text.AID630SMAD:PUBCHEM_ACTIVITY_SCORE</Tag>
+          </object>
+          <object name="Label14" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>Score</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>68, 475</Location>
+            <Name>Label14</Name>
+            <TabIndex>33</TabIndex>
+          </object>
+          <object name="TextBox8" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>595, 450</Location>
+            <Name>TextBox8</Name>
+            <Size>151, 20</Size>
+            <TabIndex>34</TabIndex>
+          </object>
+          <object name="Label15" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>R square</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 448</Location>
+            <Name>Label15</Name>
+            <TabIndex>35</TabIndex>
+          </object>
+          <object name="TextBox9" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>228, 623</Location>
+            <Name>TextBox9</Name>
+            <Size>162, 20</Size>
+            <TabIndex>36</TabIndex>
+            <Tag>Text.AID741MRP:Slope % Viability (Reversal)</Tag>
+          </object>
+          <object name="TextBox10" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>595, 623</Location>
+            <Name>TextBox10</Name>
+            <Size>151, 20</Size>
+            <TabIndex>37</TabIndex>
+            <Tag>Text.AID820CAPDR:IC50 standard deviation</Tag>
+          </object>
+          <object name="Label16" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>% Viability (Reversal)</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>68, 621</Location>
+            <Name>Label16</Name>
+            <Size>162, 23</Size>
+            <TabIndex>38</TabIndex>
+          </object>
+          <object name="TextBox11" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>595, 650</Location>
+            <Name>TextBox11</Name>
+            <Size>151, 20</Size>
+            <TabIndex>39</TabIndex>
+            <Tag>Text.AID820CAPDR:IC50 #1 Hill slope</Tag>
+          </object>
+          <object name="TextBox12" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Location>595, 676</Location>
+            <Name>TextBox12</Name>
+            <Size>151, 20</Size>
+            <TabIndex>40</TabIndex>
+            <Tag>Text.AID820CAPDR:IC50 #1 R-squared</Tag>
+          </object>
+          <object name="Label17" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>IC50 SD</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 620</Location>
+            <Name>Label17</Name>
+            <TabIndex>41</TabIndex>
+          </object>
+          <object name="Label18" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>Hillslope</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 647</Location>
+            <Name>Label18</Name>
+            <TabIndex>42</TabIndex>
+          </object>
+          <object name="Label19" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>MiddleLeft</TextAlign>
+            <Text>R squared</Text>
+            <Font>Microsoft Sans Serif, 9.75pt, style=Bold</Font>
+            <ForeColor>White</ForeColor>
+            <Location>478, 673</Location>
+            <Name>Label19</Name>
+            <TabIndex>43</TabIndex>
+          </object>
+        </object>
+      </greatis>
+    </tab>
+    <tab type="grid" name="AID713ERADR Table Report" cardview="0">
+      <wingrid>
+        <object name="FormViewControl" assembly="ChemBioViz.NET.FormViewControl, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null" TreasuryVersion="1">
+          <AutoScroll>True</AutoScroll>
+          <FormBorderStyle>None</FormBorderStyle>
+          <ClientSize>453, 313</ClientSize>
+          <Text>PubChem New.ASSAYEDCOMPOUNDS</Text>
+          <Dock>Fill</Dock>
+          <Name>FormViewControl</Name>
+          <Visible>False</Visible>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_COMPOUND_CID</DataPropertyName>
+                  <HeaderText>Compound ID</HeaderText>
+                  <Name>PUBCHEM_COMPOUND_CID</Name>
+                  <Width>86</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Formula</DataPropertyName>
+                  <HeaderText>Formula</HeaderText>
+                  <Name>Formula</Name>
+                  <Width>100</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_OPENEYE_CAN_SMILES</DataPropertyName>
+                  <HeaderText>PUBCHEM_OPENEYE_CAN_SMILES</HeaderText>
+                  <Name>PUBCHEM_OPENEYE_CAN_SMILES</Name>
+                  <Visible>False</Visible>
+                  <Width>188</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BASE64_CDX</DataPropertyName>
+                  <HeaderText>Structure</HeaderText>
+                  <Name>BASE64_CDX</Name>
+                  <Width>221</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Molweight</DataPropertyName>
+                  <DefaultCellStyle mode="constructor">
+                    <assembly>System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</assembly>
+                    <Format>F2</Format>
+                  </DefaultCellStyle>
+                  <HeaderText>Molweight</HeaderText>
+                  <Name>Molweight</Name>
+                  <Width>81</Width>
+                </object>
+              </Item4>
+              <Item5 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2200</DataPropertyName>
+                  <HeaderText>Table_2200</HeaderText>
+                  <Name>Table_2200</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item5>
+              <Item6 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2400</DataPropertyName>
+                  <HeaderText>Table_2400</HeaderText>
+                  <Name>Table_2400</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item6>
+              <Item7 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2300</DataPropertyName>
+                  <HeaderText>Table_2300</HeaderText>
+                  <Name>Table_2300</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item7>
+              <Item8 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2800</DataPropertyName>
+                  <HeaderText>Table_2800</HeaderText>
+                  <Name>Table_2800</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item8>
+              <Item9 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2600</DataPropertyName>
+                  <HeaderText>Table_2600</HeaderText>
+                  <Name>Table_2600</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item9>
+              <Item10 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2500</DataPropertyName>
+                  <HeaderText>Table_2500</HeaderText>
+                  <Name>Table_2500</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item10>
+              <Item11 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Table_2700</DataPropertyName>
+                  <HeaderText>Table_2700</HeaderText>
+                  <Name>Table_2700</Name>
+                  <Visible>False</Visible>
+                  <Width>72</Width>
+                </object>
+              </Item11>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Cursor>Default</Cursor>
+            <Dock>Fill</Dock>
+            <Location>0, 0</Location>
+            <Name />
+            <RightToLeft>No</RightToLeft>
+            <Size>453, 313</Size>
+            <TabIndex>18</TabIndex>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_OUTCOME</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_OUTCOME</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_OUTCOME</Name>
+                  <Width>194</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_SCORE</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_SCORE</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_SCORE</Name>
+                  <Width>177</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>% Inhibition</DataPropertyName>
+                  <HeaderText>% Inhibition</HeaderText>
+                  <Name>% Inhibition</Name>
+                  <Width>81</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>FRET Signal</DataPropertyName>
+                  <HeaderText>FRET Signal</HeaderText>
+                  <Name>FRET Signal</Name>
+                  <Width>80</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>19</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>Dose Response</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>267</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Visible>False</Visible>
+                  <Width>90</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>20</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>True</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC50</DataPropertyName>
+                  <HeaderText>IC50</HeaderText>
+                  <Name>IC50</Name>
+                  <Width>81</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Rsquare</DataPropertyName>
+                  <HeaderText>Rsquare</HeaderText>
+                  <Name>Rsquare</Name>
+                  <Width>81</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item2>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>21</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>True</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Dose Response</DataPropertyName>
+                  <HeaderText>Dose Response</HeaderText>
+                  <Name>Dose Response</Name>
+                  <Visible>False</Visible>
+                  <Width>93</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>22</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>True</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>BLOB_CONTENT</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>107</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>23</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>True</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Tox)</DataPropertyName>
+                  <HeaderText>Pct Viability (Tox)</HeaderText>
+                  <Name>Pct Viability (Tox)</Name>
+                  <Visible>False</Visible>
+                  <Width>102</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Reversal)</DataPropertyName>
+                  <HeaderText>Pct Viability (Reversal)</HeaderText>
+                  <Name>Pct Viability (Reversal)</Name>
+                  <Visible>False</Visible>
+                  <Width>126</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Slope Diff(SlopeVia-SlopeRev)</DataPropertyName>
+                  <HeaderText>Slope Diff(SlopeVia-SlopeRev)</HeaderText>
+                  <Name>Slope Diff(SlopeVia-SlopeRev)</Name>
+                  <Width>171</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item3>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>24</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>True</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 min concentration</DataPropertyName>
+                  <HeaderText>IC501 min concentration</HeaderText>
+                  <Name>IC501 min concentration</Name>
+                  <Visible>False</Visible>
+                  <Width>139</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at min conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at min conc</HeaderText>
+                  <Name>IC501 pct act at min conc</Name>
+                  <Visible>False</Visible>
+                  <Width>143</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 max conc</DataPropertyName>
+                  <HeaderText>IC501 max conc</HeaderText>
+                  <Name>IC501 max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>95</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at max conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at max conc</HeaderText>
+                  <Name>IC501 pct act at max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>144</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Location>0, 0</Location>
+            <Name />
+            <TabIndex>25</TabIndex>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+        </object>
+      </wingrid>
+    </tab>
+    <tab type="form" name="Biologist Activity Report">
+      <greatis>
+        <object name="FormViewControl" assembly="ChemBioViz.NET.FormViewControl, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null" TreasuryVersion="1">
+          <AutoScroll>True</AutoScroll>
+          <AutoValidate>EnablePreventFocusChange</AutoValidate>
+          <BackColor>ControlLightLight</BackColor>
+          <FormBorderStyle>None</FormBorderStyle>
+          <ClientSize>793, 596</ClientSize>
+          <Location>0, 28</Location>
+          <Text>PubChem New.ASSAYEDCOMPOUNDS</Text>
+          <Cursor>Arrow</Cursor>
+          <Dock>Fill</Dock>
+          <Font>Microsoft Sans Serif, 8.25pt</Font>
+          <ForeColor>ControlText</ForeColor>
+          <Name>FormViewControl</Name>
+          <RightToLeft>No</RightToLeft>
+          <Visible>False</Visible>
+          <object name="Table_2200" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_OUTCOME</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_OUTCOME</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_OUTCOME</Name>
+                  <Width>194</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_ACTIVITY_SCORE</DataPropertyName>
+                  <HeaderText>PUBCHEM_ACTIVITY_SCORE</HeaderText>
+                  <Name>PUBCHEM_ACTIVITY_SCORE</Name>
+                  <Width>177</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>% Inhibition</DataPropertyName>
+                  <HeaderText>% Inhibition</HeaderText>
+                  <Name>% Inhibition</Name>
+                  <Width>81</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>FRET Signal</DataPropertyName>
+                  <HeaderText>FRET Signal</HeaderText>
+                  <Name>FRET Signal</Name>
+                  <Width>80</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <RowTemplate control="true">
+              <object name="" assembly="System.Windows.Forms.DataGridViewRow, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                <DefaultCellStyle control="true">
+                  <object name="" assembly="System.Windows.Forms.DataGridViewCellStyle, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+                </DefaultCellStyle>
+                <Height>23</Height>
+              </object>
+            </RowTemplate>
+            <Cursor>Default</Cursor>
+            <Location>62, 132</Location>
+            <Name>Table_2200</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>733, 57</Size>
+            <TabIndex>16</TabIndex>
+            <Tag>Table_2200</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="Table_2400" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>BLOB_CONTENT</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>321</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Default</Cursor>
+            <Location>449, 237</Location>
+            <Name>Table_2400</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>346, 274</Size>
+            <TabIndex>18</TabIndex>
+            <Tag>Table_2400</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="Label1" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>Single Point Results</Text>
+            <BackColor>ControlLightLight</BackColor>
+            <Cursor>Arrow</Cursor>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <ForeColor>ControlText</ForeColor>
+            <Location>62, 104</Location>
+            <Name>Label1</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>260, 28</Size>
+            <TabIndex>24</TabIndex>
+          </object>
+          <object name="Label2" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <ImageAlign>BottomLeft</ImageAlign>
+            <TextAlign>BottomLeft</TextAlign>
+            <Text>AID713ERADR Secondary Screen</Text>
+            <BackColor>ControlLightLight</BackColor>
+            <Cursor>Arrow</Cursor>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <ForeColor>ControlText</ForeColor>
+            <Location>62, 192</Location>
+            <Name>Label2</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>343, 37</Size>
+            <TabIndex>25</TabIndex>
+          </object>
+          <object name="CBVDataGridView1" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC50</DataPropertyName>
+                  <HeaderText>IC50</HeaderText>
+                  <Name>IC50</Name>
+                  <Width>81</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Rsquare</DataPropertyName>
+                  <HeaderText>Rsquare</HeaderText>
+                  <Name>Rsquare</Name>
+                  <Width>81</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item2>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>62, 237</Location>
+            <Name>CBVDataGridView1</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>348, 59</Size>
+            <TabIndex>26</TabIndex>
+            <Tag>Table_2300</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView3" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>BLOB_CONTENT</DataPropertyName>
+                  <HeaderText>BLOB_CONTENT</HeaderText>
+                  <Name>BLOB_CONTENT</Name>
+                  <Width>107</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>449, 534</Location>
+            <Name>CBVDataGridView3</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>346, 274</Size>
+            <TabIndex>28</TabIndex>
+            <Tag>Table_2600</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="CBVDataGridView4" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Dose Response</DataPropertyName>
+                  <HeaderText>Dose Response</HeaderText>
+                  <Name>Dose Response</Name>
+                  <Visible>False</Visible>
+                  <Width>93</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item1>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>449, 833</Location>
+            <Name>CBVDataGridView4</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>346, 274</Size>
+            <TabIndex>29</TabIndex>
+            <Tag>Table_2800</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="Label5" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>Biologist Activity Report for Compound</Text>
+            <BackColor>ControlLightLight</BackColor>
+            <Cursor>Arrow</Cursor>
+            <Font>Microsoft Sans Serif, 15.75pt, style=Bold</Font>
+            <ForeColor>HotTrack</ForeColor>
+            <Location>74, 24</Location>
+            <Name>Label5</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>435, 31</Size>
+            <TabIndex>30</TabIndex>
+          </object>
+          <object name="TextBox1" assembly="System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <Text>991000</Text>
+            <BackColor>White</BackColor>
+            <ForeColor>HotTrack</ForeColor>
+            <ReadOnly>True</ReadOnly>
+            <Cursor>IBeam</Cursor>
+            <Font>Microsoft Sans Serif, 15.75pt, style=Bold</Font>
+            <Location>515, 21</Location>
+            <Name>TextBox1</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>259, 31</Size>
+            <TabIndex>31</TabIndex>
+            <Tag>Text.PUBCHEM_COMPOUND_CID</Tag>
+            <ImeMode>Disable</ImeMode>
+          </object>
+          <object name="CBVDataGridView6" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Tox)</DataPropertyName>
+                  <HeaderText>Pct Viability (Tox)</HeaderText>
+                  <Name>Pct Viability (Tox)</Name>
+                  <Visible>False</Visible>
+                  <Width>102</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Pct Viability (Reversal)</DataPropertyName>
+                  <HeaderText>Pct Viability (Reversal)</HeaderText>
+                  <Name>Pct Viability (Reversal)</Name>
+                  <Visible>False</Visible>
+                  <Width>126</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>Slope Diff(SlopeVia-SlopeRev)</DataPropertyName>
+                  <HeaderText>Slope Diff(SlopeVia-SlopeRev)</HeaderText>
+                  <Name>Slope Diff(SlopeVia-SlopeRev)</Name>
+                  <Width>171</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item3>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>60, 534</Location>
+            <Name>CBVDataGridView6</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>350, 78</Size>
+            <TabIndex>33</TabIndex>
+            <Tag>Table_2500</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+          <object name="Label6" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>BottomLeft</TextAlign>
+            <Text>AID741MRP Secondary Screen</Text>
+            <BackColor>ControlLightLight</BackColor>
+            <Cursor>Arrow</Cursor>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <ForeColor>ControlText</ForeColor>
+            <Location>62, 480</Location>
+            <Name>Label6</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>381, 31</Size>
+            <TabIndex>34</TabIndex>
+          </object>
+          <object name="Label7" assembly="System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+            <TextAlign>BottomLeft</TextAlign>
+            <Text>AID820CAPDR Secondary Screen</Text>
+            <BackColor>ControlLightLight</BackColor>
+            <Cursor>Arrow</Cursor>
+            <Font>Microsoft Sans Serif, 12pt, style=Bold, Italic</Font>
+            <ForeColor>ControlText</ForeColor>
+            <Location>62, 765</Location>
+            <Name>Label7</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>363, 43</Size>
+            <TabIndex>38</TabIndex>
+          </object>
+          <object name="CBVDataGridView8" assembly="CBVControls.CBVDataGridView, ChemBioViz.NET, Version=13.0.0.0, Culture=neutral, PublicKeyToken=null">
+            <Hidden>False</Hidden>
+            <Columns collection="true" itemtype="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <Item0 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 min concentration</DataPropertyName>
+                  <HeaderText>IC501 min concentration</HeaderText>
+                  <Name>IC501 min concentration</Name>
+                  <Visible>False</Visible>
+                  <Width>139</Width>
+                </object>
+              </Item0>
+              <Item1 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at min conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at min conc</HeaderText>
+                  <Name>IC501 pct act at min conc</Name>
+                  <Visible>False</Visible>
+                  <Width>143</Width>
+                </object>
+              </Item1>
+              <Item2 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 max conc</DataPropertyName>
+                  <HeaderText>IC501 max conc</HeaderText>
+                  <Name>IC501 max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>95</Width>
+                </object>
+              </Item2>
+              <Item3 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>IC501 pct act at max conc</DataPropertyName>
+                  <HeaderText>IC501 pct act at max conc</HeaderText>
+                  <Name>IC501 pct act at max conc</Name>
+                  <Visible>False</Visible>
+                  <Width>144</Width>
+                </object>
+              </Item3>
+              <Item4 control="true">
+                <object name="" assembly="System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+                  <DataPropertyName>PUBCHEM_CID</DataPropertyName>
+                  <HeaderText>PUBCHEM_CID</HeaderText>
+                  <Name>PUBCHEM_CID</Name>
+                  <Width>99</Width>
+                </object>
+              </Item4>
+            </Columns>
+            <Font>Microsoft Sans Serif, 8.25pt</Font>
+            <Cursor>Arrow</Cursor>
+            <Location>60, 833</Location>
+            <Name>CBVDataGridView8</Name>
+            <RightToLeft>No</RightToLeft>
+            <Size>350, 77</Size>
+            <TabIndex>39</TabIndex>
+            <Tag>Table_2700</Tag>
+            <Visible>False</Visible>
+            <ImeMode>NoControl</ImeMode>
+            <object name="" assembly="System.Windows.Forms.HScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Horizontal Scroll Bar</AccessibleName>
+              <Location>0, 133</Location>
+              <Name />
+              <TabIndex>0</TabIndex>
+              <Visible>False</Visible>
+            </object>
+            <object name="" assembly="System.Windows.Forms.VScrollBar, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+              <AccessibleName>Vertical Scroll Bar</AccessibleName>
+              <Location>223, 0</Location>
+              <Name />
+              <TabIndex>1</TabIndex>
+              <Visible>False</Visible>
+            </object>
+          </object>
+        </object>
+      </greatis>
+    </tab>
+  </tabs>
+  <queries>
+    <query id="1" name="Q2" description="PUBCHEM_COMPOUND_CID: 2077850" numhits="1" hitlistid="0" tabname="Query">
+      <components>
+        <comp tag="Text.PUBCHEM_COMPOUND_CID">2077850</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="1000" tableid="1000" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">2077850</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <query id="2" name="Q3" description="PUBCHEM_COMPOUND_CID: 2077850" numhits="1" hitlistid="0" tabname="Query">
+      <components>
+        <comp tag="Text.PUBCHEM_COMPOUND_CID">2077850</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="1000" tableid="1000" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">2077850</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <query id="3" name="Q4" description="IC50: &gt;0" numhits="389" hitlistid="0" tabname="Query">
+      <components>
+        <comp tag="Text.AID713ERADR:IC50">&gt;0</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="2304" tableid="2300" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">&gt;0</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <query id="4" name="Q5" description="Slope % Viability (Tox): &gt;0" numhits="21" hitlistid="0" tabname="Query">
+      <components>
+        <comp tag="Text.AID741MRP:Slope % Viability (Tox)">&gt;0</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="2504" tableid="2500" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">&gt;0</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <query id="5" name="Q6" description="IC50 mean: &gt;0" numhits="38" hitlistid="0" tabname="Query">
+      <components>
+        <comp tag="Text.AID820CAPDR:IC50 mean">&gt;0</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="2703" tableid="2700" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">&gt;0</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <query id="6" name="Q7" description="Slope % Viability (Tox): &gt;0" numhits="21" hitlistid="0" tabname="Query">
+      <components>
+        <comp tag="Text.AID741MRP:Slope % Viability (Tox)">&gt;0</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="2504" tableid="2500" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">&gt;0</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <query id="7" name="Q8" description="% Inhibition: &gt;80;IC50: &gt;0" numhits="2" hitlistid="0" tabname="Find Active Compounds">
+      <components>
+        <comp tag="Text.AID630SMAD:% Inhibition">&gt;80</comp>
+        <comp tag="Text.AID713ERADR:IC50">&gt;0</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="2203" tableid="2200" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">&gt;80</numericalCriteria>
+          </searchCriteriaItem>
+          <searchCriteriaItem id="2" fieldid="2304" tableid="2300" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">&gt;0</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <query id="8" name="Q9" description="IC50: &gt;0" numhits="389" hitlistid="0" tabname="Find Active Compounds">
+      <components>
+        <comp tag="Text.AID713ERADR:IC50">&gt;0</comp>
+      </components>
+      <criteria>
+        <searchCriteria xmlns="COE.SearchCriteria">
+          <searchCriteriaItem id="1" fieldid="2304" tableid="2300" modifier="">
+            <numericalCriteria negate="NO" operator="EQUAL" trim="NONE">&gt;0</numericalCriteria>
+          </searchCriteriaItem>
+        </searchCriteria>
+      </criteria>
+    </query>
+    <TreeStructure>
+      <Folder name="Queries" comments="">
+        <Query name="Q2" id="1" comments="PUBCHEM_COMPOUND_CID: 2077850 [1]" />
+        <Query name="Q3" id="2" comments="PUBCHEM_COMPOUND_CID: 2077850 [1]" />
+        <Query name="Q4" id="3" comments="IC50: &gt;0 [389]" />
+        <Query name="Q5" id="4" comments="Slope % Viability (Tox): &gt;0 [21]" />
+        <Query name="Q6" id="5" comments="IC50 mean: &gt;0 [38]" />
+        <Query name="Q7" id="6" comments="Slope % Viability (Tox): &gt;0 [21]" />
+        <Query name="Q8" id="7" comments="% Inhibition: &gt;80;IC50: &gt;0 [2]" />
+        <Query name="Q9" id="8" comments="IC50: &gt;0 [389]" />
+      </Folder>
+    </TreeStructure>
+  </queries>
+  <formprint landscape="0" marginL="100" marginR="100" marginT="100" marginB="100">
+    <header left="$F" center="CBVN Form Print" right="Page #" font="Arial,9,r,Black" />
+    <footer center="$D : $T" font="Arial,9,r,Black" />
+  </formprint>
+  <gridprint landscape="0" marginL="100" marginR="100" marginT="100" marginB="100">
+    <header left="$F" center="CBVN Grid Print" right="Page #" font="Arial,9,r,Black" />
+    <footer center="$D : $T" font="Arial,9,r,Black" />
+  </gridprint>
+</cbvnform>]]></xml></configuration>

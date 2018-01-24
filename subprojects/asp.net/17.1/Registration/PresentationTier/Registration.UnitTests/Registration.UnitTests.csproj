@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9F8C911D-E1F6-4135-B16B-086813BC6D7B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CambridgeSoft.COE.Registration.UnitTests</RootNamespace>
+    <AssemblyName>CambridgeSoft.COE.Registration.UnitTests</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <PublishUrl>http://localhost/CambridgeSoft.COE.Registration.UnitTests/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=1.1.0.188, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ExternalLibraries\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="CambridgeSoft.COE.RegistrationWebApp, Version=12.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\RegistrationWebApp\Bin\CambridgeSoft.COE.RegistrationWebApp.dll</HintPath>
+    </Reference>
+    <Reference Include="Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Csla.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling, Version=2.0.0.0, Culture=neutral, PublicKeyToken=21f4688e7671500b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=012e785312e03a6c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Framework\CambridgeSoft\CommonRuntimeLibraries\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\RegNumSequencerTests.cs" />
+    <Compile Include="BLL\BatchListTests.cs" />
+    <Compile Include="BLL\ComponentListTests.cs" />
+    <Compile Include="BLL\IdentifierListTest.cs" />
+    <Compile Include="BLL\MatcherTests.cs" />
+    <Compile Include="BLL\ProjectListTests.cs" />
+    <Compile Include="BLL\RegistryRecordTest.cs" />
+    <Compile Include="BLL\SequenceTests.cs" />
+    <Compile Include="CSBR\Csbr_113403.cs" />
+    <Compile Include="CSBR\Csbr_132551.cs" />
+    <Compile Include="Helpers\Authentication.cs" />
+    <Compile Include="Helpers\Registration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BLL\PropertyListTests.cs" />
+    <Compile Include="Using_AutoMapper.cs" />
+    <Compile Include="WebService\COERegistrationServicesTests.cs" />
+    <Compile Include="Web\Exercise_MatchResolver.cs" />
+    <Compile Include="Web\Exercise_RegNumSequencer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\CambridgeSoft\ServiceTier\CambridgeSoft.COE.Framework\CambridgeSoft.COE.Framework.csproj">
+      <Project>{4CF61F5B-2D46-4136-B277-5080A04B395B}</Project>
+      <Name>CambridgeSoft.COE.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\CambridgeSoft.COE.Registration.Services\CambridgeSoft.COE.Registration.Services.csproj">
+      <Project>{C7998560-8704-4DE0-B00E-A4657273B022}</Project>
+      <Name>CambridgeSoft.COE.Registration.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\CambridgeSoft.COE.RegistrationAdmin.Services\CambridgeSoft.COE.RegistrationAdmin.Services.csproj">
+      <Project>{D8F0637E-6B08-49D4-9046-B39AB9A0F61D}</Project>
+      <Name>CambridgeSoft.COE.RegistrationAdmin.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ServiceTier\RegistrationAddins\CambridgeSoft.COE.Registration.RegistrationAddins.csproj">
+      <Project>{67D3E7D3-CB0E-46B1-BEDB-D5511EBFD64F}</Project>
+      <Name>CambridgeSoft.COE.Registration.RegistrationAddins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Registration.Core\Registration.Core.csproj">
+      <Project>{16A590FA-FA5E-411F-B824-4B8E2E6E9F56}</Project>
+      <Name>Registration.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RegistrationWebApp\RegistrationWebApp.csproj">
+      <Project>{0AF2D977-5B4C-40E9-9AF1-CE93F3C92CF4}</Project>
+      <Name>RegistrationWebApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Registration.UnitTests.nunit" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.txt" />
+    <Content Include="Xslt\create.xslt" />
+    <Content Include="Xslt\createTemp.xslt" />
+    <Content Include="Xslt\read.xslt" />
+    <Content Include="Xslt\readTemp.xslt" />
+    <Content Include="Xslt\test.xml" />
+    <Content Include="Xslt\update.xslt" />
+    <Content Include="Xslt\updateTemp.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

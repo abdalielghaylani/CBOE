@@ -1,0 +1,122 @@
+.igwv_WeekViewFrame {
+	margin-top: 2px;
+	background-color: #FFFFD5; /* whitesmoke; */
+}
+
+.igwv_WeekCaptionHeader {
+	background-image: url(/ig_common/Images/XpBlue/MonthHeaderCaptionBlue_bg.png);
+	background-repeat: repeat-x;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-weight: bold;	
+	color: #FFFFFF;
+	height: 25px;
+	line-height: 25px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	text-align: left;
+	overflow: hidden;
+	border-collapse: collapse;
+	
+	
+	border-bottom: 1px solid #002D96;	
+	border-left: 1px solid #002D96;
+	border-right: 1px solid #002D96;
+	background-color: #002D96;
+}
+
+.igwv_NavButton { 
+	margin-top: -1px;
+	margin-bottom: 0px;
+	margin-left:5px;
+	margin-right:5px;
+	padding: 0px;
+	height: 25px;
+	line-height: 25px;
+	border: 0px;
+	background-image: url(/ig_common/Images/XpBlue/MonthHeaderCaptionBlue_bg.png);
+	background-position: top left;
+}
+	
+.igwv_DayHeader{
+	background-color: #ECE9D8; 
+	text-align: right;
+	height:20px; 
+	padding: 3px 2px 1px 0px;
+	border-bottom: 1px solid #ACA899;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 1px;
+	cursor:default;
+	font-size: 8pt;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+
+.igwv_ActiveDayHeader { 
+	background-color: #316AC5;
+	color: #FFFFFF;
+}
+
+.igwv_TodayHeader {
+	font-size: 8pt;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	height: 20px;
+	text-align: right;
+	padding: 3px 2px 1px 0px;
+	margin-left: 1px;
+	margin-right: 1px;
+	margin-top: 1px;
+	background-image: url(/ig_common/Images/XpBlue/TodayHeader_bg.png);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	background-color: #FFFFD5;
+}
+
+.igwv_Day {
+	font-family: Microsoft Sans Serif; 
+	font-size: 8pt;
+	overflow-x:hidden;	
+}
+
+.igwv_DayArea {
+	border: 1px solid #000000;
+	background-color: #FFFFD5;
+	
+}
+		
+.igwv_ActiveDay { 
+	/* background-color:lightblue; */
+
+}
+
+.igwv_Appointment { 
+	line-height:150%;
+	white-space:nowrap;
+	cursor: hand;
+	padding: 2px;
+	
+}
+
+.igwv_SelectedAppointment { 
+	background-color: #316AC5;
+	padding: 2px;
+	color: #FFFFFF;
+	cursor: hand;
+	margin-left:1px;
+}
+
+.igwv_ReminderIcon {
+	background-image: url(/ig_common/images/reminder.gif);
+	display: inline;
+	margin-right: 5px;
+	margin-left: 3px;
+	width: 16px;
+	height: 13px;	
+}
+
+.igwv_AllDayEvent { 
+	border-style:solid;
+	border-color:black;
+	border-width:1;
+	background-color:lightyellow;
+}

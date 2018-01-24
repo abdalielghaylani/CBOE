@@ -1,0 +1,140 @@
+﻿<MultiCompoundRegistryRecord>
+  <ID>0</ID>
+  <DateCreated>0001/01/01 05:00:00</DateCreated>
+  <DateLastModified>0001/01/01 05:00:00</DateLastModified>
+  <PersonCreated>15</PersonCreated>
+  <StructureAggregation></StructureAggregation>
+  <RegNumber>
+    <RegID>0</RegID>
+    <SequenceNumber>0</SequenceNumber>
+    <SequenceID>1</SequenceID>
+    <RegNumber></RegNumber>
+  </RegNumber>
+  <Approved update="yes">Rejected</Approved>
+  <IdentifierList></IdentifierList>
+  <ProjectList></ProjectList>
+  <PropertyList>
+    <Property name="REG_COMMENTS"></Property>
+  </PropertyList>
+  <ComponentList>
+    <Component insert="yes">
+      <ID>0</ID>
+      <ComponentIndex>0</ComponentIndex>
+      <Percentage>0</Percentage>
+      <Compound insert="yes">
+        <CompoundID>-1</CompoundID>
+        <DateCreated>0001/01/01 05:00:00</DateCreated>
+        <DateLastModified>0001/01/01 05:00:00</DateLastModified>
+        <PersonCreated>15</PersonCreated>
+        <Tag></Tag>
+        <PersonRegistered>15</PersonRegistered>
+        <RegNumber>
+          <RegID>0</RegID>
+          <SequenceNumber>0</SequenceNumber>
+          <SequenceID>2</SequenceID>
+          <RegNumber></RegNumber>
+        </RegNumber>
+        <BaseFragment>
+          <ID>0</ID>
+          <Structure>
+            <StructureID>0</StructureID>
+            <StructureFormat></StructureFormat>
+            <Structure molWeight="0" insert="yes">VmpDRDAxMDAEAwIBAAAAAAAAAAAAAACAAAAAAAMADwAAAENoZW1EcmF3IDEyLjAE
+AhAAzWz8/7Vg//8Sx1YARBQcAQEJCAAAAAAAAAAAAAIJCAAAANwCAAAoAg0IAQAB
+CAcBAAE6BAEAATsEAQAARQQBAAE8BAEAAAwGAQABDwYBAAENBgEAAEIEAQAAQwQB
+AABEBAEAAAoICAADAGAAyAADAAsICAAEAAAA8AADAAkIBAAzswIACAgEAAAAAgAH
+CAQAAAABAAYIBAAAAAQABQgEAAAAHgAECAIAeAADCAQAAAB4ACMIAQAFDAgBAAAo
+CAEAASkIAQABKggBAAECCBAAAAAkAAAAJAAAACQAAAAkAAEDAgAAAAIDAgABAAAD
+MgAIAP///////wAAAAAAAP//AAAAAP////8AAAAA//8AAAAA/////wAAAAD/////
+AAD//wABJAAAAAIAAwDkBAUAQXJpYWwEAOQEDwBUaW1lcyBOZXcgUm9tYW4BgC0A
+AAAEAhAAAAAAAAAAAAAAANwCAAAoAhYIBAAAACQAGAgEAAAAJAAZCAAAEAgCAAEA
+DwgCAAEAA4ABAAAABAIQAM1s/P+1YP//EsdWAEQUHAEEgAIAAAAAAggAFPBCAF9p
+LgAKAAIAAgAAAASAAwAAAAACCAAMfCUAX2kuAAoAAgADAAAABIAEAAAAAAIIABKr
+GwCM2REACgACAAQAAAAEgAUAAAAAAggAsMMzAAAAAAAKAAIABQAAAASABgAAAAAC
+CABO3EsAjNkRAAoAAgAGAAAABIAHAAAAAAIIAKhPFgDxSkgACgACAAcAAAAEgAgA
+AAAAAggADHwlAB5GYQAKAAIACAAAAASACQAAAAACCAAMfCUAWZ5/AAoAAgAJAAAA
+BIAKAAAAAAIIAAAAAACG0QkACgACAAoAAgQCAAgAKwQCAAAASAQAAAaAAAAAAAAC
+CADMrAMAhukFAAQCEADNbPz/hukFAGbGAwCGqQ0AIwgBAAACBwIAAAAABw0AAQAA
+AAMAYADIAAMATwAAAAAEgAsAAAAAAggA7BtSAPFKSAAKAAIACwAAAASADAAAAAAC
+CAAU8EIAHkZhAAoAAgAMAAAABIANAAAAAAIIAOwbUgA8KHsACgACAA0AAAAEgA4A
+AAAAAggAFPBCAFwKlQAKAAIADgAAAASADwAAAAACCADsG1IA7uuuAAoAAgAPAAAA
+BIAQAAAAAAIIABTwQgAMzsgACgACABAAAAAEgBEAAAAAAggA7BtSAGvL4QAKAAIA
+EQAAAASAEgAAAAACCAAU8EIA/az7AAoAAgASAAAABIATAAAAAAIIAKhPFgBEnJgA
+CgACABMAAAAEgBQAAAAAAggADHwlAGN+sgAKAAIAFAAAAASAFQAAAAACCACsAFMA
+RDwYAQoAAgAVAAIEAgAIACsEAgAAAEgEAAAGgAAAAAAAAggAeK1WAERUFAEEAhAA
+eG1PAERUFAESx1YARBQcAQEHAQAFAgcCAAAAAAcNAAEAAAADAGAAyAADAE8AAAAA
+BIAWAAAAAAIIAMIpKAD9rPsACgACABYAAgQCAAgAKwQCAAEASAQAAAaAAAAAAAAC
+CACO1isA/cT3AAQCEACOliQA/cT3ACjwKwAwuAYBIwgBAAACBwIAAAAFBwEAAQAH
+DgABAAAAAwBgAMgAAwBPSAAAAAAFgBcAAAAKAAIAFwAEBgQAEwAAAAUGBAAUAAAA
+AAAFgBgAAAAKAAIAGAAEBgQACQAAAAUGBAATAAAAAAAFgBkAAAAKAAIAGQAEBgQA
+BQAAAAUGBAAGAAAAAAAFgBoAAAAKAAIAGgAEBgQACwAAAAUGBAAMAAAAAAAFgBsA
+AAAKAAIAGwAEBgQADAAAAAUGBAANAAAAAAAFgBwAAAAKAAIAHAAEBgQADQAAAAUG
+BAAOAAAAAAAFgB0AAAAKAAIAHQAEBgQADgAAAAUGBAAPAAAAAAAFgB4AAAAKAAIA
+HgAEBgQADwAAAAUGBAAQAAAAAAAFgB8AAAAKAAIAHwAEBgQAEAAAAAUGBAARAAAA
+AAAFgCAAAAAKAAIAIAAEBgQAAgAAAAUGBAALAAAAAAAFgCEAAAAKAAIAIQAEBgQA
+BAAAAAUGBAAKAAAAAAYCAAIAAAAFgCIAAAAKAAIAIgAEBgQACAAAAAUGBAAJAAAA
+AAYCAAIAAwYCAAEACwYQACMAAAAAAAAAAAAAABgAAAAAAAWAIwAAAAoAAgAjAAQG
+BAAHAAAABQYEAAgAAAAAAAWAJAAAAAoAAgAkAAQGBAADAAAABQYEAAcAAAAAAAWA
+JQAAAAoAAgAlAAQGBAACAAAABQYEAAYAAAAAAAWAJgAAAAoAAgAmAAQGBAARAAAA
+BQYEABIAAAAAAAWAJwAAAAoAAgAnAAQGBAAEAAAABQYEAAUAAAAAAAWAKAAAAAoA
+AgAoAAQGBAADAAAABQYEAAQAAAAAAAWAKQAAAAoAAgApAAQGBAACAAAABQYEAAMA
+AAAABgIAAgADBgIAAQALBhAAJQAAACAAAAAkAAAAKAAAAAAABYAqAAAACgACACoA
+BAYEABIAAAAFBgQAFQAAAAAGAgACAAAABYArAAAACgACACsABAYEABIAAAAFBgQA
+FgAAAAAAAAAAAAAAAAA=
+</Structure>
+            <UseNormalization>T</UseNormalization>
+            <NormalizedStructure></NormalizedStructure>
+          </Structure>
+        </BaseFragment>
+        <PropertyList>
+          <Property name="CMP_COMMENTS"></Property>
+          <Property name="STRUCTURE_COMMENTS_TXT"></Property>
+          <Property name="CHEM_NAME_AUTOGEN"></Property>
+        </PropertyList>
+      </Compound>
+    </Component>
+  </ComponentList>
+  <BatchList>
+    <Batch insert="yes">
+      <BatchID>0</BatchID>
+      <BatchNumber>0</BatchNumber>
+      <FullRegNumber></FullRegNumber>
+      <DateCreated>0001/01/01 05:00:00</DateCreated>
+      <PersonCreated>15</PersonCreated>
+      <PersonRegistered>15</PersonRegistered>
+      <DateLastModified>0001/01/01 05:00:00</DateLastModified>
+      <StatusID></StatusID>
+      <PropertyList>
+        <Property name="SCIENTIST_ID" pickListDomainID="3"></Property>
+        <Property name="CREATION_DATE"></Property>
+        <Property name="NOTEBOOK_TEXT"></Property>
+        <Property name="AMOUNT"></Property>
+        <Property name="AMOUNT_UNITS" pickListDomainID="2"></Property>
+        <Property name="APPEARANCE"></Property>
+        <Property name="PURITY"></Property>
+        <Property name="PURITY_COMMENTS"></Property>
+        <Property name="SAMPLEID"></Property>
+        <Property name="SOLUBILITY"></Property>
+        <Property name="BATCH_COMMENT"></Property>
+        <Property name="STORAGE_REQ_AND_WARNINGS"></Property>
+        <Property name="FORMULA_WEIGHT"></Property>
+        <Property name="BATCH_FORMULA"></Property>
+        <Property name="PERCENT_ACTIVE"></Property>
+      </PropertyList>
+      <BatchComponentList>
+        <BatchComponent insert="yes">
+          <ID>0</ID>
+          <BatchID>0</BatchID>
+          <MixtureComponentID>0</MixtureComponentID>
+          <CompoundID>0</CompoundID>
+          <ComponentIndex>0</ComponentIndex>
+          <OrderIndex>1</OrderIndex>
+          <PropertyList>
+            <Property name="PERCENTAGE"></Property>
+          </PropertyList>
+          <BatchComponentFragmentList update="yes"></BatchComponentFragmentList>
+        </BatchComponent>
+      </BatchComponentList>
+    </Batch>
+  </BatchList>
+</MultiCompoundRegistryRecord>

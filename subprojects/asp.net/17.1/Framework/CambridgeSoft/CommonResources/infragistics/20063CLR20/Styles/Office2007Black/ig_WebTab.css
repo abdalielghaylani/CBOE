@@ -1,0 +1,42 @@
+.igwtMainBlack2k7 {
+	background-color: #535353;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: white;
+	padding-right: 12px;
+	padding-left: 12px;
+	
+	border: 1px solid #8D8E90;
+	
+
+}	
+
+.igwtTabNormalBlack2k7 {
+
+	font-size: 11px;
+	background-image:url(../Office2007Black/WebTab/igwt_tab_normal.jpeg);
+	background-repeat: repeat-x;
+	color: white;
+
+
+
+}
+
+.igwtTabHoverBlack2k7 {
+	font-size: 11px;
+	background-image:url(../Office2007Black/WebTab/igwt_tab_hover_mid.jpeg);
+	background-repeat: repeat-x;
+	
+}
+
+.igwtTabSelectedBlack2k7 {
+	font-size: 11px;
+	color: black;
+	background-color: #D4D8DE;
+	
+}
+
+.igwtSeparatorBlack2k7 {
+	width: 20px;
+	
+}

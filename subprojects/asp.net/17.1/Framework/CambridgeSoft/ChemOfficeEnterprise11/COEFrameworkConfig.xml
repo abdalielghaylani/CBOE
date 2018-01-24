@@ -1,0 +1,1274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- THIS FILE HAS TO BE PLACED IN LOCALAPPLICATIONDATA SPECIAL FOLDER. SEE README.TXT FOR DETAILS -->
+<configuration>
+  <configSections>
+    <section name="instrumentationConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.Configuration.InstrumentationConfigurationSection, Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72"/>
+    <!--This indicates the type that will handle the coeConfiguration -->
+    <section name="coeConfiguration" type="CambridgeSoft.COE.Framework.Common.COEConfigurationSettings, CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="mappings" type="CambridgeSoft.COE.Framework.Common.SelectClassMappingsHandler, CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="coeHomeSettings" type="CambridgeSoft.COE.Framework.Common.COEHomeSettings, CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <sectionGroup name="SSOConfiguration">
+      <section name="ProviderConfiguration" type="CambridgeSoft.COE.Security.Services.SSOConfigurationProvider,SingleSignOn"/>
+      <section name="COELDAPConfiguration" type="CambridgeSoft.COE.Security.Services.COELDAPConfiguration,SingleSignOn"/>
+      <section name="LDAPConfiguration" type="CambridgeSoft.COE.Security.Services.SSOConfigurationLDAP,SingleSignOn"/>
+      <section name="CSSecurity" type="CambridgeSoft.COE.Security.Services.SSOConfigurationCSSecurity,SingleSignOn"/>
+    </sectionGroup>
+  </configSections>
+  <coeConfiguration singleSignOnURL="http://localhost/coesinglesignon/singlesignon.asmx" manageConfigurationSettings="false">
+    <dbmsTypes>
+      <add name="ORACLE" dataSource="orcl" useProxy="true" databaseGlobalUser="COEUSER">
+        <sqlGeneratorData>
+          <add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" molFileFormat="V2000" />
+        </sqlGeneratorData>
+      </add>
+	  <add name="SQLSERVER" dataSource=""/>
+      <add name="MSACCESS" dataSource=""/>
+    </dbmsTypes>
+    <databases>
+      <add name="REGDB" owner="REGDB" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="BIOSARDB" owner="BIOSARDB" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="CHEMINVDB2" owner="CHEMINVDB2" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="CHEMACXDB" owner="CHEMACXDB" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="SAMPLE" owner="SAMPLE" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="CS_SECURITY" owner="CS_SECURITY" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="COEDB" owner="COEDB" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="COEUSER" owner="COEUSER" dbmsType="ORACLE" password="ORACLE" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="CHEMSOURCEDB" owner="CHEMSOURCEDB" dbmsType="ORACLE" password="ORACLE" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="COETEST" owner="COETEST" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+      <add name="DOCMGR" owner="DOCMGR" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
+    </databases>
+    <applicationDefaults displayCulture="en-US" dateFormat="" safeExportSize="500">
+      <searchService>
+        <add name="saveQueryHistory" value="YES"/>
+        <add name="returnPartialHitlist" value="YES"/>
+        <add name="partialHitlistCommitSize" value="1500"/>
+        <add name="partialHitlistFirstCommitSize" value="100"/>
+        <add name="maxRecordCount" value="30000"/>
+      </searchService>
+      <chemDrawEmbed>
+        <add name="showPluginDownload" value="YES"/>
+        <add name="pluginDownloadURL" value="/CFServerASP/Clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_17.1.msi"/>
+      </chemDrawEmbed>
+	  <caching>
+		<dataview>
+		  <add name="cache" value="ServerAndClientCache" /> <!-- allowable values are: Disabled | ClientCache | ServerCache | ServerAndClientCache -->
+		  <add name="absoluteExpiration" value="" /> <!-- mm/dd/aaaa HH:mm:ss -->
+		  <add name="slidingExpiration" value="20" /> <!-- int representing minutes -->
+		  <add name="defaultPriority" value="Normal" /> <!-- allowable values are: AboveNormal | BelowNormal | Default | High | Low | Normal | NotRemovable -->
+		</dataview>
+		<searchCriteria>
+		  <add name="cache" value="ServerAndClientCache" /> <!-- allowable values are: Disabled | ClientCache | ServerCache | ServerAndClientCache -->
+		  <add name="absoluteExpiration" value="" /> <!-- mm/dd/aaaa HH:mm:ss -->
+		  <add name="slidingExpiration" value="20" /> <!-- int representing minutes -->
+		  <add name="defaultPriority" value="Normal" /> <!-- allowable values are: AboveNormal | BelowNormal | Default | High | Low | Normal | NotRemovable -->
+		</searchCriteria>
+		<form>
+		  <add name="cache" value="ServerAndClientCache" /> <!-- allowable values are: Disabled | ClientCache | ServerCache | ServerAndClientCache -->
+		  <add name="absoluteExpiration" value="" /> <!-- mm/dd/aaaa HH:mm:ss -->
+		  <add name="slidingExpiration" value="20" /> <!-- int representing minutes -->
+		  <add name="defaultPriority" value="Normal" /> <!-- allowable values are: AboveNormal | BelowNormal | Default | High | Low | Normal | NotRemovable -->
+		</form>
+	  </caching>
+    </applicationDefaults>
+    <applications>
+      <add name="CBVN" database="SAMPLE">
+      </add>
+      <add name="SAMPLE" database="SAMPLE">
+        <!-- Table names are inside tableEditor tag -->
+        <tableEditor>
+          <add name="MOLTABLE" description="" primaryKeyField="ID" sequenceName="Mol_SEQ">
+            <!-- TableEditorData tag contains column names and data types. -->
+            <tableEditorData>
+              <add name="ID" dataType="number"/>
+              <add name="MOLNAME" dataType="string"/>
+              <add name="MOL_ID" dataType="number"/>
+              <add name="BASE64_CDX" dataType="string" isStructure="true" structureType="BASE64_CDX"/>
+            </tableEditorData>
+          </add>
+          <add name="SYNONYMS_R" description="" primaryKeyField="ID" sequenceName="">
+            <tableEditorData>
+              <add name="ID" dataType="number"/>
+              <add name="SYNONYM_R" dataType="string"/>
+              <add name="SYN_ID" dataType="number" lookupLocation="database" lookupID="MOLTABLE.MOL_ID" lookupField="MOLTABLE.MOLNAME" isStructureLookupField="false"/>
+            </tableEditorData>
+          </add>
+        </tableEditor>
+      </add>
+      <add name="REGISTRATION" database="REGDB">
+        <linkParameters>
+          <add name="LOG_BULKREGISTRATION" formGroupId="4004" searchCriteriaId="0"/>
+        </linkParameters>
+        <tableEditor>
+          <add name="VW_PICKLISTDOMAIN" description="Manage  VW_PICKLISTDOMAIN" primaryKeyField="ID" sequenceName="SEQ_PICKLISTDOMAIN" editPriv="EDIT_PICKLIST_TABLE" addPriv="ADD_PICKLIST_TABLE" deletePriv="HIDEME" displayName="PICKLISTDOMAIN">
+            <tableEditorData>
+              <add name="ID" dataType="number" alias="Id"/>
+              <add name="DESCRIPTION" dataType="string" alias="Description">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 500. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="500"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="EXT_TABLE" dataType="string" alias="External Table">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 100. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="100"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="EXT_ID_COL" dataType="string" alias="External Column ID">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 30. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="30"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="EXT_DISPLAY_COL" dataType="string" alias="External Column Display">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 30. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="30"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="EXT_SQL_FILTER" dataType="string" alias="Aditional SQL Filter">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 2000. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="2000"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+			  <add name="EXT_SQL_SORTORDER" dataType="string" alias="Aditional SQL SortOrder">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 200. ">
+                    <parameter>
+                      <add name="min" value="1" />
+                      <add name="max" value="200" />
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+			  <add name="LOCKED" dataType="string" lookupLocation="innerXml_ACTIVECASES"
+                defaultValue="F" alias="Is Locked?" hidden="TRUE" />
+            </tableEditorData>
+          </add>
+          <add name="VW_PICKLIST" description="Manage VW_PICKLIST" primaryKeyField="ID" sequenceName="SEQ_PICKLIST" editPriv="EDIT_PICKLIST_TABLE" addPriv="ADD_PICKLIST_TABLE" deletePriv="HIDEME" displayName="PICKLIST VALUES">
+            <tableEditorData>
+              <add name="ID" dataType="number"/>
+              <add name="PICKLISTDOMAIN" dataType="number" lookupLocation="database" lookupID="VW_PICKLISTDOMAIN.ID" lookupField="VW_PICKLISTDOMAIN.DESCRIPTION"/>
+              <add name="PICKLISTVALUE" dataType="string">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 500. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="1000"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+			   <add name="ACTIVE" dataType="string" lookupLocation="innerXml_ACTIVECASES"
+                alias="Is Active?">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required" />
+                </validationRule>
+              </add>
+              <add name="SORTORDER" dataType="NUMBER" alias="Sort Order" />
+            </tableEditorData>
+          </add>
+          <add name="VW_PROJECT" description="Add a new project" primaryKeyField="PROJECTID" editPriv="EDIT_PROJECTS_TABLE" addPriv="ADD_PROJECTS_TABLE" deletePriv="DELETE_PROJECTS_TABLE" displayName="PROJECTS" disableChildTables="True" sequenceName="SEQ_PROJECTS">
+            <tableEditorData>
+              <add name="PROJECTID" dataType="number"/>
+              <add name="NAME" dataType="string" alias="Name" isUnique="true">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 250. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="250"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="DESCRIPTION" dataType="string" alias="Description">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 500. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="500"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="ACTIVE" dataType="string" lookupLocation="innerXml_ACTIVECASES" alias="Is Active?">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="TYPE" dataType="string" lookupLocation="innerXml_PROJECTTYPES" alias="Type">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+            </tableEditorData>
+            <childTable>
+              <add name="COEDB.PEOPLE" primaryKeyField="PERSON_ID" parentPK="VW_PEOPLEPROJECT.PROJECTID" childPK="VW_PEOPLEPROJECT.PERSONID" displayName="PEOPLE"  sqlFilter="PEOPLE.ACTIVE = 1" sqlSortOrder="PEOPLE.USER_ID ASC">
+                <childTableData>
+                  <add name="PERSON_ID" dataType="number"/>
+                  <add name="USER_ID" dataType="string"/>
+                </childTableData>
+              </add>
+            </childTable>
+          </add>
+          <add name="COEDB.PEOPLE" description="People" primaryKeyField="PERSON_ID" editPriv="MANAGE_PEOPLE_PROJECT" addPriv="hidden" deletePriv="hidden" displayName="PEOPLE" disableChildTables="False" disableTable="True">
+            <tableEditorData>
+              <add name="PERSON_ID" dataType="number"/>
+              <add name="USER_ID" dataType="string"/>
+            </tableEditorData>
+            <childTable>
+              <add name="REGDB.VW_PROJECT" primaryKeyField="PROJECTID" parentPK="REGDB.VW_PEOPLEPROJECT.PERSONID" childPK="REGDB.VW_PEOPLEPROJECT.PROJECTID" displayName="PROJECTS">
+                <childTableData>
+                  <add name="PROJECTID" dataType="number" />
+                  <add name="NAME" dataType="string" />
+                </childTableData>
+              </add>
+            </childTable>
+          </add>
+          <add name="VW_NOTEBOOKS" description="Add a new notebook" primaryKeyField="NOTEBOOKID" sequenceName="SEQ_NOTEBOOKS" editPriv="EDIT_NOTEBOOKS_TABLE" addPriv="ADD_NOTEBOOKS_TABLE" deletePriv="HIDEME" displayName="NOTEBOOKS">
+            <tableEditorData>
+              <add name="NOTEBOOKID" dataType="number"/>
+              <add name="NAME" dataType="string" alias="Name" isUnique="true">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 250. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="250"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="DESCRIPTION" dataType="string" alias="Description">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 500. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="500"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="ACTIVE" dataType="string" lookupLocation="innerXml_ACTIVECASES" alias="Is Active?">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+			   <add name="PERSONID" dataType="NUMBER" lookupLocation="database" defaultValue="&amp;&amp;loggedInUser" 
+                lookupID="COEDB.PEOPLE.PERSON_ID" lookupField="COEDB.PEOPLE.USER_CODE"
+                isStructureLookupField="false" alias="User Code" lookupFilter="LENGTH(TRIM(COEDB.PEOPLE.USER_CODE)) > 0">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required" />
+                </validationRule>
+              </add>
+			  <add name="SORTORDER" dataType="NUMBER" alias="Sort Order" />
+            </tableEditorData>
+          </add>
+          <add name="VW_FRAGMENTTYPE" description="Add new fragment type" primaryKeyField="ID" sequenceName="SEQ_FRAGMENTTYPE" editPriv="EDIT_SOLVATES_TABLE||EDIT_SALT_TABLE" addPriv="ADD_SOLVATES_TABLE||ADD_SALT_TABLE" deletePriv="DELETE_SOLVATES_TABLE||DELETE_SALT_TABLE" displayName="FRAGMENT TYPES">
+            <tableEditorData>
+              <add name="ID" dataType="number"/>
+              <add name="DESCRIPTION" dataType="string" alias="Description" isUnique="true">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 100. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="100"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+            </tableEditorData>
+          </add>
+          <add name="VW_FRAGMENT" description="Manage your fragments table" primaryKeyField="FRAGMENTID" sequenceName="SEQ_FRAGMENTS" editPriv="EDIT_SOLVATES_TABLE||EDIT_SALT_TABLE" addPriv="ADD_SOLVATES_TABLE||ADD_SALT_TABLE" deletePriv="DELETE_SOLVATES_TABLE||DELETE_SALT_TABLE" displayName="FRAGMENTS" maxPageSize="50">
+            <tableEditorData>
+              <add name="FRAGMENTID" dataType="number" alias="ID" isUsedCheck="REGDB.GUI_UTIL.CHECKFRAGMENTUSED" />
+              <add name="STRUCTURE" dataType="string" isStructure="true" structureType="BASE64_CDX" alias="Structure">
+                <validationRule>
+                  <add name="chemicallyValid" errorMessage="This field must be a chemical structure. "/>
+                </validationRule>
+              </add>
+              <add name="FRAGMENTTYPEID" dataType="number" isStructure="false" lookupLocation="database" lookupID="VW_FRAGMENTTYPE.ID" lookupField="VW_FRAGMENTTYPE.DESCRIPTION" isStructureLookupField="false" alias="Fragment Type">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="CODE" dataType="string" alias="Code" isUnique="true" >
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 10. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="10"/>
+                    </parameter>
+                  </add>
+                  <add name="custom" errorMessage="You have entered invalid characters. ">
+                    <parameter>
+                      <add name="clientscript" value="var inValidChars = new RegExp('[^0-9a-zA-Z -]'); arguments.IsValid = !arguments.Value.match(inValidChars);"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="DESCRIPTION" dataType="string" alias="Description">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 100. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="100"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="MOLWEIGHT" dataType="molweight" alias="MW">
+                <validationRule>
+                  <add name="positiveNumber" errorMessage="This field must be a positive number. "/>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="FORMULA" dataType="formula" alias="Formula">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+            </tableEditorData>
+          </add>
+          <add name="VW_SEQUENCE" description="Add a new sequence" primaryKeyField="SEQUENCEID" sequenceName="SEQ_SEQUENCE" displayName="SEQUENCES" editPriv="EDIT_SEQUENCES_TABLE"
+            addPriv="ADD_SEQUENCES_TABLE" deletePriv="DELETE_SEQUENCES_TABLE">
+            <tableEditorData>
+              <add name="SEQUENCEID" dataType="number"/>
+              <add name="REGNUMBERLENGTH" dataType="number" lookupLocation="innerXml_REGNUMBERLENGTHS" alias="Registration number padded length">
+                <validationRule>
+                  <add name="requiredField" errorMessage="'Registration number padded length' is required"/>
+                </validationRule>
+              </add>
+              <add name="NEXTINSEQUENCE" dataType="number" alias="Next in sequence">
+                <validationRule>
+                  <add name="positiveNumber" errorMessage="This field must be a positive number. "/>
+                  <add name="textLength" errorMessage="The length must be between 1 and 10. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="9"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="'Next in sequence' is required"/>
+                </validationRule>
+              </add>
+              <add name="PREFIX" dataType="string" isUnique="true">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 150. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="150"/>
+                    </parameter>
+                  </add>
+                  <add name="custom" errorMessage="The characters &lt;,&gt;,&amp;,&quot;,?,+,=,',#,% are not allowed as a prefix" >
+                    <parameter>
+                      <add name="clientScript" value="var patt=new RegExp(&quot;[&lt;&gt;,&amp;,\&quot;,\',?,+,=,#,%]&quot;);arguments.IsValid =!patt.test(document.getElementById(source.controltovalidate).value);"></add>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="PREFIXDELIMITER" dataType="string">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 1. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="1"/>
+                    </parameter>
+                  </add>
+                  <add name="custom" errorMessage="The characters &lt;,&gt;,&amp;,&quot;,?,+,=,',#,% are not allowed as a prefix delimiter" >
+                    <parameter>
+                      <add name="clientScript" value="var patt=new RegExp(&quot;[&lt;&gt;,&amp;,\&quot;,\',?,+,=,#,%]&quot;);arguments.IsValid =!patt.test(document.getElementById(source.controltovalidate).value);"></add>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="SUFFIXDELIMITER" dataType="string">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 1. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="1"/>
+                    </parameter>
+                  </add>
+                  <add name="custom" errorMessage="The characters &lt;,&gt;,&amp;,&quot;,?,+,=,',#,% are not allowed as a suffix delimiter" >
+                    <parameter>
+                      <add name="clientScript" value="var patt=new RegExp(&quot;[&lt;&gt;,&amp;,\&quot;,\',?,+,=,#,%]&quot;);arguments.IsValid =!patt.test(document.getElementById(source.controltovalidate).value);"></add>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="SALTSUFFIXTYPE" dataType="string" lookupLocation="innerXml_SALTSUFFIXGENERATORS" alias="Salt Suffix Type"/>
+              <add name="BATCHDELIMITER" dataType="string">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 1. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="1"/>
+                    </parameter>
+                  </add>
+                  <add name="custom" errorMessage="The characters &lt;,&gt;,&amp;,&quot;,?,+,=,',#,% are not allowed as a batch delimiter" >
+                    <parameter>
+                      <add name="clientScript" value="var patt=new RegExp(&quot;[&lt;&gt;,&amp;,\&quot;,\',?,+,=,#,%]&quot;);arguments.IsValid =!patt.test(document.getElementById(source.controltovalidate).value);"></add>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="BATCHNUMLENGTH" dataType="number" lookupLocation="innerXml_BATCHNUMBERLENGTHS" alias="Batch number padded length">
+                <validationRule>
+                  <add name="requiredField" errorMessage="'Batch number padded length' is required"/>
+                </validationRule>
+              </add>
+              <add name="EXAMPLE" dataType="string">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 50. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="50"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="ACTIVE" dataType="string" lookupLocation="innerXml_ACTIVECASES" alias="Is Active?">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="TYPE" dataType="string" lookupLocation="innerXml_SEQUENCETYPES" alias="Type">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="SITEID" dataType="number" lookupLocation="database" lookupID="COEDB.SITES.SITE_ID" lookupField="COEDB.SITES.SITE_NAME" isStructureLookupField="false" alias="Site">
+              </add>
+			  <add name="SORTORDER" dataType="NUMBER" alias="Sort Order" />
+            </tableEditorData>
+          </add>
+          <add name="VW_IDENTIFIERTYPE" description="Add a new identifier" primaryKeyField="ID" sequenceName="SEQ_IDENTIFIERS" editPriv="EDIT_IDENTIFIER_TYPE_TABLE" addPriv="ADD_IDENTIFIER_TYPE_TABLE" deletePriv="HIDEME" displayName="IDENTIFIERS TYPES">
+            <tableEditorData>
+              <add name="ID" dataType="number"/>
+              <add name="NAME" dataType="string" alias="Name" isUnique="true">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 250. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="250"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="DESCRIPTION" dataType="string" alias="Description">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 500. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="500"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="ACTIVE" dataType="string" lookupLocation="innerXml_ACTIVECASES" alias="Is Active?">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="TYPE" dataType="string" lookupLocation="innerXml_IDENTIFIERTYPES" alias="Type">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+            </tableEditorData>
+          </add>
+		  <add name="VW_SITES" description="Manage  Sites" primaryKeyField="ID" sequenceName="SEQ_SITES" editPriv="EDIT_SITES_TABLE" addPriv="ADD_SITES_TABLE" deletePriv="DELETE_SITES_TABLE" displayName="SITES">
+            <tableEditorData>
+              <add name="ID" dataType="number" alias="Id" />
+              <add name="SITECODE" dataType="string" alias="Sites Id">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 100. ">
+                    <parameter>
+                      <add name="min" value="1" />
+                      <add name="max" value="100" />
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required" />
+                </validationRule>
+              </add>
+              <add name="SITENAME" dataType="string" alias="Sites Name">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 100. ">
+                    <parameter>
+                      <add name="min" value="1" />
+                      <add name="max" value="100" />
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+             </tableEditorData>
+          </add>
+        </tableEditor>
+        <innerXml>
+          <add name="ACTIVECASES">
+            <innerXmlData>
+              <add name="trueValue" value="T" display="Yes"/>
+              <add name="falseValue" value="F" display="No"/>
+            </innerXmlData>
+          </add>
+          <add name="REGNUMBERLENGTHS">
+            <innerXmlData>
+              <add name="four" value="4" display="4 digits" />
+              <add name="five" value="5" display="5 digits" />
+              <add name="six" value="6" display="6 digits" />
+              <add name="seven" value="7" display="7 digits" />
+              <add name="eight" value="8" display="8 digits" />
+              <add name="nine" value="9" display="9 digits" />
+            </innerXmlData>
+          </add>
+          <add name="SALTSUFFIXGENERATORS">
+            <innerXmlData>
+              <add name="Code" value="code" display="Codes"/>
+              <add name="Formula" value="formula" display="Formulae"/>
+              <add name="ID" value="id" display="IDs"/>
+              <add name="Descriptions" value="desc" display="Descriptions"/>
+            </innerXmlData>
+          </add>
+          <add name="BATCHNUMBERLENGTHS">
+            <innerXmlData>
+              <add name="None" value="-1" display="No padding"/>
+              <add name="two" value="2" display="2 digits"/>
+              <add name="three" value="3" display="3 digits"/>
+              <add name="four" value="4" display="4 digits"/>
+              <add name="five" value="5" display="5 digits"/>
+              <add name="six" value="6" display="6 digits"/>
+            </innerXmlData>
+          </add>
+          <add name="PROJECTTYPES">
+            <innerXmlData>
+              <add name="allValue" value="A" display="All"/>
+              <add name="batchValue" value="B" display="Batch"/>
+              <add name="registryValue" value="R" display="Registry"/>
+            </innerXmlData>
+          </add>
+          <add name="IDENTIFIERTYPES">
+            <innerXmlData>
+              <add name="allValue" value="A" display="All"/>
+              <add name="batchValue" value="B" display="Batch"/>
+              <add name="compoundValue" value="C" display="Compound"/>
+              <add name="registryValue" value="R" display="Registry"/>
+			  <add name="structureValue" value="S" display="Base Fragment"/>
+            </innerXmlData>
+          </add>
+          <add name="SEQUENCETYPES">
+            <innerXmlData>
+              <add name="allValue" value="A" display="All"/>
+              <add name="compoundValue" value="C" display="Compound"/>
+              <add name="registryValue" value="R" display="Registry"/>
+            </innerXmlData>
+          </add>
+        </innerXml>
+        <applicationHome>
+          <groups>
+            <add name="RegistrationPanelContents" enabled="true" coeIdentifier="REGISTRATION" pageSectionTarget="panel" display="Registration System" newWindow="false" color="blue" helpText="Click on the links below to enter to any of the sections">
+              <links>
+                <add name="SubmitComponent" newWindow="false" display="Submit New Component" tip="Submit a new component registry" privilege="ADD_COMPOUND_TEMP" url="~/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx?registrytype=component" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="SubmitMixture" newWindow="false" display="Submit New Mixture" tip="Submit a new mixture registry" privilege="ADD_COMPONENT" url="~/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx?registrytype=mixture" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="ReviewRegister" newWindow="false" display="Review Register" tip="Review Register temporary registries " privilege="SEARCH_TEMP" url="~/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=ALL" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="review_register.png"/>
+                <add name="SearchTemp" newWindow="false" display="Search Temp" tip="Search for temporary registries" privilege="SEARCH_TEMP" url="~/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=ST" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_temp.png"/>
+                <add name="SearchRegistry" newWindow="false" display="Search Registry" tip="Search for registered registries" privilege="SEARCH_REG" url="~/Forms/ViewMixture/ContentArea/ViewMixtureSearch.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_registry.png"/>
+                <add name="RegAdmin" newWindow="location=no,status=no,scrollbars=1,toolbar=no,resizable=yes,width=1000,height=650,top=0,left=50,menubar=no,dialog=yes,minimizable=yes" display="Customize Registration" tip="Customize your Registration system adding new properties" privilege="CONFIG_REG" url="~/Forms/RegistrationAdmin/ContentArea/Default.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+              </links>
+            </add>
+            <add name="RegistrationDash1" enabled="true" display="System Information" coeIdentifier="REGISTRATION" pageSectionTarget="dashBoard" color="Blue" helpText="System Information">
+              <customItems>
+				<add name="ApprovedTempRegistries" display="" privilege="REGISTER_TEMP" className="CambridgeSoft.COE.Registration.Services.RegSystem.GetApprovedTempRegistriesCount" assembly="CambridgeSoft.COE.Registration.Services">
+                  <itemConfig>
+                    <add name="cssForText" value="DashBoardText" />
+                    <add name="text" value="&lt;a href='/COERegistration/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=AR'&gt;{0} records to register&lt;/a&gt;" />
+                  </itemConfig>
+                </add>
+				<add name="SubmittedTempRegistries" display="" privilege="SET_APPROVED_FLAG" className="CambridgeSoft.COE.Registration.Services.RegSystem.GetTempRegistriesCount" assembly="CambridgeSoft.COE.Registration.Services">
+                  <itemConfig>
+                    <add name="cssForText" value="DashBoardText"/>
+                    <add name="text" value="&lt;a href='/COERegistration/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=RR'&gt;{0} records to approve&lt;/a&gt;"/>
+                  </itemConfig>
+                </add>
+                <add name="TempRegistries" display="" privilege="SEARCH_TEMP" className="CambridgeSoft.COE.Registration.Services.RegSystem.GetTempRegistriesCount" assembly="CambridgeSoft.COE.Registration.Services">
+                  <itemConfig>
+                    <add name="cssForText" value="DashBoardText"/>
+                    <add name="text" value="&lt;a href='/COERegistration/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=ALL'&gt;{0} records to review&lt;/a&gt;"/>
+                  </itemConfig>
+                </add>
+                <add name="AllTempRegistries" display="" privilege="SEARCH_TEMP" className="CambridgeSoft.COE.Registration.Services.RegSystem.GetAllTempRegistriesCount" assembly="CambridgeSoft.COE.Registration.Services">
+                  <itemConfig>
+                    <add name="cssForText" value="DashBoardText"/>
+                    <add name="text" value="&lt;a href='/COERegistration/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=ST'&gt;{0} temporary records&lt;/a&gt;"/>
+                  </itemConfig>
+                </add>
+                <add name="PermRegistries" display="" privilege="" className="CambridgeSoft.COE.Registration.Services.RegSystem.GetPermRegistriesCount" assembly="CambridgeSoft.COE.Registration.Services">
+                  <itemConfig>
+                    <add name="cssForText" value="DashBoardText"/>
+                    <add name="text" value="&lt;a href='/COERegistration/Forms/ViewMixture/ContentArea/ViewMixtureSearch.aspx'&gt;{0} registered records&lt;/a&gt;"/>
+                  </itemConfig>
+                </add>
+                <add name="DuplicateComponents" display="" privilege="MANAGE_SYSTEM_DUPLICATES" className="CambridgeSoft.COE.Registration.Services.RegSystem.GetDuplicateComponentsCount" assembly="CambridgeSoft.COE.Registration.Services">
+                  <itemConfig>
+                    <add name="cssForText" value="DashBoardText"/>
+                    <add name="text" value="&lt;a href='/COERegistration/Forms/ComponentDuplicates/ContentArea/ComponentDuplicatesSearch.aspx?Caller=RD'&gt;{0} duplicates entries&lt;/a&gt;"/>
+                  </itemConfig>
+                </add>
+              </customItems>
+            </add>
+          </groups>
+        </applicationHome>
+      </add>
+      <add name="ACX_WEBSERVICE" database="COEDB" saveQueryHistory="NO" returnPartialHitlist="NO" useRealTableNames="YES" cacheDataview="YES"/>
+      <add name="CHEMBIOVIZ" database="COEDB" saveQueryHistory="YES" returnPartialHitlist="YES" partialHitlistCommitSize="1500" partialHitlistFirstCommitSize="100" maxRecordCount="15000">
+        <parentApplication>
+          <add name="REGISTRATION">
+            <applicationBehaviour>
+              <generalOptions>
+                <add name="MarkedHitsMax" value="500"/>
+              </generalOptions>
+              <chemDrawOptions chemDrawPluginPolicy="Available">
+                <!-- Allowable values are: Available | Unavailable | Detect -->
+              </chemDrawOptions>
+              <leftPanelOptions>
+                <queryManagement visible="YES" enabled="YES"/>
+                <!-- Allowable values are YES | NO -->
+                <exportManagement visible="NO" enabled="NO"/>
+                <!-- Allowable values are YES | NO -->
+              </leftPanelOptions>
+              <menuOptions>
+              </menuOptions>
+              <actionLinks>
+              </actionLinks>
+            </applicationBehaviour>
+          </add>
+        </parentApplication>
+        <formBehaviour>
+          <form formId="4002">
+            <leftPanelOptions>
+              <queryManagement visible="YES" enabled="YES"/>
+              <!-- Allowable values are YES | NO -->
+              <exportManagement visible="NO" enabled="NO"/>
+              <!-- Allowable values are YES | NO -->
+            </leftPanelOptions>
+            <actionLinks>
+              <link id="RegisterMarkedLink" href="/COERegistration/Forms/BulkRegisterMarked/ContentArea/RegisterMarked.aspx?COESavedHitListID={0}" text="Register Marked" target="_parent" tooltip="Registration - Register" cssClass="MenuItemLink" enabled="true" privileges="REGISTER_TEMP"/>
+              <link id="DeleteMarkedLink" href="/COERegistration/Forms/BulkRegisterMarked/ContentArea/DeleteMarked.aspx?COESavedHitListID={0}&amp;IsTemporal=true" text="Delete Marked" target="_parent" tooltip="Registration - Delete" cssClass="MenuItemLink" enabled="true" privileges="DELETE_TEMP" confirmationMessage="Are you sure you want to delete the marked registries?"/>
+			  <link id="ApproveMarkedLink" href="/COERegistration/Forms/BulkRegisterMarked/ContentArea/ApproveMarked.aspx?COEHitListID={0}" text="Approve Marked" target="_parent" tooltip="Registration - Approve" cssClass="MenuItemLink" enabled="true" privileges="SET_APPROVED_FLAG" confirmationMessage="Are you sure you want to approve the marked registries?" />
+            </actionLinks>
+          </form>
+          <form formId="4003">
+            <leftPanelOptions>
+              <queryManagement visible="YES" enabled="YES"/>
+              <!-- Allowable values are YES | NO -->
+              <exportManagement visible="NO" enabled="NO"/>
+              <!-- Allowable values are YES | NO -->
+            </leftPanelOptions>
+            <actionLinks>
+              <link id="SendToInventoryLink" href="/COERegistration/Forms/SendToInventory/ContentArea/SendToInventory.aspx?HitListID={0}" text="Create container(s)" target="_parent" tooltip="Create Inventory Containers" cssClass="MenuItemLink" enabled="true" privileges="INV_CREATE_CONTAINER" />
+              <link id="DeleteMarkedLink" href="/COERegistration/Forms/BulkRegisterMarked/ContentArea/DeleteMarked.aspx?COESavedHitListID={0}&amp;IsTemporal=false" text="Delete Marked" target="_parent" tooltip="Registration - Delete" cssClass="MenuItemLink" enabled="true" privileges="DELETE_REG || DELETE_BATCH" confirmationMessage="Are you sure you want to delete the marked registries?" />
+              <link id="LockMarkedLink" href="/COERegistration/Forms/BulkRegisterMarked/ContentArea/LockMarked.aspx?COEHitListID={0}" text="Lock Marked" target="_parent" tooltip="Registration - Lock" cssClass="MenuItemLink" enabled="true" privileges="SET_LOCKED_FLAG" confirmationMessage="Are you sure you want to lock the marked registries?" />
+            </actionLinks>
+          </form>
+		  <form formId="4004">
+			  <chemDrawOptions chemDrawPluginPolicy="Available" /> 
+			  <leftPanelOptions>
+				  <queryManagement visible="NO" enabled="NO" /> 
+				  <exportManagement visible="NO" enabled="NO" /> 
+				  <searchPreferences visible="YES" enabled="YES" /> 
+			  </leftPanelOptions>
+			  <menuOptions>
+				  <restoreMenu visible="YES" /> 
+				  <refineMenu visible="YES" /> 
+				  <queryMenu visible="YES" enabled="YES" /> 
+				  <markedMenu visible="NO" /> 
+				  <exportMenu visible="NO" enabled="NO" /> 
+				  <printMenu visible="YES" enabled="YES" /> 
+				  <resultsPerPageMenu visible="YES" /> 
+			  </menuOptions>
+		  </form>
+          <form formId="4005">
+            <leftPanelOptions>
+              <queryManagement visible="NO" enabled="NO"/>
+              <!-- Allowable values are YES | NO -->
+              <exportManagement visible="NO" enabled="NO"/>
+              <!-- Allowable values are YES | NO -->
+              <searchPreferences visible="NO" enabled="NO"/>
+            </leftPanelOptions>
+            <menuOptions>
+              <restoreMenu visible="NO"/>
+              <refineMenu visible="YES"/>
+              <queryMenu visible="NO" enabled="NO"/>
+              <markedMenu visible="NO"/>
+              <exportMenu visible="NO"/>
+              <printMenu visible="NO" enabled="NO"/>
+              <resultsPerPageMenu visible="YES"/>
+            </menuOptions>
+          </form>
+          <form formId="4006">
+            <chemDrawOptions chemDrawPluginPolicy="Available">
+              <!-- Allowable values are: Available | Unavailable | Detect -->
+            </chemDrawOptions>
+            <leftPanelOptions>
+              <queryManagement visible="YES" enabled="YES" />
+              <!-- Allowable values are YES | NO -->
+              <exportManagement visible="NO" enabled="NO"/>
+              <!-- Allowable values are YES | NO -->
+              <searchPreferences visible="NO" enabled="NO"/>
+            </leftPanelOptions>
+            <menuOptions>
+              <restoreMenu visible="NO"/>
+              <refineMenu visible="YES"/>
+              <queryMenu visible="NO" enabled="NO"/>
+              <markedMenu visible="NO"/>
+              <exportMenu visible="NO"/>
+              <printMenu visible="NO" enabled="NO"/>
+              <resultsPerPageMenu visible="YES"/>
+              <sendToMenu visible="NO" enabled="NO" />
+            </menuOptions>
+          </form>
+		   <form formId="4019">
+			<chemDrawOptions chemDrawPluginPolicy="Available">
+			</chemDrawOptions>
+			<leftPanelOptions>
+			  <queryManagement visible="NO" enabled="NO" />
+			  <exportManagement visible="NO" enabled="NO" />
+			  <searchPreferences visible="NO" enabled="NO" />
+			</leftPanelOptions>
+			<menuOptions>
+			  <restoreMenu visible="NO" />
+			  <refineMenu visible="YES" />
+			  <queryMenu visible="NO" enabled="NO" />
+			  <markedMenu visible="NO" />
+			  <exportMenu visible="NO" enabled="NO" />
+			  <printMenu visible="YES" enabled="YES" />
+			  <resultsPerPageMenu visible="YES" />
+			</menuOptions>
+          </form>
+          <form formId="5002">
+            <chemDrawOptions chemDrawPluginPolicy="Detect"/>
+            <leftPanelOptions>
+              <queryManagement visible="YES" enabled="YES"/>
+              <exportManagement visible="NO" enabled="NO"/>
+              <searchPreferences visible="YES" enabled="YES"/>
+            </leftPanelOptions>
+            <menuOptions>
+              <restoreMenu visible="YES"/>
+              <refineMenu visible="YES"/>
+              <queryMenu visible="YES" enabled="YES"/>
+              <markedMenu visible="YES"/>
+              <exportMenu visible="YES"/>
+              <printMenu visible="YES" enabled="YES"/>
+              <resultsPerPageMenu visible="YES"/>
+            </menuOptions>
+          </form>
+        </formBehaviour>
+        <applicationHome>
+          <groups>
+            <add name="ChemBioVizPanelContents" enabled="true" coeIdentifier="CHEMBIOVIZ" pageSectionTarget="panel" display="ChemBioViz" newWindow="false" color="lightBlue" helpText="Search Databases using custom forms.">
+              <links>
+                <add name="SelectForm" display="Select Search Form" privilege="" tip="Select a search form to use" url="~/Forms/Public/ContentArea/SelectForm.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="Mdi_Cascade.png" newWindow="false"/>
+                <add name="ManageDataview" display="Manage dataviews" privilege="" tip="Manage dataviews" url="/COEManager/Forms/DataViewManager/HomePage/Home.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection/Database_Aqua/PNG" linkIconFileName="Data_View.png" newWindow="false"/>
+              </links>
+            </add>
+          </groups>
+        </applicationHome>
+      </add>
+      <add name="ADMINISTRATION" database="COEDB"/>
+      <add name="MANAGER" database="COEDB">
+        <applicationHome>
+          <groups>
+            <add name="DataviewManagerPanelContents" enabled="true" coeIdentifier="COEMANAGER_DV" pageSectionTarget="panel" display="DataView Manager" newWindow="false" color="lightBlue" helpText="Define your database schemas, tables and relationships, so they can be searched using ChemBioViz">
+              <links>
+                <add name="CreateFromMaster" display="Create from Master" privilege="CAN_INSERT" tip="Create new dataview from master dataview" url="~/Forms/DataViewManager/ContentArea/EnterNameDescription.aspx?Action=Clone_DV&amp;SelDVId=0" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection/Database_Aqua/PNG" linkIconFileName="Data_View.png"/>
+                <add name="EditDataview" display="Edit Existing" privilege="CAN_UPDATE" tip="Edit existing dataview" url="~/Forms/DataViewManager/ContentArea/NewDataView.aspx?Action=Edit_DV" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Edit_Master.png"/>
+                <add name="CreateFromExisting" display="Create from Existing" privilege="CAN_INSERT" tip="Create a new dataview from existing dataview" url="~/Forms/DataViewManager/ContentArea/NewDataView.aspx?Action=Clone_DV" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Create_From_Existing.png"/>
+                <add name="DeleteExisting" display="Delete Existing Dataview" privilege="CAN_DELETE" tip="Delete a dataview" url="~/Forms/DataViewManager/ContentArea/DeleteDataView.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection//Database_Aqua/PNG" linkIconFileName="Database_Drop.png"/>
+                <add name="EditMaster" display="Edit Master" privilege="CAN_UPDATE" tip="Edit master dataview" url="~/Forms/DataViewManager/ContentArea/DataviewBoard.aspx?IsMaster=true" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Edit_Existing.png"/>
+                <add name="PageControlSettings" display="Control Privileges" privilege="HIDEME" tip="COEPageControlSettings" url="~/Forms/PageControlSettings/ContentArea/PageControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+                
+				<add name="ConfigControlSettings" display="Manage Configuration" privilege="CAN_UPDATE" tip="Update application settings" url="~/Forms/ConfigControlSettings/ContentArea/ConfigControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+              </links>
+            </add>
+            <add name="DataviewManagerDash1" enabled="false" display="DataView Manager" coeIdentifier="COEMANAGER_DV" pageSectionTarget="dashBoard" color="lightBlue" newWindow="false" helpText="Define your database schemas, tables and relationships, so they can be searched using ChemBioViz">
+              <customItems>
+                <add name="NumberOfDataViews" display="" privilege="CAN_INSERT" className="CambridgeSoft.COE.Manager.GetTotalDataViewsDashItem" assembly="CambridgeSoft.COE.Manager">
+                  <itemConfig>
+                    <add name="styleForNumber" value="color:red"/>
+                    <add name="styleForText" value="font-size:16px"/>
+                  </itemConfig>
+                </add>
+              </customItems>
+            </add>
+            <add name="DataviewManagerDash2" enabled="false" display="Something Different" coeIdentifier="COEMANAGER_DV" pageSectionTarget="dashBoard" color="lightBlue" newWindow="false" helpText="Define your database schemas, tables and relationships, so they can be searched using ChemBioViz">
+              <customItems>
+                <add name="NumberOfDataViews" display="" privilege="CAN_INSERT" className="CambridgeSoft.COE.Manager.TotalSchemas" assembly="CambridgeSoft.COE.Manager"/>
+              </customItems>
+            </add>
+            <add name="SecurityManagerPanelContents" enabled="true" coeIdentifier="COE" pageSectionTarget="panel" display="Security Manager" newWindow="false" color="darkBlue" helpText="Manage access to applications including creation of users and roles.">
+              <links>
+                <add name="ChangePassword" display="Change Password" tip="Change your user password" privilege="CSS_CHANGE_PASSWORD" url="~/Forms/SecurityManager/ContentArea/ChangePassword.aspx?appName=All CS Applications" linkIconSize="small" linkIconBasePath="Icon_Library/windows_Collection/Windows_PNG/PNG" linkIconFileName="keys.png" newWindow="location=no,status=no,scrollbars=no,toolbar=no,resizable=no,width=650,height=250,top=100,left=100,menubar=no,dialog=yes,minimizable=no"/>
+                <add name="ManageUsers" display="Manage Users" tip="Administer user accounts" privilege="CSS_EDIT_USER||CSS_DELETE_USER||CSS_CREATE_USER" url="~/Forms/SecurityManager/ContentArea/ManageUsers.aspx?appName=All CS Applications" linkIconSize="small" linkIconBasePath="Icon_Library/custom_Collection/PNG" linkIconFileName="manage_users.png" newWindow="location=no,status=no,scrollbars=no,toolbar=no,resizable=no,width=650,height=650,top=100,left=100,menubar=no,dialog=yes,minimizable=no"/>
+                <add name="ManageRoles" display="Manage Roles" tip="Administer application roles" privilege="CSS_EDIT_ROLE||CSS_CREATE_ROLE||CSS_DELETE_ROLE" url="~/Forms/SecurityManager/ContentArea/ManageRoles.aspx?appName=COE" linkIconSize="small" linkIconBasePath="Icon_Library/custom_Collection/PNG" linkIconFileName="manage_roles.png" newWindow="location=no,status=no,scrollbars=no,toolbar=no,resizable=no,width=650,height=650,top=100,left=100,menubar=no,dialog=yes,minimizable=no"/>
+                <add name="PageControlSettings" display="Control Privileges" privilege="HIDEME" tip="Configure Page Control Settings" url="~/Forms/PageControlSettings/ContentArea/PageControlSettings.aspx?PS_Caller=SEC&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+                <add name="TableEditor" newWindow="width=980" display="Table Editor" privilege="CAN_UPDATE||CAN_INSERT||CAN_DELETE" tip="Edit generic tables and views" url="~/Forms/TableEditor/ContentArea/TableEditor.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="table_editor.png"/>
+                <add name="ConfigControlSettings" display="Manage Configuration" privilege="CAN_UPDATE" tip="Update application settings" url="~/Forms/ConfigControlSettings/ContentArea/ConfigControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+                <add name="ManageGroups" display="Manage Groups" tip="Administer groups" url="~/Forms/SecurityManager/ContentArea/ManageGroups.aspx?appName=All CS Applications" privilege="CSS_MANAGE_GROUPS" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/windows_PNG/PNG" linkIconFileName="manage_users.png" />
+              </links>
+            </add>
+            <add name="SecurityManagerDash1" enabled="false" display="Security Manager" coeIdentifier="COE" pageSectionTarget="dashBoard" color="darkBlue" helpText="Manage access to applications including creation of users and roles.">
+              <customItems>
+                <add name="NumberOfUsers" display="" privilege="CAN_INSERT" className="CambridgeSoft.COE.Manager.NumberOfUsers" assembly="CambridgeSoft.COE.Manager">
+                  <itemConfig>
+                    <add name="styleForNumber" value="color:green"/>
+                    <add name="styleForText" value="font-size:14px"/>
+                  </itemConfig>
+                </add>
+              </customItems>
+            </add>
+          </groups>
+        </applicationHome>
+        <!-- Table names are inside tableEditor tag -->
+        <tableEditor>
+          <add name="SITES" description="" primaryKeyField="SITE_ID" sequenceName="SITES_SEQ">
+            <!-- TableEditorData tag contains column names and data types. -->
+            <tableEditorData>
+              <add name="SITE_ID" dataType="number"/>
+              <add name="SITE_CODE" dataType="string" alias="Site Code">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 50. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="50"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="SITE_NAME" dataType="string" alias="Site Name">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 250. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="250"/>
+                    </parameter>
+                  </add>
+                </validationRule>
+              </add>
+              <add name="ACTIVE" dataType="number" lookupLocation="innerXml_ACTIVECASES" alias="Is Active?">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+            </tableEditorData>
+          </add>
+        </tableEditor>
+        <innerXml>
+          <add name="ACTIVECASES">
+            <innerXmlData>
+              <add name="trueValue" value="1" display="Yes"/>
+              <add name="falseValue" value="0" display="No"/>
+            </innerXmlData>
+          </add>
+        </innerXml>
+      </add>
+      <add name="CHEMACX" database="CHEMACXDB"/>
+      <add name="CHEMINV" database="CHEMINVDB2"/>
+      <add name="CHEMSOURCE" database="CHEMSOURCEDB">
+        <tableEditor>
+          <add name="COUNTRY" description="Manage your list of countries" primaryKeyField="COUNTRYID" sequenceName="COUNTRYSEQ">
+            <tableEditorData>
+              <add name="COUNTRYID" dataType="number"/>
+              <add name="REGIONID" dataType="number" isStructure="false" lookupLocation="database" lookupID="REGION.REGIONID" lookupField="REGION.REGIONNAME" isStructureLookupField="false" alias="Region">
+              </add>
+              <add name="COUNTRYNAME" dataType="string" alias="Name">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 0 and 100. ">
+                    <parameter>
+                      <add name="min" value="0"/>
+                      <add name="max" value="100"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="ACTIVE" dataType="number" lookupLocation="innerXml_ACTIVECASES" alias="Is Active?">
+                <validationRule>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="PHONEMASK" dataType="string" alias="Phone Example">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 5 and 25. ">
+                    <parameter>
+                      <add name="min" value="5"/>
+                      <add name="max" value="25"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+            </tableEditorData>
+          </add>
+          <add name="CURRENCY" description="Manage your list of currencies" primaryKeyField="CURRENCYID" sequenceName="CURRENCYSEQ">
+            <tableEditorData>
+              <add name="CURRENCYID" dataType="number"/>
+              <add name="CURRENCYNAME" dataType="string" alias="Name">
+                <validationRule>
+                  <add name="textLength" errorMessage="The length must be between 1 and 3.">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="3"/>
+                    </parameter>
+                  </add>
+                  <add name="requiredField" errorMessage="This field is required"/>
+                </validationRule>
+              </add>
+              <add name="EXCHANGERATE" dataType="number" isStructure="false" alias="Exchange Rate">
+                <validationRule>
+                  <add name="positiveNumber" errorMessage="This field must be a positive number. "/>
+                  <add name="textLength" errorMessage="The length must be between 1 and 6. ">
+                    <parameter>
+                      <add name="min" value="1"/>
+                      <add name="max" value="6"/>
+                    </parameter>
+                  </add>
+                  <!--<add name="requiredField" errorMessage="This field is required"/>-->
+                </validationRule>
+              </add>
+            </tableEditorData>
+          </add>
+        </tableEditor>
+        <innerXml>
+          <add name="ACTIVECASES">
+            <innerXmlData>
+              <add name="trueValue" value="1" display="Yes"/>
+              <add name="falseValue" value="0" display="No"/>
+            </innerXmlData>
+          </add>
+        </innerXml>
+        <applicationHome>
+          <groups>
+            <add name="ChemSourcePanelContents" enabled="true" coeIdentifier="CHEMSOURCE" pageSectionTarget="panel" display="Shortcuts" newWindow="false" color="blue" helpText="Click on the links below to enter to any of the sections">
+              <links>
+                <add name="Dashboards" display="Dashboard" tip="Dahsboard" privilege="" url="~/Forms/Dashboard/Dashboard1.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+                <add name="Suppliers" display="Suppliers" tip="" privilege="" url="~/Forms/Vendor/Headquarterinfo.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="Projects" display="Projects" tip="" privilege="" url="~/Forms/Project/project.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>
+                <add name="Quotes" display="Quote Manager" tip="" privilege="" url="~/Forms/Quotes/quote1.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="Materials" display="Materials" tip="" privilege="" url="~/Forms/materials/material1.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="Reports" display="Reports" tip="Reports" privilege="" url="~/Forms/Reports/Report1.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="Legal" display="Legal" tip="Legal" privilege="" url="~/Forms/Legal/Legal1.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="Shipping" display="Shipping" tip="Shipping" privilege="" url="~/Forms/Shipping/Shipping1.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+                <add name="TableEditor" display="Edit Tables" tip="" privilege="" url="~/Forms/AppSet/TableEditor.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+                <add name="AppSettings" display="Application Settings" tip="" privilege="" url="~/Forms/AppSet/ConfigSettings.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+              </links>
+            </add>
+          </groups>
+        </applicationHome>
+      </add>
+      <add name="CHEMBIOFINDER" database="U" saveQueryHistory="no" returnPartialHitlist="YES" partialHitlistCommitSize="1500" partialHitlistFirstCommitSize="100" maxRecordCount="15000"/>
+      <add name="DOCMANAGER" database="DOCMGR"/>
+    </applications>
+    <services>
+      <add name="COEHitList" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearch" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf" partialHitlistCommitSize="1000">
+        <searchServiceData>
+          <add name="useRealTableNames" value="false"/>
+        </searchServiceData>
+      </add>
+      <add name="COEDatabasePublishing" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEForm" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETableEditor" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearchCriteria" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEPageControlSettings" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEDataView" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESecurity" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEGenericObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETypedObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COERegistration" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COEPickListPicker" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEExport" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEChemBioViz" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemBioViz.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemBioViz.Services, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COERegistrationAdmin" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COEConfiguration" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEChemSource" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemSource.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemSource.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9d035f61f7ed8bd6"/>
+      <add name="COEReporting" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    </services>
+    <exportFormatters>
+      <add name="SDFFlatFileUncorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileUncorrelated" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="SDFFlatFileCorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileCorrelated" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="SDFNested" type="CambridgeSoft.COE.Framework.COEExportService.SDFNested" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+	<add name="CBVExcel" type="CambridgeSoft.COE.Framework.COEExportService.CBVExcelFormatter" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/> 
+    </exportFormatters>
+  </coeConfiguration>
+  <SSOConfiguration>
+    <ProviderConfiguration>
+      <Settings>
+        <!--SSOProvider (SimulationEveryoneGood | SimulationNoOneGood | COELDAP | CSSecurity)-->
+        <add Name="DEFAULT_PROVIDER" Value="CSSecurity"/>
+        <!--Ticket Timeout in the number of minutes-->
+        <add Name="TICKET_TIMEOUT" Value="20"/>
+        <add Name="ENCRYPT_USER_PASSWORDS" Value="NO"/>
+      </Settings>
+      <ExemptUsers>
+        <add userName="CSSADMIN" ssoProvider="cssecurity"/>
+        <add userName="ACXBUYER" ssoProvider="cssecurity"/>
+        <add userName="ACXBROWSER" ssoProvider="cssecurity"/>
+        <add userName="BIOSAR_ADMIN" ssoProvider="cssecurity"/>
+        <add userName="BIOSAR_USER" ssoProvider="cssecurity"/>
+        <add userName="BIOSAR_USER_ADMIN" ssoProvider="cssecurity"/>
+        <add userName="BIOSAR_USER_BROWSER" ssoProvider="cssecurity"/>
+        <add userName="D3BROWSER" ssoProvider="cssecurity"/>
+        <add userName="DRUGDEGADMIN" ssoProvider="cssecurity"/>
+        <add userName="DRUGDEGBROWSER" ssoProvider="cssecurity"/>
+        <add userName="DOC_ADMIN" ssoProvider="cssecurity"/>
+        <add userName="DOC_BROWSER" ssoProvider="cssecurity"/>
+        <add userName="DOC_SUBMITTER" ssoProvider="cssecurity"/>
+        <add userName="INVADMIN" ssoProvider="cssecurity"/>
+        <add userName="INVBROWSER" ssoProvider="cssecurity"/>
+        <add userName="INVCHEMIST" ssoProvider="cssecurity"/>
+        <add userName="INVRECEIVING" ssoProvider="cssecurity"/>
+        <add userName="INVFINANCE" ssoProvider="cssecurity"/>
+        <add userName="INVREGISTRAR" ssoProvider="cssecurity"/>
+        <add userName="T1_84" ssoProvider="cssecurity"/>
+        <add userName="T2_84" ssoProvider="cssecurity"/>
+        <add userName="T3_84" ssoProvider="cssecurity"/>
+        <add userName="T4_84" ssoProvider="cssecurity"/>
+        <add userName="T5_84" ssoProvider="cssecurity"/>
+        <add userName="T6_84" ssoProvider="cssecurity"/>
+        <add userName="T1_85" ssoProvider="cssecurity"/>
+        <add userName="T2_85" ssoProvider="cssecurity"/>
+        <add userName="T3_85" ssoProvider="cssecurity"/>
+        <add userName="T4_85" ssoProvider="cssecurity"/>
+        <add userName="T5_85" ssoProvider="cssecurity"/>
+        <add userName="T6_85" ssoProvider="cssecurity"/>
+        <add userName="HTSADMIN" ssoProvider="cssecurity"/>
+        <add userName="HTSBROWSER" ssoProvider="cssecurity"/>
+        <add userName="HTSDATAUSER" ssoProvider="cssecurity"/>
+        <add userName="HTSSUPERVISINGADMIN" ssoProvider="cssecurity"/>
+      </ExemptUsers>
+    </ProviderConfiguration>
+    <CSSecurity>
+      <CSSConnections>
+        <add connectionName="ValidateUserConnection" dataSource=""/>
+      </CSSConnections>
+    </CSSecurity>
+    <COELDAPConfiguration>
+      <COELDAP>
+        <addUser>
+          <process>
+            <bind pwdRequired="true" authenticationType="secure">
+              <basedn>carbon.camsoft.com/dc=camsoft,dc=com</basedn>
+              <error>Failed to bind to domain</error>
+            </bind>
+            <query timeOut="2" scope="subTree" pageSize="5">
+              <filter>(sAMAccountName=%username%)</filter>
+              <attr>cn</attr>
+              <error>The username %username% was not found in the domain</error>
+            </query>
+            <unbind/>
+          </process>
+        </addUser>
+        <authenticate>
+          <process>
+            <bind pwdRequired="true" authenticationType="secure">
+              <basedn>carbon.camsoft.com/dc=camsoft,dc=com</basedn>
+              <error>Failed to bind to domain</error>
+            </bind>
+            <query timeOut="2" scope="subTree" pageSize="5">
+              <filter>(sAMAccountName=%username%)</filter>
+              <attr>dn</attr>
+              <error>The username %username% was not found in the domain</error>
+            </query>
+            <bind pwdRequired="true" authenticationType="fastbind">
+              <basedn>carbon.camsoft.com</basedn>
+              <dn>CAMSOFT\%username%</dn>
+              <error>Authentication Failed, process two</error>
+            </bind>
+          </process>
+        </authenticate>
+        <getUserInfo>
+          <process>
+            <bind pwdRequired="true" authenticationType="secure">
+              <basedn>carbon.camsoft.com/dc=camsoft,dc=com</basedn>
+              <error>Failed to bind to domain</error>
+            </bind>
+            <query timeOut="2" scope="subTree" pageSize="5">
+              <filter>(sAMAccountName=%username%)</filter>
+              <attr>SAMAccountName</attr>
+              <attr>givenName</attr>
+              <attr>initials</attr>
+              <attr>sn</attr>
+              <attr>mail</attr>
+              <error>The username %username% was not found in the domain</error>
+            </query>
+            <unbind/>
+          </process>
+        </getUserInfo>
+        <ldapUserDN>CAMSOFT\LDAPSVCACCT</ldapUserDN>
+        <ldapPass>B8EF4D57F256FB3C31C9243598C5422AFCA5C62BB8DD83790B72BD9FE0D47541</ldapPass>
+        <GetUserReturnInfo>
+          <add ldapCode="SAMAccountName" displayName="Username" mapTo="username" nodeName="username"/>
+          <add ldapCode="givenName" displayName="First Name" mapTo="FirstName"/>
+          <add ldapCode="initials" displayName="Middle Name" mapTo="MiddleName"/>
+          <add ldapCode="sn" displayName="Last Name" mapTo="LastName"/>
+          <add ldapCode="mail" displayName="Email" mapTo="Email"/>
+        </GetUserReturnInfo>
+      </COELDAP>
+    </COELDAPConfiguration>
+    <LDAPConfiguration>
+      <Settings>
+        <!--LDAP or LDAPS-->
+        <add Name="LDAP_PROTOCOL" Value="LDAP"/>
+        <add Name="LDAP_SERVER_NAME" Value="boron2.camsoft.com"/>
+        <add Name="LDAP_PORT" Value="389"/>
+        <add Name="ACTIVE_DIRECTORY_DOMAIN" Value="CAMSOFT"/>
+        <add Name="LDAP_SERVICE_ACCOUNT_NAME" Value="LDAPSVCACCT"/>
+        <add Name="LDAP_SERVICE_ACCOUNT_PWD" Value="12csc345"/>
+        <add Name="LDAP_VERSION" Value="3"/>
+        <add Name="LDAP_DN" Value="CN=Users,DC=camsoft,DC=com"/>
+        <add Name="LDAP_USER_DN" Value="CAMSOFT\%username%"/>
+        <add Name="LDAP_FILTER" Value="sAMAccountName=%username%"/>
+        <!--LDAP_AUTHENTICATION_TYPE (SimpleBind | FastBind) -->
+        <add Name="LDAP_AUTHENTICATION_TYPE" Value=""/>
+        <add Name="LDAP_ENCRYPT_SERVICE_PWD" Value="NO"/>
+      </Settings>
+      <GetUserReturnInfo>
+        <add nodeName="username" ldapCode="SAMAccountName" displayName="Username" mapTo="username"/>
+        <add ldapCode="givenName" displayName="First Name" mapTo="FirstName"/>
+        <add ldapCode="initials" displayName="Middle Name" mapTo="MiddleName"/>
+        <add ldapCode="sn" displayName="Last Name" mapTo="LastName"/>
+        <add ldapCode="mail" displayName="Email" mapTo="Email"/>
+      </GetUserReturnInfo>
+    </LDAPConfiguration>
+  </SSOConfiguration>
+  <mappings xmlns="COE.Mappings">
+    <selectClauses>
+      <selectClause name="field" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseField"/>
+      <selectClause name="literal" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseLiteral"/>
+      <selectClause name="switch" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseCase"/>
+      <selectClause name="concatenation" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseConcatenation"/>
+      <selectClause name="molweight" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMolWeight"/>
+      <selectClause name="directmolweight" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseDirectMolWeight"/>
+      <selectClause name="jchemmolweight" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseJChemMolWeight"/>
+      <selectClause name="formula" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseFormula"/>
+      <selectClause name="directformula" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseDirectFormula"/>
+      <selectClause name="jchemformula" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseJChemFormula"/>
+      <selectClause name="function" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseFunction"/>
+      <selectClause name="cdxtomolfile" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseCDXToMolFile"/>
+      <selectClause name="selectclauseanalyticalrownum" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseAnalyticalRowNum"/>
+      <selectClause name="aggregatefunction" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseAggregateFunction"/>
+      <selectClause name="max" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMax"/>
+      <selectClause name="min" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMin"/>
+      <selectClause name="avg" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseAvg"/>
+      <selectClause name="sqlfunction" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseSQLFunction"/>
+      <selectClause name="todate" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseToDate"/>
+      <selectClause name="lowercase" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseLowerCase"/>
+      <selectClause name="marked" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMarkedHit"/>
+      <selectClause name="screen" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseCDXToScreen"/>
+      <selectClause name="similarity" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMolSimilarity"/>
+      <selectClause name="highlightedstructure" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseStructureHighlight"/>
+	  <selectClause name="directstructure" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseDirectStructure"/>
+    </selectClauses>
+  </mappings>
+  <instrumentationConfiguration performanceCountersEnabled="false" eventLoggingEnabled="false" wmiEnabled="false"/>
+  <!--This configuration is used by CambridgeSoft.COE.Core.Common call BLL and DAL classes for coe framework services -->
+  <coeHomeSettings gridColumns="3">
+    <groups>
+      <add name="Registration" enabled="true" coeIdentifier="Registration" display="Registration Enterprise" newWindow="scrollbars=1,resizable=1,toolbar=0,location=0,directories=0,status=1,menubar=0,height=650,width=1070px,top=0,left=50" color="fushia" helpText="Assign corporate registration numbers for compounds based on your organizations business rules.">
+        <links>
+          <add name="MainMenu" display="Main Menu" privilege="SEARCH_REG" tip="Access all other Registration System functionality" url="/COERegistration/Forms/Public/ContentArea/Home.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="home.png"/>
+          <add name="SubmitComponent"  display="Submit New Component" tip="Submit a new component registry" privilege="ADD_COMPOUND_TEMP" url="/COERegistration/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx?registrytype=component" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+		    <add name="SubmitMixture"  display="Submit New Mixture" tip="Submit a new mixture registry" privilege="HIDEME" url="/COERegistration/Forms/SubmitRecord/ContentArea/SubmitMixture.aspx?registrytype=mixture" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+          <add name="ReviewRegister" display="Review Register" tip="Review Register temporary registries " privilege="SEARCH_TEMP" url="/COERegistration/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=ALL" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="review_register.png"/>
+          <add name="SearchTemp" display="Search Temp" tip="Search for temporary registries" privilege="SEARCH_TEMP" url="/COERegistration/Forms/ReviewRegister/ContentArea/ReviewRegisterSearch.aspx?Caller=ST" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_temp.png"/>
+          <add name="SearchRegistry" display="Search Registry" tip="Search for registered registries" privilege="SEARCH_REG" url="/COERegistration/Forms/ViewMixture/ContentArea/ViewMixtureSearch.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_registry.png"/>
+          <add name="RegAdmin" display="Customize Registration" tip="Customize your Registration system adding new properties" privilege="CONFIG_REG" url="/COERegistration/Forms/RegistrationAdmin/ContentArea/Default.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+        </links>
+      </add>
+      <add name="Inventory" coeIdentifier="Inventory" enabled="true" display="Inventory Enterprise" newWindow="true" color="green" helpText="Manage and track chemical and biological reagents in laboratories and research centers in multiple contexts. ">
+        <links>
+          <add name="Browse" display="Browse" tip="Browse over Inventory locations" privilege="INV_BROWSE_ALL" url="/cheminv/cheminv/BrowseInventory_frset.asp?PostRelay=1" linkIconSize="small" linkIconBasePath="Icon_Library/Medical_Collection/Medical_Main_PNG" linkIconFileName="each_search.png"/>
+          <add name="Search" display="Search" tip="Search over Inventory containers" privilege="INV_BROWSE_ALL" url="/cheminv/inputtoggle.asp?dataaction=db&amp;dbname=cheminv" linkIconSize="small" linkIconBasePath="Icon_Library/windows_collection/Windows_PNG/PNG" linkIconFileName="search.png"/>
+          <add name="Scan" display="Scan" tip="Use barcode scanner to build a list of containers to modify" privilege="INV_DELETE_CONTAINER||INV_MOVE_CONTAINER||INV_CHECKOUT_CONTAINER||INV_CHECKIN_CONTAINER||INV_RETIRE_CONTAINER" url="/cheminv/gui/multiScan_frset.asp" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="scan.png"/>
+          <add name="NewContainer" display="New Container" tip="Create a new container at default location" privilege="INV_CREATE_CONTAINER" url="/cheminv/cheminv/BrowseInventory_frset.asp?PostRelay=1&amp;FormPopup=NewContainer" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="new_container.png"/>
+          <add name="ManageSubstances" display="Manage Substances" tip="Manage Inventory compounds" privilege="INV_MANAGE_SUBSTANCES" url="/cheminv/inputtoggle.asp?formgroup=substances_form_group&amp;dataaction=db&amp;dbname=cheminv" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="manage_substances.png"/>
+          <add name="GlobalSearch" display="Global Search" tip="Search over Inventory containers" privilege="INV_BROWSE_ALL" url="/ChemInv/default.asp?TB=Global&amp;formgroup=gs_form_group&amp;dataaction=db&amp;dbname=cheminv&amp;Showbanner=True" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="search.png"/>
+          <add name="InventoryTasks" display="Tasks" tip="Inventory Tasks" privilege="INV_CREATE_LOCATION" url="/cheminv/gui/menu.asp" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/Windows_PNG/PNG" linkIconFileName="history.png"/>
+        </links>
+      </add>
+      <add name="Utilities" enabled="true" coeIdentifier="Utilities" display="Applications &amp; Utilities" newWindow="true" color="darkBlue" helpText="Launch and or install rich client applications and utilites">
+        <links>
+          <add name="ENClient" display="Launch ENotebook" tip="Launch the E-Notebook application" url="/ClickOnce/ENotebook.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>         
+          <add name="CDAX17.1" display="CDAX17.1 Plugin" tip="Install the ChemDraw 17.1 ActiveX Control recommended for ChemOffice Enterprise Applications" url="/cfserverasp/clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_17.1.msi" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/windows_collection/Windows_PNG/PNG" linkIconFileName="search.png"/>
+          <add name="DLClient" display="DataLoader Client" tip="Launch the DataLoader application" url="/DataLoader/DataLoader.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
+          <add name="BioAssayClient" display="BioAssay Client" tip="Install the BioAssay Enterpise application (installation requires admin privileges on the client system)" url="/cfserverasp/clients/BioAssayClient10.1.6/setup.exe" privilege="HTS_LOGIN" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="manage_substances.png"/>
+          <add name="SendToEnotebook" display="SendToEnotebook Driver" tip="Install the SendToEnotebook v1 printer driver (installation requires admin privileges on the client system)" url="/cfserverasp/clients/SendToEnotebookV1/SendToEnotebook 2014.exe" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>
+        </links>
+      </add>
+      <add name="ChemACX" enabled="true" coeIdentifier="ChemACX" display="ChemACX" newWindow="true" groupIconSize="none" color="red" helpText="Search available chemical content from over 500 suppliers.">
+        <links>
+          <add name="Search" display="Search" tip="Search ChemACX" url="/chemacx/default.asp?formgroup=base_form_group&amp;dbname=chemacx&amp;dataaction=db" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/windows_Collection/windows_png/PNG" linkIconFileName="search.png"/>
+          <add name="DatabaseWizard" display="Database Wizard" tip="Convert chemfinder databases for web viewing" url="/cfserveradmin/AdminSource/webeditor.asp" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Database_Wizard.png"/>
+        </links>
+      </add>
+      <add name="Databases" coeIdentifier="Databases" enabled="true" display="Chemical Databases" newWindow="true" color="darkBlue" helpText="Search content from CambridgeSoft and custom databases.">
+        <links>
+          <add name="Databases" display="Search Databases" tip="Search CambridgeSoft and Custom Databases" privilege="" url="/chemoffice.asp" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="search_registry.png"/>
+        </links>
+      </add>
+      <add name="COE" coeIdentifier="COE" enabled="true" display="Security" newWindow="false" color="darkBlue" helpText="Manage access to applications including creation of users and roles.">
+        <links>
+          <add name="Home" display="Main Page" tip="Security Manager Home Page" url="~/Forms/SecurityManager/HomePage/Home.aspx" privilege="CSS_EDIT_USER||CSS_DELETE_USER||CSS_CREATE_USER||CSS_EDIT_ROLE||CSS_CREATE_ROLE||CSS_DELETE_ROLE" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/windows_PNG/PNG" linkIconFileName="home.png" newWindow="location=no,status=no,scrollbars=no,toolbar=no,resizable=no,width=600,height=350,top=100,left=100,menubar=no,dialog=yes,minimizable=no"/>
+          <add name="ChangePassword" display="Change Password" tip="Change your user password" privilege="CSS_CHANGE_PASSWORD" url="~/Forms/SecurityManager/ContentArea/ChangePassword.aspx?appName=All CS Applications" linkIconSize="small" linkIconBasePath="Icon_Library/windows_Collection/Windows_PNG/PNG" linkIconFileName="keys.png" newWindow="location=no,status=no,scrollbars=no,toolbar=no,resizable=no,width=650,height=250,top=100,left=100,menubar=no,dialog=yes,minimizable=no"/>
+          <add name="ManageUsers" display="Manage Users" tip="Administer user accounts" privilege="CSS_EDIT_USER||CSS_DELETE_USER||CSS_CREATE_USER" url="~/Forms/SecurityManager/ContentArea/ManageUsers.aspx?appName=All CS Applications" linkIconSize="small" linkIconBasePath="Icon_Library/custom_Collection/PNG" linkIconFileName="manage_users.png" newWindow="location=no,status=no,scrollbars=no,toolbar=no,resizable=no,width=650,height=650,top=100,left=100,menubar=no,dialog=yes,minimizable=no"/>
+          <add name="ManageRoles" display="Manage Roles" tip="Administer application roles" privilege="CSS_EDIT_ROLE||CSS_CREATE_ROLE||CSS_DELETE_ROLE" url="~/Forms/SecurityManager/ContentArea/ManageRoles.aspx?appName=COE" linkIconSize="small" linkIconBasePath="Icon_Library/custom_Collection/PNG" linkIconFileName="manage_roles.png" newWindow="location=no,status=no,scrollbars=no,toolbar=no,resizable=no,width=650,height=650,top=100,left=100,menubar=no,dialog=yes,minimizable=no"/>
+          <add name="PageControlSettings" display="Control Privileges" privilege="HIDEME" tip="Configure Page Control Settings" url="~/Forms/PageControlSettings/ContentArea/PageControlSettings.aspx?PS_Caller=SEC&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png" newWindow="true"/>
+          <add name="TableEditor" display="Table Editor" privilege="CAN_UPDATE||CAN_INSERT||CAN_DELETE" tip="Edit generic tables and views" url="~/Forms/TableEditor/ContentArea/TableEditor.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="table_editor.png" newWindow="width=980"/>
+          <add name="ConfigControlSettings" display="Manage Configuration" privilege="CAN_UPDATE" tip="Update application settings" url="~/Forms/ConfigControlSettings/ContentArea/ConfigControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png" newWindow="location=yes,status=yes,scrollbars=yes,toolbar=yes,resizable=yes,width=1000,height=550,top=0,left=0,menubar=yes,dialog=no,minimizable=yes"/>
+          <add name="ApplicationTracing" display="Application Tracing" tip="Turn on tracing to help with application issues" url="/cs_security/tracing.asp" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png" newWindow="true"/>
+          <add name="ManageGroups" display="Manage Groups" tip="Administer groups" url="~/Forms/SecurityManager/ContentArea/ManageGroups.aspx?appName=All CS Applications" privilege="CSS_MANAGE_GROUPS" linkIconSize="small" linkIconBasePath="Icon_Library/custom_Collection/PNG" linkIconFileName="manage_users.png" />
+        </links>
+      </add>
+      <add name="COEMANAGER_DV" enabled="true" coeIdentifier="COEMANAGER_DV" display="DataView Manager" newWindow="true" color="lightBlue" helpText="Define your database schemas, tables and relationships, so they can be searched using ChemBioViz">
+        <links>
+          <add name="Home" display="Main Page" tip="DataView Manager Home Page" url="~/Forms/DataViewManager/HomePage/Home.aspx" privilege="CAN_UPDATE||CAN_INSERT||CAN_DELETE" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/windows_PNG/PNG" linkIconFileName="home.png"/>
+          <add name="CreateFromMaster" display="Create from Master" privilege="CAN_INSERT" tip="Create new dataview from master dataview" url="~/Forms/DataViewManager/ContentArea/EnterNameDescription.aspx?Action=Clone_DV&amp;SelDVId=0" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection/Database_Aqua/PNG" linkIconFileName="Data_View.png"/>
+          <add name="EditDataview" display="Edit Existing" privilege="CAN_UPDATE" tip="Edit existing dataview" url="~/Forms/DataViewManager/ContentArea/NewDataView.aspx?Action=Edit_DV" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Edit_Master.png"/>
+          <add name="CreateFromExisting" display="Create from Existing" privilege="CAN_INSERT" tip="Create a new dataview from existing dataview" url="~/Forms/DataViewManager/ContentArea/NewDataView.aspx?Action=Clone_DV" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Create_From_Existing.png"/>
+          <add name="DeleteExisting" display="Delete Existing Dataview" privilege="CAN_DELETE" tip="Delete a dataview" url="~/Forms/DataViewManager/ContentArea/DeleteDataView.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection//Database_Aqua/PNG" linkIconFileName="Database_Drop.png"/>
+          <add name="EditMaster" display="Edit Master" privilege="CAN_UPDATE" tip="Edit master dataview" url="~/Forms/DataViewManager/ContentArea/DataviewBoard.aspx?IsMaster=true" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Edit_Existing.png"/>
+          <add name="PageControlSettings" display="Control Privileges" privilege="HIDEME" tip="COEPageControlSettings" url="~/Forms/PageControlSettings/ContentArea/PageControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>          
+		  <add name="ConfigControlSettings" display="Manage Configuration" privilege="CAN_UPDATE" tip="Update application settings" url="~/Forms/ConfigControlSettings/ContentArea/ConfigControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
+        </links>
+      </add>      
+    </groups>
+  </coeHomeSettings>
+</configuration>

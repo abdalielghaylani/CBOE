@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by Facundo Galdeano (CambridgeSoft Corportaion) -->
+<xs:schema xmlns:tns="COE.ResultsCriteria" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="COE.ResultsCriteria" elementFormDefault="qualified">
+	<xs:element name="resultsCriteria" type="tns:resultsCriteria" nillable="true"/>
+	<xs:complexType name="resultsCriteria">
+		<xs:sequence>
+			<xs:element name="tables" type="tns:ArrayOfResultsCriteriaTable" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfResultsCriteriaTable">
+		<xs:sequence>
+			<xs:element name="table" type="tns:resultsCriteria.Table" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="resultsCriteria.Table">
+		<xs:sequence>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="field" type="tns:field" minOccurs="0"/>
+				<xs:element name="switch" type="tns:switch" minOccurs="0"/>
+				<xs:element name="concatenation" type="tns:concatenation" minOccurs="0"/>
+				<xs:element name="condition" type="tns:condition" minOccurs="0"/>
+				<xs:element name="MolWeight" type="tns:MolWeight" minOccurs="0"/>
+        <xs:element name="DirectMolWeight" type="tns:DirectMolWeight" minOccurs="0"/>
+        <xs:element name="Formula" type="tns:Formula" minOccurs="0"/>
+        <xs:element name="DirectFormula" type="tns:DirectFormula" minOccurs="0"/>
+				<xs:element name="Custom" type="tns:Custom" minOccurs="0"/>
+				<xs:element name="literal" type="tns:literal" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="field" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase">
+				<xs:attribute name="fieldId" type="xs:int" use="required"/>
+				<xs:attribute name="alias" type="xs:string"/>
+				<xs:attribute name="orderById" type="xs:int" use="optional"/>
+				<xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IResultsCriteriaBase" abstract="true"/>
+	<xs:complexType name="Formula" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase">
+				<xs:attribute name="fieldId" type="xs:int" use="required"/>
+				<xs:attribute name="alias" type="xs:string"/>
+				<xs:attribute name="orderById" type="xs:int" use="optional"/>
+				<xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+  <xs:complexType name="DirectFormula" mixed="false">
+  <xs:complexContent mixed="false">
+    <xs:extension base="tns:IResultsCriteriaBase">
+      <xs:attribute name="fieldId" type="xs:int" use="required"/>
+      <xs:attribute name="alias" type="xs:string"/>
+      <xs:attribute name="orderById" type="xs:int" use="optional"/>
+      <xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+    </xs:extension>
+  </xs:complexContent>
+  </xs:complexType>
+	<xs:simpleType name="SortDirection">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="asc"/>
+			<xs:enumeration value="desc"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="concatenation" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase">
+				<xs:sequence>
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="concatenation" type="tns:concatenation" minOccurs="0"/>
+						<xs:element name="Custom" type="tns:Custom" minOccurs="0"/>
+						<xs:element name="field" type="tns:field" minOccurs="0"/>
+						<xs:element name="Formula" type="tns:Formula" minOccurs="0"/>
+            <xs:element name="DirectFormula" type="tns:DirectFormula" minOccurs="0"/>
+						<xs:element name="literal" type="tns:literal" minOccurs="0"/>
+						<xs:element name="MolWeight" type="tns:MolWeight" minOccurs="0"/>
+            <xs:element name="DirectMolWeight" type="tns:DirectMolWeight" minOccurs="0"/>
+						<xs:element name="condition" type="tns:condition" minOccurs="0"/>
+						<xs:element name="switch" type="tns:switch" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="alias" type="xs:string"/>
+				<xs:attribute name="orderById" type="xs:int" use="optional"/>
+				<xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Custom" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="literal" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase">
+				<xs:attribute name="alias" type="xs:string"/>
+				<xs:attribute name="orderById" type="xs:int" use="optional"/>
+				<xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="MolWeight" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase">
+				<xs:attribute name="fieldId" type="xs:int" use="required"/>
+				<xs:attribute name="alias" type="xs:string"/>
+				<xs:attribute name="orderById" type="xs:int" use="optional"/>
+				<xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+  <xs:complexType name="DirectMolWeight" mixed="false">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:IResultsCriteriaBase">
+        <xs:attribute name="fieldId" type="xs:int" use="required"/>
+        <xs:attribute name="alias" type="xs:string"/>
+        <xs:attribute name="orderById" type="xs:int" use="optional"/>
+        <xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+	<xs:complexType name="condition" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="Custom" type="tns:Custom" minOccurs="0"/>
+						<xs:element name="concatenation" type="tns:concatenation" minOccurs="0"/>
+						<xs:element name="literal" type="tns:literal" minOccurs="0"/>
+						<xs:element name="field" type="tns:field" minOccurs="0"/>
+						<xs:element name="switch" type="tns:switch" minOccurs="0"/>
+						<xs:element name="MolWeight" type="tns:MolWeight" minOccurs="0"/>
+            <xs:element name="DirectMolWeight" type="tns:DirectMolWeight" minOccurs="0"/>
+						<xs:element name="condition" type="tns:condition" minOccurs="0"/>
+						<xs:element name="Formula" type="tns:Formula" minOccurs="0"/>
+            <xs:element name="DirectFormula" type="tns:DirectFormula" minOccurs="0"/>
+					</xs:choice>
+				</xs:sequence>
+				<xs:attribute name="alias" type="xs:string"/>
+				<xs:attribute name="value" type="xs:string"/>
+				<xs:attribute name="orderById" type="xs:int" use="optional"/>
+				<xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="switch" mixed="false">
+		<xs:complexContent mixed="false">
+			<xs:extension base="tns:IResultsCriteriaBase">
+				<xs:sequence>
+					<xs:choice>
+						<xs:element name="MolWeight" type="tns:MolWeight" minOccurs="0"/>
+            <xs:element name="DirectMolWeight" type="tns:DirectMolWeight" minOccurs="0"/>
+						<xs:element name="switch" type="tns:switch" minOccurs="0"/>
+						<xs:element name="literal" type="tns:literal" minOccurs="0"/>
+						<xs:element name="field" type="tns:field" minOccurs="0"/>
+						<xs:element name="condition" type="tns:condition" minOccurs="0"/>
+						<xs:element name="Custom" type="tns:Custom" minOccurs="0"/>
+						<xs:element name="concatenation" type="tns:concatenation" minOccurs="0"/>
+						<xs:element name="Formula" type="tns:Formula" minOccurs="0"/>
+            <xs:element name="DirectFormula" type="tns:DirectFormula" minOccurs="0"/>
+					</xs:choice>
+					<xs:element name="conditions" type="tns:ArrayOfCondition" minOccurs="0"/>
+				</xs:sequence>
+				<xs:attribute name="alias" type="xs:string"/>
+				<xs:attribute name="orderById" type="xs:int" use="optional"/>
+				<xs:attribute name="direction" type="tns:SortDirection" use="optional"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ArrayOfCondition">
+		<xs:sequence>
+			<xs:element name="condition" type="tns:condition" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
