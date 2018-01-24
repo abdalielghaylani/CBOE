@@ -1,8 +1,7 @@
 <div class="viewcontainer" (window:resize)="onResize($event)" [hidden]="!(configAddIn.window.viewIndex==='list')">
   <reg-settings-page-header>{{configAddIn.window.title}}</reg-settings-page-header>
-  <dx-data-grid [dataSource]="dataSource" [columns]="configAddIn.columns.grdColumn" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
-    (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)' (onEditingStart)="onEditingStart($event)">
+  <dx-data-grid [dataSource]="dataSource" [columns]="configAddIn.columns.grdColumn" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }' [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }'
+    [height]="gridHeight" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onInitNewRow)='onInitNewRow($event)' (onEditingStart)="onEditingStart($event)">
     <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
     <dxo-scrolling mode="infinite"></dxo-scrolling>
     <div *dxTemplate="let data of 'addInTemplate'">
@@ -34,8 +33,7 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">
           <div class="p2">
-            <dx-form minColWidth=300 (onFieldDataChanged)="onFieldDataChanged($event)" [colCount]="1" *ngIf="configAddIn.window.viewIndex==='add'"
-              [formData]="configAddIn.editRow" [items]="configAddIn.columns.editColumn.addIn"></dx-form>
+            <dx-form minColWidth=300 (onFieldDataChanged)="onFieldDataChanged($event)" [colCount]="1" *ngIf="configAddIn.window.viewIndex==='add'" [formData]="configAddIn.editRow" [items]="configAddIn.columns.editColumn.addIn"></dx-form>
             <dx-form minColWidth=300 [colCount]="1" *ngIf="configAddIn.window.viewIndex==='edit'" [formData]="configAddIn.editRow" [items]="configAddIn.columns.editColumn.addInInfo"></dx-form>
           </div>
         </div>
@@ -48,14 +46,12 @@
         </div>
         <div id="collapseTwo" class="panel-collapse collapse in">
           <div class="p2">
-            <dx-data-grid *ngIf="configAddIn.window.viewIndex==='add'" [dataSource]="configAddIn.editRow.events" [columns]="configAddIn.columns.editColumn.events"
-              [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
+            <dx-data-grid *ngIf="configAddIn.window.viewIndex==='add'" [dataSource]="configAddIn.editRow.events" [columns]="configAddIn.columns.editColumn.events" [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
               (onCellPrepared)='onCellPrepared($event)'>
               <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
               <dxo-scrolling mode="infinite"></dxo-scrolling>
             </dx-data-grid>
-            <dx-data-grid *ngIf="configAddIn.window.viewIndex==='edit'" [dataSource]="configAddIn.editRow.events" [columns]="configAddIn.columns.editColumn.events"
-              [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
+            <dx-data-grid *ngIf="configAddIn.window.viewIndex==='edit'" [dataSource]="configAddIn.editRow.events" [columns]="configAddIn.columns.editColumn.events" [filterRow]='{ visible: true }' width="100%" [height]="200" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
               (onCellPrepared)='onCellPrepared($event)'>
               <dxo-editing mode="form" [allowUpdating]="true" [allowDeleting]="true" [allowAdding]="true"></dxo-editing>
               <dxo-scrolling mode="infinite"></dxo-scrolling>
@@ -68,12 +64,9 @@
       <div class="panel panel-default">
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
           <a class="list-header tan" data-toggle="collapse" href="#collapseThree">Configuration</a>
-          <command-button class="right mr3" [hidden]="configAddIn.configView==='view'" testid="config-cancel-button" (click)="configAddIn.cancelEditConfig()"
-            iconName="close" title="Cancel Edit"></command-button>
-          <command-button class="right mr3" [hidden]="configAddIn.configView==='edit'" testid="config-edit-button" (click)="configAddIn.editConfig()"
-            iconName="edit" title="Edit Config"></command-button>
-          <command-button [hidden]="configAddIn.configView==='view'" testid="config-save-button" (click)="configAddIn.saveConfig()"
-            iconName="save" title="Save Config"></command-button>
+          <command-button class="right mr3" [hidden]="configAddIn.configView==='view'" testid="config-cancel-button" (click)="configAddIn.cancelEditConfig()" iconName="close" title="Cancel Edit"></command-button>
+          <command-button class="right mr3" [hidden]="configAddIn.configView==='edit'" testid="config-edit-button" (click)="configAddIn.editConfig()" iconName="edit" title="Edit Config"></command-button>
+          <command-button [hidden]="configAddIn.configView==='view'" testid="config-save-button" (click)="configAddIn.saveConfig()" iconName="save" title="Save Config"></command-button>
         </div>
         <div id="collapseThree" class="panel-collapse collapse in">
           <div class="p2">
@@ -85,3 +78,4 @@
     </div>
   </dx-scroll-view>
 </div>
+<dx-load-panel shadingColor="rgba(255,255,255,0)" [(visible)]="loadingVisible" [closeOnOutsideClick]="false"></dx-load-panel>

@@ -21,6 +21,7 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
   private rows: any[] = [];
   private dataSource: CustomStore;
   private configAddIn: CConfigAddIn;
+  private loadingVisible = false;
 
   constructor(elementRef: ElementRef, http: HttpService) {
     super(elementRef, http);
@@ -97,12 +98,13 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
             })
             .catch(error => {
               let message = getExceptionMessage(`The records of ${tableName} were not retrieved properly due to a problem`, error);
-              reject(message);
+              reject(notifyError(message));
             });
         });
       }).bind(this),
 
       update: ((key, values): Promise<any> => {
+        this.showLoadPanel();
         let data = key;
         let newData = values;
         for (let k in newData) {
@@ -116,27 +118,32 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
             .toPromise()
             .then(result => {
               notifySuccess(`The record ${id} of ${tableName} was updated successfully!`, 5000);
+              this.hideLoadPanel();
               resolve(result.json());
             })
             .catch(error => {
               let message = getExceptionMessage(`The record ${id} of ${tableName} was not updated due to a problem`, error);
-              reject(message);
+              this.hideLoadPanel();
+              reject(notifyError(message));
             });
         });
       }).bind(this),
 
       insert: ((values): Promise<any> => {
+        this.showLoadPanel();
         return new Promise<any>((resolve, reject) => {
           this.http.post(`${apiUrlBase}`, values)
             .toPromise()
             .then(result => {
               let id = result.json().id;
               notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
+              this.hideLoadPanel();
               resolve(result.json());
             })
             .catch(error => {
               let message = getExceptionMessage(`Creating a new record for ${tableName} failed due to a problem`, error);
-              reject(message);
+              this.hideLoadPanel();
+              reject(notifyError(message));
             });
         });
       }).bind(this),
@@ -152,10 +159,18 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
             })
             .catch(error => {
               let message = getExceptionMessage(`The record ${id} of ${tableName} was not deleted due to a problem`, error);
-              reject(message);
+              reject(notifyError(message));
             });
         });
       }).bind(this)
     });
+  }
+
+  private showLoadPanel() {
+    this.loadingVisible = true;
+  }
+
+  private hideLoadPanel() {
+    this.loadingVisible = false;
   }
 };
