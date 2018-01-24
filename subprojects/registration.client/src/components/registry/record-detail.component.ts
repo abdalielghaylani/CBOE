@@ -78,6 +78,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private createContainerButtonEnabled: boolean = false;
   private inventoryContainersList: IInventoryContainerList;
   private saveTemplatePopupHeight: number = 220;
+  private showApprovedIcon: boolean = false;
 
   private saveTemplateItems = [{
     dataField: 'name',
@@ -163,6 +164,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !editMode));
 
     this.approveButtonEnabled = !editMode && !!statusId && this.temporary && this.approvalsEnabled && statusId !== RegistryStatus.Approved;
+
+    this.showApprovedIcon = !editMode && this.temporary && statusId === RegistryStatus.Approved;
 
     this.deleteButtonEnabled = !this.isNewRecord
       && PrivilegeUtils.hasDeleteRecordPrivilege(this.temporary, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges)

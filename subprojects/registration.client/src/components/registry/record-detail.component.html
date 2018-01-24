@@ -22,8 +22,8 @@
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     {{title}}
     <span class="fa-stack fa" *ngIf="approvalIconEnabled">
-      <i class="fa fa-circle fa-stack-2x {{approveButtonEnabled? 'red' : 'green'}}"></i>
-      <i class="fa fa-thumbs-o-{{approveButtonEnabled? 'down' : 'up'}} fa-stack-1x fa-inverse"></i>
+      <i class="fa fa-circle fa-stack-2x {{showApprovedIcon? 'green' : 'red'}}"></i>
+      <i class="fa fa-thumbs-o-{{showApprovedIcon? 'up' : 'down'}} fa-stack-1x fa-inverse"></i>
     </span>
   </reg-header>
   <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByThumb="true" showScrollbar="true">
