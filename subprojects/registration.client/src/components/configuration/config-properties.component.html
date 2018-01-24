@@ -56,7 +56,7 @@
     <div class="panel-group" id="accordion" [hidden]="!configProperties.addRuleVisible">
       <div class="panel panel-default">
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-          <command-button testid="validation-button-cancel" (onClick)="configProperties.clearFormDataValidations()" iconName="undo"
+          <command-button class="right-space" testid="validation-button-cancel" (onClick)="configProperties.clearFormDataValidations()" iconName="undo"
             title="Cancel"></command-button>
           <command-button testid="validation-button-save" (onClick)="saveValidationRule($event)" iconName="save" title="Save Rule"></command-button>
           <a class="list-header tan" data-toggle="collapse" href="#collapseOne">New Validation Rule</a>
@@ -153,7 +153,7 @@
     <div class="panel-group" id="accordion" [hidden]="configProperties.addRuleVisible">
       <div class="panel panel-default">
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
-          <command-button testid="validation-button" (onClick)="configProperties.addValidationRule($event)" iconName="plus" title="Add Rule"></command-button>
+          <command-button testid="validation-button" class="right-space" (onClick)="configProperties.addValidationRule($event)" iconName="plus" title="Add Rule"></command-button>
           <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Validation Rules List</a>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in">

@@ -53,6 +53,19 @@
   font-size: 16px;
 }
 
+.panel-heading a.list-header::before {
+  content: '\F078';
+  position: absolute;
+  font-family: 'FontAwesome';
+  right: 15px;
+  font-size: 16px;
+}
+
+.right-space {
+  float: right;
+  margin-right: 20px;
+}
+
 ul#CustomTablesDropDown > li > a > i,
 #SystemBehaviorsDropDown > li > a > i {
   width: 25px;
