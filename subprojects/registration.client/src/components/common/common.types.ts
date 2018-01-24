@@ -308,7 +308,7 @@ export class CValidator {
   private static validateInteger(rule: IValidationRule, e) {
     if (e.value) {
       let IntegerValue = Number(e.value);
-      if (isNaN(IntegerValue)) {
+      if (isNaN(IntegerValue) || (IntegerValue % 1 !== 0)) {
         e.rule.isValid = false;
       }
     }
