@@ -48,7 +48,7 @@
   <reg-templates (onClose)="showDetails($event)"></reg-templates>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-duplicate-record [parentHeight]="parentHeight" (onClose)="cancelDuplicateResolution($event)"></reg-duplicate-record>
+  <reg-duplicate-record [parentHeight]="parentHeight" [sourceRecordIsTemporary]="temporary" (onClose)="cancelDuplicateResolution($event)"></reg-duplicate-record>
 </div>
 <dx-load-panel [position]="{at: 'center'}" [(visible)]="loadingVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>

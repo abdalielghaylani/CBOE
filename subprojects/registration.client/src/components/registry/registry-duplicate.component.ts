@@ -33,6 +33,8 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   private duplicateButtonVisibility: boolean = false;
   @Input() parentHeight: number;
   @Output() onClose = new EventEmitter<any>();
+  @Input() sourceRecordIsTemporary: boolean;
+
   private columns = [{
     cellTemplate: 'commandCellTemplate',
     width: 80
@@ -133,17 +135,21 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
   }
 
   setButtonVisibility(buttonType: string, regNumber: string) {
+    let enabled: boolean = false;
     if (this.duplicateActions) {
       switch (buttonType) {
         case 'AddBatch':
-          return this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canAddBatch;
+          enabled = this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canAddBatch;
+          break;
         case 'UseComponent':
-          return this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canUseCompound;
+          enabled = this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canUseCompound;
+          break;
         case 'UseStructure':
-          return this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canUseStructure;
+          enabled = this.duplicateActions.filter(s => s.REGNUMBER === regNumber)[0].canUseStructure;
+          break;
       }
     }
-    return false;
+    return enabled;
   }
 
   updateGridColumn(gridColumn) {
@@ -166,6 +172,10 @@ export class RegDuplicateRecord implements OnInit, OnDestroy {
 
   private getGridHeight() {
     return ((this.elementRef.nativeElement.parentElement.clientHeight) - 100).toString();
+  }
+
+  private get addBatchButtonTitle(): string {
+    return this.sourceRecordIsTemporary ? 'Add Batch' : 'Move Batches';
   }
 
   dismissAlert() {
