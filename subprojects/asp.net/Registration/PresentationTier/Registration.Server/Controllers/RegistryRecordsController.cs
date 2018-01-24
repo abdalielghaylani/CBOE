@@ -103,10 +103,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 duplicatesResolver.DetermineAvailableActions();
 
+                // Override 'AddBatch' button visibility for permanant record
+                // for permanant record 'AddBatch' option(Move Batchs) should be available ony if, 'EnableMoveBatch = true, in system settings
+                bool canAddBatch = sourceRegistryRecord.IsTemporal ? duplicatesResolver.CanAddBatch : RegUtilities.GetAllowMoveBatch();
+              
                 var duplicateActions = new JObject(
                    new JProperty("ID", duplicateRegistryRecord.ID),
                    new JProperty("REGNUMBER", duplicateRegistryRecord.RegNum),
-                   new JProperty("canAddBatch", duplicatesResolver.CanAddBatch),
+                   new JProperty("canAddBatch", canAddBatch),
                    new JProperty("canUseCompound", duplicatesResolver.CanCreateCompoundForm),
                    new JProperty("canUseStructure", duplicatesResolver.CanUseStructure)
                );
