@@ -12,6 +12,8 @@ import { notifyError, notifyException, notifySuccess } from '../../../../common'
 import { IFormGroup, IForm, ICoeForm, ICoeFormMode, IFormElement } from '../../../../common';
 import { RegFormGroupItemBase } from '../form-group-item-base';
 import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
+import { ViewChild } from '@angular/core/src/metadata/di';
+import { ElementRef } from '@angular/core/src/linker/element_ref';
 
 @Component({
   selector: 'reg-form-group-item-view',
@@ -21,6 +23,8 @@ import { RegInvContainerHandler } from '../../inventory-container-handler/invent
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit {
+  @ViewChild('ToggleHeader') toggleHeader: ElementRef;
+  @ViewChild('ToggleContent') toggleContent: ElementRef;
   @Input() viewModel: CRegistryRecord;
   @Input() invIntegrationEnabled: boolean = false;
   @Input() invContainers: IInventoryContainerList;
@@ -223,6 +227,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     this.editBatchEnabled = this.batchCommandsEnabled && canModifyBatch
       && PrivilegeUtils.hasEditBatchPrivilege(isLoggedUserBatchOwner, isLoggedUserBatchOwnerSuperVisor, lookups.userPrivileges);
     this.setBatchDisplayModeInRecordEditMode();
+    if (this.editMode && !this.toggleContent.nativeElement.classList.contains('in')) {
+      this.toggleHeader.nativeElement.click();
+    }
   }
 
   private setBatchDisplayModeInRecordEditMode() {

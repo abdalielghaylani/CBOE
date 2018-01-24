@@ -1,4 +1,4 @@
-<div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
+<div #ToggleHeader class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
   <a class="list-header tan" data-toggle="collapse" href="#{{id}}">{{viewConfig.title}}</a>
   <span *ngIf="batchCommandsEnabled">
     <reg-batch-selector *ngIf="selectBatchEnabled" [viewModel]="viewModel.BatchList.Batch" (onSelected)="onBatchSelected($event)"></reg-batch-selector>
@@ -11,7 +11,7 @@
     <command-button *ngIf="createContainerButtonEnabled" testid="new-container" (onClick)="createInvContainer()" iconName="flask" title="New Container" [pullRight]="false"></command-button>
   </span>
 </div>
-<div [id]="id" class="panel-collapse collapse in">
+<div #ToggleContent [id]="id" class="panel-collapse collapse in">
   <div class="p2">
     <reg-form-view [id]="id" (valueUpdated)="onValueUpdated($event)" [viewModel]="formData" [viewConfig]="items" [activated]="activated" [editMode]="editMode" [colCount]="colCount"></reg-form-view>
   </div>

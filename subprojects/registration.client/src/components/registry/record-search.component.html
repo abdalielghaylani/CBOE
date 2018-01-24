@@ -24,7 +24,7 @@
 <reg-header testid="configuration-heading" id="qa-configuration-heading">
   {{ 'Search ' + (temporary ? 'Temporary' : 'Permanent') + ' Registry' }}
 </reg-header>
-<dx-form class="pull-right" [formData]="optionData" style="padding-top:10px;" (onFieldDataChanged)="onOptionChanged($event)">
+<dx-form class="pull-right" [formData]="optionData" style="padding-top:10px; min-width:170px;" (onFieldDataChanged)="onOptionChanged($event)">
   <dxi-item dataField="isHighLightSubstructure" editorType="dxCheckBox" [label]="{ text: 'Highlight sub-structure' }">
   </dxi-item>
 </dx-form>
