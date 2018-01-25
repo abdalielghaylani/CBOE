@@ -71,6 +71,7 @@ export interface IFieldConfig {
   tables?: ITables;
   ClientSideEvents?: any;
   DefaultRows?: any;
+  Mask?: string;
 }
 
 export interface IConfigInfo {

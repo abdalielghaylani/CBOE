@@ -163,6 +163,7 @@ export class CViewGroup implements IViewGroup {
       item.editorOptions = {};
     }
     item.editorOptions.readOnly = readOnly;
+    item.editorOptions.configInfo = fe.configInfo;
   }
 
   private setDefaultValue(fe: IFormElement, item: any, displayMode?: string) {
