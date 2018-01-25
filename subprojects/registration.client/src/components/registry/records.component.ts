@@ -400,7 +400,7 @@ export class RegRecords implements OnInit, OnDestroy {
       if (this.isMarkedQuery === true) {
         let selectedhitIds = [];
         (this.temporary) ? this.selectedRows.forEach(v => { selectedhitIds.push(v.TEMPBATCHID); })
-          : this.selectedRows.forEach(v => { selectedhitIds.push(v.REGID); });
+          : this.selectedRows.forEach(v => { selectedhitIds.push(v.MIXTUREID); });
 
         let url: string = `${apiUrlPrefix}hitlists/mark/${this.temporary}`;
         this.http.post(url, {

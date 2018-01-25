@@ -396,31 +396,22 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 CheckAuthentication();
-                var formGroup = GetFormGroup(temp);
-                var dataViewId = int.Parse(temp ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
-                var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
-                var searchCriteria = new SearchCriteria();
-                searchCriteria.SearchCriteriaID = 1;
-                var item = new SearchCriteria.SearchCriteriaItem();
-                var criteria = new SearchCriteria.NumericalCriteria();
-                criteria.InnerText = string.Join(",", hitlistData.MarkedHitIDs);
-                criteria.Operator = SearchCriteria.COEOperators.IN;
-                criteria.Trim = SearchCriteria.Positions.None;
-                item.FieldId = temp ? 100 : 101;
-                item.TableId = 1;
-                item.Criterium = criteria;
-                searchCriteria.Items.Add(item);
+                var genericBO = GetGenericBO(temp);
+                foreach (int recordId in hitlistData.MarkedHitIDs)
+                {
+                    genericBO.MarkedHitList.MarkHit(recordId);
+                }
 
-                var coeSearch = new COESearch();
-                var hitlistInfo = coeSearch.GetHitList(searchCriteria, dataView);
-                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
-                hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
+                var hitlistBO = genericBO.MarkedHitList;
                 hitlistBO.Name = hitlistData.Name;
                 hitlistBO.Description = hitlistData.Description;
+                hitlistBO.HitListType = HitListType.SAVED;
                 hitlistBO.Save();
 
-                hitlistBO.HitListType = HitListType.SAVED;
-                hitlistBO.Update();
+                foreach (int recordId in hitlistData.MarkedHitIDs)
+                {
+                    genericBO.MarkedHitList.UnMarkHit(recordId);
+                }
 
                 return new ResponseData(id: hitlistBO.ID);
             });
