@@ -46,14 +46,13 @@ namespace PerkinElmer.COE.Registration.Server.Code
             if (node != null && !string.IsNullOrEmpty(node.InnerText) && (record.SubmissionComments != node.InnerText))
                 record.SubmissionComments = node.InnerText;
 
-            /* TODO: RegNumber is not updating!
+            /* TODO: RegNumber is not updating! */
             if (string.IsNullOrEmpty(record.RegNumber.RegNum))
             {
                 SetPrivateVariable(record, "_regNumber", RegNumber.NewRegNumber(rootNode.SelectSingleNode("RegNumber").OuterXml, true));
                 CallPrivateMethod(record.RegNumber, "MarkDirty");
                 CallPrivateMethod(record, "MarkDirty");
             }
-             */
 
             record.PropertyList.UpdateFromXmlEx(rootNode.SelectSingleNode("PropertyList"));
             record.ProjectList.UpdateFromXmlEx(rootNode.SelectSingleNode("ProjectList"));
