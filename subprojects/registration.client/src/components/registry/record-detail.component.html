@@ -26,12 +26,10 @@
       <i class="fa fa-thumbs-o-{{showApprovedIcon? 'up' : 'down'}} fa-stack-1x fa-inverse"></i>
     </span>
   </reg-header>
-  <dx-scroll-view id="detailScrollView" [height]="parentHeight" scrollByThumb="true" showScrollbar="true">
     <form class="form-inline" role="form" ng-submit="search(query)">
       <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true" [invIntegrationEnabled]="createContainerButtonEnabled" [invContainers]="inventoryContainersList"
-        [useCurrent]="useCurrent" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
+        [useCurrent]="useCurrent" [parentHeight]="parentHeight" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
     </form>
-  </dx-scroll-view>
   <reg-duplicate-popup [visible]="isDuplicatePopupVisible" [viewModel]="copyActions" (popupClick)="createCopies($event)"></reg-duplicate-popup>
   <dx-popup [width]="400" [height]="saveTemplatePopupHeight" [showTitle]="true" title="Save as Template" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="saveTemplatePopupVisible">
     <div *dxTemplate="let data of 'content'">
