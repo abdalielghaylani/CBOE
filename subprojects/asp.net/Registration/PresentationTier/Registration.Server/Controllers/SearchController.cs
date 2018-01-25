@@ -396,18 +396,32 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 CheckAuthentication();
-                GenericBO genericBO = GetGenericBO(temp);
-                foreach (int recordId in hitlistData.MarkedHitIDs)
-                {
-                    genericBO.MarkHit(recordId, temp ? "TEMPBATCHID" : "MIXTUREID");
-                }
+                var formGroup = GetFormGroup(temp);
+                var dataViewId = int.Parse(temp ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
+                var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
+                var searchCriteria = new SearchCriteria();
+                searchCriteria.SearchCriteriaID = 1;
+                var item = new SearchCriteria.SearchCriteriaItem();
+                var criteria = new SearchCriteria.NumericalCriteria();
+                criteria.InnerText = string.Join(",", hitlistData.MarkedHitIDs);
+                criteria.Operator = SearchCriteria.COEOperators.IN;
+                criteria.Trim = SearchCriteria.Positions.None;
+                item.FieldId = temp ? 100 : 101;
+                item.TableId = 1;
+                item.Criterium = criteria;
+                searchCriteria.Items.Add(item);
 
-                COEHitListBO hitlistBO = genericBO.MarkedHitList;
+                var coeSearch = new COESearch();
+                var hitlistInfo = coeSearch.GetHitList(searchCriteria, dataView);
+                var hitlistBO = GetHitlistBO(hitlistInfo.HitListID);
+                hitlistBO.SearchCriteriaID = searchCriteria.SearchCriteriaID;
                 hitlistBO.Name = hitlistData.Name;
                 hitlistBO.Description = hitlistData.Description;
-                hitlistBO.HitListType = HitListType.SAVED;
-                hitlistBO.NumHits = hitlistData.MarkedHitIDs.Count;
                 hitlistBO.Save();
+
+                hitlistBO.HitListType = HitListType.SAVED;
+                hitlistBO.Update();
+
                 return new ResponseData(id: hitlistBO.ID);
             });
         }
