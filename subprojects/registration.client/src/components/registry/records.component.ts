@@ -78,6 +78,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
   private isPrintAndExportAvailable: boolean = false;
+  private clearSearchForm: boolean = false;
 
   constructor(
     private router: Router,
@@ -383,6 +384,11 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private newQuery() {
     this.currentIndex = 2;
+    if (this.clearSearchForm) {
+      // Due to CDD activation issues, we can clear the search form only after showing the search form first.
+      this.clearSearchForm = false;
+      this.searchForm.clear();
+    }
   }
 
   private saveQuery(isMarked: boolean) {
@@ -393,6 +399,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private retrieveAll() {
     this.registryActions.openRecords({ temporary: this.temporary });
+    this.clearSearchForm = true;
   }
 
   private saveHitlist() {
