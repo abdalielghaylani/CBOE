@@ -1,6 +1,6 @@
 <div [attr.data-testid]="testid" class="btn-group btn-group-{{size}}" [ngClass]="pullRight ? 'pull-right m1' : 'mr1'" role="group" aria-label="">
-  <button type="button" class="btn btn-default border-2 status background-{{color}} border-{{color}}" (click)="handleClick($event)">
-    <i class="fa fa-{{iconName}} white" aria-hidden="true"></i>
+  <button type="button" style="padding: 0px" class="btn btn-default border-2 status border-{{color}}" (click)="handleClick($event)">
+    <div style="padding: 1px 5px" class="left background-{{color}} border-{{color}}"><i class="fa fa-{{iconName}} white" aria-hidden="true"></i></div>
+    <div style="padding: 1px 8px" class="left {{color}} background-white">{{title}}</div>
   </button>
-  <button type="button" class="btn border-2 status border-{{color}} {{color}}" (click)="handleClick($event)">{{title}}</button>
 </div>
