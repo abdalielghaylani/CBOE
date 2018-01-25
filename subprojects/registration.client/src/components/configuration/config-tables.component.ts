@@ -54,7 +54,7 @@ export class RegConfigTables extends RegConfigBaseComponent {
             this.gridHeight = this.getGridHeight();
             this.changeDetector.markForCheck();
           }).bind(this), err => {
-            if (err.status == null || err.status !== 404) {
+            if (err.status == null || (err.status !== 404 && err.status !== 302 && err.status !== 200)) {
               notifyError(err, 5000);
             }
           });
