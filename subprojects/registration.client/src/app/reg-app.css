@@ -105,6 +105,11 @@
   background-color: #dce0e3 !important;
 }
 
+.dx-datagrid-group-closed,
+.dx-datagrid-group-opened {
+  font-size: 25px !important;
+}
+
 .tools {
   background: #ffffff;
   height: 100%;

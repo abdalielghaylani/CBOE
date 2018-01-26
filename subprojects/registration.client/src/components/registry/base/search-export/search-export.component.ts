@@ -100,6 +100,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
     this.isAddTemplateEnable = false;
     this.isAddTemplateButtonEnabled = true;
     this.isEditDeleteTemplateButtonEnabled = false;
+    this.isAllowUpdatingEnabled = false;
     this.changeDetector.markForCheck();
   }
 
@@ -285,53 +286,55 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }
 
   protected export(e) {
-    this.isAllowUpdatingEnabled = false;
-    
-    if (this.selectedRowsKeys.length > 0) {
-      this.loadIndicatorVisible = true;
-      let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
+    if (this.isAllowUpdatingEnabled) {
+      notify(`Save or update the template before export!`, 'warning', 5000);
+    } else {
+      if (this.selectedRowsKeys.length > 0) {
+        this.loadIndicatorVisible = true;
+        let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
 
-      let data = {
-        resultsCriteriaTables: [],
-        records: (this.markedRecords) ? this.markedRecords : [],
-      };
-      this.selectedRowsKeys.forEach(key => {
-        let field = this.rows.find(r => r.key === key);
-        if (field) {
-          data.resultsCriteriaTables.push({
-            tableId: field.tableId,
-            fieldId: field.fieldId,
-            visible: true,
-            indexType: field.indexType,
-            mimeType: field.mimeType,
-            alias: field.fieldName
-          });
-        }
-      });
-
-      let options = new RequestOptions({ responseType: ResponseContentType.ArrayBuffer });
-      this.http.post(url, data, options).toPromise().then(res => {
-        let filename = res.headers.get('x-filename');
-        let contentType = res.headers.get('content-type');
-        let linkElement = document.createElement('a');
-        try {
-          let type = `${contentType}; charset=UTF-8`;
-          let blob = new Blob([res.arrayBuffer()], { type: type });
-          FileSaver.saveAs(blob, filename);
-        } catch (ex) {
-
-        }
-        this.clearLoadindicator();
-        notifySuccess(`The file was exported correctly`, 5000);
-      })
-        .catch(error => {
-          this.clearLoadindicator();
-          notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
+        let data = {
+          resultsCriteriaTables: [],
+          records: (this.markedRecords) ? this.markedRecords : [],
+        };
+        this.selectedRowsKeys.forEach(key => {
+          let field = this.rows.find(r => r.key === key);
+          if (field) {
+            data.resultsCriteriaTables.push({
+              tableId: field.tableId,
+              fieldId: field.fieldId,
+              visible: true,
+              indexType: field.indexType,
+              mimeType: field.mimeType,
+              alias: field.fieldName
+            });
+          }
         });
 
-      this.formVisible = false;
-    } else {
-      notify(`At least one field is required!`, 'warning', 5000);
+        let options = new RequestOptions({ responseType: ResponseContentType.ArrayBuffer });
+        this.http.post(url, data, options).toPromise().then(res => {
+          let filename = res.headers.get('x-filename');
+          let contentType = res.headers.get('content-type');
+          let linkElement = document.createElement('a');
+          try {
+            let type = `${contentType}; charset=UTF-8`;
+            let blob = new Blob([res.arrayBuffer()], { type: type });
+            FileSaver.saveAs(blob, filename);
+          } catch (ex) {
+
+          }
+          this.clearLoadindicator();
+          notifySuccess(`The file was exported correctly`, 5000);
+        })
+          .catch(error => {
+            this.clearLoadindicator();
+            notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
+          });
+
+        this.formVisible = false;
+      } else {
+        notify(`At least one field is required!`, 'warning', 5000);
+      }
     }
   }
 
