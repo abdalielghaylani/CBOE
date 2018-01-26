@@ -35,10 +35,6 @@
         <dxo-sorting mode="single"></dxo-sorting>
         <dxo-filter-row [visible]="filterRowEnabled"></dxo-filter-row>
         <dxo-search-panel [visible]="filterRowEnabled" [width]="240" placeholder="Search..."></dxo-search-panel>
-        <dxo-summary>
-          <dxi-total-item *ngIf="temporary" column="TEMPBATCHID" summaryType="count" alignment="center"></dxi-total-item>
-          <dxi-total-item *ngIf="!temporary" column="REGID" summaryType="count" alignment="center"></dxi-total-item>
-        </dxo-summary>
         <div *dxTemplate="let data of 'batchDetailTemplate'">
           <dx-data-grid id="grdBatchDetailRecords" noDataText="" [columns]="viewGroupsColumns.batchTableColumns" [dataSource]="data.data.BatchDataSource" rowAlternationEnabled=true columnAutoWidth=true [filterRow]="{ visible: data.data.BatchDataSource.length > 4 }"
             (onInitialized)='onInitialized($event)' (onCellPrepared)="onBatchCellPrepared($event)" (onEditingStart)="onEditingBatchGridStart($event)" [scrolling]="{ mode: 'infinite' }" [height]="data.data.BatchDataSource.length > 8 ? 265 : 'auto'" [wordWrapEnabled]="true">

@@ -735,7 +735,8 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private get getTotalRecordsCount(): Number {
     if (this.filterRowEnabled && this.grid.instance) {
-      return this.grid.instance.getTotalSummaryValue('count');
+      // The filter row should be enabled only when all rows are fetched.
+      return this.grid.instance.totalCount();
     } else {
       return this.records.data.totalCount;
     }
