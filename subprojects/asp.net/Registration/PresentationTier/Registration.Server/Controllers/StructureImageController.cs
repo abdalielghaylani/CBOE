@@ -7,11 +7,13 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
-using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
+using System.Threading.Tasks;
 using Microsoft.Web.Http;
+using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 using CambridgeSoft.COE.Registration.Services.Types;
+
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -35,7 +37,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             else
                 structureData = (string)ExtractData(string.Format("SELECT {0} data FROM {1} WHERE {2}=:id", f[0], f[1], f[2]), queryParams)[0]["DATA"];
 
-            var args = new object[] { structureData, "image/png", (double)height, (double)width, resolution.ToString() };
+            var args = new object[] { structureData.Trim(), "image/png", (double)height, (double)width, resolution.ToString() };
             return (string)typeof(COEChemDrawConverterUtils).GetMethod(
                 "GetStructureResource",
                 BindingFlags.Static | BindingFlags.NonPublic,
@@ -46,28 +48,61 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [Route(Consts.apiPrefix + "StructureImage/{type}/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
-        public HttpResponseMessage GetStructureImage(string type, int compoundId, int height = 150, int width = 200, int resolution = 300)
+        public async Task<IHttpActionResult> GetStructureImage(string type, int compoundId, int height = 150, int width = 200, int resolution = 300)
         {
-            CheckAuthentication();
-            var relPath = GetStructureRelativePath(type, compoundId, height, width, resolution);
-            var fullPath = HttpContext.Current.Server.MapPath(relPath);
-            HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
-            response.Content = new ByteArrayContent(File.ReadAllBytes(fullPath));
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
-            var cacheControl = new CacheControlHeaderValue { Public = true, MaxAge = TimeSpan.FromDays(1) };
-            response.Headers.CacheControl = cacheControl;
-            return response;
+            HttpResponseMessage responseMessage;
+            try
+            {
+                Authenticate();
+                var relPath = GetStructureRelativePath(type, compoundId, height, width, resolution);
+                var fullPath = HttpContext.Current.Server.MapPath(relPath);
+                responseMessage = new HttpResponseMessage(HttpStatusCode.OK);
+                responseMessage.Content = new ByteArrayContent(File.ReadAllBytes(fullPath));
+                responseMessage.Content.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+                var cacheControl = new CacheControlHeaderValue { Public = true, MaxAge = TimeSpan.FromDays(1) };
+                responseMessage.Headers.CacheControl = cacheControl;
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+                Logger.Error(ex);
+            }
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
         }
 
         [Route(Consts.apiPrefix + "StructureUrl/{type}/{compoundId}/{height:int?}/{width:int?}/{resolution:int?}")]
-        public HttpResponseMessage GetStructureUrl(string type, int compoundId, int height = 150, int width = 200, int resolution = 300)
+        public async Task<IHttpActionResult> GetStructureUrl(string type, int compoundId, int height = 150, int width = 200, int resolution = 300)
         {
-            CheckAuthentication();
-            var relPath = GetStructureRelativePath(type, compoundId, height, width, resolution);
-            var response = Request.CreateResponse(HttpStatusCode.OK, relPath);
-            var cacheControl = new CacheControlHeaderValue { Public = true, MaxAge = TimeSpan.FromDays(1) };
-            response.Headers.CacheControl = cacheControl;
-            return response;
+            HttpResponseMessage responseMessage;
+            try
+            {
+                Authenticate();
+                var relPath = GetStructureRelativePath(type, compoundId, height, width, resolution);
+                responseMessage = Request.CreateResponse(HttpStatusCode.OK, relPath);
+                var cacheControl = new CacheControlHeaderValue { Public = true, MaxAge = TimeSpan.FromDays(1) };
+                responseMessage.Headers.CacheControl = cacheControl;
+            }
+            catch (Exception ex)
+            {
+                responseMessage = CreateErrorResponse(ex);
+                Logger.Error(ex);
+            }
+            return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        private void Authenticate()
+        {
+            try
+            {
+                CheckAuthentication();
+            }
+            catch
+            {
+                // Sometimes authentication fails due to multi-threading issue.
+                // This is a hack to overcome the short-comings of the current Registration codebase
+                // that does not handle multiple simultaneous calls well.
+                CheckAuthentication();
+            }
         }
 
         private string GetStructureData(int templateId)

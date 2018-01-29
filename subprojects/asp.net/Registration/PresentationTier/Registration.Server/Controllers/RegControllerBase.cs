@@ -45,7 +45,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return bo.DatabaseRecordCount;
         }
 
-        private HttpResponseMessage CreateErrorResponse(Exception ex)
+        protected HttpResponseMessage CreateErrorResponse(Exception ex)
         {
             var message = ex is Csla.DataPortalException ? ((Csla.DataPortalException)ex).BusinessException.Message : ex.Message;
             var statusCode = ex is AuthenticationException || ex is PrivilegeNotHeldException || ex is UnauthorizedAccessException ?
