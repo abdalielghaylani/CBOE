@@ -148,6 +148,11 @@
   font-size: 16px;
 }
 
+.wrap {
+  word-wrap: break-word;
+  width: 150px;
+}
+
 /* Following Fixes are For IE11 */
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 
