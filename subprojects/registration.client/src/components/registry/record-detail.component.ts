@@ -159,7 +159,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.cancelButtonEnabled = editMode && !this.isNewRecord;
     let canRegister = PrivilegeUtils.hasRegisterRecordPrivilege(this.isNewRecord, this.isLoggedInUserOwner, this.isLoggedInUserSuperVisor, userPrivileges);
     if (ss.isApprovalsEnabled) {
-      canRegister = (statusId === RegistryStatus.Approved);
+      canRegister = (statusId === RegistryStatus.Approved) && canRegister;
     }
     this.registerButtonEnabled = canRegister && (this.isNewRecord || (this.temporary && !editMode));
 
