@@ -1,5 +1,6 @@
 import { TypedRecord } from 'typed-immutable-record';
 import { IResponseData } from '../../../components/registry/registry.types';
+import CustomStore from 'devextreme/data/custom_store';
 
 export interface IRecordDetail {
   temporary: boolean;
@@ -24,7 +25,7 @@ export class CRecordsData implements IRecordsData {
   temporary: boolean = false;
   startIndex: number = 0;
   totalCount: number = 0;
-  hitlistId?: number = 0;
+  hitListId?: number = 0;
   rows: any[] = [];
   constructor(temporary: boolean, rows: any[] = undefined) {
     this.temporary = temporary;
@@ -35,16 +36,18 @@ export class CRecordsData implements IRecordsData {
   }
 }
 
-export interface IRecords {
-  temporary: boolean;
-  data: IRecordsData;
+export interface IRecordListData {
+  hitListId: number;
 }
 
-export interface IRecordsRecord extends TypedRecord<IRecordsRecord>, IRecords { }
+export class CRecordListData implements IRecordListData {
+  constructor(public hitListId: number) {
+  }
+}
 
 export interface IRegistry {
-  records: IRecordsRecord;
-  tempRecords: IRecordsRecord;
+  regListData: IRecordListData;
+  tempListData: IRecordListData;
   currentRecord: IRecordDetail;
   structureData: string;
   previousRecordDetail: IRecordDetail;

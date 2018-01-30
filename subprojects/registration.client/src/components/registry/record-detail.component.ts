@@ -9,12 +9,13 @@ import {
   ElementRef, ChangeDetectorRef, ViewEncapsulation,
   ViewChild, ViewChildren, QueryList
 } from '@angular/core';
+import { Location } from '@angular/common';
 import { ActivatedRoute, UrlSegment, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import * as X2JS from 'x2js';
-import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
+import { RecordDetailActions, IRecordListData, IAppState, IRecordDetail, ILookupData } from '../../redux';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, notify } from '../../common';
 import { IResponseData, ITemplateData, CTemplateData, ICopyActions } from './registry.types';
@@ -106,6 +107,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     private elementRef: ElementRef,
     private router: Router,
     private http: HttpService,
+    private location: Location,
     private actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef,
     private activatedRoute: ActivatedRoute) {
@@ -113,7 +115,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     let state = this.ngRedux.getState();
-    if (this.id >= 0 && !this.useCurrent && (state.registry.records.data.rows.length === 0 && state.registry.tempRecords.data.rows.length === 0)) {
+    if (this.id >= 0 && !this.useCurrent && (state.registry.regListData == null && state.registry.tempListData == null)) {
       return;
     }
     this.parentHeight = this.getParentHeight();
@@ -122,6 +124,11 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges() {
     this.update(false);
+  }
+
+  private get listData(): IRecordListData {
+    const state = this.ngRedux.getState();
+    return this.temporary ? state.registry.tempListData : state.registry.regListData;
   }
 
   private update(forceUpdate: boolean = true) {
@@ -177,7 +184,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
-    let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
+    let hitListId = this.listData.hitListId;
     this.createContainerButtonEnabled = (ss.isInventoryIntegrationEnabled && ss.isSendToInventoryEnabled)
       && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges)
       && !this.temporary
@@ -276,10 +283,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     if (this.bulkreg) {
       this.router.navigate([`records/bulkreg`]);
     } else {
-      let state = this.ngRedux.getState();
-      let path = this.temporary ? 'records/temp' : 'records';
-      let hitListId = this.temporary ? state.registry.tempRecords.data.hitlistId : state.registry.records.data.hitlistId;
-      this.router.navigate([`${path}/restore/${hitListId}`]);
+      this.location.back();
     }
   }
 

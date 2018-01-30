@@ -132,29 +132,36 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   private advancedRestorePopup(e: IHitlistData) {
-    this.actions.retrieveHitlist(this.temporary, {
-      type: 'Advanced',
-      id: e.id,
-      data: {
-        id1: this.hitlistId,
-        id2: this.selectedHitlist.id,
-        op: this.hitlistVM.advancedRestoreType
-      }
-    }, this.ngRedux.getState().registrysearch.highLightSubstructure);
-    this.grid.instance.collapseAll(-1);
-    this.onClose.emit(e);
+    let params = this.temporary ? '?temp=true' : '';
+    let url = `${apiUrlPrefix}hitlists/${this.hitlistId}/${this.hitlistVM.advancedRestoreType}/${this.selectedHitlist.id}/records${params}`;
+    this.http.get(url).toPromise()
+      .then(res => {
+        e.hitlistId = res.json().id;
+        this.grid.instance.collapseAll(-1);
+        this.onClose.emit(e);
+      })
+      .catch(error => {
+        notifyException(`Restoring the selected query failed due to a problem`, error, 5000);
+      });
   }
 
   private restoreSelectedHitlist(e: IHitlistData) {
     if (this.hitlistId !== e.id) {
-      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: e.id }, this.ngRedux.getState().registrysearch.highLightSubstructure);
       this.onClose.emit(e);
     }
   }
 
   private refreshSelectedHitlist(e: IHitlistData) {
-    this.actions.retrieveHitlist(this.temporary, { type: 'Refresh', id: e.id }, this.ngRedux.getState().registrysearch.highLightSubstructure);
-    this.onClose.emit(e);
+    let params = this.temporary ? '?temp=true' : '';
+    let url = `${apiUrlPrefix}hitlists/${e.hitlistId}/performQuery${params}`;
+    this.http.get(url).toPromise()
+      .then(res => {
+        e.hitlistId = res.json().id;
+        this.onClose.emit(e);
+      })
+      .catch(error => {
+        notifyException(`Restoring the selected query failed due to a problem`, error, 5000);
+      });
   }
 
   private restoreQueryToForm(e: IHitlistData) {

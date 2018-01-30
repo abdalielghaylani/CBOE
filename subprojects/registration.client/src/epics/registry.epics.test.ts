@@ -33,35 +33,4 @@ describe('configuration.epics', () => {
     };
     TestModule.configureTests(configure).then(done);
   });
-
-  it('should open and retrieve records', fakeAsync(
-    inject([XHRBackend, RegistryEpics], (mockBackend, registryEpics: RegistryEpics) => {
-      const payload: any = { temporary: true };
-      const data = [{ temporary: true, rows: [{ id: 1, value: 'v1' }, { id: 2, value: 'v2' }], totalCount: 2 }];
-      mockBackend.connections.subscribe((connection: MockConnection) => {
-        let response = new Response(new ResponseOptions({ body: data }));
-        response.url = '';
-        connection.mockRespond(response);
-      });
-
-      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction(payload)));
-      registryEpics.handleRegistryActions(action$, null).subscribe(action =>
-        expect(action).toEqual(RegistryActions.openRecordsSuccessAction(payload.temporary, data))
-      );
-    })
-  ));
-
-  it('should process a open-records error', fakeAsync(
-    inject([XHRBackend, RegistryEpics], (mockBackend, registryEpics: RegistryEpics) => {
-      const error = new Error('cannot get records');
-      mockBackend.connections.subscribe((connection: MockConnection) => {
-        connection.mockError(error);
-      });
-
-      const action$ = new ActionsObservable(Observable.of(RegistryActions.openRecordsAction({ temporary: true })));
-      registryEpics.handleRegistryActions(action$, null).subscribe(action =>
-        expect(action).toEqual(RegistryActions.openRecordsErrorAction(error))
-      );
-    })
-  ));
 });

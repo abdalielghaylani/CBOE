@@ -102,8 +102,14 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
         searchCriteria: criteria,
         highlightSubStructures: highLightSubstructure
       };
-      this.actions.searchRecords(queryData);
-      this.onSearch.emit();
+      this.http.post(`${apiUrlPrefix}search/${this.temporary ? 'temp-' : ''}records`, queryData).toPromise()
+        .then(res => {
+          let hitlistId = res.json();
+          this.onSearch.emit(hitlistId);
+        })
+        .catch(error => {
+          notifyException(`The search failed due to a problem`, error, 5000);
+        });
     } else {
       notify(`You must specify at least one field.`, `warning`, 5000);
     }

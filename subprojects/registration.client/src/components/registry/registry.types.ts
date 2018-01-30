@@ -1,3 +1,4 @@
+import CustomStore from 'devextreme/data/custom_store';
 import { apiUrlPrefix } from '../../configuration';
 import {
   IIdentifier, IIdentifierList, IProjectList, IFragment, IComponent,
@@ -6,7 +7,7 @@ import {
 import {
   IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
-import { IAppState, IRecordsData, IRecords, ILookupData } from '../../redux';
+import { IAppState, IRecordsData, IRecordListData, ILookupData } from '../../redux';
 
 export enum RegistryStatus {
   NotSet,
@@ -14,26 +15,6 @@ export enum RegistryStatus {
   Approved,
   Registered,
   Locked
-}
-
-export class CRecords implements IRecords {
-  filterRow: { visible: boolean } = { visible: true };
-  constructor(public temporary: boolean, public data: IRecordsData, public gridColumns: any[] = []) {
-  }
-  setRecordData(d: IRecordsData) {
-    if (d.startIndex === 0) {
-      this.data = d;
-    } else if (d.startIndex === this.data.rows.length) {
-      this.data.totalCount = d.totalCount;
-      this.data.rows = this.data.rows.concat(d.rows);
-    }
-    if (d.rows.length === 0 && this.data.totalCount !== this.data.rows.length) {
-      this.data.totalCount = this.data.rows.length;
-    }
-  }
-  getFetchedRows() {
-    return this.data.rows;
-  }
 }
 
 export interface IResponseData {

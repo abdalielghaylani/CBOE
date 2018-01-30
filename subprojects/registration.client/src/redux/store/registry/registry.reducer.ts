@@ -1,6 +1,6 @@
 import { RegistryActions, RecordDetailActions, SessionActions, IPayloadAction } from '../../actions';
 import { INITIAL_REGISTRY_STATE, INITIAL_RECORD_DETAIL } from './registry.initial-state';
-import { IRegistryRecord, IRecordDetail, IRecords, CRecordsData, ISaveResponseData } from './registry.types';
+import { IRegistryRecord, IRecordDetail, CRecordsData, ISaveResponseData } from './registry.types';
 
 export function registryReducer(
   state: IRegistryRecord = INITIAL_REGISTRY_STATE,
@@ -14,14 +14,6 @@ export function registryReducer(
   };
 
   switch (action.type) {
-    case RegistryActions.OPEN_RECORDS_ERROR:
-      let a1 = action as ReduxActions.Action<boolean>;
-      return state.updateIn(recordsDataPath(a1.payload), () => new CRecordsData(a1.payload));
-
-    case RegistryActions.OPEN_RECORDS_SUCCESS:
-      let a2 = action as ReduxActions.Action<IRecords>;
-      return state.updateIn(recordsDataPath(a2.payload), () => a2.payload.data);
-
     case RecordDetailActions.CLEAR_RECORD:
       return state.update('currentRecord', () => INITIAL_RECORD_DETAIL);
 
@@ -46,6 +38,11 @@ export function registryReducer(
 
     case RegistryActions.CLEAR_RESPONSE:
       return state.update('responseData', () => null);
+
+    case RegistryActions.UPDATE_LIST_DATA:
+      return action.payload.temporary
+        ? state.update('tempListData', () => action.payload.data)
+        : state.update('regListData', () => action.payload.data);
 
     case RecordDetailActions.SAVE_RECORD_SUCCESS:
     case RecordDetailActions.SAVE_RECORD_ERROR:

@@ -52,7 +52,6 @@ export function sessionReducer(
     case SessionActions.LOAD_LOOKUPS_SUCCESS:
       return state.update('lookups', () => action.payload);
 
-    case RegistryActions.OPEN_RECORDS_ERROR:
     case RegistryActions.DELETE_RECORD_ERROR:
     case RegistryActions.BULK_REGISTER_RECORD_ERROR:
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
@@ -63,21 +62,7 @@ export function sessionReducer(
     case RecordDetailActions.SAVE_RECORD_ERROR:
       return handleError(state, action.payload.error);
 
-
-    case RegistrySearchActions.SEARCH_RECORDS:
-      return state.update('isLoading', () => true);
-    case RegistrySearchActions.SEARCH_RECORDS_SUCCESS:
-      return state.update('isLoading', () => false);
-    case RegistrySearchActions.SEARCH_RECORDS_ERROR:
-      handleError(state, action.payload);
-      return state.update('isLoading', () => false);
-
-    case RegistrySearchActions.RETRIEVE_HITLIST:
-      return state.update('isLoading', () => true);
-    case RegistrySearchActions.RETRIEVE_HITLIST_ERROR:
-      return state.update('isLoading', () => false);
-
-    default:
+      default:
       return state;
   }
 }

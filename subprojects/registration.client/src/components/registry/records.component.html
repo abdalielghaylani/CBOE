@@ -1,15 +1,15 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
   <command-button *ngIf="isPrintAndExportAvailable" testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
   <div>
-    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="records.data.hitlistId" [markedRecords]="markedRecords"></reg-search-export>
+    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="hitListId" [markedRecords]="markedRecords"></reg-search-export>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
-    <command-button *ngIf="!!records.data.hitlistId" testid="edit-query-button" (onClick)="editQuery(records.data.hitlistId)" iconName="edit" title="Edit Query"></command-button>
-    <command-button *ngIf="!!records.data.hitlistId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
+    <command-button *ngIf="!!hitListId" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
+    <command-button *ngIf="!!hitListId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
     <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
-    <command-button *ngIf="!records.data.hitlistId" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+    <command-button *ngIf="!hitListId" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
   </div>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
-    <span *ngIf="records.temporary">Temporary</span> Registration Records
+    <span *ngIf="temporary">Temporary</span> Registration Records
   </reg-header>
   <reg-bulk-register-popup [viewModel]="regMarkedModel" *ngIf="regMarkedModel.isVisible" (registerMarked)="registerMarkedStart($event)"></reg-bulk-register-popup>
   <dx-popup [width]="300" [height]="250" [showTitle]="true" title="Save Query" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
@@ -26,10 +26,10 @@
       <dx-data-grid [height]="gridHeight" id="grdRecords" noDataText="Sorry your search returned 0 hits." [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)" (onSelectionChanged)="onSelectionChanged($event)"
         (onInitialized)='onInitialized($event)' (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onRowPrepared)="onRowPrepared($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true"
         [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }" columnAutoWidth=true wordWrapEnabled=true>
-        <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="records.temporary" [allowAdding]="false"></dxo-editing>
+        <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="temporary" [allowAdding]="false"></dxo-editing>
         <dxo-selection mode="multiple" showCheckBoxesMode="always"></dxo-selection>
         <dxo-load-panel [enabled]="true"></dxo-load-panel>
-        <dxo-scrolling mode="infinite"></dxo-scrolling>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-remote-operations [sorting]="true" [paging]="true"></dxo-remote-operations>
         <dxo-paging [pageSize]="20"></dxo-paging>
         <dxo-sorting mode="single"></dxo-sorting>
@@ -42,7 +42,7 @@
           </dx-data-grid>
         </div>
         <div *dxTemplate="let data of 'toolbarContents'">
-          <badge-count [hidden]="records.data.totalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
+          <badge-count [hidden]="recordsTotalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
           <badge-count [hidden]="selectedRows.length==0" color="orange" icon="check" text="Marked Hits" [count]="selectedRows ? selectedRows.length : ''"></badge-count>
           <command-button *ngIf="createContainersEnabled &amp;&amp; selectedRows.length>0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
           <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
@@ -69,10 +69,10 @@
   </div>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=1">
-  <reg-search-query [temporary]="temporary" [hitlistId]="records.data.hitlistId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
+  <reg-search-query [temporary]="temporary" [hitlistId]="hitListId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-record-search [totalSearchableCount]="records.data.totalCount" [temporary]="temporary" (onClose)="headerClicked($event)" (onSearch)="onSearch()" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
+  <reg-record-search [totalSearchableCount]="recordsTotalCount" [temporary]="temporary" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
 <dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>

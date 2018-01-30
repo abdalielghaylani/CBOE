@@ -334,7 +334,6 @@ export class CViewGroup implements IViewGroup {
 
   public static getViewGroups(temporary: boolean, config: IFormGroup, displayMode: string, disabledControls: any[]): CViewGroup[] {
     let viewGroups: CViewGroup[] = [];
-    let viewGroupsFiltered: CViewGroup[] = [];
     let form: IForm = this.getForm(config, displayMode);
     if (form) {
       let disabledControlsFiltered = this.getFilteredDisabledControls(temporary, displayMode, disabledControls);
@@ -349,47 +348,31 @@ export class CViewGroup implements IViewGroup {
             viewGroups.push(new CViewGroup([f], disabledControlsFiltered));
           }
         }
-        viewGroupsFiltered = [];
-        viewGroups.forEach(vg => {
-          if (vg.getItems(displayMode).length > 0) {
-            viewGroupsFiltered.push(vg);
-          }
-        });
       });
     }
-    return viewGroupsFiltered;
+    let viewGroupsFiltered: CViewGroup[] = [];
+    viewGroups.forEach(vg => {
+      if (displayMode === 'list' || vg.getItems(displayMode).length > 0) {
+        viewGroupsFiltered.push(vg);
+      }
+    });
+  return viewGroupsFiltered;
   }
 
   public static getColumns(temporary: boolean, config: IFormGroup, disabledControls: any[], systemSettings: CSystemSettings): CViewGroupColumns {
     const displayMode = 'list';
-    let viewGroups: CViewGroup[] = [];
+    const viewGroups: CViewGroup[] = CViewGroup.getViewGroups(temporary, config, displayMode, disabledControls);
     let viewGroupColumns = new CViewGroupColumns();
-    let form: IForm = this.getForm(config, displayMode);
-    if (form) {
-      let disabledControlsFiltered = this.getFilteredDisabledControls(temporary, displayMode, disabledControls);
-      let coeForms = this.sortAndFilterForms(form.coeForms.coeForm);
-      coeForms.forEach(f => {
-        if (f.formDisplay.visible === 'true') {
-          if (viewGroups.length === 0) {
-            viewGroups.push(new CViewGroup([], disabledControlsFiltered));
-          }
-          let viewGroup = viewGroups[viewGroups.length - 1];
-          if (!viewGroup.append(f)) {
-            viewGroups.push(new CViewGroup([f], disabledControlsFiltered));
-          }
+    if (viewGroups.length > 0) {
+      viewGroupColumns = viewGroups[0].getColumns(displayMode);
+      let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID' || c.dataField === 'Approved');
+      if (statusColumn) {
+        if (temporary) {
+          statusColumn.visible = systemSettings.isApprovalsEnabled;
+        } else {
+          statusColumn.visible = systemSettings.isLockingEnabled;
         }
-        if (viewGroups.length === 1) {
-          viewGroupColumns = viewGroups[0].getColumns(displayMode);
-          let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID' || c.dataField === 'Approved');
-          if (statusColumn) {
-            if (temporary) {
-              statusColumn.visible = systemSettings.isApprovalsEnabled;
-            } else {
-              statusColumn.visible = systemSettings.isLockingEnabled;
-            }
-          }
-        }
-      });
+      }
     }
     return viewGroupColumns;
   }

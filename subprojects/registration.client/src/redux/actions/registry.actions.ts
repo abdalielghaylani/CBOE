@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IAppState, IRegistryRetrievalQuery, IRegisterRecordList } from '../store';
+import { IAppState, IRegistryRetrievalQuery, IRegisterRecordList, IRecordListData } from '../store';
 
 @Injectable()
 export class RegistryActions {
   static OPEN_CREATE = 'OPEN_CREATE';
   static OPEN_EDIT = 'OPEN_EDIT';
   static SEARCH = 'SEARCH';
-  static OPEN_RECORDS = 'OPEN_RECORDS';
-  static OPEN_RECORDS_SUCCESS = 'OPEN_RECORDS_SUCCESS';
-  static OPEN_RECORDS_ERROR = 'OPEN_RECORDS_ERROR';
   static BULK_REGISTER_RECORD = 'BULK_REGISTER_RECORD';
   static CLEAR_BULK_REGISTER_RECORD = 'CLEAR_BULK_REGISTER_RECORD';
   static BULK_REGISTER_RECORD_SUCCESS = 'BULK_REGISTER_RECORD_SUCCESS';
@@ -19,6 +16,7 @@ export class RegistryActions {
   static DELETE_RECORD_SUCCESS = 'DELETE_RECORD_SUCCESS';
   static DELETE_RECORD_ERROR = 'DELETE_RECORD_ERROR';
   static CLEAR_RESPONSE = 'CLEAR_RESPONSE';
+  static UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
   static clearResponseAction = createAction(RegistryActions.CLEAR_RESPONSE);
   static clearBulkRegisterRecordAction = createAction(RegistryActions.CLEAR_BULK_REGISTER_RECORD);
   static bulkRegisterRecordAction = createAction(RegistryActions.BULK_REGISTER_RECORD,
@@ -27,16 +25,12 @@ export class RegistryActions {
     (payload: any) => (payload));
   static bulkRegisterRecordErrorAction = createAction(RegistryActions.BULK_REGISTER_RECORD_ERROR,
     (payload: any) => (payload));
-  static openRecordsAction = createAction(RegistryActions.OPEN_RECORDS,
-    (payload: IRegistryRetrievalQuery) => (payload));
-  static openRecordsSuccessAction = createAction(RegistryActions.OPEN_RECORDS_SUCCESS,
-    (temporary: boolean, data: any) => ({ temporary, data }));
-  static openRecordsErrorAction = createAction(RegistryActions.OPEN_RECORDS_ERROR,
-    (payload: any) => (payload));
   static deleteRecordAction = createAction(RegistryActions.DELETE_RECORD,
     (temporary: boolean, data: any) => ({ temporary, data }));
   static deleteRecordSuccessAction = createAction(RegistryActions.DELETE_RECORD_SUCCESS);
   static deleteRecordErrorAction = createAction(RegistryActions.DELETE_RECORD_ERROR);
+  static updateListDataAction = createAction(RegistryActions.UPDATE_LIST_DATA,
+    (temporary: boolean, data: IRecordListData) => ({ temporary, data }));
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -50,10 +44,6 @@ export class RegistryActions {
 
   search() {
     this.ngRedux.dispatch({ type: RegistryActions.SEARCH });
-  }
-
-  openRecords(payload: IRegistryRetrievalQuery) {
-    this.ngRedux.dispatch(RegistryActions.openRecordsAction(payload));
   }
 
   deleteRecord(temporary: boolean, data: any) {
@@ -70,5 +60,9 @@ export class RegistryActions {
 
   clearResponse() {
     this.ngRedux.dispatch(RegistryActions.clearResponseAction());
+  }
+
+  updateListData(temporary: boolean, data: IRecordListData) {
+    this.ngRedux.dispatch(RegistryActions.updateListDataAction(temporary, data));
   }
 }

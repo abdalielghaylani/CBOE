@@ -5,12 +5,6 @@ import { IAppState, IHitlistData, IHitlistRetrieveInfo, IQueryData } from '../st
 
 @Injectable()
 export class RegistrySearchActions {
-  static SEARCH_RECORDS = 'SEARCH_RECORDS';
-  static SEARCH_RECORDS_SUCCESS = 'SEARCH_RECORDS_SUCCESS';
-  static SEARCH_RECORDS_ERROR = 'SEARCH_RECORDS_ERROR';
-  static RETRIEVE_HITLIST = 'RETRIEVE_HITLIST';
-  static RETRIEVE_HITLIST_SUCCESS = 'RETRIEVE_HITLIST_SUCCESS';
-  static RETRIEVE_HITLIST_ERROR = 'RETRIEVE_HITLIST_ERROR';
   static RETRIEVE_QUERY_FORM = 'RETRIEVE_QUERY_FORM';
   static RETRIEVE_QUERY_FORM_SUCCESS = 'RETRIEVE_QUERY_FORM_SUCCESS';
   static RETRIEVE_QUERY_FORM_ERROR = 'RETRIEVE_QUERY_FORM_ERROR';
@@ -37,33 +31,12 @@ export class RegistrySearchActions {
   static deleteHitlistAction = createAction(RegistrySearchActions.DELETE_HITLIST,
     (temporary: boolean, id: number) => ({ temporary, id }));
   static deleteHitlistErrorAction = createAction(RegistrySearchActions.DELETE_HITLIST_ERROR);
-  static searchRecordsAction = createAction(RegistrySearchActions.SEARCH_RECORDS,
-    (queryData: IQueryData) => (queryData));
-  static searchRecordsSuccessAction = createAction(RegistrySearchActions.SEARCH_RECORDS_SUCCESS,
-    (temporary: boolean, rows: any[]) => ({ temporary, rows }));
-  static searchRecordsErrorAction = createAction(RegistrySearchActions.SEARCH_RECORDS_ERROR);
-  static retrieveHitlistAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST,
-    (temporary: boolean, data: IHitlistRetrieveInfo, highlightSubStructures: boolean) => ({ temporary, data, highlightSubStructures }));
-  static retrieveHitlistSuccessAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_SUCCESS);
-  static retrieveHitlistErrorAction = createAction(RegistrySearchActions.RETRIEVE_HITLIST_ERROR);
   static retrieveQueryFormAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM,
     (temporary: boolean, id: number) => ({ temporary, id }));
   static retrieveQueryFormSuccessAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_SUCCESS);
   static retrieveQueryFormErrorAction = createAction(RegistrySearchActions.RETRIEVE_QUERY_FORM_ERROR);
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
-
-  searchRecords(queryData: IQueryData) {
-    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsAction(queryData));
-  }
-
-  searchRecordsSuccess(temporary: boolean, rows: any[]) {
-    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsSuccessAction(temporary, rows));
-  }
-
-  searchRecordsError() {
-    this.ngRedux.dispatch(RegistrySearchActions.searchRecordsErrorAction());
-  }
 
   retrieveQueryForm(temporary: boolean, id: number) {
     this.ngRedux.dispatch(RegistrySearchActions.retrieveQueryFormAction(temporary, id));
@@ -92,9 +65,4 @@ export class RegistrySearchActions {
   updateHitlist(temporary: boolean, data: IHitlistData) {
     this.ngRedux.dispatch(RegistrySearchActions.updateHitlistAction(temporary, data));
   };
-
-  retrieveHitlist(temporary: boolean, data: IHitlistRetrieveInfo, highlightSubStructures: boolean) {
-    this.ngRedux.dispatch(RegistrySearchActions.retrieveHitlistAction(temporary, data, highlightSubStructures));
-  };
-
 }

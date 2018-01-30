@@ -133,7 +133,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var more = additionalCriteriaCount > 0 ? string.Format(" +{0}", additionalCriteriaCount) : string.Empty;
                 var moreDesc = additionalCriteriaCount > 0 ? string.Format(" with {0} more criteria", additionalCriteriaCount) : string.Empty;
                 var hitListDescription = string.Format("Search for {0}{1}", structureName, moreDesc);
-                hitlistBO.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));                
+                hitlistBO.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));
             }
             hitlistBO.Update();
             return hitlistInfo;
@@ -374,6 +374,51 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return resultsCriteria;
         }
 
+        private COEHitListBO UpdateHitlistInternal(int id, HitlistData hitlistData)
+        {
+            var hitlistType = hitlistData.HitlistType;
+            var hitlistBO = COEHitListBO.Get(hitlistType, id);
+            if (hitlistBO == null)
+                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+            bool saveHitlist = false;
+            if (hitlistType == HitListType.SAVED && hitlistBO.HitListID == 0)
+            {
+                // Saving temporary hit-list
+                saveHitlist = true;
+                hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
+            }
+            if (hitlistBO.HitListID > 0)
+            {
+                hitlistBO.Name = TrimtHitListName(hitlistData.Name);
+                hitlistBO.Description = hitlistData.Description;
+                hitlistBO.IsPublic = hitlistData.IsPublic.HasValue ? hitlistData.IsPublic.Value : false;
+                if (hitlistBO.SearchCriteriaID > 0)
+                {
+                    var searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
+                    searchCriteriaBO.Name = hitlistBO.Name;
+                    searchCriteriaBO.Description = hitlistBO.Description;
+                    searchCriteriaBO.IsPublic = hitlistBO.IsPublic;
+                    searchCriteriaBO = saveHitlist ? searchCriteriaBO.Save() : searchCriteriaBO.Update();
+                    if (saveHitlist)
+                    {
+                        hitlistBO.SearchCriteriaID = searchCriteriaBO.ID;
+                        hitlistBO.SearchCriteriaType = searchCriteriaBO.SearchCriteriaType;
+                    }
+                }
+                if (saveHitlist)
+                {
+                    var idToDelete = hitlistBO.ID;
+                    hitlistBO = hitlistBO.Save();
+                    COEHitListBO.Delete(HitListType.TEMP, idToDelete);
+                }
+                else
+                {
+                    hitlistBO = hitlistBO.Update();
+                }
+            }
+            return hitlistBO;
+        }
+
         /// <summary>
         /// Creates a hit-list from a marked list
         /// </summary>
@@ -396,22 +441,29 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 CheckAuthentication();
-                var genericBO = GetGenericBO(temp);
-                foreach (int recordId in hitlistData.MarkedHitIDs)
+                SearchCriteria searchCriteria = null;
+                if (hitlistData.MarkedHitIDs.Count > 0)
                 {
-                    genericBO.MarkedHitList.MarkHit(recordId);
+                    searchCriteria = new SearchCriteria();
+                    searchCriteria.SearchCriteriaID = 1;
+                    SearchCriteria.SearchCriteriaItem item;
+                    item = new SearchCriteria.SearchCriteriaItem();
+                    SearchCriteria.NumericalCriteria criteria = new SearchCriteria.NumericalCriteria();
+                    criteria.InnerText = string.Join(",", hitlistData.MarkedHitIDs);
+                    criteria.Operator = SearchCriteria.COEOperators.IN;
+                    criteria.Trim = SearchCriteria.Positions.None;
+                    item.FieldId = temp ? 100 : 101;
+                    item.TableId = 1;
+                    item.Criterium = criteria;
+                    searchCriteria.Items.Add(item);
                 }
 
-                var hitlistBO = genericBO.MarkedHitList;
-                hitlistBO.Name = hitlistData.Name;
-                hitlistBO.Description = hitlistData.Description;
-                hitlistBO.HitListType = HitListType.SAVED;
-                hitlistBO.Save();
-
-                foreach (int recordId in hitlistData.MarkedHitIDs)
-                {
-                    genericBO.MarkedHitList.UnMarkHit(recordId);
-                }
+                var dataViewId = int.Parse(temp ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
+                var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
+                var hitlistInfo = CreateTempHitlist(dataView, searchCriteria);
+                hitlistData.HitlistType = HitListType.SAVED;
+                hitlistData.HitlistID = hitlistInfo.HitListID;
+                var hitlistBO = UpdateHitlistInternal(hitlistInfo.HitListID, hitlistData);
 
                 return new ResponseData(id: hitlistBO.ID);
             });
@@ -550,46 +602,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var hitlistType = hitlistData.HitlistType;
-                var hitlistBO = COEHitListBO.Get(hitlistType, id);
-                if (hitlistBO == null)
-                    throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
-                bool saveHitlist = false;
-                if (hitlistType == HitListType.SAVED && hitlistBO.HitListID == 0)
-                {
-                    // Saving temporary hit-list
-                    saveHitlist = true;
-                    hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-                }
-                if (hitlistBO.HitListID > 0)
-                {
-                    hitlistBO.Name = TrimtHitListName(hitlistData.Name);
-                    hitlistBO.Description = hitlistData.Description;
-                    hitlistBO.IsPublic = hitlistData.IsPublic.HasValue ? hitlistData.IsPublic.Value : false;
-                    if (hitlistBO.SearchCriteriaID > 0)
-                    {
-                        var searchCriteriaBO = COESearchCriteriaBO.Get(hitlistBO.SearchCriteriaType, hitlistBO.SearchCriteriaID);
-                        searchCriteriaBO.Name = hitlistBO.Name;
-                        searchCriteriaBO.Description = hitlistBO.Description;
-                        searchCriteriaBO.IsPublic = hitlistBO.IsPublic;
-                        searchCriteriaBO = saveHitlist ? searchCriteriaBO.Save() : searchCriteriaBO.Update();
-                        if (saveHitlist)
-                        {
-                            hitlistBO.SearchCriteriaID = searchCriteriaBO.ID;
-                            hitlistBO.SearchCriteriaType = searchCriteriaBO.SearchCriteriaType;
-                        }
-                    }
-                    if (saveHitlist)
-                    {
-                        var idToDelete = hitlistBO.ID;
-                        hitlistBO = hitlistBO.Save();
-                        COEHitListBO.Delete(HitListType.TEMP, idToDelete);
-                    }
-                    else
-                    {
-                        hitlistBO = hitlistBO.Update();
-                    }
-                }
+                var hitlistBO = UpdateHitlistInternal(id, hitlistData);
                 return new ResponseData(id: hitlistBO.ID);
             });
         }
@@ -644,30 +657,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <response code="500">Unexpected error</response>
         /// <param name="id">The hit-list ID</param>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
-        /// <param name="refresh">The flag to refresh the query results by re-running the search query</param>
-        /// <param name="skip">The number of items to skip</param>
-        /// <param name="count">The maximum number of items to return</param>
-        /// <param name="sort">The sorting information</param>
-        /// <param name="highlightSubStructures">The flag indicating if the substructure need to be highlighted</param>
         /// <returns>The promise to return a JSON object containing an array of registration records</returns>
         [HttpGet]
-        [Route(Consts.apiPrefix + "hitlists/{id}/records")]
-        [SwaggerOperation("GetHitlistRecords")]
-        [SwaggerResponse(200, type: typeof(JObject))]
+        [Route(Consts.apiPrefix + "hitlists/{id}/performQuery")]
+        [SwaggerOperation("GetPerformQueryHitlist")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetHitlistRecords(int id, bool? temp = null, bool? refresh = null, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
+        public async Task<IHttpActionResult> GetHitlistRecords(int id, bool? temp = null)
         {
             return await CallMethod(() =>
             {
-                if (refresh != null && refresh.Value)
-                {
-                    var queryData = GetHitlistQueryInternal(id, temp);
-                    var newHitlistId = CreateTempHitlist(queryData, temp);
-                    return GetHitlistRecordsInternal(newHitlistId, temp, skip, count, sort, highlightSubStructures);
-                }
-                return GetHitlistRecordsInternal(id, temp, skip, count, sort, highlightSubStructures);
+                var queryData = GetHitlistQueryInternal(id, temp);
+                var newHitlistId = CreateTempHitlist(queryData, temp);
+                return new ResponseData(id: newHitlistId);
             });
         }
 
@@ -724,22 +728,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="op">The name of operation to apply</param>
         /// <param name="id2">The ID of the hit-list to apply the operation</param>
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
-        /// <param name="skip">The number of records to skip</param>
-        /// <param name="count">The maximum number of records to return</param>
-        /// <param name="sort">The sorting information</param>
         /// <returns>The list of hit-list objects</returns>
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/{id1}/{op}/{id2}/records")]
         [SwaggerOperation("GetAdvHitlistRecords")]
-        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
         [SwaggerResponse(401, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> GetAdvHitlistRecords(int id1, string op, int id2, bool? temp = null, int? skip = null, int? count = null, string sort = null)
+        public async Task<IHttpActionResult> GetAdvHitlistRecords(int id1, string op, int id2, bool? temp = null)
         {
             return await CallMethod(() =>
             {
-                JObject data = new JObject();
                 var formGroup = GetFormGroup(temp);
                 int dataViewId = formGroup.DataViewId;
                 var hitlistBO1 = GetHitlistBO(id1);
@@ -769,7 +769,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 newHitlist.Name = string.Format("Search {0}", newHitlist.HitListID);
                 newHitlist.Description = hitListDescription.Substring(0, Math.Min(hitListDescription.Length, 250));
                 newHitlist.Update();
-                return GetHitlistRecordsInternal(newHitlist.HitListID, temp);
+                return new ResponseData(id: newHitlist.HitListID);
             });
         }
 

@@ -23,12 +23,12 @@ describe('registry action creators', () => {
     const searchCriteria = `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria"></searchCriteria>`;
     const data: IQueryData = { temporary: true, searchCriteria };
     const expectedAction = {
-      type: RegistrySearchActions.SEARCH_RECORDS,
+      // type: RegistrySearchActions.SEARCH_RECORDS,
       payload: data
     };
 
     spyOn(mockRedux, 'dispatch');
-    actions.searchRecords(data);
+    // actions.searchRecords(data);
 
     expect(mockRedux.dispatch).toHaveBeenCalled();
     expect(mockRedux.dispatch).toHaveBeenCalledWith(expectedAction);

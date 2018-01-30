@@ -61,46 +61,4 @@ describe('Session Reducer', () => {
       SessionActions.loadLookupsSuccessAction(data));
     expect(nextState.lookups).toEqual(data);
   });
-
-  it ('should clear state on errors with 404 status', () => {
-    const error = { status: 404 };
-    const previousState = initState;
-    let nextState = sessionReducer(
-      previousState,
-      RegistryActions.openRecordsErrorAction(error));
-    expect(nextState).toEqual(INITIAL_SESSION_STATE);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.retrieveRecordErrorAction(error));
-    expect(nextState).toEqual(INITIAL_SESSION_STATE);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.loadStructureErrorAction(error));
-    expect(nextState).toEqual(INITIAL_SESSION_STATE);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.saveRecordErrorAction({ error }));
-    expect(nextState).toEqual(INITIAL_SESSION_STATE);
-  });
-
-  it ('should do nothing on errors with non-404 error', () => {
-    const error = 'error';
-    const previousState = initState;
-    let nextState = sessionReducer(
-      previousState,
-      RegistryActions.openRecordsErrorAction(error));
-    expect(nextState).toEqual(previousState);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.retrieveRecordErrorAction(error));
-    expect(nextState).toEqual(previousState);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.loadStructureErrorAction(error));
-    expect(nextState).toEqual(previousState);
-    nextState = sessionReducer(
-      previousState,
-      RecordDetailActions.saveRecordErrorAction({ error }));
-    expect(nextState).toEqual(previousState);
-  });
 });

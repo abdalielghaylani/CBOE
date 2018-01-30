@@ -24,7 +24,6 @@ export class RegistryEpics {
 
   handleRegistryActions: Epic = (action$: ActionsObservable, store: MiddlewareAPI<any>) => {
     return combineEpics(
-      this.handleOpenRecords,
       this.handleRetrieveRecord,
       this.handleSaveRecord,
       this.createDuplicateRecord,
@@ -32,25 +31,6 @@ export class RegistryEpics {
       this.bulkRegisterRecord,
       this.handleDeleteRecords,
     )(action$, store);
-  }
-
-  private handleOpenRecords: Epic = (action$: Observable<ReduxActions.Action<IRegistryRetrievalQuery>>) => {
-    return action$.filter(({ type }) => type === RegistryActions.OPEN_RECORDS)
-      .mergeMap(({ payload }) => {
-        let url = `${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records`;
-        let params = '';
-        if (payload.skip) { params += `?skip=${payload.skip}`; }
-        if (payload.take) { params += `${params ? '&' : '?'}count=${payload.take}`; }
-        if (payload.sort) { params += `${params ? '&' : '?'}sort=${payload.sort}`; }
-        if (payload.hitListId) { params += `${params ? '&' : '?'}hitListId=${payload.hitListId}`; }
-        if (payload.highlightSubStructures) { params += `${params ? '&' : '?'}highlightSubStructures=${payload.highlightSubStructures}`; }
-        url += params;
-        return this.http.get(url)
-          .map(result => {
-            return RegistryActions.openRecordsSuccessAction(payload.temporary, result.json());
-          })
-          .catch(error => Observable.of(RegistryActions.openRecordsErrorAction(error)));
-      });
   }
 
   private handleDeleteRecords: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: any }>>) => {

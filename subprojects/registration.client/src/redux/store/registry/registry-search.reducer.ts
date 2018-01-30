@@ -15,9 +15,6 @@ export function registrySearchReducer(
       return state.update('highLightSubstructure', () => a2.payload);
     case SessionActions.LOGOUT_USER:
       return state.update('highLightSubstructure', () => false);
-    case RegistrySearchActions.RETRIEVE_HITLIST_ERROR:
-      notifyError(action.payload);
-      return state;
     default:
       return state;
   }

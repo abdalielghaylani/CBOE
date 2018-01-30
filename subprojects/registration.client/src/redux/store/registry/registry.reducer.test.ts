@@ -15,42 +15,6 @@ describe('registry reducer', () => {
     expect(Iterable.isIterable(initState)).toBe(true);
   });
 
-  it('should clear record rows on OPEN_RECORDS_ERROR(false)', () => {
-    const nextState = registryReducer(
-      initState,
-      RegistryActions.openRecordsErrorAction(false)
-    );
-    expect(nextState.records.data.rows).toEqual([]);
-  });
-
-  it('should clear temp record rows on OPEN_RECORDS_ERROR(true)', () => {
-    const nextState = registryReducer(
-      initState,
-      RegistryActions.openRecordsErrorAction(true)
-    );
-    expect(nextState.tempRecords.data.rows).toEqual([]);
-  });
-
-  it('should set record rows on OPEN_RECORDS_SUCCESS(false)', () => {
-    const rows = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
-    const data = new CRecordsData(false, rows);
-    const nextState = registryReducer(
-      initState,
-      RegistryActions.openRecordsSuccessAction(false, data)
-    );
-    expect(nextState.records.data).toEqual(data);
-  });
-
-  it('should set temp record rows on OPEN_RECORDS_SUCCESS(true)', () => {
-    const rows = [{ c1: 'v11', c2: 'v12' }, { c1: 'v21', c2: 'v22' }];
-    const data = new CRecordsData(true, rows);
-    const nextState = registryReducer(
-      initState,
-      RegistryActions.openRecordsSuccessAction(true, data)
-    );
-    expect(nextState.tempRecords.data).toEqual(data);
-  });
-
   it('should set record data on RETRIEVE_RECORD_SUCCESS', () => {
     const id = 100;
     const data = '<xml>encoded-temp-cdxml-data</xml>';

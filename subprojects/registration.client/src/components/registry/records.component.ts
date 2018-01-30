@@ -18,14 +18,14 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { CViewGroup, CViewGroupColumns } from './base';
 import { FormGroupType, prepareFormGroupData, IFormGroup, getExceptionMessage, notify, notifyError, notifySuccess, notifyException } from '../../common';
 import * as regSearchTypes from './registry-search.types';
-import { CRecords, RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
+import { RegistryStatus, IRegMarkedPopupModel, IResponseData } from './registry.types';
 import CustomStore from 'devextreme/data/custom_store';
 import { fetchLimit, printAndExportLimit, apiUrlPrefix, invWideWindowParams } from '../../configuration';
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
-import { RegistryActions, RegistrySearchActions } from '../../redux';
-import { IAppState, CRecordsData, IRecords, ISearchRecords, ILookupData, IQueryData, CSystemSettings, HitlistType } from '../../redux';
+import { RegistryActions, RegistrySearchActions, IRecordListData, CRecordListData } from '../../redux';
+import { IAppState, CRecordsData, ISearchRecords, ILookupData, IQueryData, CSystemSettings, HitlistType } from '../../redux';
 import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
 import * as dxDialog from 'devextreme/ui/dialog';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -50,10 +50,8 @@ export class RegRecords implements OnInit, OnDestroy {
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   @select(s => s.session.isLoading) isLoading$: Observable<any>;
   private responseData$: Observable<IResponseData>;
-  private records$: Observable<IRecords>;
   private viewGroupsColumns: CViewGroupColumns;
   private lookupsSubscription: Subscription;
-  private recordsSubscription: Subscription;
   private responseSubscription: Subscription;
   private hitlistSubscription: Subscription;
   private isLoadingSubscription: Subscription;
@@ -68,10 +66,8 @@ export class RegRecords implements OnInit, OnDestroy {
   private bulkRecordData$: Observable<any[]>;
   private isMarkedQuery: boolean;
   private loadIndicatorVisible: boolean = false;
-  private records: CRecords;
   private gridHeight: string;
   private currentIndex: number = 0;
-  private dataStore: CustomStore;
   private sortCriteria: string;
   private structureImageApiPrefix: string = `${apiUrlPrefix}StructureImage/`;
   private idField;
@@ -79,6 +75,9 @@ export class RegRecords implements OnInit, OnDestroy {
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
   private isPrintAndExportAvailable: boolean = false;
   private clearSearchForm: boolean = false;
+  private dataStore: CustomStore;
+  private recordsTotalCount: number = 0;
+  private refreshHitList: boolean = false;
 
   constructor(
     private router: Router,
@@ -89,33 +88,27 @@ export class RegRecords implements OnInit, OnDestroy {
     private elementRef: ElementRef,
     private imageService: CStructureImagePrintService,
     private changeDetector: ChangeDetectorRef) {
-    this.records = new CRecords(this.temporary, new CRecordsData(this.temporary));
   }
 
   ngOnInit() {
+    // Synchronize the hit-list ID with the global cache.
+    if (this.hitListId !== 0) {
+      this.listData = new CRecordListData(this.hitListId);
+    } else {
+      this.hitListId = this.listData.hitListId;
+    }
     this.responseData$ = this.ngRedux.select(['registry', 'responseData']);
     if (!this.responseSubscription) {
       this.responseSubscription = this.responseData$.subscribe(d => { this.deleteRecordStatus(d); });
     }
     this.idField = this.temporary ? 'TEMPBATCHID' : 'REGID';
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
-
-    let formGroupType = this.temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
-    prepareFormGroupData(formGroupType, this.ngRedux);
-    let state = this.ngRedux.getState();
-    let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
-    this.viewGroupsColumns = this.lookups
-      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, new CSystemSettings(this.lookups.systemSettings))
-      : new CViewGroupColumns();
     this.isLoadingSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
   }
 
   ngOnDestroy() {
     if (this.lookupsSubscription) {
       this.lookupsSubscription.unsubscribe();
-    }
-    if (this.recordsSubscription) {
-      this.recordsSubscription.unsubscribe();
     }
     if (this.hitlistSubscription) {
       this.hitlistSubscription.unsubscribe();
@@ -126,6 +119,22 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     if (this.isLoadingSubscription) {
       this.isLoadingSubscription.unsubscribe();
+    }
+  }
+
+  private get listData(): IRecordListData {
+    const state = this.ngRedux.getState();
+    return this.temporary ? state.registry.tempListData : state.registry.regListData;
+  }
+
+  private set listData(data: IRecordListData) {
+    this.registryActions.updateListData(this.temporary, data);
+  }
+
+  updateHitListId(id: number) {
+    if (this.hitListId !== id) {
+      this.hitListId = id;
+      this.listData = new CRecordListData(id);
     }
   }
 
@@ -147,7 +156,8 @@ export class RegRecords implements OnInit, OnDestroy {
       } else {
         notifyError(e.message, 5000);
       }
-      this.retrieveAll();
+      this.currentIndex = 0;
+      this.grid.instance.refresh();
       this.registryActions.clearResponse();
     }
   }
@@ -158,6 +168,15 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.loggedIn$) {
       this.loadIndicatorVisible = true;
     }
+
+    let formGroupType = this.temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
+    prepareFormGroupData(formGroupType, this.ngRedux);
+    let state = this.ngRedux.getState();
+    let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
+    this.viewGroupsColumns = this.lookups
+      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, new CSystemSettings(this.lookups.systemSettings))
+      : new CViewGroupColumns();
+
     if (this.restore) {
       this.restoreHitlist();
     } else {
@@ -167,11 +186,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   restoreHitlist() {
     if ((this.restore) && (this.hitListId > 0)) {
-      this.actions.retrieveHitlist(this.temporary, { type: 'Retrieve', id: this.hitListId }, this.ngRedux.getState().registrysearch.highLightSubstructure);
-      this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
-      if (!this.recordsSubscription) {
-        this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
-      }
+      this.dataStore = this.createCustomStore(this);
     }
   }
 
@@ -180,18 +195,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   loadData() {
-    this.registryActions.openRecords({
-      temporary: this.temporary,
-      skip: this.records.data.rows.length,
-      take: fetchLimit,
-      sort: this.sortCriteria,
-      hitListId: this.records.data.hitlistId,
-      highlightSubStructures: this.ngRedux.getState().registrysearch.highLightSubstructure
-    });
-    this.records$ = this.ngRedux.select(['registry', this.temporary ? 'tempRecords' : 'records']);
-    if (!this.recordsSubscription) {
-      this.recordsSubscription = this.records$.subscribe(d => { this.openRegistryRecords(d); });
-    }
+    this.dataStore = this.createCustomStore(this);
     this.actions.openHitlists(this.temporary);
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
     if (this.hitlistSubscription) {
@@ -203,40 +207,41 @@ export class RegRecords implements OnInit, OnDestroy {
     this.gridHeight = this.getGridHeight();
   }
 
-  openRegistryRecords(records: IRecords) {
-    this.loadIndicatorVisible = false;
-    if (records.data.startIndex === 0) {
-      this.records.temporary = records.temporary;
-      if (records.data.rows.length < records.data.totalCount) {
-        this.records.filterRow.visible = false;
-      }
-      this.records.setRecordData(records.data);
-    } else if (this.records.data.rows.length > 0 && this.records.data.rows.length === records.data.startIndex) {
-      this.records.setRecordData(records.data);
-    }
-    this.createCustomStore(this);
-    if (this.currentIndex !== 0) {
-      this.currentIndex = 0;
-    }
-
-    this.changeDetector.markForCheck();
-  }
-
-  createCustomStore(ref: RegRecords) {
-    ref.dataStore = new CustomStore({
+  private createCustomStore(ref: RegRecords) {
+    return new CustomStore({
       load: function (loadOptions) {
-        if (loadOptions.sort !== null) {
-          let sortCriteria = !loadOptions.sort[0].desc ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
-          if (ref.sortCriteria !== sortCriteria && ref.records.data.rows.length !== ref.records.data.totalCount) {
-            ref.sortCriteria = sortCriteria;
-            ref.updateContents();
+        let deferred = jQuery.Deferred();
+        if (ref.rowSelected) {
+          deferred.resolve(ref.selectedRows, { totalCount: ref.selectedRows.length });
+        } else {
+          let sortCriteria;
+          if (loadOptions.sort != null) {
+            sortCriteria = (loadOptions.sort[0].desc === false) ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
           }
+          let url = `${apiUrlPrefix}${ref.temporary ? 'temp-' : ''}records`;
+          let params = '';
+          if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
+          let take = loadOptions.take != null ? loadOptions.take : fetchLimit;
+          if (take) { params += `${params ? '&' : '?'}count=${take}`; }
+          if (sortCriteria) { params += `${params ? '&' : '?'}sort=${sortCriteria}`; }
+          if (ref.hitListId) { params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`; }
+          params += `&highlightSubStructures=${ref.ngRedux.getState().registrysearch.highLightSubstructure}`;
+          url += params;
+          ref.http.get(url)
+            .toPromise()
+            .then(result => {
+              let response = result.json();
+              ref.recordsTotalCount = response.totalCount;
+              ref.updateHitListId(response.hitlistId);
+              ref.loadIndicatorVisible = false;
+              deferred.resolve(response.rows, { totalCount: response.totalCount });
+            })
+            .catch(error => {
+              let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
+              deferred.reject(message);
+            });
         }
-        if (ref.records.data.rows.length === ref.records.data.totalCount) {
-          ref.records.filterRow.visible = true;
-        }
-        ref.isPrintAndExportAvailable = ref.rowSelected || ref.records.data.totalCount <= printAndExportLimit;
-        return Promise.resolve(ref.records.getFetchedRows());
+        return deferred.promise();
       }
     });
   }
@@ -266,27 +271,15 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  onSearch() {
+  onSearch(hitListId) {
     this.loadIndicatorVisible = true;
-  }
-
-  updateContents() {
-    this.registryActions.openRecords({
-      temporary: this.temporary,
-      skip: this.records.data.rows.length,
-      take: fetchLimit,
-      sort: this.sortCriteria,
-      hitListId: this.records.data.hitlistId,
-      highlightSubStructures: this.ngRedux.getState().registrysearch.highLightSubstructure
-    });
+    this.rowSelected = false;
+    this.currentIndex = 0;
+    this.updateHitListId(hitListId);
+    this.grid.instance.refresh();
   }
 
   onRowPrepared(e) {
-    if (!this.rowSelected && e.rowType === 'data'
-      && this.records.data.rows.length < this.records.data.totalCount
-      && e.rowIndex === this.records.data.rows.length - 1) {
-      this.updateContents();
-    }
   }
 
   onCellPrepared(e) {
@@ -338,9 +331,6 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onSelectionChanged(e) {
     this.selectedRows = e.selectedRowKeys;
-    if (this.rowSelected) {
-      this.records.data.rows = this.selectedRows;
-    }
   }
 
   onSearchClick(e) {
@@ -371,7 +361,6 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
-    // TODO: Should use redux
     let ids = e.data[this.idField];
     this.registryActions.deleteRecord(this.temporary, { data: [{ id: ids }] });
     e.cancel = true;
@@ -398,8 +387,12 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private retrieveAll() {
-    this.registryActions.openRecords({ temporary: this.temporary });
+    this.updateHitListId(0);
     this.clearSearchForm = true;
+    this.rowSelected = false;
+    let keys = this.grid.instance.getSelectedRowKeys();
+    this.grid.instance.deselectRows(keys);
+    this.grid.instance.refresh();
   }
 
   private saveHitlist() {
@@ -448,6 +441,12 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private headerClicked(e) {
     this.currentIndex = 0;
+    if (e.hitlistId) {
+      this.rowSelected = false;
+      this.loadIndicatorVisible = true;
+      this.updateHitListId(e.hitlistId);
+      this.grid.instance.refresh();
+    }
   }
 
   private restoreClicked(queryData: IQueryData) {
@@ -459,50 +458,9 @@ export class RegRecords implements OnInit, OnDestroy {
     this.markedRecords = [];
     if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
       this.rowSelected = true;
-      this.tempResultRows = this.records.data.rows;
-      this.records.data.rows = this.selectedRows;
-      this.selectedRows.map(r => { this.markedRecords.push(r[this.idField]); });
       this.grid.instance.refresh();
       this.isPrintAndExportAvailable = true;
     }
-  }
-
-  private deleteRows(ids: number[], failed: number[], succeeded: number[]) {
-    if (ids.length === 0) {
-      // If id list is empty, change deleted rows and refresh grid.
-      // Remove from this.records.data.rows
-      // Remove from this.selectedRows
-      // Also display a message about success/failure.
-      this.records.data.rows = this.records.data.rows.filter(r => !succeeded.find(s => s === r[this.idField]));
-      this.selectedRows = this.selectedRows.filter(r => !succeeded.find(s => s === r[this.idField]));
-      this.records.data.totalCount = this.records.data.totalCount - succeeded.length;
-      if (failed.length === 0) {
-        notifySuccess(`All marked records were deleted successfully!`, 5000);
-      } else if (succeeded.length === 0) {
-        notifySuccess(`Deleting failed for all marked records!`, 5000);
-      } else {
-        notify(`Deleting records failed: ${failed.join(', ')}`, `warning`, 5000);
-      }
-      this.grid.instance.repaint();
-      return;
-    }
-    // Otherwise, shift ids
-    let id = ids.shift();
-    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
-    // Delete first id
-    this.http.delete(url)
-      .catch(error => {
-        failed.push(id);
-        this.deleteRows(ids, failed, succeeded);
-        throw error;
-      })
-      .subscribe(r => {
-        if (r !== null) {
-          // Upon successful deletion, recursively call deleteRows
-          succeeded.push(id);
-          this.deleteRows(ids, failed, succeeded);
-        }
-      });
   }
 
   registerMarkedStart(e) {
@@ -527,6 +485,7 @@ export class RegRecords implements OnInit, OnDestroy {
       dialogResult.done(result => {
         if (result) {
           let ids = [];
+          this.loadIndicatorVisible = true;
           this.selectedRows.map(r => { ids.push({ id: r[this.idField] }); });
           this.registryActions.deleteRecord(this.temporary, { data: ids });
         }
@@ -548,32 +507,29 @@ export class RegRecords implements OnInit, OnDestroy {
   private showSearchResults() {
     if (this.rowSelected) {
       this.rowSelected = false;
-      this.isPrintAndExportAvailable = false || this.records.data.totalCount <= printAndExportLimit;
-      this.selectedRows = this.records.data.rows;
-      this.records.data.rows = this.tempResultRows;
-      this.tempResultRows = [];
+      this.isPrintAndExportAvailable = false || this.recordsTotalCount <= printAndExportLimit;
       this.grid.instance.refresh();
     }
   }
 
   private printRecords() {
     this.loadIndicatorVisible = true;
-    let url = `${apiUrlPrefix}hitlists/${this.records.data.hitlistId}/print`;
+    let url = `${apiUrlPrefix}hitlists/${this.hitListId}/print`;
     let params = '';
     if (this.temporary) { params += '?temp=true'; }
     params += `${params ? '&' : '?'}count=${printAndExportLimit}`;
-    if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; } 
+    if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; }
     params += `&highlightSubStructures=${this.ngRedux.getState().registrysearch.highLightSubstructure}`;
-    
+
     let data: number[];
-    if (this.rowSelected) { 
+    if (this.rowSelected) {
       data = this.selectedRows.map(r => r[this.idField]);
     }
     url += params;
     this.http.post(url, data).toPromise()
       .then(res => {
         let rows = res.json().rows;
-        let structureColumnNamae = this.temporary ? 'Structure' : 'STRUCTUREAGGREGATION'; 
+        let structureColumnNamae = this.temporary ? 'Structure' : 'STRUCTUREAGGREGATION';
         this.imageService.generateMultipleImages(rows.map(r => r[structureColumnNamae])).subscribe(
           (values: Array<string>) => {
             let printContents: string;
@@ -599,8 +555,8 @@ export class RegRecords implements OnInit, OnDestroy {
                     <i class="fa fa-lg fa-thumbs-${(field === RegistryStatus.Approved) ? 'o-up green' : 'o-down red'}"></i></div></td>`;
                   } else if (c.dataField === 'Structure' || c.dataField === 'STRUCTUREAGGREGATION') {
                     let structureImage = this.imageService.getImage(field);
-                    printContents += `<td rowspan=${row.BatchDataSource.length}><img src="${structureImage ? 
-                    structureImage : this.defaultPrintStructureImage}" /></td>`;
+                    printContents += `<td rowspan=${row.BatchDataSource.length}><img src="${structureImage ?
+                      structureImage : this.defaultPrintStructureImage}" /></td>`;
                   } else if (c.dataType && c.dataType === 'date') {
                     let date = new Date(field);
                     printContents += `<td rowspan=${row.BatchDataSource.length}>
@@ -635,8 +591,8 @@ export class RegRecords implements OnInit, OnDestroy {
                 printContents += '</tr>';
               });
             });
-          
-            let popupWin;    
+
+            let popupWin;
             popupWin = window.open('', '_blank', 'top=0,left=0,height=500,width=auto');
             popupWin.document.open();
             popupWin.document.write(`<html>
@@ -677,10 +633,10 @@ export class RegRecords implements OnInit, OnDestroy {
                 popupWin.document.close(); // necessary for IE >= 10
                 popupWin.focus(); // necessary for IE >= 10
                 popupWin.print();
-                popupWin.close();     
+                popupWin.close();
                 this.setProgressBarVisibility(false);
               }, 1000);
-              
+
             } else {
               popupWin.document.close(); // necessary for IE >= 10
               popupWin.focus(); // necessary for IE >= 10     
@@ -689,10 +645,10 @@ export class RegRecords implements OnInit, OnDestroy {
               this.setProgressBarVisibility(false);
             }
           });
-        })
-        .catch(error => {
-          this.setProgressBarVisibility(false);
-        });
+      })
+      .catch(error => {
+        this.setProgressBarVisibility(false);
+      });
 
   }
 
@@ -729,17 +685,12 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private get filterRowEnabled(): boolean {
-    // return this.records.data.totalCount <= fetchLimit;
     return false;
   }
 
+
   private get getTotalRecordsCount(): Number {
-    if (this.filterRowEnabled && this.grid.instance) {
-      // The filter row should be enabled only when all rows are fetched.
-      return this.grid.instance.totalCount();
-    } else {
-      return this.records.data.totalCount;
-    }
+    return this.recordsTotalCount;
   }
 
   // set bulk register button visibility
@@ -766,7 +717,7 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     // Otherwise, shift ids
     let id = ids.shift();
-    let row = this.records.data.rows.find(r => r[this.idField] === id);
+    let row = this.selectedRows.find(r => r[this.idField] === id);
     if (row && row.STATUSID === RegistryStatus.Submitted) {
       let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}/${RegistryStatus.Approved}`;
       // Approve first id
@@ -804,11 +755,6 @@ export class RegRecords implements OnInit, OnDestroy {
         }
       });
     }
-  }
-
-  showRegistryRecords() {
-    this.currentIndex = 0;
-    this.retrieveAll();
   }
 
   lodingCompleted() {

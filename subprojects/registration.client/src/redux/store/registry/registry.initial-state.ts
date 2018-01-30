@@ -1,21 +1,11 @@
 import {
   IRecordDetail, IRecordDetailRecord,
   IRecordsData, CRecordsData,
-  IRecords, IRecordsRecord,
+  IRecordListData, CRecordListData,
   IRegistry, IRegistryRecord,
 } from './registry.types';
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
 import { apiUrlPrefix } from '../../../configuration';
-
-const INITIAL_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
-  temporary: false,
-  data: new CRecordsData(false)
-})();
-
-const INITIAL_TEMP_RECORDS = makeTypedFactory<IRecords, IRecordsRecord>({
-  temporary: true,
-  data: new CRecordsData(true)
-})();
 
 export const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDetailRecord>({
   temporary: true,
@@ -27,8 +17,8 @@ export const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDeta
 })();
 
 export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({
-  records: INITIAL_RECORDS,
-  tempRecords: INITIAL_TEMP_RECORDS,
+  regListData: new CRecordListData(0),
+  tempListData: new CRecordListData(0),
   currentRecord: INITIAL_RECORD_DETAIL,
   previousRecordDetail: INITIAL_RECORD_DETAIL,
   structureData: null,

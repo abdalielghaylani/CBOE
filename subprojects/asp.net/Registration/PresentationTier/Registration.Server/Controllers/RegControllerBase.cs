@@ -449,7 +449,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 { 
                     sortDirection = OrderByCriteria.OrderByDirection.ASC; 
                 }
-                columnToOrderWith = sort.Replace("DESC", string.Empty);
+                columnToOrderWith = sort.Replace("DESC", string.Empty).Trim();
             }
 
             bool isChildCriteria = false;
@@ -463,7 +463,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 foreach (ResultsCriteria.IResultsCriteriaBase criteria in table.Criterias)
                 {
-                    if (criteria.Alias == columnToOrderWith)
+                    if (criteria.Alias.Equals(columnToOrderWith, StringComparison.OrdinalIgnoreCase))
                     {
                         item.ResultCriteriaItem = criteria;
                         item.TableID = table.Id;
