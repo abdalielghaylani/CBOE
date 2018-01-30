@@ -718,7 +718,7 @@ export class CRegistryRecord {
       let dataSource = this.getDataSource(entryInfo.dataSource, viewConfig.subIndex);
       let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
       if (foundObject && foundObject.property) {
-        if (serialize) {
+        if (serialize || (foundObject.obj[foundObject.property] && displayMode === 'add')) {
           CRegistryRecord.serializeValue(foundObject.obj, foundObject.property);
         } else {
           foundObject.obj[foundObject.property] = entryValue;
