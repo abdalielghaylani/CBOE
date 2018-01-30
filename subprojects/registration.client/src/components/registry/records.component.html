@@ -55,9 +55,6 @@
         <div *dxTemplate="let data of 'structureImageColumnTemplate'">
           <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>
         </div>
-        <div class="wrap" *dxTemplate="let data of 'urlTemplate'">
-          <a [href]="data.value" target="_blank" title="{{data.value}}">{{data.value}}</a>
-        </div>
         <div *dxTemplate="let data of 'checkBoxTemplate'">
           <dx-check-box [value]="data.value === 'T'" [readOnly]="true">
           </dx-check-box>
