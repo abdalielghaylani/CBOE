@@ -321,6 +321,10 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  onContentReady(e) {
+    e.component.element().find('.dx-datagrid-group-closed').attr('title', 'Show Batch Details');
+  }
+
   onToolbarPreparing(e) {
     e.toolbarOptions.items.unshift({
       location: 'before',
