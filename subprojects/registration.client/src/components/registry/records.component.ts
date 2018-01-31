@@ -212,6 +212,7 @@ export class RegRecords implements OnInit, OnDestroy {
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
         if (ref.rowSelected) {
+          ref.isPrintAndExportAvailable = (ref.selectedRows.length <= printAndExportLimit && ref.selectedRows.length > 0);
           deferred.resolve(ref.selectedRows, { totalCount: ref.selectedRows.length });
         } else {
           let sortCriteria;
@@ -234,6 +235,7 @@ export class RegRecords implements OnInit, OnDestroy {
               ref.recordsTotalCount = response.totalCount;
               ref.updateHitListId(response.hitlistId);
               ref.loadIndicatorVisible = false;
+              ref.isPrintAndExportAvailable = (response.totalCount <= printAndExportLimit && response.totalCount > 0);
               deferred.resolve(response.rows, { totalCount: response.totalCount });
             })
             .catch(error => {
