@@ -133,7 +133,9 @@ export class RegTemplates implements OnInit, OnDestroy {
         $links.filter('.dx-link-cancel').addClass('dx-icon-revert');
       } else {
         $links.filter('.dx-link-edit').addClass('dx-icon-edit');
-        $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        if (e.data.username.toUpperCase() === this.ngRedux.getState().session.user.fullName.toUpperCase()) {
+          $links.filter('.dx-link-delete').addClass('dx-icon-trash');
+        }
       }
     }
   }
