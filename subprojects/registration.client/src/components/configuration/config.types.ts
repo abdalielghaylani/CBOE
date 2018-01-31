@@ -15,16 +15,6 @@ export class CConfigTable {
     requiredMark: '*',
     items: []
   };
-  projectType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'B', name: 'Batch' }];
-  identifierType = [
-    { key: 'A', name: 'All' },
-    { key: 'R', name: 'Registry' },
-    { key: 'B', name: 'Batch' },
-    { key: 'C', name: 'Compound' },
-    { key: 'S', name: 'Base Fragment' }
-  ];
-  sequenceType = [{ key: 'A', name: 'All' }, { key: 'R', name: 'Registry' }, { key: 'C', name: 'Compound' }];
-  activeType = [{ key: 'T', name: 'Yes' }, { key: 'F', name: 'No' }];
   constructor(
     tableId: string = '',
     tableName: string = '',
@@ -121,17 +111,11 @@ export class CConfigTable {
 
   setOtherConfig(tableId: string) {
     switch (tableId) {
-      case 'VW_PROJECT':
-        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
-        this.setColumnConfig('TYPE', 'lookup', { dataSource: this.projectType, displayExpr: 'name', valueExpr: 'key' });
-        break;
       case 'VW_PICKLIST':
-        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
         this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
         this.setColumnConfig('PICKLISTDOMAIN', 'caption', 'PICKLISTDOMAIN');
         break;
       case 'VW_PICKLISTDOMAIN':
-        this.setColumnConfig('LOCKED', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
         this.setColumnConfig('LOCKED', 'allowEditing', false);
         this.setColumnConfig('EXT_TABLE', 'editCellTemplate', 'disabledTemplate');
         this.setColumnConfig('EXT_ID_COL', 'editCellTemplate', 'disabledTemplate');
@@ -139,7 +123,6 @@ export class CConfigTable {
         this.setColumnConfig('EXT_SQL_FILTER', 'editCellTemplate', 'disabledTemplate');
         break;
       case 'VW_NOTEBOOKS':
-        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
         this.setColumnConfig('USER_CODE', 'cellTemplate', 'viewTemplate');
         break;
       case 'VW_FRAGMENT':
@@ -150,17 +133,6 @@ export class CConfigTable {
         this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
         this.setColumnConfig('FRAGMENTID', 'allowEditing', false);
         break;
-      case 'VW_IDENTIFIERTYPE':
-        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
-        this.setColumnConfig('TYPE', 'lookup', { dataSource: this.identifierType, displayExpr: 'name', valueExpr: 'key' });
-        break;
-      case 'VW_SEQUENCE':
-        this.setColumnConfig('ACTIVE', 'lookup', { dataSource: this.activeType, displayExpr: 'name', valueExpr: 'key' });
-        this.setColumnConfig('TYPE', 'lookup', { dataSource: this.sequenceType, displayExpr: 'name', valueExpr: 'key' });
-        this.setColumnConfig('REGNUMBERLENGTH', 'lookup', this.getPaddedLength('R'));
-        this.setColumnConfig('BATCHNUMLENGTH', 'lookup', this.getPaddedLength('B'));
-        break;
-
     }
   }
 

@@ -25,6 +25,7 @@ using CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.COEHitListService;
 using CambridgeSoft.COE.Framework;
+using CambridgeSoft.COE.Framework.COETableEditorService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -147,6 +148,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 data.Add(row);
             }
 
+            return data;
+        }
+
+        protected JArray ExtractData(List<ID_Column> idColumnList, string columnName)
+        {
+            var data = new JArray();
+            foreach (var item in idColumnList)
+            {
+                var row = new JObject();
+                row.Add(new JProperty(columnName + "_value", item.ID));
+                row.Add(new JProperty(columnName + "_name", item.PColumn));
+                data.Add(row);
+            }
             return data;
         }
 

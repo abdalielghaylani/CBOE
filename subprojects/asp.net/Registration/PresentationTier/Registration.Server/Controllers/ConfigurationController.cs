@@ -188,6 +188,23 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         new JProperty("displayExpr", lookupColumns[1].FieldName))
                     );
                 }
+
+                // lookup location property of the table field is inner xml 
+                var lookupLocation = COETableEditorUtilities.getLookupLocation(tableName, column.FieldName);
+                if (!string.IsNullOrEmpty(lookupLocation) && lookupLocation.ToLower().Contains("innerxml_") &&
+                    !COETableEditorUtilities.getIsStructureLookupField(tableName, column.FieldName))
+                {
+                    // get all lookup data from xml file and append to the configaration data object 
+                    var columnList = COETableEditorUtilities.getId_Column_List(tableName, column.FieldName);
+                    var lookups = new Dictionary<string, Lookup>();
+
+                    columnObj.Add("lookup", new JObject(
+                         new JProperty("dataSource", ExtractData(columnList, column.FieldName)),
+                         new JProperty("valueExpr", column.FieldName + "_value"),
+                         new JProperty("displayExpr", column.FieldName + "_name"))
+                         );
+                }
+
                 var validationRuleList = COETableEditorUtilities.getValidationRuleList(tableName, fieldName);
                 if (validationRuleList != null)
                 {
