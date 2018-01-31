@@ -483,6 +483,8 @@ export class CViewGroup implements IViewGroup {
                       } else if (c.formElement.displayInfo.type.indexOf('COECheckBoxReadOnly') > 0) {
                         column.dataType = 'boolean';
                         column.cellTemplate = 'checkBoxTemplate';
+                      } else if ((c.formElement.displayInfo.type.indexOf('COELink') > 0) && (index === 0)) {
+                        column.cellTemplate = 'urlTemplate';
                       }
                     }
                     columns.push(column);
