@@ -6,7 +6,7 @@
       <dx-data-grid [columns]="columns" [dataSource]="viewModel"
         [paging]="{enabled: true}" [filterRow]="{ visible: viewModel.length > 4 }" [selection]="{ mode: 'single' }"
         [hoverStateEnabled]="true" [paging]="{ enabled: true, pageSize: 10 }" [rowAlternationEnabled]="true"
-        [scrolling]="{ mode: 'infinite' }" [height]="viewModel.length > 8 ? 265 : 'auto'" (onRowClick)="selectBatch($event)">
+        [scrolling]="{ mode: 'virtual', preloadEnabled: true }" [height]="viewModel.length > 8 ? 265 : 'auto'" (onRowClick)="selectBatch($event)">
       </dx-data-grid>
     </div>
   </dx-popup>

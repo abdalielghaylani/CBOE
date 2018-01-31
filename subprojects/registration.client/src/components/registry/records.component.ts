@@ -279,9 +279,6 @@ export class RegRecords implements OnInit, OnDestroy {
     this.grid.instance.refresh();
   }
 
-  onRowPrepared(e) {
-  }
-
   onCellPrepared(e) {
     if (e.rowType === 'data' && e.column.command === 'edit') {
       let isEditing = e.row.isEditing;
