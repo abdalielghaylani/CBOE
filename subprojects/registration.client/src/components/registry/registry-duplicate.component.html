@@ -13,6 +13,7 @@
     <dx-data-grid [columns]="columns" [dataSource]="datasource" rowAlternationEnabled="true" [height]="gridHeight" (onToolbarPreparing)="onToolbarPreparing($event)">
       <dxo-sorting mode="single"></dxo-sorting>
       <dxo-filter-row [visible]="true"></dxo-filter-row>
+      <dxo-scrolling mode="infinite"></dxo-scrolling>
       <dxo-search-panel [visible]="true" placeholder="Search..."></dxo-search-panel>
       <dxo-selection mode="single"></dxo-selection>
       <div *dxTemplate="let data of 'toolbarContents'">
