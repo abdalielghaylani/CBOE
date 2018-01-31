@@ -58,9 +58,10 @@ export class RegIdListFormItem extends RegDataGridFormItem {
     this.dataSource = this.deserializeValue(value);
     let identifierList = lookups.identifierTypes.filter(i => (i.TYPE === options.idListType || i.TYPE === 'A'));
     let activeItems = identifierList.filter(i => i.ACTIVE === 'T');
+    let items = identifierList.filter(i => i.ACTIVE === 'T');
     this.dataSource.forEach(i => {
       if (i.id && activeItems.find(j => j.ID === i.id) === undefined) {
-        activeItems.push(identifierList.find(k => k.ID === i.id));
+        items.push(identifierList.find(k => k.ID === i.id));
       }
     });
     // TODO: Now, the field configuration object includes the full details of how the grid should behave.
@@ -71,7 +72,9 @@ export class RegIdListFormItem extends RegDataGridFormItem {
       dataField: 'id',
       caption: 'Identifier',
       allowSorting: false,
+      cellTemplate: 'identifierCellTemplate',
       editorType: 'dxSelectBox',
+      items: items,
       lookup: {
         dataSource: activeItems,
         displayExpr: 'NAME',

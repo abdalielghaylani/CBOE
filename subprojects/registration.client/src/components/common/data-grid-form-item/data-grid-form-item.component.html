@@ -15,6 +15,9 @@
   <div *dxTemplate="let d of 'dropDownTemplate'">
     <reg-drop-down-column-item-template [viewModel]="d" (valueUpdated)="onDropDownValueUpdated($event, d)"></reg-drop-down-column-item-template>
   </div>
+  <div *dxTemplate="let e of 'identifierCellTemplate'">
+   {{getIdentifierName(e)}}
+   </div> 
 </dx-data-grid>
 <dx-text-box class="display-none">
   <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
