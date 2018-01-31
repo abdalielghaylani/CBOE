@@ -180,17 +180,17 @@ export const CONFIG_FORMS_COLUMNS = [
     dataField: 'label',
     allowEditing: true,
     validationRules:
-    [
-      {
-        group: 'label', type: 'required',
-        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
-      },
-      {
-        group: 'label', type: 'pattern',
-        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
-        pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
-      }
-    ]
+      [
+        {
+          group: 'label', type: 'required',
+          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
+        },
+        {
+          group: 'label', type: 'pattern',
+          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
+          pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
+        }
+      ]
   },
   {
     dataField: 'controlType',
@@ -595,7 +595,7 @@ export class CConfigProperties {
     }, {
       caption: 'Type', dataField: 'type',
       allowSorting: false,
-      lookup: { dataSource: ['BOOLEAN', 'DATE', 'FLOAT', 'INTEGER', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT', 'URL'] },
+      lookup: { dataSource: ['BOOLEAN', 'DATE', 'NUMBER', 'PICKLISTDOMAIN', 'TEXT'] },
       width: 120
     }, {
       caption: 'Length',
