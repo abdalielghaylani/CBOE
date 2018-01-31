@@ -73,6 +73,8 @@ export class RegRecords implements OnInit, OnDestroy {
   private idField;
   private regMarkedModel: IRegMarkedPopupModel = { description: '', option: 'None', isVisible: false };
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
+  private approvedIcon = require('../common/assets/approved.png');
+  private notApprovedIcon = require('../common/assets/notapproved.png');
   private isPrintAndExportAvailable: boolean = false;
   private clearSearchForm: boolean = false;
   private dataStore: CustomStore;
@@ -554,8 +556,8 @@ export class RegRecords implements OnInit, OnDestroy {
                 if (c.visible) {
                   let field = row[c.dataField];
                   if (c.caption === 'Approved') {
-                    printContents += `<td rowspan=${row.BatchDataSource.length}><div class="center">
-                    <i class="fa fa-lg fa-thumbs-${(field === RegistryStatus.Approved) ? 'o-up green' : 'o-down red'}"></i></div></td>`;
+                    printContents += `<td rowspan=${row.BatchDataSource.length}>
+                    <img src="${(field === RegistryStatus.Approved) ? this.approvedIcon : this.notApprovedIcon}" /></td>`;
                   } else if (c.dataField === 'Structure' || c.dataField === 'STRUCTUREAGGREGATION') {
                     let structureImage = this.imageService.getImage(field);
                     printContents += `<td rowspan=${row.BatchDataSource.length}><img src="${structureImage ?
@@ -628,25 +630,10 @@ export class RegRecords implements OnInit, OnDestroy {
                 }
                 </style>
               </head>
-              <body>${printContents}</body>
+              <body onload="window.print(); window.close()">${printContents}</body>
               </html>`);
-            let is_chrome = Boolean(popupWin.chrome);
-            if (is_chrome) {
-              setTimeout(() => {
-                popupWin.document.close(); // necessary for IE >= 10
-                popupWin.focus(); // necessary for IE >= 10
-                popupWin.print();
-                popupWin.close();
-                this.setProgressBarVisibility(false);
-              }, 1000);
-
-            } else {
-              popupWin.document.close(); // necessary for IE >= 10
-              popupWin.focus(); // necessary for IE >= 10     
-              popupWin.print();
-              popupWin.close();
-              this.setProgressBarVisibility(false);
-            }
+            popupWin.document.close();
+            this.setProgressBarVisibility(false);
           });
       })
       .catch(error => {
