@@ -10,7 +10,6 @@ import { getExceptionMessage, notify, notifyError, notifySuccess } from '../../.
 import { CViewGroupContainer, CRegistryRecord } from '../registry-base.types';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import * as X2JS from 'x2js';
 import * as registryUtils from '../../registry.utils';
 
 
@@ -44,19 +43,6 @@ export class RegBatchEditor implements OnChanges {
 
   ngOnChanges() {
     this.update();
-  }
-
-  protected x2jsTool() {
-    return new X2JS.default({
-      arrayAccessFormPaths: [
-        'MultiCompoundRegistryRecord.BatchList.Batch',
-        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
-        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
-        'MultiCompoundRegistryRecord.BatchList.Batch.IdentifierList.Identifier',
-        'MultiCompoundRegistryRecord.BatchList.Batch.ProjectList.Project',
-        'MultiCompoundRegistryRecord.BatchList.Batch.PropertyList.Property'
-      ]
-    });
   }
 
   protected update() {
@@ -131,8 +117,7 @@ export class RegBatchEditor implements OnChanges {
   protected editBatch(e) {
     if (this.validate().isValid) {
       this.formVisible = false;
-      let recordJson: any = this.x2jsTool().js2xml(this.currentBatch);
-      this.onEdit.emit(`<BatchList><Batch>${recordJson}</Batch></BatchList>`);
+      this.onEdit.emit(this.currentBatch);
     }
   }
 

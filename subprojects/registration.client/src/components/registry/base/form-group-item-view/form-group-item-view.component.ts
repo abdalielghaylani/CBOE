@@ -4,6 +4,7 @@ import { Component, EventEmitter, Input, Output, OnChanges, ChangeDetectorRef, C
 import { NgRedux } from '@angular-redux/store';
 import { CViewGroup, CViewGroupContainer, CRegistryRecord, IRegistryRecord, CEntryInfo, CBoundObject, CSearchCriteria } from '../registry-base.types';
 import * as dxDialog from 'devextreme/ui/dialog';
+import * as X2JS from 'x2js';
 import { IAppState, CSystemSettings } from '../../../../redux';
 import { HttpService } from '../../../../services';
 import { basePath, apiUrlPrefix, invWideWindowParams } from '../../../../configuration';
@@ -151,21 +152,35 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       });
   }
 
-  onBatchEdit(e) {
-    this.loadingVisible = true;
-    let batchData: any = {};
-    batchData.data = e;
-    batchData.regNum = this.viewModel.RegNumber.RegNumber;
+  private get x2jsTool() {
+    return new X2JS.default({
+      arrayAccessFormPaths: [
+        'MultiCompoundRegistryRecord.BatchList.Batch',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent',
+        'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
+        'MultiCompoundRegistryRecord.BatchList.Batch.IdentifierList.Identifier',
+        'MultiCompoundRegistryRecord.BatchList.Batch.ProjectList.Project',
+        'MultiCompoundRegistryRecord.BatchList.Batch.PropertyList.Property'
+      ]
+    });
+  }
+
+  onBatchEdit(e: IBatch) {
+    const batchData = {
+      data: `<BatchList><Batch>${this.x2jsTool.js2xml(e)}</Batch></BatchList>`,
+      regNum: this.viewModel.RegNumber.RegNumber
+    };
     let url = `${apiUrlPrefix}/batches`;
+    this.loadingVisible = true;
     this.http.put(url, batchData).toPromise()
       .then(res => {
-        this.batchValueChanged.emit(e);
-        notifySuccess(`The batch updated successfully!`, 2000);
         this.setLoadingVisible(false);
+        notifySuccess(`The batch updated successfully!`, 2000);
+        this.onBatchSelected(e.BatchID);
       })
       .catch(error => {
-        notifyException(`The batch was not updated due to a problem`, error, 5000);
         this.setLoadingVisible(false);
+        notifyException(`The batch was not updated due to a problem`, error, 5000);
       });
   }
 
