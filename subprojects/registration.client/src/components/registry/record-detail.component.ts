@@ -256,6 +256,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   cancel() {
+    this.recordDetailView.clear(); 
     this.recordDetailView.prepareRegistryRecord();
     this.displayMode = 'view';
     this.update();
