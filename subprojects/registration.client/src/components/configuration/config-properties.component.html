@@ -168,9 +168,9 @@
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
           <command-button testid="validation-button" class="right-space" (onClick)="configProperties.addValidationRule($event)" iconName="plus"
             title="Add Rule"></command-button>
-          <a class="list-header tan" data-toggle="collapse" href="#collapseOne">Validation Rules List</a>
+          <div><a class="list-header tan" data-toggle="collapse" href="#collapseTwo">Validation Rules List</a></div>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
+        <div id="collapseTwo" class="panel-collapse collapse in">
           <div class="p2">
             <dx-data-grid [columns]="configProperties.formValidationColumns.grdColumns" [dataSource]="configProperties.formData.validationRules"
               [height]="gridHeight-200" rowAlternationEnabled="true" (onInitNewRow)='onInitNewRow($event,false)' (onInitialized)='onInitialized($event)'
