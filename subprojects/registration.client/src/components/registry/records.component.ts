@@ -312,7 +312,7 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     if (e.rowType === 'header' && e.column.allowSorting) {
       let $header = e.cellElement.find('.dx-datagrid-text-content');
-      $header.attr({'style': 'text-decoration:underline;'});
+      $header.attr({ 'style': 'text-decoration:underline;' });
     }
   }
 
@@ -659,7 +659,9 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private get approveMarkedEnabled(): boolean {
-    return this.temporary && this.selectedRows && this.selectedRows.length > 0 && this.approvalsEnabled;
+    return this.temporary && this.selectedRows && this.selectedRows.length > 0
+      && this.approvalsEnabled
+      && PrivilegeUtils.hasApprovalPrivilege(this.lookups.userPrivileges);
   }
 
   // set delete marked button visibility
