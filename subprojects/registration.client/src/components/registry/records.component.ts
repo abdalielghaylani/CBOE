@@ -310,6 +310,10 @@ export class RegRecords implements OnInit, OnDestroy {
         e.cellElement.html(fieldData);
       }
     }
+    if (e.rowType === 'header' && e.column.allowSorting) {
+      let $header = e.cellElement.find('.dx-datagrid-text-content');
+      $header.attr({'style': 'text-decoration:underline;'});
+    }
   }
 
   onBatchCellPrepared(e) {
