@@ -69,8 +69,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         || columnName.Equals("EXT_SQL_SORTORDER", StringComparison.OrdinalIgnoreCase))
                     {
                         if ((column.FieldValue != null) && (!string.IsNullOrEmpty(column.FieldValue.ToString())))
+                        {
                             COETableEditorBO.Get(tableName, columns);
-                        break;
+                            break;
+                        }
                     }
                 }
             }
@@ -95,8 +97,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (string.IsNullOrEmpty(columnValue))
             {
                 if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase)
-                    && (columnName.Equals("EXT_SQL_FILTER") || columnName.Equals("EXT_SQL_SORTORDER"))
-                    )
+                    && (columnName.Equals("EXT_SQL_FILTER") || columnName.Equals("EXT_SQL_SORTORDER") ||
+                    columnName.Equals("EXT_TABLE") || columnName.Equals("EXT_DISPLAY_COL") || columnName.Equals("EXT_ID_COL")))
                 {
                     // Fix for CBOE-5862
                     column.FieldValue = string.Empty;
@@ -597,6 +599,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 }
                                 row.Add(new JProperty(columnName, "fragment/" + dr[0].ToString()));
                                 row.Add(new JProperty("STRUCTURE_XML", structure));
+                            }
+                            if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase)
+                                && columnName.Equals("EXT_SQL_FILTER") && columnValue != null)
+                            {
+                                row.Add(new JProperty(columnName, HttpUtility.HtmlDecode(columnValue.ToString())));
                             }
                             else
                             {
