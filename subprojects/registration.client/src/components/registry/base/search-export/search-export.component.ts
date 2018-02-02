@@ -34,7 +34,6 @@ export class RegSearchExport implements OnInit, OnDestroy {
   private rows: any[] = [];
   private dataSource: CustomStore;
   private formVisible: boolean = false;
-  private selectedRowsKeys: any[] = [];
   private selectedFileType: string = 'SDFFlatFileUncorrelated';
   private filesType: any[] = [{ displayExpr: 'SDF Flat', valueExpr: 'SDFFlatFileUncorrelated' }, { displayExpr: 'SDF Nested', valueExpr: 'SDFNested' }];
   private exportTemplates: any[] = [];
@@ -44,7 +43,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
   private isAddTemplateButtonEnabled: boolean = true;
   private isEditDeleteTemplateButtonEnabled: boolean = false;
   private columns: any[] = [
-    { dataField: 'tableName', caption: 'Table', groupIndex: 0 },
+    { dataField: 'tableName', caption: 'Table', groupIndex: 0, groupCellTemplate: 'tableNameGroupCellTemplate' },
     { dataField: 'tableId', visible: false },
     { dataField: 'fieldId', visible: false },
     { dataField: 'indexType', visible: false },
@@ -75,6 +74,8 @@ export class RegSearchExport implements OnInit, OnDestroy {
   private saveTemplateData: IShareableObject = new CShareableObject('', '', false);
   private saveTemplateForm: DxForm;
   private loadIndicatorVisible: boolean = false;
+  private customSelectionFlag: boolean = false;
+  private groupSelected: any[] = [];
 
   constructor(
     private http: HttpService,
@@ -148,16 +149,63 @@ export class RegSearchExport implements OnInit, OnDestroy {
     this.formVisible = false;
   }
 
-  onSelectionChanged(e) {
-    this.selectedRowsKeys = e.component.getSelectedRowKeys();
+  protected isSelected(groupName) {
+    let group = this.groupSelected.find(g => g.id === groupName[0]);
+    if (group) {
+      return group.selected;
+    }
+    return false;
+  }
+
+  protected setGroupedSelected() {
+    this.rows.forEach(r => {
+      if (this.groupSelected.length === 0) {
+        this.groupSelected.push({ id: r.tableName, selected: r.visible });
+      } else {
+        let group = this.groupSelected.find(g => g.id === r.tableName);
+        if (group) {
+          if (!r.visible) {
+            group.selected = false;
+          }
+        } else {
+          this.groupSelected.push({ id: r.tableName, selected: r.visible });
+        }
+      }
+    });
+  }
+
+  onGroupSelectionChanged(e) {
+    let tableName = e.element[0].getAttribute('id');
+    let group = this.grid.instance.getDataSource().items().find(r => r.key === tableName);
+    let keys = [];
+    if (group.items) {
+      keys = group.items.map(r => r.key);
+    } else {
+      keys = group.collapsedItems.map(r => r.key);
+    }
+    if (e.value) {
+      this.grid.instance.getSelectedRowKeys().map(r => {
+        let isIn = keys.indexOf(r);
+        if (isIn < 0) { 
+          keys.push(r); 
+        } 
+      });
+      this.grid.instance.selectRows(keys);
+      let groupSelected = this.groupSelected.find(g => g.id === tableName);
+      if (groupSelected) {
+        groupSelected.selected = true;
+      }
+    } else {
+      this.grid.instance.deselectRows(keys);
+      let groupSelected = this.groupSelected.find(g => g.id === tableName);
+      if (groupSelected) {
+        groupSelected.selected = false;
+      }
+    }
   }
 
   protected isVisible(e) {
     return e.visible;
-  }
-
-  onContentReady(e) {
-    e.component.selectRows(this.selectedRowsKeys);
   }
 
   fileTypeValueChanged(e) {
@@ -180,6 +228,10 @@ export class RegSearchExport implements OnInit, OnDestroy {
     if (this.currentExportTemplate > 0) {
       this.currentExportTemplate = 0;
     }
+    let keys = this.grid.instance.getSelectedRowKeys();
+    if (keys.length > 0) {
+      this.grid.instance.deselectRows(keys);
+    }    
   }
 
   protected editTemplate() {
@@ -209,6 +261,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
             this.currentExportTemplate = 0;
             this.exportTemplates = [];
             this.changeDetector.markForCheck();
+            this.resetTemplateButtons();
             this.getExportTemplates();
             this.createCustomStore(this);
             notifySuccess(`The template was deleted successfully!`, 5000);
@@ -244,7 +297,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
         resultsCriteria.push({
           tableId: row.tableId,
           fieldId: row.fieldId,
-          visible: this.selectedRowsKeys.find(s => s === `${row.fieldId}${row.fieldName.toLowerCase()}`) !== undefined,
+          visible: this.grid.instance.getSelectedRowKeys().find(s => s === `${row.fieldId}${row.fieldName.toLowerCase()}`) !== undefined,
           indexType: row.indexType,
           mimeType: row.mimeType,
           alias: (updatedRow) ? updatedRow.name.fieldName : row.fieldName
@@ -289,7 +342,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
     if (this.isAllowUpdatingEnabled) {
       notify(`Save or update the template before export!`, 'warning', 5000);
     } else {
-      if (this.selectedRowsKeys.length > 0) {
+      if (this.grid.instance.getSelectedRowKeys().length > 0) {
         this.loadIndicatorVisible = true;
         let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
 
@@ -297,7 +350,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
           resultsCriteriaTables: [],
           records: (this.markedRecords) ? this.markedRecords : [],
         };
-        this.selectedRowsKeys.forEach(key => {
+        this.grid.instance.getSelectedRowKeys().forEach(key => {
           let field = this.rows.find(r => r.key === key);
           if (field) {
             data.resultsCriteriaTables.push({
@@ -353,12 +406,16 @@ export class RegSearchExport implements OnInit, OnDestroy {
           .then(result => {
             let rows = result.json();
             parent.rows = rows;
-            parent.selectedRowsKeys = [];
+            let selectedRowsKeys: any[] = [];
             parent.rows.forEach(row => {
               if (row.visible) {
-                parent.selectedRowsKeys.push(row.key);
+                selectedRowsKeys.push(row.key);
               }
             });
+            if (selectedRowsKeys.length > 0) {
+              parent.grid.instance.selectRows(selectedRowsKeys);
+            }
+            parent.setGroupedSelected();
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {

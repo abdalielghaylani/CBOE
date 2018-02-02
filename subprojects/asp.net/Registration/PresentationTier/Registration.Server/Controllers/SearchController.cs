@@ -290,19 +290,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var isStructureMimeType = dataViewField.MimeType.ToString().ToUpper() == "CHEMICAL_X_CDX";
                     var isStructureColumn = isStructureIndex || isStructureMimeType;
 
+                    if (templateFeildNode != null)
+                    {
+                        visible = bool.Parse(templateFeildNode.Attributes["visible"].Value);
+                        if (!isStructureColumn)
+                        {
+                            fieldAlias = templateFeildNode.Attributes["alias"].Value;
+                        }
+                    }
                     if (isStructureColumn && templateId == null)
                     {
                         visible = true; // if is default template, structure columns should be selected by default
-                    }
-
-                    if (templateFeildNode != null)
-                    {
-                        visible = true;
-                        if (!isStructureColumn)
-                        {
-                            visible = bool.Parse(templateFeildNode.Attributes["visible"].Value);
-                            fieldAlias = templateFeildNode.Attributes["alias"].Value;
-                        }
                     }
 
                     var key = string.Format("{0}{1}", dataViewField.Id, Regex.Replace(fieldAlias, @"\s", string.Empty)).ToLower();

@@ -29,10 +29,16 @@
           <command-button testid="template-cancel-button" (onClick)="cancelSaveTemplate($event)" iconName="close" title="Cancel"></command-button>
           <command-button testid="template-add-button" (onClick)="saveTemplate($event)" iconName="floppy-o" title="Save"></command-button>
       </div>   
-      <dx-data-grid [columns]="columns" [dataSource]="dataSource" (onSelectionChanged)="onSelectionChanged($event)" [paging]="{enabled: false}"
-        [rowAlternationEnabled]="true" [height]="400" (onRowUpdated)='onRowUpdated($event)' (onContentReady)='onContentReady($event)' (onToolbarPreparing)="toolbarPreparing($event)">
+      <dx-data-grid [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
+        [rowAlternationEnabled]="true" [height]="400" (onToolbarPreparing)="toolbarPreparing($event)">
         <dxo-selection mode="multiple" showCheckBoxesMode="always"></dxo-selection>
         <dxo-editing mode="batch" [allowUpdating]="isAllowUpdatingEnabled" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
+        <div *dxTemplate="let data of 'tableNameGroupCellTemplate'">
+          <div>
+            <dx-check-box (onValueChanged)="onGroupSelectionChanged($event)" [id]="data.key" [value]="isSelected(data.key)"></dx-check-box>
+            <span>{{data.displayValue}}</span>
+          </div>
+      </div>
       </dx-data-grid>
       <command-button testid="search-export-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel" [pullRight]="true"></command-button>
       <command-button testid="search-export-export-button" (onClick)="export($event)" iconName="floppy-o" title="Export" [pullRight]="true"></command-button>
