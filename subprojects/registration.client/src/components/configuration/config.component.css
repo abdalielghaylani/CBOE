@@ -18,17 +18,17 @@
   vertical-align: middle;
 }
 
-/deep/ .dx-button,
-/deep/ .dx-button.dx-state-hover,
-/deep/ .dx-button.dx-state-focused {
-  background-color: #00a0e1;
-  border-color: #00a0e1;
-  color: #ffffff;
+/deep/ .dx-button {
+  background-color: #ffffff;
+  border: 2px solid #00a0e1;
+  color: #00a0e1;
 }
 
 /deep/ .dx-button.dx-state-hover,
 /deep/ .dx-button.dx-state-focused {
-  opacity: 0.8;
+  background-color: #00a0e1;
+  border: 2px solid #00a0e1;
+  color: #ffffff;
 }
 
 /deep/ .dx-button-text {
@@ -36,7 +36,12 @@
 }
 
 /deep/ .dx-toolbar-text-auto-hide .dx-button .dx-icon {
-  color: #ffffff;
+  color: #00a0e1;
+}
+
+/deep/ .dx-toolbar-text-auto-hide .dx-button.dx-state-hover .dx-icon,
+/deep/ .dx-toolbar-text-auto-hide .dx-button.dx-state-focused .dx-icon {
+  color: white;
 }
 
 .grid-icon {
