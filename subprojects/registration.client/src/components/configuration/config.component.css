@@ -18,6 +18,27 @@
   vertical-align: middle;
 }
 
+/deep/ .dx-button,
+/deep/ .dx-button.dx-state-hover,
+/deep/ .dx-button.dx-state-focused {
+  background-color: #00a0e1;
+  border-color: #00a0e1;
+  color: #ffffff;
+}
+
+/deep/ .dx-button.dx-state-hover,
+/deep/ .dx-button.dx-state-focused {
+  opacity: 0.8;
+}
+
+/deep/ .dx-button-text {
+  font-weight: 500;
+}
+
+/deep/ .dx-toolbar-text-auto-hide .dx-button .dx-icon {
+  color: #ffffff;
+}
+
 .grid-icon {
   font-size: 14px;
   margin: 0 3px;
