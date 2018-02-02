@@ -356,7 +356,7 @@ export class CViewGroup implements IViewGroup {
         viewGroupsFiltered.push(vg);
       }
     });
-  return viewGroupsFiltered;
+    return viewGroupsFiltered;
   }
 
   public static getColumns(temporary: boolean, config: IFormGroup, disabledControls: any[], systemSettings: CSystemSettings): CViewGroupColumns {
@@ -701,7 +701,8 @@ export class CRegistryRecord {
       let dataSource = this.getDataSource(entryInfo.dataSource, viewConfig.subIndex);
       let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
       if (foundObject && foundObject.property) {
-        if (serialize || (foundObject.obj[foundObject.property] && displayMode === 'add')) {
+        if (serialize || (foundObject.obj[foundObject.property] &&
+          typeof (foundObject.obj[foundObject.property]) === 'object' && displayMode === 'add')) {
           CRegistryRecord.serializeValue(foundObject.obj, foundObject.property);
         } else {
           foundObject.obj[foundObject.property] = entryValue;
