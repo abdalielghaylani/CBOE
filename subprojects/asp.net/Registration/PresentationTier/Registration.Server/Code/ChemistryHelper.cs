@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Xml;
+using CambridgeSoft.COE.Framework.COEChemDrawConverterService;
 
 namespace PerkinElmer.COE.Registration.Server.Code
 {
@@ -12,8 +13,13 @@ namespace PerkinElmer.COE.Registration.Server.Code
         private const string cdxMimeType = "chemical/x-cdx";
         private const string cdxmlMimeType = "text/xml";
 
-        public static string ConvertAndName(string fromType, string toType, string fromData, ref string name, bool returnEmptyWhenEmptyStructure = false)
+        public static string ConvertAndName(string fromType, string toType, string fromData, ref string name, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = false)
         {
+            if (!useCachedControl)
+            {
+                return COEChemDrawConverterUtils.ConvertStructure(fromData, fromType, toType);
+            }
+
             // CacheableChemdrawControl may dispose automatically when timeout elapses.
             // In other words, it does not need to be disposed of explicitly in this code.
             // In order to support multiple versions of ChemDrawCtl, all calls to ChemDrawCtl are done dynamically.
@@ -30,10 +36,10 @@ namespace PerkinElmer.COE.Registration.Server.Code
             return chemDrawCtl.get_Data(toType);
         }
 
-        public static string Convert(string fromType, string toType, string fromData, bool returnEmptyWhenEmptyStructure = false)
+        public static string Convert(string fromType, string toType, string fromData, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = false)
         {
             string name = null;
-            return ConvertAndName(fromType, toType, fromData, ref name, returnEmptyWhenEmptyStructure);
+            return ConvertAndName(fromType, toType, fromData, ref name, returnEmptyWhenEmptyStructure, useCachedControl);
         }
 
         public static string ConvertToCdxml(string data, bool returnEmptyWhenEmptyStructure = false)
@@ -73,7 +79,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
             }
         }
 
-        private static void ConvertStructuresToCdx(XmlElement element, bool returnEmptyWhenEmptyStructure = false)
+        private static void ConvertStructuresToCdx(XmlElement element, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = false)
         {
             if (element == null) return;
             foreach (var childElement in element.ChildNodes)
@@ -85,7 +91,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
             var textData = element.InnerText;
             if (!string.IsNullOrEmpty(textData) && (textData.StartsWith("<?xml ") || textData.StartsWith("<CDXML ")))
             {
-                var converted = Convert(cdxmlMimeType, cdxMimeType, textData, returnEmptyWhenEmptyStructure);
+                var converted = Convert(cdxmlMimeType, cdxMimeType, textData, returnEmptyWhenEmptyStructure, useCachedControl);
                 element.InnerText = converted.Replace("\r\n", " ");
             }
         }
@@ -96,9 +102,9 @@ namespace PerkinElmer.COE.Registration.Server.Code
             return doc;
         }
 
-        public static XmlDocument ConvertStructuresToCdx(XmlDocument doc, bool returnEmptyWhenEmptyStructure = false)
+        public static XmlDocument ConvertStructuresToCdx(XmlDocument doc, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = false)
         {
-            ConvertStructuresToCdx(doc.DocumentElement, returnEmptyWhenEmptyStructure);
+            ConvertStructuresToCdx(doc.DocumentElement, returnEmptyWhenEmptyStructure, useCachedControl);
             return doc;
         }
     }
