@@ -44,7 +44,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static string ConvertToCdxml(string data, bool returnEmptyWhenEmptyStructure = false)
         {
-            return Convert(cdxMimeType, cdxmlMimeType, data, returnEmptyWhenEmptyStructure);
+            return Convert(cdxMimeType, cdxmlMimeType, data, returnEmptyWhenEmptyStructure, true);
         }
 
         public static string ConvertToCdxmlAndName(string data, ref string name, bool returnEmptyWhenEmptyStructure = false)
