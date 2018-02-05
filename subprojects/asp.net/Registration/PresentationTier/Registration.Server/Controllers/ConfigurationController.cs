@@ -600,7 +600,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                                 row.Add(new JProperty(columnName, "fragment/" + dr[0].ToString()));
                                 row.Add(new JProperty("STRUCTURE_XML", structure));
                             }
-                            if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase)
+                            else if (tableName.Equals(COETableManager.ValidateSqlQuery.VW_PICKLISTDOMAIN.ToString(), StringComparison.OrdinalIgnoreCase)
                                 && columnName.Equals("EXT_SQL_FILTER") && columnValue != null)
                             {
                                 row.Add(new JProperty(columnName, HttpUtility.HtmlDecode(columnValue.ToString())));
