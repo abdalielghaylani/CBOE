@@ -220,6 +220,7 @@ export class RegRecords implements OnInit, OnDestroy {
           let sortCriteria;
           if (loadOptions.sort != null) {
             sortCriteria = (loadOptions.sort[0].desc === false) ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
+            ref.sortCriteria = sortCriteria;
           }
           let url = `${apiUrlPrefix}${ref.temporary ? 'temp-' : ''}records`;
           let params = '';
@@ -614,7 +615,6 @@ export class RegRecords implements OnInit, OnDestroy {
                     border:solid 1px #f0f0f0;
                     font-size: 12px;
                     font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
-                    white-space: nowrap;
                     border-spacing: 0px;
                 }
                 img {
