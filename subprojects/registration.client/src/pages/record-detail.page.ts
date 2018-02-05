@@ -30,7 +30,7 @@ export class RegRecordDetailPage {
 
   constructor(private router: Router, private actions: RecordDetailActions) {
     let urlSegments = router.url.split('/');
-    this.temporary = !!urlSegments.find(s => s === 'temp');
+    this.temporary = !!urlSegments.find(s => s === 'temp') || !!urlSegments.find(s => s === 'new');
     this.bulkreg = !!urlSegments.find(s => s === 'bulkreg');
     this.useCurrent = !!urlSegments.find(s => s === 'current');
     let id;
