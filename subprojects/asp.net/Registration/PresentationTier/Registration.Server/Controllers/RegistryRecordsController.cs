@@ -144,6 +144,21 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         }
 
         [HttpGet]
+        [Route(Consts.apiPrefix + "records/databaseRecordCount")]
+        [SwaggerOperation("GetDatabaseRecordCount")]
+        [SwaggerResponse(200, type: typeof(int))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(JObject))]
+        public async Task<IHttpActionResult> GetDatabaseRecordCount(bool? temp)
+        {
+            return await CallMethod(() =>
+            {
+                var bo = GetGenericBO(temp.HasValue ? temp.Value : false); 
+                return bo.DatabaseRecordCount;
+            });
+        }
+
+        [HttpGet]
         [Route(Consts.apiPrefix + "records/{id}")]
         [SwaggerOperation("GetRecord")]
         [SwaggerResponse(200, type: typeof(JObject))]

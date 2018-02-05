@@ -26,6 +26,8 @@ using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Framework.COEHitListService;
 using CambridgeSoft.COE.Framework;
 using CambridgeSoft.COE.Framework.COETableEditorService;
+using CambridgeSoft.COE.Framework.Caching;
+using CambridgeSoft.COE.Framework.COEDataViewService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -40,10 +42,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// </summary>
         /// <param name="bo">GenericBO object</param>
         /// <returns>database record count</returns>
-        private static int GetDatabaseRecordCount(GenericBO bo)
+        protected static int GetDatabaseRecordCount(GenericBO bo)
         {
             bo.KeepRecordCountSyncrhonized = true;
             return bo.DatabaseRecordCount;
+        }
+
+        protected static FormGroup GetFormGroup(bool? temp)
+        {
+            var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
+            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+            configRegRecord.COEFormHelper.Load(formGroupType);
+            return configRegRecord.FormGroup;
+        }
+
+        protected static GenericBO GetGenericBO(bool? temp)
+        {
+            var formGroup = GetFormGroup(temp);
+            if (ServerCache.Exists(formGroup.DataViewId.ToString(), typeof(COEDataViewBO)))
+                ServerCache.Remove(formGroup.DataViewId.ToString(), typeof(COEDataViewBO));
+            return GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, formGroup);
         }
 
         protected HttpResponseMessage CreateErrorResponse(Exception ex)
@@ -436,12 +454,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist = null, SearchCriteria searchCriteria = null, bool highlightSubStructures = false)
         {
-            var formGroupType = temp.HasValue && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-            var baseColumnKey = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
-            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            configRegRecord.COEFormHelper.Load(formGroupType);
-
-            var bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, configRegRecord.FormGroup);
+            var bo = GetGenericBO(temp);
             bo.RefreshDatabaseRecordCount();
             bo.CreateNewHitList = false;
             bo.AllowFullScan = true;
@@ -505,6 +518,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             bo.Search();
 
             var dataColumns = new List<KeyValuePair<string, List<DataColumn>>>();
+            var baseColumnKey = temp.HasValue && temp.Value ? "TEMPBATCHID" : "REGID";
             foreach (DataTable dataTable in bo.Dataset.Tables)
             {
                 var columnArray = new DataColumn[dataTable.Columns.Count];

@@ -80,6 +80,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private dataStore: CustomStore;
   private recordsTotalCount: number = 0;
   private refreshHitList: boolean = false;
+  private totalSearchableCount: number = 0;
 
   constructor(
     private router: Router,
@@ -164,6 +165,16 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  setTotalSearchableCount() {
+    this.http.get(`${apiUrlPrefix}records/databaseRecordCount?temp=${this.temporary}`).toPromise()
+      .then((res => {
+        this.totalSearchableCount = res.json();
+      }).bind(this))
+      .catch(error => {
+        notifyException(`The search failed due to a problem`, error, 5000);
+      });
+  }
+
   // Trigger data retrieval for the view to show.
   retrieveContents(lookups: ILookupData) {
     this.lookups = lookups;
@@ -184,6 +195,8 @@ export class RegRecords implements OnInit, OnDestroy {
     } else {
       this.loadData();
     }
+
+    this.setTotalSearchableCount();
   }
 
   restoreHitlist() {

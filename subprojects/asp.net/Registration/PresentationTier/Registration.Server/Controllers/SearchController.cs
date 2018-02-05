@@ -33,23 +33,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class SearchController : RegControllerBase
     {
-        private static FormGroup GetFormGroup(bool? temp)
-        {
-            var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
-            var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
-            configRegRecord.COEFormHelper.Load(formGroupType);
-            return configRegRecord.FormGroup;
-        }
-
-        private static GenericBO GetGenericBO(bool? temp)
-        {
-            var formGroup = GetFormGroup(temp);
-            if (ServerCache.Exists(formGroup.DataViewId.ToString(), typeof(COEDataViewBO)))
-                ServerCache.Remove(formGroup.DataViewId.ToString(), typeof(COEDataViewBO));
-            GenericBO bo = GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, formGroup);
-            return bo;
-        }
-
         private static QueryData GetHitlistQueryInternal(int id, bool? temp)
         {
             var hitlistBO = GetHitlistBO(id);
