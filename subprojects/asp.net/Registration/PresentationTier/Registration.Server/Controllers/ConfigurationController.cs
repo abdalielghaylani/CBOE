@@ -1612,6 +1612,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         }
 
                         configurationBO.Save();
+                        if (!string.IsNullOrEmpty(configurationBO.GetSaveErrorMessage))
+                        {
+                            const string replaceString = ", ";
+                            throw new RegistrationException((configurationBO.GetSaveErrorMessage.Replace(" <br/>", replaceString)).Trim(replaceString.ToCharArray()));
+                        }
                         break;
                     }
                 }
