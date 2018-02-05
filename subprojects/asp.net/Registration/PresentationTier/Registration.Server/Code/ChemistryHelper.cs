@@ -13,7 +13,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
         private const string cdxMimeType = "chemical/x-cdx";
         private const string cdxmlMimeType = "text/xml";
 
-        public static string ConvertAndName(string fromType, string toType, string fromData, ref string name, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = false)
+        public static string ConvertAndName(string fromType, string toType, string fromData, ref string name, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = true)
         {
             if (!useCachedControl)
             {
@@ -36,7 +36,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
             return chemDrawCtl.get_Data(toType);
         }
 
-        public static string Convert(string fromType, string toType, string fromData, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = false)
+        public static string Convert(string fromType, string toType, string fromData, bool returnEmptyWhenEmptyStructure = false, bool useCachedControl = true)
         {
             string name = null;
             return ConvertAndName(fromType, toType, fromData, ref name, returnEmptyWhenEmptyStructure, useCachedControl);
@@ -49,17 +49,17 @@ namespace PerkinElmer.COE.Registration.Server.Code
 
         public static string ConvertToCdxmlAndName(string data, ref string name, bool returnEmptyWhenEmptyStructure = false)
         {
-            return ConvertAndName(cdxMimeType, cdxmlMimeType, data, ref name, returnEmptyWhenEmptyStructure);
+            return ConvertAndName(cdxMimeType, cdxmlMimeType, data, ref name, returnEmptyWhenEmptyStructure, true);
         }
 
         public static string ConvertToCdx(string data, bool returnEmptyWhenEmptyStructure = false)
         {
-            return Convert(cdxmlMimeType, cdxMimeType, data, returnEmptyWhenEmptyStructure);
+            return Convert(cdxmlMimeType, cdxMimeType, data, returnEmptyWhenEmptyStructure, true);
         }
 
         public static string ConvertToCdxAndName(string data, ref string name, bool returnEmptyWhenEmptyStructure = false)
         {
-            return ConvertAndName(cdxmlMimeType, cdxMimeType, data, ref name, returnEmptyWhenEmptyStructure);
+            return ConvertAndName(cdxmlMimeType, cdxMimeType, data, ref name, returnEmptyWhenEmptyStructure, true);
         }
 
         private static void ConvertStructuresToCdxml(XmlElement element, bool returnEmptyWhenEmptyStructure = false)
@@ -74,7 +74,7 @@ namespace PerkinElmer.COE.Registration.Server.Code
             var textData = element.InnerText;
             if (!string.IsNullOrEmpty(textData) && textData.StartsWith("VmpD"))
             {
-                var converted = Convert(cdxMimeType, cdxmlMimeType, textData, returnEmptyWhenEmptyStructure);
+                var converted = Convert(cdxMimeType, cdxmlMimeType, textData, returnEmptyWhenEmptyStructure, true);
                 element.InnerText = converted.Replace("\r\n", " ");
             }
         }
