@@ -290,6 +290,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
   private saveTemplate(e) {
     let validationResult: any = this.saveTemplateForm.validate();
     if (validationResult.isValid) {
+      this.updatedFields = [];
       this.grid.instance.saveEditData();
       let resultsCriteria: any[] = [];
       this.rows.forEach(row => {
@@ -321,15 +322,15 @@ export class RegSearchExport implements OnInit, OnDestroy {
           this.currentExportTemplate = result.json().id;
           this.exportTemplates = [];
           this.isAllowUpdatingEnabled = false;
-          this.changeDetector.markForCheck();
           this.resetTemplateButtons();
           if (this.currentExportTemplate > 0) {
             this.isEditDeleteTemplateButtonEnabled = true;
-            this.changeDetector.markForCheck();
-          }
+          }  
+
           this.getExportTemplates();
           this.changeDetector.markForCheck();
           this.createCustomStore(this);
+          this.grid.instance.refresh();
           notifySuccess(`The template was saved successfully!`, 5000);
         })
         .catch(error => {
