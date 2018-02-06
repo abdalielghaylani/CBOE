@@ -9,7 +9,13 @@
 }
 
 .pressed-button {
-  background-color: #ededed;
+  background-color: #ededed !important;
+  border: 1px solid #cccccc !important;
+}
+
+.normal-button {
+  background-color: #ffffff !important;
+  border: 1px solid #cccccc !important;
 }
 
 .pref-image {
