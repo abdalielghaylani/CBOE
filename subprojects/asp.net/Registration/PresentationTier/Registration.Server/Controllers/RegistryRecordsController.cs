@@ -153,7 +153,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var bo = GetGenericBO(temp.HasValue ? temp.Value : false); 
+                var bo = GetGenericBO(temp.HasValue ? temp.Value : false);
+                bo.RefreshDatabaseRecordCount();
+                bo.KeepRecordCountSyncrhonized = true;
                 return bo.DatabaseRecordCount;
             });
         }
