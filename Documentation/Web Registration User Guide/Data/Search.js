@@ -1,1 +1,1 @@
-define({r:0.5,st:'Stem',n:1,t:[0,69],u:['../Content/ELN2014-COE Integration/Add Compound from ACX system to a Reaction Drawing.htm'],s:['+','salt'],p:[['+',38],['checkbox',43],['editing',3],['inventory',87],['performed',46],['samples',35],['the',51]]});
+define({r:0.5,st:'Stem',n:1,t:[0,69],u:['../Content/ELN2014-COE Integration/Add Compound from ACX system to a Reaction Drawing.htm'],s:['+','sdf'],p:[['+',37],['checking',42],['enabling',0],['is',22],['please',51],['saved',45],['the',68]]});
