@@ -481,6 +481,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.markedRecords = [];
     if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
       this.rowSelected = true;
+      this.selectedRows.map(r => { this.markedRecords.push(r[this.idField]); });
       this.grid.instance.refresh();
       this.isPrintAndExportAvailable = true;
     }
@@ -528,6 +529,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private showSearchResults() {
+    this.markedRecords = [];
     if (this.rowSelected) {
       this.rowSelected = false;
       this.isPrintAndExportAvailable = false || this.recordsTotalCount <= printAndExportLimit;
