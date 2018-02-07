@@ -256,7 +256,6 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<row><td>ISLockPermissions.dll</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\ISLockPermissions.dll</td></row>
-		<row><td>ISSELFREG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isregsvr.dll</td></row>
 		<row><td>NewBinary1</td><td/><td>&lt;ISProductFolder&gt;\Support\Themes\InstallShield Blue Theme\banner.jpg</td></row>
 		<row><td>NewBinary10</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CompleteSetupIco.ibd</td></row>
 		<row><td>NewBinary11</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CustomSetupIco.ibd</td></row>
@@ -345,6 +344,7 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>App_GlobalResources</td><td>{8B68C0DA-EE40-48A4-82F1-539FCFE82736}</td><td>APP_GLOBALRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>CBOEHelp</td><td>{FC65DB9C-ACC2-4D19-91BA-E9DB13983713}</td><td>CBOEHELP</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>ComonResources</td><td>{00B27677-4259-4572-9FDE-BFC176D91628}</td><td>COMMONRESOURCES</td><td>8</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerBin</td><td>{07FC7566-E929-422E-B976-B7E7847F86F0}</td><td>BIN</td><td>0</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 		<row><td>RegServerRoot</td><td>{53F8F555-94AB-4D51-9663-F7DB51BCA96C}</td><td>REGISTRATION.SERVER</td><td>8</td><td/><td/><td>1</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
@@ -1051,10 +1051,6 @@ End If
 		<row><td>ISLockPermissionsInstall</td><td>3073</td><td>ISLockPermissions.dll</td><td>ISLockPermissionsInstallAction</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
-		<row><td>ISSelfRegisterCosting</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterCosting</td><td/><td/></row>
-		<row><td>ISSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFiles</td><td/><td/></row>
-		<row><td>ISSelfRegisterFinalize</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFinalize</td><td/><td/></row>
-		<row><td>ISUnSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISUnSelfRegisterFiles</td><td/><td/></row>
 		<row><td>SetARPINSTALLLOCATION</td><td>51</td><td>ARPINSTALLLOCATION</td><td>[INSTALLDIR]</td><td/><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%SystemRoot]\Profiles\All Users</td><td/><td/></row>
 		<row><td>ShowMsiLog</td><td>226</td><td>SystemFolder</td><td>[SystemFolder]notepad.exe "[MsiLogFileLocation]"</td><td/><td>Shows Property-driven MSI Log</td></row>
@@ -1124,6 +1120,7 @@ End If
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
 		<row><td>BIN</td><td>REGISTRATION.SERVER</td><td>Bin</td><td/><td>0</td><td/></row>
 		<row><td>CAMBRIDGESOFT</td><td>ProgramFilesFolder</td><td>CAMBRI~1|CambridgeSoft</td><td/><td>0</td><td/></row>
+		<row><td>CBOEHELP</td><td>REGISTRATION.SERVER</td><td>CBOEHelp</td><td/><td>0</td><td/></row>
 		<row><td>CHEMOFFICEENTERPRISE12.1.0.0</td><td>CAMBRIDGESOFT</td><td>CHEMOF~1|ChemOfficeEnterprise12.1.0.0</td><td/><td>0</td><td/></row>
 		<row><td>COMMONRESOURCES</td><td>INSTALLDIR</td><td>COMMON~1|CommonResources</td><td/><td>0</td><td/></row>
 		<row><td>CommonAppDataFolder</td><td>TARGETDIR</td><td>.:Common~1|CommonAppData</td><td/><td>0</td><td/></row>
@@ -1861,6 +1858,7 @@ End If
 		<row><td>RegistrationClient</td><td>RegistrationPool</td></row>
 		<row><td>RegistrationClient</td><td>RegistrationWebSite</td></row>
 		<row><td>RegistrationServer</td><td>App_GlobalResources</td></row>
+		<row><td>RegistrationServer</td><td>CBOEHelp</td></row>
 		<row><td>RegistrationServer</td><td>RegServerBin</td></row>
 		<row><td>RegistrationServer</td><td>RegServerRoot</td></row>
 		<row><td>RegistrationServer</td><td>RegServerWebServices</td></row>
@@ -2126,6 +2124,7 @@ End If
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>App_GlobalResources</td><td/><td/><td>_BE004D9C_65EC_4BB2_9938_BDDA8945BD46_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>CBOEHelp</td><td/><td/><td>_8314609E_099D_4232_9CA1_A8ED2C6330F0_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>ComonResources</td><td/><td/><td>_B90BE541_DC5F_42B5_942F_904BD529A112_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerBin</td><td/><td/><td>_5740C332_7115_45A3_B1F0_88CF471CAA95_FILTER</td><td/><td/><td/><td/></row>
 		<row><td>RegServerRoot</td><td/><td/><td>_BE0D6A50_DDD4_4208_A927_50E2940DB1E7_FILTER</td><td/><td/><td/><td/></row>
@@ -2226,6 +2225,7 @@ End If
 		<col def="S0">IncludeFiles</col>
 		<col def="S0">ExcludeFiles</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>CBOEHelp</td><td>&lt;CORE_GOODS_PATH&gt;\Documentation</td><td>4</td><td/><td/><td>10</td></row>
 		<row><td>RegistrationClient</td><td>&lt;CORE_GOODS_PATH&gt;\subprojects\registration.client\dist</td><td>4</td><td>polyfills*.js,vendor*.js,app*.js,*.png,*.gif,*.*</td><td/><td>10</td></row>
 	</table>
 
@@ -4093,10 +4093,6 @@ End If
 		<row><td>ISLockPermissionsCost</td><td/><td>1401</td><td/><td/></row>
 		<row><td>ISLockPermissionsInstall</td><td/><td>5901</td><td/><td/></row>
 		<row><td>ISPreventDowngrade</td><td>ISFOUNDNEWERPRODUCTVERSION</td><td>450</td><td>ISPreventDowngrade</td><td/></row>
-		<row><td>ISSelfRegisterCosting</td><td/><td>2201</td><td/><td/></row>
-		<row><td>ISSelfRegisterFiles</td><td/><td>5601</td><td/><td/></row>
-		<row><td>ISSelfRegisterFinalize</td><td/><td>6601</td><td/><td/></row>
-		<row><td>ISUnSelfRegisterFiles</td><td/><td>2202</td><td/><td/></row>
 		<row><td>InstallFiles</td><td/><td>4000</td><td>InstallFiles</td><td/></row>
 		<row><td>InstallFinalize</td><td/><td>6600</td><td>InstallFinalize</td><td/></row>
 		<row><td>InstallInitialize</td><td/><td>1501</td><td>InstallInitialize</td><td/></row>
