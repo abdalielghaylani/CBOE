@@ -9,7 +9,7 @@ import { IAppState, ISession, rootReducer, ILookupData, RegistryActions, Session
 import { middleware, enhancers, reimmutify, IRegistry, RegistryFactory } from '../redux';
 import { Subscription } from 'rxjs/Subscription';
 
-import { dev, helpLinkBasePath, helpLink } from '../configuration';
+import { dev, helpLinkBasePath, helpLinkUserGuide, helpLinkAdminGuide } from '../configuration';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
 @Component({
@@ -40,7 +40,8 @@ export class RegApp {
   public fullScreenEnabled: boolean = false;
   private lookupsSubscription: Subscription;
   private lookups: ILookupData;
-  private helpRedirectLink: string;
+  private helpUserGuideLink: string;
+  private helpAdminGuideLink: string;
   private isAboutPopupVisible: boolean;
   private aboutContent: any;
 
@@ -78,7 +79,8 @@ export class RegApp {
 
   ngOnInit() {
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
-    this.helpRedirectLink = helpLinkBasePath + helpLink;
+    this.helpUserGuideLink = helpLinkBasePath + helpLinkUserGuide;
+    this.helpAdminGuideLink = helpLinkBasePath + helpLinkAdminGuide;
   }
 
   setVisibility(privilage: string) {
