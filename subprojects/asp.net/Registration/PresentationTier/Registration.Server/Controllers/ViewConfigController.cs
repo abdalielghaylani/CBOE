@@ -282,7 +282,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 return new LookupData(
                     ExtractData("SELECT P.PERSON_ID as PERSONID, P.USER_ID as USERID, P.SITE_ID as SITEID, DECODE(P.ACTIVE,1,'T',0,'F','0') AS ACTIVE, SUPERVISOR_INTERNAL_ID as SUPERVISORID FROM COEDB.PEOPLE P"),
-                    ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || code || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT"),
+                    ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || fragmentid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT"),
                     ExtractData("SELECT * FROM VW_FRAGMENTTYPE"),
                     ExtractData("SELECT * FROM VW_IDENTIFIERTYPE"),
                     ExtractData("SELECT * FROM VW_PICKLIST"),
