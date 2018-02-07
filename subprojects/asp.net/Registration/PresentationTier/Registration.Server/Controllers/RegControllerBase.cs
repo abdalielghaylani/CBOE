@@ -504,7 +504,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     break;
             }
 
-            if (!isChildCriteria && searchCriteria == null)
+            if (!isChildCriteria)
                 bo.OrderByCriteria = newCriteria;
 
             bo.PagingInfo.RecordCount = count.HasValue ? count.Value : 20; // max records
