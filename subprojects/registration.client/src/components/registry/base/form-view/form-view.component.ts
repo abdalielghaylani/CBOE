@@ -14,6 +14,7 @@ export class RegFormView implements IViewControl, OnChanges {
   @Input() id: string;
   @Input() activated: boolean;
   @Input() editMode: boolean;
+  @Input() template: boolean;
   @Input() viewModel: any;
   @Input() viewConfig: any[];
   @Input() colCount: number;

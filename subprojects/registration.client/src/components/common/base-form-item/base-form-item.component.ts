@@ -11,6 +11,7 @@ export class RegBaseFormItem implements IFormItemTemplate, OnChanges {
   @Input() activated: boolean;
   @Input() editMode: boolean;
   @Input() viewModel: any = {};
+  @Input() template: boolean = false;
   @Input() viewConfig: any;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   protected readOnly: boolean;

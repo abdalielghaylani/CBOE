@@ -18,6 +18,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   @Input() id: string;
   @Input() activated: boolean;
   @Input() editMode: boolean;
+  @Input() template: boolean;
   @Input() displayMode: string = 'add';
   @Input() viewModel: any;
   @Input() viewConfig: CViewGroupContainer[];

@@ -27,6 +27,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   @ViewChild('ToggleHeader') toggleHeader: ElementRef;
   @ViewChild('ToggleContent') toggleContent: ElementRef;
   @Input() viewModel: CRegistryRecord;
+  @Input() template: boolean;
   @Input() invIntegrationEnabled: boolean = false;
   @Input() invContainers: IInventoryContainerList;
   @Output() batchValueChanged = new EventEmitter<any>();

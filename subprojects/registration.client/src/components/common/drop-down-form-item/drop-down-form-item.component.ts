@@ -80,7 +80,7 @@ export class RegDropDownFormItem extends RegBaseFormItem {
       if (options.defaultValue === '&&useSortOrderTop') {
         if (this.dataSource.length > 0) {
           let topItem;
-          if (options.displayMode === 'add') {
+          if (options.displayMode === 'add' && !this.template) {
             topItem = this.dataSource[0];
           } else if (options.value) {
             topItem = this.dataSource.find(item => item.key === +options.value);

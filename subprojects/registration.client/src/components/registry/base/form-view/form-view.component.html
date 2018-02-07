@@ -12,7 +12,7 @@
     <reg-id-list-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data" [viewConfig]="viewConfig"></reg-id-list-form-item-template>
   </div>
   <div *dxTemplate="let data of 'dropDownTemplate'">
-    <reg-drop-down-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-drop-down-form-item-template>
+    <reg-drop-down-form-item-template [activated]="activated" [editMode]="editMode" [viewModel]="data" [template]="template"></reg-drop-down-form-item-template>
   </div>
   <div *dxTemplate="let data of 'structureTemplate'">
     <reg-structure-form-item-template [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-form-item-template>
