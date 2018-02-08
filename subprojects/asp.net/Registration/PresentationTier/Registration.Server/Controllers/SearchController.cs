@@ -888,13 +888,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var formGroup = GetFormGroup(temp);
 
             PagingInfo pagingInfo = new PagingInfo();
-            if (id > 0)
-            {
-                var hitlistBO = GetHitlistBO(id);
-                pagingInfo.HitListID = hitlistBO.HitListID;
-                pagingInfo.RecordCount = hitlistBO.HitListInfo.RecordCount;
-            }
-            else if (inputData.Records != null && inputData.Records.Count > 0)
+            if (inputData.Records != null && inputData.Records.Count > 0)
             {
                 var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
                 var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
@@ -916,6 +910,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 pagingInfo.HitListID = tempHitlist.HitListID;
                 pagingInfo.RecordCount = tempHitlist.RecordCount;
+            }
+            else if (id > 0)
+            {
+                var hitlistBO = GetHitlistBO(id);
+                pagingInfo.HitListID = hitlistBO.HitListID;
+                pagingInfo.RecordCount = hitlistBO.HitListInfo.RecordCount;
             }
             else
             {
