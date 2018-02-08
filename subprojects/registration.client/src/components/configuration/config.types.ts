@@ -219,8 +219,8 @@ export const CONFIG_PROPERTIES_VALIDATION_FORM_COLUMNS = {
   grdColumns: [{
     dataField: 'name', width: 100
   },
-  { dataField: 'min', width: 80 },
-  { dataField: 'max', width: 80 },
+  { dataField: 'min', width: 80, visible: false },
+  { dataField: 'max', width: 80, visible: false },
   { dataField: 'maxLength', width: 80 },
   { dataField: 'error' },
   { dataField: 'defaultValue', width: 80 },
