@@ -385,7 +385,7 @@ export class CConfigProperties {
     this.formData = new CConfigPropertiesFormData();
     this.formDataValidation = new CPropertiesValidationFormData();
     this.formColumns[0].editorOptions = { dataSource: [], valueExpr: 'groupName', displayExpr: 'groupLabel' };
-    this.formColumns[0].editorOptions.dataSource = lookups.propertyGroups;
+    this.formColumns[0].editorOptions.dataSource = lookups.propertyGroups.filter(i => i.groupName.toLowerCase() !== 'batchcomponent');
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.formColumns[5].editorOptions.dataSource = lookups.pickListDomains;
   }

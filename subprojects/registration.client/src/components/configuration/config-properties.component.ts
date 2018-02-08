@@ -169,7 +169,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
-            let rows = result.json();
+            let rows = result.json().filter(i => i.groupName.toLowerCase() !== 'batchcomponent');
             let groupBy = function (xs, key) {
               return xs.reduce(function (rv, x) {
                 (rv[x[key]] = rv[x[key]] || []).push(x);

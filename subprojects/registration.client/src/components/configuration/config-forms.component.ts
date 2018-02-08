@@ -43,7 +43,7 @@ export class RegConfigForms extends RegConfigBaseComponent {
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
-            let rows = result.json();
+            let rows = result.json().filter(i => i.group.toLowerCase() !== 'batch component');
             deferred.resolve(rows, { totalCount: rows.length });
           })
           .catch(error => {
