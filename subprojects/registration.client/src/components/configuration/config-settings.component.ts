@@ -72,7 +72,11 @@ export class RegConfigSettings extends RegConfigBaseComponent {
         parent.http.get(apiUrlBase)
           .toPromise()
           .then(result => {
-            let rows: ISettingData[] = result.json();
+            let rows: ISettingData[] = result.json().filter(function (i) {
+              if (i.name === 'EnableMixtures' || i.name === 'AllowUnregisteredComponentsInMixtures') {
+                return false;
+              } else { return true; }
+            });
             parent.ngRedux.getState().session.lookups.systemSettings = rows;
             deferred.resolve(rows, { totalCount: rows.length });
           })
