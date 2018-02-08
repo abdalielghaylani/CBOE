@@ -33,6 +33,7 @@ export class RegUrlFormItem extends RegBaseFormItem {
     if (this.value && this.value.length > 40) {
       return this.value.substring(0, 40) + '..';
     }
+    if (this.value == null) { return ''; }
     return this.value;
   }
 
