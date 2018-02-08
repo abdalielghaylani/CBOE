@@ -55,6 +55,7 @@ export interface IRegistry {
   bulkRegisterRecords: any[] | any;
   saveResponse: ISaveResponseData;
   responseData: IResponseData;
+  isLoading: boolean;
 }
 
 export interface IRegistryRecord extends TypedRecord<IRegistryRecord>, IRegistry { }
@@ -101,7 +102,7 @@ export interface IRecordData {
 }
 
 export class CSaveResponseData {
-  constructor(public id: number, public temporary: boolean, public error?: any) {
+  constructor(public id: number, public temporary: boolean, public error?: any, public duplicateRecordCreationSuccess?: boolean) {
   }
 }
 

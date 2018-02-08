@@ -1,3 +1,4 @@
+import { ISaveResponseData } from './../store/registry/registry.types';
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
@@ -36,7 +37,7 @@ export class RecordDetailActions {
   static duplicateRecordAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD,
     (data: IRecordDetail, duplicateAction: string, regNo: string) => ({ data, duplicateAction, regNo }));
   static duplicateRecordSuccessAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_SUCCESS,
-    (payload: any) => (payload));
+    (saveData: ISaveResponseData) => (saveData));
   static loadDuplicateRecordSuccessAction = createAction(RecordDetailActions.LOAD_DUPLICATE_RECORD_SUCCESS);
   static duplicateRecordErrorAction = createAction(RecordDetailActions.CREATE_DUPLICATE_RECORD_ERROR);
   static loadStructureAction = createAction(RecordDetailActions.LOAD_STRUCTURE);
@@ -67,7 +68,7 @@ export class RecordDetailActions {
   }
 
   createDuplicate(data: IRecordDetail, duplicateAction: string, regNo: string) {
-    this.ngRedux.dispatch(RecordDetailActions.duplicateRecordAction(data, duplicateAction, regNo ));
+    this.ngRedux.dispatch(RecordDetailActions.duplicateRecordAction(data, duplicateAction, regNo));
   }
 
   saveRecord(saveData: IRecordSaveData) {

@@ -25,7 +25,8 @@ export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({
   duplicateRecords: null,
   bulkRegisterRecords: null,
   saveResponse: null,
-  responseData: null
+  responseData: null,
+  isLoading: false
 });
 
 export const INITIAL_REGISTRY_STATE = RegistryFactory();

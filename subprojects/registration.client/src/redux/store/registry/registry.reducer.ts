@@ -1,6 +1,12 @@
+import { notifyException } from '../../../common/utils/app.utils';
 import { RegistryActions, RecordDetailActions, SessionActions, IPayloadAction } from '../../actions';
 import { INITIAL_REGISTRY_STATE, INITIAL_RECORD_DETAIL } from './registry.initial-state';
 import { IRegistryRecord, IRecordDetail, CRecordsData, ISaveResponseData } from './registry.types';
+
+function handleError(currentState: IRegistryRecord, error): IRegistryRecord {
+  notifyException('The operation failed unexpectedly', error, 5000);
+  return currentState;
+}
 
 export function registryReducer(
   state: IRegistryRecord = INITIAL_REGISTRY_STATE,
@@ -22,6 +28,18 @@ export function registryReducer(
 
     case RecordDetailActions.LOAD_DUPLICATE_RECORD_SUCCESS:
       return state.update('duplicateRecords', () => action.payload);
+
+    case RecordDetailActions.CREATE_DUPLICATE_RECORD:
+      return state.update('isLoading', () => true);
+    case RecordDetailActions.CREATE_DUPLICATE_RECORD_SUCCESS:
+      let respose = action as ReduxActions.Action<ISaveResponseData>;
+      return state.merge({
+        saveResponse: respose.payload,
+        isLoading: false
+      });
+    case RecordDetailActions.CREATE_DUPLICATE_RECORD_ERROR:
+      state.update('isLoading', () => false);
+      return handleError(state, action.payload);
 
     case RegistryActions.BULK_REGISTER_RECORD_SUCCESS:
       return state.update('bulkRegisterRecords', () => action.payload);

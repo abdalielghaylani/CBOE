@@ -133,10 +133,12 @@ export class RegistryEpics {
           .map(result => {
             let responseData = result.json() as IResponseData;
             let recordId = responseData.id;
-            let newId = responseData.regNumber;
+            let newRegNo = responseData.regNumber;
             let message = `The record was registered in the registry`
-              + `${newId} successfully!`;
+              + `${newRegNo} successfully!`;
             notifySuccess(message, 5000);
+
+            this.ngRedux.dispatch(RecordDetailActions.duplicateRecordSuccessAction(new CSaveResponseData(recordId, false, null, true)));
             return createAction(UPDATE_LOCATION)(`records/${recordId}`);
           })
           .catch(error => Observable.of(RecordDetailActions.duplicateRecordErrorAction(error)));

@@ -51,6 +51,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   @Input() useCurrent: boolean;
   @select(s => s.registry.duplicateRecords) duplicateRecord$: Observable<any[]>;
   @select(s => s.registry.saveResponse) saveResponse$: Observable<ISaveResponseData>;
+  @select(s => s.registry.isLoading) isLoading$: Observable<any>;
   private displayMode: string;
   private title: string;
   private parentHeight: string;
@@ -67,6 +68,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private routeSubscription: Subscription;
   private duplicateSubscription: Subscription;
   private saveResponseSubscription: Subscription;
+  private loadingProgressSubscription: Subscription;
   private currentIndex: number = 0;
   private saveTemplateForm: DxForm;
   private saveTemplatePopupVisible: boolean = false;
@@ -120,6 +122,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     }
     this.parentHeight = this.getParentHeight();
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
+    this.loadingProgressSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
   }
 
   ngOnChanges() {
@@ -192,6 +195,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && !editMode;
     this.backButtonEnabled = (hitListId > 0 || this.bulkreg) && !editMode;
     if (forceUpdate) {
+      this.loadingVisible = false;
       this.changeDetector.markForCheck();
     }
   }
@@ -233,6 +237,10 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     }
     this.actions.clearSaveResponse();
     this.clearSaveResponseSubscription();
+
+    if (this.loadingProgressSubscription) {
+      this.loadingProgressSubscription.unsubscribe();
+    }
   }
 
   private getParentHeight() {
@@ -256,7 +264,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   cancel() {
-    this.recordDetailView.clear(); 
+    this.recordDetailView.clear();
     this.recordDetailView.prepareRegistryRecord();
     this.displayMode = 'view';
     this.update();
@@ -267,7 +275,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       this.actions.clearDuplicateRecord();
       this.currentIndex = 0;
     } else {
-      this.loadingVisible = true;
+      this.getSaveResponse();
     }
   }
 
@@ -323,12 +331,28 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
         this.changeDetector.markForCheck();
         return;
       }
+
+      if (data && data.duplicateRecordCreationSuccess) {
+        this.currentIndex = 0;
+        if (this.id !== data.id) {
+          // use case: new duplicate record is created via 'Move Batches' option
+          // view should be refreshed with new record details in this case
+          this.displayMode = 'view';
+          this.id = data.id;
+          // show load indicator while view is refreshing
+          this.loadingVisible = true;
+          return;
+        }
+      }
+
       this.displayMode = 'view';
       if (this.isNewRecord) {
         if (this.recordDetailView.displayMode !== 'view') {
           return;
         }
       }
+
+
       this.revision = new Date().getTime();
       this.update();
     }
@@ -403,6 +427,11 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   clearLoadindicator() {
     this.loadingVisible = false;
+    this.changeDetector.markForCheck();
+  }
+
+  setProgressBarVisibility(e) {
+    this.loadingVisible = e;
     this.changeDetector.markForCheck();
   }
 
