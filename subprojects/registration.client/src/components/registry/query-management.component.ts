@@ -103,13 +103,20 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   moveToSaveHitlist(e: IHitlistData) {
-    this.actions.updateHitlist(this.temporary, {
+    this.http.put(`${apiUrlPrefix}hitlists/${e.hitlistId}${this.temporary ? '?temp=true' : ''}`, {
       name: e.name,
       description: e.description,
       isPublic: e.isPublic,
       hitlistType: HitlistType.SAVED,
       hitlistId: e.hitlistId
-    });
+    }).toPromise()
+      .then(res => {
+        notifySuccess(`The selected hitlist was saved successfully!`, 5000);
+        this.hitlistId = res.json().id;
+        this.selectedHitlist = { id: res.json().id, type: HitlistType.SAVED };
+        this.actions.openHitlists(this.temporary);
+      })
+      .catch(error => Observable.of(RegistrySearchActions.updateHitlistErrorAction()));
   }
 
   onEditorPreparing(e) {
@@ -177,6 +184,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   private cancel(e) {
+    e.hitlistId = this.hitlistId;
     this.onClose.emit(e);
   }
 };
