@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   OnInit, OnDestroy, OnChanges, AfterViewInit,
   ElementRef, ChangeDetectorRef, ViewEncapsulation,
-  ViewChild, ViewChildren, QueryList
+  ViewChild, ViewChildren, QueryList, NgZone
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, UrlSegment, Params, Router } from '@angular/router';
@@ -112,7 +112,8 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     private location: Location,
     private actions: RecordDetailActions,
     private changeDetector: ChangeDetectorRef,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute,
+    private ngZone: NgZone) {
   }
 
   ngOnInit() {
@@ -123,6 +124,9 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.parentHeight = this.getParentHeight();
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
     this.loadingProgressSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
+    // Code for accessing "publicRecordDetailsRefresh()" from old UI
+    window.NewRegWindowHandle = window.NewRegWindowHandle || {};
+    window.NewRegWindowHandle.refreshRecordDetails = this.refreshRecordDetails.bind(this);
   }
 
   ngOnChanges() {
@@ -241,6 +245,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     if (this.loadingProgressSubscription) {
       this.loadingProgressSubscription.unsubscribe();
     }
+    window.NewRegWindowHandle.namespace.publicFunc = null;
   }
 
   private getParentHeight() {
@@ -595,4 +600,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
         this.recordDetailView.id + `&OpenAsModalFrame=true`), invWideWindowParams);
   }
 
+  refreshRecordDetails() {
+    this.ngZone.run(() => this.refreshDetailView(null, true));
+  }
 };
