@@ -22,9 +22,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             JArray pickList,
             JArray pickListDomains,
             JArray projects,
-            JArray sites,
             JArray formGroups,
-            JArray customTables,
             List<SettingData> systemSettings,
             JArray addinAssemblies,
             JArray propertyGroups,
@@ -41,9 +39,7 @@ namespace PerkinElmer.COE.Registration.Server.Models
             PickList = pickList;
             PickListDomains = pickListDomains;
             Projects = projects;
-            Sites = sites;
             FormGroups = formGroups;
-            CustomTables = customTables;
             SystemSettings = systemSettings;
             AddinAssemblies = addinAssemblies;
             PropertyGroups = propertyGroups;
@@ -96,28 +92,10 @@ namespace PerkinElmer.COE.Registration.Server.Models
         public JArray Projects { get; set; }
 
         /// <summary>
-        /// Gets or sets the site array
-        /// </summary>
-        [JsonProperty(PropertyName = "sites")]
-        public JArray Sites { get; set; }
-
-        /// <summary>
-        /// Gets or sets the unit array
-        /// </summary>
-        [JsonProperty(PropertyName = "units")]
-        public JArray Units { get; set; }
-
-        /// <summary>
         /// Gets or sets the form-group array
         /// </summary>
         [JsonProperty(PropertyName = "formGroups")]
         public JArray FormGroups { get; set; }
-
-        /// <summary>
-        /// Gets or sets the custom-table array
-        /// </summary>
-        [JsonProperty(PropertyName = "customTables")]
-        public JArray CustomTables { get; set; }
 
         /// <summary>
         /// Gets or sets the system setting  array

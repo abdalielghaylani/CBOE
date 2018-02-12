@@ -95,22 +95,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return formGroups;
         }
 
-        private static JArray GetCustomTables()
-        {
-            var customTables = new JArray();
-            var tables = COETableEditorUtilities.getTables();
-            foreach (var key in tables.Keys)
-            {
-                var table = new JObject(
-                    new JProperty("tableName", key),
-                    new JProperty("label", tables[key])
-                );
-                customTables.Add(table);
-            }
-
-            return customTables;
-        }
-
         private static JArray GetDisabledControls(string appName)
         {
             var disabledControlArray = new JArray();
@@ -288,9 +272,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     ExtractData("SELECT * FROM VW_PICKLIST"),
                     ExtractPickListDomain(),
                     ExtractData("SELECT * FROM VW_PROJECT"),
-                    ExtractData("SELECT * FROM VW_SITES"),
                     GetFormGroups(),
-                    GetCustomTables(),
                     RegAppHelper.RetrieveSettings(),
                     GetAddinAssemblies(),
                     GetPropertyGroups(),
