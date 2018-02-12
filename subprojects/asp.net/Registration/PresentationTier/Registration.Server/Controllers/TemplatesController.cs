@@ -43,6 +43,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     template.Description = tempalateItem.Description;
                     template.IsPublic = tempalateItem.IsPublic;
                     template.Username = tempalateItem.UserName;
+
+                    if (!string.IsNullOrEmpty(tempalateItem.COEGenericObject))
+                    {
+                        var document = new XmlDocument();
+                        document.LoadXml(tempalateItem.COEGenericObject);
+                        var xmlNode = document.DocumentElement.SelectSingleNode("//StructureAggregation ");
+                        if (xmlNode != null && !string.IsNullOrEmpty(xmlNode.InnerText))
+                        {
+                            template.Data = xmlNode.InnerText;
+                        }
+                    }
+
                     templateList.Add(template);
                 }
 
@@ -56,6 +68,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     template.Description = tempalateItem.Description;
                     template.IsPublic = tempalateItem.IsPublic;
                     template.Username = tempalateItem.UserName;
+                    if (!string.IsNullOrEmpty(tempalateItem.COEGenericObject))
+                    {
+                        var document = new XmlDocument();
+                        document.LoadXml(tempalateItem.COEGenericObject);
+                        var xmlNode = document.DocumentElement.SelectSingleNode("//StructureAggregation ");
+                        if (xmlNode != null && !string.IsNullOrEmpty(xmlNode.InnerText))
+                        {
+                            template.Data = xmlNode.InnerText;
+                        }
+                    }
                     templateList.Add(template);
                 }
 

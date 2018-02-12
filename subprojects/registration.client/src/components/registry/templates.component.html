@@ -10,7 +10,7 @@
     (onCellPrepared)="onCellPrepared($event)">
     <dxo-editing mode="form" [allowDeleting]="true"></dxo-editing>
     <div *dxTemplate="let data of 'structureCellTemplate'">
-      <reg-structure-image [src]="data.value"></reg-structure-image>
+      <reg-structure-image-column-item-template [source]="data.value"></reg-structure-image-column-item-template>
     </div>
     <div *dxTemplate="let d of 'loadCellTemplate'">
       <a class="fa fa fa-check grid-icon" aria-hidden="true" title='Load this submission template' (click)="loadTemplate(d.data.id)"></a>&nbsp; {{d.value}}
