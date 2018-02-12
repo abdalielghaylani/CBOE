@@ -42,7 +42,9 @@ export class RegStructureBaseFormItem extends ChemDrawWeb implements IFormItemTe
         } else if (this.cdd.isBlankStructure() && this.viewModel.component.option('formData.' + this.viewModel.dataField)) {
           this.viewModel.component.option('formData.' + this.viewModel.dataField, undefined);
         } else {
-          this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+          if (!this.cdd.isBlankStructure()) {
+            this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+          }
         }
       }
       this.valueUpdated.emit(this);
