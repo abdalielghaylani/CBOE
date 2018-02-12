@@ -34,7 +34,7 @@ export class RegBatchCreator implements OnChanges, OnDestroy {
   private formVisible: boolean = false;
   private items: any[];
   private formData: any;
-  private colCount: number = 5;
+  private colCount: number = 4;
 
   constructor(
     private ngRedux: NgRedux<IAppState>,
