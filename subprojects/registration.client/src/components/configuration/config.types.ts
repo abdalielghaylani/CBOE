@@ -94,6 +94,10 @@ export class CConfigTable {
     this.formColumns.forEach(col => {
       if (col.caption) {
         col.label = { text: col.caption };
+        if (e.tableId === 'VW_FRAGMENT' && (col.dataField === 'MOLWEIGHT' || col.dataField === 'FORMULA')) {
+          col.editorOptions = {};
+          col.editorOptions.readOnly = true;
+        }
       }
       if (col.lookup) {
         col.editorType = 'dxSelectBox';
@@ -132,6 +136,8 @@ export class CConfigTable {
         this.setColumnConfig('STRUCTURE', 'cellTemplate', 'cellTemplate');
         this.setColumnConfig('DESCRIPTION', 'cellTemplate', 'viewTemplate');
         this.setColumnConfig('FRAGMENTID', 'allowEditing', false);
+        this.setColumnConfig('FORMULA', 'allowEditing', false);
+        this.setColumnConfig('MOLWEIGHT', 'allowEditing', false);
         break;
     }
   }

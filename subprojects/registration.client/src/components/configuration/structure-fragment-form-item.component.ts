@@ -30,12 +30,36 @@ export class RegStructureFragmentFormItem extends ChemDrawWeb {
       if (this.viewModel) {
         if (this.cdd.isBlankStructure()) {
           this.viewModel.STRUCTURE_XML = undefined;
+          this.viewModel.FORMULA = undefined;
+          this.viewModel.MOLWEIGHT = undefined;
+          this.valueUpdated.emit(this);
         } else {
           this.viewModel.STRUCTURE_XML = this.getValue();
+          this.getProperties(this);
         }
       }
-      this.valueUpdated.emit(this);
     }
   }
 
+  private getProperties(parent: RegStructureFragmentFormItem) {
+    this.cdd.getProperties(function (props, error) {
+      if (!error) {
+        let properties = JSON.parse(props);
+
+        let formula = properties.FORMULA.replace(new RegExp('<sub>', 'g'), '');
+        formula = formula.replace(new RegExp('</sub>', 'g'), '');
+
+        formula = formula.replace(new RegExp('<sup>', 'g'), '');
+        formula = formula.replace(new RegExp('</sup>', 'g'), '');
+
+        let mwWeight: string = properties.MW.substring(0, properties.MW.indexOf(' '));
+
+        parent.viewModel.FORMULA = formula;
+        parent.viewModel.MOLWEIGHT = (+mwWeight).toFixed(5).replace(/([0-9]+(\.[0-9]+[1-9])?)(\.?0+$)/, '$1');
+        parent.valueUpdated.emit(null);
+      } else {
+        // deal with error
+      }
+    });
+  }
 };
