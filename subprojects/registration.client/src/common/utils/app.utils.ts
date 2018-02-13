@@ -28,9 +28,18 @@ export function notifyError(message: string, duration: number = notificationDura
 }
 
 export function notifyException(message: string, error, duration: number = notificationDuration) {
-  notifyError(getExceptionMessage(message, error), duration);  
+  notifyError(getExceptionMessage(message, error), duration);
 }
 
 export function notifySuccess(message: string, duration: number = notificationDuration) {
-  dxNotify(message, 'success', duration);  
+  dxNotify(message, 'success', duration);
+}
+
+export function b64Encode(utf8Array) {
+  let chunkSize = 0x8000;
+  let c = [];
+  for (let i = 0; i < utf8Array.length; i += chunkSize) {
+    c.push(String.fromCharCode.apply(null, utf8Array.subarray(i, i + chunkSize)));
+  }
+  return btoa(c.join(''));
 }

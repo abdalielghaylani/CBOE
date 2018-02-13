@@ -3,6 +3,7 @@ import { Http, ResponseContentType, RequestOptions, Request, RequestOptionsArgs,
 import * as crypto from 'crypto';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import { b64Encode } from '../../common';
 
 @Injectable()
 export class CStructureImagePrintService {
@@ -54,7 +55,7 @@ export class CStructureImagePrintService {
     return this.http.post('https://chemdrawdirect.perkinelmer.cloud/rest/generateImage', data, options)
       .toPromise()
       .then(result => {
-        let imageData = 'data:image/png;base64,' + btoa(String.fromCharCode.apply(null, new Uint8Array(result.arrayBuffer())));
+        let imageData = 'data:image/png;base64,' + b64Encode(new Uint8Array(result.arrayBuffer()));
         queue.push({ hash, imageData });
         if (queue.length > CStructureImagePrintService.QUEUE_SIZE) {
           queue.shift();

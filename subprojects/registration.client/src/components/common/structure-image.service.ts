@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, ResponseContentType, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
 import * as crypto from 'crypto';
+import { b64Encode } from '../../common';
 
 @Injectable()
 export class CStructureImageService {
@@ -35,7 +36,7 @@ export class CStructureImageService {
     return this.http.post('https://chemdrawdirect.perkinelmer.cloud/rest/generateImage', data, options)
       .toPromise()
       .then(result => {
-        let imageData = 'data:image/png;base64,' + btoa(String.fromCharCode.apply(null, new Uint8Array(result.arrayBuffer())));
+        let imageData = 'data:image/png;base64,' + b64Encode(new Uint8Array(result.arrayBuffer()));
         queue.push({ hash, imageData });
         if (queue.length > CStructureImageService.QUEUE_SIZE) {
           queue.shift();
