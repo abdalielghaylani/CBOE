@@ -1238,7 +1238,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var recordList = new JArray();
                 foreach (string id in failedRecords)
                 {
-                    recordList.Add(new JProperty("id", id));
+                    recordList.Add(new JObject() { new JProperty("id", id) });
                 }
                 response = new JObject();
                 response.Add(new JProperty("failedRecords", recordList));
