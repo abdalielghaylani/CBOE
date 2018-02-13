@@ -124,7 +124,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.parentHeight = this.getParentHeight();
     this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
     this.loadingProgressSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
-    // Code for accessing "publicRecordDetailsRefresh()" from old UI
+    // Code for accessing "refreshRecordDetails()" from old UI
     window.NewRegWindowHandle = window.NewRegWindowHandle || {};
     window.NewRegWindowHandle.refreshRecordDetails = this.refreshRecordDetails.bind(this);
   }
@@ -245,7 +245,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     if (this.loadingProgressSubscription) {
       this.loadingProgressSubscription.unsubscribe();
     }
-    window.NewRegWindowHandle.namespace.publicFunc = null;
+    window.NewRegWindowHandle.refreshRecordDetails = null;
   }
 
   private getParentHeight() {
@@ -356,7 +356,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
           return;
         }
       }
-
 
       this.revision = new Date().getTime();
       this.update();
