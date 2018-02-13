@@ -14,6 +14,7 @@ export class RegFileUploaderFormItem extends RegBaseFormItem {
     let reader = new FileReader();
     reader.onload = (() => {
       let mols = reader.result.trim(null).split('$$$$\r\n');
+      this.sdfFiles = [];
       for (let i = 0; i < mols.length; i++) {
         if (mols[i] && mols[i] !== '') {
           let indexMEND = mols[i].indexOf('M  END');
