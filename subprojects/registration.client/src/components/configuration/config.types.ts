@@ -518,25 +518,30 @@ export class CConfigProperties {
     }
   }
 
+  setValidationColumns(type: string, visible: boolean = false) {
+    let c = this.formValidationColumns.editColumn.find(i => i.dataField === type);
+    if (type === 'defaultValue') {
+      let t = this.formData.type.toLowerCase() === 'number' || this.formData.type.toLowerCase() === 'text';
+      c.label.text = 'Default Value ' + (t ? this.formData.type : '');
+    }
+    c.visible = visible;
+  }
+
   onValidationTypeChanged(e) {
     if (e.dataField === 'name') {
-      this.formValidationColumns.editColumn[2].visible = false;
-      this.formValidationColumns.editColumn[3].visible = false;
+      this.setValidationColumns('defaultValue', false);
+      this.setValidationColumns('clientScript', false);
       this.formDataValidation.parameters = [];
       switch (e.value) {
         case 'requiredField':
-          this.formValidationColumns.editColumn[2].visible = true;
-          e.component._refresh();
-          break;
-        case 'textLength':
-        case 'wordListEnumeration':
-        case 'notEmptyStructure':
-        case 'notEmptyStructureAndNoText':
-        case '':
+          this.setValidationColumns('defaultValue', true);
           e.component._refresh();
           break;
         case 'custom':
-          this.formValidationColumns.editColumn[3].visible = true;
+          this.setValidationColumns('clientScript', true);
+          e.component._refresh();
+          break;
+        default:
           e.component._refresh();
           break;
       }
