@@ -326,32 +326,48 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 formElements = form.LayoutInfo;
                 foreach (var element in formElements)
                 {
-                    if (!element.Name.Equals(formElementData.Name)) continue;
-
-                    found = true;
-
                     if (!string.IsNullOrEmpty(element.DisplayInfo.Assembly))
                         break;
 
-                    element.Label = formElementData.Label;
-                    element.DisplayInfo.Type = formElementData.ControlType;
-                    element.DisplayInfo.Visible = formElementData.Visible.HasValue ? (bool)formElementData.Visible : false;
-                    element.DisplayInfo.CSSClass = formElementData.CssClass;
-
-                    if (formElementData.ControlType == "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink")
+                    if (element.DisplayInfo.Type == "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COEWebGrid")
                     {
-                        if (element.BindingExpression.Contains("SearchCriteria"))
-                            element.DisplayInfo.Type = "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COETextBox";
+                        XmlNamespaceManager nameSpaceManager = new XmlNamespaceManager(element.ConfigInfo.OwnerDocument.NameTable);
+                        nameSpaceManager.AddNamespace("COE", "COE.FormGroup");
+                        XmlNodeList tablesNodeList = element.ConfigInfo.SelectNodes("//COE:table", nameSpaceManager);
+                        foreach (XmlNode table in tablesNodeList)
+                        {
+                            XmlNodeList columsNodeList = table.SelectNodes("//COE:Column", nameSpaceManager);
+
+                            foreach (XmlNode column in columsNodeList)
+                            {
+                                if (column.SelectSingleNode("./COE:formElement", nameSpaceManager) == null) continue;
+
+                                if (column.Attributes["name"] != null && column.Attributes["name"].Value != formElementData.Name) continue;
+
+                                found = true;
+                                column.SelectSingleNode("./COE:headerText", nameSpaceManager).InnerText = formElementData.Label;
+                                var visible = formElementData.Visible.HasValue ? (bool)formElementData.Visible : false;
+                                if (column.Attributes["hidden"] == null)
+                                {
+                                    column.Attributes.Append(column.OwnerDocument.CreateAttribute("hidden"));
+                                    column.Attributes["hidden"].Value = (!visible).ToString();
+                                }
+                                else
+                                {
+                                    column.Attributes["hidden"].Value = (!visible).ToString();
+                                }
+
+                                FormGroup.FormElement formElement = FormGroup.FormElement.GetFormElement(column.SelectSingleNode("./COE:formElement", nameSpaceManager).OuterXml);
+                                if (formElement != null)
+                                {
+                                    formElement.DisplayInfo.CSSClass = formElementData.CssClass;
+                                    formElement.DisplayInfo.Type = formElementData.Type;
+                                    formElement.DisplayInfo.Visible = visible;
+                                }
+                                break;
+                            }
+                        }
                     }
-
-                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"] != null && !string.IsNullOrEmpty(controlStyle))
-                        element.ConfigInfo["COE:fieldConfig"]["COE:CSSClass"].InnerText = controlStyle;
-
-                    string defaultTextMode = formElementData.ControlType.Contains("COETextArea") ? "MultiLine" : string.Empty;
-                    if (element.ConfigInfo["COE:fieldConfig"] != null && element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"] != null)
-                        element.ConfigInfo["COE:fieldConfig"]["COE:TextMode"].InnerText = defaultTextMode;
-
-                    break;
                 }
             }
             return found;
@@ -801,7 +817,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         index++;
                         continue;
                     }
-                    found = true;                  
+                    found = true;
                     configurationBO.AddInList.RemoveAt(index);
                     configurationBO.Save();
                     break;
@@ -1039,32 +1055,37 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var detailsForms = formBO.COEFormGroup.DetailsForms;
                     var listForms = formBO.COEFormGroup.ListForms;
                     var queryForms = formBO.COEFormGroup.QueryForms;
+
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, Consts.MIXTURESUBFORMINDEX), formElementData))
-                        formGroupUpdated = true;
-                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(listForms, 0, Consts.MIXTURESEARCHFORM), formElementData))
-                        formGroupUpdated = true;
-                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.MIXTURESEARCHFORM), formElementData))
                         formGroupUpdated = true;
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, Consts.COMPOUNDSUBFORMINDEX), formElementData))
                         formGroupUpdated = true;
-                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.COMPOUNDSEARCHFORM), formElementData))
-                        formGroupUpdated = true;
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, Consts.STRUCTURESUBFORMINDEX), formElementData))
-                        formGroupUpdated = true;
-                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.STRUCTURESEARCHFORM), formElementData))
                         formGroupUpdated = true;
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, Consts.BATCHSUBFORMINDEX), formElementData))
                         formGroupUpdated = true;
-                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.BATCHSEARCHFORM), formElementData))
-                        formGroupUpdated = true;
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(detailsForms, 0, Consts.BATCHCOMPONENTSUBFORMINDEX), formElementData))
                         formGroupUpdated = true;
-                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.BATCHCOMPONENTSEARCHFORM), formElementData))
-                        formGroupUpdated = true;
+
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.TEMPORARYBASEFORM), formElementData))
                         formGroupUpdated = true;
                     if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.TEMPORARYCHILDFORM), formElementData))
                         formGroupUpdated = true;
+
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(listForms, 0, Consts.MIXTURESEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.MIXTURESEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.COMPOUNDSEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.BATCHSEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.BATCHCOMPONENTSEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+                    if (PutCustomFormData(configurationBO, formBO.ID, formBO.TryGetForm(queryForms, 0, Consts.STRUCTURESEARCHFORM), formElementData))
+                        formGroupUpdated = true;
+
                     found = found || formGroupUpdated;
                     if (formGroupUpdated)
                         formBO.Save();
@@ -1615,7 +1636,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         if (!string.IsNullOrEmpty(configurationBO.GetSaveErrorMessage))
                         {
                             const string replaceString = ", ";
-                            throw new RegistrationException((configurationBO.GetSaveErrorMessage.Replace(" <br/>", replaceString)).Trim(replaceString.ToCharArray()));
+                            throw new RegistrationException(configurationBO.GetSaveErrorMessage.Replace(" <br/>", replaceString).Trim(replaceString.ToCharArray()));
                         }
                         break;
                     }
