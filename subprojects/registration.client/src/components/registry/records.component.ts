@@ -512,6 +512,10 @@ export class RegRecords implements OnInit, OnDestroy {
           this.loadIndicatorVisible = true;
           this.selectedRows.map(r => { ids.push({ id: r[this.idField] }); });
           this.registryActions.deleteRecord(this.temporary, { data: ids });
+          this.selectedRows = [];
+          this.rowSelected = false;
+          let keys = this.grid.instance.getSelectedRowKeys();
+          this.grid.instance.deselectRows(keys);
         }
       });
     }
