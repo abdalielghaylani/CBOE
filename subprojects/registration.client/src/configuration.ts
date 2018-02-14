@@ -6,7 +6,6 @@ export const dev = __DEV__;
 export const production = __PRODUCTION__;
 export const test = __TEST__;
 export const invIntegrationBasePath = '';
-export const helpLinkBasePath = '/';
 export const helpLinkUserGuide = `CBOEHelp/Web Registration User Guide/Web Registration User guide.htm`;
 export const helpLinkAdminGuide = `CBOEHelp/Web Registration Admin Guide/Registration Administrator Guide.htm`;
 export const invNormalWindowParams =  `width=800,height=700`;
