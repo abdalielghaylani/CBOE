@@ -68,7 +68,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var message = ex is Csla.DataPortalException ? ((Csla.DataPortalException)ex).BusinessException.Message : ex.Message;
             var statusCode = ex is AuthenticationException || ex is PrivilegeNotHeldException || ex is UnauthorizedAccessException ?
-                HttpStatusCode.Unauthorized :
+                HttpStatusCode.Forbidden :
                 ex is RegistrationException || ex is Csla.DataPortalException ?
                 HttpStatusCode.BadRequest :
                 ex is IndexOutOfRangeException ?
