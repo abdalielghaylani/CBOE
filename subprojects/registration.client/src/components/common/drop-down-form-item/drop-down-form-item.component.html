@@ -1,4 +1,6 @@
-<dx-select-box (onValueChanged)="onValueChanged($event, viewModel)" [dataSource]="dataSource" [value]="value" [valueExpr]="valueExpr" [displayExpr]="displayExpr" [readOnly]="!editMode">
+<dx-select-box (onValueChanged)="onValueChanged($event, viewModel)"
+  [dataSource]="dataSource" [value]="value" [valueExpr]="valueExpr" [displayExpr]="displayExpr"
+  [readOnly]="!editMode" [searchEnabled]="true">
   <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
     <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
   </dx-validator>
