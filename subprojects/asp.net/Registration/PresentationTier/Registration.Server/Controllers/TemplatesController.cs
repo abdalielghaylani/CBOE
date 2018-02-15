@@ -260,6 +260,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     errorMessage = "Unable to initialize the internal record.";
                     registryRecord.InitializeFromXml(xml, true, false);
 
+                    registryRecord.UpdateDrawingType();
+                    registryRecord.ApplyAddIns();
+                    registryRecord.OnSaving(registryRecord, new EventArgs());
+
                     errorMessage = "Unable to save the template.";
                     genericStorageBO.COEGenericObject = registryRecord.XmlWithAddIns;
                     genericStorageBO.Save();
