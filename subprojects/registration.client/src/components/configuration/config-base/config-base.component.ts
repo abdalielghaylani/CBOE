@@ -96,4 +96,10 @@ export class RegConfigBaseComponent implements OnDestroy {
       }
     }
   }
+
+  onRowClick(e) {
+    if (e.rowType === 'group') {
+        e.isExpanded ? e.component.collapseRow(e.key) : e.component.expandRow(e.key);
+      }     
+    }  
 }

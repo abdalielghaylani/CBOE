@@ -4,7 +4,7 @@
     [searchPanel]="{ visible: true }" [filterRow]="{ visible: true }" [height]="gridHeight"
     [grouping]="{ autoExpandAll: true }"
     rowAlternationEnabled="true" (onInitialized)="onInitialized($event)"
-    (onCellPrepared)="onCellPrepared($event)" (onRowCollapsing)="onRowCollapsing($event)">
+    (onCellPrepared)="onCellPrepared($event)" (onRowCollapsing)="onRowCollapsing($event)" (onRowClick)="onRowClick($event)">
     <dxo-editing mode="row" [allowUpdating]="true"></dxo-editing>
     <div *dxTemplate="let d of 'valueEditTemplate'">
       <reg-setting-value-form-item-template [viewModel]="d"></reg-setting-value-form-item-template>
