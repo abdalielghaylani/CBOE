@@ -81,6 +81,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private recordsTotalCount: number = 0;
   private refreshHitList: boolean = false;
   private totalSearchableCount: number = 0;
+  private isTotalSearchableCountUpdated: boolean = false;
 
   constructor(
     private router: Router,
@@ -170,6 +171,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.http.get(`${apiUrlPrefix}records/databaseRecordCount?temp=${this.temporary}`).toPromise()
       .then((res => {
         this.totalSearchableCount = res.json();
+        this.isTotalSearchableCountUpdated = true;
       }).bind(this))
       .catch(error => {
         notifyException(`The search failed due to a problem`, error, 5000);
@@ -196,8 +198,6 @@ export class RegRecords implements OnInit, OnDestroy {
     } else {
       this.loadData();
     }
-
-    this.setTotalSearchableCount();
   }
 
   restoreHitlist() {
@@ -259,6 +259,9 @@ export class RegRecords implements OnInit, OnDestroy {
               let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
               deferred.reject(message);
             });
+        }
+        if (!ref.isTotalSearchableCountUpdated) {
+          ref.setTotalSearchableCount();
         }
         return deferred.promise();
       }
@@ -385,9 +388,17 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
+    this.loadIndicatorVisible = true;
     let ids = e.data[this.idField];
     this.registryActions.deleteRecord(this.temporary, { data: [{ id: ids }] });
     e.cancel = true;
+    if (this.grid.instance.getSelectedRowKeys().length > 0) {
+      let key = this.grid.instance.getSelectedRowKeys().find(r => r[this.idField] === ids);
+      if (key) {
+        this.grid.instance.deselectRows(key);
+      }
+    }
+    this.isTotalSearchableCountUpdated = false;
   }
 
   private manageQueries() {
@@ -517,6 +528,7 @@ export class RegRecords implements OnInit, OnDestroy {
           this.rowSelected = false;
           let keys = this.grid.instance.getSelectedRowKeys();
           this.grid.instance.deselectRows(keys);
+          this.isTotalSearchableCountUpdated = false;
         }
       });
     }
