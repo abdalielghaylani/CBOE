@@ -186,17 +186,17 @@ export const CONFIG_FORMS_COLUMNS = [
     dataField: 'label',
     allowEditing: true,
     validationRules:
-      [
-        {
-          group: 'label', type: 'required',
-          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
-        },
-        {
-          group: 'label', type: 'pattern',
-          message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
-          pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
-        }
-      ]
+    [
+      {
+        group: 'label', type: 'required',
+        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)'
+      },
+      {
+        group: 'label', type: 'pattern',
+        message: 'Invalid label text: Label can have a maximum of 30 characters and may not contain (~,@,#,$,%,^,&,*,\',\,<,>,=,+)',
+        pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/
+      }
+    ]
   },
   {
     dataField: 'controlType',
@@ -349,6 +349,7 @@ export class CConfigPropertiesFormData {
   friendlyName: string;
   type: string;
   precision: string;
+  pickListDomainId: string;
   validationRules: any[];
 };
 
@@ -377,6 +378,7 @@ export class CPropertiesValidationFormDataModel implements IValidationRuleData {
 export class CConfigProperties {
   columns: any;
   formColumns: any;
+  pickListDomain: any;
   formData: CConfigPropertiesFormData;
   formDataValidation: CPropertiesValidationFormData;
   window: IWindow;
@@ -394,6 +396,7 @@ export class CConfigProperties {
     this.formColumns[0].editorOptions.dataSource = lookups.propertyGroups.filter(i => i.groupName.toLowerCase() !== 'batchcomponent');
     this.formColumns[5].editorOptions = { dataSource: [], valueExpr: 'ID', displayExpr: 'DESCRIPTION' };
     this.formColumns[5].editorOptions.dataSource = lookups.pickListDomains;
+    this.pickListDomain = lookups.pickListDomains;
   }
   clearParams(p: string) {
     this.formDataValidation[p] = undefined;
@@ -496,7 +499,7 @@ export class CConfigProperties {
 
   clearFormData() {
     this.formData = new CConfigPropertiesFormData();
-    this.formDataValidation = new CPropertiesValidationFormData();
+    this.clearFormDataValidations();
   }
 
   addEditProperty(w: string, d?: any) {
@@ -521,8 +524,19 @@ export class CConfigProperties {
   setValidationColumns(type: string, visible: boolean = false) {
     let c = this.formValidationColumns.editColumn.find(i => i.dataField === type);
     if (type === 'defaultValue') {
+      c.editorType = 'dxTextBox';
       let t = this.formData.type.toLowerCase() === 'number' || this.formData.type.toLowerCase() === 'text';
       c.label.text = 'Default Value ' + (t ? this.formData.type : '');
+      if (this.formData.type === 'PICKLISTDOMAIN') {
+        c.editorType = 'dxSelectBox';
+        c.editorOptions = {
+          dataSource: this.pickListDomain.find(i => i.ID === Number(this.formData.pickListDomainId)).data,
+          valueExpr: 'key',
+          displayExpr: 'value'
+        };
+      } else if (this.formData.type === 'DATE') {
+        c.editorType = 'dxDateBox';
+      }
     }
     c.visible = visible;
   }
