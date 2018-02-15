@@ -174,35 +174,57 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var label = COETableEditorUtilities.GetAlias(tableName, fieldName);
                 var lookupFieldName = string.IsNullOrEmpty(lookupTableName) ? fieldName : lookupColumns[1].FieldName;
                 if (label == null) label = lookupFieldName;
+                var dataType = column.FieldType.ToString();
                 var columnObj = new JObject(
                     new JProperty("dataField", fieldName),
                     new JProperty("caption", label),
-                    new JProperty("dataType", column.FieldType.ToString())
+                    new JProperty("dataType", dataType)
                 );
                 if (COETableEditorUtilities.GetHiddenProperty(tableName, fieldName))
                     columnObj.Add("allowEditing", false);
                 if (fieldName.Equals(idFieldName)) columnObj.Add(new JProperty("visible", false));
                 if (!string.IsNullOrEmpty(lookupTableName))
                 {
+                    var lookupField = lookupColumns[0].FieldName;
+                    var lookupData = ExtractData(string.Format("SELECT {0},{1} FROM {2} WHERE {1} IS NOT NULL", lookupField, lookupColumns[1].FieldName, lookupTableName));
+                    if (dataType == "Double")
+                    {
+                        foreach (var lookupRow in lookupData)
+                        {
+                            int lookupKey;
+                            if (int.TryParse(lookupRow[lookupField].ToString(), out lookupKey))
+                                lookupRow[lookupField] = lookupKey;
+                        }
+                    }
                     columnObj.Add("lookup", new JObject(
-                        new JProperty("dataSource", ExtractData(string.Format("SELECT {0},{1} FROM {2} WHERE {1} IS NOT NULL", lookupColumns[0].FieldName, lookupColumns[1].FieldName, lookupTableName))),
+                        new JProperty("dataSource", lookupData),
                         new JProperty("valueExpr", lookupColumns[0].FieldName),
                         new JProperty("displayExpr", lookupColumns[1].FieldName))
                     );
                 }
 
-                // lookup location property of the table field is inner xml 
+                // lookup location property of the table field is inner XML 
                 var lookupLocation = COETableEditorUtilities.getLookupLocation(tableName, column.FieldName);
                 if (!string.IsNullOrEmpty(lookupLocation) && lookupLocation.ToLower().Contains("innerxml_") &&
                     !COETableEditorUtilities.getIsStructureLookupField(tableName, column.FieldName))
                 {
-                    // get all lookup data from xml file and append to the configaration data object 
+                    // get all lookup data from XML file and append to the configuration data object 
                     var columnList = COETableEditorUtilities.getId_Column_List(tableName, column.FieldName);
                     var lookups = new Dictionary<string, Lookup>();
-
+                    var lookupData = ExtractData(columnList, column.FieldName);
+                    var lookupField = column.FieldName + "_value";
+                    if (dataType == "Double")
+                    {
+                        foreach (var lookupRow in lookupData)
+                        {
+                            int lookupKey;
+                            if (int.TryParse(lookupRow[lookupField].ToString(), out lookupKey))
+                                lookupRow[lookupField] = lookupKey;
+                        }
+                    }
                     columnObj.Add("lookup", new JObject(
-                         new JProperty("dataSource", ExtractData(columnList, column.FieldName)),
-                         new JProperty("valueExpr", column.FieldName + "_value"),
+                         new JProperty("dataSource", lookupData),
+                         new JProperty("valueExpr", lookupField),
                          new JProperty("displayExpr", column.FieldName + "_name"))
                          );
                 }
