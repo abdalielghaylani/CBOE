@@ -160,6 +160,7 @@ export class RegRecords implements OnInit, OnDestroy {
         notifyError(e.message, 5000);
       }
       this.currentIndex = 0;
+      this.setProgressBarVisibility(false);
       this.grid.instance.refresh();
       this.registryActions.clearResponse();
     }
@@ -250,7 +251,7 @@ export class RegRecords implements OnInit, OnDestroy {
               let response = result.json();
               ref.recordsTotalCount = response.totalCount;
               ref.updateHitListId(response.hitlistId);
-              ref.loadIndicatorVisible = false;
+              ref.setProgressBarVisibility(false);
               ref.isPrintAndExportAvailable = (response.totalCount <= printAndExportLimit && response.totalCount > 0);
               deferred.resolve(response.rows, { totalCount: response.totalCount });
             })
