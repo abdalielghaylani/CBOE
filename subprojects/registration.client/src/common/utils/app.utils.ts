@@ -27,6 +27,10 @@ export function notifyError(message: string, duration: number = notificationDura
   dxNotify(message, 'error', duration);
 }
 
+export function notifyWarning(message: string, duration: number = notificationDuration) {
+  dxNotify(message, 'warning', duration);
+}
+
 export function notifyException(message: string, error, duration: number = notificationDuration) {
   notifyError(getExceptionMessage(message, error), duration);
 }

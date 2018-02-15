@@ -1,5 +1,5 @@
 import { IAppState, ILookupData, CCustomTableData, ICustomTableData, IValidationRuleData } from '../../redux';
-import { notify, notifyError, notifySuccess } from '../../common';
+import { notifyWarning, notifyError, notifySuccess } from '../../common';
 import { CValidator } from '../common';
 
 export class CConfigTable {
@@ -404,7 +404,7 @@ export class CConfigProperties {
 
   addParams(n: string, v: string) {
     if (isBlank(v)) {
-      notify(`Please enter the parameter value!`, 'warning', 5000);
+      notifyWarning(`Please enter the parameter value!`, 5000);
     } else {
       if (n === 'min' || n === 'max') {
         if (this.formDataValidation.parameters.find(myObj => myObj.name === 'min' && n === 'min') ||
@@ -454,31 +454,43 @@ export class CConfigProperties {
   }
 
   isValidRule(): boolean {
-    if (!this.formDataValidation.name) {
-      notify(`Type is required!`, 'warning', 5000);
+    const dataValidation = this.formDataValidation;
+    const params = dataValidation.parameters;
+    const name = dataValidation.name;
+    if (!name) {
+      notifyWarning(`Type is required!`, 5000);
       return false;
-    }
-    if (this.formDataValidation.name === 'requiredField'
-      && (isBlank(this.formDataValidation.defaultValue))) {
-      notify(`Default value is required!`, 'warning', 5000);
-      return false;
-    }
-    if (this.formDataValidation.name === 'textLength' && this.formDataValidation.parameters.length !== 2) {
-      notify(`Min, Max parameters are required!`, 'warning', 5000);
-      return false;
-    }
-    if (this.formDataValidation.name === 'wordListEnumeration' && this.formDataValidation.parameters.length <= 0) {
-      notify(`At least one parameter is required!`, 'warning', 5000);
-      return false;
-    }
-    if (this.formDataValidation.name === 'custom' && isBlank(this.formDataValidation.clientScript)) {
-      notify(`Client script is required!`, 'warning', 5000);
-      return false;
-    }
-    if (this.formData.validationRules.filter(validationRule =>
-      validationRule.name === this.formDataValidation.name).length > 0) {
-      notify(`The Validation Rule that you are trying to add already exists!`, 'warning', 5000);
-      return false;
+    } else if (name === 'requiredField') {
+      if (isBlank(dataValidation.defaultValue)) {
+        notifyWarning(`Default value is required!`, 5000);
+        return false;
+      }
+    } else if (name === 'textLength') {
+      if (!dataValidation.min || !dataValidation.max) {
+        notifyWarning(`Min, Max parameters are required!`, 5000);
+        return false;
+      }
+      if (dataValidation.min > dataValidation.max) {
+        notifyWarning(`Max parameter must be greater than min parameter!`, 5000);
+        return false;
+      }
+      params.push({ name: 'min', value: dataValidation.min });
+      params.push({ name: 'max', value: dataValidation.max });
+    } else if (name === 'wordListEnumeration') {
+      if (params.length <= 0) {
+        notifyWarning(`At least one parameter is required!`, 5000);
+        return false;
+      }
+    } else if (name === 'custom') {
+      if (isBlank(dataValidation.clientScript)) {
+        notifyWarning(`Client script is required!`, 5000);
+        return false;
+      }
+    } else {
+      if (this.formData.validationRules.filter(validationRule => validationRule.name === name).length > 0) {
+        notifyWarning(`The Validation Rule that you are trying to add already exists!`, 5000);
+        return false;
+      }
     }
     return true;
   }
