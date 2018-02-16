@@ -31,7 +31,8 @@ export class InventoryContainersFormGroup implements OnInit {
     }
   }
 
-  requestMaterial() {
+  requestMaterial(e) {
+    e.stopPropagation();
     this.invHandler.openContainerPopup(this.invContainers.containers[this.invContainers.containers.length - 1].requestURL +  `&RequestType=R`, null);
   }
 };

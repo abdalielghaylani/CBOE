@@ -263,7 +263,8 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     }
   }
 
-  private createInvContainer() {
+  private createInvContainer(e) {
+    e.stopPropagation();
     let regInvContainer = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
     systemSettings.isInventoryUseFullContainerForm
