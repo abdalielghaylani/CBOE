@@ -48,6 +48,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return bo.DatabaseRecordCount;
         }
 
+        protected static HitListInfo GetHitlistInfo(int? hitlistId)
+        {
+            HitListInfo hitListInfo = null;
+            if (hitlistId.HasValue && hitlistId.Value > 0)
+            {
+                var hitlistBO = GetHitlistBO(hitlistId.Value);
+                hitListInfo = hitlistBO.HitListInfo;
+            }
+            return hitListInfo;
+        }
+
         protected static FormGroup GetFormGroup(bool? temp)
         {
             var formGroupType = temp != null && temp.Value ? COEFormHelper.COEFormGroups.SearchTemporary : COEFormHelper.COEFormGroups.SearchPermanent;
@@ -64,6 +75,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return GenericBO.GetGenericBO(Consts.CHEMBIOVIZAPLPICATIONNAME, formGroup);
         }
 
+        protected static COEHitListBO GetHitlistBO(int id)
+        {
+            var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
+                hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
+            if (hitlistBO == null || hitlistBO.HitListID == 0)
+                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
+            return hitlistBO;
+        }
+
         protected HttpResponseMessage CreateErrorResponse(Exception ex)
         {
             var message = ex is Csla.DataPortalException ? ((Csla.DataPortalException)ex).BusinessException.Message : ex.Message;
@@ -75,16 +96,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 HttpStatusCode.NotFound :
                 HttpStatusCode.InternalServerError;
             return string.IsNullOrEmpty(message) ? Request.CreateErrorResponse(statusCode, ex) : Request.CreateErrorResponse(statusCode, message, ex);
-        }        
-
-        protected static COEHitListBO GetHitlistBO(int id)
-        {
-            var hitlistBO = COEHitListBO.Get(HitListType.TEMP, id);
-            if (hitlistBO == null || hitlistBO.HitListID == 0)
-                hitlistBO = COEHitListBO.Get(HitListType.SAVED, id);
-            if (hitlistBO == null || hitlistBO.HitListID == 0)
-                throw new IndexOutOfRangeException(string.Format("Cannot find the hit-list for ID, {0}", id));
-            return hitlistBO;
         }
 
         protected RegistrationOracleDAL RegDal
@@ -452,7 +463,50 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 propertyType == ConfigurationRegistryRecord.PropertyListType.Structure ? "Base Fragment" : "Extra";
         }
 
-        protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist = null, SearchCriteria searchCriteria = null, bool highlightSubStructures = false)
+        protected static SearchCriteria CreateSearchCriteria(string searchCriteriaXML, out string structureName)
+        {
+            var searchCriteria = new SearchCriteria();
+            structureName = string.Empty;
+            try
+            {
+                searchCriteria.GetFromXML(searchCriteriaXML);
+                SearchCriteria.SearchExpression itemToDelete = null;
+                foreach (var item in searchCriteria.Items)
+                {
+                    if (!(item is SearchCriteria.SearchCriteriaItem)) continue;
+
+                    var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
+                    var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
+
+                    if (structureCriteria == null) continue;
+
+                    var query = structureCriteria.Query4000;
+
+                    if (string.IsNullOrEmpty(query)) continue;
+
+                    if (query.StartsWith("<"))
+                    {
+                        var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
+                        if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
+                        structureCriteria.Structure = cdxData;
+                    }
+                    else if (query.StartsWith("VmpD"))
+                    {
+                        var cdxmlData = ChemistryHelper.ConvertToCdxmlAndName(query, ref structureName, true);
+                        if (string.IsNullOrEmpty(cdxmlData)) itemToDelete = item;
+                    }
+                }
+                if (itemToDelete != null) searchCriteria.Items.Remove(itemToDelete);
+
+                return searchCriteria;
+            }
+            catch (Exception ex)
+            {
+                throw new RegistrationException("The search criteria is invalid", ex);
+            }
+        }
+
+        protected static JObject GetRegistryRecordsListView(bool? temp, int? skip, int? count, string sort, HitListInfo hitlist = null, SearchCriteria searchCriteria = null, bool highlightSubStructures = false, bool refineHitlist = false)
         {
             var bo = GetGenericBO(temp);
             bo.RefreshDatabaseRecordCount();
@@ -513,7 +567,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             bo.PagingInfo.HighlightSubStructures = highlightSubStructures;
 
             if (hitlist != null)
-                bo.HitListToRestore = hitlist;
+            {
+                if (refineHitlist)
+                {
+                    bo.HitListToRefine = hitlist;
+                }
+                else
+                {
+                    bo.HitListToRestore = hitlist;
+                }
+            }
 
             bo.Search();
 

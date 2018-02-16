@@ -60,6 +60,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private rowSelected: boolean = false;
   private selectedRows: any[] = [];
   private markedRecords: any[] = [];
+  private refinedRows: any[] = [];
   private tempResultRows: any[];
   private hitlistVM: regSearchTypes.CQueryManagementVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
   private hitlistData$: Observable<ISearchRecords>;
@@ -82,6 +83,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private refreshHitList: boolean = false;
   private totalSearchableCount: number = 0;
   private isTotalSearchableCountUpdated: boolean = false;
+  private isRefine = false;
 
   constructor(
     private router: Router,
@@ -230,6 +232,13 @@ export class RegRecords implements OnInit, OnDestroy {
         if (ref.rowSelected) {
           ref.isPrintAndExportAvailable = (ref.selectedRows.length <= printAndExportLimit && ref.selectedRows.length > 0);
           deferred.resolve(ref.selectedRows, { totalCount: ref.selectedRows.length });
+        } else if (ref.isRefine) {
+          let refinedRows = ref.refinedRows;
+          ref.recordsTotalCount = refinedRows.length;
+          ref.refinedRows = [];
+          ref.isRefine = false;
+          ref.isPrintAndExportAvailable = (refinedRows.length <= printAndExportLimit && refinedRows.length > 0);
+          deferred.resolve(refinedRows, { totalCount: refinedRows.length });
         } else {
           let sortCriteria;
           if (loadOptions.sort != null) {
@@ -298,6 +307,17 @@ export class RegRecords implements OnInit, OnDestroy {
     this.rowSelected = false;
     this.currentIndex = 0;
     this.updateHitListId(hitListId);
+    this.grid.instance.refresh();
+  }
+
+  onRefine(result) {
+    this.isTotalSearchableCountUpdated = false;
+    // this.loadIndicatorVisible = true;
+    this.rowSelected = false;
+    this.currentIndex = 0;
+    // TODO get records
+    this.updateHitListId(result.hitlistId);
+    this.refinedRows = result.rows;
     this.grid.instance.refresh();
   }
 
@@ -468,6 +488,16 @@ export class RegRecords implements OnInit, OnDestroy {
     // TODO: It should show the search page and populate the contents with hitlist query.
     // this.router.navigate([`search/${id}`]);
     this.currentIndex = 2;
+  }
+
+  private refineQuery(id: Number) {
+    this.currentIndex = 2;
+    this.isRefine = true;
+    this.totalSearchableCount = this.recordsTotalCount;
+    if (this.clearSearchForm) {
+      this.clearSearchForm = false;
+      this.searchForm.clear();
+    }
   }
 
   private cancelSaveQuery() {

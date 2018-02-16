@@ -1,8 +1,9 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
   <command-button *ngIf="isPrintAndExportAvailable" testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
   <div>
-    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="hitListId" [markedRecords]="markedRecords"></reg-search-export>
+    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="hitListId" [markedRecords]="markedRecords" [recordsCount]="recordsTotalCount"></reg-search-export>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
+    <command-button *ngIf="!!hitListId" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
     <command-button *ngIf="!!hitListId" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
     <command-button *ngIf="!!hitListId" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
     <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
@@ -73,10 +74,10 @@
   </div>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=1">
-  <reg-search-query [temporary]="temporary" [hitlistId]="hitListId" [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
+  <reg-search-query [temporary]="temporary"  [hitlistId]="hitListId"  [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-record-search [totalSearchableCount]="totalSearchableCount" [temporary]="temporary" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
+  <reg-record-search [totalSearchableCount]="totalSearchableCount" [temporary]="temporary" [hitListId]="hitListId" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" (onRefine)="onRefine($event)" [isRefine]="isRefine" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
 <dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>

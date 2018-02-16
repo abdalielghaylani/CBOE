@@ -30,11 +30,14 @@ declare var jQuery: any;
 })
 export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   @Input() temporary: boolean;
+  @Input() hitListId: number;
   @Input() parentHeight: string;
   @Input() activated: boolean;
   @Input() totalSearchableCount: number;
+  @Input() isRefine: boolean;
   @Output() onClose = new EventEmitter<any>();
   @Output() onSearch = new EventEmitter<any>();
+  @Output() onRefine = new EventEmitter<any>();
   @select(s => s.session.lookups) lookups$: Observable<any>;
   public formGroup: IFormGroup;
   private lookups: ILookupData;
@@ -102,10 +105,20 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
         searchCriteria: criteria,
         highlightSubStructures: highLightSubstructure
       };
-      this.http.post(`${apiUrlPrefix}search/${this.temporary ? 'temp-' : ''}records`, queryData).toPromise()
+      let url = `${apiUrlPrefix}search/`;
+      if (this.isRefine) {
+        url += `refineHitlist?hitlistId=${this.hitListId}`;
+      } else {
+        url += `${this.temporary ? 'temp-' : ''}records`;
+      }
+      this.http.post(url, queryData).toPromise()
         .then(res => {
-          let hitlistId = res.json();
-          this.onSearch.emit(hitlistId);
+          let response = res.json();
+          if (this.isRefine) { 
+            this.onRefine.emit(response);
+          } else { 
+            this.onSearch.emit(response);
+          }
         })
         .catch(error => {
           notifyException(`The search failed due to a problem`, error, 5000);

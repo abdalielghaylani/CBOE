@@ -60,44 +60,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
             var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
-            var searchCriteria = new SearchCriteria();
-            string structureName = string.Empty;
-            try
-            {
-                searchCriteria.GetFromXML(queryData.SearchCriteria);
-                SearchCriteria.SearchExpression itemToDelete = null;
-                foreach (var item in searchCriteria.Items)
-                {
-                    if (item is SearchCriteria.SearchCriteriaItem)
-                    {
-                        var searchCriteriaItem = (SearchCriteria.SearchCriteriaItem)item;
-                        var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
-                        if (structureCriteria != null)
-                        {
-                            var query = structureCriteria.Query4000;
-                            if (!string.IsNullOrEmpty(query))
-                            {
-                                if (query.StartsWith("<"))
-                                {
-                                    var cdxData = ChemistryHelper.ConvertToCdxAndName(query, ref structureName, true);
-                                    if (string.IsNullOrEmpty(cdxData)) itemToDelete = item;
-                                    structureCriteria.Structure = cdxData;
-                                }
-                                else if (query.StartsWith("VmpD"))
-                                {
-                                    var cdxmlData = ChemistryHelper.ConvertToCdxmlAndName(query, ref structureName, true);
-                                    if (string.IsNullOrEmpty(cdxmlData)) itemToDelete = item;
-                                }
-                            }
-                        }
-                    }
-                }
-                if (itemToDelete != null) searchCriteria.Items.Remove(itemToDelete);
-            }
-            catch (Exception ex)
-            {
-                throw new RegistrationException("The search criteria is invalid", ex);
-            }
+            string structureName;
+            var searchCriteria = CreateSearchCriteria(queryData.SearchCriteria, out structureName);
 
             var hitlistInfo = CreateTempHitlist(dataView, searchCriteria, structureName);
             return hitlistInfo.HitListID;
@@ -828,6 +792,26 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 return CreateTempHitlist(queryData, true);
+            });
+        }
+
+        [HttpPost]
+        [Route(Consts.apiPrefix + "search/refineHitlist")]
+        [SwaggerOperation("RefineHitlist")]
+        [SwaggerResponse(200, type: typeof(JObject))]
+        [SwaggerResponse(401, type: typeof(JObject))]
+        [SwaggerResponse(500, type: typeof(JObject))]
+        public async Task<IHttpActionResult> RefineHitlist([FromBody] QueryData queryData, int hitlistId, int? skip = null, int? count = null, string sort = null)
+        {
+            return await CallMethod(() =>
+            {
+                if (string.IsNullOrEmpty(queryData.SearchCriteria))
+                    throw new RegistrationException("You must specify a search criteria");
+
+                HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
+                string structureName;
+                var searchCriteria = CreateSearchCriteria(queryData.SearchCriteria, out structureName);
+                return GetRegistryRecordsListView(queryData.Temporary, skip, count, sort, hitListInfo, searchCriteria, queryData.HighlightSubStructures, true);
             });
         }
 

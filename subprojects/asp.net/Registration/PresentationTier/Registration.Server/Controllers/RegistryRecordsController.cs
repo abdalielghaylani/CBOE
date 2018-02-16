@@ -31,17 +31,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
-        private static HitListInfo GetHitlistInfo(int? hitlistId)
-        {
-            HitListInfo hitListInfo = null;
-            if (hitlistId.HasValue && hitlistId.Value > 0)
-            {
-                var hitlistBO = GetHitlistBO(hitlistId.Value);
-                hitListInfo = hitlistBO.HitListInfo;
-            }
-            return hitListInfo;
-        }
-        
         private void CheckTempRecordId(int id)
         {
             var args = new Dictionary<string, object>();
@@ -106,7 +95,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 // Override 'AddBatch' button visibility for permanant record
                 // for permanant record 'AddBatch' option(Move Batchs) should be available ony if, 'EnableMoveBatch = true, in system settings
                 bool canAddBatch = sourceRegistryRecord.IsTemporal ? duplicatesResolver.CanAddBatch : RegUtilities.GetAllowMoveBatch();
-              
+
                 var duplicateActions = new JObject(
                    new JProperty("ID", duplicateRegistryRecord.ID),
                    new JProperty("REGNUMBER", duplicateRegistryRecord.RegNum),
@@ -138,7 +127,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
+                HitListInfo hitListInfo = GetHitlistInfo(hitlistId);                
                 return GetRegistryRecordsListView(false, skip, count, sort, hitListInfo, null, highlightSubStructures);
             }, new string[] { "SEARCH_REG" });
         }
