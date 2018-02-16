@@ -776,6 +776,11 @@ export class CConfigAddIn {
     this.columns.editColumn.addIn[1].editorOptions = { items: [this.addinAssemblies[0].name], value: this.addinAssemblies[0].name };
     this.columns.editColumn.addIn[2].editorOptions = { dataSource: this.addinAssemblies[0].classes, valueExpr: 'name', displayExpr: 'name' };
   }
+
+  detectUnsavedChanges(e: boolean) {
+    return e || ((this.editRow.Configuration !== this.configVal) && this.configView === 'edit');
+  }
+
   addEditProperty(op, e) {
     if (op === 'edit') {
       this.window = { title: 'Edit Addins', viewIndex: 'edit' };

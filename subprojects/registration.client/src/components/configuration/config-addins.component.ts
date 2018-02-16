@@ -3,7 +3,7 @@ import DevExtreme from 'devextreme/bundles/dx.all.d';
 import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
 import { HttpService } from '../../services';
-import { getExceptionMessage, notifyError, notifySuccess } from '../../common';
+import { getExceptionMessage, notifyError, notifySuccess, notify } from '../../common';
 import { ILookupData } from '../../redux';
 import { apiUrlPrefix } from '../../configuration';
 import { CConfigAddIn } from './config.types';
@@ -58,23 +58,27 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
   }
 
   save(e) {
-    switch (this.configAddIn.window.viewIndex) {
-      case 'edit':
-        this.dataSource.update(this.configAddIn.editRow, []).done(result => {
-          this.cancel();
-        }).fail(err => {
-          notifyError(err, 5000);
-        });
-        break;
-      case 'add':
-        if (this.forms._results[0].instance.validate().isValid) {
-          this.dataSource.insert(this.configAddIn.editRow).done(result => {
+    if (this.configAddIn.detectUnsavedChanges(this.grids._results[1].instance.hasEditData())) {
+      notify(`You have unsaved changes on this page.You must complete editing.`, 'warning', 5000);
+    } else {
+      switch (this.configAddIn.window.viewIndex) {
+        case 'edit':
+          this.dataSource.update(this.configAddIn.editRow, []).done(result => {
             this.cancel();
           }).fail(err => {
             notifyError(err, 5000);
           });
-        }
-        break;
+          break;
+        case 'add':
+          if (this.forms._results[0].instance.validate().isValid) {
+            this.dataSource.insert(this.configAddIn.editRow).done(result => {
+              this.cancel();
+            }).fail(err => {
+              notifyError(err, 5000);
+            });
+          }
+          break;
+      }
     }
   }
 
