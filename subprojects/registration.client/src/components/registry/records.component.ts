@@ -61,6 +61,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private selectedRows: any[] = [];
   private markedRecords: any[] = [];
   private refinedRows: any[] = [];
+  private refinedTotalRecordsCount: number = 0;
   private tempResultRows: any[];
   private hitlistVM: regSearchTypes.CQueryManagementVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
   private hitlistData$: Observable<ISearchRecords>;
@@ -234,11 +235,12 @@ export class RegRecords implements OnInit, OnDestroy {
           deferred.resolve(ref.selectedRows, { totalCount: ref.selectedRows.length });
         } else if (ref.isRefine) {
           let refinedRows = ref.refinedRows;
-          ref.recordsTotalCount = refinedRows.length;
+          ref.recordsTotalCount = ref.refinedTotalRecordsCount;
           ref.refinedRows = [];
+          ref.refinedTotalRecordsCount = 0;
           ref.isRefine = false;
-          ref.isPrintAndExportAvailable = (refinedRows.length <= printAndExportLimit && refinedRows.length > 0);
-          deferred.resolve(refinedRows, { totalCount: refinedRows.length });
+          ref.isPrintAndExportAvailable = (ref.recordsTotalCount <= printAndExportLimit && ref.recordsTotalCount > 0);
+          deferred.resolve(refinedRows, { totalCount: ref.recordsTotalCount });
         } else {
           let sortCriteria;
           if (loadOptions.sort != null) {
@@ -312,12 +314,11 @@ export class RegRecords implements OnInit, OnDestroy {
 
   onRefine(result) {
     this.isTotalSearchableCountUpdated = false;
-    // this.loadIndicatorVisible = true;
     this.rowSelected = false;
     this.currentIndex = 0;
-    // TODO get records
     this.updateHitListId(result.hitlistId);
     this.refinedRows = result.rows;
+    this.refinedTotalRecordsCount = result.totalCount;
     this.grid.instance.refresh();
   }
 
