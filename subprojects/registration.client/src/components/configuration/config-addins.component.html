@@ -7,8 +7,8 @@
     <div *dxTemplate="let data of 'addInTemplate'">
       <dx-list [items]="data.data" [height]="60" noDataText="">
         <dxi-item>
-          <div>AddIn = {{data.data.addinName}}</div>
-          <div>Assembly = {{data.data.assembly}}</div>
+          <div data-toggle="tooltip" title="AddIn = {{data.data.addinName}}">AddIn = {{data.data.addinName}}</div>
+          <div data-toggle="tooltip" title="Assembly = {{data.data.assembly}}">Assembly = {{data.data.assembly}}</div>
         </dxi-item>
       </dx-list>
     </div>
