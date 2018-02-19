@@ -485,8 +485,15 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private editQuery(id: Number) {
-    // TODO: It should show the search page and populate the contents with hitlist query.
-    // this.router.navigate([`search/${id}`]);
+    let url = `${apiUrlPrefix}hitlists/${id}/query${this.temporary ? '?temp=true' : ''}`;
+    this.http.get(url).toPromise()
+      .then(res => {
+        let queryData = res.json() as IQueryData;
+        this.searchForm.restore(queryData);
+      })
+      .catch(error => {
+        notifyException(`Restoring the previous query failed due to a problem`, error, 5000);
+      });
     this.currentIndex = 2;
   }
 
