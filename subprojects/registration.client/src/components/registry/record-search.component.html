@@ -29,7 +29,7 @@
   </dxi-item>
 </dx-form>
 <badge-count color="green" icon="book" text="Total Searchable Records" [count]="totalSearchableCount"></badge-count>
-<dx-scroll-view id="scrollview" [height]="parentHeight" scrollByContent=true scrollByThumb=true showScrollbar=true>
+<dx-scroll-view id="scrollview" [height]="parentHeight" scrollByThumb=true showScrollbar=true>
   <form class="form-inline" role="form" ng-submit="search(query)">
     <reg-search-form-group-view [viewModel]="searchCriteria" [viewConfig]="viewGroups" [editMode]="true" [displayMode]="displayMode"
       [activated]="cddActivated" (valueUpdated)="onValueUpdated($event)"></reg-search-form-group-view>
