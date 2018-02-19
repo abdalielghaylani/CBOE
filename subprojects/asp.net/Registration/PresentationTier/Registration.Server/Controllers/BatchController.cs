@@ -84,7 +84,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     registryRecord.CheckOtherMixtures = false;
                     registryRecord = registryRecord.Save(DuplicateCheck.None);
 
-                    return new ResponseData(regNumber: registryRecord.RegNumber.RegNum);
+                    var recordXml = new XmlDocument();
+                    recordXml.LoadXml(registryRecord.XmlWithAddIns);
+                    recordXml = ChemistryHelper.ConvertStructuresToCdxml(recordXml);
+                    XmlElement ele = (XmlElement)recordXml.SelectSingleNode("/MultiCompoundRegistryRecord/BatchList/Batch[last()]");
+                    JObject data = new JObject(new JProperty("data", ele.OuterXml));
+                    return new ResponseData(regNumber: registryRecord.RegNumber.RegNum, data: data);
                 }
                 catch (Exception ex)
                 {

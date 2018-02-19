@@ -192,15 +192,6 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     this.valueUpdated.emit(e);
   }
 
-  onBatchValueChanged(e) {
-    this.loadingVisible = true;
-    this.actions.retrieveRecord(this.temporary, this.template, this.id);
-    if (!this.dataSubscription) {
-      this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));
-    }
-
-  }
-
   protected updateEditMode() {
     this.editMode = this.displayMode != null && this.displayMode !== 'view';
   }

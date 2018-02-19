@@ -29,8 +29,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   @Input() viewModel: CRegistryRecord;
   @Input() template: boolean;
   @Input() invIntegrationEnabled: boolean = false;
-  @Input() invContainers: IInventoryContainerList;
-  @Output() batchValueChanged = new EventEmitter<any>();
+  @Input() invContainers: IInventoryContainerList;  
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
   private editBatchEnabled: boolean = false;
@@ -141,16 +140,29 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     batchData.data = e;
     batchData.regNum = this.viewModel.RegNumber.RegNumber;
     let url = `${apiUrlPrefix}/batches`;
+    let x2JS = this.x2jsTool;
     this.http.post(url, batchData).toPromise()
-      .then(res => {
-        this.batchValueChanged.emit(e);
+      .then(res => {      
         notifySuccess(`The batch created successfully!`, 2000);
+        let data = res.json().data;
+        let newBatchData: any = x2JS.xml2js(data.data);
+        this.addBatchItem(newBatchData.Batch as IBatch);
         this.setLoadingVisible(false);
       })
       .catch(error => {
         notifyException(`The batch was not created due to a problem`, error, 5000);
         this.setLoadingVisible(false);
       });
+  }
+
+  private addBatchItem(newBatch: IBatch) {
+    this.viewModel.BatchList.Batch.push(newBatch);
+    this.viewConfig.subArray = this.viewModel.BatchList.Batch;
+    this.viewConfig.subIndex = Math.min(this.viewConfig.subIndex, this.viewConfig.subArray.length - 1);
+
+    // after adding batch, default select new batch and update the UI  
+    let batch: IBatch = this.viewModel.BatchList.Batch[this.viewConfig.subArray.length - 1];
+    this.onBatchSelected(batch.BatchID);
   }
 
   private get x2jsTool() {
@@ -161,7 +173,12 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
         'MultiCompoundRegistryRecord.BatchList.Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
         'MultiCompoundRegistryRecord.BatchList.Batch.IdentifierList.Identifier',
         'MultiCompoundRegistryRecord.BatchList.Batch.ProjectList.Project',
-        'MultiCompoundRegistryRecord.BatchList.Batch.PropertyList.Property'
+        'MultiCompoundRegistryRecord.BatchList.Batch.PropertyList.Property',
+        'Batch.BatchComponentList.BatchComponent',
+        'Batch.BatchComponentList.BatchComponent.BatchComponentFragmentList.BatchComponentFragment',
+        'Batch.IdentifierList.Identifier',
+        'Batch.ProjectList.Project',
+        'Batch.PropertyList.Property'
       ]
     });
   }
@@ -321,6 +338,6 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   }
 
   requestMaterial() {
-    this.invHandler.openContainerPopup(this.batchContainers[this.batchContainers.length - 1].requestURL +  `&RequestType=R`, null);
+    this.invHandler.openContainerPopup(this.batchContainers[this.batchContainers.length - 1].requestURL + `&RequestType=R`, null);
   }
 };
