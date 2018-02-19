@@ -640,6 +640,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 data.Add(row);
             }
 
+            if (refineHitlist) {
+                var hitlistBO = GetHitlistBO(bo.CurrentHitList.HitListID);
+                hitlistBO.Name = string.Format("Search {0}", bo.CurrentHitList.HitListID);
+                hitlistBO.Update();
+            }
+
             return new JObject(
                 new JProperty("temporary", temp),
                 new JProperty("hitlistId", (bo.CurrentHitList != null && bo.CurrentHitList.HitListID > 0) ? bo.CurrentHitList.HitListID : 0),

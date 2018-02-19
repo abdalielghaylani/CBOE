@@ -502,10 +502,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.currentIndex = 2;
     this.isRefine = true;
     this.totalSearchableCount = this.recordsTotalCount;
-    if (this.clearSearchForm) {
-      this.clearSearchForm = false;
-      this.searchForm.clear();
-    }
+    this.searchForm.clear();
   }
 
   private cancelSaveQuery() {
