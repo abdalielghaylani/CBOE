@@ -495,6 +495,7 @@ export class RegRecords implements OnInit, OnDestroy {
       .catch(error => {
         notifyException(`Restoring the previous query failed due to a problem`, error, 5000);
       });
+    this.setTotalSearchableCount();
     this.currentIndex = 2;
   }
 
