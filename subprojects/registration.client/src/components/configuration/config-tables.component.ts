@@ -102,11 +102,11 @@ export class RegConfigTables extends RegConfigBaseComponent {
   cancel(e) {
     this.configTable.cancel(e);
     this.grid.instance.cancelEditData();
+    this.grid.instance.refresh();
   }
 
   addConfigData(e) {
     let res: any = this.form.instance.validate();
-
     if (this.tableId === 'VW_FRAGMENT' &&
       this.configTable.formColumns.find(i => i.dataField === 'STRUCTURE').validationRules.find(r => r.type === 'required') !== null
       && this.configTable.formData.STRUCTURE_XML === undefined) {

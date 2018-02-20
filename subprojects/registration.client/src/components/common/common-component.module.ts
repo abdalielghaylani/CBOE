@@ -41,6 +41,7 @@ import { RegDropDownFormItem } from './drop-down-form-item';
 import { RegStructureBaseFormItem } from './structure-base-form-item';
 import { RegStructureColumnItem } from './structure-column-item';
 import { RegStructureImage } from './structure-image';
+import { RegStructureImageGridItem } from './structure-image-grid-item';
 import { RegStructureImageFormItem } from './structure-image-form-item';
 import { RegStructureImageColumnItem } from './structure-image-column-item';
 import { RegTagBoxFormItem } from './tag-box-form-item';
@@ -107,7 +108,7 @@ export * from './modal';
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
-    RegStructureImage, RegFileUploaderFormItem
+    RegStructureImage, RegStructureImageGridItem, RegFileUploaderFormItem
   ],
   exports: [
     ChemDrawWeb,
@@ -117,7 +118,7 @@ export * from './modal';
     RegBaseColumnItem, RegDropDownColumnItem, RegStructureColumnItem,
     RegBaseFormItem, RegDataGridFormItem, RegDateFormItem, RegDropDownFormItem, RegTagBoxFormItem, RegTextFormItem,
     RegStructureBaseFormItem, RegStructureImageFormItem, RegStructureImageColumnItem, RegCheckBoxFormItem,
-    RegStructureImage, RegFileUploaderFormItem,
+    RegStructureImage, RegStructureImageGridItem, RegFileUploaderFormItem,
     RegCommonModule, RegServicesModule
   ],
   providers: [
