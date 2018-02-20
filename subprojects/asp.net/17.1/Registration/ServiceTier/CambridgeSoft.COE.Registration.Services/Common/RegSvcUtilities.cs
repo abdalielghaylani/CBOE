@@ -1147,7 +1147,7 @@ namespace CambridgeSoft.COE.Registration.Services.Common
             foreach (NameValueListBase<string, string>.NameValuePair role in roleList)
             {
                 PrivilegeList privilegeList = PrivilegeList.GetList(role.Key);
-                if (privilegeList.Value(EDITSCOPEALL) && privilegeList.Value(EDITSHAREDSTRUCTURES))
+                if (privilegeList.Value(EDITSHAREDSTRUCTURES))
                     return true;
                 
             }

@@ -1089,8 +1089,9 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
                             formElement.Id = prop.Name + "Property";
                             //Get the property type to use in the below code
                             prop.Type = GetPropertyType(prop.Name, propListAType);
+                            formElement.DisplayInfo.Type = GetDefaultControlType(prop.Name, propListAType, FormGroup.DisplayMode.View);
                             // CBOE-1963 Remove the display info in the list view form of 4003.xml to make sure the control will accept any number of characters 
-                            if (RegFormID == SEARCHPERMFORMID && (prop.Type != "BOOLEAN" && prop.Type != "PICKLISTDOMAIN"))
+                            if (RegFormID == SEARCHPERMFORMID && (prop.Type != "BOOLEAN" && prop.Type != "PICKLISTDOMAIN" && prop.Type != "DATE" && formElement.DisplayInfo.Type != "CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COELink"))
                             {
                                 XmlDocument configInfo = new XmlDocument();
                                 string xmlns = "COE.FormGroup";
@@ -1098,12 +1099,12 @@ namespace CambridgeSoft.COE.RegistrationAdmin.Services
                                 configInfo.AppendChild(configInfo.CreateNode(XmlNodeType.Element, xmlprefix, "configInfo", xmlns));
                                 configInfo.FirstChild.AppendChild(configInfo.CreateNode(XmlNodeType.Element, xmlprefix, "fieldConfig", xmlns));
                                 configInfo.FirstChild.FirstChild.AppendChild(configInfo.CreateNode(XmlNodeType.Element, xmlprefix, "CSSLabelClass", xmlns)).InnerText = "FETableItem";
+                                formElement.DisplayInfo.Type = "";
                                 formElement.ConfigInfo = configInfo;
 
                             }
                             else
-                            {
-                                formElement.DisplayInfo.Type = GetDefaultControlType(prop.Name, propListAType, FormGroup.DisplayMode.View);
+                            {                                
                                 if (formElement.DisplayInfo.Type == string.Empty)
                                     formElement.DisplayInfo.Type = GetDefaultControlType(prop.Name, propListBType, FormGroup.DisplayMode.View);
 

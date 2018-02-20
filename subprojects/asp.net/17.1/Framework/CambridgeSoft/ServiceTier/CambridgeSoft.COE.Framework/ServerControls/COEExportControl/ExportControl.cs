@@ -1000,6 +1000,7 @@ namespace CambridgeSoft.COE.Framework.Controls
             manager = new XmlNamespaceManager(new NameTable());
             manager.AddNamespace(xmlNamespace, xmlNS);
 
+            int tableCriterias = 0;
             XmlDocument doc2 = new XmlDocument();
             doc2.LoadXml(PageDataview.ToString());
             liveDV.GetFromXML(doc2);
@@ -1027,6 +1028,14 @@ namespace CambridgeSoft.COE.Framework.Controls
             }
             else
             {
+                for (int i = 0; i < resSend.Tables.Count; i++)
+                {
+                    if (resSend.Tables[i].Criterias.Count > 0)
+                    {
+                        tableCriterias++;
+                        break;
+                    }
+                }
                 COEExportTemplateBO exporttemp = new COEExportTemplateBO();
                 exporttemp.Name = TemplateName.Text;
                 exporttemp.Description = TemplateDescription.Text;
@@ -1034,10 +1043,26 @@ namespace CambridgeSoft.COE.Framework.Controls
                 exporttemp.UserName = COEUser.Name;
                 exporttemp.DataViewId = liveDV.DataViewID;
                 exporttemp.ResultCriteria = resSend;
-                exporttemp.Save();
-                Page.Session["ExportTemplateId"] = exporttemp.ID.ToString();
-                CurrentSelectedTemplate.Text = exporttemp.Name;
-                ExportControl.currentTemplate = exporttemp.Name;
+                if (tableCriterias == 0)
+                {
+                    string message = "Select at least one table criteria before saving the template";
+                    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                    sb.Append("<script type = 'text/javascript'>");
+                    sb.Append("window.onload=function(){");
+                    sb.Append("alert('");
+                    sb.Append(message);
+                    sb.Append("')};");
+                    sb.Append("</script>");
+                    Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", sb.ToString());
+                    return;
+                }
+                else
+                {
+                    exporttemp.Save();
+                    Page.Session["ExportTemplateId"] = exporttemp.ID.ToString();
+                    CurrentSelectedTemplate.Text = exporttemp.Name;
+                    ExportControl.currentTemplate = exporttemp.Name;
+                }
             }
             #endregion
 

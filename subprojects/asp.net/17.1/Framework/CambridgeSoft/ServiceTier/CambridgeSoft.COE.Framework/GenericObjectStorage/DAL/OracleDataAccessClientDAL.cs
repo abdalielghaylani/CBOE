@@ -106,17 +106,11 @@ namespace CambridgeSoft.COE.Framework.COEGenericObjectStorageService
             int count = 0;
             string sql = "SELECT COUNT(*) FROM " + _coeGenericObjectStorageTableName +
                              " WHERE Name=" + DALManager.BuildSqlStringParameterName("pName");
-            if(!isPublic)
                 sql += " AND USER_ID=" + DALManager.BuildSqlStringParameterName("pUserId");
-
-            sql += " AND IS_PUBLIC=" + DALManager.BuildSqlStringParameterName("pIsPublic");
+            
             DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
-
             DALManager.Database.AddParameter(dbCommand, "pName", DbType.AnsiString, 1000, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, name);
-            if(!isPublic)
-                DALManager.Database.AddParameter(dbCommand, "pUserId", DbType.AnsiString, 1000, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, userId);
-
-            DALManager.Database.AddParameter(dbCommand, "pIsPublic", DbType.AnsiString, 1, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, Convert.ToInt16(isPublic));
+            DALManager.Database.AddParameter(dbCommand, "pUserId", DbType.AnsiString, 1000, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, userId);
 
             count = int.Parse(DALManager.ExecuteScalar(dbCommand).ToString());
             return (count > 0);

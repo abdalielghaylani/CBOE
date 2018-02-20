@@ -393,7 +393,7 @@
                   </add>
                 </validationRule>
               </add>
-              <add name="PREFIXDELIMITER" dataType="string">
+              <add name="PREFIXDELIMITER" dataType="string" alias="PREFIX DELIMITER">
                 <validationRule>
                   <add name="textLength" errorMessage="The length must be between 0 and 1. ">
                     <parameter>
@@ -408,7 +408,7 @@
                   </add>
                 </validationRule>
               </add>
-              <add name="SUFFIXDELIMITER" dataType="string">
+              <add name="SUFFIXDELIMITER" dataType="string" alias="SUFFIX DELIMITER">
                 <validationRule>
                   <add name="textLength" errorMessage="The length must be between 0 and 1. ">
                     <parameter>
@@ -424,7 +424,7 @@
                 </validationRule>
               </add>
               <add name="SALTSUFFIXTYPE" dataType="string" lookupLocation="innerXml_SALTSUFFIXGENERATORS" alias="Salt Suffix Type"/>
-              <add name="BATCHDELIMITER" dataType="string">
+              <add name="BATCHDELIMITER" dataType="string" alias="BATCH DELIMITER">
                 <validationRule>
                   <add name="textLength" errorMessage="The length must be between 0 and 1. ">
                     <parameter>
