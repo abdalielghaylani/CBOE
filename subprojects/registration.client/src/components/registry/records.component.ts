@@ -446,6 +446,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.updateHitListId(0);
     this.clearSearchForm = true;
     this.rowSelected = false;
+    this.isRefine = false;
     let keys = this.grid.instance.getSelectedRowKeys();
     this.grid.instance.deselectRows(keys);
     this.grid.instance.refresh();
@@ -512,6 +513,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private headerClicked(e) {
     this.currentIndex = 0;
+    this.isRefine = false;
     if (e.hitlistId) {
       this.rowSelected = false;
       this.loadIndicatorVisible = true;
