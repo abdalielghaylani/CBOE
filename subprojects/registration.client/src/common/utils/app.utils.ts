@@ -14,12 +14,12 @@ export function getExceptionMessage(baseMessage: string, error): string {
       }
     } catch (e) {
       // Ignore JSON parse error, in case the error message is due to login failure
-      if (error.status === 302) {
-        return 'Your session has expired. Please login to continue.';
-      }
     }
   }
 
+  if (!reason && error.status === 302) {
+    return 'Your session has expired. Please login to continue.';
+  }
   return baseMessage + ((reason) ? ': ' + reason : '!');
 }
 
