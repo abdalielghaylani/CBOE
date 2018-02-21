@@ -644,7 +644,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var refinedHitlistBO = GetHitlistBO(hitlist.HitListID);
                 var hitlistBO = GetHitlistBO(bo.CurrentHitList.HitListID);
                 hitlistBO.Name = string.Format("Search {0}", bo.CurrentHitList.HitListID);
-                hitlistBO.Description = string.Format("One more search criteria on {0}", refinedHitlistBO.Description);
+                var description = string.Format("One more search criteria on {0}", refinedHitlistBO.Description);
+                hitlistBO.Description = description.Substring(0, Math.Min(description.Length, 250));
                 hitlistBO.Update();
             }
 

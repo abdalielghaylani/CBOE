@@ -361,12 +361,13 @@ export class CViewGroup implements IViewGroup {
     return viewGroupsFiltered;
   }
 
-  public static getColumns(temporary: boolean, config: IFormGroup, disabledControls: any[], systemSettings: CSystemSettings): CViewGroupColumns {
+  public static getColumns(temporary: boolean, config: IFormGroup, disabledControls: any[], pickListDomain: any[], 
+    systemSettings: CSystemSettings): CViewGroupColumns {
     const displayMode = 'list';
     const viewGroups: CViewGroup[] = CViewGroup.getViewGroups(temporary, config, displayMode, disabledControls);
     let viewGroupColumns = new CViewGroupColumns();
     if (viewGroups.length > 0) {
-      viewGroupColumns = viewGroups[0].getColumns(displayMode);
+      viewGroupColumns = viewGroups[0].getColumns(displayMode, pickListDomain);
       let statusColumn = viewGroupColumns.baseTableColumns.find(c => c.dataField === 'STATUSID' || c.dataField === 'Approved');
       if (statusColumn) {
         if (temporary) {
@@ -437,7 +438,7 @@ export class CViewGroup implements IViewGroup {
     return this.fixColSpans(items);
   }
 
-  public getColumns(displayMode: string): CViewGroupColumns {
+  public getColumns(displayMode: string, pickListDomain: any[]): CViewGroupColumns {
     let regColumns = [];
     let batchColumns = [];
     this.data.forEach(f => {
@@ -456,6 +457,18 @@ export class CViewGroup implements IViewGroup {
                     caption: (c.headerText && typeof c.headerText === 'string') ? c.headerText : c._name,
                     visible: !c._hidden || c._hidden.toLowerCase() !== 'true'
                   };
+                  if (c.formElement && c.formElement.configInfo && c.formElement.configInfo.fieldConfig && 
+                    c.formElement.configInfo.fieldConfig.PickListDomain) {
+                        let currentPickListDomain = pickListDomain.find(d => d.ID.toString() 
+                        === c.formElement.configInfo.fieldConfig.PickListDomain.toString());
+                        if (currentPickListDomain && currentPickListDomain.data) {
+                          column.lookup = {
+                            dataSource: currentPickListDomain.data,
+                            displayExpr: 'value',
+                            valueExpr: 'key'
+                          };
+                        }
+                  }
                   if (c._name === 'STATUSCOLUMN' || c._name === 'STATUSID') {
                     column.width = 70;
                     column.allowEditing = false;

@@ -193,8 +193,8 @@ export class RegRecords implements OnInit, OnDestroy {
     let state = this.ngRedux.getState();
     let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.viewGroupsColumns = this.lookups
-      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, new CSystemSettings(this.lookups.systemSettings))
-      : new CViewGroupColumns();
+      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, this.lookups.pickListDomains, 
+        new CSystemSettings(this.lookups.systemSettings)) : new CViewGroupColumns();
 
     if (this.restore) {
       this.restoreHitlist();
@@ -645,6 +645,12 @@ export class RegRecords implements OnInit, OnDestroy {
                     printContents += `<td rowspan=${row.BatchDataSource.length}><div class="center">
                     <i class="fa fa-${(field === 'T') ? 'check-' : ''}square-o"></i></div></td>`;
                   } else {
+                    if (c.lookup && c.lookup.dataSource) {
+                      let option = c.lookup.dataSource.find(d => d.key.toString() === field);
+                      if (option) {
+                        field = option.value;
+                      }
+                    } 
                     printContents += `<td rowspan=${row.BatchDataSource.length}>${(field) ? field : ''}</td>`;
                   }
                 }
@@ -664,6 +670,12 @@ export class RegRecords implements OnInit, OnDestroy {
                       printContents += `<td><div class="center">
                       <i class="fa fa-${(field === 'T') ? 'check-' : ''}square-o"></i></div></td>`;
                     } else {
+                      if (c.lookup && c.lookup.dataSource) {
+                        let option = c.lookup.dataSource.find(d => d.key.toString() === field);
+                        if (option) {
+                          field = option.value;
+                        }
+                      } 
                       printContents += `<td >${(field) ? field : ''}</td>`;
                     }
                   }
