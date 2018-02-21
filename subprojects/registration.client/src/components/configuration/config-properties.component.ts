@@ -128,6 +128,7 @@ export class RegConfigProperties extends RegConfigBaseComponent {
           this.configProperties.formData.validationRules.push(validationModel);
           break;
       }
+
       this.dataSource.update(this.configProperties.formData, []).then((result) => {
         this.configProperties.clearFormDataValidations();
         this.grids._results[1].instance.refresh();

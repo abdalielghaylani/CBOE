@@ -486,11 +486,11 @@ export class CConfigProperties {
         notifyWarning(`Client script is required!`, 5000);
         return false;
       }
-    } else {
-      if (this.formData.validationRules.filter(validationRule => validationRule.name === name).length > 0) {
-        notifyWarning(`The Validation Rule that you are trying to add already exists!`, 5000);
-        return false;
-      }
+    }
+
+    if (this.formData.validationRules.filter(validationRule => validationRule.name === name).length > 0) {
+      notifyWarning(`The Validation Rule that you are trying to add already exists!`, 5000);
+      return false;
     }
     return true;
   }
