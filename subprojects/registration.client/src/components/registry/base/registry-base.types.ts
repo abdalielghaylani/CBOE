@@ -177,6 +177,8 @@ export class CViewGroup implements IViewGroup {
       let defaultDate = fe.configInfo ? fe.configInfo.fieldConfig.DefaultDate : undefined;
       if (defaultDate) {
         item.editorOptions.defaultValue = defaultDate;
+      } else if (fe.defaultValue) {
+        item.editorOptions.defaultValue = fe.defaultValue;
       }
     } else if (type.endsWith('COETextArea')) {
       if (fe.defaultValue) {

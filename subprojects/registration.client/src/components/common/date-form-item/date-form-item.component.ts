@@ -37,8 +37,12 @@ export class RegDateFormItem extends RegBaseFormItem {
     // set default value
     let isDefaultValueSet: boolean = false;
     if (!options.value) {
-      if (this.editMode && options.defaultValue && options.defaultValue === 'TODAY') {
-        options.value = moment.default(Date.now()).utcOffset(0).format('YYYY-MM-DD hh:mm:ss A');
+      if (this.editMode && options.defaultValue) {
+        if (options.defaultValue === 'TODAY') {
+          options.value = moment.default(Date.now()).utcOffset(0).format('YYYY-MM-DD hh:mm:ss A');
+        } else {
+          options.value = moment.default(options.defaultValue).utcOffset(0).format('YYYY-MM-DD hh:mm:ss A');
+        }
         isDefaultValueSet = true;
       }
     }
