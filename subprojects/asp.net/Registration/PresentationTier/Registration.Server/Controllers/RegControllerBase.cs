@@ -641,8 +641,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             if (refineHitlist) {
+                var refinedHitlistBO = GetHitlistBO(hitlist.HitListID);
                 var hitlistBO = GetHitlistBO(bo.CurrentHitList.HitListID);
                 hitlistBO.Name = string.Format("Search {0}", bo.CurrentHitList.HitListID);
+                hitlistBO.Description = string.Format("One more search criteria on {0}", refinedHitlistBO.Description);
                 hitlistBO.Update();
             }
 
