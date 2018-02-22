@@ -29,7 +29,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   @Input() viewModel: CRegistryRecord;
   @Input() template: boolean;
   @Input() invIntegrationEnabled: boolean = false;
-  @Input() invContainers: IInventoryContainerList;  
+  @Input() invContainers: IInventoryContainerList;
   private batchCommandsEnabled: boolean = false;
   private addBatchEnabled: boolean = false;
   private editBatchEnabled: boolean = false;
@@ -142,7 +142,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     let url = `${apiUrlPrefix}/batches`;
     let x2JS = this.x2jsTool;
     this.http.post(url, batchData).toPromise()
-      .then(res => {      
+      .then(res => {
         notifySuccess(`The batch created successfully!`, 2000);
         let data = res.json().data;
         let newBatchData: any = x2JS.xml2js(data.data);
@@ -334,7 +334,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   }
 
   private get batchContainersEnabled(): boolean {
-    return this.createContainerButtonEnabled && this.invContainers && this.invContainers.batchContainers && this.batchContainers.length > 0 ? true : false;
+    return this.batchCommandsEnabled && this.invContainers && this.invContainers.batchContainers && this.batchContainers.length > 0 ? true : false;
   }
 
   requestMaterial() {
