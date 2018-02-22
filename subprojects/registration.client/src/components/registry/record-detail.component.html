@@ -1,14 +1,10 @@
 <div id="record-detail-view" class="viewcontainer" (window:resize)="onResize($event)" [hidden]="currentIndex!=0">
-  <div *ngIf="submissionTemplatesEnabled" class="btn-group btn-group-xs pull-right m1" role="group" aria-label="">
-    <button type="button" class="btn btn-default border-2 status background-blue border-blue">
-      <i class="fa-undo white" aria-hidden="true"></i>
-    </button>
-    <button type="button" class="btn border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Templates <span class="caret"></span></button>
-    <ul class="dropdown-menu">
+  <command-dropdown-list *ngIf="submissionTemplatesEnabled" class="pull-right" iconName="clone" [title]="'Templates'">
+      <ul class="dropdown-menu">          
       <li><button type="button" class="btn" (click)="showSaveTemplate()">Save as Template</button></li>
-      <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>
-    </ul>
-  </div>
+      <li><button type="button" class="btn" (click)="showTemplates()">Load from Templates</button></li>  
+      </ul>
+  </command-dropdown-list>
   <command-button *ngIf="createContainerButtonEnabled" testid="new-container" (onClick)="createInvContainer()" iconName="flask" title="New Container" [pullRight]="true"></command-button>
   <command-button *ngIf="clearButtonEnabled" testid="clear-record-details-button" (onClick)="clear()" iconName="eraser" title="Clear"></command-button>
   <command-button *ngIf="deleteButtonEnabled" testid="delete-record-details-button" (onClick)="delete()" iconName="trash" title="Delete"></command-button>

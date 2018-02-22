@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CircleIcon } from './circle-icon.component';
 import { CommandButton } from './command-button.component';
 import { CommandDropdown } from './command-dropdown.component';
+import { CommandDropdownList } from './command-dropdown-list.component';
 import { PageWithTools } from './page-with-tools.component';
 import { ToolPanel } from './tool-panel.component';
 import { FullScreenIcon } from './full-screen.component';
@@ -20,6 +21,7 @@ import { BadgeCount } from './badge-count.component';
     CircleIcon,
     CommandButton,
     CommandDropdown,
+    CommandDropdownList,
     PageWithTools,
     ToolPanel,
     FullScreenIcon,
@@ -29,6 +31,7 @@ import { BadgeCount } from './badge-count.component';
     CircleIcon,
     CommandButton,
     CommandDropdown,
+    CommandDropdownList,
     PageWithTools,
     ToolPanel,
     RouterModule,

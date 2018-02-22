@@ -1,8 +1,4 @@
-<div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px" *ngIf='isMenu'>
-  <button type="button" *ngIf="systemBehaviorButtonEnabled" class="btn btn-default border-2 status background-blue border-blue">
-    <i class="fa-undo white" aria-hidden="true"></i>
-  </button>
-  <button type="button" *ngIf="systemBehaviorButtonEnabled" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">System Behaviors <span class="caret"></span></button>
+ <command-dropdown-list *ngIf="systemBehaviorButtonEnabled" class="pull-right" iconName="gear" [title]="'System Behaviors'">
   <ul id="SystemBehaviorsDropDown" class="dropdown-menu">
     <li *ngIf="manageDataPropertiesMenuEnabled"><a [routerLink]="['/configuration/properties']" class="coolgray text-relaxed margin-none"><i class="fa fa-list-ol fa-lg  #A4AEB5"></i> Manage Data Properties</a></li>
     <li *ngIf="customizeFormsMenuEnabled" role="separator" class="divider"></li>
@@ -14,13 +10,9 @@
     <li *ngIf="systemSettingsMenuEnabled" role="separator" class="divider"></li>
     <li *ngIf="systemSettingsMenuEnabled"><a [routerLink]="['/configuration/settings']" class="coolgray text-relaxed margin-none"><i class="fa fa-wrench fa-lg #A4AEB5"></i> System Settings</a></li>
   </ul>
-</div>
-<div class="btn-group btn-group-xs pull-right" role="group" aria-label="" style="margin:5px" *ngIf='isMenu'>
-  <button *ngIf="customTableButtonEnabled" type="button" class="btn btn-default border-2 status background-blue border-blue">
-    <i class="fa-undo white" aria-hidden="true"></i>
-  </button>
-  <button type="button" *ngIf="customTableButtonEnabled" class="btn btn-default border-2 status border-blue blue dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Custom Tables <span class="caret"></span></button>
-  <ul id="CustomTablesDropDown" class="dropdown-menu">
+  </command-dropdown-list>
+  <command-dropdown-list *ngIf="customTableButtonEnabled" class="pull-right" iconName="gear" [title]="'Custom Tables'">
+    <ul id="CustomTablesDropDown" class="dropdown-menu">
     <li><a [routerLink]="['/configuration/VW_PROJECT']" class="coolgray text-relaxed margin-none"><i class="fa fa-file-code-o fa-lg  #A4AEB5"></i> Projects</a></li>
     <li role="separator" class="divider"></li>
     <li><a [routerLink]="['/configuration/VW_PICKLIST']" class="coolgray text-relaxed margin-none"><i class="fa fa-bookmark fa-lg  #A4AEB5"></i> Picklist Values</a></li>
@@ -39,7 +31,7 @@
     <li role="separator" class="divider"></li>
     <li><a [routerLink]="['/configuration/VW_SITES']" class="coolgray text-relaxed margin-none"><i class="fa fa-sitemap fa-lg #A4AEB5"></i> Sites</a></li>
   </ul>
-</div>
+</command-dropdown-list>
 <reg-header [attr.isMenu]="isMenu">
   <ng-content></ng-content>
 </reg-header>

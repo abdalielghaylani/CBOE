@@ -238,3 +238,19 @@
     width: 250px;
   }
 }
+
+.btn-group .btndropdown {
+  padding: 0;
+}
+
+.btndropdown .btnicon {
+  padding: 1px 5px;
+}
+
+.btndropdown .btntext {
+  padding: 1px 8px;
+}
+
+.btndropdown .caret {
+  margin-right: 5px;
+}
