@@ -780,6 +780,10 @@ export class CSearchCriteria {
     let searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(searchCriteriaItem);
     if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
       value = searchCriteriaItemObj.CSCartridgeStructureCriteria.__text;
+    } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeMolWeightCriteria && searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text) {
+      value = searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text;
+    } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeFormulaCriteria && searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text) {
+      value = searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text;
     } else if (searchCriteriaItemObj.__text) {
       value = searchCriteriaItemObj.__text;
     }
