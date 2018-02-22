@@ -737,13 +737,15 @@ export const CONFIG_ADDIN_COLUMNS = {
       caption: 'Event',
       editorType: 'dxSelectBox',
       dataType: String,
-      width: 200
+      width: 200,
+      validationRules: [{ type: 'required', message: 'Event required' }],
     }, {
       dataField: 'eventHandler',
       caption: 'Handler',
       editorType: 'dxSelectBox',
       dataType: String,
-      width: 200
+      width: 200,
+      validationRules: [{ type: 'required', message: 'Handler required' }],
     }],
     config: [{
       dataField: 'Configuration',
