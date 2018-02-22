@@ -334,7 +334,8 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   }
 
   private get batchContainersEnabled(): boolean {
-    return this.batchCommandsEnabled && this.invContainers && this.invContainers.batchContainers && this.batchContainers.length > 0 ? true : false;
+    return this.invIntegrationEnabled && this.batchCommandsEnabled && this.invContainers
+      && this.invContainers.batchContainers && this.batchContainers.length > 0 ? true : false;
   }
 
   requestMaterial() {
