@@ -17,7 +17,7 @@ export function getExceptionMessage(baseMessage: string, error): string {
     }
   }
 
-  if (!reason && error.status === 302) {
+  if (!reason) {
     return 'Your session has expired. Please login to continue.';
   }
   return baseMessage + ((reason) ? ': ' + reason : '!');
