@@ -593,139 +593,14 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private printRecords() {
-    this.loadIndicatorVisible = true;
-    let url = `${apiUrlPrefix}hitlists/${this.hitListId}/print`;
+    let url = 'print';
     let params = '';
     if (this.temporary) { params += '?temp=true'; }
-    params += `${params ? '&' : '?'}count=${printAndExportLimit}`;
-    if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; }
-    params += `&highlightSubStructures=${this.ngRedux.getState().registrysearch.highLightSubstructure}`;
-
-    let data: number[];
-    if (this.rowSelected) {
-      data = this.selectedRows.map(r => r[this.idField]);
-    }
+    if (this.sortCriteria) { params += `${params ? '&' : '?'}sort=${this.sortCriteria}`; }
+    if (this.hitListId) { params += `${params ? '&' : '?'}hitListId=${this.hitListId}`; }
+    if (this.rowSelected) { params += `${params ? '&' : '?'}selected=${this.selectedRows.map(r => r[this.idField]).join(',')}`; }
     url += params;
-    this.http.post(url, data).toPromise()
-      .then(res => {
-        let rows = res.json().rows;
-        let structureColumnNamae = this.temporary ? 'Structure' : 'STRUCTUREAGGREGATION';
-        this.imageService.generateMultipleImages(rows.map(r => r[structureColumnNamae])).subscribe(
-          (values: Array<string>) => {
-            let printContents: string;
-            printContents = '<table width="100%" height="auto"><tr>';
-            this.viewGroupsColumns.baseTableColumns.forEach(c => {
-              if (c.visible) {
-                printContents += `<td>${c.caption}</td>`;
-              }
-            });
-            this.viewGroupsColumns.batchTableColumns.forEach(c => {
-              if (c.visible) {
-                printContents += `<td>${c.caption}</td>`;
-              }
-            });
-            printContents += '</tr>';
-            rows.forEach(row => {
-              printContents += '<tr>';
-              this.viewGroupsColumns.baseTableColumns.forEach(c => {
-                if (c.visible) {
-                  let field = row[c.dataField];
-                  if (c.caption === 'Approved') {
-                    printContents += `<td rowspan=${row.BatchDataSource.length}>
-                    <img src="${(field === RegistryStatus.Approved) ? this.approvedIcon : this.notApprovedIcon}" /></td>`;
-                  } else if (c.dataField === 'Structure' || c.dataField === 'STRUCTUREAGGREGATION') {
-                    let structureImage = this.imageService.getImage(field);
-                    printContents += `<td rowspan=${row.BatchDataSource.length}><img src="${structureImage ?
-                      structureImage : this.defaultPrintStructureImage}" /></td>`;
-                  } else if (c.dataType && c.dataType === 'date') {
-                    let date = new Date(field);
-                    printContents += `<td rowspan=${row.BatchDataSource.length}>
-                    ${(field) ? `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}` : ''}</td>`;
-                  } else if (c.dataType && c.dataType === 'boolean') {
-                    printContents += `<td rowspan=${row.BatchDataSource.length}><div class="center">
-                    <i class="fa fa-${(field === 'T') ? 'check-' : ''}square-o"></i></div></td>`;
-                  } else {
-                    if (c.lookup && c.lookup.dataSource) {
-                      let option = c.lookup.dataSource.find(d => d.key.toString() === field);
-                      if (option) {
-                        field = option.value;
-                      }
-                    } 
-                    printContents += `<td rowspan=${row.BatchDataSource.length}>${(field) ? field : ''}</td>`;
-                  }
-                }
-              });
-              let rowIndex = 0;
-              row.BatchDataSource.forEach(batchRow => {
-                if (rowIndex > 0) {
-                  printContents += '<tr>';
-                }
-                this.viewGroupsColumns.batchTableColumns.forEach(c => {
-                  if (c.visible) {
-                    let field = batchRow[c.dataField];
-                    if (c.dataType && c.dataType === 'date') {
-                      let date = new Date(field);
-                      printContents += `<td>${(field) ? date.toDateString() : ''}</td>`;
-                    } else if (c.dataType && c.dataType === 'boolean') {
-                      printContents += `<td><div class="center">
-                      <i class="fa fa-${(field === 'T') ? 'check-' : ''}square-o"></i></div></td>`;
-                    } else {
-                      if (c.lookup && c.lookup.dataSource) {
-                        let option = c.lookup.dataSource.find(d => d.key.toString() === field);
-                        if (option) {
-                          field = option.value;
-                        }
-                      } 
-                      printContents += `<td >${(field) ? field : ''}</td>`;
-                    }
-                  }
-                });
-                printContents += '</tr>';
-              });
-            });
-
-            let popupWin;
-            popupWin = window.open('', '_blank', 'top=0,left=0,height=500,width=auto');
-            popupWin.document.open();
-            popupWin.document.write(`<html>
-              <head>
-                <title>Print table</title>
-                <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css">
-                <style>
-                table, tr, td 
-                {
-                    border:solid 1px #f0f0f0;
-                    font-size: 12px;
-                    font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
-                    border-spacing: 0px;
-                }
-                img {
-                  max-width: 100px;
-                  margin-left: auto;
-                  margin-right: auto;
-                  display: block;
-                }
-                .center {
-                  text-align: center;
-                }
-                .green {
-                  color: #58a618 !important;
-                }
-                .red {
-                  color: #b71234 !important;
-                }
-                </style>
-              </head>
-              <body onload="window.print(); window.close()">${printContents}</body>
-              </html>`);
-            popupWin.document.close();
-            this.setProgressBarVisibility(false);
-          });
-      })
-      .catch(error => {
-        this.setProgressBarVisibility(false);
-      });
-
+    window.open(url, '_blank');
   }
 
   private get isSessionValid(): boolean {

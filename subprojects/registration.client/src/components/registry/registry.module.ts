@@ -26,7 +26,8 @@ import {
   RegRecords,
   RegTemplates,
   RegDuplicateRecord,
-  RegBulkRegisterRecord
+  RegBulkRegisterRecord,
+  RegRecordPrint
 } from './index';
 
 @NgModule({
@@ -57,7 +58,8 @@ import {
     RegRecords,
     RegTemplates,
     RegDuplicateRecord,
-    RegBulkRegisterRecord
+    RegBulkRegisterRecord,
+    RegRecordPrint
   ],
   exports: [
     RegQueryManagement,
@@ -66,7 +68,8 @@ import {
     RegRecords,
     RegTemplates,
     RegDuplicateRecord,
-    RegBulkRegisterRecord
+    RegBulkRegisterRecord,
+    RegRecordPrint
   ]
 })
 export class RegistryModule { }

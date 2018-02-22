@@ -16,6 +16,7 @@ import {
   ConfigurationPage,
   RegBulkRecordsPage
 } from '../pages';
+import { RegRecordPrintPage } from '../pages/record-print.page';
 
 export const REG_APP_ROUTES: Routes = [{
   pathMatch: 'full',
@@ -39,6 +40,9 @@ export const REG_APP_ROUTES: Routes = [{
 }, {
   path: 'records/bulkreg',
   component: RegBulkRecordsPage
+}, {
+  path: 'records/print',
+  component: RegRecordPrintPage
 }, {
   path: 'records/temp/restore/:id',
   component: RegRecordsPage

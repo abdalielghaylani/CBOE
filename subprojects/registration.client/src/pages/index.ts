@@ -12,7 +12,8 @@ import { RegRecordSearchPage } from './record-search.page';
 import { UnAuthorizedPage } from './unauthorized.page';
 import { ConfigurationPage } from './configuration.page';
 import { RegBulkRecordsPage } from './bulk-registration.page';
+import { RegRecordPrintPage } from './record-print.page';
 
 export { RegRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage, RegBulkRecordsPage };
 export { RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage };
-export { RegConfigTablesPage, RegConfigXmlFormsPage, UnAuthorizedPage, ConfigurationPage };
+export { RegConfigTablesPage, RegConfigXmlFormsPage, UnAuthorizedPage, ConfigurationPage, RegRecordPrintPage };

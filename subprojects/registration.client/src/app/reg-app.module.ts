@@ -11,7 +11,7 @@ import { ConfigurationEpics, RegistryEpics, SessionEpics, EPIC_PROVIDERS } from 
 import {
   RegRecordsPage, RegBulkRecordsPage, RegRecordDetailPage, RegLoginPage, RegAboutPage, RegRecordSearchPage,
   RegConfigAddinsPage, RegConfigFormsPage, RegConfigPropertiesPage, RegConfigSettingsPage, RegConfigTablesPage,
-  RegConfigXmlFormsPage, UnAuthorizedPage, ConfigurationPage
+  RegConfigXmlFormsPage, UnAuthorizedPage, ConfigurationPage, RegRecordPrintPage
 } from '../pages';
 import {
   RegConfigAddins, RegConfigForms, RegConfigProperties, RegConfigSettings, RegConfigTables, RegConfigXmlForms,
@@ -19,7 +19,7 @@ import {
 } from '../components';
 import {
   RegRecords, RegRecordDetail, RegRecordSearch, RegQueryManagement, RegTemplates,
-  RegDuplicateRecord, RegDuplicatePopup, RegBulkRegisterRecord
+  RegDuplicateRecord, RegDuplicatePopup, RegBulkRegisterRecord, RegRecordPrint
 } from '../components';
 import { RegLoginModule } from '../components/login/login.module';
 import { RegNavigatorModule } from '../components/navigator/navigator.module';
@@ -90,7 +90,9 @@ import {
     RegLoginPage,
     RegAboutPage,
     UnAuthorizedPage,
-    ConfigurationPage
+    ConfigurationPage,
+    RegRecordPrintPage,
+    RegRecordPrint
   ],
   bootstrap: [
     RegApp

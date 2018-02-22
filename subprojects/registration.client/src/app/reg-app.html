@@ -1,7 +1,7 @@
 <reg-login-modal (onSubmit)="sessionActions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async"
   *ngIf="loggedOut$ | async">
 </reg-login-modal>
-<reg-navigator testid="navigator" *ngIf="(loggedIn$ | async)" [cssClass]="this.fullScreenEnabled? 'navbar-fullScreen' :'navbar navbar-default navbar-fixed-top navbar-top'">
+<reg-navigator testid="navigator" *ngIf="isLoggedIn &amp;&amp;  !printerFriendly" [cssClass]="this.fullScreenEnabled? 'navbar-fullScreen' :'navbar navbar-default navbar-fixed-top navbar-top'">
   <reg-navigator-header>
     <reg-logo></reg-logo>
   </reg-navigator-header>
@@ -22,7 +22,7 @@
     <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="sessionActions.logoutUser()"><a data-toggle="tooltip" title="Logout"><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>
   </reg-navigator-items>
 </reg-navigator>
-<reg-sidebar *ngIf="loggedIn$ | async" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
+<reg-sidebar *ngIf="isLoggedIn &amp;&amp; !printerFriendly" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
   <li reg-sidebar-item *ngIf="setVisibility('SEARCH_TEMP')" class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
     <circle-icon title="Review Temporary" color="yellow" isSelected="{{ (routerLink$ | async).endsWith('/temp') }}" iconName="table"
       routeLink="records/temp/reload"></circle-icon>
@@ -44,7 +44,7 @@
   </li>
 </reg-sidebar>
 <full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'"
-  [iconName]="this.fullScreenEnabled? 'compress' : 'expand'" [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
+  [iconName]="this.fullScreenEnabled? 'compress' : 'expand'" [style.visibility]="(isLoggedIn &amp;&amp; !printerFriendly) ? 'visible' : 'hidden'">
 </full-screen-icon>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
   <div id="content" [ngClass]="this.fullScreenEnabled? 'content-fullScreen' :'content'">
@@ -66,4 +66,4 @@
       </div>
     </div>
 </dx-popup>
-<reg-footer [cssClass]="this.fullScreenEnabled? 'footer-fullScreen' :'footer'"></reg-footer>
+<reg-footer *ngIf="!printerFriendly" [cssClass]="this.fullScreenEnabled? 'footer-fullScreen' :'footer'"></reg-footer>

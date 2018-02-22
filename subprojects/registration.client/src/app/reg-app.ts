@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { DevToolsExtension, NgRedux, select } from '@angular-redux/store';
 import { NgReduxRouter } from '@angular-redux/router';
 import { createEpicMiddleware, combineEpics } from 'redux-observable';
@@ -36,7 +37,7 @@ export class RegApp {
   @select(s => !s.session.token) loggedOut$: Observable<boolean>;
   @select(s => s.router) routerLink$: Observable<string>;
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
-
+  protected ngUnsubscribe: Subject<void> = new Subject<void>();
   public fullScreenEnabled: boolean = false;
   private lookupsSubscription: Subscription;
   private lookups: ILookupData;
@@ -44,6 +45,8 @@ export class RegApp {
   private helpAdminGuideLink: string;
   private isAboutPopupVisible: boolean;
   private aboutContent: any;
+  private isLoggedIn: boolean = false;
+  private printerFriendly: boolean = false;
 
   constructor(
     private devTools: DevToolsExtension,
@@ -81,6 +84,17 @@ export class RegApp {
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
     this.helpUserGuideLink = basePath + helpLinkUserGuide;
     this.helpAdminGuideLink = basePath + helpLinkAdminGuide;
+    this.loggedIn$.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    });
+    this.routerLink$.subscribe(link => {
+      this.printerFriendly = link.indexOf('/print') > -1;
+    });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   setVisibility(privilage: string) {
