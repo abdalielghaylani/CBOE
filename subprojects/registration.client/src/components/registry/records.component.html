@@ -57,7 +57,7 @@
           <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>
         </div>
         <div class="wrap" *dxTemplate="let data of 'urlTemplate'">
-          <a *ngIf="temporary" [href]="data.value" target="_blank" title="{{data.value}}">{{data.value}}</a>
+          <a *ngIf="temporary" [href]="getAbsoluteUrl(data.value)" target="_blank" title="{{data.value}}">{{data.value}}</a>
           <div *ngIf="!temporary">{{data.value}}</div>
         </div>
         <div *dxTemplate="let data of 'checkBoxTemplate'">

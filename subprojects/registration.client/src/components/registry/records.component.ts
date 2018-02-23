@@ -151,6 +151,13 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  getAbsoluteUrl(value) {
+    if (value && value.indexOf('http') < 0 && value.substring(0, 2) !== '//') {
+      value = `//${value}`;
+    }
+    return value;
+  }
+
   setProgressBarVisibility(e) {
     this.loadIndicatorVisible = e;
     this.changeDetector.markForCheck();

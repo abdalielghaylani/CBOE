@@ -27,6 +27,9 @@ export class RegUrlFormItem extends RegBaseFormItem {
     }
     this.value = options && options.value ? this.deserializeValue(options.value) : undefined;
     this.displayValue = this.formatDisplay();
+    if (this.value && this.value.indexOf('http') < 0 && this.value.substring(0, 2) !== '//') {
+      this.value = `//${this.value}`;
+    }
   }
 
   formatDisplay() {
