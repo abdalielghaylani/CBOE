@@ -379,28 +379,33 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private saveTemplate(e) {
-    let result: any = this.saveTemplateForm.validate();
-    if (result.isValid) {
-      let recordDoc = this.recordDetailView.getUpdatedRecord();
-      if (!recordDoc) {
-        return;
+    let recordValidationResult = this.recordDetailView.validate();
+    if (recordValidationResult) {
+      let result: any = this.saveTemplateForm.validate();
+      if (result.isValid) {
+        let recordDoc = this.recordDetailView.getUpdatedRecord();
+        if (!recordDoc) {
+          return;
+        }
+        let url = `${apiUrlPrefix}templates`;
+        let data: ITemplateData = new CTemplateData(this.saveTemplateData.name);
+        data.description = this.saveTemplateData.description;
+        data.isPublic = this.saveTemplateData.isPublic;
+        data.data = registryUtils.serializeData(recordDoc);
+        this.loadingVisible = true;
+        this.http.post(url, data).toPromise()
+          .then(res => {
+            this.regTemplates.dataSource = undefined;
+            this.clearLoadindicator();
+            notifySuccess((res.json() as IResponseData).message, 5000);
+          })
+          .catch(error => {
+            this.clearLoadindicator();
+            notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
+          });
+        this.saveTemplatePopupVisible = false;
       }
-      let url = `${apiUrlPrefix}templates`;
-      let data: ITemplateData = new CTemplateData(this.saveTemplateData.name);
-      data.description = this.saveTemplateData.description;
-      data.isPublic = this.saveTemplateData.isPublic;
-      data.data = registryUtils.serializeData(recordDoc);
-      this.loadingVisible = true;
-      this.http.post(url, data).toPromise()
-        .then(res => {
-          this.regTemplates.dataSource = undefined;
-          this.clearLoadindicator();
-          notifySuccess((res.json() as IResponseData).message, 5000);
-        })
-        .catch(error => {
-          this.clearLoadindicator();
-          notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
-        });
+    } else {
       this.saveTemplatePopupVisible = false;
     }
   }
