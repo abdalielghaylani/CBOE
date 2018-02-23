@@ -28,7 +28,7 @@
         (onInitialized)='onInitialized($event)' (onCellPrepared)="onCellPrepared($event)" (onInitNewRow)="onInitNewRow($event)" (onEditingStart)="onEditingStart($event)" (onRowRemoving)="onRowRemoving($event)" [hoverStateEnabled]="true" [masterDetail]="{ enabled: !temporary, template: 'batchDetailTemplate' }"
         columnAutoWidth=true wordWrapEnabled=true (onContentReady)="onContentReady($event)">
         <dxo-editing mode="row" [texts]="{confirmDeleteTitle:'Confirm Delete',confirmDeleteMessage:'Are you sure you want to delete this Registry Record?'}" [allowUpdating]="true" [allowDeleting]="temporary" [allowAdding]="false"></dxo-editing>
-        <dxo-selection mode="multiple" showCheckBoxesMode="always" [allowSelectAll]="false"></dxo-selection>
+        <dxo-selection mode="multiple" showCheckBoxesMode="always" [allowSelectAll]="true"></dxo-selection>
         <dxo-load-panel [enabled]="true"></dxo-load-panel>
         <dxo-scrolling mode="virtual"></dxo-scrolling>
         <dxo-remote-operations [sorting]="true" [paging]="true"></dxo-remote-operations>

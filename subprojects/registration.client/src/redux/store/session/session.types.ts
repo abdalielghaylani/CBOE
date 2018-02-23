@@ -58,148 +58,152 @@ export interface ISessionRecord extends TypedRecord<ISessionRecord>, ISession {
 };
 
 export class CSystemSettings {
+  static REG_GROUP = 'Registration';
   constructor(private systemSettings: ISettingData[]) {
   }
 
   private getSetting(groupLabel: string, settingName: string): ISettingData {
-    let settings = this.systemSettings.filter(s => s.groupLabel === groupLabel && s.name === settingName);
-    return settings && settings.length === 1 ? settings[0] : null;
+    return this.systemSettings.find(s => s.groupLabel === groupLabel && s.name === settingName);
   }
 
   private getRegSetting(settingName: string): ISettingData {
-    return this.getSetting('Registration', settingName);
+    return this.getSetting(CSystemSettings.REG_GROUP, settingName);
   }
 
-  private isSettingTrue(settingName: string): boolean {
-    let setting = this.getRegSetting(settingName);
+  private isSettingTrue(groupLabel: string, settingName: string): boolean {
+    const setting = this.getSetting(groupLabel, settingName);
     return setting && setting.value && setting.value.toLowerCase() === 'true';
   }
 
+  private isRegSettingTrue(settingName: string): boolean {
+    return this.isSettingTrue(CSystemSettings.REG_GROUP, settingName);
+  }
+
+  private getNumberSetting(groupLabel: string, settingName: string, defaultValue: number = 0): number {
+    const setting = this.getSetting(groupLabel, settingName);
+    return setting == null || setting.value == null || isNaN(Number(setting.value)) ? defaultValue : +setting.value;
+  }
+
   public get isApprovalsEnabled(): boolean {
-    return this.isSettingTrue('ApprovalsEnabled');
+    return this.isRegSettingTrue('ApprovalsEnabled');
   }
 
   public get isSubmissionTemplateEnabled(): boolean {
-    return this.isSettingTrue('EnableSubmissionTemplates');
+    return this.isRegSettingTrue('EnableSubmissionTemplates');
   }
 
   public get isSameBatchesIdentity(): boolean {
-    return this.isSettingTrue('SameBatchesIdentity');
+    return this.isRegSettingTrue('SameBatchesIdentity');
   }
 
   public get isMoveBatchEnabled(): boolean {
-    return this.isSettingTrue('EnableMoveBatch');
+    return this.isRegSettingTrue('EnableMoveBatch');
   }
 
   public get isLockingEnabled(): boolean {
-    return this.isSettingTrue('LockingEnabled');
+    return this.isRegSettingTrue('LockingEnabled');
   }
 
   public get isInventoryIntegrationEnabled(): boolean {
     let setting: ISettingData = this.getSetting('Inventory', 'InventoryIntegration');
-    return setting.value === 'Enabled' ? true : false;
+    return setting && setting.value === 'Enabled' ? true : false;
   }
 
   public get isInventoryUseFullContainerForm(): boolean {
-    let setting: ISettingData = this.getSetting('Inventory', 'UseFullContainerForm');
-    return setting.value === 'True' ? true : false;
+    return this.isSettingTrue('Inventory', 'UseFullContainerForm');
   }
 
   public get isSendToInventoryEnabled(): boolean {
-    let setting: ISettingData = this.getSetting('Inventory', 'SendtoInventory');
-    return setting.value === 'True' ? true : false;
+    return this.isSettingTrue('Inventory', 'SendtoInventory');
   }
 
   public get invSendToInventoryURL(): string {
     let setting: ISettingData = this.getSetting('Inventory', 'SendToInventoryURL');
-    return setting.value ? setting.value : '';
+    return setting && setting.value ? setting.value : '';
   }
 
   public get showRequestFromContainer(): boolean {
-    let setting: ISettingData = this.getSetting('Inventory', 'ShowRequestFromContainer');
-    return setting.value === 'True';
+    return this.isSettingTrue('Inventory', 'ShowRequestFromContainer');
   }
 
   public get showRequestMaterial(): boolean {
-    let setting: ISettingData = this.getSetting('Inventory', 'ShowRequestMaterial');
-    return setting.value === 'True';
+    return this.isSettingTrue('Inventory', 'ShowRequestMaterial');
   }
 
   public get showRequestFromBatch(): boolean {
-    let setting: ISettingData = this.getSetting('Inventory', 'ShowRequestFromBatch');
-    return setting.value === 'True';
+    return this.isSettingTrue('Inventory', 'ShowRequestFromBatch');
   }
 
   public get invNewContainerURL(): string {
     let setting: ISettingData = this.getSetting('Inventory', 'NewContainerURL');
-    return setting.value ? setting.value : '';
+    return setting && setting.value ? setting.value : '';
   }
 
   public get reviewRegisterSearchFormGroupId(): number {
-    return +this.getSetting('Search', 'ReviewRegisterSearchFormGroupId');
+    return this.getNumberSetting('Search', 'ReviewRegisterSearchFormGroupId');
   }
 
   public get viewRegistrySearchFormGroupId(): number {
-    return +this.getSetting('Search', 'ViewRegistrySearchFormGroupId');
+    return this.getNumberSetting('Search', 'ViewRegistrySearchFormGroupId');
   }
 
   public get sendToRegistrationFormGroupId(): number {
-    return +this.getSetting('Search', 'SendToRegistrationFormGroupId');
+    return this.getNumberSetting('Search', 'SendToRegistrationFormGroupId');
   }
 
   public get elnReviewRegisterSearchFormGroupId(): number {
-    return +this.getSetting('Search', 'ELNReviewRegisterSearchFormGroupId');
+    return this.getNumberSetting('Search', 'ELNReviewRegisterSearchFormGroupId');
   }
 
   public get elnViewRegistrySearchFormGroupId(): number {
-    return +this.getSetting('Search', 'ELNViewRegistrySearchFormGroupId');
+    return this.getNumberSetting('Search', 'ELNViewRegistrySearchFormGroupId');
   }
 
   public get deleteLogFormGroupId(): number {
-    return +this.getSetting('Search', 'DeleteLogFormGroupId');
+    return this.getNumberSetting('Search', 'DeleteLogFormGroupId');
   }
 
   public get submitRegistryFormGroupId(): number {
-    return +this.getSetting('Search', 'SubmitRegistryFormGroupId');
+    return this.getNumberSetting('Search', 'SubmitRegistryFormGroupId');
   }
 
   public get reviewRegisterRegistryFormGroupId(): number {
-    return +this.getSetting('Search', 'ReviewRegisterRegistryFormGroupId');
+    return this.getNumberSetting('Search', 'ReviewRegisterRegistryFormGroupId');
   }
 
   public get viewRegistryFormGroupId(): number {
-    return +this.getSetting('Search', 'ViewRegistryFormGroupId');
+    return this.getNumberSetting('Search', 'ViewRegistryFormGroupId');
   }
 
   public get componentDuplicatesFormGroupId(): number {
-    return +this.getSetting('Search', 'ComponentDuplicatesFormGroupId');
+    return this.getNumberSetting('Search', 'ComponentDuplicatesFormGroupId');
   }
 
   public get registryDuplicatesFormGroupId(): number {
-    return +this.getSetting('Search', 'RegistryDuplicatesFormGroupId');
+    return this.getNumberSetting('Search', 'RegistryDuplicatesFormGroupId');
   }
 
   public get dataLoaderFormGroupId(): number {
-    return +this.getSetting('Search', 'DataLoaderFormGroupId');
+    return this.getNumberSetting('Search', 'DataLoaderFormGroupId');
   }
 
   public get searchComponentsToAddFormGroupId(): number {
-    return +this.getSetting('Search', 'SearchComponentsToAddFormGroupId');
+    return this.getNumberSetting('Search', 'SearchComponentsToAddFormGroupId');
   }
 
   public get searchComponentsToAddRRFormGroupId(): number {
-    return +this.getSetting('Search', 'SearchComponentsToAddRRFormGroupId');
+    return this.getNumberSetting('Search', 'SearchComponentsToAddRRFormGroupId');
   }
 
   public get searchComponentsToAddVMFormGroupId(): number {
-    return +this.getSetting('Search', 'SearchComponentsToAddVMFormGroupId');
+    return this.getNumberSetting('Search', 'SearchComponentsToAddVMFormGroupId');
   }
 
   public get searchDuplicatesComponentsFormGroupId(): number {
-    return +this.getSetting('Search', 'SearchDuplicatesComponentsFormGroupId');
+    return this.getNumberSetting('Search', 'SearchDuplicatesComponentsFormGroupId');
   }
 
   public get markedHitsMax(): number {
-    return +this.getSetting('Search', 'MarkedHitsMax');
+    return this.getNumberSetting('Search', 'MarkedHitsMax');
   }
 }

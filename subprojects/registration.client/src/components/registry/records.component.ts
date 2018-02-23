@@ -240,6 +240,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private createCustomStore(ref: RegRecords) {
+    const systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
     return new CustomStore({
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
@@ -263,7 +264,12 @@ export class RegRecords implements OnInit, OnDestroy {
           let url = `${apiUrlPrefix}${ref.temporary ? 'temp-' : ''}records`;
           let params = '';
           if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
-          let take = loadOptions.take != null ? loadOptions.take : fetchLimit;
+          const markedHitsMax = systemSettings.markedHitsMax;
+          let takeLimit = fetchLimit;
+          if (markedHitsMax > 0 && markedHitsMax < takeLimit) {
+            takeLimit = markedHitsMax;
+          }
+          let take = loadOptions.take != null ? loadOptions.take : takeLimit;
           if (take) { params += `${params ? '&' : '?'}count=${take}`; }
           if (sortCriteria) { params += `${params ? '&' : '?'}sort=${sortCriteria}`; }
           if (ref.hitListId) { params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`; }
