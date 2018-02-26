@@ -47,9 +47,9 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   }
 
   private get inventoryContainersViewEnabled(): boolean {
-    if (this.displayMode === 'view' && this.invContainers && this.invContainers.containers) {
-      return this.invContainers.containers.length > 0 ? true : false;
-    }
-    return false;
+    return this.invIntegrationEnabled
+      && this.displayMode === 'view'
+      && this.invContainers && this.invContainers.containers
+      && this.invContainers.containers.length > 0 ? true : false;
   }
 };
