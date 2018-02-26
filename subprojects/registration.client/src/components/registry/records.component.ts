@@ -50,7 +50,7 @@ export class RegRecords implements OnInit, OnDestroy {
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   @select(s => s.session.isLoading) isLoading$: Observable<any>;
   private responseData$: Observable<IResponseData>;
-  private viewGroupsColumns: CViewGroupColumns;
+  private viewGroupsColumns: CViewGroupColumns = new CViewGroupColumns();
   private lookupsSubscription: Subscription;
   private responseSubscription: Subscription;
   private hitlistSubscription: Subscription;
