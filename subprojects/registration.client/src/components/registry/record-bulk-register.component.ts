@@ -31,6 +31,7 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   private datasource: any[];
   private currentRecord: { ID: number, RegNumber: string, temporary: boolean } = { ID: 0, RegNumber: '', temporary: false };
   private loadIndicatorVisible: boolean = true;
+  private bulkDataIsLoaded: boolean = false;
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
   private columns = [{
     dataField: 'LOGID',
@@ -105,6 +106,7 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
       this.datasource = e;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
       this.loadIndicatorVisible = false;
+      this.bulkDataIsLoaded = true;
       this.changeDetector.markForCheck();
     }
   }
