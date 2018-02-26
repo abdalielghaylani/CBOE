@@ -30,6 +30,8 @@ export class RegStructureImageColumnItem {
     } else if (value && value.STRUCTUREAGGREGATION != null && value.REGID) {
       this.imageId = `image${value.REGID}`;
       value = value.STRUCTUREAGGREGATION;
+    } else if ( value && value.structure != null) {
+      value = value.structure;
     }
     if (!value) {
       return;

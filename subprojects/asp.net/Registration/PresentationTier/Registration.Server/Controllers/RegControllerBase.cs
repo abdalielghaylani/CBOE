@@ -28,6 +28,8 @@ using CambridgeSoft.COE.Framework;
 using CambridgeSoft.COE.Framework.COETableEditorService;
 using CambridgeSoft.COE.Framework.Caching;
 using CambridgeSoft.COE.Framework.COEDataViewService;
+using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
+using CambridgeSoft.COE.Registration.Services.Types;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -36,6 +38,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         private const string sortDesc = " desc";
         private const string sortAsc = " asc";
         private RegistrationOracleDAL regDal = null;
+
+        private string GetStructureData(int templateId)
+        {
+            COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(templateId);
+            if (genericStorageBO == null)
+                throw new RegistrationException(string.Format("no template found for the template id '{0}'", templateId));
+
+            var record = RegistryRecord.NewRegistryRecord();
+            record.InitializeFromXml(genericStorageBO.COEGenericObject, true, false);
+            return record.StructureAggregation;
+        }
 
         /// <summary>
         /// Gets the database record count
@@ -348,6 +361,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             }
 
             return await Task.FromResult<IHttpActionResult>(ResponseMessage(responseMessage));
+        }
+
+        protected string GetStructureData(string type, int compoundId)
+        {
+            var f = type.Equals("record", System.StringComparison.OrdinalIgnoreCase) ?
+                new string[] { "structureaggregation", "vw_mixture_regnumber", "regid" } :
+                type.Equals("temprecord", System.StringComparison.OrdinalIgnoreCase) ?
+                new string[] { "normalizedstructure", "vw_temporarycompound", "tempcompoundid" } :
+                new string[] { "structure", "vw_fragment", "fragmentid" };
+
+            var queryParams = new Dictionary<string, object>();
+            queryParams.Add(":id", compoundId);
+
+            string structureData = string.Empty;
+            if (type.Equals("template", System.StringComparison.OrdinalIgnoreCase))
+                structureData = GetStructureData(compoundId);
+            else
+                structureData = (string)ExtractData(string.Format("SELECT {0} data FROM {1} WHERE {2}=:id", f[0], f[1], f[2]), queryParams)[0]["DATA"];
+            return structureData;
         }
 
         public static string GetAbsoluteUrl(string relativeUrl, bool globalScope = false)

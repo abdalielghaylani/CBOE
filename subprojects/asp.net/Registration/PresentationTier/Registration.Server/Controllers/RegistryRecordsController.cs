@@ -922,7 +922,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             record["TEMPID"] = registryRecord.ID;
                         }
 
-                        string structure = string.Format("{0}record/{1}?{2}", registryRecord.IsTemporal ? "temp" : string.Empty, registryRecord.ID, DateTime.Now.ToString("yyyyMMddHHmmss"));
+                        var structure = GetStructureData(string.Format("{0}record", registryRecord.IsTemporal ? "temp" : string.Empty), registryRecord.ID);
                         record.Add(new JProperty("structure", structure));
                     }
 

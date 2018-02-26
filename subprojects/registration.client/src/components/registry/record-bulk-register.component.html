@@ -1,5 +1,6 @@
 <div class="viewcontainer" id="bulk-record-view">
   <command-button testid="close-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
+  <command-button testid="print-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
   <reg-header testid="templates-heading" id="templates-heading">
     Bulk Register Marked
   </reg-header>
@@ -24,7 +25,7 @@
       <a (click)="reviewRecord(data)" style="font-weight:bold;text-decoration:none;cursor:pointer">{{data.value}}</a>
     </div>
     <div *dxTemplate="let data of 'cellTemplate'">
-      <reg-structure-image [src]="data.value"></reg-structure-image>
+      <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>
     </div>
   </dx-data-grid>
 </div>
