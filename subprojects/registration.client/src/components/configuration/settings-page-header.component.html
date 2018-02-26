@@ -1,4 +1,4 @@
- <command-dropdown-list *ngIf="systemBehaviorButtonEnabled" class="pull-right" iconName="gear" [title]="'System Behaviors'">
+ <command-dropdown-list *ngIf="systemBehaviorButtonEnabled &amp;&amp; isMenu" class="pull-right" iconName="gear" [title]="'System Behaviors'">
   <ul id="SystemBehaviorsDropDown" class="dropdown-menu">
     <li *ngIf="manageDataPropertiesMenuEnabled"><a [routerLink]="['/configuration/properties']" class="coolgray text-relaxed margin-none"><i class="fa fa-list-ol fa-lg  #A4AEB5"></i> Manage Data Properties</a></li>
     <li *ngIf="customizeFormsMenuEnabled" role="separator" class="divider"></li>
@@ -11,7 +11,7 @@
     <li *ngIf="systemSettingsMenuEnabled"><a [routerLink]="['/configuration/settings']" class="coolgray text-relaxed margin-none"><i class="fa fa-wrench fa-lg #A4AEB5"></i> System Settings</a></li>
   </ul>
   </command-dropdown-list>
-  <command-dropdown-list *ngIf="customTableButtonEnabled" class="pull-right" iconName="gear" [title]="'Custom Tables'">
+  <command-dropdown-list *ngIf="customTableButtonEnabled &amp;&amp; isMenu" class="pull-right" iconName="gear" [title]="'Custom Tables'">
     <ul id="CustomTablesDropDown" class="dropdown-menu">
     <li><a [routerLink]="['/configuration/VW_PROJECT']" class="coolgray text-relaxed margin-none"><i class="fa fa-file-code-o fa-lg  #A4AEB5"></i> Projects</a></li>
     <li role="separator" class="divider"></li>
