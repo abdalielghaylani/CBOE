@@ -85,6 +85,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private totalSearchableCount: number = 0;
   private isTotalSearchableCountUpdated: boolean = false;
   private isRefine = false;
+  private isAllSelected: boolean = false;
 
   constructor(
     private router: Router,
@@ -339,6 +340,17 @@ export class RegRecords implements OnInit, OnDestroy {
     this.refinedRows = result.rows;
     this.refinedTotalRecordsCount = result.totalCount;
     this.grid.instance.refresh();
+  }
+
+  onCellClick(e) {
+    if (e.rowType === 'header' && e.column.command === 'select') {
+      if (this.isAllSelected) {
+        this.isAllSelected = false;
+        this.grid.instance.deselectAll();
+      } else {
+        this.isAllSelected = true;
+      }
+    }
   }
 
   onCellPrepared(e) {
