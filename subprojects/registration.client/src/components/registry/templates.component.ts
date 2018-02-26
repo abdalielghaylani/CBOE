@@ -25,6 +25,7 @@ declare var jQuery: any;
 export class RegTemplates implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
   @Output() onClose = new EventEmitter<any>();
+  @Input() parentHeight: string;
   private rows: any[] = [];
   private dataSubscription: Subscription;
   private gridHeight: string;

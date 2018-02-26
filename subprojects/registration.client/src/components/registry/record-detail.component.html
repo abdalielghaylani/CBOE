@@ -39,7 +39,7 @@
   </dx-popup>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!==1">
-  <reg-templates (onClose)="showDetails($event)"></reg-templates>
+  <reg-templates [parentHeight]="parentHeight" (onClose)="showDetails($event)"></reg-templates>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
   <reg-duplicate-record [parentHeight]="parentHeight" [sourceRecordIsTemporary]="temporary" (onClose)="cancelDuplicateResolution($event)"></reg-duplicate-record>
