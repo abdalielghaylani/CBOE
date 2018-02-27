@@ -40,10 +40,10 @@ export class HttpService extends Http {
   }
 
   private checkRedirect(self: HttpService, res: Response) {
-      if (res.url && res.url.indexOf('index.html') > 0) {
-        self.ngRedux.dispatch(SessionActions.logoutUserAction());
-        throw res;
-      }
+    if (res.url && res.url.indexOf('index.html') > 0 || res.status === 404) {
+      self.ngRedux.dispatch(SessionActions.logoutUserAction());
+      throw res;
+    }
   }
 
   private preProcessRequest(self: HttpService) {
