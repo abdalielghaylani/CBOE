@@ -55,6 +55,28 @@ export class PrivilegeUtils {
   }
 
   /**
+ * Checks whether user has Inventory Container table view privilege
+ * 
+ * @static
+ * @param {IAppPrivilege[]} list of user privileges for the logged in user 
+ * @returns {boolean} 
+ * @memberof PrivilegeUtils
+ */
+  static hasBatchContainersViewPrivilege(userPrivileges: IAppPrivilege[]): boolean {
+    if (!this.userHasInventoryAppPrivilege('INV_BROWSE_ALL', userPrivileges)) {
+      return false;
+    }
+    return true;
+  }
+
+  static hasBatchContainersRequestPrivilege(userPrivileges: IAppPrivilege[]): boolean {
+    if (!this.userHasInventoryAppPrivilege('INV_SAMPLE_REQUEST', userPrivileges)) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
    * Checks whether delete record privilege
    * If the privilege list contains 'DELETE_TEMP' or 'DELETE_REG', it returns true
    * @param {boolean} temporary whether temporary or permanent record

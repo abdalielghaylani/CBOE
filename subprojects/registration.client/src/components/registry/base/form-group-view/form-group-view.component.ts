@@ -4,7 +4,7 @@ import { NgRedux } from '@angular-redux/store';
 import validationEngine from 'devextreme/ui/validation_engine';
 import { CViewGroup, CViewGroupContainer, IRegistryRecord } from '../registry-base.types';
 import { IViewControl } from '../../../common';
-import { IFormGroup, IForm, ICoeForm } from '../../../../common';
+import { IFormGroup, IForm, ICoeForm, PrivilegeUtils } from '../../../../common';
 import { IAppState } from '../../../../redux';
 
 @Component({
@@ -48,6 +48,7 @@ export class RegFormGroupView implements IViewControl, OnChanges {
 
   private get inventoryContainersViewEnabled(): boolean {
     return this.invIntegrationEnabled
+      && PrivilegeUtils.hasBatchContainersViewPrivilege(this.ngRedux.getState().session.lookups.userPrivileges)
       && this.displayMode === 'view'
       && this.invContainers && this.invContainers.containers
       && this.invContainers.containers.length > 0 ? true : false;

@@ -79,6 +79,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   private isDuplicatePopupVisible: boolean = false;
   private loadingVisible: boolean = false;
   private createContainerButtonEnabled: boolean = false;
+  private invIntegrationEnabled: boolean = false;
   private inventoryContainersList: IInventoryContainerList;
   private saveTemplatePopupHeight: number = 220;
   private showApprovedIcon: boolean = false;
@@ -192,11 +193,13 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
     let hitListId = this.listData.hitListId;
-    this.createContainerButtonEnabled = (ss.isInventoryIntegrationEnabled && ss.isSendToInventoryEnabled)
-      && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges)
+    this.invIntegrationEnabled = (ss.isInventoryIntegrationEnabled && ss.isSendToInventoryEnabled)
       && !this.temporary
       && !this.isNewRecord
       && !editMode;
+    this.createContainerButtonEnabled = this.invIntegrationEnabled
+      && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges);
+
     this.backButtonEnabled = (hitListId > 0 || this.bulkreg) && !editMode;
     if (forceUpdate) {
       this.loadingVisible = false;

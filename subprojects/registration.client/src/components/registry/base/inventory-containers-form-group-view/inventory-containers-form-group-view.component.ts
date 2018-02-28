@@ -2,24 +2,26 @@ import { Component, ChangeDetectionStrategy, OnInit, OnDestroy, ChangeDetectorRe
 import { IInventoryContainerList, IAppState, CSystemSettings } from '../../../../redux/index';
 import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
 import { NgRedux } from '@angular-redux/store';
+import { PrivilegeUtils } from '../../../../common';
 @Component({
   selector: 'inventory-containers-form-group-view',
   template: require('./inventory-containers-form-group-view.component.html'),
-  styles: [require('../registry-base.css')], 
+  styles: [require('../registry-base.css')],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InventoryContainersFormGroup implements OnInit {
   private id: string = 'invContainerForm';
   @Input() invContainers: IInventoryContainerList;
   private invHandler = new RegInvContainerHandler();
-  private showRequestMaterialButton : boolean = false;
+  private showRequestMaterialButton: boolean = false;
 
   constructor(private ngRedux: NgRedux<IAppState>) {
   }
 
   ngOnInit() {
     let lookups = this.ngRedux.getState().session.lookups;
-    this.showRequestMaterialButton = lookups.disabledControls.filter((i) => i.id === `ReqMaterial`).length === 0
+    this.showRequestMaterialButton = PrivilegeUtils.hasBatchContainersRequestPrivilege(lookups.userPrivileges)
+      && lookups.disabledControls.filter((i) => i.id === `ReqMaterial`).length === 0
       && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).showRequestMaterial
       && (this.invContainers.containers && (this.invContainers.containers.length > 0));
   }
@@ -33,6 +35,6 @@ export class InventoryContainersFormGroup implements OnInit {
 
   requestMaterial(e) {
     e.stopPropagation();
-    this.invHandler.openContainerPopup(this.invContainers.containers[this.invContainers.containers.length - 1].requestURL +  `&RequestType=R`, null);
+    this.invHandler.openContainerPopup(this.invContainers.containers[this.invContainers.containers.length - 1].requestURL + `&RequestType=R`, null);
   }
 };

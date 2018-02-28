@@ -3,6 +3,7 @@ import { DxDataGridComponent } from 'devextreme-angular';
 import { RegInvContainerHandler } from '../../inventory-container-handler/inventory-container-handler';
 import { NgRedux } from '@angular-redux/store';
 import { IAppState, CSystemSettings } from '../../../../redux';
+import { PrivilegeUtils } from '../../../../common';
 
 @Component({
   selector: 'inventory-containers-form-group-item-view',
@@ -24,8 +25,10 @@ export class InventoryContainersFormGroupItemView implements OnInit, OnDestroy {
     private ngRedux: NgRedux<IAppState>
   ) {
     let lookups = this.ngRedux.getState().session.lookups;
-    let showRequestFromContainer = new CSystemSettings(lookups.systemSettings).showRequestFromContainer;
-    let showRequestFromBatch = lookups.disabledControls.filter((i) => i.id === `RequestFromBatchURL`).length === 0
+    let invSampleRequestPrivilege = PrivilegeUtils.hasBatchContainersRequestPrivilege(lookups.userPrivileges);
+    let showRequestFromContainer = invSampleRequestPrivilege
+      && new CSystemSettings(lookups.systemSettings).showRequestFromContainer;
+    let showRequestFromBatch = invSampleRequestPrivilege && lookups.disabledControls.filter((i) => i.id === `RequestFromBatchURL`).length === 0
       && new CSystemSettings(lookups.systemSettings).showRequestFromBatch;
     this.columns = [{
       dataField: 'id',

@@ -23,7 +23,7 @@
     </span>
   </reg-header>
     <form class="form-inline" role="form" ng-submit="search(query)">
-      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true" [invIntegrationEnabled]="createContainerButtonEnabled" [invContainers]="inventoryContainersList"
+      <reg-record-detail-base [id]="id" [template]="template" [temporary]="temporary" [displayMode]="displayMode" [activated]="true" [revision]="revision" [updatable]="true" [invIntegrationEnabled]="invIntegrationEnabled" [invContainers]="inventoryContainersList"
         [useCurrent]="useCurrent" [parentHeight]="parentHeight" (contentReady)="onDetailContentReady($event)"></reg-record-detail-base>
     </form>
   <reg-duplicate-popup [visible]="isDuplicatePopupVisible" [viewModel]="copyActions" (popupClick)="createCopies($event)"></reg-duplicate-popup>

@@ -53,7 +53,8 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
       this.selectedBatchId = Number(this.viewModel.BatchList.Batch[0].BatchID);
     }
     let lookups = this.ngRedux.getState().session.lookups;
-    this.showRequestMaterialButton = lookups.disabledControls.filter((i) => i.id === `ReqMaterial`).length === 0
+    this.showRequestMaterialButton = PrivilegeUtils.hasBatchContainersRequestPrivilege(lookups.userPrivileges)
+      && lookups.disabledControls.filter((i) => i.id === `ReqMaterial`).length === 0
       && new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings).showRequestMaterial;
   }
 
@@ -238,9 +239,9 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
 
   protected update() {
     super.update();
-    this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled;
     let lookups = this.ngRedux.getState().session.lookups;
     let systemSettings = new CSystemSettings(lookups.systemSettings);
+    this.createContainerButtonEnabled = !this.editMode && this.invIntegrationEnabled && PrivilegeUtils.hasCreateContainerPrivilege(lookups.userPrivileges);
     this.batchCommandsEnabled = this.viewConfig.subArray != null;
     this.selectBatchEnabled = this.batchCommandsEnabled && this.viewConfig.subArray.length > 1;
     let isLoggedUserBatchOwner: boolean = false;
@@ -334,7 +335,8 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
   }
 
   private get batchContainersEnabled(): boolean {
-    return this.invIntegrationEnabled && this.batchCommandsEnabled && this.invContainers
+    return this.invIntegrationEnabled && PrivilegeUtils.hasBatchContainersViewPrivilege(this.ngRedux.getState().session.lookups.userPrivileges)
+      && this.batchCommandsEnabled && this.invContainers
       && this.invContainers.batchContainers && this.batchContainers.length > 0 ? true : false;
   }
 
