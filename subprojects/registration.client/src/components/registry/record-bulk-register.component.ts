@@ -25,7 +25,7 @@ import { CStructureImagePrintService } from '../common/structure-image-print.ser
 })
 export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid: DxDataGridComponent;
-  private gridHeight: number;
+  private gridHeight: string;
   private bulkRecordData$: Observable<any[]>;
   private recordsSubscription: Subscription;
   private datasource: any[];
@@ -106,7 +106,8 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
       this.datasource = e;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
       this.loadIndicatorVisible = false;
-      this.bulkDataIsLoaded = true;
+      this.bulkDataIsLoaded = true;    
+      this.gridHeight = this.getGridHeight();
       this.changeDetector.markForCheck();
     }
   }
@@ -190,6 +191,11 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
       location: 'before',
       template: 'toolbarContents'
     });
+  }
+
+  onResize(event: any) {
+    this.gridHeight = this.getGridHeight();
+    this.grid.instance.repaint();
   }
 
   private getGridHeight() {
