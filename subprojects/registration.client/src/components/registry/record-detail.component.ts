@@ -363,7 +363,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   private showSaveTemplate(e) {
-    if (!this.recordDetailView.validate()) {
+    if (!this.recordDetailView.validate(true)) {
       return;
     }
     if (this.template) {

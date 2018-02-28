@@ -209,15 +209,40 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
     }
     return recordDoc;
   }
-  validate(): boolean {
+
+  validate(excludeStructureField?: boolean): boolean {
     let result = this.formGroupView.validate();
     this.validationError.isvalid = !result || result.isValid;
     this.validationError.errorMessages = [];
-    result.brokenRules.forEach(element => {
-      if (element.validator.errorMessage) {
-        this.validationError.errorMessages.push(element.validator.errorMessage);
+
+    if (excludeStructureField) {
+      // exclude structure field required validation for `Save as Template` feature.     
+      let structureFieldValid: boolean = true;
+      result.brokenRules.forEach(element => {
+        if (element.validator.errorMessage) {
+          if (element.validator.peer.viewModel.dataField === 'BaseFragmentStructure') {
+            // dot not display structure field required validation message in UI 
+            structureFieldValid = false;
+          } else {
+            this.validationError.errorMessages.push(element.validator.errorMessage);
+          }
+        }
+      });
+
+      if (!structureFieldValid && result.brokenRules.length === 1 && this.validationError.errorMessages.length === 0) {
+        // if structure field is empty and there is no other field validation errors,
+        // then skip stucture field validation and return true
+        this.validationError.isvalid = true;
+        this.changeDetector.markForCheck();
+        return true;
       }
-    });
+    } else {
+      result.brokenRules.forEach(element => {
+        if (element.validator.errorMessage) {
+          this.validationError.errorMessages.push(element.validator.errorMessage);
+        }
+      });
+    }
     this.changeDetector.markForCheck();
     return !result || result.isValid;
   }
