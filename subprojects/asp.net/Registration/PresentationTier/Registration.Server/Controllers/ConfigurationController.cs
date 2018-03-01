@@ -906,12 +906,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 string assembly = string.Empty;
                 string nameSpace = string.Empty;
-                if (data.Assembly.Equals("CambridgeSoft.COE.Registration.RegistrationAddins"))
+                var configRegRecord = ConfigurationRegistryRecord.NewConfigurationRegistryRecord();
+                foreach (AddInAssembly assemblyItem in configRegRecord.GetAssemblyList.Assemblies)
                 {
-                    assembly = "CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc";
-                    nameSpace = "CambridgeSoft.COE.Registration.Services.RegistrationAddins";
+                    if (data.Assembly.Equals(assemblyItem.Name))
+                    {
+                        assembly = assemblyItem.FullName;
+                        nameSpace = assemblyItem.Name;
+                        break;
+                    }
                 }
-                else
+                if (string.IsNullOrEmpty(nameSpace))
                 {
                     throw new RegistrationException(string.Format("The addin assembly '{0}' is not valid", data.AddIn));
                 }
