@@ -515,6 +515,7 @@ export class CConfigProperties {
   }
 
   addEditProperty(w: string, d?: any) {
+    this.formColumns[2].visible = w !== 'edit';
     if (w === 'add') {
       this.formColumns[0].disabled = false;
       this.formColumns[1].disabled = false;
@@ -624,10 +625,6 @@ export class CConfigProperties {
       allowEditing: false
     }, {
       dataField: 'name',
-      allowSorting: false
-    }, {
-      dataField: 'friendlyName',
-      caption: 'Label',
       allowSorting: false
     }, {
       caption: 'Type', dataField: 'type',
