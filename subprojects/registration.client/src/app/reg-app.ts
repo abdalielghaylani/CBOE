@@ -1,3 +1,4 @@
+import { PrivilegeUtils } from './../common/utils/privilege.utils';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs/Observable';
@@ -47,6 +48,7 @@ export class RegApp {
   private aboutContent: any;
   private isLoggedIn: boolean = false;
   private printerFriendly: boolean = false;
+  private hasRegAppPrivilege: boolean = false;
 
   constructor(
     private devTools: DevToolsExtension,
@@ -112,6 +114,7 @@ export class RegApp {
   retrieveContents(lookups: ILookupData) {
     this.lookups = lookups;
     this.aboutContent = this.lookups.systemInformation;
+    this.hasRegAppPrivilege = PrivilegeUtils.hasRegAppPrivilege(lookups.userPrivileges);
   }
 
   openAboutPopup() {

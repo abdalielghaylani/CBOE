@@ -42,6 +42,11 @@ export class PrivilegeUtils {
     return false;
   }
 
+  static hasRegAppPrivilege(userPrivileges: IAppPrivilege[]): boolean {
+    let regAppPrivileges = userPrivileges.find(e => e.appName === 'REGISTRATION');
+    return regAppPrivileges && regAppPrivileges.privileges ? true : false;
+  }
+
   /**
    * Checks whether user has create container privilge in Inventory application
    * 

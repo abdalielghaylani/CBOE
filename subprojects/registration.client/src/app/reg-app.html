@@ -1,5 +1,4 @@
-<reg-login-modal (onSubmit)="sessionActions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async"
-  *ngIf="loggedOut$ | async">
+<reg-login-modal (onSubmit)="sessionActions.loginUser($event)" [hasError]="hasError$ | async" [isPending]="isLoading$ | async" *ngIf="loggedOut$ | async">
 </reg-login-modal>
 <reg-navigator testid="navigator" *ngIf="isLoggedIn &amp;&amp;  !printerFriendly" [cssClass]="this.fullScreenEnabled? 'navbar-fullScreen' :'navbar navbar-default navbar-fixed-top navbar-top'">
   <reg-navigator-header>
@@ -7,44 +6,39 @@
   </reg-navigator-header>
   <reg-navigator-items>
     <li reg-navigator-item class="mt9" *ngIf="loggedIn$ | async">
-        <span class="fa fa-user-circle-o fa-lg #A4AEB5"></span>
-        <span class="welcome coolgray text-relaxed">Welcome</span>
-        <span class="username black text-relaxed">{{ fullName$ | async }}</span>
-        <span class="btn username black text-relaxed dropdown-toggle" aria-label="dropDownHelp" type="button" data-toggle="dropdown">Help
+      <span class="fa fa-user-circle-o fa-lg #A4AEB5"></span>
+      <span class="welcome coolgray text-relaxed">Welcome</span>
+      <span class="username black text-relaxed">{{ fullName$ | async }}</span>
+      <span *ngIf="hasRegAppPrivilege" class="btn username black text-relaxed dropdown-toggle" aria-label="dropDownHelp" type="button" data-toggle="dropdown">Help
           <span class="caret"></span>
-        </span>
-        <ul class="dropdown-menu" aria-labelledby="dropDownHelp">
-          <li><a [href]="helpUserGuideLink" target="_blank">User Guide</a></li>
-          <li><a [href]="helpAdminGuideLink" target="_blank">Admin Guide</a></li>
-        </ul>
-        <span class="username black text-relaxed cursor-pointer" (click)="openAboutPopup()">About</span>
+      </span>
+      <ul *ngIf="hasRegAppPrivilege" class="dropdown-menu" aria-labelledby="dropDownHelp">
+        <li><a [href]="helpUserGuideLink" target="_blank">User Guide</a></li>
+        <li><a [href]="helpAdminGuideLink" target="_blank">Admin Guide</a></li>
+      </ul>
+      <span class="username black text-relaxed cursor-pointer" (click)="openAboutPopup()">About</span>
     </li>
     <li reg-navigator-item *ngIf="loggedIn$ | async" (click)="sessionActions.logoutUser()"><a data-toggle="tooltip" title="Logout"><span class="fa fa-sign-out fa-lg #A4AEB5"></span></a></li>
   </reg-navigator-items>
 </reg-navigator>
 <reg-sidebar *ngIf="isLoggedIn &amp;&amp; !printerFriendly" id="tools" [cssClass]="this.fullScreenEnabled? 'tools-fullscreen' :'tools'">
   <li reg-sidebar-item *ngIf="setVisibility('SEARCH_TEMP')" class="{{ (routerLink$ | async).endsWith('/temp') ? 'selected' : '' }}">
-    <circle-icon title="Review Temporary" color="yellow" isSelected="{{ (routerLink$ | async).endsWith('/temp') }}" iconName="table"
-      routeLink="records/temp/reload"></circle-icon>
+    <circle-icon title="Review Temporary" color="yellow" isSelected="{{ (routerLink$ | async).endsWith('/temp') }}" iconName="table" routeLink="records/temp/reload"></circle-icon>
   </li>
   <li reg-sidebar-item *ngIf="setVisibility('ADD_COMPOUND_TEMP')" class="{{ (routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') ? 'selected' : '' }}">
-    <circle-icon title="Submit New Compound" color="purple" iconName="flask" isSelected="{{(routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') }}"
-      routeLink="records/new">
+    <circle-icon title="Submit New Compound" color="purple" iconName="flask" isSelected="{{(routerLink$ | async).indexOf('records/') >= 0 &amp;&amp; !(routerLink$ | async).endsWith('/temp') &amp;&amp; !(routerLink$ | async).endsWith('/search') }}" routeLink="records/new">
     </circle-icon>
   </li>
   <li reg-sidebar-item *ngIf="setVisibility('SEARCH_REG')" class="{{ (routerLink$ | async).endsWith('records') ? 'selected' : '' || (routerLink$ | async).endsWith('search') ? 'selected' : '' }}">
-    <circle-icon title="Search Registry" color="purple-neutral" iconName="search" isSelected="{{(routerLink$ | async).endsWith('records') || (routerLink$ | async).endsWith('search')}} "
-      routeLink="records">
+    <circle-icon title="Search Registry" color="purple-neutral" iconName="search" isSelected="{{(routerLink$ | async).endsWith('records') || (routerLink$ | async).endsWith('search')}} " routeLink="records">
     </circle-icon>
   </li>
   <li reg-sidebar-item *ngIf="setVisibility('CONFIG_REG')" class="{{ (routerLink$ | async).indexOf('configuration') > 0 ? 'selected' : '' }}">
-    <circle-icon title="Configuration" color="green-mid" iconName="gears" isSelected="{{((routerLink$ | async).indexOf('configuration') > 0)}}"
-      routeLink="configuration">
+    <circle-icon title="Configuration" color="green-mid" iconName="gears" isSelected="{{((routerLink$ | async).indexOf('configuration') > 0)}}" routeLink="configuration">
     </circle-icon>
   </li>
 </reg-sidebar>
-<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'"
-  [iconName]="this.fullScreenEnabled? 'compress' : 'expand'" [style.visibility]="(isLoggedIn &amp;&amp; !printerFriendly) ? 'visible' : 'hidden'">
+<full-screen-icon (click)="this.fullScreenEnabled = !this.fullScreenEnabled" [id]="this.fullScreenEnabled? 'compressIcon' : 'expandIcon'" [iconName]="this.fullScreenEnabled? 'compress' : 'expand'" [style.visibility]="(isLoggedIn &amp;&amp; !printerFriendly) ? 'visible' : 'hidden'">
 </full-screen-icon>
 <main [style.visibility]="(loggedIn$ | async) ? 'visible' : 'hidden'">
   <div id="content" [ngClass]="this.fullScreenEnabled? 'content-fullScreen' :'content'">
@@ -52,18 +46,24 @@
     <router-outlet></router-outlet>
   </div>
 </main>
-<dx-popup [fullScreen]="false" width="450" height="auto" title="About" [shading]="true" 
-  [closeOnOutsideClick]="true" contentTemplate="contentTemplate" [(visible)]="isAboutPopupVisible">
-    <div *dxTemplate="let data of 'contentTemplate'">
-      <div class="row">
-        <div class="col-xs-6 text-left"><reg-logo></reg-logo></div>
-        <div class="col-xs-6 text-right"><reg-login-logo></reg-login-logo></div>
+<dx-popup [fullScreen]="false" width="450" height="auto" title="About" [shading]="true" [closeOnOutsideClick]="true" contentTemplate="contentTemplate" [(visible)]="isAboutPopupVisible">
+  <div *dxTemplate="let data of 'contentTemplate'">
+    <div class="row">
+      <div class="col-xs-6 text-left">
+        <reg-logo></reg-logo>
       </div>
-      <div class="row about-popup">
-        <div class="col-xs-2" [innerHTML]="aboutContent.supportLabelText"></div><div class="col-xs-10" [innerHTML]="aboutContent.supportContentLabelText"></div>
-        <div class="col-xs-2" [innerHTML]="aboutContent.ordersLabelText"></div><div class="col-xs-10" [innerHTML]="aboutContent.ordersContentLabelText"></div>
-        <div class="col-xs-2" [innerHTML]="aboutContent.versionLabelText"></div><div class="col-xs-10" [innerHTML]="aboutContent.versionContentLabelText"></div>
+      <div class="col-xs-6 text-right">
+        <reg-login-logo></reg-login-logo>
       </div>
     </div>
+    <div class="row about-popup">
+      <div class="col-xs-2" [innerHTML]="aboutContent.supportLabelText"></div>
+      <div class="col-xs-10" [innerHTML]="aboutContent.supportContentLabelText"></div>
+      <div class="col-xs-2" [innerHTML]="aboutContent.ordersLabelText"></div>
+      <div class="col-xs-10" [innerHTML]="aboutContent.ordersContentLabelText"></div>
+      <div class="col-xs-2" [innerHTML]="aboutContent.versionLabelText"></div>
+      <div class="col-xs-10" [innerHTML]="aboutContent.versionContentLabelText"></div>
+    </div>
+  </div>
 </dx-popup>
 <reg-footer *ngIf="!printerFriendly" [cssClass]="this.fullScreenEnabled? 'footer-fullScreen' :'footer'"></reg-footer>
