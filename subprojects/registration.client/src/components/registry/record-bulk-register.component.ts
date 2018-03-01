@@ -35,11 +35,15 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
   private columns = [{
     dataField: 'LOGID',
-    caption: 'LogId'
+    caption: 'LogId',
+    alignment: 'left',
+    width: 100
   }, {
     dataField: 'TEMPID',
     caption: 'TempID',
     cellTemplate: 'tempViewTemplate',
+    alignment: 'left',
+    width: 100
   }, {
     dataField: 'DESCRIPTION',
     caption: 'Description'
@@ -55,14 +59,17 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
     caption: 'Comments'
   }, {
     dataField: 'ACTION',
-    caption: 'Action'
+    caption: 'Action',
+    width: 80
   }, {
     dataField: 'USERID',
-    caption: 'Submitted By'
+    caption: 'Submitted By',
+    width: 120
   }, {
     dataField: 'REGNUMBER',
     caption: 'REGNUMBER',
     cellTemplate: 'recorrdViewTemplate',
+    width: 120
   }];
 
   constructor(
@@ -79,7 +86,7 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   ngOnInit() {
     this.bulkRecordData$ = this.ngRedux.select(['registry', 'bulkRegisterRecords']);
     this.recordsSubscription = this.bulkRecordData$.subscribe((value: number[]) => this.loadData(value));
-    
+
     window.NewRegWindowHandle = window.NewRegWindowHandle || {};
     window.NewRegWindowHandle.closePrintPage = this.closePrintPage.bind(this);
   }
@@ -106,7 +113,7 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
       this.datasource = e;
       this.columns = this.columns.map(s => this.updateGridColumn(s));
       this.loadIndicatorVisible = false;
-      this.bulkDataIsLoaded = true;    
+      this.bulkDataIsLoaded = true;
       this.gridHeight = this.getGridHeight();
       this.changeDetector.markForCheck();
     }
@@ -174,7 +181,7 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
           </head>
           <body onload="window.print(); window.close()">${printContents}</body>
         </html>`);
-        popupWin.onbeforeunload = function() { 
+        popupWin.onbeforeunload = function () {
           this.opener.NewRegWindowHandle.closePrintPage();
         };
         popupWin.document.close();
