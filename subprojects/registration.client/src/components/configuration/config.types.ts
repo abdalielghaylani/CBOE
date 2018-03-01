@@ -296,7 +296,7 @@ export const CONFIG_PROPERTIES_FORMS = [{
   dataField: 'friendlyName',
   label: { text: 'Label' },
   dataType: 'string',
-  validationRules: [{ group: 'always', type: 'required', message: 'Friendly name required' },
+  validationRules: [{ group: 'always', type: 'required', message: 'Label required' },
   {
     group: 'always', type: 'pattern',
     pattern: /^[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)][a-zA-Z0-9\s.\-_,;:\?!\[\]\{\}\(\)]{0,28}[a-zA-Z0-9.\-_,;:\?!\[\]\{\}\(\)]$/,
