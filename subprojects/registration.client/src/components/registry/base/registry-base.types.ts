@@ -849,14 +849,21 @@ export class CSearchCriteria {
       .replace('<searchCriteria>', `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`);
   }
 
-  public setStructureSearchOptions(sc: any, entryValue) {
-    // Set structure search attributes
+  public setStructureSearchOptions(sc: ISearchCriteriaItem, entryValue) {
     if (entryValue && entryValue.structureCriteriaOptions) {
-      sc.structureCriteria = {};
-      sc.structureCriteria._negate = 'NO';
-      sc.structureCriteria.CSCartridgeStructureCriteria = {};
-      sc.structureCriteria.CSCartridgeStructureCriteria = entryValue.structureCriteriaOptions;
-      sc.structureCriteria.CSCartridgeStructureCriteria.__text = entryValue.toString();
+      const options = entryValue.structureCriteriaOptions;
+      const searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(sc);
+      if (searchCriteriaItemObj) {
+        if (searchCriteriaItemObj.CSCartridgeStructureCriteria == null) {
+          searchCriteriaItemObj.CSCartridgeStructureCriteria = {};
+        }
+        for (let k in options) {
+          if (options.hasOwnProperty(k)) {
+            searchCriteriaItemObj.CSCartridgeStructureCriteria[k] = options[k];
+          }
+        }
+        searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue.toString();
+      }
     }
   }
 
