@@ -849,11 +849,11 @@ export class CSearchCriteria {
       .replace('<searchCriteria>', `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`);
   }
 
-  public setStructureSearchOptions(sc: ISearchCriteriaItem, entryValue) {
+  public setStructureSearchOptions(sc: any, entryValue) {
     if (entryValue && entryValue.structureCriteriaOptions) {
-      const options = entryValue.structureCriteriaOptions;
       const searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(sc);
       if (searchCriteriaItemObj) {
+        const options = entryValue.structureCriteriaOptions;
         if (searchCriteriaItemObj.CSCartridgeStructureCriteria == null) {
           searchCriteriaItemObj.CSCartridgeStructureCriteria = {};
         }
@@ -862,7 +862,15 @@ export class CSearchCriteria {
             searchCriteriaItemObj.CSCartridgeStructureCriteria[k] = options[k];
           }
         }
-        searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue.toString();
+        if (searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
+          searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue.toString();
+        } else {
+          sc.structureCriteria = {};
+          sc.structureCriteria._negate = 'NO';
+          sc.structureCriteria.CSCartridgeStructureCriteria = {};
+          sc.structureCriteria.CSCartridgeStructureCriteria = entryValue.structureCriteriaOptions;
+          sc.structureCriteria.CSCartridgeStructureCriteria.__text = entryValue.toString();
+        }
       }
     }
   }
