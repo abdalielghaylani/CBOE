@@ -168,13 +168,14 @@
         <div class="panel-heading" style='border-left: 4px solid tan;' (click)="togglePanel($event)">
           <command-button testid="validation-button" class="right-space" (onClick)="configProperties.addValidationRule($event)" iconName="plus"
             title="Add Rule"></command-button>
-          <div><a class="list-header tan" data-toggle="collapse" href="#collapseTwo">Validation Rules List</a></div>
+          <div><a class="list-header tan" data-toggle="collapse" href="#collapseTwo">Validation Rule List</a></div>
         </div>
         <div id="collapseTwo" class="panel-collapse collapse in">
           <div class="p2">
             <dx-data-grid [columns]="configProperties.formValidationColumns.grdColumns" [dataSource]="configProperties.formData.validationRules"
               [height]="gridHeight-200" rowAlternationEnabled="true" (onInitNewRow)='onInitNewRow($event,false)' (onInitialized)='onInitialized($event)'
-              (onCellPrepared)="onCellPrepared($event,'validation')" (onRowRemoved)='onValidationRowRemoved($event)'>
+              (onCellPrepared)="onCellPrepared($event,'validation')" (onRowRemoved)='onValidationRowRemoved($event)'
+              [wordWrapEnabled]="true">
               <dxo-editing mode="form" [allowUpdating]="false" [allowDeleting]="true" [allowAdding]="false"></dxo-editing>
               <dxo-sorting mode="single"></dxo-sorting>
               <dxo-filter-row [visible]="true"></dxo-filter-row>
@@ -182,7 +183,7 @@
               <div *dxTemplate="let data of 'parameterTemplate'">
                 <dx-list [items]="data.data.parameters" [height]="65" noDataText="" showScrollbar="always">
                   <dxi-item *ngFor="let item of data.data.parameters">
-                    <div>{{item.name}} = {{item.value}}</div>
+                    <div style="white-space: normal">{{item.name}} = {{item.value}}</div>
                   </dxi-item>
                 </dx-list>
               </div>

@@ -46,7 +46,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   protected formGroup: IFormGroup;
   protected viewGroupContainers: CViewGroupContainer[];
   private loadingVisible: boolean = false;
-  protected validationError: { isvalid: boolean, errorMessages: string[] } = { isvalid: true, errorMessages: [] };
+  protected validationError: { isValid: boolean, errorMessages: string[] } = { isValid: true, errorMessages: [] };
   @select(s => s.registry.currentRecord) recordDetail$: Observable<IRecordDetail>;
 
   constructor(
@@ -189,6 +189,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
 
   protected onValueUpdated(e) {
     // console.log(this.regRecord);
+    this.validationError.isValid = true;
     this.valueUpdated.emit(e);
   }
 
@@ -212,7 +213,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
 
   validate(excludeStructureField?: boolean): boolean {
     let result = this.formGroupView.validate();
-    this.validationError.isvalid = !result || result.isValid;
+    this.validationError.isValid = !result || result.isValid;
     this.validationError.errorMessages = [];
 
     if (excludeStructureField) {
@@ -232,7 +233,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
       if (!structureFieldValid && result.brokenRules.length === 1 && this.validationError.errorMessages.length === 0) {
         // if structure field is empty and there is no other field validation errors,
         // then skip stucture field validation and return true
-        this.validationError.isvalid = true;
+        this.validationError.isValid = true;
         this.changeDetector.markForCheck();
         return true;
       }
@@ -334,7 +335,7 @@ export class RegRecordDetailBase implements OnInit, OnDestroy, OnChanges {
   }
 
   public clear() {
-    this.validationError = { isvalid: true, errorMessages: [] };
+    this.validationError = { isValid: true, errorMessages: [] };
     this.dataSubscription = this.recordDetail$.subscribe((value: IRecordDetail) => this.loadRecordData(value));
     this.changeDetector.markForCheck();
   }

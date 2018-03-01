@@ -1,4 +1,4 @@
-<reg-alert qaid="qa-alert" class="text-left" testid="alert-error" status='error' [hidden]="validationError.isvalid">
+<reg-alert qaid="qa-alert" class="text-left" testid="alert-error" status='error' [hidden]="validationError.isValid">
   <div style="padding-left:15px;"><strong><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;One or more entries failed to validate!</strong>
     <ol style="font-size:13px;">
       <li *ngFor="let msg of validationError.errorMessages">{{msg}}</li>

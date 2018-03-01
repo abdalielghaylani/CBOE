@@ -13,12 +13,4 @@ export class RegSearchFormView extends RegFormView {
   constructor() {
     super();
   }
-
-  protected onFieldDataChanged(e) {
-    this.onValueUpdated(this);
-  }
-
-  protected onValueUpdated(e) {
-    this.valueUpdated.emit(e);
-  }
 };

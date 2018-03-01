@@ -38,12 +38,15 @@ export class RegFormGroupView implements IViewControl, OnChanges {
   }
 
   protected onValueUpdated(e) {
+    this.validate();
     this.valueUpdated.emit(this);
   }
 
   validate() {
-    let result = validationEngine.validateGroup('vg');
-    return result;
+    if (this.activated && validationEngine.getGroupConfig('vg') != null) {
+      let result = validationEngine.validateGroup('vg');
+      return result;
+    }
   }
 
   private get inventoryContainersViewEnabled(): boolean {

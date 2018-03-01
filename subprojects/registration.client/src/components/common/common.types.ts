@@ -364,7 +364,7 @@ export class CValidator {
   }
 
   private static validateCas(rule: IValidationRule, e) {
-    e.rule.isValue = true;
+    e.rule.isValid = true;
     if (e.value) {
       let isValid = /^[0-9]{1,7}-[0-9][0-9]-[0-9]$/.test(e.value);
       if (isValid) {
@@ -375,14 +375,57 @@ export class CValidator {
         }
         isValid = (casSum % 10) === ((freeCas.substring(freeCas.length - 1, freeCas.length)) % 10);
       }
-      e.rule.isValue = isValid;
+      e.rule.isValid = isValid;
+    }
+  }
+
+  private static checkRequiredFieldsForDropDown(dxForm, script: string, e): boolean {
+    const value = e.value;
+    if (script.indexOf('DropDown_CheckRequiredFields') > 0) {
+      const m = script.match(/DropDown_CheckRequiredFields[^,]*,[^,]*,[^,]*,\s*'([^']*)'[^,]*,\s*'([^']*)'/);
+      if (m && m.length === 3) {
+        if (value) {
+          return !!dxForm.option('formData.' + m[1].trim());
+        } else {
+          const requiredValue = dxForm.option('formData.' + m[1].trim());
+          if (requiredValue) {
+            e.rule.message = 'Required!';
+            return false;
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+  private static checkRequiredFieldsForCheckBox(dxForm, script: string, e): boolean {
+    const value = e.value;
+    if (value && script.indexOf('CheckBox_CheckRequiredFields') > 0) {
+      const m = script.match(/CheckBox_CheckRequiredFields[^,]*,[^,]*,[^,]*,\s*'([^']*)'[^,]*,\s*'([^']*)'/);
+      if (m && m.length === 3) {
+        return !!dxForm.option('formData.' + m[1].trim());
+      }
+    }
+    return true;
+  }
+
+  private static validateCustom(dxForm, rule: IValidationRule, e) {
+    if (rule.params && rule.params.param) {
+      const clientScript = rule.params.param.find(p => p._name === 'clientscript');
+      if (clientScript != null) {
+        const script = clientScript._value;
+        if (script) {
+          e.rule.isValid = this.checkRequiredFieldsForDropDown(dxForm, script, e) && this.checkRequiredFieldsForCheckBox(dxForm, script, e);
+        }
+      }
     }
   }
 
   public static validate(e) {
     e.rule.isValid = true;
-    let peer: IFormItemTemplate = e.validator.peer;
-    let ruleList: IValidationRuleList = peer.viewModel.editorOptions.customRules;
+    e.rule.message = undefined;
+    const peer: IFormItemTemplate = e.validator.peer;
+    const ruleList: IValidationRuleList = peer.viewModel.editorOptions.customRules;
     if (ruleList && ruleList.validationRule) {
       ruleList.validationRule.forEach(r => {
         if (e.rule.isValid) {
@@ -400,10 +443,12 @@ export class CValidator {
             this.validateWordList(r, e);
           } else if (r._validationRuleName === 'casValidation') {
             this.validateCas(r, e);
+          } else if (r._validationRuleName === 'custom') {
+            this.validateCustom(peer.viewModel.component, r, e);
           } else {
             // console.log(r);
           }
-          if (!e.rule.isValid) {
+          if (!e.rule.isValid && !e.rule.message) {
             if (r._errorMessage) {
               e.rule.message = r._errorMessage;
             } else {

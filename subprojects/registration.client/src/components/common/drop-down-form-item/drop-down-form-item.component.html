@@ -2,6 +2,6 @@
   [dataSource]="dataSource" [value]="value" [valueExpr]="valueExpr" [displayExpr]="displayExpr"
   [readOnly]="!editMode" [searchEnabled]="true">
   <dx-validator validationGroup="vg" (onInitialized)="onValidatorInitialized($event, this)">
-    <dxi-validation-rule type="custom" [validationCallback]="validate"></dxi-validation-rule>
+    <dxi-validation-rule type="custom" [reevaluate]="true" [validationCallback]="validate"></dxi-validation-rule>
   </dx-validator>
 </dx-select-box>
