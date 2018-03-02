@@ -361,7 +361,7 @@ export class CViewGroup implements IViewGroup {
     return viewGroupsFiltered;
   }
 
-  public static getColumns(temporary: boolean, config: IFormGroup, disabledControls: any[], pickListDomain: any[], 
+  public static getColumns(temporary: boolean, config: IFormGroup, disabledControls: any[], pickListDomain: any[],
     systemSettings: CSystemSettings): CViewGroupColumns {
     const displayMode = 'list';
     const viewGroups: CViewGroup[] = CViewGroup.getViewGroups(temporary, config, displayMode, disabledControls);
@@ -457,17 +457,17 @@ export class CViewGroup implements IViewGroup {
                     caption: (c.headerText && typeof c.headerText === 'string') ? c.headerText : c._name,
                     visible: !c._hidden || c._hidden.toLowerCase() !== 'true'
                   };
-                  if (c.formElement && c.formElement.configInfo && c.formElement.configInfo.fieldConfig && 
+                  if (c.formElement && c.formElement.configInfo && c.formElement.configInfo.fieldConfig &&
                     c.formElement.configInfo.fieldConfig.PickListDomain) {
-                        let currentPickListDomain = pickListDomain.find(d => d.ID.toString() 
-                        === c.formElement.configInfo.fieldConfig.PickListDomain.toString());
-                        if (currentPickListDomain && currentPickListDomain.data) {
-                          column.lookup = {
-                            dataSource: currentPickListDomain.data,
-                            displayExpr: 'value',
-                            valueExpr: 'key'
-                          };
-                        }
+                    let currentPickListDomain = pickListDomain.find(d => d.ID.toString()
+                      === c.formElement.configInfo.fieldConfig.PickListDomain.toString());
+                    if (currentPickListDomain && currentPickListDomain.data) {
+                      column.lookup = {
+                        dataSource: currentPickListDomain.data,
+                        displayExpr: 'value',
+                        valueExpr: 'key'
+                      };
+                    }
                   }
                   if (c._name === 'STATUSCOLUMN' || c._name === 'STATUSID') {
                     column.width = 70;
@@ -794,6 +794,10 @@ export class CSearchCriteria {
     let searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(searchCriteriaItem);
     if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
       searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue;
+    } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeMolWeightCriteria && searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text) {
+      searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text = entryValue;
+    } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeFormulaCriteria && searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text) {
+      searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text = entryValue;
     } else {
       searchCriteriaItemObj.__text = entryValue;
     }
@@ -838,7 +842,7 @@ export class CSearchCriteria {
             this.setQueryEntryValue(i, value.toString());
           }
         }
-        if ((i as any).molweightCriteria) {
+        if ((i as any).molweightCriteria || (i as any).MolWeightCriteria) {
           items.push(this.getMolWeightCriteria(i, value));
         } else {
           items.push(i);
@@ -888,8 +892,8 @@ export class CSearchCriteria {
 
     let molWeightCriteria: any = {
       CSCartridgeMolWeightCriteria: {
-        _negate: c.molweightCriteria._negate,
-        _operator: c.molweightCriteria._operator,
+        _negate: c.molweightCriteria ? c.molweightCriteria._negate : c.MolWeightCriteria._negate,
+        _operator: c.molweightCriteria ? c.molweightCriteria._operator : c.MolWeightCriteria._operator,
         __text: entryValue
       }
     };
