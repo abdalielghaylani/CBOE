@@ -1,6 +1,6 @@
 <command-button testid="close-query-management-button" (onClick)="cancel($event)" iconName="close" title="Close"></command-button>
 <reg-header testid="configuration-heading" id="qa-configuration-heading">
-  Query Management
+  {{(temporary ? 'Temporary' : 'Permanent') + ' Records Query Management' }}
 </reg-header>
 <dx-data-grid id="grdSearchQuery" [height]="parentHeight" [columns]=hitlistVM.gridColumns [attr.data-target]=hitlistVM [masterDetail]="{ enabled: false, template: 'detail' }"
   [dataSource]=records rowAlternationEnabled=true (onEditorPreparing)='onEditorPreparing($event)' (onRowRemoving)='onRowRemoving($event)'
