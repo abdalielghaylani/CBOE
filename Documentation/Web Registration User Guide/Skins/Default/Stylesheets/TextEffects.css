@@ -5,6 +5,13 @@
 	background-image: url("Images/transparent.gif");
 }
 
+/* Bug #109712: Chrome bug - make contact with TOC elements for icon images to display correctly */
+
+[class]
+{
+	
+}
+
 /* Expanding */
 
 .MCExpanding
@@ -30,30 +37,12 @@
 .MCExpandingHotSpot
 {
 	cursor: pointer;
-	background-position: left center;
 	background-repeat: no-repeat;
-	padding-left: 18px;
 }
 
 .MCExpanding_Image_Icon
 {
 	border: none;
-}
-
-.MCExpanding_Open .MCExpandingHotSpot
-{
-	background-image: url("Images/minus.png");
-}
-
-.MCExpanding_Closed .MCExpandingHotSpot
-{
-	background-image: url("Images/plus.png");
-}
-
-.MCExpanding_Closed a.MCExpandingHotSpot,
-.MCExpanding_Open a.MCExpandingHotSpot
-{
-	text-decoration: none;
 }
 
 .MCExpandingBody
@@ -97,19 +86,7 @@
 .MCDropDownHotSpot
 {
 	cursor: pointer;
-	background-position: left center;
 	background-repeat: no-repeat;
-	padding-left: 18px;
-}
-
-.MCDropDown_Open .MCDropDownHotSpot
-{
-	background-image: url("Images/minus.png");
-}
-
-.MCDropDown_Closed .MCDropDownHotSpot
-{
-	background-image: url("Images/plus.png");
 }
 
 .MCDropDown_Closed a.MCDropDownHotSpot,
@@ -165,19 +142,7 @@
 .MCTogglerHotSpot
 {
 	cursor: pointer;
-	background-position: left center;
 	background-repeat: no-repeat;
-	padding-left: 18px;
-}
-
-.MCToggler_Open.MCTogglerHotSpot
-{
-	background-image: url("Images/minus.png");
-}
-
-.MCToggler_Closed.MCTogglerHotSpot
-{
-	background-image: url("Images/plus.png");
 }
 
 a.MCToggler_Closed.MCTogglerHotSpot,
@@ -317,6 +282,61 @@ a.MCToggler_Open.MCTogglerHotSpot
 	text-decoration: none;
 }
 
+/**/
+
+.toolbar-button-drop-down
+{
+	line-height: normal;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 4px 10px #8B8B8B;
+	-moz-box-shadow: 0 4px 10px #8B8B8B;
+	box-shadow: 0 4px 10px #8B8B8B;
+	position: absolute;
+	z-index: 50;
+	background-color: #FFFFFF;
+	color: #707070;
+	border-top: solid 4px transparent;
+	border-right: solid 4px transparent;
+	border-bottom: solid 4px transparent;
+	border-left: solid 4px transparent;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+
+.toolbar-button-drop-down ul
+{
+	list-style: none;
+	margin: 0;
+	padding: 6px;
+}
+
+.toolbar-button-drop-down ul li
+{
+	padding: 5px;
+	cursor: pointer;
+}
+
+.toolbar-button-drop-down ul li:hover
+{
+	color: #000;
+	background-color: #E5EFF7;
+}
+
+.toolbar-button-drop-down ul li a
+{
+	color: inherit;
+	text-decoration: none;
+}
+
+.toolbar-button-drop-down ul li img
+{
+	vertical-align: middle;
+}
+
 /* buttons */
 
 .buttons
@@ -365,8 +385,6 @@ a.MCToggler_Open.MCTogglerHotSpot
 
 .button
 {
-	position: relative;
-	/* need this to workaround CSS3PIE known issue: http://css3pie.com/documentation/known-issues/#z-index */
 	margin: 0px 4px;
 	float: left;
 	cursor: pointer;
@@ -590,6 +608,61 @@ a.MCToggler_Open.MCTogglerHotSpot
 	-webkit-box-shadow: 0px 1px 0px #ffffff;
 	-moz-box-shadow: 0px 1px 0px #ffffff;
 	tooltip: Remove Highlights;
+}
+
+.button.select-skin-button
+{
+	/* Old browsers */
+	/* FF3.6+ */
+	/* Chrome,Safari4+ */
+	/* Chrome10+,Safari5.1+ */
+	/* Opera11.10+ */
+	/* IE10+ */
+	/* W3C */
+	/*PIE*/
+	background: #ececec url('Images/select-skin.png') no-repeat center center;
+	background: url('Images/select-skin.png') no-repeat center center, -moz-linear-gradient(top, #ffffff 0%, #ececec 100%);
+	background: url('Images/select-skin.png') no-repeat center center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ececec));
+	background: url('Images/select-skin.png') no-repeat center center, -webkit-linear-gradient(top, #ffffff 0%, #ececec 100%);
+	background: url('Images/select-skin.png') no-repeat center center, -o-linear-gradient(top, #ffffff 0%,#ececec 100%);
+	background: url('Images/select-skin.png') no-repeat center center, -ms-linear-gradient(top, #ffffff 0%,#ececec 100%);
+	background: url('Images/select-skin.png') no-repeat center center, linear-gradient(top, #ffffff 0%,#ececec 100%);
+	-pie-background: url('Skins/Default/Stylesheets/Images/select-skin.png') no-repeat center center, linear-gradient(#ffffff, #ececec);
+	box-shadow: 0px 1px 0px #ffffff;
+	-webkit-box-shadow: 0px 1px 0px #ffffff;
+	-moz-box-shadow: 0px 1px 0px #ffffff;
+	tooltip: Select skin;
+}
+
+.button.select-language-button
+{
+	/* Old browsers */
+	/* FF3.6+ */
+	/* Chrome,Safari4+ */
+	/* Chrome10+,Safari5.1+ */
+	/* Opera11.10+ */
+	/* IE10+ */
+	/* W3C */
+	/*PIE*/
+	background: #ececec url('Images/select-language.png') no-repeat center center;
+	background: url('Images/select-language.png') no-repeat center center, -moz-linear-gradient(top, #ffffff 0%, #ececec 100%);
+	background: url('Images/select-language.png') no-repeat center center, -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ececec));
+	background: url('Images/select-language.png') no-repeat center center, -webkit-linear-gradient(top, #ffffff 0%, #ececec 100%);
+	background: url('Images/select-language.png') no-repeat center center, -o-linear-gradient(top, #ffffff 0%,#ececec 100%);
+	background: url('Images/select-language.png') no-repeat center center, -ms-linear-gradient(top, #ffffff 0%,#ececec 100%);
+	background: url('Images/select-language.png') no-repeat center center, linear-gradient(top, #ffffff 0%,#ececec 100%);
+	-pie-background: url('Skins/Default/Stylesheets/Images/select-language.png') no-repeat center center, linear-gradient(#ffffff, #ececec);
+	box-shadow: 0px 1px 0px #ffffff;
+	-webkit-box-shadow: 0px 1px 0px #ffffff;
+	-moz-box-shadow: 0px 1px 0px #ffffff;
+	tooltip: Change language;
+}
+
+/* select-language-button image is dynamically set by javascript */
+
+.button.select-language-button img
+{
+	vertical-align: middle;
 }
 
 .loading
@@ -964,6 +1037,46 @@ span.SearchHighlight10
 .highlightIndex
 {
 	font-weight: bold;
+}
+
+@media print
+{
+	.tab-bar
+	{
+		display: none !important;
+	}
+
+	.topicToolbarProxy
+	{
+		display: none !important;
+	}
+
+	._Skins_SideMenu
+	{
+		display: none !important;
+	}
+}
+
+.toolbar-button-drop-down.select-language-drop-down
+{
+	background-color: #FFFFFF;
+}
+
+.toolbar-button-drop-down.select-language-drop-down ul li:hover
+{
+	background-color: #E5EFF7;
+	color: #000;
+}
+
+.toolbar-button-drop-down.select-skin-drop-down
+{
+	background-color: #FFFFFF;
+}
+
+.toolbar-button-drop-down.select-skin-drop-down ul li:hover
+{
+	background-color: #E5EFF7;
+	color: #000;
 }
 
 .highlightGlossary

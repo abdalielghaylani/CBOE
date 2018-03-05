@@ -1,1 +1,1 @@
-define({r:0.5,st:'Stem',n:1,t:[0,69],u:['../Content/ELN2014-COE Integration/Add Compound from ACX system to a Reaction Drawing.htm'],s:['+','screenshot'],p:[['+',37],['checked',42],['empty',83],['is',16],['phenol',11],['save',83],['the',67]]});
+define({r:0.5,st:'Stem',n:1,t:[0],u:['../Content/Logging In to CBOE Manager.htm'],s:['+','uniqu'],p:[['+',20],['defines',22],['modify',13],['so',17]]});

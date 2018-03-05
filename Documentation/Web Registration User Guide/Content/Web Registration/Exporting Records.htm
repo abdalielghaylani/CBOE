@@ -6,10 +6,10 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><title>Exporting Records</title>
-        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" data-mc-generated="True" />
-        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" data-mc-generated="True" />
-        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" data-mc-generated="True" />
-        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" data-mc-generated="True" />
+        <link href="../../Skins/Default/Stylesheets/Slideshow.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/TextEffects.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Topic.css" rel="stylesheet" />
+        <link href="../../Skins/Default/Stylesheets/Components/Styles.css" rel="stylesheet" />
         <link href="../Resources/Stylesheets/help_ie.css" rel="stylesheet" />
         <script src="../../Resources/Scripts/custom.modernizr.js">
         </script>
@@ -27,7 +27,9 @@
         </script>
     </head>
     <body>
-        <div class="MCBreadcrumbsBox_0"><span class="MCBreadcrumbsPrefix">You are here: </span><a class="MCBreadcrumbsLink" href="Web Registration Introduction.htm">Web Registration Introduction</a><span class="MCBreadcrumbsDivider"> &gt; </span><span class="MCBreadcrumbs">Exporting Records</span>
+        <div class="nocontent">
+            <div class="MCBreadcrumbsBox_0 breadcrumbs" data-mc-breadcrumbs-divider=" &gt; " data-mc-breadcrumbs-count="3" data-mc-toc="True"><span class="MCBreadcrumbsPrefix">You are here: </span>
+            </div>
         </div>
         <h1>Exporting Records</h1>
         <p>The Temporary records list, the registered records or the search hitlists may be exported and saved using the following export formats:</p>
@@ -36,9 +38,11 @@
             <li value="2">SDF Flat </li>
         </ul>
         <p>SDF Nested and SDF Flat formats describe how child data will be presented in relation to the parent.</p>
-        <p>In <b>SDF Nested</b>, a record will be created for each base table record and each child table will have its data concatenated into a single sdf field as part of that base record. </p>
-        <p>In <b>SDF Flat</b>, the base table record will be repeated as many times as the child table with the most rows. One child row will appear for each child table. The child row data will be treated as individual fields. </p>
-        <p>Note: the maximum number of records that you are allowed to export is 1000. If the records table contains more than 1000 records, the Export button will not be available.</p>
+        <ul>
+            <li value="1">In <b>SDF Nested</b>, a record will be created for each base table record and each child table will have its data concatenated into a single sdf field as part of that base record. </li>
+            <li value="2">In <b>SDF Flat</b>, the base table record will be repeated as many times as the child table with the most rows. One child row will appear for each child table. The child row data will be treated as individual fields. </li>
+        </ul>
+        <p><b>Note:</b> the maximum number of records that you are allowed to export is 1000. If the records table contains more than 1000 records, the Export button will not be available.</p>
         <p>To export a hitlist:</p>
         <ol>
             <li value="1">Click on the <span class="Action_Object"><b>Export</b> <![CDATA[ ]]></span>button in the search results hitlist window</li>
