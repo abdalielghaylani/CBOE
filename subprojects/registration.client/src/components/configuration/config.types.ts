@@ -8,6 +8,7 @@ export class CConfigTable {
   window: IWindow;
   editMode: string = 'form';
   tableName: string;
+  editHeaderName: string;
   formData: any = {};
   formColumns: any[];
   editFormOptions = {
@@ -104,12 +105,13 @@ export class CConfigTable {
         col.editorOptions = col.lookup;
       }
     });
+    this.editHeaderName = this.tableName.replace('Fragments', 'Fragment');
     if (type === 'add') {
       this.formData = {};
-      this.window = { title: 'Add ' + this.tableName, viewIndex: type };
+      this.window = { title: 'Add ' + this.editHeaderName, viewIndex: type };
     } else {
       this.formData = e.data;
-      this.window = { title: 'Edit ' + this.tableName, viewIndex: type };
+      this.window = { title: 'Edit ' + this.editHeaderName, viewIndex: type };
     }
   }
 
