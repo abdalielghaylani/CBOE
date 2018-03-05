@@ -77,6 +77,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
   private loadIndicatorVisible: boolean = false;
   private customSelectionFlag: boolean = false;
   private groupSelected: any[] = [];
+  private defaultSelectedRowsKeys: any[] = [];
 
   constructor(
     private http: HttpService,
@@ -232,7 +233,11 @@ export class RegSearchExport implements OnInit, OnDestroy {
     let keys = this.grid.instance.getSelectedRowKeys();
     if (keys.length > 0) {
       this.grid.instance.deselectRows(keys);
-    }    
+    }
+    
+    if (this.defaultSelectedRowsKeys.length > 0) {
+      this.grid.instance.selectRows(this.defaultSelectedRowsKeys);
+    }
   }
 
   protected editTemplate() {
@@ -424,6 +429,11 @@ export class RegSearchExport implements OnInit, OnDestroy {
             if (selectedRowsKeys.length > 0) {
               parent.grid.instance.selectRows(selectedRowsKeys);
             }
+
+            if (selectedRowsKeys.length > 0 && parent.currentExportTemplate === 0) {
+              parent.defaultSelectedRowsKeys = selectedRowsKeys.slice();
+            }
+
             parent.setGroupedSelected();
             deferred.resolve(rows, { totalCount: rows.length });
           })
