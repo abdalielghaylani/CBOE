@@ -34,11 +34,11 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
     let mode = this.extractMode(value.DrawingType);
     this.structureData = undefined;
     if (value.Structure) {
-      if ((mode in DrawingType) && (mode !== DrawingType.Chemical) 
-      && (typeof value.Structure.__text === 'undefined')) {
+      if ((mode in DrawingType) && (mode !== DrawingType.Chemical)
+        && (typeof value.Structure.__text === 'undefined')) {
         let title = value.DrawingType.__text === DrawingType.NoStructure.toString() ? 'No Structure'
-        : value.DrawingType.__text === DrawingType.Unknown.toString() ? 'Unknown Structure'
-        : value.DrawingType.__text === DrawingType.NonChemicalContent.toString() ? 'Non-Chemical Content' : undefined;
+          : value.DrawingType.__text === DrawingType.Unknown.toString() ? 'Unknown Structure'
+            : value.DrawingType.__text === DrawingType.NonChemicalContent.toString() ? 'Non-Chemical Content' : undefined;
         value.Structure.__text = this.titleCdxml.replace('{{title}}', title);
       }
       this.structureData = value;
@@ -51,7 +51,7 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
     return value;
   }
 
-  serializeValue(value: any): any  {
+  serializeValue(value: any): any {
     const data = this.structureData;
     if (data) {
       data.Structure.__text = value;
@@ -93,14 +93,20 @@ export class RegStructureFormItem extends RegStructureBaseFormItem {
       this.cdd.setViewOnly(!this.editMode);
       let title = this.mode === DrawingType.NoStructure ? 'No Structure'
         : this.mode === DrawingType.Unknown ? 'Unknown Structure'
-        : this.mode === DrawingType.NonChemicalContent ? 'Non-Chemical Content'
-        : undefined;
+          : this.mode === DrawingType.NonChemicalContent ? 'Non-Chemical Content'
+            : undefined;
       this.cdd.clear();
       this.cdd.markAsSaved();
       if (title) {
         this.cdd.loadCDXML(this.titleCdxml.replace('{{title}}', title));
         // Force sending the update evant to the container
         this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+        this.valueUpdated.emit(this);
+      }
+      if (this.mode === 0 && this.cdd.isBlankStructure() &&
+        this.viewModel.editorOptions.value.Structure) {
+        this.viewModel.editorOptions.value.Structure.__text = undefined;
+        this.viewModel.component.option('formData.' + this.viewModel.dataField).Structure.__text = undefined;
         this.valueUpdated.emit(this);
       }
     }
