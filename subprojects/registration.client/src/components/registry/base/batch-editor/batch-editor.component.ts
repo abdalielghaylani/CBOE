@@ -46,18 +46,11 @@ export class RegBatchEditor implements OnChanges {
   }
 
   protected update() {
-    this.items = this.viewConfig != null ? this.getValidItems() : [];
+    this.items = this.viewConfig != null ? this.viewConfig.getItems('edit') : [];
     if (this.items.find(i => i.itemType === 'group') != null) {
       this.colCount = 1;
     }
-    let validItems = [];
-    this.items.forEach(i => {
-      if (i.itemType === 'group') {
-        validItems = validItems.concat(i.items.filter(ix => !ix.itemType || ix.itemType !== 'empty'));
-      } else if (i.itemType !== 'empty') {
-        validItems.push(i);
-      }
-    });
+    let validItems = this.viewConfig != null ? this.getValidItems() : [];
     this.formData = {};
     this.errorMessages = [];
     validItems.forEach(i => {
