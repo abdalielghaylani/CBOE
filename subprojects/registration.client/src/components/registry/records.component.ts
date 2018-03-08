@@ -908,17 +908,18 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   createBulkContainers() {
-    let regInvContainer = new RegInvContainerHandler();
-    let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
-    let selectedRows = [];
-    let gridItems = this.grid.instance.getVisibleRows();
-    gridItems.map(r => {
-      if (r.data && r.data.Marked) {
-        selectedRows.push(r.key);
-      }
-    });
-    regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
-      selectedRows.join() + `&OpenAsModalFrame=false`), invWideWindowParams);
+    let url = `${apiUrlPrefix}hitlists/getRegNumberList?hitlistId=${this.markedHitListId}`;
+    this.http.get(url).toPromise()
+      .then(res => {
+        let selectedRows = res.json();
+        let regInvContainer = new RegInvContainerHandler();
+        let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
+        regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` + 
+          selectedRows + `&OpenAsModalFrame=false`), invWideWindowParams);
+      })
+      .catch(error => {
+        notifyException(`Getting reg number list failed due to a problem`, error, 5000);
+      });
   }
-
 };
+

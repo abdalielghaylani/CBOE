@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
 using System.Linq;
+using Resources;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
@@ -29,7 +30,7 @@ using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Registration.Services;
-using Resources;
+using CambridgeSoft.COE.Registration.Services.BLL;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -374,6 +375,25 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitlistBO;
         }
 
+
+        [HttpGet]
+        [Route(Consts.apiPrefix + "hitlists/getRegNumberList")]
+        [SwaggerOperation("GetRegNumberListFromHitlist")]
+        [SwaggerResponse(200, type: typeof(string))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetRegNumberListFromHitlist(int hitlistId)
+        {
+            return await CallMethod(() =>
+            {
+
+                GetRegNumberListFromHitlistID.HitListID = hitlistId;
+                var regNumberList = GetRegNumberListFromHitlistID.Execute();
+                return regNumberList;
+            });
+        }
+        
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/markedHitList")]
         [SwaggerOperation("GetMarkedHitList")]
@@ -511,9 +531,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var id = temp ? row.SelectToken("TEMPBATCHID") : row.SelectToken("REGID");
                     markedHitList.MarkHit(int.Parse(id.ToString()));
                 }
-                
-                // markedHitList.MarkAllHits(currentHitlistInfo.HitListID, markedHitList.HitListInfo.HitListID, currentHitlistInfo.HitListType, markedHitsMax - markedHitList.NumHits);
-                
+
                 return new HitlistData(markedHitList);
             });
         }
