@@ -293,6 +293,10 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }
 
   private saveTemplate(e) {
+    if (this.grid.instance.getSelectedRowKeys().length === 0) {
+      notify('Select at least one table criteria before saving the template', 'warning', 5000);
+      return;
+    }
     let validationResult: any = this.saveTemplateForm.validate();
     if (validationResult.isValid) {
       this.updatedFields = [];
@@ -330,7 +334,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
           this.resetTemplateButtons();
           if (this.currentExportTemplate > 0) {
             this.isEditDeleteTemplateButtonEnabled = true;
-          }  
+          }
 
           this.getExportTemplates();
           this.changeDetector.markForCheck();
