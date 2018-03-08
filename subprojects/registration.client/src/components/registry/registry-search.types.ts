@@ -5,11 +5,13 @@ import { IAppState, ILookupData } from '../../redux';
 export const HITLIST_GRID_COLUMNS = [{
   dataField: 'name',
   dataType: 'string',
-  formItem: { colSpan: 2 }
+  formItem: { colSpan: 2 },
+  validationRules: [{ type: 'required', message: 'Name is required' }]
 }, {
   dataField: 'description',
   dataType: 'string',
-  formItem: { colSpan: 2 }
+  formItem: { colSpan: 2 },
+  validationRules: [{ type: 'required', message: 'Description is required' }]
 }, {
   dataField: 'isPublic',
   dataType: 'boolean',
