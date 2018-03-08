@@ -3,11 +3,11 @@ import { IAppState, RecordDetailActions } from '../../../../redux/index';
 import { TestBed, async, inject } from '@angular/core/testing';
 import { TestModule } from '../../../../test/test.module';
 import {
-  RegFormGroupView, RegFormView, RegBatchSelector, RegProjectsFormItem, 
+  RegFormGroupView, RegFormView, RegBatchSelector, RegProjectsFormItem,
   RegFragmentsFormItem, RegIdListFormItem, RegStructureFormItem, RegBatchCreator, RegBatchMover
 } from '../registry-base.module';
 import {
-  RegDateFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownFormItem, 
+  RegDateFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownFormItem,
   RegDropDownColumnItem, RegStructureColumnItem
 } from '../../../index';
 import { RegRecordDetailBase } from './record-detail-base.component';
@@ -45,10 +45,10 @@ describe('Component : Record Detail Base', () => {
         declarations: [RegRecordDetailBase, RegFormGroupView, RegBatchSelector, RegFormView, RegFormGroupItemView,
           CommandButton, RegDateFormItem, RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem, RegDropDownFormItem,
           RegStructureFormItem, RegStructureImageFormItem, RegTextFormItem, RegDropDownColumnItem,
-          RegStructureColumnItem, RegBatchCreator, RegBatchMover ],
+          RegStructureColumnItem, RegBatchCreator, RegBatchMover],
         providers: [
-          { provide: NgRedux, useValue : mockRedux },
-          { provide: RecordDetailActions, useValue : mockActions }
+          { provide: NgRedux, useValue: mockRedux },
+          { provide: RecordDetailActions, useValue: mockActions }
         ]
       });
     };
@@ -111,7 +111,7 @@ describe('Component : Record Detail Base', () => {
       expect(fixture.componentInstance.update).toHaveBeenCalled();
     });
   })));
-  
+
   // update
   it('should check vales on update method call', async(inject([], () => {
     fixture.whenStable().then(() => {
@@ -130,10 +130,10 @@ describe('Component : Record Detail Base', () => {
   // onValueUpdated
   it('should check vales on update', async(inject([], () => {
     fixture.whenStable().then(() => {
-      let expectedVal = { data: 'Test Event Data'}
+      let expectedVal = { data: 'Test Event Data' };
       fixture.autoDetectChanges();
       fixture.componentInstance.onValueUpdated();
-      fixture.componentInstance.valueUpdated.subscribe(e => expect(e).toEqual(expectedVal))
+      fixture.componentInstance.valueUpdated.subscribe(e => expect(e).toEqual(expectedVal));
     });
   })));
 
@@ -167,7 +167,7 @@ describe('Component : Record Detail Base', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       fixture.componentInstance.recordDoc = new Document();
-      fixture.componentInstance.getElementValue = function(){return '1';};
+      fixture.componentInstance.getElementValue = function () { return '1'; };
       expect(fixture.componentInstance.statusId).toEqual(1);
     });
   })));

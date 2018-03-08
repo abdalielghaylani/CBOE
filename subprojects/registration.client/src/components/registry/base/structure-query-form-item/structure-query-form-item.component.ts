@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output, ElementRef, OnChanges, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
 import { IFormItemTemplate, RegStructureBaseFormItem } from '../../../common';
-import { StructureQueryOptionsModel, IStructureQueryOptions } from '../registry-base.types';
+import { IStructureQueryOptions, CStructureQueryOptions } from '../registry-base.types';
 
 @Component({
   selector: 'reg-structure-query-form-item-template',
@@ -10,10 +10,22 @@ import { StructureQueryOptionsModel, IStructureQueryOptions } from '../registry-
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
-  private queryModel = new StructureQueryOptionsModel();
-  private structureCriteriaOptions: IStructureQueryOptions;
-  private index: number = 0;
   private searchTypeOptions: string[] = ['Substructure', 'Full Structure', 'Exact', 'Similarity'];
+  private searchTypeValue: string = this.searchTypeOptions[0];
+  private hitAnyChargeHetero: boolean = true;
+  private reactionCenter: boolean = true;
+  private hitAnyChargeCarbon: boolean = true;
+  private permitExtraneousFragments: boolean = false;
+  private permitExtraneousFragmentsIfRXN: boolean = false;
+  private fragmentsOverlap: boolean = false;
+  private tautometer: boolean = false;
+  private fullSearch: boolean = true;
+  private simThreshold: number = 100;
+  private matchStereochemistry: boolean = true;
+  private tetrahedralStereo: string = 'Same';
+  private doubleBondStereo: string = 'Same';
+  private relativeTetStereo: boolean = false;
+  private index: number = 0;
   private viewConfigGeneral = [{
     dataField: 'hitAnyChargeHetero',
     label: { text: 'Hit any charge on hetero-atom', alignment: 'right' },
@@ -55,7 +67,7 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
     validationRules: [{ type: 'required', message: 'Value between 20 and 100 is required' },
     { type: 'range', min: 20, max: 100, message: 'Value between 20 and 100 is required' }]
   }];
-  private viewConfigSterioChem = [{
+  private viewConfigStereoChem = [{
     dataField: 'matchStereochemistry',
     label: { text: 'Match stereochemistry', alignment: 'right' },
     editorType: 'dxCheckBox'
@@ -77,43 +89,71 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
     super(elementRef);
   }
 
+  deserializeValue(value: any): any {
+    this.searchTypeValue =
+      value._fullSearch === 'YES' ? this.searchTypeOptions[1] :
+        value._identity === 'YES' ? this.searchTypeOptions[2] :
+          value._similar === 'YES' ? this.searchTypeOptions[3] :
+            this.searchTypeOptions[0];
+    this.hitAnyChargeHetero = value._hitAnyChargeHetero === 'YES';
+    this.reactionCenter = value._reactionCenter === 'YES';
+    this.hitAnyChargeCarbon = value._hitAnyChargeCarbon === 'YES';
+    this.permitExtraneousFragments = value._permitExtraneousFragments === 'YES';
+    this.permitExtraneousFragmentsIfRXN = value._permitExtraneousFragmentsIfRXN === 'YES';
+    this.fragmentsOverlap = value._fragmentsOverlap === 'YES';
+    this.tautometer = value._tautometer === 'YES';
+    this.simThreshold = +value._simThreshold;
+    this.matchStereochemistry = value._tetrahedralStereo || value._relativeTetStereo === 'YES' || value._doubleBondStereo === 'YES';
+    this.tetrahedralStereo = value._tetrahedralStereo;
+    this.relativeTetStereo = value._relativeTetStereo === 'YES';
+    this.doubleBondStereo = this.matchStereochemistry && value._doubleBondStereo === 'NO' ? 'Any' : 'Same';
+    const structureValue = value.__text;
+    if (typeof structureValue === 'object' && structureValue.viewModel) {
+      value.__text = structureValue.toString();
+    }
+    return value.__text;
+  }
+
+  serializeValue(value: any): any {
+    let serialized = this.viewModel.component.option('formData.' + this.viewModel.dataField);
+    if (!serialized) {
+      serialized = new CStructureQueryOptions();
+    }
+    serialized._hitAnyChargeHetero = this.hitAnyChargeHetero ? 'YES' : 'NO';
+    serialized._reactionCenter = this.reactionCenter ? 'YES' : 'NO';
+    serialized._hitAnyChargeCarbon = this.hitAnyChargeCarbon ? 'YES' : 'NO';
+    serialized._permitExtraneousFragments = this.permitExtraneousFragments ? 'YES' : 'NO';
+    serialized._permitExtraneousFragmentsIfRXN = this.permitExtraneousFragmentsIfRXN ? 'YES' : 'NO';
+    serialized._fragmentsOverlap = this.fragmentsOverlap ? 'YES' : 'NO';
+    serialized._tautometer = this.tautometer ? 'YES' : 'NO';
+    serialized._simThreshold = this.simThreshold.toString();
+    serialized._tetrahedralStereo = this.matchStereochemistry ? this.tetrahedralStereo : 'SAME';
+    serialized._relativeTetStereo = this.matchStereochemistry && this.relativeTetStereo ? 'YES' : 'NO';
+    serialized._doubleBondStereo = this.matchStereochemistry && this.doubleBondStereo !== 'Any' ? 'YES' : 'NO';
+    serialized._fullSearch = this.searchTypeValue === this.searchTypeOptions[1] ? 'YES' : 'NO';
+    serialized._identity = this.searchTypeValue === this.searchTypeOptions[2] ? 'YES' : 'NO';
+    serialized._similar = this.searchTypeValue === this.searchTypeOptions[3] ? 'YES' : 'NO';
+    serialized.__text = this.cdd == null || this.cdd.isBlankStructure() ? undefined : this;
+    return serialized;
+  }
+
+  protected onContentChanged(e) {
+    this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+    this.valueUpdated.emit(this);
+  }
+
   viewOptions(e) {
     this.index = e;
   }
 
-  getSelectedValue(e) {
-    this.queryModel.searchTypeValue = e;
-    this.onValueUpdated(this);
-  }
-
-  onValueUpdated(e) {
-    this.setStructureSearchOptions();
-    if (this.viewModel) {
-      this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
-    }
+  updateSearchType(e) {
+    this.searchTypeValue = e;
+    this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
     this.valueUpdated.emit(this);
   }
 
-  public setStructureSearchOptions() {
-    // Set structure search Attributes
-    if (this.queryModel) {
-      this.structureCriteriaOptions = {
-        _hitAnyChargeHetero: this.queryModel.hitAnyChargeHetero ? 'YES' : 'NO',
-        _reactionCenter: this.queryModel.reactionCenter ? 'YES' : 'NO',
-        _hitAnyChargeCarbon: this.queryModel.hitAnyChargeCarbon ? 'YES' : 'NO',
-        _permitExtraneousFragments: this.queryModel.permitExtraneousFragments ? 'YES' : 'NO',
-        _permitExtraneousFragmentsIfRXN: this.queryModel.permitExtraneousFragmentsIfRXN ? 'YES' : 'NO',
-        _fragmentsOverlap: this.queryModel.fragmentsOverlap ? 'YES' : 'NO',
-        _tautometer: this.queryModel.tautometer ? 'YES' : 'NO',
-        _simThreshold: this.queryModel.simThreshold.toString(),
-        _fullSearch: this.queryModel.searchTypeValue === 'Full Structure' ? 'YES' : 'NO',
-        _identity: this.queryModel.searchTypeValue === 'Exact' ? 'YES' : 'NO',
-        _similar: this.queryModel.searchTypeValue === 'Similarity' ? 'YES' : 'NO',
-        _tetrahedralStereo: this.queryModel.matchStereochemistry ? this.queryModel.tetrahedralStereo : '',
-        _relativeTetStereo: this.queryModel.matchStereochemistry ? (this.queryModel.relativeTetStereo ? 'YES' : 'NO') : 'NO',
-        _doubleBondStereo: this.queryModel.matchStereochemistry ? (this.queryModel.doubleBondStereo === 'Any' ? 'NO' : 'YES') : 'NO'
-      };
-    }
+  onOptionUpdated(e) {
+    this.viewModel.component.option('formData.' + this.viewModel.dataField, this.serializeValue(this));
+    this.valueUpdated.emit(this);
   }
-
 }

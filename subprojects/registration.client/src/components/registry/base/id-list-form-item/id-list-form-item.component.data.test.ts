@@ -70,7 +70,7 @@ let expectedColumnData = [
     'dataField': 'inputText',
     'caption': 'Value'
   }
-]
+];
 
 let deSerializeInputVal = {
   'Identifier': [{

@@ -6,10 +6,7 @@ import { RegFragmentsFormItem } from './fragments-form-item';
 import { RegIdListFormItem } from './id-list-form-item';
 import { RegProjectsFormItem } from './projects-form-item';
 import { RegStructureFormItem } from './structure-form-item';
-import {
-  RegStructureQueryFormItem,
-  RegStructureQueryOptions
-} from './structure-query-form-item';
+import { RegStructureQueryFormItem, RegStructureQueryOptions } from './structure-query-form-item';
 import { RegFormView } from './form-view';
 import { RegFormGroupView } from './form-group-view';
 import { RegFormGroupItemBase } from './form-group-item-base';
@@ -65,6 +62,7 @@ export * from './batch-editor';
 export * from './batch-mover';
 export * from './batch-selector';
 export * from './search-export';
+export * from './structure-query-form-item';
 export * from './url-form-item';
 
 @NgModule({

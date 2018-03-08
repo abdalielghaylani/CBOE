@@ -1,16 +1,13 @@
 import { TestBed, async, inject } from '@angular/core/testing';
-import { TestModule } from '../../test/test.module';
-import { DevExtremeModule } from 'devextreme-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpModule, XHRBackend, RequestOptions } from '@angular/http';
-import { RegTemplates } from './templates.component';
-import { CommandButton } from '../../common/tool/command-button.component';
-import { RegHeader, RegStructureImage } from '../index';
-import { NgReduxModule, NgRedux } from '@angular-redux/store/lib';
 import { MockBackend } from '@angular/http/testing/mock_backend';
-import { HttpService } from '../../services/http.service';
-import { IAppState } from '../../redux/index';
-
+import { NgReduxModule, NgRedux } from '@angular-redux/store/lib';
+import { TestModule } from '../../test/test.module';
+import { RegistryModule } from '.';
+import { IAppState } from '../../redux';
+import { HttpService } from '../../services';
+import { RegTemplates } from './templates.component';
 
 // Mock out the NgRedux class with just enough to test what we want.
 class MockRedux extends NgRedux<IAppState> {
@@ -35,10 +32,9 @@ describe('Component : Templates', () => {
 
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [ TestModule, DevExtremeModule, 
-            RouterTestingModule, HttpModule ],
-        declarations : [ RegTemplates, CommandButton, RegHeader, 
-            RegStructureImage ],
+        imports: [
+          TestModule, RouterTestingModule, RegistryModule
+        ],
         providers: [
           { provide: XHRBackend, useClass: MockBackend },
           {

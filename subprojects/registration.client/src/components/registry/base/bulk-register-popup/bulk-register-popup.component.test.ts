@@ -12,7 +12,7 @@ describe('Component : Bulk Register Popup', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [TestModule , DevExtremeModule ],
+        imports: [TestModule, DevExtremeModule],
         declarations: [RegBulkRegisterPopup, TestBulkRegisterComponent],
       });
     };
@@ -33,19 +33,19 @@ describe('Component : Bulk Register Popup', () => {
 
   it('should check values emitted on register method call', async(inject([], () => {
     fixture.whenStable().then(() => {
-      let testComponent = new RegBulkRegisterPopup(null);
-      let testEvent = {'data' : 'Test Event'};
-      testComponent['register'](testEvent);
-      testComponent['registerMarked'].subscribe(e => expect(e).toEqual(testComponent['viewModel']));
+      let testComponent: any = new RegBulkRegisterPopup(null);
+      let testEvent = { 'data': 'Test Event' };
+      testComponent.register(testEvent);
+      testComponent.registerMarked.subscribe(e => expect(e).toEqual(testComponent.viewModel));
     });
   })));
 
   it('should check values on cancel register mark method call', async(inject([], () => {
     fixture.whenStable().then(() => {
-      let testComponent = new RegBulkRegisterPopup(null);
-      testComponent.viewModel = {'description': 'Test Description', 'option': 'Test Option', 'isVisible': false };
-      testComponent['cancelRegisterMarked']();
-      expect(testComponent['viewModel.isVisible']).toBeFalsy();
+      let testComponent: any = new RegBulkRegisterPopup(null);
+      testComponent.viewModel = { 'description': 'Test Description', 'option': 'Test Option', 'isVisible': false };
+      testComponent.cancelRegisterMarked();
+      expect(testComponent.viewModel.isVisible).toBeFalsy();
     });
   })));
 
@@ -58,6 +58,6 @@ describe('Component : Bulk Register Popup', () => {
   template: '<reg-bulk-register-popup [viewModel]="viewModel"></reg-bulk-register-popup>'
 })
 
-export class TestBulkRegisterComponent{
+export class TestBulkRegisterComponent {
   viewModel = { isVisible: true };
 }

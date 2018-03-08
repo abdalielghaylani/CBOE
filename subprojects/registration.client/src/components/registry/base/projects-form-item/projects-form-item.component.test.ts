@@ -17,7 +17,7 @@ class MockRedux extends NgRedux<IAppState> {
   getState = () => this.state;
 }
 
-class mockDxForm extends DevExtremeModule {
+class MockDxForm extends DevExtremeModule {
   option = function (field, value) { return true; };
 }
 
@@ -89,7 +89,7 @@ describe('Component : Project Form Item', () => {
 
   it('should check attributes on values changed method call', async(inject([], () => {
     fixture.whenStable().then(() => {
-      let dxComponent = new mockDxForm();
+      let dxComponent = new MockDxForm();
       fixture.componentInstance.savedValue = projectsFormItemTestData.serializeInputSavedValue;
       spyOn(fixture.componentInstance, 'onValueUpdated');
       fixture.autoDetectChanges();

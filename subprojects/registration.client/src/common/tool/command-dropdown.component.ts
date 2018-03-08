@@ -31,7 +31,7 @@ export class CommandDropdown {
   @Input() size: string = 'xs';
   @Input() iconName: string = 'exclamation';
   @Input() items: string[];
-  private selectedText: string;
+  @Input() selectedText: string;
   @Output() onSelected = new EventEmitter<any>();
 
   getSelected(e) {

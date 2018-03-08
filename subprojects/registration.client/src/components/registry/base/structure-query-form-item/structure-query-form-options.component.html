@@ -1,35 +1,36 @@
 <dx-box direction="row" width="100%">
   <dxi-item class="rect" [ratio]="1">
-    <dx-form id="structQueryFormOptionId" (onFieldDataChanged)="onFieldDataChanged($event)"  [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="false">
+    <dx-form id="structQueryFormOptionId" (onFieldDataChanged)="onFieldDataChanged($event)" [formData]="viewModel" [colCount]="colCount" [items]="viewConfig" [readOnly]="false">
       <div *dxTemplate="let d of 'tetrahedralTemplate'">
-        <dx-radio-group layout='horizontal' [items]="['Same','Either','Any']" [(value)]="viewModel.tetrahedralStereo" [disabled]="!viewModel.matchStereochemistry"
-        (onValueChanged)="onFieldDataChanged($event)">
+        <dx-radio-group layout='horizontal' [items]="[{value:'SAME',name:'Same'},{value:'EITHER',name:'Either'},{value:'ANY',name:'Any'}]"
+          valueExpr="value" [(value)]="viewModel.tetrahedralStereo"
+          [disabled]="!viewModel.matchStereochemistry" (onValueChanged)="onFieldDataChanged($event)">
           <div *dxTemplate="let data of 'item'">
-            {{data}} 
+            {{data.name}}
             <img [src]="tetrahedralSameImage" class="pref-image">
-            <img *ngIf="data==='Same'" [src]="tetrahedralSameImage" class="pref-image">
-            <img *ngIf="data==='Either'||data==='Any'" [src]="tetrahedralEitherImage" class="pref-image">
-            <img *ngIf="data==='Any'" [src]="tetrahedralAnyImage" class="pref-image">
+            <img *ngIf="data.name==='Same'" [src]="tetrahedralSameImage" class="pref-image">
+            <img *ngIf="data.name==='Either'||data.name==='Any'" [src]="tetrahedralEitherImage" class="pref-image">
+            <img *ngIf="data.name==='Any'" [src]="tetrahedralAnyImage" class="pref-image">
           </div>
         </dx-radio-group>
-      </div> 
-       <div *dxTemplate="let d of 'relativeTetStereoTemplate'">
-         <dx-check-box (onValueChanged)="onFieldDataChanged($event)" [(value)]="viewModel.relativeTetStereo" [disabled]="!viewModel.matchStereochemistry">
-        </dx-check-box>  
+      </div>
+      <div *dxTemplate="let d of 'relativeTetStereoTemplate'">
+        <dx-check-box (onValueChanged)="onFieldDataChanged($event)" [(value)]="viewModel.relativeTetStereo" [disabled]="!viewModel.matchStereochemistry">
+        </dx-check-box>
         <img [src]="thickBondFirstImage" class="pref-image" class="pref-image">
         <img [src]="thickBondSecondImage" class="pref-image" class="pref-image">
-      </div> 
-       <div *dxTemplate="let d of 'doubleBondTemplate'">
+      </div>
+      <div *dxTemplate="let d of 'doubleBondTemplate'">
         <dx-radio-group (onValueChanged)="onFieldDataChanged($event)" layout='horizontal' [items]="['Same','Any']" [(value)]="viewModel.doubleBondStereo" [disabled]="!viewModel.matchStereochemistry">
           <div *dxTemplate="let data of 'item'">
             {{data}}
-            <img [src]="doublebondSameImage" class="pref-image">
-            <img *ngIf="data==='Same'" [src]="doublebondSameImage" class="pref-image">
-            <img *ngIf="data==='Any'" [src]="doublebondAnyFirstImage" class="pref-image">
-            <img *ngIf="data==='Any'" [src]="doublebondAnySecondImage" class="pref-image">
+            <img [src]="doubleBondSameImage" class="pref-image">
+            <img *ngIf="data==='Same'" [src]="doubleBondSameImage" class="pref-image">
+            <img *ngIf="data==='Any'" [src]="doubleBondAnyFirstImage" class="pref-image">
+            <img *ngIf="data==='Any'" [src]="doubleBondAnySecondImage" class="pref-image">
           </div>
         </dx-radio-group>
-      </div> 
-    </dx-form> 
+      </div>
+    </dx-form>
   </dxi-item>
 </dx-box>

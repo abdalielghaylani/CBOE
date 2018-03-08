@@ -35,13 +35,13 @@ describe('Component : Setting Value Form Item Component', () => {
     fixture.whenStable().then(() => {
       fixture.autoDetectChanges();
       let expectedOutput = ['True', 'False'];
-      let testComponent = new RegSettingValueFormItem();
+      let testComponent: any = new RegSettingValueFormItem();
       testComponent.viewModel = { 'key' : { 'controlType' : 'PICKLIST', 'allowedValues' : 'True|False' },
         'column' : { 'editorOptions' : { 'smallSize' : 'true'} },
         'value' : 'True' };
-      testComponent['update']();
-      expect(testComponent['value']).toEqual('True');
-      expect(testComponent['items']).toEqual(expectedOutput);
+      testComponent.update();
+      expect(testComponent.value).toEqual('True');
+      expect(testComponent.items).toEqual(expectedOutput);
     });
   })));
 

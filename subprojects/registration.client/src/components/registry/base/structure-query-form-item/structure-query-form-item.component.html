@@ -5,7 +5,7 @@
     </dxi-item>
     <dxi-item class="rect" [ratio]="0" [baseSize]="140">
       <div class="dx-field">
-        <command-dropdown class="pull-left" iconName="gear" (onSelected)="getSelectedValue($event)" [items]="searchTypeOptions" [title]="'Choose search type'"></command-dropdown>
+        <command-dropdown class="pull-left" iconName="gear" (onSelected)="updateSearchType($event)" [selectedText]="searchTypeValue" [items]="searchTypeOptions" [title]="'Choose search type'"></command-dropdown>
         <command-button class="pull-left" testid="option-button" (onClick)="viewOptions(1)" iconName="gear" title="General Options"></command-button>
         <command-button class="pull-left" testid="option-button" (onClick)="viewOptions(2)" iconName="gear" title="Stereochemistry"></command-button>
       </div>
@@ -28,11 +28,11 @@
     </dx-box>
   </div>
   <div class="panel-body">
-    <reg-structure-query-form-options-template [hidden]="index!=1" [viewConfig]="viewConfigGeneral" [viewModel]="queryModel"
-      (valueUpdated)="onValueUpdated($event)">
+    <reg-structure-query-form-options-template [hidden]="index!=1" [viewConfig]="viewConfigGeneral" [viewModel]="this"
+      (optionUpdated)="onOptionUpdated($event)">
     </reg-structure-query-form-options-template> 
-    <reg-structure-query-form-options-template [hidden]="index!=2" [viewConfig]="viewConfigSterioChem" [colCount]=1 [viewModel]="queryModel"
-      (valueUpdated)="onValueUpdated($event)">
+    <reg-structure-query-form-options-template [hidden]="index!=2" [viewConfig]="viewConfigStereoChem" [colCount]=1 [viewModel]="this"
+      (optionUpdated)="onOptionUpdated($event)">
     </reg-structure-query-form-options-template>
   </div>
   <div class="panel-footer" *ngIf="index!==0">Please select your search options!</div>

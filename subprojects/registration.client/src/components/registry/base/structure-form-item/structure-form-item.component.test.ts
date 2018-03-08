@@ -54,7 +54,7 @@ describe('Component : Structure Form Item', () => {
       spyOn(fixture.componentInstance, 'updateMode');
       spyOn(fixture.componentInstance, 'extractMode');
       fixture.autoDetectChanges();
-      let returnDeserializedVal = fixture.componentInstance.deserializeValue(StructData)
+      let returnDeserializedVal = fixture.componentInstance.deserializeValue(StructData);
       expect(fixture.componentInstance.structureData).toEqual(StructData);
       expect(typeof returnDeserializedVal).toEqual('string');
       expect(returnDeserializedVal).toEqual(TestStructureText);

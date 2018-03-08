@@ -8,6 +8,12 @@ declare global {
   }
 }
 
+declare global {
+  interface Window {
+    NewRegWindowHandle: any;
+  }
+}
+
 String.prototype.format = String.prototype.format ||
   function () {
     'use strict';

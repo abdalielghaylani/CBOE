@@ -8,6 +8,7 @@ import { RegStructureQueryFormItem } from '../structure-query-form-item/structur
 import { CommandDropdown } from '../../../../common/tool/command-dropdown.component';
 import { RegStructureQueryOptions } from '../structure-query-form-item/structure-query-form-options.component';
 import { CommandButton } from '../../../../common/tool/command-button.component';
+import { RegCommonComponentModule } from '../../../common';
 
 describe('Component : Search Form View', () => {
 
@@ -16,7 +17,7 @@ describe('Component : Search Form View', () => {
   beforeEach(done => {
     const configure = (testBed: TestBed) => {
       testBed.configureTestingModule({
-        imports: [ TestModule, DevExtremeModule ],
+        imports: [ TestModule, DevExtremeModule, RegCommonComponentModule ],
         declarations : [ RegSearchFormView, RegDateFormItem, 
           RegProjectsFormItem, RegFragmentsFormItem, RegIdListFormItem,
           RegDropDownFormItem, RegStructureQueryFormItem, RegTextFormItem,

@@ -756,6 +756,10 @@ export interface ISearchCriteriaItem {
   _modifier?: string;
   _aggregateFunctionName?: string;
   _searchLookupByID?: string;
+  structureCriteria?: any;
+  StructureCriteria?: any;
+  molweightCriteria?: any;
+  MolWeightCriteria?: any;
 }
 
 export class CSearchCriteria {
@@ -778,22 +782,28 @@ export class CSearchCriteria {
   private getQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem): string {
     let value;
     let searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(searchCriteriaItem);
-    if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
-      value = searchCriteriaItemObj.CSCartridgeStructureCriteria.__text;
+    if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria) {
+      value = searchCriteriaItemObj.CSCartridgeStructureCriteria;
     } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeMolWeightCriteria && searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text) {
       value = searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text;
     } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeFormulaCriteria && searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text) {
       value = searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text;
     } else if (searchCriteriaItemObj.__text) {
       value = searchCriteriaItemObj.__text;
+    } else if (searchCriteriaItem.structureCriteria || searchCriteriaItem.StructureCriteria) {
+      value = searchCriteriaItem.structureCriteria ? searchCriteriaItem.structureCriteria : searchCriteriaItem.StructureCriteria;
     }
     return value;
   }
 
   private setQueryEntryValue(searchCriteriaItem: ISearchCriteriaItem, entryValue, serialize: boolean = false) {
     let searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(searchCriteriaItem);
-    if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria && searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
-      searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue;
+    if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeStructureCriteria) {
+      for (let k in entryValue) {
+        if (entryValue.hasOwnProperty(k)) {
+          searchCriteriaItemObj.CSCartridgeStructureCriteria[k] = entryValue[k];
+        }
+      }
     } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeMolWeightCriteria && searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text) {
       searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text = entryValue;
     } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeFormulaCriteria && searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text) {
@@ -831,18 +841,34 @@ export class CSearchCriteria {
   }
 
   public serialize(): string {
-    let items: ISearchCriteriaItem[] = [];
+    const items: ISearchCriteriaItem[] = [];
     this.searchCriteriaItem.forEach(i => {
-      let value: any = this.getQueryEntryValue(i);
+      const value: any = this.getQueryEntryValue(i);
       if (value) {
-        if (typeof value === 'object' && value.viewModel) {
-          if (value && value.structureCriteriaOptions) {
-            this.setStructureSearchOptions(i, value);
-          } else {
-            this.setQueryEntryValue(i, value.toString());
+        if (i.structureCriteria || i.StructureCriteria) {
+          const structureCriteria = i.structureCriteria ? i.structureCriteria : i.StructureCriteria;
+          if (structureCriteria.CSCartridgeStructureCriteria == null) {
+            // The system requires CSCartridgeStructureCriteria, but it's not present.
+            // This might be due to legacy search criteria XML.
+            // Fix this by moving all properties (except _negate) to CSCartridgeStructureCriteria.
+            // Note that this condition is not met when search criteria is restored from saved query.
+            const cartridgeCriteria = {};
+            for (let k in structureCriteria) {
+              if (structureCriteria.hasOwnProperty(k) && k !== '_negate') {
+                cartridgeCriteria[k] = structureCriteria[k];
+                delete structureCriteria[k];
+              }
+            }
+            structureCriteria.CSCartridgeStructureCriteria = cartridgeCriteria;
           }
-        }
-        if ((i as any).molweightCriteria || (i as any).MolWeightCriteria) {
+          const structureData = structureCriteria.CSCartridgeStructureCriteria.__text;
+          if (typeof structureData === 'object' && structureData.viewModel) {
+            structureCriteria.CSCartridgeStructureCriteria.__text = structureData.toString();
+          }
+          if (structureCriteria.CSCartridgeStructureCriteria.__text) {
+            items.push(i);
+          }
+        } else if (i.molweightCriteria || i.MolWeightCriteria) {
           items.push(this.getMolWeightCriteria(i, value));
         } else {
           items.push(i);
@@ -851,32 +877,6 @@ export class CSearchCriteria {
     });
     return CSearchCriteria.x2jsTool.js2xml({ searchCriteria: new CSearchCriteria(items) })
       .replace('<searchCriteria>', `<?xml version="1.0" encoding="UTF-8"?><searchCriteria xmlns="COE.SearchCriteria">`);
-  }
-
-  public setStructureSearchOptions(sc: any, entryValue) {
-    if (entryValue && entryValue.structureCriteriaOptions) {
-      const searchCriteriaItemObj: any = this.getSearchCriteriaItemObj(sc);
-      if (searchCriteriaItemObj) {
-        const options = entryValue.structureCriteriaOptions;
-        if (searchCriteriaItemObj.CSCartridgeStructureCriteria == null) {
-          searchCriteriaItemObj.CSCartridgeStructureCriteria = {};
-        }
-        for (let k in options) {
-          if (options.hasOwnProperty(k)) {
-            searchCriteriaItemObj.CSCartridgeStructureCriteria[k] = options[k];
-          }
-        }
-        if (searchCriteriaItemObj.CSCartridgeStructureCriteria.__text) {
-          searchCriteriaItemObj.CSCartridgeStructureCriteria.__text = entryValue.toString();
-        } else {
-          sc.structureCriteria = {};
-          sc.structureCriteria._negate = 'NO';
-          sc.structureCriteria.CSCartridgeStructureCriteria = {};
-          sc.structureCriteria.CSCartridgeStructureCriteria = entryValue.structureCriteriaOptions;
-          sc.structureCriteria.CSCartridgeStructureCriteria.__text = entryValue.toString();
-        }
-      }
-    }
   }
 
   public getMolWeightCriteria(c: any, entryValue: any) {
@@ -988,38 +988,23 @@ export class CSearchCriteria {
   }
 }
 
-export class StructureQueryOptionsModel {
-  searchTypeValue: string = 'Substructure';
-  hitAnyChargeHetero: boolean = true;
-  reactionCenter: boolean = true;
-  hitAnyChargeCarbon: boolean = true;
-  permitExtraneousFragments: boolean = false;
-  permitExtraneousFragmentsIfRXN: boolean = false;
-  fragmentsOverlap: boolean = false;
-  tautometer: boolean = false;
-  fullSearch: boolean = true;
-  simThreshold: number = 100;
-  matchStereochemistry: boolean = true;
-  tetrahedralStereo: string = 'Same';
-  doubleBondStereo: string = 'Same';
-  relativeTetStereo: boolean = false;
+export class CStructureQueryOptions {
+  _hitAnyChargeHetero: string = 'YES';
+  _reactionCenter: string = 'YES';
+  _hitAnyChargeCarbon: string = 'YES';
+  _permitExtraneousFragments: string = 'NO';
+  _permitExtraneousFragmentsIfRXN: string = 'NO';
+  _fragmentsOverlap: string = 'NO';
+  _tautometer: string = 'NO';
+  _doubleBondStereo: string = 'YES';
+  _simThreshold: string = '100';
+  _fullSearch: string = 'NO';
+  _identity: string = 'NO';
+  _similar: string = 'NO';
+  _tetrahedralStereo: string = 'SAME';
+  _relativeTetStereo: string = 'YES';
+  __text: any;
 }
 
-export interface IStructureQueryOptions {
-  _hitAnyChargeHetero: string;
-  _reactionCenter: string;
-  _hitAnyChargeCarbon: string;
-  _permitExtraneousFragments: string;
-  _permitExtraneousFragmentsIfRXN: string;
-  _fragmentsOverlap: string;
-  _tautometer: string;
-  _doubleBondStereo: string;
-  _simThreshold: string;
-  _fullSearch: string;
-  _identity: string;
-  _similar: string;
-  _tetrahedralStereo: string;
-  _relativeTetStereo: string;
+export interface IStructureQueryOptions extends CStructureQueryOptions {
 }
-
-
