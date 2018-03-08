@@ -912,7 +912,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (data.Assembly.Equals(assemblyItem.Name))
                     {
                         assembly = assemblyItem.FullName;
-                        nameSpace = assemblyItem.Name;
+                        nameSpace = assemblyItem.ClassList.Find(r => r.Name == data.ClassName).NameSpace;
                         break;
                     }
                 }
