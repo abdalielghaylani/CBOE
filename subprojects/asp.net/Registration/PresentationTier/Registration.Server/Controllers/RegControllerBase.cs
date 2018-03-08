@@ -606,6 +606,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
+                    bo.CurrentHitList = new HitListInfo();
                     bo.HitListToRestore = hitlist;
                 }
             }

@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Xml;
+using System.Linq;
 using Microsoft.Web.Http;
 using Newtonsoft.Json.Linq;
 using Swashbuckle.Swagger.Annotations;
@@ -27,6 +28,8 @@ using CambridgeSoft.COE.Framework.COEExportService;
 using CambridgeSoft.COE.Framework.COEFormService;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.Common.Messaging;
+using CambridgeSoft.COE.Registration.Services;
+using Resources;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -43,6 +46,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 throw new RegistrationException("No search criteria is associated with this hit-list");
             var formGroup = GetFormGroup(temp);
             return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteriaBO.SearchCriteria.ToString());
+        }
+
+        private static COEHitListBO GetMarkedHitListBO(bool? temp)
+        {
+            var formGroup = GetFormGroup(temp);
+            var markedHitList = COEHitListBO.GetMarkedHitList(Consts.REGDB, COEUser.Name, formGroup.Id);
+            return markedHitList;
         }
 
         private JObject GetHitlistRecordsInternal(int id, bool? temp, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
@@ -364,6 +374,184 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitlistBO;
         }
 
+        [HttpGet]
+        [Route(Consts.apiPrefix + "hitlists/markedHitList")]
+        [SwaggerOperation("GetMarkedHitList")]
+        [SwaggerResponse(200, type: typeof(HitlistData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> GetMarkedHitList(bool? temp = null)
+        {
+            return await CallMethod(() =>
+            {
+                var markedHitList = GetMarkedHitListBO(temp);
+                return new HitlistData(markedHitList);
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "hitlists/markedHitList/delete")]
+        [SwaggerOperation("DeleteMarkedHitList")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> DeleteMarkedHitList(bool temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                var markedHitList = GetMarkedHitListBO(temp);
+                string message = string.Empty;
+                BulkDelete command = null;
+                List<string> failedRecords = new List<string>();
+                try
+                {
+                    command = BulkDelete.Execute(markedHitList.ID, temp, string.Empty);
+                    if (command.Result)
+                    {
+                        if (command.FailedRecords.Length > 0)
+                        {
+                            message = string.Format(Resource.FollowingRecordsNotDeleted_Label_Text, string.Join(", ", command.FailedRecords));
+                            foreach (string id in command.FailedRecords)
+                            {
+                                failedRecords.Add(id);
+                                markedHitList.UnMarkAllHits(); // In the old reg failed recrods are unmarked
+                            }
+                        }
+                        else
+                        {
+                            message = string.Format("{0} {1} deleted successfully!", markedHitList.NumHits, markedHitList.NumHits == 1 ? "record" : "records");
+                        }
+                    }
+                    else
+                    {
+                        message = Resource.NoRecordWasDeleted_Label_Text;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+
+                var response = new JObject(new JProperty("status", command.Result));
+                if (failedRecords.Count > 0)
+                {
+                    var recordList = new JArray();
+                    foreach (string id in failedRecords)
+                    {
+                        recordList.Add(new JObject() { new JProperty("id", id) });
+                    }
+                    response = new JObject();
+                    response.Add(new JProperty("failedRecords", recordList));
+                }
+
+                return new ResponseData(message: message, data: response);
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "hitlists/markedHitList/approve")]
+        [SwaggerOperation("ApproveMarkedHitList")]
+        [SwaggerResponse(200, type: typeof(ResponseData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> ApproveMarkedHitList(bool temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                var markedHitList = GetMarkedHitListBO(temp);
+                var message = string.Empty;
+                var result = BulkApprove.Execute(markedHitList.ID);
+                return result ? new ResponseData(message: Resource.OperationSucceeded_Label_Text, data: new JObject(new JProperty("status", true))) :
+                    new ResponseData(message: Resource.OperationProblem_Label_Text, data: new JObject(new JProperty("status", false)));
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "hitlists/markhit/{id}")]
+        [SwaggerOperation("MarkHit")]
+        [SwaggerResponse(200, type: typeof(HitlistData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> MarkHit(int id, bool temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                var settings = RegAppHelper.RetrieveSettings().Where(s => s.GroupLabel.Equals("Search") && s.Name.Equals("MarkedHitsMax")).SingleOrDefault();
+                var markedHitsMax = settings != null ? int.Parse(settings.Value) : 0;
+                var markedHitList = GetMarkedHitListBO(temp);
+                if (markedHitList.NumHits + 1 <= markedHitsMax)
+                    markedHitList.MarkHit(id);
+                return new HitlistData(markedHitList);
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "hitlists/markhit/all")]
+        [SwaggerOperation("MarkAllHits")]
+        [SwaggerResponse(200, type: typeof(HitlistData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> MarkAllHits(int hitlistId, string sort = null, bool temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                var settings = RegAppHelper.RetrieveSettings().Where(s => s.GroupLabel.Equals("Search") && s.Name.Equals("MarkedHitsMax")).SingleOrDefault();
+                var markedHitsMax = settings != null ? int.Parse(settings.Value) : 0;
+                var markedHitList = GetMarkedHitListBO(temp);
+                var currentHitlistInfo = hitlistId > 0 ? GetHitlistBO(hitlistId).HitListInfo : new HitListInfo();
+
+                var jsonRows = GetRegistryRecordsListView(temp, null, markedHitsMax, sort, currentHitlistInfo).SelectToken("rows").ToArray();
+                foreach (var row in jsonRows.ToArray())
+                {
+                    var id = temp ? row.SelectToken("TEMPBATCHID") : row.SelectToken("REGID");
+                    markedHitList.MarkHit(int.Parse(id.ToString()));
+                }
+                
+                // markedHitList.MarkAllHits(currentHitlistInfo.HitListID, markedHitList.HitListInfo.HitListID, currentHitlistInfo.HitListType, markedHitsMax - markedHitList.NumHits);
+                
+                return new HitlistData(markedHitList);
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "hitlists/unMarkhit/{id}")]
+        [SwaggerOperation("UnMarkHit")]
+        [SwaggerResponse(200, type: typeof(HitlistData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UnMarkHit(int id, bool temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                var markedHitList = GetMarkedHitListBO(temp);
+                markedHitList.UnMarkHit(id);
+                return new HitlistData(markedHitList);
+            });
+        }
+
+        [HttpPut]
+        [Route(Consts.apiPrefix + "hitlists/unMarkhit/all")]
+        [SwaggerOperation("UnMarkAllHits")]
+        [SwaggerResponse(200, type: typeof(HitlistData))]
+        [SwaggerResponse(400, type: typeof(Exception))]
+        [SwaggerResponse(401, type: typeof(Exception))]
+        [SwaggerResponse(500, type: typeof(Exception))]
+        public async Task<IHttpActionResult> UnMarkAllHits(bool temp = false)
+        {
+            return await CallMethod(() =>
+            {
+                var markedHitList = GetMarkedHitListBO(temp);
+                markedHitList.UnMarkAllHits();
+                return new HitlistData(markedHitList);
+            });
+        }
+
         /// <summary>
         /// Creates a hit-list from a marked list
         /// </summary>
@@ -386,31 +574,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 CheckAuthentication();
-                SearchCriteria searchCriteria = null;
-                if (hitlistData.MarkedHitIDs.Count > 0)
-                {
-                    searchCriteria = new SearchCriteria();
-                    searchCriteria.SearchCriteriaID = 1;
-                    SearchCriteria.SearchCriteriaItem item;
-                    item = new SearchCriteria.SearchCriteriaItem();
-                    SearchCriteria.NumericalCriteria criteria = new SearchCriteria.NumericalCriteria();
-                    criteria.InnerText = string.Join(",", hitlistData.MarkedHitIDs);
-                    criteria.Operator = SearchCriteria.COEOperators.IN;
-                    criteria.Trim = SearchCriteria.Positions.None;
-                    item.FieldId = temp ? 100 : 101;
-                    item.TableId = 1;
-                    item.Criterium = criteria;
-                    searchCriteria.Items.Add(item);
-                }
-
-                var dataViewId = int.Parse(temp ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
-                var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
-                var hitlistInfo = CreateTempHitlist(dataView, searchCriteria);
-                hitlistData.HitlistType = HitListType.SAVED;
-                hitlistData.HitlistID = hitlistInfo.HitListID;
-                var hitlistBO = UpdateHitlistInternal(hitlistInfo.HitListID, hitlistData);
-
-                return new ResponseData(id: hitlistBO.ID);
+                var markedHitList = GetMarkedHitListBO(temp);
+                markedHitList.Name = hitlistData.Name;
+                markedHitList.Description = hitlistData.Description;
+                markedHitList.HitListType = HitListType.SAVED;
+                markedHitList.Save();
+                return new ResponseData(id: markedHitList.ID);
             });
         }
 
@@ -871,35 +1040,17 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             CheckAuthentication();
             var formGroup = GetFormGroup(temp);
 
+            var markedHitList = GetMarkedHitListBO(temp);
+            var isMarked = markedHitList.HitListID == id;
+
             PagingInfo pagingInfo = new PagingInfo();
-            if (inputData.Records != null && inputData.Records.Count > 0)
-            {
-                var dataViewId = int.Parse(temp != null && temp.Value ? ControlIdChangeUtility.TEMPSEARCHGROUPID : ControlIdChangeUtility.PERMSEARCHGROUPID);
-                var dataView = SearchFormGroupAdapter.GetDataView(dataViewId);
-                SearchCriteria searchCriteria = null;
-                searchCriteria = new SearchCriteria();
-                searchCriteria.SearchCriteriaID = 1;
-                SearchCriteria.SearchCriteriaItem item;
-                item = new SearchCriteria.SearchCriteriaItem();
-                SearchCriteria.NumericalCriteria criteria = new SearchCriteria.NumericalCriteria();
-                criteria.InnerText = string.Join(",", inputData.Records);
-                criteria.Operator = SearchCriteria.COEOperators.IN;
-                criteria.Trim = SearchCriteria.Positions.None;
-                item.FieldId = (temp.HasValue && temp.Value) ? 100 : 101;
-                item.TableId = 1;
-                item.Criterium = criteria;
-                searchCriteria.Items.Add(item);
-
-                var tempHitlist = CreateTempHitlist(dataView, searchCriteria);
-
-                pagingInfo.HitListID = tempHitlist.HitListID;
-                pagingInfo.RecordCount = tempHitlist.RecordCount;
-            }
-            else if (id > 0)
+            if (id > 0)
             {
                 var hitlistBO = GetHitlistBO(id);
                 pagingInfo.HitListID = hitlistBO.HitListID;
                 pagingInfo.RecordCount = hitlistBO.HitListInfo.RecordCount;
+                if (isMarked)
+                    pagingInfo.HitListType = HitListType.MARKED;
             }
             else
             {

@@ -24,7 +24,7 @@ import { fetchLimit, printAndExportLimit, apiUrlPrefix, invWideWindowParams } fr
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
-import { RegistryActions, RegistrySearchActions, IRecordListData, CRecordListData } from '../../redux';
+import { RegistryActions, RegistrySearchActions, IRecordListData, CRecordListData, IHitlistData } from '../../redux';
 import { IAppState, CRecordsData, ISearchRecords, ILookupData, IQueryData, CSystemSettings, HitlistType } from '../../redux';
 import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
 import * as dxDialog from 'devextreme/ui/dialog';
@@ -58,8 +58,6 @@ export class RegRecords implements OnInit, OnDestroy {
   private lookups: ILookupData;
   private popupVisible: boolean = false;
   private rowSelected: boolean = false;
-  private selectedRows: any[] = [];
-  private markedRecords: any[] = [];
   private refinedRows: any[] = [];
   private refinedTotalRecordsCount: number = 0;
   private tempResultRows: any[];
@@ -83,9 +81,12 @@ export class RegRecords implements OnInit, OnDestroy {
   private recordsTotalCount: number = 0;
   private refreshHitList: boolean = false;
   private totalSearchableCount: number = 0;
+  private markedHitListId: number = 0;
+  private markedHitlistHitsNum: number = 0;
   private isTotalSearchableCountUpdated: boolean = false;
   private isRefine = false;
   private isAllSelected: boolean = false;
+  private markedHitsMax: number = 0;
 
   constructor(
     private router: Router,
@@ -148,7 +149,6 @@ export class RegRecords implements OnInit, OnDestroy {
   updateHitListId(id: number) {
     if (this.hitListId !== id) {
       this.hitListId = id;
-      this.listData = new CRecordListData(id);
     }
   }
 
@@ -195,6 +195,19 @@ export class RegRecords implements OnInit, OnDestroy {
       });
   }
 
+  getMarkedHitList() {
+    this.http.get(`${apiUrlPrefix}hitlists/markedHitList?temp=${this.temporary}`).toPromise()
+      .then((res => {
+        let markedHitList = res.json();
+        this.markedHitListId = markedHitList.hitlistId;
+        this.markedHitlistHitsNum = markedHitList.numberOfHits;
+        this.changeDetector.markForCheck();
+      }).bind(this))
+      .catch(error => {
+        notifyException(`The search failed due to a problem`, error, 5000);
+      });
+  }
+
   // Trigger data retrieval for the view to show.
   retrieveContents(lookups: ILookupData) {
     this.lookups = lookups;
@@ -202,13 +215,17 @@ export class RegRecords implements OnInit, OnDestroy {
       this.loadIndicatorVisible = true;
     }
 
+    let systemSettings = new CSystemSettings(this.lookups.systemSettings);
     let formGroupType = this.temporary ? FormGroupType.SearchTemporary : FormGroupType.SearchPermanent;
     prepareFormGroupData(formGroupType, this.ngRedux);
     let state = this.ngRedux.getState();
     let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.viewGroupsColumns = this.lookups
-      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, this.lookups.pickListDomains, 
-        new CSystemSettings(this.lookups.systemSettings)) : new CViewGroupColumns();
+      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, this.lookups.pickListDomains, systemSettings) 
+      : new CViewGroupColumns();
+
+    this.markedHitsMax = systemSettings.markedHitsMax;
+    this.getMarkedHitList();
 
     if (this.restore) {
       this.restoreHitlist();
@@ -243,12 +260,10 @@ export class RegRecords implements OnInit, OnDestroy {
   private createCustomStore(ref: RegRecords) {
     const systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
     return new CustomStore({
+      key: ref.idField,
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
-        if (ref.rowSelected) {
-          ref.isPrintAndExportAvailable = (ref.selectedRows.length <= printAndExportLimit && ref.selectedRows.length > 0);
-          deferred.resolve(ref.selectedRows, { totalCount: ref.selectedRows.length });
-        } else if (ref.isRefine) {
+        if (ref.isRefine) {
           let refinedRows = ref.refinedRows;
           ref.recordsTotalCount = ref.refinedTotalRecordsCount;
           ref.refinedRows = [];
@@ -257,39 +272,36 @@ export class RegRecords implements OnInit, OnDestroy {
           ref.isPrintAndExportAvailable = (ref.recordsTotalCount <= printAndExportLimit && ref.recordsTotalCount > 0);
           deferred.resolve(refinedRows, { totalCount: ref.recordsTotalCount });
         } else {
-          let sortCriteria;
-          if (loadOptions.sort != null) {
-            sortCriteria = (loadOptions.sort[0].desc === false) ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
-            ref.sortCriteria = sortCriteria;
+          if (loadOptions.take) {
+            let sortCriteria;
+            if (loadOptions.sort != null) {
+              sortCriteria = (loadOptions.sort[0].desc === false) ? loadOptions.sort[0].selector : loadOptions.sort[0].selector + ' DESC';
+              ref.sortCriteria = sortCriteria;
+            }
+            let url = `${apiUrlPrefix}${ref.temporary ? 'temp-' : ''}records`;
+            let params = '';
+            if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
+            let take = loadOptions.take != null ? loadOptions.take : fetchLimit;
+            if (take) { params += `${params ? '&' : '?'}count=${take}`; }
+            if (ref.sortCriteria) { params += `${params ? '&' : '?'}sort=${ref.sortCriteria}`; }
+            if (ref.hitListId) { params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`; }
+            params += `&highlightSubStructures=${ref.ngRedux.getState().registrysearch.highLightSubstructure}`;
+            url += params;
+            ref.http.get(url)
+              .toPromise()
+              .then(result => {
+                let response = result.json();
+                ref.recordsTotalCount = response.totalCount;
+                ref.updateHitListId(response.hitlistId);
+                ref.setProgressBarVisibility(false);
+                ref.isPrintAndExportAvailable = (response.totalCount <= printAndExportLimit && response.totalCount > 0);
+                deferred.resolve(response.rows, { totalCount: response.totalCount });
+              })
+              .catch(error => {
+                let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
+                deferred.reject(message);
+              });
           }
-          let url = `${apiUrlPrefix}${ref.temporary ? 'temp-' : ''}records`;
-          let params = '';
-          if (loadOptions.skip) { params += `?skip=${loadOptions.skip}`; }
-          const markedHitsMax = systemSettings.markedHitsMax;
-          let takeLimit = fetchLimit;
-          if (markedHitsMax > 0 && markedHitsMax < takeLimit) {
-            takeLimit = markedHitsMax;
-          }
-          let take = loadOptions.take != null ? loadOptions.take : takeLimit;
-          if (take) { params += `${params ? '&' : '?'}count=${take}`; }
-          if (sortCriteria) { params += `${params ? '&' : '?'}sort=${sortCriteria}`; }
-          if (ref.hitListId) { params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`; }
-          params += `&highlightSubStructures=${ref.ngRedux.getState().registrysearch.highLightSubstructure}`;
-          url += params;
-          ref.http.get(url)
-            .toPromise()
-            .then(result => {
-              let response = result.json();
-              ref.recordsTotalCount = response.totalCount;
-              ref.updateHitListId(response.hitlistId);
-              ref.setProgressBarVisibility(false);
-              ref.isPrintAndExportAvailable = (response.totalCount <= printAndExportLimit && response.totalCount > 0);
-              deferred.resolve(response.rows, { totalCount: response.totalCount });
-            })
-            .catch(error => {
-              let message = getExceptionMessage(`The records were not retrieved properly due to a problem`, error);
-              deferred.reject(message);
-            });
         }
         if (!ref.isTotalSearchableCountUpdated) {
           ref.setTotalSearchableCount();
@@ -342,15 +354,75 @@ export class RegRecords implements OnInit, OnDestroy {
     this.grid.instance.refresh();
   }
 
-  onCellClick(e) {
-    if (e.rowType === 'header' && e.column.command === 'select') {
-      if (this.isAllSelected) {
-        this.isAllSelected = false;
-        this.grid.instance.deselectAll();
-      } else {
-        this.isAllSelected = true;
+  selectAllMarked(event) {
+    if (event.value) {
+      if (this.markedHitlistHitsNum !== this.markedHitsMax) {
+        this.loadIndicatorVisible = true;
+        let params = '';
+        if (this.temporary) { params += '?temp=true'; }
+        params += `${params ? '&' : '?'}hitlistId=${this.hitListId}`;
+        if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; }
+        let url = `${apiUrlPrefix}hitlists/markhit/all${params}`;
+        this.http.put(url, undefined).toPromise()
+          .then(result => {
+            let markedHitList = result.json();
+            this.markedHitListId = markedHitList.hitlistId;
+            this.markedHitlistHitsNum = markedHitList.numberOfHits;
+            this.grid.instance.refresh();
+            this.changeDetector.markForCheck();
+            this.setProgressBarVisibility(false);
+          })
+          .catch(error => {
+            notifyException(`Marking all records failed due to a problem`, error, 5000);
+            this.setProgressBarVisibility(false);
+          });
+      }
+    } else {
+      if (this.markedHitlistHitsNum === this.markedHitsMax) {
+        this.loadIndicatorVisible = true;
+        let url = `${apiUrlPrefix}hitlists/unMarkhit/all${this.temporary ? '?temp=true' : ''}`;
+        this.http.put(url, undefined).toPromise()
+          .then(result => {
+            let markedHitList = result.json();
+            this.markedHitListId = markedHitList.hitlistId;
+            this.markedHitlistHitsNum = markedHitList.numberOfHits;
+            this.grid.instance.refresh();
+            this.changeDetector.markForCheck();
+            this.setProgressBarVisibility(false);
+          })
+          .catch(error => {
+            notifyException(`UnMarking all records failed due to a problem`, error, 5000);
+            this.setProgressBarVisibility(false);
+          });
       }
     }
+  }
+
+  selectMarked(event) {
+    let attrid = 'attrid';
+    let recordId = +event.element[0].attributes[attrid].value;
+
+    if (event.value) {
+      if (this.markedHitlistHitsNum + 1 > this.markedHitsMax) {
+        event.element.removeClass('dx-checkbox-checked');
+        event.element.addClass('dx-checkbox');
+        event.value = false;
+        return false;
+      }
+    }
+
+    let url = `${apiUrlPrefix}hitlists/${event.value ? 'markhit' : 'unMarkhit'}/${recordId}${this.temporary ? '?temp=true' : ''}`;
+    this.http.put(url, undefined)
+      .toPromise()
+      .then(result => {
+        let markedHitList = result.json();
+        this.markedHitListId = markedHitList.hitlistId;
+        this.markedHitlistHitsNum = markedHitList.numberOfHits;
+        this.changeDetector.markForCheck();
+      })
+      .catch(error => {
+        notifyException(`Marking/UnMarking records failed due to a problem`, error, 5000);
+      });
   }
 
   onCellPrepared(e) {
@@ -373,6 +445,11 @@ export class RegRecords implements OnInit, OnDestroy {
           $deleteIcon.attr({ 'data-toggle': 'tootip', 'title': 'Delete' });
         }
       }
+    }
+    if (e.rowType === 'data' && e.column.dataField === 'Marked') {
+      let $checkbox = e.cellElement.find('.dx-checkbox');
+      let attrId = this.temporary ? 'TEMPBATCHID' : 'REGID';
+      $checkbox.attr({ attrId: this.temporary ? e.data.TEMPBATCHID : e.data.REGID });
     }
     if (e.rowType === 'data' && e.column.dataField === 'Mol Formula') {
       let fieldData = e.value;
@@ -408,10 +485,6 @@ export class RegRecords implements OnInit, OnDestroy {
     });
   }
 
-  onSelectionChanged(e) {
-    this.selectedRows = e.selectedRowKeys;
-  }
-
   onSearchClick(e) {
     e.cancel = true;
     this.router.navigate([`search/${this.temporary ? 'temp' : ''}`]);
@@ -444,12 +517,6 @@ export class RegRecords implements OnInit, OnDestroy {
     let ids = e.data[this.idField];
     this.registryActions.deleteRecord(this.temporary, { data: [{ id: ids }] });
     e.cancel = true;
-    if (this.grid.instance.getSelectedRowKeys().length > 0) {
-      let key = this.grid.instance.getSelectedRowKeys().find(r => r[this.idField] === ids);
-      if (key) {
-        this.grid.instance.deselectRows(key);
-      }
-    }
     this.isTotalSearchableCountUpdated = false;
   }
 
@@ -478,25 +545,18 @@ export class RegRecords implements OnInit, OnDestroy {
     this.clearSearchForm = true;
     this.rowSelected = false;
     this.isRefine = false;
-    let keys = this.grid.instance.getSelectedRowKeys();
-    this.grid.instance.deselectRows(keys);
     this.grid.instance.refresh();
   }
 
   private saveHitlist() {
     if (this.hitlistVM.saveQueryVM.data.name && this.hitlistVM.saveQueryVM.data.description) {
       if (this.isMarkedQuery === true) {
-        let selectedhitIds = [];
-        (this.temporary) ? this.selectedRows.forEach(v => { selectedhitIds.push(v.TEMPBATCHID); })
-          : this.selectedRows.forEach(v => { selectedhitIds.push(v.REGID); });
-
         let url: string = `${apiUrlPrefix}hitlists/mark/${this.temporary}`;
         this.http.post(url, {
           name: this.hitlistVM.saveQueryVM.data.name,
           description: this.hitlistVM.saveQueryVM.data.description,
           isPublic: this.hitlistVM.saveQueryVM.data.isPublic,
-          hitlistType: HitlistType.MARKED,
-          markedHitIds: selectedhitIds
+          hitlistType: HitlistType.SAVED
         })
           .toPromise()
           .then(result => {
@@ -559,23 +619,19 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private showMarked() {
-    this.markedRecords = [];
-    if (this.selectedRows && this.selectedRows.length > 0 && !this.rowSelected) {
-      this.rowSelected = true;
-      this.selectedRows.map(r => { this.markedRecords.push(r[this.idField]); });
-      this.grid.instance.refresh();
-      this.isPrintAndExportAvailable = true;
-    }
+    this.rowSelected = true;
+    this.loadIndicatorVisible = true;
+    this.updateHitListId(this.markedHitListId);
+    this.grid.instance.refresh();
+    this.isPrintAndExportAvailable = true;
   }
 
   registerMarkedStart(e) {
-    let records: string[] = [];
-    this.selectedRows.forEach(v => { records.push(v.TEMPBATCHID.toString()); });
     this.registryActions.bulkRegister(
       {
         description: e.description,
         duplicateAction: e.option,
-        records: records
+        records: []
       });
     this.regMarkedModel.isVisible = false;
     this.registryActions.clearBulkRrgisterStatus();
@@ -583,21 +639,30 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private deleteMarked() {
-    if (this.selectedRows && this.selectedRows.length > 0) {
+    if (this.markedHitlistHitsNum > 0) {
       let dialogResult = dxDialog.confirm(
         `Are you sure you want to delete these Registry Records?`,
         'Confirm Delete');
       dialogResult.done(result => {
         if (result) {
-          let ids = [];
           this.loadIndicatorVisible = true;
-          this.selectedRows.map(r => { ids.push({ id: r[this.idField] }); });
-          this.registryActions.deleteRecord(this.temporary, { data: ids });
-          this.selectedRows = [];
-          this.rowSelected = false;
-          let keys = this.grid.instance.getSelectedRowKeys();
-          this.grid.instance.deselectRows(keys);
-          this.isTotalSearchableCountUpdated = false;
+          let url = `${apiUrlPrefix}hitlists/markedHitList/delete${this.temporary ? '?temp=true' : ''}`;
+          this.http.put(url, undefined)
+            .toPromise()
+            .then(res => {
+              let responseData = res.json();
+              if (responseData.data.status) {
+                notifySuccess(responseData.message, 5000);
+              } else {
+                notifyError(responseData.message, 5000);
+              }
+              this.setProgressBarVisibility(false);
+              this.getMarkedHitList();
+              this.grid.instance.refresh();
+            })
+            .catch(error => {
+              notifyException(`Delete records failed due to a problem`, error, 5000);
+            });
         }
       });
     }
@@ -605,7 +670,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private registerMarked() {
     let maxRecordAllowed = this.lookups.systemSettings.find(v => v.name === 'MaxRegisterMarked').value;
-    if ((this.selectedRows ? this.selectedRows.length : 0) <= Number(maxRecordAllowed)) {
+    if (this.markedHitlistHitsNum <= Number(maxRecordAllowed)) {
       this.regMarkedModel.isVisible = true;
     } else {
       notify(`You are trying to register more than ` + maxRecordAllowed
@@ -615,9 +680,9 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private showSearchResults() {
-    this.markedRecords = [];
     if (this.rowSelected) {
       this.rowSelected = false;
+      this.updateHitListId(0);
       this.isPrintAndExportAvailable = false || this.recordsTotalCount <= printAndExportLimit;
       this.grid.instance.refresh();
     }
@@ -636,12 +701,8 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; }
     params += `&highlightSubStructures=${this.ngRedux.getState().registrysearch.highLightSubstructure}`;
 
-    let data: number[];
-    if (this.rowSelected) {
-      data = this.selectedRows.map(r => r[this.idField]);
-    }
     url += params;
-    this.http.post(url, data).toPromise()
+    this.http.post(url, undefined).toPromise()
       .then(res => {
         let rows = res.json().rows;
         let structureColumnNamae = this.temporary ? 'Structure' : 'STRUCTUREAGGREGATION';
@@ -777,14 +838,14 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private get approveMarkedEnabled(): boolean {
-    return this.temporary && this.selectedRows && this.selectedRows.length > 0
+    return this.temporary && this.markedHitlistHitsNum > 0
       && this.approvalsEnabled
       && PrivilegeUtils.hasApprovalPrivilege(this.lookups.userPrivileges);
   }
 
   // set delete marked button visibility
   private get deleteMarkedEnabled(): boolean {
-    if (this.selectedRows && this.selectedRows.length > 0) {
+    if (this.markedHitlistHitsNum > 0) {
       return PrivilegeUtils.hasDeletePrivilege(this.temporary, this.lookups.userPrivileges);
     }
     return false;
@@ -809,63 +870,34 @@ export class RegRecords implements OnInit, OnDestroy {
 
   // set bulk register button visibility
   private get registerMarkedEnabled(): boolean {
-    return this.selectedRows && this.selectedRows.length > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
-  }
-
-  private approveRows(ids: number[], failed: number[], succeeded: number[]) {
-    if (ids.length === 0) {
-      // If id list is empty, change deleted rows and refresh grid.
-      // Remove from this.records.data.rows
-      // Remove from this.selectedRows
-      // Also display a message about success/failure.
-      if (failed.length === 0) {
-        notifySuccess(`All marked records were approved successfully!`, 5000);
-      } else if (succeeded.length === 0) {
-        notifySuccess(`Approving failed for all marked records!`, 5000);
-      } else {
-        notify(`Approving for some records failed: ${failed.join(', ')}`, `warning`, 5000);
-      }
-      this.grid.instance.refresh();
-      this.loadIndicatorVisible = false;
-      return;
-    }
-    // Otherwise, shift ids
-    let id = ids.shift();
-    let row = this.selectedRows.find(r => r[this.idField] === id);
-    if (row && row.STATUSID === RegistryStatus.Submitted) {
-      let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}/${RegistryStatus.Approved}`;
-      // Approve first id
-      this.http.put(url, undefined)
-        .catch(error => {
-          failed.push(id);
-          this.approveRows(ids, failed, succeeded);
-          throw error;
-        })
-        .subscribe(r => {
-          if (r !== null) {
-            // Upon successful deletion, recursively call approveRows
-            row.STATUSID = RegistryStatus.Approved;
-            succeeded.push(id);
-            this.approveRows(ids, failed, succeeded);
-          }
-        });
-    } else {
-      this.approveRows(ids, failed, succeeded);
-    }
+    return this.markedHitlistHitsNum > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
   }
 
   private approveMarked() {
-    if (this.selectedRows && this.selectedRows.length > 0) {
+    if (this.markedHitlistHitsNum > 0) {
       let dialogResult = dxDialog.confirm(
         `Are you sure you want to approve the marked registries?`,
         'Confirm Approval');
       dialogResult.done(res => {
         if (res) {
-          let ids: number[] = this.selectedRows.map(r => r[this.idField]);
-          let succeeded: number[] = [];
-          let failed: number[] = [];
           this.loadIndicatorVisible = true;
-          this.approveRows(ids, failed, succeeded);
+          let url = `${apiUrlPrefix}hitlists/markedHitList/approve${this.temporary ? '?temp=true' : ''}`;
+          this.http.put(url, undefined)
+            .toPromise()
+            .then(result => {
+              let responseData = result.json();
+              if (responseData.data.status) {
+                notifySuccess(responseData.message, 5000);
+              } else {
+                notifyError(responseData.message, 5000);
+              }
+              this.setProgressBarVisibility(false);
+              this.getMarkedHitList();
+              this.grid.instance.refresh();
+            })
+            .catch(error => {
+              notifyException(`Approve records failed due to a problem`, error, 5000);
+            });
         }
       });
     }
@@ -878,8 +910,15 @@ export class RegRecords implements OnInit, OnDestroy {
   createBulkContainers() {
     let regInvContainer = new RegInvContainerHandler();
     let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
+    let selectedRows = [];
+    let gridItems = this.grid.instance.getVisibleRows();
+    gridItems.map(r => {
+      if (r.data && r.data.Marked) {
+        selectedRows.push(r.key);
+      }
+    });
     regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
-      this.selectedRows.map(({ REGID }) => REGID).join() + `&OpenAsModalFrame=false`), invWideWindowParams);
+      selectedRows.join() + `&OpenAsModalFrame=false`), invWideWindowParams);
   }
 
 };

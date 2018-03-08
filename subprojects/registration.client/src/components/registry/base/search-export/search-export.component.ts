@@ -30,7 +30,6 @@ export class RegSearchExport implements OnInit, OnDestroy {
   @ViewChild(DxDataGridComponent) grid;
   @Input() temporary: boolean;
   @Input() hitListId: number;
-  @Input() markedRecords: any[];
   @Input() recordsCount: number;
   private rows: any[] = [];
   private dataSource: CustomStore;
@@ -351,16 +350,14 @@ export class RegSearchExport implements OnInit, OnDestroy {
     } else {
       if (this.grid.instance.getSelectedRowKeys().length > 0) {
         let dialogResult = dxDialog.confirm(
-          `Save ${(this.markedRecords && this.markedRecords.length > 0) ? this.markedRecords.length : this.recordsCount} records as sdf`,
+          `Save ${this.recordsCount} records as sdf`,
           'Exporting...');
         dialogResult.done(result => {
           if (result) {
             this.loadIndicatorVisible = true;
             let url = `${apiUrlPrefix}hitlists/${this.hitListId}/export/${this.selectedFileType}${this.temporary ? '?temp=true' : ''}`;
-
             let data = {
-              resultsCriteriaTables: [],
-              records: (this.markedRecords) ? this.markedRecords : [],
+              resultsCriteriaTables: []
             };
             this.grid.instance.getSelectedRowKeys().forEach(key => {
               let field = this.rows.find(r => r.key === key);

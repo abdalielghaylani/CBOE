@@ -490,8 +490,18 @@ export class CViewGroup implements IViewGroup {
                       column.dataType = 'string';
                       columns.push(column);
                     }
+                  } else if (c._name === 'Marked') {
+                    column.dataField = 'Marked';
+                    column.visible = true;
+                    column.width = 70;
+                    column.allowEditing = false;
+                    column.allowFiltering = false;
+                    column.allowSorting = false;
+                    column.cellTemplate = 'markedTemplate';
+                    column.headerCellTemplate = 'markedHeaderTemplate';
+                    columns.push(column);
                   } else if (!c._childTableName) {
-                    column.visible = column.visible && c._name !== 'Marked' && c._name !== 'Review Record';
+                    column.visible = column.visible && c._name !== 'Review Record';
                     if (c.formElement && c.formElement.displayInfo && c.formElement.displayInfo.type) {
                       if (c.formElement.displayInfo.type.indexOf('COEDatePicker') > 0) {
                         column.dataType = 'date';

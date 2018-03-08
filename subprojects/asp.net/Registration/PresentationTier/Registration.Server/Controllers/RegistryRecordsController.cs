@@ -848,19 +848,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 DuplicateAction duplicateAction = BulkRegistrationHelper.GetDuplicateAction(inputData.DuplicateAction);
-                COEHitListBO coeHitListBO = COEHitListBO.New(Consts.REGDB, HitListType.MARKED);
-                coeHitListBO.Update();
+                var formGroup = GetFormGroup(true);
+                var markedHitList = COEHitListBO.GetMarkedHitList(Consts.REGDB, COEUser.Name, formGroup.Id);
 
                 try
                 {
-                    foreach (string recordId in inputData.Records)
-                    {
-                        coeHitListBO.MarkHit(Convert.ToInt32(recordId));
-                    }
-
                     RegistryRecordList.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                     RegRecordListInfo reglistInfo = RegistryRecordList.LoadRegistryRecordList(duplicateAction,
-                        coeHitListBO.ID,
+                        markedHitList.ID,
                         RegUtilities.GetApprovalsEnabled(),
                         UserIdentity.Name,
                         inputData.Description);
@@ -931,11 +926,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 catch (Exception ex)
                 {
-                    COEHitListBO marked = COEHitListBO.Get(HitListType.MARKED, coeHitListBO.ID);
-                    foreach (string recordId in inputData.Records)
-                    {
-                        marked.UnMarkHit(int.Parse(recordId));
-                    }
                     throw ex;
                 }
             });
