@@ -97,28 +97,19 @@ namespace CambridgeSoft.COE.Security.Services
                 //use the path as defined in SSOConfiguration which is now public
                 xmlDoc.Load(SSOConfig.configPath);
 
-                XmlNode xnode = xmlDoc.SelectSingleNode("configuration/coeConfiguration/instances");
+                XmlNode xnode = xmlDoc.SelectSingleNode("configuration/coeConfiguration/dbmsTypes");
 
                 string rval = string.Empty;
 
                 for (int i = 0; i < xnode.ChildNodes.Count; i++)
                 {
-                    var cobeInstanceAttribute = xnode.ChildNodes[i].Attributes["isCBOEInstance"];
-                    if (cobeInstanceAttribute==null) continue;
-                    var isCBOEInstanceString = cobeInstanceAttribute.Value;
-                    var bIsCBOEInstance = false;
-
-                    if (bool.TryParse(isCBOEInstanceString, out bIsCBOEInstance) && bIsCBOEInstance)
+                    if (xnode.ChildNodes[i].Attributes["name"].Value.ToUpper() == "ORACLE")
                     {
                         if (!string.IsNullOrEmpty(xnode.ChildNodes[i].Attributes["dataSource"].Value.ToUpper()))
                         {
                             rval = xnode.ChildNodes[i].Attributes["dataSource"].Value.ToUpper();
                             break;
-                        }
-                        else
-                        {
-                            throw new Exception("either the CSSConnection and COEConfiguration Section failed to provide a datasource!");
-                        }
+                        }                        
                     }
                 }
 
@@ -152,7 +143,7 @@ namespace CambridgeSoft.COE.Security.Services
                     {
                         if (!string.IsNullOrEmpty(xnode.ChildNodes[i].Attributes["password"].Value.ToUpper()))
                         {
-                            rval = xnode.ChildNodes[i].Attributes["password"].Value.ToUpper();
+                            rval = xnode.ChildNodes[i].Attributes["password"].Value;//.ToUpper();
                             break;
                         }
                     }

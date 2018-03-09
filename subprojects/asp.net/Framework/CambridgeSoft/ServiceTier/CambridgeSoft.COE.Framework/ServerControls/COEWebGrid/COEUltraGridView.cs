@@ -10,7 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Infragistics.WebUI.UltraWebGrid;
 using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
-using ChemDrawControl15;
+using ChemDrawControl17;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using System.Reflection;
 

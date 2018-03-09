@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mappings xmlns="COE.Mappings">
+  <selectClause name="field" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseField"/>
+  <selectClause name="literal" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseLiteral"/>
+  <selectClause name="switch" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseCase"/>
+  <selectClause name="concatenation" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseConcatenation"/>
+  <selectClause name="molweight" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMolWeight"/>
+  <selectClause name="formula" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseFormula"/>
+  <selectClause name="avg" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseAvg"/>
+  <selectClause name="max" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMax"/>
+  <!--<selectClause name="max" parserClassName="SQLGeneratorTest.PluginsClausesTests.SelectClauseMax" assemblyName="file://C:\Projects\CambridgeSoft\Common\CambridgeSoft\ServiceTier\SQLGeneratorTest\bin\SQLGeneratorTest.exe"/>-->
+	<!--<selectClause name="switch" parserClassName="PlugInsTest.SelectClauseCasePlugIn" assemblyName="file://C:\Projects\CambridgeSoft\Common\CambridgeSoft\ServiceTier\PlugInsTest\PlugInsTest\bin\PlugInsTest.dll"/>-->
+</mappings>

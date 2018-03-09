@@ -490,6 +490,39 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
             }
         }
 
+        public override SafeDataReader GetRecentHitListsConfig(string userID, int dataviewID, string databaseName, int quantityToRetrieve, DateTime dt)
+        {
+            try
+            {
+                string sql = null;
+                DbCommand dbCommand;
+                SafeDataReader returnSafeDataReader = null;
+                sql = "SELECT * FROM (SELECT ID,HITLISTID,NAME, DESCRIPTION, IS_PUBLIC, NUMBER_HITS, USER_ID, DATE_CREATED,DATABASE,DATAVIEW_ID,PARENT_HITLIST_ID,TYPE,SEARCH_CRITERIA_ID,SEARCH_CRITERIA_TYPE" +
+                " FROM " + _tempHitListIDTableName +
+                " WHERE (USER_ID=" + DALManager.BuildSqlStringParameterName("pUserID") +
+                " OR IS_PUBLIC=" + DALManager.BuildSqlStringParameterName("pIsPublic") + ")" +
+                " AND DATABASE=" + DALManager.BuildSqlStringParameterName("pDatabase") +
+                " AND DATAVIEW_ID=" + DALManager.BuildSqlStringParameterName("pDataViewID") +
+                " AND DATE_CREATED>=" + DALManager.BuildSqlStringParameterName("pDt") +
+                " ORDER BY ID DESC) WHERE ROWNUM<" + DALManager.BuildSqlStringParameterName("pQuantityToRetrieve");
+                System.Diagnostics.Debugger.Log(2, "Information", sql);
+                System.Diagnostics.Debugger.Log(2, "Information", "UserID: " + userID + ", IsPublic: " + 1 + ", Database: " + databaseName + ", DataviewID: " + dataviewID + ", QuantityToRetrieve: " + quantityToRetrieve + "\n");
+                dbCommand = DALManager.Database.GetSqlStringCommand(sql);
+                DALManager.Database.AddParameter(dbCommand, DALManager.BuildSqlStringParameterName("pUserID"), DbType.AnsiString, 1000, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, userID.ToUpper());
+                DALManager.Database.AddParameter(dbCommand, DALManager.BuildSqlStringParameterName("pIsPublic"), DbType.AnsiString, 1, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, "1");
+                DALManager.Database.AddParameter(dbCommand, DALManager.BuildSqlStringParameterName("pDatabase"), DbType.AnsiString, 1000, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, databaseName);
+                DALManager.Database.AddInParameter(dbCommand, DALManager.BuildSqlStringParameterName("pDataViewID"), DbType.Int32, dataviewID);
+                DALManager.Database.AddInParameter(dbCommand, DALManager.BuildSqlStringParameterName("pDt"), DbType.DateTime, dt);
+                DALManager.Database.AddInParameter(dbCommand, DALManager.BuildSqlStringParameterName("pQuantityToRetrieve"), DbType.Int32, ++quantityToRetrieve);
+
+                return new SafeDataReader(DALManager.Database.ExecuteReader(dbCommand));
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         internal override SafeDataReader GetMarkedHitList(string databaseName, string userName, int dataViewID)
         {
             try

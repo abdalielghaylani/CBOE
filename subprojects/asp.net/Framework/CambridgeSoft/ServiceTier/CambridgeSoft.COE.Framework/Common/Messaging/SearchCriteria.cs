@@ -1569,14 +1569,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 }
                 if (node.Attributes["negate"] != null && node.Attributes["negate"].Value != string.Empty)
                     Negate = COEConvert.ToCOEBoolean(node.Attributes["negate"].Value);
-
-                if (node.FirstChild != null &&
-                    node.FirstChild.Attributes != null &&
-                    node.FirstChild.Attributes["operator"] != null &&
-                    !string.IsNullOrEmpty(node.FirstChild.Attributes["operator"].Value))
-                {
-                    Operator = COEConvert.ToCOEOperator(node.FirstChild.Attributes["operator"].Value);
-                }
+                
             }
 
             /// <summary>
@@ -1607,9 +1600,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 StringBuilder builder = new StringBuilder("<MolWeightCriteria>");
                 builder.Append("<CSCartridgeMolWeightCriteria");
                 builder.Append(" negate=\"");
-                builder.Append(Negate.ToString().ToUpper());
-                builder.Append("\" operator=\"");
-                builder.Append(Operator);
+                builder.Append(Negate.ToString().ToUpper());                
                 builder.Append("\" min=\"");
                 builder.Append(min.ToString());
                 builder.Append("\" max=\"");
@@ -1775,12 +1766,8 @@ namespace CambridgeSoft.COE.Framework.Common
                 {
                     Parameter2 = double.Parse(node.Attributes["parameter2"].Value);
                 }
-                // Webplayer passing empty string to server if NONE operator selected, but client passing '0'.
-                // The best way is use tryParse, but for consistent, keep the old way.
-                if (node.InnerXml != null && !string.IsNullOrWhiteSpace(node.InnerXml))
-                {
-                    Parameter1 = double.Parse(node.InnerXml);
-                }
+                
+                    Parameter1 = double.Parse(node.InnerXml);                
             }
 
             /// <summary>
@@ -1989,13 +1976,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 }
 
                 Operator = COEOperators.CONTAINS;
-
-                if (node.Attributes != null &&
-                    node.Attributes["operator"] != null &&
-                    !string.IsNullOrEmpty(node.Attributes["operator"].Value))
-                {
-                    Operator = COEConvert.ToCOEOperator(node.Attributes["operator"].Value);
-                }
+                
             }
             #endregion
         }
@@ -2044,13 +2025,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 {
                     this.Formula = node.InnerText;
                 }
-
-                if (node.FirstChild != null && node.FirstChild.Attributes != null &&
-                    node.FirstChild.Attributes["operator"] != null &&
-                    !string.IsNullOrEmpty(node.FirstChild.Attributes["operator"].Value))
-                {
-                    Operator = COEConvert.ToCOEOperator(node.FirstChild.Attributes["operator"].Value);
-                }
+               
             }
 
             #endregion
@@ -2066,9 +2041,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 StringBuilder builder = new StringBuilder("<FormulaCriteria>");
                 builder.Append("<CSCartridgeFormulaCriteria");
                 builder.Append(" negate=\"");
-                builder.Append(Negate.ToString().ToUpper());
-                builder.Append("\" operator=\"");
-                builder.Append(Operator);
+                builder.Append(Negate.ToString().ToUpper());                
                 builder.Append("\">");
                 builder.Append(this.Formula);
                 builder.Append("</CSCartridgeFormulaCriteria>");
@@ -2103,7 +2076,7 @@ namespace CambridgeSoft.COE.Framework.Common
             /// </summary>
             /// <param name="node">Its xml representation.</param>
             public DirectFormulaCriteria(XmlNode node)
-                : base(node)
+            
             {
                 if (node.Attributes != null && node.Attributes["full"].Value.ToLower() == "true")
                 {
@@ -2134,9 +2107,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 else
                 {
                     builder.Append("false");
-                }
-                builder.Append("\" operator=\"");
-                builder.Append(Operator);
+                }                
                 builder.Append("\">");
                 builder.Append(Formula);
                 builder.Append("</DirectFormulaCriteria>");
@@ -2172,6 +2143,10 @@ namespace CambridgeSoft.COE.Framework.Common
             public JChemFormulaCriteria(XmlNode node)
                 : base(node)
             {
+                if (node.Attributes != null && node.Attributes["full"].Value.ToLower() == "true")
+                {
+                    Operator = COEOperators.EQUAL;
+                }
                 Formula = node.InnerText;
             }
 
@@ -2196,9 +2171,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 else
                 {
                     builder.Append("false");
-                }
-                builder.Append("\" operator=\"");
-                builder.Append(Operator);
+                }                
                 builder.Append("\">");
                 builder.Append(Formula);
                 builder.Append("</JChemFormulaCriteria>");
@@ -3713,12 +3686,7 @@ namespace CambridgeSoft.COE.Framework.Common
             /// EndWith.
             /// </summary>
             [XmlEnum("ENDWITH")]
-            ENDWITH,
-            /// <summary>
-            /// NONE.
-            /// </summary>
-            [XmlEnum("NONE")]
-            NONE
+            ENDWITH
         }
 
         /// <summary>

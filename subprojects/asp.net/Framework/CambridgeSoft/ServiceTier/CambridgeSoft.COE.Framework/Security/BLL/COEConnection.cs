@@ -327,7 +327,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
 
                         if (_coeDAL == null)
                         {
-                            _dalFactory.GetDAL<CambridgeSoft.COE.Framework.COESecurityService.DAL>(ref _coeDAL, "COESecurity", DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB), true);
+                            _dalFactory.GetDAL<CambridgeSoft.COE.Framework.COESecurityService.DAL>(ref _coeDAL, "COESecurity", Resources.CentralizedStorageDB, true);
 
                         }
                         frameworkSchemaVersion = _coeDAL.GetFrameworkSchemaVersion();
@@ -376,7 +376,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
 
                     if (_coeDAL == null)
                     {
-                        _dalFactory.GetDAL<CambridgeSoft.COE.Framework.COESecurityService.DAL>(ref _coeDAL, "COESecurity", DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB), true);
+                        _dalFactory.GetDAL<CambridgeSoft.COE.Framework.COESecurityService.DAL>(ref _coeDAL, "COESecurity", Resources.CentralizedStorageDB, true);
 
                     }
                     _sessionID = _coeDAL.StartSession(_userID);
@@ -424,7 +424,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
 
                     if (_coeDAL == null)
                     {
-                        _dalFactory.GetDAL<CambridgeSoft.COE.Framework.COESecurityService.DAL>(ref _coeDAL, "COESecurity", DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB), true);
+                        _dalFactory.GetDAL<CambridgeSoft.COE.Framework.COESecurityService.DAL>(ref _coeDAL, "COESecurity", Resources.CentralizedStorageDB, true);
 
                     }
                     _coeDAL.EndSession(_sessionID);

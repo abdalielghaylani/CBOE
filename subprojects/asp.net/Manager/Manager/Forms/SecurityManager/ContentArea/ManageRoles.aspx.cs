@@ -75,6 +75,8 @@ public partial class Forms_ContentArea_ManageRoles : GUIShellPage
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
+        Forms_ContentArea_ManageUsers mngUsers = new Forms_ContentArea_ManageUsers();
+        mngUsers.CheckPrivilege("ManageRoles");
     }
     #endregion
 }

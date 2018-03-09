@@ -36,7 +36,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
             }
             catch (Exception ex)
             {
-                throw new InvalidConnection(string.Format(Resources.InvalidConnectionServiceName, DALManager.DatabaseData.DBMSType.ToString()));
+                throw new InvalidConnection(string.Format(Resources.InvalidConnectionServiceName, DALManager.DatabaseData.DBMSType.ToString(), DALManager.DBMSTypeData.DataSource.ToString()));
             }
             finally
             {

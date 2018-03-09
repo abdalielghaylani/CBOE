@@ -39,5 +39,10 @@ namespace CambridgeSoft.COE.Security.Services
         /// <returns></returns>
         /// <remarks>This is only required for those providers that are expected to be used with CS Security.</remarks>
         string GetCSSecurityPassword(string userName, string Password);
+
+        /// <summary>
+        /// Gets the CS security password expiry date.
+        /// </summary>
+        int GetCSExpiryDate(string userName, string Password);
 	}
 }

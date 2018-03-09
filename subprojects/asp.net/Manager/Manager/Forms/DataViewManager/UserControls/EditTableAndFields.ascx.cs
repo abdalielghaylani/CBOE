@@ -260,11 +260,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
 
             this.CancelURL = Page.ResolveUrl("~/Forms/DataViewManager/ContentArea/DataviewBoard.aspx");
             this.CancelURL += "?" + Constants.ParamCaller + "=" + this.SelectedTableId;
-
-            if (Request.Params["schemaSelected"] != null)
-            {
-                this.CancelURL += "&schemaSelected=" + Request.Params["schemaSelected"];
-            }
+            
         }
         if (!Page.IsPostBack)
         {
@@ -906,13 +902,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
         int fieldIdTemp = int.MinValue;
 
         if (int.TryParse(fieldId, out fieldIdTemp))
-        {
-            // If this is remove action, to check the dependency of the field. 
-            if (string.Compare(CommandName, "Remove", StringComparison.InvariantCultureIgnoreCase) == 0 &&
-                !CheckFieldDependency(fieldIdTemp))
-            {
-                return;
-            }
+        {          
 
             FieldBO field = this.DataViewBO.DataViewManager.Tables.GetField(fieldIdTemp);
             if (field != null)
@@ -927,87 +917,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
             }
         }
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-    }
-
-    /// <summary>
-    /// To check if any other field is depending on this field as lookup or relationship.
-    /// </summary>
-    private bool CheckFieldDependency(int fieldId)
-    {
-        // The field path, schema -> table -> field.
-        const string FieldPathPattern = "{0} -> {1} -> {2}";
-
-        this.WarningControl.Visible = false;
-        this.WarningControl.Text = string.Empty;
-
-        // Check if this field is used for any lookup's join field or display field.
-        foreach (var table in this.DataViewBO.DataViewManager.Tables)
-        {
-            foreach (var field in table.Fields)
-            {
-                // FromMasterSchema = true means this field is removed from dataview tempery, and it will be real removed when save to database.
-                // we can ignore this field.
-                if (field.FromMasterSchema)
-                {
-                    continue;
-                }
-
-                // Check if this field is used for any lookup's join field or display field.
-                if (field.LookupFieldId == fieldId || field.LookupDisplayFieldId == fieldId)
-                {
-                    var lookupTable = this.DataViewBO.DataViewManager.Tables.GetTableByFieldId(fieldId);
-                    var fieldPath = string.Empty;
-
-                    if (lookupTable != null)
-                    {
-                        // Append the table name.
-                        fieldPath = string.Format(FieldPathPattern, lookupTable.DataBase, lookupTable.Alias, field.Alias);
-                    }
-
-                    this.WarningControl.Text = string.Format(Resources.Resource.FieldDependencyCheckWarning, fieldPath);
-                    this.WarningControl.Visible = true;
-
-                    return false;
-                }
-            }
-        }
-
-        var relationships = this.DataViewBO.DataViewManager.Relationships;
-
-        // Check if this field is used for any relationship's parent field.
-        if (relationships != null && relationships.Count > 0)
-        {
-            foreach (var relation in relationships)
-            {
-                if (relation.ParentKey == fieldId)
-                {
-                    var childTable = this.DataViewBO.DataViewManager.Tables.GetTable(relation.Child);
-                    if (childTable != null)
-                    {
-                        var childField = childTable.Fields.GetField(relation.ChildKey);
-
-                        // FromMasterSchema = true means this field is removed from dataview tempery, and it will be real removed when save to database.
-                        // we can ignore this field.
-                        if (childField != null && childField.FromMasterSchema)
-                        {
-                            continue;
-                        }
-
-                        if (childField != null)
-                        {
-                            var fieldPath = string.Format(FieldPathPattern, childTable.DataBase, childTable.Alias, childField.Alias);
-                            this.WarningControl.Text = string.Format(Resources.Resource.FieldDependencyCheckWarning, fieldPath);
-                            this.WarningControl.Visible = true;
-                        }
-                    }
-
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
+    }    
 
     /// <summary>
     /// Remove the Entry from relationship
@@ -1074,7 +984,6 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
             url += "&" + Constants.Action + "=EditParentColumn";
             url += "&" + Constants.Caller + "=EditTableAndFields";
             url += "&" + Constants.ParamCaller + "=" + this.SelectedTableId.ToString();
-            url += "&schemaSelected=" + Request["schemaSelected"];
             Server.Transfer(url, true);
         }
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
@@ -1092,7 +1001,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
         //    Session["EditTablealias"] = NameTextBoxWithPopUp.Text;
         //End CSBR-137648
 
-        if (HasRightToLookup())
+        if (this.DataViewBO.DataViewManager.Tables.Count > 1)
         {
             string url = String.Empty;
             if (!string.IsNullOrEmpty(fieldId))
@@ -1101,7 +1010,6 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
                 url = "DefineLookup.aspx?" + Constants.FieldId + "=" + fieldId;
                 url += "&" + Constants.Caller + "=EditTableAndFields";
                 url += "&" + Constants.ParamCaller + "=" + this.SelectedTableId.ToString();
-                url += "&schemaSelected=" + Request["schemaSelected"];
                 Server.Transfer(url, true);
             }
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
@@ -1111,36 +1019,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
             this.ErrorAreaUserControl.Text = Resources.Resource.Lookup_Label_Text;
             this.ErrorAreaUserControl.Visible = true;
         }
-    }
-
-    private bool HasRightToLookup()
-    {
-        var instanceSchema = Request["schemaSelected"];
-        var instanceName = CambridgeSoft.COE.Framework.Common.Utilities.GetInstanceName(instanceSchema);
-
-        // Gets the parent tableBO.
-        var parentTableBO = this.DataViewBO.DataViewManager.Tables.GetTable(this.SelectedTableId);
-
-        foreach (var table in this.DataViewBO.DataViewManager.Tables)
-        {
-            // If there is lookup field, the leftOutter join will be published on Information link.
-            // However information link does not support to self-join, otherwise validation error (identical fault exception) will be thrown.
-            // So need to fiter out the tables has the same table name.
-            if (table.Name == parentTableBO.Name && table.DataBase == parentTableBO.DataBase)
-            {
-                // ignore the table which created from same table source.
-                continue;
-            }
-
-            // If any table come from the same instance, it can set the lookup.
-            if (CambridgeSoft.COE.Framework.Common.Utilities.GetInstanceName(table.DataBase) == instanceName)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    }    
 
     /// <summary>
     /// Creates an Alias of a Field (selected in the grid).
@@ -1373,8 +1252,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
 
                 this.NameTextBoxWithPopUp.Text = selectedTable.Name;
 
-                this.TableFieldsUltraWebGrid.DisplayLayout.Bands[0].Columns.FromKey(ColumnKeys.Name.ToString()).SortIndicator = SortIndicator.Ascending;
-                this.TableFieldsUltraWebGrid.DisplayLayout.Bands[0].SortedColumns.Add(ColumnKeys.Name.ToString());
+                this.TableFieldsUltraWebGrid.DisplayLayout.Bands[0].Columns.FromKey(ColumnKeys.SortOrder.ToString()).SortIndicator = SortIndicator.Ascending;
 
                 //Bottom Details table.
                 foreach (FieldBO item in selectedTable.Fields)
@@ -1447,8 +1325,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
 
             this.NameTextBoxWithPopUp.Text = selectedTable.Name;
 
-            this.TableFieldsUltraWebGrid.DisplayLayout.Bands[0].Columns.FromKey(ColumnKeys.Name.ToString()).SortIndicator = SortIndicator.Ascending;
-            this.TableFieldsUltraWebGrid.DisplayLayout.Bands[0].SortedColumns.Add(ColumnKeys.Name.ToString());
+            this.TableFieldsUltraWebGrid.DisplayLayout.Bands[0].Columns.FromKey(ColumnKeys.SortOrder.ToString()).SortIndicator = SortIndicator.Ascending;
 
             //Bottom Details table.
 
@@ -1684,7 +1561,7 @@ public partial class EditTableAndFields : System.Web.UI.UserControl, ICallbackEv
                 // if there is no priamry key, then there is no need to check whether primary key is valid or not
                 if (table.PrimaryKey != 0)
                 {
-                    List<string> lstInvalidPrimaryKeyFields = theCOEDataViewBO.GetInvalidPrimaryKeyFields(table.DataBase, table.Name);
+                    List<string> lstInvalidPrimaryKeyFields = theCOEDataViewBO.GetInvalidPrimaryKeyFields(table.Name);
 
                     for (int i = 0; i < table.Fields.Count; i++)
                     {

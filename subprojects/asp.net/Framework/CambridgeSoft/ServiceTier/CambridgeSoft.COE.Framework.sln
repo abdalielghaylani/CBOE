@@ -12,10 +12,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CambridgeSoft.COE.Framework.WebServiceHost", "CambridgeSoft.COE.Framework.WebServiceHost", "{9672A4DC-D60F-4E11-9356-492619FA7660}"
 	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "Perforce Project"
+		SccProjectName = ""
 		SccAuxPath = ""
-		SccLocalPath = "..\.."
-		SccProvider = "MSSCCI:Perforce SCM"
+		SccLocalPath = ""
+		SccProvider = ""
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/CambridgeSoft.COE.Framework.WebServiceHost"
 		Debug.AspNetCompiler.PhysicalPath = "CambridgeSoft.COE.Framework.WebServiceHost\"
@@ -36,10 +36,10 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CambridgeSoft.COE.Framework
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CambridgeSoft.COE.Framework.RemotingHost", "CambridgeSoft.COE.Framework.RemotingHost", "{445429F5-C7D1-45B3-887B-9FB1E392360D}"
 	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = "Perforce Project"
+		SccProjectName = ""
 		SccAuxPath = ""
-		SccLocalPath = "..\.."
-		SccProvider = "MSSCCI:Perforce SCM"
+		SccLocalPath = ""
+		SccProvider = ""
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/CambridgeSoft.COE.Framework.RemotingHost"
 		Debug.AspNetCompiler.PhysicalPath = "CambridgeSoft.COE.Framework.RemotingHost\"
@@ -59,12 +59,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CambridgeSoft.COE.Framework
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework.Web", "CambridgeSoft.COE.Framework.Web\CambridgeSoft.COE.Framework.Web.csproj", "{DAD4930C-278F-416C-BB43-1F9F74CC27AB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework.UnitTests", "CambridgeSoft.COE.Framework.UnitTests\CambridgeSoft.COE.Framework.UnitTests.csproj", "{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework.NUnitTest.SQLGenerator", "SQLGenerator.NUnitTest\CambridgeSoft.COE.Framework.NUnitTest.SQLGenerator.csproj", "{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CambridgeSoft.COE.Framework.NUnitTests", "CambridgeSoft.COE.Framework.NUnitTests\CambridgeSoft.COE.Framework.NUnitTests.csproj", "{F81D7082-61B5-48B0-A67B-13FDD0113691}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,36 +110,6 @@ Global
 		{DAD4930C-278F-416C-BB43-1F9F74CC27AB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DAD4930C-278F-416C-BB43-1F9F74CC27AB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{DAD4930C-278F-416C-BB43-1F9F74CC27AB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Release|.NET.ActiveCfg = Release|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{36BBC265-A0DC-4AFC-A779-C6904EDD79CF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Release|.NET.ActiveCfg = Release|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C1DD0FB4-5D59-4FCF-B59A-6223A9BC4910}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Release|.NET.ActiveCfg = Release|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F81D7082-61B5-48B0-A67B-13FDD0113691}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,9 +122,9 @@ Global
 		SccProjectUniqueName1 = CambridgeSoft.COE.Framework\\CambridgeSoft.COE.Framework.csproj
 		SccLocalPath1 = ..
 		SccProjectFilePathRelativizedFromConnection1 = ServiceTier\\CambridgeSoft.COE.Framework\\
-		SccProjectUniqueName2 = CambridgeSoft.COE.Framework.UnitTests\\CambridgeSoft.COE.Framework.UnitTests.csproj
-		SccLocalPath2 = ..
-		SccProjectFilePathRelativizedFromConnection2 = ServiceTier\\CambridgeSoft.COE.Framework.UnitTests\\
+		#SccProjectUniqueName2 = CambridgeSoft.COE.Framework.UnitTests\\CambridgeSoft.COE.Framework.UnitTests.csproj
+		#SccLocalPath2 = ..
+		#SccProjectFilePathRelativizedFromConnection2 = ServiceTier\\CambridgeSoft.COE.Framework.UnitTests\\
 		SccProjectUniqueName3 = CambridgeSoft.COE.Framework.Web\\CambridgeSoft.COE.Framework.Web.csproj
 		SccLocalPath3 = .
 		SccProjectFilePathRelativizedFromConnection3 = CambridgeSoft.COE.Framework.Web\\

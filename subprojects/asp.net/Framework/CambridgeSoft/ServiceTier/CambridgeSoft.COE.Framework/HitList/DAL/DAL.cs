@@ -35,10 +35,10 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
             try
             {
                 string owner = this.DALManager.DatabaseData.OriginalOwner.ToString();
-                HitListUtilities.BuildTempHitListFullTableName(owner, ref _tempHitListTableName);
-                HitListUtilities.BuildTempHitListIDFullTableName(owner, ref _tempHitListIDTableName);
-                HitListUtilities.BuildSavedHitListFullTableName(owner, ref _savedHitListTableName);
-                HitListUtilities.BuildSavedHitListIDFullTableName(owner, ref _savedHitListIDTableName);
+                HitListUtilities.BuildTempHitListTableName(owner, ref _tempHitListTableName);
+                HitListUtilities.BuildTempHitListIDTableName(owner, ref _tempHitListIDTableName);
+                HitListUtilities.BuildSavedHitListTableName(owner, ref _savedHitListTableName);
+                HitListUtilities.BuildSavedHitListIDTableName(owner, ref _savedHitListIDTableName);
 
             }
             catch (Exception ex)
@@ -1288,6 +1288,11 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
         }
 
         public virtual SafeDataReader GetRecentHitLists(string userID, int dataviewID, string databaseName, int quantityToRetrieve) {
+            return null;
+        }
+
+        public virtual SafeDataReader GetRecentHitListsConfig(string userID, int dataviewID, string databaseName, int quantityToRetrieve, DateTime dt)
+        {
             return null;
         }
 

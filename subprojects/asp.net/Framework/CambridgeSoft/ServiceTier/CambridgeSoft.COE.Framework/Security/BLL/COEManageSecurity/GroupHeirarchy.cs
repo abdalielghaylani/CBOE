@@ -90,7 +90,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
                 {
                     try
                     {
-                        COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+                        COEDatabaseName.Set(Resources.CentralizedStorageDB);
                         if (_coeDAL == null) { LoadDAL(); }
                         // Coverity Fix CID - 11633
                         if (_coeDAL != null)

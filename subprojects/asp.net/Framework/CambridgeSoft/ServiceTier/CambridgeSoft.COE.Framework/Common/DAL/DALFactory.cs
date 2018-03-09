@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Configuration;
 using System.Reflection;
-
 using CambridgeSoft.COE.Framework.Properties;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
-using System.Linq;
+
 
 namespace CambridgeSoft.COE.Framework.Common
 {
@@ -26,35 +28,14 @@ namespace CambridgeSoft.COE.Framework.Common
         /// <param name="Tvariable">The DAL class modified by ref</param>
         public void GetDAL<T>(ref T Tvariable, string serviceName, string databaseName, bool adminOverride) where T : DALBase
         {
-            this.GetConfigData(databaseName, serviceName, COEAppName.Get());
+            this.GetConfigData(databaseName, serviceName, COEAppName.Get().ToString());
             if (DALManager == null) DALManager = DALUtils.GetDALManager(DatabaseConfigData, ServiceConfigData, DBMSTypeData,adminOverride);
             string dalProviderName = ConfigurationUtilities.GetDALProviderClass(ServiceConfigData, DatabaseConfigData.ProviderName);
             if (Tvariable == null) Tvariable = CreateDAL<T>(ServiceConfigData, dalProviderName);
             Tvariable.DALManager = DALManager;
             Tvariable.SetServiceSpecificVariables();
         }
-
-        /// <summary>
-        /// Create a DAL object to access the given database
-        /// </summary>
-        /// <typeparam name="T"> DAL type </typeparam>
-        /// <param name="databaseName"> the given database name </param>
-        /// <param name="adminOverride"></param>
-        /// <returns> the DAL </returns>
-        public T GetDAL<T>(string databaseName, bool adminOverride) where T : DALBase
-        {
-            DatabaseConfigData = ConfigurationUtilities.GetDatabaseData(databaseName);
-            var instanceData = ConfigurationUtilities.GetInstanceData(DatabaseConfigData.InstanceId);
-            DatabaseConfigData.InstanceData = instanceData;
-
-            var dalManaer= DALUtils.GetDALManager(DatabaseConfigData, ServiceConfigData, DBMSTypeData, adminOverride);
-            string dalProviderName = ConfigurationUtilities.GetDALProviderClass(ServiceConfigData, DatabaseConfigData.ProviderName);
-            T  Tvariable = CreateDAL<T>(ServiceConfigData, dalProviderName);
-            Tvariable.DALManager = dalManaer;
-            Tvariable.SetServiceSpecificVariables();
-            return Tvariable;
-        }
-
+        
         /// <summary>
         /// Configures the DAL class via reflection.
         /// </summary>
@@ -66,7 +47,7 @@ namespace CambridgeSoft.COE.Framework.Common
         /// <param name="typeName"></param>
         public void GetDAL<T>(ref T Tvariable, string serviceName, string databaseName, bool adminOverride, string typeName) where T : DALBase
         {
-            this.GetConfigData(databaseName, serviceName, COEAppName.Get());
+            this.GetConfigData(databaseName, serviceName, COEAppName.Get().ToString());
             if (DALManager == null) DALManager = DALUtils.GetDALManager(DatabaseConfigData, ServiceConfigData, DBMSTypeData, adminOverride);
             string dalProviderName = ConfigurationUtilities.GetDALProviderClass(ServiceConfigData, DatabaseConfigData.ProviderName);
             if (Tvariable == null) Tvariable = CreateDAL<T>(ServiceConfigData.DALProviderAssemblyNameFull, typeName);
@@ -84,7 +65,7 @@ namespace CambridgeSoft.COE.Framework.Common
         /// <param name="Tvariable">The DAL class modified by ref</param>
         public void GetDAL<T>(ref T Tvariable, string serviceName, string databaseName, bool adminOverride, bool notFromCache) where T : DALBase
         {
-            this.GetConfigData(databaseName, serviceName, COEAppName.Get(), notFromCache);
+            this.GetConfigData(databaseName, serviceName, COEAppName.Get().ToString(), notFromCache);
             if (DALManager == null) DALManager = DALUtils.GetDALManager(DatabaseConfigData, ServiceConfigData, DBMSTypeData, adminOverride);
             string dalProviderName = ConfigurationUtilities.GetDALProviderClass(ServiceConfigData, DatabaseConfigData.ProviderName);
             if (Tvariable == null) Tvariable = CreateDAL<T>(ServiceConfigData, dalProviderName);
@@ -167,19 +148,6 @@ namespace CambridgeSoft.COE.Framework.Common
                 
                 return DAL as T;
             }
-        }
-
-        internal void SetAllConfigDataExceptDatabase(string instanceName, string serviceName, string appName)
-        {
-            if (_appConfigData == null && appName != string.Empty)
-            {
-                _appConfigData = ConfigurationUtilities.GetApplicationData(appName);
-            }
-
-            if (_serviceConfigData == null)
-            {
-                _serviceConfigData = ConfigurationUtilities.GetServiceData(serviceName);
-            }
-        }
+        }       
     }
 }

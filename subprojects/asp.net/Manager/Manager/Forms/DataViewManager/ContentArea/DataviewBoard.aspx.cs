@@ -8,20 +8,19 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.COEDataViewService;
+using System.Reflection;
+using System.Collections.Generic;
 using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
 using CambridgeSoft.COE.Framework.Common;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
 
 namespace Manager.Forms.DataViewManager.ContentArea
 {
     public partial class DataviewBoard : GUIShellPage, ICallbackEventHandler
     {
+
+
         #region Properties
         private string PreviousSelectedNode
         {
@@ -39,14 +38,7 @@ namespace Manager.Forms.DataViewManager.ContentArea
         {
             get
             {
-                var dataviewBO = this.Master.GetDataViewBO();
-
-                if (dataviewBO != null)
-                {
-                    return this.Master.GetDataViewBO().DataViewManager;
-                }
-
-                return null;
+                return this.Master.GetDataViewBO().DataViewManager;
             }
         }
         #endregion
@@ -118,70 +110,35 @@ namespace Manager.Forms.DataViewManager.ContentArea
             }
             this.Toolbar.DatabaseName = this.TablesTreeViewUserControl.SelectedDatabase;
 
-            Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-        }
-
-        protected void Page_PreRender(object sender, EventArgs e)
-        {
-            SetButtonStatus();
-        }
-
-        private void SetButtonStatus() 
-        {
             //Jira ID - 543, Disabling Refresh/Remove Schema buttons when there is only one published schema in Edit Master, user can not delete all schemas
             DropDownList schemaDropDownList = ((DropDownList)this.TablesTreeViewUserControl.FindControl("SchemaDropDownList"));
-            DropDownList InstanceDropDownList = ((DropDownList)this.TablesTreeViewUserControl.FindControl("InstanceDropDownList"));
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
-            if (schemaDropDownList.Items.Count < 1 && (!string.IsNullOrEmpty(InstanceDropDownList.SelectedValue)
-                && !InstanceDropDownList.SelectedValue.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase)))
-            {
-                this.Toolbar.RemoveSchemaButton.Enabled = false;
-            }
-            else
+            if (schemaDropDownList.Items.Count > 1)
             {
                 this.Toolbar.RemoveSchemaButton.Enabled = true;
             }
+            else
+            {
+                this.Toolbar.RemoveSchemaButton.Enabled = false;
+            }
 
             //CSBR-158344: Disabling Submit buttton when there are no published schemas in Edit Master
-            if (DataViewManager != null && DataViewManager.Tables.Count >= 1)
+            if (schemaDropDownList.Items.Count >= 1)
             {
                 this.Toolbar.SubmitButton.Enabled = true;
                 this.DoneImageButton.Enabled = true;
+                this.Toolbar.RefreshSchemaButton.Enabled = true;
+                this.TablesTreeViewUserControl.RemoveSchemaLink.Enabled = true;
+                this.TablesTreeViewUserControl.AddTableLink.Enabled = true;
             }
             else
             {
                 this.Toolbar.SubmitButton.Enabled = false;
                 this.DoneImageButton.Enabled = false;
-            }
-
-            if (schemaDropDownList.Items.Count >= 1)
-            {
-                this.Toolbar.RefreshSchemaButton.Enabled = true;
-                //CBOE-2192: RemoveSchema Link Button is not  required while submit button is enabled.
-                this.TablesTreeViewUserControl.RemoveSchemaLink.Visible = false;
-                this.TablesTreeViewUserControl.AddTableLink.Enabled = true;
-            }
-            else
-            {
                 this.Toolbar.RefreshSchemaButton.Enabled = false;
-                //CBOE-2192: RemoveSchema Link Button is not  required while submit button is enabled.
-                this.TablesTreeViewUserControl.RemoveSchemaLink.Visible = false;
+                this.TablesTreeViewUserControl.RemoveSchemaLink.Enabled = false;
                 this.TablesTreeViewUserControl.AddTableLink.Enabled = false;
             }
-        }
-
-        private void BindInstances()
-        {
-            DropDownList instanceDropDownList = ((DropDownList)this.TablesTreeViewUserControl.FindControl("InstanceDropDownList"));
-            if (instanceDropDownList.Items.Count > 1)
-            {
-                this.Toolbar.RemoveSchemaButton.Enabled = true;
-            }
-            else
-            {
-                this.Toolbar.RemoveSchemaButton.Enabled = false;
-            }
+            Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         }
 
         #endregion
@@ -214,7 +171,7 @@ namespace Manager.Forms.DataViewManager.ContentArea
             this.DataViewManager.Tables.Remove(tableId);
             this.SchemaSummary.BindSchemaDetails(schema);
             this.Toolbar.BindToolbar(schema);
-            this.TablesTreeViewUserControl.DataBind(this.DataViewManager.Tables, this.DataViewManager.BaseTableId,this.DataViewManager.DataBase);
+            this.TablesTreeViewUserControl.DataBind(this.DataViewManager.Tables, this.DataViewManager.BaseTableId);
         }
 
         void TableSummaryUC_TableDuplicated(object sender, CommandEventArgs e)
@@ -234,7 +191,7 @@ namespace Manager.Forms.DataViewManager.ContentArea
         void DuplicateTableUC_Cancel(object sender, CommandEventArgs e)
         {
             TableListBO masterTables = this.GetTablesList();
-            this.TablesTreeViewUserControl.DataBind(masterTables, this.DataViewManager.BaseTableId, this.DataViewManager.DataBase);
+            this.TablesTreeViewUserControl.DataBind(masterTables, this.DataViewManager.BaseTableId);
         }
 
         #endregion
@@ -346,24 +303,12 @@ namespace Manager.Forms.DataViewManager.ContentArea
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             int baseTableID = this.GetBaseTableID();
             TableListBO tables = null;
-
-            // Why comment out these code?
-            // Fix DAT-1971: add duplicate tables and click remove button to remove one, and click edit table and back to this page, the added tables disappeared.
-            // Root cause: 
-            //        When user delete the table, SchemaChange will ba marked as true, and when user edit table and back to this page, it will reload the DV from database.
-            // Resolution: 
-            //        We want keep all changes until user click submit button to save change to database, or click Cancel to rollback all changes.
-            // 
-
-            /**
             if (Request["IsMaster"] != null && bool.Parse(Request["IsMaster"]) && Session["SchemaChange"] != null && Convert.ToBoolean(Session["SchemaChange"]) == true)
             {
                 COEDataViewBO theCOEDataViewBO = COEDataViewBO.GetMasterSchema();
                 this.Master.SetDataViewBO(theCOEDataViewBO);
                 Session["SchemaChange"] = false;
-            }             
-            **/
-
+            }
             tables = this.GetTablesList();
             //CBOE-708 : Object reference error is displayed ... when session timeout occurred. ASV 260413.
             //Added null check since tables can be null
@@ -371,8 +316,7 @@ namespace Manager.Forms.DataViewManager.ContentArea
             {
                 if (this.TablesTreeViewUserControl != null)
                 {
-                    string database = GetBaseTableDataBase();
-                    this.TablesTreeViewUserControl.DataBind(tables, baseTableID, database);
+                    this.TablesTreeViewUserControl.DataBind(tables, baseTableID);
                     this.Toolbar.SetButtonControl(tables.Count);
                     this.hdnIsBaseTable.Value = Convert.ToString(tables.Count);
                 }
@@ -380,22 +324,9 @@ namespace Manager.Forms.DataViewManager.ContentArea
                 {
                     string databaseName = this.TablesTreeViewUserControl.GetSchemasFromBaseTableID(baseTableID);
                     if (!string.IsNullOrEmpty(databaseName))
-                    {
-                        if (!string.IsNullOrEmpty(Page.Request["schemaSelected"]))
-                        {
-                            databaseName = Page.Request["schemaSelected"].Substring(Page.Request["schemaSelected"].IndexOf(".") + 1);
-                        }
-                        else
-                        {
-                            databaseName = databaseName.Contains('.') ? databaseName.Substring(databaseName.IndexOf('.') + 1) : databaseName;
-                        }
-                        
                         this.SchemaSummary.BindSchemaDetails(databaseName);
-                    }
                     else
-                    {
-                        BindDefaultSchema(tables);
-                    }
+                        this.SchemaSummary.BindSchemaDetails(tables[0].DataBase);
                 }
                 else
                 {
@@ -409,46 +340,6 @@ namespace Manager.Forms.DataViewManager.ContentArea
             else	//redirect to home page
                 GoHome();
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-        }
-
-        private void BindDefaultSchema(TableListBO tables)
-        {
-            string instanceName = this.TablesTreeViewUserControl.SelectedInstance;
-            List<string> schemas = new List<string>();
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-            var isMainInstance = instanceName.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase);
-
-            if (isMainInstance)
-            {
-                schemas = tables.Where(t => !t.DataBase.Contains("."))
-                                     .Select(t => t.DataBase)
-                                     .Distinct()
-                                     .ToList();
-            }
-            else
-            {
-                schemas = tables.Where(t => t.DataBase.StartsWith(instanceName + ".", StringComparison.InvariantCultureIgnoreCase))
-                                     .Select(t => t.DataBase.Remove(0, instanceName.Length + 1))
-                                     .Distinct()
-                                     .ToList();
-            }
-
-            if (schemas.Count > 0)
-            {
-                if (Page.Request["schemaSelected"] != null)
-                {
-                    string schema = Page.Request["schemaSelected"].Substring(Page.Request["schemaSelected"].IndexOf(".") + 1);
-                    this.SchemaSummary.BindSchemaDetails(schema);
-                }
-                else
-                {
-                    this.SchemaSummary.BindSchemaDetails(schemas[0]);
-                }
-            }
-            else
-            {
-                this.SchemaSummary.BindSchemaDetails(string.Empty);
-            }
         }
 
         /// <summary>
@@ -481,17 +372,6 @@ namespace Manager.Forms.DataViewManager.ContentArea
             return retVal;
         }
 
-        private string GetBaseTableDataBase()
-        {
-            Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-            string database = string.Empty;
-            COEDataViewBO dataViewBO = this.Master.GetDataViewBO();
-            if (dataViewBO != null)
-                database = dataViewBO.DataViewManager.DataBase;
-            Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-            return database;
-        }
-
         private void RemoveSchema(string database)
         {
             try
@@ -504,7 +384,7 @@ namespace Manager.Forms.DataViewManager.ContentArea
                         this.DataViewManager.Tables.Remove(tbl.ID);
                 }
                 this.DataViewManager.RemoveOrphanRelationships();
-               
+
             }
             catch
             {
@@ -535,12 +415,6 @@ namespace Manager.Forms.DataViewManager.ContentArea
             return schemas;
         }
 
-        [System.Web.Services.WebMethod]
-        public static string Test()
-        {
-            return "sss";
-        }
-
         #endregion
 
         #region ICallbackEventHandler Members
@@ -552,15 +426,13 @@ namespace Manager.Forms.DataViewManager.ContentArea
 
         void ICallbackEventHandler.RaiseCallbackEvent(string eventArgument)
         {
-            string instanceName = this.TablesTreeViewUserControl.SelectedInstance;
-
             if (eventArgument.StartsWith("FilterSchema: "))
             {
                 string database = eventArgument.Replace("FilterSchema: ", string.Empty);
-                result = "FilterSchema: " + this.TablesTreeViewUserControl.GetTablesDataSource(database, instanceName);
-                result += this.SchemaSummary.GetPkDataSource(database, instanceName);
-                result += this.SchemaSummary.GetRelDataSource(database, instanceName);
-                result += this.SchemaSummary.GetLookupDataSource(database, instanceName);
+                result = "FilterSchema: " + this.TablesTreeViewUserControl.GetTablesDataSource(database);
+                result += this.SchemaSummary.GetPkDataSource(database);
+                result += this.SchemaSummary.GetRelDataSource(database);
+                result += this.SchemaSummary.GetLookupDataSource(database);
             }
             else if (eventArgument.StartsWith("SelectTable: "))
             {
@@ -587,24 +459,24 @@ namespace Manager.Forms.DataViewManager.ContentArea
                 TableBO tbl = this.DataViewManager.Tables.GetTable(tableId);
                 if (tbl != null)
                 {
-                    string owner = tbl.Schema;
+                    string database = tbl.DataBase;
                     string message = string.Empty;
                     this.TablesTreeViewUserControl.DeleteTable(tableId);
-                    this.DataViewManager.Tables.Remove(tableId);
+                    this.DataViewManager.Tables.Remove(tbl);
                     this.DataViewManager.Relationships.Remove(new List<int>(new int[] { tbl.ID }));
-                    result = "DeleteTable: " + this.TablesTreeViewUserControl.GetTablesDataSource(owner, instanceName);
-                    result += this.SchemaSummary.GetPkDataSource(owner, instanceName);
-                    result += this.SchemaSummary.GetRelDataSource(owner, instanceName);
-                    result += this.SchemaSummary.GetLookupDataSource(owner, instanceName);
+                    Session["SchemaChange"] = true;
+                    result = "DeleteTable: " + this.TablesTreeViewUserControl.GetTablesDataSource(database);
+                    result += this.SchemaSummary.GetPkDataSource(database);
+                    result += this.SchemaSummary.GetRelDataSource(database);
+                    result += this.SchemaSummary.GetLookupDataSource(database);
                     result += "Message: " + message.Trim();
-                    this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "", "SetSchemaName('" + owner + "');", true);
                 }
             }
             else if (eventArgument.StartsWith("RemoveSchema: "))
             {
                 string database = eventArgument.Replace("RemoveSchema: ", string.Empty);
                 this.RemoveSchema(database);
-               
+
                 result = "RemoveSchema: window.location.href = 'DataviewBoard.aspx';";
             }
             else if (eventArgument.StartsWith("DuplicateTable: "))
@@ -637,10 +509,10 @@ namespace Manager.Forms.DataViewManager.ContentArea
                             table.Alias = tableName;
                     }
 
-                    result = "TableDuplicated: " + this.TablesTreeViewUserControl.GetTablesDataSource(database, instanceName);
-                    result += this.SchemaSummary.GetPkDataSource(database, instanceName);
-                    result += this.SchemaSummary.GetRelDataSource(database, instanceName);
-                    result += this.SchemaSummary.GetLookupDataSource(database, instanceName);
+                    result = "TableDuplicated: " + this.TablesTreeViewUserControl.GetTablesDataSource(database);
+                    result += this.SchemaSummary.GetPkDataSource(database);
+                    result += this.SchemaSummary.GetRelDataSource(database);
+                    result += this.SchemaSummary.GetLookupDataSource(database);
                     result += "document.getElementById('" + this.TableSummary.SelectedTableIDHiddenClientID + "').value = '" + tableId.ToString() + "'";
                     if (isDuplicate)
                         result += "Message: Warning! " + Resources.Resource.DuplicateTableAlias + "\n" + Resources.Resource.DuplicateTableError;

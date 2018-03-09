@@ -577,14 +577,6 @@ public partial class Forms_Master_MasterPage : GUIShellMaster
     {
         if (Session[Constants.COEDataView] != null)
             Session.Remove(Constants.COEDataView);
-
-        // Remove the schems on publishing from session.
-        if (Session[Constants.COESchemasOnPublishing] != null)
-            Session.Remove(Constants.COESchemasOnPublishing);
-        // Remove the schemas on removing from session.
-        if (Session[Constants.COESchemasOnRemoving] != null)
-            Session.Remove(Constants.COESchemasOnRemoving);
-
         if (Session[Constants.COEDataViewBO] != null)
             Session.Remove(Constants.COEDataViewBO);
         if (Session[Constants.COEDataViewBOList] != null)

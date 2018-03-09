@@ -61,12 +61,12 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
         //this method must be called prior to any other method inorder to set the database that the dal will use
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
         internal static void SetDatabaseName(string databaseName)
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(databaseName));
+            COEDatabaseName.Set(databaseName);
         }
 
         public static COEHitListBOList GetSavedHitListList(string databaseName)
@@ -127,6 +127,21 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
                 throw;
             }
         }
+
+        public static COEHitListBOList GetRecentHitListsConfig(string databaseName, string userID, int dataviewID, int quantityToRetrieve, DateTime dt)
+        {
+            SetDatabaseName();
+            try
+            {
+                return DataPortal.Fetch<COEHitListBOList>(new NewRecentCriteria(userID, databaseName, dataviewID, quantityToRetrieve, dt));
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         #endregion
 
         #region Criteria classes
@@ -164,6 +179,49 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
             public int DataViewID
             {
                 get { return _dataViewID; }
+            }
+        }
+
+        [Serializable()]
+        protected class NewRecentCriteria
+        {
+            protected int _dataViewID;
+            protected string _userID;
+            protected string _databaseName;
+            protected int _quantityToRetrieve;
+            protected DateTime _dt;
+
+            public NewRecentCriteria(string userID, string databaseName, int dataviewID, int quantityToRetrieve, DateTime dt)
+            {
+                _userID = userID;
+                _databaseName = databaseName;
+                _dataViewID = dataviewID;
+                _quantityToRetrieve = quantityToRetrieve;
+                _dt = dt;
+            }
+            public string UserID
+            {
+                get { return _userID; }
+            }
+
+            public string DatabaseName
+            {
+                get { return _databaseName; }
+            }
+
+            public int QuantityToRetrieve
+            {
+                get { return _quantityToRetrieve; }
+            }
+
+            public int DataViewID
+            {
+                get { return _dataViewID; }
+            }
+
+            public DateTime ConfigDate
+            {
+                get { return _dt; }
             }
         }
 
@@ -281,6 +339,31 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
                 if (_coeDAL != null)
                 {
                     using (SafeDataReader dr = (SafeDataReader)_coeDAL.GetRecentHitLists(criteria.UserID, criteria.DataViewID, criteria.DatabaseName, criteria.QuantityToRetrieve))
+                    {
+                        Fetch(HitListType.TEMP, dr);
+                    }
+                    this.RaiseListChangedEvents = true;
+                }
+                else
+                    throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        protected void DataPortal_Fetch(NewRecentCriteria criteria)
+        {
+            try
+            {
+                this.RaiseListChangedEvents = false;
+
+                if (_coeDAL == null) { LoadDAL(); }
+                // Coverity Fix CID - 11561
+                if (_coeDAL != null)
+                {
+                    using (SafeDataReader dr = (SafeDataReader)_coeDAL.GetRecentHitListsConfig(criteria.UserID, criteria.DataViewID, criteria.DatabaseName, criteria.QuantityToRetrieve, criteria.ConfigDate))
                     {
                         Fetch(HitListType.TEMP, dr);
                     }

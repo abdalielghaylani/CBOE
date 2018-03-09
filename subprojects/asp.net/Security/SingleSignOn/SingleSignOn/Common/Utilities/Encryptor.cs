@@ -9,6 +9,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Security.Cryptography;
 using System.IO;
+using System.IO.Compression;
+using System.Text;
 
 namespace CambridgeSoft.COE.Security.Services.Utlities
 {
@@ -94,6 +96,42 @@ namespace CambridgeSoft.COE.Security.Services.Utlities
             }
 		}
 
+        public static string DecryptRijndael(string encryptedText, string key)
+        {
+            if (!string.IsNullOrEmpty(encryptedText))
+            {
+                byte[] PlainText = Convert.FromBase64String(encryptedText);
+
+                //Salt is created for additional degree of disorder in encrypted key
+                byte[] Salt = System.Text.Encoding.Unicode.GetBytes(key.Length.ToString());
+
+                //This class uses an extension of the PBKDF1 algorithm defined 
+                //in the PKCS#5 v2.0 standard to derive bytes suitable 
+                //for use as key material from a password. 
+                //The standard is documented in IETF RRC 2898.
+                using (PasswordDeriveBytes SecretKey = new PasswordDeriveBytes(key, Salt))
+                {
+                    //Coverity Fix CID 13996
+                    using (Rijndael rijmenDaemen = Rijndael.Create())
+                    {
+
+                        rijmenDaemen.Key = SecretKey.GetBytes(32);
+                        rijmenDaemen.IV = SecretKey.GetBytes(16);
+                        rijmenDaemen.Padding = PaddingMode.PKCS7;
+
+                        using (MemoryStream decryptedStream = new MemoryStream())
+                        {
+                            using (CryptoStream cryptoStream = new CryptoStream(decryptedStream, rijmenDaemen.CreateDecryptor(), CryptoStreamMode.Write))
+                            {
+                                cryptoStream.Write(PlainText, 0, PlainText.Length);
+                            }
+                            return Encoding.Unicode.GetString(decryptedStream.ToArray());
+                        }
+                    }
+                }
+            }
+            return string.Empty;
+        }
 		public static bool IsEncrypted(string p)
 		{
 			try
@@ -107,5 +145,17 @@ namespace CambridgeSoft.COE.Security.Services.Utlities
 			}
 		}
 
+        public static bool IsEncrypted(string p, string key)
+        {
+            try
+            {
+                p = DecryptRijndael(p, key);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }  
 	}
 }

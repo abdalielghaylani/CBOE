@@ -79,11 +79,12 @@ namespace CambridgeSoft.COE.Framework.COEExportService
             DataRow[] filtDataRow;
             List<string> tempList = new List<string>();
             string strChdTabName = string.Empty;
-            string strTemp = string.Empty;
             string strOutSDF = string.Empty;
             string fulChildTableName = string.Empty;
-            string strCDXTOMOL = string.Empty;
-
+            StringBuilder strTemp = new StringBuilder();           
+            StringBuilder strCDXTOMOL = new StringBuilder();
+            StringBuilder strbuildOutSDF = new StringBuilder();
+            StringBuilder rowStr = new StringBuilder();
 
             XmlDocument _xmlDocument = new XmlDocument();
             _xmlDocument.LoadXml(resultCriteria.ToString());
@@ -124,17 +125,37 @@ namespace CambridgeSoft.COE.Framework.COEExportService
                    Checking whether the structure is available or not, If available then strCDXTOMOL will hold it 
                    otherwise it will hold the value in the value in else */
                 if (cdxColIndex != -1 && !String.IsNullOrEmpty(baseDatatab.Rows[btRowIndex][cdxColIndex].ToString())) // Fixed 161868
-                    strCDXTOMOL = baseDatatab.Rows[btRowIndex][cdxColIndex].ToString(); // + "\r\n";//\r\n Fixed CSBR-166992, CSBR-166995
+                {
+                    strCDXTOMOL.Append(baseDatatab.Rows[btRowIndex][cdxColIndex].ToString()); // + "\r\n";//\r\n Fixed CSBR-166992, CSBR-166995
+                }
                 else
-                    strCDXTOMOL = "\r\n" + "CsStruct  NA" + "\r\n\r\n" + "  0  0  0  0  0  0  0  0  0  0999 V2000" + "\r\n" + "M  END" + "\r\n"; //Fixed CSBR-158168, CSBR-166992, CSBR-166995
+                {
+                    strCDXTOMOL.Append("\r\n");
+                    strCDXTOMOL.Append("CsStruct  NA");
+                    strCDXTOMOL.Append("\r\n\r\n");
+                    strCDXTOMOL.Append("  0  0  0  0  0  0  0  0  0  0999 V2000");
+                    strCDXTOMOL.Append("\r\n");
+                    strCDXTOMOL.Append("M  END");
+                    strCDXTOMOL.Append("\r\n");
+                }
 
                 for (int colNamLstItmIndex = 0; colNamLstItmIndex < btColNameList.Count; colNamLstItmIndex++)
                 {
                     if (colNamLstItmIndex != cdxColIndex)
-                        strTemp = strTemp + ">  <" + fulBaseTabName + "." + baseDatatab.Columns[colNamLstItmIndex].ColumnName + "> (" + btRecordIndex + ")\r\n" + baseDatatab.Rows[btRowIndex][colNamLstItmIndex] + "\r\n\r\n";
+                    {
+                        strTemp.Append(">  <");
+                        strTemp.Append(fulBaseTabName);
+                        strTemp.Append(".");
+                        strTemp.Append(baseDatatab.Columns[colNamLstItmIndex].ColumnName);
+                        strTemp.Append("> (");
+                        strTemp.Append(btRecordIndex);
+                        strTemp.Append(")\r\n");
+                        strTemp.Append(baseDatatab.Rows[btRowIndex][colNamLstItmIndex]);
+                        strTemp.Append("\r\n\r\n");
+                    }
                 }
-                strOutSDF = strOutSDF + strCDXTOMOL + strTemp;
-
+                strbuildOutSDF.Append(strCDXTOMOL.ToString());
+                strbuildOutSDF.Append(strTemp.ToString());
                 if (childTableIdList.Count > 0)
                 {
                     //loop the child tables
@@ -156,41 +177,48 @@ namespace CambridgeSoft.COE.Framework.COEExportService
                                 filtChildDt.ImportRow(dr);
                             }
 
-                            strOutSDF = strOutSDF + ">  <" + fulChildTableName + "> (" + btRecordIndex + ")\r\n";
+                            strbuildOutSDF.Append(">  <");
+                            strbuildOutSDF.Append(fulChildTableName);
+                            strbuildOutSDF.Append("> (");
+                            strbuildOutSDF.Append(btRecordIndex);
+                            strbuildOutSDF.Append(")\r\n");
                             // child column names
                             for (int colIndex = 0; colIndex < filtChildDt.Columns.Count; colIndex++)
                             {
                                 if (colIndex > 0)
-                                    strOutSDF = strOutSDF + " -- ";
-                                strOutSDF = strOutSDF + filtChildDt.Columns[colIndex].ColumnName;
-
-
+                                {                                    
+                                    strbuildOutSDF.Append(" --");
+                                    strbuildOutSDF.Append(filtChildDt.Columns[colIndex].ColumnName);
+                                }
                             }
-                            strOutSDF = strOutSDF + "\r\n";
+                            strbuildOutSDF.Append("\r\n");
                             // child rows
                             for (int filtChildDtIndex = 0; filtChildDtIndex < filtChildDt.Rows.Count; filtChildDtIndex++)
                             {
                                 for (int colIndex = 0; colIndex < filtChildDt.Columns.Count; colIndex++)
                                 {
                                     if (colIndex > 0)
-                                        strOutSDF = strOutSDF + " -- ";
-                                    strOutSDF = strOutSDF + filtChildDt.Rows[filtChildDtIndex][colIndex];
+                                    {                                        
+                                        strbuildOutSDF.Append(" --");
+                                        strbuildOutSDF.Append(filtChildDt.Rows[filtChildDtIndex][colIndex]);
+                                    }
                                 }
-                                strOutSDF = strOutSDF + "\r\n";
+                                strbuildOutSDF.Append("\r\n");
                             }
 
-                            strOutSDF = strOutSDF + "\r\n";
+                            strbuildOutSDF.Append("\r\n");
                             filtDataRow = null;
 
                         }
 
                     }
                 }
-                strTemp = string.Empty;
-                strOutSDF = strOutSDF + "$$$$\r\n"; //Fixed CSBR-166992 and CSBR-166995
-
+                strCDXTOMOL.Clear();
+                strTemp.Clear();
+                strbuildOutSDF.Append("$$$$\r\n");
             }
-            strOutSDF = strOutSDF.TrimEnd('\r', '\n'); //Fixed 160850
+            strOutSDF = strbuildOutSDF.ToString();
+            strOutSDF = strOutSDF.TrimEnd('\r', '\n'); 
             return strOutSDF;
 
         }

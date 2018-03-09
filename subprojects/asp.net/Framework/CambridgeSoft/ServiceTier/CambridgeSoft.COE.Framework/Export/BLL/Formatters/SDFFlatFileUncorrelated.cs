@@ -99,10 +99,11 @@ namespace CambridgeSoft.COE.Framework.COEExportService
             DataRow[] filtDataRow;
             List<string> tempList = new List<string>();
             string st_resultCriteriahdTabName = string.Empty;
-            string strTemp = string.Empty;
+            StringBuilder strTemp = new StringBuilder();
             string strOutSDF = string.Empty;
-            string strCDXTOMOL = string.Empty;
-
+            StringBuilder strCDXTOMOL = new StringBuilder();
+            StringBuilder strbuildOutSDF = new StringBuilder();
+            StringBuilder rowStr = new StringBuilder();
             int cdxColIndex = -1;
             for (int btColumnIndex = 0; btColumnIndex < btColumnCount; btColumnIndex++)
             {
@@ -120,25 +121,44 @@ namespace CambridgeSoft.COE.Framework.COEExportService
                    Checking whether the structure is available or not, If available then strCDXTOMOL will hold it 
                    otherwise it will hold the value in the value in else */
                 if (cdxColIndex != -1 && !String.IsNullOrEmpty(baseDatatab.Rows[btRowIndex][cdxColIndex].ToString())) //Fixed CSBR-161868  
-                    strCDXTOMOL = baseDatatab.Rows[btRowIndex][cdxColIndex].ToString(); //+ "\r\n";//\r\n Fixecd CSBR-166992, CSBR-166995 
+                {
+                    strCDXTOMOL.Append(baseDatatab.Rows[btRowIndex][cdxColIndex].ToString());
+                }
                 else
-                    strCDXTOMOL = "\r\n" + "CsStruct  NA" + "\r\n\r\n" + "  0  0  0  0  0  0  0  0  0  0999 V2000" + "\r\n" + "M  END" + "\r\n"; //Fixed CSBR-158168, CSBR-166992, CSBR-166995
-
+                {
+                    strCDXTOMOL.Append("\r\n");
+                    strCDXTOMOL.Append("CsStruct  NA");
+                    strCDXTOMOL.Append("\r\n\r\n");
+                    strCDXTOMOL.Append("  0  0  0  0  0  0  0  0  0  0999 V2000");
+                    strCDXTOMOL.Append("\r\n");
+                    strCDXTOMOL.Append("M  END");
+                    strCDXTOMOL.Append("\r\n");
+                }
                 for (int colNamLstItmIndex = 0; colNamLstItmIndex < btColNameList.Count; colNamLstItmIndex++)
                 {
                     if (colNamLstItmIndex != cdxColIndex)
-                        strTemp = strTemp + ">  <" + fulBaseTabName + "." + baseDatatab.Columns[colNamLstItmIndex].ColumnName + "> (" + btRecordIndex + ")\r\n" + baseDatatab.Rows[btRowIndex][colNamLstItmIndex] + "\r\n\r\n";
+                    {
+                        strTemp.Append(">  <");
+                        strTemp.Append(fulBaseTabName);
+                        strTemp.Append(".");
+                        strTemp.Append(baseDatatab.Columns[colNamLstItmIndex].ColumnName);
+                        strTemp.Append("> (");
+                        strTemp.Append(btRecordIndex);
+                        strTemp.Append(")\r\n");
+                        strTemp.Append(baseDatatab.Rows[btRowIndex][colNamLstItmIndex]);
+                        strTemp.Append("\r\n\r\n");
+                    }
                 }
                 if (childTableIdList.Count > 0)
                 {
                     for (int chdTabIdIndex = 0; chdTabIdIndex < childTableIdList.Count; chdTabIdIndex++)
                     {
-						// CBOE-303, CBOE-1763, CBOE-1764 get the table alias name instead of table name
+                        // CBOE-303, CBOE-1763, CBOE-1764 get the table alias name instead of table name
                         string childTableName = _dataView.GetTableAliasName(childTableIdList[chdTabIdIndex]);
                         //filt the child table
                         st_resultCriteriahdTabName = "Table_" + childTableIdList[chdTabIdIndex].ToString();
                         /* CBOE-311 Fuji -- Included single quote at RHS */
-                        filtDataRow = dataSet.Tables[st_resultCriteriahdTabName].Select(String.Concat("[", dataSet.Tables[st_resultCriteriahdTabName].ParentRelations[0].ChildColumns[0].ColumnName, "]") + "= '" + baseDatatab.Rows[btRowIndex][dataSet.Tables[st_resultCriteriahdTabName].ParentRelations[0].ParentColumns[0].ColumnName] + "'" );
+                        filtDataRow = dataSet.Tables[st_resultCriteriahdTabName].Select(String.Concat("[", dataSet.Tables[st_resultCriteriahdTabName].ParentRelations[0].ChildColumns[0].ColumnName, "]") + "= '" + baseDatatab.Rows[btRowIndex][dataSet.Tables[st_resultCriteriahdTabName].ParentRelations[0].ParentColumns[0].ColumnName] + "'");
                         filtChildDt = dataSet.Tables[st_resultCriteriahdTabName].Clone();
                         foreach (DataRow dr in filtDataRow)
                         {
@@ -148,34 +168,58 @@ namespace CambridgeSoft.COE.Framework.COEExportService
                         {
                             for (int filtChildDtIndex = 0; filtChildDtIndex < filtChildDt.Rows.Count; filtChildDtIndex++)
                             {
-                                string rowStr = string.Empty;
 
+                                rowStr.Clear();
                                 for (int colIndex = 0; colIndex < filtChildDt.Columns.Count; colIndex++)
                                 {
-                                    rowStr = rowStr + ">  <" + childTableName + "." + filtChildDt.Columns[colIndex].ColumnName + "> (" + btRecordIndex + ")\r\n" + filtChildDt.Rows[filtChildDtIndex][colIndex] + "\r\n\r\n";
+                                    rowStr.Append(">  <");
+                                    rowStr.Append(childTableName);
+                                    rowStr.Append(".");
+                                    rowStr.Append(filtChildDt.Columns[colIndex].ColumnName);
+                                    rowStr.Append("> (");
+                                    rowStr.Append(btRecordIndex);
+                                    rowStr.Append(")\r\n");
+                                    rowStr.Append(filtChildDt.Rows[filtChildDtIndex][colIndex]);
+                                    rowStr.Append("\r\n\r\n");
                                 }
-                                strOutSDF = strOutSDF + strCDXTOMOL + strTemp + rowStr + "$$$$\r\n"; //Fixed CSBR-166992 and CSBR-166995
+                                strbuildOutSDF.Append(strCDXTOMOL);
+                                strbuildOutSDF.Append(strTemp);
+                                strbuildOutSDF.Append(rowStr);
+                                strbuildOutSDF.Append("$$$$\r\n");
                             }
                         }
                         else
                         {
-                            string rowStr = string.Empty;
-
+                            rowStr.Clear();
                             for (int colIndex = 0; colIndex < filtChildDt.Columns.Count; colIndex++)
                             {
-                                rowStr = rowStr + ">  <" + childTableName + "." + filtChildDt.Columns[colIndex].ColumnName + "> (" + btRecordIndex + ")\r\n \r\n\r\n";
-                                
+                                rowStr.Append(">  <");
+                                rowStr.Append(childTableName);
+                                rowStr.Append(".");
+                                rowStr.Append(filtChildDt.Columns[colIndex].ColumnName);
+                                rowStr.Append("> (");
+                                rowStr.Append(btRecordIndex);
+                                rowStr.Append(")\r\n \r\n\r\n");
                             }
-                            strOutSDF = strOutSDF + strCDXTOMOL + strTemp + rowStr + "$$$$\r\n"; //Fixed CSBR-166992 and CSBR-166995
+                            strbuildOutSDF.Append(strCDXTOMOL.ToString());
+                            strbuildOutSDF.Append(strTemp.ToString());
+                            strbuildOutSDF.Append(rowStr.ToString());
+                            strbuildOutSDF.Append("$$$$\r\n");
                         }
 
                         filtDataRow = null;
                     }
                 }
                 else
-                    strOutSDF = strOutSDF + strCDXTOMOL + strTemp + "$$$$\r\n"; //Fixed CSBR-166992 and CSBR-166995
-                strTemp = string.Empty;
+                {
+                    strbuildOutSDF.Append(strCDXTOMOL.ToString());
+                    strbuildOutSDF.Append(strTemp.ToString());                    
+                    strbuildOutSDF.Append("$$$$\r\n");
+                }
+                strCDXTOMOL.Clear();
+                strTemp.Clear();
             }
+            strOutSDF = strbuildOutSDF.ToString();
             strOutSDF = strOutSDF.TrimEnd('\r', '\n'); // Fixed 160850
             return strOutSDF;
 

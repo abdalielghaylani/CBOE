@@ -53,7 +53,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
 
         internal bool HasSchemaInstalled(string schema)
         {
-            var sql = "SELECT COUNT(OBJECT_ID) FROM DBA_OBJECTS WHERE UPPER(OWNER)= '" + schema.ToUpper() + "'";
+            var sql = "SELECT COUNT(OBJECT_ID) FROM ALL_OBJECTS WHERE UPPER(OWNER)= '" + schema.ToUpper() + "'";
             var dbCommand = this.DALManager.Database.GetSqlStringCommand(sql);
 
             if (Convert.ToInt32(DALManager.ExecuteScalar(dbCommand)) > 0)

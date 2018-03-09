@@ -9,9 +9,9 @@ using System.Web.UI;
 [assembly: System.Reflection.AssemblyTitle("CambridgeSoft.COE.Framework")]
 [assembly: System.Reflection.AssemblyDescription("")]
 [assembly: System.Reflection.AssemblyConfiguration("")]
-[assembly: System.Reflection.AssemblyCompany("CambidgeSoft")]
+[assembly: System.Reflection.AssemblyCompany("PerkinElmer")]
 [assembly: System.Reflection.AssemblyProduct("CambridgeSoft.COE.Framework")]
-[assembly: System.Reflection.AssemblyCopyright("© Copyright 2001-2016 PerkinElmer Informatics, Inc.")]
+[assembly: System.Reflection.AssemblyCopyright("© Copyright 1998-2018 PerkinElmer Informatics, Inc.")]
 [assembly: System.Reflection.AssemblyTrademark("")]
 [assembly: System.Reflection.AssemblyCulture("")]
 
@@ -32,7 +32,7 @@ using System.Web.UI;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: System.Reflection.AssemblyVersion("12.1.0.0")]
+[assembly: System.Reflection.AssemblyVersion("17.1.1.0")]
 [assembly: AssemblyFileVersion("12.5.0.0")]
 [assmebly: InternalsVisibleTo("CambridgeSoft.COE.Framework.UnitTests")]
 [assembly: WebResource("CambridgeSoft.COE.Framework.ServerControls.PagerControl.Next_B.png", "image/png")]

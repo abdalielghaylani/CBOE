@@ -79,6 +79,8 @@ namespace CambridgeSoft.COE.Registration.Access
         const string AREGISTRYLISTXML = "ARegistryListXml";
         const string AREGNUMGENERATION = "ARegNumGeneration";
         const string AREGNUMBER = "ARegNumber";
+        const string ASETBATCHNUMBER = "ASetBatchNumber";
+        const string ASETBATCHNUMBERKEY = "ConfigBatchNumber";
         const string ASECTIONSLIST = "ASectionsList";
         const string ASEQTYPEID = "ASeqTypeID";
         const string ASTRUCTURE = "AStructure";
@@ -3000,7 +3002,8 @@ and b.regid = m.regid" +
         {
             RegistrationCrudResponse result = null;
             DbCommand cmd = null;
-
+            int setBatchNumber = (string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]) ? 1 : Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]));
+            
             try
             {
                 cmd = CreateCommand(CREATE_REGISTRATION, CommandType.StoredProcedure);
@@ -3011,6 +3014,7 @@ and b.regid = m.regid" +
                     cmd.Parameters.Add(new OracleParameter(AREGNUMBER, OracleDbType.Varchar2, 50, string.Empty, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(AMESSAGE, OracleDbType.Clob, string.Empty, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(ADUPLICATECHECK, OracleDbType.Char, this.GetDuplicateCheckString(checkDuplicates), ParameterDirection.Input));
+                    cmd.Parameters.Add(new OracleParameter(ASETBATCHNUMBER, OracleDbType.Int32, 5, setBatchNumber, ParameterDirection.Input));
                     if (this._persistentConenctionWrapper != null)
                     {
                         //cmd.Parameters.Add(new OracleParameter(AREGNUMGENERATION, OracleDbType.Char, "Y", ParameterDirection.Input));
@@ -3049,7 +3053,7 @@ and b.regid = m.regid" +
             )
         {
             RegistrationCrudResponse result = null;
-
+            int setBatchNumber = (string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]) ? 1 : Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]));
             if (callerControlsTransaction == true)
             {
                 DbCommand cmd = CreateCommand(CREATE_REGISTRATION, CommandType.StoredProcedure);
@@ -3057,6 +3061,8 @@ and b.regid = m.regid" +
                 cmd.Parameters.Add(new OracleParameter(AREGNUMBER, OracleDbType.Varchar2, 50, string.Empty, ParameterDirection.Output));
                 cmd.Parameters.Add(new OracleParameter(AMESSAGE, OracleDbType.Clob, string.Empty, ParameterDirection.Output));
                 cmd.Parameters.Add(new OracleParameter(ADUPLICATECHECK, OracleDbType.Char, this.GetDuplicateCheckString(checkDuplicates), ParameterDirection.Input));
+                cmd.Parameters.Add(new OracleParameter(ASETBATCHNUMBER, OracleDbType.Int32, 5, setBatchNumber, ParameterDirection.Input));
+
                 if (this._persistentConenctionWrapper != null)
                 {
                     //cmd.Parameters.Add(new OracleParameter(AREGNUMGENERATION, OracleDbType.Char, "Y", ParameterDirection.Input));
@@ -3084,7 +3090,7 @@ and b.regid = m.regid" +
             RegistrationCrudResponse result = null;
             char chAction = 'U';
             DbCommand cmd = null;
-
+            int setBatchNumber = (string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]) ? 1 : Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]));
             try
             {
                 cmd = CreateCommand(UPLOAD_REGISTRATION, CommandType.StoredProcedure);
@@ -3096,6 +3102,7 @@ and b.regid = m.regid" +
                     cmd.Parameters.Add(new OracleParameter(AACTION, OracleDbType.Char, 1, chAction, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(AMESSAGE, OracleDbType.Clob, string.Empty, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(AREGNUMBER, OracleDbType.Varchar2, 50, string.Empty, ParameterDirection.Output));
+                    cmd.Parameters.Add(new OracleParameter(ASETBATCHNUMBER, OracleDbType.Int32, 5, setBatchNumber, ParameterDirection.Input));
                     if (this._persistentConenctionWrapper != null)
                     {
                         //cmd.Parameters.Add(new OracleParameter(AREGISTRATION, OracleDbType.Char, "Y", ParameterDirection.Input));
@@ -3149,7 +3156,7 @@ and b.regid = m.regid" +
             RegistrationCrudResponse result = null;
             char chAction = 'U';
             DbCommand cmd = null;
-
+            int setBatchNumber = (string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]) ? 1 : Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]));
             try
             {
                 if (callerControlsTransaction == true)
@@ -3160,6 +3167,7 @@ and b.regid = m.regid" +
                     cmd.Parameters.Add(new OracleParameter(AACTION, OracleDbType.Char, 1, chAction, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(AMESSAGE, OracleDbType.Clob, string.Empty, ParameterDirection.Output));
                     cmd.Parameters.Add(new OracleParameter(AREGNUMBER, OracleDbType.Varchar2, 50, string.Empty, ParameterDirection.Output));
+                    cmd.Parameters.Add(new OracleParameter(ASETBATCHNUMBER, OracleDbType.Int32, 5, setBatchNumber, ParameterDirection.Input));
                     cmd.ExecuteNonQuery();
                     string message = ((OracleClob)cmd.Parameters[AMESSAGE].Value).IsNull ? string.Empty : ((OracleClob)cmd.Parameters[AMESSAGE].Value).Value;
                     string actionTaken = cmd.Parameters[AACTION].Value.ToString();

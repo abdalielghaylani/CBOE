@@ -1,15 +1,14 @@
 from os import *
 from os.path import *
 import sys
-from ChemScript12 import *
+from ChemScript17 import *
 from time import *
 import logging
-import ChemScript12
 
 # This scripts expects that two local variables are setup externally
 # cdx ==> Contains a base64cdx string
 # scriptsPath ==> Contains the path to the child script location
-scriptsPath = 'C:\Program Files\CambridgeSoft\ChemOfficeEnterprise11.0.1.0\Registration\PythonScripts\\'
+scriptsPath = 'C:\Program Files (x86)\PerkinElmer\ChemOfficeEnterprise\Registration\PythonScripts\\'
 logString = ''
 workingMol = ''
 HBondAcceptorValue = ''

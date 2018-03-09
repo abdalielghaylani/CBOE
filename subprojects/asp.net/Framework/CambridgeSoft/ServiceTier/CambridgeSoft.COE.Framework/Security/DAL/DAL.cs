@@ -579,8 +579,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
             SafeDataReader safeReader = null;
             try
             {
-                string sql = " select distinct s.role_name, s.role_id, s.coeidentifier from " + 
-                    Resources.SecurityDatabaseName + ".people cp, " + Resources.SecurityDatabaseName + ".security_roles s, dba_role_privs rp" +
+                string sql = " select distinct s.role_name, s.role_id, s.coeidentifier from " + Resources.SecurityDatabaseName + ".people cp, " + Resources.SecurityDatabaseName + ".security_roles s, " + Resources.SecurityDatabaseName + ".privilege_tables p, dba_role_privs rp" +
                      " where s.role_name = rp.granted_role " +
                      " and rp.grantee = cp.user_id " +
                      " and cp.user_id in (" + DALManager.BuildSqlStringParameterName("pUserName") +")";

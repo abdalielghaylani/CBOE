@@ -1,0 +1,66 @@
+.igWebComboMainBlue2k7 {
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		text-align: left;
+		font-size: 11px;
+		background-color: #E8EAEC;
+
+		border: 1px solid #9BB7E0;
+		
+		
+		
+}
+
+.igWebComboDropDownFrameBlue2k7 {
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		background-color: white;
+		
+		border: 1px solid #A9AEB4;
+
+}
+
+.igWebComboDropDownGridHeaderBlue2k7 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	background-image: url(WebCombo/igwgHeader.jpg);
+	background-repeat: repeat-x;
+	font-size: 11px;
+	height: 23px;
+	border: 1px solid #fbfbfb;
+	font-weight: normal;
+}
+
+.igwgRowBlue2k7
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+
+	background-color: #ffffff;
+	border-top: 1px solid white;
+	border-bottom: 1px solid #d2d2d2;
+	font-size: 11px;;
+		
+}
+.igwgRowAltBlue2k7
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border-top: 1px solid white;
+	border-bottom: 1px solid #d2d2d2;
+	background-color: white;
+	font-size: 11px;
+}
+
+.igwgRowSelBlue2k7
+{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+
+	border-top: 0px solid #b5c4df;
+	border-bottom: 1px solid #d2d2d2; 
+	background-color: #b5c4df;
+
+	font-size: 11px;
+}
+
+.igwgRowSlctrBlue2k7
+{
+	border-right: 1px solid #d2d2d2;
+	background-color: #EBF3FF;
+}

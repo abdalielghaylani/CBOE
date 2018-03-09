@@ -1,14 +1,18 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Reflection;
+using System.Data;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI;
-
-using CambridgeSoft.COE.Framework.COEConfigurationService;
-using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
-using CambridgeSoft.COE.Framework.COEDataViewService;
-using CambridgeSoft.COE.Framework.Common;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.GUIShell;
+using System.Reflection;
+using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
+using System.Collections.Generic;
+using CambridgeSoft.COE.Framework.COEDataViewService;
 
 public partial class ToolBar : System.Web.UI.UserControl
 {
@@ -137,7 +141,7 @@ public partial class ToolBar : System.Web.UI.UserControl
         List<int> tablesIdToRemove = new List<int>();
         foreach (TableBO table in this.DataViewBO.DataViewManager.Tables)
         {
-            if (table.DataBase.Equals(this.DatabaseName, StringComparison.InvariantCultureIgnoreCase))
+            if (table.DataBase == this.DatabaseName)
             {
                 tablesIdToRemove.Add(table.ID);
             }
@@ -148,31 +152,7 @@ public partial class ToolBar : System.Web.UI.UserControl
             this.DataViewBO.DataViewManager.Relationships.Remove(tablesIdToRemove);
         }
 
-        // Add it to session, will be submitted when submiting the master dataview.
-        // this.UnPublishSchema(this.DatabaseName);
-
-        var schemaOnPublishing = Session[Constants.COESchemasOnPublishing] as Dictionary<string, COEDatabaseBO>;
-
-        if (schemaOnPublishing != null && schemaOnPublishing.ContainsKey(this.DatabaseName.ToUpper()))
-        {
-            schemaOnPublishing.Remove(this.DatabaseName.ToUpper());
-            Session[Constants.COESchemasOnPublishing] = schemaOnPublishing;
-        }
-        else
-        {
-            var schemasOnRemoving = Session[Constants.COESchemasOnRemoving] as Collection<string>;
-            if (schemasOnRemoving == null)
-            {
-                schemasOnRemoving = new Collection<string>();
-            }
-
-            if (!schemasOnRemoving.Contains(this.DatabaseName.ToUpper()))
-            {
-                schemasOnRemoving.Add(this.DatabaseName.ToUpper());
-            }
-
-            Session[Constants.COESchemasOnRemoving] = schemasOnRemoving;
-        }
+         this.UnPublishSchema(this.DatabaseName);        
 
         //CBOE-885 : DVM:Edit Master-Unknown error appears when user clicks on remove link of schema selector dropdown list
         // Added querystring IsMaster=true to below URL
@@ -185,26 +165,7 @@ public partial class ToolBar : System.Web.UI.UserControl
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
 
-        COEDatabaseBO bo=null;
-
-        // Try to get the schema dataviews from session, if not found then get it rom database.
-        if (Session[Constants.COESchemasOnPublishing] != null)
-        {
-            var schemasOnPublishing = Session[Constants.COESchemasOnPublishing] as Dictionary<string, COEDatabaseBO>;
-
-            if (schemasOnPublishing != null && schemasOnPublishing.ContainsKey(this.DatabaseName.ToUpper()))
-            {
-                bo = schemasOnPublishing[this.DatabaseName.ToUpper()].Clone();
-            }
-            else
-            {
-                bo = COEDatabaseBO.Get(this.DatabaseName).RefreshPublish();
-            }
-        }
-        else
-        {
-            bo = COEDatabaseBO.Get(this.DatabaseName).RefreshPublish();
-        }
+        COEDatabaseBO bo = COEDatabaseBO.Get(this.DatabaseName).RefreshPublish();
 
         if (bo != null && bo.COEDataView != null)
         {
@@ -214,9 +175,7 @@ public partial class ToolBar : System.Web.UI.UserControl
         }
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
 
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-        var instanceSchema = this.DatabaseName.Contains(".") ? this.DatabaseName : mainInstance.Name + "." + this.DatabaseName;
-        this.Response.Redirect("DataviewBoard.aspx?schemaSelected=" + instanceSchema);
+        this.Response.Redirect("DataviewBoard.aspx?schemaSelected=" + this.DatabaseName);
     }
 
     void CancelImageButton_ButtonClicked(object sender, EventArgs e)
@@ -248,6 +207,32 @@ public partial class ToolBar : System.Web.UI.UserControl
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
+    private bool UnPublishSchema(string databaseName)
+    {
+        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
+        bool retVal = false;
+        if (!string.IsNullOrEmpty(databaseName))
+        {
+            //Get the password to send as an argument to publish.
+            //string password = this.PasswordTextBox.Text;
+            COEDatabaseBO database = COEDatabaseBOList.GetList().GetDatabase(databaseName);
+            COEDatabaseBO unPublishedDataBase;
+            if (database != null)
+            {
+                try
+                {
+                    unPublishedDataBase = database.UnPublish();
+                    if (unPublishedDataBase != null) //If it fails, keep it on the list with no changes.
+                    {
+                        retVal = true;
+                    }
+                }
+                catch { }
+            }
+        }
+        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
+        return retVal;
+    }
     #endregion
 
     #region Public Methods
@@ -267,9 +252,10 @@ public partial class ToolBar : System.Web.UI.UserControl
         try
         {
             this.BaseTableImageButton.Enabled = false;
-            if ((string.IsNullOrEmpty(this.DataViewBO.BaseTable)) && tableCount > 1)
+            if ((string.IsNullOrEmpty(this.DataViewBO.BaseTable) || (Session["IsBaseEnable"] != null && Convert.ToBoolean(Session["IsBaseEnable"]).Equals(true))) && tableCount > 1)
             {
                 this.BaseTableImageButton.Enabled = true;
+                Session["IsBaseEnable"] = Convert.ToBoolean(1);
             }
         }
         catch

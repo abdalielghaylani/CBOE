@@ -1,0 +1,206 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<!-- THIS FILE HAS TO BE PLACED IN LOCALAPPLICATIONDATA SPECIAL FOLDER. SEE README.TXT FOR DETAILS -->
+<configuration>
+  <configSections>
+    <section name="instrumentationConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.Configuration.InstrumentationConfigurationSection, Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72" />
+    <!--This indicates the type that will handle the coeConfiguration -->
+    <section name="coeConfiguration" type="CambridgeSoft.COE.Framework.Common.COEConfigurationSettings, CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf" />
+    <section name="mappings" type="CambridgeSoft.COE.Framework.Common.SelectClassMappingsHandler, CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf" />
+  </configSections>
+
+  <mappings xmlns="COE.Mappings">
+    <selectClauses>
+      <selectClause name="field" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseField"/>
+      <selectClause name="literal" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseLiteral"/>
+      <selectClause name="switch" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseCase"/>
+      <selectClause name="concatenation" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseConcatenation"/>
+      <selectClause name="molweight" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMolWeight"/>
+      <selectClause name="formula" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseFormula"/>
+      <selectClause name="avg" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseAvg"/>
+      <selectClause name="max" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMax"/>
+      <!--<selectClause name="max" parserClassName="SQLGeneratorTest.PluginsClausesTests.SelectClauseMax" assemblyName="file://C:\Projects\CambridgeSoft\Common\CambridgeSoft\ServiceTier\SQLGeneratorTest\bin\SQLGeneratorTest.exe"/>-->
+      <!--<selectClause name="switch" parserClassName="PlugInsTest.SelectClauseCasePlugIn" assemblyName="file://C:\Projects\CambridgeSoft\Common\CambridgeSoft\ServiceTier\PlugInsTest\PlugInsTest\bin\PlugInsTest.dll"/>-->
+    </selectClauses>
+  </mappings>
+
+
+  <instrumentationConfiguration performanceCountersEnabled="false" eventLoggingEnabled="false" wmiEnabled="false" />
+  <!--This configuration is used by CambridgeSoft.COE.Core.Common call BLL and DAL classes for coe framework services -->
+   <coeConfiguration  singleSignOnURL="http://localhost/COESingleSignOn/SingleSignon.asmx">
+   <applications>
+          <add name="SAMPLE" enableCSSecurity="false" dbmsType="ORACLE" owner="SAMPLE" tracing ="false" oracleTracing="false" connectionString="Data Source=orcl;User ID=SAMPLE;Password=ORACLE;" providerName="Oracle.DataAccess.Client">
+            <sqlGeneratorData>
+              <add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" />
+	          </sqlGeneratorData>
+<tableEditor>
+<add name="COEDataView"  PrimaryKeyField="ID" FieldToShow="User_Id" >
+<tableEditorData>
+<add name="Name" dataType="string" />
+<add name="Description" dataType="string" />
+<add name="User_Id" dataType="string" />
+<add name="FormGroup" dataType="Int" />
+<add name="Date_Created" dataType="Date" />
+<add name="COEDataview" dataType="string" />
+</tableEditorData>
+</add>
+<add name="Graphics"  PrimaryKeyField="ID" FieldToShow="Description" >
+<tableEditorData>
+<add name="MOL_ID" dataType="Int" LookupField="Moltable.MOLNAME" LookupID="Moltable.MOL_ID"/>
+<add name="Description" dataType="string" />
+</tableEditorData>
+</add>
+<add name="COEForm"  PrimaryKeyField="ID" FieldToShow="Name">
+<tableEditorData>
+<add name="Name" dataType="string" />
+<add name="Description" dataType="string" />
+<add name="User_Id" dataType="string" />
+<add name="FormGroup" dataType="Int" />
+<add name="Date_Created" dataType="Date" />
+<add name="COEForm" dataType="string" />
+</tableEditorData>
+</add>
+<add name="Projects" PrimaryKeyField="Project_Internal_Id" FieldToShow="Project_Name">
+<tableEditorData>
+<add name="Project_Name" dataType="string" />
+<add name="Active" dataType="Int" />
+</tableEditorData>
+</add>
+</tableEditor>
+	        </add>
+          <add name="CHEMACX" privTableNameCSSecurity="CHEMACX_PRIVILEGES" enableCSSecurity="false" dbmsType="ORACLE" owner="CHEMACXDB" tracing ="false" oracleTracing="false" connectionString="Data Source=orcl;User ID=CHEMACXDB;Password=ORACLE;" providerName="Oracle.DataAccess.Client">
+            <sqlGeneratorData>
+              <add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" />
+            </sqlGeneratorData>
+	      </add>
+<add name="BIOSAR" enableCSSecurity="false" dbmsType="ORACLE" owner="BIOSARDB" tracing ="false" oracleTracing="false" connectionString="Data Source=orcl;User ID=BIOSARDB;Password=ORACLE;" providerName="Oracle.DataAccess.Client">
+
+        </add>
+        <add name="CHEMINV" privTableNameCSSecurity="CHEMINV_PRIVILEGES" enableCSSecurity="false" dbmsType="ORACLE" owner="CHEMINVDB2" tracing ="false" oracleTracing="false" connectionString="Data Source=orcl;User ID=CHEMINVDB2;Password=ORACLE;" providerName="Oracle.DataAccess.Client">
+          <sqlGeneratorData>
+            <add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" />
+            </sqlGeneratorData>
+<tableEditor>
+<add name="COEDataView"  PrimaryKeyField="ID" FieldToShow="Name">
+<tableEditorData>
+<add name="Name" dataType="string" />
+<add name="Description" dataType="string" />
+<add name="User_Id" dataType="string" />
+<add name="FormGroup" dataType="Int" />
+<add name="COEDataview" dataType="string" />
+</tableEditorData>
+</add>
+<add name="COEForm"  PrimaryKeyField="ID" FieldToShow="Name">
+<tableEditorData>
+<add name="Name" dataType="string" />
+<add name="Description" dataType="string" />
+<add name="User_Id" dataType="string" />
+<add name="FormGroup" dataType="Int" />
+<add name="COEForm" dataType="string" />
+</tableEditorData>
+</add>
+</tableEditor>
+          </add>
+
+	<add name="REGISTRATION" privTableNameCSSecurity="CHEM_REG_PRIVILEGES" enableCSSecurity="true" dbmsType="ORACLE" owner="REGDB" tracing ="false" oracleTracing="false" connectionString="Data Source=orcl;User ID=REGDB;Password=ORACLE;" providerName="Oracle.DataAccess.Client">
+          <sqlGeneratorData>
+            <add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" />
+            </sqlGeneratorData>
+          </add>
+        <add name="SAMPLE_ORACLE" enableCSSecurity="false" dbmsType="ORACLE" owner="SAMPLE" tracing ="false" oracleTracing="false" connectionString="Data Source=orcl;User ID=SAMPLE;Password=Oracle;" providerName="Oracle.DataAccess.Client">
+          <sqlGeneratorData>
+            <add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" />
+          </sqlGeneratorData>
+        </add>
+        
+        <add name="CS_SECURITY" enableCSSecurity="false" dbmsType="ORACLE" owner="CS_SECURITY" tracing ="false" oracleTracing="false" connectionString="Data Source=orcl;User ID=CS_SECURITY;Password=Oracle;" providerName="Oracle.DataAccess.Client">
+        </add>
+
+	
+    </applications>
+       <services>
+      <add name="COEHitList" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearch" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="DatabasePublishing" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEForm" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETableEditor" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearchCriteria" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEDataView" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESecurity" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>    
+      <add name="COEGenericObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETypedObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=11.0.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COERegistration" dalProviderAssemblyNameShort="CambridgeSoft.COE.Registration.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.Registration.Services, Version=11.0.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+    
+</services>
+  </coeConfiguration>
+
+
+
+<SSOConfiguration>
+		<ProviderConfiguration>
+			<Settings>
+				<!--SSOProvider (SimulationEveryoneGood | SimulationNoOneGood | COELDAP | CSSecurity)-->
+				<add Name="DEFAULT_PROVIDER" Value="COELDAP"/>
+			</Settings>
+			<ExemptUsers>
+				<add userName="CSSADMIN" ssoProvider="cssecurity"/>
+				<add userName="ACXBUYER" ssoProvider="cssecurity"/>
+				<add userName="ACXBROWSER" ssoProvider="cssecurity"/>
+				<add userName="BIOSAR_ADMIN" ssoProvider="cssecurity"/>
+				<add userName="BIOSAR_USER" ssoProvider="cssecurity"/>
+				<add userName="BIOSAR_USER_BROWSER" ssoProvider="cssecurity"/>
+				<add userName="DRUGDEGADMIN" ssoProvider="cssecurity"/>
+				<add userName="DRUGDEGBROWSER" ssoProvider="cssecurity"/>
+				<add userName="DOC_ADMIN" ssoProvider="cssecurity"/>
+				<add userName="DOC_BROWSER" ssoProvider="cssecurity"/>
+				<add userName="DOC_SUBMITTER" ssoProvider="cssecurity"/>
+				<add userName="INVADMIN" ssoProvider="cssecurity"/>
+				<add userName="INVBROWSER" ssoProvider="cssecurity"/>
+				<add userName="INVCHEMIST" ssoProvider="cssecurity"/>
+				<add userName="INVRECEIVING" ssoProvider="cssecurity"/>
+				<add userName="INVFINANCE" ssoProvider="cssecurity"/>
+				<add userName="INVREGISTRAR" ssoProvider="cssecurity"/>
+				<add userName="T1_84" ssoProvider="cssecurity"/>
+				<add userName="T2_84" ssoProvider="cssecurity"/>
+				<add userName="T3_84" ssoProvider="cssecurity"/>
+				<add userName="T4_84" ssoProvider="cssecurity"/>
+				<add userName="T5_84" ssoProvider="cssecurity"/>
+				<add userName="T6_84" ssoProvider="cssecurity"/>
+				<add userName="T1_85" ssoProvider="cssecurity"/>
+				<add userName="T2_85" ssoProvider="cssecurity"/>
+				<add userName="T3_85" ssoProvider="cssecurity"/>
+				<add userName="T4_85" ssoProvider="cssecurity"/>
+				<add userName="T5_85" ssoProvider="cssecurity"/>
+				<add userName="T6_85" ssoProvider="cssecurity"/>
+			</ExemptUsers>
+		</ProviderConfiguration>
+		<CSSecurity>
+			<CSSConnections>
+				<add connectionName="ValidateUserConnection" database="orcl"/>
+			</CSSConnections>
+		</CSSecurity>
+		<LDAPConfiguration>
+			<Settings>
+				<add Name ="LDAP_SERVER_NAME" Value="boron2.camsoft.com"/>
+				<add Name ="LDAP_PORT" Value="389"/>
+				<add Name ="ACTIVE_DIRECTORY_DOMAIN" Value="CAMSOFT"/>
+				<add Name ="LDAP_SERVICE_ACCOUNT_NAME" Value="LDAPSVCACCT"/>
+				<add Name ="LDAP_SERVICE_ACCOUNT_PWD" Value="12csc345"/>
+				<add Name ="LDAP_VERSION" Value="3"/>
+				<add Name ="LDAP_DN" Value="CN=Users,DC=camsoft,DC=com"/>
+				<add Name = "LDAP_USER_DN" Value="CAMSOFT\%username%"/>
+				<add Name ="LDAP_FILTER" Value="sAMAccountName=%username%"/>
+				<!--LDAP_AUTHENTICATION_TYPE (SimpleBind | FastBind) -->
+				<add Name ="LDAP_AUTHENTICATION_TYPE" Value=""/>
+			</Settings>	
+			
+			<GetUserReturnInfo>
+				<add nodeName="username" ldapCode="SAMAccountName" displayName="Username" mapTo="username"/>
+				<add ldapCode="givenName" displayName="First Name" mapTo="FirstName"/>
+				<add ldapCode="initials" displayName="Middle Name" mapTo="MiddleName" />
+				<add ldapCode="sn" displayName="Last Name" mapTo="LastName" />
+				<add ldapCode="mail" displayName="Email" mapTo="Email"/>
+			</GetUserReturnInfo>
+		</LDAPConfiguration>
+	</SSOConfiguration>
+
+</configuration>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by lbialic (CambridgeSoft Corportaion) -->
+<COEConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\CambridgeSoft\Web\ConfigurationEditor\Temporary.xsd">
+	<FrameworkConfig name="Global" toolTip="all global framework configuration for chemoffice enterprise">
+		<Services configEditorName="Services" toolTip="configruation relavant to services">
+			<Service configEditorName="Search" managerClass="RegisteredCompoundManager" name="Search">
+				<DALProviders configEditorName="DAL Providers">
+					<DAlProvider configEditorName="oracle" class="OracleDataAccessClient.cs" name="oracle.dataaccess"/>
+				</DALProviders>
+				<ServiceConfig configEditorName="Configuration" searchMaxHits="102" hitListExpirationDate="1" queryCriteriaExpirationDate="1"/>
+			</Service>
+			<Service configEditorName="HitList" managerClass="ContainerManager" name="HitList">
+				<DALProviders configEditorName="DAL providers">
+					<DAlProvider configEditorName="" class="OracleDataAccessClient.cs" name=""/>
+				</DALProviders>
+				<ServiceConfig configEditorName="Configuration" hitListExpirationDate="1" searchMaxHits="100" queryCriteriaExpirationDate="1"/>
+			</Service>
+			<Service configEditorName="" managerClass="PreRegisteredCompoundManager" name="QueryCriteria">
+				<DALProviders configEditorName="DAL Providers">
+					<DAlProvider configEditorName="" class="OracleDataAccessClient.cs" name=""/>
+				</DALProviders>
+				<ServiceConfig configEditorName="Configuration" queryCriteriaExpirationDate="1" searchMaxHits="100" hitListExpirationDate="1"/>
+			</Service>
+		</Services>
+		<Applications>
+			<Application configEditorName="Inventory Manager" name="Inventory" dbConnecton="REGDB"/>
+			<Application configEditorName="Registration Mananger" name="Registration" dbConnecton="REGDB"/>
+		</Applications>
+		<MessagingTypes configEditorName="Messaging Types" advanced="true" showChildrenInEditor="true">
+			<MessagingType configEditorName="Search Criteria" schema="/coeframeworkservices/xsd/searchCriteria.xsd" name="searchCritera"/>
+			<MessagingType configEditorName="Results Critieria" schema="/coeframeworkservices/xsd/resultsCriteria.xsd" name="resultsCriteria"/>
+			<MessagingType configEditorName="COE DataView" schema="/coeframeworkservices/xsd/rdataView.xsd" name="dataView"/>
+		</MessagingTypes>
+		<DBConnections configEditorName="Connections" toolTip="connection strings" showChildrenInEditor="true">
+			<DBConnection configEditorName="CHEMINVDB2" name="CHEMINVDB2" tracing="false" oracleTracing="true" owner="CHEMINVDB2" connectionString="Data Source=SUSHI;User ID=CHEMINVDB2;Password=Oracle;max pool size=3;connection timeout=30" providerName="Oracle.DataAccess.Client"/>
+			<DBConnection configEditorName="CHEMACX" name="CHEMACX" tracing="false" connectionString="Data Source=c:/chemoffice_data/chemacx/chemacx.mdb;User ID=CHEMINVDB2;Password=Oracle" providerName="Oracle.System.OLEDB" oracleTracing="" owner=""/>
+			<DBConnection configEditorName="REGDB" name="REGDB" tracing="false" oracleTracing="true" owner="REGDB" connectionString="Data Source=SUSHI;User ID=REGDB;Password=Oracle;max pool size=3;connection timeout=30" providerName="Oracle.DataAccess.Client"/>
+		</DBConnections>
+		<Components configEditorName="Components" toolTip="">
+			<Component configEditorName="SqlGenerator" toolTip="">
+				<SelectClauseItem configEditorName="Select Clause Items" showChildrenInEditor="true" toolTip="">
+					<SelectClauseItem configEditorName="literal" name="literal" class="CambridgeSoft.COE.Framework...SelectItems.selectClauseLiteral" value=""/>
+					<SelectClauseItem configEditorName="concatenation" name="concatenation" class="CambridgeSoft.COE.Framework...SelectItems.selectClauseConcatentation"/>
+				</SelectClauseItem>
+				<ChemSearchOptions configEditorName="Chemical Search Options" allowExtraneousFragments="YES"/>
+				<ChemSearchOptionsDupCheck configEditorName="Duplicate Check Options" allowExtraneousFragments="YES"/>
+			</Component>
+		</Components>
+	</FrameworkConfig>
+	<AppConfiguration configEditorName="Inventory" toolTip="">
+		<Services configEditorName="Services" toolTip="">
+			<Service configEditorName="Container" managerClass="ContainerManager" name="Container" toolTip="">
+				<DALProviders configEditorName="DAL providers" showChildrenInEditor="true" toolTip="">
+					<DAlProvider configEditorName="Oracle" name="Oracle" class="OracleDataAccessClient.cs"/>
+				</DALProviders>
+				<ServiceConfig>
+        </ServiceConfig>
+			</Service>
+		</Services>
+		<DBNames configEditorName="Databases" toolTip="" showChildrenInEditor="true">
+			<DBName configEditorName="CHEMINVDB2" name="CHEMINVDB2" coeDbmsType="ORACLE" dbConnection="CHEMINVDB2">
+				<chemSearchEngine configEditorName="Chemical Search Engine" type="CSCartridge" schemaName="CSCartridge"/>
+			</DBName>
+			<DBName configEditorName="ChemACX" name="CHEMACX" coeDbmsType="MSACCESS" dbConnection="CHEMACX">
+				<chemSearchEngine configEditorName="Chemical Search Engine" type="MolServer" mstPath="/chemacx.mst" schemaName=""/>
+			</DBName>
+		</DBNames>
+		<Components>
+			<Component>
+				<ComponentConfig>
+					<ChemSearchOptions allowExtraneousFragments="YES"/>
+					<ChemSearchOptionsDupCheck allowExtraneousFragments=""/>
+				</ComponentConfig>
+			</Component>
+		</Components>
+	</AppConfiguration>
+	<AppConfiguration name="Registration" configEditorName="" toolTip="">
+		<Services>
+			<Service managerClass="PreRegisteredCompoundManager" name="PreRegisteredCompound" configEditorName="" toolTip="">
+				<DALProviders>
+					<DAlProvider name="Oracle" class="OracleDataAccessClient.cs" configEditorName="Oracle"/>
+				</DALProviders>
+				<ServiceConfig/>
+			</Service>
+			<Service managerClass="RegisteredCompoundManager" name="RegisteredCompound" configEditorName="" toolTip="">
+				<DALProviders>
+					<DAlProvider name="Oracle" class="OracleDataAccessClient.cs" configEditorName="Oracle"/>
+				</DALProviders>
+				<ServiceConfig saltLevel="COMPOUND" startBatchNumber="0" AutogenChemicalName="true" defaultPrefix="AB"/>
+			</Service>
+		</Services>
+		<DBNames>
+			<DBName name="REGDB" coeDbmsType="ORACLE" dbConnection="REGDB">
+				<chemSearchEngine type="CSCartridge" schemaName="CSCartridge" configEditorName="Chemical Search Engine"/>
+			</DBName>
+		</DBNames>
+		<Components>
+			<Component name="SqlGenerator">
+				<ComponentConfig>
+					<ChemSearchOptions allowExtraneousFragments="YES"/>
+					<ChemSearchOptionsDupCheck allowExtraneousFragments="NO"/>
+				</ComponentConfig>
+			</Component>
+		</Components>
+	</AppConfiguration>
+</COEConfig>

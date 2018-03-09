@@ -340,48 +340,14 @@ namespace CambridgeSoft.COE.Framework.Common
         /// </summary>
         /// <param name="tableID">Identifier of the table to search</param>
         /// <returns>The PK of the table</returns>
-        public string GetTablePrimaryKeyById(int tableID)
+        private string GetTablePrimaryKeyById(int tableID)
         {
             string retVal = "-1";
             DataViewTable foundTable = this.GetTableById(tableID);
             if (foundTable != null)
                 retVal = foundTable.PrimaryKey;
             return retVal;
-        }
-
-        /// <summary>
-        /// Get the data type of the field to be saved in hitlist
-        /// </summary>
-        /// <param name="tableId">Identifier of the table</param>
-        /// <returns>The data type to save in hitlist</returns>
-        public HitListDataTypes GetTableHitListDataType(int tableId)
-        {
-            return this.GetTableById(tableId).HitListDataType;
-        }
-
-        /// <summary>
-        /// Gets the field id to generate hitlist
-        /// </summary>
-        /// <param name="tableID">Identifier of the table</param>
-        /// <returns>The id of the field to be saved in hitlist </returns>
-        public int GetTableHitListFieldId(int tableId)
-        {
-            // 0 present ROWID field
-			int id = 0;
-
-            switch (GetTableHitListDataType(tableId))
-            {
-                case HitListDataTypes.NUMBER:
-                case HitListDataTypes.STRING:
-                case HitListDataTypes.COEPK:
-                    int.TryParse(GetTablePrimaryKeyById(tableId), out id);
-                    break;
-                case HitListDataTypes.ROWID:
-                    break;
-            }
-
-            return id;
-        }
+        }        
 
         private void InitializeManager(XmlNameTable xmlNameTable)
         {
@@ -445,25 +411,7 @@ namespace CambridgeSoft.COE.Framework.Common
             }
 
             throw new Exception(string.Format("Can not find a field with ID '{0}' from data view '{1}'.", fieldId, Name));
-        }
-
-        /// <summary>
-        /// Returns the id of the field to save in hitlist
-        /// </summary>
-        /// <param name="tableId">The table id.</param>
-        /// <returns>The Field</returns>
-        public Field GetTableHitListField(int tableId)
-        {
-            int primaryKeyId = 0;
-            int.TryParse(GetTablePrimaryKeyById(tableId), out primaryKeyId);
-
-            if (primaryKeyId == 0 || this.GetTableHitListDataType(tableId) == HitListDataTypes.ROWID)
-            {
-                return new RowIdField(tableId);
-            }
-
-            return this.GetFieldById(primaryKeyId);
-        }
+        }        
 
         public void RemoveNonRelationalTables()
         {
@@ -492,36 +440,7 @@ namespace CambridgeSoft.COE.Framework.Common
             }
             return idNotExists;
         }
-
-        /// <summary>
-        /// Remove a table and all related relationships
-        /// </summary>
-        /// <param name="tableName">The name of table to be removed</param>
-        public void RemoveTable(string tableName)
-        {
-            for (int i = tables.Count - 1; i >= 0; i--)
-            {
-                if (tableName.ToUpper().Equals(tables[i].Name.ToUpper()))
-                {
-                    // remove relationships
-                    for (int j = relationships.Count - 1; j >= 0; j--)
-                    {
-                        if (relationships[j].Child == tables[i].Id || relationships[j].Parent == tables[i].Id)
-                        {
-                            relationships.RemoveAt(j);
-                        }
-                    }
-
-                    // reset base table
-                    if (this.baseTable == tables[i].Id)
-                    {
-                        this.baseTable = -1;
-                    }
-
-                    tables.RemoveAt(i);
-                }
-            }
-        }
+        
         #endregion
 
         #region Additional Classes
@@ -634,16 +553,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 get { return primaryKey; }
                 set { primaryKey = value; }
             }
-
-            /// <summary>
-            /// Table hitlist type used to generate hitlist
-            /// </summary>
-            [XmlAttribute("hitListDataType")]
-            public HitListDataTypes HitListDataType
-            {
-                get { return hitListDataType; }
-                set { hitListDataType = value; }
-            }
+                      
 
             /// <summary>
             /// Table primary key id
@@ -664,7 +574,6 @@ namespace CambridgeSoft.COE.Framework.Common
             private string alias;
             private string database;
             private string primaryKey; // the primary key may be a composition of fields.
-            private HitListDataTypes hitListDataType;
             private bool isView;
             private List<string> tags;
             #endregion
@@ -681,7 +590,6 @@ namespace CambridgeSoft.COE.Framework.Common
                 this.alias = string.Empty;
                 this.database = string.Empty;
                 this.primaryKey = string.Empty;
-                this.hitListDataType = HitListDataTypes.NUMBER;
                 this.isView = false;
             }
 
@@ -727,17 +635,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 if (tableNode.Attributes["isView"] != null && !string.IsNullOrEmpty(tableNode.Attributes["isView"].Value))
                     isView = (tableNode.Attributes["isView"].Value == "1" || tableNode.Attributes["isView"].Value.ToLower() == "true") ? true : false;
 
-                if (tableNode.Attributes["hitListDataType"] != null
-                    && tableNode.Attributes["hitListDataType"].Value != string.Empty)
-                {
-                    hitListDataType = COEConvert.ToHitListType(tableNode.Attributes["hitListDataType"].Value);
-                }
-                else
-                {
-                    // Old dataview doesn't have this proterty, and always save as NUMBER hitlist
-                    hitListDataType = HitListDataTypes.NUMBER;
-                }
-            }
+               }
             #endregion
 
             #region Methods
@@ -770,9 +668,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 builder.Append("\" isView=\"");
                 builder.Append(isView ? "1" : "0");
                 builder.Append("\" primaryKey=\"");
-                builder.Append(primaryKey);
-                builder.Append("\" hitListDataType=\"");
-                builder.Append(hitListDataType);
+                builder.Append(primaryKey);                
                 builder.Append("\">");
 
                 for (int i = 0; i < fields.Count; i++)
@@ -796,29 +692,7 @@ namespace CambridgeSoft.COE.Framework.Common
             }
             #endregion
         }
-
-        // ROWID field for Oracle database
-        public class RowIdField : Field
-        {
-            /// <summary>
-            /// Datalytix reserved ROWID field name
-            /// </summary>
-            private const string ReservedFieldNameRowId = "ROWID";
-
-            /// <summary>
-            /// Datalytix reserved ROWID field alias
-            /// </summary>
-            public const string ReservedFieldAliasRowId = "DL_RESERVED_FIELD_ALIAS_ROWID";
-
-            public RowIdField(int tableId)
-            {
-                Id = 0;
-                Name = ReservedFieldNameRowId;
-                Alias = ReservedFieldAliasRowId;
-                Visible = false;
-                ParentTableId = tableId;
-            }
-        }
+       
 
         /// Field
         /// <summary>
@@ -1233,14 +1107,7 @@ namespace CambridgeSoft.COE.Framework.Common
             }
 
             public Field getById(int id)
-            {
-                if (id == 0)
-                {
-                    // Generate ROWID field, use the table id of the first field.
-                    // We suppose they are in same table.
-                    return new RowIdField(this.Count > 0 ? this[0].ParentTableId : 0);
-                }
-
+            {               
                 foreach (Field currentField in this)
                 {
                     if (currentField.Id == id)
@@ -1585,36 +1452,7 @@ namespace CambridgeSoft.COE.Framework.Common
             /// </summary>
             [XmlEnum("FULL_TEXT")]
             FULL_TEXT
-        }
-
-        /// <summary>
-        /// Indicates the data type of the filed to be saved in hitlist. Possible values: NUMBER, STRING, ROWID
-        /// </summary>
-        [DefaultValue(NUMBER)]
-        [XmlTypeAttribute("HitListDataTypes", Namespace = "COE.COEDataView")]
-        public enum HitListDataTypes
-        {
-            /// <summary>
-            /// Specify to save PrimaryKey into TEMPCHITLIST.ID
-            /// </summary>
-            [XmlEnum("NUMBER")]
-            NUMBER,
-            /// <summary>
-            /// Specify to save PrimaryKey into TEMPCHITLIST.VAR_ID
-            /// </summary>
-            [XmlEnum("STRING")]
-            STRING,
-            /// <summary>
-            /// Specify to save ROWID into TEMPCHITLIST.ROW_ID
-            /// </summary>
-            [XmlEnum("ROWID")]
-            ROWID,
-            /// <summary>
-            /// Specify to save COE DataView primary key into one proper column in TEMPCHITLIST table
-            /// </summary>
-            [XmlEnum("COEPK")]
-            COEPK
-        }
+        }       
 
         /// <summary>
         /// Indicates a join blend. Possible values: OUTER INNER

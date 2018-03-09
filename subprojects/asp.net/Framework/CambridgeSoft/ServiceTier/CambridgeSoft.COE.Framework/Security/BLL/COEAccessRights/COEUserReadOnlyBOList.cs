@@ -102,14 +102,14 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
         //this method must be called prior to any other method inorder to set the database that the dal will use
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
 
         internal static void SetDatabaseName(string databaseName)
         {
 
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
 
         }
 

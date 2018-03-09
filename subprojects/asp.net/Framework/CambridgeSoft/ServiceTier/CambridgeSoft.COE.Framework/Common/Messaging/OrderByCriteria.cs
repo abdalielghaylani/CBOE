@@ -212,7 +212,6 @@ namespace CambridgeSoft.COE.Framework.Common
             [XmlElement(typeof(ResultsCriteria.ToDate))]
             [XmlElement(typeof(ResultsCriteria.DirectStructure))]
             [XmlElement(typeof(ResultsCriteria.CustomCriteria))]
-            [XmlElement(typeof(ResultsCriteria.RowId))]
             public ResultsCriteria.IResultsCriteriaBase ResultCriteriaItem
             {
                 get { return _resultCriteriaItem; }

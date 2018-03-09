@@ -1,0 +1,36 @@
+<configuration subdirectory="DataViews" databasename="CHEMACXDB" description="ChemACX" formgroup="0" id="5006" ispublic="True" name="ChemACX" username="COEDB">
+	<xml><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="CHEMACXDB" name="" description="" dataviewHandling="USE_CLIENT_DATAVIEW">
+	<tables>
+		<table id="1" name="SUBSTANCE" alias="" database="CHEMACXDB" primaryKey="1">
+			<fields id="1" name="CSNUM" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="2" name="CAS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="3" name="ACX_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="4" name="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="6" name="SYNONYMID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+		</table>
+		<table id="2" name="PRODUCT" alias="prd" database="CHEMACXDB" primaryKey="7">
+			<fields id="7" name="PRODUCTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="8" name="CSNUM" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="9" name="PRODNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="10" name="CATALOGNUM" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+		</table>
+		<table id="3" name="PACKAGE" alias="pkg" database="CHEMACXDB" primaryKey="11">
+			<fields id="11" name="PACKAGEID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="12" name="PRODUCTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="14" name="SIZE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="15" name="PRICE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="16" name="CSYMBOL" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+		</table>
+		<table id="4" name="ACX_SYNONYM" alias="syn" database="CHEMACXDB" primaryKey="17">
+			<fields id="17" name="SYNONYMID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+			<fields id="18" name="NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" lookupSortOrder="ASCENDING" alias=""/>
+		</table>
+	</tables>
+	<relationships>
+		<relationship child="2" parent="1" childkey="8" parentkey="1" jointype="INNER"/>
+		<relationship child="3" parent="2" childkey="12" parentkey="7" jointype="INNER"/>
+	</relationships>
+</COEDataView>
+]]></xml>
+</configuration>

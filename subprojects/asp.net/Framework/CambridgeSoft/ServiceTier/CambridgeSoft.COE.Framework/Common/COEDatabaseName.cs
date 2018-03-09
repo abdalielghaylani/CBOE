@@ -7,7 +7,7 @@ using CambridgeSoft.COE.Framework.Properties;
 namespace CambridgeSoft.COE.Framework.Common
 {
     [Serializable]
-    // this class is for convenience since we are not clear where the user is coming from yet.
+    //this class is for convenience since we are not clear where the user is coming from yet.
     public static class COEDatabaseName
     {
         public static string Get()
@@ -18,15 +18,14 @@ namespace CambridgeSoft.COE.Framework.Common
             }
             else
             {
-                // Fix for loading query using web player ajax.
-                // Return "COEDB" instead of empty string.
-                return Resources.CentralizedStorageDB;
+                return string.Empty;
             }
         }
 
         public static void Set(string databaseName)
         {
             Csla.ApplicationContext.GlobalContext["DatabaseName"] = databaseName;
+      
 
         }
     }

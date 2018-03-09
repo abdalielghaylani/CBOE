@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2006 rel. 3 sp2 (http://www.altova.com) by Facundo Galdeano (CambridgeSoft Corportaion) -->
+<xs:schema xmlns:tns="COE.SecurityInfo" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="COE.SecurityInfo" elementFormDefault="qualified">
+	<xs:element name="SecurityInfo" type="tns:SecurityInfo"/>
+	<xs:complexType name="SecurityInfo">
+		<xs:sequence>
+			<xs:element name="IdentityToken" type="xs:string" minOccurs="0"/>
+			<xs:element name="UserName" type="xs:string" minOccurs="0"/>
+			<xs:element name="Password" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CambridgeSoft.COE.RLSConfigurationTool")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CambridgeSoft")]
+[assembly: AssemblyCompany("PerkinElmer")]
 [assembly: AssemblyProduct("CambridgeSoft.COE.RLSConfigurationTool")]
-[assembly: AssemblyCopyright("© Copyright 2001-2016 PerkinElmer Informatics, Inc.")]
+[assembly: AssemblyCopyright("© Copyright 1998-2018 PerkinElmer Informatics, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,5 +29,5 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-[assembly: AssemblyVersion("12.1.0.0")]
+[assembly: AssemblyVersion("17.1.1.0")]
 [assembly: AssemblyFileVersion("12.1.0.0")]

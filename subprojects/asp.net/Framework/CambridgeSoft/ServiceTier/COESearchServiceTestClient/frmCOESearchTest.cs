@@ -19,8 +19,7 @@ using CambridgeSoft.COE.Framework.Common;
 using Csla.Security;
 
 
-namespace COESearchServiceTest
-{
+namespace COESearchServiceTest {
     /// <summary>
     ///     Windows forms application to exercise the methods of ChemOffice Enterprise
     ///     Search Service.  The form provides a covenient way to view/edit/manage xml
@@ -34,8 +33,7 @@ namespace COESearchServiceTest
     ///     presents the output objects returned by the server.
     ///     
     /// </summary>
-    public partial class frmCOESearchTest : Form
-    {
+    public partial class frmCOESearchTest : Form {
         #region Global variable declarations
         COELog _coeLog = COELog.GetSingleton("Client");
         /// Global proxy object to access the SearchService methods 
@@ -88,47 +86,41 @@ namespace COESearchServiceTest
 
         #region Security
 
-        private void frmCOESearchTest_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                if (Csla.ApplicationContext.AuthenticationType == "Windows")
-                {
+        private void frmCOESearchTest_Load(object sender, EventArgs e) {
+            try {
+
+                if(Csla.ApplicationContext.AuthenticationType == "Windows") {
                     AppDomain.CurrentDomain.SetPrincipalPolicy(System.Security.Principal.PrincipalPolicy.WindowsPrincipal);
-                }
-                else
-                {
+                } else {
                     //in this case you are logging in with the appName will get and set all the privilges
                     //the a user has. these privileges are gathtered from cs_security and is oracle only at this time
                     //this inforamtion could come from a login screen
                     DoLogin();
+
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 MessageBox.Show(exception.Message);
             }
         }
 
-        private void DoLogin()
-        {
+        private void DoLogin() {
             System.Security.Principal.IPrincipal user = Csla.ApplicationContext.User;
             string userName = ConfigurationManager.AppSettings.Get("LogonUserName");
             string password = ConfigurationManager.AppSettings.Get("LogonPassword");
 
-            try
-            {
+
+            try {
                 bool result = COEPrincipal.Login(userName, password);
                 int mySession = COEUser.SessionID;
-            }
-            catch (System.Exception ex)
-            {
+            } catch(System.Exception ex) {
                 MessageBox.Show(ex.GetBaseException().Message.ToString());
             }
+
         }
 
 
         #endregion
+
 
         #region Code to manage input/output xml docs used by the tested methods
         /// <summary>
@@ -136,18 +128,14 @@ namespace COESearchServiceTest
         ///     Start with the Input tab and SecurityInfo subtab in browser view mode
         ///     Delete output files if present from previous executions.
         /// </summary>
-        public frmCOESearchTest()
-        {
+        public frmCOESearchTest() {
             InitializeComponent();
             this.txtEditor.Hide();
 
             //determine if logging is turned on
-            if (_coeLog.Enabled)
-            {
+            if(_coeLog.Enabled) {
                 logButton.Enabled = true;
-            }
-            else
-            {
+            } else {
                 logButton.Enabled = false;
 
             }
@@ -168,13 +156,13 @@ namespace COESearchServiceTest
             this.btnEditSave.Text = "Edit";
             displayInBrowser(currentInputXmlPath, brwsrInput);
 
-            if (File.Exists(tempPath + DATASET_FILE))
+            if(File.Exists(tempPath + DATASET_FILE))
                 File.Delete(tempPath + DATASET_FILE);
 
-            if (File.Exists(tempPath + PAGINGINFO_OUTPUT_FILE))
+            if(File.Exists(tempPath + PAGINGINFO_OUTPUT_FILE))
                 File.Delete(tempPath + PAGINGINFO_OUTPUT_FILE);
 
-            if (File.Exists(tempPath + HITLISTINFO_FILE))
+            if(File.Exists(tempPath + HITLISTINFO_FILE))
                 File.Delete(tempPath + HITLISTINFO_FILE);
 
             //_coeSearch.HitListReady += new COESearch.HitListReadyHandler(_coeSearch_HitListReady);
@@ -193,16 +181,13 @@ namespace COESearchServiceTest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabControlInputObjects_Selected(object sender, TabControlEventArgs e)
-        {
-            try
-            {
-                string selectedTab = ((TabControl)sender).SelectedTab.Text;
+        private void tabControlInputObjects_Selected(object sender, TabControlEventArgs e) {
+            try {
+                string selectedTab = ((TabControl) sender).SelectedTab.Text;
 
                 SaveXmlFile();
 
-                switch (selectedTab)
-                {
+                switch(selectedTab) {
                     case "SecurityInfo":
                         currentInputXmlPath = SECURITYINFO_FILE;
                         break;
@@ -221,9 +206,7 @@ namespace COESearchServiceTest
                 }
                 currentInputXmlPath = tempPath + currentInputXmlPath;
                 displayInBrowser(currentInputXmlPath, brwsrInput);
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 HandleException(exception);
             }
         }
@@ -233,10 +216,8 @@ namespace COESearchServiceTest
         ///     Persists the contents of the text editor to the current xml
         ///     file path.
         /// </summary>
-        private void SaveXmlFile()
-        {
-            if ((currentInputXmlPath != "") && (this.txtEditor.Text != ""))
-            {
+        private void SaveXmlFile() {
+            if((currentInputXmlPath != "") && (this.txtEditor.Text != "")) {
                 File.WriteAllText(currentInputXmlPath, this.txtEditor.Text);
             }
             this.btnEditSave.Text = "Edit";
@@ -246,36 +227,34 @@ namespace COESearchServiceTest
         ///     Displays the current xml in a browser control.
         ///     Uses xslt to transfor the xml into html using IE default template
         /// </summary>
-        private void displayInBrowser(string xmlPath, WebBrowser browser)
-        {
+        private void displayInBrowser(string xmlPath, WebBrowser browser) {
             ClearResultGrids();
             this.ExportStringTextBox.Hide();
             this.txtEditor.Hide();
             this.txtEditor.Text = "";
             browser.Show();
             // Create a blank file if it does not exist
-            if (!File.Exists(xmlPath))
-            {
+            if(!File.Exists(xmlPath)) {
                 CreateBlankXmlFile(xmlPath);
             }
             XPathDocument x = new XPathDocument(xmlPath);
             XslCompiledTransform t = new XslCompiledTransform();
             System.Resources.ResourceManager rm = new System.Resources.ResourceManager("frmCOESearchTest.resx", System.Reflection.Assembly.GetExecutingAssembly());
 
-            string styleSheet = (string)COESearchServiceTest.Properties.Resources.defaultss;
+            string styleSheet = (string) COESearchServiceTest.Properties.Resources.defaultss;
             File.WriteAllText(tempPath + IE_XLST_PATH, styleSheet);
             t.Load(tempPath + IE_XLST_PATH);
             t.Transform(xmlPath, tempPath + TMP_HTML);
             browser.Navigate(tempPath + TMP_HTML);
             Environment.SpecialFolder.LocalApplicationData.ToString();
+
         }
 
         /// <summary>
         ///     Creates an empty xml file at a specified location
         /// </summary>
         /// <param name="filePath"></param>
-        void CreateBlankXmlFile(string filePath)
-        {
+        void CreateBlankXmlFile(string filePath) {
             XmlTextWriter xmlWriter = new XmlTextWriter(filePath, System.Text.Encoding.UTF8);
             xmlWriter.Formatting = Formatting.Indented;
             xmlWriter.WriteProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
@@ -286,12 +265,13 @@ namespace COESearchServiceTest
         /// <summary>
         ///     Shows the current xml file in editable text box control
         /// </summary>
-        private void displayInEditor()
-        {
+        private void displayInEditor() {
             this.brwsrInput.Hide();
             this.txtEditor.Show();
             this.txtEditor.Text = File.ReadAllText(currentInputXmlPath);
         }
+
+
 
         /// <summary>
         ///     Saves the contents of the text editor to current xml file
@@ -299,22 +279,17 @@ namespace COESearchServiceTest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnEditSave_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                Button btn = (Button)sender;
+        private void btnEditSave_Click(object sender, EventArgs e) {
+            try {
+                Button btn = (Button) sender;
                 TextBox txtBox = this.txtEditor;
-                if (btn.Text == "Edit")
-                {
+                if(btn.Text == "Edit") {
                     // Enter into edit mode
                     btn.Text = "Save";
                     this.brwsrInput.Hide();
                     displayInEditor();
                     txtBox.Show();
-                }
-                else
-                {
+                } else {
                     // Save the contents of the editor to file
                     // and return to browser view mode
                     btn.Text = "Edit";
@@ -322,10 +297,9 @@ namespace COESearchServiceTest
                     this.txtEditor.Hide();
                     this.brwsrInput.Show();
                     displayInBrowser(currentInputXmlPath, brwsrInput);
+
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 HandleException(exception);
             }
         }
@@ -333,28 +307,29 @@ namespace COESearchServiceTest
         /// <summary>
         ///     Displays the results
         /// </summary>
-        void ShowResultsTab(TabPage tabToSelect)
-        {
+        void ShowResultsTab(TabPage tabToSelect) {
+
+
             TabControl outputTabControl = this.tabControlOutputObjects;
             this.tabControlTop.SelectedTab = tabResults;
-            if (outputTabControl.SelectedTab.Equals(tabToSelect))
-            {
+            if(outputTabControl.SelectedTab.Equals(tabToSelect)) {
                 outputTabControl.DeselectTab(tabToSelect);
             }
             this.btnGridXml.Text = "Grid";
             //this.btnNext.Top = this.btnPrev.Top = this.btnGridXml.Top = brwsrResults.Bottom + 10;
             outputTabControl.SelectedTab = tabToSelect;
             brwsrResults.Show();
+
         }
 
-        private void tabControlOutputObjects_Selected(object sender, TabControlEventArgs e)
-        {
-            try
-            {
-                string selectedTab = ((TabControl)sender).SelectedTab.Text;
 
-                switch (selectedTab)
-                {
+
+
+        private void tabControlOutputObjects_Selected(object sender, TabControlEventArgs e) {
+            try {
+                string selectedTab = ((TabControl) sender).SelectedTab.Text;
+
+                switch(selectedTab) {
                     case "HitlistInfo":
                         currentResutlXmlPath = HITLISTINFO_FILE;
                         EnablePagingButtons(false);
@@ -370,32 +345,30 @@ namespace COESearchServiceTest
                         break;
                 }
 
+
+
+
                 currentResutlXmlPath = tempPath + currentResutlXmlPath;
 
                 this.btnGridXml.Text = "Grid";
                 //this.btnPrev.Top = this.btnNext.Top = this.btnGridXml.Top = brwsrResults.Bottom + 10;
 
                 displayInBrowser(currentResutlXmlPath, brwsrResults);
-            }
-            catch (Exception exception)
-            {
+
+            } catch(Exception exception) {
                 HandleException(exception);
             }
         }
 
-        private void EnablePagingButtons(bool p)
-        {
+        private void EnablePagingButtons(bool p) {
             this.btnPrev.Enabled = p;
             this.btnNext.Enabled = p;
         }
 
-        private void ClearResultGrids()
-        {
+        private void ClearResultGrids() {
             // Remove any grid controls from the Results tab
-            foreach (Control ctl in tabResults.Controls)
-            {
-                if (ctl.ToString() == "System.Windows.Forms.DataGridView")
-                {
+            foreach(Control ctl in tabResults.Controls) {
+                if(ctl.ToString() == "System.Windows.Forms.DataGridView") {
                     tabResults.Controls.Remove(ctl);
                 }
             }
@@ -409,8 +382,7 @@ namespace COESearchServiceTest
         ///     Builds a COE Dataview object from xml file
         /// </summary>
         /// <param name="dataView"></param>
-        private void BuildDataViewFromXML(ref COEDataView dataView)
-        {
+        private void BuildDataViewFromXML(ref COEDataView dataView) {
             XmlDocument doc = new XmlDocument();
             doc.Load(tempPath + DATAVIEW_FILE);
             dataView = new COEDataView(doc);
@@ -421,16 +393,12 @@ namespace COESearchServiceTest
         ///     Builds a SearchCriteria object from xml file
         /// </summary>
         /// <param name="searchCriteria"></param>
-        private void BuildSearchCriteriaFromXML(ref SearchCriteria searchCriteria)
-        {
+        private void BuildSearchCriteriaFromXML(ref SearchCriteria searchCriteria) {
             XmlDocument doc = new XmlDocument();
             doc.Load(tempPath + SEARCHCRITERIA_FILE);
-            try
-            {
+            try {
                 searchCriteria = new SearchCriteria(doc);
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
@@ -439,8 +407,7 @@ namespace COESearchServiceTest
         ///     Builds a ResultsCriteria object from xml file
         /// </summary>
         /// <param name="resultsCriteria"></param>
-        private void BuildResultsCriteriaFromXML(ref ResultsCriteria resultsCriteria)
-        {
+        private void BuildResultsCriteriaFromXML(ref ResultsCriteria resultsCriteria) {
             XmlDocument doc = new XmlDocument();
             doc.Load(tempPath + RESULTCRITERIA_FILE);
             resultsCriteria = new ResultsCriteria(doc);
@@ -450,12 +417,12 @@ namespace COESearchServiceTest
         ///     Builds a PagingInfo object from xml file
         /// </summary>
         /// <param name="pagingInfo"></param>
-        private void BuildPagingInfoFromXML(ref PagingInfo pagingInfo)
-        {
+        private void BuildPagingInfoFromXML(ref PagingInfo pagingInfo) {
             XmlDocument doc = new XmlDocument();
             doc.Load(tempPath + PAGINGINFO_FILE);
             pagingInfo = new PagingInfo(doc);
         }
+
 
         #endregion
 
@@ -469,18 +436,15 @@ namespace COESearchServiceTest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnTestGetHitlist_Click(object sender, EventArgs e)
-        {
+        private void btnTestGetHitlist_Click(object sender, EventArgs e) {
             GetHitList(false);
         }
 
-        private void btnParcialHitList_Click(object sender, EventArgs e)
-        {
+        private void btnParcialHitList_Click(object sender, EventArgs e) {
             GetHitList(true);
         }
 
-        private void GetHitList(bool partial)
-        {
+        private void GetHitList(bool partial) {
             _isPartialSearch = partial;
 
             ClearResultsXml();
@@ -493,11 +457,11 @@ namespace COESearchServiceTest
             searchCriteria = new SearchCriteria();
             BuildSearchCriteriaFromXML(ref searchCriteria);
 
-            try
-            {
+
+            try {
                 this.Cursor = Cursors.WaitCursor;
                 hitlistInfo = new HitListInfo();
-                if (partial)
+                if(partial)
                     hitlistInfo = _coeSearch.GetPartialHitList(searchCriteria, dataView);
                 else
                     hitlistInfo = _coeSearch.GetHitList(searchCriteria, dataView);
@@ -512,15 +476,11 @@ namespace COESearchServiceTest
                 SavePagingInfoToXml(pagingInfo);
 
                 ShowResultsTab(tabResultsHitlistInfo);
-                if (partial)
+                if(partial)
                     StartUpdatingThread();
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
-            }
-            finally
-            {
+            } finally {
                 this.Cursor = Cursors.Default;
             }
         }
@@ -533,8 +493,7 @@ namespace COESearchServiceTest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnTestGetData_Click(object sender, EventArgs e)
-        {
+        private void btnTestGetData_Click(object sender, EventArgs e) {
             ClearResultsXml();
 
             // Build DataView
@@ -549,8 +508,7 @@ namespace COESearchServiceTest
             pagingInfo = new PagingInfo();
             BuildPagingInfoFromXML(ref pagingInfo);
 
-            try
-            {
+            try {
                 DataSet dataset = null;
                 dataset = _coeSearch.GetData(resultsCriteria, pagingInfo, dataView);
                 SaveDataSetToXml(dataset);
@@ -559,9 +517,7 @@ namespace COESearchServiceTest
                 hitlistInfo = new HitListInfo();
                 SaveHitlistInfoToXml(hitlistInfo);
                 ShowResultsTab(tabResultsDataSet);
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
@@ -574,22 +530,20 @@ namespace COESearchServiceTest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnTestDoSearch_Click(object sender, EventArgs e)
-        {
+        private void btnTestDoSearch_Click(object sender, EventArgs e) {
             DoSearch(false);
         }
 
-        private void btnParcialSearchTest_Click(object sender, EventArgs e)
-        {
+        private void btnParcialSearchTest_Click(object sender, EventArgs e) {
             DoSearch(true);
         }
 
-        private void DoSearch(bool partial)
-        {
+        private void DoSearch(bool partial) {
             _coeLog.LogStart(string.Empty, 4);
             _isPartialSearch = partial;
 
             ClearResultsXml();
+
 
             // Build DataView
             dataView = new COEDataView();
@@ -607,36 +561,30 @@ namespace COESearchServiceTest
             pagingInfo = new PagingInfo();
             BuildPagingInfoFromXML(ref pagingInfo);
 
-            try
-            {
+            try {
                 this.Cursor = Cursors.WaitCursor;
                 searchResponse = null;
-                if (checkBox1.Checked == true)
-                {
+                if(checkBox1.Checked == true) {
                     //this means that a browser of the basetable will be done
                     searchCriteria = null;
                 }
 
-                if (partial)
+                if(partial)
                     searchResponse = _coeSearch.DoPartialSearch(searchCriteria, resultsCriteria, pagingInfo, dataView);
                 else
                     searchResponse = _coeSearch.DoSearch(searchCriteria, resultsCriteria, pagingInfo, dataView);
 
                 this.pagingInfo = searchResponse.PagingInfo;
-                SaveHitlistInfoToXml((HitListInfo)searchResponse.HitListInfo);
-                SaveDataSetToXml((DataSet)searchResponse.ResultsDataSet);
-                SavePagingInfoToXml((PagingInfo)searchResponse.PagingInfo);
+                SaveHitlistInfoToXml((HitListInfo) searchResponse.HitListInfo);
+                SaveDataSetToXml((DataSet) searchResponse.ResultsDataSet);
+                SavePagingInfoToXml((PagingInfo) searchResponse.PagingInfo);
                 ShowResultsTab(tabResultsDataSet);
 
-                if (partial)
+                if(partial)
                     StartUpdatingThread();
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
-            }
-            finally
-            {
+            } finally {
                 this.Cursor = Cursors.Default;
             }
             _coeLog.LogEnd(string.Empty, 4);
@@ -647,26 +595,22 @@ namespace COESearchServiceTest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button3_Click(object sender, EventArgs e)
-        {
+        private void button3_Click(object sender, EventArgs e) {
             ClearResultsXml();
+
 
             // Build DataView
             dataView = new COEDataView();
             BuildDataViewFromXML(ref dataView);
-            try
-            {
+            try {
                 int recordCount = _coeSearch.GetExactRecordCount(dataView);
 
                 MessageBox.Show("Table_" + dataView.Basetable + " has exactly " + recordCount + " records");
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
-        private void ClearResultsXml()
-        {
+        private void ClearResultsXml() {
             CreateBlankXmlFile(tempPath + DATASET_FILE);
             CreateBlankXmlFile(tempPath + HITLISTINFO_FILE);
             CreateBlankXmlFile(tempPath + PAGINGINFO_OUTPUT_FILE);
@@ -675,10 +619,10 @@ namespace COESearchServiceTest
         #endregion
         #region Test ExportService Methods
 
-        private void buttonTestDoExport_Click(object sender, EventArgs e)
-        {
-            if (ExportTypesList.SelectedItem.ToString() != "...select a export format")
-            {
+        private void buttonTestDoExport_Click(object sender, EventArgs e) {
+            if(ExportTypesList.SelectedItem.ToString() != "...select a export format") {
+
+
                 _coeLog.LogStart(string.Empty, 4);
                 ClearResultsXml();
 
@@ -698,109 +642,90 @@ namespace COESearchServiceTest
                 pagingInfo = new PagingInfo();
                 BuildPagingInfoFromXML(ref pagingInfo);
 
-                try
-                {
+                try {
                     this.Cursor = Cursors.WaitCursor;
                     searchResponse = null;
-                    if (checkBox1.Checked == true)
-                    {
+                    if(checkBox1.Checked == true) {
                         //this means that a browser of the basetable will be done
                         searchCriteria = null;
                     }
 
+
+
                     searchResponse = _coeSearch.DoSearch(searchCriteria, resultsCriteria, pagingInfo, dataView);
 
                     this.pagingInfo = searchResponse.PagingInfo;
-                    SaveHitlistInfoToXml((HitListInfo)searchResponse.HitListInfo);
-                    SaveDataSetToXml((DataSet)searchResponse.ResultsDataSet);
-                    SavePagingInfoToXml((PagingInfo)searchResponse.PagingInfo);
+                    SaveHitlistInfoToXml((HitListInfo) searchResponse.HitListInfo);
+                    SaveDataSetToXml((DataSet) searchResponse.ResultsDataSet);
+                    SavePagingInfoToXml((PagingInfo) searchResponse.PagingInfo);
                     string exportType = ExportTypesList.SelectedItem.ToString();
                     string ExportString = _coeExport.GetData(resultsCriteria, pagingInfo, dataView, exportType);
                     DisplayExport(ExportString);
 
-                }
-                catch (Exception ex)
-                {
+                } catch(Exception ex) {
                     HandleException(ex);
-                }
-                finally
-                {
+                } finally {
                     this.Cursor = Cursors.Default;
                 }
                 _coeLog.LogEnd(string.Empty, 4);
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("you must select an export format to test");
             }
         }
-        #endregion
+    #endregion
+
 
         #region Persist Output objects to xml files
-        void SaveHitlistInfoToXml(HitListInfo hitlistInfo)
-        {
+        void SaveHitlistInfoToXml(HitListInfo hitlistInfo) {
 
-            try
-            {
+            try {
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(hitlistInfo.ToString());
-                using (XmlWriter w = XmlWriter.Create(tempPath + HITLISTINFO_FILE))
-                {
+                using(XmlWriter w = XmlWriter.Create(tempPath + HITLISTINFO_FILE)) {
                     doc.WriteTo(w);
                     w.Flush();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
 
-        void DisplayExport(String exportString)
-        {
-            try
-            {
+        void DisplayExport(String exportString) {
+
+            try {
                 currentExportPath = tempPath + EXPORT_FILE;
-                using (StreamWriter sw = File.CreateText(currentExportPath))
-                {
+                using(StreamWriter sw = File.CreateText(currentExportPath)) {
+
                     sw.Write(exportString);
+
+
                 }
                 ExportResults myExport = new ExportResults(tempPath + EXPORT_FILE);
                 myExport.ShowDialog();
 
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
 
-        void SavePagingInfoToXml(PagingInfo pagingInfo)
-        {
-            try
-            {
+        void SavePagingInfoToXml(PagingInfo pagingInfo) {
+
+            try {
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(pagingInfo.ToString());
-                using (XmlWriter w = XmlWriter.Create(tempPath + PAGINGINFO_OUTPUT_FILE))
-                {
+                using(XmlWriter w = XmlWriter.Create(tempPath + PAGINGINFO_OUTPUT_FILE)) {
                     doc.WriteTo(w);
                     w.Flush();
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
 
-        void SaveDataSetToXml(DataSet dataSet)
-        {
-            try
-            {
+        void SaveDataSetToXml(DataSet dataSet) {
+            try {
                 dataSet.WriteXml(tempPath + DATASET_FILE);
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
@@ -808,27 +733,24 @@ namespace COESearchServiceTest
         #endregion
 
         #region Error Handling Routines
-        void HandleException(Exception ex)
-        {
+        void HandleException(Exception ex) {
             MessageBox.Show(ex.Message);
         }
         #endregion
 
-        private void btnGridXml_Click(object sender, EventArgs e)
-        {
-            try
-            {
+        private void btnGridXml_Click(object sender, EventArgs e) {
+            try {
                 ClearResultGrids();
 
-                if (((Button)sender).Text == "Grid")
-                {
+                if(((Button) sender).Text == "Grid") {
                     this.brwsrResults.Hide();
-                    if (this.tabControlOutputObjects.SelectedTab.Text == "DataSet")
-                    {
+                    if(this.tabControlOutputObjects.SelectedTab.Text == "DataSet") {
                         EnablePagingButtons(true);
                         this.btnPrev.Visible = true;
                         this.btnNext.Visible = true;
                     }
+
+
 
                     // Read the Dataset from Xml
                     DataSet ds = new DataSet();
@@ -843,9 +765,7 @@ namespace COESearchServiceTest
                     this.btnGridXml.Text = "Xml";
                     /*if (grids.Count > 0)
                         this.btnNext.Top = this.btnPrev.Top = this.btnGridXml.Top = grids[grids.Count - 1].Bottom + 10;*/
-                }
-                else
-                {
+                } else {
                     this.btnPrev.Enabled = false;
                     this.btnPrev.Visible = false;
                     this.btnNext.Enabled = false;
@@ -855,26 +775,21 @@ namespace COESearchServiceTest
                     //this.btnPrev.Top = this.btnNext.Top = this.btnGridXml.Top = brwsrResults.Bottom + 10;
                     ShowResultsTab(tabControlOutputObjects.SelectedTab);
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 HandleException(exception);
             }
         }
 
-        private void BindGrid(DataSet ds)
-        {
+        private void BindGrid(DataSet ds) {
             int gridTop = this.tabControlOutputObjects.Bottom;
             int gridLeft = this.tabControlOutputObjects.Left;
             int gridWidth = this.tabControlOutputObjects.Width;
             int gridHeight = 200;
-            for (int i = 0; i < ds.Tables.Count; i++)
-            {
-                if (grids.Count < ds.Tables.Count)
-                {
+            for(int i = 0; i < ds.Tables.Count; i++) {
+                if(grids.Count < ds.Tables.Count) {
                     grids.Add(null);
                 }
-                if (grids[i] == null)
+                if(grids[i] == null)
                     grids[i] = new DataGridView();
                 grids[i].AllowUserToAddRows = false;
                 grids[i].AllowUserToDeleteRows = false;
@@ -897,10 +812,8 @@ namespace COESearchServiceTest
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSaveInput_Click(object sender, EventArgs e)
-        {
-            try
-            {
+        private void btnSaveInput_Click(object sender, EventArgs e) {
+            try {
                 this.folderBrowserDialog1.Description = "Select the directory where you want to save the Input Data objects.";
 
                 // Allow the user to create new files via the FolderBrowserDialog.
@@ -910,37 +823,32 @@ namespace COESearchServiceTest
                 this.folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
                 this.folderBrowserDialog1.SelectedPath = currentPath;
 
+
+
                 // Show the FolderBrowserDialog.
                 DialogResult result = folderBrowserDialog1.ShowDialog();
-                if (result == DialogResult.OK)
-                {
+                if(result == DialogResult.OK) {
 
                     currentPath = folderBrowserDialog1.SelectedPath;
                     SaveInputObjectsToFiles(currentPath);
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 HandleException(exception);
             }
         }
 
 
-        private void SaveInputObjectsToFiles(string targetFolderName)
-        {
+        private void SaveInputObjectsToFiles(string targetFolderName) {
             // we simply copy the contents of the xml folder to the target folder
             DirectoryInfo di = new DirectoryInfo(tempPath);
             FileInfo[] fi = di.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
-            foreach (FileInfo f in fi)
-            {
+            foreach(FileInfo f in fi) {
                 f.CopyTo(targetFolderName + @"\" + f.Name, true);
             }
         }
 
-        private void btnLoadImput_Click(object sender, EventArgs e)
-        {
-            try
-            {
+        private void btnLoadImput_Click(object sender, EventArgs e) {
+            try {
                 this.folderBrowserDialog1.Description = "Select the directory from where you want to load the Input Data objects.";
 
                 this.folderBrowserDialog1.ShowNewFolderButton = false;
@@ -949,25 +857,20 @@ namespace COESearchServiceTest
                 this.folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyComputer;
                 this.folderBrowserDialog1.SelectedPath = currentPath;
                 DialogResult result = folderBrowserDialog1.ShowDialog();
-                if (result == DialogResult.OK)
-                {
+                if(result == DialogResult.OK) {
                     currentPath = folderBrowserDialog1.SelectedPath;
                     LoadInputObjectsFromFiles(currentPath);
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 HandleException(exception);
             }
         }
 
-        private void LoadInputObjectsFromFiles(string sourceFolderName)
-        {
+        private void LoadInputObjectsFromFiles(string sourceFolderName) {
             // we simply copy the contents of the sourceFolder folder to the xml folder
             DirectoryInfo di = new DirectoryInfo(sourceFolderName);
             FileInfo[] fi = di.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
-            foreach (FileInfo f in fi)
-            {
+            foreach(FileInfo f in fi) {
                 bool readOnly = f.IsReadOnly;
                 f.IsReadOnly = false;
                 f.CopyTo(tempPath + f.Name, true);
@@ -980,28 +883,25 @@ namespace COESearchServiceTest
             TabPage currentTab = tabControlInputObjects.SelectedTab;
             tabControlInputObjects.DeselectTab(currentTab);
             tabControlInputObjects.SelectedTab = currentTab;
+
+
+
         }
 
-        private void LoadAppNameFromFile()
-        {
+        private void LoadAppNameFromFile() {
             string appNameFilePath = tempPath + APPNAME_FILE;
-            if (File.Exists(appNameFilePath))
-            {
+            if(File.Exists(appNameFilePath)) {
                 XmlDocument xml = new XmlDocument();
                 xml.Load(appNameFilePath);
                 string appName = xml.DocumentElement.InnerText;
                 txtAppName.Text = appName;
-            }
-            else
-            {
+            } else {
                 txtAppName.Text = "";
             }
         }
 
-        private void btnSaveOutput_Click(object sender, EventArgs e)
-        {
-            try
-            {
+        private void btnSaveOutput_Click(object sender, EventArgs e) {
+            try {
                 this.folderBrowserDialog1.Description = "Select the directory where you want to save the Output Data objects.";
 
                 // Allow the user to create new files via the FolderBrowserDialog.
@@ -1015,35 +915,28 @@ namespace COESearchServiceTest
 
                 // Show the FolderBrowserDialog.
                 DialogResult result = folderBrowserDialog1.ShowDialog();
-                if (result == DialogResult.OK)
-                {
+                if(result == DialogResult.OK) {
                     currentPath = folderBrowserDialog1.SelectedPath;
                     SaveOutputObjectsToFiles(currentPath);
                 }
-            }
-            catch (Exception exception)
-            {
+            } catch(Exception exception) {
                 HandleException(exception);
             }
         }
 
-        private void SaveOutputObjectsToFiles(string targetFolderName)
-        {
+        private void SaveOutputObjectsToFiles(string targetFolderName) {
             // we simply copy the contents of the resutls folder to the target folder
             DirectoryInfo di = new DirectoryInfo(tempPath);
             FileInfo[] fi = di.GetFiles("*.xml", SearchOption.TopDirectoryOnly);
-            foreach (FileInfo f in fi)
-            {
+            foreach(FileInfo f in fi) {
                 f.CopyTo(targetFolderName + @"\" + f.Name, true);
             }
         }
 
-        private void tabControlTop_Selected(object sender, TabControlEventArgs e)
-        {
-            TabPage selectedTab = ((TabControl)sender).SelectedTab;
+        private void tabControlTop_Selected(object sender, TabControlEventArgs e) {
+            TabPage selectedTab = ((TabControl) sender).SelectedTab;
 
-            if (selectedTab.Text == "Results")
-            {
+            if(selectedTab.Text == "Results") {
                 //if (tabControlOutputObjects.SelectedTab == tabResultsHitlistInfo)
                 //{
                 //    tabControlOutputObjects.DeselectTab(tabResultsHitlistInfo);
@@ -1057,9 +950,8 @@ namespace COESearchServiceTest
 
 
 
-        private void txtAppName_Leave(object sender, EventArgs e)
-        {
-            string appName = (string)((TextBox)sender).Text;
+        private void txtAppName_Leave(object sender, EventArgs e) {
+            string appName = (string) ((TextBox) sender).Text;
             XmlTextWriter xmlWriter = new XmlTextWriter(tempPath + APPNAME_FILE, System.Text.Encoding.UTF8);
             xmlWriter.Formatting = Formatting.Indented;
             xmlWriter.WriteProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
@@ -1068,102 +960,89 @@ namespace COESearchServiceTest
             xmlWriter.Close();
         }
 
-        private void btnGridNext_Click(object sender, EventArgs e)
-        {
+        private void btnGridNext_Click(object sender, EventArgs e) {
             this.pagingInfo.Start += this.pagingInfo.RecordCount;
-            if (resultsCriteria.Tables.Count <= 0)
+            if(resultsCriteria.Tables.Count <= 0)
                 BuildResultsCriteriaFromXML(ref resultsCriteria);
 
-            if (searchResponse != null)
+            if(searchResponse != null)
                 this.pagingInfo.HitListID = searchResponse.HitListInfo.HitListID;
 
-            try
-            {
+            try {
                 DataSet dataset = null;
                 dataset = _coeSearch.GetData(resultsCriteria, pagingInfo, dataView);
 
                 BindGrid(dataset);
                 SavePagingInfoToXml(pagingInfo);
                 //this.Refresh();
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
 
-        private void btnGridPrev_Click(object sender, EventArgs e)
-        {
+        private void btnGridPrev_Click(object sender, EventArgs e) {
             this.pagingInfo.Start -= this.pagingInfo.RecordCount;
-            if (resultsCriteria.Tables.Count <= 0)
+            if(resultsCriteria.Tables.Count <= 0)
                 BuildResultsCriteriaFromXML(ref resultsCriteria);
-
-            if (searchResponse != null)
+            
+            if(searchResponse != null)
                 this.pagingInfo.HitListID = searchResponse.HitListInfo.HitListID;
-
-            try
-            {
+            
+            try {
                 DataSet dataset = null;
                 dataset = _coeSearch.GetData(resultsCriteria, pagingInfo, dataView);
 
                 BindGrid(dataset);
                 SavePagingInfoToXml(pagingInfo);
                 //this.Refresh();
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 HandleException(ex);
             }
         }
 
-        private void logButton_Click(object sender, EventArgs e)
-        {
+
+
+
+        private void logButton_Click(object sender, EventArgs e) {
             DataTable dt = _coeLog.GetLogFileAsDataTable();
             LogFile myLogFile = new LogFile(dt);
             myLogFile.ShowDialog();
+
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
+        private void button4_Click(object sender, EventArgs e) {
             _coeLog.ClearLogFile();
         }
 
 
-        private void StartUpdatingThread()
-        {
+        private void StartUpdatingThread() {
             System.ComponentModel.BackgroundWorker threadedHitList = new System.ComponentModel.BackgroundWorker();
             threadedHitList.DoWork += new DoWorkEventHandler(CheckForHitListUpdates);
             threadedHitList.RunWorkerCompleted += new RunWorkerCompletedEventHandler(threadedHitList_RunWorkerCompleted);
             threadedHitList.RunWorkerAsync();
         }
 
-        void threadedHitList_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
+        void threadedHitList_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e) {
             string xmlPath = tempPath + HITLISTINFO_FILE;
             displayInBrowser(xmlPath, this.brwsrResults);
         }
 
-        void CheckForHitListUpdates(object sender, DoWorkEventArgs e)
-        {
-            try
-            {
+        void CheckForHitListUpdates(object sender, DoWorkEventArgs e) {
+            try {
                 System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.Lowest;
-                while (_isPartialSearch)
-                {
-                    if (searchResponse != null)
+                while(_isPartialSearch) {
+                    if(searchResponse != null)
                         hitlistInfo = _coeSearch.GetHitListProgress(searchResponse.HitListInfo, this.dataView);
                     else
                         hitlistInfo = _coeSearch.GetHitListProgress(hitlistInfo, this.dataView);
 
-                    if (hitlistInfo.RecordCount == hitlistInfo.CurrentRecordCount)
+                    if(hitlistInfo.RecordCount == hitlistInfo.CurrentRecordCount)
                         _isPartialSearch = false;
 
                     SaveHitlistInfoToXml(hitlistInfo);
                     System.Threading.Thread.Sleep(500);
                 }
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 MessageBox.Show(ex.InnerException.Message);
             }
         }
@@ -1179,8 +1058,12 @@ namespace COESearchServiceTest
 
         private void LoggingEnabledCallbackFn(bool isActive)
         {
+
             this.logButton.Enabled = isActive;
+
         }
+
+     
     }
     public delegate void LoggingEnabledDelegate(bool isActive);
 

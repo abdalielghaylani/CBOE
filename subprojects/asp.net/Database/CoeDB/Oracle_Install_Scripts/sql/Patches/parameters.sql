@@ -1,4 +1,4 @@
---Copyright 1999-2003 CambridgeSoft Corporation. All rights reserved
+--Copyright 1998-2018 PerkinElmer Informatics, Inc. All rights reserved
 
 SET ECHO OFF
 SET verify off
@@ -7,5 +7,5 @@ SET verify off
 -- SCRIPT VARIABLES
 --######################################################### 
 
-DEFINE LastPatch = 12.6.3
+DEFINE LastPatch = 17.1.1
 DEFINE toVersion = &&LastPatch

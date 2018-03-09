@@ -7,8 +7,7 @@ using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 using System.Runtime.Serialization;
 using System.Xml;
 using System.IO;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
-using CambridgeSoft.COE.Framework.Common.Configuration;
+
 
 namespace CambridgeSoft.COE.Framework.Common
 {
@@ -31,8 +30,7 @@ namespace CambridgeSoft.COE.Framework.Common
         private const string exportFormatterData = "exportFormatters";
         private const string applicationDefaultsDataProperty = "applicationDefaults";
         private const string manageConfigurationSettings = "manageConfigurationSettings";
-        private const string instanceDataProperty = "instances";
-        private const string spotfireSettingProperty = SpotfireSettingElement.ElementName;
+        
 
         /// <summary>
         /// Defines the base type used for loading services
@@ -127,32 +125,9 @@ namespace CambridgeSoft.COE.Framework.Common
             get { return (COENamedElementCollection<ExportFormatterData>)base[exportFormatterData]; }
         }
 
-        /// <summary>
-        /// Gets the collection of defined <see cref="instanceDataProperty"/> objects.
-        /// </summary>
-        /// <value>
-        /// The collection of defined <see cref="instanceDataProperty"/> objects.
-        /// </value>
-        /// 
-        [ConfigurationProperty(instanceDataProperty, IsRequired = true)]
-        public COENamedElementCollection<InstanceData> Instances
-        {
-            get { return (COENamedElementCollection<InstanceData>)base[instanceDataProperty]; }
-        }
-
         public COEConfigurationSettings()
         {
-        }
-
-        /// <summary>
-        /// the credential used to connect to spotfire web service
-        /// </summary>
-        [ConfigurationProperty(spotfireSettingProperty, IsRequired = false)]
-        public SpotfireSettingElement SpotfireSettingProperty
-        {
-            get { return (SpotfireSettingElement)base[spotfireSettingProperty]; }
-            set { base[spotfireSettingProperty] = value; }
-        }
+        }       
 
         #region ISerializable Members
         public COEConfigurationSettings(SerializationInfo info, StreamingContext context)

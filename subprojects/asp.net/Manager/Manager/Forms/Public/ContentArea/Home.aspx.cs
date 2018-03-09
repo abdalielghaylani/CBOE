@@ -106,7 +106,7 @@ public partial class Forms_ContentArea_Home : GUIShellPage
 
     private void SetHomeWebParts()
     {
-            COESpotFireSettingsBO SpotfireSetting = ConfigurationUtilities.GetSpotFireSettings(false);
+            //COESpotFireSettingsBO SpotfireSetting = ConfigurationUtilities.GetSpotFireSettings(false);
             COEHomeSettings homeData = ConfigurationUtilities.GetHomeData();
             int numberOfColumns = Convert.ToInt16(homeData.GridColumns);
             WebPartManager webmgr = WebPartManager1;
@@ -115,11 +115,11 @@ public partial class Forms_ContentArea_Home : GUIShellPage
             {                
                     Group myGroup = homeData.Groups.Get(i);
 
-                    if (myGroup != null)
+                    if (myGroup != null && myGroup.Name != "COEMANAGER_DV")
                     {
                         // Make sure the DataView Manager is not displayed for non-SpotfireUsers 
-                        if ((SpotfireSetting.SpotfireUser != "" ) || (SpotfireSetting.SpotfireUser == "" && myGroup.Name != "COEMANAGER_DV"))
-                        {
+                        //if ((SpotfireSetting.SpotfireUser != "" ) || (SpotfireSetting.SpotfireUser == "" && myGroup.Name != "COEMANAGER_DV"))
+                        //{
                             HomeWebPart webpartPreCheck = new HomeWebPart();
                             webpartPreCheck.Group = myGroup;
                             if (webpartPreCheck.HasLinks())
@@ -132,7 +132,7 @@ public partial class Forms_ContentArea_Home : GUIShellPage
                                 wpUsed = wpUsed + 1;
 
                             }
-                        }                        
+                        //}                        
                   }
             }        
     }

@@ -27,6 +27,8 @@
 
 // ------------------------------------- GLOBAL DATA -------------------------------------------
 // Global data. VERY IMPORTANT: never never change these.
+var CD_CONTROL170CLSID = "clsid:DE727D51-7109-4A3A-8F67-94AECB3D9782";
+var CD_CONTROL170CONSTCLSID	= "clsid:CDF38697-B099-4355-92AE-54AF31800E49";
 var CD_CONTROL151CLSID  = "clsid:F974516A-2072-4af1-B063-489FAA6D4177";
 var CD_CONTROL151CONSTCLSID	= "clsid:CDF38697-B099-4355-92AE-54AF31800E49";
 var CD_CONTROL150CLSID	= "clsid:F974516A-2072-4af1-B063-489FAA6D4177";
@@ -552,6 +554,20 @@ function cd_isCDActiveXInstalled() {
 	    var str = "";
 		str = str + "try\n";
 		str = str + "{\n";
+		str = str + " // Try 17.0\n";
+		str = str + " var obj17 = new ActiveXObject(\"ChemDrawControl17.ChemDrawCtl\");\n";
+		str = str + " CD_CONTROL_CLSID = CD_CONTROL170CLSID; obj17='';\n";
+		str = str + "} catch(e17)\n";
+		str = str + "{\n";
+		str = str + " try\n";
+		str = str + " {\n";
+		str = str + "  // Try 17.0Constant\n";
+		str = str + "  var obj17c = new ActiveXObject(\"ChemDrawControlConst11.ChemDrawCtl.17.0\");\n";
+		str = str + "  CD_CONTROL_CLSID = CD_CONTROL170CONSTCLSID; obj17c='';\n";
+		str = str + " } catch(e17c)\n";
+		str = str + " {\n";
+		str = str + "try\n";
+		str = str + "{\n";
 		str = str + " // Try 15.1\n";
 		str = str + " var obj15 = new ActiveXObject(\"ChemDrawControl15.ChemDrawCtl\");\n";
 		str = str + " CD_CONTROL_CLSID = CD_CONTROL151CLSID; obj15='';\n";
@@ -665,11 +681,21 @@ function cd_isCDActiveXInstalled() {
 		str = str + "}";
 		str = str + "}";
 		str = str + "}";
+		str = str + "}";
+		str = str + "}";
 
 		eval(str);
 	}
 	else {
-	document.write("<OBJECT NAME=\"test_151\" WIDTH=0 HEIGHT=0 CLASSID=\"" + CD_CONTROL151CLSID + "\"><param NAME=ViewOnly VALUE=true></OBJECT>");
+			document.write("<OBJECT NAME=\"test_170\" WIDTH=0 HEIGHT=0 CLASSID=\"" + CD_CONTROL170CLSID + "\"><param NAME=ViewOnly VALUE=true></OBJECT>");
+	    if (document.all("test_170").Selection != null)
+	        CD_CONTROL_CLSID = CD_CONTROL170CLSID;
+	    else {
+	        document.write("<OBJECT NAME=\"test_170c\" WIDTH=0 HEIGHT=0 CLASSID=\"" + CD_CONTROL170CONSTCLSID + "\"><param NAME=ViewOnly VALUE=true></OBJECT>");
+	        if (document.all("test_170c").Selection != null)
+				CD_CONTROL_CLSID = CD_CONTROL170CONSTCLSID;
+		else {
+			document.write("<OBJECT NAME=\"test_151\" WIDTH=0 HEIGHT=0 CLASSID=\"" + CD_CONTROL151CLSID + "\"><param NAME=ViewOnly VALUE=true></OBJECT>");
 	    if (document.all("test_151").Selection != null)
 	        CD_CONTROL_CLSID = CD_CONTROL151CLSID;
 	    else {
@@ -736,6 +762,8 @@ function cd_isCDActiveXInstalled() {
 				}
 			}
 		}
+	}
+	}
 	}
 	}
 	}

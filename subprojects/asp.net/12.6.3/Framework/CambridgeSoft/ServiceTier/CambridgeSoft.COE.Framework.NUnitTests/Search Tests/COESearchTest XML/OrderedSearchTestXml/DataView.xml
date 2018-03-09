@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<COEDataView xmlns="COE.COEDataView" database="COETEST" basetable="1" dataviewid="5002">
+  <tables>
+    <table id="1" database="COETEST" name="MOLTABLE" primaryKey="2">
+      <fields id="2" name="ID" dataType="INTEGER" indexType="NONE"/>
+      <fields id="3" name="MOL_ID" dataType="INTEGER" indexType="NONE" />
+      <fields id="4" name="MOLNAME" dataType="TEXT" indexType="NONE"/>
+      <fields id="5" name="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE"/>
+    </table>
+    <table id="6" database="COETEST" name="REACTION" primaryKey="7">
+     <fields id="7" name="MOL_ID" dataType="INTEGER" indexType="NONE" />
+     <fields id="8" name="HEADER_MISSING" dataType="TEXT" indexType="NONE" />
+     <fields id="9" name="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE" />
+    </table>
+  </tables>
+  <relationships>
+	  <relationship parent="1" parentkey="3" child="6" childkey="7" joinType="INNER" />
+  </relationships>
+</COEDataView>

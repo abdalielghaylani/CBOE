@@ -9,7 +9,6 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 
-using CambridgeSoft.COE.Framework.COEConfigurationService;
 
 namespace CambridgeSoft.COE.Framework.Common
 {
@@ -566,92 +565,7 @@ namespace CambridgeSoft.COE.Framework.Common
 
             return string.Empty;
         }
-
-        public static string GetInstanceName(string instanceSchema)
-        {
-            string instanceName = string.Empty;
-
-            if (!instanceSchema.Contains("."))
-            {
-                InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-                instanceName = mainInstance.Name;
-            }
-            else
-            {
-                instanceName = instanceSchema.Split(new char[] { '.' })[0];
-            }
-
-            return instanceName;
-        }
-
-        /// <summary>
-        /// Gets the connection string.
-        /// </summary>
-        /// <param name="host">The oracle server host name.</param>
-        /// <param name="port">The oracle service port number.</param>
-        /// <param name="sid">The oracle sid.</param>
-        /// <param name="userid">The user name of the connection.</param>
-        /// <param name="password">The password of the connection.</param>
-        /// <returns>
-        /// The oracle connection string.
-        /// </returns>
-        public static string GetConnectString(string host, int port, string sid, string userid, string password)
-        {
-            return string.Format("DATA SOURCE=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1})))(CONNECT_DATA=(SERVER=DEDICATED)(SID={2})));" +
-                    "USER ID={3};PASSWORD={4};", host, port, sid, userid, password);
-        }
-
-        /// <summary>
-        /// Gets the connection string.
-        /// </summary>
-        /// <param name="host">The oracle server host name.</param>
-        /// <param name="port">The oracle service port number.</param>
-        /// <param name="sid">The oracle sid.</param>
-        /// <returns>
-        /// The oracle connection string.
-        /// </returns>
-        public static string GetConnectString(string host, int port, string sid)
-        {
-            return string.Format("DATA SOURCE=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1})))(CONNECT_DATA=(SERVER=DEDICATED)(SID={2})))", 
-                host, port, sid);
-        }
-
-        /// <summary>
-        /// Get hitlist data type according to abstract data type
-        /// </summary>
-        /// <param name="abstractType">The abstract data type</param>
-        /// <param name="dataLength">The size of the field type</param>
-        /// <returns>The hitlist data type</returns>
-        public static COEDataView.HitListDataTypes GetHitListDataTypeByFiledDataType(COEDataView.AbstractTypes abstractType, int dataLength = 1)
-        {
-            // The size of TEMPCHITLIST.VAR_ID filed
-            const int StringPrimariyKeyMaxLength = 255;
-
-            var type = COEDataView.HitListDataTypes.ROWID;
-            switch (abstractType)
-            {
-                case COEDataView.AbstractTypes.Integer:
-                    type = COEDataView.HitListDataTypes.NUMBER;
-                    break;
-                case COEDataView.AbstractTypes.Text:
-                    // If the size of the Text field is greate than the size of VAR_ID filed, we will
-                    // change to save ROWID.
-                    if (dataLength > 0 && dataLength <= StringPrimariyKeyMaxLength)
-                    {
-                        type = COEDataView.HitListDataTypes.STRING;
-                    }
-                    break;
-                case COEDataView.AbstractTypes.BLob:
-                case COEDataView.AbstractTypes.Boolean:
-                case COEDataView.AbstractTypes.CLob:
-                case COEDataView.AbstractTypes.Date:
-                case COEDataView.AbstractTypes.Real:
-                default:
-                    break;
-            }
-
-            return type;
-        }
+        
     }
 }
 

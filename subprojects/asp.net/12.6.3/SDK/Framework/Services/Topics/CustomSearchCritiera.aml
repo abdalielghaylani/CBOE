@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<topic id="2a663efa-0501-481c-addf-27e97d616e0b" revisionNumber="1">
+  <developerConceptualDocument xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!--
+    <summary>
+      <para>Optional summary abstract</para>
+    </summary>
+    -->
+    <introduction>
+      <!-- Uncomment this to generate an outline of the section and sub-section
+           titles.  Specify a numeric value as the inner text to limit it to
+           a specific number of sub-topics when creating the outline.  Specify
+           zero (0) to limit it to top-level sections only.  -->
+      <para>
+		This document is intended to explain the basics for implementing a custom where clause that can be used in ChemBioViz Gateway (Search Runtime) or in Search Service.
+		Implementing where clauses comes to play when you have your own database functions that you want to call for filtering information in your application, whether you want to use it at application level (ChemBioViz) or Search Service level.
+		The way we will explain this is based on providing you a solution for implementing a MolWeight where clause, which will be responsible of applying CSCartridge.MolWeightContains operator.
+	  </para>
+	  <autoOutline />
+    </introduction>
+    <!-- Add one or more top-level section elements.  These are collapsible.
+         If using <autoOutline />, add an address attribute to identify it
+         and specify a title so that it can be jumped to with a hyperlink. -->
+    <section address="Section1">
+      <title>Defining a search criteria xml</title>
+	      <content>
+	        <!-- Uncomment this to create a sub-section outline
+	        <autoOutline /> -->
+	        <para>The first thing a developer has to decide is how will be the xml snippet for using the criteria.</para>
+			<para>A simplified Search Criteria use to be in the way:</para>
+			<code language="xml" source=".\Topics\CustomSearchCriteriaFiles\simplexample.xml" />
+			
+			<para>The customMolWeight snippet is an example of the xml snippet we have defined for the molweight where clause. It has implementation and cartridgeSchema properties. The container nodes have also the Value in the standard way and the fieldId and the tableId which are defined on dataview, and in this case is the BASE64_CDX of the table SAMPLE.MOLTABLE.</para>
+			<para>So we are going generate a sql portion that would be like: CSCartridge.MolWeightContains("s"."BASE64_CDX", 50, 101, '')=1</para>
+			<para>More complex functions will likely need several more attributes.</para>
+			<para>In this example we will be using the following Dataview xml:</para>
+			
+			<code language="xml" source=".\Topics\CustomSearchCriteriaFiles\sampledataview.xml" />
+	
+	      </content>
+      </section>
+      <section address="Section2">
+      	<title>Implementing base class and interfaces</title>
+      	<content>
+      	
+      	<para>A custom select clause must inherit from the class WhereClauseItem and should implement IWhereClauseParser.</para>
+
+		<para>There are also three classes that extend WhereClauseItem in the framework:</para>
+		
+		<list class="bullet">
+		  <listItem>WhereClauseUnaryOperation</listItem>
+		  <listItem>WhereClauseBinaryOperation</listItem>
+		  <listItem>WhereClauseNaryOperation</listItem>
+		</list>
+		
+		<para>Those classes add support for having a Datafield already filled in (from dataview) and also Values for using parameterized queries. </para>
+		
+		<para>In order to do so, your project should reference the framework dll and have in it a new class, which should include the following namespaces:</para>
+		
+		<code>
+		using CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.WhereItems;
+		using CambridgeSoft.COE.Framework.Common;
+		</code>
+		
+		<para>Then your class must inherit and implement the proper class and interface, in our example:</para>
+		
+		<code>public class MolWeightWhereClause : WhereClauseNAryOperation, IWhereClauseParser</code>
+      	
+      	
+      	<para>By inheriting any of the base classes named previously, you will be forced to implement GetDependantString method:</para>
+      	
+      	<code>
+	      	protected override string GetDependantString(DBMSType databaseType, List&lt;CambridgeSoft.COE.Framework.Common.SqlGenerator.Value&gt; values) {
+	    		if(databaseType != DBMSType.ORACLE) {
+	       	 		throw new Exception("This clause only works in Oracle implementations");
+	       	} 		
+		</code>
+      	
+      	<para>GetDependantString is responsible of generating its string portion to be rendered inside the where clause list in the resulting query. In that method if you are going to generate parameterized queries you may check for the inherited property UseParametersByName is true, and if so add a unique value as name, for instance the count of the values. (Always unique, incremented by every clause involved in the query). Then add the value to the values collection.</para>
+
+		<para>In this example:</para>
+		
+		<para>CSCartridge.MolWeightContains("s"."BASE64_CDX", :0, :1, :2)=1</para>
+		
+		<para>And the values collection will hold {50, 101, ""}</para>
+		<para>The inherited ParameterHolder property avoid us to be aware of the holder character for different DBMS (in oracle would be ':'), so it is recommended using it. (Even though in this example we are avoiding using other DBMS, throwing an exception if that happens).</para>
+		
+		<para>Then you must implement the IWhereClauseParser interface:</para>
+		<code>
+		#region IWhereClauseParser Members
+	    public WhereClauseItem CreateInstance(System.Xml.XmlNode criteriaXmlNode, Field dataField) {
+		    // &lt;customCriteria Value="50-101">
+		    //    &lt;customMolWeight xmlns="COE.SearchCriteria"&gt;
+		    //        &lt;implementation>CsCartridge&lt;/implementation&gt;
+		    //        &lt;cartridgeSchema>CSCartridge&lt;/cartridgeSchema&gt;
+		    //    &lt;/customMolWeight&gt;
+		    //&lt;/customCriteria&gt;
+		    MolWeightWhereClause item = new MolWeightWhereClause();
+		    XmlNamespaceManager manager = new XmlNamespaceManager(criteriaXmlNode.OwnerDocument.NameTable);
+		    	manager.AddNamespace("COE", "COE.SearchCriteria");
+		    	item.CartridgeSchema = criteriaXmlNode.SelectSingleNode("./COE:customMolWeight/COE:cartridgeSchema", manager).InnerText;
+		    	item.DataField = dataField;
+		    	ParseValue(criteriaXmlNode.Attributes["Value"], item);
+			    return item;
+			}
+		#endregion
+
+		</code>
+		
+		<para>CreateInstance method is in charge of creating a new instance of the clause, based on its xml snippet that we have previously defined.</para>
+		
+		<para>If you are using XPath queries be aware of the xml namespace you are using, it is recommended to use your own.</para>
+     	
+      	</content>
+      
+      <!-- If a section contains a sections element, its content creates
+           sub-sections.  These are not collapsible.
+      <sections>
+          <section address="SubSection1">
+              <title>Sub-section 1</title>
+              <content>
+                  <para>Sub-section content.</para>
+              </content>
+          </section>
+          <section address="SubSection2">
+              <title>Sub-section 2</title>
+              <content>
+                  <para>Sub-section content.</para>
+              </content>
+          </section>
+      </sections> -->
+    </section>
+    
+    
+	<section address="section3">
+	  <title>Adding a Search Processor to the clause</title>
+	  <content>
+
+	    
+		<para>The search processor is the mechanism that allows executing instructions at 3 moments of the search cycle.</para>
+		
+		<list class="ordered">
+		  <listItem>Before the search is performed: Giving access to the database, inside the same transaction that would be used for searching.</listItem>
+		  <listItem>While the query is created from the criteria: Without access to database, but giving a chance to modify the criteria entered by the user.</listItem>
+		  <listItem>After the search was done. Giving access to the database, inside the same transaction that would be used for searching.</listItem>	
+		</list>
+
+		<para>If you feel that you need to do something in some of these moments, you must inherit from BaseCustomProcessor and implement its abstract methods:</para>
+
+		<para>In our example we have done a dummy processor just to make it complete:</para>
+
+		<code>
+			using System;
+			using System.Collections.Generic;
+			using System.Text;
+			using CambridgeSoft.COE.Framework.COESearchService.Processors;
+			
+			namespace CustomMolWeightCriteria {
+			    public class CustomMolWeightSearchProcessor : BaseCustomProcessor {
+			        public override void PreProcess(CambridgeSoft.COE.Framework.COESearchService.DAL searchDAL) {
+			            // This method gives access to the db prior to executing the search.
+			            System.Diagnostics.Debug.WriteLine("Executed CustomMolWeightSearchProcessor PreProcess");
+			        }
+			        public override void Process(CambridgeSoft.COE.Framework.Common.SearchCriteria.SearchCriteriaItem item) {
+			            // This method adds a chance to modify the search criteria item just before the execution.
+			            System.Diagnostics.Debug.WriteLine("Executed CustomMolWeightSearchProcessor Process");
+			        }
+			        public override void PostProcess(CambridgeSoft.COE.Framework.COESearchService.DAL searchDAL) {
+			            // This method gives access to the db after to executing the search.
+			            System.Diagnostics.Debug.WriteLine("Executed CustomMolWeightSearchProcessor PostProcess");
+			        }
+			    }
+			}
+
+		</code>
+		
+	  </content>
+	</section>
+	
+	<section address="section4">
+	  <title>Making your assembly strongly named</title>
+	  <content>
+	     <para>Once we have done the previous steps we may say that no more Code is needed, but we still have a few configuration tasks. The best way to succeed is to have you assembly where the clause was implemented Strongly Named.</para>
+	  
+	  	  <link xlink:href="88a93b49-413f-440a-910f-9488ed22825e">See Making your assembly strongly named</link>
+	  </content>
+	</section>
+
+
+
+	<section address="section5">
+	  <title>Registering the criteria through Configuration</title>
+	  <content>
+	    <para>The main configuration source for ChemOfficeEnterprise is COEFrameworkConfig.xml, which is located at the special folder C:\Documents and Settings\All Users\Application Data\Cambridgesoft\ChemOfficeEnterprise11.x.x.x.</para>
+		<para>That file has a particular section defined as follows:</para>
+		<code language="xml" source=".\Topics\FrameworkConfigFiles\mappingsSection.xml" />
+			
+		<para>In that section there are several pre-built select clauses that should be kept as they are:</para>		
+		<code language="xml" source=".\Topics\FrameworkConfigFiles\mappingsSectionInnerXML.xml" />
+		
+		<para>And you may or may not find a whereClauses node. If other custom where clauses had been implemented you will, but usually you wont see it.</para>
+		<para>You must add the following node inside the mappings node:</para>	
+		<code language="xml" source=".\Topics\CustomSearchCriteriaFiles\WhereClauseFWNode.xml" />
+		
+		<para>The name of the where clause is the name of the xml node to be used, but lower cased (always). The parserClassName and the searchProcessorClassName must be fully qualified, including its namespace. And the assembly name is what’s called Full Assembly Name, which is made in the form:</para>	
+		<quote>AssemblyName, Version=AssemblyVersion, Culture=Culture, PublicKeyToken=PublicToken</quote>
+		<para>The assembly version and culture are specified in the AssemblyInfo class of your project. The public token key is the one we have previously generated (sn –t …).</para>
+	  </content>
+	</section>
+
+	<section address="section6">
+	  <title>Making your assembly available of use by COEFramework</title>
+	  <content>
+	  	  <para>For the COE Framework to use your assembly, it will need to be configured so it can be found.</para>	
+	  	  <link xlink:href="5a3be626-1e5a-4ee6-80df-c501762cec63">See Making your dll available for COE Framework</link>
+	  </content>
+	</section>	
+
+    
+    
+    
+    <relatedTopics>
+      <!-- One or more of the following:
+           - A local link
+           - An external link
+           - A code entity reference
+
+      <link xlink:href="Other Topic's ID"/>
+      <link xlink:href="Other Topic's ID">Link inner text</link>
+
+      <externalLink>
+          <linkText>Link text</linkText>
+          <linkAlternateText>Optional alternate link text</linkAlternateText>
+          <linkUri>URI</linkUri>
+      </externalLink>
+
+      <codeEntityReference>API member ID</codeEntityReference>
+
+      Examples:
+
+      <link xlink:href="00e97994-e9e6-46e0-b420-5be86b2f8270" />
+      <link xlink:href="00e97994-e9e6-46e0-b420-5be86b2f8278">Some other topic</link>
+
+      <externalLink>
+          <linkText>SHFB on CodePlex</linkText>
+          <linkAlternateText>Go to CodePlex</linkAlternateText>
+          <linkUri>http://shfb.codeplex.com</linkUri>
+      </externalLink>
+
+      <codeEntityReference>T:TestDoc.TestClass</codeEntityReference>
+      <codeEntityReference>P:TestDoc.TestClass.SomeProperty</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.#ctor</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.#ctor(System.String,System.Int32)</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.ToString</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.FirstMethod</codeEntityReference>
+      <codeEntityReference>M:TestDoc.TestClass.SecondMethod(System.Int32,System.String)</codeEntityReference>
+      -->
+    </relatedTopics>
+  </developerConceptualDocument>
+</topic>

@@ -1,0 +1,41 @@
+<configuration subdirectory="DataViews" databasename="COETEST" description="subset of data created from ChemACX" formgroup="0" id="5103" ispublic="True" name="ChemACX Sample Data" username="COEDB">
+	<xml><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="383" database="COETEST" name="ChemACX Sample Data" description="subset of data created from ChemACX" dataviewHandling="USE_CLIENT_DATAVIEW" dataviewid="5103">
+	<tables>
+		<table id="369" name="PRODUCT_SUBSET" alias="Products" database="COETEST" isView="0" primaryKey="381">
+			<fields id="370" name="ACX_ID" alias="ACX_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0"/>
+			<fields id="371" name="CATALOGNUM" alias="CATALOGNUM" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="1"/>
+			<fields id="372" name="CSNUM" alias="CSNUM" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+			<fields id="373" name="DATECREATED" alias="DATECREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3"/>
+			<fields id="374" name="EXTENDED_DESCRIPTION" alias="EXTENDED_DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4"/>
+			<fields id="375" name="HASMSDS" alias="HASMSDS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="5"/>
+			<fields id="376" name="ISWWW" alias="ISWWW" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="6"/>
+			<fields id="377" name="PRODCLAIMEDFORMULA" alias="PRODCLAIMEDFORMULA" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="7"/>
+			<fields id="378" name="PRODCLAIMEDMW" alias="PRODCLAIMEDMW" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="8"/>
+			<fields id="379" name="PRODDESCRIP" alias="PRODDESCRIP" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="9"/>
+			<fields id="380" name="PRODNAME" alias="PRODNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="10"/>
+			<fields id="381" name="PRODUCTID" alias="PRODUCTID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="11"/>
+			<fields id="382" name="SUPPLIERID" alias="SUPPLIERID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="12"/>
+		</table>
+		<table id="383" name="SUBSTANCE_SUBSET" alias="Substance" database="COETEST" isView="0" primaryKey="387">
+			<fields id="384" name="ACX_ID" alias="ACX ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0"/>
+			<fields id="385" name="BASE64_CDX" alias="Structure" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" sortOrder="1"/>
+			<fields id="386" name="CAS" alias="CAS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+			<fields id="387" name="CSNUM" alias="CSNUM" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3"/>
+			<fields id="388" name="DATECREATED" alias="Date Created" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4"/>
+			<fields id="389" name="FEMA" alias="FEMA" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="0" sortOrder="5"/>
+			<fields id="390" name="HASMSDS" alias="HASMSDS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="0" sortOrder="6"/>
+			<fields id="391" name="HASPRODUCTS" alias="HASPRODUCTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="0" sortOrder="7"/>
+			<fields id="392" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="8"/>
+			<fields id="393" name="NUMPRODUCTS" alias="NUMPRODUCTS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="9"/>
+			<fields id="394" name="SYNONYMID" alias="SYNONYMID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="0" sortOrder="10"/>
+			<fields id="395" name="CAS" alias="Martindale Lookup" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="11"/>
+			<fields id="396" name="CAS" alias="EROS Lookup" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="12"/>
+		</table>
+	</tables>
+	<relationships>
+		<relationship parentkey="387" childkey="372" parent="383" child="369" jointype="OUTER"/>
+	</relationships>
+</COEDataView>
+]]></xml>
+</configuration>

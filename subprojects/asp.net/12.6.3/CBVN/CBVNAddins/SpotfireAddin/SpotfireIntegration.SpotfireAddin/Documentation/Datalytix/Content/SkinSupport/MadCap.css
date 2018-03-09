@@ -1,0 +1,357 @@
+/*<meta />*/
+
+/*
+// {{MadCap}} //////////////////////////////////////////////////////////////////
+// Copyright: MadCap Software, Inc - www.madcapsoftware.com ////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// <version>8.0.0.0</version>
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+.MCDropDown
+{
+	
+}
+
+.MCDropDownHead
+{
+	
+}
+
+.MCDropDownHotSpot
+{
+	
+}
+
+.MCDropDownBody
+{
+	
+}
+
+.MCDropDownIcon
+{
+	border: none;
+}
+
+.MCExpanding
+{
+	
+}
+
+.MCExpandingHead
+{
+	
+}
+
+.MCExpandingBody
+{
+	
+}
+
+.MCExpandingIcon
+{
+	border: none;
+}
+
+.MCKLink
+{
+	
+}
+
+.MCKLinkSpot
+{
+	
+}
+
+.MCKLinkBody
+{
+	background-color: #bbccdd;
+	border: solid 1px #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	cursor: pointer;
+	cursor: hand;
+	filter: alpha( opacity = 100 );
+	-moz-opacity: 1.0;
+	z-index: 2;
+}
+
+.MCKLinkBodyBG
+{
+	background-color: #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 100 );
+	-moz-opacity: 1.0;
+	z-index: 1;
+}
+
+.MCKLinkBodyCell_Highlighted
+{
+	padding: 5px;
+	background-color: Blue;
+	color: White;
+}
+
+.MCKLinkBodyCell
+{
+	padding: 5px;
+	background-color: Transparent;
+	color: Black;
+}
+
+.MCKeywordLinkIcon
+{
+	border: none;
+}
+
+.MCConceptLinkIcon
+{
+	border: none;
+}
+
+.MCRelatedTopicsIcon
+{
+	border: none;
+}
+
+.MCPopup
+{
+	
+}
+
+a.MCPopupSpot
+{
+	
+}
+
+.MCPopupBody
+{
+	background-color: #ffffff;
+	border: solid 1px #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 2;
+}
+
+.MCPopupBodyBG
+{
+	background-color: #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 1;
+}
+
+.MCTextPopup
+{
+	
+}
+
+.MCTextPopupSpot
+{
+	
+}
+
+.MCTextPopupBody
+{
+	background-color: #bbccdd;
+	border: solid 1px #000000;
+	margin: 0px;
+	padding: 5px;
+	position: absolute;
+	overflow: auto;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 2;
+}
+
+.MCTextPopupBodyBG
+{
+	background-color: #000000;
+	margin: 0px;
+	padding: 0px;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 1;
+}
+
+.MCPopupThumbnail
+{
+	border: none;
+}
+
+.MCPopupThumbnail_Popup
+{
+	border: solid 1px Gray;
+	position: absolute;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 102;
+}
+
+.MCToggler
+{
+	
+}
+
+.MCTogglerIcon
+{
+	border: none;
+}
+
+div.MCDialogWrapper
+{
+	width: 400px;
+	position: fixed;
+	z-index: 110;
+}
+
+div.MCDialog
+{
+	width: 400px;
+	position: absolute;
+	padding: 10px;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 2;
+}
+
+div.MCDialogShadow
+{
+	width: 400px;
+	position: absolute;
+	padding: 10px;
+	filter: alpha( opacity = 0 );
+	-moz-opacity: 0.0;
+	z-index: 1;
+}
+
+div.MCDialog table.MCDialogOuterTable
+{
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+div.MCDialog table.MCDialogOuterTable td.Label
+{
+	vertical-align: top;
+}
+
+endnotesBlock
+{
+	display: block;
+}
+
+endnoteBlock
+{
+	display: block;
+}
+
+footnotesBlock
+{
+	display: block;
+}
+
+footnoteBlock
+{
+	display: block;
+}
+
+table.AutoNumber_div_numlist1-1st
+{
+	
+}
+
+td.AutoNumber_div_numlist1-1st
+{
+	font-family: arial;
+}
+
+div.MCMiniTocBox_0
+{
+	color: #0000ff;
+	font-family: Verdana, Arial, Tahoma, sans-serif;
+	line-height: 13pt;
+	font-style: normal;
+	font-size: 9pt;
+	border-top: none;
+	text-decoration: none;
+	border-top-width: 1px;
+	border-top-style: none;
+	border-top-color: black;
+	padding-top: 10px;
+	margin-top: 10px;
+	padding-left: 20px;
+}
+
+p.MiniTOC1_0
+{
+	text-align: left;
+	margin-left: 0pt;
+	margin-right: 0in;
+	margin-top: 2pt;
+	margin-bottom: 2pt;
+	font-weight: bold;
+	letter-spacing: 0em;
+	color: #000000;
+	text-indent: 0px;
+	line-height: 15pt;
+	font-size: 10pt;
+	text-decoration: none;
+	font-family: arial;
+	display: block;
+	margin: 1.12em 0;
+}
+
+a.MiniTOC1:link
+{
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-left-color: transparent;
+	border-left-style: none;
+	border-left-width: 0;
+	border-right-color: transparent;
+	border-right-style: none;
+	border-right-width: 0;
+	border-top-color: transparent;
+	border-top-style: none;
+	border-top-width: 0;
+	border-bottom-color: transparent;
+	border-bottom-style: none;
+	border-bottom-width: 0;
+	background-color: transparent;
+	background-image: none;
+	float: inherit;
+	font-style: inherit;
+	font-variant: inherit;
+	text-transform: inherit;
+	word-spacing: inherit;
+	text-align: inherit;
+	mc-leader-format: '.';
+	color: #000000;
+	font-size: 10pt;
+	font-family: arial;
+	font-weight: bold;
+	letter-spacing: 0em;
+	text-decoration: none;
+}
+

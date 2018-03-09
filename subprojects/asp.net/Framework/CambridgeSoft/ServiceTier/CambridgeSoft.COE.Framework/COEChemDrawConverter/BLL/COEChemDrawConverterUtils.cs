@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web.UI.WebControls;
 using CambridgeSoft.COE.Framework.Properties;
-using ChemDrawControl15;
+using ChemDrawControl17;
 using System.Runtime.InteropServices;
 
 namespace CambridgeSoft.COE.Framework.COEChemDrawConverterService

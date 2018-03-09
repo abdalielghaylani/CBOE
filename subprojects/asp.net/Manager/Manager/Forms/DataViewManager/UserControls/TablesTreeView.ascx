@@ -10,21 +10,16 @@
     margin-left: 43px;
 }
 
-#<%= this.InstanceDropDownList.ClientID %> {
-    width: 220px;
-    margin-left: 23px;
-}
-
 #AutoCompleteContainer {
     width:215px; /* set width here or else widget will expand to fit its container */
     position:relative;
 }
 
-#AutoCompleteDiv, #SchemaDiv, #InstanceDiv {
+#AutoCompleteDiv, #SchemaDiv {
     width:400px;
 }
 
-#AutoCompleteDiv, #SchemaDiv, #InstanceDiv {
+#AutoCompleteDiv, #SchemaDiv {
     padding-left: 6px;
     float:left;
     vertical-align:top;
@@ -45,7 +40,7 @@
 <script type="text/javascript" language="javascript">
 function OpenAddTable(element)
 {
-    element.href = "AddTable.aspx?schemaSelected=" + document.getElementById('<%= this.InstanceDropDownList.ClientID %>').value + '.' + document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value;
+    element.href = "AddTable.aspx?schemaSelected=" + document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value;
     SetProgressLayerVisibility(true);
     return true;
 }
@@ -56,14 +51,10 @@ function OpenAddTable(element)
             <table style="width:400px;">
                 <tr valign="top">
                     <td align="left">
-                        <div class="markup">
-                           <div id="InstanceDiv">
-                                <label for="<%= this.InstanceDropDownList.ClientID %>"><%= Resources.Resource.Instance_Label_Text %>:</label> 
-                                <asp:DropDownList ID="InstanceDropDownList" ClientIDMode="Static" runat="server" AutoPostBack="true" OnSelectedIndexChanged="InstanceDropDownList_SelectedIndexChanged"></asp:DropDownList> 
-                            </div>
+                        <div class="markup">                           
                             <div id="SchemaDiv">
                                 <label for="<%= this.SchemaDropDownList.ClientID %>"><%= Resources.Resource.Schema_Label_Text %>:</label> 
-                                <asp:DropDownList ID="SchemaDropDownList" ClientIDMode="Static" runat="server" AutoPostBack="true" OnSelectedIndexChanged="SchemaDropDownList_SelectedIndexChanged"></asp:DropDownList> 
+                                  <asp:DropDownList ID="SchemaDropDownList" ClientIDMode="Static" runat="server"></asp:DropDownList>
                                 <asp:LinkButton ID="RemoveSchema" runat="server" CssClass="ImageButton" OnClientClick="RemoveSchemaFromMaster();"><%= Resources.Resource.Remove_Label_Text %></asp:LinkButton>                                
                             </div>
                             <div id="AutoCompleteDiv">

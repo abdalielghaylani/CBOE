@@ -33,7 +33,7 @@ namespace CambridgeSoft.COE.Framework.COEReportingService
         /// </summary>
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
         /// <summary>

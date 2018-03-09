@@ -2172,22 +2172,22 @@
     <value>Save Template</value>
   </data>
   <data name="Orders_Label_Text" xml:space="preserve">
-    <value>Orders:</value>
+    <value>Contact Us:</value>
   </data>
   <data name="OrdersContent_Label_Text" xml:space="preserve">
-    <value>www.cambridgesoft.com &lt;br&gt; EMAIL: info@cambridgesoft.com &lt;br&gt; FAX: +1 617-588-9390 &lt;br&gt; TEL: +1 800-315-7300 or +1 617-588-9300</value>
+    <value>http://www.perkinelmer.com/contactus</value>
   </data>
   <data name="Support_Label_Text" xml:space="preserve">
     <value>Support:</value>
   </data>
   <data name="SupportContent_Label_Text" xml:space="preserve">
-    <value>www.cambridgesoft.com/support/ &lt;br&gt; EMAIL: support@cambridgesoft.com &lt;BR&gt;FAX: +1 617-588-9360 &lt;BR&gt;TEL: +1 617-588-9100</value>
+    <value>informatics.support@perkinelmer.com</value>
   </data>
   <data name="Version_Label_Text" xml:space="preserve">
     <value>Version:</value>
   </data>
   <data name="VersionContent_Label_Text" xml:space="preserve">
-    <value>CBOE Framework: {0} &lt;br&gt;  Reg Services: {1}</value>
+    <value>Build: {0}</value>
   </data>
   <data name="DuplicatedValidationRule_Message" xml:space="preserve">
     <value>The Validation Rule that you are trying to add already exists.</value>

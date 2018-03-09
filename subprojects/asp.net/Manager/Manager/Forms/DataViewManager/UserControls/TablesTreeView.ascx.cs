@@ -40,19 +40,7 @@ namespace Manager.Forms.DataViewManager.UserControls
                 ViewState["BaseTableID"] = value;
             }
         }
-
-        private IList<string> Instances
-        {
-            get
-            {
-                return ViewState[Constants.Instances] == null ? null : (IList<string>)ViewState[Constants.Instances];
-            }
-            set
-            {
-                ViewState[Constants.Instances] = value;
-            }
-        }
-
+       
         /// <summary>
         /// List of tables
         /// </summary>
@@ -96,18 +84,13 @@ namespace Manager.Forms.DataViewManager.UserControls
                     }
                 }
             }
-        }
-
-        public string SelectedInstance
-        {
-            get { return this.InstanceDropDownList.SelectedValue; }
-        }
+        }        
 
         public string SelectedDatabase
         {
             get
             {
-                return Utilities.GetQualifyInstaceSchemaName(this.SelectedInstance, this.SchemaDropDownList.SelectedValue);
+                 return this.SchemaDropDownList.SelectedValue; 
             }
         }
 
@@ -143,67 +126,8 @@ namespace Manager.Forms.DataViewManager.UserControls
 
         protected void AddTable_Click(object sender, EventArgs e)
         {
-            string selectedSchema = this.InstanceDropDownList.SelectedValue + "." + SchemaDropDownList.SelectedValue;
+            string selectedSchema = SchemaDropDownList.SelectedValue;
             Response.Redirect("../ContentArea/AddTable.aspx?schemaSelected=" + selectedSchema);
-        }
-
-        protected void InstanceDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var selectedInstance = this.InstanceDropDownList.SelectedItem.Text;
-
-            this.SchemaDropDownList.DataSource = GetSchemas(selectedInstance);
-            this.SchemaDropDownList.DataBind();
-
-            SaveDatabaseSession();
-
-            SaveInstanceSession();
-            SaveSchemaSession();
-
-            this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "", "SetSchemaName('" + Session["DatabaseName"] + "');", true);
-        }
-
-        protected void SchemaDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SaveSchemaSession();
-        }
-
-        // The value of this session sometimes may in pattern "instance.schema"
-        private void SaveDatabaseSession()
-        {
-            if (!string.IsNullOrEmpty(this.SchemaDropDownList.SelectedValue))
-            {
-                Session["DatabaseName"] = this.SchemaDropDownList.SelectedValue;
-            }
-            else
-            {
-                Session["DatabaseName"] = string.Empty;
-            }
-        }
-
-        // Schema name for the schema combobox value
-        private void SaveSchemaSession()
-        {
-            if (!string.IsNullOrEmpty(this.SchemaDropDownList.SelectedValue))
-            {
-                Session["SchemaName"] = this.SchemaDropDownList.SelectedValue;
-            }
-            else
-            {
-                Session["SchemaName"] = string.Empty;
-            }
-        }
-
-        // Instance name for the data source combobox value
-        private void SaveInstanceSession()
-        {
-            if (!string.IsNullOrEmpty(this.InstanceDropDownList.SelectedValue))
-            {
-                Session["InstanceName"] = this.InstanceDropDownList.SelectedValue;
-            }
-            else
-            {
-                Session["InstanceName"] = string.Empty;
-            }
         }
 
         #endregion
@@ -214,60 +138,23 @@ namespace Manager.Forms.DataViewManager.UserControls
         /// </summary>
         /// <param name="dataViewsNodes">List of tables to display</param>
         /// <remarks>Here we have to convert the datasource to a List<DataViewNode></remarks>
-        public void DataBind(TableListBO tables, int basetableId, string database)
+        public void DataBind(TableListBO tables, int basetableId)
         {
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             this.Tables = tables;
             this.BaseTableID = basetableId;
-            // Bind the instances.
-            var instances = GetInstances();
-            this.InstanceDropDownList.DataSource = instances;
-            this.InstanceDropDownList.DataBind();
-
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-            string instanceName = database.Contains('.') ? database.Substring(0, database.IndexOf('.')) : mainInstance.Name;
-
-            // Bug description: In the clean enviroment, publish the non-primary data source and schema. but schema is disappeared in schema list.
-            // Root cause: For master dataview, the baseTable is 'COEDB' and it is not published in clean enviroment. 
-            // As this we cannot select the COEDB as default schema
-            // In this case, we need to display the instance and schema just published.
-            if (instances != null && instances.Contains(instanceName))
-            {
-                this.InstanceDropDownList.SelectedValue = instanceName;
-            }
-            else
-            {
-                // Show the first instance by default if has published instances, otherwise show empty string.
-                this.InstanceDropDownList.SelectedValue = instances != null && instances.Count > 0 ? instances[0] : string.Empty;
-            }
-
-            this.SchemaDropDownList.DataSource = GetSchemas(this.InstanceDropDownList.SelectedValue);
+            this.SchemaDropDownList.DataSource = GetSchemas();
             this.SchemaDropDownList.DataBind();
 
             if (!Page.IsPostBack && !string.IsNullOrEmpty(Page.Request["schemaSelected"]))
             {
-                string instanceSchema = Page.Request["schemaSelected"];
-                var instanceSelected = mainInstance.Name;
-                var schema = instanceSchema;
-
-                if (!string.IsNullOrEmpty(instanceSchema) && instanceSchema.Contains("."))
-                {
-                    instanceSelected = instanceSchema.Split(new char[] { '.' })[0];
-                    schema = instanceSchema.Split(new char[] { '.' })[1];
-                }
-
-                this.InstanceDropDownList.SelectedValue = instanceSelected;
-                this.SchemaDropDownList.DataSource = GetSchemas(this.InstanceDropDownList.SelectedValue);
-                this.SchemaDropDownList.DataBind();
+                string schema = Page.Request["schemaSelected"];
                 this.SchemaDropDownList.SelectedValue = schema;
             }
             else
             {
                 this.SchemaDropDownList.SelectedValue = GetSchemasFromBaseTableID(basetableId);
-            }
-
-            SaveInstanceSession();
-            SaveSchemaSession();
+            }           
 
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
         }
@@ -286,7 +173,7 @@ namespace Manager.Forms.DataViewManager.UserControls
                     foreach (TableBO table in this.Tables)
                     {
                         if (table.ID == basetableId)
-                            return table.DataBase.Contains(".") ? table.DataBase.Substring(table.DataBase.IndexOf('.') + 1) : table.DataBase;
+                            return table.DataBase;
                     }
                 }
             }
@@ -419,92 +306,51 @@ namespace Manager.Forms.DataViewManager.UserControls
             }
         }
 
-        public string GetTablesDataSource(string schema,string instanceName)
+        public string GetTablesDataSource(string schema)
         {
             if (this.Tables == null)
                 return string.Empty;
+
 
             this.BaseTableID = ((Master.DataViewManager)this.Page.Master).GetDataViewBO().DataViewManager.BaseTableId;
             if (this.Tables.Count > 0)
             {
                 if (string.IsNullOrEmpty(schema))
                 {
-                    if (this.SchemaDropDownList.SelectedItem!=null)
-                    {
-                        schema = this.SchemaDropDownList.SelectedItem.Text;
-                    }
+                    if (!string.IsNullOrEmpty(this.SelectedDatabase))
+                        schema = this.SelectedDatabase;
+                    else
+                        schema = this.Tables[0].DataBase;
                 }
-
-                var instanceSchema = Utilities.GetQualifyInstaceSchemaName(instanceName, schema);
-                schema = instanceSchema;
 
                 string result = "YAHOO.DataviewBoardNS.LeftPanel.DataSource.liveData = [";
                 foreach (TableBO table in this.Tables)
                 {
-                    if (table.DataBase.Equals(schema, StringComparison.InvariantCultureIgnoreCase))
-                    {
+                    if (table.DataBase == schema)
                         result += "{" + string.Format("tableschema: \"{0}\", tablealias: \"{1}\", tableid: \"{2}\", tablename: \"{3}\", isbasetable: \"{4}\"", table.DataBase, System.Web.HttpUtility.HtmlEncode(table.Alias.Trim()), table.ID, table.Name, (table.ID == this.BaseTableID)) + "},";
-                    }
                 }
                 if (result.Length > 0 && !result.EndsWith("["))
                     result = result.Remove(result.Length - 1);
                 result += @"];
                 ";
 
-                this.SchemaDropDownList.SelectedValue = schema.Contains(".") ? schema.Substring(schema.IndexOf(".") + 1) : schema;
+                this.SchemaDropDownList.SelectedValue = schema;
 
                 return result;
             }
             return string.Empty;
         }
 
-        private IList<string> GetInstances()
-        {
-            if (Instances == null || Instances.Count == 0)
-            {
-                var instancesList = new List<InstanceData>();
-                var intanceNameList = new List<string>();
-                InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
-                if (this.Tables.Count > 0)
-                {
-                    foreach (TableBO table in this.Tables)
-                    {
-                        var instanceName = table.DataBase.Contains(".") ? table.DataBase.Split('.')[0] : mainInstance.Name;
-
-                        if (!intanceNameList.Contains(instanceName))
-                        {
-                            intanceNameList.Add(instanceName);
-                        }
-                    }
-
-                    this.Instances = intanceNameList;
-                }
-            }
-
-            return this.Instances;
-        }
-
-        private List<string> GetSchemas(string instanceName)
+        private List<string> GetSchemas()
         {
             List<string> schemas = new List<string>();
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
-            var isMainInstance = instanceName.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase);
-
-            if (isMainInstance)
+            if (this.Tables.Count > 0)
             {
-                schemas = this.Tables.Where(t => !t.DataBase.Contains("."))
-                                     .Select(t => t.DataBase)
-                                     .Distinct()
-                                     .ToList();
-            }
-            else
-            {
-                schemas = this.Tables.Where(t => t.DataBase.StartsWith(instanceName + ".", StringComparison.InvariantCultureIgnoreCase))
-                                     .Select(t => t.DataBase.Remove(0, instanceName.Length + 1))
-                                     .Distinct()
-                                     .ToList();
+                foreach (TableBO table in this.Tables)
+                {
+                    if (!schemas.Contains(table.DataBase))
+                        schemas.Add(table.DataBase);
+                }
             }
 
             try

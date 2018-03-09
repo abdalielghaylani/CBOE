@@ -10,8 +10,6 @@ SET verify off
 --#########################################################
 -- SCRIPT VARIABLES
 --#########################################################
-DEFINE globalSchemaName = COEUSER
-DEFINE globalSchemaPass = ORACLE
 DEFINE schemaName = COEDB
 DEFINE schemaPass = ORACLE
 DEFINE schemaVersion = 11.0.1.0
@@ -96,7 +94,3 @@ DEFINE lobB64cdx = 2K
 DEFINE AsSysDBA = ''
 DEFINE OraVersionNumber = 9
 DEFINE UpgradeCsSecurity = N
--- Bypassing the tablespace creation/drop flag.
--- Y:  Scripts will skip tablespace drop and create statements. THE TABLESPACES MUST BE CREATED MANUALLY BEFORE EXECUTING THE SCRIPT, otherwise a tablespace validation error will occur. 
--- N: Scripts will drop the tablespaces if they exist in Oracle server, and then recreate them. This is default value. 
-DEFINE BypassTablespaceCreateAndDrop = N

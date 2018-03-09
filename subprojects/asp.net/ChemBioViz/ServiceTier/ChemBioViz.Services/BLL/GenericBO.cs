@@ -82,6 +82,8 @@ namespace CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService
         private int _currentFormIndex;
         private int _databaseRecordCount;
         private int _markedHitsMax;
+        private int _expireHitlistHistoryDays;
+        private int _expireQueryHistoryDays;
 
         private bool _allowFullScan;
         private bool _keepRecordCountSynchronized = false;
@@ -98,6 +100,21 @@ namespace CambridgeSoft.COE.ChemBioViz.Services.COEChemBioVizService
             }
         }
 
+        public int ExpireHitlistHistoryDays
+        {
+            set
+            {
+                _expireHitlistHistoryDays = value;
+            }
+        }
+
+        public int ExpireQueryHistoryDays
+        {
+            set
+            {
+                _expireQueryHistoryDays = value;
+            }
+        }
         public bool Browse
         {
             get { return _browse; }

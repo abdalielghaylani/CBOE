@@ -1,0 +1,107 @@
+.igWebDateChooserMainSilver2k7 {
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		text-align: center;
+		
+		border: 1px solid #A9B1B8;
+		font-size: 11px;
+		
+}
+.igwebDateChooserDropdownBtHoverSilver2k7{
+	background-image:url(WebDateChooser/igWebDateChooser_Dropdown_Hover.jpg);
+	background-repeat:no-repeat;
+}
+
+.igwebDateChooserDropdownSilver2k7{
+		font-family: Verdana, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		text-align: center;
+
+		
+		background-color: white;
+		
+
+}
+
+.igwebDateChooserDropdownEditSilver2k7 {
+	border1: 1px solid #A7A6AA;
+	
+}
+
+
+.igwebDateChooserDropdownCalendarSilver2k7{
+	text-align: center;
+	width: 20px;
+	line-height: 5px;
+
+	padding-bottom: 10px;
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+
+
+}
+
+.igwebDateChooserDropdownNextPrevSilver2k7 {
+	padding: 4px;
+	background-color: #D2D5DA;
+	
+}
+
+.igwebDateChooserDropdownToydayDaySilver2k7 {
+	border: 1px solid #BB5503;
+	padding: 4px;
+}
+
+.igwebDateChooserDropdownSelectedDaySilver2k7 {
+	background-color: #FBC84F;
+	padding: 4px;
+}
+
+.igwebDateChooserDropdownDaySilver2k7 {
+	padding: 4px;
+	font-size: 11px;
+}
+
+
+.igwebDateChooserDropdownFooterSilver2k7{
+	padding-top: 2px;
+	padding-bottom: 0px;
+	height: 16px;
+
+	background-image:url(WebDateChooser/igWebDateChooser_Dropdown_Footer.jpg);
+	background-repeat: repeat-x;
+	
+
+	text-align: center;
+	
+	font-weight: normal;
+	
+	width: 50px;
+	font-size: 11px;
+	
+
+}
+
+.igwebDateChooserDropdownTitleSilver2k7{
+	padding: 4px;
+	width: 166px;
+	background-color: #D2D5DA;
+	border-with: 0px;
+	font-size: 11px;
+	
+
+}
+
+.igwebDateChooserDropdownOtherMonthDaySilver2k7{
+	color: #B3B3B3;
+	padding: 4px;
+}
+
+.igwebDateChooserDropdownDayheaderSilver2k7{
+	padding: 4px;
+	padding-top: 1px;
+	border: 1px solid #A7A6AA;
+	border-width: 0px 0px 1px 0px;
+	font-weight: normal;
+	font-size: 11px;
+}

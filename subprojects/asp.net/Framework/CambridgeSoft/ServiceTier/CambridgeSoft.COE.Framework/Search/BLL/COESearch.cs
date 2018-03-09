@@ -618,62 +618,18 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             catch { throw; }
         }
 
-        /// <summary>
-        /// <para>
-        /// Search method that will get the data for an existing HitList.
-        /// </para>
-        /// <para>
-        /// Three parameters are needed:
-        /// </para>
-        /// <list type="bullet">
-        /// <item>
-        /// <see cref="ResultsCriteria"/>: This parameter defines the desired result fields.
-        /// </item>
-        /// <item>
-        /// <see cref="PagingInfo"/>: This parameter defines the paging to be done and <b>the existing hitlistid</b>.
-        /// </item>
-        /// <item>
-        /// <see cref="COEDataView"/>: This parameter defines a particular view of the database and the search will be performed
-        ///   over that view.
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="resultsCriteria">
-        /// Desired resulting fields and tables.
-        /// </param>
-        /// <param name="pagingInfo">
-        /// Desired paging and <b>the hitlistid</b>.
-        /// </param>
-        /// <param name="dataViewID">
-        /// The data View ID.
-        /// </param>
-        /// <param name="useRealTableNames">
-        /// string that specifies if real table names are supposed to be returned (yes/true), if table names in the form
-        /// Table_tableid (no/false) or if this is up o the search service (null/empty)
-        /// </param>
-        /// <param name="orderByCriteria">
-        /// Client ordering criteria
-        /// </param>
-        /// <param name="searchCriteria">
-        /// The search Criteria.
-        /// </param>
-        /// <param name="multiInstance">
-        /// Is need support multi instance or not. Defalut value is false.
-        /// </param>
-        /// <returns>
-        /// The resulting dataset.
-        /// </returns>
+        
         public DataSet GetData(
             ResultsCriteria resultsCriteria,
             PagingInfo pagingInfo,
             int dataViewID,
             string useRealTableNames,
             OrderByCriteria orderByCriteria,
-            SearchCriteria searchCriteria,
-            bool multiInstance = false)
+            SearchCriteria searchCriteria
+            )
         {
-            COEDataView dataView = this.GetDataViewFromID(dataViewID);
-            return GetData(resultsCriteria, pagingInfo, dataView, this.GetConnStringType(dataView), useRealTableNames, orderByCriteria, searchCriteria, multiInstance);
+            COEDataView dataView = GetDataViewFromID(dataViewID);
+            return GetData(resultsCriteria, pagingInfo, dataView, GetConnStringType(dataView), useRealTableNames, orderByCriteria, searchCriteria);
         }
 
         /// <summary>
@@ -717,10 +673,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
         /// </param>
         /// <param name="searchCriteria">
         /// The search Criteria.
-        /// </param>
-        /// <param name="multiInstance">
-        /// Is need support multi instance or not. Defalut value is false.
-        /// </param>
+        /// </param>        
         /// <returns>
         /// The resulting dataset.
         /// </returns>
@@ -731,14 +684,13 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             ConnStringType connStringType,
             string useRealTableNames,
             OrderByCriteria orderByCriteria,
-            SearchCriteria searchCriteria,
-            bool multiInstance = false)
+            SearchCriteria searchCriteria
+            )
         {
             //this is returned the DoSearchCommand object so you can call methods within it
-            GetDataCommand result = DataPortal.Execute(new GetDataCommand(resultsCriteria, pagingInfo, dataView, connStringType, useRealTableNames, orderByCriteria, searchCriteria, multiInstance));
+            GetDataCommand result = DataPortal.Execute(new GetDataCommand(resultsCriteria, pagingInfo, dataView, connStringType, useRealTableNames, orderByCriteria, searchCriteria));
             return result.ResultsDataSet;
         }
-
         #endregion
 
         #region GetPartialHitList
@@ -1039,44 +991,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             }
         }
 
-        /// <summary>
-        /// <para>
-        /// Performs a general purpose search and retrieves the associated <see cref="HitListInfo"/>.
-        /// </para>
-        /// <para>
-        /// Two parameters are needed:
-        /// </para>
-        /// <list type="bullet">
-        /// <item>
-        /// <see cref="SearchCriteria"/>: This parameter defines the restrictions of the search.
-        /// </item>
-        /// <item>
-        /// <see cref="COEDataView"/>: This parameter defines a particular view of the database and the search will be performed
-        ///   over that view.
-        /// </item>
-        /// </list>
-        /// </summary>
-        /// <param name="resultsCriteria">
-        /// The results Criteria.
-        /// </param>
-        /// <param name="searchCriteria">
-        /// Search restrictions.
-        /// </param>
-        /// <param name="dataViewID">
-        /// A database view identified by ID
-        /// </param>
-        /// <param name="filterChildHits">
-        /// indicate whether is fileter child hits
-        /// </param>
-        /// <returns>
-        /// The associeted <see cref="HitListInfo"/>.
-        /// </returns>
-        public HitListInfo GetHitListMutiInstance(ResultsCriteria resultsCriteria, SearchCriteria searchCriteria, int dataViewID, bool filterChildHits, bool needQueryManagement = true)
-        {
-            GetHitListCommand result = DataPortal.Execute(new GetHitListCommand(resultsCriteria, searchCriteria, this.GetDataViewFromID(dataViewID), this.GetConnStringType(dataViewID), filterChildHits, needQueryManagement));
-            this._lastInsertedSearchCriteriaID = result.SearchCriteriaID;
-            return result.HitListInfo;
-        }
+        
 
         /// <summary>
         /// <para>Performs a general purpose search and retrieves the associated <see cref="HitListInfo"/>.</para>
@@ -1413,19 +1328,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 throw;
             }
         }
-        #endregion
-
-        /// <summary>
-        /// Get field pick list
-        /// </summary>
-        /// <param name="resultsCriteria">result criteria</param>
-        /// <param name="dataView">data view</param>
-        /// <returns>data set</returns>
-        public DataSet GetPickList(ResultsCriteria resultsCriteria, COEDataView dataView)
-        {
-            GetPickListCommand result = DataPortal.Execute(new GetPickListCommand(resultsCriteria, dataView, ConnStringType.OWNERPROXY));
-            return result.ResultsDataSet;
-        }
+        #endregion        
 
         #region DataPortal Classes/Methods
 
@@ -1599,9 +1502,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             private int _commitSize;
             private int _maxRecordCount;
             private HitListInfo _refineHitList;
-            private bool _supportMultiInstance;
-            private bool _filterChildHits;
-            private bool _needQueryManagement;
+            
 
             public GetHitListCommand(SearchCriteria searchCriteria, COEDataView dataView, ConnStringType connStringType)
             {
@@ -1612,27 +1513,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 _commitSize = -1;
                 _maxRecordCount = -1;
                 _refineHitList = null;
-            }
-
-            public GetHitListCommand(ResultsCriteria resultsCriteria, SearchCriteria searchCriteria, COEDataView dataView, ConnStringType connStringType)
-            {
-                _resultsCriteria = resultsCriteria;
-                _searchCriteria = searchCriteria;
-                _dataView = dataView;
-                _partialHitList = false;
-                _connStringType = connStringType;
-                _commitSize = -1;
-                _maxRecordCount = -1;
-                _refineHitList = null;
-                _supportMultiInstance = true;
-            }
-
-            public GetHitListCommand(ResultsCriteria resultsCriteria, SearchCriteria searchCriteria, COEDataView dataView, ConnStringType connStringType, bool filterChildHits, bool needQueryManagement = true)
-                :this(resultsCriteria, searchCriteria, dataView, connStringType)
-            {
-                _filterChildHits = filterChildHits;
-                _needQueryManagement = needQueryManagement;
-            }
+            }            
 
             public GetHitListCommand(SearchCriteria searchCriteria, COEDataView dataView, ConnStringType connStringType, HitListInfo refineHitlist)
                 : this(searchCriteria, dataView, connStringType)
@@ -1698,14 +1579,8 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                     }
                     else
                     {
-                        if (_supportMultiInstance)
-                        {
-                            _hitListInfo = searchManager.GetHitListFromCrossInstance(_resultsCriteria, ref _searchCriteria, _dataView, _connStringType, _refineHitList, _filterChildHits, _needQueryManagement);
-                        }
-                        else
-                        {
-                            _hitListInfo = searchManager.GetHitList(ref _searchCriteria, _dataView, _connStringType, _refineHitList);
-                        }
+                        _hitListInfo = searchManager.GetHitList(
+                           ref _searchCriteria, _dataView, _connStringType, _refineHitList);
                     }
                 }
                 catch (OracleException ex)
@@ -1735,10 +1610,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             private OrderByCriteria _orderByCriteria;
             private SearchCriteria _searchCriteria;
             
-            /// <summary>
-            /// If support multi instance query or not. Default is not.
-            /// </summary>
-            private bool _supportMultiInstance;
+            
 
             public GetDataCommand(ResultsCriteria resultsCriteria, PagingInfo pagingInfo, COEDataView dataView,ConnStringType connStringType) {
                 _resultsCriteria = resultsCriteria;
@@ -1773,8 +1645,8 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 ConnStringType connStringType,
                 string useRealTableNames,
                 OrderByCriteria orderByCriteria,
-                SearchCriteria searchCriteria,
-                bool multiInstance = false)
+                SearchCriteria searchCriteria
+                )
             {
                 _resultsCriteria = resultsCriteria;
                 _pagingInfo = pagingInfo;
@@ -1782,8 +1654,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 _connStringType = connStringType;
                 _useRealTableNames = useRealTableNames;
                 _orderByCriteria = orderByCriteria;
-                _searchCriteria = searchCriteria;
-                _supportMultiInstance = multiInstance;
+                _searchCriteria = searchCriteria;               
             }
 
             public DataSet ResultsDataSet {
@@ -1796,9 +1667,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 try
                 {
                     SearchManager searchManager = new SearchManager();
-                    this._resultsDataSet = this._supportMultiInstance
-                                               ? searchManager.GetDataFromCrossInstance(this._resultsCriteria, this._pagingInfo, this._dataView, this._connStringType, this._useRealTableNames, this._orderByCriteria, this._searchCriteria)
-                                               : searchManager.GetData(this._resultsCriteria, this._pagingInfo, this._dataView, this._connStringType, this._useRealTableNames, this._orderByCriteria, this._searchCriteria);
+                    _resultsDataSet = searchManager.GetData(_resultsCriteria, _pagingInfo, _dataView, _connStringType, _useRealTableNames, _orderByCriteria, _searchCriteria);
                 }
                 catch (OracleException ex)
                 {
@@ -2059,52 +1928,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             }
         }
 
-        [Serializable]
-        private class GetPickListCommand : CommandBase
-        {
-            private SearchManager _searchManager;
-            private string _serviceName = "COESearch";
-            ////put private variables that will be sent by the factory method. don't need properties
-            private ResultsCriteria _resultsCriteria;
-            private SecurityInfo _securityInfo;
-            private PagingInfo _pagingInfo;
-            private COEDataView _dataView;
-            private DataSet _resultsDataSet;
-            private bool _searchResults;
-            private ConnStringType _connStringType;
-            private string _useRealTableNames;
-            private OrderByCriteria _orderByCriteria;
-            private SearchCriteria _searchCriteria;
-
-            public GetPickListCommand(ResultsCriteria resultsCriteria, COEDataView dataView, ConnStringType connStringType)
-            {
-                _resultsCriteria = resultsCriteria;
-                _dataView = dataView;
-                _connStringType = connStringType;
-                _useRealTableNames = string.Empty;
-            }
-
-            public DataSet ResultsDataSet
-            {
-                get { return _resultsDataSet; }
-                set { _resultsDataSet = value; }
-            }
-
-            protected override void DataPortal_Execute()
-            {
-                try
-                {
-                    SearchManager searchManager = new SearchManager();
-                    this._resultsDataSet = searchManager.GetPickList(_resultsCriteria, _dataView, _connStringType);
-                }
-                catch (OracleException ex)
-                {
-                    throw new Exception(ex.Message);
-                }
-            }
-        }
-        
-        #endregion
+       
 
         #region dataView permissions
 
@@ -2154,8 +1978,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                 return (COEDataView)coeDataViewBO.COEDataView;
             }
         }
-
-
 
         private void ApplyDataviewHandling(ref COEDataView dataView)
         {
@@ -2695,78 +2517,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
             //            dataResult.resultSetInfo = new ResultSetInfo(_pagingInfo.HitListID, 0, _pagingInfo.
             return dataResult;
         }
-
-
-        public DataResult GetDataPage(ResultPageInfo resultPageInfo, string[] resultFields, string useRealTableNames, SearchInput searchInput)
-        {
-            DataResult dataResult = new DataResult();
-
-            try
-            {
-                //First thing needed will be a dataview from the id
-                _dataViewBO = COEDataViewService.COEDataViewBO.Get(_dataViewID);
-            }
-            catch (Csla.DataPortalException ex)
-            {
-                dataResult.Status = "FAILURE: DataView with id " + _dataViewID + " was not found.\n" + ex.BusinessException.Message;
-                return dataResult;
-            }
-
-            ResultsCriteria resultsCriteria = new ResultsCriteria();
-            try
-            {
-                resultsCriteria = ResultFieldsToResultsCriteria.GetResultCriteria(resultFields, _dataViewBO.COEDataView);
-            }
-            catch (Exception ex)
-            {
-                dataResult.Status = "FAILURE: Could not build the result criteria with the provided result fields.\n" + ex.Message;
-                return dataResult;
-            }
-            if (resultPageInfo == null)
-            {
-                dataResult.Status = "FAILURE: Result page info was not provided, and it is required for retrieving a page.";
-                return dataResult;
-            }
-            PagingInfo pagingInfo = new PagingInfo();
-            pagingInfo.RecordCount = resultPageInfo.PageSize;
-            pagingInfo.Start = resultPageInfo.Start;
-            pagingInfo.End = resultPageInfo.End;
-            pagingInfo.HitListID = resultPageInfo.ResultSetID;
-            pagingInfo.FilterChildData = true;
-
-            dataResult.resultPageInfo = resultPageInfo;
-
-
-            SearchCriteria searchCriteria = new SearchCriteria();
-            try
-            {
-                searchCriteria = InputFieldsToSearchCriteria.GetSearchCriteria(searchInput.FieldCriteria, searchInput.SearchOptions, searchInput.Domain, searchInput.DomainFieldName, _dataViewBO.COEDataView);
-                if (searchInput.AvoidHitList)
-                    searchCriteria = null;
-            }
-            catch (Exception ex)
-            {
-                dataResult.Status = "FAILURE: Could not build the search criteria with the provided input.\n" + ex.Message;
-                return dataResult;
-            }
-
-            DataSet ds = this.GetData(resultsCriteria, pagingInfo, _dataViewID, useRealTableNames, new OrderByCriteria(), searchCriteria);
-            dataResult.ResultSet = ds.GetXml();
-            int currentCount = 0;
-            if (ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-                currentCount = ds.Tables[0].Rows.Count;
-
-            dataResult.resultSetInfo = new ResultSetInfo(resultPageInfo.ResultSetID, 0, currentCount, 0);
-            if (string.IsNullOrEmpty(dataResult.Status))
-            {
-                dataResult.Status = "SUCCESS";
-            }
-
-            //            dataResult.resultSetInfo = new ResultSetInfo(_pagingInfo.HitListID, 0, _pagingInfo.
-            return dataResult;
-        }
-
-
+        
         /// <summary>
         /// Retrieves information about a previously generated result set.  Used to check progress of an ongoing query.
         /// </summary>
@@ -2817,9 +2568,9 @@ namespace CambridgeSoft.COE.Framework.COESearchService
 
             return resultSetInfo;
         }
-
-
         
         #endregion
+        # endregion
+
     }
 }

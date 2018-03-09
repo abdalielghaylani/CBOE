@@ -61,11 +61,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.WhereItems
         public static WhereClauseItem CreateWhereClauseItem(CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData.DataView dataView, int fieldId, XmlNode operationNode)
         {
             WhereClauseItem item = null;
-
-            if (XmlTranslation.IsNoneOperator(operationNode))
-            {
-                return item;
-            }
+           
 
             bool caseSensitive = (operationNode.Attributes["caseSensitive"] != null &&
                                   operationNode.Attributes["caseSensitive"].Value.ToLower() == "no") ?
@@ -196,11 +192,9 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.WhereItems
                             throw new Exception("Unsupported Expression: " + expressionNode.Name);
                             break;
                     }
-
-                    if (clauseBase != null)
-                    {
+                    
                         item.Items.Add(clauseBase);
-                    }
+                    
                 }
             }
 

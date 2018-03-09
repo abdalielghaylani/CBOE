@@ -23,7 +23,6 @@ namespace CambridgeSoft.COE.Framework.COESearchService.Processors
 		private string structure;
 		private int primaryKey;
 		private string tempTableName;
-        private string schemaName;
         private SearchCriteria.StructureCriteria _structureCriteria;
         [NonSerialized]
         static COELog _coeLog = COELog.GetSingleton("COESearch");
@@ -44,22 +43,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService.Processors
             {
                 this.tempTableName = value;
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the cartridge schema name.
-        /// </summary>
-        internal string SchemaName
-        {
-            get
-            {
-                return this.schemaName;
-            }
-            set
-            {
-                this.schemaName = value;
-            }
-        }
+        }        
 
 		#endregion
 
@@ -71,8 +55,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService.Processors
 		/// <param name="item">The SearchCriteriaItem xml represntation that is to be handled by this Processor</param>
         internal StructureProcessor(XmlNode xmlNode) : base(xmlNode)
         {
-            this.schemaName = ConfigurationUtilities.GetChemEngineSchema(DBMSType.ORACLE);
-            this.tempTableName = "TEMPQUERIES";
+            this.tempTableName = ConfigurationUtilities.GetChemEngineSchema(DBMSType.ORACLE) + ".TEMPQUERIES";
         }
 
 		/// <summary>
@@ -85,8 +68,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService.Processors
             _structureCriteria = (SearchCriteria.StructureCriteria)item.Criterium;
             this.structure = _structureCriteria.Structure;
 
-            this.schemaName = ConfigurationUtilities.GetChemEngineSchema(DBMSType.ORACLE);
-            this.tempTableName = "TEMPQUERIES";
+            this.tempTableName = ConfigurationUtilities.GetChemEngineSchema(DBMSType.ORACLE) + ".TEMPQUERIES";
         }
 
 		#endregion
@@ -107,11 +89,11 @@ namespace CambridgeSoft.COE.Framework.COESearchService.Processors
 			*/
 
 			Insert insert = new Insert();
-            var mainTable = new Table() { Database = this.schemaName, TableName = this.tempTableName };
+            //var mainTable = new Table() { Database = this.schemaName, TableName = this.tempTableName };
 
-            insert.MainTable = mainTable;
-            insert.Fields.Add(new Field("QUERY", DbType.String, mainTable));
-            insert.Fields.Add(new Field("ID", DbType.Int32, mainTable));
+            insert.MainTable = new Table(TempTableName); 
+            insert.Fields.Add(new Field("QUERY", DbType.String));
+            insert.Fields.Add(new Field("ID", DbType.Int32));
 
 			insert.ParamValues.Add(new Value(this.structure, DbType.String));
 			insert.ParamValues.Add(new Value(primaryKey.ToString(), DbType.Int32));
@@ -148,13 +130,13 @@ namespace CambridgeSoft.COE.Framework.COESearchService.Processors
 		    }
 
 		    Query tempSelect = new Query();
-            tempSelect.SetMainTable(mainTable);
+            tempSelect.SetMainTable(new Table(TempTableName));
 
             SelectClauseField queryColumn = new SelectClauseField();
-            queryColumn.DataField = new Field("QUERY", DbType.String, mainTable);
+            queryColumn.DataField = new Field("QUERY", DbType.String);
 
             WhereClauseEqual primaryKeyConstraint = new WhereClauseEqual();
-            primaryKeyConstraint.DataField = new Field("ID", DbType.Int32, mainTable);
+            primaryKeyConstraint.DataField = new Field("ID", DbType.Int32);
             primaryKeyConstraint.Val = new Value(this.primaryKey.ToString(), DbType.Int32);
 
             tempSelect.AddSelectItem(queryColumn);

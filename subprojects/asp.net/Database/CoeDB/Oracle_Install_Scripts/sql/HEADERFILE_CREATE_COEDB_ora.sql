@@ -15,8 +15,8 @@ exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 
 @@drops.sql
 @@drops_&&UpgradeCsSecurity
-@@tablespaces_ByPass_&&BypassTablespaceCreateAndDrop
-@@validateTablespaces.sql
+@@tablespaces.sql
+@@"sql\Patches\Patch 11.0.1.0\sql\CsSecurity\createTempTableSpace_&&OraVersionNumber"
 @@users.sql
 @@CREATE_COEDB_ora.sql
 --@@synonyms.sql
@@ -33,8 +33,6 @@ exec :Begin:=to_char(systimestamp,'HH:MI:SS.FF4');
 @@sql\Patches\Parameters.sql
 @@"sql\Patches\Patch 11.0.1.0\Parameters.sql"
 @@"sql\Patches\Patch 11.0.2\patch.sql"
--- create global user for Datalytix primary data source.
-@@"..\..\Datalytix\sql\doEnableGlobalUserForPrimaryDatasource.sql"
 
 SET serveroutput on
 BEGIN

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<table name="SUBSTANCE_SUBSET" alias="SUBSTANCE_SUBSET" database="COETEST" isView="0">
+  <fields name="ACX_ID" alias="ACX_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+  <fields name="BASE64_CDX" alias="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+  <fields name="CAS" alias="CAS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+  <fields name="CSNUM" alias="CSNUM" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+  <fields name="DATECREATED" alias="DATECREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="4" />
+  <fields name="FEMA" alias="FEMA" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="5" />
+  <fields name="HASMSDS" alias="HASMSDS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="6" />
+  <fields name="HASPRODUCTS" alias="HASPRODUCTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="7" />
+  <fields name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="8" />
+  <fields name="NUMPRODUCTS" alias="NUMPRODUCTS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="9" />
+  <fields name="SYNONYMID" alias="SYNONYMID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="10" />
+</table>

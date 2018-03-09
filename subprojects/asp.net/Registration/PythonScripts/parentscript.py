@@ -1,8 +1,8 @@
 import sys
-sys.path.append('C:\Program Files (x86)\CambridgeSoft\Python25\Lib')
+sys.path.append('C:\Program Files (x86)\PerkinElmer\Python25\Lib')
 from os import *
 from os.path import *
-from ChemScript14 import *
+from ChemScript17 import *
 from time import *
 
 # This scripts expects that two local variables are setup externally

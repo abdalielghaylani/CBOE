@@ -292,7 +292,7 @@ namespace CambridgeSoft.COE.Framework.Controls.COEGrid
             HtmlGenericControl pan = new HtmlGenericControl();
             pan.TagName = "div";
             pan.Style.Add(HtmlTextWriterStyle.Overflow, "hidden");
-            pan.Attributes.Add("onmouseover", "this.title=this.innerText;");
+            pan.Attributes.Add("onmouseover", "this.title=this.innerText;");            
             tc2Main.Controls.Add(pan);
             control.Controls.Add(tblMain);
             trMain.Cells.Add(tc2Main);
@@ -334,7 +334,7 @@ namespace CambridgeSoft.COE.Framework.Controls.COEGrid
                         HtmlGenericControl pan1 = new HtmlGenericControl();
                         pan1.TagName = "div";
                         pan1.Style.Add(HtmlTextWriterStyle.Overflow, "hidden");
-                        pan1.Attributes.Add("onmouseover", "this.title=this.innerText;");
+                        pan1.Attributes.Add("onmouseover", "this.title=this.innerText;");                        
                         cell1.Controls.Add(pan1);
 
                         cell1.ID = System.Web.HttpUtility.HtmlEncode(strColumnText[i]) + "HeaderCell";
@@ -1346,6 +1346,7 @@ namespace CambridgeSoft.COE.Framework.Controls.COEGrid
                         pan.TagName = "div";
                         pan.Style.Add(HtmlTextWriterStyle.Overflow, "hidden");
                         pan.Attributes.Add("onmouseover", "this.title=this.innerText;");
+                        pan.Attributes.Add("style", "word-break:break-all; word-wrap:break-word");
                         pan.InnerText = cel.Text;
 
                         //JHS 1/28/2010 - This line was passing a row index to a column

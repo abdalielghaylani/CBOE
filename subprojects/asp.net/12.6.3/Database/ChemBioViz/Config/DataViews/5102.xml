@@ -1,0 +1,60 @@
+<configuration subdirectory="DataViews" databasename="COETEST" description="Properties Sample" formgroup="0" id="5102" ispublic="True" name="Properties Sample" username="COEDB"><xml><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="2333" database="COEDB" name="Properties Sample" description="Properties Sample" dataviewid="5102">
+	<tables>
+		<table id="2333" name="CS_DEMO_PROPS" alias="CS_DEMO_PROPS" database="COETEST" primaryKey="2342">
+			<fields id="2334" name="BOOLFIELD" alias="BOOLFIELD" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2335" name="BP" alias="BP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2336" name="CLOGP" alias="CLOGP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2337" name="DIAM" alias="DIAM" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2338" name="HOF" alias="HOF" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2339" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2340" name="MOLAR_REFRACTIVITY" alias="MOLAR_REFRACTIVITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2341" name="MOLNAME" alias="MOLNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2342" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2343" name="RANDOMDATE" alias="RANDOMDATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1"/>
+			<fields id="2344" name="STRUCTURE" alias="STRUCTURE" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1"/>
+		</table>
+		<table id="2345" name="CS_DEMO_SYNS" alias="CS_DEMO_SYNS" database="COETEST" primaryKey="2348">
+			<fields id="2346" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0"/>
+			<fields id="2347" name="SYNONYM" alias="SYNONYM" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="1"/>
+			<fields id="2348" name="SYN_ID" alias="SYN_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+		</table>
+		<table id="2379" name="PDE7_SCREEN" alias="PDE7_SCREEN" database="COETEST" primaryKey="2384">
+			<fields id="2380" name="COMPOUND_ID" alias="COMPOUND_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0"/>
+			<fields id="2381" name="HIGH_CTL_AVERAGE" alias="HIGH_CTL_AVERAGE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="1"/>
+			<fields id="2382" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+			<fields id="2383" name="LOW_CTL_AVERAGE" alias="LOW_CTL_AVERAGE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3"/>
+			<fields id="2384" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4"/>
+			<fields id="2385" name="MP" alias="MP" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="5"/>
+			<fields id="2386" name="P" alias="P" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="6"/>
+			<fields id="2387" name="PLATE_FORMAT" alias="PLATE_FORMAT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="7"/>
+			<fields id="2388" name="PLATE_ID" alias="PLATE_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="8"/>
+			<fields id="2389" name="POC" alias="POC" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="9"/>
+			<fields id="2390" name="ROW_ID" alias="ROW_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="10"/>
+			<fields id="2391" name="S" alias="S" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="11"/>
+			<fields id="2392" name="SD_UNITS_S_C" alias="SD_UNITS_S_C" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="12"/>
+			<fields id="2393" name="TOTAL_INTENSITY" alias="TOTAL_INTENSITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="13"/>
+			<fields id="2394" name="WELL_FORMAT" alias="WELL_FORMAT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="14"/>
+			<fields id="2395" name="WELL_ID" alias="WELL_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="15"/>
+		</table>
+		<table id="2396" name="PRIMARY_SCREEN" alias="PRIMARY_SCREEN" database="COETEST" primaryKey="2402">
+			<fields id="2397" name="COMPOUND_ID" alias="COMPOUND_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="0"/>
+			<fields id="2398" name="CONTROL_AVERAGE" alias="CONTROL_AVERAGE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="1"/>
+			<fields id="2399" name="CONTROL_SD" alias="CONTROL_SD" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="2"/>
+			<fields id="2400" name="FOLD_ABOVE_CONTROL" alias="FOLD_ABOVE_CONTROL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="3"/>
+			<fields id="2401" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="4"/>
+			<fields id="2402" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="5"/>
+			<fields id="2403" name="PLATE_BARCODE" alias="PLATE_BARCODE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="6"/>
+			<fields id="2404" name="RAW_VALUE" alias="RAW_VALUE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="7"/>
+			<fields id="2405" name="ROW_ID" alias="ROW_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" sortOrder="8"/>
+			<fields id="2406" name="SDS_ABOVE_CONTROL" alias="SDS_ABOVE_CONTROL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" sortOrder="9"/>
+			<fields id="2407" name="WELL_FORMAT" alias="WELL_FORMAT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="10"/>
+			<fields id="2408" name="WELL_ID" alias="WELL_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" sortOrder="11"/>
+		</table>
+	</tables>
+	<relationships>
+		<relationship parentkey="2342" childkey="2348" parent="2333" child="2345" jointype="INNER"/>
+		<relationship parentkey="2342" childkey="2384" parent="2333" child="2379" jointype="INNER"/>
+		<relationship parentkey="2342" childkey="2402" parent="2333" child="2396" jointype="INNER"/>
+	</relationships>
+</COEDataView>]]></xml></configuration>

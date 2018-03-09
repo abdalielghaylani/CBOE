@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<COEDataView xmlns="COE.COEDataView" basetable="1" database="CHEMINVDB2" dataviewid="1">
+	<!-- The list of tables -->
+	<tables>
+		<!-- Aliased table -->
+		<table id="1" database="CHEMINVDB2" alias="c" name="INV_CONTAINERS"  primaryKey="1">
+			<fields id="1" name="CONTAINER_ID" dataType="INTEGER"/>
+			<fields id="2" name="BARCODE" dataType="TEXT"/>
+			<fields id="3" name="QTY_INITIAL" dataType="INTEGER"/>
+			<fields id="4" name="LOCATION_ID_FK" dataType="REAL"/>
+			<fields id="5" name="COMPOUND_ID_FK" dataType="INTEGER"/>
+			<fields id="6" name="SUPPLIER_ID_FK" dataType="INTEGER"/>
+			<fields id="8" name="DATE_EXPIRES" dataType="DATE"/>
+			<!-- The following is a lookup -->
+			<fields id="9" name="UNIT_OF_MEAS_ID_FK" dataType="INTEGER" lookupFieldId="80" lookupDisplayFieldId="82" alias="UnitOfMeasure" />
+			<fields id="10" name="SUPPLIER_ID_FK" dataType="INTEGER" lookupFieldId="40" lookupDisplayFieldId="42" alias="SupplierName" />
+			<fields id="11" name="LOCATION_ID_FK" dataType="INTEGER" lookupFieldId="20" lookupDisplayFieldId="22" alias="LocationName" />
+		</table>
+		<!-- Not aliased table -->
+		<table id="2" database="CHEMINVDB2" name="INV_LOCATIONS" primaryKey="20">
+			<fields id="20" name=" LOCATION_ID" dataType="INTEGER"/>
+			<fields id="21" name="LOCATION_BARCODE" dataType="TEXT"/>
+			<fields id="22" name="LOCATION_NAME" dataType="TEXT"/>
+			<fields id="23" name="LOCATION_DESCRIPTION" dataType="TEXT"/>
+		</table>
+		<table id="3" database="CHEMINVDB2" name="INV_COMPOUNDS" primaryKey="30">
+			<fields id="30" name="COMPOUND_ID" dataType="INTEGER"/>
+			<fields id="31" name="SUBSTANCE_NAME" dataType="TEXT"/>
+			<fields id="32" name="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE"/>
+			<fields id="33" name="CAS" dataType="TEXT"/>
+			<fields id="34" name="TIMESTAMP" dataType="DATE"/>
+			<fields id="35" name="ACX_ID" dataType="TEXT"/>
+		</table>
+		<table id="4" database="CHEMINVDB2" name="INV_SUPPLIERS" primaryKey="40">
+			<fields id="40" name="SUPPLIER_ID" dataType="INTEGER"/>
+			<fields id="41" name="SUPPLIER_NAME" dataType="TEXT"/>
+			<fields id="42" name="SUPPLIER_SHORT_NAME" dataType="TEXT"/>
+			<fields id="43" name="SUPPLIER_CODE" dataType="TEXT"/>
+		</table>
+		<table id="5" database="CHEMINVDB2" name="INV_REQUESTS" primaryKey="50">
+			<fields id="50" name="CONTAINER_ID_FK" dataType="INTEGER"/>
+		</table>
+		<table id="6" database="CHEMINVDB2" name="INV_RESERVATIONS" alias="r" primaryKey="60">
+			<fields id="60" name="RESERVATION_ID" dataType="INTEGER"/>
+			<fields id="61" name="DATE_RESERVED" dataType="DATE"/>
+			<fields id="62" name="QTY_RESERVED" dataType="INTEGER"/>
+			<fields id="63" name="USER_ID_FK" dataType="TEXT"/>
+			<fields id="64" name="CONTAINER_ID_FK" dataType="INTEGER"/>
+		</table>
+		<table id="7" database="CHEMINVDB2" name="INV_SYNONYMS" alias="s"  primaryKey="70">
+			<fields id="70" name="SYNONYM_ID" dataType="INTEGER"/>
+			<fields id="71" name="COMPOUND_ID_FK" dataType="INTEGER"/>
+			<fields id="72" name="SUBSTANCE_NAME" dataType="TEXT"/>
+		</table>
+		<table id="8" database="CHEMINVDB2" name="INV_UNITS" primaryKey="80">
+			<fields id="80" name="UNIT_ID" dataType="INTEGER" />
+			<fields id="81" name="CONVERSION_RATIO" dataType="INTEGER" />
+			<fields id="82" name="UNIT_ABREVIATION" dataType="TEXT" />
+		</table>
+	</tables>
+	<!-- The following is the list of relations -->
+	<relationships>
+		<relationship child="2" 
+				  parent="1"  
+				  childkey="20" 
+				  parentkey="4"/>
+		<!-- Relation between inv_compounds and inv_containers -->
+		<relationship child="3" 
+				  parent="1"  
+				  childkey="30" 
+				  parentkey="5"/>
+		<relationship child="4" 
+				  parent="1"  
+				  childkey="40" 
+				  parentkey="6"/>
+		<relationship child="5" 
+				  parent="1"  
+				  childkey="50" 
+				  parentkey="1"/>
+
+		<relationship child="6" 
+				  parent="1"  
+				  childkey="64" 
+				  parentkey="1"
+				  jointype="OUTER" />
+		<relationship child="7" 
+				  parent="3"  
+				  childkey="71" 
+				  parentkey="30"
+				  jointype="OUTER" />
+	</relationships>
+</COEDataView>

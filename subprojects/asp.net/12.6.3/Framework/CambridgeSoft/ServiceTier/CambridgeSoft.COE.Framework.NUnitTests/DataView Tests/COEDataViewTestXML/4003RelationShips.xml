@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="WINDOWS-1252"?>
+<COEDataView xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" basetable="1" database="REGDB" dataviewid="4003" name="Search dataview for permanet registries" description="Search Permanent Dataview" application="REGISTRATION" dataviewHandling="USE_SERVER_DATAVIEW" xmlns="COE.COEDataView">
+  <tables>
+    <table id="1" name="VW_MIXTURE_REGNUMBER" alias="VW_MIXTURE_REGNUMBER" database="REGDB" primaryKey="100">
+      <fields id="100" name="MIXTUREID" dataType="INTEGER" alias="MIXTUREID" indexType="NONE" mimeType="NONE"/>
+      <fields id="101" name="REGID" dataType="INTEGER" alias="REGID" indexType="NONE" mimeType="NONE"/>
+      <fields id="102" name="NAME" dataType="TEXT" alias="NAME" indexType="NONE" mimeType="NONE"/>
+      <fields id="103" name="MODIFIED" dataType="DATE" alias="MODIFIED" indexType="NONE" mimeType="NONE"/>
+      <fields id="104" name="CREATED" dataType="DATE" alias="CREATED" indexType="NONE" mimeType="NONE"/>
+      <fields id="105" name="PERSONCREATED" dataType="INTEGER" lookupFieldId="1000" lookupDisplayFieldId="1001" alias="PERSONCREATED" indexType="NONE" mimeType="NONE"/>
+      <fields id="106" name="REGNUMBER" dataType="TEXT" alias="REGNUMBER" indexType="NONE" mimeType="NONE"/>
+      <fields id="107" name="STRUCTUREAGGREGATION" dataType="TEXT" alias="STRUCTUREAGGREGATION" indexType="CS_CARTRIDGE" mimeType="NONE"/>
+      <fields id="108" name="MIXTUREID" dataType="INTEGER" alias="MIXTUREIDBATCHCOMP" indexType="NONE" mimeType="NONE"/>
+      <fields id="109" name="SEQUENCENUMBER" dataType="INTEGER" alias="SEQUENCENUMBER" indexType="NONE" mimeType="NONE"/>
+      <fields id="110" name="APPROVED" dataType="TEXT" alias="APPROVED" indexType="NONE" mimeType="NONE"/>
+      <fields id="150" name="REG_COMMENTS" dataType="TEXT" alias="REG_COMMENTS" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="2" name="VW_REGISTRYNUMBER" alias="VW_REGISTRYNUMBER" database="REGDB" primaryKey="200">
+      <fields id="200" name="REGID" dataType="INTEGER" alias="REGID" indexType="NONE" mimeType="NONE"/>
+      <fields id="201" name="REGNUMBER" dataType="TEXT" alias="REGNUMBER" indexType="NONE" mimeType="NONE"/>
+      <fields id="202" name="SEQUENCEID" dataType="INTEGER" alias="SEQUENCEID" indexType="NONE" mimeType="NONE"/>
+      <fields id="203" name="SEQUENCENUMBER" dataType="INTEGER" alias="SEQUENCENUMBER" indexType="NONE" mimeType="NONE"/>
+      <fields id="204" name="ROOTNUMBER" dataType="TEXT" alias="ROOTNUMBER" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="3" name="VW_REGISTRYNUMBER_PROJECT" alias="VW_REGISTRYNUMBER_PROJECT" database="REGDB" primaryKey="300">
+      <fields id="300" name="ID" dataType="INTEGER" alias="ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="301" name="REGID" dataType="INTEGER" alias="REGID" indexType="NONE" mimeType="NONE"/>
+      <fields id="302" name="PROJECTID" dataType="INTEGER" lookupFieldId="1200" lookupDisplayFieldId="1201" alias="PROJECTID" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="4" name="VW_MIXTURE_STRUCTURE" alias="VW_MIXTURE_STRUCTURE" database="REGDB" primaryKey="400">
+      <fields id="400" name="MIXTURECOMPONENTID" dataType="INTEGER" alias="MIXTURECOMPONENTID" indexType="NONE" mimeType="NONE"/>
+      <fields id="401" name="MIXTUREID" dataType="INTEGER" alias="MIXTUREID" indexType="NONE" mimeType="NONE"/>
+      <fields id="402" name="COMPOUNDID" dataType="INTEGER" alias="COMPOUNDID" indexType="NONE" mimeType="NONE"/>
+      <fields id="403" name="REGID" dataType="INTEGER" alias="REGID" indexType="NONE" mimeType="NONE"/>
+      <fields id="404" name="STRUCTUREID" dataType="INTEGER" alias="STRUCTUREID" indexType="NONE" mimeType="NONE"/>
+      <fields id="405" name="STRUCTURE" dataType="TEXT" alias="STRUCTURE" indexType="CS_CARTRIDGE" mimeType="NONE"/>
+      <fields id="406" name="FORMULAWEIGHT" dataType="REAL" alias="FORMULAWEIGHT" indexType="NONE" mimeType="NONE"/>
+      <fields id="407" name="MOLECULARFORMULA" dataType="TEXT" alias="MOLECULARFORMULA" indexType="NONE" mimeType="NONE"/>
+      <fields id="408" name="DATECREATED" dataType="DATE" alias="DATECREATED" indexType="NONE" mimeType="NONE"/>
+      <fields id="409" name="DATELASTMODIFIED" dataType="DATE" alias="DATELASTMODIFIED" indexType="NONE" mimeType="NONE"/>
+      <fields id="410" name="PERSONCREATED" dataType="INTEGER" lookupFieldId="1000" lookupDisplayFieldId="1001" alias="PERSONCREATED" indexType="NONE" mimeType="NONE"/>
+      <fields id="411" name="PERSONREGISTERED" dataType="INTEGER" lookupFieldId="1000" lookupDisplayFieldId="1001" alias="PERSONREGISTERED" indexType="NONE" mimeType="NONE"/>
+      <fields id="412" name="REGNUMBER" dataType="TEXT" alias="REGNUMBER" indexType="NONE" mimeType="NONE"/>
+      <fields id="413" name="COMPONENTID" dataType="TEXT" alias="COMPONENTID" indexType="NONE" mimeType="NONE"/>
+      <fields id="450" name="CMP_COMMENTS" dataType="TEXT" alias="CMP_COMMENTS" indexType="NONE" mimeType="NONE"/>
+      <fields id="451" name="STRUCTURE_COMMENTS_TXT" dataType="TEXT" alias="STRUCTURE_COMMENTS_TXT" indexType="NONE" mimeType="NONE"/>
+      <fields id="4500" name="STRUCT_NAME" dataType="TEXT" alias="STRUCT_NAME" indexType="NONE" mimeType="NONE"/>
+      <fields id="452" name="STRUCT_COMMENTS" dataType="TEXT" alias="STRUCT_COMMENTS" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="5" name="VW_COMPOUND_IDENTIFIER" alias="VW_MIXTURE_IDENTIFIER" database="REGDB" primaryKey="500">
+      <fields id="500" name="ID" dataType="INTEGER" alias="ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="501" name="REGID" dataType="INTEGER" alias="REGID" indexType="NONE" mimeType="NONE"/>
+      <fields id="502" name="VALUE" dataType="TEXT" alias="VALUE" indexType="NONE" mimeType="NONE"/>
+      <fields id="503" name="TYPE" dataType="INTEGER" lookupFieldId="700" lookupDisplayFieldId="701" alias="TYPE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="6" name="VW_COMPOUND_IDENTIFIER" alias="VW_COMPOUND_IDENTIFIER" database="REGDB" primaryKey="500">
+      <fields id="600" name="ID" dataType="INTEGER" alias="ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="601" name="REGID" dataType="INTEGER" alias="REGID" indexType="NONE" mimeType="NONE"/>
+      <fields id="602" name="VALUE" dataType="TEXT" alias="VALUE" indexType="NONE" mimeType="NONE"/>
+      <fields id="603" name="TYPE" dataType="INTEGER" lookupFieldId="700" lookupDisplayFieldId="701" alias="TYPE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="7" name="VW_IDENTIFIERTYPE" alias="VW_IDENTIFIERTYPE" database="REGDB" primaryKey="700">
+      <fields id="700" name="ID" dataType="INTEGER" alias="ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="701" name="NAME" dataType="TEXT" alias="NAME" indexType="NONE" mimeType="NONE"/>
+      <fields id="702" name="ACTIVE" dataType="TEXT" alias="ACTIVE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="8" name="VW_MIXTURE_BATCHCOMPONENT" alias="VW_MIXTURE_BATCHCOMPONENT" database="REGDB" primaryKey="800">
+      <fields id="800" name="ID" dataType="INTEGER" alias="BATCHCOMPONENTID" indexType="NONE" mimeType="NONE"/>
+      <fields id="801" name="BATCHID" dataType="INTEGER" alias="BATCHID" indexType="NONE" mimeType="NONE"/>
+      <fields id="802" name="MIXTUREID" dataType="INTEGER" alias="MIXTUREID" indexType="NONE" mimeType="NONE"/>
+      <fields id="803" name="ORDERINDEX" dataType="INTEGER" alias="ORDERINDEX" indexType="NONE" mimeType="NONE"/>
+      <fields id="8500" name="PERCENTAGE" dataType="REAL" alias="PERCENTAGE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="9" name="VW_BATCH" alias="VW_BATCH" database="REGDB" primaryKey="900">
+      <fields id="900" name="BATCHID" dataType="INTEGER" alias="BATCHID" indexType="NONE" mimeType="NONE"/>
+      <fields id="901" name="BATCHNUMBER" dataType="INTEGER" alias="BATCHNUMBER" indexType="NONE" mimeType="NONE"/>
+      <fields id="902" name="REGID" dataType="INTEGER" alias="REGID" indexType="NONE" mimeType="NONE"/>
+      <fields id="903" name="DATECREATED" dataType="DATE" alias="DATECREATED" indexType="NONE" mimeType="NONE"/>
+      <fields id="904" name="DATELASTMODIFIED" dataType="DATE" alias="DATELASTMODIFIED" indexType="NONE" mimeType="NONE"/>
+      <fields id="905" name="PERSONCREATED" dataType="INTEGER" alias="PERSONCREATED" indexType="NONE" mimeType="NONE"/>
+      <fields id="906" name="PERSONREGISTERED" dataType="INTEGER" alias="PERSONREGISTERED" indexType="NONE" mimeType="NONE"/>
+      <fields id="907" name="TEMPBATCHID" dataType="INTEGER" alias="TEMPBATCHID" indexType="NONE" mimeType="NONE"/>
+      <fields id="950" name="SCIENTIST_ID" dataType="INTEGER" lookupFieldId="1000" lookupDisplayFieldId="1001" alias="SCIENTIST_ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="951" name="CREATION_DATE" dataType="DATE" alias="CREATION_DATE" indexType="NONE" mimeType="NONE"/>
+      <fields id="952" name="NOTEBOOK_TEXT" dataType="TEXT" alias="NOTEBOOK_TEXT" indexType="NONE" mimeType="NONE"/>
+      <fields id="953" name="AMOUNT" dataType="REAL" alias="AMOUNT" indexType="NONE" mimeType="NONE"/>
+      <fields id="954" name="AMOUNT_UNITS" dataType="INTEGER" lookupFieldId="1600" lookupDisplayFieldId="1601" alias="AMOUNT_UNITS" indexType="NONE" mimeType="NONE"/>
+      <fields id="955" name="APPEARANCE" dataType="TEXT" alias="APPEARANCE" indexType="NONE" mimeType="NONE"/>
+      <fields id="956" name="PURITY" dataType="REAL" alias="PURITY" indexType="NONE" mimeType="NONE"/>
+      <fields id="957" name="PURITY_COMMENTS" dataType="TEXT" alias="PURITY_COMMENTS" indexType="NONE" mimeType="NONE"/>
+      <fields id="958" name="SAMPLEID" dataType="TEXT" alias="SAMPLEID" indexType="NONE" mimeType="NONE"/>
+      <fields id="959" name="SOLUBILITY" dataType="TEXT" alias="SOLUBILITY" indexType="NONE" mimeType="NONE"/>
+      <fields id="960" name="BATCH_COMMENT" dataType="TEXT" alias="BATCH_COMMENT" indexType="NONE" mimeType="NONE"/>
+      <fields id="961" name="STORAGE_REQ_AND_WARNINGS" dataType="TEXT" alias="STORAGE_REQ_AND_WARNINGS" indexType="NONE" mimeType="NONE"/>
+      <fields id="962" name="FULLREGNUMBER" dataType="TEXT" alias="FULLREGNUMBER" indexType="NONE" mimeType="NONE"/>
+      <fields id="9500" name="FORMULA_WEIGHT" dataType="REAL" alias="FORMULA_WEIGHT" indexType="NONE" mimeType="NONE"/>
+      <fields id="9501" name="BATCH_FORMULA" dataType="TEXT" alias="BATCH_FORMULA" indexType="NONE" mimeType="NONE"/>
+      <fields id="9502" name="PERCENT_ACTIVE" dataType="REAL" alias="PERCENT_ACTIVE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="10" name="PEOPLE" alias="PEOPLE" database="COEDB" primaryKey="1000">
+      <fields id="1000" name="PERSON_ID" dataType="INTEGER" alias="PERSON_ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1001" name="USER_ID" dataType="TEXT" alias="USER_ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1002" name="ACTIVE" dataType="INTEGER" alias="ACTIVE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="11" name="VW_PICKLIST" alias="VW_PICKLIST" database="REGDB" primaryKey="1100">
+      <fields id="1100" name="ID" dataType="INTEGER" alias="PERSON_ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1101" name="PICKLISTVALUE" dataType="TEXT" alias="PICKLISTVALUE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="12" name="VW_PROJECT" alias="VW_PROJECT" database="REGDB" primaryKey="1200">
+      <fields id="1200" name="PROJECTID" dataType="INTEGER" alias="PROJECTID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1201" name="NAME" dataType="TEXT" alias="NAME" indexType="NONE" mimeType="NONE"/>
+      <fields id="1202" name="ACTIVE" dataType="INTEGER" alias="Active" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="13" name="VW_BATCH_PROJECT" alias="VW_BATCH_PROJECT" database="REGDB" primaryKey="1300">
+      <fields id="1300" name="ID" dataType="INTEGER" alias="ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1301" name="BATCHID" dataType="INTEGER" alias="BATCHID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1302" name="PROJECTID" dataType="INTEGER" lookupFieldId="1200" lookupDisplayFieldId="1201" alias="PROJECTID" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="14" name="VW_BATCHIDENTIFIER" alias="VW_BATCHIDENTIFIER" database="REGDB" primaryKey="1400">
+      <fields id="1400" name="ID" dataType="INTEGER" alias="ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1401" name="BATCHID" dataType="INTEGER" alias="STRUCTUREID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1402" name="VALUE" dataType="TEXT" alias="VALUE" indexType="NONE" mimeType="NONE"/>
+      <fields id="1403" name="TYPE" dataType="INTEGER" lookupFieldId="700" lookupDisplayFieldId="701" alias="TYPE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="15" name="VW_STRUCTURE_IDENTIFIER" alias="VW_STRUCTURE_IDENTIFIER" database="REGDB" primaryKey="1500">
+      <fields id="1500" name="ID" dataType="INTEGER" alias="ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1501" name="STRUCTUREID" dataType="INTEGER" alias="STRUCTUREID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1502" name="VALUE" dataType="TEXT" alias="VALUE" indexType="NONE" mimeType="NONE"/>
+      <fields id="1503" name="TYPE" dataType="INTEGER" lookupFieldId="700" lookupDisplayFieldId="701" alias="TYPE" indexType="NONE" mimeType="NONE"/>
+    </table>
+    <table id="16" name="VW_UNIT" alias="VW_UNIT" database="REGDB" primaryKey="1600">
+      <fields id="1600" name="ID" dataType="INTEGER" alias="UNIT_ID" indexType="NONE" mimeType="NONE"/>
+      <fields id="1601" name="UNIT" dataType="TEXT" alias="UNIT_VALUE" indexType="NONE" mimeType="NONE"/>
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="101" childkey="200" parent="1" child="2" jointype="INNER"/>
+    <relationship parentkey="101" childkey="301" parent="1" child="3" jointype="INNER"/>
+    <relationship parentkey="100" childkey="401" parent="1" child="4" jointype="INNER"/>
+    <relationship parentkey="101" childkey="501" parent="1" child="5" jointype="INNER"/>
+    <relationship parentkey="403" childkey="601" parent="4" child="6" jointype="INNER"/>
+    <relationship parentkey="404" childkey="1501" parent="4" child="15" jointype="INNER"/>
+    <relationship parentkey="108" childkey="802" parent="1" child="8" jointype="INNER"/>
+    <relationship parentkey="101" childkey="902" parent="1" child="9" jointype="INNER"/>
+    <relationship parentkey="900" childkey="1301" parent="9" child="13" jointype="INNER"/>
+    <relationship parentkey="900" childkey="1401" parent="9" child="14" jointype="INNER"/>
+    <relationship parentkey="102" childkey="701" parent="1" child="7" jointype="INNER"/>
+    <relationship parentkey="1100" childkey="1000" parent="11" child="10" jointype="INNER"/>
+    <relationship parentkey="1302" childkey="1200" parent="13" child="12" jointype="INNER"/>
+    <relationship parentkey="1500" childkey="1600" parent="15" child="16" jointype="INNER"/>
+  </relationships>
+</COEDataView>

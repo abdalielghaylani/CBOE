@@ -1,15 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
-
-using CambridgeSoft.COE.Framework.COELoggingService;
+using System.Text;
+using System.IO;
+using System.Xml;
+using System.Xml.XPath;
+using System.Data;
 using CambridgeSoft.COE.Framework.Common;
-using CambridgeSoft.COE.Framework.ExceptionHandling;
-using CambridgeSoft.COE.Framework.Properties;
+using CambridgeSoft.COE.Framework.COEConfigurationService;
 using Csla;
+using Csla.Data;
 using Csla.Validation;
+using CambridgeSoft.COE.Framework.COELoggingService;
+using System.Collections;
+using System.ComponentModel;
+using System.Collections.Specialized;
+using CambridgeSoft.COE.Framework.Properties;
+using CambridgeSoft.COE.Framework.ExceptionHandling;
 
 namespace CambridgeSoft.COE.Framework.COEDataViewService
 {
@@ -274,20 +280,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         private void AddTableToLists(TableBO table)
         {
-            //if (!ExistsKey(table.Name, table.DataBase))
-            //    _simpleTableKeys.Add(this.BuildSimpleTblKey(table.Name, table.DataBase), table.ID.ToString());
-
-            var simpleKey = this.BuildSimpleTblKey(table.Name, table.DataBase);
-
-            if (!ExistsKey(table.Name, table.DataBase))
-            {
-                _simpleTableKeys.Add(simpleKey, table.ID.ToString());
-            }
-            else
-            {
-                var oldValue = _simpleTableKeys[simpleKey];
-                _simpleTableKeys[simpleKey] = oldValue + "," + table.ID.ToString();
-            }
+                _simpleTableKeys.Add(this.BuildSimpleTblKey(table.Name, table.DataBase), table.ID.ToString());            
             if (!ExistsKey(table.Name, table.DataBase, table.Alias))
                 _fullTableKeys.Add(this.BuildFullTblKey(table.Name, table.Alias, table.DataBase), table.ID.ToString());
             if (!_idToTable.ContainsKey(table.ID))
@@ -314,39 +307,19 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
                 string simplekey = this.BuildSimpleTblKey(table.Name, table.DataBase);
 
-                //if (_simpleTableKeys.GetValues(simplekey).Length < 2)
-                //    _simpleTableKeys.Remove(simplekey);
-                //else
-                //{
-                //    string[] oldValues = _simpleTableKeys.GetValues(simplekey);
-                //    List<string> newValues = new List<string>();
-                //    for (int i = 0; i < oldValues.Length; i++)
-                //    {
-                //        if (oldValues[i] != table.ID.ToString())
-                //            newValues.Add(oldValues[i]);
-                //    }
-                //    _simpleTableKeys[simplekey] = string.Join(",", newValues.ToArray());
-                //}
-
-                if (this.ExistsKey(table.Name, table.DataBase))
+                if (_simpleTableKeys.GetValues(simplekey).Length < 2)
+                    _simpleTableKeys.Remove(simplekey);
+                else
                 {
-                    var idStr = _simpleTableKeys[simplekey];
-                    var ids = idStr.Split(',').ToList();
-
-                    if (ids.Contains(table.ID.ToString()))
+                    string[] oldValues = _simpleTableKeys.GetValues(simplekey);
+                    List<string> newValues = new List<string>();
+                    for (int i = 0; i < oldValues.Length; i++)
                     {
-                        ids.Remove(table.ID.ToString());
+                        if (oldValues[i] != table.ID.ToString())
+                            newValues.Add(oldValues[i]);
                     }
-
-                    if (ids.Count > 0)
-                    {
-                        _simpleTableKeys[simplekey] = string.Join(",", ids);
-                    }
-                    else
-                    {
-                        _simpleTableKeys.Remove(simplekey);
-                    }
-                }
+                    _simpleTableKeys[simplekey] = string.Join(",", newValues.ToArray());
+                }               
 
                 string fullkey = this.BuildFullTblKey(table.Name, table.Alias, table.DataBase);
                 if (_fullTableKeys.GetValues(fullkey) != null)
@@ -396,71 +369,53 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         {
             try
             {
-                var fieldIds = new Dictionary<string, List<int>>();
-                var tableIds = new Dictionary<string, List<int>>();
+                List<int> fieldIds = new List<int>();
+                List<int> tableIds = new List<int>();
 
                 foreach (TableBO tableA in this)
                 {
-                    if (tableA.FromMasterSchema)
+                    if (!tableA.FromMasterSchema)
                     {
-                        continue;
-                    }
 
-                    int tableid = tableA.ID;
+                        int tableid = tableA.ID;
 
-                    // If database is not exists, create new keyvalue pair with database and tableId.
-                    if (!tableIds.ContainsKey(tableA.DataBase))
-                    {
-                        tableIds.Add(tableA.DataBase, new List<int> { tableid });
-                    }
-                    // If database exists but tableId not exists, add it to list.
-                    else if (!tableIds[tableA.DataBase].Contains(tableid))
-                    {
-                        tableIds[tableA.DataBase].Add(tableid);
-                    }
-                    // Else throw the error. the tableId in database level should unique.
-                    // NOTE: the database property already include the instance name.
-                    else
-                    {
-                        var errorFormat = "TableListBO: The table ({0}:{1}) is not unique in the DataView";
-                        throw new ValidationException(string.Format(errorFormat, tableA.DataBase, tableA.ID));
-                    }
-
-                    foreach (FieldBO field in tableA.Fields)
-                    {
-                        if (!field.FromMasterSchema)
+                        if (!tableIds.Contains(tableid))
+                            tableIds.Add(tableid);
+                        else
                         {
-                            int fieldid = field.ID;
-                            if (!fieldIds.ContainsKey(tableA.DataBase))
+                            throw new ValidationException("TableListBO: The tableId " + tableid + " is not unique in the DataView");
+                        }
+
+                        foreach (FieldBO field in tableA.Fields)
+                        {
+                            if (!field.FromMasterSchema)
                             {
-                                fieldIds.Add(tableA.DataBase, new List<int> { fieldid });
+                                int fieldid = field.ID;
+                                if (!fieldIds.Contains(fieldid))
+                                    fieldIds.Add(fieldid);
+                                else
+                                {
+                                    throw new ValidationException(string.Format(Resources.NotUniqueFieldID_Error_Text, tableA.Name + " (" + tableid + ")"));
+                                }
                             }
-                            else if (!fieldIds[tableA.DataBase].Contains(fieldid))
+                            if (field.LookupFieldId >= 0)
                             {
-                                fieldIds[tableA.DataBase].Add(fieldid);
-                            }
-                            else
-                            {
-                                throw new ValidationException(string.Format(Resources.NotUniqueFieldID_Error_Text, tableA.Name + " (" + tableid + ")"));
+                                if (field.LookupFieldId == field.LookupDisplayFieldId)
+                                    throw new ValidationException(string.Format("Field {0} in tableId {1} is an invalid lookup. Join and display fields cannot be the same.", field.Alias, tableid));
+
+                                TableBO lookupTable = this.GetTableByFieldId(field.LookupFieldId);
+                                if (lookupTable == null)
+                                    throw new ValidationException(string.Format("Field {0} in tableId {1} is a lookup, but its lookup table is not present in dataview.", field.Alias, tableid));
                             }
                         }
-                        if (field.LookupFieldId >= 0)
-                        {
-                            if (field.LookupFieldId == field.LookupDisplayFieldId)
-                                throw new ValidationException(string.Format("Field {0} in tableId {1} is an invalid lookup. Join and display fields cannot be the same.", field.Alias, tableid));
-
-                            TableBO lookupTable = this.GetTableByFieldId(field.LookupFieldId);
-                            if (lookupTable == null)
-                                throw new ValidationException(string.Format("Field {0} in tableId {1} is a lookup, but its lookup table is not present in dataview.", field.Alias, tableid));
-                        }
                     }
-                }
 
-                foreach (TableBO tableA in this)
-                {
-                    string[] foundKeys = _fullTableKeys.GetValues(this.BuildFullTblKey(tableA.Name, tableA.Alias, tableA.DataBase));
-                    if (foundKeys != null && foundKeys.Length > 1)
-                        throw new ValidationException("TableListBO: The tableId " + tableA.ID + " is not unique in the DataView (Check other tables Name, Alias and Database)");
+                    foreach (TableBO tableB in this)
+                    {
+                        string[] foundKeys = _fullTableKeys.GetValues(this.BuildFullTblKey(tableB.Name, tableB.Alias, tableB.DataBase));
+                        if (foundKeys != null && foundKeys.Length > 1)
+                            throw new ValidationException("TableListBO: The tableId " + tableB.ID + " is not unique in the DataView (Check other tables Name, Alias and Database)");
+                    }
                 }
             }
             catch (Exception ex)
@@ -553,7 +508,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         }
 
         /// <summary>
-        /// Get the first TableBO by using the table name and database
+        /// Get TableBO using the simple table key
         /// </summary>
         /// <param name="name"></param>
         /// <param name="database"></param>
@@ -564,9 +519,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             TableBO result = null;
             if (!string.IsNullOrEmpty(foundTableId))
             {
-                // Return the first table.
-                var id = foundTableId.Split(',')[0];
-                _idToTable.TryGetValue(int.Parse(id), out result);
+                _idToTable.TryGetValue(int.Parse(foundTableId), out result);
             }
 
             return result;
@@ -777,34 +730,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             }
             return databases.ToArray();
         }
-
-        /// <summary>
-        /// Gets all the Tables with the given Instance param
-        /// </summary>
-        /// <param name="instanceName">Database name to look for</param>
-        /// <returns>A list of the found tables</returns>
-        public List<string> GetTablesByInstance(string instanceName)
-        {
-            List<string> list = new List<string>();
-            try
-            {
-                foreach (TableBO table in this)
-                {
-                    string tableIntanceName = CambridgeSoft.COE.Framework.Common.Utilities.GetInstanceName(table.DataBase);
-
-                    if (tableIntanceName.Equals(instanceName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        list.Add(table.Name);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                COEExceptionDispatcher.HandleBLLException(ex);
-            }
-            return list;
-        }
-
+       
         /// <summary>
         /// Checks the Id of table against the highestID
         /// </summary>

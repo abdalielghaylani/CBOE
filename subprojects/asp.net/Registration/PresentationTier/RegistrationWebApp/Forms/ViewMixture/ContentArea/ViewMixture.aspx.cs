@@ -2478,7 +2478,7 @@ namespace RegistrationWebApp.Forms.RegisteredRecord.ContentArea
                         else
                         {
                             CopiesMessageBox.Visible = false;
-                            SubmitEdition(false, false);
+                            SubmitEdition(false, true);
                         }
                     }
                     else

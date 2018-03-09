@@ -79,7 +79,7 @@ namespace CambridgeSoft.COE.Registration.Services
     public class COERegistrationServices : System.Web.Services.WebService
     {
         #region >Constants<
-
+        private int  BatchNumber;
         private const string XMLNS = "www.cambridgesoft.com";
         private const string XPATH_REG_NUM = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
         private const string XPATH_REG_ID = "/MultiCompoundRegistryRecord/ID";
@@ -1046,13 +1046,20 @@ namespace CambridgeSoft.COE.Registration.Services
                             oRegistryRecord.UpdateUserPreference(genericStorageBO.COEGenericObject);
 
                         RegistryRecord savedReg = oRegistryRecord.Register(autoResolutionAction);
-
+                        
+                        const string ASETBATCHNUMBERKEY = "ConfigBatchNumber";
+                        
+                        int setBatchNumber = (string.IsNullOrEmpty(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]) ? 1 : Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings[ASETBATCHNUMBERKEY]));
+                        
                         strRet = "<ReturnList>";
                         strRet += "<ActionDuplicateTaken>" + savedReg.ActionDuplicateTaken + "</ActionDuplicateTaken>";
                         strRet += "<RegID>" + savedReg.ID.ToString() + "</RegID>";
                         if (savedReg.RegNumber.RegNum != "")
                             strRet += "<RegNum>" + savedReg.RegNumber.RegNum + "</RegNum>";
-                        strRet += "<BatchNumber>" + savedReg.BatchList.Count + "</BatchNumber>";
+
+                        BatchNumber = setBatchNumber + (savedReg.BatchList.Count-1);
+                        strRet += "<BatchNumber>" + BatchNumber + "</BatchNumber>";
+                        
                         strRet += "<BatchID>" + savedReg.BatchList[savedReg.BatchList.Count - 1].ID + "</BatchID>";
                         if (string.IsNullOrEmpty(savedReg.RegNumber.RegNum) && savedReg.Status == RegistryStatus.NotSet)
                             strRet += "<ErrorMessage>" + savedReg.DalResponseMessage + "</ErrorMessage>";

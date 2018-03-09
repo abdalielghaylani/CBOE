@@ -382,7 +382,7 @@ namespace CambridgeSoft.COE.Framework.Controls.WebParts
             return returnText;
         }
 
-        private bool UserHasPrivilege(string privilegeName)
+        public bool UserHasPrivilege(string privilegeName)
         {   
             COEPrincipal principal = (COEPrincipal)Csla.ApplicationContext.User;
             COEIdentity myIdentity = (COEIdentity)principal.Identity;

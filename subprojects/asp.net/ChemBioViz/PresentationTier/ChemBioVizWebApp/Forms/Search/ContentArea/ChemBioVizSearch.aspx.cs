@@ -309,6 +309,36 @@ public partial class ChemBioVizSearch : GUIShellPage
         }
     }
 
+    internal int ExpireHitlistHistoryDays
+    {
+        get
+        {
+            int retVal = int.MaxValue;
+
+            if (!string.IsNullOrEmpty(Request["ExpireHitlistHistoryDays"]))
+            {
+                retVal = int.Parse(Request["ExpireHitlistHistoryDays"]);
+                Session["HitlistHistoryConfigDays"] = retVal;
+            }
+            return retVal;
+        }
+    }
+
+    internal int ExpireQueryHistoryDays
+    {
+        get
+        {
+            int retVal = int.MaxValue;
+
+            if (!string.IsNullOrEmpty(Request["ExpireQueryHistoryDays"]))
+            {
+                retVal = int.Parse(Request["ExpireQueryHistoryDays"]);
+                Session["QueryHistoryConfigDays"] = retVal;
+            }
+
+            return retVal;
+        }
+    }
     private int MarkedHitsMax
     {
         get
@@ -781,6 +811,8 @@ public partial class ChemBioVizSearch : GUIShellPage
                     bo.AllowFullScan = this.AllowFullScan;
                     bo.KeepRecordCountSyncrhonized = this.KeepRecordCountSynchronized;
                     bo.MarkedHitsMax = this.MarkedHitsMax;
+                    bo.ExpireHitlistHistoryDays = this.ExpireHitlistHistoryDays;
+                    bo.ExpireQueryHistoryDays = this.ExpireQueryHistoryDays;
                     bo.PagingInfo.FilterChildData = this.FilterChildData;
                     bo.PagingInfo.HighlightSubStructures = this.HighlightSubStructures;
                     Session["BasePageBusinessObject"] = bo;

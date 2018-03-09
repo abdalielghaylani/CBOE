@@ -1,9 +1,6 @@
 <%@ Control Language="C#" AutoEventWireup="true" Inherits="AddSchemas" Codebehind="AddSchemas.ascx.cs" %>
 <style type="text/css">
-.DropdownlistHeight
-{
-	height: 23px;
-}
+
 .textDisabled[disabled="disabled"]
 {
     background-color:#F1F1F1;
@@ -32,11 +29,6 @@ function DisableBackground()
 }
 parent.SetProgressLayerVisibility(false);
 
-function onInstanceChange() {
-    //add this to remove validation error message.
-    document.form1.submit();
-    return true;
-}
 </script>
 <table id="tableContainer">
     <tr>
@@ -46,48 +38,20 @@ function onInstanceChange() {
         </th>
     </tr>
     <tr>
-        <td>
-            <asp:Label runat="server" ID="InstanceTitleLabel" SkinID="Title" Text="Data source"></asp:Label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </td>
-        <td class="DropdownlistHeight">
-            <asp:DropDownList runat="server" ID="InstanceDropDownList" AutoPostBack="true" CausesValidation="false" onchange="return onInstanceChange();"
-                AppendDataBoundItems="true" SkinID="SchemaDropDownList" OnSelectedIndexChanged="InstanceDropDownList_SelectedIndexChanged" />
-        </td>
-    </tr>
-    <tr>
-        <td>
+        <td>            
             <asp:Label runat="server" ID="SchemaNameTitleLabel" SkinID="Title"></asp:Label>
         </td>
-        <td class="DropdownlistHeight">
+        <td>
             <asp:DropDownList runat="server" ID="SchemaDropDownList" AppendDataBoundItems="true" SkinID="SchemaDropDownList" />
         </td>
         <td><asp:RequiredFieldValidator runat="server" ID="SchemaRequiredFieldValidator" SkinID="ReqField" ControlToValidate="SchemaDropDownList" InitialValue="-1" ></asp:RequiredFieldValidator></td>
     </tr>
-    <tr><td></br></td></tr>
-    <tr>
-        <td></td>
-        <td colspan="2" class="DropdownlistHeight">
-            <asp:CheckBox runat="server" ID="AuthorizeCheckBox" AutoPostBack="true" 
-                Text = "Authorize privilege" Checked="false" 
-                oncheckedchanged="AuthorizeCheckBox_CheckedChanged" />
-        </td>
-    </tr>
-    <tr id="GranterUserRow" runat = "server">
-        <td>
-            <asp:Label runat="server" ID="GranterUserLabel" SkinID="Title"></asp:Label>
-        </td>
-        <td class="DropdownlistHeight">
-            <asp:TextBox runat="server" ID="GranterUserTextBox" Enabled = "false" SkinID="TextBox" CssClass="textDisabled"></asp:TextBox>
-        </td>
-        <td>
-            <asp:RequiredFieldValidator runat="server" ID="GranterUserRequiredField" SkinID="ReqField" Enabled = "false" ControlToValidate="GranterUserTextBox" ></asp:RequiredFieldValidator>
-        </td>
-    </tr>
+    <tr><td></br></td></tr>    
     <tr id="PasswordRow" runat = "server">
         <td>
             <asp:Label runat="server" ID="PasswordTitleLabel" SkinID="Title"></asp:Label>
         </td>
-        <td class="DropdownlistHeight">
+        <td>
             <asp:TextBox runat="server" TextMode="Password" ID="PasswordTextBox" Enabled = "false" SkinID="TextBox" CssClass="textDisabled"></asp:TextBox>
         </td>
         <td>
@@ -97,7 +61,7 @@ function onInstanceChange() {
     <tr><td></br></td></tr>
     <tr>
         <td></td>
-        <td colspan="2" class="DropdownlistHeight"><asp:CheckBox runat="server" ID="PublishRelationshipsCheckBox" Text = "Publish relationships?" Checked="true" /></td>
+        <td colspan="2" ><asp:CheckBox runat="server" ID="PublishRelationshipsCheckBox" Text = "Publish relationships?" Checked="true" /></td>
     </tr>
     <tr>
         <td></td>

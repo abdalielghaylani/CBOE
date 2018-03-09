@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<COEDataView xmlns="COE.COEDataView" basetable="3" dataviewid="1" database="CHEMINVDB2">
+	<!-- The list of tables -->
+	<tables>
+		<!-- Aliased table -->
+		<table id="1" database="CHEMINVDB2" alias="c" name="INV_CONTAINERS"  primaryKey="1">
+			<fields id="1" name="CONTAINER_ID" dataType="INTEGER"/>
+			<fields id="2" name="BARCODE" dataType="TEXT"/>
+			<fields id="3" name="QTY_INITIAL" dataType="INTEGER"/>
+			<fields id="4" name="LOCATION_ID_FK" dataType="REAL"/>
+			<fields id="5" name="COMPOUND_ID_FK" dataType="INTEGER"/>
+			<fields id="6" name="SUPPLIER_ID_FK" dataType="INTEGER"/>
+			<fields id="8" name="DATE_EXPIRES" dataType="DATE"/>
+			<!-- The following is a lookup -->
+			<fields id="9" name="UNIT_OF_MEAS_ID_FK" dataType="INTEGER" lookupFieldId="37" lookupDisplayFieldId="39" alias="UnitOfMeas" />
+		</table>
+		<!-- Not aliased table -->
+		<table id="2" database="CHEMINVDB2" name="INV_LOCATIONS" primaryKey="10">
+			<fields id="10" name=" LOCATION_ID" dataType="INTEGER"/>
+			<fields id="11" name="LOCATION_BARCODE" dataType="TEXT"/>
+			<fields id="12" name="LOCATION_NAME" dataType="TEXT"/>
+			<fields id="13" name="LOCATION_DESCRIPTION" dataType="TEXT"/>
+		</table>
+		<table id="3" database="CHEMINVDB2" name="INV_COMPOUNDS" primaryKey="14">
+			<fields id="14" name="COMPOUND_ID" dataType="INTEGER"/>
+			<fields id="15" name="SUBSTANCE_NAME" dataType="TEXT"/>
+			<fields id="16" name="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE"/>
+			<fields id="17" name="CAS" dataType="TEXT"/>
+			<fields id="28" name="TIMESTAMP" dataType="DATE"/>
+		</table>
+		<table id="4" database="CHEMINVDB2" name="INV_SUPPLIERS" primaryKey="18">
+			<fields id="18" name="SUPPLIER_ID" dataType="INTEGER"/>
+		</table>
+		<table id="5" database="CHEMINVDB2" name="INV_REQUESTS" primaryKey="19">
+			<fields id="19" name="CONTAINER_ID_FK" dataType="INTEGER"/>
+		</table>
+		<table id="6" database="CHEMINVDB2" name="INV_RESERVATIONS" alias="r" primaryKey="20">
+			<fields id="20" name="RESERVATION_ID" dataType="INTEGER"/>
+			<fields id="21" name="DATE_RESERVED" dataType="DATE"/>
+			<fields id="22" name="QTY_RESERVED" dataType="INTEGER"/>
+			<fields id="23" name="USER_ID_FK" dataType="TEXT"/>
+			<fields id="24" name="CONTAINER_ID_FK" dataType="INTEGER"/>
+		</table>
+		<table id="7" database="CHEMINVDB2" name="INV_SYNONYMS" alias="s"  primaryKey="25">
+			<fields id="25" name="SYNONYM_ID" dataType="INTEGER"/>
+			<fields id="26" name="COMPOUND_ID_FK" dataType="INTEGER"/>
+			<fields id="27" name="SUBSTANCE_NAME" dataType="TEXT"/>
+		</table>
+		<table id="8" database="CHEMINVDB2" name="INV_UNITS" primaryKey="37">
+			<fields id="37" name="UNIT_ID" dataType="INTEGER" />
+			<fields id="38" name="CONVERSION_RATIO" dataType="INTEGER" />
+			<fields id="39" name="UNIT_ABREVIATION" dataType="TEXT" />
+		</table>
+	</tables>
+	<!-- The following is the list of relations -->
+	<relationships>
+		<relationship child="2" 
+				  parent="1"  
+				  childkey="10" 
+				  parentkey="4"/>
+		<!-- Relation between inv_compounds and inv_containers -->
+		<relationship child="3" 
+				  parent="1"  
+				  childkey="14" 
+				  parentkey="5"/>
+		<relationship child="4" 
+				  parent="1"  
+				  childkey="18" 
+				  parentkey="6"/>
+		<relationship child="5" 
+				  parent="1"  
+				  childkey="19" 
+				  parentkey="1"/>
+
+		<relationship child="6" 
+				  parent="1"  
+				  childkey="24" 
+				  parentkey="1"
+				  jointype="OUTER" />
+		<relationship child="7" 
+				  parent="3"  
+				  childkey="26" 
+				  parentkey="14"
+				  jointype="OUTER" />
+	</relationships>
+</COEDataView>

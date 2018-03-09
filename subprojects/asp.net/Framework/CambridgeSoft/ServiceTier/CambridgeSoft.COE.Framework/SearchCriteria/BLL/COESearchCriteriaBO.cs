@@ -343,13 +343,13 @@ namespace CambridgeSoft.COE.Framework.COESearchCriteriaService
         //this method must be called prior to any other method inorder to set the database that the dal will use
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
 
         internal static void SetDatabaseName(string databaseName)
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(databaseName));
+            COEDatabaseName.Set(databaseName);
         }
 
         public static COESearchCriteriaBO New(string databaseName)
@@ -368,7 +368,7 @@ namespace CambridgeSoft.COE.Framework.COESearchCriteriaService
         public static COESearchCriteriaBO Get(SearchCriteriaType searchCriteriaType, int id)
         {
             string idString = BuildKey(id, searchCriteriaType);
-          //  SetDatabaseName(); Jason: it seems this is client side, before calling web service, no need to use database name for creating DAL
+            SetDatabaseName(); 
             COESearchCriteriaBO result = null;
             if (!CanGetObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForViewObject + " COESearchCriteriaBO");
@@ -843,7 +843,7 @@ namespace CambridgeSoft.COE.Framework.COESearchCriteriaService
             try
             {
                 if (_dalFactory == null) { _dalFactory = new DALFactory(); }
-                _dalFactory.GetDAL<DAL>(ref _coeDAL, _serviceName,  COEDatabaseName.Get().ToString(), true); ;
+                _dalFactory.GetDAL<DAL>(ref _coeDAL, _serviceName, COEDatabaseName.Get().ToString(), true);
 
             }
             catch (Exception)

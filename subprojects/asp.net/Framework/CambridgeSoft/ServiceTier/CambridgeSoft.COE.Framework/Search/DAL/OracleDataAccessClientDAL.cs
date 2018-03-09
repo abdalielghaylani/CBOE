@@ -425,7 +425,7 @@ namespace CambridgeSoft.COE.Framework.COESearchService
                     string pTableName = tableName;
                     string pOwner = owner;
 
-                    string sql = "select num_rows from dba_tables where table_name = " + DALManager.BuildSqlStringParameterName("pTableName") +
+                    string sql = "select num_rows from all_tables where table_name = " + DALManager.BuildSqlStringParameterName("pTableName") +
                                  " and owner= " + DALManager.BuildSqlStringParameterName("pOwner");
                     //create stored procedure command type
                     DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);

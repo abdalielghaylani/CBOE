@@ -6,281 +6,281 @@
       <!--CambridgeSoft-->
       <dependentAssembly>
         <assemblyIdentity name="CambridgeSoft.COE.Framework" publicKeyToken="1e3754866626dfbf" culture="neutral"/>
-        <codeBase version="12.1.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\CambridgeSoft.COE.Framework.dll"/>
+        <codeBase version="17.1.1.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\CambridgeSoft.COE.Framework.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="CambridgeSoft.COE.Registration.Services" publicKeyToken="f435ba95da9797dc" culture="neutral"/>
-        <codeBase version="12.1.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.Services.dll"/>
+        <codeBase version="17.1.1.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.Services.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="CambridgeSoft.COE.Registration.RegistrationAddins" publicKeyToken="f435ba95da9797dc" culture="neutral"/>
-        <codeBase version="12.1.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.RegistrationAddins.dll"/>
+        <codeBase version="17.1.1.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Registration\RuntimeLibraries\CambridgeSoft.COE.Registration.RegistrationAddins.dll"/>
       </dependentAssembly>
 	  <dependentAssembly>
 		<assemblyIdentity name="PyEngine3" publicKeyToken="1e3754866626dfbf" culture="neutral"/>
-		<codeBase version="0.0.0.0" href="C:\Program Files\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\Registration\WebApp\Bin\PyEngine3.dll"/>
+		<codeBase version="0.0.0.0" href="C:\Program Files\PerkinElmer\ChemOfficeEnterprise\Registration\WebApp\Bin\PyEngine3.dll"/>
 	  </dependentAssembly>
       <!--Microsoft.EnterpriseLibrary-->
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.Practices.EnterpriseLibrary.Common" publicKeyToken="6579c5fdfc419d72" culture="neutral"/>
-        <codeBase version="2.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll"/>
+        <codeBase version="2.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Common.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.Practices.EnterpriseLibrary.Data" publicKeyToken="152312c3a223b399" culture="neutral"/>
-        <codeBase version="2.1.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll"/>
+        <codeBase version="2.1.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Data.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.Practices.ObjectBuilder" publicKeyToken="2c79a496fd4bd8ae" culture="neutral"/>
-        <codeBase version="1.0.51205.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.ObjectBuilder.dll"/>
+        <codeBase version="1.0.51205.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.ObjectBuilder.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.Practices.EnterpriseLibrary.Caching" publicKeyToken="9b36ca0e12e438b5" culture="neutral"/>
-        <codeBase version="2.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll"/>
+        <codeBase version="2.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Caching.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling" publicKeyToken="21f4688e7671500b" culture="neutral"/>
-        <codeBase version="2.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll"/>
+        <codeBase version="2.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging" publicKeyToken="012e785312e03a6c" culture="neutral"/>
-        <codeBase version="2.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll"/>
+        <codeBase version="2.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.ExceptionHandling.Logging.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.Practices.EnterpriseLibrary.Logging" publicKeyToken="7ae566350f7e2d48" culture="neutral"/>
-        <codeBase version="2.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll"/>
+        <codeBase version="2.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Microsoft.Practices.EnterpriseLibrary.Logging.dll"/>
       </dependentAssembly>
       <!--QuickGraph-->
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph" publicKeyToken="aa4871b6f938aabe" culture="neutral"/>
-        <codeBase version="2.1.2661.22230" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.dll"/>
+        <codeBase version="2.1.2661.22230" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph.Algorithms" publicKeyToken="86e9aba414f6c605" culture="neutral"/>
-        <codeBase version="2.1.2661.22230" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Algorithms.dll"/>
+        <codeBase version="2.1.2661.22230" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Algorithms.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph.Algorithms.Graphviz" publicKeyToken="d86a19566c7d7ecb" culture="neutral"/>
-        <codeBase version="2.1.2661.22230" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Algorithms.Graphviz.dll"/>
+        <codeBase version="2.1.2661.22230" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Algorithms.Graphviz.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph.Collections" publicKeyToken="360dbfce46d07a98" culture="neutral"/>
-        <codeBase version="2.1.2661.22229" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Collections.dll"/>
+        <codeBase version="2.1.2661.22229" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Collections.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph.Concepts" publicKeyToken="d25c7a271d7196db" culture="neutral"/>
-        <codeBase version="2.1.2661.22229" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Concepts.dll"/>
+        <codeBase version="2.1.2661.22229" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Concepts.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph.Exceptions" publicKeyToken="4aa6e29d05bdc8a0" culture="neutral"/>
-        <codeBase version="2.1.2661.22229" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Exceptions.dll"/>
+        <codeBase version="2.1.2661.22229" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Exceptions.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph.Predicates" publicKeyToken="e0730e9e9d3cdc3d" culture="neutral"/>
-        <codeBase version="2.1.2661.22229" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Predicates.dll"/>
+        <codeBase version="2.1.2661.22229" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Predicates.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="QuickGraph.Representations" publicKeyToken="454e3737b09e112f" culture="neutral"/>
-        <codeBase version="2.1.2661.22230" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Representations.dll"/>
+        <codeBase version="2.1.2661.22230" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\QuickGraph.Representations.dll"/>
       </dependentAssembly>
       <!--CSLA-->
       <dependentAssembly>
         <assemblyIdentity name="Csla" publicKeyToken="93be5fdc093e4c30" culture="neutral"/>
-        <codeBase version="2.1.1.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Csla.dll"/>
+        <codeBase version="2.1.1.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Csla.dll"/>
       </dependentAssembly>
       <!--Infragistics-->
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.Misc.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.Misc.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.Misc.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.Shared.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.Shared.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.Shared.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebGrid.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebListbar.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebListbar.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebListbar.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebNavigator.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebNavigator.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebNavigator.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebTab.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebTab.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebTab.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebToolbar.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebToolbar.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebToolbar.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebCombo.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebCombo.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebCombo.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebDataInput.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebDataInput.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebDataInput.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebDateChooser.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebDateChooser.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebDateChooser.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebNavBar.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebNavBar.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebNavBar.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebSchedule.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebSchedule.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebSchedule.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.Excel.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Excel.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Excel.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebCalcManager.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebCalcManager.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebCalcManager.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebChart.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebChart.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebChart.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.UltraWebGrid.ExcelExport.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.UltraWebGrid.ExcelExport.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebHtmlEditor.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebHtmlEditor.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebHtmlEditor.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebScheduleDataProvider.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebScheduleDataProvider.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebScheduleDataProvider.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.WebUI.WebSpellChecker.v6.3" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.WebUI.WebSpellChecker.v6.3.dll"/>
       </dependentAssembly>
       <!-- Infragistics Win>-->
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.Win.Misc.v6.3.dll" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.Misc.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.Misc.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.Win.v6.3.dll" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.Win.UltraWinGrid.v6.3.dll" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.UltraWinGrid.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.UltraWinGrid.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.Win.UltraWinTabControl.v6.3.dll" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.UltraWinTabControl.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Win.UltraWinTabControl.v6.3.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Infragistics2.Shared.v6.3.dll" publicKeyToken="7dd5c3163f2cd0cb" culture="neutral"/>
-        <codeBase version="6.3.20063.53" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Shared.v6.3.dll"/>
+        <codeBase version="6.3.20063.53" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Infragistics2.Shared.v6.3.dll"/>
       </dependentAssembly>
       <!-- NUnit unitTesting>-->
       <dependentAssembly>
         <assemblyIdentity name="nunit.common" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.common.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.common.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.core" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.core.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.core.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.core.interfaces" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.core.interfaces.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.core.interfaces.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.core.extensions" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.core.extensions.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.core.extensions.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.util" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.util.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.util.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.uikit" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.uikit.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.uikit.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.mocks" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.mocks.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.mocks.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit-gui-runner" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit-gui-runner.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit-gui-runner.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit-console-runner" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit-console-runner.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit-console-runner.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.framework" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.framework.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.framework.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.framework.extensions" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.framework.extensions.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.framework.extensions.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="nunit.fixtures" publicKeyToken="96d09a1eb7f44a77" culture="neutral"/>
-        <codeBase version="2.4.0.2" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.fixtures.dll"/>
+        <codeBase version="2.4.0.2" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\nunit.fixtures.dll"/>
       </dependentAssembly>
       <!-- Microsoft unitTesting>-->
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.VisualStudio.QualityTools.UnitTestFramework" publicKeyToken="b03f5f7f11d50a3a" culture="neutral"/>
-        <codeBase version="8.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll"/>
+        <codeBase version="8.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Microsoft.VisualStudio.QualityTools.Resource" publicKeyToken="b03f5f7f11d50a3a" culture="neutral"/>
-        <codeBase version="8.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\Microsoft.VisualStudio.QualityTools.Resource.dll"/>
+        <codeBase version="8.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\TestHarness\Microsoft.VisualStudio.QualityTools.Resource.dll"/>
       </dependentAssembly>
       <!-- IronPython -->
       <dependentAssembly>
         <assemblyIdentity name="IronPython" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
-        <codeBase version="1.0.60816.1877" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\IronPython.dll"/>
+        <codeBase version="1.0.60816.1877" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\IronPython.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="IronMath" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
-        <codeBase version="1.0.60816.1877" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\IronMath.dll"/>
+        <codeBase version="1.0.60816.1877" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\IronMath.dll"/>
       </dependentAssembly>
      <dependentAssembly>
         <assemblyIdentity name="Interop.ChemDrawControl12" publicKeyToken="1e3754866626dfbf" culture="neutral"/>
-        <codeBase version="12.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Interop.ChemDrawControl12.dll"/>
+        <codeBase version="12.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Interop.ChemDrawControl12.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="AxInterop.ChemDrawControl12" publicKeyToken="1e3754866626dfbf" culture="neutral"/>
-        <codeBase version="12.0.0.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\AxInterop.ChemDrawControl12.dll"/>
+        <codeBase version="12.0.0.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\AxInterop.ChemDrawControl12.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="Python.Runtime" publicKeyToken="590ed4fab4ed84ca" culture="neutral"/>
-        <codeBase version="2.0.1.23317" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Python.Runtime.dll"/>
+        <codeBase version="2.0.1.23317" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\Python.Runtime.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="System.Web.Extensions" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
-        <codeBase version="1.0.61025.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\System.Web.Extensions.dll"/>
+        <codeBase version="1.0.61025.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\System.Web.Extensions.dll"/>
       </dependentAssembly>
       <dependentAssembly>
         <assemblyIdentity name="System.Web.Extensions.Design" publicKeyToken="31bf3856ad364e35" culture="neutral"/>
-        <codeBase version="1.0.61025.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\System.Web.Extensions.Design.dll"/>
+        <codeBase version="1.0.61025.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\System.Web.Extensions.Design.dll"/>
       </dependentAssembly>
 	  <!-- AJAX -->
 	  <dependentAssembly>
 		<assemblyIdentity name="System.Web.Extensions" publicKeyToken="31BF3856AD364E35" culture="neutral"/>
-		<codeBase version="1.0.61025.0" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\AJAXExtensionsToolbox.dll"/>
+		<codeBase version="1.0.61025.0" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\AJAXExtensionsToolbox.dll"/>
 	  </dependentAssembly>
 	   <!-- RTFtoHTML-->
 		<dependentAssembly>
     <assemblyIdentity name="SautinSoft.RtfToHtml" publicKeyToken="c666a5e96a3d5457" culture="neutral"/>
-    <codeBase version="3.0.0.1" href="C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\SautinSoft.RtfToHtml.dll"/>
+    <codeBase version="3.0.0.1" href="C:\Program Files\PerkinElmer\Informatics2007\ChemOfficeEnterprise\Framework\RuntimeLibraries\SautinSoft.RtfToHtml.dll"/>
    </dependentAssembly>	  
 	  
     </assemblyBinding>

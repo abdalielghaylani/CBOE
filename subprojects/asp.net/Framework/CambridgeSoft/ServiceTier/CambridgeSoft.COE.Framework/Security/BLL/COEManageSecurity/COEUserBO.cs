@@ -443,12 +443,12 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
         //this method must be called prior to any other method inorder to set the database that the dal will use
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
         internal static void SetDatabaseName(string databaseName)
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
         public static COEUserBO GetLDAPUser(string UserName)
@@ -781,6 +781,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
                 {
                     dt = _coeDAL.GetUser(criteria._userName);
                     FetchObject(dt);
+                    if(!COERoleBO.roleUser)
                     GetUserRoles();
                 }
                 else
@@ -1204,7 +1205,7 @@ namespace CambridgeSoft.COE.Framework.COESecurityService
                         if(authenticated == true)
                         {
                             COEUserBO myUser = COEUserBO.Get(_userName);
-                            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+                            COEDatabaseName.Set(Resources.CentralizedStorageDB);
                             if(_coeDAL == null) { LoadDAL(); }
                             // Coverity Fix CID - 18762
                             if (_coeDAL != null)

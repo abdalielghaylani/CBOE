@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COEDataView  xmlns="COE.COEDataView" basetable="985" database="COETEST" name="SearchByHitlistTargetA" description="PubChemA" dataviewid="95001">
+  <tables>
+    <table id="985" name="AID741MRP" alias="AID741MRP" database="COETEST" isView="0" primaryKey="995" >
+      <fields id="986" name="Toxicity Enhancement Factor" alias="Toxicity Enhancement Factor" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="987" name="AR_NUMBER" alias="AR_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="13" />
+      <fields id="988" name="PUBCHEM_ACTIVITY_OUTCOME" alias="PUBCHEM_ACTIVITY_OUTCOME" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="19" />
+      <fields id="989" name="PUBCHEM_ACTIVITY_SCORE" alias="PUBCHEM_ACTIVITY_SCORE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="20" />
+      <fields id="990" name="PUBCHEM_ACTIVITY_URL" alias="PUBCHEM_ACTIVITY_URL" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="21" />
+      <fields id="991" name="PUBCHEM_ASSAYDATA_COMMENT" alias="PUBCHEM_ASSAYDATA_COMMENT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="22" />
+      <fields id="992" name="PUBCHEM_ASSAYDATA_REVOKE" alias="PUBCHEM_ASSAYDATA_REVOKE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="23" />
+      <fields id="993" name="PUBCHEM_CID" alias="PUBCHEM_CID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="24" />
+      <fields id="994" name="PUBCHEM_EXT_DATASOURCE_REGID" alias="PUBCHEM_EXT_DATASOURCE_REGID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="25" />
+      <fields id="995" name="PUBCHEM_SID" alias="PUBCHEM_SID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="26" />
+      <fields id="996" name="SLOPE" alias="SLOPE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="27" />
+      <fields id="997" name="Standard Error" alias="Standard Error" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="28" />
+      <fields id="998" name="TOP" alias="TOP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="29" />
+    </table>
+    <table id="1016" name="AID741MRP_LOB" alias="AID741MRP_LOB" database="COETEST" isView="0" primaryKey="1020" >
+      <fields id="1017" name="AR_NUMBER" alias="AR_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="1018" name="BLOB_CONTENT" alias="BLOB_CONTENT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="1019" name="CONTENT_MIMETYPE" alias="CONTENT_MIMETYPE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+      <fields id="1020" name="PUBCHEM_CID" alias="PUBCHEM_CID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="993" childkey="1020" parent="985" child="1016" jointype="INNER" />
+  </relationships>
+</COEDataView>

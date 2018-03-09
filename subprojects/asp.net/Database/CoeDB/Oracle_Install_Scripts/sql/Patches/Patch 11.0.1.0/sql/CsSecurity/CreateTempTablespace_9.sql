@@ -26,7 +26,7 @@ BEGIN
 	  
     SELECT count(*) INTO LExist FROM DBA_Tablespaces WHERE Tablespace_Name = Upper('&&tempTableSpaceName');    
 
-    IF LExist = 0 and '&&BypassTablespaceCreateAndDrop' = 'N' THEN
+    IF LExist = 0  THEN
         EXECUTE IMMEDIATE 
             'CREATE TEMPORARY TABLESPACE &&tempTableSpaceName
                 TEMPFILE ''' || vDataFile || ''' SIZE &&tempTablespaceSize REUSE
@@ -41,7 +41,7 @@ DECLARE
 BEGIN
     SELECT count(*) INTO LExist FROM DBA_Tablespaces WHERE Tablespace_Name = Upper('&&auditTableSpaceName');    
 
-    IF LExist = 0 and '&&BypassTablespaceCreateAndDrop' = 'N' THEN
+    IF LExist = 0 THEN
         EXECUTE IMMEDIATE 
             'CREATE TABLESPACE &&auditTableSpaceName
 		DATAFILE ''&&auditTableSpaceFile''

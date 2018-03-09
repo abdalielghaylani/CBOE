@@ -21,8 +21,7 @@ namespace CambridgeSoft.COE.Framework.Common
         private const string tracingProperty = "tracing";
         private const string oracleTracingProperty = "oracleTracing";
         private const string dataSourceProperty = "dataSource";  
-        private const string sqlGeneratorDataProperty = "sqlGeneratorData";
-        private const string instanceIdProperty = "instanceId";
+        private const string sqlGeneratorDataProperty = "sqlGeneratorData";       
 
         private string originalOwner = "originalOwner";
 
@@ -31,24 +30,7 @@ namespace CambridgeSoft.COE.Framework.Common
 		/// </summary>
 		public DatabaseData()
 		{
-		}
-
-        private InstanceData _instanceData;
-        public InstanceData InstanceData
-        {
-            get
-            {
-                return this._instanceData;
-            }
-            set
-            {
-                this._instanceData = value;
-                if (value != null)
-                {
-                    this.InstanceId = value.Id;
-                }
-            }
-        }
+		}        
 
         /// <summary>
         /// Name of application
@@ -58,17 +40,7 @@ namespace CambridgeSoft.COE.Framework.Common
         {
             get { return (string)base[nameProperty]; }
             set { base[nameProperty] = value; }
-        }
-
-        /// <summary>
-        /// Instance name for connecting
-        /// </summary>
-        [ConfigurationProperty(instanceIdProperty, IsRequired = false)]
-        public Guid InstanceId
-        {
-            get { return (Guid)base[instanceIdProperty]; }
-            set { base[instanceIdProperty] = value; }
-        }
+        }        
 
         /// <summary>
         /// dbms type for application 
@@ -105,7 +77,7 @@ namespace CambridgeSoft.COE.Framework.Common
         /// </summary>
         public string OriginalOwner
         {
-            get { return originalOwner.Substring(originalOwner.IndexOf(".")+1); }
+            get { return originalOwner; }
             set { originalOwner = value; }
         }
 

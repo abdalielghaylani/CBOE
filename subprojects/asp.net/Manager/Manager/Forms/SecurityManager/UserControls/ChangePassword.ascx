@@ -19,7 +19,8 @@
                                 <asp:TextBox ID="CurrentPassword" runat="server" CssClass="ChangePasswordTextBox"
                                     Font-Size="0.8em" TextMode="Password" Width="150px"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="CurrentPasswordRequired" runat="server" ControlToValidate="CurrentPassword"
-                                    ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="ctl00$ChangePassword1">*</asp:RequiredFieldValidator>
+                                    ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="ctl00$ChangePassword1">*</asp:RequiredFieldValidator>                                
+                                <asp:CustomValidator runat="server" id="cusCustom" SetFocusOnError="true" ValidationGroup="ctl00$ChangePassword1" controltovalidate="CurrentPassword" onservervalidate="cusCustom_ServerValidate" errormessage="Wrong Password!" />
                             </td>
                         </tr>
                         <tr>

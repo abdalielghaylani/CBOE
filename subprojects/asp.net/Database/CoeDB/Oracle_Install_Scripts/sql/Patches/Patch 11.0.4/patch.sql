@@ -223,10 +223,10 @@ BEGIN
           if people_count >0 then
             RETURN 'user name ' || pUserName || ' conflicts with another user ';
           else
-           SELECT password into user_oldpassword FROM DBA_USERS where username=pUserName;
+            SELECT password into user_oldpassword FROM SYS.USER$ where name=pUserName;
             DBMS_SQL.parse (source_cursor, 'ALTER USER ' || quotedUserName || ' IDENTIFIED BY ' || pPassword || ' DEFAULT TABLESPACE T_COEDB TEMPORARY TABLESPACE T_COEDB_TEMP', DBMS_SQL.native);
             rows_processed := DBMS_SQL.EXECUTE (source_cursor);
-            SELECT password into user_newpassword FROM SYS.DBA_USERS where username=pUserName;
+             SELECT password into user_newpassword FROM SYS.USER$ where name=pUserName;
             DBMS_SQL.parse (source_cursor, 'ALTER USER ' || quotedUserName || ' IDENTIFIED BY  VALUES ''' ||  user_oldpassword || ''' DEFAULT TABLESPACE T_COEDB TEMPORARY TABLESPACE T_COEDB_TEMP', DBMS_SQL.native);
             rows_processed := DBMS_SQL.EXECUTE (source_cursor);
              if user_oldpassword <> user_newpassword then

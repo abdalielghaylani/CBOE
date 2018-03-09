@@ -12,7 +12,7 @@ using CambridgeSoft.COE.Framework.Common.SqlGenerator.NonQueries;
 using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
-using CambridgeSoft.COE.Framework.COEDataViewService;
+
 
 namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 {
@@ -21,7 +21,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         [NonSerialized]
          static COELog _coeLog = COELog.GetSingleton("COEDatabasePublishing");
         public string _coeSchemaTableName = string.Empty;
-        public string _coeDataViewTableName = string.Empty;
+        
 
         public virtual int GetNewID()
         {
@@ -34,7 +34,6 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         {           
             string owner = this.DALManager.DatabaseData.OriginalOwner.ToString();
             COEDatabasePublishingUtilities.BuildTableName(owner, ref _coeSchemaTableName);
-            COEDataViewUtilities.BuildDataViewTableName(owner, ref _coeDataViewTableName);
         }
 
         /// <summary>
@@ -313,7 +312,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         /// </summary>
         /// <param name="userList">List of users</param>        
         /// <param name="schemaName">Name of the schema</param>
-        public virtual void GrantProxy(string schemaName, string globalSchemaName)
+        public virtual void GrantProxy(string schemaName)
         {
             throw new NotImplementedException("Method not implemented.");
         }
@@ -323,7 +322,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         /// </summary>
         /// <param name="userList">List of users</param>        
         /// <param name="schemaName">Name of the schema</param>
-        public virtual void RevokeProxy(string schemaName, string globalSchemaName)
+        public virtual void RevokeProxy(string schemaName)
         {
             throw new NotImplementedException("Method not implemented.");
         }
@@ -341,7 +340,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         /// Populate all the Owners in the database
         /// </summary>
         /// <returns>list of Owners </returns>
-        public virtual SafeDataReader GetAllInstanceDatabases()
+        public virtual DataTable GetUnPublishedDatabases()
         {
             throw new NotImplementedException("Method not implemented.");
         }
@@ -387,7 +386,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             return id;
         }
 
-        internal virtual void UpdateCOEDatabaseDataView(string ownerNameWithInstance, string serializedCOEDataView, DateTime dateModified)
+        internal virtual void UpdateCOEDatabaseDataView(string ownerName, string serializedCOEDataView, DateTime dateModified)
         {
             string sql = "UPDATE " + _coeSchemaTableName +
                  " SET COEDATAVIEW= " + DALManager.BuildSqlStringParameterName("pCOEDataView") +
@@ -398,7 +397,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 
             DALManager.Database.AddParameter(dbCommand, "pCOEDataView", DbType.AnsiString, Int32.MaxValue, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, serializedCOEDataView);
             DALManager.Database.AddInParameter(dbCommand, "pDateCreated", DbType.DateTime, dateModified);
-            DALManager.Database.AddParameter(dbCommand, "pOwnerName", DbType.AnsiString, 250, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, ownerNameWithInstance.ToUpper());
+            DALManager.Database.AddParameter(dbCommand, "pOwnerName", DbType.AnsiString, 250, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, ownerName.ToUpper());
 
             int recordsAffected = -1;
 
@@ -412,27 +411,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             }
         }
 
-        /// <summary>
-        /// update a dataview
-        /// </summary>
-        /// <param name="dataViewId">dataviewid for which update in done</param>
-        /// <param name="dataView">the updated xml form of the dataview</param>
-        /// <param name="dataViewName">the updated name of the dataview</param>
-        /// <param name="description">the updated description of the dataview</param>
-        /// <param name="isPublic">whether the dataview is made public or not</param>
-        public virtual void UpdateCOEDataView(int id, string serializedCOEDataView, string name, string description, bool isPublic, string databaseName, string application)
-        {
-            throw new NotImplementedException("Method not implemented.");
-        }
-
-        /// <summary>
-        /// Deletes the schemas under the instance.
-        /// </summary>
-        /// <param name="instanceName">The instance name.</param>
-        public virtual void DeleteInstanceSchemas(string instanceName)
-        {
-            throw new NotImplementedException("Method not implemented.");
-        }
+        
 
         public virtual SafeDataReader GetCOEDatabaseDataView(string ownerName)
         {
@@ -468,12 +447,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         public virtual bool AuthenticateUser(string ownerName, string password)
         {
             throw new Exception("not implemented");
-        }
-
-        public virtual bool AuthenticateUser(string ownerName, string password, string host, int port, string serviceName)
-        {
-            throw new Exception("not implemented");
-        }
+        }       
 
         internal virtual void GrantTable(string databaseName, string tableName)
         {

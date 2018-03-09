@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+	<searchCriteriaItem id="1"  
+					 fieldid="8" 
+					 modifier="" 
+					 tableid="1">
+		<dateCriteria operator="GT">01/01/2006</dateCriteria>
+	</searchCriteriaItem>
+	<searchCriteriaItem id="2"  
+					 fieldid="11" 
+					 modifier="" 
+					 tableid="2">
+		<textCriteria trim="" 	
+						caseSensitive="NO" 
+						operator="EQUAL" 
+						fullWordSearch="NO">Stock Room 123	</textCriteria>
+	</searchCriteriaItem>
+	<searchCriteriaItem id="3" 
+					 fieldid="20" 
+					 modifier="" 
+					 tableid="3">
+		<structureCriteria>
+			<CSCartridgeStructureCriteria
+				absolutehitsrel="NO" 
+				relativeTetStereo="NO" 
+				tetrahedralStereo="YES" 
+				simThreshold="100" 
+				reactionCenter="YES" 
+				fullWordSearch="NO" 
+				tautomer="NO" 
+				fragmentsoverlap="NO" 
+				permitExtraneousFragmentsIfRXN="NO" 
+				permitExtraneousFragments="NO" 
+				doublebondstereo="NO" 
+				hitAnyChargeHetero="YES" 
+				identity="NO" 
+				hitAnyChargeCarbon="YES" 
+				similar="NO"
+			  format="BASE64CDX">VmpDRDAxMDAEAwIBAAAAA….QAAAAAAAAAAAA=</CSCartridgeStructureCriteria>
+		</structureCriteria>	
+	</searchCriteriaItem>
+</searchCriteria>

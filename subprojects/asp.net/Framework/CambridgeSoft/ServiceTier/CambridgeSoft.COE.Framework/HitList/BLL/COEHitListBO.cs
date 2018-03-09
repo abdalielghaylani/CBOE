@@ -49,15 +49,12 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
 
         private int tempID = 0;
 
-        protected string _tempHitListFullTableName = string.Empty;
-        protected string _tempHitListIDFullTableName = string.Empty;
-        protected string _savedHitListFullTableName = string.Empty;
-        protected string _savedHitListIDFullTableName = string.Empty;
-
         protected string _tempHitListTableName = string.Empty;
         protected string _tempHitListSchemaName = string.Empty;
         protected string _savedHitListTableName = string.Empty;
         protected string _savedHitListSchemaName = string.Empty;
+        protected string _tempHitListIDTableName = string.Empty;
+        protected string _savedHitListIDTableName = string.Empty;
 
         //this is not right, but i don't understand where to get password at this time
 
@@ -417,41 +414,40 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
                 }
             }
         }
-        public string TempHitListIDFullTableName
+        public string TempHitListIDTableName
         {
             get
             {
-                return _tempHitListIDFullTableName;
+                return _tempHitListIDTableName;
             }
 
         }
 
-        public string TempHitListFullTableName
+        public string TempHitListTableName
         {
             get
             {
-                return _tempHitListFullTableName;
+                return _tempHitListTableName;
             }
 
         }
 
-        public string SavedHitListIDFullTableName
+        public string TempHitListSchemaName
         {
             get
             {
-                return _savedHitListIDFullTableName;
+                return _tempHitListSchemaName;
             }
-
         }
 
-        public string SavedHitListFullTableName
+        public string SavedHitListIDTableName
         {
             get
             {
-                return _savedHitListFullTableName;
+                return _savedHitListIDTableName;
             }
 
-        }
+        }       
 
         public string SavedHitListTableName
         {
@@ -470,30 +466,7 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
             }
 
         }
-
-        /*
-         * for fixing bug http://wal-jira.perkinelmer.net:8080/browse/DAT-1876,
-         * we keep all the old FullTableNames which may or may not contain schema names 
-         * so QA won't need to retest other features.
-         * meanwhile, we added these two new properties to store table name and schema name seperately.
-         * only affect loading 6.1 DXP.
-         */
-        public string TempHitListTableName
-        {
-            get
-            {
-                return _tempHitListTableName;
-            } 
-        }
-
-        public string TempHitListSchemaName
-        {
-            get
-            {
-                return _tempHitListSchemaName;
-            }
-        }
-
+       
         #endregion
 
         #region Business base requirements
@@ -510,12 +483,12 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
         //this method must be called prior to any other method inorder to set the database that the dal will use
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
         internal static void SetDatabaseName(string databaseName)
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(databaseName));
+            COEDatabaseName.Set(databaseName);
         }
 
         /// <summary>
@@ -1634,10 +1607,10 @@ namespace CambridgeSoft.COE.Framework.COEHitListService
             {
                 DatabaseData db = ConfigurationUtilities.GetDatabaseData(COEDatabaseName.Get().ToString());
                 string owner = db.Owner;
-                HitListUtilities.BuildTempHitListIDFullTableName(owner, ref _tempHitListIDFullTableName);
-                HitListUtilities.BuildTempHitListFullTableName(owner, ref _tempHitListFullTableName);
-                HitListUtilities.BuildSavedHitListIDFullTableName(owner, ref _savedHitListIDFullTableName);
-                HitListUtilities.BuildSavedHitListFullTableName(owner, ref _savedHitListFullTableName);
+                HitListUtilities.BuildTempHitListIDTableName(owner, ref _tempHitListIDTableName);
+                HitListUtilities.BuildTempHitListTableName(owner, ref _tempHitListTableName);
+                HitListUtilities.BuildSavedHitListIDTableName(owner, ref _savedHitListIDTableName);
+                HitListUtilities.BuildSavedHitListTableName(owner, ref _savedHitListTableName);
 
                 _tempHitListTableName = Resources.COETempHitListTableName;
                 _tempHitListSchemaName = owner;

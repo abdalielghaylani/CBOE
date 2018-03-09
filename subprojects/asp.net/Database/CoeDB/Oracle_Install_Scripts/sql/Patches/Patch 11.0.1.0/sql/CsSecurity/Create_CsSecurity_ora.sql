@@ -63,9 +63,7 @@ DECLARE
       END IF;
    END createTableSpace;
 BEGIN
-	IF '&&BypassTablespaceCreateAndDrop' = 'N' THEN
-		createTableSpace ('&&securityTableSpaceName', '&&securityTableSpaceFile', '&&securityTableSpaceSize', '&&securityBlockSize', '&&securityTablespaceExtent');
-	END IF;
+	createTableSpace ('&&securityTableSpaceName', '&&securityTableSpaceFile', '&&securityTableSpaceSize', '&&securityBlockSize', '&&securityTablespaceExtent');
 END;
 /
 
@@ -85,7 +83,7 @@ BEGIN
 	  
     SELECT count(*) INTO LExist FROM DBA_Tablespaces WHERE Tablespace_Name = Upper('&&tempTableSpaceName');    
 
-    IF LExist = 0 and '&&BypassTablespaceCreateAndDrop' = 'N' THEN
+    IF LExist = 0 THEN
         EXECUTE IMMEDIATE 
             'CREATE TEMPORARY TABLESPACE &&tempTableSpaceName
                 TEMPFILE ''' || vDataFile || ''' SIZE &&tempTablespaceSize REUSE

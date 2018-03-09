@@ -108,8 +108,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData
                 {
                     if (clauseNode.NodeType != XmlNodeType.Comment)
                     {
-                        int tableId = int.Parse(tableNode.Attributes["id"].Value);
-                        SelectClauseItem item = this.CreateSelectClauseItem(clauseNode, dataView, tableId);
+                        SelectClauseItem item = SelectClauseFactory.CreateSelectClauseItem(clauseNode, dataView);
 
                         //CBOE-779
                         //Extra conditio i.e.  item.DataField != null is removed to fix the Issue CBOE-1026
@@ -121,59 +120,6 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData
             }
 
             return select;
-        }
-
-        /// <summary>
-        /// Get SelectClause object for a given table.
-        /// </summary>
-        /// <param name="dataView"> The data view to be queried </param>
-        /// <param name="tableId"> The id of the table to get object. </param>
-        /// <returns> The <see cref="SelectClause"/>. </returns>
-        public SelectClause GetTableSelectClause(DataView dataView, int tableId)
-        {
-            XmlNodeList tableNodeList = resultsCriteriaXML.SelectNodes("//" + xmlNamespace + ":table", this.manager);
-            
-            // each node is a table node
-            for (int i = 0; i < tableNodeList.Count; i++)
-            {
-                XmlNode tableNode = tableNodeList[i];
-
-                if (int.Parse(tableNode.Attributes["id"].Value) == tableId)
-                {
-                    var select = new SelectClause();
-                    XmlNodeList clauseList = tableNode.ChildNodes;
-                    foreach (XmlNode clauseNode in clauseList)
-                    {
-                        if (clauseNode.NodeType != XmlNodeType.Comment)
-                        {
-                            SelectClauseItem item = this.CreateSelectClauseItem(clauseNode, dataView, tableId);
-                            if (item != null)
-                            {
-                                select.AddItem(item);
-                            }
-                        }
-                    }
-
-                    return select;
-                }
-            }
-
-            return null;
-        }
-
-        // Check if the given clause node represents ROWID field
-        private bool IsRowIdSelectClause(XmlNode clauseNode)
-        {
-            return clauseNode.Attributes != null && clauseNode.Attributes["alias"] != null
-                   && clauseNode.Attributes["alias"].Value.Equals(COEDataView.RowIdField.ReservedFieldAliasRowId, StringComparison.OrdinalIgnoreCase);
-        }
-
-        // Create select clause item for the given clause node
-        private SelectClauseItem CreateSelectClauseItem(XmlNode clauseNode, DataView dataView, int tableId)
-        {
-            return IsRowIdSelectClause(clauseNode)
-                       ? new SelectClauseRowId { TableAlias = dataView.GetTableAliasName(tableId) }
-                       : SelectClauseFactory.CreateSelectClauseItem(clauseNode, dataView);
         }
 
         /// <summary>

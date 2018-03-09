@@ -4,9 +4,9 @@
   <configSections>
     <section name="instrumentationConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Common.Instrumentation.Configuration.InstrumentationConfigurationSection, Microsoft.Practices.EnterpriseLibrary.Common, Version=2.0.0.0, Culture=neutral, PublicKeyToken=6579c5fdfc419d72"/>
     <!--This indicates the type that will handle the coeConfiguration -->
-    <section name="coeConfiguration" type="CambridgeSoft.COE.Framework.Common.COEConfigurationSettings, CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-    <section name="mappings" type="CambridgeSoft.COE.Framework.Common.SelectClassMappingsHandler, CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-    <section name="coeHomeSettings" type="CambridgeSoft.COE.Framework.Common.COEHomeSettings, CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="coeConfiguration" type="CambridgeSoft.COE.Framework.Common.COEConfigurationSettings, CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="mappings" type="CambridgeSoft.COE.Framework.Common.SelectClassMappingsHandler, CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+    <section name="coeHomeSettings" type="CambridgeSoft.COE.Framework.Common.COEHomeSettings, CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
     <sectionGroup name="SSOConfiguration">
       <section name="ProviderConfiguration" type="CambridgeSoft.COE.Security.Services.SSOConfigurationProvider,SingleSignOn"/>
       <section name="COELDAPConfiguration" type="CambridgeSoft.COE.Security.Services.COELDAPConfiguration,SingleSignOn"/>
@@ -14,21 +14,15 @@
       <section name="CSSecurity" type="CambridgeSoft.COE.Security.Services.SSOConfigurationCSSecurity,SingleSignOn"/>
     </sectionGroup>
   </configSections>
-  <coeConfiguration singleSignOnURL="http://localhost/coesinglesignon/singlesignon.asmx" manageConfigurationSettings="false">    
-		<instances>
-			<add id="b590c7f9-34ca-4190-9564-e9b92a70bf57" name="MAIN" dbmsType="ORACLE" databaseGlobalUser="COEUSER" useProxy="True" hostName="" port="" sid="" isCBOEInstance="True" dataSource="" driverType="OracleDataDirect">
-				<sqlGeneratorData>
-					<add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" molFileFormat="V2000"/>
-				</sqlGeneratorData>
-			</add>
-		</instances>
-	<SpotfireSetting Url="" User="" Password="" />
+  <coeConfiguration singleSignOnURL="http://localhost/coesinglesignon/singlesignon.asmx" manageConfigurationSettings="false">
     <dbmsTypes>
       <add name="ORACLE" dataSource="orcl" useProxy="true" databaseGlobalUser="COEUSER">
         <sqlGeneratorData>
           <add name="CSORACLECARTRIDGE" schema="CSCARTRIDGE" tempQueriesTableName="TempQueries" molFileFormat="V2000" />
         </sqlGeneratorData>
       </add>
+	  <add name="SQLSERVER" dataSource=""/>
+      <add name="MSACCESS" dataSource=""/>
     </dbmsTypes>
     <databases>
       <add name="REGDB" owner="REGDB" dbmsType="ORACLE" password="" providerOptions="" providerName="Oracle.DataAccess.Client" oracleTracing="false" tracing="false"/>
@@ -53,7 +47,7 @@
       </searchService>
       <chemDrawEmbed>
         <add name="showPluginDownload" value="YES"/>
-        <add name="pluginDownloadURL" value="/CFServerASP/Clients/ChemDrawActiveXEnterprise/CambridgeSoft_ChemDraw_ActiveX_Enterprise_Constant_NA_15.1.msi"/>
+        <add name="pluginDownloadURL" value="/CFServerASP/Clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_17.1.msi"/>
       </chemDrawEmbed>
 	  <caching>
 		<dataview>
@@ -399,7 +393,7 @@
                   </add>
                 </validationRule>
               </add>
-              <add name="PREFIXDELIMITER" dataType="string">
+              <add name="PREFIXDELIMITER" dataType="string" alias="PREFIX DELIMITER">
                 <validationRule>
                   <add name="textLength" errorMessage="The length must be between 0 and 1. ">
                     <parameter>
@@ -414,7 +408,7 @@
                   </add>
                 </validationRule>
               </add>
-              <add name="SUFFIXDELIMITER" dataType="string">
+              <add name="SUFFIXDELIMITER" dataType="string" alias="SUFFIX DELIMITER">
                 <validationRule>
                   <add name="textLength" errorMessage="The length must be between 0 and 1. ">
                     <parameter>
@@ -430,7 +424,7 @@
                 </validationRule>
               </add>
               <add name="SALTSUFFIXTYPE" dataType="string" lookupLocation="innerXml_SALTSUFFIXGENERATORS" alias="Salt Suffix Type"/>
-              <add name="BATCHDELIMITER" dataType="string">
+              <add name="BATCHDELIMITER" dataType="string" alias="BATCH DELIMITER">
                 <validationRule>
                   <add name="textLength" errorMessage="The length must be between 0 and 1. ">
                     <parameter>
@@ -812,7 +806,7 @@
       <add name="MANAGER" database="COEDB">
         <applicationHome>
           <groups>
-            <add name="DataviewManagerPanelContents" enabled="true" coeIdentifier="COEMANAGER_DV" pageSectionTarget="panel" display="DataView Manager" newWindow="false" color="lightBlue" helpText="Define your database schemas, tables and relationships, so they can be searched using Datalytix">
+            <add name="DataviewManagerPanelContents" enabled="true" coeIdentifier="COEMANAGER_DV" pageSectionTarget="panel" display="DataView Manager" newWindow="false" color="lightBlue" helpText="Define your database schemas, tables and relationships, so they can be searched using ChemBioViz">
               <links>
                 <add name="CreateFromMaster" display="Create from Master" privilege="CAN_INSERT" tip="Create new dataview from master dataview" url="~/Forms/DataViewManager/ContentArea/EnterNameDescription.aspx?Action=Clone_DV&amp;SelDVId=0" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection/Database_Aqua/PNG" linkIconFileName="Data_View.png"/>
                 <add name="EditDataview" display="Edit Existing" privilege="CAN_UPDATE" tip="Edit existing dataview" url="~/Forms/DataViewManager/ContentArea/NewDataView.aspx?Action=Edit_DV" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Edit_Master.png"/>
@@ -820,7 +814,7 @@
                 <add name="DeleteExisting" display="Delete Existing Dataview" privilege="CAN_DELETE" tip="Delete a dataview" url="~/Forms/DataViewManager/ContentArea/DeleteDataView.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection//Database_Aqua/PNG" linkIconFileName="Database_Drop.png"/>
                 <add name="EditMaster" display="Edit Master" privilege="CAN_UPDATE" tip="Edit master dataview" url="~/Forms/DataViewManager/ContentArea/DataviewBoard.aspx?IsMaster=true" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Edit_Existing.png"/>
                 <add name="PageControlSettings" display="Control Privileges" privilege="HIDEME" tip="COEPageControlSettings" url="~/Forms/PageControlSettings/ContentArea/PageControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
-                <add name="ManageDataSources" display="Manage Data Sources" privilege="CAN_UPDATE||CAN_INSERT||CAN_DELETE" tip="Manage Data Sources" url="~/Forms/DataViewManager/ContentArea/ManageDbInstance.aspx?IsMaster=true" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Instance.png"/>
+                
 				<add name="ConfigControlSettings" display="Manage Configuration" privilege="CAN_UPDATE" tip="Update application settings" url="~/Forms/ConfigControlSettings/ContentArea/ConfigControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
               </links>
             </add>
@@ -1003,35 +997,35 @@
       <add name="DOCMANAGER" database="DOCMGR"/>
     </applications>
     <services>
-      <add name="COEHitList" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COESearch" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf" partialHitlistCommitSize="1000">
+      <add name="COEHitList" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearch" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf" partialHitlistCommitSize="1000">
         <searchServiceData>
           <add name="useRealTableNames" value="false"/>
         </searchServiceData>
       </add>
-      <add name="COEDatabasePublishing" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEForm" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COETableEditor" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COESearchCriteria" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEPageControlSettings" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEDataView" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COESecurity" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEGenericObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COETypedObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COERegistration" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
-      <add name="COEPickListPicker" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEExport" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="COEChemBioViz" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemBioViz.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemBioViz.Services, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
-      <add name="COERegistrationAdmin" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
-      <add name="COEConfiguration" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEDatabasePublishing" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEForm" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETableEditor" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESearchCriteria" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEPageControlSettings" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEDataView" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COESecurity" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEGenericObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COETypedObjectStorage" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COERegistration" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COEPickListPicker" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEExport" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEChemBioViz" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemBioViz.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemBioViz.Services, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COERegistrationAdmin" dalProviderAssemblyNameShort="Registration.Core" dalProviderAssemblyNameFull="Registration.Core, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc"/>
+      <add name="COEConfiguration" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
       <add name="COEChemSource" dalProviderAssemblyNameShort="CambridgeSoft.COE.ChemSource.Services" dalProviderAssemblyNameFull="CambridgeSoft.COE.ChemSource.Services, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9d035f61f7ed8bd6"/>
-      <add name="COEReporting" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="COEReporting" dalProviderAssemblyNameShort="CambridgeSoft.COE.Framework" dalProviderAssemblyNameFull="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
     </services>
     <exportFormatters>
-      <add name="SDFFlatFileUncorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileUncorrelated" assembly="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="SDFFlatFileCorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileCorrelated" assembly="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-      <add name="SDFNested" type="CambridgeSoft.COE.Framework.COEExportService.SDFNested" assembly="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
-	<add name="CBVExcel" type="CambridgeSoft.COE.Framework.COEExportService.CBVExcelFormatter" assembly="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/> 
+      <add name="SDFFlatFileUncorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileUncorrelated" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="SDFFlatFileCorrelated" type="CambridgeSoft.COE.Framework.COEExportService.SDFFlatFileCorrelated" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+      <add name="SDFNested" type="CambridgeSoft.COE.Framework.COEExportService.SDFNested" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/>
+	<add name="CBVExcel" type="CambridgeSoft.COE.Framework.COEExportService.CBVExcelFormatter" assembly="CambridgeSoft.COE.Framework, Version=17.1.1.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"/> 
     </exportFormatters>
   </coeConfiguration>
   <SSOConfiguration>
@@ -1233,7 +1227,7 @@
       <add name="Utilities" enabled="true" coeIdentifier="Utilities" display="Applications &amp; Utilities" newWindow="true" color="darkBlue" helpText="Launch and or install rich client applications and utilites">
         <links>
           <add name="ENClient" display="Launch ENotebook" tip="Launch the E-Notebook application" url="/ClickOnce/ENotebook.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>         
-          <add name="CDAX15.1" display="CDAX15.1 Plugin" tip="Install the ChemDraw 15.1 ActiveX Control recommended for ChemOffice Enterprise Applications" url="/cfserverasp/clients/ChemDrawActiveXEnterprise/CambridgeSoft_ChemDraw_ActiveX_Enterprise_Constant_NA_15.1.msi" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/windows_collection/Windows_PNG/PNG" linkIconFileName="search.png"/>
+          <add name="CDAX17.1" display="CDAX17.1 Plugin" tip="Install the ChemDraw 17.1 ActiveX Control recommended for ChemOffice Enterprise Applications" url="/cfserverasp/clients/ChemDrawActiveXEnterprise/PerkinElmer_ChemDraw_ActiveX_Enterprise_Constant_NA_17.1.msi" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/windows_collection/Windows_PNG/PNG" linkIconFileName="search.png"/>
           <add name="DLClient" display="DataLoader Client" tip="Launch the DataLoader application" url="/DataLoader/DataLoader.application" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Core_Collection/Core_Aqua/PNG" linkIconFileName="arrow_up_g.png"/>
           <add name="BioAssayClient" display="BioAssay Client" tip="Install the BioAssay Enterpise application (installation requires admin privileges on the client system)" url="/cfserverasp/clients/BioAssayClient10.1.6/setup.exe" privilege="HTS_LOGIN" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="manage_substances.png"/>
           <add name="SendToEnotebook" display="SendToEnotebook Driver" tip="Install the SendToEnotebook v1 printer driver (installation requires admin privileges on the client system)" url="/cfserverasp/clients/SendToEnotebookV1/SendToEnotebook 2014.exe" privilege="" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Your_Forms.png"/>
@@ -1263,7 +1257,7 @@
           <add name="ManageGroups" display="Manage Groups" tip="Administer groups" url="~/Forms/SecurityManager/ContentArea/ManageGroups.aspx?appName=All CS Applications" privilege="CSS_MANAGE_GROUPS" linkIconSize="small" linkIconBasePath="Icon_Library/custom_Collection/PNG" linkIconFileName="manage_users.png" />
         </links>
       </add>
-      <add name="COEMANAGER_DV" enabled="true" coeIdentifier="COEMANAGER_DV" display="DataView Manager" newWindow="true" color="lightBlue" helpText="Define your database schemas, tables and relationships, so they can be searched using Datalytix">
+      <add name="COEMANAGER_DV" enabled="true" coeIdentifier="COEMANAGER_DV" display="DataView Manager" newWindow="true" color="lightBlue" helpText="Define your database schemas, tables and relationships, so they can be searched using ChemBioViz">
         <links>
           <add name="Home" display="Main Page" tip="DataView Manager Home Page" url="~/Forms/DataViewManager/HomePage/Home.aspx" privilege="CAN_UPDATE||CAN_INSERT||CAN_DELETE" linkIconSize="small" linkIconBasePath="Icon_Library/Windows_Collection/windows_PNG/PNG" linkIconFileName="home.png"/>
           <add name="CreateFromMaster" display="Create from Master" privilege="CAN_INSERT" tip="Create new dataview from master dataview" url="~/Forms/DataViewManager/ContentArea/EnterNameDescription.aspx?Action=Clone_DV&amp;SelDVId=0" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection/Database_Aqua/PNG" linkIconFileName="Data_View.png"/>
@@ -1271,8 +1265,7 @@
           <add name="CreateFromExisting" display="Create from Existing" privilege="CAN_INSERT" tip="Create a new dataview from existing dataview" url="~/Forms/DataViewManager/ContentArea/NewDataView.aspx?Action=Clone_DV" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Create_From_Existing.png"/>
           <add name="DeleteExisting" display="Delete Existing Dataview" privilege="CAN_DELETE" tip="Delete a dataview" url="~/Forms/DataViewManager/ContentArea/DeleteDataView.aspx" linkIconSize="small" linkIconBasePath="Icon_Library/Database_Collection//Database_Aqua/PNG" linkIconFileName="Database_Drop.png"/>
           <add name="EditMaster" display="Edit Master" privilege="CAN_UPDATE" tip="Edit master dataview" url="~/Forms/DataViewManager/ContentArea/DataviewBoard.aspx?IsMaster=true" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Edit_Existing.png"/>
-          <add name="PageControlSettings" display="Control Privileges" privilege="HIDEME" tip="COEPageControlSettings" url="~/Forms/PageControlSettings/ContentArea/PageControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
-          <add name="ManageDataSources" display="Manage Data Sources" privilege="CAN_UPDATE||CAN_INSERT||CAN_DELETE" tip="Manage Data Sources" url="~/Forms/DataViewManager/ContentArea/ManageDbInstance.aspx?IsMaster=true" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="Manage_Instance.png"/>
+          <add name="PageControlSettings" display="Control Privileges" privilege="HIDEME" tip="COEPageControlSettings" url="~/Forms/PageControlSettings/ContentArea/PageControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>          
 		  <add name="ConfigControlSettings" display="Manage Configuration" privilege="CAN_UPDATE" tip="Update application settings" url="~/Forms/ConfigControlSettings/ContentArea/ConfigControlSettings.aspx?PS_Caller=DVMGR&amp;PS_AppName=MANAGER" linkIconSize="small" linkIconBasePath="Icon_Library/Custom_Collection/PNG" linkIconFileName="customize_registration.png"/>
         </links>
       </add>      

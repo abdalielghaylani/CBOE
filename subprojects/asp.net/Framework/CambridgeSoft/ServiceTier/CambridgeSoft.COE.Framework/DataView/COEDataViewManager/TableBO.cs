@@ -1,13 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
-using CambridgeSoft.COE.Framework.COELoggingService;
+using System.IO;
+using System.Xml;
+using System.Xml.XPath;
+using System.Data;
 using CambridgeSoft.COE.Framework.Common;
-using CambridgeSoft.COE.Framework.ExceptionHandling;
-using CambridgeSoft.COE.Framework.Properties;
-using Csla;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
+using Csla;
+using Csla.Data;
+using Csla.Validation;
+using CambridgeSoft.COE.Framework.COELoggingService;
+using CambridgeSoft.COE.Framework.ExceptionHandling;
 
 namespace CambridgeSoft.COE.Framework.COEDataViewService
 {
@@ -19,8 +23,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         private int _id = int.MinValue;
         private string _name = String.Empty;
         private string _alias = String.Empty;
-        private int _primaryKey = int.MinValue;
-        private COEDataView.HitListDataTypes _hitListDataType = COEDataView.HitListDataTypes.NUMBER;
+        private int _primaryKey = int.MinValue;        
         private bool _isView = false;
         private string _database = String.Empty;
         private string _xml = String.Empty;
@@ -122,44 +125,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             {
                 return _database;
             }
-        }
-
-        /// <summary>
-        /// Table's schema name without instance name.
-        /// </summary>
-        public string Schema
-        {
-            get 
-            {
-                if (string.IsNullOrEmpty(this._database) || !this._database.Contains("."))
-                {
-                    return this.DataBase;
-                }
-                else
-                {
-                    return this.DataBase.Split(new char[] { '.' })[1];
-                }
-            }
-        }
-
-        /// <summary>
-        /// Tables instance name.
-        /// </summary>
-        public string InstanceName
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this._database) || !this._database.Contains("."))
-                {
-                    InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-                    return mainInstance.Name;
-                }
-                else
-                {
-                    return this.DataBase.Split(new char[] { '.' })[0];
-                }
-            }
-        }
+        }        
 
         /// <summary>
         /// Table's primary key id
@@ -318,20 +284,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 return string.Format("{0:000}", ((TableListBO)base.Parent).IndexOf(this) + 1);
             }
         }
-
-        public COEDataView.HitListDataTypes HitListDataType
-        {
-            get
-            {
-                return _hitListDataType;
-            }
-
-            set
-            {
-                _hitListDataType = value;
-            }
-        }
-
+       
         #endregion
 
         #region Overrided Methods
@@ -370,7 +323,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             _database = table.Database;
             _isView = table.IsView;
             int.TryParse(table.PrimaryKey, out _primaryKey);
-            _hitListDataType = table.HitListDataType;
             if (table.Fields != null)
                 _fields = FieldListBO.NewFieldList(table.Fields, table.Database);
 
@@ -391,7 +343,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             _database = table.Database;
             _isView = table.IsView;
             int.TryParse(table.PrimaryKey, out _primaryKey);
-            _hitListDataType = table.HitListDataType;
             if(table.Fields != null)
                 _fields = FieldListBO.NewFieldList(table.Fields, table.Database, isClean);
 
@@ -419,7 +370,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             _isView = table.IsView;
             _name = table.Name;
             _primaryKey = table.PrimaryKey;
-            _hitListDataType = table._hitListDataType;
             _fields = new FieldListBO();
             foreach(FieldBO field in table.Fields)
             {
@@ -564,7 +514,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             _alias = System.Web.HttpUtility.HtmlEncode(table.Alias);
             _isView = table.IsView;
             int.TryParse(table.PrimaryKey, out _primaryKey);
-            _hitListDataType = table.HitListDataType;
             List<string> tempTags = new List<string>();
             if (table.Tags != null)
             {
@@ -590,7 +539,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             builder.Append(" database=\"" + _database + "\"");
             builder.Append(" isView=\"" + (_isView ? "1" : "0") + "\"");
             builder.Append(" primaryKey=\"" + _primaryKey.ToString() + "\"");
-            builder.Append(" hitListDataType=\"" + _hitListDataType.ToString() + "\"");
             builder.Append(" >");
             foreach (FieldBO field in _fields)
                 builder.Append(field.ToString());
@@ -620,7 +568,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             builder.Append(" database=\"" + _database + "\"");
             builder.Append(" isView=\"" + (_isView ? "1" : "0") + "\"");
             builder.Append(" primaryKey=\"" + _primaryKey.ToString() + "\"");
-            builder.Append(" hitListDataType=\"" + _hitListDataType.ToString() + "\"");
             builder.Append(" >");
             foreach (FieldBO field in _fields)
             {

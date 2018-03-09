@@ -7,9 +7,9 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyTitle("SingleSignOn")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("PerkinElmer")]
 [assembly: AssemblyProduct("SingleSignOn")]
-[assembly: AssemblyCopyright("© Copyright 2001-2016 PerkinElmer Informatics, Inc.")]
+[assembly: AssemblyCopyright("© Copyright 1998-2018 PerkinElmer Informatics, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -24,5 +24,5 @@ using System.Runtime.CompilerServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("17.1.1.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

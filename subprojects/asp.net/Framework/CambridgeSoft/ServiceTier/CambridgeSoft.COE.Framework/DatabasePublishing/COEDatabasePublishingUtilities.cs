@@ -1,4 +1,11 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Data;
 using CambridgeSoft.COE.Framework.Properties;
+using CambridgeSoft.COE.Framework.Common;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 {

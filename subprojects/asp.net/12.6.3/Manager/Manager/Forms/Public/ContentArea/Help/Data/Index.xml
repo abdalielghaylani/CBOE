@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CatapultTargetIndex Count="38">
+    <!-- saved from url=(0014)about:internet -->
+    <IndexEntry>
+        <Entries>
+            <IndexEntry Term="combination searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor12" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="deleting a hit list">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing queries" Link="/Content/MyImport/Managing_queries.htm#kanchor26" UsedConditions="" LocalConditions="" />
+                    <IndexLink Title="Managing hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#kanchor30" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="details view">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor2" UsedConditions="" LocalConditions="" />
+                    <IndexLink Title="Managing hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#kanchor31" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="editing a hit list">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing queries" Link="/Content/MyImport/Managing_queries.htm#kanchor25" UsedConditions="" LocalConditions="" />
+                    <IndexLink Title="Managing hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#kanchor29" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="exact structure searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor8" UsedConditions="" LocalConditions="" />
+                    <IndexLink Title="Setting search preferences" Link="/Content/MyImport/Setting_search_preferenc.htm#kanchor19" UsedConditions="" LocalConditions="" />
+                    <IndexLink Title="Setting search preferences" Link="/Content/MyImport/Setting_search_preferenc.htm#kanchor20" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="export hits">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Exporting search results" Link="/Content/MyImport/Exporting_search_results.htm#kanchor32" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="flat export">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Exporting search results" Link="/Content/MyImport/Exporting_search_results.htm#kanchor34" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="formula searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor10" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="hitlist">
+                <Entries>
+                    <IndexEntry Term="refining">
+                        <Entries />
+                        <Links>
+                            <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor15" UsedConditions="" LocalConditions="" />
+                        </Links>
+                        <SeeAlsoLinks />
+                        <IndexControlLinks />
+                    </IndexEntry>
+                </Entries>
+                <Links />
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="list view">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor3" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="logging off">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Retrieving server information" Link="/Content/MyImport/Retrieving_server_inform.htm#kanchor37" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="marking records">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing queries" Link="/Content/MyImport/Managing_queries.htm#kanchor21" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="navigate to a record">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor5" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="navigating through records">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor4" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="nested export">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Exporting search results" Link="/Content/MyImport/Exporting_search_results.htm#kanchor35" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="numerical searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor11" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="queries">
+                <Entries>
+                    <IndexEntry Term="refining">
+                        <Entries />
+                        <Links>
+                            <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor14" UsedConditions="" LocalConditions="" />
+                        </Links>
+                        <SeeAlsoLinks />
+                        <IndexControlLinks />
+                    </IndexEntry>
+                </Entries>
+                <Links />
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="Rec#">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor5" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="records">
+                <Entries>
+                    <IndexEntry Term="navigating">
+                        <Entries />
+                        <Links>
+                            <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor4" UsedConditions="" LocalConditions="" />
+                        </Links>
+                        <SeeAlsoLinks />
+                        <IndexControlLinks />
+                    </IndexEntry>
+                </Entries>
+                <Links />
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="refine a hit list">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor15" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="refine a query">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor14" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="refining over current records found">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor16" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="refining search results">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor13" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="restoring a hit list">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing queries" Link="/Content/MyImport/Managing_queries.htm#kanchor24" UsedConditions="" LocalConditions="" />
+                    <IndexLink Title="Managing hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#kanchor28" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="restoring queries">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing queries" Link="/Content/MyImport/Managing_queries.htm#kanchor23" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="retrieving server information">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Retrieving server information" Link="/Content/MyImport/Retrieving_server_inform.htm#kanchor36" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="saving hit lists">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing hit lists" Link="/Content/MyImport/Managing_hit_lists.htm#kanchor27" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="saving queries">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Managing queries" Link="/Content/MyImport/Managing_queries.htm#kanchor22" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="SD file">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Exporting search results" Link="/Content/MyImport/Exporting_search_results.htm#kanchor33" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="similarity (Tanimoto) searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor9" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="structure searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor6" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="substructure searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor7" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="text searching">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Setting search preferences" Link="/Content/MyImport/Setting_search_preferenc.htm#kanchor18" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="total searchable records">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Searching databases" Link="/Content/MyImport/Searching_databases.htm#kanchor1" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+            <IndexEntry Term="undo refine">
+                <Entries />
+                <Links>
+                    <IndexLink Title="Refining search results" Link="/Content/MyImport/Refining_search_results.htm#kanchor17" UsedConditions="" LocalConditions="" />
+                </Links>
+                <SeeAlsoLinks />
+                <IndexControlLinks />
+            </IndexEntry>
+        </Entries>
+        <Links />
+        <SeeAlsoLinks />
+        <IndexControlLinks />
+    </IndexEntry>
+</CatapultTargetIndex>

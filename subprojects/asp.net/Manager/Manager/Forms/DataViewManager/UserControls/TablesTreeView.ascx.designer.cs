@@ -13,15 +13,6 @@ namespace Manager.Forms.DataViewManager.UserControls {
     public partial class TablesTreeView {
         
         /// <summary>
-        /// InstanceDropDownList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList InstanceDropDownList;
-        
-        /// <summary>
         /// SchemaDropDownList control.
         /// </summary>
         /// <remarks>

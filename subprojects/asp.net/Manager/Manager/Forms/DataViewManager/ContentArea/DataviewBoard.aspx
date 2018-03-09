@@ -13,7 +13,7 @@
     TagPrefix="cm" %>
 <%@ Register Src="~/Forms/DataViewManager/UserControls/ToolBar.ascx" TagName="Toolbar"
     TagPrefix="cm" %>
-<%@ Register Assembly="CambridgeSoft.COE.Framework, Version=12.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"
+<%@ Register Assembly="CambridgeSoft.COE.Framework, Version=17.1.0.0, Culture=neutral, PublicKeyToken=1e3754866626dfbf"
     Namespace="CambridgeSoft.COE.Framework.Controls" TagPrefix="cc2" %>
 <asp:Content ID="PagesContent" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
     <iframe id="ParentDiv" class="BackgroundHidden" frameborder="0" scrolling="no"></iframe>
@@ -30,12 +30,8 @@
             document.getElementById('UpdateProgressDiv').style.display = 'none';
             document.getElementById('ParentDiv').className ='BackgroundHidden';
         }
-    }    
+    }       
     
-    function SetSchemaName(name)
-    {
-        document.getElementById('<%= this.SchemaSummary.SchemaNameTextBoxClientID %>').value = name;
-    }
 
     function delete_Confirm()
     {
@@ -248,7 +244,7 @@
         YAHOO.DataviewBoardNS.SchemaSummary.PkDataSource.responseSchema = { 
             fields : ['fieldid', 'tablealias', 'fieldalias', 'fieldtype']
         };
-        <%= this.SchemaSummary.GetPkDataSource(string.Empty,this.TablesTreeViewUserControl.SelectedInstance) %>
+        <%= this.SchemaSummary.GetPkDataSource(string.Empty) %>
         
         YAHOO.DataviewBoardNS.SchemaSummary.PkDataTableCols = [
             { key: 'fieldid', sortable: true, width: 35, label: '<%= Resources.Resource.ID_ColHeader_Caption %>' },
@@ -300,7 +296,7 @@
         YAHOO.DataviewBoardNS.SchemaSummary.RelDataSource.responseSchema = { 
             fields : ['parenttable', 'childtable', 'reltype']
         };
-        <%= this.SchemaSummary.GetRelDataSource(string.Empty,this.TablesTreeViewUserControl.SelectedInstance) %>
+        <%= this.SchemaSummary.GetRelDataSource(string.Empty) %>
         
         YAHOO.DataviewBoardNS.SchemaSummary.RelDataTableCols = [
             { key: 'parenttable', sortable: true, width: 178, label: '<%= Resources.Resource.ParentTable_ColHeader_Caption %>' },
@@ -353,7 +349,7 @@
         YAHOO.DataviewBoardNS.SchemaSummary.LookupDataSource.responseSchema = { 
             fields : ['table', 'lookup', 'type']
         };
-        <%= this.SchemaSummary.GetLookupDataSource(string.Empty,this.TablesTreeViewUserControl.SelectedInstance) %>
+        <%= this.SchemaSummary.GetLookupDataSource(string.Empty) %>
         
         YAHOO.DataviewBoardNS.SchemaSummary.LookupDataTableCols = [
             { key: 'table', sortable: true, width: 178, label: '<%= Resources.Resource.Table_Label_Text %>' },
@@ -677,7 +673,7 @@
         YAHOO.DataviewBoardNS.LeftPanel.DataSource.responseSchema = { 
             fields : ['tablealias', 'tableschema', 'tableid', 'tablename', 'isbasetable']
         };
-        <%= this.TablesTreeViewUserControl.GetTablesDataSource(string.Empty,this.TablesTreeViewUserControl.SelectedInstance) %>
+        <%= this.TablesTreeViewUserControl.GetTablesDataSource(string.Empty) %>
         YAHOO.DataviewBoardNS.LeftPanel.DataSource.doBeforeCallback = function (req,raw,res,cb) {
             // This is the filter function
             var data     = res.results || [],
@@ -805,7 +801,7 @@
                 YAHOO.DataviewBoardNS.SchemaSummary.RelRefreshTable('');
                 YAHOO.DataviewBoardNS.SchemaSummary.LookupRefreshTable('');
                 
-                document.getElementById('<%= this.SchemaSummary.SchemaNameTextBoxClientID %>').value = schema;
+                document.getElementById('<%= this.SchemaSummary.SchemaNameTextBoxClientID %>').setAttribute('value', schema);
                     
                 if(document.getElementById('<%= this.Toolbar.CurrentSchemaHiddenClientID %>') != null)
                     document.getElementById('<%= this.Toolbar.CurrentSchemaHiddenClientID %>').setAttribute('value', schema);
@@ -830,13 +826,6 @@
         YAHOO.DataviewBoardNS.tableDeleted = function(oRecord) {
             var tableId = oRecord.getData('tableid');
             var database = oRecord.getData('tableschema');
-
-            if (database.indexOf(".") != -1)
-            {
-                var strs = database.split(".");
-                database = strs[1];
-            }
-
             if( document.getElementById('SchemaSummaryDiv').style.display == 'block' ||
                 document.getElementById('<%= this.TableSummary.SelectedTableIDHiddenClientID %>').value == tableId)
                 YAHOO.DataviewBoardNS.schemaFiltered(database);

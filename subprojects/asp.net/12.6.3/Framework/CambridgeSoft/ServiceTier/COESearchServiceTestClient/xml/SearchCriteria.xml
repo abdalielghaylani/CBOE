@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+	<searchCriteriaItem id="1"  
+					 fieldid="1" 
+					 modifier="" 
+					 tableid="1">
+		<numericalCriteria operator="EQUAL" trim="BOTH">1248</numericalCriteria>
+	</searchCriteriaItem>
+  <searchCriteriaID>55</searchCriteriaID>
+</searchCriteria>

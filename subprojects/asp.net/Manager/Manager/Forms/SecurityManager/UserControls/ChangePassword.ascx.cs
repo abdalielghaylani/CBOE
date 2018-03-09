@@ -16,6 +16,7 @@ using System.Reflection;
 
 public partial class ChangePasswordUC : System.Web.UI.UserControl
 {
+    COEIdentity myIdentity;
     #region General Event handlers
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -40,7 +41,7 @@ public partial class ChangePasswordUC : System.Web.UI.UserControl
     protected override void OnInit(EventArgs e)
     {
         COEPrincipal principal = (COEPrincipal)Csla.ApplicationContext.User;
-        COEIdentity myIdentity = (COEIdentity)principal.Identity;
+        myIdentity = (COEIdentity)principal.Identity;
         if (myIdentity.IsLDAP == true && myIdentity.IsExempt == false)
         {//replace password control with text control
             ChangePassword1.Visible = false;
@@ -70,12 +71,13 @@ public partial class ChangePasswordUC : System.Web.UI.UserControl
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
+    protected void cusCustom_ServerValidate(object sender, ServerValidateEventArgs e)
+    {
+        if (e.Value.Equals(myIdentity.Password))
+            e.IsValid = true;
+        else
+            e.IsValid = false;
+    }
    
     #endregion
-
-
-
-
-
-
 }

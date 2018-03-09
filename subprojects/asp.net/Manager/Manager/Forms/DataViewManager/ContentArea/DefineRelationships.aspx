@@ -13,14 +13,6 @@
     position:relative;
 }
 
-#<%= this.SchemaDropDownList.ClientID %> {
-    margin-left: 22px;
-}
-
-#<%= this.InstanceDropDownList.ClientID %> {
-    margin-left: 2px;
-}
-
 </style>
 <iframe id="ParentDiv" class="BackgroundHidden" frameborder="0" scrolling="no"></iframe>
 <script language="javascript" type="text/javascript">
@@ -41,11 +33,13 @@
     function ConfirmCircularDependancy() {
         var val = document.getElementById('<%= this.CircularDependancyHidden.ClientID %>').value;
         if (val == "TRUE") {
-            alert('<%= Resources.Resource.ConfirmCircualrDependancyRelationship %>');
-            return false;
-        } else {
-            return true;
-        }
+            if (confirm('<%= Resources.Resource.ConfirmCircualrDependancyRelationship %>')) {
+                document.getElementById('<%= this.CircularDependancyHidden.ClientID %>').value = "FALSE"
+                return true;
+            }
+            else
+                return false;
+        }  
     }
 </script>
     <table width="100%" class="PagesContentTable">
@@ -88,13 +82,9 @@
                     <tr>
                         <td valign="top" style="width:315px" align="left">
                             <div class="markup">
-                                <div style="height:75px;" class="GroupingDiv">
+                                <div style="height:65px;" class="GroupingDiv">
                                     <div class="GroupingHeader"><%= Resources.Resource.SelectParentSchema_Label_Text %></div>
-                                    <div id="SchemaDiv" class="ItemDiv">
-                                        <label for="<%= this.InstanceDropDownList.ClientID %>"><%= Resources.Resource.Instance_Label_Text %>:</label> 
-                                        <asp:DropDownList ID="InstanceDropDownList" runat="server" AutoPostBack="true" CssClass="DropDownListsClass" onselectedindexchanged="InstanceDropDownList_SelectedIndexChanged"></asp:DropDownList>
-                                    </div>
-                                    <div id="SchemaDiv" class="ItemDiv">
+                                    <div id="SchemaDiv" class="ItemDiv">                                        
                                         <label for="<%= this.SchemaDropDownList.ClientID %>"><%= Resources.Resource.Schema_Label_Text %>:</label> 
                                         <asp:DropDownList ID="SchemaDropDownList" runat="server" CssClass="DropDownListsClass"></asp:DropDownList>
                                     </div>
@@ -172,7 +162,7 @@
         YAHOO.RelationshipsNS.LeftPanel.DataSource.responseSchema = { 
             fields : ['tablealias', 'tableschema', 'tableid', 'tablename', 'isbasetable']
         };
-        <%= this.GetTablesDataSource(this.InstanceDropDownList.SelectedValue + "." + this.SchemaDropDownList.SelectedValue) %>
+        <%= this.GetTablesDataSource(string.Empty) %>
         YAHOO.RelationshipsNS.LeftPanel.DataSource.doBeforeCallback = function (req,raw,res,cb) {
             // This is the filter function
             var data     = res.results || [],
@@ -349,9 +339,7 @@
         };
 
         YAHOO.RelationshipsNS.callServerCompleted = function(arg, context){ 
-            document.getElementById('<%= InvalidRelationshipsText.ClientID %>').style.display = 'none';
-            // Clean the last check result.
-            document.getElementById('<%= this.CircularDependancyHidden.ClientID %>').value="";
+            document.getElementById('<%= InvalidRelationshipsText.ClientID %>').style.display = 'none';            
 
             if(arg.indexOf('FilterSchema: ') != -1) 
             {
@@ -399,19 +387,8 @@
                 YAHOO.RelationshipsNS.RightPanel.DataSource.liveData = '';
                 YAHOO.RelationshipsNS.RightPanel.DataTable.set('MSG_EMPTY', '<%= Resources.Resource.SelectTable_Label_Text %>');
                 YAHOO.RelationshipsNS.RightPanel.RefreshTable('');
-                var instanceName = document.getElementById('<%= this.InstanceDropDownList.ClientID %>').value;
-                var schemaName = document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value;
-
-                YAHOO.RelationshipsNS.callServer('FilterSchema: ' + instanceName + '.' + schemaName, document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value);
-            });
-
-            YAHOO.util.Event.addListener('<%= this.InstanceDropDownList.ClientID %>', "change", function (args) {
-                YAHOO.RelationshipsNS.RightPanel.DataSource.liveData = '';
-                YAHOO.RelationshipsNS.RightPanel.DataTable.set('MSG_EMPTY', '<%= Resources.Resource.SelectTable_Label_Text %>');
-                YAHOO.RelationshipsNS.RightPanel.RefreshTable('');
-
-                document.getElementById('<%= this.SelectedTableIDHidden.ClientID %>').value = -1;
-                document.getElementById('<%= this.SelectedFieldIDHidden.ClientID %>').value = -1;
+                
+                 YAHOO.RelationshipsNS.callServer('FilterSchema: ' + document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value, document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value);
             });
 
             YAHOO.util.Event.addListener('<%= this.JoinTypesDropDown.ClientID %>', "change", function(args) {

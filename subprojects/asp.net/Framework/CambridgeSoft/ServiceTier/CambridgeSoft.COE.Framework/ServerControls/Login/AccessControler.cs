@@ -5,7 +5,7 @@ using CambridgeSoft.COE.Framework.COESecurityService;
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using System.Drawing;
-using System.Configuration;
+
 
 namespace CambridgeSoft.COE.Framework.ServerControls.Login
 {
@@ -396,35 +396,19 @@ namespace CambridgeSoft.COE.Framework.ServerControls.Login
                     if (!string.IsNullOrEmpty(sInputName))
                     {
                         DBMSTypeData dbmsd = ConfigurationUtilities.GetDBMSTypeData(DBMSType.ORACLE);
-                        //dbmsd.DataSource = sInputName;
+                        dbmsd.DataSource = sInputName;
                     }
                 }
                 else
                 {
 
-                    string proxyClass = @"Csla.DataPortalClient.WebServicesProxy";
-                    string proxyAssembly = @"Csla, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30";
-                    
-                    if (Convert.ToBoolean(ConfigurationManager.AppSettings["UseRemoting"]))
-                    {
-
-                        if (Convert.ToBoolean(ConfigurationManager.AppSettings["CompressRemotingData"]))
-                        {
-                            proxyClass = @"Csla.DataPortalClient.CompressedRemotingProxy";
-                            proxyAssembly = @"Csla.Compression, Version=2.1.1.0, Culture=neutral, PublicKeyToken=93be5fdc093e4c30";
-                        }
-                        else
-                        {
-                            proxyClass = @"Csla.DataPortalClient.RemotingProxy";
-                        }
-                    }
-
-                    String pProxyEntry = string.Format("{0}, {1}", proxyClass, proxyAssembly);
-                    
                     string sServerStr = string.Empty;
-                    sServerStr = MRUEntry.MakeURL(serverName, ssl);
-                    
-                    AppSettingsManager.Write(StringValueAttribute.GetstringValue(AccessControllerConstants.CSLADATAPORTALPROXY), pProxyEntry);
+                    if (ssl == true)
+                        sServerStr = MRUEntry.MakeSURL(serverName);
+                    else
+                        sServerStr = MRUEntry.MakeURL(serverName);
+
+                    AppSettingsManager.Write(StringValueAttribute.GetstringValue(AccessControllerConstants.CSLADATAPORTALPROXY), typeof(Csla.DataPortalClient.WebServicesProxy).AssemblyQualifiedName);
                     AppSettingsManager.Write(StringValueAttribute.GetstringValue(AccessControllerConstants.CSLADATAPORTALURL), sServerStr);
                 }
 

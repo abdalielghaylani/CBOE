@@ -345,21 +345,9 @@
 
         YAHOO.LookupsNS.tableSelected = function(tableRecord) {
             var tableId = tableRecord.getData('tableid');
-            // DAT-1590, select a existent lookup/set lookup and display, then change sort method, 
-            // fieldId and displayId will set to -1, but not the true value.
-            // add fieldId and display Id setting in table Record.
-            // If change sort method more then twice, fieldId and DisplayId will not in tableRecord.
-            // If fieldId and DisplayId is undefined, do not change the value of element.
-            var fieldId = tableRecord.getData('FieldID');
-            var displayId = tableRecord.getData('DisplayID');
-
             document.getElementById('<%= this.SelectedTableIDHidden.ClientID %>').value = tableId;
-            if (fieldId) {
-                document.getElementById('<%= this.SelectedFieldIDHidden.ClientID %>').value = fieldId;
-            }
-            if (displayId) {
-                document.getElementById('<%= this.SelectedDisplayFieldIDHidden.ClientID %>').value = displayId;
-            }
+             document.getElementById('<%= this.SelectedFieldIDHidden.ClientID %>').value='-1';
+            document.getElementById('<%= this.SelectedDisplayFieldIDHidden.ClientID %>').value='-1';
             YAHOO.LookupsNS.initializeEmptyMessages();
             YAHOO.LookupsNS.RightPanelTop.RefreshTable('');
             return true;
@@ -376,7 +364,7 @@
             var database = document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value;
             var tableRecord = YAHOO.LookupsNS.LeftPanel.DataTable.getRecord(YAHOO.LookupsNS.LeftPanel.DataTable.getSelectedRows()[0]);
             var field = fieldRecord.getData('fieldalias');
-            document.getElementById('<%= this.SelectedToFieldLabel.ClientID %>').innerHTML = tableRecord.getData('tableschema') + '.' + tableRecord.getData('tablealias') + '.' + field;
+             document.getElementById('<%= this.SelectedToFieldLabel.ClientID %>').innerHTML = database + '.' + tableRecord.getData('tablealias') + '.' + field;
             document.getElementById('<%= this.SelectedDisplayFieldIDHidden.ClientID %>').value = fieldId;
             return true;
         };

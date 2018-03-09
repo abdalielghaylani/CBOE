@@ -31,7 +31,7 @@ using CambridgeSoft.COE.Framework.Common.Validation;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
 using CambridgeSoft.COE.Registration.Access;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
-using ChemDrawControl15;
+using ChemDrawControl17;
 
 namespace CambridgeSoft.COE.Registration.Services.Types
 {
@@ -3289,12 +3289,9 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                     if (this._actionDuplicates == DuplicateAction.None && _registerCheckRedBoxWarning && !_isTemporal)      ////Jira ID: CBOE-1640 Added new check _isTemporal
                     {                        
                         IMatchResponse _matchResponse = RegistryDuplicateChecker.DupCheck(this);
-                        if (_matchResponse.MatchedItems.Count > 0)
+                        if (_matchResponse.MatchedItems.Count > 0 && this.HasDuplicatesFound)
                         {
-                            _foundDuplicates = _matchResponse.DuplicateXML;
-                        }
-                        if (this.HasDuplicatesFound)
-                        {
+                            _foundDuplicates = _matchResponse.DuplicateXML;                        
                             //No Action if duplicate found, but for getting the dalResponseMessage calling the InsertPerm() method.
                             //It will useful for set the log information with matched records.
                             InsertPerm();
@@ -3540,11 +3537,11 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 OnUpdating(this, new EventArgs());
 
                 if ((_isTemporal && !_submitCheckRedBoxWarning) || (!_isTemporal && !_registerCheckRedBoxWarning))
-                {                   
-                    if (_isTemporal)
+                {
+                    if (_isTemporal && !_noUpdateXml)
                     {
                         //JED: If the add-ins changed anything, we have to incorporate it into the object's XML
-                        if (!_noUpdateXml)
+                        //if (!_noUpdateXml)
                             UpdateXml();
 
                         this.RegDal.UpdateRegistryRecordTemporary(_xml, out _dalResponseXml);

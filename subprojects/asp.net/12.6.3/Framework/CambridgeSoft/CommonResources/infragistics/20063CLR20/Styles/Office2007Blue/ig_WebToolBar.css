@@ -1,0 +1,56 @@
+/* CSS Document */
+.igWebToolBarMainBlue2k7{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px; 
+	color: black;
+	background-image: url(WebToolBar/igWebToolBarBg2.jpg);
+	background-repeat: repeat-x;
+	background-color: #B3D4FF;
+	border-bottom: 1px solid #6F9DD9;
+	 height: 30px; 
+	/* padding-top: 1px;  */
+	
+}
+
+.igWebToolBarMainBlue2k7 input {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	/* padding-top: 2px;
+	padding-bottom: 2px; */
+/* 	height: 23px; */
+width: 40px;
+	border: 1px solid #FFFFFF;
+}
+
+.igWebToolBarNormalBlue2k7 {
+	width: 100px;
+	font-size: 11px;
+	padding-left: 2px;
+	height:30px; 
+	}
+
+.igWebToolBarHoverBlue2k7 {
+	font-size: 11px;
+	background-image: url(WebToolBar/igWebToolBarHover.jpg);
+	background-repeat: repeat-x;
+	background-color: #FFDB75;
+	border: 1px solid #FFBD69;
+	padding-left: 1px;
+	width: 99px;
+	/*  height: 23px;  */
+	
+
+}
+
+.igWebToolBarSelectedBlue2k7{
+
+	background-image: url(WebToolBar/igWebToolBarSelected.jpg);
+	background-repeat: repeat-x;
+	font-size: 11px;
+	padding-left: 1px;
+	border: 1px solid #FB8C3C;
+	background-color: #FFB85E;
+	width: 99px;
+	/* height: 23px; */
+}
+	

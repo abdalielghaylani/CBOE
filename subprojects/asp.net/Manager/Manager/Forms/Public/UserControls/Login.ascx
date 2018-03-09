@@ -17,10 +17,6 @@
             <div class="product">
             	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgLab.gif" alt="Desktop software" />
               <p><strong>Inventory Enterprise</strong>  is an application designed to manage the chemical and biological reagent tracking needs of laboratories and research centers in multiple contexts. </p>
-            </div>    
-            <div class="product">
-            	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgChem.gif" alt="Desktop software" />
-              <p><strong>Datalytix™ </strong> Datalytix™ enables self-service import of relevant data into TIBCO Spotfire® software from scientifically significant data sources. This empowers scientists to ask questions of their data as soon as they are realized, accelerating time to insight. </p>
             </div>
             <div class="product">
             	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgMi.gif" alt="Desktop software" />
@@ -29,10 +25,6 @@
             <div class="product">
             	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgKm.gif" alt="Desktop software" />
               <p><strong>E-Notebook</strong> provides a smooth, well-organized interface designed to replace paper laboratory notebooks.  </p>
-            </div>
-            <div class="product">
-            	<img src="../../../app_themes/<%="Login" + this.Page.StyleSheetTheme%>/images/bgBio.gif" alt="Desktop software" />
-              <p><strong>DataView Manager</strong> is an application designed to define your database schemas, tables and relationships that are made available for Datalytix users for searching purpose.  </p>
             </div>
             <div class="clear"></div>
             <br />

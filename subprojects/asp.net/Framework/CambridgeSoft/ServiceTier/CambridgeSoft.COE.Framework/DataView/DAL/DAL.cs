@@ -368,57 +368,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         }
 
         /// <summary>
-        /// Gets all the published dataview includes the public and all users' private dataview.
-        /// </summary>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal virtual SafeDataReader GetAllNoMasterIncludeAllPrivate()
-        {
-            string sql = "select dv1.* from " + Resources.CentralizedStorageDB + ".coedataview dv1 where dv1.Application IS NULL";
-
-            DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
-
-            SafeDataReader safeReader = null;
-            try
-            {
-                safeReader = new SafeDataReader(DALManager.ExecuteReader(dbCommand));
-            }
-            catch (Exception ex)
-            {
-                COEExceptionDispatcher.DispatchDALException(ex, dbCommand);
-            }
-
-            return safeReader;
-        }
-
-        /// <summary>
-        /// Gets all the published dataview includes the public, master dataview and all users' private dataview.
-        /// </summary>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal virtual SafeDataReader GetAllDataViewListIncludeMasterPrivate()
-        {
-            throw new Exception("not implemented");
-        }
-
-        /// <summary>
-        /// Gets all the published dataview which refered to the instance.
-        /// </summary>
-        /// <param name="instanceName">The data source name.</param>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal virtual SafeDataReader GetAllInstanceDataViewList(string instanceName) 
-        {
-            throw new NotImplementedException("Not implemented");
-        }
-
-        /// <summary>
-        /// Gets all the dataviews published from the primary data source.
-        /// </summary>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal virtual SafeDataReader GetAllPrimaryDataViewList()
-        {
-            throw new NotImplementedException("Not implemented");
-        }
-
-        /// <summary>
         /// Get all dataviews for a given application
         /// </summary>
         /// <param name="appName">The application name</param>

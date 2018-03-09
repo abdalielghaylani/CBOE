@@ -143,25 +143,11 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.Utils
                 throw new ArgumentException(@"field can't be null!", "field");
             }
 
-            // 1,Some DirectCartridge operators only support Molecule Object data field as input parameter
-            // This function will add convert operator if the given field is not in Molecule Object format
-            // 2,To support direct cartridge8.0, we do special process on data.
-            string fieldString = string.Empty;
-
-            if (COEDataView.MimeTypes.CHEMICAL_X_DATADIRECT_CTAB == field.MimeType)
-            {
-                fieldString = fullName;
-            }
-            else if (COEDataView.MimeTypes.CHEMICAL_X_SMILES == field.MimeType)
-            {
-                fieldString = string.Format("mol({0})", "'SMILES:'||" + "nvl(" + fullName + ",'*')");
-            }
-            else
-            {
-                fieldString = string.Format("mol({0})", fullName);
-            }
-
-            return fieldString;
+            // Some DirectCartridge operators only support Molecule Object data field as input parameter
+            // This function will add convert operator if the given field is not in Molecule Object format 
+            return COEDataView.MimeTypes.CHEMICAL_X_DATADIRECT_CTAB == field.MimeType
+                       ? fullName
+                       : string.Format("mol({0})", fullName);
         }
     }
 }

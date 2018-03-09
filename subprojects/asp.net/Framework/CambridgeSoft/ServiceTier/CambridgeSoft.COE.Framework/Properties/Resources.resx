@@ -215,13 +215,7 @@
   </data>
   <data name="COETempHitListTableName" xml:space="preserve">
     <value>COETEMPHITLIST</value>
-  </data>
-  <data name="COETempChildHitListIdTableName" xml:space="preserve">
-    <value>TEMPCHITLISTID</value>
-  </data>
-  <data name="COETempChildHitListTableName" xml:space="preserve">
-    <value>TEMPCHITLIST</value>
-  </data>
+  </data>  
   <data name="UnableToFindApplicationsInstance" xml:space="preserve">
     <value>The Application {0} was not found in the config file</value>
   </data>
@@ -296,16 +290,10 @@
   </data>
   <data name="CentralizedStorageDB" xml:space="preserve">
     <value>COEDB</value>
-  </data>
-  <data name="DatalytixDB" xml:space="preserve">
-    <value>COEUSER</value>
-  </data>
+  </data>  
   <data name="COEHitListIDSequence" xml:space="preserve">
     <value>COEHITLISTID_SEQ</value>
-  </data>
-  <data name="COEChildHitListIdSequence" xml:space="preserve">
-    <value>COECHILDHITLISTID_SEQ</value>
-  </data>
+  </data>  
   <data name="DefaultDateFormat" xml:space="preserve">
     <value>yyyy/MM/dd HH:mm:ss</value>
   </data>
@@ -701,29 +689,5 @@
   </data>
   <data name="ClientIdField" xml:space="preserve">
     <value>CLIENT_ID</value>
-  </data>
-  <data name="GeneratorData_CSORACLECARTRIDGE_CSCARTRIDGE" xml:space="preserve">
-    <value>CSCARTRIDGE</value>
-  </data>
-  <data name="GeneratorData_CSORACLECARTRIDGE_MolFileFormat" xml:space="preserve">
-    <value>V2000</value>
-  </data>
-  <data name="GeneratorData_CSORACLECARTRIDGE_NAME" xml:space="preserve">
-    <value>CSORACLECARTRIDGE</value>
-  </data>
-  <data name="GeneratorData_CSORACLECARTRIDGE_TempQueries" xml:space="preserve">
-    <value>TempQueries</value>
-  </data>
-  <data name="DataSourceExistsError" xml:space="preserve">
-    <value>Data source name already exists.</value>
-  </data>
-  <data name="ErrorRelationship_5" xml:space="preserve">
-    <value>Cross data source doesn't support lookup</value>
-  </data>
-  <data name="ErrorRelationship_6" xml:space="preserve">
-    <value>It does not support cascading lookup</value>
-  </data>
-  <data name="ErrorRelationship_7" xml:space="preserve">
-    <value>Relationship and lookup fields can not be the same ones</value>
-  </data>
+  </data>  
 </root>

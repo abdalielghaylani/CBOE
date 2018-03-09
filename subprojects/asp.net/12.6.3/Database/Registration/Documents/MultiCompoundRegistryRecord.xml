@@ -1,0 +1,533 @@
+<MultiCompoundRegistryRecord>
+	<ID/>
+	<DateCreated/>
+	<DateLastModified/>
+	<PersonCreated/>
+	<StructureAggregation/>
+	<RegNumber>
+		<RegID/>
+		<RootNumber/>
+		<SequenceNumber/>
+		<RegNumber/>
+		<Sequence>1</Sequence>
+	</RegNumber>
+	<IdentifierList>
+    </IdentifierList>
+	<PropertyList>
+		<Property name=""/>
+	</PropertyList>
+	<ProjectList>
+		<ProjectID lookupTable="Project" lookupField="ProjectID" displayField="Description" displayValue=""/>
+	</ProjectList>
+	<ComponentList>
+		<Component>
+			<ID/>
+			<ComponentIndex>0</ComponentIndex>
+			<Compound>
+				<CompoundID/>
+				<DateCreated/>
+				<PersonCreated/>
+				<PersonRegistered/>
+				<DateLastModified/>
+				<PropertyList>
+					<Property name="CN">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="CN must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="12"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="PATENT">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="PATENT must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="60"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="HISTORY">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="HISTORY must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="120"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="OCURR">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="OCURR must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="120"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="COMMENTS">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="COMMENTS must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="240"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="ENPRODUCTID">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="ENPRODUCTID must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="255"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="ARCTANDER">
+						<validationRuleList>
+							<validationRule validationRuleName="positiveInteger" errorMessage="ARCTANDER must be a positive integer"/>
+							<validationRule validationRuleName="textLength" errorMessage="ARCTANDER must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="8"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="FEMA">
+						<validationRuleList>
+							<validationRule validationRuleName="positiveInteger"/>
+						</validationRuleList>
+					</Property>
+					<Property name="COMPOUNDNAME">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="COMPOUNDNAME must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="200"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="STEREO">
+						<validationRuleList>
+							<validationRule validationRuleName="textLength" errorMessage="STEREO must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="255"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="EXACTMASS">
+						<validationRuleList>
+							<validationRule validationRuleName="double"/>
+							<validationRule validationRuleName="textLength" errorMessage="EXACTMASS must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="10"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+					<Property name="MSID">
+						<validationRuleList>
+							<validationRule validationRuleName="positiveInteger"/>
+							<validationRule validationRuleName="textLength" errorMessage="MSID must be between {1} and {2}">
+								<params>
+									<param name="min" value="0"/>
+									<param name="max" value="9"/>
+								</params>
+							</validationRule>
+						</validationRuleList>
+					</Property>
+				</PropertyList>
+				<RegNumber>
+					<RegID/>
+					<RootNumber/>
+					<SequenceNumber/>
+					<RegNumber/>
+					<Sequence>1</Sequence>
+				</RegNumber>
+				<BaseFragment>
+					<Structure>
+						<StructureID/>
+						<StrucureFormat/>
+						<Structure molWeight="" formula="">
+							<validationRuleList>
+								<validationRule validationRuleName="requiredField" errorMessage="STRUCTURE required"/>
+								<validationRule validationRuleName="onlyChemicalContentAllowed"/>
+							</validationRuleList>
+						</Structure>
+						<NormalizedStructure/>
+						<UseNormalization>T</UseNormalization>
+					</Structure>
+				</BaseFragment>
+				<FragmentList>
+				     <Fragment>
+						<CompoundFragmentID/>
+						<FragmentID/>
+						<Code/>
+						<Description/>
+						<DateCreated/>
+						<DateLastModified/>
+						<Structure>
+							<StructureID/>
+							<StructureFormat/>
+							<Structure molWeight="" formula="">
+								<ValidationRuleList>
+									<ValidationRule name="Required"/>
+									<ValidationRule name="OnlyChemicalContentAllowed"/>
+								</ValidationRuleList>
+							</Structure>
+						</Structure>
+					</Fragment>
+				</FragmentList>
+				<IdentifierList>
+        </IdentifierList>
+			</Compound>
+		</Component>
+	</ComponentList>
+	<BatchList>
+		<Batch>
+			<BatchID/>
+			<BatchNumber/>
+			<DateCreated/>
+			<PersonCreated/>
+			<PersonRegistered/>
+			<DateLastModified/>
+			<PropertyList>
+				<Property name="CO">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="CO must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="6"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="ITEMNUMBER">
+					<validationRuleList>
+						<validationRule validationRuleName="positiveInteger">
+							<validationRule validationRuleName="textLength" errorMessage="ITEMNUMBER must be between {1} and {2}">
+								<params>
+									<param name="min" value="1"/>
+									<param name="max" value="10"/>
+								</params>
+							</validationRule>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="NOTEBOOKREF">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="NOTEBOOKREF must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="120"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="PURITY">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="PURITY must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="255"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="OPTICALROTATION">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="OPTICALROTATION must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="255"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="REFRACTIONINDEX">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="REFRACTIONINDEX must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="255"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="NUMMS">
+					<validationRuleList>
+						<validationRule validationRuleName="positiveInteger"/>
+					</validationRuleList>
+				</Property>
+				<Property name="NUMANAL">
+					<validationRuleList>
+						<validationRule validationRuleName="positiveInteger"/>
+					</validationRuleList>
+				</Property>
+				<Property name="CHEMIST" lookupTable="CS_SECURITY.People" lookupField="Person_ID" displayField="User_ID" displayValue="">
+					<validationRuleList>
+						<params>
+							<validationRule validationRuleName="positiveInteger"/>
+							<validationRule validationRuleName="requiredField"/>
+						</params>
+					</validationRuleList>
+				</Property>
+				<Property name="WORKNUMBER">
+					<validationRuleList>
+						<validationRule validationRuleName="positiveInteger"/>
+					</validationRuleList>
+				</Property>
+				<Property name="REMARKS">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="REMARKS must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="COMMENTS">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="COMMENTS must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="DATEENTERED">
+					<validationRuleList>
+						<validationRule validationRuleName="date"/>
+					</validationRuleList>
+				</Property>
+				<Property name="DELIVERYDATE">
+					<validationRuleList>
+						<validationRule validationRuleName="date"/>
+					</validationRuleList>
+				</Property>
+				<Property name="MELTINGPOINT">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="MELTINGPOINT must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="BOILINGPOINT">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="BOILINGPOINT must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="DENSITY">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="DENSITY must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="POLARITY">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="POLARITY must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="SOLUBILITY">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="SOLUBILITY must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="200"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="RETENTIONINDEX">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="RETENTIONINDEX must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="MONOMERICCOMPOSITION">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="MONOMERICCOMPOSITION must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="DEGREEOFSUBSTITUTION">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="DEGREEOFSUBSTITUTION must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="RAMIFICATION">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="RAMIFICATION must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="60"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="FIRPROJECTID">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="FIRPROJECTID must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="300"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="STATUSID">1
+                                        <validationRuleList>
+						<validationRule validationRuleName="positiveInteger"/>
+					</validationRuleList>
+				</Property>
+				<Property name="MN">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="MN must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="255"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="MW">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="MW must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="255"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+				<Property name="SAMPLEID">
+					<validationRuleList>
+						<validationRule validationRuleName="textLength" errorMessage="SAMPLEID must be between {1} and {2}">
+							<params>
+								<param name="min" value="0"/>
+								<param name="max" value="50"/>
+							</params>
+						</validationRule>
+					</validationRuleList>
+				</Property>
+			</PropertyList>
+			<ProjectList>
+				<ProjectID lookupTable="Project" lookupField="ProjectID" displayField="Description" displayValue=""/>
+			</ProjectList>
+			<BatchComponentList>
+				<BatchComponent>
+					<ID/>
+					<BatchID/>
+					<CompoundID/>
+					<ComponentIndex/>
+					<PropertyList>
+						<Property name="LABEL">
+							<validationRuleList>
+								<validationRule validationRuleName="textLength" errorMessage="LABEL must be between {1} and {2}">
+									<params>
+										<param name="min" value="0"/>
+										<param name="max" value="10"/>
+									</params>
+								</validationRule>
+							</validationRuleList>
+						</Property>
+						<Property name="PERCENTAGE"/>
+						<Property name="RATIO">
+							<validationRuleList>
+								<validationRule validationRuleName="textLength" errorMessage="RATIO must be between {1} and {2}">
+									<params>
+										<param name="min" value="0"/>
+										<param name="max" value="10"/>
+									</params>
+								</validationRule>
+							</validationRuleList>
+						</Property>
+						<Property name="COMMENTS">
+							<validationRuleList>
+								<validationRule validationRuleName="textLength" errorMessage="COMMENTS must be between {1} and {2}">
+									<params>
+										<param name="min" value="0"/>
+										<param name="max" value="100"/>
+									</params>
+								</validationRule>
+							</validationRuleList>
+						</Property>
+					</PropertyList>
+					<BatchComponentFragmentList>
+						<BatchComponentFragment>
+							<FragmentID/>
+							<Equivalents/>
+						</BatchComponentFragment>	
+					</BatchComponentFragmentList>
+				</BatchComponent>
+			</BatchComponentList>
+		</Batch>
+	</BatchList>
+	<AddIns>
+		<AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=11.0.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.NormalizedStructureAddIn">
+			<Event eventName="Loaded" eventHandler="OnLoadedHandler"/>
+			<Event eventName="Updating" eventHandler="OnSavingHandler"/>
+			<Event eventName="Updated" eventHandler="OnLoadedHandler"/>
+			<Event eventName="Inserting" eventHandler="OnSavingHandler"/>
+			<AddInConfiguration>
+				<ScriptFile>C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\PythonScripts\parentscript.py</ScriptFile>
+				<PythonWebServiceURL>http://localhost/PyEngine/Service.asmx</PythonWebServiceURL>
+				<AditionalScriptPaths>
+					<Path>C:\Program Files\CambridgeSoft\Informatics2007\ChemOfficeEnterprise\PythonScripts\Input</Path>
+				</AditionalScriptPaths>
+			</AddInConfiguration>
+		</AddIn>
+		<AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=11.0.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.StructureAggregationAddIn">
+			<Event eventName="Loaded" eventHandler="OnInsertingHandler"/>
+			<Event eventName="Inserting" eventHandler="OnInsertingHandler"/>
+			<Event eventName="Updating" eventHandler="OnUpdatingHandler"/>
+			<AddInConfiguration>
+				<NumberOfColumns>4</NumberOfColumns>
+			</AddInConfiguration>
+		</AddIn>
+	</AddIns>
+</MultiCompoundRegistryRecord>

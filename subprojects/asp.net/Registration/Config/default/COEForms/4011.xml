@@ -3368,6 +3368,12 @@
                     <param name="decimalPart" value="2" />
                   </params>
                 </validationRule>
+		<validationRule validationRuleName="numericRange" errorMessage="Purity must be between 0 and 100" displayPosition="Top_Left">
+                  <params>
+                    <param name="min" value="0"/>
+                    <param name="max" value="100"/>
+                  </params>
+                </validationRule>
               </validationRuleList>
               <serverEvents />
               <clientEvents />

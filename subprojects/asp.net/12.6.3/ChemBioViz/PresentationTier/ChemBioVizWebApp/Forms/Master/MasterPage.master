@@ -1,0 +1,91 @@
+<%@ Master Language="C#" AutoEventWireup="true" Inherits="ChemBioVizMasterPage"
+    Codebehind="MasterPage.master.cs" %>
+<%@ Register Src="UserControls/Footer.ascx" TagName="Footer" TagPrefix="uc1" %>
+<%@ Register Src="UserControls/Header.ascx" TagName="Header" TagPrefix="uc2" %>
+<%@ Register Src="../Public/UserControls/ConfirmationArea.ascx" TagName="ConfirmationArea"
+    TagPrefix="uc3" %>
+<%@ Register Src="../Public/UserControls/ErrorArea.ascx" TagName="ErrorArea" TagPrefix="uc4" %>
+<%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
+<%@ Register TagPrefix="iglbar" Namespace="Infragistics.WebUI.UltraWebListbar" Assembly="Infragistics2.WebUI.UltraWebListbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <style type="text/css">
+        .Header {
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            height: 70px;
+        }
+        .Footer {
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            float:left;
+        }         
+    </style>
+    <style type="text/css" media="screen">
+        @import url(../../../App_Themes/HomeBlue/style.css);
+    </style>
+    <!--[if lt IE 7]><style type="text/css" media="screen">@import url(../../../App_Themes/HomeBlue/ie6.css);</style><![endif]-->
+    <!--[if IE 7]><style type="text/css" media="screen">@import url(../../../App_Themes/HomeBlue/ie7.css);</style><![endif]-->
+</head>
+<body runat="server" id="MainBody">
+    <form id="MainForm" runat="server">
+        <asp:HiddenField ID="LeftPanelStateHidden" Value="" runat="server" />
+        <div runat="server" id="HeaderRow" class="Header">
+            <uc2:Header ID="HeaderUserControl" runat="server"/>
+        </div>
+        <table style="border:1px solid Silver;">
+        <tr>
+            <td style="vertical-align:top;">
+            <div runat="server" id="LeftPanelContainer" class="LeftPanel">
+                <script type="text/javascript">
+                    function cancelPostback(listBar, item, igEvent)
+                    {
+                        igEvent.cancel = true;
+                    }
+                </script>
+                <img id="Panel" runat="server" onclick="toggleContainer();" class="Panel2Wide" alt="" />
+                <iglbar:UltraWebListbar ID="UltraWebListbarControl" runat="server" GroupExpandEffect="Slide" Width="100%" Height="500px"
+                    ViewType="Listbar" AllowGroupMoving="None" BorderStyle="None" ItemSelectionStyle="IconOnlySelection" MergeStyles="True" ItemIconStyle="Small">
+                    <DefaultItemHoverStyle BorderStyle="Outset" BorderWidth="1px">
+                        <Margin Left="0px" />
+                    </DefaultItemHoverStyle>
+                    <DefaultGroupButtonHoverStyle BackgroundImage="OrangeExplorer.gif">
+                    </DefaultGroupButtonHoverStyle>
+                    <DefaultItemStyle Cursor="Default" Font-Names="Verdana" Font-Size="13px">
+                        <Margin Left="1px" />
+                        <Padding Left="5px" />
+                    </DefaultItemStyle>
+                    <DefaultGroupStyle BackColor="WhiteSmoke" Cursor="Default" Width="100%">
+                    </DefaultGroupStyle>
+                    <ClientSideEvents HeaderClick="cancelPostback" HeaderDoubleClick="cancelPostback" />
+                    <DefaultItemSelectedStyle BorderStyle="Inset" BorderWidth="1px" Cursor="Default">
+                        <Margin Left="0px" />
+                    </DefaultItemSelectedStyle>
+                    <DefaultGroupButtonSelectedStyle BackColor="Silver" Cursor="Default" ForeColor="Black" Font-Bold="true" BackgroundImage="OrangeExplorer2.gif">
+                    </DefaultGroupButtonSelectedStyle>
+                    <DefaultGroupButtonStyle BackgroundImage="BlueExplorer.gif" Cursor="Hand" Font-Names="Verdana" ForeColor="Black"
+                        Font-Size="10pt" Height="24px">
+                        <Padding Left="3px" />
+                    </DefaultGroupButtonStyle>
+                </iglbar:UltraWebListbar>
+            </div>
+            </td>
+            <td style="vertical-align:top;">
+            <div runat="server" id="MainContent" class="MainContent">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server" />
+            </div>
+            </td>
+          </tr>
+        </table>
+        <div runat="server" id="FooterRow" class="Footer">
+            <uc1:Footer ID="FooterUserControl" runat="server" />
+        </div>
+    </form>
+</body>
+</html>

@@ -138,15 +138,6 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships {
     protected global::System.Web.UI.WebControls.Label SelectedToFieldLabel;
     
     /// <summary>
-    /// InstanceDropDownList control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.DropDownList InstanceDropDownList;
-    
-    /// <summary>
     /// SchemaDropDownList control.
     /// </summary>
     /// <remarks>

@@ -2,14 +2,12 @@ using System;
 using System.Xml;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 using CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData.Graphs;
 using CambridgeSoft.COE.Framework.Common.SqlGenerator.Utils;
 using CambridgeSoft.COE.Framework.Properties;
 using CambridgeSoft.COE.Framework.Types.Exceptions;
 using CambridgeSoft.COE.Framework.Caching;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
 
 
 
@@ -158,7 +156,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData
             {
                 table.TableName = dvtbl.Name;
                 table.Alias = dvtbl.Alias;
-                table.Database = GetDatabaseOwnerByAlias(dvtbl.Database);
+                table.Database = dvtbl.Database;
                 table.TableId = dvtbl.Id;
                 return table;
             }
@@ -240,47 +238,19 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData
         }
 
         /// <summary>
-        /// Get database owner(schema) name by alias name. Alias is the name used in config file.
-        /// </summary>
-        /// <param name="alias"> database alias name </param>
-        /// <returns>database schema name </returns>
-        private static string GetDatabaseOwnerByAlias(string alias)
-        {
-            return string.IsNullOrEmpty(alias) ? string.Empty : ConfigurationUtilities.GetDatabaseData(alias).Owner;
-        }
-
-
-        /// <summary>
         /// Gets all the relation needed to access a parent table from a child. It is the shortest path between them.
         /// </summary>
         /// <param name="parentTableIndex">The parent table id in the xml.</param>
         /// <param name="childTableIndex">the child table id in the xml.</param>
         /// <returns>A List&lt;Relation&gt; with the relationships between two tables.</returns>
-        public List<Relation> GetRelations(int parentTableIndex, int childTableIndex, bool restrictParentChildDirection=false)
+        public List<Relation> GetRelations(int parentTableIndex, int childTableIndex)
         {
             List<Relation> result = databaseRelations.GetPath(parentTableIndex, childTableIndex);
 
             foreach (Relation currentRelation in result)
-            {
-                if (restrictParentChildDirection)
-                { 
-                    var relation = this.coeDataView.Relationships.FirstOrDefault(r => r.ParentKey == currentRelation.Parent.FieldId && r.ChildKey == currentRelation.Child.FieldId);
-
-                    if (relation != null)
-                    {
-                        currentRelation.Parent = this.GetField(currentRelation.Parent.FieldId, relation.Parent);
-                        currentRelation.Child = this.GetField(currentRelation.Child.FieldId, relation.Child);
-                    }
-                    else
-                    {
-                        throw new SQLGeneratorException(string.Format("Invalid relationship in dataview.  ParentKey {0} and ChildKey {1} not found in dataview.", currentRelation.Parent.FieldId, currentRelation.Child.FieldId));
-                    }
-                }
-                else
-                { 
+            {               
                      currentRelation.Parent = this.GetField(currentRelation.Parent.FieldId);
-                     currentRelation.Child = this.GetField(currentRelation.Child.FieldId); 
-                }
+                     currentRelation.Child = this.GetField(currentRelation.Child.FieldId);                
 
                 if ((Table)currentRelation.Child.Table == this.GetTable(this.GetBaseTableId()))
                     currentRelation.LeftJoin = true;
@@ -359,7 +329,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData
         /// <param name="fld">The COEDataView field</param>
         /// <param name="parentTbl">The parent table of the COEDataView field</param>
         /// <returns>The SQLGenerator.MetaDatadata Field.</returns>
-        public static Field GetField(COEDataView.Field fld, COEDataView.DataViewTable parentTbl)
+        public Field GetField(COEDataView.Field fld, COEDataView.DataViewTable parentTbl)
         {
 
             Field resultField = new Field();
@@ -368,13 +338,11 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData
             resultField.FieldType = TypesConversor.GetType(fld.DataType.ToString());
             resultField.MimeType = fld.MimeType;
 
-            Table resultTable = new Table
-                                    {
-                                        TableId = parentTbl.Id,
-                                        Alias = parentTbl.Alias,
-                                        Database = GetDatabaseOwnerByAlias(parentTbl.Database),
-                                        TableName = parentTbl.Name
-                                    };
+            Table resultTable = new Table();
+            resultTable.TableId = parentTbl.Id;
+            resultTable.Alias = parentTbl.Alias;
+            resultTable.Database = parentTbl.Database;
+            resultTable.TableName = parentTbl.Name;
 
             resultField.Table = resultTable;
             return resultField;
@@ -399,7 +367,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData
                     resultTable.TableId = fld.ParentTableId;
                     COEDataView.DataViewTable tbl = this.coeDataView.Tables.getById(fld.ParentTableId);
                     resultTable.Alias = tbl.Alias;
-                    resultTable.Database = GetDatabaseOwnerByAlias(tbl.Database);
+                    resultTable.Database = tbl.Database;
                     resultTable.TableName = tbl.Name;
                 }
                 else

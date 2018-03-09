@@ -80,7 +80,7 @@ public partial class SchemaSummary : System.Web.UI.UserControl
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
-    public string GetPkDataSource(string database, string instanceName)
+    public string GetPkDataSource(string database)
     {
         if (this.DataViewBO == null)
             return string.Empty;
@@ -91,9 +91,6 @@ public partial class SchemaSummary : System.Web.UI.UserControl
             {
                 database = this.DatabaseName;
             }
-
-            database = Utilities.GetQualifyInstaceSchemaName(instanceName, database);
-
             string result = "YAHOO.DataviewBoardNS.SchemaSummary.PkDataSource.liveData = [";
             foreach (TableBO currentTable in this.DataViewBO.DataViewManager.Tables)
             {
@@ -117,7 +114,7 @@ public partial class SchemaSummary : System.Web.UI.UserControl
         return string.Empty;
     }
 
-    public string GetRelDataSource(string database, string instanceName)
+    public string GetRelDataSource(string database)
     {
         if (this.DataViewBO == null)
             return string.Empty;
@@ -128,9 +125,6 @@ public partial class SchemaSummary : System.Web.UI.UserControl
             {
                 database = this.DatabaseName;
             }
-
-            database = Utilities.GetQualifyInstaceSchemaName(instanceName, database);
-
             string result = "YAHOO.DataviewBoardNS.SchemaSummary.RelDataSource.liveData = [";
             foreach (TableBO currentTable in this.DataViewBO.DataViewManager.Tables)
             {
@@ -160,7 +154,7 @@ public partial class SchemaSummary : System.Web.UI.UserControl
         return string.Empty;
     }
 
-    public string GetLookupDataSource(string database, string instanceName)
+    public string GetLookupDataSource(string database)
     {
         if (this.DataViewBO == null)
             return string.Empty;
@@ -171,9 +165,6 @@ public partial class SchemaSummary : System.Web.UI.UserControl
             {
                 database = this.DatabaseName;
             }
-
-            database = Utilities.GetQualifyInstaceSchemaName(instanceName, database);
-
             string result = "YAHOO.DataviewBoardNS.SchemaSummary.LookupDataSource.liveData = [";
             foreach (TableBO currentTable in this.DataViewBO.DataViewManager.Tables)
             {
@@ -209,7 +200,6 @@ public partial class SchemaSummary : System.Web.UI.UserControl
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         this.SchemaNameTextBox.Text = this.DatabaseName = databaseName;
-        this.Page.ClientScript.RegisterStartupScript(this.Page.GetType(), "", "SetSchemaName('" + databaseName + "');", true);
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
     #endregion

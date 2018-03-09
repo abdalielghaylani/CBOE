@@ -1,16 +1,20 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data;
-using System.Linq;
-using System.Reflection;
+using System.Configuration;
+using System.Collections;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI;
-
-using CambridgeSoft.COE.Framework.COEConfigurationService;
-using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
 using CambridgeSoft.COE.Framework.COEDataViewService;
-using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.GUIShell;
+using System.Reflection;
+using System.Collections.Generic;
+using CambridgeSoft.COE.Framework.Common;
+using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
+using System.Text;
 
 namespace Manager.Forms.DataViewManager.UserControls
 {
@@ -94,24 +98,7 @@ namespace Manager.Forms.DataViewManager.UserControls
             ((GUIShellMaster)this.Page.Master).SetDefaultFocus(this.SchemaDropDownList.ClientID);
             this.SelectTableLabel.Text = Resources.Resource.TablesSelectedInDataView_Label_Text;
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-        }
-
-        protected void InstanceDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var schemas = this.GetSchemas(this.InstanceDropDownList.SelectedValue);
-
-            this.SchemaDropDownList.DataSource = schemas;
-            this.SchemaDropDownList.DataBind();
-
-            if (schemas != null && schemas.Count > 0)
-            {
-                this.SchemaDropDownList.SelectedValue = schemas[0];
-            }
-
-            this.SchemaSelected = this.InstanceDropDownList.SelectedValue + "." + this.SchemaDropDownList.SelectedValue;
-
-            this.Bind();
-        }
+        }        
 
         #endregion
 
@@ -146,10 +133,8 @@ namespace Manager.Forms.DataViewManager.UserControls
             this.SourceDataview = null;
         }
 
-        private List<string> GetSchemas(string instanceName)
-        {
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-            bool isMain = string.IsNullOrWhiteSpace(instanceName) || instanceName.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase);
+        private List<string> GetSchemas()
+        {            
             List<string> schemas = new List<string>();
             //Coverity Fixes: CBOE-313
             DataTable dataTable = this.SourceDVTables;
@@ -162,12 +147,7 @@ namespace Manager.Forms.DataViewManager.UserControls
                 }
             }
 
-            var instanceSchemas = isMain ? schemas.Where(t => !t.Contains(".")).ToList() :
-                schemas.Where(t => t.StartsWith(instanceName + ".", StringComparison.InvariantCultureIgnoreCase))
-                        .Select(t => t.Split(new char[] { '.' })[1])
-                        .ToList();
-
-            return instanceSchemas;
+            return schemas;
         }
 
         private void AddSelectedTable(string database, string table)
@@ -215,9 +195,7 @@ namespace Manager.Forms.DataViewManager.UserControls
                         }
                     }
 
-                    // Since DVM support adding one table more than 1 time, we have to regenerate ID to prevent conflict
                     dv.DataViewManager.Tables.RegenerateIds(masterTable);
-
                     TableBO newTable = TableBO.NewTable(masterTable); //cleans dictionaries and garbage.
                     int i = 0;
                     while (dv.DataViewManager.Tables.Contains(newTable))
@@ -361,77 +339,17 @@ namespace Manager.Forms.DataViewManager.UserControls
         {
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
             COEDataViewBO dv = this.CurrentDataview;
-            // For the first initialization, bind the first table of dataview.
-            this.InitializeSourceData(string.Empty, string.Empty);
-
-            string instanceName=string.Empty;
-            string schemaName = string.Empty;
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
-            Utilities.AnalyseInstanceSchema(this.SchemaSelected, ref instanceName, ref schemaName);
-
-            instanceName = string.IsNullOrEmpty(instanceName) ? mainInstance.Name : instanceName;
-            schemaName = string.IsNullOrEmpty(schemaName) ? dv.DataViewManager.DataBase : schemaName;
-
-            BindInstances(instanceName);
-            BindSchemas(schemaName);
+            this.InitializeSourceData(string.Empty);
+            this.SchemaDropDownList.DataSource = this.GetSchemas();
+            this.SchemaDropDownList.DataBind();
+            this.SchemaDropDownList.SelectedValue = string.IsNullOrEmpty(this.SchemaSelected) ? dv.DataViewManager.DataBase : this.SchemaSelected;
                         
             Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-        }
+        }       
 
-        private void BindInstances(string instanceName)
+        public string GetMasterTablesDataSource(string schema)
         {
-            if (this.InstanceDropDownList.Items == null || this.InstanceDropDownList.Items.Count == 0)
-            {
-                var instances = new List<string>();
-                InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-                DataTable dataTable = this.SourceDVTables;
-
-                if (dataTable != null)
-                {
-                    foreach (DataRow row in dataTable.Rows)
-                    {
-                        string instance = row["TableDB"].ToString().Contains(".") ? row["TableDB"].ToString().Substring(0,row["TableDB"].ToString().IndexOf(".")) : mainInstance.Name;
-
-                        if (!instances.Contains(instance))
-                        {
-                            instances.Add(instance);
-                        }
-                    }
-                }
-
-                this.InstanceDropDownList.DataSource = instances;
-                this.InstanceDropDownList.DataBind();
-
-                if (instances != null && instances.Contains(instanceName))
-                {
-                    this.InstanceDropDownList.SelectedValue = instanceName;
-                }
-            }
-        }
-
-        private void BindSchemas(string schemaName)
-        {
-            if (!string.IsNullOrEmpty(schemaName))
-            {
-                var instanceSchams = this.GetSchemas(this.InstanceDropDownList.SelectedValue);
-                this.SchemaDropDownList.DataSource = instanceSchams;
-                this.SchemaDropDownList.DataBind();
-
-                if (instanceSchams != null && instanceSchams.Contains(schemaName))
-                {
-                    this.SchemaDropDownList.SelectedValue = schemaName;
-                }
-            }
-        }
-
-        public string GetMasterTablesDataSource(string instanceName, string ownerName)
-        {
-            InitializeSourceData(instanceName, ownerName);
-
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-            var isMainInstance = string.IsNullOrWhiteSpace(instanceName) || instanceName.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase);
-            var qualifyInstanceName = isMainInstance ? ownerName : instanceName + "." + ownerName;
+            InitializeSourceData(schema);
             //Coverity Fixes: CBOE-313
             DataTable dataTable = this.SourceDVTables;
             if (dataTable != null && dataTable.Rows.Count > 0)
@@ -440,7 +358,7 @@ namespace Manager.Forms.DataViewManager.UserControls
                 foreach (DataRow table in dataTable.Rows)
                 {
                     string dbName = dataTable.Columns.Contains("TableDB") ? table["TableDB"].ToString() : string.Empty;
-                    if (!string.IsNullOrEmpty(dbName) && dbName.Equals(qualifyInstanceName, StringComparison.InvariantCultureIgnoreCase))
+                    if (!string.IsNullOrEmpty(dbName) && dbName == schema)
                     {
                         string tableAlias = dataTable.Columns.Contains("TableAlias") ? table["TableAlias"].ToString() : string.Empty;
 
@@ -511,44 +429,28 @@ namespace Manager.Forms.DataViewManager.UserControls
             return string.Empty;
         }
 
-        private void InitializeSourceData(string instanceName, string ownerName)
+        private void InitializeSourceData(string schema)
         {
             if (this.IsMasterDV)
             {
-                if (string.IsNullOrEmpty(ownerName))
+                if (string.IsNullOrEmpty(schema))
                 {
                     if (this.CurrentDataview.DataViewManager.Tables.Count > 0)
-                    {
-                        ownerName = this.CurrentDataview.DataViewManager.Tables[0].Schema;
-                        instanceName = this.CurrentDataview.DataViewManager.Tables[0].InstanceName;
-                    }
+                        schema = this.CurrentDataview.DataViewManager.Tables[0].DataBase;
                     else
                     {
-                        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-                        COEDatabaseBOList list = COEDatabaseBOList.GetList(true, mainInstance.Name);
+                        COEDatabaseBOList list = COEDatabaseBOList.GetList(true);
                         if (list != null && list.Count > 0)
                         {
-                            ownerName = list[0].Owner;
-                            instanceName = list[0].Instance;
+                            schema = list[0].Name;
                         }
                     }
                 }
-
-                if (!string.IsNullOrWhiteSpace(ownerName))
+                if (!string.IsNullOrEmpty(schema))
                 {
-                    string instanceSchema = Utilities.GetQualifyInstaceSchemaName(instanceName, ownerName);
-                    COEDataView dv = this.GetDatabaseBO(instanceSchema).COEDataView;
-
-                    if (dv != null)
-                    {
-                        this.SourceDataview = COEDataViewBO.New(dv.Name, dv.Description, dv, null);
-                        this.SourceDVTables = GetPublishedTables();
-                    }
-                    else
-                    {
-                        this.SourceDataview = COEDataViewBO.GetMasterSchema();
-                        this.SourceDVTables = COEDataViewAsDataSet.GetMasterTables().Tables[0];
-                    }
+                    COEDataView dv = COEDatabaseBO.Get(schema).COEDataView;
+                    this.SourceDataview = COEDataViewBO.New(dv.Name, dv.Description, dv, null);
+                    this.SourceDVTables = COEDataViewAsDataSet.GetPublishedTables().Tables[0];
                 }
             }
             else
@@ -572,106 +474,19 @@ namespace Manager.Forms.DataViewManager.UserControls
             {
                 string[] dbAndTable = eventArgument.Replace("AddTable: ", string.Empty).Split('.');
 
-                // The parameter format is "InstanceName.DbName.TableName". If instance is MAIN, format is DbName.TableName.
-                // So need to check how length of the array. 
-                string instanceDb = dbAndTable.Length == 3 ? dbAndTable[0] + "." + dbAndTable[1] : dbAndTable[0];
-                string schemaName = dbAndTable.Length == 3 ? dbAndTable[2] : dbAndTable[1];
-
-                this.AddSelectedTable(instanceDb, schemaName);
+                this.AddSelectedTable(dbAndTable[0], dbAndTable[1]);
                 this.result = "AddTable: " + this.LastAddedTable;
             }
             else if (eventArgument.StartsWith("RemoveTable: "))
             {
-                string[] dbAndTable = eventArgument.Replace("RemoveTable: ", string.Empty).Split('.');
-
-                // The parameter format is "InstanceName.DbName.TableName". If instance is MAIN, format is DbName.TableName.
-                // So need to check how length of the array. 
-                string instanceDb = dbAndTable.Length == 3 ? dbAndTable[0] + "." + dbAndTable[1] : dbAndTable[0];
-                string schemaName = dbAndTable.Length == 3 ? dbAndTable[2] : dbAndTable[1];
-
-                this.result = "RemoveTable: " + this.RemoveSelectedTable(instanceDb, schemaName);
+                string[] args = eventArgument.Replace("RemoveTable: ", string.Empty).Split('.');
+                this.result = "RemoveTable: " + this.RemoveSelectedTable(args[0], args[1]);
             }
             else if (eventArgument.StartsWith("FilterSchema: "))
             {
-                string[] instanceSchema = eventArgument.Replace("FilterSchema: ", string.Empty).Split('.');
-
-                result = "FilterSchema: " + this.GetMasterTablesDataSource(instanceSchema[0], instanceSchema[1]);
+                result = "FilterSchema: " + this.GetMasterTablesDataSource(eventArgument.Replace("FilterSchema: ", string.Empty)); ;
             }
-        }
-
-        /// <summary>
-        /// Gets the published database. It will try to find it from session, if not found try to get it from database.
-        /// </summary>
-        /// <param name="databaseName">The database name which have the instance and schema name combined.</param>
-        /// <returns>
-        /// The database BO will be returned.
-        /// </returns>
-        private COEDatabaseBO GetDatabaseBO(string databaseName)
-        {
-            // Publish the schemas.
-            var schemasOnPublishing = Session[Constants.COESchemasOnPublishing] as Dictionary<string, COEDatabaseBO>;
-
-            if (schemasOnPublishing != null && schemasOnPublishing.ContainsKey(databaseName.ToUpper()))
-            {
-                return schemasOnPublishing[databaseName.ToUpper()];
-            }
-
-            return COEDatabaseBO.Get(databaseName.ToUpper());
-        }
-
-        private DataTable GetPublishedTables()
-        {
-            // Gets all published tables from database.
-            var publishedTables = COEDataViewAsDataSet.GetPublishedTables().Tables[0];
-            
-
-            // Filter out the ones which on removing.
-            var validTables = new DataTable();
-            
-            foreach(DataColumn col in publishedTables.Columns)
-            {
-                validTables.Columns.Add(col.ColumnName);
-            }            
-
-            // Unpublish the schemas.
-            var schemasOnRemoving = Session[Constants.COESchemasOnRemoving] as Collection<string>;
-
-            // Filter out the tables which on removing.
-            foreach (DataRow row in publishedTables.Rows)
-            {
-                if (schemasOnRemoving != null && schemasOnRemoving.Contains(row["TableDB"].ToString().ToUpper()))
-                {
-                    continue;
-                }
-
-                validTables.Rows.Add(row.ItemArray);
-            }
-            
-            // Publish the schemas.
-            var schemasOnPublishing = Session[Constants.COESchemasOnPublishing] as Dictionary<string, COEDatabaseBO>;
-
-            if (schemasOnPublishing != null)
-            {
-                foreach (var kv in schemasOnPublishing)
-                {
-                    foreach (var table in kv.Value.COEDataView.Tables)
-                    {
-                        var newRow = validTables.NewRow();
-                        newRow["DVID"] = 0;
-                        newRow["TableId"] = table.Id;
-                        newRow["TableName"] = table.Name;
-                        newRow["TableAlias"] = table.Alias;
-                        newRow["TableDB"] = table.Database;
-                        newRow["TablePK"] = table.PrimaryKey;
-                        newRow["IsView"] = table.IsView;
-
-                        validTables.Rows.Add(newRow.ItemArray);
-                    }
-                }
-            }
-
-            return validTables;
-        }
+        }       
 
         #endregion
     }

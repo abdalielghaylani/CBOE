@@ -14,7 +14,6 @@ using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
 using System.Xml;
 using CambridgeSoft.COE.Framework.Caching;
 using System.Linq;
-
 namespace CambridgeSoft.COE.Framework.COEDataViewService
 {
     [Serializable()]
@@ -37,13 +36,11 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         private COEDataViewManagerBO _dataViewManager = null;
         private bool _saveFromDataViewManager = false;
 
-        // COEDB DAL
+        //variables data access
         [NonSerialized]
         private DAL _coeDAL = null;
-        // Instance global DAL
         [NonSerialized]
-        private DAL _instanceDAL = null;
-
+        private DALFactory _dalFactory = new DALFactory();
         private string _serviceName = "COEDataView";
 
         [NonSerialized]
@@ -202,6 +199,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             }
             set
             {
+
                 if (!_isPublic.Equals(value))
                 {
                     _isPublic = value;
@@ -237,6 +235,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             }
             set
             {
+
                 if (!_formGroup.Equals(value))
                 {
                     _formGroup = value;
@@ -460,6 +459,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             _application = application;
         }
 
+
         internal COEDataViewBO(COEDataView coeDataView)
         {
             _coeDataView = coeDataView;
@@ -505,37 +505,41 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         #region Factory Methods
 
         //this method must be called prior to any other method inorder to set the database that the dal will use
-        //internal static void SetDatabaseName()
-        //{
-        //    COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
-        //}
+        internal static void SetDatabaseName()
+        {
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
+        }
 
-        //internal static void SetDatabaseName(string databaseName)
-        //{
-        //    COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
-        //}
 
+        internal static void SetDatabaseName(string databaseName)
+        {
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
+
+        }
         public static COEDataViewBO New()
         {
-            // SetDatabaseName();
+
+            SetDatabaseName();
             if (!CanAddObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " COEDataViewBO");
 
             return DataPortal.Create<COEDataViewBO>(new CreateNewCriteria());
         }
 
+
         public static COEDataViewBO New(string name, string description, COEDataView dataView, COEAccessRightsBO COEAccessRights)
         {
-            // SetDatabaseName();
+            SetDatabaseName();
             if (!CanAddObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " COEDataViewBO");
 
             return DataPortal.Create<COEDataViewBO>(new CreateBasedOnCriteria(name, description, dataView, dataView.Database, COEAccessRights, string.Empty));
+
         }
 
         public static COEDataViewBO New(string name, string description, COEDataView dataView, COEAccessRightsBO COEAccessRights, string application)
         {
-            // SetDatabaseName();
+            SetDatabaseName();
             if (!CanAddObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " COEDataViewBO");
 
@@ -551,7 +555,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         /// <returns></returns>
         public static COEDataViewBO Clone(int id, string name, string description)
         {
-            // SetDatabaseName();
+            SetDatabaseName();
             if (!CanAddObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " COEDataViewBO");
             COEDataViewBO retVal = DataPortal.Fetch<COEDataViewBO>(new CloneCriteria(id, name, description, string.Empty));
@@ -569,7 +573,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         /// <returns></returns>
         public static COEDataViewBO Clone(int id, string name, string description, string application)
         {
-            // SetDatabaseName();
+            SetDatabaseName();
             if (!CanAddObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " COEDataViewBO");
             COEDataViewBO retVal = DataPortal.Fetch<COEDataViewBO>(new CloneCriteria(id, name, description, application));
@@ -595,10 +599,11 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             return retVal;
         }
 
+
         public static COEDataViewBO Get(int id)
         {
             string idString = id.ToString();
-            // SetDatabaseName();
+            SetDatabaseName();
             COEDataViewBO result = null;
             if (!CanGetObject(id))
                 throw new System.Security.SecurityException(Resources.DataViewPermissions);
@@ -682,6 +687,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             if (includeAccessRights)
             {
                 result.COEAccessRights = COEAccessRightsBO.Get(COEAccessRightsBO.ObjectTypes.COEDATAVIEW, id);
+
             }
 
             return result;
@@ -711,9 +717,10 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         public static void Delete(int id)
         {
-            // SetDatabaseName();
+            SetDatabaseName();
             if (!CanDeleteObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForDeleteObject + " COEDataViewBO");
+
 
             switch (CacheConfig.Cache)
             {
@@ -741,7 +748,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         public override COEDataViewBO Save()
         {
-            // SetDatabaseName();
+            SetDatabaseName();
             if (IsDeleted && !CanDeleteObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForDeleteObject + " COEDataViewBO");
             else if (IsNew && !CanAddObject())
@@ -754,9 +761,9 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         public COEDataViewBO SaveFromDataViewManager()
         {
             _saveFromDataViewManager = true;
-            if ((GetMasterSchema().DataViewManager == null && _id == 0) || _id == -1) //TODO: Avoid harcoded 0 - Master Schema.
+            if (GetMasterSchema().DataViewManager == null && _id == 0) //TODO: Avoid harcoded 0 - Master Schema.
                 this.MarkNew();
-            // SetDatabaseName();
+            SetDatabaseName();
             if (IsDeleted && !CanDeleteObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForDeleteObject + " COEDataViewBO");
             else if (IsNew && !CanAddObject())
@@ -764,27 +771,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             else if (!CanEditObject())
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForEditObject + " COEDataViewBO");
 
-            UpdateHitListDataTypeFromMaster();
             EncodeFields();
             return base.Save();
-        }
-
-        private void UpdateHitListDataTypeFromMaster()
-        {
-            if (_id != 0 && !IsNew) // Master won't update, because it is already updated from refresh schema and new dataview also won't update
-            {
-                var master = GetMasterSchema().DataViewManager;
-                foreach (var item in this.DataViewManager.Tables)
-                {
-                    // Update hitlist data type from mast schema except self is master.
-                    // We can't use ID to get table from master dataview since the table ID maybe different.
-                    var masterTable = master.Tables.GetTable(item.Name, item.DataBase);
-                    if (masterTable != null)
-                    {
-                        item.HitListDataType = masterTable.HitListDataType;
-                    }
-                }
-            }
         }
 
         /// <summary>
@@ -805,6 +793,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                         if (fldItem != null)
                         {
                             fldItem.Alias = System.Web.HttpUtility.HtmlEncode(fldItem.Alias);
+
                         }
                     }
                 }
@@ -874,6 +863,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         [Serializable()]
         private class Criteria
         {
+
             internal int _id;
             internal bool _includeAccessRights;
 
@@ -888,11 +878,11 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         [Serializable()]
         protected class CreateNewCriteria
         {
+
             public CreateNewCriteria()
             {
             }
         }
-
         [Serializable()]
         private class CloneCriteria
         {
@@ -900,7 +890,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             internal string _name = String.Empty;
             internal string _description = String.Empty;
             internal string _application = String.Empty;
-
             public CloneCriteria(int id, string name, string description, string application)
             {
                 _id = id;
@@ -919,7 +908,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             internal string _application = String.Empty;
             internal COEDataView _dataView = null;
             internal COEAccessRightsBO _coeAccessRights;
-
             public CreateBasedOnCriteria(string name, string description, COEDataView dataView, string database, COEAccessRightsBO coeAccessRights, string application)
             {
                 if (!string.IsNullOrEmpty(name))
@@ -972,8 +960,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         /// <returns>success of index creation</returns>
         public Boolean CreateIndex(string DataBaseName, string TableName, string FieldName)
         {
-            // SetDatabaseName();
-            // if (_coeDAL == null) { LoadDAL(); }
+            SetDatabaseName();
+            if (_coeDAL == null) { LoadDAL(); }
             return COEDatabaseBO.CreateIndex(DataBaseName, TableName, FieldName);
         }
 
@@ -1008,10 +996,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             }
             else
             {
-                if (_coeDAL == null)
-                {
-                    _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-                }
+                if (_coeDAL == null) { LoadDAL(); }
                 // Coverity Fix CID - 11485
                 if (_coeDAL != null)
                 {
@@ -1030,10 +1015,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         private void DataPortal_Fetch(CloneCriteria criteria)
         {
             _coeLog.LogStart("Fetching Dataview", 1);
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+            if (_coeDAL == null) { LoadDAL(); }
 
             // Coverity Fix CID - 11484 
             if (_coeDAL != null)
@@ -1076,7 +1058,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 _userName = dr.GetString("USER_ID");
                 _formGroup = dr.GetInt32("FORMGROUP");
                 _application = dr.GetString("APPLICATION");
-
                 try
                 {
                     _coeDataView = (COEDataView)COEDataViewUtilities.DeserializeCOEDataView(dr.GetString("COEDATAVIEW"));
@@ -1107,9 +1088,9 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 // _coeAccessRights
 
             }
-
             this.MarkClean();
             this.MarkOld();
+
 
             if (CacheConfig.Cache == CacheType.ServerCache || CacheConfig.Cache == CacheType.ServerAndClientCache)
             {
@@ -1120,6 +1101,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 // So, local cache is used.
                 //LocalCache.Add(this.ID.ToString(), this.GetType(), this, CacheConfig.AbsoluteExpiration, CacheConfig.SlidingExpiration, CacheConfig.DefaultPriority);
                 LocalCache.Add(this.ID.ToString(), this.GetType(), this, CacheConfig.AbsoluteExpiration, CacheConfig.SlidingExpiration, CacheConfig.DefaultPriority);
+
             }
         }
 
@@ -1129,11 +1111,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         internal void Insert(DAL _coeDAL)
         {
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
-
+            if (_coeDAL == null) { LoadDAL(); }
             // Coverity Fix CID - 11488 
             if (_coeDAL != null)
             {
@@ -1168,11 +1146,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         protected override void DataPortal_Insert()
         {
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
-
+            if (_coeDAL == null) { LoadDAL(); }
             if (_coeAccessRights != null && ((_coeAccessRights.Users != null && _coeAccessRights.Users.Count > 0) || (_coeAccessRights.Roles != null && _coeAccessRights.Roles.Count > 0))) { _isPublic = false; }
             _id = this.GenerateID();
 
@@ -1229,12 +1203,10 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         #region Data Access - Update
 
+
         internal void Update(DAL _coeDAL)
         {
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+            if (_coeDAL == null) { LoadDAL(); }
             // Coverity Fix CID - 11489
             if (_coeDAL != null)
             {
@@ -1271,15 +1243,12 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         protected override void DataPortal_Update()
         {
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
-
+            if (_coeDAL == null) { LoadDAL(); }
             string serializedCOEDataView = String.Empty;
             FillEmptyValuesToMessagingType();
             if (_dataViewManager == null && _coeDataView != null) //Seems not to be properly persisted
                 _dataViewManager = new COEDataViewManagerBO(_coeDataView, _id, true);
+
 
             if (this.DataViewManager != null)  // Coverity Fix CID - 11486
                 this.DataViewManager.RemoveOrphanRelationships();
@@ -1348,10 +1317,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         //called by other services
         internal void DeleteSelf(DAL _coeDAL)
         {
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+            if (_coeDAL == null) { LoadDAL(); }
 
             // Coverity Fix CID - 11487
             if (_coeDAL != null)
@@ -1369,10 +1335,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
         private void DataPortal_Delete(Criteria criteria)
         {
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+
+            if (_coeDAL == null) { LoadDAL(); }
             // Coverity Fix CID - 11483
             if (_coeDAL != null)
             {
@@ -1386,9 +1350,17 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
         }
 
-        #endregion
 
-        #endregion
+        #endregion //Data Access - Delete
+
+        private void LoadDAL()
+        {
+
+            if (_dalFactory == null) { _dalFactory = new DALFactory(); }
+            _dalFactory.GetDAL<DAL>(ref _coeDAL, _serviceName, COEDatabaseName.Get().ToString(), true);
+        }
+
+        #endregion //Data Access
 
         #region IComparable<COEDataViewBO> Members
 
@@ -1428,10 +1400,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         public bool CheckNameIsUnique()
         {
             bool isUnique = true;
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+            if (_coeDAL == null) { LoadDAL(); }
 
             // Coverity Fix CID - 11482 
             if (_coeDAL != null)
@@ -1452,6 +1421,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
             return isUnique;
         }
+
+
 
         public string PublishTableToDataview(string fullTableName, string primaryKeyFieldName, string parentTableJoinFieldName, string childTableJoinFieldName, COEDataView.JoinTypes joinType)
         {
@@ -1693,24 +1664,25 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         /// <summary>
         /// Gets list of fields from table which are of type date/CLOB/BLOB.
         /// </summary>
-        /// <param name="databaseName">The database schema name.</param>
-        /// <param name="strTableName">The table name</param>
-        public List<string> GetInvalidPrimaryKeyFields(string databaseName, string strTableName)
+        /// <param name="strTableName"></param>
+        /// <returns></returns>
+        public List<string> GetInvalidPrimaryKeyFields(string strTableName)
         {
             try
             {
-                // SetDatabaseName();
-                var instanceName = CambridgeSoft.COE.Framework.Common.Utilities.GetInstanceName(databaseName);
-                var instanceData = ConfigurationUtilities.GetInstanceData(instanceName);
-                _instanceDAL = CrossInstanceDALFactory.GetInstanceGlobalDAL<DAL>(instanceData.Name, _serviceName);
+                SetDatabaseName();
 
-                return _instanceDAL.GetInvalidPrimaryKeyFields(strTableName);
+                if (_coeDAL == null)
+                    LoadDAL();
+                if (_coeDAL != null)
+                    return _coeDAL.GetInvalidPrimaryKeyFields(strTableName);
+                else
+                    throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
             }
             catch (Exception ex)
             {
                 throw;
             }
-
             return null;
         }
 
@@ -1745,13 +1717,19 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             return newField;
         }
 
-        private DataTable _GetUniqueFields(string databaseName, string tableName)
+        private DataTable _GetUniqueFields(string DataBaseName, string TableName)
         {
-            var databaseData = ConfigurationUtilities.GetDatabaseData(databaseName);
-            var instanceData = ConfigurationUtilities.GetInstanceData(databaseData.InstanceId);
-
-            _instanceDAL = CrossInstanceDALFactory.GetInstanceGlobalDAL<DAL>(instanceData.Name, _serviceName);
-            return _instanceDAL.GetUniqueFields(databaseData.Owner, tableName);
+            //Bug Fixing : CBOE-242
+            SetDatabaseName();
+            if (_coeDAL == null) { LoadDAL(); }
+            if (_coeDAL != null)
+            {
+                return _coeDAL.GetUniqueFields(DataBaseName, TableName);
+            }
+            else
+            {
+                throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+            }
         }
 
         /// <summary>
@@ -1783,12 +1761,16 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         private DataTable _GetPrimaryKeyFieldNotNullCols(string DataBaseName, string TableName)
         {
             //Bug Fixing : CBOE-1021
-            // SetDatabaseName();
-            var databaseData = ConfigurationUtilities.GetDatabaseData(DataBaseName);
-            var instanceData = ConfigurationUtilities.GetInstanceData(databaseData.InstanceId);
-
-            _instanceDAL = CrossInstanceDALFactory.GetInstanceGlobalDAL<DAL>(instanceData.Name, _serviceName);
-            return _instanceDAL.GetPrimaryKeyFieldNotNullCols(databaseData.Owner, TableName);
+            SetDatabaseName();
+            if (_coeDAL == null) { LoadDAL(); }
+            if (_coeDAL != null)
+            {
+                return _coeDAL.GetPrimaryKeyFieldNotNullCols(DataBaseName, TableName);
+            }
+            else
+            {
+                throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+            }
         }
 
         /// <summary>
@@ -1805,11 +1787,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         private List<string> _GetELNSchemaName()
         {
             //Bug Fixing : CBOE-1021
-            // SetDatabaseName();
-            if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+            SetDatabaseName();
+            if (_coeDAL == null) { LoadDAL(); }
             if (_coeDAL != null)
             {
                 return _coeDAL.GetELNSchemaName();
@@ -1821,6 +1800,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         }
     }
 
+
     [Serializable]
     internal class GetTagsCommand : CommandBase
     {
@@ -1828,6 +1808,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         private string _database = Resources.CentralizedStorageDB;
         [NonSerialized]
         private DAL _coeDAL;
+        [NonSerialized]
+        private DALFactory _dalFactory;
 
         internal List<string> Tags;
 
@@ -1836,9 +1818,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         protected override void DataPortal_Execute()
         {
             if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+                LoadDAL();
             // Coverity Fix CID - 11491
             if (_coeDAL != null)
             {
@@ -1846,6 +1826,13 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             }
             else
                 throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+        }
+
+        private void LoadDAL()
+        {
+
+            if (_dalFactory == null) { _dalFactory = new DALFactory(); }
+            _dalFactory.GetDAL<DAL>(ref _coeDAL, _serviceName, _database, true);
         }
 
         internal static List<string> Execute()
@@ -1861,6 +1848,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         private string _serviceName = "COEDataView";
         [NonSerialized]
         private DAL _coeDAL;
+        [NonSerialized]
+        private DALFactory _dalFactory;
 
         internal bool HasPermissions;
         public CanGetDataviewCommand(int id)
@@ -1869,12 +1858,11 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             HasPermissions = false;
         }
 
+
         protected override void DataPortal_Execute()
         {
             if (_coeDAL == null)
-            {
-                _coeDAL = CrossInstanceDALFactory.GetCOEDBDAL<DAL>(_serviceName);
-            }
+                LoadDAL();
             // Coverity Fix CID - 11490 
             if (_coeDAL != null)
             {
@@ -1882,6 +1870,13 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             }
             else
                 throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
+        }
+
+        private void LoadDAL()
+        {
+
+            if (_dalFactory == null) { _dalFactory = new DALFactory(); }
+            _dalFactory.GetDAL<DAL>(ref _coeDAL, _serviceName, COEDatabaseName.Get().ToString(), true);
         }
 
         internal bool Execute()

@@ -592,7 +592,7 @@ namespace CambridgeSoft.COE.Framework.COETableEditorService
         {
             bool bReturnVal = true;
             string sqlCheck = "SELECT COUNT(" + fieldCoumn + ") FROM " + currentTable +
-                              " WHERE \"" + fieldCoumn + "\" ='" + filedValue + "'";
+                              " WHERE Lower(\"" + fieldCoumn + "\") =Lower('" + filedValue + "')";
             if (!string.IsNullOrEmpty(keyFieldValue))
             {
                 sqlCheck += " AND \"" + keyField + "\" !='" + keyFieldValue + "'";

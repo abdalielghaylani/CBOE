@@ -10,10 +10,8 @@ using CambridgeSoft.COE.Framework.COELoggingService;
 using System.Collections.Generic;
 using System.Text;
 using System.Reflection;
-using System.Linq;
 using CambridgeSoft.COE.Framework.ExceptionHandling;
 using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
 
 namespace CambridgeSoft.COE.Framework.COEDataViewService
 {
@@ -733,36 +731,19 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             _coeLog.LogStart(MethodBase.GetCurrentMethod().Name);
             bool relationshipsOK = true;
             StringBuilder sb = new StringBuilder();
-            List<int> cascadeTableIDList = new List<int>();
-            List<int> recursiveTableIDList = new List<int>();
-
-            AnalyzeCascadeAndRecursiveLookup(ref cascadeTableIDList,ref recursiveTableIDList);
-
+            
             try
             {
-                string instanceName = ConfigurationUtilities.GetInstanceNameByDatabaseName(_tables[0].DataBase);
-                bool IsSingleDataSource = _tables.All(table => ConfigurationUtilities.GetInstanceNameByDatabaseName(table.DataBase) == instanceName);
-
+                
                 if (this.DataViewId != 0) //Master Dataview doesn't have basetable, so we can't check relationships.
                 {
                     foreach (TableBO table in _tables)
                     {
                         if (!table.FromMasterSchema)
-                        {
-                            sb.Clear();
-                            //if we have cascade lookup in dataview, will pop up an error
-                            if (cascadeTableIDList.Contains(table.ID))
-                            {
-                                sb.Append(Resources.ErrorRelationship_6);
-                            }
-
-                            if (recursiveTableIDList.Contains(table.ID))
-                            {
-                                sb.Append(Resources.ErrorRelationship_7);
-                            }
-
+                        {                            
                             if (table.ID != _basetableId) //if it's not base table, there must be a relationship for it.
                             {
+                                sb.Clear();
                                 //Find relationships with the current tableID
                                 List<RelationshipBO> foundRelations = _relationships.GetByParentOrChildId(table.ID);
                                 if (foundRelations.Count == 0 && !HasTableInvolvedInLookup(table)) //If it is an orphan table.                                
@@ -838,74 +819,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 COEExceptionDispatcher.HandleBLLException(ex);
             }
             return isDefaultPresent;
-        }
-
-        private List<int> HasRecursiveRelationLookup()
-        {
-            _coeLog.LogStart(MethodBase.GetCurrentMethod().Name);
-            List<int> tableIDList = new List<int>();
-
-            foreach (TableBO table in _tables)
-            {
-                var lookupFields = from x in table.Fields
-                                   where x.LookupFieldId > 0
-                                   select x;
-
-                foreach (FieldBO field in lookupFields)
-                {
-                   
-                    
-                }
-            }
-            _coeLog.LogEnd(MethodBase.GetCurrentMethod().Name);
-            return tableIDList;
-        }
-
-        private void AnalyzeCascadeAndRecursiveLookup(ref List<int> cascadeTableIDList, ref List<int> recursiveTableIDList)
-        {
-            _coeLog.LogStart(MethodBase.GetCurrentMethod().Name);
-            
-            foreach (TableBO table in _tables)
-            {
-                var lookupFields = from x in table.Fields
-                                   where x.LookupFieldId > 0
-                                   select x;
-
-                foreach (FieldBO field in lookupFields)
-                {
-                    // if Relationship columns and lookup columns have same value, add them into list
-                    foreach (RelationshipBO relationShip in _relationships)
-                    {
-                        if ((relationShip.ChildKey == field.LookupFieldId) && (relationShip.ParentKey == field.ID))
-                        {
-                            recursiveTableIDList.Add(table.ID);
-                        }
-                    }
-
-                    // if find cascade lookup here, add them into list.
-                    foreach (TableBO lookupTable in _tables)
-                    {
-                        var lookupField = lookupTable.Fields.Where(z => z.ID == field.LookupDisplayFieldId).FirstOrDefault();
-                        if (lookupField != null && lookupField.LookupFieldId > 0)
-                        {
-                            cascadeTableIDList.Add(table.ID);
-                        }
-                    }
-                }
-            }
-            _coeLog.LogEnd(MethodBase.GetCurrentMethod().Name);
-        }
-
-        private bool IsLookupTable(TableBO table)
-        {
-            _coeLog.LogStart(MethodBase.GetCurrentMethod().Name);
-            foreach (FieldBO field in table.Fields)
-            {
-                if (field.LookupDisplayFieldId >= 0)
-                    return true;
-            }
-            _coeLog.LogEnd(MethodBase.GetCurrentMethod().Name);
-            return false;
         }
 
         private bool HasTableInvolvedInLookup(TableBO table)
@@ -1003,7 +916,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                         //The table already exists but we have different ids, so we need to change those.
                         int oldTableID = table.ID;
                         int newTableID = currentTable.ID;
-                        currentTable.HitListDataType = table.HitListDataType;
 
                         foreach (FieldBO field in table.Fields)
                         {
@@ -1129,7 +1041,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 //Add Duplicate Table to master schema
                 if (currentTableFromMaster == null)
                 {
-                    TableBO tbl = tables.GetTable(table.Name, table.Alias, table.DataBase);
+                    TableBO tbl = tables.GetTable(table.Name, table.DataBase);
                     if (tbl != null && tbl.DataBase == table.DataBase && tbl.Name == table.Name)
                     {
                         foreach (FieldBO field in tbl.Fields)

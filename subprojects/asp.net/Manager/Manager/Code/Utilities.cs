@@ -16,7 +16,7 @@ using Infragistics.WebUI.UltraWebNavigator;
 using System.Text.RegularExpressions;
 using Resources;
 using Infragistics.WebUI.UltraWebGrid;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+
 
 /// <summary>
 /// Generic class for multiple purposes related with COEManager App.
@@ -45,7 +45,7 @@ public class Utilities
             //retVal = CleanFromCSSAttack(retVal);
         }
         return retVal;
-    }  
+    }
 
     /// <summary>
     /// Here we can clean the string from malicious characters as SQL Inyection, etc...
@@ -868,7 +868,7 @@ public class Utilities
         foreach (var item in Enum.GetNames(typeof(COEDataView.IndexTypes)))
         {
             var cartridgeId = GetCartridgeID(item);
-            if (needFilt && cartridgeId!=0)
+            if (needFilt && cartridgeId != 0)
             {
                 if (!cartridgeBO.IsCartridgeValid(cartridgeId))
                 {
@@ -892,642 +892,532 @@ public class Utilities
 
         return cartridgeTypes.ContainsKey(cartridgeName) ? cartridgeTypes[cartridgeName] : 0;
     }
-
-    /// <summary>
-    /// Analyse the instance name.
-    /// </summary>
-    /// <param name="instanceSchema">The instance schema name which include the instance name.</param>
-    /// <param name="instanceName">The database instance name.</param>
-    /// <param name="schemaName">The database schema name.</param>
-    public static void AnalyseInstanceSchema(string instanceSchema, ref string instanceName, ref string schemaName)
-    {
-        if (string.IsNullOrEmpty(instanceSchema))
-        {
-            instanceName = schemaName = string.Empty;
-        }
-        else if (!instanceSchema.Contains("."))
-        {
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-            instanceName = mainInstance.Name;
-            schemaName = instanceSchema;
-        }
-        else
-        {
-            instanceName = instanceSchema.Split(new char[] { '.' })[0];
-            schemaName = instanceSchema.Split(new char[] { '.' })[1];
-        }
-    }
-
-    /// <summary>
-    /// Gets the qualify instance schema name.
-    /// </summary>
-    /// <param name="instanceName">The database instance name.</param>
-    /// <param name="ownerName">The database owner/schema name.</param>
-    /// <returns>
-    /// The qualify instance schema name which will be saved in database and configuration file.
-    /// </returns>
-    public static string GetQualifyInstaceSchemaName(string instanceName, string ownerName)
-    {
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
-        if (string.IsNullOrEmpty(ownerName))
-        {
-            return ownerName;
-        }
-
-        if (ownerName.Contains("."))
-        {
-            var qualifyName = !ownerName.StartsWith(mainInstance.Name + ".") ?
-                                    ownerName : ownerName.Remove(0, mainInstance.Name.Length + 1);
-            return qualifyName;
-        }
-
-        var isMainInstance = string.IsNullOrWhiteSpace(instanceName) ||
-            instanceName.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase);
-
-        var qualifyInstanceName = isMainInstance ? ownerName : instanceName + "." + ownerName;
-
-        return qualifyInstanceName;
-    }
 }
 
-/// <summary>
-/// Class to define strings, paths, etc that can be usefull for the entire App.
-/// </summary>
-public class Constants
-{
-    //public Constants() { }
-
-    public const string FooterSeparator = " | ";
-    public const string DataViewFrom = "DataViewFrom";
-    public const string SelectedNode = "SelectedNode";
-    public const string SelectedTable = "SelTab";
-    public const int AliasMaxLength = 25;
-
-    public const int CSCartridgeID = 1;
-    public const int DirectCartridgeID = 2;
-    public const int JChemCartridgeID = 3;
-
-    #region Input Validation expresions
-    public const string AliasValidInputCharacters = @"^[a-zA-Z0-9_\s]{0,100}$";
-    public const string ValidInputCharacters = @"^[a-zA-Z0-9_'=()!?,.:* /+%-.\s]{0,255}$";
-    public const string ValidInputCharactersForName = @"^[a-zA-Z0-9_'=()!?,.:* /+%-.\s]{0,50}$";
-    #endregion
-
-    public const int MasterSchemaDataViewID = 0;
-
-    #region Characters to split DataKeys (Ex: ID=1|NAME=MYNAME )
-    public const string DataKeysParamSeparator = "|";
-    public const string DataKeysItemsSeparator = "=";
-
-    #endregion
-
-    #region Controls IDs
-
-    public const string ErrorAreaUCID = "ErrorAreaUserControl";
-    public const string ConfirmationAreaUCID = "ConfirmationAreaUserControl";
-    public const string MainFormName = "MainForm";
-    public const string MainBodyName = "MainBody";
-    public const string ContentPlaceHolderID = "ContentPlaceHolder";
-
-    #endregion
-
-    #region Session Vars
-
-    public const string COEDataView = "COEDataView";
-    public const string COESchemasOnPublishing = "COESchemasOnPublishing";
-    public const string COESchemasOnRemoving = "COESchemasOnRemoving";
-    public const string COEDataManager = "COEDVMgr";
-    public const string COEDataViewBO = "COEDataViewBO";
-    public const string COEDataViewBOList = "COEDataViewBOList";
-    public const string DataViewTableHelper = "DataViewTableHelper";
-    public const string DataViewHelper = "DvHelp";
-    public const string AllUsers = "AllUsrs";
-    public const string SelectedUsers = "SelUsrs";
-    public const string AllRoles = "AllRls";
-    public const string SelectedRoles = "SelRls";
-    public const string ValidCartridgeBO = "ValidCartridgeBO";
-
-    #endregion
-
-    #region ViewState Vars
-
-    public const string ID = "ID";
-    public const string User_ID = "User_ID";
-    public const string Is_Public = "Is_Public";
-    public const string FormGroup = "Form_Group";
-    public const string DateCreated = "DateCreated";
-    public const string DataBase = "DB";
-    public const string BaseTable = "BaseTbl";
-    public const string ButtonModeVW = "ButtonModeVW";
-    public const string ButtonType = "ButtonType";
-    public const string Parent = "Parent";
-    public const string ParentKey = "ParentKey";
-    public const string PreviousParent = "PreviousParent";
-    public const string PreviousParentKey = "PreviousParentKey";
-    public const string Child = "Child";
-    public const string ChildKey = "ChildKey";
-    public const string JoinType = "JoinType";
-    public const string PreviousJoinType = "PreviousJoinType";
-    public const string CurrentEditingRel = "CurrEditRel";
-    public const string PageState = "PageState";
-    public const string TableListBO = "TblListBO";
-    public const string SourceFieldId = "SrcFieldId";
-    public const string Instances = "Instances";
-    public const string Schemas = "Schemas";
-    public const string InstanceSchemas = "InstanceSchemas";
-    public const string PublishedDbs = "PubDbs";
-    public const string TypeOfButton = "TypeBtn";
-    public const string ImageName = "ImgName";
-    public const string ImagesFolder = "ImgFolder";
-
-    #endregion
-
-    #region Request Vars
-
-    public const string NewDVFromSchema = "NewDVFSch";
-    public const string SelectedDataViewID = "SelDVId";
-    public const string SelectedDataViewDataBase = "SelDVDB";
-    public const string Action = "Action";
-    public const string Caller = "Caller";
-    public const string ParamCaller = "ParamCaller";
-    public const string EditingDV = "EditingDV";
-    public const string IsMasterDataView = "IsMDV";
-    public const string FieldId = "FieldId";
-    public const string RecreateDV = "RecreateDV";
-    public const string InactivityURLParam = "Inactivity";
-    public const string ReturnURL = "ReturnURL";
-    public const string CloneDV = "Clone_DV";
-
-    #endregion
-
-    #region URLs & Paths Strings
-
-    public const string PublicCommonJScriptsPath = "~/Forms/Public/JScripts/CommonScripts.js";
-    public const string PublicContentAreaFolder = "~/Forms/Public/ContentArea/";
-    public const string DvManagerContentAreaFolder = "~/Forms/DataViewManager/ContentArea/";
-    public const string SecurityManagerContentAreaFolder = "~/Forms/SecurityManager/ContentArea/";
-
-    #endregion
-
-    #region Variables
-
-    public const string ButtonsImagesFolder = "ButtonsImgFol";
-    public const string AppName = "AppName";
-    public const string AppPagesTitle = "AppPagesTitle";
-    public const string PageControlsSettingsPath = "PageControlsSettingsPath";
-    public const string ImagesLibName = "ImgLibName";
-    public const string ImagesCategory = "ImgsCat";
-    public const string ImagesSubType = "ImgsSubType";
-    public const string ImagesFormat = "ImgsFormat";
-    public const string ImagesSize = "ImgsSize";
-    public const string ImagesCollection = "ImgsColl";
-
-    #endregion
-
-    #region Enums
-
-    public enum DataViewFromTypes
-    {
-        ExistingDataView,
-        Schema,
-    }
-
-    public enum MessagesCode
-    {
-        None,
-        InvalidDataView,
-        SubmittedDataView,
-        DeletedDataView,
-        MasterDataViewExists,
-        NoDataViews,
-        NoMasterDataView,
-        Unknown,
-        SessionTimeOut,
-        PageSettingsDisable,
-    }
-
-    public enum SortDirection
-    {
-        ASC = 1,
-        DESC = -1,
-    }
-
-    public enum SortCriterias
-    {
-        Name_ASC,
-        Name_DESC,
-        ID_ASC,
-        ID_DESC,
-        Database_ASC,
-        Database_DESC,
-        DatabaseAndBaseTable_ASC,
-        DatabaseAndBaseTable_DESC,
-    }
-
-    public enum DataKeysParam
-    {
-        NAME,
-        ID,
-        INDEX,
-        ALIAS,
-        DATABASE,
-        DATAVIEWID,
-        ACTION,
-        PARENT,
-        PARENTKEY,
-        CHILD,
-        CHILDKEY,
-        JOINTYPE,
-    }
-
-    public enum NodeAction
-    {
-        DoNothing,
-        Grouping
-    }
-
-    public enum ButtonSize
-    {
-        Small,
-        Big,
-    }
-
-    public enum IconLibrary
-    {
-        Core_Collection,
-        Database_Collection,
-        Network_Collection,
-        Vista_Business_Collection,
-        Vista_Collection,
-        None,
-    }
-
-    public enum Validate
-    {
-        NameAndDescription,
-        BaseTable,
-        TablesAndFields,
-        Tables,
-        Fields,
-        Relationships,
-        Security,
-    }
-
-    public enum PageStates
-    {
-        Create_DV = 0,
-        Clone_DV = 1,
-        Edit_DV = 2,
-        Undefined = 3,
-    }
-  
-    #endregion
-
-    #region Formaters
-
-    public const string TableText = "{0} ({1})";
-    public const string TableToolTip = "{0}={1} | {2}={3} | {4}={5}";
-    public const string FieldText = "{0} ({1})";
-    public const string FieldToolTip = "{0}={1} | {2}={3}";
-    public const string RelationshipsText = "{0}.{1}.{2} <- {6} -> {3}.{4}.{5}";
-    public const string FullRelationshipsText = "{0}.{1}.{2}";
-
-    #endregion
-}
-
-/// <summary>
-/// Class that defines all the information to be shown for a Node in a Webtree.
-/// </summary>
-/// <remarks>This kind of objects can be used to represent nodes in a webtree. Any kind of nodes (Tables, DataViews, etc)</remarks>
-public class DataViewNode
-{
-    #region Variables
-
-    //private int _id = int.MinValue;
-    private string _dataKey = String.Empty;
-    private string _text = String.Empty;
-    private string _toolTip = String.Empty;
-    //private int _level = int.MinValue;
-    //private int _parentLevel = int.MinValue;
-    private List<DataViewNode> _dataViewNode = new List<DataViewNode>();
-    private List<string> _addedItemsID = new List<string>();
-    //private bool _hasChilds = false;
-    private bool _enabled = true;
-    private bool _expanded = true;
-    private bool _checked = false;
-    private bool _checkBox = false;
-    private bool _visible = true;
-    private bool _isView = false;
-
-    private const string _rootNodeDataKey = "rootNode";
-
-    #endregion
-
-    #region Properties
 
     /// <summary>
-    /// Returns a boolean indicating if it has child nodes
+    /// Class to define strings, paths, etc that can be usefull for the entire App.
     /// </summary>
-    public bool HasChilds
+    public class Constants
     {
-        get
+        //public Constants() { }
+
+        public const string FooterSeparator = " | ";
+        public const string DataViewFrom = "DataViewFrom";
+        public const string SelectedNode = "SelectedNode";
+        public const string SelectedTable = "SelTab";
+        public const int AliasMaxLength = 25;
+
+        public const int CSCartridgeID = 1;
+        public const int DirectCartridgeID = 2;
+        public const int JChemCartridgeID = 3;
+
+        #region Input Validation expresions
+        public const string AliasValidInputCharacters = @"^[a-zA-Z0-9_\s]{0,100}$";
+        public const string ValidInputCharacters = @"^[a-zA-Z0-9_'=()!?,.:* /+%-.\s]{0,255}$";
+        public const string ValidInputCharactersForName = @"^[a-zA-Z0-9_'=()!?,.:* /+%-.\s]{0,50}$";
+        #endregion
+
+        public const int MasterSchemaDataViewID = 0;
+
+        #region Characters to split DataKeys (Ex: ID=1|NAME=MYNAME )
+        public const string DataKeysParamSeparator = "|";
+        public const string DataKeysItemsSeparator = "=";
+
+        #endregion
+
+        #region Controls IDs
+
+        public const string ErrorAreaUCID = "ErrorAreaUserControl";
+        public const string ConfirmationAreaUCID = "ConfirmationAreaUserControl";
+        public const string MainFormName = "MainForm";
+        public const string MainBodyName = "MainBody";
+        public const string ContentPlaceHolderID = "ContentPlaceHolder";
+
+        #endregion
+
+        #region Session Vars
+
+        public const string COEDataView = "COEDataView";
+        public const string COEDataManager = "COEDVMgr";
+        public const string COEDataViewBO = "COEDataViewBO";
+        public const string COEDataViewBOList = "COEDataViewBOList";
+        public const string DataViewTableHelper = "DataViewTableHelper";
+        public const string DataViewHelper = "DvHelp";
+        public const string AllUsers = "AllUsrs";
+        public const string SelectedUsers = "SelUsrs";
+        public const string AllRoles = "AllRls";
+        public const string SelectedRoles = "SelRls";
+        public const string ValidCartridgeBO = "ValidCartridgeBO";
+
+        #endregion
+
+        #region ViewState Vars
+
+        public const string ID = "ID";
+        public const string User_ID = "User_ID";
+        public const string Is_Public = "Is_Public";
+        public const string FormGroup = "Form_Group";
+        public const string DateCreated = "DateCreated";
+        public const string DataBase = "DB";
+        public const string BaseTable = "BaseTbl";
+        public const string ButtonModeVW = "ButtonModeVW";
+        public const string ButtonType = "ButtonType";
+        public const string Parent = "Parent";
+        public const string ParentKey = "ParentKey";
+        public const string PreviousParent = "PreviousParent";
+        public const string PreviousParentKey = "PreviousParentKey";
+        public const string Child = "Child";
+        public const string ChildKey = "ChildKey";
+        public const string JoinType = "JoinType";
+        public const string PreviousJoinType = "PreviousJoinType";
+        public const string CurrentEditingRel = "CurrEditRel";
+        public const string PageState = "PageState";
+        public const string TableListBO = "TblListBO";
+        public const string SourceFieldId = "SrcFieldId";
+        public const string Schemas = "Schemas";
+        public const string PublishedDbs = "PubDbs";
+        public const string TypeOfButton = "TypeBtn";
+        public const string ImageName = "ImgName";
+        public const string ImagesFolder = "ImgFolder";
+
+        #endregion
+
+        #region Request Vars
+
+        public const string NewDVFromSchema = "NewDVFSch";
+        public const string SelectedDataViewID = "SelDVId";
+        public const string SelectedDataViewDataBase = "SelDVDB";
+        public const string Action = "Action";
+        public const string Caller = "Caller";
+        public const string ParamCaller = "ParamCaller";
+        public const string EditingDV = "EditingDV";
+        public const string IsMasterDataView = "IsMDV";
+        public const string FieldId = "FieldId";
+        public const string RecreateDV = "RecreateDV";
+        public const string InactivityURLParam = "Inactivity";
+        public const string ReturnURL = "ReturnURL";
+
+        #endregion
+
+        #region URLs & Paths Strings
+
+        public const string PublicCommonJScriptsPath = "~/Forms/Public/JScripts/CommonScripts.js";
+        public const string PublicContentAreaFolder = "~/Forms/Public/ContentArea/";
+        public const string DvManagerContentAreaFolder = "~/Forms/DataViewManager/ContentArea/";
+        public const string SecurityManagerContentAreaFolder = "~/Forms/SecurityManager/ContentArea/";
+
+        #endregion
+
+        #region Variables
+
+        public const string ButtonsImagesFolder = "ButtonsImgFol";
+        public const string AppName = "AppName";
+        public const string AppPagesTitle = "AppPagesTitle";
+        public const string PageControlsSettingsPath = "PageControlsSettingsPath";
+        public const string ImagesLibName = "ImgLibName";
+        public const string ImagesCategory = "ImgsCat";
+        public const string ImagesSubType = "ImgsSubType";
+        public const string ImagesFormat = "ImgsFormat";
+        public const string ImagesSize = "ImgsSize";
+        public const string ImagesCollection = "ImgsColl";
+
+        #endregion
+
+        #region Enums
+
+        public enum DataViewFromTypes
         {
-            if (_dataViewNode.Count > 0)
-                return true;
-            else
-                return false;
+            ExistingDataView,
+            Schema,
         }
-    }
 
-    /// <summary>
-    /// The identifier of the node
-    /// </summary>
-    public string DataKey
-    {
-        get { return _dataKey; }
-        set { _dataKey = value; }
-    }
-
-    /// <summary>
-    /// ToolTip text to display
-    /// </summary>
-    public string ToolTip
-    {
-        get { return _toolTip; }
-        set { _toolTip = value; }
-    }
-
-    /// <summary>
-    /// Text node to display
-    /// </summary>
-    public string Text
-    {
-        get { return _text; }
-        set { _text = value; }
-    }
-
-    /// <summary>
-    /// List of Child nodes
-    /// </summary>
-    public List<DataViewNode> DataViewItems
-    {
-        get { return _dataViewNode; }
-        set { _dataViewNode = value; }
-    }
-
-    /// <summary>
-    /// List of the DataKeys of the child nodes
-    /// </summary>
-    /// <remarks>This is to avoid looping all the childs in case we just want to know if a child is present</remarks>
-    public List<string> AddedItemsDataKeys
-    {
-        get { return _addedItemsID; }
-    }
-
-    /// <summary>
-    /// Get set a node as enable
-    /// </summary>
-    public bool Enabled
-    {
-        get { return _enabled; }
-        set { _enabled = value; }
-    }
-
-    /// <summary>
-    /// Get Set a node to be shown expanded
-    /// </summary>
-    public bool Expanded
-    {
-        get { return _expanded; }
-        set { _expanded = value; }
-    }
-
-    /// <summary>
-    /// Status of the checkbox
-    /// </summary>
-    public bool Checked
-    {
-        get { return _checked; }
-        set { _checked = value; }
-    }
-
-    /// <summary>
-    /// Enables to display a checkbox next to the text item.
-    /// </summary>
-    public bool CheckBox
-    {
-        get { return _checkBox; }
-        set { _checkBox = value; }
-    }
-
-    public bool Visible
-    {
-        get { return _visible; }
-        set { _visible = value; }
-    }
-
-    public bool IsView
-    {
-        get { return _isView; }
-        set { _isView = value; }
-    }
-    #endregion
-
-    #region Methods
-
-    /// <summary>
-    /// Add a child node to the current Node.
-    /// </summary>
-    /// <param name="nodeToAdd">Node to Add to the collection</param>
-    public void AddNode(DataViewNode nodeToAdd)
-    {
-        if (nodeToAdd != null)
+        public enum MessagesCode
         {
-            this._dataViewNode.Add(nodeToAdd);
-            this._addedItemsID.Add(nodeToAdd.DataKey);
+            None,
+            InvalidDataView,
+            SubmittedDataView,
+            DeletedDataView,
+            MasterDataViewExists,
+            NoDataViews,
+            NoMasterDataView,
+            Unknown,
+            SessionTimeOut,
+            PageSettingsDisable,
         }
-    }
 
-    public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId)
-    {
-        return new DataViewNode(tables, criteria, checkedFieldId);
-    }
-
-    public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId, bool excludeLookupFields)
-    {
-        return new DataViewNode(tables, criteria, checkedFieldId, excludeLookupFields);
-    }
-
-    public static DataViewNode NewDataViewNode(List<COEDataViewBO> dataViewBO, Constants.SortCriterias criteria)
-    {
-        return new DataViewNode(dataViewBO, criteria);
-    }
-
-    public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria)
-    {
-        return new DataViewNode(tables, criteria);
-    }
-
-    public static DataViewNode NewDataViewNode(COEDataViewBO dataViewBO)
-    {
-        return new DataViewNode(Utilities.FormatDataViewBONodeDataKey(dataViewBO.ID.ToString(), true),
-                                Utilities.FormatDataViewBONodeText(dataViewBO.Name, dataViewBO.Description, dataViewBO.DatabaseName),
-                                Utilities.FormatDataViewBONodeTooltip(dataViewBO.ID.ToString(), dataViewBO.UserName, dataViewBO.Description, dataViewBO.DatabaseName));
-    }
-
-    public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedIds, int baseTableId)
-    {
-        return new DataViewNode(tables, criteria, checkedIds, baseTableId);
-    }
-
-    public static DataViewNode NewDataViewNode(Csla.SortedBindingList<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedIds, int baseTableId)
-    {
-        return new DataViewNode(tables, criteria, checkedIds, baseTableId);
-    }
-
-    public static DataViewNode NewDataViewNode(TableBO table, bool checkBox, bool checkBoxChecked)
-    {
-        return new DataViewNode(Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true),
-                                Utilities.FormatTableText(table.Name, table.Alias),
-                                Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase), checkBox, checkBoxChecked, table.IsView);
-    }
-
-    public override string ToString()
-    {
-        return "DataKey:" + this._dataKey + " Items=" + this._addedItemsID.Count.ToString();
-    }
-
-    #endregion
-
-    #region Constructors
-
-    public DataViewNode()
-    {
-    }
-
-    internal DataViewNode(string dataKey, string text, string tooltip)
-        : this()
-    {
-        _dataKey = dataKey;
-        _text = text;
-        _toolTip = tooltip;
-    }
-
-
-    internal DataViewNode(string dataKey, string text, string tooltip, bool checkbox, bool checkboxchecked)
-        : this(dataKey, text, tooltip)
-    {
-        _checkBox = checkbox;
-        _checked = checkboxchecked;
-    }
-
-    internal DataViewNode(string dataKey, string text, string tooltip, bool checkbox, bool checkboxchecked, bool isview)
-        : this(dataKey, text, tooltip, checkbox, checkboxchecked)
-    {
-        _isView = isview;
-    }
-
-    internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria)
-    {
-        if (tables != null && tables.Count > 0)
+        public enum SortDirection
         {
-            //First set the root node based on the criteria param: Database, name, alias, and some combinations.
-            _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-            _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-            _checkBox = true;
+            ASC = 1,
+            DESC = -1,
+        }
 
-            DataViewNode tablesNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Tables", "Tables", false, false);
-            DataViewNode viewsNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Views", "Views", false, false);
+        public enum SortCriterias
+        {
+            Name_ASC,
+            Name_DESC,
+            ID_ASC,
+            ID_DESC,
+            Database_ASC,
+            Database_DESC,
+            DatabaseAndBaseTable_ASC,
+            DatabaseAndBaseTable_DESC,
+        }
 
-            //Now create child nodes.
-            foreach (TableBO table in tables)
+        public enum DataKeysParam
+        {
+            NAME,
+            ID,
+            INDEX,
+            ALIAS,
+            DATABASE,
+            DATAVIEWID,
+            ACTION,
+            PARENT,
+            PARENTKEY,
+            CHILD,
+            CHILDKEY,
+            JOINTYPE,
+        }
+
+        public enum NodeAction
+        {
+            DoNothing,
+            Grouping
+        }
+
+        public enum ButtonSize
+        {
+            Small,
+            Big,
+        }
+
+        public enum IconLibrary
+        {
+            Core_Collection,
+            Database_Collection,
+            Network_Collection,
+            Vista_Business_Collection,
+            Vista_Collection,
+            None,
+        }
+
+        public enum Validate
+        {
+            NameAndDescription,
+            BaseTable,
+            TablesAndFields,
+            Tables,
+            Fields,
+            Relationships,
+            Security,
+        }
+
+        public enum PageStates
+        {
+            Create_DV = 0,
+            Clone_DV = 1,
+            Edit_DV = 2,
+            Undefined = 3,
+        }
+
+        #endregion
+
+        #region Formaters
+
+        public const string TableText = "{0} ({1})";
+        public const string TableToolTip = "{0}={1} | {2}={3} | {4}={5}";
+        public const string FieldText = "{0} ({1})";
+        public const string FieldToolTip = "{0}={1} | {2}={3}";
+        public const string RelationshipsText = "{0}.{1}.{2} <- {6} -> {3}.{4}.{5}";
+        public const string FullRelationshipsText = "{0}.{1}.{2}";
+
+        #endregion
+    }
+
+    /// <summary>
+    /// Class that defines all the information to be shown for a Node in a Webtree.
+    /// </summary>
+    /// <remarks>This kind of objects can be used to represent nodes in a webtree. Any kind of nodes (Tables, DataViews, etc)</remarks>
+    public class DataViewNode
+    {
+        #region Variables
+
+        //private int _id = int.MinValue;
+        private string _dataKey = String.Empty;
+        private string _text = String.Empty;
+        private string _toolTip = String.Empty;
+        //private int _level = int.MinValue;
+        //private int _parentLevel = int.MinValue;
+        private List<DataViewNode> _dataViewNode = new List<DataViewNode>();
+        private List<string> _addedItemsID = new List<string>();
+        //private bool _hasChilds = false;
+        private bool _enabled = true;
+        private bool _expanded = true;
+        private bool _checked = false;
+        private bool _checkBox = false;
+        private bool _visible = true;
+        private bool _isView = false;
+
+        private const string _rootNodeDataKey = "rootNode";
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// Returns a boolean indicating if it has child nodes
+        /// </summary>
+        public bool HasChilds
+        {
+            get
             {
-                string text = Utilities.FormatTableText(table.Name, table.Alias);
-                string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
-                string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
-                DataViewNode node = new DataViewNode(dataKey, text, tooltip, false, true, table.IsView);
-
-                if (table.IsView)
-                    viewsNode.AddNode(node);
+                if (_dataViewNode.Count > 0)
+                    return true;
                 else
-                    tablesNode.AddNode(node);
+                    return false;
             }
-
-            if (tablesNode.HasChilds)
-                this.AddNode(tablesNode);
-            if (viewsNode.HasChilds)
-                this.AddNode(viewsNode);
         }
-    }
 
-    internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId)
-    {
-        bool allTablesChecked = true;
-        if (tables != null && tables.Count > 0)
+        /// <summary>
+        /// The identifier of the node
+        /// </summary>
+        public string DataKey
         {
-            //First set the root node based on the criteria param: Database, name, alias, and some combinations.
-            _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-            _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-            _checkBox = false;
+            get { return _dataKey; }
+            set { _dataKey = value; }
+        }
 
-            //Now create child nodes.
-            foreach (TableBO table in tables)
+        /// <summary>
+        /// ToolTip text to display
+        /// </summary>
+        public string ToolTip
+        {
+            get { return _toolTip; }
+            set { _toolTip = value; }
+        }
+
+        /// <summary>
+        /// Text node to display
+        /// </summary>
+        public string Text
+        {
+            get { return _text; }
+            set { _text = value; }
+        }
+
+        /// <summary>
+        /// List of Child nodes
+        /// </summary>
+        public List<DataViewNode> DataViewItems
+        {
+            get { return _dataViewNode; }
+            set { _dataViewNode = value; }
+        }
+
+        /// <summary>
+        /// List of the DataKeys of the child nodes
+        /// </summary>
+        /// <remarks>This is to avoid looping all the childs in case we just want to know if a child is present</remarks>
+        public List<string> AddedItemsDataKeys
+        {
+            get { return _addedItemsID; }
+        }
+
+        /// <summary>
+        /// Get set a node as enable
+        /// </summary>
+        public bool Enabled
+        {
+            get { return _enabled; }
+            set { _enabled = value; }
+        }
+
+        /// <summary>
+        /// Get Set a node to be shown expanded
+        /// </summary>
+        public bool Expanded
+        {
+            get { return _expanded; }
+            set { _expanded = value; }
+        }
+
+        /// <summary>
+        /// Status of the checkbox
+        /// </summary>
+        public bool Checked
+        {
+            get { return _checked; }
+            set { _checked = value; }
+        }
+
+        /// <summary>
+        /// Enables to display a checkbox next to the text item.
+        /// </summary>
+        public bool CheckBox
+        {
+            get { return _checkBox; }
+            set { _checkBox = value; }
+        }
+
+        public bool Visible
+        {
+            get { return _visible; }
+            set { _visible = value; }
+        }
+
+        public bool IsView
+        {
+            get { return _isView; }
+            set { _isView = value; }
+        }
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Add a child node to the current Node.
+        /// </summary>
+        /// <param name="nodeToAdd">Node to Add to the collection</param>
+        public void AddNode(DataViewNode nodeToAdd)
+        {
+            if (nodeToAdd != null)
             {
-                string text = Utilities.FormatTableText(table.Name, table.Alias);
-                string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
-                string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
-                DataViewNode node = new DataViewNode(dataKey, text, tooltip, false, false, table.IsView);
-                foreach (FieldBO field in table.Fields)
+                this._dataViewNode.Add(nodeToAdd);
+                this._addedItemsID.Add(nodeToAdd.DataKey);
+            }
+        }
+
+        public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId)
+        {
+            return new DataViewNode(tables, criteria, checkedFieldId);
+        }
+
+        public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId, bool excludeLookupFields)
+        {
+            return new DataViewNode(tables, criteria, checkedFieldId, excludeLookupFields);
+        }
+
+        public static DataViewNode NewDataViewNode(List<COEDataViewBO> dataViewBO, Constants.SortCriterias criteria)
+        {
+            return new DataViewNode(dataViewBO, criteria);
+        }
+
+        public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria)
+        {
+            return new DataViewNode(tables, criteria);
+        }
+
+        public static DataViewNode NewDataViewNode(COEDataViewBO dataViewBO)
+        {
+            return new DataViewNode(Utilities.FormatDataViewBONodeDataKey(dataViewBO.ID.ToString(), true),
+                                    Utilities.FormatDataViewBONodeText(dataViewBO.Name, dataViewBO.Description, dataViewBO.DatabaseName),
+                                    Utilities.FormatDataViewBONodeTooltip(dataViewBO.ID.ToString(), dataViewBO.UserName, dataViewBO.Description, dataViewBO.DatabaseName));
+        }
+
+        public static DataViewNode NewDataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedIds, int baseTableId)
+        {
+            return new DataViewNode(tables, criteria, checkedIds, baseTableId);
+        }
+
+        public static DataViewNode NewDataViewNode(Csla.SortedBindingList<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedIds, int baseTableId)
+        {
+            return new DataViewNode(tables, criteria, checkedIds, baseTableId);
+        }
+
+        public static DataViewNode NewDataViewNode(TableBO table, bool checkBox, bool checkBoxChecked)
+        {
+            return new DataViewNode(Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true),
+                                    Utilities.FormatTableText(table.Name, table.Alias),
+                                    Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase), checkBox, checkBoxChecked, table.IsView);
+        }
+
+        public override string ToString()
+        {
+            return "DataKey:" + this._dataKey + " Items=" + this._addedItemsID.Count.ToString();
+        }
+
+        #endregion
+
+        #region Constructors
+
+        public DataViewNode()
+        {
+        }
+
+        internal DataViewNode(string dataKey, string text, string tooltip)
+            : this()
+        {
+            _dataKey = dataKey;
+            _text = text;
+            _toolTip = tooltip;
+        }
+
+
+        internal DataViewNode(string dataKey, string text, string tooltip, bool checkbox, bool checkboxchecked)
+            : this(dataKey, text, tooltip)
+        {
+            _checkBox = checkbox;
+            _checked = checkboxchecked;
+        }
+
+        internal DataViewNode(string dataKey, string text, string tooltip, bool checkbox, bool checkboxchecked, bool isview)
+            : this(dataKey, text, tooltip, checkbox, checkboxchecked)
+        {
+            _isView = isview;
+        }
+
+        internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria)
+        {
+            if (tables != null && tables.Count > 0)
+            {
+                //First set the root node based on the criteria param: Database, name, alias, and some combinations.
+                _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                _checkBox = true;
+
+                DataViewNode tablesNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Tables", "Tables", false, false);
+                DataViewNode viewsNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Views", "Views", false, false);
+
+                //Now create child nodes.
+                foreach (TableBO table in tables)
                 {
-                    string nodeText = Utilities.FormatFieldText(field.Name, field.Alias);
-                    string nodeDataKey = Utilities.FormatFieldNodeDataKey(field.ID, field.Name, field.Alias, true);
-                    string nodeToolTip = Utilities.FormatFieldToolTip(field.ID.ToString(), field.Name, field.Alias);
-                    DataViewNode fieldNode = new DataViewNode(nodeDataKey, nodeText, nodeToolTip);
-                    fieldNode.CheckBox = true;
-                    if (field.ID == checkedFieldId)
-                        fieldNode.Checked = true;
-                    fieldNode.Visible = !field.FromMasterSchema;
-                    node.AddNode(fieldNode);
+                    string text = Utilities.FormatTableText(table.Name, table.Alias);
+                    string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
+                    string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
+                    DataViewNode node = new DataViewNode(dataKey, text, tooltip, false, true, table.IsView);
+
+                    if (table.IsView)
+                        viewsNode.AddNode(node);
+                    else
+                        tablesNode.AddNode(node);
                 }
-                this.AddNode(node);
+
+                if (tablesNode.HasChilds)
+                    this.AddNode(tablesNode);
+                if (viewsNode.HasChilds)
+                    this.AddNode(viewsNode);
             }
         }
-        else
-            allTablesChecked = false;
 
-        _checked = allTablesChecked;
-    }
-
-    internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId, bool excludeLookupFields)
-    {
-        bool allTablesChecked = true;
-        if (tables != null && tables.Count > 0)
+        internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId)
         {
-            //First set the root node based on the criteria param: Database, name, alias, and some combinations.
-            switch (criteria)
+            bool allTablesChecked = true;
+            if (tables != null && tables.Count > 0)
             {
-                case Constants.SortCriterias.Database_ASC:
-                    _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-                    _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-                    _checkBox = false;
-                    break;
-                default:
-                    _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-                    _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-                    _checkBox = false;
-                    break;
-            }
-            //Now create child nodes.
-            foreach (TableBO table in tables)
-            {
-                string text = Utilities.FormatTableText(table.Name, table.Alias);
-                string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
-                string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
-                DataViewNode node = new DataViewNode(dataKey, text, tooltip, false, false, table.IsView);
-                foreach (FieldBO field in table.Fields)
+                //First set the root node based on the criteria param: Database, name, alias, and some combinations.
+                _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                _checkBox = false;
+
+                //Now create child nodes.
+                foreach (TableBO table in tables)
                 {
-                    if (!(excludeLookupFields && field.LookupFieldId > 0))
+                    string text = Utilities.FormatTableText(table.Name, table.Alias);
+                    string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
+                    string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
+                    DataViewNode node = new DataViewNode(dataKey, text, tooltip, false, false, table.IsView);
+                    foreach (FieldBO field in table.Fields)
                     {
                         string nodeText = Utilities.FormatFieldText(field.Name, field.Alias);
                         string nodeDataKey = Utilities.FormatFieldNodeDataKey(field.ID, field.Name, field.Alias, true);
@@ -1539,400 +1429,449 @@ public class DataViewNode
                         fieldNode.Visible = !field.FromMasterSchema;
                         node.AddNode(fieldNode);
                     }
-                }
-                if (node.AddedItemsDataKeys.Count > 0)
                     this.AddNode(node);
-            }
-        }
-        else
-            allTablesChecked = false;
-
-        _checked = allTablesChecked;
-    }
-
-    private DataViewNode(List<COEDataViewBO> dataViewBOList, Constants.SortCriterias criteria)
-    {
-        if (dataViewBOList != null && dataViewBOList.Count > 0)
-        {
-            switch (criteria)
-            {
-                case Constants.SortCriterias.Database_ASC:
-                    _dataKey = Utilities.FormatRootDataKey(dataViewBOList[0].DatabaseName, false);
-                    _text = Utilities.FormatRootNodeText(dataViewBOList[0].DatabaseName);
-                    _toolTip = _text;
-                    _checkBox = true;
-                    foreach (COEDataViewBO dataViewBO in dataViewBOList)
-                    {
-                        string text = Utilities.FormatDataViewBONodeText(dataViewBO.Name, dataViewBO.Description, dataViewBO.DatabaseName);
-                        string dataKey = Utilities.FormatDataViewBONodeDataKey(dataViewBO.ID.ToString(), true);
-                        string tooltip = Utilities.FormatDataViewBONodeTooltip(dataViewBO.ID.ToString(), dataViewBO.UserName, dataViewBO.Description, dataViewBO.DatabaseName);
-                        this.AddNode(new DataViewNode(dataKey, text, tooltip));
-                    }
-                    break;
-                case Constants.SortCriterias.Database_DESC:
-                    _dataKey = Utilities.FormatRootDataKey(dataViewBOList[0].DatabaseName, false);
-                    _text = Utilities.FormatRootNodeText(dataViewBOList[0].DatabaseName);
-                    _toolTip = _text;
-                    _checkBox = true;
-                    foreach (COEDataViewBO dataViewBO in dataViewBOList)
-                    {
-                        string text = Utilities.FormatDataViewBONodeText(dataViewBO.Name, dataViewBO.Description, dataViewBO.DatabaseName);
-                        string dataKey = Utilities.FormatDataViewBONodeDataKey(dataViewBO.ID.ToString(), true);
-                        string tooltip = Utilities.FormatDataViewBONodeTooltip(dataViewBO.ID.ToString(), dataViewBO.UserName, dataViewBO.Description, dataViewBO.DatabaseName);
-                        this.AddNode(new DataViewNode(dataKey, text, tooltip));
-                    }
-                    break;
-            }
-            _checked = false;
-        }
-    }
-
-    internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedTablesIds, int baseTableId)
-    {
-        bool allTablesChecked = true;
-        bool allViewsChecked = true;
-        if (tables != null && tables.Count > 0)
-        {
-            //First set the root node based on the criteria param: Database, name, alias, and some combinations.
-            switch (criteria)
-            {
-                case Constants.SortCriterias.Database_ASC:
-                    _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-                    _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-                    _checkBox = true;
-                    break;
-                default:
-                    _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-                    _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-                    _checkBox = true;
-                    break;
-            }
-            DataViewNode tablesNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Tables", "Tables", true, true);
-            DataViewNode viewsNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Views", "Views", true, false);
-
-            //Now create child nodes.
-            foreach (TableBO table in tables)
-            {
-                string text = Utilities.FormatTableText(table.Name, table.Alias);
-                string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
-                string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
-                DataViewNode node = new DataViewNode(dataKey, text, tooltip, true, false, table.IsView);
-                node.CheckBox = true;
-                if (checkedTablesIds != null)
-                {
-                    if (checkedTablesIds.Contains(table.ID))
-                        node.Checked = true;
-                    else
-                    {
-                        if (table.IsView)
-                            allViewsChecked = false;
-                        else
-                            allTablesChecked = false;
-                    }
                 }
-                else
-                    allTablesChecked = false;
-                if (table.ID == baseTableId)
-                    node.Enabled = false;
-
-                if (table.IsView)
-                    viewsNode.AddNode(node);
-                else
-                    tablesNode.AddNode(node);
             }
+            else
+                allTablesChecked = false;
 
-            tablesNode.Checked = allTablesChecked;
-            viewsNode.Checked = allViewsChecked;
-
-            if (tablesNode.HasChilds)
-                this.AddNode(tablesNode);
-            if (viewsNode.HasChilds)
-                this.AddNode(viewsNode);
-        }
-        else
-            allTablesChecked = false;
-
-        _checked = allTablesChecked && allViewsChecked;
-    }
-
-    internal DataViewNode(Csla.SortedBindingList<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedTablesIds, int baseTableId)
-    {
-        bool allTablesChecked = true;
-        if (tables != null && tables.Count > 0)
-        {
-            //First set the root node based on the criteria param: Database, name, alias, and some combinations.
-            switch (criteria)
-            {
-                case Constants.SortCriterias.Database_ASC:
-                    _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-                    _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-                    _checkBox = true;
-                    //Now create child nodes.
-                    foreach (TableBO table in tables)
-                    {
-                        string text = Utilities.FormatTableText(table.Name, table.Alias);
-                        string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
-                        string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
-                        DataViewNode node = new DataViewNode(dataKey, text, tooltip, true, false, table.IsView);
-                        node.CheckBox = true;
-                        if (checkedTablesIds != null)
-                        {
-                            if (checkedTablesIds.Contains(table.ID))
-                                node.Checked = true;
-                            else
-                                allTablesChecked = false;
-                        }
-                        else
-                            allTablesChecked = false;
-                        if (table.ID == baseTableId) node.Enabled = false;
-                        this.AddNode(node);
-                    }
-                    break;
-                case Constants.SortCriterias.Database_DESC:
-                    _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-                    _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-                    _checkBox = true;
-                    //Now create child nodes.
-                    foreach (TableBO table in tables)
-                    {
-                        string text = Utilities.FormatTableText(table.Name, table.Alias);
-                        string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
-                        string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
-                        DataViewNode node = new DataViewNode(dataKey, text, tooltip, true, false, table.IsView);
-                        node.CheckBox = true;
-                        if (checkedTablesIds != null)
-                        {
-                            if (checkedTablesIds.Contains(table.ID))
-                                node.Checked = true;
-                            else
-                                allTablesChecked = false;
-                        }
-                        else
-                            allTablesChecked = false;
-                        if (table.ID == baseTableId) node.Enabled = false;
-                        this.AddNode(node);
-                    }
-                    break;
-                default:
-                    _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
-                    _text = Utilities.FormatRootNodeText(tables[0].DataBase);
-                    _checkBox = true;
-                    allTablesChecked = false;
-                    break;
-            }
             _checked = allTablesChecked;
         }
-    }
 
-    #endregion
-}
-
-
-/// <summary>
-/// Exception raised when invalid text was entered
-/// </summary>
-[Serializable]
-public class InvalidInputText : Exception
-{
-    public InvalidInputText() : base("Invalid entered text") { }
-    public InvalidInputText(string message) : base(message.ToString()) { }
-}
-
-
-#region Controls used in the webgrid as ITemplates
-
-public class DataTypeDropDrown : ITemplate
-{
-    DropDownList _dropDownList = null;
-
-    public string SelectedValue
-    {
-        get { return _dropDownList.SelectedValue; }
-    }
-
-    #region ITemplate Members
-
-    public void InstantiateIn(Control container)
-    {
-        _dropDownList = new DropDownList();
-        _dropDownList.ID = "DataTypeDropDown";
-        _dropDownList.CssClass = "DataDropDownOnGrid";
-        _dropDownList.Enabled = false;
-        Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
-        foreach (string item in Enum.GetNames(typeof(COEDataView.AbstractTypes)))
+        internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, int checkedFieldId, bool excludeLookupFields)
         {
-            ListItem currentItem = new ListItem(item, item);
-            _dropDownList.Items.Add(currentItem);
+            bool allTablesChecked = true;
+            if (tables != null && tables.Count > 0)
+            {
+                //First set the root node based on the criteria param: Database, name, alias, and some combinations.
+                switch (criteria)
+                {
+                    case Constants.SortCriterias.Database_ASC:
+                        _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                        _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                        _checkBox = false;
+                        break;
+                    default:
+                        _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                        _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                        _checkBox = false;
+                        break;
+                }
+                //Now create child nodes.
+                foreach (TableBO table in tables)
+                {
+                    string text = Utilities.FormatTableText(table.Name, table.Alias);
+                    string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
+                    string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
+                    DataViewNode node = new DataViewNode(dataKey, text, tooltip, false, false, table.IsView);
+                    foreach (FieldBO field in table.Fields)
+                    {
+                        if (!(excludeLookupFields && field.LookupFieldId > 0))
+                        {
+                            string nodeText = Utilities.FormatFieldText(field.Name, field.Alias);
+                            string nodeDataKey = Utilities.FormatFieldNodeDataKey(field.ID, field.Name, field.Alias, true);
+                            string nodeToolTip = Utilities.FormatFieldToolTip(field.ID.ToString(), field.Name, field.Alias);
+                            DataViewNode fieldNode = new DataViewNode(nodeDataKey, nodeText, nodeToolTip);
+                            fieldNode.CheckBox = true;
+                            if (field.ID == checkedFieldId)
+                                fieldNode.Checked = true;
+                            fieldNode.Visible = !field.FromMasterSchema;
+                            node.AddNode(fieldNode);
+                        }
+                    }
+                    if (node.AddedItemsDataKeys.Count > 0)
+                        this.AddNode(node);
+                }
+            }
+            else
+                allTablesChecked = false;
+
+            _checked = allTablesChecked;
         }
-        _dropDownList.EnableViewState = true;
-        controlItem.Controls.Add(_dropDownList);
-    }
 
-    #endregion
-}
-
-public class MimeTypeDropDrown : ITemplate
-{
-    DropDownList _dropDownList = null;
-
-    public string SelectedValue
-    {
-        get { return _dropDownList.SelectedValue; }
-    }
-
-    #region ITemplate Members
-
-    public void InstantiateIn(Control container)
-    {
-        _dropDownList = new DropDownList();
-        _dropDownList.ID = "MimeTypeDropDown";
-        _dropDownList.CssClass = "MimeDropDownOnGrid";
-        Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
-        foreach (string item in Enum.GetNames(typeof(COEDataView.MimeTypes)))
+        private DataViewNode(List<COEDataViewBO> dataViewBOList, Constants.SortCriterias criteria)
         {
-            ListItem currentItem = new ListItem(item, item);
-            _dropDownList.Items.Add(currentItem);
+            if (dataViewBOList != null && dataViewBOList.Count > 0)
+            {
+                switch (criteria)
+                {
+                    case Constants.SortCriterias.Database_ASC:
+                        _dataKey = Utilities.FormatRootDataKey(dataViewBOList[0].DatabaseName, false);
+                        _text = Utilities.FormatRootNodeText(dataViewBOList[0].DatabaseName);
+                        _toolTip = _text;
+                        _checkBox = true;
+                        foreach (COEDataViewBO dataViewBO in dataViewBOList)
+                        {
+                            string text = Utilities.FormatDataViewBONodeText(dataViewBO.Name, dataViewBO.Description, dataViewBO.DatabaseName);
+                            string dataKey = Utilities.FormatDataViewBONodeDataKey(dataViewBO.ID.ToString(), true);
+                            string tooltip = Utilities.FormatDataViewBONodeTooltip(dataViewBO.ID.ToString(), dataViewBO.UserName, dataViewBO.Description, dataViewBO.DatabaseName);
+                            this.AddNode(new DataViewNode(dataKey, text, tooltip));
+                        }
+                        break;
+                    case Constants.SortCriterias.Database_DESC:
+                        _dataKey = Utilities.FormatRootDataKey(dataViewBOList[0].DatabaseName, false);
+                        _text = Utilities.FormatRootNodeText(dataViewBOList[0].DatabaseName);
+                        _toolTip = _text;
+                        _checkBox = true;
+                        foreach (COEDataViewBO dataViewBO in dataViewBOList)
+                        {
+                            string text = Utilities.FormatDataViewBONodeText(dataViewBO.Name, dataViewBO.Description, dataViewBO.DatabaseName);
+                            string dataKey = Utilities.FormatDataViewBONodeDataKey(dataViewBO.ID.ToString(), true);
+                            string tooltip = Utilities.FormatDataViewBONodeTooltip(dataViewBO.ID.ToString(), dataViewBO.UserName, dataViewBO.Description, dataViewBO.DatabaseName);
+                            this.AddNode(new DataViewNode(dataKey, text, tooltip));
+                        }
+                        break;
+                }
+                _checked = false;
+            }
         }
-        _dropDownList.EnableViewState = true;
-        controlItem.Controls.Add(_dropDownList);
-    }
 
-    #endregion
-}
-
-public class IndexTypeDropDrown : ITemplate
-{
-    DropDownList _dropDownList = null;
-
-    public string SelectedValue
-    {
-        get { return _dropDownList.SelectedValue; }
-    }
-
-    public override string ToString()
-    {
-        return _dropDownList.SelectedValue;
-    }
-
-    #region ITemplate Members
-
-    public void InstantiateIn(Control container)
-    {
-        Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
-        _dropDownList = new DropDownList();
-        _dropDownList.ID = "IndexTypeDropDown";
-        _dropDownList.CssClass = "IndexDropDownOnGrid";
-        foreach (string item in Enum.GetNames(typeof(COEDataView.IndexTypes)))
+        internal DataViewNode(List<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedTablesIds, int baseTableId)
         {
-            ListItem currentItem = new ListItem(item, item);
-            _dropDownList.Items.Add(currentItem);
+            bool allTablesChecked = true;
+            bool allViewsChecked = true;
+            if (tables != null && tables.Count > 0)
+            {
+                //First set the root node based on the criteria param: Database, name, alias, and some combinations.
+                switch (criteria)
+                {
+                    case Constants.SortCriterias.Database_ASC:
+                        _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                        _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                        _checkBox = true;
+                        break;
+                    default:
+                        _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                        _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                        _checkBox = true;
+                        break;
+                }
+                DataViewNode tablesNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Tables", "Tables", true, true);
+                DataViewNode viewsNode = new DataViewNode(Utilities.FormatRootDataKey(tables[0].DataBase, true), "Views", "Views", true, false);
+
+                //Now create child nodes.
+                foreach (TableBO table in tables)
+                {
+                    string text = Utilities.FormatTableText(table.Name, table.Alias);
+                    string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
+                    string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
+                    DataViewNode node = new DataViewNode(dataKey, text, tooltip, true, false, table.IsView);
+                    node.CheckBox = true;
+                    if (checkedTablesIds != null)
+                    {
+                        if (checkedTablesIds.Contains(table.ID))
+                            node.Checked = true;
+                        else
+                        {
+                            if (table.IsView)
+                                allViewsChecked = false;
+                            else
+                                allTablesChecked = false;
+                        }
+                    }
+                    else
+                        allTablesChecked = false;
+                    if (table.ID == baseTableId)
+                        node.Enabled = false;
+
+                    if (table.IsView)
+                        viewsNode.AddNode(node);
+                    else
+                        tablesNode.AddNode(node);
+                }
+
+                tablesNode.Checked = allTablesChecked;
+                viewsNode.Checked = allViewsChecked;
+
+                if (tablesNode.HasChilds)
+                    this.AddNode(tablesNode);
+                if (viewsNode.HasChilds)
+                    this.AddNode(viewsNode);
+            }
+            else
+                allTablesChecked = false;
+
+            _checked = allTablesChecked && allViewsChecked;
         }
-        _dropDownList.EnableViewState = true;
-        controlItem.Controls.Add(_dropDownList);
-    }
 
-    #endregion
-}
-
-public class SortOrderDropDown : ITemplate
-{
-    DropDownList _dropDownList = null;
-
-    public string SelectedValue
-    {
-        get { return _dropDownList.SelectedValue; }
-    }
-
-    public override string ToString()
-    {
-        return _dropDownList.SelectedValue;
-    }
-
-    #region ITemplate Members
-
-    public void InstantiateIn(Control container)
-    {
-        Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
-        _dropDownList = new DropDownList();
-        _dropDownList.ID = "SortOrderDropDown";
-        _dropDownList.CssClass = "SortOrderDropDownOnGrid";
-        foreach (string item in Enum.GetNames(typeof(COEDataView.SortDirection)))
+        internal DataViewNode(Csla.SortedBindingList<TableBO> tables, Constants.SortCriterias criteria, List<int> checkedTablesIds, int baseTableId)
         {
-            ListItem currentItem = new ListItem(item, item);
-            _dropDownList.Items.Add(currentItem);
+            bool allTablesChecked = true;
+            if (tables != null && tables.Count > 0)
+            {
+                //First set the root node based on the criteria param: Database, name, alias, and some combinations.
+                switch (criteria)
+                {
+                    case Constants.SortCriterias.Database_ASC:
+                        _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                        _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                        _checkBox = true;
+                        //Now create child nodes.
+                        foreach (TableBO table in tables)
+                        {
+                            string text = Utilities.FormatTableText(table.Name, table.Alias);
+                            string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
+                            string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
+                            DataViewNode node = new DataViewNode(dataKey, text, tooltip, true, false, table.IsView);
+                            node.CheckBox = true;
+                            if (checkedTablesIds != null)
+                            {
+                                if (checkedTablesIds.Contains(table.ID))
+                                    node.Checked = true;
+                                else
+                                    allTablesChecked = false;
+                            }
+                            else
+                                allTablesChecked = false;
+                            if (table.ID == baseTableId) node.Enabled = false;
+                            this.AddNode(node);
+                        }
+                        break;
+                    case Constants.SortCriterias.Database_DESC:
+                        _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                        _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                        _checkBox = true;
+                        //Now create child nodes.
+                        foreach (TableBO table in tables)
+                        {
+                            string text = Utilities.FormatTableText(table.Name, table.Alias);
+                            string dataKey = Utilities.FormatTableNodeDataKey(table.ID.ToString(), table.Name, table.Alias, table.DataBase, true);
+                            string tooltip = Utilities.FormatTableToolTip(table.Name, table.Alias, table.ID.ToString(), table.DataBase);
+                            DataViewNode node = new DataViewNode(dataKey, text, tooltip, true, false, table.IsView);
+                            node.CheckBox = true;
+                            if (checkedTablesIds != null)
+                            {
+                                if (checkedTablesIds.Contains(table.ID))
+                                    node.Checked = true;
+                                else
+                                    allTablesChecked = false;
+                            }
+                            else
+                                allTablesChecked = false;
+                            if (table.ID == baseTableId) node.Enabled = false;
+                            this.AddNode(node);
+                        }
+                        break;
+                    default:
+                        _dataKey = Utilities.FormatRootDataKey(tables[0].DataBase, false);
+                        _text = Utilities.FormatRootNodeText(tables[0].DataBase);
+                        _checkBox = true;
+                        allTablesChecked = false;
+                        break;
+                }
+                _checked = allTablesChecked;
+            }
         }
-        _dropDownList.EnableViewState = true;
-        controlItem.Controls.Add(_dropDownList);
+
+        #endregion
     }
 
-    #endregion
-}
 
-public class ParentColumnButton : ITemplate
-{
-    #region Variables
-    Button _button = null;
-    #endregion
-
-    #region ITemplate Members
-
-    public void InstantiateIn(Control container)
+    /// <summary>
+    /// Exception raised when invalid text was entered
+    /// </summary>
+    [Serializable]
+    public class InvalidInputText : Exception
     {
-        Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
-        _button = new Button();
-        _button.ID = "ParentColumnButton";
-        _button.SkinID = "ButtonLikeLink";
-        _button.CssClass = "LogOffButton";
-        _button.EnableViewState = true;
-        controlItem.Controls.Add(_button);
+        public InvalidInputText() : base("Invalid entered text") { }
+        public InvalidInputText(string message) : base(message.ToString()) { }
     }
 
-    #endregion
-}
 
-public class LookupButton : ITemplate
-{
-    #region Variables
-    Button _button = null;
-    #endregion
+    #region Controls used in the webgrid as ITemplates
 
-    #region ITemplate Members
-
-    public void InstantiateIn(Control container)
+    public class DataTypeDropDrown : ITemplate
     {
-        Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
-        _button = new Button();
-        _button.ID = "LookupButton";
-        _button.SkinID = "ButtonLikeLink";
-        _button.CssClass = "LogOffButton";
-        _button.EnableViewState = true;
-        controlItem.Controls.Add(_button);
+        DropDownList _dropDownList = null;
+
+        public string SelectedValue
+        {
+            get { return _dropDownList.SelectedValue; }
+        }
+
+        #region ITemplate Members
+
+        public void InstantiateIn(Control container)
+        {
+            _dropDownList = new DropDownList();
+            _dropDownList.ID = "DataTypeDropDown";
+            _dropDownList.CssClass = "DataDropDownOnGrid";
+            _dropDownList.Enabled = false;
+            Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
+            foreach (string item in Enum.GetNames(typeof(COEDataView.AbstractTypes)))
+            {
+                ListItem currentItem = new ListItem(item, item);
+                _dropDownList.Items.Add(currentItem);
+            }
+            _dropDownList.EnableViewState = true;
+            controlItem.Controls.Add(_dropDownList);
+        }
+
+        #endregion
     }
 
-    #endregion
-}
-
-public class ActionButton : ITemplate
-{
-    #region Variables
-    Button _button = null;
-    #endregion
-
-    #region ITemplate Members
-
-    public void InstantiateIn(Control container)
+    public class MimeTypeDropDrown : ITemplate
     {
-        Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
-        _button = new Button();
-        _button.ID = "ActionButton";
-        _button.SkinID = "ButtonLikeLink";
-        _button.CssClass = "LogOffButton";
-        _button.EnableViewState = true;
-        controlItem.Controls.Add(_button);
+        DropDownList _dropDownList = null;
+
+        public string SelectedValue
+        {
+            get { return _dropDownList.SelectedValue; }
+        }
+
+        #region ITemplate Members
+
+        public void InstantiateIn(Control container)
+        {
+            _dropDownList = new DropDownList();
+            _dropDownList.ID = "MimeTypeDropDown";
+            _dropDownList.CssClass = "MimeDropDownOnGrid";
+            Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
+            foreach (string item in Enum.GetNames(typeof(COEDataView.MimeTypes)))
+            {
+                ListItem currentItem = new ListItem(item, item);
+                _dropDownList.Items.Add(currentItem);
+            }
+            _dropDownList.EnableViewState = true;
+            controlItem.Controls.Add(_dropDownList);
+        }
+
+        #endregion
     }
 
-    #endregion
-}
+    public class IndexTypeDropDrown : ITemplate
+    {
+        DropDownList _dropDownList = null;
+
+        public string SelectedValue
+        {
+            get { return _dropDownList.SelectedValue; }
+        }
+
+        public override string ToString()
+        {
+            return _dropDownList.SelectedValue;
+        }
+
+        #region ITemplate Members
+
+        public void InstantiateIn(Control container)
+        {
+            Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
+            _dropDownList = new DropDownList();
+            _dropDownList.ID = "IndexTypeDropDown";
+            _dropDownList.CssClass = "IndexDropDownOnGrid";
+            foreach (string item in Enum.GetNames(typeof(COEDataView.IndexTypes)))
+            {
+                ListItem currentItem = new ListItem(item, item);
+                _dropDownList.Items.Add(currentItem);
+            }
+            _dropDownList.EnableViewState = true;
+            controlItem.Controls.Add(_dropDownList);
+        }
+
+        #endregion
+    }
+
+    public class SortOrderDropDown : ITemplate
+    {
+        DropDownList _dropDownList = null;
+
+        public string SelectedValue
+        {
+            get { return _dropDownList.SelectedValue; }
+        }
+
+        public override string ToString()
+        {
+            return _dropDownList.SelectedValue;
+        }
+
+        #region ITemplate Members
+
+        public void InstantiateIn(Control container)
+        {
+            Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
+            _dropDownList = new DropDownList();
+            _dropDownList.ID = "SortOrderDropDown";
+            _dropDownList.CssClass = "SortOrderDropDownOnGrid";
+            foreach (string item in Enum.GetNames(typeof(COEDataView.SortDirection)))
+            {
+                ListItem currentItem = new ListItem(item, item);
+                _dropDownList.Items.Add(currentItem);
+            }
+            _dropDownList.EnableViewState = true;
+            controlItem.Controls.Add(_dropDownList);
+        }
+
+        #endregion
+    }
+
+    public class ParentColumnButton : ITemplate
+    {
+        #region Variables
+        Button _button = null;
+        #endregion
+
+        #region ITemplate Members
+
+        public void InstantiateIn(Control container)
+        {
+            Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
+            _button = new Button();
+            _button.ID = "ParentColumnButton";
+            _button.SkinID = "ButtonLikeLink";
+            _button.CssClass = "LogOffButton";
+            _button.EnableViewState = true;
+            controlItem.Controls.Add(_button);
+        }
+
+        #endregion
+    }
+
+    public class LookupButton : ITemplate
+    {
+        #region Variables
+        Button _button = null;
+        #endregion
+
+        #region ITemplate Members
+
+        public void InstantiateIn(Control container)
+        {
+            Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
+            _button = new Button();
+            _button.ID = "LookupButton";
+            _button.SkinID = "ButtonLikeLink";
+            _button.CssClass = "LogOffButton";
+            _button.EnableViewState = true;
+            controlItem.Controls.Add(_button);
+        }
+
+        #endregion
+    }
+
+    public class ActionButton : ITemplate
+    {
+        #region Variables
+        Button _button = null;
+        #endregion
+
+        #region ITemplate Members
+
+        public void InstantiateIn(Control container)
+        {
+            Infragistics.WebUI.UltraWebGrid.CellItem controlItem = (Infragistics.WebUI.UltraWebGrid.CellItem)container;
+            _button = new Button();
+            _button.ID = "ActionButton";
+            _button.SkinID = "ButtonLikeLink";
+            _button.CssClass = "LogOffButton";
+            _button.EnableViewState = true;
+            controlItem.Controls.Add(_button);
+        }
+
+        #endregion
+    }
 
 #endregion
 

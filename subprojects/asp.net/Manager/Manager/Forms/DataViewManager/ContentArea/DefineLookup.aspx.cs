@@ -13,7 +13,6 @@ using System.Reflection;
 using CambridgeSoft.COE.Framework.COEDataViewService;
 using CambridgeSoft.COE.Framework.Common;
 using System.Collections.Generic;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
 
 
 public partial class Forms_DataViewManager_ContentArea_DefineLookup : GUIShellPage, ICallbackEventHandler
@@ -166,9 +165,7 @@ public partial class Forms_DataViewManager_ContentArea_DefineLookup : GUIShellPa
 
             FieldBO fld = tbl.Fields.GetField(this.ParentFieldID);
             string sortOrder = _defaultSortOrder;
-
-            // Validate if the lookup field are valid or not, if invalid, reset lookup field to 0.
-            ValidateAndResetLookupField(fld);
+            
 
             if (fld.LookupFieldId >= 0)
             {
@@ -194,38 +191,12 @@ public partial class Forms_DataViewManager_ContentArea_DefineLookup : GUIShellPa
             this.SelectLookupLabel.Text = string.Format(this.SelectLookupLabel.Text, this.SelectedFromFieldLabel.Text, fld.DataType);
             this.AddSortOrderItems(sortOrder);
 
-            BindDropDownList();
+            this.SchemaDropDownList.DataSource = GetSchemas();
+            this.SchemaDropDownList.SelectedValue = this.DefaultDatabase;
+            this.SchemaDropDownList.DataBind();
         }
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-    }
-
-    private void ValidateAndResetLookupField(FieldBO field)
-    {
-        TableBO lookupTable = null;
-        FieldBO lookupField = null;
-        FieldBO lookupDisplayField = null;
-
-        if (field.LookupFieldId >= 0)
-        {
-            lookupTable = this.DataViewBO.DataViewManager.Tables.GetTableByFieldId(field.LookupFieldId);
-            if (lookupTable != null)
-            {
-                lookupField = lookupTable.Fields.GetField(field.LookupFieldId);
-                lookupDisplayField = lookupTable.Fields.GetField(field.LookupDisplayFieldId);
-            }
-
-            // Reset the lookup field and display field to 0 with below conditions:
-            //  1. parent table of the lookup field/dispaly field not exists in DV.
-            //  2. lookup field not exists in DV or in removing status (FromMasterSchema==true)
-            //  3. lookup display field not exists in DV or in removing status (FromMasterSchema==true).
-            if (lookupTable == null || lookupField == null || (lookupField != null && lookupField.FromMasterSchema) ||
-            lookupDisplayField == null || (lookupDisplayField != null && lookupDisplayField.FromMasterSchema))
-            {
-                field.LookupFieldId = int.MinValue;
-                field.LookupDisplayFieldId = int.MinValue;
-            }
-        }
-    }
+    }   
 
     #endregion
 
@@ -301,57 +272,26 @@ public partial class Forms_DataViewManager_ContentArea_DefineLookup : GUIShellPa
     public string GetTablesDataSource(string schema)
     {
         int basetableid = this.DataViewBO.DataViewManager.BaseTableId;
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
         if (this.DataViewBO.DataViewManager.Tables.Count > 0)
         {
             if (string.IsNullOrEmpty(schema))
             {
                 schema = this.DefaultDatabase;
-            }
-
-            if (!schema.Contains("."))
-            {
-                var defaultDatabase = this.DefaultDatabase;
-                var defaultInstance = mainInstance.Name;
-                var defaultSchema = string.Empty;
-
-                Utilities.AnalyseInstanceSchema(defaultDatabase, ref defaultInstance, ref defaultSchema);
-
-                if (!defaultInstance.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    schema = defaultInstance + "." + schema;
-                }
-            }
-
-            var parentTableBO = this.DataViewBO.DataViewManager.Tables.GetTable(this.ParentTable);
+            }            
 
             string result = "YAHOO.LookupsNS.LeftPanel.DataSource.liveData = [";
             foreach (TableBO table in this.DataViewBO.DataViewManager.Tables)
             {
-                // If there is lookup field, the leftOutter join will be published on Information link.
-                // However information link does not support to self-join, otherwise validation error (identical fault exception) will be thrown.
-                // So need to fiter out the tables has the same table name.
-                bool comingFromSameTableSource = table.DataBase == parentTableBO.DataBase && table.Name == parentTableBO.Name;
-
-                // Ignore the tables coming from same table source.
-                if (comingFromSameTableSource)
-                {
-                    continue;
-                }
-
-                if (table.DataBase == schema && table.ID != this.ParentTable)
-                {
-                    result += "{" + string.Format("tableschema: \"{0}\", tablealias: \"{1}\", tableid: \"{2}\", tablename: \"{3}\", isbasetable: \"{4}\"",
-                        table.DataBase, System.Web.HttpUtility.HtmlEncode(table.Alias), table.ID, table.Name, (table.ID == basetableid)) + "},";
-                }
+                if (table.DataBase == schema && table.ID != this.ParentTable)                
+                    result += "{" + string.Format("tableschema: \"{0}\", tablealias: \"{1}\", tableid: \"{2}\", tablename: \"{3}\", isbasetable: \"{4}\"", table.DataBase, System.Web.HttpUtility.HtmlEncode(table.Alias), table.ID, table.Name, (table.ID == basetableid)) + "},";
+                
             }
             if (result.Length > 0 && !result.EndsWith("["))
                 result = result.Remove(result.Length - 1);
             result += @"];
                 ";
 
-            this.SchemaDropDownList.SelectedValue = schema.Substring(schema.IndexOf(".") + 1);
+            this.SchemaDropDownList.SelectedValue = schema;
             this.SchemaDropDownList.DataBind();
 
             return result;
@@ -458,45 +398,19 @@ public partial class Forms_DataViewManager_ContentArea_DefineLookup : GUIShellPa
             }
         }
         return string.Empty;
-    }
-
-    private void BindDropDownList()
-    {
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-        var defaultDatabase = this.DefaultDatabase;
-        var defaultInstance = mainInstance.Name;
-        var defaultSchema = string.Empty;
-
-        Utilities.AnalyseInstanceSchema(defaultDatabase, ref defaultInstance, ref defaultSchema);
-
-        this.SchemaDropDownList.DataSource = GetSchemas();
-        this.SchemaDropDownList.SelectedValue = defaultSchema;
-        this.SchemaDropDownList.DataBind();
-    }
+    }    
 
     private List<string> GetSchemas()
     {
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
         List<string> schemas = new List<string>();
-        var defaultDatabase = this.DefaultDatabase;
-        var defaultInstance = mainInstance.Name;
-        var defaultSchema = string.Empty;
-
-        Utilities.AnalyseInstanceSchema(defaultDatabase, ref defaultInstance, ref defaultSchema);
+        
 
         if (this.DataViewBO.DataViewManager.Tables.Count > 0)
         {
             foreach (TableBO table in this.DataViewBO.DataViewManager.Tables)
             {
-                var instance = mainInstance.Name;
-                var schema = string.Empty;
-
-                Utilities.AnalyseInstanceSchema(table.DataBase, ref instance, ref schema);
-
-                if (!schemas.Contains(schema) && defaultInstance.Equals(instance, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    schemas.Add(schema);
-                }
+                if (!schemas.Contains(table.DataBase))
+                    schemas.Add(table.DataBase);
             }
         }
 
@@ -541,7 +455,7 @@ public partial class Forms_DataViewManager_ContentArea_DefineLookup : GUIShellPa
 
     private void GoToPreviousPage()
     {
-        string url = this.Caller + ".aspx?" + Constants.ParamCaller + "=" + this.ParamCaller +"&schemaSelected=" + Request["schemaSelected"];
+        string url = this.Caller + ".aspx?" + Constants.ParamCaller + "=" + this.ParamCaller;
         Server.Transfer(url, false);
     }
 

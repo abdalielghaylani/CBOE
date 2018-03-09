@@ -95,8 +95,9 @@ public partial class Forms_ContentArea_ManageGroups : GUIShellPage
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         Control UControl = _masterPage.FindControlInPage(_userControlID);
-        
-         }
-
+        Forms_ContentArea_ManageUsers mngUsers = new Forms_ContentArea_ManageUsers();
+        mngUsers.CheckPrivilege("ManageGroups");
+     }
+    
     #endregion
 }

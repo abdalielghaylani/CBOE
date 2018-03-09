@@ -1,0 +1,117 @@
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+'Function GetSigFigs derived from Cs_RealNum:ParseString C++ code used by CFW
+'ParseString   Examines the provided string, which represents a real number, possibly      '
+'       in exponential notation, and determines the number of significant figures present.  '
+'       In the conventional simple and scientific representations of real numbers, there is '
+'       one region within the string that represents the significant digits.  The position  '
+'       of this region given by (start,finish).                                             '
+'                                                                                           '
+'       To determine this region:                                                           '
+'           1)  Locate the decimal point.                                                   '
+'           2)  Remove a leading minus or plus sign.                                        ' 
+'                                                                                           '
+'           3)  Remove leading zeroes.                                                      '
+'           4)  Strip off everything including and following an exponent (E).               '
+'           5)  If a decimal point is not present, strip off trailing zeroes.               '
+'           6)  Count the number of characters left, ignoring any decimal point.            '
+'           7)  Every number is considered to have *at least* one significant figure.       '
+'                                                                                           '
+'       Examples of "significant regions" are:                                              '
+'               "-003.14E01"    -> "3.14",      3 sig figs.                                 '
+'               "0.0300"        -> ".0300",     3 sig figs.                                 '
+'               "3020"          -> "3020",      3 sig figs.                                 '
+'               ".00E-7"        -> ".00",       1 sig figs.                                 '
+'       Penned by HEH, 12/15/95.                                                            ' 
+'       Ported by DGB 7/2003                                                                '
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Function GetSigFigs(src)
+
+    ' 1) Locate the decimal point.
+    decPt = InStr(src, ".")
+    If decPt >= 0 Then decPt = decPt - 1 ' -1 if not present
+    ' 2-3) Remove leading zeroes, pluses, minuses (and periods for chuckles).
+    start = 0
+   
+    While start < Len(src) And InStr("+-0.", Mid(src, start + 1, 1))
+        start = start + 1
+    Wend
+
+    finish = Len(src) - 1
+
+    ' 4) Strip off an exponent and everything after.
+    exponent = InStr(LCase(src), "e")
+    If exponent >= 0 Then exponent = exponent - 1
+    If exponent > 0 Then
+        finish = exponent - 1
+    End If
+    ' 5) If a decimal point is not present, strip off trailing zeroes.
+    If decPt = -1 Then
+        While (finish > start And Mid(src, finish + 1, 1) = "0")
+            finish = finish - 1
+        Wend
+
+    End If
+    ' 5.5) Handle the special case of ".00" (with or without a trailing exponential).
+    If finish < start Then
+    
+        start = 0
+        While start < Len(src) And InStr("+-0", Mid(src, start + 1, 1))
+            start = start + 1
+        Wend
+        numSigFigs = 1
+    Else
+
+    '   6)  Count the number of characters left, ignoring any decimal point.
+    '       start and finish are the first and last digits in the significant region.
+
+        numSigFigs = finish - start + 1
+
+        If decPt > start And decPt < finish Then
+            numSigFigs = numSigFigs - 1
+        End If
+    End If
+
+    ' 7) Every number has at least one significant figure.
+    If (numSigFigs < 1) Then
+        numSigFigs = 1
+    End If
+    GetSigFigs = numSigFigs
+End Function
+
+Sub GetSearchRange(src, ByRef loVal, ByRef hiVal)
+    v = CDbl(src)
+    figs = GetSigFigs(src)
+    tol = SetToleranceFromSigFig(v, figs)
+    delta = 0.5 * tol
+    If delta > 1 Then delta = 0.5
+    
+    loVal = v - delta
+    hiVal = v + delta
+End Sub
+
+Function SetToleranceFromSigFig(v, numsigfig)
+        SetToleranceFromSigFig = 10 ^ (PowerOfMostSignificantFig(v) - numsigfig + 1)
+End Function
+
+Function PowerOfMostSignificantFig(val)
+    PowerOfMostSignificantFig = Floor(Log10(Abs(val)))
+End Function
+
+Function Log10(X)
+   Log10 = Log(X) / Log(10)
+End Function
+
+Function Floor(ByVal n)
+    Dim iTmp, bErr
+    On Error Resume Next
+    n = CDbl(n)
+    If Err Then bErr = True
+    On Error GoTo 0
+    If bErr Then Err.Raise 5000, "Floor Function", _
+        "Input must be convertible to a sub-type of double"
+    iTmp = Round(n)
+    'test rounded value against the non rounded value
+    'if greater, subtract 1
+    If iTmp > n Then iTmp = iTmp - 1
+    Floor = CInt(iTmp)
+End Function 

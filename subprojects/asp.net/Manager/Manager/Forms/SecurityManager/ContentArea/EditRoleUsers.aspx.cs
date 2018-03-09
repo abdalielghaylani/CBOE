@@ -81,6 +81,8 @@ public partial class Forms_ContentArea_EditRoleUsers: GUIShellPage
         //if (allUsers != null && UControl != null && selectedUsers != null)
         //    ((EditUserUC)UControl).DataBind(allUsers, selectedUsers);
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
+        Forms_ContentArea_ManageUsers mngUsers = new Forms_ContentArea_ManageUsers();
+        mngUsers.CheckPrivilege("ManageRoles");
     }
     #endregion
 }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<searchCriteria xmlns="COE.SearchCriteria">
+	<!--Date Comparisons-->
+	<searchCriteriaItem id="1"  
+					 fieldid="8" 
+					 modifier="" 
+					 tableid="1">
+		<dateCriteria operator="GTE">01/01/2005</dateCriteria>
+	</searchCriteriaItem>
+	<!--Text < & > comparison -->
+	<searchCriteriaItem id="2"  
+					 fieldid="10" 
+					 modifier="" 
+					 tableid="2">
+		<textCriteria operator="LT">0111112220</textCriteria>
+	</searchCriteriaItem>
+	<!-- Numeric values stored in text field-->
+	<searchCriteriaItem id="3"  
+					 fieldid="2" 
+					 modifier="" 
+					 tableid="1">
+		<numericalCriteria operator="EQUAL" trim="BOTH">00123.32100</numericalCriteria>
+	</searchCriteriaItem>
+	<!-- Like text comparison-->
+	<searchCriteriaItem id="4"  
+					 fieldid="11" 
+					 modifier="" 
+					 tableid="2">
+		<textCriteria operator="LIKE" trim="BOTH" caseSensitive="NO">"Cambridge, Massachussets"</textCriteria>
+	</searchCriteriaItem>
+	<searchCriteriaItem id="5"  
+						 fieldid="20" 
+						 modifier="" 
+						 tableid="3">
+		<MolWeightCriteria>
+			<CSCartridgeMolWeightCriteria min="1.0" max="200.0"/>
+		</MolWeightCriteria>
+	</searchCriteriaItem>
+	
+	<searchCriteriaItem id="6"  
+					 fieldid="20" 
+					 modifier="" 
+					 tableid="3">
+		<FormulaCriteria>
+			<CSCartridgeFormulaCriteria Full="YES">C1CCCCC1</CSCartridgeFormulaCriteria>
+		</FormulaCriteria>
+	</searchCriteriaItem>
+	<searchCriteriaItem id="7" 
+					 fieldid="20" 
+					 modifier="" 
+					 tableid="3">
+		<structureCriteria>
+			<CSCartridgeStructureCriteria
+				absolutehitsrel="NO" 
+				relativeTetStereo="NO" 
+				tetrahedralStereo="YES" 
+				simThreshold="100" 
+				reactionCenter="YES" 
+				fullWordSearch="NO" 
+				tautomer="NO" 
+				fragmentsoverlap="NO" 
+				permitExtraneousFragmentsIfRXN="NO" 
+				permitExtraneousFragments="NO" 
+				doublebondstereo="NO" 
+				hitAnyChargeHetero="YES" 
+				identity="NO" 
+				hitAnyChargeCarbon="YES" 
+				similar="NO"
+			  format="BASE64CDX">VmpDRDAxMDAEAwIBAAAAA….QAAAAAAAAAAAA=</CSCartridgeStructureCriteria>
+		</structureCriteria>
+	</searchCriteriaItem>
+</searchCriteria>

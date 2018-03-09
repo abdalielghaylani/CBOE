@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="CambridgeSoft.COE.Framework.Web" xmlns:s1="COE.COEDataView" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="CambridgeSoft.COE.Framework.Web" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Services for COE Framework Services</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="CambridgeSoft.COE.Framework.Web">
+      <s:import namespace="COE.COEDataView" />
+      <s:element name="DoSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultsCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pagingInfoString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataViewString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DoSearchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="COECredentials" type="tns:COECredentials" />
+      <s:complexType name="COECredentials">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthenticationTicket" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="DoGlobalSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultsCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pagingInfoString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataViewString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoGlobalSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DoGlobalSearchResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resultsCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pagingInfoString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataViewString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilteredData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultsCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pagingInfoString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataViewString" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="useRealTableNames" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFilteredDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFilteredDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GlobalSearchGetData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resultsCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pagingInfoString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataViewString" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GlobalSearchGetDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GlobalSearchGetDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoSearchSimple">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchInput" type="tns:SearchInput" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultFields" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="pageInfo" type="tns:ResultPageInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="dataviewID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SearchInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FieldCriteria" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Domain" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="DomainFieldName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnPartialResults" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnSimilarityScores" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="SearchOptions" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="AvoidHitList" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResultPageInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultSetID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Start" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="End" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DoSearchSimpleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DoSearchSimpleResult" type="tns:DataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultSet" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultSetInfo" type="tns:ResultSetInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultPageInfo" type="tns:ResultPageInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusDetails" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResultSetInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstimatedCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TotalCount" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsComplete" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetIdsSimple">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchInput" type="tns:SearchInput" />
+            <s:element minOccurs="0" maxOccurs="1" name="pkField" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pageInfo" type="tns:ResultPageInfo" />
+            <s:element minOccurs="1" maxOccurs="1" name="dataviewID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIdsSimpleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIdsSimpleResult" type="tns:DataListResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DataListResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResultList" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="SimilarityScores" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultSetInfo" type="tns:ResultSetInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="resultPageInfo" type="tns:ResultPageInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusDetails" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDataPageSimple">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pageInfo" type="tns:ResultPageInfo" />
+            <s:element minOccurs="0" maxOccurs="1" name="resultFields" type="tns:ArrayOfString" />
+            <s:element minOccurs="1" maxOccurs="1" name="dataviewID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataPageSimpleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataPageSimpleResult" type="tns:DataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExportData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="resultsCriteriaString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pagingInfoString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataViewString" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="exportType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExportDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExportDataResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dataViewID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" ref="s1:COEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDataView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dataViewID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDataViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteDataViewResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dataViewID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="databaseName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPublic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="formgroup" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" ref="s1:COEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" ref="s1:COEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataViewStr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dataViewID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="databaseName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPublic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="formgroup" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="coeDataView" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataViewStrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" ref="s1:COEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDataView">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="databaseName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPublic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="formgroup" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" ref="s1:COEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDataViewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertDataViewResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDataViewStr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="databaseName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPublic" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="formgroup" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="coeDataView" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertDataViewStrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertDataViewStrResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishTableToDataview">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="dataviewID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="fullTableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="primaryKeyFieldName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="parentTableJoinFieldName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="childTableJoinFieldName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="joinType" type="s1:JoinTypes" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PublishTableToDataviewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PublishTableToDataviewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataViewDataListByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataViewDataListByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataViewDataListByUserResult" type="tns:ArrayOfCOEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCOEDataView">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="COEDataView" nillable="true" type="s1:COEDataView" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDataViewDataListByDatabase">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="databaseName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataViewDataListByDatabaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataViewDataListByDatabaseResult" type="tns:ArrayOfCOEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataViewListforAllDatabases">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDataViewListforAllDatabasesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataViewListforAllDatabasesResult" type="tns:ArrayOfCOEDataView" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="COE.COEDataView">
+      <s:element name="COEDataView" nillable="true" type="s1:COEDataView" />
+      <s:complexType name="COEDataView">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="tables" type="s1:ArrayOfCOEDataViewTable" />
+          <s:element minOccurs="0" maxOccurs="1" name="relationships" type="s1:ArrayOfRelationship" />
+        </s:sequence>
+        <s:attribute name="basetable" type="s:int" use="required" />
+        <s:attribute name="database" type="s:string" />
+        <s:attribute name="dataviewid" type="s:int" use="required" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="description" type="s:string" />
+        <s:attribute name="application" type="s:string" />
+        <s:attribute name="dataviewHandling" type="s1:DataViewHandlingOptions" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfCOEDataViewTable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="table" nillable="true" type="s1:COEDataView.Table" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="COEDataView.Table">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="fields" type="s1:fields" />
+        </s:sequence>
+        <s:attribute name="id" type="s:int" use="required" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="alias" type="s:string" />
+        <s:attribute name="database" type="s:string" />
+        <s:attribute name="primaryKey" type="s:string" />
+        <s:attribute default="false" name="isView" type="s:boolean" />
+      </s:complexType>
+      <s:complexType name="fields">
+        <s:attribute name="id" type="s:int" use="required" />
+        <s:attribute name="name" type="s:string" />
+        <s:attribute name="dataType" type="s1:AbstractTypes" use="required" />
+        <s:attribute default="-1" name="lookupFieldId" type="s:int" />
+        <s:attribute default="-1" name="lookupDisplayFieldId" type="s:int" />
+        <s:attribute default="" name="alias" type="s:string" />
+        <s:attribute name="indexType" type="s1:IndexTypes" use="required" />
+        <s:attribute name="mimeType" type="s1:MimeTypes" use="required" />
+        <s:attribute default="true" name="visible" type="s:boolean" />
+        <s:attribute default="false" name="isDefault" type="s:boolean" />
+        <s:attribute default="ASCENDING" name="lookupSortOrder" type="s1:SortDirection" />
+        <s:attribute default="-1" name="sortOrder" type="s:int" />
+        <s:attribute default="false" name="isUniqueKey" type="s:boolean" />
+      </s:complexType>
+      <s:simpleType name="AbstractTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="INTEGER" />
+          <s:enumeration value="REAL" />
+          <s:enumeration value="TEXT" />
+          <s:enumeration value="DATE" />
+          <s:enumeration value="BOOLEAN" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="IndexTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NONE" />
+          <s:enumeration value="UNKNOWN" />
+          <s:enumeration value="CS_CARTRIDGE" />
+          <s:enumeration value="FULL_TEXT" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="MimeTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="NONE" />
+          <s:enumeration value="UNKNOWN" />
+          <s:enumeration value="image/jpeg" />
+          <s:enumeration value="image/gif" />
+          <s:enumeration value="image/png" />
+          <s:enumeration value="image/x-wmf" />
+          <s:enumeration value="chemical/x-mdl-molfile" />
+          <s:enumeration value="chemical/x-cdx" />
+          <s:enumeration value="chemical/x-smiles" />
+          <s:enumeration value="text/xml" />
+          <s:enumeration value="text/html" />
+          <s:enumeration value="text/plain" />
+          <s:enumeration value="text/raw" />
+          <s:enumeration value="application/vnd.ms-excel" />
+          <s:enumeration value="application/msword" />
+          <s:enumeration value="application/pdf" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="SortDirection">
+        <s:restriction base="s:string">
+          <s:enumeration value="ASCENDING" />
+          <s:enumeration value="DESCENDING" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfRelationship">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="relationship" nillable="true" type="s1:relationship" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="relationship">
+        <s:attribute name="parentkey" type="s:int" use="required" />
+        <s:attribute name="childkey" type="s:int" use="required" />
+        <s:attribute name="parent" type="s:int" use="required" />
+        <s:attribute name="child" type="s:int" use="required" />
+        <s:attribute name="jointype" type="s1:JoinTypes" use="required" />
+      </s:complexType>
+      <s:simpleType name="JoinTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="OUTER" />
+          <s:enumeration value="INNER" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DataViewHandlingOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="USE_CLIENT_DATAVIEW" />
+          <s:enumeration value="USE_SERVER_DATAVIEW" />
+          <s:enumeration value="MERGE_CLIENT_AND_SERVER_DATAVIEW" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DoSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:DoSearch" />
+  </wsdl:message>
+  <wsdl:message name="DoSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:DoSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoSearchCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="DoGlobalSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:DoGlobalSearch" />
+  </wsdl:message>
+  <wsdl:message name="DoGlobalSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:DoGlobalSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoGlobalSearchCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetFilteredDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFilteredData" />
+  </wsdl:message>
+  <wsdl:message name="GetFilteredDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFilteredDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFilteredDataCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GlobalSearchGetDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GlobalSearchGetData" />
+  </wsdl:message>
+  <wsdl:message name="GlobalSearchGetDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GlobalSearchGetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GlobalSearchGetDataCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="DoSearchSimpleSoapIn">
+    <wsdl:part name="parameters" element="tns:DoSearchSimple" />
+  </wsdl:message>
+  <wsdl:message name="DoSearchSimpleSoapOut">
+    <wsdl:part name="parameters" element="tns:DoSearchSimpleResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoSearchSimpleCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetIdsSimpleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIdsSimple" />
+  </wsdl:message>
+  <wsdl:message name="GetIdsSimpleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIdsSimpleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIdsSimpleCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDataPageSimpleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataPageSimple" />
+  </wsdl:message>
+  <wsdl:message name="GetDataPageSimpleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataPageSimpleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataPageSimpleCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="ExportDataSoapIn">
+    <wsdl:part name="parameters" element="tns:ExportData" />
+  </wsdl:message>
+  <wsdl:message name="ExportDataSoapOut">
+    <wsdl:part name="parameters" element="tns:ExportDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExportDataCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataView" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDataViewSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDataView" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDataViewSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDataViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDataViewCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataViewSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDataView" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataViewSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDataViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataViewCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataViewStrSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDataViewStr" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataViewStrSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDataViewStrResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataViewStrCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataViewSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDataView" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataViewSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDataViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataViewCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataViewStrSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertDataViewStr" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataViewStrSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertDataViewStrResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertDataViewStrCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="PublishTableToDataviewSoapIn">
+    <wsdl:part name="parameters" element="tns:PublishTableToDataview" />
+  </wsdl:message>
+  <wsdl:message name="PublishTableToDataviewSoapOut">
+    <wsdl:part name="parameters" element="tns:PublishTableToDataviewResponse" />
+  </wsdl:message>
+  <wsdl:message name="PublishTableToDataviewCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewDataListByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataViewDataListByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewDataListByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataViewDataListByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewDataListByUserCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewDataListByDatabaseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataViewDataListByDatabase" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewDataListByDatabaseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataViewDataListByDatabaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewDataListByDatabaseCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewListforAllDatabasesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataViewListforAllDatabases" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewListforAllDatabasesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataViewListforAllDatabasesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataViewListforAllDatabasesCOECredentials">
+    <wsdl:part name="COECredentials" element="tns:COECredentials" />
+  </wsdl:message>
+  <wsdl:portType name="COEFrameworkServicesSoap">
+    <wsdl:operation name="DoSearch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Do A Search</wsdl:documentation>
+      <wsdl:input message="tns:DoSearchSoapIn" />
+      <wsdl:output message="tns:DoSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoGlobalSearch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Do Search over several databases</wsdl:documentation>
+      <wsdl:input message="tns:DoGlobalSearchSoapIn" />
+      <wsdl:output message="tns:DoGlobalSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Data from a previous search</wsdl:documentation>
+      <wsdl:input message="tns:GetDataSoapIn" />
+      <wsdl:output message="tns:GetDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFilteredData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets filtered data. Paging info may or may not contain a hitlistid and hitlisttype. If provided the search criteria is used to
+        filter the original hitlist. If not present a new search is performed. Note that this method would not create a new hitlist, but will
+        only get the data filtered.</wsdl:documentation>
+      <wsdl:input message="tns:GetFilteredDataSoapIn" />
+      <wsdl:output message="tns:GetFilteredDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GlobalSearchGetData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get Data from previous global search</wsdl:documentation>
+      <wsdl:input message="tns:GlobalSearchGetDataSoapIn" />
+      <wsdl:output message="tns:GlobalSearchGetDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoSearchSimple">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Do a search with a simple API</wsdl:documentation>
+      <wsdl:input message="tns:DoSearchSimpleSoapIn" />
+      <wsdl:output message="tns:DoSearchSimpleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIdsSimple">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Do a search with a simple API</wsdl:documentation>
+      <wsdl:input message="tns:GetIdsSimpleSoapIn" />
+      <wsdl:output message="tns:GetIdsSimpleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPageSimple">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets a page with a simple API</wsdl:documentation>
+      <wsdl:input message="tns:GetDataPageSimpleSoapIn" />
+      <wsdl:output message="tns:GetDataPageSimpleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExportData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Export data from a previous search to the specified format</wsdl:documentation>
+      <wsdl:input message="tns:ExportDataSoapIn" />
+      <wsdl:output message="tns:ExportDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get COEDataView by ID</wsdl:documentation>
+      <wsdl:input message="tns:GetDataViewSoapIn" />
+      <wsdl:output message="tns:GetDataViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDataView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes the COEDataView with the given ID</wsdl:documentation>
+      <wsdl:input message="tns:DeleteDataViewSoapIn" />
+      <wsdl:output message="tns:DeleteDataViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Updates the COEDataView specified by dataViewID with the given values</wsdl:documentation>
+      <wsdl:input message="tns:UpdateDataViewSoapIn" />
+      <wsdl:output message="tns:UpdateDataViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataViewStr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Updates the COEDataView specified by dataViewID with the given values</wsdl:documentation>
+      <wsdl:input message="tns:UpdateDataViewStrSoapIn" />
+      <wsdl:output message="tns:UpdateDataViewStrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataView">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates and stores a COEDataView</wsdl:documentation>
+      <wsdl:input message="tns:InsertDataViewSoapIn" />
+      <wsdl:output message="tns:InsertDataViewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataViewStr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates and stores a COEDataView</wsdl:documentation>
+      <wsdl:input message="tns:InsertDataViewStrSoapIn" />
+      <wsdl:output message="tns:InsertDataViewStrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PublishTableToDataview">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Publishes the table to the master dataview and the dataview that was passed.</wsdl:documentation>
+      <wsdl:input message="tns:PublishTableToDataviewSoapIn" />
+      <wsdl:output message="tns:PublishTableToDataviewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewDataListByUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of DataViews for a user</wsdl:documentation>
+      <wsdl:input message="tns:GetDataViewDataListByUserSoapIn" />
+      <wsdl:output message="tns:GetDataViewDataListByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewDataListByDatabase">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of DataViews for a database</wsdl:documentation>
+      <wsdl:input message="tns:GetDataViewDataListByDatabaseSoapIn" />
+      <wsdl:output message="tns:GetDataViewDataListByDatabaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewListforAllDatabases">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get a List of DataViews for all databases in COEFrameworkConfig</wsdl:documentation>
+      <wsdl:input message="tns:GetDataViewListforAllDatabasesSoapIn" />
+      <wsdl:output message="tns:GetDataViewListforAllDatabasesSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="COEFrameworkServicesSoap" type="tns:COEFrameworkServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoSearch">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/DoSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DoSearchCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoGlobalSearch">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/DoGlobalSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DoGlobalSearchCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilteredData">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetFilteredData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetFilteredDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GlobalSearchGetData">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GlobalSearchGetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GlobalSearchGetDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoSearchSimple">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/DoSearchSimple" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DoSearchSimpleCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIdsSimple">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetIdsSimple" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetIdsSimpleCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPageSimple">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataPageSimple" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDataPageSimpleCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportData">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/ExportData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:ExportDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataView">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDataView">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/DeleteDataView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DeleteDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataView">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/UpdateDataView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataViewStr">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/UpdateDataViewStr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:UpdateDataViewStrCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataView">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/InsertDataView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:InsertDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataViewStr">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/InsertDataViewStr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:InsertDataViewStrCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishTableToDataview">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/PublishTableToDataview" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PublishTableToDataviewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewDataListByUser">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataViewDataListByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDataViewDataListByUserCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewDataListByDatabase">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataViewDataListByDatabase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDataViewDataListByDatabaseCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewListforAllDatabases">
+      <soap:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataViewListforAllDatabases" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetDataViewListforAllDatabasesCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="COEFrameworkServicesSoap12" type="tns:COEFrameworkServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoSearch">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/DoSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DoSearchCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoGlobalSearch">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/DoGlobalSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DoGlobalSearchCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFilteredData">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetFilteredData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetFilteredDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GlobalSearchGetData">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GlobalSearchGetData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GlobalSearchGetDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoSearchSimple">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/DoSearchSimple" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DoSearchSimpleCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIdsSimple">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetIdsSimple" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetIdsSimpleCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataPageSimple">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataPageSimple" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDataPageSimpleCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExportData">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/ExportData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:ExportDataCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataView">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDataView">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/DeleteDataView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DeleteDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataView">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/UpdateDataView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataViewStr">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/UpdateDataViewStr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:UpdateDataViewStrCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataView">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/InsertDataView" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:InsertDataViewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertDataViewStr">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/InsertDataViewStr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:InsertDataViewStrCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PublishTableToDataview">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/PublishTableToDataview" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PublishTableToDataviewCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewDataListByUser">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataViewDataListByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDataViewDataListByUserCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewDataListByDatabase">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataViewDataListByDatabase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDataViewDataListByDatabaseCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataViewListforAllDatabases">
+      <soap12:operation soapAction="CambridgeSoft.COE.Framework.Web/GetDataViewListforAllDatabases" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetDataViewListforAllDatabasesCOECredentials" part="COECredentials" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="COEFrameworkServices">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Services for COE Framework Services</wsdl:documentation>
+    <wsdl:port name="COEFrameworkServicesSoap" binding="tns:COEFrameworkServicesSoap">
+      <soap:address location="http://localhost/COEFrameworkServices/COEFrameworkServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="COEFrameworkServicesSoap12" binding="tns:COEFrameworkServicesSoap12">
+      <soap12:address location="http://localhost/COEFrameworkServices/COEFrameworkServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

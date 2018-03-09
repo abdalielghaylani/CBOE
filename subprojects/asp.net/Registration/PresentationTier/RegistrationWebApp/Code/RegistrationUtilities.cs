@@ -370,7 +370,7 @@ public class RegUtilities
     public static bool CheckIfMWAndFormulaMatch(string Base64_1, string Base64_2)
     {
 
-        ChemDrawControl15.ChemDrawCtl ctl = new ChemDrawControl15.ChemDrawCtl();
+        ChemDrawControl17.ChemDrawCtl ctl = new ChemDrawControl17.ChemDrawCtl();
         ctl.Objects.Clear();
         ctl.DataEncoded = true;
         ctl.Objects.set_Data("chemical/x-cdx", null, null, null, UnicodeEncoding.ASCII.GetBytes(Base64_1));
@@ -441,12 +441,14 @@ public class RegUtilities
     public static string GetSearchTempURL(bool restoreHitListId)
     {
         string url = GUIShellUtilities.GetSearchEngineURL();
-        url += string.Format("?FormGroupId={0}&embed=ChemBioViz&AppName={1}&AllowFullScan={2}&KeepRecordCountSynchronized={3}&MarkedHitsMax={4}",
+        url += string.Format("?FormGroupId={0}&embed=ChemBioViz&AppName={1}&AllowFullScan={2}&KeepRecordCountSynchronized={3}&MarkedHitsMax={4}&ExpireHitlistHistoryDays={5}&ExpireQueryHistoryDays={6}",
                             GetConfigSetting(Groups.CBV, "ReviewRegisterSearchFormGroupId"),
                             GUIShellUtilities.GetApplicationName(),
                             bool.TrueString,
                             bool.TrueString,
-                            GetConfigSetting(Groups.CBV, "MarkedHitsMax")
+                            GetConfigSetting(Groups.CBV, "MarkedHitsMax"),
+                            GetConfigSetting(Groups.CBV, "ExpireHitlistHistoryDays"),
+                            GetConfigSetting(Groups.CBV, "ExpireQueryHistoryDays")
                             );
 
         if (restoreHitListId && HttpContext.Current.Session[RegistrationWebApp.Constants.TempSearchedInfo] != null)
@@ -665,13 +667,15 @@ public class RegUtilities
     public static string GetSearchPermURL()
     {
         string url = GUIShellUtilities.GetSearchEngineURL();
-        url += string.Format("?FormGroupId={0}&embed=ChemBioViz&AppName={1}&KeepRecordCountSynchronized={2}&AllowFullScan={4}&MarkedHitsMax={5}",
+        url += string.Format("?FormGroupId={0}&embed=ChemBioViz&AppName={1}&KeepRecordCountSynchronized={2}&AllowFullScan={4}&MarkedHitsMax={5}&ExpireHitlistHistoryDays={6}&ExpireQueryHistoryDays={7}",
                             GetConfigSetting(Groups.CBV, "ViewRegistrySearchFormGroupId"),
                             HttpContext.Current.Application[RegistrationWebApp.Constants.AppName].ToString(),
                             bool.TrueString,
                             bool.TrueString,
                             bool.TrueString,
-                            GetConfigSetting(Groups.CBV, "MarkedHitsMax")
+                            GetConfigSetting(Groups.CBV, "MarkedHitsMax"), 
+                            GetConfigSetting(Groups.CBV, "ExpireHitlistHistoryDays"),
+                            GetConfigSetting(Groups.CBV, "ExpireQueryHistoryDays")
                             );
 
         if (HttpContext.Current.Session[RegistrationWebApp.Constants.PermSearchedInfo] != null)
@@ -1123,19 +1127,14 @@ public class RegUtilities
         locationPath.Alias = "LOCATIONPATH";
         locationPath.FunctionName = string.Format("{0}.GUIUTILS.GETLOCATIONPATH", chemInvSchemaName);
         locationPath.Parameters.Add(new ResultsCriteria.Field(8));
-        ResultsCriteria.SQLFunction locationText = new ResultsCriteria.SQLFunction();
-        locationText.Alias = "LOCATIONINNER";
-        locationText.FunctionName = "REGEXP_REPLACE";
-        locationText.Parameters.Add(new ResultsCriteria.Literal(@"'<a title=""{0}"">{1}</a>'"));
-        locationText.Parameters.Add(new ResultsCriteria.Literal(@"'\{0\}'"));
-        locationText.Parameters.Add(locationPath);
-        ResultsCriteria.SQLFunction location = new ResultsCriteria.SQLFunction();
-        location.Alias = "LOCATION";
-        location.FunctionName = "REGEXP_REPLACE";
-        location.Parameters.Add(locationText);
-        location.Parameters.Add(new ResultsCriteria.Literal(@"'\{1\}'"));
-        location.Parameters.Add(new ResultsCriteria.Field(7));
-        rc.Tables[0].Criterias.Add(location);                                                   //LOCATION
+        ResultsCriteria.Concatenation locationText = new ResultsCriteria.Concatenation();
+        locationText.Alias = "LOCATION";
+        locationText.Operands.Add(new ResultsCriteria.Literal("q'[<a title=\"]'"));
+        locationText.Operands.Add(locationPath);
+        locationText.Operands.Add(new ResultsCriteria.Literal("q'[\">]'"));
+        locationText.Operands.Add(new ResultsCriteria.Field(7));
+        locationText.Operands.Add(new ResultsCriteria.Literal("q'[</a>]'"));
+        rc.Tables[0].Criterias.Add(locationText);                                                   //LOCATION
         rc.Tables[0].Criterias.Add(new ResultsCriteria.Field(8));                               //LOCATIONID
         rc.Tables[0].Criterias.Add(new ResultsCriteria.Field(9));                               //REGID
         rc.Tables[0].Criterias.Add(new ResultsCriteria.Field(10));                              //BATCHID

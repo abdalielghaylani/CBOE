@@ -1,0 +1,334 @@
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebToolbar.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.UltraWebToolbar" TagPrefix="igtbar" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
+<%@ Register Assembly="Infragistics2.WebUI.Misc.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.Misc" TagPrefix="igmisc" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebGrid.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb" Namespace="Infragistics.WebUI.UltraWebGrid" TagPrefix="igtbl" %>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebNavigator.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.UltraWebNavigator" TagPrefix="ignav" %>
+<%@ register 
+             Namespace="CambridgeSoft.COE.Framework.Controls.WebParts" assembly="CambridgeSoft.COE.Framework"
+             TagPrefix="uc1"%>
+<%@ Register Assembly="Infragistics2.WebUI.UltraWebTab.v11.1, Version=11.1.20111.1006, Culture=neutral, PublicKeyToken=7dd5c3163f2cd0cb"
+    Namespace="Infragistics.WebUI.UltraWebTab" TagPrefix="igtab" %>
+    
+<%@ register 
+             Namespace="CambridgeSoft.COE.Framework.Controls.COEConfigSettingManager" assembly="CambridgeSoft.COE.Framework"
+            TagPrefix="COECntrl"
+             %>
+    
+<%-- Images --%>
+<asp:Image runat="server" SkinID="LogoImage" ImageUrl="./Images/LogoHeader.png" CssClass="LogoImage" />
+<asp:Image runat="server" SkinID="IconImage"  ImageUrl="./Images/AppIcon.png" />
+<asp:Image runat="server" SkinID="ClientLogo" ImageUrl="./Images/ClientLogo.png" />
+<asp:Image runat="server" SkinID="LoggedUserImage" ImageUrl="./Images/users.png" />
+<asp:Image runat="server" SkinID="ConfirmationMessageImage" ImageUrl="./Images/Warning.png" Height="24px" Width="24px" style="position:relative;top:10px" />
+<asp:Image runat="server" ImageAlign="Middle" SkinID="TooltipImage" ImageUrl="~/App_Themes/Blue/Images/Search.png" /> 
+
+<%-- Goto webMenu --%>
+<ignav:UltraWebMenu runat="server" SkinID="GoToUltraWebMenu">
+    <ExpandEffects ShadowColor="LightGray" Type="GradientWipe" />
+</ignav:UltraWebMenu>
+<ignav:UltraWebMenu runat="server" SkinID="SortByWebMenu" >
+    <ExpandEffects ShadowColor="LightGray" Type="GradientWipe" />
+</ignav:UltraWebMenu>
+
+<%-- DataView Summary Web Tree --%>
+<ignav:UltraWebTree runat="server" SkinID="DataViewSummaryTree" Indentation="20" WebTreeTarget="ClassicTree" Cursor="Hand" AllowDrag="false" AllowDrop="false" CssClass="TreeNode" >
+</ignav:UltraWebTree> 
+<ignav:UltraWebTree runat="server" SkinID="TablesUltraWebTree" Indentation="20" WebTreeTarget="ClassicTree" Cursor="Hand" AllowDrag="false" AllowDrop="false" CssClass="TreeNode" JavaScriptFilename="/coecommonresources/infragistics/20111CLR20/Scripts/ig_webtree.js">
+</ignav:UltraWebTree> 
+<ignav:UltraWebTree runat="server" SkinID="CurrentDVBOUltraWebTree" Indentation="20" WebTreeTarget="ClassicTree" Cursor="Hand" AllowDrag="false" AllowDrop="false" CssClass="TreeNode"  ExpandAnimation="Decelerate" >
+</ignav:UltraWebTree>
+
+<%-- Labels --%>
+<asp:Label runat="server" SkinID="ConfirmationMessage" CssClass="ConfirmationMessage"/>
+<asp:Label runat="server" SkinID="FooterItemSeparator" CssClass="FooterItemSeparator"/>
+<asp:Label runat="server" SkinID="FooterItem" CssClass="FooterItem"/>
+<asp:Label runat="server" SkinID="ErrorMessageLabel" CssClass="ErrorMessageLabel"/>
+<asp:Label runat="server" SkinID="Text" CssClass="Text"/>
+<asp:Label runat="server" SkinID="TextBold" CssClass="TextBold"/>
+<asp:Label runat="server" SkinID="RelationShipText" CssClass="RelationShipText"/>
+<asp:Label runat="server" SkinID="InvalidRelationShipText" CssClass="InvalidRelationShipSmall"/>
+<asp:Label runat="server" SkinID="Title" CssClass="Title"/>
+<asp:Label runat="server" SkinID="DataViewTable" CssClass="DataViewTable"/>
+<asp:Label runat="server" SkinID="DataViewTitle" CssClass="DataViewTitle"/>
+<asp:Label runat="server" SkinID="TextAsTxtBox" CssClass="TextBoxRO"/>
+<asp:Label runat="server" SkinID="RelationshipsSeparator" CssClass="RelationshipsSeparator" Text="|"></asp:Label>
+<asp:Label runat="server" SkinID="InValidDV" CssClass="InValidDV"></asp:Label>
+<asp:Label runat="server" SkinID="ValidDV" CssClass="ValidDV"></asp:Label>
+<asp:Label runat="server" SkinID="ErrorText" CssClass="ErrorMessageLabel"></asp:Label>
+<asp:Label runat="server" SkinID="SchemasNamesTitle" CssClass="SchemasNamesTitle"/>
+
+<%-- HyperLinks --%>
+<asp:HyperLink runat="server" SkinID="FooterItem" CssClass="FooterItem"/>
+<asp:HyperLink runat="server" SkinID="MenuTitleItem" CssClass="MenuTitleItem"></asp:HyperLink>
+<asp:HyperLink runat="server" SkinID="MenuItem" CssClass="MenuItem"></asp:HyperLink>
+
+<%-- Buttons --%>
+<asp:Button runat="server" SkinID="LogOffButton" CssClass="LogOffButton" />
+<asp:Button runat="server" SkinID="Navigation" CssClass="NavButton" />
+<asp:Button runat="server" SkinID="SortButton" CssClass="SortButton" />
+<asp:Button runat="server" SkinID="ButtonLikeLink" CssClass="LogOffButton" />
+<asp:Button runat="server" SkinId="ButtonBig" CssClass="ButtonBig"/>
+<%-- Validators --%>
+<asp:RequiredFieldValidator runat="server" Text="*" SkinID="ReqField" CssClass="ReqField"></asp:RequiredFieldValidator> 
+<asp:RequiredFieldValidator runat="server" Text="*" SkinID="ReqFieldText" CssClass="ReqFieldText"></asp:RequiredFieldValidator> 
+<asp:RegularExpressionValidator runat="server" Text="*" SkinID="ReqField" CssClass="ReqField"></asp:RegularExpressionValidator>
+
+<%-- Text Box --%>
+<asp:TextBox runat="server" SkinID="TextBox" CssClass="TextBox" />
+<asp:TextBox runat="server" SkinID="TextBoxMultiline" CssClass="TextBoxMultiline" />
+<asp:TextBox runat="server" SkinID="DataViewRO" CssClass="TextBoxRO" />
+<asp:TextBox runat="server" SkinID="TextBoxRO" CssClass="TextBoxRO" />
+
+<%-- RadioButtonList --%>
+<asp:RadioButtonList runat="server" SkinID="TablesRadioItems" CssClass="RadioButtonItem">
+</asp:RadioButtonList>
+<asp:RadioButtonList runat="server" SkinID="FieldRadioItems" CssClass="RadioButtonItem">
+</asp:RadioButtonList>
+<asp:RadioButtonList runat="server" SkinID="UsersRadioItems" CssClass="RadioButtonItem">
+</asp:RadioButtonList>
+
+<%-- Panels --%>
+<asp:Panel runat="server" SkinID="ValidationSummaryPanel" CssClass="ValidationSummaryPanel" />
+
+<%-- CheckBoxList --%>
+<asp:CheckBoxList runat="server" SkinID="TablesCheckBoxItems" CssClass="CheckBoxItem">
+</asp:CheckBoxList>
+ <asp:CheckBoxList runat="server" SkinID="ListItems" CssClass="ListItems"/>
+ 
+ <%-- DropDownList --%>
+ <asp:DropDownList   SkinID="SchemaDropDownList" runat="server" CssClass="SchemaDropDownList" Width="300px" />
+
+
+<%---Security --%>
+<asp:DetailsView  SkinID="SecurityDetailView" runat="server" CssClass="SecurityDetailView" />
+
+
+<asp:ListBox  SkinID="SecurityListBox" runat="server" CssClass="SecurityListBox" />
+<asp:DropDownList   SkinID="SecurityDropDownList" runat="server" CssClass="SecurityDropDownList" />
+<asp:Label SkinID="SecuritySelect" runat="server" CssClass="SecurityLabel"/>
+<asp:Label SkinID="SecurityViewFrom" runat="server" CssClass="SecurityLabel"/>
+<asp:Table SkinID="SecurityTable" runat="server" CssClass="SecurityTable"/>
+<asp:TableCell SkinID="SecurityCellLeft" runat="server" CssClass="SecurityTableCellLeft"/>
+<asp:TableCell SkinID="SecurityCellLeft2" runat="server" CssClass="SecurityTableCellLeft2"/>
+<asp:TableCell SkinID="SecurityCellRight" runat="server" CssClass="SecurityTableCellRight"/>
+<asp:Button SkinID="SecurityButton" runat="server" CssClass="SecurityButton"/>
+<asp:TableRow SkinID="SecurityTable" runat="server" CssClass="SecurityTableRow"/>
+<asp:TableCell SkinID="SecurityCellFooter" runat="server" CssClass="SecurityTableFooter"/>
+
+
+<asp:DetailsView  SkinID="SecurityDetailView2" runat="server" CssClass="SecurityDetailView2" GridLines="None">
+    <FooterStyle BackColor="000099" Font-Bold="True" ForeColor="White" />
+    <CommandRowStyle CssClass="SecurityDetailViewButtonCell"  />
+    <RowStyle  HorizontalAlign="Left" BackColor="White" />
+    <FieldHeaderStyle  HorizontalAlign="Center" BackColor="#EFF3FB" Font-Bold="False"  Wrap="false"/>
+    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Left" />
+    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White"  Width="160px" HorizontalAlign="Right"/>
+    <EditRowStyle BackColor="White" BorderWidth="0" />
+    <AlternatingRowStyle BackColor="White" HorizontalAlign="Left" />
+</asp:DetailsView>
+
+<asp:DetailsView  SkinID="SecurityDetailView3" runat="server" CssClass="SecurityDetailView3" GridLines="None">
+    <FooterStyle BackColor="000099" Font-Bold="True" ForeColor="White" />
+    <CommandRowStyle CssClass="SecurityDetailViewButtonCell"  />
+    <RowStyle  HorizontalAlign="Left" BackColor="White" />
+    <FieldHeaderStyle  HorizontalAlign="Right" BackColor="#EFF3FB" Font-Bold="False"  Wrap="false"/>
+    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" Width="160px" HorizontalAlign="Right"/>
+    <EditRowStyle BackColor="White" BorderWidth="0" />
+    <AlternatingRowStyle BackColor="White" HorizontalAlign="Left" />     
+</asp:DetailsView>
+
+<asp:DetailsView  SkinID="SecurityDetailView4" runat="server" CssClass="SecurityDetailView4" GridLines="None">
+    <FooterStyle BackColor="000099" Font-Bold="True" ForeColor="White" />
+    <CommandRowStyle CssClass="SecurityDetailViewButtonCell"  />
+    <RowStyle  HorizontalAlign="Left" BackColor="White" />
+    <FieldHeaderStyle  HorizontalAlign="Right" BackColor="#EFF3FB" Font-Bold="False"  Wrap="false"/>
+    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
+    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" Width="160px" HorizontalAlign="Right"/>
+    <EditRowStyle BackColor="White" BorderWidth="0" />
+    <AlternatingRowStyle BackColor="White" HorizontalAlign="Left" />     
+</asp:DetailsView>
+
+<asp:Login SkinID="Login" CSSClass="SecurityLogin" runat="server"  >
+            <TextBoxStyle Font-Size="0.8em" />
+            <LoginButtonStyle BackColor="#FFFBFF" BorderColor="#000099" BorderStyle="Solid" BorderWidth="1px"
+                Font-Names="Verdana" Font-Size="0.8em" ForeColor="#000099" />
+            <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
+            <TitleTextStyle BackColor="#EFF3FB" Font-Bold="True" Font-Size="0.9em" ForeColor="#000099" />
+</asp:Login>
+
+<asp:ChangePassword  SkinID="ChangePassword" CSSClass="ChangePWD"  runat="server"  >
+    <CancelButtonStyle CssClass="ChangePasswordCancelButton" />
+    <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
+    <PasswordHintStyle Font-Italic="True" ForeColor="#000099" />
+    <ChangePasswordButtonStyle CssClass="ChangePasswordButton"  />
+    <ContinueButtonStyle BackColor="#EFF3FB" BorderColor="#000099" BorderStyle="None"
+        BorderWidth="1px" Font-Names="Verdana" Font-Size="0.8em" ForeColor="#000099"  />
+    <TitleTextStyle CssClass="ChangePasswordTitleText" />
+    <LabelStyle CssClass="ChangePasswordLabel" />
+    <TextBoxStyle Font-Size="0.8em" Width="150px" CssClass="ChangePasswordTextBox"  />
+</asp:ChangePassword>
+
+<%-- WebPartZone --%>
+ <asp:WebPartZone SkinID="WebPartZone"  runat="server" >
+</asp:WebPartZone>
+
+<asp:Panel CssClass="ButtonFooter" SkinID="ButtonPanel" runat="server"/>
+
+<asp:Button  CssClass="LDAPButton" SkinID="LDAPButton" runat="server" ></asp:Button>
+
+<igtab:UltraWebTab SkinID="AppSettingsUltraWebTabSkin" runat="server" Width="618px" SpaceOnRight="30" DisplayMode="Scrollable">
+    <SelectedTabStyle Font-Bold="true" ForeColor="white" BorderStyle="None" Height="22px" Width="150px" BackgroundImage="Images/ig_tab_light1.gif" ></SelectedTabStyle>   
+    <DefaultTabStyle Font-Bold="true" BorderStyle="None" Height="22px" Width="150px" BackgroundImage="Images/ig_tab_light2.gif" ></DefaultTabStyle>  
+</igtab:UltraWebTab>
+
+<COECntrl:COEConfigSettingManager SkinID="AppSettingsUltraWebTabSkin" runat="server" Width="618px" SpaceOnRight="30" DisplayMode="Scrollable">
+    <SelectedTabStyle Font-Bold="true" Font-Size="10" BorderStyle="None" Height="28px" Width="150px" BackgroundImage="Images/UltraWebTabBackground.gif" ></SelectedTabStyle>   
+    <DefaultTabStyle Font-Bold="false" Font-Size="10" BorderStyle="None" Height="28px" Width="150px" BackgroundImage="Images/UltraWebTabBackground.gif" ></DefaultTabStyle>  
+    <RoundedImage NormalImage="Images/TabBackgroundBorders.gif" SelectedImage="Images/TabBackgroundBorders.gif" FillStyle="LeftRightOnly" LeftSideWidth="10" RightSideWidth="10"></RoundedImage>
+</COECntrl:COEConfigSettingManager>
+
+<igtbl:UltraWebGrid SkinID="AppSettingsUltraWebGridSkin" runat="server" Height="100%" Width="950px">
+    <DisplayLayout AllowColSizingDefault="Fixed" AllowSortingDefault="OnClient" BorderCollapseDefault="Separate"
+    HeaderClickActionDefault="SortMulti" RowSelectorsDefault="No" SelectTypeRowDefault="Extended" 
+    StationaryMarginsOutlookGroupBy="True" TableLayout="Fixed" Version="4.00" RowHeightDefault="25px"
+        ColWidthDefault="150px" ScrollBarView="Horizontal" ScrollBar="Never">
+        <FrameStyle BackColor="Window" BorderColor="#000099" BorderStyle="Solid" BorderWidth="2px"
+            Font-Names="Verdana" Font-Size="Small" Height="100%" ForeColor="Black"
+            Wrap="True">
+        </FrameStyle>
+        <Pager MinimumPagesForDisplay="2">
+            <Style BackColor="LightGray" BorderStyle="Solid" BorderWidth="1px">
+                <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px">
+                </BorderDetails>
+            </Style>
+        </Pager>
+        <EditCellStyleDefault BorderStyle="None" BorderWidth="0px" ForeColor="Black" Font-Size="12px">
+        </EditCellStyleDefault>
+        <FooterStyleDefault BackColor="LightGray" BorderStyle="Solid" BorderWidth="1px">
+            <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px" />
+        </FooterStyleDefault>
+        <HeaderStyleDefault BackColor="#000099" BorderStyle="Solid" HorizontalAlign="Left"
+            BorderColor="White" ForeColor="White">
+            <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px" />
+        </HeaderStyleDefault>
+        <RowStyleDefault BackColor="Window" BorderColor="Silver" BorderStyle="Solid" BorderWidth="1px"
+            Font-Size="10px" TextOverflow="Ellipsis">
+            <Padding Left="3px" />
+            <BorderDetails ColorLeft="Window" ColorTop="Window" />
+        </RowStyleDefault>
+        <GroupByRowStyleDefault BackColor="Control" BorderColor="Window">
+        </GroupByRowStyleDefault>
+        <GroupByBox>
+            <Style BackColor="ActiveBorder" BorderColor="Window"></Style>
+        </GroupByBox>
+        <AddNewBox Hidden="True">
+            <Style BackColor="Window" BorderColor="InactiveCaption" BorderStyle="Solid" BorderWidth="1px" Height="20px" Cursor="Hand">
+                <BorderDetails ColorLeft="White" ColorTop="White" WidthLeft="1px" WidthTop="1px"></BorderDetails>
+            </Style>
+        </AddNewBox>
+        <FilterOptionsDefault>
+            <FilterDropDownStyle BackColor="White" BorderColor="Silver" BorderStyle="Solid" BorderWidth="1px"
+                CustomRules="overflow:auto;" Font-Names="Verdana,Arial,Helvetica,sans-serif"
+                Font-Size="11px" Height="300px" Width="200px">
+                <Padding Left="2px" />
+            </FilterDropDownStyle>
+            <FilterHighlightRowStyle BackColor="#151C55" ForeColor="White">
+            </FilterHighlightRowStyle>
+        </FilterOptionsDefault>
+        <SelectedRowStyleDefault BackColor="LightBlue" ForeColor="Black">
+        </SelectedRowStyleDefault>
+    </DisplayLayout>
+</igtbl:UltraWebGrid>
+
+<%----GroupManagement --%>
+
+<asp:DetailsView SkinID="UserDetailView_Group" CssClass="UserDetailView_Group" runat="server" AutoGenerateRows="False" >
+  <FooterStyle BackColor="000099" Font-Bold="True" ForeColor="White" />
+    <RowStyle  HorizontalAlign="Left" BackColor="White" Width="450px" CssClass="RowStyle_Group" />
+    <FieldHeaderStyle  HorizontalAlign="Right" BackColor="#EFF3FB" Font-Bold="False" Wrap="false" CssClass="FieldHeaderStyle_Group" Width="200px"/>
+    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
+    <EditRowStyle BackColor="White" BorderWidth="2" />
+    <AlternatingRowStyle BackColor="White" />     
+ </asp:DetailsView>
+ 
+ 
+<asp:GridView SkinID="UserListGridView_Group" runat="server"  BackColor="White" CssClass="WebGrid_Group"
+    BorderColor="#DEDFDE" BorderStyle="None"  ForeColor="Black" GridLines="None"   >
+    <FooterStyle BackColor="#CCCC99" />
+    <RowStyle BackColor="White" />
+    <SelectedRowStyle BackColor="#EFF3FB" Font-Bold="True" ForeColor="#000099" />
+    <HeaderStyle BackColor="#000099" Font-Names="Verdana" Font-Bold="False" Font-Size="11px" ForeColor="White" />
+    <AlternatingRowStyle  BackColor="White" />
+</asp:GridView>
+
+
+ <igtbar:UltraWebToolbar CssClass="WebToolBar_Group"  SkinID="ToolBar_Group" runat="server" BackColor="#EFF3FB" BorderWidth="0px"  BorderStyle="Solid" BorderColor="#000099">
+</igtbar:UltraWebToolbar>
+
+
+<igmisc:WebPanel  SkinID="WebPanel_Group" runat="server" CssClass="WebPanel_Group"   >
+    <PanelStyle BorderWidth="1px" BorderStyle="Solid">
+        <Padding Bottom="5px" Left="5px" Right="5px" Top="5px" />
+        <BorderDetails   ColorBottom="0, 45, 150" ColorLeft="158, 190, 245" ColorRight="0, 45, 150"
+            ColorTop="0, 45, 150" />
+    </PanelStyle>
+    <Header TextAlignment="Left">
+        <ExpandedAppearance>
+            <Style BorderStyle="Solid"  BackColor="#EFF3FB" ForeColor="#000099" BorderWidth="1px" Font-Names="Verdana" Font-Size="11pt">
+            <Padding Top="1px" Left="4px" Bottom="1px"></Padding>
+            <BorderDetails ColorLeft="158, 190, 245" ColorTop="158, 190, 245" ColorRight="0, 45, 150" WidthBottom="0px"></BorderDetails>
+            </Style>
+        </ExpandedAppearance>
+        <ExpansionIndicator Height="0px" Width="0px" />
+    </Header>
+    <Template>
+    </Template>
+</igmisc:WebPanel>
+
+<igmisc:WebPanel  SkinID="WebPanel_Group2" runat="server" CssClass="WebPanel_Group"   >
+    <PanelStyle BorderWidth="1px" BorderStyle="Solid" >
+    
+        <Padding Bottom="0px" Left="5px" Right="5px" Top="5px" />
+        <BorderDetails   ColorBottom="0, 45, 150" ColorLeft="158, 190, 245" ColorRight="0, 45, 150"
+            ColorTop="0, 45, 150" />
+    </PanelStyle>
+    <Header TextAlignment="Left">
+        <ExpandedAppearance>
+            <Style BorderStyle="Solid"  BackColor="#EFF3FB" ForeColor="#000099" BorderWidth="1px" Font-Names="Verdana" Font-Size="11pt">
+            <Padding Bottom="0px" Left="1px" Right="1px" Top="1px"></Padding>
+            <BorderDetails ColorLeft="158, 190, 245" ColorTop="158, 190, 245" ColorRight="0, 45, 150" WidthBottom="0px"></BorderDetails>
+            </Style>
+        </ExpandedAppearance>
+        <ExpansionIndicator Height="0px" Width="0px" />
+    </Header>
+    <Template>
+    </Template>
+</igmisc:WebPanel>
+
+<asp:Label SkinID="GroupYUIPanelLabel" CssClass="YUIPanelLabel" runat="server"></asp:Label>
+<asp:ListBox  SkinID="YUIPanelListBox" CssClass="YUIPanelListBox" runat="server"></asp:ListBox>
+                 
+<ignav:UltraWebTree  SkinID="WebTree_Group" runat="server" CssClass="WebTree_Group"  >
+<SelectedNodeStyle   Cursor="Hand" ForeColor="White" BackColor="DarkBlue" CssClass="SelectClass"></SelectedNodeStyle>
+                    
+                    <HoverNodeStyle  Cursor="Hand" CssClass="Hover"></HoverNodeStyle>
+                    <NodePaddings Left="5px"></NodePaddings>
+                    <Padding Top="10px"></Padding>
+
+                    <NodeMargins Top="2px"></NodeMargins>
+                    <Styles>
+                        <ignav:Style  Cursor="Hand" ForeColor="Black" BackColor="OldLace" CssClass="HiliteClass"></ignav:Style>
+                        <ignav:Style BorderWidth="1px" BorderColor="DarkGray" BorderStyle="Solid" BackColor="Gainsboro"
+                            CssClass="Hover">
+                            <Padding Bottom="2px" Left="2px" Top="2px" Right="2px"></Padding>
+                        </ignav:Style>
+                        <ignav:Style ForeColor="White" BackColor="#333333" CssClass="SelectClass">
+                            <Padding Bottom="2px" Left="2px" Top="2px" Right="2px"></Padding>
+                        </ignav:Style>
+                    </Styles>
+</ignav:UltraWebTree>

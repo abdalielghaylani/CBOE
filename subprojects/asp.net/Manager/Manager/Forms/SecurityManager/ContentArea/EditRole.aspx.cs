@@ -17,7 +17,7 @@ public partial class Forms_ContentArea_EditRole : GUIShellPage
         if (!Page.IsPostBack)
         {
             this.SetControlsAttributtes();
-          
+            this.ShowSecuritySettings();
         }
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
@@ -43,6 +43,13 @@ public partial class Forms_ContentArea_EditRole : GUIShellPage
         this.Page.Title = Resources.Resource.COESecurity_Page_Title;
 
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
+    }
+    private void ShowSecuritySettings()
+    {
+        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
+        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
+        Forms_ContentArea_ManageUsers mngUsers = new Forms_ContentArea_ManageUsers();
+        mngUsers.CheckPrivilege("ManageRoles");
     }
     #endregion
 }

@@ -226,23 +226,23 @@
 		</PropertyList>
 	</BatchComponent>
 <AddIns>  
-    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.NormalizedStructureAddIn" friendlyName="Structure Normalization" required="no" enabled="no">
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.NormalizedStructureAddIn" friendlyName="Structure Normalization" required="no" enabled="no">
       <Event eventName="Inserting" eventHandler="OnInsertHandler" />
       <Event eventName="Updating" eventHandler="OnUpdateHandler" />
       <AddInConfiguration>
-        <ScriptFile>C:\Program Files (x86)\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\Registration\PythonScripts\parentscript.py</ScriptFile>
+        <ScriptFile>C:\Program Files (x86)\PerkinElmer\ChemOfficeEnterprise\Registration\PythonScripts\parentscript.py</ScriptFile>
         <!--Commented <PythonWebServiceURL> to bypass soap
 			<PythonWebServiceURL>http://localhost/PyEngine/Service.asmx</PythonWebServiceURL> -->
         <StructuresIdsToAvoid>-2|-3|</StructuresIdsToAvoid>
       </AddInConfiguration>
     </AddIn>
- <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.SaltStripAddIn" friendlyName="Salt Stripping" required="no" enabled="no">
+ <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.SaltStripAddIn" friendlyName="Salt Stripping" required="no" enabled="no">
       <Event eventName="Inserting" eventHandler="OnEventHandler" />
       <AddInConfiguration>
         <EditChemDrawing>true</EditChemDrawing>
       </AddInConfiguration>
     </AddIn>
-    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.StructureAggregationAddIn" friendlyName="Aggregate Structures" required="yes" enabled="yes">
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.StructureAggregationAddIn" friendlyName="Aggregate Structures" required="yes" enabled="yes">
       <Event eventName="Inserting" eventHandler="OnInsertingHandler" />
       <Event eventName="Updating" eventHandler="OnUpdatingHandler" />
       <Event eventName="Saving" eventHandler="OnSavingHandler" />
@@ -250,12 +250,12 @@
         <NumberOfColumns>4</NumberOfColumns>
       </AddInConfiguration>
     </AddIn>
-    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.FindDuplicatesAddIn" friendlyName="Find Custom Field Duplicates" required="no" enabled="no">
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.FindDuplicatesAddIn" friendlyName="Find Custom Field Duplicates" required="no" enabled="no">
       <Event eventName="Registering" eventHandler="OnRegisteringHandler" />
       <Event eventName="UpdatingPerm" eventHandler="OnUpdatingPermHandler" />
       <AddInConfiguration />
     </AddIn>
-    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.ChemDrawPropertyCalculationAddIn" friendlyName="ChemDraw Calculations" required="no" enabled="yes">
+    <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.ChemDrawPropertyCalculationAddIn" friendlyName="ChemDraw Calculations" required="no" enabled="yes">
       <Event eventName="Inserting" eventHandler="Calculate" />
       <Event eventName="Updating" eventHandler="Calculate" />
       <AddInConfiguration>
@@ -288,7 +288,7 @@
       </AddInConfiguration>
     </AddIn>
 
-<AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.ChemDrawChemicalWarningCheckerAddIn" friendlyName="ChemDraw Chemical Warning Checker" required="no" enabled="no">
+<AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=17.1.1.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.ChemDrawChemicalWarningCheckerAddIn" friendlyName="ChemDraw Chemical Warning Checker" required="no" enabled="no">
  <Event eventName="Inserting" eventHandler="OnSubmitHandler"/>
  <Event eventName="Updating" eventHandler="OnSubmitHandler"/>
 <AddInConfiguration>

@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="CambridgeSoft.COE.Framework.Common.COETableEditorData">
+    <Position X="0.5" Y="4.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\TableEditorData.cs</FileName>
+      <HashCode>BIAAgAAAAAIgAAIAAEBAABQAAAAEQAAAAgAEAEgAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.COETableEditor">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\TableEditor.cs</FileName>
+      <HashCode>EEAAAAAAAAAoAAAACAAAEAQAAAAAAAAAAEAAAAAAhAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.COEChildTable">
+    <Position X="0.5" Y="9.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\ChildTable.cs</FileName>
+      <HashCode>AEAAAAAgAAABAAAIAAAIAAQAAAAAAAAAAEAAAEAAgAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.COEChildTableData">
+    <Position X="0.5" Y="12.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\ChildTableData.cs</FileName>
+      <HashCode>AAAAgAAAAAIAAAAAAAAAAAQAAAAAAAAAAAAAAEAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorBOList">
+    <Position X="3.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\BLL\TableEditorBOList.cs</FileName>
+      <HashCode>oAQAAAAAAAAARAgAAAEAAAECAAAAwAEAMQkAAUAAACA=</HashCode>
+    </TypeIdentifier>
+    <NestedTypes>
+      <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorBOList.Criteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TableEditor\BLL\TableEditorBOList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorBOList.LookupCriteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TableEditor\BLL\TableEditorBOList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorBOList.ChildTableCriteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TableEditor\BLL\TableEditorBOList.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.ID_Column">
+    <Position X="3.25" Y="6" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\BLL\TableEditorBOList.cs</FileName>
+      <HashCode>AAAAAAAAAAAAhIAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.GetColumn">
+    <Position X="3.25" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\BLL\TableEditorBOList.cs</FileName>
+      <HashCode>AAACAgAAAAAAIAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.Column">
+    <Position X="3.25" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\Column.cs</FileName>
+      <HashCode>BAAAggBACAAAAAIAAAAAAAAAABCAAAAEAACAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorUtilities">
+    <Position X="3.25" Y="13.75" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\COETableEditorUtlities.cs</FileName>
+      <HashCode>AAQAAQdAAAAoBABAgAAAApBBAAAEIAQgAAAiRAhAAEA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.Parameter">
+    <Position X="6.25" Y="16.75" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\Parameter.cs</FileName>
+      <HashCode>AAAAAAAAAAAIABAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.InnerXml">
+    <Position X="0.5" Y="15.25" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\InnerXml.cs</FileName>
+      <HashCode>AAAAAAAAQAAQAAAAAAAAAAQAAAAAAAAAAAAAgAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.InnerXmlData">
+    <Position X="0.5" Y="17.75" Width="2.25" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\InnerXmlData.cs</FileName>
+      <HashCode>ABABIAAAAAAAAAAAAAAAAQQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.Common.ValidationRule">
+    <Position X="6.25" Y="14" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>Common\Configuration\ValidationRule.cs</FileName>
+      <HashCode>AQAAAAAAAAAIAAAAAAAAAEQAAAAQAAAAAAAAAAQAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorBO">
+    <Position X="6.25" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\BLL\TableEditorBO.cs</FileName>
+      <HashCode>sDQAAMgAAAABxCBAAMBEAAAAAAFAwAEAABkAAEgAiGA=</HashCode>
+    </TypeIdentifier>
+    <NestedTypes>
+      <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorBO.Criteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TableEditor\BLL\TableEditorBO.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.COETableEditorBO.CreateNewCriteria" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>TableEditor\BLL\TableEditorBO.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.OracleDataAccessClientDAL">
+    <Position X="6.25" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\DAL\OracleDataAccessClientDAL.cs</FileName>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CambridgeSoft.COE.Framework.COETableEditorService.DAL">
+    <Position X="6.25" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <FileName>TableEditor\DAL\DAL.cs</FileName>
+      <HashCode>AASAAEAAEAAABADAAAAAAgAAAAEAAACAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

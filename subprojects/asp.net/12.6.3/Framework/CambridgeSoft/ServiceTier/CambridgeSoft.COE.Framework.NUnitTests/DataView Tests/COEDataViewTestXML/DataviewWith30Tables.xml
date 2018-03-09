@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<COEDataView xmlns="COE.COEDataView" basetable="909" database="CHEMINVDB2" name="DataView_30 tables" description="test 30 tables sorting" application="" dataviewHandling="USE_SERVER_DATAVIEW" dataviewid="100123">
+  <tables>
+    <table id="909" name="INV_COMPOUNDS" alias="INV_COMPOUNDS" database="CHEMINVDB2" isView="false" primaryKey="920">
+      <fields id="910" name="ACX_ID" alias="ACX_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="911" name="ALT_ID_1" alias="ALT_ID_1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="912" name="ALT_ID_2" alias="ALT_ID_2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="913" name="ALT_ID_3" alias="ALT_ID_3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="914" name="ALT_ID_4" alias="ALT_ID_4" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="915" name="ALT_ID_5" alias="ALT_ID_5" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="916" name="BASE64_CDX" alias="BASE64_CDX" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="917" name="BATCH_NUMBER_FK" alias="BATCH_NUMBER_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="918" name="CAS" alias="CAS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="919" name="CLOGP" alias="CLOGP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="920" name="COMPOUND_ID" alias="b_COMPOUND_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="921" name="CONFLICTING_FIELDS" alias="CONFLICTING_FIELDS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="922" name="CPD_INTERNAL_ID_FK" alias="CPD_INTERNAL_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="923" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="924" name="DENSITY" alias="DENSITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="925" name="HBOND_ACCEPTORS" alias="HBOND_ACCEPTORS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="1" isUniqueKey="false"/>
+      <fields id="926" name="HBOND_DONORS" alias="a_HBOND_DONORS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="927" name="MOLECULAR_WEIGHT" alias="MOLECULAR_WEIGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="928" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="929" name="REG_ID_FK" alias="REG_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="930" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="931" name="ROTATABLE_BONDS" alias="ROTATABLE_BONDS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="932" name="SUBSTANCE_NAME" alias="SUBSTANCE_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="933" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="934" name="TOT_POL_SURF_AREA" alias="TOT_POL_SURF_AREA" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="935" name="AUDIT_COMPOUND" alias="AUDIT_COMPOUND" database="CHEMINVDB2" isView="false" primaryKey="937">
+      <fields id="936" name="OLD_BASE64_CDX" alias="testOLD_BASE64_CDX" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="1" isUniqueKey="false"/>
+      <fields id="937" name="RAID" alias="RAID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1833" name="INV_WELL_COMPOUNDS" alias="INV_WELL_COMPOUNDS" database="CHEMINVDB2" isView="false" primaryKey="1837">
+      <fields id="1834" name="BATCH_NUMBER_FK" alias="BATCH_NUMBER_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1835" name="COMPOUND_ID_FK" alias="COMPOUND_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1836" name="REG_ID_FK" alias="REG_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1837" name="WELL_COMPOUND_ID" alias="WELL_COMPOUND_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1838" name="WELL_ID_FK" alias="WELL_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1839" name="INV_ADDRESS" alias="INV_ADDRESS" database="CHEMINVDB2" isView="false" primaryKey="1844">
+      <fields id="1840" name="ADDRESS1" alias="ADDRESS1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1841" name="ADDRESS2" alias="ADDRESS2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1842" name="ADDRESS3" alias="ADDRESS3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1843" name="ADDRESS4" alias="ADDRESS4" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="1" isUniqueKey="false"/>
+      <fields id="1844" name="ADDRESS_ID" alias="ADDRESS_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1845" name="CITY" alias="CITY" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="1" isUniqueKey="false"/>
+      <fields id="1846" name="CONTACT_NAME" alias="CONTACT_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1847" name="COUNTRY_ID_FK" alias="COUNTRY_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1848" name="EMAIL" alias="EMAIL" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1849" name="FAX" alias="FAX" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1850" name="PHONE" alias="b_PHONE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="1" isUniqueKey="false"/>
+      <fields id="1851" name="STATE_ID_FK" alias="STATE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1852" name="ZIP" alias="ZIP" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1853" name="INV_CONTAINERS" alias="INV_CONTAINERS" database="CHEMINVDB2" isView="false" primaryKey="1862">
+      <fields id="1854" name="BARCODE" alias="BARCODE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1855" name="BATCH_ID_FK" alias="BATCH_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1856" name="BATCH_NUMBER_FK" alias="BATCH_NUMBER_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1857" name="COMPOUND_ID_FK" alias="COMPOUND_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1858" name="CONCENTRATION" alias="CONCENTRATION" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1859" name="CONTAINER_COMMENTS" alias="CONTAINER_COMMENTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1860" name="CONTAINER_COST" alias="CONTAINER_COST" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1861" name="CONTAINER_DESCRIPTION" alias="CONTAINER_DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1862" name="CONTAINER_ID" alias="CONTAINER_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1863" name="CONTAINER_NAME" alias="CONTAINER_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1864" name="CONTAINER_STATUS_ID_FK" alias="CONTAINER_STATUS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1865" name="CONTAINER_TYPE_ID_FK" alias="CONTAINER_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1866" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1867" name="CURRENT_USER_ID_FK" alias="CURRENT_USER_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1868" name="DATE_1" alias="DATE_1" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1869" name="DATE_2" alias="DATE_2" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1870" name="DATE_3" alias="DATE_3" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1871" name="DATE_4" alias="DATE_4" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1872" name="DATE_5" alias="DATE_5" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1873" name="DATE_APPROVED" alias="DATE_APPROVED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1874" name="DATE_CERTIFIED" alias="DATE_CERTIFIED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1875" name="DATE_CREATED" alias="DATE_CREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1876" name="DATE_EXPIRES" alias="DATE_EXPIRES" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1877" name="DATE_ORDERED" alias="DATE_ORDERED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1878" name="DATE_PRODUCED" alias="DATE_PRODUCED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1879" name="DATE_RECEIVED" alias="DATE_RECEIVED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1880" name="DEF_LOCATION_ID_FK" alias="DEF_LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1881" name="DENSITY" alias="DENSITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1882" name="FAMILY" alias="FAMILY" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1883" name="FIELD_1" alias="FIELD_1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1884" name="FIELD_10" alias="FIELD_10" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1885" name="FIELD_2" alias="FIELD_2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1886" name="FIELD_3" alias="FIELD_3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1887" name="FIELD_4" alias="FIELD_4" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1888" name="FIELD_5" alias="FIELD_5" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1889" name="FIELD_6" alias="FIELD_6" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1890" name="FIELD_7" alias="FIELD_7" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1891" name="FIELD_8" alias="FIELD_8" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1892" name="FIELD_9" alias="FIELD_9" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1893" name="FINAL_WGHT" alias="FINAL_WGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1894" name="GRADE" alias="GRADE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1895" name="HANDLING_PROCEDURES" alias="HANDLING_PROCEDURES" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1896" name="LOCATION_ID_FK" alias="LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1897" name="LOT_NUM" alias="LOT_NUM" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1898" name="NET_WGHT" alias="NET_WGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1899" name="ORDERED_BY_ID_FK" alias="ORDERED_BY_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1900" name="OWNER_ID_FK" alias="OWNER_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1901" name="PARENT_CONTAINER_ID_FK" alias="PARENT_CONTAINER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1902" name="PHYSICAL_STATE_ID_FK" alias="PHYSICAL_STATE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1903" name="PO_LINE_NUMBER" alias="PO_LINE_NUMBER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1904" name="PO_NUMBER" alias="PO_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1905" name="PURITY" alias="PURITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1906" name="QTY_AVAILABLE" alias="QTY_AVAILABLE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1907" name="QTY_INITIAL" alias="QTY_INITIAL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1908" name="QTY_MAX" alias="QTY_MAX" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1909" name="QTY_MAXSTOCK" alias="QTY_MAXSTOCK" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1910" name="QTY_MINSTOCK" alias="QTY_MINSTOCK" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1911" name="QTY_REMAINING" alias="QTY_REMAINING" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1912" name="QTY_RESERVED" alias="QTY_RESERVED" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1913" name="RECEIVED_BY_ID_FK" alias="RECEIVED_BY_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1914" name="REG_ID_FK" alias="REG_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1915" name="REQ_NUMBER" alias="REQ_NUMBER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1916" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1917" name="SOLVENT_ID_FK" alias="SOLVENT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1918" name="STORAGE_CONDITIONS" alias="STORAGE_CONDITIONS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1919" name="SUPPLIER_CATNUM" alias="SUPPLIER_CATNUM" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1920" name="SUPPLIER_ID_FK" alias="SUPPLIER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1921" name="TARE_WEIGHT" alias="TARE_WEIGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1922" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1923" name="UNIT_OF_CONC_ID_FK" alias="UNIT_OF_CONC_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1924" name="UNIT_OF_COST_ID_FK" alias="UNIT_OF_COST_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1925" name="UNIT_OF_DENSITY_ID_FK" alias="UNIT_OF_DENSITY_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1926" name="UNIT_OF_MEAS_ID_FK" alias="UNIT_OF_MEAS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1927" name="UNIT_OF_PURITY_ID_FK" alias="UNIT_OF_PURITY_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1928" name="UNIT_OF_WGHT_ID_FK" alias="UNIT_OF_WGHT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1929" name="WEIGHT" alias="WEIGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1930" name="WELL_COLUMN" alias="WELL_COLUMN" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1931" name="WELL_NUMBER" alias="WELL_NUMBER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1932" name="WELL_ROW" alias="WELL_ROW" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1933" name="INV_CONTAINER_BATCHES" alias="INV_CONTAINER_BATCHES" database="CHEMINVDB2" isView="false" primaryKey="1937">
+      <fields id="1934" name="BATCH_FIELD_1" alias="BATCH_FIELD_1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1935" name="BATCH_FIELD_2" alias="BATCH_FIELD_2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1936" name="BATCH_FIELD_3" alias="BATCH_FIELD_3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1937" name="BATCH_ID" alias="BATCH_ID" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1938" name="BATCH_STATUS_ID_FK" alias="BATCH_STATUS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1939" name="COMMENTS" alias="COMMENTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1940" name="DATE_1" alias="DATE_1" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1941" name="DATE_2" alias="DATE_2" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1942" name="FIELD_1" alias="FIELD_1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1943" name="FIELD_2" alias="FIELD_2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1944" name="FIELD_3" alias="FIELD_3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1945" name="FIELD_4" alias="FIELD_4" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1946" name="FIELD_5" alias="FIELD_5" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1947" name="MINIMUM_STOCK_THRESHOLD" alias="MINIMUM_STOCK_THRESHOLD" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1948" name="INV_CONTAINER_BATCH_FIELDS" alias="INV_CONTAINER_BATCH_FIELD" database="CHEMINVDB2" isView="false" primaryKey="1950">
+      <fields id="1949" name="DISPLAY_NAME" alias="DISPLAY_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1950" name="FIELD_ID" alias="FIELD_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1951" name="FIELD_NAME" alias="FIELD_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1952" name="SORT_ORDER" alias="SORT_ORDER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1953" name="INV_CONTAINER_CHECKIN_DETAILS" alias="INV_CONTAINER_CHECKIN_DET" database="CHEMINVDB2" isView="false" primaryKey="1954">
+      <fields id="1954" name="CHECKIN_DETAILS_ID" alias="CHECKIN_DETAILS_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1955" name="CONTAINER_ID_FK" alias="CONTAINER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1956" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1957" name="DATE_1" alias="DATE_1" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1958" name="DATE_2" alias="DATE_2" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1959" name="DATE_3" alias="DATE_3" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1960" name="FIELD_1" alias="FIELD_1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1961" name="FIELD_10" alias="FIELD_10" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1962" name="FIELD_2" alias="FIELD_2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1963" name="FIELD_3" alias="FIELD_3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1964" name="FIELD_4" alias="FIELD_4" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1965" name="FIELD_5" alias="FIELD_5" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1966" name="FIELD_6" alias="FIELD_6" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1967" name="FIELD_7" alias="FIELD_7" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1968" name="FIELD_8" alias="FIELD_8" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1969" name="FIELD_9" alias="FIELD_9" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1970" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1971" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1972" name="USER_ID_FK" alias="USER_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1973" name="INV_CONTAINER_ORDER" alias="INV_CONTAINER_ORDER" database="CHEMINVDB2" isView="false" primaryKey="1974">
+      <fields id="1974" name="CONTAINER_ID" alias="CONTAINER_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1975" name="CONTAINER_ORDER_REASON_ID_FK" alias="CONTAINER_ORDER_REASON_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1976" name="DELIVERY_LOCATION_ID_FK" alias="DELIVERY_LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1977" name="DUE_DATE" alias="DUE_DATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1978" name="ISRUSHORDER" alias="ISRUSHORDER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1979" name="JOB_NO" alias="JOB_NO" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1980" name="NEW_SUPPLIER_CONTACT" alias="NEW_SUPPLIER_CONTACT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1981" name="NEW_SUPPLIER_FAX" alias="NEW_SUPPLIER_FAX" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1982" name="NEW_SUPPLIER_NAME" alias="NEW_SUPPLIER_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1983" name="NEW_SUPPLIER_PHONE" alias="NEW_SUPPLIER_PHONE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1984" name="ORDER_SOURCE" alias="ORDER_SOURCE" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1985" name="OWNER_ID_FK" alias="OWNER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1986" name="PROJECT_NO" alias="PROJECT_NO" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1987" name="REASON_IF_OTHER" alias="REASON_IF_OTHER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1988" name="INV_CONTAINER_ORDER_REASON" alias="INV_CONTAINER_ORDER_REASO" database="CHEMINVDB2" isView="false" primaryKey="1989">
+      <fields id="1989" name="CONTAINER_ORDER_REASON_ID" alias="CONTAINER_ORDER_REASON_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1990" name="NAME" alias="NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1991" name="SORT_ORDER" alias="SORT_ORDER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1992" name="INV_CONTAINER_STATUS" alias="INV_CONTAINER_STATUS" database="CHEMINVDB2" isView="false" primaryKey="1994">
+      <fields id="1993" name="CONTAINER_STATUS_DESC" alias="CONTAINER_STATUS_DESC" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1994" name="CONTAINER_STATUS_ID" alias="CONTAINER_STATUS_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1995" name="CONTAINER_STATUS_NAME" alias="CONTAINER_STATUS_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1996" name="INV_CONTAINER_TYPES" alias="INV_CONTAINER_TYPES" database="CHEMINVDB2" isView="false" primaryKey="1997">
+      <fields id="1997" name="CONTAINER_TYPE_ID" alias="CONTAINER_TYPE_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="1998" name="CONTAINER_TYPE_NAME" alias="CONTAINER_TYPE_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="1999" name="INV_COUNTRY" alias="INV_COUNTRY" database="CHEMINVDB2" isView="false" primaryKey="2000">
+      <fields id="2000" name="COUNTRY_ID" alias="COUNTRY_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2001" name="COUNTRY_NAME" alias="COUNTRY_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2002" name="INV_CUSTOM_FIELDS" alias="INV_CUSTOM_FIELDS" database="CHEMINVDB2" isView="false" primaryKey="2004">
+      <fields id="2003" name="CUSTOM_FIELD_GROUP_ID_FK" alias="CUSTOM_FIELD_GROUP_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2004" name="CUSTOM_FIELD_ID" alias="CUSTOM_FIELD_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2005" name="CUSTOM_FIELD_NAME" alias="CUSTOM_FIELD_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2006" name="NULL_PICKLIST_ID_FK" alias="NULL_PICKLIST_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2007" name="PICKLIST_TYPE_ID_FK" alias="PICKLIST_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2008" name="READONLY" alias="READONLY" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2009" name="SYMBOL_LINK" alias="SYMBOL_LINK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2010" name="INV_ALLOWED_CTYPES" alias="INV_ALLOWED_CTYPES" database="CHEMINVDB2" isView="false" primaryKey="2011">
+      <fields id="2011" name="CONTAINER_TYPE_ID_FK" alias="CONTAINER_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2012" name="LOCATION_TYPE_ID_FK" alias="LOCATION_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2013" name="INV_BATCH_STATUS" alias="INV_BATCH_STATUS" database="CHEMINVDB2" isView="false" primaryKey="2014">
+      <fields id="2014" name="BATCH_STATUS_ID" alias="BATCH_STATUS_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2015" name="BATCH_STATUS_NAME" alias="BATCH_STATUS_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2016" name="INV_GRAPHICS" alias="INV_GRAPHICS" database="CHEMINVDB2" isView="false" primaryKey="2019">
+      <fields id="2017" name="GRAPHIC_ALT" alias="GRAPHIC_ALT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2018" name="GRAPHIC_HEIGHT" alias="GRAPHIC_HEIGHT" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2019" name="GRAPHIC_ID" alias="GRAPHIC_ID" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2020" name="GRAPHIC_NAME" alias="GRAPHIC_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2021" name="GRAPHIC_TYPE_ID_FK" alias="GRAPHIC_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2022" name="GRAPHIC_WIDTH" alias="GRAPHIC_WIDTH" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2023" name="URL_ACTIVE" alias="URL_ACTIVE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2024" name="URL_INACTIVE" alias="URL_INACTIVE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2025" name="INV_GRAPHIC_TYPES" alias="INV_GRAPHIC_TYPES" database="CHEMINVDB2" isView="false" primaryKey="2026">
+      <fields id="2026" name="GRAPHIC_TYPE_ID" alias="GRAPHIC_TYPE_ID" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2027" name="GRAPHIC_TYPE_NAME" alias="GRAPHIC_TYPE_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2028" name="INV_GRID_ELEMENT" alias="INV_GRID_ELEMENT" database="CHEMINVDB2" isView="false" primaryKey="2031">
+      <fields id="2029" name="BARCODE_ID" alias="BARCODE_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2030" name="CONTAINER_ID_FK" alias="CONTAINER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2031" name="GRID_ELEMENT_ID" alias="GRID_ELEMENT_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2032" name="GRID_POSITION_ID_FK" alias="GRID_POSITION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2033" name="GRID_STORAGE_ID_FK" alias="GRID_STORAGE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2034" name="LOCATION_ID_FK" alias="LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2035" name="PLATE_ID_FK" alias="PLATE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2036" name="WELL_ID_FK" alias="WELL_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2037" name="INV_GRID_FORMAT" alias="INV_GRID_FORMAT" database="CHEMINVDB2" isView="false" primaryKey="2043">
+      <fields id="2038" name="CELL_NAMING" alias="CELL_NAMING" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2039" name="COL_COUNT" alias="COL_COUNT" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2040" name="COL_PREFIX" alias="COL_PREFIX" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2041" name="COL_USE_LETTERS" alias="COL_USE_LETTERS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2042" name="DESCRIPTION" alias="DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2043" name="GRID_FORMAT_ID" alias="GRID_FORMAT_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2044" name="GRID_FORMAT_TYPE_FK" alias="GRID_FORMAT_TYPE_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2045" name="NAME" alias="NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2046" name="NAME_DELIMETER" alias="NAME_DELIMETER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2047" name="NAME_SEPARATOR" alias="NAME_SEPARATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2048" name="NUMBER_DIRECTION" alias="NUMBER_DIRECTION" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2049" name="NUMBER_START_CORNER" alias="NUMBER_START_CORNER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2050" name="ROW_COUNT" alias="ROW_COUNT" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2051" name="ROW_PREFIX" alias="ROW_PREFIX" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2052" name="ROW_USE_LETTERS" alias="ROW_USE_LETTERS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2053" name="ZERO_PADDING_COUNT" alias="ZERO_PADDING_COUNT" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2054" name="INV_GRID_POSITION" alias="INV_GRID_POSITION" database="CHEMINVDB2" isView="false" primaryKey="2059">
+      <fields id="2055" name="COL_INDEX" alias="COL_INDEX" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2056" name="COL_NAME" alias="COL_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2057" name="GRID_FILL_TEMPLATE_ID_FK" alias="GRID_FILL_TEMPLATE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2058" name="GRID_FORMAT_ID_FK" alias="GRID_FORMAT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2059" name="GRID_POSITION_ID" alias="GRID_POSITION_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2060" name="NAME" alias="NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2061" name="ROW_INDEX" alias="ROW_INDEX" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2062" name="ROW_NAME" alias="ROW_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2063" name="SORT_ORDER" alias="SORT_ORDER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2064" name="INV_GRID_STORAGE" alias="INV_GRID_STORAGE" database="CHEMINVDB2" isView="false" primaryKey="2067">
+      <fields id="2065" name="CONTAINER_ID_FK" alias="CONTAINER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2066" name="GRID_FORMAT_ID_FK" alias="GRID_FORMAT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2067" name="GRID_STORAGE_ID" alias="GRID_STORAGE_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2068" name="LOCATION_ID_FK" alias="LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2069" name="PLATE_ID_FK" alias="PLATE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2070" name="INV_LABEL_PRINTERS" alias="INV_LABEL_PRINTERS" database="CHEMINVDB2" isView="false" primaryKey="2073">
+      <fields id="2071" name="DISPLAY_NAME" alias="DISPLAY_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2072" name="IS_AVAILABLE" alias="IS_AVAILABLE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2073" name="LABEL_PRINTER_ID" alias="LABEL_PRINTER_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2074" name="LPR_DEFINITION_ID_FK" alias="LPR_DEFINITION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2075" name="QUEUE_NAME" alias="QUEUE_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2076" name="REPORTTYPE_ID_FK" alias="REPORTTYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2077" name="SERVER_NAME" alias="SERVER_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2078" name="INV_ORDERS" alias="INV_ORDERS" database="CHEMINVDB2" isView="false" primaryKey="2085">
+      <fields id="2079" name="CANCEL_REASON" alias="CANCEL_REASON" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2080" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2081" name="DATE_CREATED" alias="DATE_CREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2082" name="DATE_RECEIVED" alias="DATE_RECEIVED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2083" name="DATE_SHIPPED" alias="DATE_SHIPPED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2084" name="DELIVERY_LOCATION_ID_FK" alias="DELIVERY_LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2085" name="ORDER_ID" alias="ORDER_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2086" name="ORDER_STATUS_ID_FK" alias="ORDER_STATUS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2087" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2088" name="SHIPPING_CONDITIONS" alias="SHIPPING_CONDITIONS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2089" name="SHIP_TO_NAME" alias="SHIP_TO_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2090" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2091" name="INV_OWNERS" alias="INV_OWNERS" database="CHEMINVDB2" isView="false" primaryKey="2093">
+      <fields id="2092" name="DESCRIPTION" alias="DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2093" name="OWNER_ID" alias="OWNER_ID" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2094" name="INV_PLATES" alias="INV_PLATES" database="CHEMINVDB2" isView="false" primaryKey="2119">
+      <fields id="2095" name="AMOUNTS_DIFFER" alias="AMOUNTS_DIFFER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2096" name="CONCENTRATION" alias="CONCENTRATION" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2097" name="CONC_UNIT_FK" alias="CONC_UNIT_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2098" name="CONTAINER_ID_FK" alias="CONTAINER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2099" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2100" name="DATE_1" alias="DATE_1" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2101" name="DATE_2" alias="DATE_2" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2102" name="DATE_CREATED" alias="DATE_CREATED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2103" name="FIELD_1" alias="FIELD_1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2104" name="FIELD_2" alias="FIELD_2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2105" name="FIELD_3" alias="FIELD_3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2106" name="FIELD_4" alias="FIELD_4" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2107" name="FIELD_5" alias="FIELD_5" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2108" name="FT_CYCLES" alias="FT_CYCLES" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2109" name="GROUP_NAME" alias="GROUP_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2110" name="IS_PLATE_MAP" alias="IS_PLATE_MAP" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2111" name="LIBRARY_ID_FK" alias="LIBRARY_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2112" name="LOCATION_ID_FK" alias="LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2113" name="MOLAR_AMOUNT" alias="MOLAR_AMOUNT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2114" name="MOLAR_CONC" alias="MOLAR_CONC" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2115" name="MOLAR_UNIT_FK" alias="MOLAR_UNIT_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2116" name="PLATE_BARCODE" alias="PLATE_BARCODE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2117" name="PLATE_EXISTS" alias="PLATE_EXISTS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2118" name="PLATE_FORMAT_ID_FK" alias="PLATE_FORMAT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2119" name="PLATE_ID" alias="PLATE_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2120" name="PLATE_MAP_ID_FK" alias="PLATE_MAP_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2121" name="PLATE_NAME" alias="PLATE_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2122" name="PLATE_TYPE_ID_FK" alias="PLATE_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2123" name="PURITY" alias="PURITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2124" name="PURITY_UNIT_FK" alias="PURITY_UNIT_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2125" name="QTY_INITIAL" alias="QTY_INITIAL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2126" name="QTY_REMAINING" alias="QTY_REMAINING" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2127" name="QTY_UNIT_FK" alias="QTY_UNIT_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2128" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2129" name="SOLUTION_VOLUME" alias="SOLUTION_VOLUME" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2130" name="SOLVENT" alias="SOLVENT" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2131" name="SOLVENT_ID_FK" alias="SOLVENT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2132" name="SOLVENT_VOLUME" alias="SOLVENT_VOLUME" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2133" name="SOLVENT_VOLUME_INITIAL" alias="SOLVENT_VOLUME_INITIAL" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2134" name="SOLVENT_VOLUME_UNIT_ID_FK" alias="SOLVENT_VOLUME_UNIT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2135" name="STATUS_ID_FK" alias="STATUS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2136" name="SUPPLIER" alias="SUPPLIER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2137" name="SUPPLIER_BARCODE" alias="SUPPLIER_BARCODE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2138" name="SUPPLIER_SHIPMENT_CODE" alias="SUPPLIER_SHIPMENT_CODE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2139" name="SUPPLIER_SHIPMENT_DATE" alias="SUPPLIER_SHIPMENT_DATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2140" name="SUPPLIER_SHIPMENT_NUMBER" alias="SUPPLIER_SHIPMENT_NUMBER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2141" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2142" name="WEIGHT" alias="WEIGHT" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2143" name="WEIGHT_UNIT_FK" alias="WEIGHT_UNIT_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2144" name="WELL_CAPACITY" alias="WELL_CAPACITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2145" name="WELL_CAPACITY_UNIT_ID_FK" alias="WELL_CAPACITY_UNIT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2146" name="INV_LOCATIONS" alias="INV_LOCATIONS" database="CHEMINVDB2" isView="false" primaryKey="2154">
+      <fields id="2147" name="ADDRESS_ID_FK" alias="ADDRESS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2148" name="ALLOWS_CONTAINERS" alias="ALLOWS_CONTAINERS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2149" name="COLLAPSE_CHILD_NODES" alias="COLLAPSE_CHILD_NODES" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2150" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2151" name="DESCRIPTION" alias="DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2152" name="LOCATION_BARCODE" alias="LOCATION_BARCODE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2153" name="LOCATION_DESCRIPTION" alias="LOCATION_DESCRIPTION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2154" name="LOCATION_ID" alias="LOCATION_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2155" name="LOCATION_NAME" alias="LOCATION_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2156" name="LOCATION_TYPE_ID_FK" alias="LOCATION_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2157" name="OWNER_ID_FK" alias="OWNER_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2158" name="PARENT_ID" alias="PARENT_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2159" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2160" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2174" name="INV_SUPPLIERS" alias="INV_SUPPLIERS" database="CHEMINVDB2" isView="false" primaryKey="2181">
+      <fields id="2175" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2176" name="IS_OFFICIAL_SUPPLIER" alias="IS_OFFICIAL_SUPPLIER" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2177" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2178" name="SUPPLIER_ADDRESS_ID_FK" alias="SUPPLIER_ADDRESS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2179" name="SUPPLIER_CODE" alias="SUPPLIER_CODE" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2180" name="SUPPLIER_FACILITY_NAME" alias="SUPPLIER_FACILITY_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2181" name="SUPPLIER_ID" alias="SUPPLIER_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2182" name="SUPPLIER_NAME" alias="SUPPLIER_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2183" name="SUPPLIER_SHORT_NAME" alias="SUPPLIER_SHORT_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2184" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2185" name="INV_STATES" alias="INV_STATES" database="CHEMINVDB2" isView="false" primaryKey="2188">
+      <fields id="2186" name="COUNTRY_ID_FK" alias="COUNTRY_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2187" name="STATE_ABBREVIATION" alias="STATE_ABBREVIATION" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2188" name="STATE_ID" alias="STATE_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2189" name="STATE_NAME" alias="STATE_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2190" name="INV_RESERVATIONS" alias="INV_RESERVATIONS" database="CHEMINVDB2" isView="false" primaryKey="2196">
+      <fields id="2191" name="CANCELLED_BY_ID_FK" alias="CANCELLED_BY_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2192" name="CONTAINER_ID_FK" alias="CONTAINER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2193" name="DATE_RESERVED" alias="DATE_RESERVED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2194" name="IS_ACTIVE" alias="IS_ACTIVE" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2195" name="QTY_RESERVED" alias="QTY_RESERVED" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2196" name="RESERVATION_ID" alias="RESERVATION_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2197" name="RESERVATION_TYPE_ID_FK" alias="RESERVATION_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2198" name="USER_ID_FK" alias="USER_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2199" name="INV_REQUESTS" alias="INV_REQUESTS" database="CHEMINVDB2" isView="false" primaryKey="2224">
+      <fields id="2200" name="ASSIGNED_USER_ID_FK" alias="ASSIGNED_USER_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2201" name="BATCH_ID_FK" alias="BATCH_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2202" name="CONTAINER_ID_FK" alias="CONTAINER_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2203" name="CONTAINER_TYPE_ID_FK" alias="CONTAINER_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2204" name="CREATOR" alias="CREATOR" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2205" name="DATE_1" alias="DATE_1" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2206" name="DATE_2" alias="DATE_2" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2207" name="DATE_DELIVERED" alias="DATE_DELIVERED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2208" name="DATE_REQUIRED" alias="DATE_REQUIRED" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2209" name="DECLINE_REASON" alias="DECLINE_REASON" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2210" name="DELIVERED_BY_ID_FK" alias="DELIVERED_BY_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2211" name="DELIVERY_LOCATION_ID_FK" alias="DELIVERY_LOCATION_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2212" name="EXPENSE_CENTER" alias="EXPENSE_CENTER" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2213" name="FIELD_1" alias="FIELD_1" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2214" name="FIELD_2" alias="FIELD_2" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2215" name="FIELD_3" alias="FIELD_3" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2216" name="FIELD_4" alias="FIELD_4" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2217" name="FIELD_5" alias="FIELD_5" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2218" name="NUMBER_CONTAINERS" alias="NUMBER_CONTAINERS" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2219" name="ORG_UNIT_ID_FK" alias="ORG_UNIT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2220" name="QTY_DELIVERED" alias="QTY_DELIVERED" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2221" name="QTY_REQUIRED" alias="QTY_REQUIRED" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2222" name="QUANTITY_LIST" alias="QUANTITY_LIST" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2223" name="REQUEST_COMMENTS" alias="REQUEST_COMMENTS" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2224" name="REQUEST_ID" alias="REQUEST_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2225" name="REQUEST_STATUS_ID_FK" alias="REQUEST_STATUS_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2226" name="REQUEST_TYPE_ID_FK" alias="REQUEST_TYPE_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2227" name="REQUIRED_UNIT_ID_FK" alias="REQUIRED_UNIT_ID_FK" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2228" name="RID" alias="RID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2229" name="SHIP_TO_NAME" alias="SHIP_TO_NAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2230" name="TIMESTAMP" alias="TIMESTAMP" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2231" name="USER_ID_FK" alias="USER_ID_FK" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+    <table id="2232" name="INV_REPORTS" alias="INV_REPORTS" database="CHEMINVDB2" isView="false" primaryKey="2233">
+      <fields id="2233" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2234" name="QUERYNAME" alias="QUERYNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2235" name="REPORTDISPLAYNAME" alias="REPORTDISPLAYNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2236" name="REPORTNAME" alias="REPORTNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2237" name="REPORTSQL" alias="REPORTSQL" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2238" name="REPORTTYPE_ID" alias="REPORTTYPE_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+      <fields id="2239" name="REPORT_DESC" alias="REPORT_DESC" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isDefault="0" isUniqueKey="false"/>
+    </table>
+  </tables>
+  <relationships>
+    <relationship parentkey="920" childkey="1835" parent="909" child="1833" jointype="INNER"/>
+    <relationship parentkey="920" childkey="1857" parent="909" child="1853" jointype="INNER"/>
+    <relationship parentkey="920" childkey="937" parent="909" child="935" jointype="INNER"/>
+    <relationship parentkey="920" childkey="1837" parent="909" child="1833" jointype="INNER"/>
+    <relationship parentkey="2147" childkey="1844" parent="2146" child="1839" jointype="INNER"/>
+    <relationship parentkey="2019" childkey="1937" parent="2016" child="1933" jointype="INNER"/>
+    <relationship parentkey="2004" childkey="1950" parent="2002" child="1948" jointype="INNER"/>
+    <relationship parentkey="2004" childkey="1954" parent="2002" child="1953" jointype="INNER"/>
+    <relationship parentkey="1994" childkey="1974" parent="1992" child="1973" jointype="INNER"/>
+    <relationship parentkey="1994" childkey="1989" parent="1992" child="1988" jointype="INNER"/>
+    <relationship parentkey="1994" childkey="1997" parent="1992" child="1996" jointype="INNER"/>
+    <relationship parentkey="1844" childkey="2000" parent="1839" child="1999" jointype="INNER"/>
+    <relationship parentkey="1955" childkey="2011" parent="1953" child="2010" jointype="INNER"/>
+    <relationship parentkey="1938" childkey="2014" parent="1933" child="2013" jointype="INNER"/>
+    <relationship parentkey="2019" childkey="2026" parent="2016" child="2025" jointype="INNER"/>
+    <relationship parentkey="2058" childkey="2031" parent="2054" child="2028" jointype="INNER"/>
+    <relationship parentkey="2059" childkey="2043" parent="2054" child="2037" jointype="INNER"/>
+    <relationship parentkey="2043" childkey="2067" parent="2037" child="2064" jointype="INNER"/>
+    <relationship parentkey="2076" childkey="2073" parent="2070" child="2070" jointype="INNER"/>
+    <relationship parentkey="1975" childkey="2085" parent="1973" child="2078" jointype="INNER"/>
+    <relationship parentkey="1960" childkey="2093" parent="1953" child="2091" jointype="INNER"/>
+    <relationship parentkey="2021" childkey="2119" parent="2016" child="2094" jointype="INNER"/>
+    <relationship parentkey="1989" childkey="2181" parent="1988" child="2174" jointype="INNER"/>
+    <relationship parentkey="1862" childkey="2188" parent="1853" child="2185" jointype="INNER"/>
+    <relationship parentkey="1847" childkey="2196" parent="1839" child="2190" jointype="INNER"/>
+    <relationship parentkey="1920" childkey="2224" parent="1853" child="2199" jointype="INNER"/>
+    <relationship parentkey="1994" childkey="2233" parent="1992" child="2232" jointype="INNER"/>
+  </relationships>
+</COEDataView>

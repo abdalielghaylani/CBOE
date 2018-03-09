@@ -176,7 +176,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator {
             // means that it is a simple columnname that can be quoted.
             if (s.Length < 30 && !s.Contains(doubleQuote))
             {
-                return doubleQuote + s + doubleQuote;
+                return doubleQuote + s.ToUpper() + doubleQuote;
             }
             else
             {

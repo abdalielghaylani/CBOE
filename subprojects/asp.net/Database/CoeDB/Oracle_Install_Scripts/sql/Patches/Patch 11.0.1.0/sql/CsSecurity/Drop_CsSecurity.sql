@@ -46,13 +46,13 @@ BEGIN
 	end if;
 
 	select count(*) into n from dba_tablespaces where tablespace_name = '&&securityTableSpaceName';
-	if n > 0 and '&&BypassTablespaceCreateAndDrop' = 'N' then
+	if n > 0 then
 		execute immediate '
 		DROP TABLESPACE &&securityTableSpaceName INCLUDING CONTENTS '||dataFileClause||' CASCADE CONSTRAINTS';
 	end if;
 
 	select count(*) into n from dba_tablespaces where tablespace_name = '&&tempTableSpaceName';
-	if n > 0 and '&&BypassTablespaceCreateAndDrop' = 'N' then
+	if n > 0 then
 		execute immediate '
 		DROP TABLESPACE &&tempTableSpaceName INCLUDING CONTENTS '||dataFileClause||' CASCADE CONSTRAINTS';
 	end if;	

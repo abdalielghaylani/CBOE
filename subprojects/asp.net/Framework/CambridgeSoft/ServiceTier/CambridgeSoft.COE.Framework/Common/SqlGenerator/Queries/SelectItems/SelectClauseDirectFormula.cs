@@ -144,15 +144,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems
                 throw new Exception("This select clause is only working in oracle implementations.");
             }
 
-            var builder = new StringBuilder();
-            if (COEDataView.MimeTypes.CHEMICAL_X_SMILES == dataField.MimeType)
-            {
-                builder.Append("mdlaux.molfmla(NULL, 'SMILES:'||");
-            }
-            else
-            {
-                builder.Append("mdlaux.molfmla(NULL, ");
-            }
+            var builder = new StringBuilder("mdlaux.molfmla(NULL, ");
             builder.Append(DataField.GetFullyQualifiedNameString());
             builder.Append(")");
 

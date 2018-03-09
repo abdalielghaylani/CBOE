@@ -1,0 +1,1 @@
+<%@ WebService Language="C#" CodeBehind="SingleSignOn.asmx.cs" Class="CambridgeSoft.COE.Security.Services.SingleSignOn" %>

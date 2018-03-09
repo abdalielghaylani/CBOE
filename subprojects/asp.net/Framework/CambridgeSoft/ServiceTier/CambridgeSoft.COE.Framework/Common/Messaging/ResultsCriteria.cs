@@ -9,10 +9,7 @@ using CambridgeSoft.COE.Framework.Common.Utility;
 
 namespace CambridgeSoft.COE.Framework.Common
 {
-    using System.Linq;
-
-    using CambridgeSoft.COE.Framework.Common.Messaging;
-
+    
     /// ResultsCriteria
     /// <summary>
     /// Class that provides messaging capabilities to communicate some result criteria.
@@ -76,9 +73,6 @@ namespace CambridgeSoft.COE.Framework.Common
         private string xmlNS;
         private string xmlNamespace;
         private bool _sortByHitList;
-
-        [NonSerialized]
-        private ResultsCriteria fullResultsCriteria = null;
 
         [NonSerialized]
         private XmlNamespaceManager manager;
@@ -335,27 +329,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 }
             }
             return resCriteria;
-        }
-
-        public ResultsCriteriaTable GetResultTable(int id)
-        {
-            return this.tables.FirstOrDefault(table => table.Id == id);
-        }
-
-        /// <summary>
-        /// Get full result criteria which contains all related data table
-        /// </summary>
-        /// <param name="dataView">The data view of current result criteria</param>
-        /// <returns>Full result criteria</returns>
-        public ResultsCriteria GetFullResultsCriteria(COEDataView dataView)
-        {
-            if (fullResultsCriteria == null)
-            {
-                fullResultsCriteria = ResultsCriteriaHelper.GenerateFullResultsCriteria(dataView, this);
-            }
-
-            return fullResultsCriteria;
-        }
+        }        
 
         #endregion
 
@@ -408,7 +382,6 @@ namespace CambridgeSoft.COE.Framework.Common
             [XmlElement(typeof(ResultsCriteria.Min))]
             [XmlElement(typeof(ResultsCriteria.AggregateFunction))]
             [XmlElement(typeof(ResultsCriteria.DirectStructure))]
-            [XmlElement(typeof(ResultsCriteria.RowId))]
             public List<IResultsCriteriaBase> Criterias
             {
                 get { return criterias; }
@@ -478,22 +451,7 @@ namespace CambridgeSoft.COE.Framework.Common
                 }
             }
             #endregion
-
-            #region Methods
-            /// <summary>
-            /// Append result criteria field
-            /// </summary>
-            /// <param name="fieldId">the field id</param>
-            /// <param name="fieldAlias">the field alias</param>
-            public void AppendFieldCriteria(int fieldId, string fieldAlias)
-            {
-                if (!this.Criterias.Exists(c => ((c is Field) && ((Field)c).Id == fieldId)))
-                {
-                    Field field = new Field { Id = fieldId, Alias = fieldAlias };
-                    this.Criterias.Add(field);
-                }
-            }
-            #endregion
+            
         }
 
         /// IResultsCriteriaBase
@@ -630,38 +588,7 @@ namespace CambridgeSoft.COE.Framework.Common
             }
             #endregion
         }
-
-        /// Formula
-        /// <summary>
-        /// Represents a ROWID field
-        /// </summary>
-        [Serializable]
-        [XmlType("rowid")]
-        public class RowId : Field
-        {
-            #region Constructors
-
-            /// <summary>
-            /// Initializes its members to its default values.
-            /// </summary>
-            public RowId(): base()
-            {
-                this.Id = 0;
-                this.Alias = COEDataView.RowIdField.ReservedFieldAliasRowId;
-            }
-
-            /// <summary>
-            /// Initializes its members from its xml representation.
-            /// </summary>
-            /// <param name="node">The xml representation.</param>
-            public RowId(XmlNode node)
-                : base(node)
-            {
-            }
-
-            #endregion
-        }
-
+       
         /// Literal
         /// <summary>
         /// Represents a returning literal.
@@ -743,7 +670,6 @@ namespace CambridgeSoft.COE.Framework.Common
             [XmlElement(typeof(ResultsCriteria.HighlightedStructure))]
             [XmlElement(typeof(ResultsCriteria.SQLFunction))]
             [XmlElement(typeof(ResultsCriteria.DirectStructure))]
-            [XmlElement(typeof(ResultsCriteria.RowId))]
             public List<IResultsCriteriaBase> Operands
             {
                 get { return operands; }
@@ -824,7 +750,6 @@ namespace CambridgeSoft.COE.Framework.Common
             [XmlElement(typeof(ResultsCriteria.HighlightedStructure))]
             [XmlElement(typeof(ResultsCriteria.SQLFunction))]
             [XmlElement(typeof(ResultsCriteria.DirectStructure))]
-            [XmlElement(typeof(ResultsCriteria.RowId))]
             public IResultsCriteriaBase Conditional
             {
                 get { return condition; }
@@ -922,7 +847,6 @@ namespace CambridgeSoft.COE.Framework.Common
             [XmlElement(typeof(ResultsCriteria.CDXToMolFile))]
             [XmlElement(typeof(ResultsCriteria.SQLFunction))]
             [XmlElement(typeof(ResultsCriteria.DirectStructure))]
-            [XmlElement(typeof(ResultsCriteria.RowId))]
             public IResultsCriteriaBase Clause
             {
                 get { return clause; }
@@ -1734,7 +1658,6 @@ namespace CambridgeSoft.COE.Framework.Common
             [XmlElement(typeof(ResultsCriteria.AggregateFunction))]
             [XmlElement(typeof(ResultsCriteria.SQLFunction))]
             [XmlElement(typeof(ResultsCriteria.DirectStructure))]
-            [XmlElement(typeof(ResultsCriteria.RowId))]
             public List<IResultsCriteriaBase> Parameters
             {
                 get { return parameters; }
@@ -1939,7 +1862,6 @@ namespace CambridgeSoft.COE.Framework.Common
             [XmlElement(typeof(ResultsCriteria.HighlightedStructure))]
             [XmlElement(typeof(ResultsCriteria.DirectStructure))]
             [XmlElement(typeof(ResultsCriteria.SQLFunction))]
-            [XmlElement(typeof(ResultsCriteria.RowId))]
             public List<IResultsCriteriaBase> Parameters
             {
                 get { return parameters; }

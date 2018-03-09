@@ -1,0 +1,90 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SecurityManager.master.cs" Inherits="Manager.Forms.Master.SecurityManager" MasterPageFile="~/Forms/Master/MasterPage.master" %>
+<%@ MasterType VirtualPath="~/Forms/Master/MasterPage.master" %>
+<%@ Register Src="~/Forms/SecurityManager/UserControls/SecurityManagerHeader.ascx" TagPrefix="sm" TagName="Header" %>
+<%@ Register Src="~/Forms/SecurityManager/UserControls/SecurityManagerFooter.ascx" TagPrefix="sm" TagName="Footer" %>
+<asp:Content ContentPlaceHolderID="HeaderContentPlaceHolder" ID="HeaderContent" runat="server">
+<style type="text/css" media="screen">
+body
+{
+    font-family:Tahoma, Verdana, Arial, sans-serif;
+	color:#333333;
+	background: #efefef;
+	font-size:11px;
+	line-height:16px;
+}
+</style>
+    <sm:Header ID="HeaderUserControl" runat="server" />
+</asp:Content>
+<asp:Content ContentPlaceHolderID="ContentPlaceHolder" ID="SMManagerContent" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" EnablePartialRendering="true" runat="server"/>
+    <div style="border:1px solid #000066;">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+        </asp:ContentPlaceHolder>
+        <style type="text/css">
+            .BackgroundVisible
+            {
+                position: fixed;
+                display: block;
+                src: 'nothing.txt';
+                scrolling: no;
+                z-index: 300;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+                background-color: black;
+                filter: alpha(opacity=40);
+                -ms-filter: "alpha(opacity=40)";
+                opacity: .4;
+            }
+            .BackgroundHidden
+            {
+                display: none;
+            }
+        </style>
+        <script type="text/JavaScript" language="JavaScript">
+            function pageLoad()
+            {
+                var manager = Sys.WebForms.PageRequestManager.getInstance();
+               manager.add_endRequest(endRequest);
+               manager.add_beginRequest(OnBeginRequest);
+            }
+            function OnBeginRequest(sender, args)
+            {
+                var manager = Sys.WebForms.PageRequestManager.getInstance();
+                $get('ParentDiv').className = 'BackgroundVisible';   
+            }
+            function endRequest(sender, args)
+            {
+               $get('ParentDiv').className ='BackgroundHidden';
+            }
+        </script>
+<!-- CBOE-1826 added code to display Security help on F1 click. Debu 05SEP13 -->
+         <script language="javascript" type="text/javascript">
+             function onkeydown_handler() {
+                 switch (event.keyCode) {
+                     case 112: // 'F1'
+                         document.onhelp = function () { return (false); }
+                         window.onhelp = function () { return (false); }
+                         event.returnValue = false;
+                         event.keyCode = 0;
+                         window.open("../../../../CBOEHelp/CBOEAdminHelp/Content/ChemBioOffice%20Security.htm");
+                         return false;
+                         break;
+                 }
+             }
+             document.attachEvent("onkeydown", onkeydown_handler);
+    </script> 
+        <iframe id="ParentDiv" class="BackgroundHidden" frameborder="0" scrolling="no"></iframe>
+        <asp:UpdateProgress ID="UpdateProgress1" runat="server" DynamicLayout="false" DisplayAfter="20">
+            <ProgressTemplate>
+                <div id="UpdateProgressDiv" style="z-index:340;">
+                    <img id="ProgressImage" alt="Processing" src="../../../App_Themes/Common/Images/searching.gif" style="position:absolute;top:40%;left:45%;z-index:340;"/>
+                </div>
+            </ProgressTemplate>
+        </asp:UpdateProgress>
+    </div>
+</asp:Content>
+<asp:Content ContentPlaceHolderID="FooterContentPlaceHolder" ID="FooterContent" runat="server">
+    <sm:Footer ID="FooterUserControl" runat="server"></sm:Footer>
+</asp:Content>

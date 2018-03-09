@@ -9,13 +9,11 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Reflection;
-using System.Linq;
 using System.Collections.Generic;
-
 using CambridgeSoft.COE.Framework.GUIShell;
 using CambridgeSoft.COE.Framework.COEDataViewService;
 using CambridgeSoft.COE.Framework.Common;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
+
 
 public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUIShellPage, ICallbackEventHandler
 {
@@ -54,19 +52,7 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUI
         {
             ViewState[Constants.ParamCaller] = value;
         }
-    }
-
-    public Dictionary<string,List<string>> InstanceSchemas
-    {
-        get
-        {
-            return ViewState[Constants.InstanceSchemas] != null ? (Dictionary<string, List<string>>)ViewState[Constants.InstanceSchemas] : new Dictionary<string, List<string>>();
-        }
-        set
-        {
-            ViewState[Constants.InstanceSchemas] = value;
-        }
-    }
+    }    
 
     public bool ValidRelationships
     {
@@ -262,20 +248,18 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUI
             this.SelectParentRelationshipLabel.Text = string.Format(this.SelectParentRelationshipLabel.Text, this.SelectedToFieldLabel.Text, fld.DataType);
             this.AddJoinTypeItems(joinType);
 
-            // analysis all the tables in current dataview.
-            InstanceSchemas = GetAllInstanceSchemas();
-            
-            // Bind the instance and schema dropdownlist.
-            BindDropDownList();            
+            this.SchemaDropDownList.DataSource = GetSchemas();
+            this.SchemaDropDownList.SelectedValue = this.DefaultDatabase;
+            this.SchemaDropDownList.DataBind();
         }
-    }    
+    }
     #endregion
 
     #region Event Handlers
     void DeleteImageButton_ButtonClicked(object sender, EventArgs e)
     {
         this.DeleteRelationship();
-        string url = "EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + this.ParamCaller + "&schemaSelected=" + Request["schemaSelected"];
+        string url = "EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + this.ParamCaller;
         Server.Transfer(url, false);
     }
 
@@ -289,7 +273,7 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUI
             strError = string.Empty;
             return;
         }
-        string url = this.Caller + ".aspx?" + Constants.ParamCaller + "=" + this.ParamCaller + "&schemaSelected=" + Request["schemaSelected"];
+        string url = this.Caller + ".aspx?" + Constants.ParamCaller + "=" + this.ParamCaller;
         Server.Transfer(url, false);
     }
 
@@ -298,17 +282,7 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUI
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         this.CancelCurrentEdition();
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-    }
-
-    protected void InstanceDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (this.InstanceDropDownList.SelectedItem != null)
-        {
-            BindSchema(this.InstanceDropDownList.SelectedValue, string.Empty);
-
-            this.DefaultDatabase = Utilities.GetQualifyInstaceSchemaName(this.InstanceDropDownList.SelectedValue, this.SchemaDropDownList.SelectedValue);
-        }
-    }
+    }    
 
     #endregion
 
@@ -609,7 +583,7 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUI
     private void CancelCurrentEdition()
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-        string url = "EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + this.ParamCaller + "&schemaSelected=" + Request["schemaSelected"];
+        string url = "EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + this.ParamCaller;
         Server.Transfer(url, false);
         //this.ClearCurrentRelationShipSelection();
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
@@ -625,29 +599,29 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUI
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
-    public string GetTablesDataSource(string instanceSchema)
+    public string GetTablesDataSource(string schema)
     {
         int basetableid = this.DataViewBO.DataViewManager.BaseTableId;
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
 
         if (this.DataViewBO.DataViewManager.Tables.Count > 0)
         {
-            if (instanceSchema.StartsWith(mainInstance.Name + "."))
+            if (string.IsNullOrEmpty(schema))
             {
-                instanceSchema = instanceSchema.Remove(0, 5);
+                schema = this.DefaultDatabase;
             }
 
             string result = "YAHOO.RelationshipsNS.LeftPanel.DataSource.liveData = [";
             foreach (TableBO table in this.DataViewBO.DataViewManager.Tables)
             {
-                if (table.DataBase == instanceSchema && table.ID != Convert.ToInt32(this.ParamCaller)) //CSBR- 153486 Same base table is displayed as an option to select parent table
+                if (table.DataBase == schema && table.ID != Convert.ToInt32(this.ParamCaller)) //CSBR- 153486 Same base table is displayed as an option to select parent table
                     result += "{" + string.Format("tableschema: \"{0}\", tablealias: \"{1}\", tableid: \"{2}\", tablename: \"{3}\", isbasetable: \"{4}\"", table.DataBase, System.Web.HttpUtility.HtmlEncode(table.Alias), table.ID, table.Name, (table.ID == basetableid)) + "},";
             }
             if (result.Length > 0 && !result.EndsWith("["))
                 result = result.Remove(result.Length - 1);
             result += @"];
                 ";
-
+            this.SchemaDropDownList.SelectedValue = schema;
+            this.SchemaDropDownList.DataBind();
             return result;
         }
         return string.Empty;
@@ -687,64 +661,18 @@ public partial class Forms_DataViewManager_ContentArea_DefineRelationships : GUI
         return string.Empty;
     }
 
-    private void BindDropDownList()
+    private List<string> GetSchemas()
     {
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-        var defaultDatabase = this.DefaultDatabase;
-        var defaultInstance = mainInstance.Name;
-        var defaultSchema = string.Empty;
-        
-        Utilities.AnalyseInstanceSchema(defaultDatabase, ref defaultInstance, ref defaultSchema);
-
-        this.InstanceDropDownList.DataSource = InstanceSchemas.Keys.ToList();
-        this.InstanceDropDownList.SelectedValue = defaultInstance;
-        this.InstanceDropDownList.DataBind();
-
-        BindSchema(defaultInstance, defaultSchema);        
-    }
-
-    private void BindSchema(string instanceName, string defaultSchema)
-    {
-        if (!string.IsNullOrEmpty(instanceName) &&
-            InstanceSchemas.ContainsKey(instanceName))
-        {
-            this.SchemaDropDownList.DataSource = InstanceSchemas[instanceName];
-            this.SchemaDropDownList.DataBind();
-
-            if (!string.IsNullOrEmpty(defaultSchema))
-            {
-                this.SchemaDropDownList.SelectedValue = defaultSchema;
-            }
-        }
-    }
-
-    private Dictionary<string, List<string>> GetAllInstanceSchemas()
-    {
-        var tempInstanceSchemas = new Dictionary<string, List<string>>();
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
+        List<string> schemas = new List<string>();
         if (this.DataViewBO.DataViewManager.Tables.Count > 0)
         {
             foreach (TableBO table in this.DataViewBO.DataViewManager.Tables)
             {
-                var instanceName = mainInstance.Name;
-                var schemaName = string.Empty;
-
-                Utilities.AnalyseInstanceSchema(table.DataBase, ref instanceName, ref schemaName);
-
-                if (!tempInstanceSchemas.ContainsKey(instanceName))
-                {
-                    tempInstanceSchemas.Add(instanceName, new List<string>());
-                }
-
-                if (!tempInstanceSchemas[instanceName].Contains(schemaName))
-                {
-                    tempInstanceSchemas[instanceName].Add(schemaName);
-                }
+                if (!schemas.Contains(table.DataBase))
+                    schemas.Add(table.DataBase);
             }
         }
-
-        return tempInstanceSchemas;
+        return schemas;
     }
 
     /// <summary>

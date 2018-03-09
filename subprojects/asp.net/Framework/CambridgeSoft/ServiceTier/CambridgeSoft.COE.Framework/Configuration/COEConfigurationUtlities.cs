@@ -5,8 +5,7 @@ using CambridgeSoft.COE.Framework.Common;
 using System.Configuration;
 using CambridgeSoft.COE.Framework.Properties;
 using CambridgeSoft.COE.Framework.COELoggingService;
-using System.Linq;
-using Csla;
+
 
 namespace CambridgeSoft.COE.Framework.COEConfigurationService
 {
@@ -31,34 +30,16 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                 throw new ConfigurationErrorsException(string.Format(Resources.Culture, Resources.UnableToFindServicesInstance, serviceName));
             }
             return serviceData;
-        }
+        }        
 
-
-        private static InstanceData _COEInstance;
-
-        public static InstanceData GetCOEInstance()
-        {
-            if (_COEInstance==null)
-            {
-                COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-                COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection; 
-                _COEInstance= configSettings.Instances.FirstOrDefault(ins=>ins.IsCBOEInstance);
-                if (_COEInstance == null)
-                {
-                    _coeLog.Log("COEFrameworkConfig.xml error, must have one COE instance configured.");
-                }
-            }
-            return _COEInstance;
-        }
-
-        public static string GetDefaultDataSource()
+        public static string GetDefaultDataSource(DBMSType dbmsType)
         {
             COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
             COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
 
-            InstanceData ins = GetCOEInstance();
+            DBMSTypeData dbmsTypeData = configSettings.DBMSTypes.Get(dbmsType.ToString());
 
-            return ins.SID;
+            return dbmsTypeData.DataSource;
         }
 
         public static DBMSTypeData GetDBMSTypeData(DBMSType dbmsType)
@@ -205,6 +186,20 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             return result;
         }
 
+        public static DatabaseData GetDatabaseData(string databaseName)
+        {
+            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
+            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
+
+            DatabaseData databaseData = configSettings.Databases.Get(databaseName);
+            if (databaseData == null)
+            {
+                throw new ApplicationException(string.Format("{0} tag not found in <databases> section of COEFrameworkConfig.xml file", databaseName));
+            }
+
+            return databaseData;
+        }
+
         /// <summary>
         /// Gets the database data forcing to get the latest saved configuration
         /// </summary>
@@ -214,33 +209,12 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
         public static DatabaseData GetDatabaseData(string databaseName, bool notFromCache = false)
         {
             COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName, notFromCache);
-            var configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-            
+            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
             DatabaseData databaseData = configSettings.Databases.Get(databaseName);
-
-			if (databaseData == null)
-            {
-                throw new ApplicationException(string.Format("{0} tag not found in <databases> section of COEFrameworkConfig.xml file", databaseName));
-            }
-
-            if (Guid.Empty == databaseData.InstanceId)
-            {
-                databaseData.InstanceData = GetMainInstance();
-                databaseData.InstanceId = databaseData.InstanceData.Id;
-            }
-            else
-            {
-                databaseData.InstanceData = GetInstanceData(databaseData.InstanceId);
-            }
-
             return databaseData;
         }
-
-        /// <summary>
-        /// Get static COEConfigurationManager object of this class.
-        /// </summary>
-        /// <returns></returns>
-        public static COEConfigurationManager GetConfigurationManager()
+        
+        private static COEConfigurationManager GetConfigurationManager()
         {
             if (configurationManager == null)
             {
@@ -314,14 +288,14 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             return path;
         }
 
-        /// <summary>
-        /// Get COE Mappings XML string
-        /// </summary>
-        /// <param name="notFromCache"> read from cache or data portal </param>
-        /// <returns>the XML strin gof Mappings section </returns>
-        public static string GetMappingsXml(bool notFromCache = false)
+        public static string GetMappingsXml()
         {
-            return COEMappingsBO.Get(notFromCache).MappingXml;
+            /*XmlDocument document = new XmlDocument();
+            document.Load(GetMappingsPath());
+            return document.OuterXml;
+            */
+
+            return GetConfigurationManager().GetSectionXml(null, "CambridgeSoft.COE.Framework", "mappings");
         }
 
         /// <summary>
@@ -369,14 +343,10 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             SQLGeneratorData sqlGeneratorData = dbmsTypeData.SQLGeneratorData.Get(chemEngineName);
 
             if (sqlGeneratorData == null)
-            {
-                return ConfigurationUtilities.GetCOEInstance().SQLGeneratorData.Get("CSORACLECARTRIDGE").Schema;
-                //TODO: this is not the correct way to get sqlGeneratorData
-                //throw new ConfigurationErrorsException(
-                //  string.Format(Resources.Culture, Resources.UnableToFindDAlProviderInstance, chemEngineName));
-            }
-              
+                throw new ConfigurationErrorsException(
+                    string.Format(Resources.Culture, Resources.UnableToFindDAlProviderInstance, chemEngineName));
             return sqlGeneratorData.Schema;
+              
         }
 
 
@@ -400,8 +370,8 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             var configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
             var configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
 
-            InstanceData instacneData = ConfigurationUtilities.GetInstanceData(databaseData.InstanceId);
-            var sqlGeneratorData = instacneData.SQLGeneratorData.Get(ChemEngineName);
+            var dbmsTypeData = configSettings.DBMSTypes.Get(databaseData.DBMSType.ToString());
+            var sqlGeneratorData = dbmsTypeData.SQLGeneratorData.Get(ChemEngineName);
 
             return sqlGeneratorData;
         }
@@ -451,8 +421,11 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                     break;
 
             }
-            InstanceData instanceData = ConfigurationUtilities.GetInstanceData(GetMainInstance().Id);
-            var sqlGeneratorData = instanceData.SQLGeneratorData.Get(ChemEngineName);
+            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
+            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
+
+            DBMSTypeData dbmsTypeData = configSettings.DBMSTypes.Get(dbmsType.ToString());
+            SQLGeneratorData sqlGeneratorData = dbmsTypeData.SQLGeneratorData.Get(ChemEngineName);
 
             return sqlGeneratorData.ChemMajorVersion;
         }
@@ -576,17 +549,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                 }
             }
             return myAppNameList;
-        }
-
-        public static List<DBMSTypeData> GetAllDBMSTypesInConfig()
-        {
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-
-            List<DBMSTypeData> myDBMSTypes = configSettings.DBMSTypes.ToList();
-
-            return myDBMSTypes;
-        }
+        }       
 
         /// <summary>
         /// 
@@ -649,123 +612,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             return null;
 
         }
-
-        public static List<String> GetAllInstancesNameInConfig()
-        {
-            List<String> instanceList = new List<String>();
-
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-
-            COENamedElementCollection<InstanceData> instancesColl = configSettings.Instances;
-
-            foreach (InstanceData item in instancesColl)
-            {
-                instanceList.Add(item.InstanceName);
-            }
-
-            return instanceList;
-        }
-
-        public static List<InstanceData> GetAllInstancesInConfig()
-        {
-            List<InstanceData> instanceList = new List<InstanceData>();
-
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName, true);
-            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-
-            COENamedElementCollection<InstanceData> instancesColl = configSettings.Instances;
-
-            foreach (InstanceData item in instancesColl)
-            {
-                instanceList.Add(item);
-            }
-
-            return instanceList;
-        }
-
-        public static InstanceData GetMainInstance()
-        {
-            List<InstanceData> instanceList = new List<InstanceData>();
-
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-
-            COENamedElementCollection<InstanceData> instancesColl = configSettings.Instances;
-
-            return instancesColl.FirstOrDefault(instance => instance.IsCBOEInstance);
-        }
-
-        public static InstanceData GetInstanceData(string instanceName)
-        {
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-            InstanceData instanceData = configSettings.Instances.Get(instanceName);
-
-            return instanceData;
-        }
-
-        /// <summary>
-        /// Gets the instance data by instance id.
-        /// </summary>
-        /// <param name="instanceId">The instance unique id.</param>
-        /// <returns>
-        /// The matched instance data will be returned.
-        /// </returns>
-        public static InstanceData GetInstanceData(Guid instanceId)
-        {
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-
-            InstanceData instanceData = configSettings.Instances.Where(i => i.Id == instanceId).FirstOrDefault();
-
-            return instanceData;
-        }
-
-        /// <summary>
-        /// Gets the instance name of the database.
-        /// </summary>
-        /// <param name="database">The database name.</param>
-        /// <returns>
-        /// The matched database inst
-        /// </returns>
-        public static string GetInstanceNameByDatabaseName(string database)
-        {
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-            COEConfigurationSettings configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-
-            var databaseData = configSettings.Databases.Where(d => d.Name.Equals(database, StringComparison.InvariantCultureIgnoreCase)).FirstOrDefault();
-
-            if (databaseData != null)
-            {
-                // The legacy schema would not have instance id defined in the configuration. In this case, it should come from the primary(main) datasource(instance).
-                if (null == databaseData.InstanceId || databaseData.InstanceId.Equals(Guid.Empty))
-                {
-                    databaseData.InstanceId = GetMainInstance().Id;
-                }
-
-                var instanceData = GetInstanceData(databaseData.InstanceId);
-                if (instanceData != null)
-                {
-                    return instanceData.Name;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Get instance global user for the given database
-        /// </summary>
-        /// <param name="databaseName"> A database name </param>
-        /// <returns> The global user name </returns>
-        public static string GetDatabaseGlobalUser(string databaseName)
-        {
-            var instanceName = GetInstanceNameByDatabaseName(databaseName);
-            var instance = GetInstanceData(instanceName);
-            var databases = GetDatabasesByInstance(instance);
-            return databases.First(db => db.Owner == instance.DatabaseGlobalUser).Name;
-        }
+        
 
         /// <summary>
         /// Retrieves all the DatabaseNames reading from the  configuration file that is associated with the framework located in C:\Documents and Settings\All Users\Application Data\CambridgeSoft\ChemOfficeEnterprisex.x.x.x COEFrameworkConfig.xml
@@ -1134,40 +981,6 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                 sqlGeneratorData.MolFileFormat = "V2000";
             }
             return sqlGeneratorData;
-        }
-
-        /// <summary>
-        /// Retrieves all the AppNames reading from the  configuration file that is associated with the framework located in  C:\Documents and Settings\All Users\Application Data\CambridgeSoft\ChemOfficeEnterprisex.x.x.x COEFrameworkConfig.xml
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<DatabaseData> GetDatabasesByInstance(InstanceData instanceData)
-        {
-            COEConfigurationBO configurationBO = COEConfigurationBO.Get("CambridgeSoft.COE.Framework", COEConfigurationSettings.SectionName);
-            var configSettings = (COEConfigurationSettings)configurationBO.ConfigurationSection;
-            IEnumerable<DatabaseData> result = configSettings.Databases.Where(db => db.InstanceId == instanceData.Id);
-
-            if (instanceData.IsCBOEInstance)
-            {
-                IEnumerable<DatabaseData> databasesWithoutInstanceName =
-                    configSettings.Databases.Where(db => db.InstanceId == Guid.Empty || db.InstanceId == instanceData.Id);
-                result = result.Union(databasesWithoutInstanceName);
-            }
-
-            return result;
-        }
-
-        public static COESpotFireSettingsBO GetSpotFireSettings(bool notFromCache = false)
-        {
-            return COESpotFireSettingsBO.Get(notFromCache);
-        }
-
-        public static void SetSpotFireSettings(string url,string user, string password)
-        {
-            var bo = COESpotFireSettingsBO.Get();
-            bo.SpotfireURL = url;
-            bo.SpotfireUser = user;
-            bo.SpotfirePassword = password;
-            bo.Save();
-        }
+        }       
     }
 }

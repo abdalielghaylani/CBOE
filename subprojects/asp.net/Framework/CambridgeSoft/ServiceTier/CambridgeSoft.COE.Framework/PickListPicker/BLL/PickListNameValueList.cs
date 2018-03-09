@@ -13,8 +13,7 @@ using Csla.Validation;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.COEDisplayDataBrokerService;
 using System.Collections;
-using CambridgeSoft.COE.Framework.Caching;
-using System.Reflection;
+
 
 namespace CambridgeSoft.COE.Framework.COEPickListPickerService
 {
@@ -281,11 +280,11 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
         /// <returns>The list of values for the given domain.</returns>
         public static PickListNameValueList GetPickListNameValueList(string databaseName, string domainName)
         {
-            string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
-            _coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
+            //string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
+            //_coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
             SetDatabaseName(databaseName);
             _list = DataPortal.Fetch<PickListNameValueList>(new DomainNameCriteria(domainName));
-            _coeLog.LogEnd(methodSignature);
+            //_coeLog.LogEnd(methodSignature);
             return _list;
         }
 
@@ -297,20 +296,20 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
         /// <returns>The list of values for the given domain.</returns>
         public static PickListNameValueList GetPickListNameValueList(string databaseName, int domainId)
         {
-            string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
-            _coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
+            //string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
+            //_coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
             SetDatabaseName(databaseName);
             _list = DataPortal.Fetch<PickListNameValueList>(new DomainIdCriteria(domainId));
-            _coeLog.LogEnd(methodSignature);
+            //_coeLog.LogEnd(methodSignature);
             return _list;
         }
 
         public static PickListNameValueList GetPickListNameValueList(string sql)
         {
-            string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
-            _coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
+            //string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
+            //_coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
             _list = DataPortal.Fetch<PickListNameValueList>(new SQLCriteria(sql));
-            _coeLog.LogEnd(methodSignature);
+            //_coeLog.LogEnd(methodSignature);
             return _list;
         }
 
@@ -320,11 +319,11 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
         /// <returns>ID,Name list of </returns>
         public static PickListNameValueList GetAllPickListDomains(string databaseName)
         {
-            string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
-            _coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
+            //string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
+            //_coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
             SetDatabaseName(databaseName);
             _list = DataPortal.Fetch<PickListNameValueList>();
-            _coeLog.LogEnd(methodSignature);
+            //_coeLog.LogEnd(methodSignature);
             return _list;
         }
 
@@ -334,10 +333,10 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
         /// <returns>ID,Name list of </returns>
         public static PickListNameValueList GetAllPickListDomains()
         {
-            string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
-            _coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
+            //string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
+            //_coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
             _list = DataPortal.Fetch<PickListNameValueList>();
-            _coeLog.LogEnd(methodSignature);
+            //_coeLog.LogEnd(methodSignature);
             return _list;
         }
 
@@ -349,22 +348,8 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
         /// <param name="includeValue">IncludeValue picklist value.</param>
         /// <returns>The list of values for the given domain.</returns>
         public static PickListNameValueList GetPickListNameValueList(int domainId, object pickListStatus, object includeValue)
-        {
-            string methodSignature = MethodBase.GetCurrentMethod().DeclaringType.Name + "->" + MethodBase.GetCurrentMethod().Name.ToUpper() + " ";
-            _coeLog.LogStart(methodSignature, 1, System.Diagnostics.SourceLevels.All);
-
-            if (ServerCache.Exists(domainId.ToString(), typeof(PickListNameValueList)))
-            {
-                _list = ServerCache.Get(domainId.ToString(), typeof(PickListNameValueList)) as PickListNameValueList;
-            }
-            else
-            {
-                _list = DataPortal.Fetch<PickListNameValueList>(new SQLCriteria(GetDropdownSql(domainId, pickListStatus, includeValue)));
-                ServerCache.Add(domainId.ToString(), typeof(PickListNameValueList), _list, LocalCache.NoAbsoluteExpiration, TimeSpan.FromMinutes(60), COECacheItemPriority.Normal);
-            }
-            if (_list == null)
-                _list = DataPortal.Fetch<PickListNameValueList>(new SQLCriteria(GetDropdownSql(domainId, pickListStatus, includeValue)));
-            _coeLog.LogEnd(methodSignature);
+        {            
+            _list = DataPortal.Fetch<PickListNameValueList>(new SQLCriteria(GetDropdownSql(domainId, pickListStatus, includeValue)));                
             return _list;
         }       
 
@@ -440,20 +425,7 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
         /// Cleans previously cached values.
         /// </summary>
         public static void InvalidateCache()
-        {
-            string domainID = string.Empty;
-            PickListNameValueList lstCol = PickListNameValueList.GetAllPickListDomains();
-            if (lstCol != null)
-            {
-                foreach (Csla.NameValueListBase<string, string>.NameValuePair pair in lstCol)
-                {
-                    domainID = pair.Key;
-                    if (ServerCache.Exists(domainID, typeof(PickListNameValueList)))
-                    {
-                        ServerCache.Remove(domainID, typeof(PickListNameValueList));
-                    }
-                }
-            }
+        {           
             _list = null;
         }
 
@@ -605,7 +577,6 @@ namespace CambridgeSoft.COE.Framework.COEPickListPickerService
                         this.IdColumn = "ID";
                         this.DisplayColumn = "PICKLISTVALUE";
                         this.WhereFilter = "WHERE PICKLISTDOMAINID = " + Convert.ToString(picklistServiceCriteria.DomainId);
-                        this.OrderByFilter = " ORDER BY SORTORDER ASC";
                         this.WhereFilter = GetPickListStatus(picklistServiceCriteria.PickListStatus);
                     }
                    

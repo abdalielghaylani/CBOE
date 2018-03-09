@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<PagingInfo xmlns="COE.PagingInfo">
+  <PagingInfoID>0</PagingInfoID>
+  <HitListID>0</HitListID>
+  <KeepAlive>NONE</KeepAlive>
+  <RecordCount>50</RecordCount>
+  <Start>0</Start>
+  <End>0</End>
+</PagingInfo>

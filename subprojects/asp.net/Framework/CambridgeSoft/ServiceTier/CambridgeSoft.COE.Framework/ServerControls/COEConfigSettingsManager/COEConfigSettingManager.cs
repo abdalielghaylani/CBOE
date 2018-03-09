@@ -200,11 +200,11 @@ namespace CambridgeSoft.COE.Framework.Controls.COEConfigSettingManager
             Table messageTable;
             Label messageLabel;
             int currentIndex = 0;
-            COESpotFireSettingsBO SpotfireSetting = ConfigurationUtilities.GetSpotFireSettings(false);
+           // COESpotFireSettingsBO SpotfireSetting = ConfigurationUtilities.GetSpotFireSettings(false);
             foreach (SettingsGroup settingsGroup in this.AppSettings.SettingsGroup)
             {                
-                if ((SpotfireSetting.SpotfireUser != "") || (SpotfireSetting.SpotfireUser == "" && settingsGroup.Name != "DVManager"))
-                {
+                //if ((SpotfireSetting.SpotfireUser != "") || (SpotfireSetting.SpotfireUser == "" && settingsGroup.Name != "DVManager"))
+                //{
                     Infragistics.WebUI.UltraWebTab.Tab tab = new Infragistics.WebUI.UltraWebTab.Tab();
                     tab.Key = settingsGroup.Name;
                     tab.Text = settingsGroup.Title;
@@ -262,7 +262,7 @@ namespace CambridgeSoft.COE.Framework.Controls.COEConfigSettingManager
                         this.Tabs.Add(tab);
                         currentIndex++;
                     }
-                }
+                //}
             }
 
         }

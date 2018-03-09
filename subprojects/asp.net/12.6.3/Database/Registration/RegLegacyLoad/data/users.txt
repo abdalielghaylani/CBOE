@@ -1,0 +1,4 @@
+PersonID	UserName	UserCode	Active	Role	FirstName	MiddleName	LastName	SupervisorID	Title	Department	SiteID	Address	Telephone	Email
+1	jsmith      		1	2	John      		Smith      							
+2	kjones	     		1	2	Kay     		Jones     							
+3	asanchez	   		1	2	Alberto   		Sanchez   							

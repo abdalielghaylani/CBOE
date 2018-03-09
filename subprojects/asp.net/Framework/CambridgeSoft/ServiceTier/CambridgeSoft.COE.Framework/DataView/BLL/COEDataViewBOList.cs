@@ -30,13 +30,13 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         //this method must be called prior to any other method inorder to set the database that the dal will use
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
 
         internal static void SetDatabaseName(string databaseName)
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
 
         }
 
@@ -52,7 +52,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForAddObject + " COEDataViewBOList");
             return new COEDataViewBOList();
         }
-
         public static COEDataViewBOList GetDataViewDataList()
         {
             SetDatabaseName();
@@ -61,16 +60,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForViewObject + " COEDataViewBOList");
             return DataPortal.Fetch<COEDataViewBOList>(new Criteria());
         }
-
-        public static COEDataViewBOList GetAllDataViewDataList()
-        {
-            SetDatabaseName();
-
-            if (!CanGetObject())
-                throw new System.Security.SecurityException(Resources.UserNotAuthorizedForViewObject + " COEDataViewBOList");
-            return DataPortal.Fetch<COEDataViewBOList>(new Criteria(true));
-        }
-
         public static COEDataViewBOList GetDataViewDataListByUser(string userName)
         {
             SetDatabaseName();
@@ -129,35 +118,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             return DataPortal.Fetch<COEDataViewBOList>(new GetByAllDatabaseNameCriteria(false, true));
         }
 
-        /// <summary>
-        /// Gets the dataviews by instance name. The dataviews which refer the tables of data source will be returned.
-        /// </summary>
-        /// <param name="instanceName">The data source name.</param>
-        /// <returns>The dataviews which refer the tables of data source will be returned.</returns>
-        public static COEDataViewBOList GetDataViewListByInstance(string instanceName)
-        {
-            SetDatabaseName();
-
-            if (!CanGetObject())
-                throw new System.Security.SecurityException(Resources.UserNotAuthorizedForViewObject + " COEDataViewBOList");
-
-            return DataPortal.Fetch<COEDataViewBOList>(new GetByInstanceCriteria(false, instanceName));
-        }
-        
-        /// <summary>
-        /// Gets the dataviews published from the primary data source.
-        /// </summary>
-        /// <returns>The data views which refer to primary data source will be returned.</returns>
-        public static COEDataViewBOList GetDataViewListOfPrimaryDataSource()
-        {
-            SetDatabaseName();
-
-            if (!CanGetObject())
-                throw new System.Security.SecurityException(Resources.UserNotAuthorizedForViewObject + " COEDataViewBOList");
-
-            return DataPortal.Fetch<COEDataViewBOList>(new GetByInstanceCriteria(true));
-        }
-
         private COEDataViewBO GetDataViewBOByID(int id)
         {
             Csla.FilteredBindingList<COEDataViewBO> filteredList = new FilteredBindingList<COEDataViewBO>(this);
@@ -185,16 +145,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 throw new System.Security.SecurityException(Resources.UserNotAuthorizedForViewObject + " COEDataViewBOList");
             return DataPortal.Fetch<COEDataViewBOList>(new GetByAllDatabaseNameCriteria(lightWeight));
         }
-
-        public static COEDataViewBOList GetAllDataViewListIncludeMasterPrivate()
-        {
-            SetDatabaseName();
-
-            if (!CanGetObject())
-                throw new System.Security.SecurityException(Resources.UserNotAuthorizedForViewObject + " COEDataViewBOList");
-            return DataPortal.Fetch<COEDataViewBOList>(new GetAllCriteria());
-        }
-
         public static bool CanAddObject()
         {
             //TO DO:  need to add authorization access code
@@ -225,17 +175,14 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         [Serializable()]
         private class Criteria
         {
-            public bool _IncludeAllPrivate = false;
 
-            public Criteria()
-            { 
-            }
 
             //constructors
-            public Criteria(bool includeAllPrivate)
+            public Criteria()
             {
-                this._IncludeAllPrivate = includeAllPrivate;
+
             }
+
         }
 
         [Serializable()]
@@ -295,33 +242,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 _lightWeight = lightWeight;
                 _avoidMaster = avoidMaster;
             }
-        }
 
-        [Serializable()]
-        private class GetByInstanceCriteria
-        {
-            public bool _isPrimary;
-            public string _instanceName;
-
-            /// <summary>
-            /// Initializes the criteria with the lightweight option. It means it WOULD retrieve the master dv, and depending on the lightWeight setting it may or may not retrieve the xml
-            /// </summary>
-            /// <param name="lightWeight">If true, the actual xml is not retrieved</param>
-            public GetByInstanceCriteria(bool isPrimary)
-            {
-                this._isPrimary = isPrimary;
-            }
-
-            /// <summary>
-            /// Initialize the criteria with both parameters.
-            /// </summary>
-            /// <param name="lightWeight">If true, the actual xml is not retrieved</param>
-            /// <param name="avoidMaster">if true the master dataview is not fetched</param>
-            public GetByInstanceCriteria(bool isPrimary, string instanceName)
-            {
-                this._isPrimary = isPrimary;
-                this._instanceName = instanceName;
-            }
         }
 
         [Serializable()]
@@ -336,14 +257,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 _appName = appName;
             }
         }
-
-        [Serializable()]
-        private class GetAllCriteria
-        {
-            public GetAllCriteria()
-            {
-            }
-        }
         #endregion //Filter Criteria
 
         #region Data Access - Fetch
@@ -354,7 +267,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             //COverity Bug Fix 11494 
             if (_coeDAL != null)
             {
-                using (SafeDataReader dr = criteria._IncludeAllPrivate ? _coeDAL.GetAllNoMasterIncludeAllPrivate() : _coeDAL.GetAll())
+                using (SafeDataReader dr = _coeDAL.GetAll())
                 {
                     Fetch(dr);
                 }
@@ -446,38 +359,8 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                         FetchLightWeight(dr);
                     }
                 }
-                else                
-                    throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));                
-            }
-            finally
-            {
-                if (dr != null)
-                    dr.Close();
-            }
-
-            RaiseListChangedEvents = true;
-        }
-
-        private void DataPortal_Fetch(GetByInstanceCriteria criteria)
-        {
-            RaiseListChangedEvents = false;
-            SafeDataReader dr = null;
-
-            _dalFactory = new DALFactory();
-            _coeDAL = null;
-            LoadDAL();
-
-            try
-            {
-                if (_coeDAL != null)
-                {
-                    dr = criteria._isPrimary ? _coeDAL.GetAllPrimaryDataViewList() : _coeDAL.GetAllInstanceDataViewList(criteria._instanceName);
-                    Fetch(dr);
-                }
                 else
-                {
                     throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
-                }
             }
             finally
             {
@@ -487,7 +370,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
             RaiseListChangedEvents = true;
         }
-
         private void DataPortal_Fetch(GetByApplication criteria)
         {
             RaiseListChangedEvents = false;
@@ -504,24 +386,6 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
             RaiseListChangedEvents = true;
         }
-
-        private void DataPortal_Fetch(GetAllCriteria criteria)
-        {
-            RaiseListChangedEvents = false;
-            if (_coeDAL == null) { LoadDAL(); }
-            // Coverity Fix CID - 11495
-            if (_coeDAL != null)
-            {
-                using (SafeDataReader dr = _coeDAL.GetAllDataViewListIncludeMasterPrivate())
-                {
-                    Fetch(dr);
-                }
-            }
-            else
-                throw new System.Security.SecurityException(string.Format(Resources.Culture, Resources.NullObjectError, "DAL"));
-            RaiseListChangedEvents = true;
-        }
-
         protected void Fetch(SafeDataReader dr)
         {
             //COverity Bug Fix CID 11629 
@@ -678,5 +542,3 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         #endregion
     }
 }
-
-

@@ -9,6 +9,12 @@ using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.Properties;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Framework.COEConfigurationService;
+using Oracle.DataAccess.Types;
+using CambridgeSoft.COE.Framework.Common.SqlGenerator;
+using CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries;
+using CambridgeSoft.COE.Framework.Common.SqlGenerator.NonQueries;
+using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
+
 
 
 namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
@@ -64,117 +70,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                     return false;
                 }
             }
-        }
-
-        public override bool AuthenticateUser(string ownerName, string password, string host, int port, string serviceName)
-        {
-            // Coverity Fix CID - 11816
-            using (Oracle.DataAccess.Client.OracleConnection con = new Oracle.DataAccess.Client.OracleConnection())
-            {
-                try
-                {
-                    con.ConnectionString = Utilities.GetConnectString(host, port, serviceName, ownerName, password);
-
-                    con.Open();
-                    con.Close();
-                    return true;
-                }
-                catch
-                {
-                    con.Close();
-                    throw;
-                    return false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Grant SELECT privilege on the given tables to Datalytix global user through an specified granter user
-        /// </summary>
-        /// <param name="targetSchema">the schema of the tables to grant privilege</param>
-        /// <param name="tableNames">the tables to give privilege</param>
-        /// <param name="granterSchema">the granter user</param>
-        /// <param name="granterPwd">the granter password</param>
-        /// <param name="host">the host name of the oracle database</param>
-        /// <param name="port">the port number of the oracle database</param>
-        /// <param name="serviceName">the service name of the oracle database</param>
-        /// <param name="globalDb">Datalytix global user</param>
-        /// <returns></returns>
-        public static int GrantSelectPrivilegeOnTables(string targetSchema, List<string> tableNames, string granterSchema,
-            string granterPwd, string host, int port, string serviceName, string globalDb)
-        {
-            int tableGranted = 0;
-            using (var con = new Oracle.DataAccess.Client.OracleConnection())
-            {
-                con.ConnectionString = Utilities.GetConnectString(host, port, serviceName, granterSchema, granterPwd);
-                con.Open();
-
-                //execute grant commands
-                foreach (var table in tableNames)
-                {
-                    OracleCommand cmd = con.CreateCommand();
-                    cmd.CommandText = string.Format("GRANT SELECT ON {0}.{1} TO {2}", targetSchema, table, globalDb);
-
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        tableGranted++;
-                    }
-                    catch (Exception ex)
-                    {
-                        // don't care
-                    }
-                }
-            }
-
-            return tableGranted;
-        }
-
-        /// <summary>
-        /// Find all the tables which Datalytix global user has not SELECT privilege
-        /// </summary>
-        /// <param name="targetSchema">the schema of the tables</param>
-        /// <param name="tableNames">the tables to find in</param>
-        /// <param name="host">the host name of the oracle database</param>
-        /// <param name="port">the port number of the oracle database</param>
-        /// <param name="serviceName">the service name of the oracle database</param>
-        /// <param name="globalDb">Datalytix global user</param>
-        /// <param name="globalPwd">Datalytix glogbale user password</param>
-        public static void FindUnselectableTables(string targetSchema, ref List<string> tableNames, string host, int port,
-            string serviceName, string globalDb, string globalPwd)
-        {
-            using (var con = new Oracle.DataAccess.Client.OracleConnection())
-            {
-                con.ConnectionString = Utilities.GetConnectString(host, port, serviceName, globalDb, globalPwd);
-                con.Open();
-
-                var allCmd = con.CreateCommand();
-                allCmd.CommandText = "SELECT * FROM USER_SYS_PRIVS WHERE PRIVILEGE='SELECT ANY TABLE'";
-                using (var allReader = allCmd.ExecuteReader())
-                {
-                    if (allReader.Read())
-                    {
-                        // COEUSER has "SELECT ANY TABLE" privilege
-                        tableNames = new List<string>();
-                    }
-                    else
-                    {
-                        var tablesCmd = con.CreateCommand();
-                        tablesCmd.CommandText =
-                            string.Format(
-                                "SELECT TABLE_NAME FROM USER_TAB_PRIVS WHERE PRIVILEGE = 'SELECT' AND OWNER = '{0}'",
-                                targetSchema.ToUpper());
-                        using (var tablesReader = tablesCmd.ExecuteReader())
-                        {
-                            while (tablesReader.Read())
-                            {
-                                tableNames.Remove(tablesReader.GetString(0));
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        }       
 
         internal override void GrantTable(string databaseName, string tableName)
         {
@@ -231,18 +127,17 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                                                 (SELECT TC.owner,
                                                         AO.object_name AS table_name,
                                                         TC.column_name,
-                                                        TC.data_type,
-                                                        TC.data_length,
+                                                        TC.data_type,                                                       
                                                         TC.data_precision,
                                                         TC.data_scale,
                                                         AO.object_type AS type,
                                                         d.isPrimaryKey IS_PRIMARY_KEY,
                                                         row_number() OVER (ORDER BY tc.table_name, tc.column_name) rn
-                                                  FROM dba_Tab_Columns TC
-                                                   INNER JOIN dba_Objects AO
+                                                  FROM All_Tab_Columns TC
+                                                   INNER JOIN All_Objects AO
                                                      ON AO.object_name = TC.table_name
                                                    LEFT OUTER JOIN (SELECT 'true' as isPrimaryKey, cc.column_name, cc.table_name
-				                                                FROM dba_Cons_Columns CC, dba_Constraints C
+				                                                FROM All_Cons_Columns CC, All_Constraints C
 				                                                WHERE CC.constraint_name = C.constraint_name AND
 				                                                 C.constraint_type = 'P' AND
 				                                                 C.owner = CC.owner) d ON d.table_name = tc.table_name AND
@@ -254,8 +149,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
                                                         AO.OBJECT_NAME NOT LIKE ('BIN$%')) -- if recycle bin is enabled, this indicates a table was dropped see http://download.oracle.com/docs/cd/B19306_01/backup.102/b14192/flashptr004.htm for further details
                                                 SELECT DISTINCT table_name,
                                                        column_name,
-                                                       data_type,
-                                                       data_length,
+                                                       data_type,                                                      
                                                        data_precision,
                                                        data_scale,
                                                        IS_PRIMARY_KEY,
@@ -278,9 +172,9 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 		                C.TABLE_NAME AS FK_TABLE_NAME,
 		                B.TABLE_NAME AS PK_TABLE_NAME,
 		                B.COLUMN_NAME AS PK_Column
-                FROM 	DBA_CONSTRAINTS A,
-		                DBA_CONS_COLUMNS B,
-		                DBA_CONS_COLUMNS C
+                FROM 	ALL_CONSTRAINTS A,
+		                ALL_CONS_COLUMNS B,
+		                ALL_CONS_COLUMNS C
                 WHERE 	A.R_CONSTRAINT_NAME=B.CONSTRAINT_NAME
                 AND 	A.CONSTRAINT_NAME=C.CONSTRAINT_NAME
                 AND 	A.OWNER=C.OWNER
@@ -322,29 +216,35 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
         /// Populate all the Owners in the database
         /// </summary>
         /// <returns>List of Owners </returns>
-        public override SafeDataReader GetAllInstanceDatabases()
+        public override DataTable GetUnPublishedDatabases()
         {
+            DataTable returnDataTable = new DataTable();
             try
             {
-                var databaseOwnerListsQuery = @"
+                string DatabaseOwnerListsQuery = @"
                     SELECT 	DISTINCT owner
                     FROM 	dba_objects
                     WHERE 	owner NOT IN('SYS', 'SYSTEM')
+                    AND 	owner NOT IN(SELECT name FROM " + _coeSchemaTableName + @")
                     ORDER BY owner";
 
-                DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(databaseOwnerListsQuery);
+                DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(DatabaseOwnerListsQuery);
 
-                var dbDataReader = DALManager.ExecuteReader(dbCommand);
+                IDataReader dbDataReader = DALManager.ExecuteReader(dbCommand);
+                using (DataReaderAdapter dbDataAdapter = new DataReaderAdapter())
+                {
+                    dbDataAdapter.FillFromReader(returnDataTable, dbDataReader);
+                    dbDataReader.Close();
+                }
 
-                return new SafeDataReader(dbDataReader);
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
             }
+            return returnDataTable;
         }
 
-        public override void RevokeProxy(string schemaName, string globalSchemaName)
+        public override void RevokeProxy(string schemaName)
         {
             string sql = string.Empty;
             int recordsAffected = 0;
@@ -354,7 +254,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             {
                 try
                 {
-                    sql = "ALTER USER " + schemaName + " REVOKE CONNECT THROUGH " + globalSchemaName;
+                    sql = "ALTER USER " + schemaName + " REVOKE CONNECT THROUGH COEUSER";
                     DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
                     recordsAffected = DALManager.ExecuteNonQuery(dbCommand);
                 }
@@ -365,14 +265,14 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             }
         }
 
-        public override void GrantProxy(string schemaName, string globalSchemaName)
+        public override void GrantProxy(string schemaName)
         {
             string sql = string.Empty;
             int recordsAffected = 0;
 
             try
             {
-                sql = "ALTER USER " + schemaName + " GRANT CONNECT THROUGH " + globalSchemaName;
+                sql = "ALTER USER " + schemaName + " GRANT CONNECT THROUGH COEUSER";
                 DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
                 recordsAffected = DALManager.ExecuteNonQuery(dbCommand);
             }
@@ -535,8 +435,8 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             try
             {
                 StringBuilder sql = new StringBuilder();
-                sql.Append("SELECT AI.index_name AS indexName, AIC.column_name, AI.table_name FROM dba_indexes AI ");
-                sql.Append("INNER JOIN dba_ind_columns AIC ON AI.table_name= AIC.table_name AND ");
+                sql.Append("SELECT AI.index_name AS indexName, AIC.column_name, AI.table_name FROM all_indexes AI ");
+                sql.Append("INNER JOIN all_ind_columns AIC ON AI.table_name= AIC.table_name AND ");
                 sql.Append("AI.index_name = AIC.index_name and AI.table_owner= AIC.table_owner ");
                 sql.AppendFormat("where AI.table_owner = {0}", DALManager.BuildSqlStringParameterName("database"));
 
@@ -678,107 +578,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             dbCommand = DALManager.Database.GetSqlStringCommand(sql);
             SafeDataReader safeReader = new SafeDataReader(DALManager.Database.ExecuteReader(dbCommand));
             return safeReader;
-        }
-
-        /// <summary>
-        /// Create sequence for generating child hitlist id.
-        /// Create child hitlist id table.
-        /// Create hitlist table.
-        /// </summary>
-        public void CreateInstanceMetas(string ownerName, string password, string host,int port,string sid)
-        {
-            using (OracleConnection conn = new OracleConnection())
-            {
-                // Tried to use existing logic to get data base connections here.
-                // However, we got problems to retrieve the latest config,
-                // then we have to use this method to get the connection.
-                conn.ConnectionString = Utilities.GetConnectString(host, port, sid, ownerName, password);
-
-                conn.Open();
-                OracleTransaction tran = conn.BeginTransaction();
-
-                try
-                {
-
-                    if (IsSequenceExist(conn, "COECHILDHITLISTID_SEQ", ownerName.ToUpper()))
-                    {
-                        DropSequence(conn, tran, ownerName.ToUpper() + ".COECHILDHITLISTID_SEQ");
-                    }
-
-                    CreateInstanceMetaSequence(conn, tran);
-
-                    TryDropTable(conn, tran, "COETEMPCHILDHITLISTID");
-                    TryDropTable(conn, tran, "COETEMPHITLIST");
-
-                    CreateInstanceMetaTables(conn, tran);
-                }
-                catch
-                {
-                    tran.Rollback();
-                    throw;
-                }
-
-                tran.Commit();
-            }
-
-        }
-
-        /// <summary>
-        /// Create sequence for generating child hitlist id.
-        /// </summary>
-        private void CreateInstanceMetaSequence(OracleConnection conn, OracleTransaction tran)
-        {
-            string sql = "CREATE SEQUENCE COECHILDHITLISTID_SEQ MINVALUE 1 MAXVALUE 1000000000000000000000000000 INCREMENT BY 1 START WITH 1 CACHE 20 NOORDER NOCYCLE ";
-
-            OracleCommand dbCommand = CreateOracleCommand(conn, tran, sql);
-            dbCommand.ExecuteNonQuery();
-        }
-
-        /// <summary>
-        /// Create child hitlist id table.
-        /// Create hitlist table.
-        /// </summary>
-        private void CreateInstanceMetaTables(OracleConnection conn, OracleTransaction tran)
-        {
-            string sql1 = "CREATE TABLE COETEMPCHILDHITLISTID " +
-                            "( " +
-                                "CHILDHITLISTID NUMBER(9,0) NOT NULL ENABLE, " +
-                                "HITLISTID      NUMBER(9,0) NOT NULL ENABLE, " +
-                                "TABLEID        NUMBER(9,0) NOT NULL ENABLE, " +
-                                "DATESTAMP      DATE DEFAULT SYSDATE NOT NULL ENABLE, " +
-                                "PRIMARY KEY (CHILDHITLISTID)" +
-                            ") ";
-
-            string sql2 = "CREATE TABLE COETEMPHITLIST " +
-                            "( " +
-                            "CHILDHITLISTID  NUMBER(9,0) NOT NULL ENABLE," +
-                            "ID              NUMBER(9,0) NOT NULL ENABLE," +
-                            "SORTORDER       NUMBER(9,0)," +
-                            "PRIMARY KEY (CHILDHITLISTID, ID)" +
-                            ") ";
-
-            OracleCommand dbCommand = CreateOracleCommand(conn, tran, sql1);
-            dbCommand.ExecuteNonQuery();
-
-            OracleCommand dbCommand2 = CreateOracleCommand(conn, tran, sql2);
-            dbCommand2.ExecuteNonQuery();
-        }
-
-        private bool IsSequenceExist(OracleConnection conn, string sequenceName, string owner)
-        {
-            string sql = "SELECT COUNT(*) FROM dba_sequences WHERE sequence_name = :sequenceName and SEQUENCE_OWNER = :owner";
-
-            OracleCommand dbCommand = new OracleCommand(sql);
-            dbCommand.Connection = conn;
-            dbCommand.Parameters.Add("sequenceName", OracleDbType.Varchar2, sequenceName, ParameterDirection.Input);
-            dbCommand.Parameters.Add("owner", OracleDbType.Varchar2, owner, ParameterDirection.Input);
-
-            bool exists = false;
-
-            exists = (decimal)dbCommand.ExecuteScalar() > 0;
-
-            return exists;
-        }
+        }        
 
         private void DropSequence(OracleConnection conn, OracleTransaction tran, string sequenceName)
         {
@@ -817,7 +617,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             return dbCommand;
         }
 
-        internal override void UpdateCOEDatabaseDataView(string ownerNameWithInstance, string serializedCOEDataView, DateTime dateModified)
+        internal override void UpdateCOEDatabaseDataView(string ownerName, string serializedCOEDataView, DateTime dateModified)
         {
             string sql = "UPDATE " + _coeSchemaTableName +
                  " SET COEDATAVIEW= " + DALManager.BuildSqlStringParameterName("pCOEDataView") +
@@ -828,7 +628,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
 
             dbCommand.Parameters.Add("pCOEDataView", OracleDbType.XmlType, serializedCOEDataView, ParameterDirection.Input);
             dbCommand.Parameters.Add("pDateCreated", OracleDbType.Date, DateTime.Now, ParameterDirection.Input);
-            dbCommand.Parameters.Add("pOwnerName", OracleDbType.Varchar2, ownerNameWithInstance.ToUpper(), ParameterDirection.Input);
+            dbCommand.Parameters.Add("pOwnerName", OracleDbType.Varchar2, ownerName.ToUpper(), ParameterDirection.Input);
             int recordsAffected = -1;
 
             try
@@ -839,61 +639,7 @@ namespace CambridgeSoft.COE.Framework.COEDatabasePublishingService
             {
                 throw ex;
             }
-        }
+        }       
         
-        /// <summary>
-        /// update a dataview
-        /// </summary>
-        /// <param name="dataViewId">dataviewid for which update in done</param>
-        /// <param name="dataView">the updated xml form of the dataview</param>
-        /// <param name="dataViewName">the updated name of the dataview</param>
-        /// <param name="description">the updated description of the dataview</param>
-        /// <param name="isPublic">whether the dataview is made public or not</param>
-        public override void UpdateCOEDataView(int id, string serializedCOEDataView, string name, string description, bool isPublic, string databaseName, string application)
-        {
-            OracleConnection conn = DALManager.Database.CreateConnection() as OracleConnection;
-            //EnsureCOEFormTablesAndSequenceExists(); //we will no longer use this. if the tables aren't there errors will be thrown
-
-            string sql = "UPDATE " + _coeDataViewTableName +
-                " SET NAME= " + DALManager.BuildSqlStringParameterName("pName") + "," +
-                " DESCRIPTION=" + DALManager.BuildSqlStringParameterName("pDescription") + "," +
-                " IS_PUBLIC= " + DALManager.BuildSqlStringParameterName("pIsPublic") + "," +
-                " DATABASE= " + DALManager.BuildSqlStringParameterName("pDatabase") + "," +
-                " COEDATAVIEW=" + DALManager.BuildSqlStringParameterName("pCOEDataView") + "," +
-                " APPLICATION=" + DALManager.BuildSqlStringParameterName("pApplication") +
-                " WHERE ID=" + DALManager.BuildSqlStringParameterName("pId");
-
-            OracleCommand dbCommand = new OracleCommand(sql, conn);
-
-            //now setting the values for the parameters.
-            dbCommand.Parameters.Add("pName", OracleDbType.Varchar2, name, ParameterDirection.Input);
-            dbCommand.Parameters.Add("pDescription", OracleDbType.Varchar2, description, ParameterDirection.Input);
-            dbCommand.Parameters.Add("pIsPublic", OracleDbType.Varchar2, Convert.ToInt16(isPublic), ParameterDirection.Input);
-            dbCommand.Parameters.Add("pDatabase", OracleDbType.Varchar2, databaseName, ParameterDirection.Input);
-            dbCommand.Parameters.Add("pCOEDataView", OracleDbType.XmlType, serializedCOEDataView, ParameterDirection.Input);
-            dbCommand.Parameters.Add("pApplication", OracleDbType.Varchar2, application, ParameterDirection.Input);
-            dbCommand.Parameters.Add("pId", OracleDbType.Int32, id, ParameterDirection.Input);
-            int recordsAffected = -1;
-            
-            recordsAffected = DALManager.ExecuteNonQuery(dbCommand);           
-        }
-
-        /// <summary>
-        /// Deletes the schemas under the instance.
-        /// </summary>
-        /// <param name="instanceName">The instance name.</param>
-        public override void DeleteInstanceSchemas(string instanceName)
-        {
-            OracleConnection conn = DALManager.Database.CreateConnection() as OracleConnection;
-
-            string sql = "DELETE FROM " + _coeSchemaTableName +
-                " WHERE regexp_like(Name,'^" + instanceName + ".','i')";
-
-            OracleCommand dbCommand = new OracleCommand(sql, conn);
-
-            int recordsAffected = -1;
-
-            recordsAffected = DALManager.ExecuteNonQuery(dbCommand);
-        }
     }
 }

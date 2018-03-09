@@ -8,7 +8,7 @@ using CambridgeSoft.COE.Registration.Services.AddIns;
 using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COELoggingService;
 using CambridgeSoft.COE.Registration.Services.RegistrationAddins.localhost1;
-using ChemDrawControl15;
+using ChemDrawControl17;
 
 /* Sample add-in XML
 <AddIn assembly="CambridgeSoft.COE.Registration.RegistrationAddins, Version=12.1.0.0, Culture=neutral, PublicKeyToken=f435ba95da9797dc" class="CambridgeSoft.COE.Registration.Services.RegistrationAddins.PythonPropertyCalculation." friendlyName="ChemScript Calculations" required="no" enabled="no">

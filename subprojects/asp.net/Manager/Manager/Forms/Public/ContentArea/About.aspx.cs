@@ -34,7 +34,7 @@ public partial class Forms_ContentArea_About : GUIShellPage
             _listOfApps += sapp + "<br />";   
         }
         
-        _datasource = ConfigurationUtilities.GetDefaultDataSource();
+        _datasource = ConfigurationUtilities.GetDefaultDataSource(DBMSType.ORACLE);
 
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }

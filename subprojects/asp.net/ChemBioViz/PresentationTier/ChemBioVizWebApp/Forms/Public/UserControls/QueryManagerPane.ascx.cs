@@ -24,6 +24,7 @@ namespace CambridgeSoft.COE.ChemBioVizWebApp.Forms.Public.UserControls
         #region Variables
         private COEHitListBOList _tempHitLists = null;
         private COEHitListBOList _savedHitLists = null;
+        private COEHitListBOList _tempQueryHistoryLists = null;
         #endregion
 
         #region Properties
@@ -170,9 +171,28 @@ namespace CambridgeSoft.COE.ChemBioVizWebApp.Forms.Public.UserControls
         #region Private Methods
         private void FillGroups()
         {
-            _tempHitLists = COEHitListBOList.GetRecentHitLists(this.BusinessObject.DataView.Database, COEUser.Name, this.BusinessObject.DataView.DataViewID, 10);
+            DateTime dt = DateTime.Now.Date;
+            DateTime newDate = DateTime.Now.Date;
+            //Get the configuration value for the HitlistHistory
+            if (Session["HitlistHistoryConfigDays"] != null)
+            {
+                string hitlistHistoryValue = Session["HitlistHistoryConfigDays"].ToString();
+                dt = newDate.AddDays(-Convert.ToDouble(hitlistHistoryValue));
+                //create new overide function for getting the data from DB based on the date configuration
+                _tempHitLists = COEHitListBOList.GetRecentHitListsConfig(this.BusinessObject.DataView.Database, COEUser.Name, this.BusinessObject.DataView.DataViewID, 10, dt);
+            }
+            else
+                _tempHitLists = COEHitListBOList.GetRecentHitLists(this.BusinessObject.DataView.Database, COEUser.Name, this.BusinessObject.DataView.DataViewID, 10);
             if (_tempHitLists.Count > 0)
                 this.CurrentHitlistInfo = _tempHitLists[0].HitListInfo;
+            if (Session["QueryHistoryConfigDays"] != null)
+            {
+                //Get the configuration value for the QueryHistory
+                string queryHistoryValue = Session["QueryHistoryConfigDays"].ToString();
+                dt = newDate.AddDays(-Convert.ToDouble(queryHistoryValue));
+                _tempQueryHistoryLists = COEHitListBOList.GetRecentHitListsConfig(this.BusinessObject.DataView.Database, COEUser.Name, this.BusinessObject.DataView.DataViewID, 10, dt);
+            }
+
             _savedHitLists = COEHitListBOList.GetSavedHitListList(this.BusinessObject.DataView.Database, COEUser.Name, this.BusinessObject.DataView.DataViewID);
             this.FillHistoryGroup();
             this.FillSavedGroup();
@@ -189,7 +209,12 @@ namespace CambridgeSoft.COE.ChemBioVizWebApp.Forms.Public.UserControls
         private void FillHistoryGroup()
         {
             this.RecentQueriesRepeater.Controls.Clear();
-            this.RecentQueriesRepeater.DataSource = _tempHitLists;
+            if (Session["QueryHistoryConfigDays"] != null)
+            {
+                this.RecentQueriesRepeater.DataSource = _tempQueryHistoryLists;
+            }
+            else
+                this.RecentQueriesRepeater.DataSource = _tempHitLists;
             this.RecentQueriesRepeater.DataBind();
         }
 

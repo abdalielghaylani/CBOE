@@ -699,5 +699,10 @@ namespace CambridgeSoft.COE.Security.Services
             return status;
         }
 
+        public int GetCSExpiryDate(string userName, string password)
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
     }
 }

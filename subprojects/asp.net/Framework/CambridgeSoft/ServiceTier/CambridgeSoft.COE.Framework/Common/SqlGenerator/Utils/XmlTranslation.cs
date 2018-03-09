@@ -15,25 +15,6 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.Utils
 
     public class XmlTranslation
     {
-        public static bool IsNoneOperator(XmlNode operationNode)
-        {
-            if (operationNode.Attributes["operator"] != null
-               && operationNode.Attributes["operator"].Value.Trim().ToLower().Equals("none"))
-            {
-                return true;
-            }
-
-            if (operationNode.FirstChild != null &&
-                operationNode.FirstChild.Attributes != null &&
-                operationNode.FirstChild.Attributes["operator"] != null &&
-                operationNode.FirstChild.Attributes["operator"].Value.Trim().ToLower().Equals("none"))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public static string GetOperation(XmlNode operationNode, WhereClauseTypes whereClauseType)
         {
             string value = operationNode.InnerText.Trim();

@@ -1,16 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Data;
+using System.Configuration;
+using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
 using System.Web.UI;
-
-using CambridgeSoft.COE.Framework.COEConfigurationService;
-using CambridgeSoft.COE.Framework.COEDatabasePublishingService;
 using CambridgeSoft.COE.Framework.COEDataViewService;
-using CambridgeSoft.COE.Framework.Common;
-using CambridgeSoft.COE.Framework.GUIShell;
-
-using Manager.Code;
 
 public partial class Forms_DataViewManger_ContentArea_ValidationSummary : GUIShellPage
 {
@@ -110,108 +104,18 @@ public partial class Forms_DataViewManger_ContentArea_ValidationSummary : GUIShe
 
     #region Methods
 
-    private bool UnPublishSchema(string databaseName)
-    {
-        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
-        bool retVal = false;
-        if (!string.IsNullOrEmpty(databaseName))
-        {
-            //Get the password to send as an argument to publish.
-            //string password = this.PasswordTextBox.Text;
-            InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-            var instanceName = databaseName.Contains(".") ? databaseName.Split(new char[] { '.' })[0] : mainInstance.Name;
-            COEDatabaseBO database = COEDatabaseBOList.GetList(true, instanceName).GetDatabase(databaseName);
-            COEDatabaseBO unPublishedDataBase;
-            if (database != null)
-            {
-                try
-                {
-                    unPublishedDataBase = database.UnPublish();
-                    if (unPublishedDataBase != null) //If it fails, keep it on the list with no changes.
-                    {
-                        retVal = true;
-                    }
-                }
-                catch { }
-            }
-        }
-        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-        return retVal;
-    }
-
-    private void PublishAndUnpublishSchemas()
-    {
-        // Publish the schemas.
-        var schemasOnPublishing = Session[Constants.COESchemasOnPublishing] as Dictionary<string, COEDatabaseBO>;
-
-        if (schemasOnPublishing != null)
-        {
-            foreach (var kv in schemasOnPublishing)
-            {
-                kv.Value.PublishOnlyWithoutValidation(kv.Key);
-            }
-        }
-
-        // Unpublish the schemas.
-        var schemasOnRemoving = Session[Constants.COESchemasOnRemoving] as Collection<string>;
-
-        if (schemasOnRemoving != null)
-        {
-            foreach (var schema in schemasOnRemoving)
-            {
-                UnPublishSchema(schema);
-            }
-        }
-    }
-
     private void SubmitDataView()
     {
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         COEDataViewBO dataViewBO = this.Master.GetDataViewBO();
-
         if (dataViewBO != null)
         {
             bool errors = false;
-            bool dataviewSaved = false;
-
-            // Record the id value before saving.
-            int oldDataviewId = dataViewBO.ID;
-            COEDataViewBO oldDataviewBO = null;
-
             try
             {
-                // when save the master dataview, the publishing schemas on session also need to be saved into database.
-                if (dataViewBO.ID == Constants.MasterSchemaDataViewID)
-                {
-                    PublishAndUnpublishSchemas();
-                }
-
                 dataViewBO.SaveFromDataViewManager();
-                dataviewSaved = true;
-
-                if (dataViewBO.ID != Constants.MasterSchemaDataViewID)
-                {
-                    //Delete existing dataview
-                    var publishingMsg = SpotfireServiceClient.DeleteDataView(dataViewBO);
-                    if (!string.IsNullOrEmpty(publishingMsg))
-                    {
-                        throw new Exception(publishingMsg);
-                    }
-
-                    // publishing dataview to spotfire.
-                    publishingMsg = SpotfireServiceClient.PublishDataView(dataViewBO);
-                    if (!string.IsNullOrEmpty(publishingMsg))
-                    {
-                        throw new Exception(publishingMsg);
-                    }
-                }
-
-                // Cache dataviewBO
-                Session["TempDataViewBO"] = dataViewBO;
-                // Clean Session variables.
+                //Clean Session variables.
                 Session.Remove(Constants.COEDataViewBO);
-                Session.Remove(Constants.COESchemasOnPublishing);
-                Session.Remove(Constants.COESchemasOnRemoving);
             }
             catch (Exception ex)
             {
@@ -219,54 +123,16 @@ public partial class Forms_DataViewManger_ContentArea_ValidationSummary : GUIShe
                 errors = true;
                 if (ex is Csla.DataPortalException)
                     message = ((Csla.DataPortalException)ex).BusinessException.Message;
-
-                // Rollback the changes.
-                try
-                {
-                    if (dataviewSaved)
-                    {
-                        // Resave the old value for dataview if this is modification.
-                        if (oldDataviewId >= 0)
-                        {
-                            // If dataview id is -1, this is new, otherwise this is updating.
-                            if (oldDataviewId != -1)
-                            {
-                                COEDataViewBO.ForceLoad = true;
-                                oldDataviewBO = COEDataViewBO.Get(oldDataviewId, true);
-                            }
-
-                            oldDataviewBO.SaveFromDataViewManager();
-                        }
-                        else
-                        {
-                            // Delete the dataview.
-                            COEDataViewBO.Delete(dataViewBO.ID);
-                            // Revert the id generated from database sequence. actually it should be -1
-                            dataViewBO.ID = oldDataviewId;
-                        }
-                    }
-                    else
-                    {
-                        dataViewBO.ID = oldDataviewId;
-                    }
-
-                    message += " Dataview changes rollback.";
-                }
-                catch
-                {
-                    message += " Dataview changes rollback failed";
-                }
-
                 this.DisplayErrorMessage(message);
             }
-
             if (!errors)
             {
+                Session["IsBaseEnable"] = Convert.ToBoolean(0);
                 Session["MasterSchema"] = null;
+                Session["SchemaChange"] = null;
                 this.Master.DisplayMessagesPage(Constants.MessagesCode.SubmittedDataView, GUIShellTypes.MessagesButtonType.Close);
             }
         }
-
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
@@ -289,18 +155,7 @@ public partial class Forms_DataViewManger_ContentArea_ValidationSummary : GUIShe
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.BeginMethod, MethodBase.GetCurrentMethod().Name);
         COEDataViewBO dataViewBO = this.Master.GetDataViewBO();
         if (this.ValidationSummaryUserControl != null && dataViewBO != null)
-        {
             this.ValidationSummaryUserControl.DataBind(dataViewBO);
-        }
-        else
-        {
-            //handle a scenario which refresh page during submiting
-            if (this.ValidationSummaryUserControl != null && Session["TempDataViewBO"] != null)
-            {
-                this.ValidationSummaryUserControl.DataBind((COEDataViewBO)Session["TempDataViewBO"]);
-            }
-        }
-
         Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 

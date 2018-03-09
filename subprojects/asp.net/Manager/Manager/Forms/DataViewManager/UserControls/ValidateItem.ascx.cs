@@ -12,6 +12,7 @@ using CambridgeSoft.COE.Framework.COEDataViewService;
 using Csla.Validation;
 using System.Collections.Generic;
 
+
 public partial class ValidateItem : System.Web.UI.UserControl
 {
     #region Variables
@@ -89,10 +90,10 @@ public partial class ValidateItem : System.Web.UI.UserControl
                         
                         Session["FreshTable"] = dv.DataViewManager.Tables.GetTable(tableId).Clone();
                         Session["DummyFreshTable"] = dv.DataViewManager.Tables.GetTable(tableId).Clone();
-                        urlRedirect += "?" + Constants.ParamCaller + "=" + tableId + "&schemaSelected=" + dv.DataViewManager.Tables.GetTable(tableId).DataBase;
+                        urlRedirect += "?" + Constants.ParamCaller + "=" + tableId;
                     }
                     else if (validationType == Constants.Validate.BaseTable && arguments.Length > 1)
-                        urlRedirect = Constants.DvManagerContentAreaFolder + "EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + arguments[1] + "&schemaSelected=" + dv.DataViewManager.DataBase;
+                        urlRedirect = Constants.DvManagerContentAreaFolder + "EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + arguments[1];
                     else if (validationType == Constants.Validate.TablesAndFields && arguments.Length > 1)
                         urlRedirect = Constants.DvManagerContentAreaFolder + "EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + arguments[1];
                     Server.Transfer(urlRedirect, false);

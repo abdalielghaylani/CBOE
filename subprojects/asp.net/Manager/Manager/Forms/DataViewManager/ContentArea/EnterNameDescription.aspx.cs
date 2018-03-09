@@ -114,9 +114,9 @@ public partial class Forms_DataViewManager_ContentArea_EnterNameDescription : GU
         //Jira ID: CBOE-1161 : Veritcal scroll bar 
         if (this.Action == Constants.PageStates.Create_DV || this.Action == Constants.PageStates.Clone_DV)
         {
-            bool isValid = this.SelectBaseTableUserControl.IsValidPrimaryUniqueKeyInfo();
+            bool isValid = this.SelectBaseTableUserControl.IsValidPrimaryKey();
 
-            if (!isValid && Session["PrimaryKeyWarning"] != null && Convert.ToBoolean(Session["PrimaryKeyWarning"]) == false)
+            if (isValid && Session["PrimaryKeyWarning"] != null && Convert.ToBoolean(Session["PrimaryKeyWarning"]) == false)
             {
                 Session["PrimaryKeyWarning"] = true;
                 //this.WarningControl.Visible = true;

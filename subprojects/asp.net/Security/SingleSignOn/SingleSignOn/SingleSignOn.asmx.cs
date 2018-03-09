@@ -80,7 +80,7 @@ namespace CambridgeSoft.COE.Security.Services
 				}
 
 				FormsAuthenticationTicket authTicket;
-				string userData = "Good";
+				string userData = "Good";                
 
 
                 password = GetCSPassword(userName, password);
@@ -95,7 +95,7 @@ namespace CambridgeSoft.COE.Security.Services
 				//userData += " | password=" + password;
 
                 userData += " | cssecuritypassword=" + password;
-
+                
 				authTicket = new FormsAuthenticationTicket(1,
 				  userName,
 				  DateTime.Now,
@@ -114,6 +114,20 @@ namespace CambridgeSoft.COE.Security.Services
 			}
 		
 		}
+
+        /// <summary>
+        /// Get an expiry date of SSO authentication.
+        /// </summary>
+        /// <param name="userName">The userName you wish to authenticate.</param>
+        /// <param name="password">The password for the userName you wish to authenticate.</param>
+        /// <returns><c>Days to expire</c> as a integer for a valid user</returns>
+        [WebMethod(Description = "Takes a userName and Password and generates days to expire.")]
+        public int GetNumberOfDaysToExpire(string userName, string password)
+        {
+            int expirydate;
+            expirydate = GetExpiryDate(userName, password);
+            return expirydate;
+        }
 
 		/// <summary>
 		/// Authenticates the specified user against the default provider or specified exempt provider.
@@ -724,6 +738,19 @@ namespace CambridgeSoft.COE.Security.Services
 
             throw se;
 
+        }
+
+        private int GetExpiryDate(string userName, string password)
+        {
+            if (CheckIsExemptUser(userName))
+            {
+                objSSO = ssop.SSOChoose(GetExemptUserProvider(userName));
+            }
+            else
+            {
+                objSSO = ssop.SSOChoose();
+            }
+            return objSSO.GetCSExpiryDate(userName,password);
         }
     
     }

@@ -88,7 +88,7 @@ namespace CambridgeSoft.COE.Framework.Reporting.BLL
         }
         internal static void SetDatabaseName()
         {
-            COEDatabaseName.Set(DALUtils.GetDefaultQualifyDbName(Resources.CentralizedStorageDB));
+            COEDatabaseName.Set(Resources.CentralizedStorageDB);
         }
 
         /// <summary>

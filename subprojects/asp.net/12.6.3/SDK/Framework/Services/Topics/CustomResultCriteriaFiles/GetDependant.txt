@@ -1,0 +1,17 @@
+﻿protected override string GetDependantString(CambridgeSoft.COE.Framework.Common.DBMSType dataBaseType, System.Collections.Generic.List<CambridgeSoft.COE.Framework.Common.SqlGenerator.Value> values) {
+    /*
+        CAST(field AS DESTINATIONTYPE)
+    */
+    StringBuilder builder = new StringBuilder("CAST(");
+    builder.Append(_fieldName);
+    builder.Append(" AS ");
+    builder.Append(_destinationType);
+    builder.Append(")");
+
+    return builder.ToString();
+}
+public override string Name {
+    get {
+        return this.Alias;
+    }
+}

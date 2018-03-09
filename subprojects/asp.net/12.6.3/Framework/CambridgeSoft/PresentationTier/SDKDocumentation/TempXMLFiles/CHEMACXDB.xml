@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COEDataView xmlns="COE.COEDataView" basetable="-1">
+  <tables>
+    <table id="1" name="ACX_SYNONYM" alias="" database="CHEMACXDB" primaryKey="7">
+      <fields id="1" name="ACX_ID" dataType="TEXT" />
+      <fields id="2" name="CSNUM" dataType="INTEGER" />
+      <fields id="3" name="DATECREATED" dataType="DATE" />
+      <fields id="4" name="NAME" dataType="TEXT" />
+      <fields id="5" name="SUPPLIERID" dataType="INTEGER" />
+      <fields id="6" name="SUPPLIERNAME" dataType="TEXT" />
+      <fields id="7" name="SYNONYMID" dataType="INTEGER" />
+      <fields id="8" name="SYNONYMTYPE" dataType="TEXT" />
+    </table>
+    <table id="2" name="COESAVEDHITLIST" alias="" database="CHEMACXDB" primaryKey="9,10">
+      <fields id="9" name="HITLISTID" dataType="INTEGER" />
+      <fields id="10" name="ID" dataType="INTEGER" />
+    </table>
+    <table id="3" name="COESEARCHCRITERIA" alias="" database="CHEMACXDB" primaryKey="15">
+      <fields id="11" name="COESEARCHCRITERIA" dataType="TEXT" />
+      <fields id="12" name="DATE_CREATED" dataType="DATE" />
+      <fields id="13" name="DESCRIPTION" dataType="TEXT" />
+      <fields id="14" name="FORMGROUP" dataType="TEXT" />
+      <fields id="15" name="ID" dataType="INTEGER" />
+      <fields id="16" name="IS_PUBLIC" dataType="TEXT" />
+      <fields id="17" name="NAME" dataType="TEXT" />
+      <fields id="18" name="NUM_HITS" dataType="INTEGER" />
+      <fields id="19" name="USER_ID" dataType="TEXT" />
+    </table>
+    <table id="4" name="COETEMPHITLIST" alias="" database="CHEMACXDB" primaryKey="20,21">
+      <fields id="20" name="HITLISTID" dataType="INTEGER" />
+      <fields id="21" name="ID" dataType="INTEGER" />
+    </table>
+    <table id="5" name="COETEMPHITLISTID" alias="" database="CHEMACXDB" primaryKey="25">
+      <fields id="22" name="DATE_CREATED" dataType="DATE" />
+      <fields id="23" name="DESCRIPTION" dataType="TEXT" />
+      <fields id="24" name="FORMGROUP" dataType="INTEGER" />
+      <fields id="25" name="ID" dataType="INTEGER" />
+      <fields id="26" name="IS_PUBLIC" dataType="TEXT" />
+      <fields id="27" name="NAME" dataType="TEXT" />
+      <fields id="28" name="NUMBER_HITS" dataType="INTEGER" />
+      <fields id="29" name="USER_ID" dataType="TEXT" />
+    </table>
+    <table id="6" name="GLOBALS" alias="" database="CHEMACXDB" primaryKey="30">
+      <fields id="30" name="ID" dataType="TEXT" />
+      <fields id="31" name="VALUE" dataType="TEXT" />
+    </table>
+    <table id="7" name="PACKAGE" alias="" database="CHEMACXDB" primaryKey="43">
+      <fields id="32" name="CATALOG2NUM" dataType="TEXT" />
+      <fields id="33" name="CATALOGNUM" dataType="TEXT" />
+      <fields id="34" name="CONTAINER" dataType="TEXT" />
+      <fields id="35" name="CSYMBOL" dataType="TEXT" />
+      <fields id="36" name="CURRENCY" dataType="TEXT" />
+      <fields id="37" name="DATECREATED" dataType="DATE" />
+      <fields id="38" name="DISCPRICE" dataType="TEXT" />
+      <fields id="39" name="ISECOMM" dataType="TEXT" />
+      <fields id="40" name="ISPRICECD" dataType="TEXT" />
+      <fields id="41" name="ISPRICEWWW" dataType="TEXT" />
+      <fields id="42" name="NAME" dataType="TEXT" />
+      <fields id="43" name="PACKAGEID" dataType="INTEGER" />
+      <fields id="44" name="PRICE" dataType="TEXT" />
+      <fields id="45" name="PRICE_URL" dataType="TEXT" />
+      <fields id="46" name="PRODUCTID" dataType="INTEGER" />
+      <fields id="47" name="SAVINGS" dataType="TEXT" />
+      <fields id="48" name="SIZE" dataType="TEXT" />
+      <fields id="49" name="SUPPLIERID" dataType="INTEGER" />
+      <fields id="50" name="SUPPLIERNAME" dataType="TEXT" />
+    </table>
+    <table id="8" name="PACKAGESIZECONVERSION" alias="" database="CHEMACXDB" primaryKey="55">
+      <fields id="51" name="CONTAINER_COUNT" dataType="INTEGER" />
+      <fields id="52" name="CONTAINER_QTY_MAX" dataType="INTEGER" />
+      <fields id="53" name="CONTAINER_UOM" dataType="TEXT" />
+      <fields id="54" name="CONTAINER_UOM_ID_FK" dataType="INTEGER" />
+      <fields id="55" name="ID" dataType="INTEGER" />
+      <fields id="56" name="SIZE_FK" dataType="TEXT" />
+      <fields id="57" name="UNIT_OF_MEASURE" dataType="TEXT" />
+    </table>
+    <table id="9" name="PRODUCT" alias="" database="CHEMACXDB" primaryKey="76">
+      <fields id="58" name="ACX_ID" dataType="TEXT" />
+      <fields id="59" name="CATALOGNUM" dataType="TEXT" />
+      <fields id="60" name="CHEMCLASSID" dataType="INTEGER" />
+      <fields id="61" name="CONCENTRATIONPCT" dataType="INTEGER" />
+      <fields id="62" name="CONCENTRATIONTAG" dataType="TEXT" />
+      <fields id="63" name="CSNUM" dataType="INTEGER" />
+      <fields id="64" name="DATECREATED" dataType="DATE" />
+      <fields id="65" name="EXTENDED_DESCRIPTION" dataType="TEXT" />
+      <fields id="66" name="HASMSDS" dataType="TEXT" />
+      <fields id="67" name="ISPICTURE" dataType="TEXT" />
+      <fields id="68" name="ISWWW" dataType="TEXT" />
+      <fields id="69" name="MOL_ID" dataType="INTEGER" />
+      <fields id="70" name="NUMTOSKIP" dataType="INTEGER" />
+      <fields id="71" name="PICTURE" dataType="TEXT" />
+      <fields id="72" name="PRODCLAIMEDFORMULA" dataType="TEXT" />
+      <fields id="73" name="PRODCLAIMEDMW" dataType="TEXT" />
+      <fields id="74" name="PRODDESCRIP" dataType="TEXT" />
+      <fields id="75" name="PRODNAME" dataType="TEXT" />
+      <fields id="76" name="PRODUCTID" dataType="INTEGER" />
+      <fields id="77" name="SUPPLIERID" dataType="INTEGER" />
+    </table>
+    <table id="10" name="PROPERTYALPHA" alias="" database="CHEMACXDB" primaryKey="">
+      <fields id="78" name="PRODUCTID" dataType="INTEGER" />
+      <fields id="79" name="PROPERTY" dataType="TEXT" />
+      <fields id="80" name="VALUE" dataType="TEXT" />
+    </table>
+    <table id="11" name="PROPERTYCLASSALPHA" alias="" database="CHEMACXDB" primaryKey="82">
+      <fields id="81" name="CLASSNAME" dataType="TEXT" />
+      <fields id="82" name="PROPERTYCLASSALPHAID" dataType="INTEGER" />
+    </table>
+    <table id="12" name="SHOPPINGCART" alias="" database="CHEMACXDB" primaryKey="83">
+      <fields id="83" name="CSUSERNAME" dataType="TEXT" />
+      <fields id="84" name="LASTUPDATE" dataType="DATE" />
+      <fields id="85" name="WDDXPACKET" dataType="TEXT" />
+    </table>
+    <table id="13" name="SUPPLIERADDR" alias="" database="CHEMACXDB" primaryKey="92">
+      <fields id="86" name="ADDR1" dataType="TEXT" />
+      <fields id="87" name="ADDR2" dataType="TEXT" />
+      <fields id="88" name="CITY" dataType="TEXT" />
+      <fields id="89" name="CODE" dataType="TEXT" />
+      <fields id="90" name="COUNTRY" dataType="TEXT" />
+      <fields id="91" name="STATE" dataType="TEXT" />
+      <fields id="92" name="SUPPLIERADDRID" dataType="INTEGER" />
+      <fields id="93" name="SUPPLIERID" dataType="INTEGER" />
+      <fields id="94" name="TYPE" dataType="TEXT" />
+    </table>
+    <table id="14" name="SUPPLIERPHONEID" alias="" database="CHEMACXDB" primaryKey="100">
+      <fields id="95" name="AREACODE" dataType="TEXT" />
+      <fields id="96" name="COUNTRYCODE" dataType="TEXT" />
+      <fields id="97" name="LOCATION" dataType="TEXT" />
+      <fields id="98" name="PHONENUM" dataType="TEXT" />
+      <fields id="99" name="SUPPLIERID" dataType="INTEGER" />
+      <fields id="100" name="SUPPLIERPHONEID" dataType="INTEGER" />
+      <fields id="101" name="TYPE" dataType="TEXT" />
+    </table>
+    <table id="15" name="VERSION" alias="" database="CHEMACXDB" primaryKey="">
+      <fields id="102" name="ACXVERSION" dataType="TEXT" />
+      <fields id="103" name="MSDXVERSION" dataType="TEXT" />
+    </table>
+  </tables>
+  <relationships>
+    <relationship child="7" parent="9" childkey="46" parentkey="76" jointype="INNER" />
+    <relationship child="10" parent="9" childkey="78" parentkey="76" jointype="INNER" />
+  </relationships>
+</COEDataView>

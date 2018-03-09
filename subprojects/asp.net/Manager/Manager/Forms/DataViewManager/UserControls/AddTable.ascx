@@ -5,10 +5,6 @@
     position:relative;
 }
 
-#<%= this.InstanceDropDownList.ClientID %> {
-    width: 120px;
-}
-
 #<%= this.SchemaDropDownList.ClientID %> {
     width: 120px;
 }
@@ -22,12 +18,12 @@
     width:410px;
 }
 
-#SchemaDiv, #InstanceDiv {
+#SchemaDiv {
     width:190px;
     margin-left: 5px;
 }
 
-#AutoCompleteDiv, #SchemaDiv, #InstanceDiv {
+#AutoCompleteDiv, #SchemaDiv {
     padding-left: 6px;
     float:left;
     vertical-align:top;
@@ -62,13 +58,7 @@ tr.myColorRow {
     <tr>
         <td align="left">
             <div style="margin-top: 5px; vertical-align: top; width: 880px; padding-left: 100px;">
-                <div class="markup">
-                    <div id="InstanceDiv">
-                        <label for="<%= this.InstanceDropDownList.ClientID %>">
-                            <%= Resources.Resource.Instance_Label_Text %>:</label>
-                        <asp:DropDownList ID="InstanceDropDownList" runat="server" OnSelectedIndexChanged="InstanceDropDownList_SelectedIndexChanged" AutoPostBack="true">
-                        </asp:DropDownList>
-                    </div>
+                <div class="markup">                    
                     <div id="SchemaDiv">
                         <label for="<%= this.SchemaDropDownList.ClientID %>">
                             <%= Resources.Resource.Schema_Label_Text %>:</label>
@@ -81,7 +71,7 @@ tr.myColorRow {
                         <asp:TextBox ID="TableTextBox" runat="server" Width="250px"></asp:TextBox>
                         <div id="AutoCompleteContainer">
                         </div>
-                        <div style="left: 35px; top: 35px; width: 400px; position: absolute;">
+                        <div style="left: 238px; top: 35px; width: 400px; position: absolute;">
                             <asp:Label ID="SelectTableLabel" runat="server" ForeColor="Red"></asp:Label>
                         </div>
                     </div>
@@ -126,9 +116,7 @@ tr.myColorRow {
         AddTableNS.dataSource.responseSchema = { 
             fields : ['tablealias', 'tableschema', 'addbutton','IsAdded']
         };
-        <%= this.GetMasterTablesDataSource(this.InstanceDropDownList.SelectedItem==null?string.Empty:this.InstanceDropDownList.SelectedValue,
-                this.SchemaDropDownList.SelectedItem == null? string.Empty : this.SchemaDropDownList.SelectedItem.Text) %>
-        
+        <%= this.GetMasterTablesDataSource(this.SchemaDropDownList.SelectedItem == null? string.Empty : this.SchemaDropDownList.SelectedItem.Text) %>
         <%= this.GetPendingTablesDataSource() %>
         AddTableNS.dataSource.doBeforeCallback = function (req,raw,res,cb) {
             // This is the filter function
@@ -259,7 +247,7 @@ AddTableNS.pendingTablesConf);
             AddTableNS.callServer('RemoveTable: ' + this.getRecord(oArgs.target).getData('table'), oArgs);
         });
         YAHOO.util.Event.addListener('<%= this.SchemaDropDownList.ClientID %>', "change", function(args) {
-            AddTableNS.callServer('FilterSchema: ' + document.getElementById('<%= this.InstanceDropDownList.ClientID %>').value + '.' + document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value, args);
+            AddTableNS.callServer('FilterSchema: ' + document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value + '.' + document.getElementById('<%= this.SchemaDropDownList.ClientID %>').value, args);
             AddTableNS.dataSource.liveData = '';
             AddTableNS.dataTable.set('MSG_EMPTY', '<%= Resources.Resource.Searching_Label_Text %>');
             AddTableNS.refreshTable();
@@ -278,7 +266,7 @@ AddTableNS.pendingTablesConf);
         </td>
     </tr>
     <tr>
-        <td align="right">
+        <td>
             <div>
                 <COEManager:ImageButton ID="CancelImageButton" runat="server" ButtonMode="ImgAndTxt"
                     TypeOfButton="Cancel" CausesValidation="false" ImageURL="../../../App_Themes/Common/Images/Cancel.png"

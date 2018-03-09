@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+  <tables>
+    <table id="1">
+      <field fieldId="1" alias="Department ID"/>
+      <field fieldId="2" alias="Department Name"/>
+      <field fieldId="3" alias="Department Location"/>
+      <Custom>
+        <cast fieldId="1" dataType="varchar2(4)" alias="CASTED ID"/>
+      </Custom>
+      <field fieldId="1" alias="Link"/>
+    </table>
+    <table id="2">
+      <field fieldId="10" alias="Employee ID"/>
+      <field fieldId="11" alias="Employee Name"/>
+      <field fieldId="12" alias="Employee JOB"/>
+    </table>
+  </tables>
+</resultsCriteria>

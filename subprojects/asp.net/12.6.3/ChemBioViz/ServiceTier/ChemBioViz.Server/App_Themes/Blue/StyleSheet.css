@@ -1,0 +1,1080 @@
+﻿BODY
+{
+	margin-top: 0px;
+	margin-left: 5px;
+	padding: 0px;
+	vertical-align: top;
+}
+.PagesContentTable
+{
+	margin-top: 0px;
+	background: #fff url(Images/watermark.jpg) no-repeat right bottom;
+}
+/* CBV Master */
+.CBVBrand
+{
+	display:block;
+	position:absolute;
+	width:420px;
+	height:51px;
+	margin: 18px 0px 0px 30px;
+	background: transparent url(/coecommonresources/Utility_Images/BackGroundImages/brands/chembioviz2.gif) top left no-repeat scroll;
+	float:left;
+	cursor: pointer;
+}
+.CBVHeader
+{
+	height: 95px;
+	display:block;
+	margin:0px auto;
+	position:relative;
+	background:#CCCCCC url(/coecommonresources/Utility_Images/BackGroundImages/headers/lightBlue_head_bk.jpg) top left repeat-x scroll;
+	font-size:11px;
+	font-family: Tahoma, Verdana, Arial, sans-serif;
+	color:#333333;
+	line-height:16px;
+}
+.CBVHeader #mainnav
+{
+	display:block;
+	position:absolute;
+	float:right;
+	font-weight:bold;
+	color:#333333;
+	margin:72px 0px 0px 0px;
+	right:5px;
+}
+.CBVHeader #mainnav span
+{
+	display:block;
+	float: left;
+	border-right: 1px solid #333333;
+	padding:0px 10px 0px 10px;
+}
+.CBVHeader #mainnav span.last
+{
+	border-right: none;
+}
+.CBVHeader #mainnav span a:link, .CBVHeader #mainnav span a:active, .CBVHeader #mainnav span a:visited
+{
+	color:#333333;
+	text-decoration:none;
+}
+.CBVHeader #mainnav span a:hover
+{
+	border-right: none;
+	color:#cccccc;
+	text-decoration:underline;
+}
+.CBVFooter
+{
+	border-top:2px solid #0099ff;
+	height:25px;
+	display:block;
+	position:relative;
+	clear:both;
+	background:none;
+	border-top:1px solid #0099ff;
+	border-left:1px solid #0099ff;
+	border-right:1px solid #0099ff;
+	border-bottom:4px solid #0099ff;
+	margin:0px 0px 0px 0px;
+	background:white;
+	font-size:11px;
+	font-family:Tahoma, Verdana, Arial, sans-serif;
+	color:#333333;
+	line-height:16px;
+}
+.CBVFooter .Copyright
+{
+	display:block;
+	position:relative;
+	float:left;
+	margin:3px 0px 0px 10px;
+	width: 320px;
+}
+.CBVFooter .Version
+{
+	display:block;
+	position:relative;
+	float:right;
+	margin:3px 10px 0px 0px;
+	width: 200px;
+}
+.CBVContainer
+{
+	background-color:#eeeeee;
+	border-left:1px solid #0099ff;
+	border-right:1px solid #0099ff;
+	border-bottom:4px solid #0099ff;
+	text-align: left;
+	vertical-align: top;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+.CBVLoginButton
+{
+	display:block;
+	position:relative;
+	float:right;
+	width:72px;
+	height:24px;
+	background:transparent url(/coecommonresources/Utility_Images/BackGroundImages/DarkButton.gif) top left no-repeat scroll;
+	margin:25px 5px 0px 0px;
+	padding:0px 0px 0px 0px;
+	font-weight: bold;
+	font-size: 9px;
+	text-align:center;
+	color:#FFFFFF;
+	cursor:pointer;
+	text-decoration: none;
+}
+.CBVLoginButton:hover
+{
+	background:transparent url(/coecommonresources/Utility_Images/BackGroundImages/DarkButton2.gif) top left no-repeat scroll;
+	text-decoration:underline;
+}
+.CBVUserStatus
+{
+	font-size:11px;
+	display:block;
+	position:relative;
+	float:right;
+	height:16px;
+	margin: 30px 20px 0px 0px;
+	padding-left:25px;
+	background: transparent url(/coecommonresources/Utility_Images/BackGroundImages/user.gif) center left no-repeat scroll;
+}
+.CBVUserStatus strong
+{
+	font-weight:bolder;
+}
+.CBVPageTitleLabel
+{
+	font-size: 12px;
+	padding-right: 50px;
+	color: #000099;
+	text-align: center;
+	font-weight: bold;
+	font-family: Verdana;
+	margin-top: 50px;
+}
+.MainContent 
+{
+    margin: 0px;
+    padding: 0px 5px 5px 3px;
+    display: block;
+    overflow: visible;
+    min-height: 520px;
+    width: 660px;
+    vertical-align: top;
+    background-color: white;
+}
+/* End CBV Master */
+.HeaderUC
+{
+	width: 1024px;
+	height: 85px;
+	border-top: #000099 1px solid;
+	border-left: #000099 1px solid;
+	border-right: #000099 1px solid;
+	border-bottom: #000099 1px solid;
+}
+.FooterUC
+{
+	width: 950px;
+}
+.MasterPageMainTable
+{
+	vertical-align: top;
+	/*border: solid 1px #E5E5E5;*/
+}
+.LeftPanelRow
+{
+	/*background-color: #000099;*/
+}
+.LeftPanel
+{
+    margin: 0px;
+    padding: 3px;
+    float:left;
+    height: 100%;
+}
+.ContentPlaceHolderRow
+{
+	margin-top: 0px;
+	width: 100%;
+}
+.ConfirmationMessage
+{
+	color: #444444;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Verdana;
+}
+.ErrorMessage
+{
+	
+}
+.FooterItemCell
+{
+	width: 50px;
+}
+.FooterItem
+{
+	font-size: 9px;
+	color: #000099;
+	text-align: center;
+	font-family: Verdana;
+}
+.FooterItemSeparator
+{
+	font-size: 12px;
+	font-weight:bold;
+	color: #666666;
+	text-align: center;
+}
+.MainToolBarRow
+{
+	background-color: #EBF3FB;
+}
+/******** TOOLBAR ********/
+.Toolbar
+{
+	width: 200px;
+	height: 20px;
+	background-color: #EBF3FB;
+	font-family: Verdana;
+	font-size: 10px;
+	color: #000099;	
+	cursor: pointer;
+	border-right: solid 1px #666666;
+}
+.ToolbarHover
+{
+	text-align:center;
+	cursor:pointer;
+	font-family:Verdana;
+	background-color:#FF0000;
+	border-left: solid 1px #666666;
+}
+.ToolbarSeparator
+{
+	text-align:center;
+	font-family: Verdana;
+	color:red;
+	font-size: 11px;
+}
+.ToolbarItem
+{
+	text-align:center;
+	background-color:#EBF3FB;
+	cursor:pointer;
+	font-family:Verdana;
+	color: #000099;
+	width: 60px;
+	border-left: solid 1px #666666;
+}
+.ConfirmationMessageTable
+{
+	background-color: #FFF5A8;
+	width: 70%;
+	border-top: #666666 1px solid;
+}
+.ErrorMessageLabel
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color: #FF0000;
+}
+.Header
+{
+	height:70px;
+	margin-left: 10px;
+	vertical-align:top;
+	top: -45px;
+	position: relative;
+}
+.Goto
+{
+	width: 150px;
+	height:15px;
+	text-align: left;
+	font-family: Verdana;
+	font-size: 15px;
+	font-weight: bold;
+	cursor:pointer;
+	position: absolute;
+	top: 70px;
+	left: 0px;
+}
+.Item
+{
+	width: 150px;
+	height:15px;
+	/*background-color:#FDCF46;*/
+	background-color:#0099ff;
+	cursor:pointer;
+	font-family:Verdana;
+	color: #FFF;
+	font-size:11px;
+	border-left: #AACCEE 2px solid;
+	border-top: #AACCEE 2px solid;
+	border-right: #AACCEE 2px solid;
+	/*border-bottom: #AACCEE 2px solid;*/
+}
+.ItemHover
+{
+	width: 150px;
+	height:15px;
+	background-color:#EBF3FB;
+	cursor:pointer;
+	font-family:Verdana;
+	color: #000099;
+	font-size:11px;
+}
+.LogOffButton
+{
+	font-size: 10px;
+	cursor: pointer;
+	color: #0033ff;
+	font-family:Verdana;
+	background-color: transparent;
+	border: none;
+	text-decoration: underline;
+}
+.LogoImage
+{
+	cursor: pointer;
+}
+.PageTitleLabel
+{
+	font-size: 12px;
+	padding-right: 50px;
+	color: #000099;
+	text-align: center;
+	font-weight: bold;
+	font-family: Verdana;
+}
+.Text
+{
+	font-size: 9px;
+	color: #666666;
+	text-align: center;
+	font-family: Verdana;
+}
+.MaxHitsText
+{
+	text-align:center;
+	font-size: 9px;
+	color:Maroon;
+	text-align: center;
+	font-family: Verdana;
+}
+.Title
+{
+	font-size: 12px;
+	color: #000099;
+	text-align: center;
+	font-weight: bold;
+	font-family: Verdana;
+}
+/* Image buttons required classes */
+.ShortActionButton
+{
+	width: 90px;
+	height: 20px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #000099;
+	font-family:Verdana;
+	background:url(/COECommonResources/YUI/sprite.png);
+	border-left: #BBBBBB 1px solid;
+	border-top: #BBBBBB 1px solid;
+	border-right: #BBBBBB 2px solid;
+	border-bottom: #BBBBBB 2px solid;
+}
+.MediumActionButton
+{
+	width: 115px;
+	height: 20px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #000099;
+	font-family:Verdana;
+	background:url(/COECommonResources/YUI/sprite.png);
+	border-left: #BBBBBB 1px solid;
+	border-top: #BBBBBB 1px solid;
+	border-right: #BBBBBB 2px solid;
+	border-bottom: #BBBBBB 2px solid;
+}
+.LargeActionButton
+{
+	width: 140px;
+	height: 20px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #000099;
+	font-family:Verdana;
+	background:url(/COECommonResources/YUI/sprite.png);
+	border-left: #BBBBBB 1px solid;
+	border-top: #BBBBBB 1px solid;
+	border-right: #BBBBBB 2px solid;
+	border-bottom: #BBBBBB 2px solid;
+}
+.ImageButton:hover
+{
+	width: 90px;
+	height: 20px;
+	font-size: 10px;
+	cursor: pointer;
+	font-weight: bold;
+	color: #09F;
+	font-family:Verdana;
+	background:url(/COECommonResources/YUI/sprite.png);
+	border: #BBBBBB 1px solid;
+	text-decoration: underline;	
+}
+.ActionImageButton
+{
+	margin: 2px 2px 0px 3px;
+	position: absolute;
+}
+iframe
+{border:none;}
+.FormGenContainer
+{
+	height: 100%;
+	background-color: #EEEEEE;
+	padding-top: 5px;
+}
+/******** WEBPANEL ********/
+/******** WebPanelButtons ********/
+.igwlbExplorerBarHeaderExpanded, .igwlbExplorerBarHeaderCollapsed, .igwlbExplorerBarHeaderHover
+{
+	border-bottom:2px solid #000099; 
+	background-color:#FFFFFF; 
+	width:200px;
+	height: 22px;
+	font-size: 11px;
+	color: #000099; 
+	font-weight: bold;
+	padding-right: 11px;
+	padding-left: 15px;
+	margin-top: 2px;
+	cursor:pointer;	
+}
+
+/******** DefaultGroupStyle ********/
+.igwlbGroupExplorerBarNormal
+{
+	height:100%;
+	width: 200px;
+	font-size: 11px;
+	font-family: Verdana;
+	color:#484848;
+	Background-color: #F5F5F5;
+	padding-top: 10px;
+}
+/******** WebPanelItem ********/
+.igwlbItemNormal 
+{
+	background-color: white;
+	color: #48AAF3;
+	text-align: left;
+	padding-left: 5px;
+	cursor: default;
+	width: 200px;
+}
+.igwlbItemHover
+{
+	text-align: left;
+	color: #48AAF3;
+	text-decoration: underline;
+	padding-left: 5px;
+	cursor:default;
+	width: 200px;
+}
+.igwlbItemSelected
+{
+	text-align: left;
+	color: #48AAF3;
+	text-decoration: underline;
+	padding-left: 5px;
+	cursor:default;
+	width: 200px;
+}
+/******** MESSAGES ********/
+.MessageLabel
+{
+	font-size: 11px;
+	color: #333333; 
+	font-family: Verdana;
+}
+.ConfirmationMessagesRow
+{
+	background-color: #bebebe;
+	height: 20px;
+}
+.ConfirmationMessages
+{
+	font-size: 10px;
+	padding-right: 30px;
+	color: #FFFFFF;
+	font-family: Verdana;
+	font-weight:bold;
+}
+.MessageAreaTable
+{
+    border-right: #FFF7D2 thin solid;
+    border-top: #000066 thin solid;
+    border-left: #FFF7D2 thin solid;
+    border-bottom: #000066 thin solid;
+    background-color: #FFF7D2;
+    text-align:center;
+    height: 30px;
+}
+.MessageTable
+{
+	margin: 0px 33px; width: 90%;
+}
+/******** ERRORMESSAGE ********/
+.ErrorMessages
+{
+	font-size: 11px;
+	color: #FF0000;
+	font-family: Verdana;
+}
+.ErrorMessagesRow
+{
+	font-size: 11px;
+	color: #ff0000;
+	font-family: Verdana;
+}
+/******** ACORDEON ********/
+.PanelLeft
+{
+	background-color: #FFF;
+	width: 242px;
+	height: 100%;
+}
+TD
+{
+	font-size: 8pt;
+	font-family: Verdana;
+}
+.labelStyle
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	font-size: 8pt;
+	font-family: Verdana;
+	height: 20px;
+}
+.columnListbox
+{
+	border-right: #666666 1px solid;
+	border-top: #666666 1px solid;
+	border-left: #666666 1px solid;
+	border-bottom: #666666 1px solid;
+}
+.error
+{
+	font-weight: normal;
+	font-size: 8pt;
+	color: #cc0000;
+	font-family: verdana;
+	text-decoration: none;
+}
+.descriptionPanel 
+{
+	FONT-SIZE: x-small;
+	font-weight:normal;
+	PADDING-TOP: 2px; 
+	BACKGROUND-COLOR: #FAFAFA;
+	width:100%;
+	height:100px;
+	padding-left:5px;
+	padding-top:5px;
+	padding-bottom:2px;
+	padding-right:5px;
+	color: #3C7FD1; /* royalblue; */
+	cursor:default;
+}
+.descriptionPanelContent
+{
+	border: solid 1px silver;
+	BACKGROUND-COLOR: #FDFDFD;
+}
+.descriptionPanelHeader 
+{ 
+	FONT-FAMILY: verdana;
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: x-small; 
+	BACKGROUND-IMAGE: url(Images/silverglass.gif); 
+	COLOR: red; 
+	PADDING-TOP: 2px; 
+	PADDING-LEFT: 3px; 
+	BORDER-LEFT: silver 1px solid; 
+	BORDER-RIGHT: silver 1px solid; 
+}
+.content
+{
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #000000;
+}
+.chartGalleryPanel
+{
+	float:left;	
+}
+.AcordeonLine
+{
+    background-color:#000099; 
+    height: 1px;
+    width: 210px;
+    margin-top:20px;
+}
+/******** WebPanelInside ********/
+.igmiscexpanded
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color:#000099; 
+	margin-left:10px;
+	Background-color: #DFCADB;
+	width:210px;
+	height:20px;
+	cursor:pointer;
+	border-left:solid 8px #F1F1F1;
+	border-bottom:solid 3px #F1F1F1;
+	border-top:solid 3px #F1F1F1;
+}
+.igmischover
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color:#DFCADB;
+	margin-left:10px;
+	Background-color: #ff0000;
+	width:210px;
+	height:20px;
+	cursor:pointer;
+	border-left:solid 8px #F1F1F1;
+	border-bottom:solid 3px #F1F1F1;
+	border-top:solid 3px #F1F1F1;
+}
+.igmisccollapsed
+{
+	font-size: 11px;
+	font-family: Verdana;
+	color:#000099; 
+	margin-left:10px;
+	Background-color: #DFCADB;
+	width:210px;
+	height:20px;
+	cursor:pointer;
+	border-left:solid 8px #F1F1F1;
+	border-bottom:solid 3px #F1F1F1;
+	border-top:solid 3px #F1F1F1;
+}
+/* BUTTONS */
+.Button2
+{
+	height:23px;
+	text-decoration:none;
+	display:block;
+	float:left;
+	margin:5px;
+}
+.Button2 .Left
+{
+	background:transparent url(Images/ButLeft.gif) left top repeat-x scroll;
+	height:23px;
+	width:9px;
+	float:left;
+}
+.Button2 .Right
+{
+	background:transparent url(Images/ButRight.gif) left top repeat-x scroll;
+	height:23px;
+	width:9px;
+	float:left;
+}
+.Button2 a
+{
+	text-decoration:none;
+	float:left;
+	background:transparent url(Images/ButBk.gif) left top repeat-x scroll;
+	height:21px;
+	padding-top:3px;
+}
+
+.Button2 a:hover, .Button2 a:visited
+{
+	color:#333333;
+}
+
+/* YUI pop up button */
+
+.Button3 a
+{
+	text-decoration:none;
+	float:left;
+	background:transparent url(Images/ButBk2.gif) left top repeat-x scroll;
+	height:21px;
+	padding-top:3px;
+	color:White;
+}
+.Button3 .Left
+{
+	background:transparent url(Images/ButLeft2.gif) left top repeat-x scroll;
+	height:23px;
+	width:9px;
+	float:left;
+}
+.Button3 .Right
+{
+	background:transparent url(Images/ButRight2.gif) left top repeat-x scroll;
+	height:23px;
+	width:9px;
+	float:left;
+}
+
+.Button3 a:hover, .Button3 a:visited
+{
+	color:#333333;
+}
+
+.LinkButton
+{
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight:bold;
+	cursor:pointer;
+}
+.HeaderClass
+{
+	font-family: Verdana;
+	font-size: 11px;
+	color:#333366;
+	font-weight:bold;
+	background-color: #EEEEEE;
+	border: solid 1px Silver;
+	padding: 5px 5px 2px 5px;
+	height: 18px;
+	margin-top: 2px;
+}
+.ButtonsToolBar
+{
+	padding-top: 5px;
+	margin-top: 2px;
+	margin-left: -1px;
+	height:40px;
+}
+.LeftPanelUC
+{
+	font-family: Verdana;
+	font-size: 10px;
+	color: Black;
+	font-weight: normal;
+	text-align: center;
+	width: 198px;
+	height: 410px;
+}
+.LeftPanelUC th
+{
+	font-family: Verdana;
+	text-decoration: underline;
+	font-size: 11px;
+	color: #000099;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: top;
+	height:35px;
+}
+.LeftPanelUC td
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+	width: 50%;
+}
+
+.LeftPanelRow 
+{
+	clear:both;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	font-family: Verdana;
+	font-size: 10px;
+	color: Black;
+	font-weight: normal;
+}
+
+.HitsPerPageTextBox
+{
+	text-align: right;
+	width: 25px;
+	height: 17px;
+}
+
+.PreferencesCheckBox
+{
+	height: 17px;
+	width: 17px;
+}
+
+.COEPagerControl
+{
+	font-weight: normal;
+	font-family: Verdana;
+	font-size: 12px;
+	color: #000099;
+}
+.COEPagerControl a:hover, .COEPagerControl a:visited
+{
+	color: #000099;
+}
+.HitsPerPage
+{
+	font-family: Verdana;
+	font-size: 10px;
+	padding: 2px;
+	margin: 5px 5px 1px 5px;
+	color:#000099;
+	text-decoration: none;
+}
+.MenuButton
+{
+	font-family: Verdana;
+	font-size: 10px;
+	border: solid 1px white;
+	cursor: pointer;
+	padding: 2px;
+	margin: 3px 5px 3px 5px;
+}
+.MenuButton a
+{
+	color:#000099;
+	text-decoration: none;
+}
+.MenuButton a:hover
+{
+	text-decoration: underline;
+}
+.MenuButton:hover
+{
+	border: solid 1px gray;
+}
+.MenuItemContainer
+{
+	z-index: 500;
+	position:absolute;
+	background-color: #CEDBE7;
+	text-align:left;
+	border: 1px solid #000099;
+}
+.MainButtonContainer td
+{
+	background-color: #CEDBE7;
+	padding: 5px;
+	width: 50px;
+}
+.MenuItemContainer input
+{
+	float: right;
+	padding-left: 10px;
+}
+.MenuItemContainer .check_popup
+{
+	width: 86px;
+	float: left;
+}
+.MenuItem
+{
+	cursor:pointer;
+	background-color: White;
+	text-align: left;
+	padding: 5px;
+}
+.MenuItem:hover
+{
+	background-color: #C2CCD6;
+}
+.MenuItemLink
+{
+	color:#000099;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: normal;
+}
+.MenuItemLink:hover
+{
+	text-decoration: underline;
+}
+.ActionLinksContainer
+{
+	vertical-align:top;
+	display: inline; 
+	text-align: left;
+}
+.ActionLinksContainer a:hover
+{
+	border: solid 1px gray;
+}
+.ActionLinksContainer a
+{
+	border: solid 1px white;
+	margin-right: 20px;
+}
+.QueryManagementTab, .QueryManagementTabSelected
+{
+	font-family: Verdana;
+	font-size: 10px;
+	border: solid 1px white;
+	border-bottom: solid 1px gray;
+	cursor: pointer;
+	padding: 2px;
+	float:left;
+}
+.QueryManagementTab a
+{
+	color:#000099;
+	text-decoration: none;
+	margin: 3px 5px 3px 5px;
+}
+.QueryManagementTab a:hover
+{
+	text-decoration: underline;
+}
+.QueryManagementTab:hover
+{
+	border: solid 1px gray;
+}
+.QueryManagementTabSelected
+{
+	border-bottom: solid 1px white;
+	border-top: outset 1px gray;
+	border-left: outset 1px gray;
+	border-right: outset 1px gray;
+	color: Gray;
+	font-weight:bold;
+}
+.QueryManagementTabContainer
+{
+	width:100%;
+	border-bottom: solid 1px gray;
+	height: 21px;
+}
+.QueryManagementContents
+{
+	font-family: Verdana;
+	font-size: 9px;
+	height:250px;
+	float:none;
+	padding: 3px;
+	
+}
+.QueryManagementUC
+{
+	text-align:left;
+	padding: 0px 3px 0px 3px;
+}
+.QueryManagementWrapper
+{
+	width:198px;
+	font-family:Verdana;
+	font-size:8pt;
+	background-color: White;
+	overflow: visible;
+}
+
+.QueryManagementContainer, .QueryManagementTitle, .QueryManagementTitleSelected
+{
+	width: 190px;
+	border-color: Silver;
+	border-width: thin;
+	padding-top:3px;
+	padding-left:3px;
+}
+
+.QueryManagementTitle, .QueryManagementTitleSelected
+{
+	width: 175px;
+	height: 18px;
+	font-size: 12px;
+	padding: 2px 2px 2px 20px;
+	margin: 2px 0px 0px 0px;
+	background-repeat: repeat-x;
+	background-position: left;
+	color: Black;
+}
+.QueryManagementTitle
+{
+	/*background-image: url(/COECommonResources/infragistics/20111CLR20/Images/ig_menu_scrolldown.gif);*/
+	background-image: url(/COECommonResources/infragistics/20111CLR20/Images/BlueExplorer.gif);
+	cursor:pointer;
+}
+
+.QueryManagementTitle:hover
+{
+	background-image: url(/COECommonResources/infragistics/20111CLR20/Images/OrangeExplorer.gif);
+}
+
+.QueryManagementTitleSelected
+{
+	/*background-image: url(/COECommonResources/infragistics/20111CLR20/Images/ig_menu_scrollup.gif);*/
+	background-image: url(/COECommonResources/infragistics/20111CLR20/Images/OrangeExplorer2.gif);
+	font-weight: bold;
+}
+.QueryLabel
+{
+	margin-left: 2px;
+	margin-right: 2px;
+}
+
+.QueryManagementContainer
+{
+	border-style: solid;
+	margin-top: 3px;
+	height: 318px;
+	background-color: White;
+}
+
+.MessageBoldLabel
+{
+	font-size: 10px;
+	font-weight:bold;
+	font-family: Verdana;
+	color: black;
+}
+.SortingMenuItem
+{
+	cursor:pointer;
+	background-color: White;
+	text-align: left;
+	padding: 5px;
+	color:#000099;
+	text-decoration: none;
+	font-family: Verdana;
+	font-size: 10px;
+	font-weight: normal;
+}
+.SortingMenuItem:hover
+{
+	background-color: #C2CCD6;
+	text-decoration: underline;
+}
+.Panel2Wide
+{
+   cursor: pointer;
+} 
+
+#PagerDiv span, #BottomNavDiv span
+{
+	vertical-align: 3px;
+}

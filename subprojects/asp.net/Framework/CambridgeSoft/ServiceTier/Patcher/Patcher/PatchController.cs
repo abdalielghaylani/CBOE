@@ -15,7 +15,7 @@ namespace CambridgeSoft.COE.Patcher
     public class PatchController
     {
         #region Private Variables
-        private string _fwConfigPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\CambridgeSoft\ChemOfficeEnterprise12.1.0.0\COEFrameworkConfig.xml";
+        private string _fwConfigPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\PerkinElmer\ChemOfficeEnterprise\COEFrameworkConfig.xml";
         private string[] _csbrList = new string[0];
         private string _connectionString = string.Empty;
         private string _coeFormSQL = string.Format("select coeform from {0}.coeform", Resource.COEDBSchema);
@@ -67,7 +67,7 @@ namespace CambridgeSoft.COE.Patcher
                 userName,
                 password);
             ExecuteSql.OracleConfigurationRepository = (IDBCommunicator)_oracleConfigurationRepository;
-            _fileSystemConfigurationRepository = new FileSystemConfigurationRepository(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\CambridgeSoft\ChemOfficeEnterprise12.1.0.0");
+            _fileSystemConfigurationRepository = new FileSystemConfigurationRepository(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\PerkinElmer\ChemOfficeEnterprise");
         }
         #endregion
 

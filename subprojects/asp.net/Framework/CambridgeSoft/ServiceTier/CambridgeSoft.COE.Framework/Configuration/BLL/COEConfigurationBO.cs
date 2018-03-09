@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using CambridgeSoft.COE.Framework.Caching;
-using System.Linq;
 
 
 namespace CambridgeSoft.COE.Framework.COEConfigurationService
@@ -28,8 +27,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
         private string _description;
         private string _sectionHandlerClassName;
         private ConfigurationSection _configurationSection;
-        private string _applicationName;
-        static internal string _defaultConfigurationFilePath = string.Empty;
+        private string _applicationName;        
 
         [NonSerialized]
         IConfigurationSource _configurationSource;
@@ -116,17 +114,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
         {
             get
             {
-                if (!string.IsNullOrEmpty(_defaultConfigurationFilePath))
-                {
-                    return _defaultConfigurationFilePath;
-                }
-
                 return ConfigurationBaseFilePath + "COEFrameworkConfig.xml";
-            }
-            // set Default Configuration File Path only used for Unit testing
-            set
-            {
-                _defaultConfigurationFilePath = value;
             }
         }
 
@@ -142,7 +130,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                 string COEConfigPathOverride = string.Empty;
                 string currentPath = string.Empty;
                 string appName = COEAppName.Get();
-                if (AppDomain.CurrentDomain.GetData(appName + "configPath") != null)
+                if (AppDomain.CurrentDomain.GetData(appName + "configPath") != null && AppDomain.CurrentDomain.GetData(appName + "configPath").ToString().Contains("PerkinElmer"))
                 {
                     currentPath = AppDomain.CurrentDomain.GetData(appName + "configPath").ToString();
                 }
@@ -150,13 +138,13 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                 {
                     if (Csla.ApplicationContext.GlobalContext["COEConfigPathOverride"] != null)
                     {
-                        currentPath = Csla.ApplicationContext.GlobalContext["COEConfigPathOverride"].ToString() + @"\CambridgeSoft\ChemOfficeEnterprise" + AppVersion + @"\";
+                        currentPath = Csla.ApplicationContext.GlobalContext["COEConfigPathOverride"].ToString() + @"\PerkinElmer\ChemOfficeEnterprise" + @"\";
                         AppDomain.CurrentDomain.SetData(appName + "configPath", currentPath);
                     }
                     else
                     {
 
-                        currentPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\CambridgeSoft\ChemOfficeEnterprise" + AppVersion + @"\";
+                        currentPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + @"\PerkinElmer\ChemOfficeEnterprise" + @"\";
                         AppDomain.CurrentDomain.SetData(appName + "configPath", currentPath);
                     }
                 }
@@ -301,18 +289,14 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             {
                 result = LocalCache.Get(keyString, typeof(COEConfigurationBO)) as COEConfigurationBO;
 
-                if (result == null)
+                if (!ServerCache.Exists(keyString, typeof(COEConfigurationBO)) && result == null) //Exists is first to refresh the sliding time
                 {
-                    // Get from server catch or read from config file by csla
-                    if (ServerCache.Exists(keyString, typeof(COEConfigurationBO))) //Exists is first to refresh the sliding time
-                    {
-                        result = ServerCache.Get(keyString, typeof(COEConfigurationBO)) as COEConfigurationBO;
-                    }
-                    else
-                    {
-                        result = DataPortal.Fetch<COEConfigurationBO>(criteria);
-                    }
-
+                    result = DataPortal.Fetch<COEConfigurationBO>(criteria);
+                    LocalCache.Add(keyString, typeof(COEConfigurationBO), result, LocalCache.NoAbsoluteExpiration, TimeSpan.FromMinutes(60), COECacheItemPriority.Normal);
+                }
+                else if (result == null)
+                {
+                    result = ServerCache.Get(keyString, typeof(COEConfigurationBO)) as COEConfigurationBO;
                     LocalCache.Add(keyString, typeof(COEConfigurationBO), result, LocalCache.NoAbsoluteExpiration, TimeSpan.FromMinutes(60), COECacheItemPriority.Normal);
                 }
             }
@@ -528,23 +512,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
             ApplicationName = criteria._applicationName;
             Description = criteria._description;
 
-            if (_configurationSource is FileConfigurationSource)
-            {
-                // Open config file as Configuration object
-                //   We change to use Configuration instead of FileConfigurationSource since FileConfigurationSource
-                //   didn't reload config file immediately after the file was modified by other function.
-                var fileMap = new ExeConfigurationFileMap
-                {
-                    ExeConfigFilename = DefaultConfigurationFilePath
-                };
-                var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
-
-                ConfigurationSection = config.GetSection(Description);
-            }
-            else
-            {
-                ConfigurationSection = _configurationSource.GetSection(Description);
-            }
+            ConfigurationSection = _configurationSource.GetSection(Description);
 
             this.EncryptPasswords();
 
@@ -559,7 +527,7 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
         /// </summary>
         private void EncryptPasswords()
         {
-            if (ApplicationName.ToLower() == FrameworkName && _configurationSection != null && _configurationSection.SectionInformation.Name == "coeConfiguration")
+            if (ApplicationName.ToLower() == FrameworkName && _configurationSection.SectionInformation.Name == "coeConfiguration")
             {
                 bool unencryptedPasswords = false;
                 foreach (DatabaseData dbData in ((COEConfigurationSettings)_configurationSection).Databases)
@@ -600,9 +568,8 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                 COEConfigurationSettings settings = ConfigurationSection as COEConfigurationSettings;
                 if (settings != null)
                 {
-                    InstanceData instanceData = settings.Instances.FirstOrDefault(ins => ins.IsCBOEInstance);
-                    if (instanceData == null) return;
-                    SQLGeneratorData sqlGeneratorData = instanceData.SQLGeneratorData.Get("CSORACLECARTRIDGE");
+                    DBMSTypeData dbmstype = settings.DBMSTypes.Get("ORACLE");
+                    SQLGeneratorData sqlGeneratorData = dbmstype.SQLGeneratorData.Get("CSORACLECARTRIDGE");
 
                     if ((String.IsNullOrEmpty(sqlGeneratorData.ChemMajorVersion)) || (sqlGeneratorData.ChemMajorVersion == "0"))
                     {
@@ -618,11 +585,8 @@ namespace CambridgeSoft.COE.Framework.COEConfigurationService
                             //Csla.ApplicationContext.User = null;
                             //Will use COEDB as connection for this DAL.
                             Csla.ApplicationContext.GlobalContext["TEMPUSERNAME"] = Resources.CentralizedStorageDB;
-                            string owner = instanceData.DatabaseGlobalUser;
-                            var databaseData = settings.Databases.FirstOrDefault(db => db.Owner == owner);
-                            databaseData.InstanceData = instanceData;
 
-                            this.LoadDAL(settings.Applications.Get(COEAppName.Get()), settings.Services.Get(_serviceName), databaseData, settings.DBMSTypes.Get("ORACLE"));
+                            this.LoadDAL(settings.Applications.Get(COEAppName.Get()), settings.Services.Get(_serviceName), settings.Databases.Get(dbmstype.DatabaseGlobalUser), settings.DBMSTypes.Get("ORACLE"));
                         }
                         // Coverity Fix CID - 11480 
                         if (_coeDAL != null)

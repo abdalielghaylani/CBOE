@@ -159,9 +159,7 @@ namespace CambridgeSoft.COE.Framework.Common.Utility
                 case "NOTLIKE":
                     return SearchCriteria.COEOperators.NOTLIKE;
                 case "ENDWITH":
-                    return SearchCriteria.COEOperators.ENDWITH;
-                case "NONE":
-                    return SearchCriteria.COEOperators.NONE;
+                    return SearchCriteria.COEOperators.ENDWITH;                
                 default:
                     return SearchCriteria.COEOperators.LTE;
 			}
@@ -355,51 +353,7 @@ namespace CambridgeSoft.COE.Framework.Common.Utility
                     return "NONE";
             }
         }
-
-        /// <summary>
-        ///  Converts a given string to a COEDataView.HitListTypes. Doesn't take into account casing.
-        /// </summary>
-        /// <param name="value">the string to be converted. </param>
-        /// <returns>The Corresponding COEDataView.HitListTypes</returns>
-        public static COEDataView.HitListDataTypes ToHitListType(string value)
-        {
-            switch (value.Trim().ToUpper())
-            {
-                case "NUMBER":
-                    return COEDataView.HitListDataTypes.NUMBER;
-                case "STRING":
-                    return COEDataView.HitListDataTypes.STRING;
-                case "ROWID":
-                    return COEDataView.HitListDataTypes.ROWID;
-                case "COEPK":
-                    return COEDataView.HitListDataTypes.COEPK;
-                default:
-                    return COEDataView.HitListDataTypes.NUMBER;
-            }
-        }
-
-        /// <summary>
-        /// Converts the given COEDataView.HitListTypes to string (uppercase)
-        /// </summary>
-        /// <param name="value">The COEDataView.HitListTypes to be converted to string</param>
-        /// <returns>The string representation of the value.</returns>
-        public static string ToString(COEDataView.HitListDataTypes value)
-        {
-            switch (value)
-            {
-                case COEDataView.HitListDataTypes.NUMBER:
-                    return "NUMBER";
-                case COEDataView.HitListDataTypes.STRING:
-                    return "STRING";
-                case COEDataView.HitListDataTypes.ROWID:
-                    return "ROWID";
-                case COEDataView.HitListDataTypes.COEPK:
-                    return "COEPK";
-                default:
-                    return "NUMBER";
-            }
-        }
-
+        
         /// <summary>
         ///  Converts a given string to a COEDataView.MimeTypes. Doesn't take into account casing.
         /// </summary>
@@ -561,70 +515,6 @@ namespace CambridgeSoft.COE.Framework.Common.Utility
                 default:
                     return "F";
             } 
-        }
-
-        /// <summary>
-        /// Convert the driver type enum to string.
-        /// </summary>
-        /// <param name="driverType">The driver type.</param>
-        /// <returns>The driver name string.</returns>
-        public static string ToString(DriverType driverType)
-        {
-            switch (driverType)
-            {
-                case DriverType.Oracle:
-                    return "oracle";
-                case DriverType.OracleDataDirect:
-                    return "oracle_datadirect";
-                default:
-                    return "oracle";
-            }
-        }
-
-        /// <summary>
-        /// return display name according to driver type
-        /// </summary>
-        /// <param name="driverType">The driver type.</param>
-        /// <returns>return display name</returns>
-        public static string PorcessDriverTypeForDisplay(String driverType)
-        {
-            var displayName = string.Empty;
-
-            switch (driverType.ToUpper())
-            {
-                case "ORACLEDATADIRECT":
-                    displayName = "Oracle (DataDirect)";
-                    break;
-                case "ORACLE":
-                default:
-                    displayName = "Oracle";
-                    break;
-            }
-
-            return displayName;
-        }
-
-        /// <summary>
-        /// Return corresponding drivertype by display name.
-        /// </summary>
-        /// <param name="displayName">The display name</param>
-        /// <returns>Return corresponding drivertype.</returns>
-        public static DriverType PorcessDriverTypeForSave(string displayName)
-        {
-            var saveName = DriverType.Oracle;
-
-            switch (displayName.ToUpper())
-            {
-                case "ORACLE (DATADIRECT)":
-                    saveName = DriverType.OracleDataDirect;
-                    break;
-                case "ORACLE":
-                default:
-                    saveName = DriverType.Oracle;
-                    break;
-            }
-
-            return saveName;
-        }
+        }        
 	}
 }

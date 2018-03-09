@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resultsCriteria xmlns="COE.ResultsCriteria">
+	<tables>
+		<table id="3">
+      <field fieldId="18"/>
+			<field fieldId="19"/>
+      <field fieldId="20"/>
+      <field fieldId="21"/>
+		</table>
+		<table id="8">
+      <field fieldId="43"/>
+			<field fieldId="44"/>
+      <field fieldId="45"/>
+		</table>
+	</tables>
+</resultsCriteria>
+

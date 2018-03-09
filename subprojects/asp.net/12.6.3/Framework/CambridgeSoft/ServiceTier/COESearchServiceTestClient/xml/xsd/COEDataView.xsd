@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="COE.COEDataView" elementFormDefault="qualified" targetNamespace="COE.COEDataView" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="COEDataView" nillable="true" type="tns:COEDataView" />
+  <xs:complexType name="COEDataView">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="tables" type="tns:ArrayOfCOEDataViewTable" />
+      <xs:element minOccurs="0" maxOccurs="1" name="relationships" type="tns:ArrayOfRelationship" />
+    </xs:sequence>
+    <xs:attribute name="basetable" type="xs:int" use="required" />
+    <xs:attribute name="database" type="xs:string" />
+    <xs:attribute name="dataviewid" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCOEDataViewTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="table" nillable="true" type="tns:COEDataView.Table" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="COEDataView.Table">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="fields" type="tns:fields" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:int" use="required" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="alias" type="xs:string" />
+    <xs:attribute name="database" type="xs:string" />
+    <xs:attribute name="primaryKey" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="fields">
+    <xs:attribute name="id" type="xs:int" use="required" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="dataType" type="tns:AbstractTypes" use="required" />
+    <xs:attribute default="-1" name="lookupFieldId" type="xs:int" />
+    <xs:attribute default="-1" name="lookupDisplayFieldId" type="xs:int" />
+    <xs:attribute default="" name="alias" type="xs:string" />
+    <xs:attribute name="indexType" type="tns:IndexTypes" use="required" />
+    <xs:attribute name="mimeType" type="tns:MimeTypes" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="AbstractTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="INTEGER" />
+      <xs:enumeration value="REAL" />
+      <xs:enumeration value="TEXT" />
+      <xs:enumeration value="DATE" />
+      <xs:enumeration value="BOOLEAN" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="IndexTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE" />
+      <xs:enumeration value="" />
+      <xs:enumeration value="CS_CARTRIDGE" />
+      <xs:enumeration value="FULL_TEXT" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MimeTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE" />
+      <xs:enumeration value="UNKNOWN" />
+      <xs:enumeration value="IMAGE/JPEG" />
+      <xs:enumeration value="IMAGE/GIF" />
+      <xs:enumeration value="IMAGE/PNG," />
+      <xs:enumeration value="IMAGE/X-WMF" />
+      <xs:enumeration value="CHEMICAL/X-MDL-MOLFILE," />
+      <xs:enumeration value="CHEMICAL/X-CDX" />
+      <xs:enumeration value="CHEMICAL/X-SMILES" />
+      <xs:enumeration value="TEXT/XML" />
+      <xs:enumeration value="TEXT/HTML" />
+      <xs:enumeration value="TEXT/PLAIN" />
+      <xs:enumeration value="TEXT/RAW" />
+      <xs:enumeration value="Application/ms-excel" />
+      <xs:enumeration value="Application/ms-msword" />
+      <xs:enumeration value="PDF" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfRelationship">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="relationship" nillable="true" type="tns:relationship" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="relationship">
+    <xs:attribute name="parentkey" type="xs:int" use="required" />
+    <xs:attribute name="childkey" type="xs:int" use="required" />
+    <xs:attribute name="parent" type="xs:int" use="required" />
+    <xs:attribute name="child" type="xs:int" use="required" />
+    <xs:attribute name="jointype" type="tns:JoinTypes" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="JoinTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OUTER" />
+      <xs:enumeration value="INNER" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

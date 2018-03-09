@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<COEDataView  xmlns="COE.COEDataView" basetable="2472" database="COEDB" name="DataView_01/24/2011 17:38:17" description="test" dataviewHandling="USE_CLIENT_DATAVIEW" dataviewid="100127">
+  <tables>
+    <table id="1201" name="CS_DEMO_PROPS" alias="CS_DEMO_PROPS" database="COETEST" isView="0" primaryKey="1210" >
+      <fields id="1202" name="BOOLFIELD" alias="BOOLFIELD" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+      <fields id="1203" name="BP" alias="BP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="1" />
+      <fields id="1204" name="CLOGP" alias="CLOGP" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="2" />
+      <fields id="1205" name="DIAM" alias="DIAM" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="3" />
+      <fields id="1206" name="HOF" alias="HOF" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="4" />
+      <fields id="1207" name="ID" alias="ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="5" />
+      <fields id="1208" name="MOLAR_REFRACTIVITY" alias="MOLAR_REFRACTIVITY" dataType="REAL" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="6" />
+      <fields id="1209" name="MOLNAME" alias="MOLNAME" dataType="TEXT" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="7" />
+      <fields id="1210" name="MOL_ID" alias="MOL_ID" dataType="INTEGER" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="8" />
+      <fields id="1211" name="RANDOMDATE" alias="RANDOMDATE" dataType="DATE" indexType="NONE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="9" />
+      <fields id="1212" name="STRUCTURE" alias="STRUCTURE" dataType="TEXT" indexType="CS_CARTRIDGE" mimeType="NONE" visible="1" isUniqueKey="0" sortOrder="0" />
+    </table>
+  </tables>
+</COEDataView>

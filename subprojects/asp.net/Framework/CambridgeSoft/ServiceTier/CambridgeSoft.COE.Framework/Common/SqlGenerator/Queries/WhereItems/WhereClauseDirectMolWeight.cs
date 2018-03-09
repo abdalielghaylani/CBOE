@@ -69,16 +69,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.WhereItems
             }
 
             var builder = new StringBuilder();
-            var strOp = string.Empty;
-
-            if (COEDataView.MimeTypes.CHEMICAL_X_SMILES == dataField.MimeType)
-            {
-                strOp = string.Format("mdlaux.molwt(NULL, 'SMILES:'||{0})", GetFullName(dataField));
-            }
-            else
-            {
-                strOp = string.Format("mdlaux.molwt(NULL, {0})", GetFullName(dataField));
-            }
+            var strOp = string.Format("mdlaux.molwt(NULL, {0})", GetFullName(dataField));
                 
             // Legacy bad code: EQUAL also means BETWEEN
             if (Operator == "EQUAL")

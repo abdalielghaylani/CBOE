@@ -30,67 +30,13 @@ public partial class DeleteDataView {
     protected global::Forms_Public_UserControls_ErrorArea ErrorAreaUserControl;
     
     /// <summary>
-    /// InstanceTitleLabel control.
+    /// DataViewListDropDown control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label InstanceTitleLabel;
-    
-    /// <summary>
-    /// WebAsyncRefreshPanel2 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Infragistics.WebUI.Misc.WebAsyncRefreshPanel WebAsyncRefreshPanel2;
-    
-    /// <summary>
-    /// InstanceDropDownList control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.DropDownList InstanceDropDownList;
-    
-    /// <summary>
-    /// WebAsyncRefreshPanel1 control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Infragistics.WebUI.Misc.WebAsyncRefreshPanel WebAsyncRefreshPanel1;
-    
-    /// <summary>
-    /// spGrid control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlGenericControl spGrid;
-    
-    /// <summary>
-    /// InstanceDataviewsWebGrid control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::Infragistics.WebUI.UltraWebGrid.UltraWebGrid InstanceDataviewsWebGrid;
-    
-    /// <summary>
-    /// spNoRecords control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.HtmlControls.HtmlGenericControl spNoRecords;
+    protected global::System.Web.UI.WebControls.DropDownList DataViewListDropDown;
     
     /// <summary>
     /// CancelImageButton control.
@@ -145,15 +91,6 @@ public partial class DeleteDataView {
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::Forms_Public_UserControls_ImageButton OkImageButton;
-    
-    /// <summary>
-    /// dataviewIdsHiddenField control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.HiddenField dataviewIdsHiddenField;
     
     /// <summary>
     /// Master property.

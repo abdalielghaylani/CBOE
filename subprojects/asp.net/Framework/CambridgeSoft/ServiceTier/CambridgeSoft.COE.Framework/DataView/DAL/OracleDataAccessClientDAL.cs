@@ -335,118 +335,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
                 COEExceptionDispatcher.DispatchDALException(ex, dbCommand);
             }
             return safeReader;
-        }
-
-        /// <summary>
-        /// Gets all the published dataview includes the public and all users' private dataview.
-        /// </summary>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal override SafeDataReader GetAllNoMasterIncludeAllPrivate()
-        {
-            string sql = "select dv1.id, dv1.name, dv1.description, dv1.user_id, dv1.is_public, dv1.date_created,dv1.database, dv1.formgroup, dv1.coedataview.getClobVal() as \"COEDATAVIEW\", dv1.application from " + Resources.CentralizedStorageDB + ".coedataview dv1 where dv1.id > 0 " +
-                 GetApplicationFilter(_dvAlias) + " Order By dv1.Name";
-
-            DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
-            SafeDataReader safeReader = null;
-
-            try
-            {
-                safeReader = new SafeDataReader(DALManager.ExecuteReader(dbCommand));
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception with exception policy.
-                COEExceptionDispatcher.DispatchDALException(ex, dbCommand);
-            }
-            return safeReader;
-        }
-
-        /// <summary>
-        /// Gets all the published dataview includes the public, master dataview and all users' private dataview.
-        /// </summary>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal override SafeDataReader GetAllDataViewListIncludeMasterPrivate()
-        {
-            string sql = "select dv1.id, dv1.name, dv1.description, dv1.user_id, dv1.is_public, dv1.date_created,dv1.database, dv1.formgroup, dv1.coedataview.getClobVal() as \"COEDATAVIEW\", dv1.application from " + Resources.CentralizedStorageDB + ".coedataview dv1 where dv1.id >= 0 " +
-                 GetApplicationFilter(_dvAlias) + " Order By dv1.Name";
-
-            DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
-
-            SafeDataReader safeReader = null;
-            try
-            {
-                safeReader = new SafeDataReader(DALManager.ExecuteReader(dbCommand));
-            }
-            catch (Exception ex)
-            {
-                COEExceptionDispatcher.DispatchDALException(ex, dbCommand);
-            }
-
-            return safeReader;
-        }
-
-        /// <summary>
-        /// Gets all the published dataview which refered to the instance.
-        /// </summary>
-        /// <param name="instanceName">The data source name.</param>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal override SafeDataReader GetAllInstanceDataViewList(string instanceName)
-        {
-            string sql = "select dv1.id, dv1.name, dv1.description, dv1.user_id, dv1.is_public, dv1.date_created,dv1.database, dv1.formgroup, dv1.coedataview.getClobVal() as \"COEDATAVIEW\", dv1.application from " + Resources.CentralizedStorageDB + ".coedataview dv1 where dv1.id > 0 and (dv1.is_public=1 " +
-                 GetApplicationFilter(_dvAlias) +
-                 " or " + AccessPermissionsSQL(_dvAlias, _coeDataViewTableName) + ")" +
-                 " and existsnode(dv1.coedataview,'/COEDataView/tables/table[starts-with(@database, \"" + instanceName + "\")]') = 1" +
-                 " Order By dv1.Name";
-
-            DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
-            DALManager.Database.AddInParameter(dbCommand, "pPersonID", DbType.Int32, COEUser.ID);
-            DALManager.Database.AddParameter(dbCommand, "pUserName", DbType.AnsiString, 100, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, COEUser.Name.ToUpper());
-            DALManager.Database.AddParameter(dbCommand, "pUserName1", DbType.AnsiString, 100, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, COEUser.Name.ToUpper());
-            
-            SafeDataReader safeReader = null;
-
-            try
-            {
-                safeReader = new SafeDataReader(DALManager.ExecuteReader(dbCommand));
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception with exception policy.
-                COEExceptionDispatcher.DispatchDALException(ex, dbCommand);
-            }
-            return safeReader;
-        }
-
-        /// <summary>
-        /// Gets all the dataviews published from the primary data source.
-        /// </summary>
-        /// <returns>a safedatareader containing the dataviews</returns>
-        internal override SafeDataReader GetAllPrimaryDataViewList()
-        {
-            string sql = "select dv1.id, dv1.name, dv1.description, dv1.user_id, dv1.is_public, dv1.date_created,dv1.database, dv1.formgroup, dv1.coedataview.getClobVal() as \"COEDATAVIEW\", dv1.application from " + Resources.CentralizedStorageDB + ".coedataview dv1 where dv1.id > 0 and (dv1.is_public=1 " +
-                 GetApplicationFilter(_dvAlias) +
-                 " or " + AccessPermissionsSQL(_dvAlias, _coeDataViewTableName) + ")" +
-                 " and existsnode(dv1.coedataview,'/COEDataView/tables/table[not(contains(@database, \".\"))]') = 1" +
-                 " Order By dv1.Name";
-
-            DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
-            DALManager.Database.AddInParameter(dbCommand, "pPersonID", DbType.Int32, COEUser.ID);
-            DALManager.Database.AddParameter(dbCommand, "pUserName", DbType.AnsiString, 100, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, COEUser.Name.ToUpper());
-            DALManager.Database.AddParameter(dbCommand, "pUserName1", DbType.AnsiString, 100, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, COEUser.Name.ToUpper());
-
-            SafeDataReader safeReader = null;
-
-            try
-            {
-                safeReader = new SafeDataReader(DALManager.ExecuteReader(dbCommand));
-            }
-            catch (Exception ex)
-            {
-                // Handle the exception with exception policy.
-                COEExceptionDispatcher.DispatchDALException(ex, dbCommand);
-            }
-            return safeReader;
-        }
+        }        
 
         public override SafeDataReader GetAll(string userName)
         {
@@ -569,7 +458,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
         {
             List<string> lstFields = new List<string>();
 
-            string sql = "select column_name,data_type from dba_tab_columns where table_name =" + DALManager.BuildSqlStringParameterName("tName");
+            string sql = "select column_name,data_type from all_tab_columns where table_name =" + DALManager.BuildSqlStringParameterName("tName");
             DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql);
             DALManager.Database.AddParameter(dbCommand, DALManager.BuildSqlStringParameterName("tName"), DbType.AnsiString, 255, ParameterDirection.Input, true, 0, 0, string.Empty, DataRowVersion.Current, strTableName);
 
@@ -625,16 +514,16 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
 
                 if (isBAViews)
                 {
-                    sql.AppendFormat(" SELECT COLUMN_NAME , DATA_TYPE, NULLABLE  FROM DBA_TAB_COLUMNS WHERE COLUMN_NAME='ROW_ID' AND OWNER={0} AND TABLE_NAME={1}", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
+                    sql.AppendFormat(" SELECT COLUMN_NAME , DATA_TYPE, NULLABLE  FROM ALL_TAB_COLUMNS WHERE COLUMN_NAME='ROW_ID' AND OWNER={0} AND TABLE_NAME={1}", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
                 }
                 else
                 {
-                    sql.Append(" SELECT dba_cons_columns.table_name, dba_cons_columns.column_name,dba_cons_columns.owner,dba_cons_columns.constraint_name,dba_constraints.constraint_type");
-                    sql.Append(" FROM dba_constraints ");
-                    sql.Append(" INNER JOIN dba_cons_columns ");
-                    sql.Append(" ON  dba_constraints.OWNER=all_cons_columns.OWNER ");
-                    sql.AppendFormat(" WHERE dba_constraints.owner= {0} AND dba_constraints.table_name= {1} AND dba_constraints.constraint_name=dba_cons_columns.constraint_name AND ", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
-                    sql.Append(" UPPER( dba_constraints.constraint_type) IN ('P')");
+                    sql.Append(" SELECT all_cons_columns.table_name, all_cons_columns.column_name,all_cons_columns.owner,all_cons_columns.constraint_name,all_constraints.constraint_type");
+                    sql.Append(" FROM all_constraints ");
+                    sql.Append(" INNER JOIN all_cons_columns ");
+                    sql.Append(" ON  all_constraints.OWNER=all_cons_columns.OWNER ");
+                    sql.AppendFormat(" WHERE all_constraints.owner= {0} AND all_constraints.table_name= {1} AND all_constraints.constraint_name=all_cons_columns.constraint_name AND ", DALManager.BuildSqlStringParameterName("database"), DALManager.BuildSqlStringParameterName("tableName"));
+                    sql.Append(" UPPER( all_constraints.constraint_type) IN ('P')");
                 }
                 using (DbCommand dbCommand = DALManager.Database.GetSqlStringCommand(sql.ToString()))
                 {

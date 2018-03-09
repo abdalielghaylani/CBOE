@@ -9,13 +9,11 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
-using System.Linq;
 
 using CambridgeSoft.COE.Framework.Common;
 using CambridgeSoft.COE.Framework.GUIShell;
 using System.Reflection;
 using CambridgeSoft.COE.Framework.COEDataViewService;
-using CambridgeSoft.COE.Framework.COEConfigurationService;
 
 public partial class SelectBaseTable : System.Web.UI.UserControl
 {
@@ -92,14 +90,7 @@ public partial class SelectBaseTable : System.Web.UI.UserControl
         this.BindTables(SelectedDataView.DataViewManager.Tables, SelectedDataView.DataViewManager.BaseTableId);
     }
 
-    protected void InstanceDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (this.InstanceDropDownList.SelectedItem != null)
-        {
-            var selectedInstance = this.InstanceDropDownList.SelectedItem.Text;
-            this.BindSchemas(selectedInstance);
-        }
-    }
+    
 
     #endregion
 
@@ -125,91 +116,30 @@ public partial class SelectBaseTable : System.Web.UI.UserControl
         if (this.SelectedDataView.ID > 0) //check if the view is saved and not a master dataview
         {
             this.SchemasDropDownList.Enabled = false;
-            this.InstanceDropDownList.Enabled = false;
             this.RadioButtonList.Enabled = false;
             this.SelectBaseTableLabel.Enabled = false;
 
-            if (Request[Constants.Action] != Constants.CloneDV)
+             if ((Session["IsBaseEnable"] != null && Convert.ToBoolean(Session["IsBaseEnable"]).Equals(true)))
             {
                 this.SchemasDropDownList.Enabled = true;
-                this.InstanceDropDownList.Enabled = true;
                 this.RadioButtonList.Enabled = true;
                 this.SelectBaseTableLabel.Enabled = true;
             }
         }
         //END CBOE-706
         Session["MasterSchema"] = SelectedDataView;
-
-        var instances = GetInstances();
-        this.InstanceDropDownList.DataSource = instances;
-        this.InstanceDropDownList.DataBind();
-
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
-        string defautInstance = SelectedDataView.DataViewManager.DataBase.Contains(".") ?
-            SelectedDataView.DataViewManager.DataBase.Split('.')[0] : mainInstance.Name;
-
-        if (instances != null && instances.Count > 0 && !instances.Contains(defautInstance))
-        {
-            defautInstance = instances[0];
-        }
-
-        this.InstanceDropDownList.SelectedValue = defautInstance;
-        BindSchemas(defautInstance);
-
-        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
-    }
-
-    private IList<string> GetInstances()
-    {
-        TableListBO tablesList = SelectedDataView.DataViewManager.Tables;
-        var instancesList = new List<string>();
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-
-        if (tablesList.Count > 0)
-        {
-            foreach (TableBO table in tablesList)
-            {
-                var instanceName = table.DataBase.Contains(".") ? table.DataBase.Split('.')[0] : mainInstance.Name;
-
-                if (!instancesList.Contains(instanceName))
-                {
-                    instancesList.Add(instanceName);
-                }
-            }
-        }
-
-        return instancesList;
-    }
-
-    private void BindSchemas(string instanceName)
-    {
-        List<string> schemas = new List<string>();
-        string selectedSchema = string.Empty;
+        
         TableListBO tablesList = SelectedDataView.DataViewManager.Tables;
         int baseTableId = SelectedDataView.DataViewManager.BaseTableId;
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-        var isMainInstance = instanceName.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase);
-
-        if (isMainInstance)
-        {
-            schemas = tablesList.Where(t => !t.DataBase.Contains("."))
-                                 .Select(t => t.DataBase)
-                                 .Distinct()
-                                 .ToList();
-        }
-        else
-        {
-            schemas = tablesList.Where(t => t.DataBase.StartsWith(instanceName + ".", StringComparison.InvariantCultureIgnoreCase))
-                                 .Select(t => t.DataBase.Remove(0, instanceName.Length + 1))
-                                 .Distinct()
-                                 .ToList();
-        }
+        #region Bind Schemas
+        List<string> schemas = new List<string>();
+        string selectedSchema = string.Empty;        
 
         foreach (TableBO currentTable in tablesList)
         {
             if (!SchemaList.Contains(currentTable.DataBase))
             {
+                SchemaList.Add(currentTable.DataBase);
                 if (currentTable.ID == baseTableId)
                 {
                     selectedSchema = currentTable.DataBase;
@@ -217,39 +147,16 @@ public partial class SelectBaseTable : System.Web.UI.UserControl
             }
         }
 
-        // analyse the selected instanceschema and re-assign value
-        if (!string.IsNullOrEmpty(selectedSchema))
-        {
-            string dataSourceName = string.Empty;
-            string schemaName = string.Empty;
-            Utilities.AnalyseInstanceSchema(selectedSchema, ref dataSourceName, ref schemaName);
-
-            if (dataSourceName.Equals(instanceName))
-            {
-                selectedSchema = schemaName;
-            }
-            else
-            {
-                selectedSchema = string.Empty;
-            }
-        }
-
-        this.SchemasDropDownList.DataSource = schemas;
+        
+       this.SchemasDropDownList.DataSource = SchemaList;
         this.SchemasDropDownList.DataBind();
 
         if (!string.IsNullOrEmpty(selectedSchema))
-        {
-            if (schemas.Contains(selectedSchema))
-            {
-                this.SchemasDropDownList.SelectedValue = selectedSchema;
-            }
-            else
-            {
-                this.SchemasDropDownList.SelectedIndex = 0;
-            }
-        }
-
+        this.SchemasDropDownList.SelectedValue = selectedSchema;
+        #endregion
         this.BindTables(tablesList, baseTableId);
+
+        Utilities.WriteToAppLog(GUIShellTypes.LogMessageType.EndMethod, MethodBase.GetCurrentMethod().Name);
     }
 
     private void BindTables(TableListBO tablesList, int baseTableId)
@@ -262,22 +169,15 @@ public partial class SelectBaseTable : System.Web.UI.UserControl
             tablesList = masterSchema.DataViewManager.Tables;
             SelectedDataView = masterSchema;
         }
-
-        InstanceData mainInstance = ConfigurationUtilities.GetMainInstance();
-        string dataBaseWithInstance = Utilities.GetQualifyInstaceSchemaName(this.InstanceDropDownList.SelectedValue, this.SchemasDropDownList.SelectedValue);
-        var isMainInstance = this.InstanceDropDownList.SelectedValue.Equals(mainInstance.Name, StringComparison.InvariantCultureIgnoreCase);
-
+        
         foreach (TableBO currentTable in tablesList)
         {
-            if (currentTable.DataBase == dataBaseWithInstance)
+            if (currentTable.DataBase == this.SchemasDropDownList.SelectedValue)
             {
                 if (this.SelectedDataView.ID < 0 || !currentTable.FromMasterSchema)
                 {
                     ListItem currentItem = new ListItem();
-                    string itemText = (isMainInstance) ? currentTable.DataBase.ToUpper() + "." + Utilities.FormatTableText(currentTable.Name, currentTable.Alias)
-                        : currentTable.DataBase.Split('.')[1].ToUpper() + "." + Utilities.FormatTableText(currentTable.Name, currentTable.Alias);
-
-                    currentItem.Text = itemText;
+                    currentItem.Text = currentTable.DataBase.ToUpper() + "." + Utilities.FormatTableText(currentTable.Name, currentTable.Alias);
                     currentItem.Value = currentTable.ID.ToString();
                     if (currentTable.ID == baseTableId)
                         currentItem.Selected = true;
@@ -315,6 +215,17 @@ public partial class SelectBaseTable : System.Web.UI.UserControl
         }
     }
 
+    public bool IsValidPrimaryKey()
+    {
+        if (!IsValidPrimaryUniqueKeyInfo())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public bool IsValidPrimaryUniqueKeyInfo()   //CBOE-767
     {
         try

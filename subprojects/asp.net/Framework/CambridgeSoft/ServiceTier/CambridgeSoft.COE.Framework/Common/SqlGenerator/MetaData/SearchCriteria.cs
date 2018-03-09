@@ -104,11 +104,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData {
                     {
                         if (criteriaNode.NodeType == XmlNodeType.Element)
                         {
-                            var clauseItem = WhereClauseFactory.CreateWhereClause(dataView, criteriaNode);
-                            if (clauseItem != null)
-                            {
-                                where.AddItem(clauseItem);
-                            }
+                            where.AddItem(WhereClauseFactory.CreateWhereClause(dataView, criteriaNode));
                         }
                     }
                 }
@@ -140,13 +136,9 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData {
             {
                 int parentTableID = int.Parse(node.Attributes["tableid"].Value);
 
-                // Ignore the NONE operator fields.
-                if (parentTableID > 0 &&
-                    !results.Contains(parentTableID) &&
-                    !XmlTranslation.IsNoneOperator(node.FirstChild))
-                {
-                    results.Add(parentTableID);
-                }
+                if (parentTableID > 0 && !results.Contains(parentTableID))
+                
+                    results.Add(parentTableID);             
             }
 
             return results;
@@ -173,9 +165,7 @@ namespace CambridgeSoft.COE.Framework.Common.SqlGenerator.MetaData {
                     IColumn column = dataView.GetColumn(fieldId);
                     //When search with structure lookup Molweight and Formula FieldId exists in 2 places
                     //Added the condition to resolve the key already exist exception.
-                    if (column is Lookup &&
-                        !result.ContainsKey(((Lookup)column).FieldId) &&
-                        !XmlTranslation.IsNoneOperator(node))
+                    if (column is Lookup && !result.ContainsKey(((Lookup)column).FieldId))
                     {
                         result.Add(((Lookup)column).FieldId, ((Lookup)column).LookupFieldId);
                     }

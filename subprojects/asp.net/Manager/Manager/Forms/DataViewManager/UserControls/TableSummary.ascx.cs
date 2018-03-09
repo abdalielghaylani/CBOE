@@ -130,9 +130,8 @@ public partial class TableSummary : System.Web.UI.UserControl
             return;
 
         COEDataViewBO dv = this.DataViewBO;
-        var tableBO = dv.DataViewManager.Tables.GetTable(this.SelectedTableId).Clone();
         //Session["FreshDV"] = dv.Clone();
-        Session["FreshTable"] = tableBO;
+        Session["FreshTable"] = dv.DataViewManager.Tables.GetTable(this.SelectedTableId).Clone();
         Session["FreshRels"] = dv.DataViewManager.Relationships.GetByChildId(this.SelectedTableId);
         Session["DummyFreshTable"] = (Session["FreshTable"] as TableBO).Clone();
         Session["DummyFreshRels"] = Session["FreshRels"];
@@ -140,7 +139,6 @@ public partial class TableSummary : System.Web.UI.UserControl
 		//Added action, dataview id, selected table id i.e. paramcaller to return string
 		//this will help to take proper action if session ends in between.
 		String RedirectURL = "~/Forms/DataViewManager/ContentArea/EditTableAndFields.aspx?" + Constants.ParamCaller + "=" + this.SelectedTableId;
-        RedirectURL += "&schemaSelected=" + tableBO.DataBase;
 
         // Edit Existing
         if (this.DataViewBO.COEDataView.DataViewID > 0)

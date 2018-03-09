@@ -14,7 +14,7 @@ namespace CambridgeSoft.COE.Patcher
             bool errorsInPatch = false;
             string _coeUpdateInPath = string.Empty;
             _coeUpdateInPath = "MultiCompoundRegistryRecord/AddIns/AddIn[@class='CambridgeSoft.COE.Registration.Services.RegistrationAddins.NormalizedStructureAddIn']/AddInConfiguration/ScriptFile"; // Path to check the Rootnode before patcher update.
-            string updatePath = "C:\\Program Files (x86)\\CambridgeSoft\\ChemOfficeEnterprise12.1.0.0\\Registration\\PythonScripts\\parentscript.py";
+            string updatePath = "C:\\Program Files (x86)\\PerkinElmer\\ChemOfficeEnterprise\\Registration\\PythonScripts\\parentscript.py";
             XmlNode rootNode;
 
             #region AddIns

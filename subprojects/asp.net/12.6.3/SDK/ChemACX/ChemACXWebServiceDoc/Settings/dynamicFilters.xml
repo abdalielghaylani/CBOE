@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<filters>
+  <filter type="DaveSexton.DocProject.Sandcastle.TopicManagement.CategoryTopicFilter">
+    <include>True</include>
+    <types>Property, Method, Class</types>
+    <access>Public</access>
+  </filter>
+  <filter type="DaveSexton.DocProject.Sandcastle.TopicManagement.CategoryTopicFilter">
+    <include>True</include>
+    <types>Property, Method, Class</types>
+    <access>Public</access>
+  </filter>
+  <filter type="DaveSexton.DocProject.Sandcastle.TopicManagement.CategoryTopicFilter">
+    <include>True</include>
+    <types>Property, Method, Class</types>
+    <access>Public</access>
+  </filter>
+</filters>

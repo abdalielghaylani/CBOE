@@ -1,0 +1,5 @@
+BUFFER=102400
+TABLES=(coedb.coeform,coedb.coedataview,coedb.coepagecontrol)
+GRANTS=NO
+FILE=coeconfig.dmp
+LOG=coeconfig_export.log

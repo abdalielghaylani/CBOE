@@ -30,15 +30,6 @@ public partial class SelectBaseTable {
     protected global::System.Web.UI.WebControls.Label SelectBaseTableLabel;
     
     /// <summary>
-    /// InstanceDropDownList control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.DropDownList InstanceDropDownList;
-    
-    /// <summary>
     /// SchemasDropDownList control.
     /// </summary>
     /// <remarks>
