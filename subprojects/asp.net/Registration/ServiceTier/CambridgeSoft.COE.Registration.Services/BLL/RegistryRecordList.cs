@@ -152,7 +152,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 return null;
             }
         }
-
+        
 
         /// <summary>
         /// Factory method to generate a RegistryRecordList using the registry ID of a (potentially) shared component.
@@ -244,14 +244,14 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 {
                     throw new System.Security.SecurityException("User not authorized to create a RegistryRecord");
                 }
-
+                
                 //perform action
                 string message = string.Empty;
                 CriteriaPromote oPro = CriteriaPromote.PerformPromotion(actionDuplicates, hitListId, actor, logMessage);
                 _reglistInfo = new RegRecordListInfo();
                 _reglistInfo.IntLogId = oPro.LogId;
             }
-            catch (Exception exception)
+            catch(Exception exception)
             {
                 COEExceptionDispatcher.HandleBLLException(exception);
                 return null;
@@ -335,15 +335,15 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                     {
                         RegistryRecord record = RegistryRecord.GetRegistryRecord(int.Parse(strID[i]));
 
-                        if (record != null)
+                        if(record != null)
                         {
                             record.UpdateXml();
                             builder.Append(record.Xml);
 
                             //if (i > 0 && (i + 1) % 2 == 0)
-                            if (i > 0 && (i + 1) % 100 == 0)
+                            if(i > 0 && (i + 1) % 100 == 0)
                             {
-                                if (i != strID.Length - 1)
+                                if(i != strID.Length - 1)
                                 {
                                     builder.Append("</MultiCompoundRegistryRecordList>");
                                     strxml = builder.ToString();
@@ -399,6 +399,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
         public static RegRecordListInfo LoadRegistryRecordList(DuplicateAction actionDuplicates, int hitListId, bool bApprovalsEnabled, string actor, string logMessage)
         {
             RegistryRecordList _tempRecordList = null;
+            string[] strID;
             Int32 intLogID;
             RegRecordListInfo _reglistInfo = null;
             try
@@ -413,23 +414,23 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 if (_tempRecordList._registerXmlIds != string.Empty)
                 {
                     intLogID = CriteriaLog.InsertCriteriaLog(actionDuplicates, actor, logMessage);
-                    for (int i = 0; i < _tempRecordList.Count; i++)
+                    strID = _tempRecordList._registerXmlIds.Split(char.Parse(","));
+                    for (int i = 0; i < strID.Length; i++)
                     {
-                        RegistryRecord record = _tempRecordList[i];
-                        var recordId = record.ID.ToString();
+                        RegistryRecord record = RegistryRecord.GetRegistryRecord(int.Parse(strID[i]));
                         if (record != null)
                         {
                             if (!record.IsEditable || !record.CanEditRegistry())
-                                CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, recordId, actionDuplicates, string.Empty, 0, Resources.NotAuthorizedToRegisterTempRecords);
+                                CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, strID[i], actionDuplicates, string.Empty, 0, Resources.NotAuthorizedToRegisterTempRecords);
                             else if (bApprovalsEnabled && record.Status != RegistryStatus.Approved)
-                                CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, recordId, actionDuplicates, string.Empty, 0, Resources.NotApprovedCannotRegister);
+                                CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, strID[i], actionDuplicates, string.Empty, 0, Resources.NotApprovedCannotRegister);
                             else
                             {
                                 record.DataStrategy = RegistryRecord.DataAccessStrategy.BulkLoader;
                                 record.ModuleName = _moduleName;
-
+                                
                                 RegistryRecord result = record.Register(actionDuplicates, record.DataStrategy);
-
+                             
                                 if (result != null && !string.IsNullOrEmpty(result.RegNumber.RegNum) && result.RegNumber.RegNum.ToLower() != "null")
                                 {
                                     if (actionDuplicates != DuplicateAction.Temporary && actionDuplicates != DuplicateAction.None)
@@ -453,7 +454,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                                         string message = result.DalResponseMessage;
                                         if ((actionDuplicates != DuplicateAction.Temporary || actionDuplicates != DuplicateAction.None) && !string.IsNullOrEmpty(record.FoundDuplicates) && string.IsNullOrEmpty(message))
                                             message = "Duplicate found";
-                                        CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, recordId, actionDuplicates, string.Empty, 0, message);
+                                        CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, strID[i], actionDuplicates, string.Empty, 0, message);
                                     }
                                 }
                                 else
@@ -465,25 +466,25 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                                         {
                                             //string  message = "Chem Draw warnings found";
                                             string message = Resources.RedBoxWarningMessage_BulkReg;
-                                            CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, recordId, (actionDuplicates == DuplicateAction.None ? DuplicateAction.None : DuplicateAction.Temporary), string.Empty, 0, message);
+                                            CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, strID[i], (actionDuplicates == DuplicateAction.None ? DuplicateAction.None : DuplicateAction.Temporary), string.Empty, 0, message);
                                         }
                                         else
                                         {
                                             string message = result.DalResponseMessage;
                                             if (!string.IsNullOrEmpty(record.FoundDuplicates) && string.IsNullOrEmpty(message))
                                                 message = "Duplicate found";
-                                            CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, recordId, (actionDuplicates == DuplicateAction.None ? DuplicateAction.None : DuplicateAction.Temporary), string.Empty, 0, message);
+                                            CriteriaBulkLog.InsertCriteriaBulkLog(intLogID, strID[i], (actionDuplicates == DuplicateAction.None ? DuplicateAction.None : DuplicateAction.Temporary), string.Empty, 0, message);
                                         }
                                     }
-                                }
+                                }                                
                             }
                         }
                     }
                     // Delete the hitListId from coeSaveHitList table
                     COEHitListBO marked = COEHitListBO.Get(HitListType.MARKED, hitListId);
-                    for (int i = 0; i < _tempRecordList.Count; i++)
+                    for (int i = 0; i < strID.Length; i++)
                     {
-                        marked.UnMarkHit(_tempRecordList[i].ID);
+                        marked.UnMarkHit(int.Parse(strID[i]));
                     }
 
                     _reglistInfo = new RegRecordListInfo();
@@ -578,8 +579,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
         {
             try
             {
-                CriteriaLog.SetCriteriaLog(logId, strLogDescription);
-            }
+                CriteriaLog.SetCriteriaLog(logId, strLogDescription);            }
             catch (Exception exception)
             {
                 COEExceptionDispatcher.HandleBLLException(exception);
@@ -741,7 +741,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             private int _hitlistId;
             private string _actor;
             private string _logMessage;
-
+            
             private Int32 _logId = 0;
 
             /// <summary>
@@ -983,12 +983,10 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             private bool _isTemporal;
             public bool IsTemporal
             {
-                get
-                {
+                get {
                     return _isTemporal;
                 }
-                set
-                {
+                set {
                     _isTemporal = value;
                 }
             }
@@ -1039,7 +1037,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             private RegistryRecord _registry;
             public RegistryRecord RegistryRecord
             {
-                get
+                get 
                 {
                     return _registry;
                 }
@@ -1261,12 +1259,12 @@ namespace CambridgeSoft.COE.Registration.Services.Types
             #endregion
 
             #region Factory Methods
-            private CriteriaLinkedStructure(int structureId)
+            private CriteriaLinkedStructure(int structureId) 
             {
                 this._structureId = structureId;
             }
 
-            public static CriteriaLinkedStructure NewCriteriaLinkedStructure(int structureId)
+            public static CriteriaLinkedStructure NewCriteriaLinkedStructure(int structureId) 
             {
                 return new CriteriaLinkedStructure(structureId);
             }
@@ -1318,7 +1316,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 throw exception;
             }
         }
-
+        
         /// <summary>
         /// Get the Log id's list 
         /// </summary>
@@ -1397,7 +1395,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
         /// Given a specific structure ID, fetch all the MCRRs that share this structureId.
         /// </summary>
         /// <param name="criteria"></param>
-        private void DataPortal_Fetch(CriteriaLinkedStructure criteria)
+        private void DataPortal_Fetch(CriteriaLinkedStructure criteria) 
         {
             //get the list of RegIDs for the mixtures that contain this 
             string[] regNums = new string[] { };
