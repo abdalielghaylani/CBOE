@@ -818,7 +818,7 @@ export class CSearchCriteria {
       searchCriteriaItemObj.CSCartridgeMolWeightCriteria.__text = entryValue;
     } else if (searchCriteriaItemObj && searchCriteriaItemObj.CSCartridgeFormulaCriteria && searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text) {
       searchCriteriaItemObj.CSCartridgeFormulaCriteria.__text = entryValue;
-    } else {
+    } else if (typeof entryValue !== 'object') {
       searchCriteriaItemObj.__text = entryValue;
     }
   }
