@@ -200,7 +200,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.createContainerButtonEnabled = this.invIntegrationEnabled
       && PrivilegeUtils.hasCreateContainerPrivilege(userPrivileges);
 
-    this.backButtonEnabled = (hitListId > 0 || this.bulkreg) && !editMode;
+    this.backButtonEnabled = !editMode;
     if (forceUpdate) {
       this.loadingVisible = false;
       this.changeDetector.markForCheck();

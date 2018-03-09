@@ -149,6 +149,7 @@ export class RegRecords implements OnInit, OnDestroy {
   updateHitListId(id: number) {
     if (this.hitListId !== id) {
       this.hitListId = id;
+      this.listData = new CRecordListData(this.hitListId);
     }
   }
 
