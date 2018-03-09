@@ -375,7 +375,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitlistBO;
         }
 
-
         [HttpGet]
         [Route(Consts.apiPrefix + "hitlists/getRegNumberList")]
         [SwaggerOperation("GetRegNumberListFromHitlist")]
@@ -387,7 +386,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-
                 GetRegNumberListFromHitlistID.HitListID = hitlistId;
                 var regNumberList = GetRegNumberListFromHitlistID.Execute();
                 return regNumberList;
@@ -695,7 +693,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         [HttpDelete]
-        [Route(Consts.apiPrefix + "hitlists/{id}")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}")]
         [SwaggerOperation("DeleteHitlist")]
         public async Task<IHttpActionResult> DeleteHitlist(int id)
         {
@@ -728,7 +726,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         [HttpPut]
-        [Route(Consts.apiPrefix + "hitlists/{id}")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}")]
         [SwaggerOperation("UpdateHitlist")]
         public async Task<IHttpActionResult> UpdateHitlist(int id, [FromBody] HitlistData hitlistData)
         {
@@ -791,7 +789,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The promise to return a JSON object containing an array of registration records</returns>
         [HttpGet]
-        [Route(Consts.apiPrefix + "hitlists/{id}/performQuery")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}/performQuery")]
         [SwaggerOperation("GetPerformQueryHitlist")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -819,7 +817,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The object containing the search criteria as XML string</returns>
         [HttpGet]
-        [Route(Consts.apiPrefix + "hitlists/{id}/query")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}/query")]
         [SwaggerOperation("GetHitlistQuery")]
         [SwaggerResponse(200, type: typeof(QueryData))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -862,7 +860,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The list of hit-list objects</returns>
         [HttpGet]
-        [Route(Consts.apiPrefix + "hitlists/{id1}/{op}/{id2}/records")]
+        [Route(Consts.apiPrefix + "hitlists/{id1:int}/{op}/{id2:int}/records")]
         [SwaggerOperation("GetAdvHitlistRecords")]
         [SwaggerResponse(200, type: typeof(ResponseData))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -942,7 +940,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="id">The ID of the hit-list that needs to be fetched</param>
         /// <returns>The matching hit-list</returns>
         [HttpGet]
-        [Route(Consts.apiPrefix + "hitlists/{id}")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}")]
         [SwaggerOperation("GetHitlist")]
         [SwaggerResponse(200, type: typeof(HitlistData))]
         public async Task<IHttpActionResult> GetHitlist(int id)
@@ -1017,7 +1015,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="sort">The sorting information</param>
         /// <returns>The promise to return a JSON object containing an array of registration records</returns>
         [HttpGet]
-        [Route(Consts.apiPrefix + "hitlists/{id}/export")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}/export")]
         [SwaggerOperation("ExportHitlistRecords")]
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -1046,7 +1044,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="temp">The flag indicating whether or not it is for temporary records (default: false)</param>
         /// <returns>The exported file for the matching hit-list</returns>
         [HttpPost]
-        [Route(Consts.apiPrefix + "hitlists/{id}/export/{exportType}")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}/export/{exportType}")]
         [SwaggerOperation("ExportHitlist")]
         [SwaggerResponse(200, type: typeof(string))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -1176,7 +1174,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         /// <param name="highlightSubStructures">The flag indicating if the structures should be highlighted</param>
         /// <returns>The promise to return a JSON object containing an array of registration records</returns>
         [HttpPost]
-        [Route(Consts.apiPrefix + "hitlists/{id}/print")]
+        [Route(Consts.apiPrefix + "hitlists/{id:int}/print")]
         [SwaggerOperation("PrintRecords")]
         [SwaggerResponse(200, type: typeof(JObject))]
         [SwaggerResponse(400, type: typeof(Exception))]
@@ -1273,7 +1271,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         [SwaggerResponse(404, type: typeof(Exception))]
         [SwaggerResponse(500, type: typeof(Exception))]
         [HttpDelete]
-        [Route(Consts.apiPrefix + "exportTemplates/{id}")]
+        [Route(Consts.apiPrefix + "exportTemplates/{id:int}")]
         [SwaggerOperation("DeleteExportTemplate")]
         public async Task<IHttpActionResult> DeleteExportTemplate(int id)
         {

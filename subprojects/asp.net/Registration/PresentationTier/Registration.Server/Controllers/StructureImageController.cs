@@ -14,7 +14,6 @@ using PerkinElmer.COE.Registration.Server.Code;
 using CambridgeSoft.COE.Framework.COEGenericObjectStorageService;
 using CambridgeSoft.COE.Registration.Services.Types;
 
-
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
     [ApiVersion(Consts.apiVersion)]

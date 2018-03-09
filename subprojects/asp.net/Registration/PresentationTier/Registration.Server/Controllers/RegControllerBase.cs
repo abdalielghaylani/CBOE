@@ -308,7 +308,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
         protected bool CheckAuthorizations(string permission)
         {
-          return Csla.ApplicationContext.User.IsInRole(permission);
+            return Csla.ApplicationContext.User.IsInRole(permission);
         }
 
         protected async Task<IHttpActionResult> CallMethod(Func<object> method, string[] permissions = null, [CallerMemberName] string memberName = "", CacheControlHeaderValue cacheControl = null)
@@ -545,7 +545,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             bo.CreateNewHitList = false;
             bo.AllowFullScan = true;
             bo.CurrentFormType = FormGroup.CurrentFormEnum.ListForm;
-            if (searchCriteria != null) 
+            if (searchCriteria != null)
             {
                 bo.SearchCriteria = searchCriteria;
                 bo.CommitSize = 1500;
@@ -558,9 +558,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var sortDirection = OrderByCriteria.OrderByDirection.DESC;
             if (!string.IsNullOrEmpty(sort))
             {
-                if (!sort.Contains("DESC")) 
-                { 
-                    sortDirection = OrderByCriteria.OrderByDirection.ASC; 
+                if (!sort.Contains("DESC"))
+                {
+                    sortDirection = OrderByCriteria.OrderByDirection.ASC;
                 }
                 columnToOrderWith = sort.Replace("DESC", string.Empty).Trim();
             }
@@ -673,7 +673,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 data.Add(row);
             }
 
-            if (refineHitlist) {
+            if (refineHitlist)
+            {
                 var refinedHitlistBO = GetHitlistBO(hitlist.HitListID);
                 var hitlistBO = GetHitlistBO(bo.CurrentHitList.HitListID);
                 hitlistBO.Name = string.Format("Search {0}", bo.CurrentHitList.HitListID);

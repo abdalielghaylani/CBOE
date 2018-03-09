@@ -200,12 +200,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             var disabledControlArray = GetDisabledControls(appName);
 
             // CBOE-6343 'Component ID' and 'Structure ID' fields should not be available in detail view of temp records
-            // TODO: visibiity of these fields can be decided by updating 'REVIEWREGISTERMIXTURE' xml
+            // TODO: Visibility of these fields can be decided by updating 'REVIEWREGISTERMIXTURE' XML
             disabledControlArray.Add(new JObject(
                 new JProperty("id", "CIDTextBox"),
                 new JProperty("action", 0),
                 new JProperty("formId", 2),
-                new JProperty("parentControlId", ""),
+                new JProperty("parentControlId", string.Empty),
                 new JProperty("placeHolderId", "mixtureInformationHolder"),
                 new JProperty("pageId", "REVIEWREGISTERMIXTURE")
                 ));
@@ -214,7 +214,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 new JProperty("id", "CSID"),
                 new JProperty("action", 0),
                 new JProperty("formId", 2),
-                new JProperty("parentControlId", ""),
+                new JProperty("parentControlId", string.Empty),
                 new JProperty("placeHolderId", "mixtureInformationHolder"),
                 new JProperty("pageId", "REVIEWREGISTERMIXTURE")
                 ));
