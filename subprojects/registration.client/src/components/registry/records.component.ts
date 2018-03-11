@@ -617,6 +617,7 @@ export class RegRecords implements OnInit, OnDestroy {
       this.rowSelected = false;
       this.loadIndicatorVisible = true;
       this.updateHitListId(e.hitlistId);
+      this.updateQueryForm = true;
       this.grid.instance.refresh();
     }
   }
@@ -630,6 +631,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private restoreClicked(queryData: IQueryData) {
     this.showQueryForm();
     this.searchForm.restore(queryData);
+    this.updateQueryForm = false;
   }
 
   private showMarked() {
