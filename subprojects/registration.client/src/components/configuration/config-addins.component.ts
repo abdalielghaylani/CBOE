@@ -128,8 +128,7 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
           this.http.post(`${apiUrlBase}`, values)
             .toPromise()
             .then(result => {
-              let id = result.json().id;
-              notifySuccess(`A new record ${id} of ${tableName} was created successfully!`, 5000);
+              notifySuccess(`A new record of ${tableName} was created successfully!`, 5000);
               this.hideLoadPanel();
               resolve(result.json());
             })
