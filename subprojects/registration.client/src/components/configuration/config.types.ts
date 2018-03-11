@@ -731,21 +731,6 @@ export const CONFIG_ADDIN_COLUMNS = {
       editorType: 'dxCheckBox',
       editorOptions: { disabled: true }
     }],
-    events: [{
-      dataField: 'eventName',
-      caption: 'Event',
-      editorType: 'dxSelectBox',
-      dataType: String,
-      width: 200,
-      validationRules: [{ type: 'required', message: 'Event required' }],
-    }, {
-      dataField: 'eventHandler',
-      caption: 'Handler',
-      editorType: 'dxSelectBox',
-      dataType: String,
-      width: 200,
-      validationRules: [{ type: 'required', message: 'Handler required' }],
-    }],
     config: [{
       dataField: 'Configuration',
       label: { visible: false },
@@ -788,27 +773,23 @@ export class CConfigAddIn {
       this.editRow = e.data;
       this.configView = 'view';
       this.configVal = this.editRow.Configuration;
-      this.currentEvents = this.addinAssemblies[0].classes.filter
-        (s => s.name === e.data.addinName.replace('CambridgeSoft.COE.Registration.Services.RegistrationAddins.', ''));
-      this.columns.editColumn.events[1].lookup = { dataSource: this.currentEvents[0].eventHandlers, valueExpr: 'name', displayExpr: 'name' };
     }
     if (op === 'add') {
       this.editRow = new CAddInModel();
-      this.columns.editColumn.events[1].lookup = {};
       this.window = { title: 'Add Addins', viewIndex: 'add' };
       this.configView = 'edit';
     }
-    this.columns.editColumn.events[0].lookup = {
-      dataSource: ['Loaded', 'Inserting', 'Inserted', 'Updating', 'Updated', 'Registering', 'UpdatingPerm', 'Saving', 'Saved', 'PropertyChanged']
-    };
   }
+
   saveConfig() {
     this.configView = 'view';
   }
+
   editConfig() {
     this.configView = 'edit';
     this.configVal = this.editRow.Configuration;
   }
+
   cancelEditConfig(config) {
     this.configView = 'view';
     this.editRow.Configuration = this.configVal;

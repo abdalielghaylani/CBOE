@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChildren, OnInit, Injector } from '@angular/core';
+import { Component, ElementRef, ViewChildren, ViewChild, OnInit, Injector, ChangeDetectorRef } from '@angular/core';
 import DevExtreme from 'devextreme/bundles/dx.all.d';
 import CustomStore from 'devextreme/data/custom_store';
 import { DxDataGridComponent, DxFormComponent } from 'devextreme-angular';
@@ -8,6 +8,7 @@ import { ILookupData } from '../../redux';
 import { apiUrlPrefix } from '../../configuration';
 import { CConfigAddIn } from './config.types';
 import { RegConfigBaseComponent } from './config-base';
+import { RegAddinEventsListItem } from './addin-events.component';
 
 @Component({
   selector: 'reg-config-addins',
@@ -18,12 +19,13 @@ import { RegConfigBaseComponent } from './config-base';
 export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
   @ViewChildren(DxDataGridComponent) grids;
   @ViewChildren(DxFormComponent) forms;
+  @ViewChild(RegAddinEventsListItem) addinEventList;
   private rows: any[] = [];
   private dataSource: CustomStore;
   private configAddIn: CConfigAddIn;
   private loadingVisible = false;
 
-  constructor(elementRef: ElementRef, http: HttpService) {
+  constructor(elementRef: ElementRef, http: HttpService, private changeDetecter: ChangeDetectorRef) {
     super(elementRef, http);
   }
 
@@ -44,21 +46,8 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
     e.component.refresh();
   }
 
-  onFieldDataChanged(e) {
-    if (e.dataField === 'className' && e.value) {
-      this.configAddIn.editRow.events = [];
-      this.configAddIn.columns.editColumn.events[1].lookup = {};
-      this.configAddIn.currentEvents = this.configAddIn.addinAssemblies[0].classes.filter
-        (s => s.name === e.value);
-      this.configAddIn.columns.editColumn.events[1].lookup = {
-        dataSource: this.configAddIn.currentEvents[0].eventHandlers, valueExpr: 'name', displayExpr: 'name'
-      };
-      this.grids.last.instance.refresh();
-    }
-  }
-
   save(e) {
-    if (this.configAddIn.detectUnsavedChanges(this.grids._results[1].instance.hasEditData())) {
+    if (this.configAddIn.detectUnsavedChanges(this.addinEventList.hasEditData())) {
       notify(`You have unsaved changes on this page.You must complete editing.`, 'warning', 5000);
     } else {
       switch (this.configAddIn.window.viewIndex) {
@@ -177,4 +166,13 @@ export class RegConfigAddins extends RegConfigBaseComponent implements OnInit {
   private hideLoadPanel() {
     this.loadingVisible = false;
   }
+
+  onValueChanged(e, d) {
+    d.setValue(e.value, d.column.dataField);
+  }
+
+  eventSourceChanged(e) {
+    this.configAddIn.editRow.events = e;
+  }
+
 };
