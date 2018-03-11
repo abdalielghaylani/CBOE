@@ -31,7 +31,7 @@
     <div *dxTemplate="let data of 'content'">
       <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="400" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
       </dx-form>
-      <div style="margin-top: 15px">
+      <div class="mt2">
         <button class="mr1 btn btn-primary" (click)="saveTemplate()">Save</button>
         <button class="mr1 btn btn-primary" (click)="cancelSaveTemplate()">Cancel</button>
       </div>

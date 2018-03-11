@@ -156,6 +156,18 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private restorePreference(e) {
   }
 
+  private restoreCurrentQueryToForm() {
+    let url = `${apiUrlPrefix}hitlists/${this.hitListId}/query${this.temporary ? '?temp=true' : ''}`;
+    this.http.get(url).toPromise()
+      .then(res => {
+        let queryData = res.json() as IQueryData;
+        this.restore(queryData);
+      })
+      .catch(error => {
+        notifyException(`Restoring the current query failed due to a problem`, error, 5000);
+      });
+  }
+
   private restoreLastQueryToForm() {
     let url = `${apiUrlPrefix}hitlists/${this.temporary}/restoreLastQuery`;
     this.http.get(url).toPromise()
@@ -164,7 +176,7 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
         this.restore(queryData);
       })
       .catch(error => {
-        notifyException(`Restoring the selected query failed due to a problem`, error, 5000);
+        notifyException(`Restoring the last query failed due to a problem`, error, 5000);
       });
   }
 
@@ -179,5 +191,4 @@ export class RegRecordSearch implements OnInit, OnDestroy, OnChanges {
   private onOptionChanged(e) {
     this.actions.seachOptionChanged(this.optionData.isHighLightSubstructure);
   }
-
 };

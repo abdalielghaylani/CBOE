@@ -4,19 +4,19 @@
     <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="hitListId" [recordsCount]="recordsTotalCount"></reg-search-export>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
     <command-button *ngIf="!!hitListId &amp;&amp; !rowSelected" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
-    <command-button *ngIf="!!hitListId &amp;&amp; !rowSelected" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
-    <command-button *ngIf="!!hitListId &amp;&amp; !rowSelected" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
+    <command-button *ngIf="!rowSelected" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
+    <command-button *ngIf="!rowSelected" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
     <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
-    <command-button *ngIf="!hitListId &amp;&amp; !rowSelected" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+    <command-button *ngIf="!!hitListId &amp;&amp; !rowSelected" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
   </div>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     <span *ngIf="temporary">Temporary</span> Registration Records
   </reg-header>
   <reg-bulk-register-popup [viewModel]="regMarkedModel" *ngIf="regMarkedModel.isVisible" (registerMarked)="registerMarkedStart($event)"></reg-bulk-register-popup>
-  <dx-popup [width]="300" [height]="250" [showTitle]="true" title="Save Query" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
+  <dx-popup [width]="300" [height]="250" [showTitle]="true" title="Save {{isMarkedQuery ? 'Marked' : 'Query'}}" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="popupVisible">
     <div *dxTemplate="let data of 'content'">
       <dx-form id="editHitlistForm" labelLocation="left" minColWidth=300 [colCount]="1" [items]="hitlistVM.saveQueryVM.editColumns" [formData]="hitlistVM.saveQueryVM.data"></dx-form>
-      <div style="margin-top: 15px">
+      <div class="mt2">
         <button class="mr1 btn btn-primary" (click)="saveHitlist()">Save</button>
         <button class="mr1 btn btn-primary" (click)="cancelSaveQuery()">Cancel</button>
       </div>

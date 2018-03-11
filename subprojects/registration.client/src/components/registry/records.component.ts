@@ -76,7 +76,6 @@ export class RegRecords implements OnInit, OnDestroy {
   private approvedIcon = require('../common/assets/approved.png');
   private notApprovedIcon = require('../common/assets/notapproved.png');
   private isPrintAndExportAvailable: boolean = false;
-  private clearSearchForm: boolean = false;
   private dataStore: CustomStore;
   private recordsTotalCount: number = 0;
   private refreshHitList: boolean = false;
@@ -84,6 +83,8 @@ export class RegRecords implements OnInit, OnDestroy {
   private markedHitListId: number = 0;
   private markedHitlistHitsNum: number = 0;
   private isTotalSearchableCountUpdated: boolean = false;
+  private queryFormShown: boolean = false;
+  private updateQueryForm: boolean = true;
   private isRefine = false;
   private isAllSelected: boolean = false;
   private markedHitsMax: number = 0;
@@ -101,6 +102,9 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isTotalSearchableCountUpdated = false;
+    this.queryFormShown = false;
+    this.updateQueryForm = true;
     // Synchronize the hit-list ID with the global cache.
     if (this.hitListId !== 0) {
       this.listData = new CRecordListData(this.hitListId);
@@ -186,14 +190,16 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   setTotalSearchableCount() {
-    this.http.get(`${apiUrlPrefix}records/databaseRecordCount?temp=${this.temporary}`).toPromise()
-      .then((res => {
-        this.totalSearchableCount = res.json();
-        this.isTotalSearchableCountUpdated = true;
-      }).bind(this))
-      .catch(error => {
-        notifyException(`The search failed due to a problem`, error, 5000);
-      });
+    if (!this.isTotalSearchableCountUpdated) {
+      this.http.get(`${apiUrlPrefix}records/databaseRecordCount?temp=${this.temporary}`).toPromise()
+        .then((res => {
+          this.totalSearchableCount = res.json();
+          this.isTotalSearchableCountUpdated = true;
+        }).bind(this))
+        .catch(error => {
+          notifyException(`The total searchable count query failed due to a problem`, error, 5000);
+        });
+    }
   }
 
   getMarkedHitList() {
@@ -205,7 +211,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.changeDetector.markForCheck();
       }).bind(this))
       .catch(error => {
-        notifyException(`The search failed due to a problem`, error, 5000);
+        notifyException(`The marked hit-list query failed due to a problem`, error, 5000);
       });
   }
 
@@ -222,7 +228,7 @@ export class RegRecords implements OnInit, OnDestroy {
     let state = this.ngRedux.getState();
     let formGroup = state.configuration.formGroups[FormGroupType[formGroupType]] as IFormGroup;
     this.viewGroupsColumns = this.lookups
-      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, this.lookups.pickListDomains, systemSettings) 
+      ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, this.lookups.pickListDomains, systemSettings)
       : new CViewGroupColumns();
 
     this.markedHitsMax = systemSettings.markedHitsMax;
@@ -236,8 +242,9 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   restoreHitlist() {
-    if ((this.restore) && (this.hitListId > 0)) {
+    if (this.restore && (this.hitListId > 0)) {
       this.dataStore = this.createCustomStore(this);
+      this.updateQueryForm = true;
     }
   }
 
@@ -303,9 +310,6 @@ export class RegRecords implements OnInit, OnDestroy {
                 deferred.reject(message);
               });
           }
-        }
-        if (!ref.isTotalSearchableCountUpdated) {
-          ref.setTotalSearchableCount();
         }
         return deferred.promise();
       }
@@ -527,10 +531,8 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private newQuery() {
-    this.currentIndex = 2;
-    if (this.clearSearchForm) {
-      // Due to CDD activation issues, we can clear the search form only after showing the search form first.
-      this.clearSearchForm = false;
+    this.showQueryForm();
+    if (this.queryFormShown) {
       this.searchForm.clear();
     }
   }
@@ -543,7 +545,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private retrieveAll() {
     this.updateHitListId(0);
-    this.clearSearchForm = true;
+    this.updateQueryForm = true;
     this.rowSelected = false;
     this.isRefine = false;
     this.grid.instance.refresh();
@@ -579,23 +581,28 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private editQuery(id: Number) {
-    let url = `${apiUrlPrefix}hitlists/${id}/query${this.temporary ? '?temp=true' : ''}`;
-    this.http.get(url).toPromise()
-      .then(res => {
-        let queryData = res.json() as IQueryData;
-        this.searchForm.restore(queryData);
-      })
-      .catch(error => {
-        notifyException(`Restoring the previous query failed due to a problem`, error, 5000);
-      });
-    this.setTotalSearchableCount();
-    this.currentIndex = 2;
+    if (this.updateQueryForm) {
+      if (id > 0) {
+      let url = `${apiUrlPrefix}hitlists/${id}/query${this.temporary ? '?temp=true' : ''}`;
+        this.http.get(url).toPromise()
+          .then(res => {
+            let queryData = res.json() as IQueryData;
+            this.searchForm.restore(queryData);
+          })
+          .catch(error => {
+            notifyException(`Restoring the previous query failed due to a problem`, error, 5000);
+          });
+      } else if (this.queryFormShown) {
+        this.searchForm.clear();
+      }
+      this.updateQueryForm = false;
+    }
+    this.showQueryForm();
   }
 
   private refineQuery(id: Number) {
-    this.currentIndex = 2;
+    this.showQueryForm();
     this.isRefine = true;
-    this.totalSearchableCount = this.recordsTotalCount;
     this.searchForm.clear();
   }
 
@@ -614,8 +621,14 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  private restoreClicked(queryData: IQueryData) {
+  private showQueryForm() {
+    this.setTotalSearchableCount();
     this.currentIndex = 2;
+    this.queryFormShown = true;
+  }
+
+  private restoreClicked(queryData: IQueryData) {
+    this.showQueryForm();
     this.searchForm.restore(queryData);
   }
 
@@ -747,7 +760,7 @@ export class RegRecords implements OnInit, OnDestroy {
                       if (option) {
                         field = option.value;
                       }
-                    } 
+                    }
                     printContents += `<td rowspan=${row.BatchDataSource.length}>${(field) ? field : ''}</td>`;
                   }
                 }
@@ -772,7 +785,7 @@ export class RegRecords implements OnInit, OnDestroy {
                         if (option) {
                           field = option.value;
                         }
-                      } 
+                      }
                       printContents += `<td >${(field) ? field : ''}</td>`;
                     }
                   }
@@ -815,7 +828,7 @@ export class RegRecords implements OnInit, OnDestroy {
               </head>
               <body onload="window.print(); window.close()">${printContents}</body>
               </html>`);
-            popupWin.onbeforeunload = function() { 
+            popupWin.onbeforeunload = function () {
               this.opener.NewRegWindowHandle.closePrintPage();
             };
             popupWin.document.close();
@@ -915,7 +928,7 @@ export class RegRecords implements OnInit, OnDestroy {
         let selectedRows = res.json();
         let regInvContainer = new RegInvContainerHandler();
         let systemSettings = new CSystemSettings(this.ngRedux.getState().session.lookups.systemSettings);
-        regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` + 
+        regInvContainer.openContainerPopup((systemSettings.invSendToInventoryURL + `?RegIDList=` +
           selectedRows + `&OpenAsModalFrame=false`), invWideWindowParams);
       })
       .catch(error => {

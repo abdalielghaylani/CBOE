@@ -9,6 +9,9 @@
     <li>
       <button type="button" class="btn">Last Query</button>
     </li> -->
+    <li *ngIf="hitListId &gt; 0">
+      <button type="button" (click)="restoreCurrentQueryToForm()" class="btn">Current Query to Form</button>
+    </li>
     <li>
       <button type="button" (click)="restoreLastQueryToForm()" class="btn">Last Query to Form</button>
     </li>
