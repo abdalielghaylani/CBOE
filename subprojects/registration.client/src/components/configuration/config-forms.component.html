@@ -1,11 +1,10 @@
 <div class="viewcontainer" (window:resize)="onResize($event)">
   <reg-settings-page-header>Customize Forms</reg-settings-page-header>
-  <dx-data-grid [columns]="configForms.columns" [dataSource]="dataSource" [paging]='{pageSize: 10}' [pager]='{ showPageSizeSelector: true, allowedPageSizes: [5, 10, 20], showInfo: true }'
-    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true" (onInitialized)='onInitialized($event)'
-    (onCellPrepared)='onCellPrepared($event)' (onRowClick)="onRowClick($event)">
+  <dx-data-grid [columns]="configForms.columns" [dataSource]="dataSource" [paging]='{enabled: false}'
+    [searchPanel]='{ visible: true }' [filterRow]='{ visible: true }' [height]="gridHeight" rowAlternationEnabled="true"
+    [grouping]="{ autoExpandAll: true }" [wordWrapEnabled]="true"
+    (onInitialized)='onInitialized($event)' (onCellPrepared)='onCellPrepared($event)' (onRowClick)="onRowClick($event)">
     <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
-    <dxo-grouping [autoExpandAll]="true"></dxo-grouping>
-    <dxo-scrolling mode="infinite"></dxo-scrolling>
     <div *dxTemplate="let data of 'controlTypeTemplate'">
       {{ data.value.replace('CambridgeSoft.COE.Framework.Controls.COEFormGenerator.COE','') }}
     </div>
