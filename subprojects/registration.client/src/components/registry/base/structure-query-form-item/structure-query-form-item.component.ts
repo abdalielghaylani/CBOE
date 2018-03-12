@@ -103,8 +103,10 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
     this.fragmentsOverlap = value._fragmentsOverlap === 'YES';
     this.tautometer = value._tautometer === 'YES';
     this.simThreshold = +value._simThreshold;
-    this.matchStereochemistry = value._tetrahedralStereo || value._relativeTetStereo === 'YES' || value._doubleBondStereo === 'YES';
-    this.tetrahedralStereo = value._tetrahedralStereo;
+    this.matchStereochemistry = (value._tetrahedralStereo !== 'NO' && value._tetrahedralStereo !== 'ANY')
+      || value._relativeTetStereo === 'YES' || value._doubleBondStereo === 'YES';
+    this.tetrahedralStereo = !this.matchStereochemistry ? 'SAME' :
+      value._tetrahedralStereo === 'NO' ? 'ANY' : value._tetrahedralStereo === 'YES' ? 'SAME' : value._tetrahedralStereo;
     this.relativeTetStereo = value._relativeTetStereo === 'YES';
     this.doubleBondStereo = this.matchStereochemistry && value._doubleBondStereo === 'NO' ? 'Any' : 'Same';
     const structureValue = value.__text;
@@ -127,7 +129,7 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
     serialized._fragmentsOverlap = this.fragmentsOverlap ? 'YES' : 'NO';
     serialized._tautometer = this.tautometer ? 'YES' : 'NO';
     serialized._simThreshold = this.simThreshold.toString();
-    serialized._tetrahedralStereo = this.matchStereochemistry ? this.tetrahedralStereo : 'SAME';
+    serialized._tetrahedralStereo = this.matchStereochemistry ? this.tetrahedralStereo : 'NO';
     serialized._relativeTetStereo = this.matchStereochemistry && this.relativeTetStereo ? 'YES' : 'NO';
     serialized._doubleBondStereo = this.matchStereochemistry && this.doubleBondStereo !== 'Any' ? 'YES' : 'NO';
     serialized._fullSearch = this.searchTypeValue === this.searchTypeOptions[1] ? 'YES' : 'NO';
