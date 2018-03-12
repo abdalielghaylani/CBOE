@@ -75,6 +75,8 @@ export class RegRecords implements OnInit, OnDestroy {
   private defaultPrintStructureImage = require('../common/assets/no-structure.png');
   private approvedIcon = require('../common/assets/approved.png');
   private notApprovedIcon = require('../common/assets/notapproved.png');
+  private checkedIcon = require('../common/assets/checked-checkbox-100.png');
+  private uncheckedIcon = require('../common/assets/unchecked-checkbox-100.png');
   private isPrintAndExportAvailable: boolean = false;
   private dataStore: CustomStore;
   private recordsTotalCount: number = 0;
@@ -750,6 +752,9 @@ export class RegRecords implements OnInit, OnDestroy {
                   if (c.caption === 'Approved') {
                     printContents += `<td rowspan=${row.BatchDataSource.length}>
                     <img src="${(field === RegistryStatus.Approved) ? this.approvedIcon : this.notApprovedIcon}" /></td>`;
+                  } else if (c.caption === 'Marked') {
+                    printContents += `<td rowspan=${row.BatchDataSource.length}>
+                    <img style="height:12px" src="${(field === 0) ? this.uncheckedIcon : this.checkedIcon}" /></td>`;
                   } else if (c.dataField === 'Structure' || c.dataField === 'STRUCTUREAGGREGATION') {
                     let structureImage = this.imageService.getImage(field);
                     printContents += `<td rowspan=${row.BatchDataSource.length}><img src="${structureImage ?
@@ -815,6 +820,7 @@ export class RegRecords implements OnInit, OnDestroy {
                     font-size: 12px;
                     font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Verdana, sans-serif;
                     border-spacing: 0px;
+                    padding: 4px;
                 }
                 img {
                   max-width: 100px;
