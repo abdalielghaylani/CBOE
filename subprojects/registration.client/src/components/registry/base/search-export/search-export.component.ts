@@ -293,21 +293,22 @@ export class RegSearchExport implements OnInit, OnDestroy {
   }
 
   private saveTemplate(e) {
-    if (this.grid.instance.getSelectedRowKeys().length === 0) {
+    const updatedFields = this.updatedFields;
+    const selectedRows = this.grid.instance.getSelectedRowKeys();
+    if (selectedRows.length === 0) {
       notify('Select at least one table criteria before saving the template', 'warning', 5000);
       return;
     }
     let validationResult: any = this.saveTemplateForm.validate();
     if (validationResult.isValid) {
-      this.updatedFields = [];
       this.grid.instance.saveEditData();
       let resultsCriteria: any[] = [];
       this.rows.forEach(row => {
-        let updatedRow = this.updatedFields.find(r => r.key === `${row.fieldId}${row.fieldName.toLowerCase()}`);
+        let updatedRow = updatedFields.find(r => r.key === `${row.fieldId}${row.fieldName.toLowerCase().replace(/ /g, '')}`);
         resultsCriteria.push({
           tableId: row.tableId,
           fieldId: row.fieldId,
-          visible: this.grid.instance.getSelectedRowKeys().find(s => s === `${row.fieldId}${row.fieldName.toLowerCase()}`) !== undefined,
+          visible: selectedRows.find(s => s === `${row.fieldId}${row.fieldName.toLowerCase().replace(/ /g, '')}`) !== undefined,
           indexType: row.indexType,
           mimeType: row.mimeType,
           alias: (updatedRow) ? updatedRow.name.fieldName : row.fieldName
