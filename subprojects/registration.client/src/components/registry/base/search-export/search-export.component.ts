@@ -237,6 +237,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
     if (this.defaultSelectedRowsKeys.length > 0) {
       this.grid.instance.selectRows(this.defaultSelectedRowsKeys);
     }
+    this.isAddTemplateEnable = true;
   }
 
   protected editTemplate() {
@@ -286,10 +287,9 @@ export class RegSearchExport implements OnInit, OnDestroy {
         this.exportTemplates.push({ ID: t.ID, Name: t.Name, Description: t.Description, IsPublic: t.IsPublic });
         this.changeDetector.markForCheck();
       });
-    })
-      .catch(error => {
-        let message = getExceptionMessage(`The export tempaltes were not retrieved properly due to a problem`, error);
-      });
+    }).catch(error => {
+      let message = getExceptionMessage(`The export templates were not retrieved properly due to a problem`, error);
+    });
   }
 
   private saveTemplate(e) {
@@ -335,11 +335,11 @@ export class RegSearchExport implements OnInit, OnDestroy {
           if (this.currentExportTemplate > 0) {
             this.isEditDeleteTemplateButtonEnabled = true;
           }
-
           this.getExportTemplates();
           this.changeDetector.markForCheck();
           this.createCustomStore(this);
           this.grid.instance.refresh();
+          this.isAddTemplateEnable = false;
           notifySuccess(`The template was saved successfully!`, 5000);
         })
         .catch(error => {
@@ -389,11 +389,11 @@ export class RegSearchExport implements OnInit, OnDestroy {
               } catch (ex) {
 
               }
-              this.clearLoadindicator();
+              this.clearLoadIndicator();
               notifySuccess(`The file was exported correctly`, 5000);
             })
               .catch(error => {
-                this.clearLoadindicator();
+                this.clearLoadIndicator();
                 notifyException(`The submission data was not posted properly due to a problem`, error, 5000);
               });
           }
@@ -412,8 +412,7 @@ export class RegSearchExport implements OnInit, OnDestroy {
       load: function (loadOptions) {
         let deferred = jQuery.Deferred();
         let tableName = 'hitlists/resultsCriteria';
-        let params = '';
-        if (parent.temporary) { params += `${params ? '&' : '?'}temp=true`; }
+        let params = parent.temporary ? `?temp=true` : ``;
         if (parent.currentExportTemplate > 0) { params += `${params ? '&' : '?'}templateId=${parent.currentExportTemplate}`; }
         let apiUrlBase = `${apiUrlPrefix}${tableName}${params}`;
         parent.http.get(apiUrlBase)
@@ -430,11 +429,9 @@ export class RegSearchExport implements OnInit, OnDestroy {
             if (selectedRowsKeys.length > 0) {
               parent.grid.instance.selectRows(selectedRowsKeys);
             }
-
             if (selectedRowsKeys.length > 0 && parent.currentExportTemplate === 0) {
               parent.defaultSelectedRowsKeys = selectedRowsKeys.slice();
             }
-
             parent.setGroupedSelected();
             deferred.resolve(rows, { totalCount: rows.length });
           })
@@ -452,9 +449,8 @@ export class RegSearchExport implements OnInit, OnDestroy {
     });
   }
 
-  clearLoadindicator() {
+  clearLoadIndicator() {
     this.loadIndicatorVisible = false;
     this.changeDetector.markForCheck();
   }
-
 };

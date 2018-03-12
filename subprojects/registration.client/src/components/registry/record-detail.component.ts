@@ -400,11 +400,11 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       this.http.post(url, data).toPromise()
         .then(res => {
           this.regTemplates.dataSource = undefined;
-          this.clearLoadindicator();
+          this.clearLoadIndicator();
           notifySuccess((res.json() as IResponseData).message, 5000);
         })
         .catch(error => {
-          this.clearLoadindicator();
+          this.clearLoadIndicator();
           notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
         });
       this.saveTemplatePopupVisible = false;
@@ -424,18 +424,18 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
       this.http.put(url, data).toPromise()
         .then(res => {
           this.regTemplates.dataSource = undefined;
-          this.clearLoadindicator();
+          this.clearLoadIndicator();
           notifySuccess((res.json() as IResponseData).message, 5000);
         })
         .catch(error => {
-          this.clearLoadindicator();
+          this.clearLoadIndicator();
           notifyException(`The submission data was not saved properly due to a problem`, error, 5000);
         });
       this.saveTemplatePopupVisible = false;
     }
   }
 
-  clearLoadindicator() {
+  clearLoadIndicator() {
     this.loadingVisible = false;
     this.changeDetector.markForCheck();
   }
@@ -503,11 +503,11 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
         this.regTemplates.dataSource = undefined;
         this.statusId = RegistryStatus.Submitted;
         this.update();
-        this.clearLoadindicator();
+        this.clearLoadIndicator();
         notifySuccess(`The current temporary record's approval was cancelled successfully!`, 5000);
       })
       .catch(error => {
-        this.clearLoadindicator();
+        this.clearLoadIndicator();
         notifyException(`The approval cancelling process failed due to a problem`, error, 5000);
       });
     this.saveTemplatePopupVisible = false;
@@ -521,11 +521,11 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
         this.regTemplates.dataSource = undefined;
         this.statusId = RegistryStatus.Approved;
         this.update();
-        this.clearLoadindicator();
+        this.clearLoadIndicator();
         notifySuccess(`The current temporary record was approved successfully!`, 5000);
       })
       .catch(error => {
-        this.clearLoadindicator();
+        this.clearLoadIndicator();
         notifyException(`The approval process failed due to a problem`, error, 5000);
       });
     this.saveTemplatePopupVisible = false;
@@ -541,7 +541,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
         let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${this.id}`;
         this.http.delete(url).toPromise()
           .then(res => {
-            this.clearLoadindicator();
+            this.clearLoadIndicator();
             notifySuccess(`The record was deleted successfully!`, 5000);
             if (this.bulkreg) {
               this.router.navigate([`records/bulkreg`]);
@@ -550,7 +550,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
             }
           })
           .catch(error => {
-            this.clearLoadindicator();
+            this.clearLoadIndicator();
             notifyException(`The record was not deleted due to a problem`, error, 5000);
           });
       }

@@ -1,20 +1,16 @@
 <command-button id="search-export-command" testid="search-export-command" (onClick)="showForm($event)" iconName="files-o" title="Export"></command-button>
 <div class="absolute">
-  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Export" [shading]="true" [closeOnOutsideClick]="false"
-    contentTemplate="contentTemplate" [(visible)]="formVisible">
-    
+  <dx-popup showCloseButton=false [fullScreen]="false" width="800" height="auto" title="Export" [shading]="true" [closeOnOutsideClick]="false" contentTemplate="contentTemplate" [(visible)]="formVisible">
     <div *dxTemplate="let data of 'contentTemplate'">
       <div class="row" style="margin-bottom: 5px;">
         <div class="col-sm-2"><label>Export Format:</label></div>
         <div class="col-sm-2">
-          <dx-select-box [items]="filesType" [value]="selectedFileType" [width]="100" 
-          (onValueChanged)="fileTypeValueChanged($event);" displayExpr="displayExpr" valueExpr="valueExpr">
+          <dx-select-box [items]="filesType" [value]="selectedFileType" [width]="100" (onValueChanged)="fileTypeValueChanged($event);" displayExpr="displayExpr" valueExpr="valueExpr">
           </dx-select-box>
         </div>
         <div class="col-sm-1"><label>Template:</label></div>
         <div class="col-sm-2">
-          <dx-select-box [items]="exportTemplates" [value]="currentExportTemplate" [width]="130"
-          (onValueChanged)="exportTemplateValueChanged($event);" displayExpr="Name" valueExpr="ID">
+          <dx-select-box [items]="exportTemplates" [value]="currentExportTemplate" [width]="130" (onValueChanged)="exportTemplateValueChanged($event);" displayExpr="Name" valueExpr="ID">
           </dx-select-box>
         </div>
         <div class="col-sm-5">
@@ -22,15 +18,12 @@
           <command-button *ngIf="isEditDeleteTemplateButtonEnabled" id="edit-template-command" (onClick)="editTemplate()" testid="edit-template-command" iconName="edit" title="Edit" [pullRight]="false"></command-button>
           <command-button *ngIf="isEditDeleteTemplateButtonEnabled" id="delete-template-command" (onClick)="deleteTemplate()" testid="delete-template-command" iconName="delete" title="Delete" [pullRight]="false"></command-button>
         </div>
-      </div>   
-      <div *ngIf="isAddTemplateEnable" class="row" style="margin: 0px;">
-          <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="100" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
-          </dx-form>
-          <command-button testid="template-cancel-button" (onClick)="cancelSaveTemplate($event)" iconName="close" title="Cancel"></command-button>
-          <command-button testid="template-add-button" (onClick)="saveTemplate($event)" iconName="floppy-o" title="Save"></command-button>
-      </div>   
-      <dx-data-grid [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}"
-        [rowAlternationEnabled]="true" [height]="400" (onToolbarPreparing)="toolbarPreparing($event)">
+      </div>
+      <div *ngIf="isAddTemplateEnable">
+        <dx-form id="saveTemplateForm" labelLocation="left" minColWidth="100" [colCount]="1" [items]="saveTemplateItems" [formData]="saveTemplateData" (onInitialized)='onSaveTemplateFormInit($event)'>
+        </dx-form>
+      </div>
+      <dx-data-grid [columns]="columns" [dataSource]="dataSource" [paging]="{enabled: false}" [rowAlternationEnabled]="true" [height]="400" (onToolbarPreparing)="toolbarPreparing($event)">
         <dxo-selection mode="multiple" showCheckBoxesMode="always"></dxo-selection>
         <dxo-editing mode="batch" [allowUpdating]="isAllowUpdatingEnabled" [allowDeleting]="false" [allowAdding]="false"></dxo-editing>
         <div *dxTemplate="let data of 'tableNameGroupCellTemplate'">
@@ -38,10 +31,14 @@
             <dx-check-box (onValueChanged)="onGroupSelectionChanged($event)" [id]="data.key" [value]="isSelected(data.key)"></dx-check-box>
             <span>{{data.displayValue}}</span>
           </div>
-      </div>
+        </div>
       </dx-data-grid>
-      <command-button testid="search-export-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel" [pullRight]="true"></command-button>
-      <command-button testid="search-export-export-button" (onClick)="export($event)" iconName="floppy-o" title="Export" [pullRight]="true"></command-button>
+      <div>
+        <command-button *ngIf="isAddTemplateEnable" testid="template-cancel-button" (onClick)="cancelSaveTemplate($event)" iconName="close" title="Cancel"></command-button>
+        <command-button *ngIf="isAddTemplateEnable" testid="template-add-button" (onClick)="saveTemplate($event)" iconName="floppy-o" title="Save"></command-button>
+        <command-button *ngIf="!isAddTemplateEnable" testid="search-export-cancel-button" (onClick)="cancel($event)" iconName="close" title="Cancel" [pullRight]="true"></command-button>
+        <command-button *ngIf="!isAddTemplateEnable" testid="search-export-export-button" (onClick)="export($event)" iconName="floppy-o" title="Export" [pullRight]="true"></command-button>
+      </div>
     </div>
   </dx-popup>
   <dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">

@@ -103,6 +103,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isTotalSearchableCountUpdated = false;
+    this.isPrintAndExportAvailable = false;
     this.queryFormShown = false;
     this.updateQueryForm = true;
     // Synchronize the hit-list ID with the global cache.
