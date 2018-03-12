@@ -9,7 +9,7 @@ import {
 import { notifyError, notifyException } from '../../../common';
 
 function handleError(currentState: ISessionRecord, error): ISessionRecord {
-  if ((error.status && error.status === 404) || (error.url && error.url.toLowerCase().indexOf('index.html?returnurl') > 0)) {
+  if (error.url && error.url.toLowerCase().indexOf('index.html?returnurl') > 0) {
     return INITIAL_SESSION_STATE;
   }
   notifyException('The operation failed unexpectedly', error, 5000);

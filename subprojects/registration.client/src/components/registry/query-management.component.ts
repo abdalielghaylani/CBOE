@@ -184,7 +184,6 @@ export class RegQueryManagement implements OnInit, OnDestroy {
   }
 
   private cancel(e) {
-    e.hitlistId = this.hitlistId;
     this.onClose.emit(e);
   }
 };
