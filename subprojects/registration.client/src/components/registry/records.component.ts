@@ -360,6 +360,24 @@ export class RegRecords implements OnInit, OnDestroy {
     this.grid.instance.refresh();
   }
 
+  clearMarked() {
+    this.loadIndicatorVisible = true;
+    let url = `${apiUrlPrefix}hitlists/unMarkhit/all${this.temporary ? '?temp=true' : ''}`;
+    this.http.put(url, undefined).toPromise()
+      .then(result => {
+        let markedHitList = result.json();
+        this.markedHitListId = markedHitList.hitlistId;
+        this.markedHitlistHitsNum = markedHitList.numberOfHits;
+        this.grid.instance.refresh();
+        this.changeDetector.markForCheck();
+        this.setProgressBarVisibility(false);
+      })
+      .catch(error => {
+        notifyException(`Clearing all marks failed due to a problem`, error, 5000);
+        this.setProgressBarVisibility(false);
+      });
+  }
+
   selectAllMarked(event) {
     if (event.value) {
       if (this.markedHitlistHitsNum !== this.markedHitsMax) {
@@ -385,21 +403,7 @@ export class RegRecords implements OnInit, OnDestroy {
       }
     } else {
       if (this.markedHitlistHitsNum === this.markedHitsMax) {
-        this.loadIndicatorVisible = true;
-        let url = `${apiUrlPrefix}hitlists/unMarkhit/all${this.temporary ? '?temp=true' : ''}`;
-        this.http.put(url, undefined).toPromise()
-          .then(result => {
-            let markedHitList = result.json();
-            this.markedHitListId = markedHitList.hitlistId;
-            this.markedHitlistHitsNum = markedHitList.numberOfHits;
-            this.grid.instance.refresh();
-            this.changeDetector.markForCheck();
-            this.setProgressBarVisibility(false);
-          })
-          .catch(error => {
-            notifyException(`UnMarking all records failed due to a problem`, error, 5000);
-            this.setProgressBarVisibility(false);
-          });
+        this.clearMarked();
       }
     }
   }

@@ -51,6 +51,7 @@
           <command-button *ngIf="markedHitlistHitsNum > 0 &amp;&amp; !rowSelected" testid="show-marked-button" (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
           <command-button [hidden]="!rowSelected" testid="show-all-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show All Records"></command-button>
           <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
+          <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="unchecked" title="Clear Marked"></command-button>
         </div>
         <div *dxTemplate="let data of 'structureImageColumnTemplate'">
           <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>
@@ -69,7 +70,7 @@
           </div>
         </div>
         <div *dxTemplate="let data of 'markedHeaderTemplate'">
-          <div class="center">
+          <div *ngIf="hitListId &gt; 0" class="center">
             <dx-check-box [value]="markedHitlistHitsNum === markedHitsMax" (onValueChanged)="selectAllMarked($event)"></dx-check-box>
           </div>
         </div>
@@ -86,7 +87,7 @@
   <reg-search-query [temporary]="temporary"  [hitlistId]="hitListId"  [hitlistVM]="hitlistVM" (onClose)="headerClicked($event)" (onRestore)="restoreClicked($event)" [parentHeight]="gridHeight"></reg-search-query>
 </div>
 <div class="viewcontainer" [hidden]="currentIndex!=2">
-  <reg-record-search [totalSearchableCount]="totalSearchableCount" [temporary]="temporary" [hitListId]="hitListId" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" (onRefine)="onRefine($event)" [isRefine]="isRefine" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
+  <reg-record-search [totalSearchableCount]="isRefine ? recordsTotalCount : totalSearchableCount" [temporary]="temporary" [hitListId]="hitListId" (onClose)="headerClicked($event)" (onSearch)="onSearch($event)" (onRefine)="onRefine($event)" [isRefine]="isRefine" [parentHeight]="gridHeight" [activated]="currentIndex===2"></reg-record-search>
 </div>
 <dx-load-panel #loadPanel [position]="{at: 'center'}" [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" shadingColor="rgba(128, 128, 128, .5)" [shading]="true" [closeOnOutsideClick]="false">
 </dx-load-panel>
