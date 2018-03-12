@@ -176,8 +176,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             newnode.Name = node.Name;
             newnode.ParentTableId = node.ParentTableId;
             newnode.SortOrder = node.SortOrder;
-            newnode.Visible = node.Visible;
-
             return newnode;
         }
 
@@ -260,7 +258,14 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     {
                         visible = true; // if is default template, structure columns should be selected by default
                     }
-
+                    else if (isStructureColumn && templateId != null)
+                    {
+                        var tableData = exportTemplateBo.ResultCriteria.Tables.Find(x => x.Id == dataViewTable.Id);
+                        var fieldData = tableData.Criterias.Find(x => x.Alias == fieldAlias && ((ResultsCriteria.Field)x).Id == dataViewField.Id);
+                        if (fieldData != null)
+                            visible = fieldData.Visible;
+                    }
+                    
                     var key = string.Format("{0}{1}", dataViewField.Id, Regex.Replace(fieldAlias, @"\s", string.Empty)).ToLower();
                     resultsCriteria.Add(new JObject(
                         new JProperty("key", key),
