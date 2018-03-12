@@ -22,6 +22,7 @@ using CambridgeSoft.COE.Registration.Services.Types;
 using CambridgeSoft.COE.Framework.COEPageControlSettingsService;
 using Resources;
 using CambridgeSoft.COE.Framework.COESearchService;
+using CambridgeSoft.COE.Framework.COEDataViewService;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -285,6 +286,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
+                SetCacheType();
                 return new LookupData(
                     ExtractData("SELECT P.PERSON_ID as PERSONID, P.USER_ID as USERID, P.SITE_ID as SITEID, DECODE(P.ACTIVE,1,'T',0,'F','0') AS ACTIVE, SUPERVISOR_INTERNAL_ID as SUPERVISORID FROM COEDB.PEOPLE P"),
                     ExtractData("SELECT fragmentid, fragmenttypeid, ('fragment/' || fragmentid || '?' || to_char(modified, 'YYYYMMDDHH24MISS')) structure, code, description, molweight, formula FROM VW_FRAGMENT"),
@@ -303,6 +305,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     GetSystemInformation()
                 );
             }, cacheControl: new CacheControlHeaderValue { NoCache = true });
+        }
+
+        private void SetCacheType()
+        {
+            COEDataViewBO.CacheConfig.Cache = CacheType.ServerCache;
         }
 
         [HttpPost]

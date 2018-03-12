@@ -312,7 +312,7 @@ namespace CambridgeSoft.COE.Framework.COEDataViewService
             }
         }
 
-        private static CacheItemData CacheConfig
+        public static CacheItemData CacheConfig
         {
             get
             {

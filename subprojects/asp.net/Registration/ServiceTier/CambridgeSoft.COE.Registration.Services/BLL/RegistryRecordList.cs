@@ -417,7 +417,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                     strID = _tempRecordList._registerXmlIds.Split(char.Parse(","));
                     for (int i = 0; i < strID.Length; i++)
                     {
-                        RegistryRecord record = RegistryRecord.GetRegistryRecord(int.Parse(strID[i]));
+                        RegistryRecord record = _tempRecordList[i];
                         if (record != null)
                         {
                             if (!record.IsEditable || !record.CanEditRegistry())

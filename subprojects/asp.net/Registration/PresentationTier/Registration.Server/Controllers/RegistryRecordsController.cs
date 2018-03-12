@@ -127,7 +127,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                HitListInfo hitListInfo = GetHitlistInfo(hitlistId);                
+                HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
                 return GetRegistryRecordsListView(false, skip, count, sort, hitListInfo, null, highlightSubStructures);
             }, new string[] { "SEARCH_REG" });
         }
@@ -864,7 +864,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     args.Add(":logId", reglistInfo.IntLogId);
                     StringBuilder sql = new StringBuilder();
                     sql.Append("select vw1.log_id logId, vw1.description description, vw1.user_id userId,");
-                    sql.Append(" vw2.temp_id tempId, vw2.reg_number regNumber, vw2.action, vw2.comments");
+                    sql.Append(" vw2.temp_id tempId, vw2.reg_number regNumber, vw2.action, vw2.comments,");
+                    sql.Append(" (select regid from vw_mixture_regnumber where regnumber = vw2.reg_number) regId");
                     sql.Append(" from vw_log_bulkregistration_ID vw1 inner join vw_log_bulkregistration vw2");
                     sql.Append(" on vw1.log_id = vw2.log_id");
                     sql.AppendFormat(" where vw1.log_id = :logId");
@@ -906,18 +907,20 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                     foreach (JObject record in records)
                     {
-                        RegistryRecord registryRecord = null;
+                        int recordId = 0;
+                        bool temp = false;
                         if (Convert.ToUInt32(record["TEMPID"]) > 0)
                         {
-                            registryRecord = RegistryRecord.GetRegistryRecord(Convert.ToInt32(record["TEMPID"]));
+                            recordId = Convert.ToInt32(record["TEMPID"]);
+                            temp = true;
                         }
                         else
                         {
-                            registryRecord = RegistryRecord.GetRegistryRecord(Convert.ToString(record["REGNUMBER"]));
-                            record["TEMPID"] = registryRecord.ID;
+                            recordId = Convert.ToInt32(record["REGID"]);
+                            // TEMPID field is used in client UI to navigate to record details page for both temp and perm record
+                            record["TEMPID"] = recordId;
                         }
-
-                        var structure = GetStructureData(string.Format("{0}record", registryRecord.IsTemporal ? "temp" : string.Empty), registryRecord.ID);
+                        var structure = GetStructureData(string.Format("{0}record", temp ? "temp" : string.Empty), recordId);
                         record.Add(new JProperty("structure", structure));
                     }
 
