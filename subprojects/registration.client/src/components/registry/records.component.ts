@@ -402,10 +402,10 @@ export class RegRecords implements OnInit, OnDestroy {
             notifyException(`Marking all records failed due to a problem`, error, 5000);
             this.setProgressBarVisibility(false);
           });
-      }
-    } else {
-      if (this.markedHitlistHitsNum === this.markedHitsMax) {
-        this.clearMarked();
+        event.element.removeClass('dx-checkbox-checked');
+        event.element.addClass('dx-checkbox');
+        event.value = false;
+        return false;
       }
     }
   }
