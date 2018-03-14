@@ -1,3 +1,7 @@
+/deep/ #configTable .dx-texteditor-buttons-container .dx-clear-button-area {
+  display: none;
+}
+
 /deep/ .dx-command-edit .dx-link {
   font-size: 18px;
   margin: 0 3px;
