@@ -410,20 +410,22 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  selectMarked(event) {
-    let attrid = 'attrid';
-    let recordId = +event.element[0].attributes[attrid].value;
-
-    if (event.value) {
-      if (this.markedHitlistHitsNum + 1 > this.markedHitsMax) {
-        event.element.removeClass('dx-checkbox-checked');
-        event.element.addClass('dx-checkbox');
-        event.value = false;
-        return false;
+  prepareMarked(e) {
+    e.element.on('click', ((e2) => {
+      if (e2.currentTarget && e2.currentTarget.firstChild) {
+        const value = e2.currentTarget.firstChild.value;
+        if (value !== 'true' && value !== '1') {
+          if (this.markedHitlistHitsNum >= this.markedHitsMax) {
+            e2.stopPropagation();
+          }
+        }
       }
-    }
+    }).bind(this));
+  }
 
-    let url = `${apiUrlPrefix}hitlists/${event.value ? 'markhit' : 'unMarkhit'}/${recordId}${this.temporary ? '?temp=true' : ''}`;
+  selectMarked(event) {
+    const recordId = +event.element[0].attributes.attrid.value;
+    const url = `${apiUrlPrefix}hitlists/${event.value ? 'markhit' : 'unMarkhit'}/${recordId}${this.temporary ? '?temp=true' : ''}`;
     this.http.put(url, undefined)
       .toPromise()
       .then(result => {
@@ -433,7 +435,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.changeDetector.markForCheck();
       })
       .catch(error => {
-        notifyException(`Marking/UnMarking records failed due to a problem`, error, 5000);
+        notifyException(`${event.value ? 'Marking' : 'Un-marking'} the selected record failed due to a problem`, error, 5000);
       });
   }
 
