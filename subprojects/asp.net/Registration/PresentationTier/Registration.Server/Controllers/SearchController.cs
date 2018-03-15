@@ -4,6 +4,7 @@ using System.Net;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Security;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -31,7 +32,6 @@ using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Registration.Services;
 using CambridgeSoft.COE.Registration.Services.BLL;
-using System.Text;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
