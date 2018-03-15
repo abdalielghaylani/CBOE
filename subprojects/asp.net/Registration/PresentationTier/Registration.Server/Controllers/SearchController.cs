@@ -598,6 +598,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var markedHitList = GetMarkedHitListBO(temp);
                 markedHitList.Name = hitlistData.Name;
                 markedHitList.Description = hitlistData.Description;
+                markedHitList.IsPublic = hitlistData.IsPublic.HasValue ? hitlistData.IsPublic.Value : false;
                 markedHitList.HitListType = HitListType.SAVED;
                 markedHitList.Save();
                 return new ResponseData(id: markedHitList.ID);
