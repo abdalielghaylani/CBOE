@@ -70,8 +70,8 @@
           </div>
         </div>
         <div *dxTemplate="let data of 'markedHeaderTemplate'">
-          <div class="center" title="{{(recordsTotalCount > markedHitsMax || markedHitlistHitsNum ===  markedHitsMax) ? 'Too many records!' : 'Mark all records' }}">
-            <dx-check-box [disabled]='markedHitlistHitsNum == markedHitsMax || recordsTotalCount > markedHitsMax' (onValueChanged)="selectAllMarked($event)"></dx-check-box>
+          <div class="center" title="{{(recordsTotalCount > markedHitsMax || markedHitlistHitsNum ===  markedHitsMax  || markedHitlistHitsNum === recordsTotalCount) ? 'Too many records!' : 'Mark all records' }}">
+            <dx-check-box [disabled]='recordsTotalCount > markedHitsMax || markedHitlistHitsNum == markedHitsMax || markedHitlistHitsNum == recordsTotalCount' (onValueChanged)="selectAllMarked($event)"></dx-check-box>
           </div>
         </div>
         <div *dxTemplate="let data of 'markedTemplate'">

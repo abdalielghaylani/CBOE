@@ -462,8 +462,8 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     if (e.rowType === 'data' && e.column.dataField === 'Marked') {
       let $checkbox = e.cellElement.find('.dx-checkbox');
-      let attrId = this.temporary ? 'TEMPBATCHID' : 'REGID';
-      $checkbox.attr({ attrId: this.temporary ? e.data.TEMPBATCHID : e.data.REGID });
+      let attrId = this.temporary ? 'TEMPBATCHID' : 'MIXTUREID';
+      $checkbox.attr({ attrId: this.temporary ? e.data.TEMPBATCHID : e.data.MIXTUREID });
     }
     if (e.rowType === 'data' && e.column.dataField === 'Mol Formula') {
       let fieldData = e.value;
@@ -682,6 +682,8 @@ export class RegRecords implements OnInit, OnDestroy {
                 notifyError(responseData.message, 5000);
               }
               this.setProgressBarVisibility(false);
+              this.rowSelected = false;
+              this.updateHitListId(0);
               this.getMarkedHitList();
               this.grid.instance.refresh();
             })
@@ -921,6 +923,8 @@ export class RegRecords implements OnInit, OnDestroy {
                 notifyError(responseData.message, 5000);
               }
               this.setProgressBarVisibility(false);
+              this.updateHitListId(0);
+              this.rowSelected = false;
               this.getMarkedHitList();
               this.grid.instance.refresh();
             })

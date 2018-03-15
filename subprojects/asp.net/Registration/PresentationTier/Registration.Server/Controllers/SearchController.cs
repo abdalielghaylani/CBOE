@@ -531,7 +531,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 var jsonRows = GetRegistryRecordsListView(temp, null, markedHitsMax, sort, currentHitlistInfo).SelectToken("rows").ToArray();
                 foreach (var row in jsonRows.ToArray())
                 {
-                    var id = temp ? row.SelectToken("TEMPBATCHID") : row.SelectToken("REGID");
+                    var id = temp ? row.SelectToken("TEMPBATCHID") : row.SelectToken("MIXTUREID");
                     markedHitList.MarkHit(int.Parse(id.ToString()));
                 }
 
