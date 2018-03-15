@@ -380,34 +380,28 @@ export class RegRecords implements OnInit, OnDestroy {
       });
   }
 
-  selectAllMarked(event) {
-    if (event.value) {
-      if (this.markedHitlistHitsNum !== this.markedHitsMax) {
-        this.loadIndicatorVisible = true;
-        let params = '';
-        if (this.temporary) { params += '?temp=true'; }
-        params += `${params ? '&' : '?'}hitlistId=${this.hitListId}`;
-        if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; }
-        let url = `${apiUrlPrefix}hitlists/markhit/all${params}`;
-        this.http.put(url, undefined).toPromise()
-          .then(result => {
-            let markedHitList = result.json();
-            this.markedHitListId = markedHitList.hitlistId;
-            this.markedHitlistHitsNum = markedHitList.numberOfHits;
-            this.grid.instance.refresh();
-            this.changeDetector.markForCheck();
-            this.setProgressBarVisibility(false);
-          })
-          .catch(error => {
-            notifyException(`Marking all records failed due to a problem`, error, 5000);
-            this.setProgressBarVisibility(false);
-          });
-        event.element.removeClass('dx-checkbox-checked');
-        event.element.addClass('dx-checkbox');
-        event.value = false;
-        return false;
-      }
-    }
+  prepareAllMarked(e) {
+    e.element.on('click', ((e2) => {
+      this.setProgressBarVisibility(true);
+      let params = this.temporary ? '?temp=true' : '';
+      params += `${params ? '&' : '?'}hitlistId=${this.hitListId}`;
+      if (this.sortCriteria) { params += `&sort=${this.sortCriteria}`; }
+      let url = `${apiUrlPrefix}hitlists/markhit/all${params}`;
+      this.http.put(url, undefined).toPromise()
+        .then(result => {
+          let markedHitList = result.json();
+          this.markedHitListId = markedHitList.hitlistId;
+          this.markedHitlistHitsNum = markedHitList.numberOfHits;
+          this.grid.instance.refresh();
+          this.changeDetector.markForCheck();
+          this.setProgressBarVisibility(false);
+        })
+        .catch(error => {
+          notifyException(`Marking all records failed due to a problem`, error, 5000);
+          this.setProgressBarVisibility(false);
+        });
+      e2.stopPropagation();
+    }).bind(this));
   }
 
   prepareMarked(e) {
