@@ -121,21 +121,22 @@ export class RegStructureQueryFormItem extends RegStructureBaseFormItem {
     if (!serialized) {
       serialized = new CStructureQueryOptions();
     }
-    serialized._hitAnyChargeHetero = this.hitAnyChargeHetero ? 'YES' : 'NO';
-    serialized._reactionCenter = this.reactionCenter ? 'YES' : 'NO';
-    serialized._hitAnyChargeCarbon = this.hitAnyChargeCarbon ? 'YES' : 'NO';
-    serialized._permitExtraneousFragments = this.permitExtraneousFragments ? 'YES' : 'NO';
-    serialized._permitExtraneousFragmentsIfRXN = this.permitExtraneousFragmentsIfRXN ? 'YES' : 'NO';
-    serialized._fragmentsOverlap = this.fragmentsOverlap ? 'YES' : 'NO';
-    serialized._tautometer = this.tautometer ? 'YES' : 'NO';
-    serialized._simThreshold = this.simThreshold.toString();
-    serialized._tetrahedralStereo = this.matchStereochemistry ? this.tetrahedralStereo : 'NO';
-    serialized._relativeTetStereo = this.matchStereochemistry && this.relativeTetStereo ? 'YES' : 'NO';
-    serialized._doubleBondStereo = this.matchStereochemistry && this.doubleBondStereo !== 'Any' ? 'YES' : 'NO';
-    serialized._fullSearch = this.searchTypeValue === this.searchTypeOptions[1] ? 'YES' : 'NO';
-    serialized._identity = this.searchTypeValue === this.searchTypeOptions[2] ? 'YES' : 'NO';
-    serialized._similar = this.searchTypeValue === this.searchTypeOptions[3] ? 'YES' : 'NO';
-    serialized.__text = this.cdd == null || this.cdd.isBlankStructure() ? undefined : this;
+    let criteria = serialized.CSCartridgeStructureCriteria ? serialized.CSCartridgeStructureCriteria : serialized;
+    criteria._hitAnyChargeHetero = this.hitAnyChargeHetero ? 'YES' : 'NO';
+    criteria._reactionCenter = this.reactionCenter ? 'YES' : 'NO';
+    criteria._hitAnyChargeCarbon = this.hitAnyChargeCarbon ? 'YES' : 'NO';
+    criteria._permitExtraneousFragments = this.permitExtraneousFragments ? 'YES' : 'NO';
+    criteria._permitExtraneousFragmentsIfRXN = this.permitExtraneousFragmentsIfRXN ? 'YES' : 'NO';
+    criteria._fragmentsOverlap = this.fragmentsOverlap ? 'YES' : 'NO';
+    criteria._tautometer = this.tautometer ? 'YES' : 'NO';
+    criteria._simThreshold = this.simThreshold.toString();
+    criteria._tetrahedralStereo = this.matchStereochemistry ? this.tetrahedralStereo : 'NO';
+    criteria._relativeTetStereo = this.matchStereochemistry && this.relativeTetStereo ? 'YES' : 'NO';
+    criteria._doubleBondStereo = this.matchStereochemistry && this.doubleBondStereo !== 'Any' ? 'YES' : 'NO';
+    criteria._fullSearch = this.searchTypeValue === this.searchTypeOptions[1] ? 'YES' : 'NO';
+    criteria._identity = this.searchTypeValue === this.searchTypeOptions[2] ? 'YES' : 'NO';
+    criteria._similar = this.searchTypeValue === this.searchTypeOptions[3] ? 'YES' : 'NO';
+    criteria.__text = this.cdd == null || this.cdd.isBlankStructure() ? undefined : this;
     return serialized;
   }
 
