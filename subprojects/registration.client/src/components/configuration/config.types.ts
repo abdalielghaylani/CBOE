@@ -455,6 +455,11 @@ export class CConfigProperties {
     return val.length > 0 ? false : true;
   }
 
+  getParamValue(params: any[], name: string) {
+    const param = params.find(p => p.name === name);
+    return param ? param.value : undefined;
+  }
+
   isValidRule(): boolean {
     const dataValidation = this.formDataValidation;
     const params = dataValidation.parameters;
@@ -468,16 +473,22 @@ export class CConfigProperties {
         return false;
       }
     } else if (name === 'textLength') {
-      if (!dataValidation.min || !dataValidation.max) {
-        notifyWarning(`Min, Max parameters are required!`, 5000);
+      const minValue = dataValidation.min ? dataValidation.min : this.getParamValue(params, 'min');
+      const maxValue = dataValidation.max ? dataValidation.max : this.getParamValue(params, 'max');
+      if (!minValue || !maxValue) {
+        notifyWarning(`Both Min and Max parameters are required!`, 5000);
         return false;
       }
-      if (dataValidation.min > dataValidation.max) {
+      if (minValue > maxValue) {
         notifyWarning(`Max parameter must be greater than min parameter!`, 5000);
         return false;
       }
-      params.push({ name: 'min', value: dataValidation.min });
-      params.push({ name: 'max', value: dataValidation.max });
+      if (dataValidation.min) {
+        params.push({ name: 'min', value: dataValidation.min });
+      }
+      if (dataValidation.max) {
+        params.push({ name: 'max', value: dataValidation.max });
+      }
     } else if (name === 'wordListEnumeration') {
       if (params.length <= 0) {
         notifyWarning(`At least one parameter is required!`, 5000);

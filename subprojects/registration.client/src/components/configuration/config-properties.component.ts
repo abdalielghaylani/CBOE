@@ -253,4 +253,16 @@ export class RegConfigProperties extends RegConfigBaseComponent {
   private hideLoadPanel() {
     this.loadingVisible = false;
   }
+
+  private checkInteger(e) {
+    const char = String.fromCharCode(e.event.keyCode);
+    if (!/[0-9]/.test(char)) {
+      e.event.preventDefault();
+    }
+  }
+
+  private getParamValue(name: string) {
+    const match = this.configProperties ? this.configProperties.formDataValidation.parameters.find(p => p.name === name) : undefined;
+    return match ? match.value : undefined;
+  }
 };
