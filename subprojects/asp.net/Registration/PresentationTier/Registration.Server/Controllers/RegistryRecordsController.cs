@@ -863,12 +863,19 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var args = new Dictionary<string, object>();
                     args.Add(":logId", reglistInfo.IntLogId);
                     StringBuilder sql = new StringBuilder();
-                    sql.Append("select vw1.log_id logId, vw1.description description, vw1.user_id userId,");
+
+                    sql.Append("select a.logid logId, a.description description, decode(a.userid,null,p1.user_id,a.userid) userid,");
+                    sql.Append(" a.tempid, a.regNumber, a.action, a.comments, a.regid from");
+                    sql.Append(" (select b.logId, b.description, b.regNumber,b.userId,decode(b.userid,null,a.personcreated,0) p1,");
+                    sql.Append(" b.action, b.comments, b.tempid, b.regid from");
+                    sql.Append(" (select vw1.log_id logId, vw1.description description, p.user_id userId,");
                     sql.Append(" vw2.temp_id tempId, vw2.reg_number regNumber, vw2.action, vw2.comments,");
                     sql.Append(" (select regid from vw_mixture_regnumber where regnumber = vw2.reg_number) regId");
-                    sql.Append(" from vw_log_bulkregistration_ID vw1 inner join vw_log_bulkregistration vw2");
-                    sql.Append(" on vw1.log_id = vw2.log_id");
-                    sql.AppendFormat(" where vw1.log_id = :logId");
+                    sql.Append(" from vw_log_bulkregistration_ID vw1 ,  vw_log_bulkregistration vw2, vw_temporarycompound vw3, coedb.people p");
+                    sql.Append(" where vw1.log_id = vw2.log_id and vw2.temp_id=vw3.tempcompoundid(+)");
+                    sql.Append(" and p.person_id(+)=vw3.personcreated and vw1.log_id = :logId)b,vw_mixture_regnumber a");
+                    sql.Append(" where a.regnumber(+)=b.regnumber) a, coedb.people p1");
+                    sql.Append(" where p1.person_id(+)=a.p1");
 
                     JArray records = new JArray();
                     using (var reader = GetReader(sql.ToString(), args))
