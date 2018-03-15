@@ -31,6 +31,7 @@ using CambridgeSoft.COE.Framework.Controls.COEFormGenerator;
 using CambridgeSoft.COE.Framework.Common.Messaging;
 using CambridgeSoft.COE.Registration.Services;
 using CambridgeSoft.COE.Registration.Services.BLL;
+using System.Text;
 
 namespace PerkinElmer.COE.Registration.Server.Controllers
 {
@@ -523,16 +524,49 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var settings = RegAppHelper.RetrieveSettings().Where(s => s.GroupLabel.Equals("Search") && s.Name.Equals("MarkedHitsMax")).SingleOrDefault();
-                var markedHitsMax = settings != null ? int.Parse(settings.Value) : 0;
                 var markedHitList = GetMarkedHitListBO(temp);
-                var currentHitlistInfo = hitlistId > 0 ? GetHitlistBO(hitlistId).HitListInfo : new HitListInfo();
+                markedHitList.UnMarkAllHits();
 
-                var jsonRows = GetRegistryRecordsListView(temp, null, markedHitsMax, sort, currentHitlistInfo).SelectToken("rows").ToArray();
-                foreach (var row in jsonRows.ToArray())
+                var args = new Dictionary<string, object>();
+                StringBuilder sql = new StringBuilder();
+                var recordIds = new List<int>();
+
+                if (hitlistId > 0)
                 {
-                    var id = temp ? row.SelectToken("TEMPBATCHID") : row.SelectToken("MIXTUREID");
-                    markedHitList.MarkHit(int.Parse(id.ToString()));
+                    var hitlistBO = GetHitlistBO(hitlistId);
+                    args.Add(":hitlistId", hitlistId);
+                    if (hitlistBO.HitListType.Equals(HitListType.TEMP))
+                    {
+                        sql.Append("SELECT ID FROM COEDB.COETEMPHITLIST WHERE HITLISTID = :hitlistId");
+                    }
+                    else 
+                    {
+                        sql.Append("SELECT ID FROM COEDB.COESAVEDHITLIST WHERE HITLISTID = :hitlistId");
+                    }
+                }
+                else
+                {
+                    if (temp)
+                    {
+                        sql.Append("SELECT TEMPBATCHID FROM REGDB.TEMPORARY_BATCH");
+                    }
+                    else
+                    {
+                        sql.Append("SELECT MIXTUREID FROM REGDB.VW_MIXTURE_REGNUMBER");                    
+                    }
+                }
+
+                using (var reader = GetReader(sql.ToString(), args))
+                {
+                    while (reader.Read())
+                    {
+                        recordIds.Add(reader.GetInt32(0));
+                    }
+                }
+
+                foreach (var id in recordIds)
+                {
+                    markedHitList.MarkHit(id);
                 }
 
                 return new HitlistData(markedHitList);
