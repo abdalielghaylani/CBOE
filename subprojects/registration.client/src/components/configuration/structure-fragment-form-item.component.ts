@@ -4,11 +4,7 @@ import { ChemDrawWeb } from '../common';
 @Component({
   selector: 'reg-structure-fragment-template',
   template: `<div [id]="id" class="cd-container cdweb"></div>`,
-  styles: [` .cd-container {
-          border: 5px solid #f0f0f0;
-          height: 300px;
-          width: auto;
-        }`],
+  styles: [` .cd-container {border: 5px solid #f0f0f0; height: 300px; width: auto;}`],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

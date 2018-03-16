@@ -22,6 +22,12 @@
       </div>
     </div>
   </dx-popup>
+  <dx-popup [width]="640" [height]="454" [showTitle]="true" title="Structure Data" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="structureDataVisible"
+    [animation]="{show:{duration: 0}}">
+    <div *dxTemplate="let data of 'content'">
+      <chemdraw-web id="structureDataCdd" [editMode]="false" [activated]="true" [value]="structureData" ></chemdraw-web>
+    </div>
+  </dx-popup>
   <div>
     <div id="divDataGrid">
       <dx-data-grid [height]="gridHeight" id="grdRecords" noDataText="Sorry your search returned 0 hits." [columns]="viewGroupsColumns.baseTableColumns" [dataSource]="dataStore" rowAlternationEnabled=true (onToolbarPreparing)="onToolbarPreparing($event)"
@@ -54,7 +60,7 @@
           <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="unchecked" title="Clear Marked"></command-button>
         </div>
         <div *dxTemplate="let data of 'structureImageColumnTemplate'">
-          <reg-structure-image-column-item-template [source]="data.data"></reg-structure-image-column-item-template>
+          <reg-structure-image-column-item-template (onClick)="structureImageClicked($event)" [source]="data.data"></reg-structure-image-column-item-template>
         </div>
         <div class="wrap" *dxTemplate="let data of 'urlTemplate'">
           <a *ngIf="temporary" [href]="getAbsoluteUrl(data.value)" target="_blank" title="{{data.value}}">{{data.value}}</a>
@@ -70,8 +76,8 @@
           </div>
         </div>
         <div *dxTemplate="let data of 'markedHeaderTemplate'">
-          <div class="center" title="{{(recordsTotalCount > markedHitsMax || markedHitlistHitsNum ===  markedHitsMax  || markedHitlistHitsNum === recordsTotalCount) ? 'Too many records!' : 'Mark all records' }}">
-            <dx-check-box [disabled]='recordsTotalCount > markedHitsMax || markedHitlistHitsNum == markedHitsMax || markedHitlistHitsNum == recordsTotalCount' (onInitialized)="prepareAllMarked($event)"></dx-check-box>
+          <div class="center" title="{{recordsTotalCount > markedHitsMax ? 'Too many records!' : 'Mark all records' }}">
+            <dx-check-box [disabled]='recordsTotalCount > markedHitsMax' (onInitialized)="prepareAllMarked($event)"></dx-check-box>
           </div>
         </div>
         <div *dxTemplate="let data of 'markedTemplate'">

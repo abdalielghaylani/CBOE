@@ -19,10 +19,11 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   @Input() editMode: boolean = false;
   @Input() id: string;
   @Input() activated: boolean = false;
+  @Input() containerClass: string = 'cd-container';
+  @Input() value: string;
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
   protected cdd: any;
   protected creatingCdd: boolean = false;
-  protected value: string;
   constructor(protected elementRef: ElementRef) {
   }
 
@@ -47,6 +48,9 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
     } else {
       this.activate();
     }
+    if (this.value && this.cdd) {
+      this.loadData(this.value);
+    }
   }
 
   protected onContentChanged(e) {
@@ -59,7 +63,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
     this.CDDResize({});
     cdd.setViewOnly(!this.editMode);
     if (this.value) {
-      cdd.loadCDXML(this.value);
+      this.loadData(this.value);
       this.value = null;
     }
     cdd.markAsSaved();
@@ -89,12 +93,20 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
     (<any>window).perkinelmer.ChemdrawWebManager.attach(params);
   };
 
+  private loadData(value: string) {
+    if (value) {
+      if (value.startsWith('VmpD')) {
+        this.cdd.loadB64CDX(value);
+      } else {
+        this.cdd.loadCDXML(value);
+      }
+    }
+  }
+
   public setValue(value: string) {
     if (this.cdd && !this.creatingCdd) {
       this.cdd.clear();
-      if (value) {
-        this.cdd.loadCDXML(value);
-      }
+      this.loadData(value);
     } else {
       this.value = value;
     }

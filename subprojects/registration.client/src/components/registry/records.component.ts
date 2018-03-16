@@ -90,6 +90,8 @@ export class RegRecords implements OnInit, OnDestroy {
   private isRefine = false;
   private isAllSelected: boolean = false;
   private markedHitsMax: number = 0;
+  private structureDataVisible: boolean = false;
+  private structureData: string;
 
   constructor(
     private router: Router,
@@ -173,8 +175,8 @@ export class RegRecords implements OnInit, OnDestroy {
     return value;
   }
 
-  setProgressBarVisibility(e) {
-    this.loadIndicatorVisible = e;
+  setProgressBarVisibility(visible: boolean) {
+    this.loadIndicatorVisible = visible;
     this.changeDetector.markForCheck();
   }
 
@@ -930,10 +932,6 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  lodingCompleted() {
-    this.loadIndicatorVisible = false;
-  }
-
   createBulkContainers() {
     let url = `${apiUrlPrefix}hitlists/getRegNumberList?hitlistId=${this.markedHitListId}`;
     this.http.get(url).toPromise()
@@ -947,6 +945,13 @@ export class RegRecords implements OnInit, OnDestroy {
       .catch(error => {
         notifyException(`Getting reg number list failed due to a problem`, error, 5000);
       });
+  }
+
+  private structureImageClicked(e: string) {
+    if (e) {
+      this.structureData = e;
+      this.structureDataVisible = true;
+    }
   }
 };
 

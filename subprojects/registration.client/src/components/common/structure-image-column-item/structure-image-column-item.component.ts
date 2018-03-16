@@ -13,6 +13,7 @@ export const nonStructureImage = require('../assets/no-structure.png');
 })
 export class RegStructureImageColumnItem {
   @Input() source: any;
+  @Output() onClick = new EventEmitter<string>();
   private image;
   private imageId;
   private spinnerImage = require('../assets/spinner.gif');
@@ -23,16 +24,7 @@ export class RegStructureImageColumnItem {
   }
 
   ngOnInit() {
-    let value = this.source;
-    if (value && value.Structure != null && value.TEMPBATCHID) {
-      this.imageId = `image${value.TEMPBATCHID}`;
-      value = value.Structure;
-    } else if (value && value.STRUCTUREAGGREGATION != null && value.REGID) {
-      this.imageId = `image${value.REGID}`;
-      value = value.STRUCTUREAGGREGATION;
-    } else if ( value && value.structure != null) {
-      value = value.structure;
-    }
+    const value = this.structureValue;
     if (!value) {
       return;
     }
@@ -52,5 +44,21 @@ export class RegStructureImageColumnItem {
           self.changeDetector.markForCheck();
         });
     }
+  }
+
+  private get structureValue(): string {
+    let value = this.source;
+    if (value && value.Structure != null && value.TEMPBATCHID) {
+      value = value.Structure;
+    } else if (value && value.STRUCTUREAGGREGATION != null && value.REGID) {
+      value = value.STRUCTUREAGGREGATION;
+    } else if ( value && value.structure != null) {
+      value = value.structure;
+    }
+    return value;
+  }
+
+  private structureClicked(e) {
+    this.onClick.emit(this.structureValue);
   }
 };

@@ -2,11 +2,6 @@
   display: inline-block;
 }
 
-.cdContainer {
-  height: 400px;
-  width: 100%;
-}
-
 /deep/ .dx-command-edit .dx-link {
   font-size: 18px;
   margin: 0 3px;
