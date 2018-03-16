@@ -98,6 +98,13 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return hitlistBO;
         }
 
+        protected static COEHitListBO GetMarkedHitListBO(bool? temp)
+        {
+            var formGroup = GetFormGroup(temp);
+            var markedHitList = COEHitListBO.GetMarkedHitList(Consts.REGDB, COEUser.Name, formGroup.Id);
+            return markedHitList;
+        }
+
         protected HttpResponseMessage CreateErrorResponse(Exception ex)
         {
             var message = ex is Csla.DataPortalException ? ((Csla.DataPortalException)ex).BusinessException.Message : ex.Message;

@@ -29,22 +29,7 @@ export class RegistryEpics {
       this.createDuplicateRecord,
       this.handleLoadStructure,
       this.bulkRegisterRecord,
-      this.handleDeleteRecords,
     )(action$, store);
-  }
-
-  private handleDeleteRecords: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, data: any }>>) => {
-    return action$.filter(({ type }) => type === RegistryActions.DELETE_RECORD)
-      .mergeMap(({ payload }) => {
-        let url = `${apiUrlPrefix}${payload.temporary ? 'temp-' : ''}records/delete-bulk`;
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this.http.post(url, payload.data, options)
-          .map(result => {
-            return RegistryActions.deleteRecordSuccessAction(result.json());
-          })
-          .catch(error => Observable.of(RegistryActions.deleteRecordErrorAction(error)));
-      });
   }
 
   private handleRetrieveRecord: Epic = (action$: Observable<ReduxActions.Action<{ temporary: boolean, template: boolean, id: number }>>) => {

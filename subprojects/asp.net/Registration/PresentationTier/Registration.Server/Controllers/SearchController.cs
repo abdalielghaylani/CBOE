@@ -50,13 +50,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return new QueryData(searchCriteriaBO.DataViewId != formGroup.Id, searchCriteriaBO.SearchCriteria.ToString());
         }
 
-        private static COEHitListBO GetMarkedHitListBO(bool? temp)
-        {
-            var formGroup = GetFormGroup(temp);
-            var markedHitList = COEHitListBO.GetMarkedHitList(Consts.REGDB, COEUser.Name, formGroup.Id);
-            return markedHitList;
-        }
-
         private JObject GetHitlistRecordsInternal(int id, bool? temp, int? skip = null, int? count = null, string sort = null, bool highlightSubStructures = false)
         {
             var hitlistBO = GetHitlistBO(id);

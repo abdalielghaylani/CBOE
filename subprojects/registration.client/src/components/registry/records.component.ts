@@ -49,10 +49,8 @@ export class RegRecords implements OnInit, OnDestroy {
   @select(s => s.session.lookups) lookups$: Observable<ILookupData>;
   @select(s => !!s.session.token) loggedIn$: Observable<boolean>;
   @select(s => s.session.isLoading) isLoading$: Observable<any>;
-  private responseData$: Observable<IResponseData>;
   private viewGroupsColumns: CViewGroupColumns = new CViewGroupColumns();
   private lookupsSubscription: Subscription;
-  private responseSubscription: Subscription;
   private hitlistSubscription: Subscription;
   private isLoadingSubscription: Subscription;
   private lookups: ILookupData;
@@ -116,10 +114,6 @@ export class RegRecords implements OnInit, OnDestroy {
     } else {
       this.hitListId = this.listData.hitListId;
     }
-    this.responseData$ = this.ngRedux.select(['registry', 'responseData']);
-    if (!this.responseSubscription) {
-      this.responseSubscription = this.responseData$.subscribe(d => { this.deleteRecordStatus(d); });
-    }
     this.idField = this.temporary ? 'TEMPBATCHID' : 'REGID';
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
     this.isLoadingSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
@@ -134,10 +128,6 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     if (this.hitlistSubscription) {
       this.hitlistSubscription.unsubscribe();
-    }
-    if (this.responseSubscription) {
-      this.registryActions.clearResponse();
-      this.responseSubscription.unsubscribe();
     }
     if (this.isLoadingSubscription) {
       this.isLoadingSubscription.unsubscribe();
@@ -178,20 +168,6 @@ export class RegRecords implements OnInit, OnDestroy {
   setProgressBarVisibility(visible: boolean) {
     this.loadIndicatorVisible = visible;
     this.changeDetector.markForCheck();
-  }
-
-  deleteRecordStatus(e: IResponseData) {
-    if (e) {
-      if (e.data.status) {
-        notifySuccess(e.message, 5000);
-      } else {
-        notifyError(e.message, 5000);
-      }
-      this.currentIndex = 0;
-      this.setProgressBarVisibility(false);
-      this.grid.instance.refresh();
-      this.registryActions.clearResponse();
-    }
   }
 
   setTotalSearchableCount() {
@@ -527,9 +503,21 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onRowRemoving(e) {
-    this.loadIndicatorVisible = true;
-    let ids = e.data[this.idField];
-    this.registryActions.deleteRecord(this.temporary, { data: [{ id: ids }] });
+    this.setProgressBarVisibility(true);
+    let id = Number(e.data[this.idField]);
+    let url = `${apiUrlPrefix}${this.temporary ? 'temp-' : ''}records/${id}`;
+    this.http.delete(url).toPromise()
+      .then(res => {
+        this.currentIndex = 0;
+        this.setProgressBarVisibility(false);
+        this.getMarkedHitList();
+        this.grid.instance.refresh();
+        notifySuccess(`The record was deleted successfully!`, 5000);
+      })
+      .catch(error => {
+        this.setProgressBarVisibility(false);
+        notifyException(`The record was not deleted due to a problem`, error, 5000);
+      });
     e.cancel = true;
     this.isTotalSearchableCountUpdated = false;
   }

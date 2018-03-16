@@ -818,22 +818,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 var regNum = GetRegNumber(id);
                 RegistryRecord.DeleteRegistryRecord(regNum);
+                var markedHitList = GetMarkedHitListBO(false);
+                markedHitList.UnMarkAllHits();
                 return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully!", regNum));
-            }, new string[] { "DELETE_REG", "EDIT_COMPOUND_REG" });
-        }
-
-        [HttpPost]
-        [Route(Consts.apiPrefix + "records/delete-bulk")]
-        [SwaggerOperation("DeleteRecords")]
-        [SwaggerResponse(200, type: typeof(ResponseData))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(404, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> DeleteRecords(JObject data)
-        {
-            return await CallMethod(() =>
-            {
-                return BulkDeleteRecords(data, false);
             }, new string[] { "DELETE_REG", "EDIT_COMPOUND_REG" });
         }
 
@@ -1126,115 +1113,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             {
                 CheckTempRecordId(id);
                 RegistryRecord.DeleteRegistryRecord(id);
+                var markedHitList = GetMarkedHitListBO(true);
+                markedHitList.UnMarkAllHits();
                 return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully!", id));
             }, new string[] { "DELETE_TEMP", "EDIT_COMPOUND_TEMP" });
         }
 
-        [HttpPost]
-        [Route(Consts.apiPrefix + "temp-records/delete-bulk")]
-        [SwaggerOperation("DeleteTempRecords")]
-        [SwaggerResponse(200, type: typeof(ResponseData))]
-        [SwaggerResponse(401, type: typeof(Exception))]
-        [SwaggerResponse(404, type: typeof(Exception))]
-        [SwaggerResponse(500, type: typeof(Exception))]
-        public async Task<IHttpActionResult> DeleteTempRecords(JObject data)
-        {
-            return await CallMethod(() =>
-            {
-                return BulkDeleteRecords(data, true);
-            }, new string[] { "DELETE_TEMP", "EDIT_COMPOUND_TEMP" });
-        }
-
-        private object BulkDeleteRecords(JObject data, bool temporary)
-        {
-            List<int> records = new List<int>();
-            // expected input is an array of record ids
-            // {
-            // "data": [{"id":"1"},{"id":"2"}]
-            // }
-            JArray array = (JArray)data["data"];
-            if (array == null)
-                throw new ArgumentNullException("Input data is invalid");
-
-            foreach (JObject item in array)
-            {
-                int id = Convert.ToInt32(item.GetValue("id"));
-                if (temporary)
-                    CheckTempRecordId(id);
-                records.Add(id);
-            }
-
-            if (!temporary)
-            {
-                // for permanant registry records, hitlist need to be generated using mixture id of the perm record
-                var list = ExtractData(string.Format("select MIXTUREID from  VW_MIXTURE m where m.REGID in ({0})", string.Join(",", records)), null, null, null);
-                records.Clear();
-                foreach (JObject item in list)
-                {
-                    records.Add(Convert.ToInt32(item.GetValue("MIXTUREID")));
-                }
-            }
-
-            if (records.Count <= 0)
-                throw new ArgumentNullException("Input data is invalid");
-
-            var coeHitListBO = COEHitListBO.New(Consts.REGDB, HitListType.MARKED);
-            coeHitListBO.Update();
-
-            foreach (int recordId in records)
-            {
-                coeHitListBO.MarkHit(recordId);
-            }
-
-            string message = string.Empty;
-            BulkDelete command = null;
-            List<string> failedRecords = new List<string>();
-            try
-            {
-                command = BulkDelete.Execute(coeHitListBO.ID, temporary, string.Empty);
-                if (command.Result)
-                {
-                    if (command.FailedRecords.Length > 0)
-                    {
-                        message = string.Format(Resource.FollowingRecordsNotDeleted_Label_Text, string.Join(", ", command.FailedRecords));
-                        foreach (string id in command.FailedRecords)
-                        {
-                            failedRecords.Add(id);
-                        }
-                    }
-                    else
-                    {
-                        message = string.Format("{0} {1} deleted successfully!", records.Count, records.Count == 1 ? "record" : "records");
-                    }
-                }
-                else
-                {
-                    message = Resource.NoRecordWasDeleted_Label_Text;
-                }
-            }
-            catch (Exception ex)
-            {
-                foreach (int recordId in records)
-                {
-                    coeHitListBO.UnMarkHit(recordId);
-                }
-                throw ex;
-            }
-
-            var response = new JObject(new JProperty("status", command.Result));
-            if (failedRecords.Count > 0)
-            {
-                var recordList = new JArray();
-                foreach (string id in failedRecords)
-                {
-                    recordList.Add(new JObject() { new JProperty("id", id) });
-                }
-                response = new JObject();
-                response.Add(new JProperty("failedRecords", recordList));
-            }
-
-            return new ResponseData(message: message, data: response);
-        }
         #endregion // Tempoary Records
 
         #region Duplicate Resolution

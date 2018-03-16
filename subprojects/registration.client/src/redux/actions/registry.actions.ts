@@ -12,9 +12,6 @@ export class RegistryActions {
   static CLEAR_BULK_REGISTER_RECORD = 'CLEAR_BULK_REGISTER_RECORD';
   static BULK_REGISTER_RECORD_SUCCESS = 'BULK_REGISTER_RECORD_SUCCESS';
   static BULK_REGISTER_RECORD_ERROR = 'BULK_REGISTER_RECORD_ERROR';
-  static DELETE_RECORD = 'DELETE_RECORD';
-  static DELETE_RECORD_SUCCESS = 'DELETE_RECORD_SUCCESS';
-  static DELETE_RECORD_ERROR = 'DELETE_RECORD_ERROR';
   static CLEAR_RESPONSE = 'CLEAR_RESPONSE';
   static UPDATE_LIST_DATA = 'UPDATE_LIST_DATA';
   static clearResponseAction = createAction(RegistryActions.CLEAR_RESPONSE);
@@ -25,10 +22,6 @@ export class RegistryActions {
     (payload: any) => (payload));
   static bulkRegisterRecordErrorAction = createAction(RegistryActions.BULK_REGISTER_RECORD_ERROR,
     (payload: any) => (payload));
-  static deleteRecordAction = createAction(RegistryActions.DELETE_RECORD,
-    (temporary: boolean, data: any) => ({ temporary, data }));
-  static deleteRecordSuccessAction = createAction(RegistryActions.DELETE_RECORD_SUCCESS);
-  static deleteRecordErrorAction = createAction(RegistryActions.DELETE_RECORD_ERROR);
   static updateListDataAction = createAction(RegistryActions.UPDATE_LIST_DATA,
     (temporary: boolean, data: IRecordListData) => ({ temporary, data }));
 
@@ -44,10 +37,6 @@ export class RegistryActions {
 
   search() {
     this.ngRedux.dispatch({ type: RegistryActions.SEARCH });
-  }
-
-  deleteRecord(temporary: boolean, data: any) {
-    this.ngRedux.dispatch(RegistryActions.deleteRecordAction(temporary, data));
   }
 
   bulkRegister(payload: IRegisterRecordList) {

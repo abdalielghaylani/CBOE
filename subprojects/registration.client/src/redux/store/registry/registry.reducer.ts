@@ -51,9 +51,6 @@ export function registryReducer(
       let a4 = action as ReduxActions.Action<any>;
       return state.update('previousRecordDetail', () => a4.payload);
 
-    case RegistryActions.DELETE_RECORD_SUCCESS:
-      return state.update('responseData', () => action.payload);
-
     case RegistryActions.CLEAR_RESPONSE:
       return state.update('responseData', () => null);
 

@@ -52,7 +52,6 @@ export function sessionReducer(
     case SessionActions.LOAD_LOOKUPS_SUCCESS:
       return state.update('lookups', () => action.payload);
 
-    case RegistryActions.DELETE_RECORD_ERROR:
     case RegistryActions.BULK_REGISTER_RECORD_ERROR:
     case RecordDetailActions.RETRIEVE_RECORD_ERROR:
     case RecordDetailActions.LOAD_STRUCTURE_ERROR:
