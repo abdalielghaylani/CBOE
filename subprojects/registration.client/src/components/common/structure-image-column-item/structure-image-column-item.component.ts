@@ -13,6 +13,7 @@ export const nonStructureImage = require('../assets/no-structure.png');
 })
 export class RegStructureImageColumnItem {
   @Input() source: any;
+  @Input() title: string;
   @Output() onClick = new EventEmitter<string>();
   private image;
   private imageId;
