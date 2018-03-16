@@ -57,7 +57,7 @@
           <command-button *ngIf="markedHitlistHitsNum > 0 &amp;&amp; !rowSelected" testid="show-marked-button" (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
           <command-button [hidden]="!rowSelected" testid="show-all-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show All Records"></command-button>
           <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
-          <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="unchecked" title="Clear Marked"></command-button>
+          <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="square-o" title="Clear Marked"></command-button>
         </div>
         <div *dxTemplate="let data of 'structureImageColumnTemplate'">
           <reg-structure-image-column-item-template (onClick)="structureImageClicked($event)" [source]="data.data"></reg-structure-image-column-item-template>
