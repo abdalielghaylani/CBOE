@@ -38,7 +38,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class SearchController : RegControllerBase
     {
-        private static QueryData GetHitlistQueryInternal(int id, bool? temp)
+        public static QueryData GetHitlistQueryInternal(int id, bool? temp)
         {
             var hitlistBO = GetHitlistBO(id);
             if (hitlistBO.SearchCriteriaID == 0)

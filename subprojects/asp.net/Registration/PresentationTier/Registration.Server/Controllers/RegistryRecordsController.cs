@@ -31,6 +31,15 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
     [ApiVersion(Consts.apiVersion)]
     public class RegistryRecordsController : RegControllerBase
     {
+        private static bool GetSubStructureHighlight(int hitlistId, bool temporary)
+        {
+            var queryData = SearchController.GetHitlistQueryInternal(hitlistId, temporary);
+            var searchCriteria = new SearchCriteria();
+            searchCriteria.GetFromXML(queryData.SearchCriteria);
+            var structureCriteria = searchCriteria.FindStructCriteria() as CambridgeSoft.COE.Framework.Common.SearchCriteria.StructureCriteria;
+            return structureCriteria == null || structureCriteria.Similar == SearchCriteria.COEBoolean.No;
+        }
+
         private void CheckTempRecordId(int id)
         {
             var args = new Dictionary<string, object>();
@@ -138,6 +147,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
+                if (highlightSubStructures && hitlistId != null && hitlistId.Value > 0)
+                    highlightSubStructures = GetSubStructureHighlight(hitlistId.Value, false);
                 return GetRegistryRecordsListView(false, skip, count, sort, hitListInfo, null, highlightSubStructures);
             }, new string[] { "SEARCH_REG" });
         }
@@ -952,6 +963,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 HitListInfo hitListInfo = GetHitlistInfo(hitlistId);
+                if (highlightSubStructures && hitlistId != null && hitlistId.Value > 0)
+                    highlightSubStructures = GetSubStructureHighlight(hitlistId.Value, true);
                 return GetRegistryRecordsListView(true, skip, count, sort, hitListInfo, null, highlightSubStructures);
             }, new string[] { "SEARCH_TEMP" });
         }
