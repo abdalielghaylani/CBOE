@@ -372,6 +372,10 @@ export class RegRecords implements OnInit, OnDestroy {
         let markedHitList = result.json();
         this.markedHitListId = markedHitList.hitlistId;
         this.markedHitlistHitsNum = markedHitList.numberOfHits;
+        if (this.rowSelected) {
+          this.rowSelected = false;
+          this.updateHitListId(0);
+        }
         this.grid.instance.refresh();
         this.changeDetector.markForCheck();
         this.setProgressBarVisibility(false);
