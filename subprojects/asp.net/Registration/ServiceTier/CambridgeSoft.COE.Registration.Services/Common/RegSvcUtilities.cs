@@ -1240,7 +1240,7 @@ namespace CambridgeSoft.COE.Registration.Services.Common
             try
             {
 
-                if (HttpContext.Current.Session["MultiCompoundBusinessObject"] != null && !string.IsNullOrEmpty(HttpContext.Current.Session["MultiCompoundBusinessObject"].ToString()))
+                if (HttpContext.Current.Session != null && HttpContext.Current.Session["MultiCompoundBusinessObject"] != null && !string.IsNullOrEmpty(HttpContext.Current.Session["MultiCompoundBusinessObject"].ToString()))
                 {
                    // _regRecord = ((RegistryRecord)(HttpContext.Current.Session["MultiCompoundBusinessObject"])).Clone();
                     _regRecord = ((RegistryRecord)(HttpContext.Current.Session["MultiCompoundBusinessObject"]));//removed .clone() fix for CBOE-499 
