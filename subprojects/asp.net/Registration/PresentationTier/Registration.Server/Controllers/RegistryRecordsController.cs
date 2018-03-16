@@ -61,6 +61,16 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return regNum;
         }
 
+        private int GetMixtureId(int id)
+        {
+            var args = new Dictionary<string, object>();
+            args.Add(":id", id);
+            var mixtureID = (int)ExtractValue("SELECT mixtureid FROM vw_mixture_regnumber WHERE regid=:id", args);
+            if (mixtureID == 0)
+                throw new IndexOutOfRangeException(string.Format("Cannot find registration ID, {0}", id));
+            return mixtureID;
+        }
+
         private void ValidateUpdatedRecord(RegistryRecord registryRecord)
         {
             if (registryRecord.ID == 0 || !string.IsNullOrEmpty(registryRecord.RedBoxWarning))
@@ -817,9 +827,10 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var regNum = GetRegNumber(id);
+                var mixtureId = GetMixtureId(id);
                 RegistryRecord.DeleteRegistryRecord(regNum);
                 var markedHitList = GetMarkedHitListBO(false);
-                markedHitList.UnMarkAllHits();
+                markedHitList.UnMarkHit(mixtureId);
                 return new ResponseData(id: id, regNumber: regNum, message: string.Format("The registry record, {0}, was deleted successfully!", regNum));
             }, new string[] { "DELETE_REG", "EDIT_COMPOUND_REG" });
         }
@@ -1114,7 +1125,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 CheckTempRecordId(id);
                 RegistryRecord.DeleteRegistryRecord(id);
                 var markedHitList = GetMarkedHitListBO(true);
-                markedHitList.UnMarkAllHits();
+                markedHitList.UnMarkHit(id);
                 return new ResponseData(id: id, message: string.Format("The temporary record, {0}, was deleted successfully!", id));
             }, new string[] { "DELETE_TEMP", "EDIT_COMPOUND_TEMP" });
         }
