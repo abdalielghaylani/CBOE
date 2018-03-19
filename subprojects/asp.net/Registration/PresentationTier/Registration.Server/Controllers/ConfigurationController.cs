@@ -630,11 +630,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                             if (columnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
                             {
                                 string structure = columnValue == null ? string.Empty : columnValue.ToString();
-                                if (!string.IsNullOrEmpty(structure))
-                                {
-                                    string converted = ChemistryHelper.ConvertToCdxml(structure, true);
-                                    structure = converted.Replace("\r\n", " ");
-                                }
                                 row.Add(new JProperty(columnName, "fragment/" + dr[0].ToString()));
                                 row.Add(new JProperty("STRUCTURE_XML", structure));
                             }
@@ -685,11 +680,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (dc.ColumnName.Equals("structure", StringComparison.OrdinalIgnoreCase))
                     {
                         string structure = dr[dc] == null ? string.Empty : dr[dc].ToString();
-                        if (!string.IsNullOrEmpty(structure))
-                        {
-                            string converted = ChemistryHelper.ConvertToCdxml(structure, true);
-                            structure = converted.Replace("\r\n", " ");
-                        }
                         data.Add(new JProperty(dc.ColumnName, structure));
                     }
                     else

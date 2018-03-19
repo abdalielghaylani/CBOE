@@ -22,7 +22,7 @@
       </div>
     </div>
   </dx-popup>
-  <dx-popup [width]="640" [height]="454" [showTitle]="true" title="Structure Detail" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="structureDataVisible"
+  <dx-popup [width]="640" [height]="454" [showTitle]="true" title="Structure" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="structureDataVisible"
     [animation]="{show:{duration: 0}}">
     <div *dxTemplate="let data of 'content'">
       <chemdraw-web id="structureDataCdd" [editMode]="false" [activated]="true" [value]="structureData" ></chemdraw-web>

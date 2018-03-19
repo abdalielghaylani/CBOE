@@ -142,7 +142,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
 
                 COEGenericObjectStorageBO genericStorageBO = COEGenericObjectStorageBO.Get(template.Id.Value);
                 string coeGenericObjectXml = genericStorageBO.COEGenericObject;
-                // if xml is coming from a stored template - reset the default scientistID
+                // if XML is coming from a stored template - reset the default scientistID
                 string propertyPath = string.Format("MultiCompoundRegistryRecord/BatchList/Batch/PropertyList/Property[@name='{0}']", "SCIENTIST_ID");
                 XmlDocument recordXml = new XmlDocument();
                 recordXml.LoadXml(coeGenericObjectXml);
@@ -154,8 +154,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         xNode.InnerText = COEUser.ID.ToString();
                     }
                 }
-
-                template.Data = ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml;
+                template.Data = recordXml.OuterXml;
                 return template;
             }, new string[] { "LOAD_SAVE_RECORD" });
         }
@@ -180,10 +179,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
                     string xml = data.Data;
-                    var doc = new XmlDocument();
-                    doc.LoadXml(xml);
-                    errorMessage = "Unable to process chemical structures.";
-                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
 
                     registryRecord = RegistryRecord.NewRegistryRecord();
                     errorMessage = "Unable to initialize the internal record.";
@@ -251,10 +246,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
                     string xml = data.Data;
-                    var doc = new XmlDocument();
-                    doc.LoadXml(xml);
-                    errorMessage = "Unable to process chemical structures.";
-                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
 
                     registryRecord = RegistryRecord.NewRegistryRecord();
                     errorMessage = "Unable to initialize the internal record.";

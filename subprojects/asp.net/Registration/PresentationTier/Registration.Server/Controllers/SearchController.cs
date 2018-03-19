@@ -697,10 +697,8 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         var structureCriteria = searchCriteriaItem.Criterium as SearchCriteria.StructureCriteria;
                         if (structureCriteria == null) continue;
                         var query = structureCriteria.Query4000;
-                        if (!string.IsNullOrEmpty(query) && query.StartsWith("VmpD"))
-                        {
-                            structureCriteria.Structure = SecurityElement.Escape(ChemistryHelper.ConvertToCdxml(query, true));
-                        }
+                        if (!string.IsNullOrEmpty(query))
+                            structureCriteria.Structure = query;
                     }
                     queryData.SearchCriteria = searchCriteria.ToString();
                     return queryData;
@@ -871,9 +869,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     if (structureCriteria == null) continue;
                     var query = structureCriteria.Query4000;
                     if (!string.IsNullOrEmpty(query) && query.StartsWith("VmpD"))
-                    {
-                        structureCriteria.Structure = SecurityElement.Escape(ChemistryHelper.ConvertToCdxml(query, true));
-                    }
+                        structureCriteria.Structure = query;
                 }
                 queryData.SearchCriteria = searchCriteria.ToString();
                 return queryData;

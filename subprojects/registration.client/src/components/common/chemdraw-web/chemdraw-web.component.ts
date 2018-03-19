@@ -102,7 +102,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
 
   private loadData(value: string) {
     if (value) {
-      if (value.startsWith('VmpD')) {
+      if (/\w*VmpD/.test(value)) {
         this.cdd.loadB64CDX(value);
       } else {
         this.cdd.loadCDXML(value);
@@ -120,7 +120,7 @@ export class ChemDrawWeb implements OnInit, OnDestroy, OnChanges, AfterViewInit 
   }
 
   public getValue(): string {
-    return this.cdd ? this.cdd.getCDXML() : this.value;
+    return this.cdd ? this.cdd.getB64CDX() : this.value;
   }
 
   public activate() {

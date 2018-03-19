@@ -202,7 +202,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
                 bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
 
-                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
+                return new JObject(new JProperty("data", record),
                     new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
                     new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor),
                     new JProperty("inventoryContainers", GetInventoryContainerList(id)));
@@ -336,7 +336,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             var doc = new XmlDocument();
             doc.LoadXml(data);
-            var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
 
             const string regIdXPath = "/MultiCompoundRegistryRecord/ID";
             XmlNode regNode = doc.SelectSingleNode(regIdXPath);
@@ -347,12 +346,12 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             if (regId > 0)
             {
                 registryRecord = RegistryRecord.GetRegistryRecord(regId);
-                registryRecord.InitializeFromXml(recordString, false, false);
+                registryRecord.InitializeFromXml(data, false, false);
             }
             else
             {
                 registryRecord = RegistryRecord.NewRegistryRecord();
-                registryRecord.InitializeFromXml(recordString, true, false);
+                registryRecord.InitializeFromXml(data, true, false);
                 registryRecord.IsDirectReg = true;
             }
             registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
@@ -442,10 +441,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 try
                 {
                     errorMessage = "Unable to parse the incoming data as a well-formed XML document.";
+                    var xml = inputData.Data;
                     var xmlDoc = new XmlDocument();
-                    xmlDoc.LoadXml(inputData.Data);
-                    errorMessage = "Unable to process chemical structures.";
-                    var xml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
+                    xmlDoc.LoadXml(xml);
                     errorMessage = "Unable to determine the registry number.";
                     const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
                     XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
@@ -1001,7 +999,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 bool isLoggedInUserOwner = UserIdentity.ID == personCreatedId ? true : false;
                 bool isLoggedInUserSupervisor = COEUserBO.GetUserByID(personCreatedId).SupervisorID == UserIdentity.ID ? true : false;
 
-                return new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
+                return new JObject(new JProperty("data", record),
                     new JProperty("isLoggedInUserOwner", isLoggedInUserOwner),
                     new JProperty("isLoggedInUserSuperVisor", isLoggedInUserSupervisor));
             });
@@ -1016,9 +1014,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
         {
             return await CallMethod(() =>
             {
-                var doc = new XmlDocument();
-                doc.LoadXml((string)recordData["data"]);
-                var recordString = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
+                var recordString = (string)recordData["data"];
                 RegistryRecord registryRecord = RegistryRecord.NewRegistryRecord();
                 registryRecord.InitializeFromXml(recordString, true, false);
                 registryRecord.BatchPrefixDefaultOverride(true);
@@ -1032,10 +1028,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 }
                 else
                 {
-                    var recordXml = new XmlDocument();
-                    recordXml.LoadXml(savedRegistryRecord.XmlWithAddIns);
-
-                    JObject newRecordData = new JObject(new JProperty("data", ChemistryHelper.ConvertStructuresToCdxml(recordXml).OuterXml),
+                    JObject newRecordData = new JObject(new JProperty("data", savedRegistryRecord.XmlWithAddIns),
                         new JProperty("isLoggedInUserOwner", true),
                         new JProperty("isLoggedInUserSuperVisor", false));
                     return new ResponseData(savedRegistryRecord.ID, data: newRecordData);
@@ -1061,8 +1054,6 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                     var xml = (string)recordData["data"];
                     var doc = new XmlDocument();
                     doc.LoadXml(xml);
-                    errorMessage = "Unable to process chemical structures.";
-                    xml = ChemistryHelper.ConvertStructuresToCdx(doc).OuterXml;
                     errorMessage = "Unable to determine the registry ID.";
                     const string regIdXPath = "/MultiCompoundRegistryRecord/ID";
                     XmlNode regNode = doc.SelectSingleNode(regIdXPath);
@@ -1174,8 +1165,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                         throw new RegistrationException("Invalid registration number");
                 }
 
+                var xml = inputData.Data;
                 var xmlDoc = new XmlDocument();
-                xmlDoc.LoadXml(inputData.Data);
+                xmlDoc.LoadXml(xml);
                 const string regNumXPath = "/MultiCompoundRegistryRecord/RegNumber/RegNumber";
                 XmlNode regNode = xmlDoc.SelectSingleNode(regNumXPath);
 
@@ -1184,19 +1176,18 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     // use case: record is not registered yet
                     // try to register record to get the duplicates
-                    registryRecord = RegisterRecord(inputData.Data, "C");
+                    registryRecord = RegisterRecord(xml, "C");
                 }
                 else
                 {
-                    // use case: record is alrady registered 
+                    // use case: record is already registered 
                     // try to save the record to get the duplicates
                     string regNum = regNode.InnerText.Trim();
                     registryRecord = RegistryRecord.GetRegistryRecord(regNum);
                     if (registryRecord == null) throw new Exception();
-                    var recordXml = ChemistryHelper.ConvertStructuresToCdx(xmlDoc).OuterXml;
                     // errorMessage = "Record is locked and cannot be updated.";
                     // if (registryRecord.Status == RegistryStatus.Locked) throw new Exception();
-                    registryRecord.UpdateFromXmlEx(recordXml);
+                    registryRecord.UpdateFromXmlEx(xml);
 
                     registryRecord.ModuleName = ChemDrawWarningChecker.ModuleName.REGISTRATION;
                     registryRecord.CheckOtherMixtures = false;
