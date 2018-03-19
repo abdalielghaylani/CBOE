@@ -541,7 +541,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
                 {
                     if (temp)
                     {
-                        sql.Append("SELECT TEMPBATCHID FROM REGDB.TEMPORARY_BATCH");
+                        sql.Append("SELECT TEMPBATCHID FROM REGDB.TEMPORARY_COMPOUND");
                     }
                     else
                     {
