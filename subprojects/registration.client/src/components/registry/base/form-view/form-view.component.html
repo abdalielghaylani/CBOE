@@ -18,7 +18,7 @@
     <reg-structure-form-item-template [id]="data.dataField + '_cdd'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-form-item-template>
   </div>
   <div *dxTemplate="let data of 'structureImageTemplate'">
-    <reg-structure-image-form-item-template [id]="data.dataField + '_image'" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-image-form-item-template>
+    <reg-structure-image-form-item-template [id]="data.dataField + '_image'" (onClick)="structureImageClicked($event)" [activated]="activated" [editMode]="editMode" [viewModel]="data"></reg-structure-image-form-item-template>
   </div>
   <div *dxTemplate="let data of 'textTemplate'">
     <reg-text-form-item-template [editMode]="editMode" [viewModel]="data"></reg-text-form-item-template>
@@ -30,3 +30,9 @@
     <reg-check-box-form-item-template [editMode]="editMode" [viewModel]="data"></reg-check-box-form-item-template>
   </div>
 </dx-form>
+<dx-popup [width]="640" [height]="454" [showTitle]="true" title="Structure" [dragEnabled]="false" [closeOnOutsideClick]="true" [(visible)]="structureDataVisible"
+    [animation]="{show:{duration: 0}}">
+    <div *dxTemplate="let data of 'content'">
+      <chemdraw-web id="structureDataCdd" [editMode]="false" [activated]="true" [value]="structureData" ></chemdraw-web>
+    </div>
+</dx-popup>

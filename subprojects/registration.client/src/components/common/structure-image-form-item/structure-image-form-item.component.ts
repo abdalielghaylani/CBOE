@@ -13,6 +13,7 @@ export const noStructureImage = require('../assets/no-structure.png');
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegStructureImageFormItem extends RegBaseFormItem {
+  @Output() onClick = new EventEmitter<string>();
   private image;
   private spinnerImage = require('../assets/spinner.gif');
   
@@ -41,5 +42,17 @@ export class RegStructureImageFormItem extends RegBaseFormItem {
         this.image = noStructureImage;
         self.changeDetector.markForCheck();
       });
+  }
+
+  private get structureValue(): string {
+    let value = this.viewModel.editorOptions.value;
+    if (value && value.Structure) {
+      value = value.Structure.__text;
+    } 
+    return value;
+  }
+
+  private structureClicked(e) {
+    this.onClick.emit(this.structureValue);
   }
 };
