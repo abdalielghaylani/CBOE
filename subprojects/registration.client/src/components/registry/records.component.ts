@@ -82,7 +82,6 @@ export class RegRecords implements OnInit, OnDestroy {
   private totalSearchableCount: number = 0;
   private markedHitListId: number = 0;
   private markedHitlistHitsNum: number = 0;
-  private isTotalSearchableCountUpdated: boolean = false;
   private queryFormShown: boolean = false;
   private updateQueryForm: boolean = true;
   private isRefine = false;
@@ -104,7 +103,6 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.isTotalSearchableCountUpdated = false;
     this.isPrintAndExportAvailable = false;
     this.queryFormShown = false;
     this.updateQueryForm = true;
@@ -171,16 +169,13 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   setTotalSearchableCount() {
-    if (!this.isTotalSearchableCountUpdated) {
-      this.http.get(`${apiUrlPrefix}records/databaseRecordCount?temp=${this.temporary}`).toPromise()
-        .then((res => {
-          this.totalSearchableCount = res.json();
-          this.isTotalSearchableCountUpdated = true;
-        }).bind(this))
-        .catch(error => {
-          notifyException(`The total searchable count query failed due to a problem`, error, 5000);
-        });
-    }
+    this.http.get(`${apiUrlPrefix}records/databaseRecordCount?temp=${this.temporary}`).toPromise()
+      .then((res => {
+        this.totalSearchableCount = res.json();
+      }).bind(this))
+      .catch(error => {
+        notifyException(`The total searchable count query failed due to a problem`, error, 5000);
+      });
   }
 
   getMarkedHitList() {
@@ -234,6 +229,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   loadData() {
+    this.setTotalSearchableCount();
     this.dataStore = this.createCustomStore(this);
     this.actions.openHitlists(this.temporary);
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
@@ -331,7 +327,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onRefine(result) {
-    this.isTotalSearchableCountUpdated = false;
+    this.setTotalSearchableCount();
     this.rowSelected = false;
     this.currentIndex = 0;
     this.updateHitListId(result.hitlistId);
@@ -513,13 +509,13 @@ export class RegRecords implements OnInit, OnDestroy {
         this.getMarkedHitList();
         this.grid.instance.refresh();
         notifySuccess(`The record was deleted successfully!`, 5000);
+        this.setTotalSearchableCount();
       })
       .catch(error => {
         this.setProgressBarVisibility(false);
         notifyException(`The record was not deleted due to a problem`, error, 5000);
       });
     e.cancel = true;
-    this.isTotalSearchableCountUpdated = false;
   }
 
   private manageQueries() {
@@ -674,6 +670,7 @@ export class RegRecords implements OnInit, OnDestroy {
               this.updateHitListId(0);
               this.getMarkedHitList();
               this.grid.instance.refresh();
+              this.setTotalSearchableCount();
             })
             .catch(error => {
               notifyException(`Delete records failed due to a problem`, error, 5000);
