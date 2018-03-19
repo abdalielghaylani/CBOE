@@ -243,6 +243,11 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             foreach (var batch in registryRecord.BatchList)
             {
                 retVal = GetInvContainers(registryRecord.RegNumber.ID, batch.BatchNumber);
+                if (retVal == null || retVal.Tables.Count == 0)
+                    continue;
+                containerTable = retVal.Tables[0];
+                containerTable.DefaultView.Sort = "CONTAINERID DESC";
+                containerTable = containerTable.DefaultView.ToTable();
                 invContainerList = InvContainerList.NewInvContainerList(containerTable, registryRecord.RegNumber.RegNum);
                 foreach (InvContainer container in invContainerList)
                 {
