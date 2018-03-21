@@ -96,7 +96,7 @@ export class RegQueryManagement implements OnInit, OnDestroy {
     this.actions.updateHitlist(this.temporary, {
       name: newData.name ? newData.name : oldData.name,
       description: newData.description ? newData.description : oldData.description,
-      isPublic: newData.isPublic !== undefined ? newData.isPublic : oldData.isPublic,
+      isPublic: newData.isPublic != null ? newData.isPublic : oldData.isPublic,
       hitlistType: oldData.hitlistType,
       hitlistId: oldData.hitlistId
     });
