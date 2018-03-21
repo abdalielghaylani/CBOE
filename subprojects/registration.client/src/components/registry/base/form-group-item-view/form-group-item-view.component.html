@@ -20,8 +20,7 @@
       <div class="dx-form-group-with-caption dx-form-group dx-group-colcount-5">
         <div style="margin-bottom: 5px;">
           <span class="tan dx-form-group-caption"><strong>Batch Inventory Containers</strong> </span>
-          <command-button *ngIf="showRequestMaterialButton" testid="request-material-record-details" (onClick)="requestMaterial()" iconName="flask" [pullRight]="false" title="Request Material" style="float: right;
-          margin-right: 25px;"></command-button>
+          <command-button *ngIf="showRequestMaterialButton" testid="request-material-record-details" (onClick)="requestMaterial()" iconName="flask" [pullRight]="false" title="Request Material" style="float: right; margin-right: 25px;"></command-button>
         </div>
         <div class="dx-form-group-content">
           <inventory-containers-form-group-item-view [invContainersVM]="batchContainers"></inventory-containers-form-group-item-view>

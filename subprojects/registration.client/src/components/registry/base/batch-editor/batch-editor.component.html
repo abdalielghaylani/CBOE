@@ -4,7 +4,7 @@
   <dx-popup showCloseButton=false [fullScreen]="false" width="90%" height="auto" title="Edit Batch" [shading]="true" [closeOnOutsideClick]="false"
     contentTemplate="contentTemplate" [(visible)]="formVisible">
     <div *dxTemplate="let data of 'contentTemplate'">
-      <reg-alert qaid="qa-alert" class="text-left" testid="alert-error" status='error' [hidden]="errorMessages.length<=0">
+      <reg-alert qaid="qa-alert" class="text-left" testid="alert-error" status='error' [hidden]="errorMessages.length&lt;=0">
         <div style="padding-left:15px;">
           <strong>
             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;One or more entries failed to validate!</strong>

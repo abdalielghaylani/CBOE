@@ -21,12 +21,11 @@ import * as registryUtils from '../../registry.utils';
 })
 export class RegBatchEditor implements OnChanges {
   @Input() viewModel: IBatch[] = [];
-  private currentBatch: CBatch;
-  private errorMessages;
   @Input() viewConfig: CViewGroupContainer;
   @Output() onEdit = new EventEmitter<any>();
   @Output() valueUpdated: EventEmitter<any> = new EventEmitter<any>();
-
+  private currentBatch: CBatch;
+  private errorMessages;
   private formVisible: boolean = false;
   private items: any[];
   private formData: any;
@@ -60,21 +59,6 @@ export class RegBatchEditor implements OnChanges {
   }
 
   protected onValueUpdated(e) {
-    this.getValidItems().forEach(item => {
-      let value = this.currentBatch.PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
-      if (value) {
-        this.currentBatch.PropertyList.Property.find(i => i._name + 'Property' === item.dataField).__text = e.viewModel[item.dataField];
-      } else {
-        let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
-        if (entryInfo.dataSource && entryInfo.bindingExpression) {
-          let dataSource = this.getDataSource(entryInfo.dataSource, 0);
-          let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
-          if (foundObject.property) {
-            dataSource[foundObject.property] = e.viewModel[item.dataField];
-          }
-        }
-      }
-    });
     this.validate();
   }
 
@@ -89,7 +73,7 @@ export class RegBatchEditor implements OnChanges {
     this.update();
     this.currentBatch = this.viewConfig.subArray[this.viewConfig.subIndex];
     this.getValidItems().forEach(item => {
-      let value = this.viewModel[this.viewConfig.subIndex].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
+      const value = this.viewModel[this.viewConfig.subIndex].PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
       if (value) {
         this.formData[value._name + 'Property'] = value.__text;
       } else {
@@ -110,6 +94,21 @@ export class RegBatchEditor implements OnChanges {
   protected editBatch(e) {
     if (this.validate().isValid) {
       this.formVisible = false;
+      this.getValidItems().forEach(item => {
+        const value = this.currentBatch.PropertyList.Property.find(i => i._name + 'Property' === item.dataField);
+        if (value) {
+          value.__text = this.formData[item.dataField];
+        } else {
+          let entryInfo = this.viewConfig.getEntryInfo('edit', item.dataField);
+          if (entryInfo.dataSource && entryInfo.bindingExpression) {
+            let dataSource = this.getDataSource(entryInfo.dataSource, 0);
+            let foundObject = CRegistryRecord.findBoundObject(dataSource, entryInfo.bindingExpression, true);
+            if (foundObject.property) {
+              dataSource[foundObject.property] = this.formData[item.dataField];
+            }
+          }
+        }
+      });
       this.onEdit.emit(this.currentBatch);
     }
   }
