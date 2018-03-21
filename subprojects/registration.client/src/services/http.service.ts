@@ -44,10 +44,10 @@ export class HttpService extends Http {
   }
 
   private checkRedirect(res: Response): Response {
-    if (res.url && res.url.indexOf('index.html') > 0) {
+    if ((res.url && res.url.indexOf('index.html') > 0) || (res.status === 404 && (res as any)._body && (res as any)._body.indexOf('index.html') > 0)) {
       this.ngRedux.dispatch(SessionActions.logoutUserAction());
       throw res;
-    } else if (res.url && res.url.indexOf('records/') > 0 && res.status === 404 ) {
+    } else if (res.status === 404 && res.url && /\/(temp-)?records\/\d+/.test(res.url)) {
       this.ngRedux.dispatch(createAction(UPDATE_LOCATION)(`records${res.url.indexOf('temp') > 0 ? '/temp' : ''}`));
     }
     return res;
