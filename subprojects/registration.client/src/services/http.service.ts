@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
+import { UPDATE_LOCATION } from '@angular-redux/router';
 import { NgRedux } from '@angular-redux/store';
-import { Observable } from 'rxjs/Observable';
+import { createAction } from 'redux-actions';
+import { Observable, ObservableInput } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { SessionActions, IAppState } from '../redux';
@@ -36,35 +38,36 @@ export class HttpService extends Http {
         url.headers.set('Authorization', `Bearer ${token}`);
       }
     }
-    return super.request(url, options).map(this.preProcessRequest(this)).catch(this.catchAuthError(this));
+    return super.request(url, options)
+      .map((res: Response) => this.preProcessRequest(res))
+      .catch((err: any, caught: Observable<Response>) => this.catchAuthError(err, caught));
   }
 
-  private checkRedirect(self: HttpService, res: Response) {
-    if (res.url && res.url.indexOf('index.html') > 0 || res.status === 404) {
-      self.ngRedux.dispatch(SessionActions.logoutUserAction());
+  private checkRedirect(res: Response): Response {
+    if (res.url && res.url.indexOf('index.html') > 0) {
+      this.ngRedux.dispatch(SessionActions.logoutUserAction());
       throw res;
+    } else if (res.url && res.url.indexOf('records/') > 0 && res.status === 404 ) {
+      this.ngRedux.dispatch(createAction(UPDATE_LOCATION)(`records${res.url.indexOf('temp') > 0 ? '/temp' : ''}`));
     }
+    return res;
   }
 
-  private preProcessRequest(self: HttpService) {
-    return (res: Response) => {
-      this.checkRedirect(self, res);
-      return res;
-    };
+  private preProcessRequest(res: Response): Response {
+    return this.checkRedirect(res);
   }
 
-  private catchAuthError(self: HttpService) {
+  private catchAuthError(res: any, caught: Observable<Response>): ObservableInput<any> {
     // we have to pass HttpService's own instance here as `self`
-    return (err: Response, caught) => {
-      // console.log(res);
-      this.checkRedirect(self, err);
-      if (self.tokenPath) {
-        if (err.status === 401 || err.status === 403) {
-          // if not authenticated
-          // console.log(res);
-        }
+    if (res.url) {
+      this.checkRedirect(res);
+    }
+    if (this.tokenPath) {
+      if (res.status === 401 || res.status === 403) {
+        // if not authenticated
+        // console.log(res);
       }
-      throw err;
-    };
+    }
+    throw res;
   }
 }
