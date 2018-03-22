@@ -46,7 +46,7 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             args.Add(":id", id);
             var count = Convert.ToInt32(ExtractValue("SELECT cast(count(1) as int) FROM vw_temporarycompound WHERE tempbatchid=:id", args));
             if (count == 0)
-                throw new IndexOutOfRangeException(string.Format("Cannot find temporary compompound ID, {0}", id));
+                throw new IndexOutOfRangeException(string.Format("Cannot find temporary Compound Id: {0}", id));
         }
 
         private string GetNodeText(XmlNode node)
