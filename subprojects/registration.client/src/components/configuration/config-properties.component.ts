@@ -125,6 +125,21 @@ export class RegConfigProperties extends RegConfigBaseComponent {
           break;
         default:
           validationModel = this.configProperties.formDataValidation;
+          if (this.configProperties.formData.type === 'DATE' || typeof validationModel.defaultValue === 'object') {
+            // For date's default value, copy validation rule to a new object.
+            // This is necessary because this.configProperties.formDataValidation is bound to a view element.
+            validationModel = new CPropertiesValidationFormDataModel();
+            const v = this.configProperties.formDataValidation;
+            for (const k in v) {
+              if (v.hasOwnProperty(k)) {
+                validationModel[k] = v[k];
+                if (k === 'defaultValue') {
+                  const date = v[k] as any;
+                  validationModel[k] = `${date.getMonth() + 1}/${date.getDate()}/${date.getYear()}`;
+                }
+              }
+            }
+          }
           this.configProperties.formData.validationRules.push(validationModel);
           break;
       }

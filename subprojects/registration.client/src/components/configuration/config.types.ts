@@ -400,6 +400,7 @@ export class CConfigProperties {
     this.formColumns[5].editorOptions.dataSource = lookups.pickListDomains;
     this.pickListDomain = lookups.pickListDomains;
   }
+
   clearParams(p: string) {
     this.formDataValidation[p] = undefined;
   }
@@ -675,6 +676,7 @@ export class CConfigProperties {
 function isBlank(str) {
   return (!str || /^\s*$/.test(str));
 }
+
 export const CONFIG_ADDIN_COLUMNS = {
   grdColumn: [{
     dataField: 'name',
