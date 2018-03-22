@@ -134,8 +134,8 @@ export class RegConfigProperties extends RegConfigBaseComponent {
               if (v.hasOwnProperty(k)) {
                 validationModel[k] = v[k];
                 if (k === 'defaultValue') {
-                  const date = v[k] as any;
-                  validationModel[k] = `${date.getMonth() + 1}/${date.getDate()}/${date.getYear()}`;
+                  const date = new Date(v[k]);
+                  validationModel[k] = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
                 }
               }
             }
