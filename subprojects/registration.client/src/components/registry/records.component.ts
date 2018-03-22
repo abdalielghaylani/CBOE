@@ -174,7 +174,7 @@ export class RegRecords implements OnInit, OnDestroy {
         this.totalSearchableCount = res.json();
       }).bind(this))
       .catch(error => {
-        notifyException(`The total searchable count query failed due to a problem`, error, 5000);
+        // notifyException(`The total searchable count query failed due to a problem`, error, 5000);
       });
   }
 
