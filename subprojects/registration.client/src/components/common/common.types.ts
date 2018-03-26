@@ -317,26 +317,27 @@ export class CValidator {
   private static validateFloat(rule: IValidationRule, e) {
     if (e.value) {
       let floatingValue = this.filterFloat(e.value);
-      if (floatingValue === Number.NaN) {
+      if (isNaN(floatingValue)) {
         e.rule.isValid = false;
       } else {
-        let integerPart = this.getParamNumber(rule.params.param, 'integerPart');
-        let decimalPart = this.getParamNumber(rule.params.param, 'decimalPart');
-        let valueIntegerPart = Math.ceil(Math.log10(floatingValue));
+        if (floatingValue < 0) {
+          floatingValue = Math.abs(floatingValue);
+        }
+        const integerPart = this.getParamNumber(rule.params.param, 'integerPart');
+        const decimalPart = this.getParamNumber(rule.params.param, 'decimalPart');
+        const valueIntegerPart = floatingValue === 0 ? 0 : Math.ceil(Math.log10(floatingValue));
         if (integerPart && valueIntegerPart > integerPart) {
           e.rule.isValid = false;
-        }
-        if (decimalPart) {
-          let v: string = e.value.toLowerCase();
-          let i = v.indexOf('e');
-          if (i > 0) {
-            v = v.substring(0, i);
-          }
-          v = v.replace(/[+-.]/g, '');
-          while (v.startsWith('0')) {
-            v = v.substring(1);
-          }
-          e.rule.isValid = (v.length - valueIntegerPart) <= decimalPart;
+        } else if (decimalPart) {
+          const v: string = e.value;
+          const i = v.indexOf('.');
+          const valueDecimalPart = i > 0 ? v.length - i - 1 : 0;
+          e.rule.isValid = valueDecimalPart <= decimalPart;
+        } else {
+          // Integer part rule is missing or validated, or
+          // Decimal part rule is missing.
+          // Therefore it is validated.
+          e.rule.isValid = true;
         }
       }
     }
