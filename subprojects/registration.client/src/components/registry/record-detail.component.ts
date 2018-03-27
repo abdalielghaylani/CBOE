@@ -118,13 +118,20 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnInit() {
-    let state = this.ngRedux.getState();
-    if (this.id >= 0 && !this.useCurrent) {
+    const state = this.ngRedux.getState();
+    if (this.id >= 0 && !this.useCurrent && (state == null || state.registry.currentRecord == null)) {
       return;
     }
     this.parentHeight = this.getParentHeight();
-    this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
-    this.loadingProgressSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
+    if (this.routeSubscription == null) {
+      this.routeSubscription = this.activatedRoute.url.subscribe((segments: UrlSegment[]) => this.initialize(segments));
+    }
+    if (this.loadingProgressSubscription == null) {
+      this.loadingProgressSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
+    }
+    if (this.duplicateSubscription == null) {
+      this.duplicateSubscription = this.duplicateRecord$.subscribe((value) => this.duplicateData(value));
+    }
     // Code for accessing "refreshRecordDetails()" from old UI
     window.NewRegWindowHandle = window.NewRegWindowHandle || {};
     window.NewRegWindowHandle.refreshRecordDetails = this.refreshRecordDetails.bind(this);
@@ -205,9 +212,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     let newIndex = segments.findIndex(s => s.path === 'new');
     if (newIndex >= 0 && newIndex < segments.length - 1) {
       this.id = +segments[segments.length - 1].path;
-    }
-    if (!this.duplicateSubscription) {
-      this.duplicateSubscription = this.duplicateRecord$.subscribe((value) => this.duplicateData(value));
     }
   }
 
