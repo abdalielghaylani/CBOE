@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { Location } from '@angular/common';
 import { select, NgRedux } from '@angular-redux/store';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
@@ -54,6 +54,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private lookupsSubscription: Subscription;
   private hitlistSubscription: Subscription;
   private isLoadingSubscription: Subscription;
+  private routerSubscription: Subscription;
   private lookups: ILookupData;
   private popupVisible: boolean = false;
   private marksShown: boolean = false;
@@ -101,13 +102,22 @@ export class RegRecords implements OnInit, OnDestroy {
     private imageService: CStructureImagePrintService,
     private changeDetector: ChangeDetectorRef,
     private ngZone: NgZone) {
+    this.routerSubscription = router.events.filter(e => e instanceof NavigationEnd).subscribe(value => {
+      const match = value.url.match(/\/hits\/(\d+)$/);
+      if (match && match.length === 2 && this.hitListId > 0 && !this.marksShown) {
+        this.hitListId = +match[1];
+        this.loadIndicatorVisible = true;
+        this.currentIndex = 0;
+        this.grid.instance.refresh();
+      }
+    });
   }
 
   ngOnInit() {
     this.queryFormShown = false;
     this.updateQueryForm = true;
     this.idField = this.temporary ? 'TEMPBATCHID' : 'REGID';
-    this.marksShown = this.isPrintAndExportAvailable = this.router.url.endsWith('/hits/marked');
+    this.marksShown = this.isPrintAndExportAvailable = this.router.url.endsWith('/marked');
     this.getMarkedHitList();
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
     this.isLoadingSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
@@ -125,6 +135,9 @@ export class RegRecords implements OnInit, OnDestroy {
     }
     if (this.isLoadingSubscription) {
       this.isLoadingSubscription.unsubscribe();
+    }
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
     }
     window.NewRegWindowHandle.closePrintPage = null;
   }
@@ -260,8 +273,8 @@ export class RegRecords implements OnInit, OnDestroy {
             if (ref.sortCriteria) { params += `${params ? '&' : '?'}sort=${ref.sortCriteria}`; }
             if (ref.marksShown) {
               params += `${params ? '&' : '?'}hitListId=${ref.markedHitListId}`;
-            } else if (ref.hitListId) { 
-              params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`; 
+            } else if (ref.hitListId) {
+              params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`;
             }
             params += `&highlightSubStructures=${ref.ngRedux.getState().registrysearch.highLightSubstructure}`;
             url += params;
@@ -332,7 +345,18 @@ export class RegRecords implements OnInit, OnDestroy {
     let url = `${apiUrlPrefix}hitlists/unMarkhit/all${this.temporary ? '?temp=true' : ''}`;
     this.http.put(url, undefined).toPromise()
       .then(result => {
-        this.location.back();
+        if (this.marksShown) {
+          let goBackUrl = this.router.url.replace('/marked', '');
+          this.router.navigate([goBackUrl]);
+          this.location.back();
+        } else {
+          let markedHitList = result.json();
+          this.markedHitListId = markedHitList.hitlistId;
+          this.markedHitCount = markedHitList.numberOfHits;
+          this.grid.instance.refresh();
+          this.changeDetector.markForCheck();
+          this.setProgressBarVisibility(false);
+        }
       })
       .catch(error => {
         notifyException(`Clearing all marks failed due to a problem`, error, 5000);
@@ -545,7 +569,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private editQuery(id: Number) {
     if (this.updateQueryForm) {
       if (id > 0) {
-      let url = `${apiUrlPrefix}hitlists/${id}/query${this.temporary ? '?temp=true' : ''}`;
+        let url = `${apiUrlPrefix}hitlists/${id}/query${this.temporary ? '?temp=true' : ''}`;
         this.http.get(url).toPromise()
           .then(res => {
             let queryData = res.json() as IQueryData;
@@ -576,7 +600,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.currentIndex = 0;
     this.isRefine = false;
     if (e.hitlistId) {
-      this.router.navigate([`records${this.temporary ? '/temp' : ''}/hits/${e.hitlistId}`]);
+      this.onSearch(e.hitlistId);
     }
   }
 
@@ -593,7 +617,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private showMarked() {
-    this.router.navigate([`records${this.temporary ? '/temp' : ''}/hits/marked`]);
+    this.router.navigate([`${this.router.url}/marked`]);
   }
 
   registerMarkedStart(e) {
@@ -668,7 +692,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private printRecords() {
     this.loadIndicatorVisible = true;
-    let url = `${apiUrlPrefix}hitlists/${this.hitListId}/print`;
+    let url = `${apiUrlPrefix}hitlists/${this.marksShown ? this.markedHitListId : this.hitListId}/print`;
     let params = '';
     if (this.temporary) { params += '?temp=true'; }
     params += `${params ? '&' : '?'}count=${printAndExportLimit}`;

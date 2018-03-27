@@ -32,7 +32,10 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records/temp',
   component: RegRecordsPage
 }, {
-  path: 'records/temp/hits/marked',
+  path: 'records/temp/marked',
+  component: RegRecordsPage
+}, {
+  path: 'records/temp/hits/:hitListId/marked',
   component: RegRecordsPage
 }, {
   path: 'records/temp/hits/:hitListId',
@@ -41,7 +44,10 @@ export const REG_APP_ROUTES: Routes = [{
   path: 'records',
   component: RegRecordsPage
 }, {
-  path: 'records/hits/marked',
+  path: 'records/marked',
+  component: RegRecordsPage
+}, {
+  path: 'records/hits/:hitListId/marked',
   component: RegRecordsPage
 }, {
   path: 'records/hits/:hitListId',
