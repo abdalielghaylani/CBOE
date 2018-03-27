@@ -106,7 +106,6 @@ export class RegRecords implements OnInit, OnDestroy {
       const match = value.url.match(/\/hits\/(\d+)$/);
       if (match && match.length === 2 && this.hitListId > 0 && !this.marksShown) {
         this.hitListId = +match[1];
-        this.loadIndicatorVisible = true;
         this.currentIndex = 0;
         this.grid.instance.refresh();
       }
