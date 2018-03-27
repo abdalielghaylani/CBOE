@@ -118,8 +118,8 @@ body
 	position: absolute;
 	top: 50%;
 	margin-left: 20px;
-	background: url('Images/New Reg_Admin.png') no-repeat center center;
-	-pie-background: url('Skins/Default/Stylesheets/Images/New Reg_Admin.png') no-repeat center center;
+	background: url('Images/Web_Reg_Admin.png') no-repeat center center;
+	-pie-background: url('Skins/Default/Stylesheets/Images/Web_Reg_Admin.png') no-repeat center center;
 	background-repeat: no-repeat;
 	background-position: center center;
 	display: block;
