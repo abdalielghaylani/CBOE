@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import { createAction } from 'redux-actions';
-import { IAppState, IRegistryRetrievalQuery, IRegisterRecordList, IRecordListData } from '../store';
+import { IAppState, IRegistryRetrievalQuery, IRegisterRecordList } from '../store';
 
 @Injectable()
 export class RegistryActions {
@@ -22,8 +22,6 @@ export class RegistryActions {
     (payload: any) => (payload));
   static bulkRegisterRecordErrorAction = createAction(RegistryActions.BULK_REGISTER_RECORD_ERROR,
     (payload: any) => (payload));
-  static updateListDataAction = createAction(RegistryActions.UPDATE_LIST_DATA,
-    (temporary: boolean, data: IRecordListData) => ({ temporary, data }));
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 
@@ -49,9 +47,5 @@ export class RegistryActions {
 
   clearResponse() {
     this.ngRedux.dispatch(RegistryActions.clearResponseAction());
-  }
-
-  updateListData(temporary: boolean, data: IRecordListData) {
-    this.ngRedux.dispatch(RegistryActions.updateListDataAction(temporary, data));
   }
 }

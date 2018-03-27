@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { select, NgRedux } from '@angular-redux/store';
 import * as X2JS from 'x2js';
-import { RecordDetailActions, IRecordListData, IAppState, IRecordDetail, ILookupData } from '../../redux';
+import { RecordDetailActions, IAppState, IRecordDetail, ILookupData } from '../../redux';
 import * as registryUtils from './registry.utils';
 import { IShareableObject, CShareableObject, IFormGroup, prepareFormGroupData, notify } from '../../common';
 import { IResponseData, ITemplateData, CTemplateData, ICopyActions } from './registry.types';
@@ -119,7 +119,7 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     let state = this.ngRedux.getState();
-    if (this.id >= 0 && !this.useCurrent && (state.registry.regListData == null && state.registry.tempListData == null)) {
+    if (this.id >= 0 && !this.useCurrent) {
       return;
     }
     this.parentHeight = this.getParentHeight();
@@ -132,11 +132,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges() {
     this.update(false);
-  }
-
-  private get listData(): IRecordListData {
-    const state = this.ngRedux.getState();
-    return this.temporary ? state.registry.tempListData : state.registry.regListData;
   }
 
   private update(forceUpdate: boolean = true) {
@@ -192,7 +187,6 @@ export class RegRecordDetail implements OnInit, OnDestroy, OnChanges {
     this.submissionTemplatesEnabled = this.isNewRecord
       && PrivilegeUtils.hasSubmissionTemplatePrivilege(userPrivileges) && ss.isSubmissionTemplateEnabled;
     let state = this.ngRedux.getState();
-    let hitListId = this.listData.hitListId;
     this.invIntegrationEnabled = (ss.isInventoryIntegrationEnabled && ss.isSendToInventoryEnabled)
       && !this.temporary
       && !this.isNewRecord

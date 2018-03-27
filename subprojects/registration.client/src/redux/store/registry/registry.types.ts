@@ -36,18 +36,7 @@ export class CRecordsData implements IRecordsData {
   }
 }
 
-export interface IRecordListData {
-  hitListId: number;
-}
-
-export class CRecordListData implements IRecordListData {
-  constructor(public hitListId: number) {
-  }
-}
-
 export interface IRegistry {
-  regListData: IRecordListData;
-  tempListData: IRecordListData;
   currentRecord: IRecordDetail;
   structureData: string;
   previousRecordDetail: IRecordDetail;

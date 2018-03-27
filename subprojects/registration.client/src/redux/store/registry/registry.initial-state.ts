@@ -1,7 +1,6 @@
 import {
   IRecordDetail, IRecordDetailRecord,
   IRecordsData, CRecordsData,
-  IRecordListData, CRecordListData,
   IRegistry, IRegistryRecord,
 } from './registry.types';
 import { makeTypedFactory, TypedRecord } from 'typed-immutable-record';
@@ -17,8 +16,6 @@ export const INITIAL_RECORD_DETAIL = makeTypedFactory<IRecordDetail, IRecordDeta
 })();
 
 export const RegistryFactory = makeTypedFactory<IRegistry, IRegistryRecord>({
-  regListData: new CRecordListData(0),
-  tempListData: new CRecordListData(0),
   currentRecord: INITIAL_RECORD_DETAIL,
   previousRecordDetail: INITIAL_RECORD_DETAIL,
   structureData: null,

@@ -8,8 +8,9 @@ import {
   ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener, NgZone
 } from '@angular/core';
+import { Location } from '@angular/common';
 import { select, NgRedux } from '@angular-redux/store';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
@@ -24,7 +25,7 @@ import { fetchLimit, printAndExportLimit, apiUrlPrefix, invWideWindowParams } fr
 import { HttpService } from '../../services';
 import { RegRecordSearch } from './record-search.component';
 import { PrivilegeUtils } from '../../common';
-import { RegistryActions, RegistrySearchActions, IRecordListData, CRecordListData, IHitlistData } from '../../redux';
+import { RegistryActions, RegistrySearchActions, IHitlistData } from '../../redux';
 import { IAppState, CRecordsData, ISearchRecords, ILookupData, IQueryData, CSystemSettings, HitlistType } from '../../redux';
 import { RegInvContainerHandler } from './inventory-container-handler/inventory-container-handler';
 import * as dxDialog from 'devextreme/ui/dialog';
@@ -55,7 +56,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private isLoadingSubscription: Subscription;
   private lookups: ILookupData;
   private popupVisible: boolean = false;
-  private rowSelected: boolean = false;
+  private marksShown: boolean = false;
   private refinedRows: any[] = [];
   private refinedTotalRecordsCount: number = 0;
   private tempResultRows: any[];
@@ -81,17 +82,17 @@ export class RegRecords implements OnInit, OnDestroy {
   private refreshHitList: boolean = false;
   private totalSearchableCount: number = 0;
   private markedHitListId: number = 0;
-  private markedHitlistHitsNum: number = 0;
+  private markedHitCount: number = 0;
   private queryFormShown: boolean = false;
   private updateQueryForm: boolean = true;
   private isRefine = false;
-  private isAllSelected: boolean = false;
   private markedHitsMax: number = 0;
   private structureDataVisible: boolean = false;
   private structureData: string;
 
   constructor(
     private router: Router,
+    private location: Location,
     private http: HttpService,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
@@ -103,16 +104,11 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.isPrintAndExportAvailable = false;
     this.queryFormShown = false;
     this.updateQueryForm = true;
-    // Synchronize the hit-list ID with the global cache.
-    if (this.hitListId !== 0) {
-      this.listData = new CRecordListData(this.hitListId);
-    } else {
-      this.hitListId = this.listData.hitListId;
-    }
     this.idField = this.temporary ? 'TEMPBATCHID' : 'REGID';
+    this.marksShown = this.isPrintAndExportAvailable = this.router.url.endsWith('/hits/marked');
+    this.getMarkedHitList();
     this.lookupsSubscription = this.lookups$.subscribe(d => { if (d) { this.retrieveContents(d); } });
     this.isLoadingSubscription = this.isLoading$.subscribe(d => { this.setProgressBarVisibility(d); });
 
@@ -130,23 +126,12 @@ export class RegRecords implements OnInit, OnDestroy {
     if (this.isLoadingSubscription) {
       this.isLoadingSubscription.unsubscribe();
     }
-
     window.NewRegWindowHandle.closePrintPage = null;
-  }
-
-  private get listData(): IRecordListData {
-    const state = this.ngRedux.getState();
-    return this.temporary ? state.registry.tempListData : state.registry.regListData;
-  }
-
-  private set listData(data: IRecordListData) {
-    this.registryActions.updateListData(this.temporary, data);
   }
 
   updateHitListId(id: number) {
     if (this.hitListId !== id) {
       this.hitListId = id;
-      this.listData = new CRecordListData(this.hitListId);
     }
   }
 
@@ -183,7 +168,10 @@ export class RegRecords implements OnInit, OnDestroy {
       .then((res => {
         let markedHitList = res.json();
         this.markedHitListId = markedHitList.hitlistId;
-        this.markedHitlistHitsNum = markedHitList.numberOfHits;
+        this.markedHitCount = markedHitList.numberOfHits;
+        if (this.marksShown) {
+          this.loadData();
+        }
         this.changeDetector.markForCheck();
       }).bind(this))
       .catch(error => {
@@ -206,9 +194,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.viewGroupsColumns = this.lookups
       ? CViewGroup.getColumns(this.temporary, formGroup, this.lookups.disabledControls, this.lookups.pickListDomains, systemSettings)
       : new CViewGroupColumns();
-
     this.markedHitsMax = systemSettings.markedHitsMax;
-    this.getMarkedHitList();
 
     if (this.restore) {
       this.restoreHitlist();
@@ -229,11 +215,14 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   loadData() {
+    if (this.marksShown && this.markedHitListId === 0) {
+      return;
+    }
     this.setTotalSearchableCount();
     this.dataStore = this.createCustomStore(this);
     this.actions.openHitlists(this.temporary);
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
-    if (this.hitlistSubscription) {
+    if (this.hitlistSubscription == null) {
       this.hitlistSubscription = this.hitlistData$.subscribe(() => {
         this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
         this.changeDetector.markForCheck();
@@ -269,7 +258,11 @@ export class RegRecords implements OnInit, OnDestroy {
             let take = loadOptions.take != null ? loadOptions.take : fetchLimit;
             if (take) { params += `${params ? '&' : '?'}count=${take}`; }
             if (ref.sortCriteria) { params += `${params ? '&' : '?'}sort=${ref.sortCriteria}`; }
-            if (ref.hitListId) { params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`; }
+            if (ref.marksShown) {
+              params += `${params ? '&' : '?'}hitListId=${ref.markedHitListId}`;
+            } else if (ref.hitListId) { 
+              params += `${params ? '&' : '?'}hitListId=${ref.hitListId}`; 
+            }
             params += `&highlightSubStructures=${ref.ngRedux.getState().registrysearch.highLightSubstructure}`;
             url += params;
             ref.http.get(url)
@@ -277,7 +270,9 @@ export class RegRecords implements OnInit, OnDestroy {
               .then(result => {
                 let response = result.json();
                 ref.recordsTotalCount = response.totalCount;
-                ref.updateHitListId(response.hitlistId);
+                if (response.hitlistId !== ref.markedHitListId) {
+                  ref.updateHitListId(response.hitlistId);
+                }
                 ref.setProgressBarVisibility(false);
                 ref.isPrintAndExportAvailable = (response.totalCount <= printAndExportLimit && response.totalCount > 0);
                 deferred.resolve(response.rows, { totalCount: response.totalCount });
@@ -319,16 +314,12 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   onSearch(hitListId) {
-    this.loadIndicatorVisible = true;
-    this.rowSelected = false;
-    this.currentIndex = 0;
-    this.updateHitListId(hitListId);
-    this.grid.instance.refresh();
+    this.router.navigate([`records/${this.temporary ? 'temp' : ''}/hits/${hitListId}`]);
   }
 
   onRefine(result) {
     this.setTotalSearchableCount();
-    this.rowSelected = false;
+    this.marksShown = false;
     this.currentIndex = 0;
     this.updateHitListId(result.hitlistId);
     this.refinedRows = result.rows;
@@ -341,16 +332,7 @@ export class RegRecords implements OnInit, OnDestroy {
     let url = `${apiUrlPrefix}hitlists/unMarkhit/all${this.temporary ? '?temp=true' : ''}`;
     this.http.put(url, undefined).toPromise()
       .then(result => {
-        let markedHitList = result.json();
-        this.markedHitListId = markedHitList.hitlistId;
-        this.markedHitlistHitsNum = markedHitList.numberOfHits;
-        if (this.rowSelected) {
-          this.rowSelected = false;
-          this.updateHitListId(0);
-        }
-        this.grid.instance.refresh();
-        this.changeDetector.markForCheck();
-        this.setProgressBarVisibility(false);
+        this.location.back();
       })
       .catch(error => {
         notifyException(`Clearing all marks failed due to a problem`, error, 5000);
@@ -369,7 +351,7 @@ export class RegRecords implements OnInit, OnDestroy {
         .then(result => {
           let markedHitList = result.json();
           this.markedHitListId = markedHitList.hitlistId;
-          this.markedHitlistHitsNum = markedHitList.numberOfHits;
+          this.markedHitCount = markedHitList.numberOfHits;
           this.grid.instance.refresh();
           this.changeDetector.markForCheck();
           this.setProgressBarVisibility(false);
@@ -387,7 +369,7 @@ export class RegRecords implements OnInit, OnDestroy {
       if (e2.currentTarget && e2.currentTarget.firstChild) {
         const value = e2.currentTarget.firstChild.value;
         if (value !== 'true' && value !== '1') {
-          if (this.markedHitlistHitsNum >= this.markedHitsMax) {
+          if (this.markedHitCount >= this.markedHitsMax) {
             e2.stopPropagation();
           }
         }
@@ -403,7 +385,7 @@ export class RegRecords implements OnInit, OnDestroy {
       .then(result => {
         let markedHitList = result.json();
         this.markedHitListId = markedHitList.hitlistId;
-        this.markedHitlistHitsNum = markedHitList.numberOfHits;
+        this.markedHitCount = markedHitList.numberOfHits;
         this.changeDetector.markForCheck();
       })
       .catch(error => {
@@ -471,11 +453,6 @@ export class RegRecords implements OnInit, OnDestroy {
     });
   }
 
-  onSearchClick(e) {
-    e.cancel = true;
-    this.router.navigate([`search/${this.temporary ? 'temp' : ''}`]);
-  }
-
   onInitNewRow(e) {
     e.cancel = true;
     this.router.navigate(['records/new']);
@@ -534,14 +511,6 @@ export class RegRecords implements OnInit, OnDestroy {
     this.isMarkedQuery = isMarked;
     this.hitlistVM.saveQueryVM.clear();
     this.popupVisible = true;
-  }
-
-  private retrieveAll() {
-    this.updateHitListId(0);
-    this.updateQueryForm = true;
-    this.rowSelected = false;
-    this.isRefine = false;
-    this.grid.instance.refresh();
   }
 
   private saveHitlist() {
@@ -607,11 +576,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.currentIndex = 0;
     this.isRefine = false;
     if (e.hitlistId) {
-      this.rowSelected = false;
-      this.loadIndicatorVisible = true;
-      this.updateHitListId(e.hitlistId);
-      this.updateQueryForm = true;
-      this.grid.instance.refresh();
+      this.router.navigate([`records${this.temporary ? '/temp' : ''}/hits/${e.hitlistId}`]);
     }
   }
 
@@ -628,11 +593,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private showMarked() {
-    this.rowSelected = true;
-    this.loadIndicatorVisible = true;
-    this.updateHitListId(this.markedHitListId);
-    this.grid.instance.refresh();
-    this.isPrintAndExportAvailable = true;
+    this.router.navigate([`records${this.temporary ? '/temp' : ''}/hits/marked`]);
   }
 
   registerMarkedStart(e) {
@@ -648,7 +609,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private deleteMarked() {
-    if (this.markedHitlistHitsNum > 0) {
+    if (this.markedHitCount > 0) {
       let dialogResult = dxDialog.confirm(
         `Are you sure you want to delete these Registry Records?`,
         'Confirm Delete');
@@ -665,12 +626,14 @@ export class RegRecords implements OnInit, OnDestroy {
               } else {
                 notifyError(responseData.message, 5000);
               }
-              this.setProgressBarVisibility(false);
-              this.rowSelected = false;
-              this.updateHitListId(0);
-              this.getMarkedHitList();
-              this.grid.instance.refresh();
-              this.setTotalSearchableCount();
+              if (responseData.data.status && this.marksShown) {
+                this.location.back();
+              } else {
+                this.setProgressBarVisibility(false);
+                this.getMarkedHitList();
+                this.grid.instance.refresh();
+                this.setTotalSearchableCount();
+              }
             })
             .catch(error => {
               notifyException(`Delete records failed due to a problem`, error, 5000);
@@ -682,7 +645,7 @@ export class RegRecords implements OnInit, OnDestroy {
 
   private registerMarked() {
     let maxRecordAllowed = this.lookups.systemSettings.find(v => v.name === 'MaxRegisterMarked').value;
-    if (this.markedHitlistHitsNum <= Number(maxRecordAllowed)) {
+    if (this.markedHitCount <= Number(maxRecordAllowed)) {
       this.regMarkedModel.isVisible = true;
     } else {
       notify(`You are trying to register more than ` + maxRecordAllowed
@@ -691,13 +654,12 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
+  private showAllRecords() {
+    this.router.navigate([`records${this.temporary ? '/temp' : ''}`]);
+  }
+
   private showSearchResults() {
-    if (this.rowSelected) {
-      this.rowSelected = false;
-      this.updateHitListId(0);
-      this.isPrintAndExportAvailable = false || this.recordsTotalCount <= printAndExportLimit;
-      this.grid.instance.refresh();
-    }
+    this.location.back();
   }
 
   closePrintPage() {
@@ -854,14 +816,14 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   private get approveMarkedEnabled(): boolean {
-    return this.temporary && this.markedHitlistHitsNum > 0
+    return this.temporary && this.markedHitCount > 0
       && this.approvalsEnabled
       && PrivilegeUtils.hasApprovalPrivilege(this.lookups.userPrivileges);
   }
 
   // set delete marked button visibility
   private get deleteMarkedEnabled(): boolean {
-    if (this.markedHitlistHitsNum > 0) {
+    if (this.markedHitCount > 0) {
       return PrivilegeUtils.hasDeletePrivilege(this.temporary, this.lookups.userPrivileges);
     }
     return false;
@@ -886,11 +848,11 @@ export class RegRecords implements OnInit, OnDestroy {
 
   // set bulk register button visibility
   private get registerMarkedEnabled(): boolean {
-    return this.markedHitlistHitsNum > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
+    return this.markedHitCount > 0 && this.temporary && PrivilegeUtils.hasRegisterPrivilege(this.lookups.userPrivileges);
   }
 
   private approveMarked() {
-    if (this.markedHitlistHitsNum > 0) {
+    if (this.markedHitCount > 0) {
       let dialogResult = dxDialog.confirm(
         `Are you sure you want to approve the marked registries?`,
         'Confirm Approval');
@@ -908,8 +870,6 @@ export class RegRecords implements OnInit, OnDestroy {
                 notifyError(responseData.message, 5000);
               }
               this.setProgressBarVisibility(false);
-              this.updateHitListId(0);
-              this.rowSelected = false;
               this.getMarkedHitList();
               this.grid.instance.refresh();
             })

@@ -26,17 +26,23 @@ export class RegRecordsPage {
   private hitListId: number = 0;
 
   constructor(private router: Router, private actions: RegistryActions) {
-    this.temporary = (router.url.match(/.*\/temp.*/g) || []).length > 0;
-    this.restore = (router.url.match(/.*\/restore.*/g) || []).length > 0;
+    const url = router.url;
+    this.temporary = (url.match(/.*\/temp.*/g) || []).length > 0;
+    this.restore = (url.match(/.*\/restore.*/g) || []).length > 0;
     // For fixing issue :- View/Component doesn't refresh/reload if we try to reload/navigate to current route.
     // Added route(record/temp/reload) for force reloading (records/temp) route.
-    this.reload = (router.url.match(/.*\/reload.*/g) || []).length > 0;
+    this.reload = (url.match(/.*\/reload.*/g) || []).length > 0;
     if (this.reload) {
       this.router.navigate(['records/temp']);
     }
     if (this.restore) {
       let urlSegments = router.url.split('/');
       this.hitListId = Number(urlSegments[urlSegments.length - 1]);
+    } else {
+      const m = url.match(/\/hits\/(marked|\d+)/);
+      if (m && m.length > 1 && m[1] !== 'marked') {
+        this.hitListId = +m[1];
+      }
     }
   }
 }

@@ -3,11 +3,11 @@
   <div>
     <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="hitListId" [recordsCount]="recordsTotalCount"></reg-search-export>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
-    <command-button *ngIf="!!hitListId &amp;&amp; !rowSelected" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
-    <command-button *ngIf="!rowSelected" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
-    <command-button *ngIf="!rowSelected" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
+    <command-button *ngIf="!!hitListId &amp;&amp; !marksShown" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
+    <command-button *ngIf="!marksShown" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
+    <command-button *ngIf="!marksShown" testid="new-query-button" (onClick)="newQuery()" iconName="search" title="New Query"></command-button>
     <command-button *ngIf="false" testid="save-query-button" (onClick)="saveQuery(false)" iconName="floppy-o" title="Save Query"></command-button>
-    <command-button *ngIf="!!hitListId &amp;&amp; !rowSelected" testid="retrieve-all-button" (onClick)="retrieveAll()" iconName="refresh" title="Retrieve All"></command-button>
+    <command-button *ngIf="hitListId > 0 || marksShown" testid="retrieve-all-button" (onClick)="showAllRecords()" iconName="refresh" title="Retrieve All"></command-button>
   </div>
   <reg-header testid="configuration-heading" id="qa-configuration-heading">
     <span *ngIf="temporary">Temporary</span> Registration Records
@@ -49,15 +49,15 @@
         </div>
         <div *dxTemplate="let data of 'toolbarContents'">
           <badge-count [hidden]="recordsTotalCount==0" color="green" icon="book" text="Record matching" [count]="getTotalRecordsCount"></badge-count>
-          <badge-count [hidden]="markedHitlistHitsNum==0" color="orange" icon="check" text="Marked Hits" [count]="markedHitlistHitsNum"></badge-count>
-          <command-button *ngIf="createContainersEnabled &amp;&amp; markedHitlistHitsNum>0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
+          <badge-count [hidden]="markedHitCount==0" color="orange" icon="check" text="Marked Hits" [count]="markedHitCount"></badge-count>
+          <command-button *ngIf="createContainersEnabled &amp;&amp; markedHitCount > 0" testid="create-container-s" (onClick)="createBulkContainers()" iconName="flask" title="Create Container(s)"></command-button>
           <command-button [hidden]="!approveMarkedEnabled" testid="approve-marked-button" (onClick)="approveMarked()" iconName="thumbs-o-up" title="Approve Marked"></command-button>
           <command-button [hidden]="!deleteMarkedEnabled" testid="delete-marked-button" (onClick)="deleteMarked()" iconName="trash" title="Delete Marked"></command-button>
           <command-button [hidden]="!registerMarkedEnabled" testid="register-marked-button" (onClick)="registerMarked()" iconName="registered" title="Register Marked"></command-button>
-          <command-button *ngIf="markedHitlistHitsNum > 0 &amp;&amp; !rowSelected" testid="show-marked-button" (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
-          <command-button [hidden]="!rowSelected" testid="show-all-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show All Records"></command-button>
-          <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
-          <command-button [hidden]="markedHitlistHitsNum &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="square-o" title="Clear Marked"></command-button>
+          <command-button *ngIf="markedHitCount > 0 &amp;&amp; !marksShown" testid="show-marked-button" (onClick)="showMarked()" iconName="check-square-o" title="Show Marked"></command-button>
+          <command-button *ngIf="marksShown" testid="show-results-records-button" (onClick)="showSearchResults()" iconName="undo" title="Show Search Results"></command-button>
+          <command-button [hidden]="markedHitCount &lt;= 0" testid="saved-marked-button" (onClick)="saveQuery(true)" iconName="floppy-o" title="Save Marked"></command-button>
+          <command-button [hidden]="markedHitCount &lt;= 0" testid="clear-marked-button" (onClick)="clearMarked()" iconName="square-o" title="Clear Marked"></command-button>
         </div>
         <div *dxTemplate="let data of 'structureImageColumnTemplate'">
           <reg-structure-image-column-item-template (onClick)="structureImageClicked($event)" title="Click to view the structure detail" [source]="data.data"></reg-structure-image-column-item-template>

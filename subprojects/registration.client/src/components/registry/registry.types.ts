@@ -7,7 +7,7 @@ import {
 import {
   IShareableObject, FormGroupType, SubFormType, IFormGroup, ICoeForm, IFormElement, IFormContainer
 } from '../../common';
-import { IAppState, IRecordsData, IRecordListData, ILookupData } from '../../redux';
+import { IAppState, IRecordsData, ILookupData } from '../../redux';
 
 export enum RegistryStatus {
   NotSet,
