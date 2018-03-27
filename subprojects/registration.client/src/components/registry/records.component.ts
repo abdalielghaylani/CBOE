@@ -409,6 +409,13 @@ export class RegRecords implements OnInit, OnDestroy {
         let markedHitList = result.json();
         this.markedHitListId = markedHitList.hitlistId;
         this.markedHitCount = markedHitList.numberOfHits;
+        const idField = this.temporary ? 'TEMPBATCHID' : 'MIXTUREID';
+        let record = this.grid.instance.getDataSource().items().find(r => {
+          return r[idField] === recordId;
+        });
+        if (record) {
+          record.Marked = event.value ? 1 : 0;
+        }
         this.changeDetector.markForCheck();
       })
       .catch(error => {
