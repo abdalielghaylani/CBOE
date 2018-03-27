@@ -51,7 +51,6 @@ export class RegRecords implements OnInit, OnDestroy {
   @select(s => s.session.isLoading) isLoading$: Observable<any>;
   private viewGroupsColumns: CViewGroupColumns = new CViewGroupColumns();
   private lookupsSubscription: Subscription;
-  private hitlistSubscription: Subscription;
   private isLoadingSubscription: Subscription;
   private routerSubscription: Subscription;
   private lookups: ILookupData;
@@ -126,9 +125,6 @@ export class RegRecords implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.lookupsSubscription) {
       this.lookupsSubscription.unsubscribe();
-    }
-    if (this.hitlistSubscription) {
-      this.hitlistSubscription.unsubscribe();
     }
     if (this.isLoadingSubscription) {
       this.isLoadingSubscription.unsubscribe();
@@ -243,12 +239,6 @@ export class RegRecords implements OnInit, OnDestroy {
     this.dataStore = this.createCustomStore(this);
     this.actions.openHitlists(this.temporary);
     this.hitlistData$ = this.ngRedux.select(['registrysearch', 'hitlist']);
-    if (this.hitlistSubscription == null) {
-      this.hitlistSubscription = this.hitlistData$.subscribe(() => {
-        this.hitlistVM = new regSearchTypes.CQueryManagementVM(this.ngRedux.getState());
-        this.changeDetector.markForCheck();
-      });
-    }
     this.gridHeight = this.getGridHeight();
   }
 
