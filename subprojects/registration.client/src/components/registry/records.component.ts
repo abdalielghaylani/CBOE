@@ -8,9 +8,8 @@ import {
   ChangeDetectorRef, ChangeDetectionStrategy, ElementRef,
   Directive, HostListener, NgZone
 } from '@angular/core';
-import { Location } from '@angular/common';
 import { select, NgRedux } from '@angular-redux/store';
-import { Router, ActivatedRoute, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { EmptyObservable } from 'rxjs/Observable/EmptyObservable';
 import { Subscription } from 'rxjs/Subscription';
@@ -93,7 +92,6 @@ export class RegRecords implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private location: Location,
     private http: HttpService,
     private ngRedux: NgRedux<IAppState>,
     private registryActions: RegistryActions,
@@ -345,9 +343,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.http.put(url, undefined).toPromise()
       .then(result => {
         if (this.marksShown) {
-          let goBackUrl = this.router.url.replace('/marked', '');
-          this.router.navigate([goBackUrl]);
-          this.location.back();
+          this.showSearchResults();
         } else {
           let markedHitList = result.json();
           this.markedHitListId = markedHitList.hitlistId;
@@ -657,7 +653,7 @@ export class RegRecords implements OnInit, OnDestroy {
                 notifyError(responseData.message, 5000);
               }
               if (responseData.data.status && this.marksShown) {
-                this.location.back();
+                this.showSearchResults();
               } else {
                 this.setProgressBarVisibility(false);
                 this.getMarkedHitList();
@@ -688,8 +684,12 @@ export class RegRecords implements OnInit, OnDestroy {
     this.router.navigate([`records${this.temporary ? '/temp' : ''}`]);
   }
 
+  /**
+   * This must be called only when the list is in marks-shown mode.
+   * In this mode, the URL ends with /marked, and navigating to URL without /marked would show the desired list.
+   */
   private showSearchResults() {
-    this.location.back();
+    this.router.navigate([this.router.url.replace('/marked', '')]);
   }
 
   closePrintPage() {
