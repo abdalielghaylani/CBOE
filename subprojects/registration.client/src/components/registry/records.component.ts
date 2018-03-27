@@ -173,8 +173,9 @@ export class RegRecords implements OnInit, OnDestroy {
       });
   }
 
-  getMarkedHitList() {
-    this.http.get(`${apiUrlPrefix}hitlists/markedHitList?temp=${this.temporary}`).toPromise()
+  getMarkedHitList(retry: boolean = true) {
+    const url = `${apiUrlPrefix}hitlists/markedHitList?temp=${this.temporary}`;
+    this.http.get(url).toPromise()
       .then((res => {
         let markedHitList = res.json();
         this.markedHitListId = markedHitList.hitlistId;
@@ -184,9 +185,19 @@ export class RegRecords implements OnInit, OnDestroy {
         }
         this.changeDetector.markForCheck();
       }).bind(this))
-      .catch(error => {
-        notifyException(`The marked hit-list query failed due to a problem`, error, 5000);
-      });
+      .catch((error => {
+        if (retry) {
+          // If case it fails, try again once to compensate occasional server failures.
+          this.getMarkedHitList(false);
+        } else {
+          if (this.marksShown && this.markedHitListId === 0) {
+            // In case when we need to show marked and this keeps failing, navigate back to the unmarked list.
+            // Otherwise, the page won't show anything.
+            this.showSearchResults();
+          }
+          notifyException(`The marked hit-list query failed due to a problem`, error, 5000);
+        }
+      }).bind(this));
   }
 
   // Trigger data retrieval for the view to show.
