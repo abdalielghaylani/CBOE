@@ -516,8 +516,8 @@ export class RegRecords implements OnInit, OnDestroy {
         this.setTotalSearchableCount();
       })
       .catch(error => {
-        this.setProgressBarVisibility(false);
         notifyException(`The record was not deleted due to a problem`, error, 5000);
+        this.setProgressBarVisibility(false);
       });
     e.cancel = true;
   }
@@ -664,6 +664,7 @@ export class RegRecords implements OnInit, OnDestroy {
             })
             .catch(error => {
               notifyException(`Delete records failed due to a problem`, error, 5000);
+              this.setProgressBarVisibility(false);
             });
         }
       });
@@ -906,6 +907,7 @@ export class RegRecords implements OnInit, OnDestroy {
             })
             .catch(error => {
               notifyException(`Approve records failed due to a problem`, error, 5000);
+              this.setProgressBarVisibility(false);
             });
         }
       });
