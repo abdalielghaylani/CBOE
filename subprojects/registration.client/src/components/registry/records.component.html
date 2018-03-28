@@ -82,7 +82,7 @@
         </div>
         <div *dxTemplate="let data of 'markedTemplate'">
           <div class="center">
-            <dx-check-box [value]="data.value" (onInitialized)="prepareMarked($event)" (onValueChanged)="selectMarked($event)"></dx-check-box>
+            <dx-check-box [value]="data.value" (onInitialized)="prepareMarked($event)" (onValueChanged)="selectMarked($event, data)"></dx-check-box>
           </div>
         </div>
       </dx-data-grid>

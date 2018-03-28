@@ -401,24 +401,19 @@ export class RegRecords implements OnInit, OnDestroy {
     }).bind(this));
   }
 
-  selectMarked(event) {
-    const recordId = +event.element[0].attributes.attrid.value;
+  selectMarked(event, data) {
+    const idField = this.temporary ? 'TEMPBATCHID' : 'MIXTUREID';
+    const recordId = data.row.data[idField];
     const url = `${apiUrlPrefix}hitlists/${event.value ? 'markhit' : 'unMarkhit'}/${recordId}${this.temporary ? '?temp=true' : ''}`;
     this.http.put(url, undefined)
       .toPromise()
-      .then(result => {
+      .then((result => {
         let markedHitList = result.json();
         this.markedHitListId = markedHitList.hitlistId;
         this.markedHitCount = markedHitList.numberOfHits;
-        const idField = this.temporary ? 'TEMPBATCHID' : 'MIXTUREID';
-        let record = this.grid.instance.getDataSource().items().find(r => {
-          return r[idField] === recordId;
-        });
-        if (record) {
-          record.Marked = event.value ? 1 : 0;
-        }
+        data.row.data.Marked = event.value ? 1 : 0;
         this.changeDetector.markForCheck();
-      })
+      }).bind(this))
       .catch(error => {
         notifyException(`${event.value ? 'Marking' : 'Un-marking'} the selected record failed due to a problem`, error, 5000);
       });
