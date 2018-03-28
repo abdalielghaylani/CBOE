@@ -88,6 +88,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private markedHitsMax: number = 0;
   private structureDataVisible: boolean = false;
   private structureData: string;
+  private noDataText: string;
 
   constructor(
     private router: Router,
@@ -103,6 +104,7 @@ export class RegRecords implements OnInit, OnDestroy {
       const match = value.url.match(/\/hits\/(\d+)$/);
       if (match && match.length === 2 && this.hitListId > 0 && !this.marksShown) {
         this.hitListId = +match[1];
+        this.loadIndicatorVisible = true;
         this.currentIndex = 0;
         this.grid.instance.refresh();
       }
@@ -251,6 +253,7 @@ export class RegRecords implements OnInit, OnDestroy {
         if (ref.isRefine) {
           let refinedRows = ref.refinedRows;
           ref.recordsTotalCount = ref.refinedTotalRecordsCount;
+          ref.noDataText = ref.recordsTotalCount === 0 ? 'Search returned no hit!' : '';
           ref.refinedRows = [];
           ref.refinedTotalRecordsCount = 0;
           ref.isRefine = false;
@@ -281,6 +284,7 @@ export class RegRecords implements OnInit, OnDestroy {
               .then(result => {
                 let response = result.json();
                 ref.recordsTotalCount = response.totalCount;
+                ref.noDataText = ref.recordsTotalCount === 0 ? 'Search returned no hit!' : '';
                 if (response.hitlistId !== ref.markedHitListId) {
                   ref.updateHitListId(response.hitlistId);
                 }
