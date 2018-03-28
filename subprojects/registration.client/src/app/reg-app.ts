@@ -49,6 +49,7 @@ export class RegApp {
   private isLoggedIn: boolean = false;
   private printerFriendly: boolean = false;
   private hasRegAppPrivilege: boolean = false;
+  private selectedCommandIndex: number = 0;
 
   constructor(
     private devTools: DevToolsExtension,
@@ -90,7 +91,11 @@ export class RegApp {
       this.isLoggedIn = loggedIn;
     });
     this.routerLink$.subscribe(link => {
-      this.printerFriendly = link.indexOf('/print') > -1;
+      this.printerFriendly = link.indexOf('/print') >= 0;
+      this.selectedCommandIndex = link.endsWith('/temp') || link.endsWith('temp/marked') || link.indexOf('temp/hits/') > 0 ? 1
+        : !link.endsWith('/temp') && link.indexOf('records/') >= 0 && link.indexOf('/marked') <= 0 && link.indexOf('/hits/') <= 0 ? 2
+          : link.endsWith('/records') || link.endsWith('records/marked') || link.indexOf('records/hits/') > 0 ? 3
+            : link.indexOf('configuration') > 0 ? 4 : 0;
     });
   }
 
@@ -99,12 +104,12 @@ export class RegApp {
     this.ngUnsubscribe.complete();
   }
 
-  setVisibility(privilage: string) {
+  setVisibility(privilege: string) {
     if (this.lookups) {
-      let privilages = this.lookups.homeMenuPrivileges;
-      let privilageItem = privilages.find(p => p.privilegeName === privilage);
-      if (privilageItem !== undefined) {
-        return privilageItem.visibility;
+      let privileges = this.lookups.homeMenuPrivileges;
+      let privilegeItem = privileges.find(p => p.privilegeName === privilege);
+      if (privilegeItem != null) {
+        return privilegeItem.visibility;
       }
     }
     return false;
