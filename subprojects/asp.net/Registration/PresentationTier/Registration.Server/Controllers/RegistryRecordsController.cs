@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Net;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -841,6 +842,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 var regNum = GetRegNumber(id);
+                var record = RegistryRecord.GetRegistryRecord(regNum);
+                if (!record.CanEditRegistry())
+                    throw new PrivilegeNotHeldException(string.Format("Not allowed to delete the registered record, {0}", regNum));
                 var mixtureId = GetMixtureId(id);
                 RegistryRecord.DeleteRegistryRecord(regNum);
                 var markedHitList = GetMarkedHitListBO(false);
@@ -1132,6 +1136,9 @@ namespace PerkinElmer.COE.Registration.Server.Controllers
             return await CallMethod(() =>
             {
                 CheckTempRecordId(id);
+                var record = RegistryRecord.GetRegistryRecord(id);
+                if (!record.CanEditRegistry())
+                    throw new PrivilegeNotHeldException(string.Format("Not allowed to delete the temporary record, {0}", id));
                 RegistryRecord.DeleteRegistryRecord(id);
                 var markedHitList = GetMarkedHitListBO(true);
                 markedHitList.UnMarkHit(id);
