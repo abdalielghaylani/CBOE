@@ -259,6 +259,7 @@ export class RegRecords implements OnInit, OnDestroy {
           ref.isRefine = false;
           ref.isPrintAndExportAvailable = (ref.recordsTotalCount <= printAndExportLimit && ref.recordsTotalCount > 0);
           deferred.resolve(refinedRows, { totalCount: ref.recordsTotalCount });
+          ref.setProgressBarVisibility(false);
         } else {
           if (loadOptions.take) {
             let sortCriteria;
@@ -328,18 +329,21 @@ export class RegRecords implements OnInit, OnDestroy {
     }
   }
 
-  onSearch(hitListId) {
+  navigateToHits(hitListId: number) {
     this.router.navigate([`records/${this.temporary ? 'temp' : ''}/hits/${hitListId}`]);
+  }
+
+  onSearch(hitListId) {
+    this.navigateToHits(hitListId);
   }
 
   onRefine(result) {
     this.setTotalSearchableCount();
     this.marksShown = false;
     this.currentIndex = 0;
-    this.updateHitListId(result.hitlistId);
     this.refinedRows = result.rows;
     this.refinedTotalRecordsCount = result.totalCount;
-    this.grid.instance.refresh();
+    this.navigateToHits(result.hitlistId);
   }
 
   clearMarked() {
@@ -602,7 +606,7 @@ export class RegRecords implements OnInit, OnDestroy {
     this.currentIndex = 0;
     this.isRefine = false;
     if (e.hitlistId) {
-      this.onSearch(e.hitlistId);
+      this.navigateToHits(e.hitlistId);
     }
   }
 
