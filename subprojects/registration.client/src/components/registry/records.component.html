@@ -77,7 +77,7 @@
         </div>
         <div *dxTemplate="let data of 'markedHeaderTemplate'">
           <div class="center" title="{{recordsTotalCount > markedHitsMax ? 'Too many records!' : 'Mark all records' }}">
-            <dx-check-box [disabled]='recordsTotalCount > markedHitsMax' (onInitialized)="prepareAllMarked($event)"></dx-check-box>
+            <dx-check-box [disabled]='recordsTotalCount > markedHitsMax || marksShown' (onInitialized)="prepareAllMarked($event)"></dx-check-box>
           </div>
         </div>
         <div *dxTemplate="let data of 'markedTemplate'">
