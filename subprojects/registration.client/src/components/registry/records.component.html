@@ -1,7 +1,7 @@
 <div class="viewcontainer" [hidden]="currentIndex!=0" (window:resize)="onResize($event)">
   <command-button *ngIf="isPrintAndExportAvailable" testid="print-records-button" (onClick)="printRecords()" iconName="print" title="Print"></command-button>
   <div>
-    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="hitListId" [recordsCount]="recordsTotalCount"></reg-search-export>
+    <reg-search-export *ngIf="isPrintAndExportAvailable" [temporary]="temporary" [hitListId]="marksShown ? markedHitListId : hitListId" [recordsCount]="recordsTotalCount"></reg-search-export>
     <command-button testid="manage-query-button" (onClick)="manageQueries()" iconName="tasks" title="Manage Queries"></command-button>
     <command-button *ngIf="!!hitListId &amp;&amp; !marksShown" testid="refine-query-button" (onClick)="refineQuery(hitListId)" iconName="edit" title="Refine Over Records"></command-button>
     <command-button *ngIf="!marksShown" testid="edit-query-button" (onClick)="editQuery(hitListId)" iconName="edit" title="Edit Query"></command-button>
