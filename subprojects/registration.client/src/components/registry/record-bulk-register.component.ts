@@ -109,12 +109,14 @@ export class RegBulkRegisterRecord implements OnInit, OnDestroy {
   }
 
   loadData(e) {
-    this.datasource = e == null ? [] : e;
-    this.columns = this.columns.map(s => this.updateGridColumn(s));
-    this.loadIndicatorVisible = false;
-    this.bulkDataIsLoaded = true;
-    this.gridHeight = this.getGridHeight();
-    this.changeDetector.markForCheck();
+    if (e == null || e.length > 0) {
+      this.datasource = e == null ? [] : e;
+      this.columns = this.columns.map(s => this.updateGridColumn(s));
+      this.loadIndicatorVisible = false;
+      this.bulkDataIsLoaded = true;
+      this.gridHeight = this.getGridHeight();
+      this.changeDetector.markForCheck();
+    }
   }
 
   updateGridColumn(gridColumn) {

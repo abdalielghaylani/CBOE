@@ -635,7 +635,7 @@ export class RegRecords implements OnInit, OnDestroy {
         records: []
       });
     this.regMarkedModel.isVisible = false;
-    this.registryActions.clearBulkRrgisterStatus();
+    RegistryActions.bulkRegisterRecordSuccessAction([]);
     this.router.navigate([`records/bulkreg`]);
   }
 
