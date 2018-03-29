@@ -89,6 +89,7 @@ export class RegRecords implements OnInit, OnDestroy {
   private structureDataVisible: boolean = false;
   private structureData: string;
   private noDataText: string;
+  private url: string;
 
   constructor(
     private router: Router,
@@ -102,7 +103,8 @@ export class RegRecords implements OnInit, OnDestroy {
     private ngZone: NgZone) {
     this.routerSubscription = router.events.filter(e => e instanceof NavigationEnd).subscribe(value => {
       const match = value.url.match(/\/hits\/(\d+)$/);
-      if (match && match.length === 2 && this.hitListId > 0 && !this.marksShown) {
+      if (match && match.length === 2 && this.hitListId > 0 && !this.marksShown && this.url !== value.url) {
+        this.url = value.url;
         this.hitListId = +match[1];
         this.loadIndicatorVisible = true;
         this.currentIndex = 0;
@@ -112,6 +114,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.url = this.router.url;
     this.queryFormShown = false;
     this.updateQueryForm = true;
     this.idField = this.temporary ? 'TEMPBATCHID' : 'REGID';
