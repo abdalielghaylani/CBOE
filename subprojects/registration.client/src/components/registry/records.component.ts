@@ -179,7 +179,11 @@ export class RegRecords implements OnInit, OnDestroy {
         this.markedHitListId = markedHitList.hitlistId;
         this.markedHitCount = markedHitList.numberOfHits;
         if (this.marksShown) {
-          this.loadData();
+          if (this.markedHitCount === 0) {
+            this.navigateToHits(this.hitListId);
+          } else {
+            this.loadData();
+          }
         }
         this.changeDetector.markForCheck();
       }).bind(this))
@@ -330,7 +334,7 @@ export class RegRecords implements OnInit, OnDestroy {
   }
 
   navigateToHits(hitListId: number) {
-    this.router.navigate([`records/${this.temporary ? 'temp' : ''}/hits/${hitListId}`]);
+    this.router.navigate([`records/${this.temporary ? 'temp' : ''}${hitListId > 0 ? '/hits/' + hitListId : ''}`]);
   }
 
   onSearch(hitListId) {
