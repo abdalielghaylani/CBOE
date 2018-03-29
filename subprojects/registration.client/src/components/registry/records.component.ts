@@ -634,7 +634,7 @@ export class RegRecords implements OnInit, OnDestroy {
         records: []
       });
     this.regMarkedModel.isVisible = false;
-    RegistryActions.bulkRegisterRecordSuccessAction([]);
+    this.ngRedux.dispatch(RegistryActions.bulkRegisterRecordSuccessAction([]));
     this.router.navigate([`records/bulkreg`]);
   }
 
