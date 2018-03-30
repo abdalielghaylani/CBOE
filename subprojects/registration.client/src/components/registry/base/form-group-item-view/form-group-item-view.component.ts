@@ -102,14 +102,14 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
     this.updateViewModelFromFormData(validItems);
   }
 
-  protected deleteBatch(showConfirmation: boolean = true) {
+  protected deleteBatch(e, showConfirmation: boolean = true) {
     if (showConfirmation) {
       let dialogResult = dxDialog.confirm(
         `Are you sure that you want to delete the batch?`,
         'Confirm Deleting a Batch');
       dialogResult.done(r => {
         if (r) {
-          this.deleteBatch(false);
+          this.deleteBatch(e, false);
         }
       });
     } else {
@@ -127,6 +127,7 @@ export class RegFormGroupItemView extends RegFormGroupItemBase implements OnInit
           this.setLoadingVisible(false);
         });
     }
+    e.stopPropagation();
   }
 
   protected onBatchSelected(batchId) {
