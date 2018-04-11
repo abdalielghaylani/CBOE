@@ -732,6 +732,7 @@ namespace CambridgeSoft.COE.Registration.Services.Types
                 // Force it dirty
                 toReg.Xml = toReg.Xml;
                 // Trigger addins and save changes. (IE: Batch formula and formula weight needs to be recalculated)
+                toReg.CheckOtherMixtures = false;
                 toReg.Save();
             }
         }
