@@ -1,1 +1,0 @@
---Copyright 1999-2010 CambridgeSoft Corporation. All rights reserved

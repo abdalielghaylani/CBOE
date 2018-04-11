@@ -1,6 +1,0 @@
-BUFFER=102400
-IGNORE=YES
-FULL=YES
-FILE=coeconfig.dmp
-LOG=coeconfig_import.log
-

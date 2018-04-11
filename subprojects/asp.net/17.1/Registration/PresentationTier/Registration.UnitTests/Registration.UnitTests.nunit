@@ -1,9 +1,0 @@
-﻿<NUnitProject>
-  <Settings activeconfig="Debug" />
-  <Config name="Debug" configfile="..\RegistrationWebApp\web.config" binpathtype="Auto">
-    <assembly path="bin\Debug\CambridgeSoft.COE.Registration.UnitTests.dll" />
-  </Config>
-  <Config name="Release" binpathtype="Auto">
-    <assembly path="bin\Release\CambridgeSoft.COE.Registration.UnitTests.dll" />
-  </Config>
-</NUnitProject>

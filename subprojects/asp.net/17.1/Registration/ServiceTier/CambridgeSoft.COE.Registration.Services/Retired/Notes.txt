@@ -1,6 +1,0 @@
-(1) Verify non-usage of all classes moved into this folder
-(2) Notebook.cs is used ONLY within the Batch class
-	Move Notebook class into Batch class for proper scoping.
-(3) Command.cs is unused, and badly-named to boot.
-    No approvals workflow was ever finished.
-(4) COERules.cs has had its content moved to the Validation folder.

@@ -1,1 +1,0 @@
-<%@ WebService Language="C#" CodeBehind="COEFrameworkServices.asmx.cs" Class="CambridgeSoft.COE.Framework.Web.COEFrameworkServices" %>

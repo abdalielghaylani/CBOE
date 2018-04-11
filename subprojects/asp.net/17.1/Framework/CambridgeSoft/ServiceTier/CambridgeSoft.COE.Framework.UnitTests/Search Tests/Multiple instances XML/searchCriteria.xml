@@ -1,1 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?><searchCriteria  xmlns="COE.SearchCriteria"><searchCriteriaItem id="0" fieldid="21577" tableid="21568" modifier="" aggregateFunctionName="" searchLookupByID="0"><numericalCriteria negate="NO" operator="LT" trim="NONE">100</numericalCriteria></searchCriteriaItem></searchCriteria>

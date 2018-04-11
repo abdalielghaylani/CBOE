@@ -1,9 +1,0 @@
-﻿<mappings xmlns="COE.Mappings">
-    <selectClauses>
-        <selectClause name="field" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseField"/>
-        <selectClause name="literal" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseLiteral"/>
-        <selectClause name="switch" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseCase"/>
-        <selectClause name="concatenation" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseConcatenation"/>
-        <selectClause name="molweight" parserClassName="CambridgeSoft.COE.Framework.Common.SqlGenerator.Queries.SelectItems.SelectClauseMolWeight"/>
-    </selectClauses>
-</mappings>

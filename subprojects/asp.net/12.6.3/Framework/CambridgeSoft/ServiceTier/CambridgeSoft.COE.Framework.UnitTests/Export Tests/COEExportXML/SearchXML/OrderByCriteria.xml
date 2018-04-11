@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<orderByCriteria  xmlns="COE.OrderByCriteria">
-  <orderByCriteriaItem id="1" orderIndex="1" direction="ASC" tableId="1">
-    <MolWeight fieldId="5" alias="MolWeight" />
-  </orderByCriteriaItem>
-  <orderByCriteriaID>1</orderByCriteriaID>
-</orderByCriteria>

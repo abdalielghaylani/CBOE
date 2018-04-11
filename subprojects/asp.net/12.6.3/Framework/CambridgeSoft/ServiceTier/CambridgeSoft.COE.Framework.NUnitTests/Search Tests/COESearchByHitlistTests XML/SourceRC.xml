@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<resultsCriteria sortByHitList="false" xmlns="COE.ResultsCriteria">
-  <tables>
-    <table id="1429"> <!-- Substance table -->
-      <field alias="PUBCHEM CID" fieldId="1431" />
-      <field alias="FORMULA" fieldId="1432" />
-    </table>
-  </tables>
-</resultsCriteria>

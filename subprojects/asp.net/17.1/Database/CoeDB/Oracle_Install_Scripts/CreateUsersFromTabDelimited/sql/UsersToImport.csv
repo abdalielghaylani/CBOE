@@ -1,4 +1,0 @@
-Username,LastName,FirstName,Department,Roles,Supervisor,Site,Active,Address,Telephone,Email,UserCode
-cadabraa,cadabra,abra,dep1,"INV_CHEMIST, CHEMICAL_ADMINISTRATOR",cadabraa,Main Site,1,100 CP D,,,
-sesame,sesame,open,dep2,"INV_CHEMIST, CHEMICAL_ADMINISTRATOR",,Test Site,1,,864234,,
-birdb,bird,big,dep3,,sesame,,0,,,bigbird@sesamestreet.com,

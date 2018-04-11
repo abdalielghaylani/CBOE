@@ -1,3 +1,0 @@
-﻿<whereClauses>
-    <whereClause name="custommolweight" assemblyName="CustomMolWeightCriteria, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0bdafb4837f0931b" parserClassName="CustomMolWeightCriteria.MolWeightWhereClause" searchProcessorClassName="CustomMolWeightCriteria.CustomMolWeightSearchProcessor" />
-</whereClauses>

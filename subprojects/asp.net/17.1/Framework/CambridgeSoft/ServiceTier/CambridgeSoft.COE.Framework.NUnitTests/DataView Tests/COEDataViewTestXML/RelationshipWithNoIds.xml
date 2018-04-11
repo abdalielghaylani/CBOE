@@ -1,2 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<relationship tablename="SUBSTANCE_SUBSET" fieldname="CSNUM" parenttable="GRAPHICS" parentfield="ID" />

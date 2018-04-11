@@ -1,5 +1,0 @@
-﻿<mappings xmlns="COE.Mappings">
-  <selectClauses>
-    <selectClause name="cast" parserClassName="CustomSelectClause.CastSelectClause" assemblyName="CastSelectClause, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0e507c4f1f6a6e6d"/>
-  </selectClauses>
-</mappings>

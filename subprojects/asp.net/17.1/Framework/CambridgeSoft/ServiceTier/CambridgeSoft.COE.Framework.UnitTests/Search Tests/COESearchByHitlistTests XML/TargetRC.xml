@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<resultsCriteria sortByHitList="false" xmlns="COE.ResultsCriteria">
-  <tables>
-    <table id="985"> <!-- Substance table -->
-      <field alias="PUBCHEM CID" fieldId="993" />
-      <field alias="Toxicity EF" fieldId="986" />
-    </table>
-  </tables>
-</resultsCriteria>

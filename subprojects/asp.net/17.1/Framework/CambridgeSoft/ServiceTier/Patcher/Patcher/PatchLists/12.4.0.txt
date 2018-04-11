@@ -1,2 +1,0 @@
-ChangeMasterDataviewEditionLink
-UpgradeCBVExcelLinkTo1240

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<JumpToList>
-  <jumpTo sourceDataviewId="5002" sourceDataviewName="Sample Dataview" sourceTableId="1" sourceTableName="MolTable" sourceFieldID="2" targetDataviewId="5235" targetDataviewName="My Other Dataview" sourceFieldName="Mol_id" targetTableId="1" targetTableName="MolTable" targetFieldID="2" targetFieldName="Mol_id" />
-  <jumpTo sourceDataviewId="5002" sourceDataviewName="Sample Dataview" sourceTableId="1" sourceTableName="MolTable" sourceFieldID="2" targetDataviewId="5002" targetDataviewName=" My Other Dataview" sourceFieldName="Mol_id" targetTableId="1" targetTableName="MolTable" targetFieldID="2" targetFieldName="Mol_id" targetFormId="5235" targetFormName="Some Mol Form" targetFormType="WebForm" />
-  <jumpTo sourceDataviewId="5002" sourceDataviewName="Sample Dataview" sourceTableId="1" sourceTableName="MolTable" sourceFieldID="2" targetDataviewId="5002" targetDataviewName=" My Other Dataview" sourceFieldName="Mol_id" targetTableId="1" targetTableName="MolTable" targetFieldID="2" targetFieldName="Mol_id" targetFormId="5235" targetFormName="Some Mol Form" targetFormType="WebForm" />
-</JumpToList>
-
-
-
